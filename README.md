@@ -3,7 +3,7 @@ User language contributions and submissions for software related to FreeDOS
 
 ### Licensing
 
-All user accepted user contributions in this project are required for their
+All user accepted contributions in this project are required for their
 submissions to accept and bound by the overall license of this project and
 any software projects their submission is related. Any accepted submission will
 automatically be licensed by the GNU General Public License, version 2 or later.
