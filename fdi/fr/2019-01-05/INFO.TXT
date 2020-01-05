@@ -1,0 +1,28 @@
+From: petrouchka (NumOpen)
+
+I found this solution :
+
+In C:\FDCONFIG.SYS :
+
+Not useful to solve the problem with SYST¬ME but useful for other things,
+I suppose :
+COUNTRY=033,858,C:\FDOS\BIN\COUNTRY.SYS
+
+In C:\FDAUTO.BAT :
+Not useful to solve the problem with SYST¬ME but useful for other things,
+I suppose :
+SET LANG=FR
+...
+
+Solve the problem with SYST¬ME :
+LH DISPLAY CON=(EGA,,1)
+MODE CON CODEPAGE PREPARE=((858) C:\FDOS\CPI\EGA.CPX)
+MODE CON CODEPAGE SELECT=858
+
+Not useful to solve the problem with SYST¬ME but necessary to use french
+keyboard and € (AltGr+e) :
+
+LH KEY FR,858
+
+Could somebody modify the installer to have this configuration when installing
+FreeDOS with a french keyboard, please ?
