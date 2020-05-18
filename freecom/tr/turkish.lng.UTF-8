@@ -7,7 +7,7 @@
 #	Author:   FreeCOM maintainer
 # 
 # This file is used to generate all the messages that command.com
-# outputs.  This file is the input to the fixtures program, and it
+# outputs.  This file is the input to the fixstrs program, and it
 # outputs strings.h and strings.dat.  The .DAT file is appended to
 # the command.exe file, and then renamed to command.com.  The .H
 # file contains all the info for the program to retrieve the
@@ -15,7 +15,7 @@
 #
 # The format of this file is simple.  Blank lines and lines starting
 # with "#" are ignored.
-# Each meğage starts with a label name that will be used to refer to
+# Each message starts with a label name that will be used to refer to
 # the message in the program.  A label starts with a colon ":".
 # A label has a version ID attached to it delimited by a hash sign, e.g.:
 #	:TEXT_LABEL#1
@@ -28,10 +28,10 @@
 # format string %-style placeholders are compared for the strings. The
 # sign need to be set in DEFAULT.LNG only.
 #
-# All lines after the label are the meğage until a line with a
+# All lines after the label are the message until a line with a
 # single "." or "," in the first column.  The difference is the
 # period (".") signifies that there will be a final carriage return when
-# the meğage is displayed, but a comma does not.
+# the message is displayed, but a comma does not.
 #
 # The body may contain backslash escape sequences as known from C; there
 # are the usual \# (where '#' is a lowercase letter except 'x' or one of
@@ -75,15 +75,15 @@
 # 'N', 'n', Enter and ^Break are mapped to metakey 'b' (aka No).
 # The spaces between the 'b's in the second line had been inserted to
 # align them with the corresponding keys of the first line, hence in order
-# to enhance readability of the association between the preğed keys and their
+# to enhance readability of the association between the pressed keys and their
 # mapping into a metakey.
 #
-# The first line (preğed keys) has to enumerate the ASıI value as returned
-# by DOS or BIOS (INT-10); special keys normally expressed with ASıI code zero,
+# The first line (pressed keys) has to enumerate the ASCII value as returned
+# by DOS or BIOS (INT-10); special keys normally expressed with ASCII code zero,
 # but a non-zero scancode are NOT supported; this limit includes for instance
 # the function keys F1 through F12 and the cursor keys and it is not possible
 # to differ between the number pad and normal keys.
-# The keys may be enumerated by their ASıI character, by a backslash sequence,
+# The keys may be enumerated by their ASCII character, by a backslash sequence,
 # or a symbolic name enclosed in curly brackets (see FIXSTRS.C "symkeys[]"
 # array about the supported symnames).
 
@@ -103,19 +103,19 @@ Geçersiz anahtar. - /%s
 
 ## Issued if the context, the type of argument etc. is invalid
 :TEXT_ERROR_ILLFORMED_OPTION#0%
-Yanlış şekillendirilmiş seçenek: '%s'
+Yanlış oluşturulmuş seçenek: '%s'
 .
 
 :TEXT_ERROR_OPT_ARG#0%
-'%s' seçeneğinin bağımsız değişkeni olamaz
+'%s' seçeneğinin bağımsız değişkeni olamaz.
 .
 
 :TEXT_ERROR_OPT_NOARG#0%
-'%s' seçeneğinin bağımsız bir değişkeni olmalıdır
+'%s' seçeneğinin bağımsız bir değişkeni olmalı.
 .
 
 :TEXT_INVALID_NUMBER#0%
-'%s' unsurunda geçersiz sayı belirtimi
+'%s' ögesinde geçersiz sayı belirtimi.
 .
 
 :TEXT_ERROR_CLOSE_QUOTE#0%
@@ -123,7 +123,7 @@ Eksik kapama tırnak işareti: %c
 .
 
 :TEXT_ERROR_TEMPFILE
-Geçici dosya oluşturulamadı
+Geçici dosya oluşturulamadı.
 .
 
 :TEXT_ERROR_TOO_MANY_PARAMETERS_STR#0%
@@ -150,7 +150,7 @@ Dosya bulunamadı.
 Dosya bulunamadı. - '%s'
 .
 
-:TEXT_ERROR_REQ_PARAM_MIğING#0%
+:TEXT_ERROR_REQ_PARAM_MISSING#0%
 Gerekli parametre eksik.
 .
 
@@ -164,7 +164,7 @@ Yanlış komut veya dosya adı - "%s".
 
 :TEXT_ERROR_OUT_OF_MEMORY
 Bellek yetersiz hatası.
-.
+.BATCHFILE
 
 :TEXT_ERROR_OUT_OF_DOS_MEMORY#1
 DOS belleğinin ayrılması başarısız oldu.
@@ -174,7 +174,7 @@ DOS belleğinin ayrılması başarısız oldu.
 Kanal oluşturulamadı! Geçici dosya açılamadı!
 .
 
-:TEXT_ERROR_LONG_LINE_toplu işFILE#0%
+:TEXT_ERROR_LONG_LINE_BATCHFILE#0%
 '%s' toplu iş dosyasında satır #%ld çok uzun.
 .
 
@@ -183,10 +183,10 @@ Toplu iş dosyası '%s' bulunamadı.
 .
 
 :TEXT_ERROR_BFILE_LABEL#0%
-'%s' toplu iş dosyası '%s' etiketini içermemektedir.
+'%s' toplu iş dosyası '%s' etiketini içermemekte.
 .
 
-:TEXT_ERROR_DIRFCT_FüLED#1%
+:TEXT_ERROR_DIRFCT_FAILED#1%
 %s, '%s' için başarısız oldu.
 .
 # The next three errors must remain in this order!
@@ -198,7 +198,7 @@ Ortam dolu olmasın?
 '%s' ortam değişkeni bulunamadı.
 .
 :TEXT_ERROR_NO_ENVIRONMENT
-Ortam yok. Belki bellek yetersiz kaldı. /E seçeneğini belirtiniz.
+Ortam yok. Belki bellek yetersiz kaldı. /E seçeneğini belirtin.
 .
 
 # The next three errors must remain in this order!
@@ -209,7 +209,7 @@ Ortam yok. Belki bellek yetersiz kaldı. /E seçeneğini belirtiniz.
 '%s' diğer adı bulunamadı.
 .
 :TEXT_ERROR_NO_ALIAS_SEGMENT#1
-Diğer ad alanı yok. Belki bellek yetersiz.
+Diğer ad alanı yok. Bellek yetersiz olabilir.
 .
 
 :TEXT_ERROR_SYNTAX_STR#0%
@@ -225,7 +225,7 @@ Dosya adı çok uzun. - '%s'
 .
 
 :TEXT_ERROR_SELFCOPY#0%
-'%s' kendi üzerine kopyalanamaz
+'%s' kendi üzerine kopyalanamaz.
 .
 
 :TEXT_ERROR_COMMAND_TOO_LONG
@@ -236,7 +236,7 @@ Diğer ad genişletilmesinden sonra komut satırı çok uzun!
 Komut satırı 125 karakterden uzun.
 .
 
-:TEXT_ERROR_HISTORY_ğZE#1%
+:TEXT_ERROR_HISTORY_SIZE#1%
 Geçersiz tarihçe boyutu '%s'.
 .
 
@@ -245,7 +245,7 @@ Komut satırı tarihçesi boş.
 .
 
 
-:TEXT_ERROR_BAD_MCB_CHüN
+:TEXT_ERROR_BAD_MCB_CHAIN
 MCB zinciri bozuk, veya MS-DOS ile uyumlu olmayan bir sistem.
 .
 
@@ -258,22 +258,22 @@ Geçersiz bellek alanı %d - yok sayıldı.
 .
 
 :TEXT_ERROR_ON_OR_OFF
-ON veya OFF belirtilmesi gerekmektedir.
+ON veya OFF belirtilmesi gerekiyor.
 .
 
 :TEXT_ERROR_BAD_VARIABLE
 Yanlış değişken belirtildi.
 .
 
-:TEXT_ERROR_IN_MIğING#1
+:TEXT_ERROR_IN_MISSING#1
 FOR: IN eksik.
 .
 
-:TEXT_ERROR_MIğING_PARENTHESES#1
+:TEXT_ERROR_MISSING_PARENTHESES#1
 Bir veya her iki parantez eksik.
 .
 
-:TEXT_ERROR_DO_MIğING#1
+:TEXT_ERROR_DO_MISSING#1
 FOR: DO eksik.
 .
 
@@ -310,7 +310,7 @@ CTTY komutu bu COMMAND.COM'dan hariç tutulmuştur.
 .
 
 :TEXT_ERROR_NORW_DEVICE#0%
-Geçersiz veya okuma-yazma cihazı olmayan '%s'.
+'%s' geçersiz veya okuma-yazma aygıtı değil.
 .
 
 :TEXT_ERROR_CTTY_DUP#0%
@@ -318,11 +318,11 @@ Dosya tanımlayıcıların TTY'ye değiştirilmeleri başarısız '%s'.
 .
 
 :TEXT_ERROR_L_NOTIMPLEMENTED
-/L henüz eklenmemiştir.
+/L henüz eklenmemiş.
 .
 
 :TEXT_ERROR_U_NOTIMPLEMENTED
-/U henüz eklenmemiştir.
+/U henüz eklenmemiş.
 .
 
 :TEXT_ERROR_WRITING_DEST
@@ -349,7 +349,7 @@ Kaynağın açılması başarısız oldu. - '%s'
 Birleştirme karakteri '+' bağımsız değişkenlerin önünde olamaz.
 .
 
-:TEXT_ERROR_TRüLING_PLUS
+:TEXT_ERROR_TRAILING_PLUS
 Birleştirme karakteri '+' bağımsız değişkenlerin sonunda olamaz.
 .
 
@@ -358,27 +358,27 @@ Yapılacak hiçbir şey yok.
 .
 
 :TEXT_ERROR_COPY
-COPY başarısız oldu
+COPY başarısız oldu.
 .
 
 :TEXT_ERROR_IF_EXIST_NO_FILENAME#1
-IF EXIST: eksik dosya adı
+IF EXIST: eksik dosya adı.
 .
 :TEXT_ERROR_IF_ERRORLEVEL_NO_NUMBER#1
-IF ERRORLEVEL: eksik sayı
+IF ERRORLEVEL: eksik sayı.
 .
 :TEXT_ERROR_IF_ERRORLEVEL_INVALID_NUMBER#1
-IF ERRORLEVEL: geçersiz sayı
+IF ERRORLEVEL: geçersiz sayı.
 .
-:TEXT_ERROR_IF_MIğING_COMMAND#1
-IF: Eksik komut
+:TEXT_ERROR_IF_MISSING_COMMAND#1
+IF: Eksik komut.
 .
 
 :TEXT_NOT_IMPLEMENTED_YET
-Özür dileriz... Özellik mevcut değil.
+Özür dileriz. Özellik mevcut değil.
 .
 
-:TEXT_FüLED_LOAD_STRINGS
+:TEXT_FAILED_LOAD_STRINGS
 İletilerin belleğe yüklenmesi başarısız oldu.
 .
 
@@ -387,7 +387,7 @@ IF: Eksik komut
 .
 
 :TEXT_MSG_ITEMS_DISPLAYED#1%
-%u unsur görüntülendi.
+%u öge görüntülendi.
 .
 
 :TEXT_CORRUPT_COMMAND_LINE
@@ -408,23 +408,23 @@ COMMAND.COM şimdi bu yolu varsaymaktadır:
 %s
 .
 
-:TEXT_ERROR_RESTORE_SEğION
+:TEXT_ERROR_RESTORE_SESSION
 Oturum verileri geri alınamadı, tüm yerel ayarlar kaybedildi.
 Lütfen bu sorunun sebebini öğrenmek için yukarıdaki hata
 iletilerini okuyun.
 .
 
-:TEXT_ERROR_SAVE_SEğION
+:TEXT_ERROR_SAVE_SESSION
 Güncel veriler programın çağrılışında muhafaza edilemedi.
 Lütfen bu sorunun sebebini öğrenmek için yukarıdaki hata
 iletilerini okuyun.
 .
 
-:TEXT_ERROR_CWD_FüLED#1%
+:TEXT_ERROR_CWD_FAILED#1%
 %c: sürücüsü yanıt vermiyor.
 .
 
-:TEXT_ERROR_KSWAP_ALIAS_ğZE
+:TEXT_ERROR_KSWAP_ALIAS_SIZE
 Takas başarısız oldu: Diğer adlar çok fazla bellek ayırıyor.
 .
 
@@ -438,7 +438,7 @@ Diğer ad alanı yetersiz.
 .
 
 :TEXT_ERROR_ALIAS_NO_SUCH#1%
-Böyle bir diğer ad (alias) yok: '%s'
+Böyle bir arma yok: '%s'
 .
 
 :TEXT_ERROR_ALIAS_INSERT#1
@@ -455,7 +455,7 @@ Bağlam modülü veya Kritik Hata Yöneticisi yüklenemedi.
 
 :TEXT_ERROR_CONTEXT_OUT_OF_MEMORY#1
 Bağlam belleği yetersiz.
-Bu hata sürerse herhangi bir dahili tamponu arttırmayı düşünün,
+Bu hata sürerse herhangi bir iç arabelleği artırmayı düşünün,
 mesela tarihçe, dizin yığını vs. gibi.
 .
 
@@ -476,7 +476,7 @@ Takas sonrası bağlam eksik. Bağlam tekrar Oluşturuldu,
 fakat tüm diğer adlar vs. kaybedildi.
 .
 
-:TEXT_ERROR_PERMIğION_DENIED#1%
+:TEXT_ERROR_PERMISSION_DENIED#1%
 %s: İzin reddedildi
 .
 
@@ -487,21 +487,21 @@ fakat tüm diğer adlar vs. kaybedildi.
 :TEXT_ERROR_UNKNOWN_ERROR#1%
 %s: Bilinmeyen hata
 .
-
+	
 #
 # Informational messages
 #
 
 :TEXT_MSG_PAUSE#1
-Devam etmek için herhangi bir düğmesine basınız . . .\
+Sürdürmek için herhangi bir düğmeye basın . . .\
 .
 
-:TEXT_MSG_HISTORY_ğZE#0%
-tarihçe boyutu %d bayttır.
+:TEXT_MSG_HISTORY_SIZE#0%
+Geçmiş boyutu %d bayt.
 .
 
 :TEXT_MSG_DOSKEY
-DOSKEY özellikleri zaten kabukta etkinleştirilmiştir.
+DOSKEY özellikleri zaten kabukta etkinleştirilmiş.
 .
 
 :TEXT_MSG_ECHO_STATE#0%
@@ -532,7 +532,7 @@ LFN Complete şudur: %s
 .
 
 :TEXT_MSG_CURRENT_DATE#0%
-Güncel tarih şudur: %s
+Güncel tarih: %s
 .
 
 ## The three DATE prompts MUST be in this order!
@@ -547,7 +547,7 @@ Yeni tarih gir ([yy]yy%saa%sgg): \
 .
 
 :TEXT_MSG_CURRENT_TIME#0%
-Güncel zaman şudur: %s
+Güncel zaman: %s
 .
 
 :TEXT_STRING_PM#1
@@ -574,7 +574,7 @@ Yeni zaman gir: \
 :PROMPT_DELETE_ALL#1%
 YyNn{CR}{LF}{CBREAK}
 aabb   b   b       b
-'%s' içindeki tüm dosyalar silinecektir!
+'%s' içindeki tüm dosyalar silinecek!
 Emin misiniz (E/H)? \
 .
 
@@ -647,10 +647,10 @@ Dizin yığını boş.
 şudur: %s
 .
 :TEXT_DIR_HDR_VOLUME_NONE
-etiket içermemektedir
+etiket içermiyor
 .
 :TEXT_DIR_HDR_SERIAL_NUMBER#0%
- Birimin Seri Numarası şudur: %04X-%04X
+ Birimin Seri Numarası: %04X-%04X
 .
 :TEXT_DIR_FTR_FILES#1%
 %10s dosya\
@@ -679,16 +679,16 @@ Listelenen toplam dosya:
 :TEXT_DIR_LINE_FILENAME_BARE#1%
 %s
 .
-:TEXT_DIR_LINE_FILENAME_ğNGLE#1%
+:TEXT_DIR_LINE_FILENAME_SINGLE#1%
 %-13s\
 .
 :TEXT_DIR_LINE_FILENAME#1%
 %-8s %-3s \
 .
-:TEXT_DIR_LINE_ğZE_DIR#1
+:TEXT_DIR_LINE_SIZE_DIR#1
         <DİZİN> \
 .
-:TEXT_DIR_LINE_ğZE#1%
+:TEXT_DIR_LINE_SIZE#1%
    %10s \
 .
 
@@ -723,7 +723,7 @@ Per\
 Cum\
 .
 :TEXT_WEEKDAY_SHORT_NAME_SATURDAY#1
-Cte\
+Cts\
 .
 
 # Displayed by DEL how many files were removed.
@@ -795,15 +795,15 @@ Mevcut özellikler:
 [FreeCOM hata ayıklaması] \
 .
 
-:TEXT_MSG_INIT_BYPAğ_AUTOEXEC#1
+:TEXT_MSG_INIT_BYPASS_AUTOEXEC#1
 
-İzleme kipi için F8 düğmesine veya %s unsurunu atlamak için F5 düğmesine basın... \
+İzleme kipi için F8 düğmesine veya %s ögesini atlamak için F5 düğmesine basın... \
 .
-:TEXT_MSG_INIT_BYPAğING_AUTOEXEC#0%
+:TEXT_MSG_INIT_BYPASSING_AUTOEXEC#0%
 '%s' atlanıyor.
 .
 
-:TEXT_MSG_VER_DOS_VERğON#0%
+:TEXT_MSG_VER_DOS_VERSION#0%
 DOS sürümü %u.%u
 .
 
@@ -845,11 +845,11 @@ Güncellemeler http://freedos.sourceforge.net/freecom adresinde mevcuttur
 FreeDOS Komut Kabuğu birçok programcı tarafından geliştirilmiştir, lütfen
 HISTORY.TXT dosyasına bakın.
 
-Güncel olarak bakımını Steffen Kaiser mailto:freecom@freedos.org yapmaktadır
+Şu anki bakımcı: Steffen Kaiser mailto:freecom@freedos.org.
 
-Hata raporlarını şu adrese gönderiniz: freedos-freecom@lists.sourceforge.net.
-Güncellemeler http://freedos.sourceforge.net/freecom adresinde mevcuttur
-.
+Hata raporları için: freedos-freecom@lists.sourceforge.net
+Güncellemeler için: http://freedos.sourceforge.net/freecom 
+
 
 
 # Displayed when the shell is to terminate, but has been started
@@ -876,31 +876,31 @@ C:\\FDOS
 
 
 :TEXT_MEMORY_ENVIRONMENT#1%
-Ortam segmenti    : Azami %5u bayt; boş %5u bayt
+Ortam segmenti      : Azami %5u bayt; boş %5u bayt
 .
 :TEXT_MEMORY_CONTEXT#1%
-Bağlam segmenti   : Azami %5u bayt; boş %5u bayt
+Bağlam segmenti     : Azami %5u bayt; boş %5u bayt
 .	
 :TEXT_MEMORY_HEAP#1%
-Yığın             : Boş %5lu bayt
+Yığın               : Boş %5lu bayt
 .
 :TEXT_MEMORY_CTXT_ALIAS#1%
-\tDiğer adlar       : Sınır %5u bayt, güncel %5u bayt, %5u unsur
+\tDiğer adlar       : Sınır %5u bayt, güncel %5u bayt, %5u öge
 .
 :TEXT_MEMORY_CTXT_HISTORY#1%
-\tTarihçe           : Sınır %5u bayt, güncel %5u bayt, %5u unsur
+\tTarihçe           : Sınır %5u bayt, güncel %5u bayt, %5u öge
 .
 :TEXT_MEMORY_CTXT_DIRSTACK#1%
-\tDizin yığını      : Sınır %5u bayt, güncel %5u bayt, %5u unsur
+\tDizin yığını      : Sınır %5u bayt, güncel %5u bayt, %5u öge
 .
 :TEXT_MEMORY_CTXT_LASTDIR#1%
-\tSon dizin yığını  : Kullanılan  %5u bayt, %5u unsur
+\tSon dizin yığını  : Kullanılan  %5u bayt, %5u öge
 .
 :TEXT_MEMORY_CTXT_toplu iş#1%
-\tİç içe toplu iş   : Kullanılan  %5u bayt, %5u unsur
+\tİç içe toplu iş   : Kullanılan  %5u bayt, %5u öge
 .
 :TEXT_MEMORY_CTXT_SWAPINFO#1%
-\tTakas bilgisi     : Kullanılan %5u bayt, %5u unsur
+\tTakas bilgisi     : Kullanılan %5u bayt, %5u öge
 .
 
 
@@ -912,8 +912,8 @@ Sistemden güncel kod sayfası alınması başarısız oldu.
 Güncel kod sayfasının değiştirilmesi başarısız oldu.
 .
 :TEXT_DISPLAY_CODEPAGE#1%
-Güncel kod sayfası şudur: %u.
-Sistem kod sayfası (uygun şekilde) şudur: %u.
+Güncel kod sayfası: %u.
+Sistem kod sayfası (uygun şekilde): %u.
 .
 
 #
@@ -1005,10 +1005,10 @@ CLS
 :TEXT_CMDHELP_COMMAND
 FreeDOS komut kabuğunun yeni bir kopyasını başlatır.
 
-COMMAND [[sürücü:]yol] [cihaz] [/E:nnnnn] [/L:nnnn] [/U:nnn] [/P] [/MSG]
+COMMAND [[sürücü:]yol] [aygıt] [/E:nnnnn] [/L:nnnn] [/U:nnn] [/P] [/MSG]
                        [/LOW] [/Y [/[C|K] command]]
   [sürücü:]yol    COMMAND.COM'un bulunduğu dizini belirtir.
-  device          Komut girişi ve çıkışı için kullanılan cihazı belirtir.
+  device          Komut girişi ve çıkışı için kullanılan aygıtı belirtir.
   /E:nnnnn        İlk ortam boyutunu nnnnn bayt olarak ayarlar.
                   (nnnnn 256 ilÉ 32.768 arasında olmalıdır).
   /L:nnnn         Dahili arabelleğin boyutunu belirtir (/P'de gerekir).
@@ -1031,7 +1031,7 @@ COPY [/A | /B] kaynak [/A | /B] [+ kaynak [/A | /B] [+ ...]] [hedef
   [/A | /B]] [/V] [/Y | /-Y]
 
   kaynak       Kopyalanacak dosya veya dosyaları belirtir.
-  /A           ASıI metin dosyasını belirtir.
+  /A           ASCII metin dosyasını belirtir.
   /B           İkili bir dosya belirtir.
   hedef        Yeni dosyalar için dizin veya dosya adını belirtir.
   /V           Yeni dosyaların doğru yazıldığını denetler.
@@ -1048,11 +1048,11 @@ birden fazla dosya belirtin (jokerler veya file1+file2+file3 biçimi).
 .
 
 :TEXT_CMDHELP_CTTY
-Sisteminizi kontrol etmek için kullanılan uçbirim cihazını değiştirir.
+Sisteminizi kontrol etmek için kullanılan uçbirim aygıtını değiştirir.
 
-CTTY cihaz
+CTTY aygıt
 
-  cihaz   Mesela COM1 gibi kullanmak istediğiniz uçbirim cihazı.
+  aygıt   Mesela COM1 gibi kullanmak istediğiniz uçbirim aygıtı.
 .
 
 :TEXT_CMDHELP_DATE#1
@@ -1094,7 +1094,7 @@ DIR [sürücü:][yol][dosyaadı] [/P] [/W] [/A[[:]öznitelikler]]
              H  Saklı dosyalar             A  Arşivlenmeye hazır dosyalar
              S  Sistem dosyaları           -  hayır öneki
  /O         Dosyaları sıralama düzenine göre listeler.
- sortorder   N  İsme göre (alfabetik)      S  Boyuta göre (önce küçüğü)
+ sortorder   N  Ada göre (alfabetik)      S  Boyuta göre (önce küçüğü)
              E  Uzantıya göre (alfabetik)  D  Tarih & zaman (önce eskisi)
              G  önce dizinleri grupla      -  Ters sıralama öneki
              U  Sıralanmamış		   Varsayılan /ONG
@@ -1131,7 +1131,7 @@ DOSKEY [/anahtar ...] [makroadı=[metin]]
   /MACROS       Tüm DOSKEY makrolarını görüntüler
   /OVERSTRIKE   Yeni karakterleri düğmesine basıldığında üzerine yazar (varsayılan)
   /REINSTALL    Yeni bir DOSKEY kopyası kurar
-  makroadı     	Oluşturduğunuz makro için bir isim belirtir
+  makroadı      Oluşturduğunuz makro için bir ad belirtir
   metin         Makroya atamak istediğiniz komutları belirtir
 
   YUKARI, AŞAĞI okları komutları geri alır
@@ -1307,7 +1307,7 @@ PROMPT [metin]
   $L   < (küçüktür işareti)
   $B   | (kanal (pipe))
   $H   Geri tuşu (önceki karakteri siler)
-  $E   Kaçış dizgesi (ASıI kodu 27)
+  $E   Kaçış dizgesi (ASCII kodu 27)
   $_   Satır başı ve satır besleme
 
 İstemi varsayılan değere geri almak için parametresiz PROMPT yazın.
@@ -1335,7 +1335,7 @@ DIRS
 .
 
 :TEXT_CMDHELP_RD
-boş bir dizini kaldırır (siler).
+Boş bir dizini kaldırır (siler).
 
 RMDIR [sürücü:]yol
 RD [sürücü:]yol
@@ -1504,7 +1504,7 @@ muhtemelen disk dolu? (%lu bayta ihtiyaç var)
 .
 
 :TEXT_ERROR_FCOM_IS_DEVICE#0%
-FreeCOM bir cihaz olamaz: "%s"
+FreeCOM bir aygıt olamaz: "%s"
 .
 :TEXT_ERROR_FCOM_INVALID#0%
 Bu dosya geçerli bir FreeCOM değil veya uyumsuz bir sürümün dosyası:
@@ -1512,7 +1512,7 @@ Bu dosya geçerli bir FreeCOM değil veya uyumsuz bir sürümün dosyası:
 .
 
 :TEXT_ERROR_LOADING_STRINGS
-Dize kaynakları belleğe yüklenemedi, %COMSPEC% unsurunda işaret edilen konum
+Dize kaynakları belleğe yüklenemedi, %COMSPEC% ögesine işaret edilen konum
 geçersiz gibi görünüyor. Lütfen FreeCOM için başka bir konum belirtin ki
 dizeler bu konumdan yüklenebilsinler, mesela:
 C:\\COMMAND.COM

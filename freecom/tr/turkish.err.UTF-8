@@ -3,15 +3,15 @@
 # Critical error national customization file
 #
 #	Language: Turkish
-#	Codepage: ASİI (7bit) / CP857
+#	Codepage: ASCII (7bit) / CP857
 #	Author:   FreeCOM maintainer
 # 
 # The critical error (criter) handler receives some information
 # from the kernel about what error condition happens, generates some
-# human friendly meÛage from it, requests the user's opinion about
+# human friendly message from it, requests the user's opinion about
 # how to proceed and, finally, returns to the kernel.
 # 
-# The human friendly meÛage is generated using one of the following
+# The human friendly message is generated using one of the following
 # templates:
 # BLOCK_DEVICE (for criters on block devices)
 # 	Error %1 drive %A: %2 area: %3
@@ -25,7 +25,7 @@
 # 	caused the criter
 # %2 -> the kind of area the criter took place on DOS, FAT, ROOT, or DATA
 # %3 -> the actual error string; these are the strings associated to
-# 	a number 0 through N, and must correspond to the number paÛed in
+# 	a number 0 through N, and must correspond to the number passed in
 # 	lowbyte(DI) to the criter handler (see RBIL INT-24 for details)
 # %A -> drive letter (for block devices); name of device (character devices)
 # 
@@ -34,7 +34,7 @@
 # action are available at all. The full line may look like this:
 # 	(A)bort, (I)gnore, (R)etry, (F)ail?_
 # 
-# The individual words are defined by ABORT, IGNORE, RETRY, FL. They
+# The individual words are defined by ABORT, IGNORE, RETRY, FAIL. They
 # should indicate which user response keys is associated with them;
 # suggested is to use the first letter and enclose it in parenthesises.
 # The delimiter ", " can be defined with DELIMITER and is the same
@@ -49,7 +49,7 @@
 # certain special keys cannot be used.
 # 
 # The individual error strings are defined by the #: lines, where
-# the hash sign '#' refers to the number the kernel paÛes to the
+# the hash sign '#' refers to the number the kernel passes to the
 # criter handler. The UNKNOWN string is displayed for all error
 # numbers not specified.
 #
@@ -63,15 +63,15 @@
 
 ## Primary strings
 S2
-BLOCK_DEVICE: Hata %1 sŸrŸcŸ %A: %2 alan: %3
+BLOCK_DEVICE: Hata %1 sÃ¼rÃ¼cÃ¼ %A: %2 alan: %3
 S3
-CHAR_DEVICE: Hata %1 sŸrŸcŸ %A: %3
+CHAR_DEVICE: Hata %1 sÃ¼rÃ¼cÃ¼ %A: %3
 
 ## kind of operation
 S0
-READ: Şuradan okunuyor:
+READ: Åuradan okunuyor:
 S1
-WRITE: Şuraya yazİlİyor:
+WRITE: Åuraya yazÄ±lÄ±yor:
 
 ## kind of failed area of block devices
 S4
@@ -79,7 +79,7 @@ DOS: DOS
 S5
 FAT: FAT
 S6
-ROOT: kšk
+ROOT: kÃ¶k
 S7
 DATA: veri
 
@@ -89,15 +89,15 @@ IGNORE: (Y)oksay
 S9
 RETRY: (T)ekrar dene
 S10
-ABORT: (Ü)ptal
+ABORT: (Ä°)ptal
 S11
-FL: (B)aßarİsİz
+FAIL: (B)aÅŸarÄ±sÄ±z
 ## keys associated with the actions
 S14 (compacted)
 KEYS_IGNORE: yY
 KEYS_RETRY:  tT
-KEYS_ABORT:  iÜ
-KEYS_FL:   bB
+KEYS_ABORT:  iÄ°
+KEYS_FAIL:   bB
 ## embedded strings
 S12
 QUESTION:  ? %.
@@ -107,24 +107,24 @@ DELIMITER: , %.
 ## Error strings
 UNKNOWN: Bilinmeyen hata kodu
 S15
-0: Yazma korumasİ ihlal girißimi
-1: SŸrŸcŸ iin bilinmeyen birim
-2: SŸrŸcŸ hazİr deÛil
-3: SŸrŸcŸye bilinmeyen bir komut verildi
-4: Veri hatasİ (yanlİß CRC)
-5: Yanlİß aygİt sŸrŸcŸsŸ talep yapİsİ boyutu
-6: Arama hatasİ
-7: Bilinmeyen ortam tŸrŸ
-8: Kesim bulunamadİ
-9: Yazİcİda k‰Ûİt kalmadİ
-10: Yazma hatasİ
-11: Okuma hatasİ
-12: Genel baßarİsİzlİk
-13: Paylaßİm ihlali
+0: Yazma korumasÄ± ihlal giriÅŸimi
+1: SÃ¼rÃ¼cÃ¼ iÃ§in bilinmeyen birim
+2: SÃ¼rÃ¼cÃ¼ hazÄ±r deÄŸil
+3: SÃ¼rÃ¼cÃ¼ye bilinmeyen bir komut verildi
+4: Veri hatasÄ± (yanlÄ±ÅŸ CRC)
+5: YanlÄ±ÅŸ aygÄ±t sÃ¼rÃ¼cÃ¼sÃ¼ talep yapÄ±sÄ± boyutu
+6: Arama hatasÄ±
+7: Bilinmeyen ortam tÃ¼rÃ¼
+8: Kesim bulunamadÄ±
+9: YazÄ±cÄ±da kÃ¢ÄŸÄ±t kalmadÄ±
+10: Yazma hatasÄ±
+11: Okuma hatasÄ±
+12: Genel baÅŸarÄ±sÄ±zlÄ±k
+13: PaylaÅŸÄ±m ihlali
 14: Kilitleme ihlali
-15: Geersiz disk deÛißimi
-16: FCB mevcut deÛil
-17: Paylaßİm šnbelleÛi yetersiz
-18: Sayfa kodu uyumsuzluÛu
-19: Giriß sonu
-20: Yetersiz disk alanİ
+15: GeÃ§ersiz disk deÄŸiÅŸimi
+16: FCB mevcut deÄŸil
+17: PaylaÅŸÄ±m Ã¶nbelleÄŸi yetersiz
+18: Sayfa kodu uyumsuzluÄŸu
+19: GiriÅŸ sonu
+20: Yetersiz disk alanÄ±
