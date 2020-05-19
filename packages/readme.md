@@ -15,3 +15,10 @@ include any new software packages. Simply translate the Description, Summary
 and Keyword fields. Other fields, like TITLE do not get or use multi-language
 translations.
 
+To assist in translating, the status.sh script can be used. It will retrieve
+the latest listing.csv files from the on-line repositories and generate
+a master.csv. It will also examine each language translation listing.csv and
+create two additional files. A missing.csv that contains only the entries that
+have not been translated. Also created is a mixed.csv that contains the current
+translated entries and those marked in their "new" field.
+
