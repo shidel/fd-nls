@@ -32,7 +32,7 @@ if exist %_FNT% goto LoadFont
 goto Unload
 
 :LoadFont
-vfont /f16 %_FNT%
+vfont /d /f16 %_FNT%
 if errorlevel 1 goto Unload
 
 :End
