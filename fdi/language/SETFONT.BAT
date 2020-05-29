@@ -12,18 +12,11 @@ set _DCP=857
 goto Load
 
 :NL
-set _DCP=865
-goto Load
-
-:RU
-set _DCP=866
-goto Load
-
 :FR
 :ES
 :EO
 :DE
-set _DCP=850
+set _DCP=858
 goto Load
 
 :Unload
