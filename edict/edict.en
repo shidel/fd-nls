@@ -1,0 +1,100 @@
+TITLE=Enhanced Disk Image Creation Tool, Version %_ %s
+COPYRIGHT=Copyright (c) 2018, Jerome Shidel
+
+HELP_00="EDICT option information: "
+HELP_01=
+HELP_02="  /d <drive>     specify drive letter"
+HELP_03="  /f <filename>  specify file name"
+HELP_04="  /p <limit>     limit maximum number of additional passes"
+HELP_05=
+HELP_06="  /t <kind>      overide bios and select settings for disk type"
+HELP_07="                 (0=360Kib, 1=1.2Mib, 2=720Kib, 3=1.44Mib, a=auto)"
+HELP_08=
+HELP_09="  /c <number>    overide number of cylinders/tracks (0-1023)"
+HELP_0a="  /r <number>    overide number of sides/heads per track (0-255)"
+HELP_0b="  /s <number>    overide number of sectors per side (0-63)"
+HELP_0c="  /b <number>    overide number of bytes per sector (1-8192)"
+HELP_0d=
+HELP_0e="  /h             display help information"
+
+; Possible future additions to EDICT should be translated as well
+
+HELP_??="  /T             test read only"
+HELP_??="  /w             write image to diskette"
+HELP_??="  /v             verify diskette"
+HELP_??="  /i             information only"
+HELP_??="  /o             one sector only"
+HELP_??="  /q             quite mode"
+HELP_??="  /e             continue from existing image file"
+HELP_??="  /m <filename>  mount image file"
+HELP_??="  /u             unmount image file"
+HELP_??="  /l             list disk types"
+
+INVALID=%r "Invalid command: `" %s "'"
+BAD_INT="Invalid numeric value."
+BAD_VAL="Value for out of range."
+
+DRIVE=Drive %_ %c: (ID 0x %b ) %_
+DRIVE_TYPE=%_ (ID 0x %b )
+DRIVE_TYPE_00=unknown drive type
+DRIVE_TYPE_01='5.25"' 360Kib drive
+DRIVE_TYPE_02='5.25"' 1.2Mib drive
+DRIVE_TYPE_03='3.5"' 720Kib drive
+DRIVE_TYPE_04='3.5"' 1.44Mib drive
+DRIVE_TYPE_05=other drive type
+
+DRIVE_SPEC=%i %_ bytes, %_ %I %_ sectors, %_ %I %_ tracks, %_ %I %_ side(s)
+
+PASS_LIMIT=Up to %_ %i %_ extra passes allowed to read diskette
+BUFFERS=%i %_ byte diskette buffer, %_ %i %_ byte track result buffer
+
+PASS=Floppy read pass # %i. %_ %i %_ sector(s) remaining.
+
+READ_FAST=READ TRACK: %_ %i, HEAD: %_ %i
+READ_SLOW=READ TRACK: %_ %i, HEAD: %_ %i, SECTOR: %_ %i
+
+FAILED=Imaging process failed.
+ABORTED=Imaging process aborted.
+COMPLETED=Imaging process completed.
+
+; With a little modification, these BIOS and DOS error message texts are a
+; slimmed down version of those available online from a great DOS and ASM
+; resource at http://stanislavs.org/helppc/idx_interrupt.html
+
+BErr=%r "BIOS error code: 0x" %b %_ --> %_
+BErr_01=bad command passed to driver
+BErr_02=address mark not found or bad sector
+BErr_03=diskette write protect error
+BErr_04=sector not found
+BErr_05=fixed disk reset failed
+BErr_06=diskette changed or removed
+BErr_07=bad fixed disk parameter table
+BErr_08=DMA overrun
+BErr_09=DMA access across 64k boundary
+BErr_0a=bad fixed disk sector flag
+BErr_0b=bad fixed disk cylinder
+BErr_0c=unsupported track
+BErr_0d=invalid number of sectors on fixed disk format
+BErr_0e=fixed disk controlled data address mark detected
+BErr_0f=fixed disk DMA arbitration level out of range
+BErr_10=ECC/CRC error on disk read
+BErr_11=recoverable fixed disk data error, data fixed by ECC
+BErr_20=controller error
+BErr_40=seek failure
+BErr_80=drive not ready
+BErr_aa=fixed disk drive not ready
+BErr_bb=fixed disk undefined error
+BErr_cc=fixed disk write fault on selected drive
+BErr_e0=fixed disk status error
+BErr_ff=sense operation failed
+
+DErr=%r "DOS error code: 0x" %b %_ --> %_
+DErr_01=Invalid function number
+DErr_02=File not found
+DErr_03=Path not found
+DErr_04=Too many open files
+DErr_05=Access denied
+DErr_06=Invalid handle
+DErr_08=Insufficient memory
+DErr_0f=Invalid drive specified
+DErr_15=Drive not ready
