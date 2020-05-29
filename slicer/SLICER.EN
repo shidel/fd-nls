@@ -1,0 +1,184 @@
+; English Langauge Resource and Translation File
+
+; note %_ is a space, %% is percent, %r is CRLF
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=en
+TITLE=%, Version %
+COPYRIGHT=Copyright (c) 2019-2020, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (continued)
+INC_DIR=%2
+INC_TEXT=embed text: %2 %8
+INC_HEAD=text: %2 %8
+
+VERB_INC_FILE=include: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=continue: %2 [%3] (continued from offset %6)
+VERB_INC_DIR=subdir: %2 (%3)
+VERB_INC_HEAD=embed header text: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=exclude: %0 (matches "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=add "%1" to %0 list
+LIST_INC=include
+LIST_EXC=exclude
+
+; Same params as reporting
+EXT_DIR=directory: %2
+EXT_FILE=file: %9%2, %8
+EXT_PART=partial: %9%2, %7 of %8
+VERB_EXT_RPCL=file %9%2 exists, replaced
+VERB_EXT_SKIP=file %9%2 exists, skipped
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=category: %2
+REP_DIR=directory: %2
+REP_FILE=file: %9%2, %8
+REP_PART=partial: %9%2, %7 of %8
+REP_TEXT=text: %2, %8
+REP_MORE=continued: %2, %8
+REP_CONF=accept: %2, %8
+
+VERB_REP_CAT=set category: %2, %1
+VERB_REP_DIR=directory: %2 (%3), %1 %4 %5
+VERB_REP_FILE=complete file: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 file size %8
+VERB_REP_PART=partial file: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 of %8 (offset %6)
+VERB_REP_TEXT=text: %2 %4 {%3}, %8
+VERB_REP_MORE=continued: %2 %4 {%3}, %8
+VERB_REP_TEXT=accept: %2 %4 {%3}, %8
+VERB_REP_SIG=signature: %2 [%3], %1
+VERB_REP_NULL=null block, %1
+VERB_REP_OTHER=Unknown block %0, %1
+VERB_REP_SLICE=select slice %
+
+SAF_CREATE=Create new slicer archive %
+SAF_OPEN=Open existing slicer archive %
+SAF_APPEND=Append existing slicer archive %
+SAF_DATE=Created on %1/%2/%0 at %3:%4:%5
+SAF_SLICE=Create new archive slice %
+SAF_CAT=Set archive category %
+SAF_SLICING=Slicing archive at %
+VERB_SAF_IUP=Update statistical information for archive %
+
+MEDIA=Insert diskette containing file % in drive %.
+PAUSE=Press any key to continue.
+
+PROMPT_YES=Yes
+PROMPT_NO=No
+PROMPT_Y=Y
+PROMPT_N=N
+PROMPT_OVER=Overwrite %2%1, %0?
+PROMPT_ACCEPT=Accept %?
+PROMPT_STOP=File %1 is corrupt. Abort extraction %0?
+
+SUMMARY=%0 slice(s), %1 dir(s), %2 file(s), %3
+
+USAGE=usage: % [options]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER option information:
+HELP_1=
+HELP_2=  %0q        disable all status messages
+HELP_3=  %0v        enable verbose status messages
+HELP_4=  %0t        test mode
+HELP_5=  %0h        display help information
+HELP_6=
+HELP_7=  %0i ?      include items matching filespec (option is assumed)
+HELP_8=  %0I ?      include items from file list
+HELP_9=  %0e ?      exclude items matching filespec
+HELP_10=  %0E ?      exclude items from file list
+HELP_11=
+HELP_12=  %0d        exclude empty directories
+HELP_13=  %0D        do not recurse subdirectories
+HELP_14=  %0a        include all hidden and system items
+HELP_15=  %0o        over write existing files
+HELP_16=  %0k        do not ignore file case
+HELP_17=
+HELP_18=  %0g ?      specify group category
+HELP_19=  %0s ?      size to slice archive, K, M or bytes. (only valid when creating a
+HELP_20=            new archive or re-slicing an existing archive)
+HELP_21=
+HELP_22=  %0y        automatically accept any prompts (not including file overwrite).
+HELP_23=
+HELP_24=Operations related to entire archive:
+HELP_25=
+HELP_26=  %0f ?      specify archive file name
+HELP_27=  %0c        create a new archive
+HELP_28=  %0r        append to existing archive
+HELP_29=  %0x        extract from an existing archive
+HELP_30=  %0R        generate archive report
+HELP_31=  %0O ?      set destination extraction path
+HELP_32=
+HELP_33=Embedded text, notices and messages:
+HELP_34=
+HELP_35=  %0L ?      override system default language
+HELP_36=  %0m ?      embed message text from file
+HELP_37=  %0M ?      embed message text from file that requires a user to agree
+HELP_38=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Land of confusion. For help use the "%0h" option.
+
+FATAL=FATAL ERROR:%_
+ERROR=ERROR:%_
+BAD_OPT=Invalid command line parameter "%0%1"
+BAD_CMB=Can not combine parameters "%0%1" with "%0%2"
+BAD_MCO=Missing command line data for "%0%1"
+BAD_INT=Invalid numeric value "%2" for "%0%1"
+BAD_VAL=Numeric value "%2" is out of the range "%3 - %4" for "%0%1"
+BAD_MAX=Maximum archive slice count exceeded for "%1"
+BAD_VER=Archive "%1" may contain unsupported data structures.
+BAD_EMB=Can only specify one message text file at a time.
+BAD_MSG=Message note "%1" too big. Truncated to %2.
+ER_UNK=error code #%0, unspecified error with "%1" %2
+ER_2=File "%1" was not found.
+ER_3=Path of file "%1" was not found.
+ER_8=Umm, I ran out of memory.
+ER_11=File "%1" has unrecognized format.
+ER_13=File "%1" has corrupt data.
+ER_14=User terminated.
+ER_23=Signature mismatch. File "%1" has corrupt data.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%1/%2/%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%3:%1:%2%4
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 at %1
+
+BYTES=% byte(s)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% floppy diskette
+
