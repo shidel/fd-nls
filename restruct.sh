@@ -12,6 +12,7 @@ function dolang () {
 		else
 		    x=''
 		fi
+
 		f="${i%%/*}"
 		l="${i:${#f}}"
 		l="${l:1}"
@@ -19,7 +20,7 @@ function dolang () {
 
 		o=$(ls -1 ${i}/* | grep -m 1 -i "${f}.${l}")
         s="${i}/${o##*/}"
-        d="${i%/*}/${o##/*}${x}"
+        d="${i%/*}/${f}.${l}${x}"
 
         if [[ "${s##*/}" == "" ]] || [[ "${d##*/}" == "" ]] ; then
             continue
