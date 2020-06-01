@@ -21,6 +21,10 @@ function dolang () {
         s="${i}/${o##*/}"
         d="${i%/*}/${o##/*}${x}"
 
+        if [[ "${s##*/}" == "" ]] || [[ "${d##*/}" == "" ]] ; then
+            continue
+        fi
+
 		echo "move ${s} --> ${d}"
 
         if [[ ! -e "${s}" ]] ; then
