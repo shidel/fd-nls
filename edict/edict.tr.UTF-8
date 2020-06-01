@@ -1,0 +1,100 @@
+TITLE=Gelişmiş Disk Kalıbı Oluşturma Aracı, Sürüm %_ %s
+COPYRIGHT=Telif hakkı (c) 2018, Jerome Shidel
+
+HELP_00="EDICT seçenek bilgisi: "
+HELP_01=
+HELP_02="  /d <sürücü>    sürücü adını belirt"
+HELP_03="  /f <dosyaadı>  dosya adını belirt"
+HELP_04="  /p <limit>     ek geçişlerin en çok sayısını limitle"
+HELP_05=
+HELP_06="  /t <tür>       bios'u geçersiz kıl ve disk türü için ayarları seç"
+HELP_07="                 (0=360Kib, 1=1.2Mib, 2=720Kib, 3=1.44Mib, a=oto)"
+HELP_08=
+HELP_09="  /c <sayı>      silindirlerin/izlerin sayısını geçersiz kıl (0-1023)"
+HELP_0a="  /r <sayı>      iz başı kenarların/başların sayısını geçersiz kıl (0-255)"
+HELP_0b="  /s <sayı>      kenar başı sektörlerin sayısını geçersiz kıl (0-63)"
+HELP_0c="  /b <sayı>      sektör başı bayt sayısını geçersiz kıl (1-8192)"
+HELP_0d=
+HELP_0e="  /h             yardım bilgisini görüntüle"
+
+; Possible future additions to EDICT should be translated as well
+
+HELP_??="  /T             saltokunur sına"
+HELP_??="  /w             kalıbı diskete yaz"
+HELP_??="  /v             disketi doğrula"
+HELP_??="  /i             yalnızca bilgi"
+HELP_??="  /o             yalnızca tek sektör"
+HELP_??="  /q             sessiz kip"
+HELP_??="  /e             var olan kalıp dosyasından sürdür"
+HELP_??="  /m <dosyaadı>  kalıp dosyasını bağla"
+HELP_??="  /u             kalıp dosyasının bağlantısını kes"
+HELP_??="  /l             disk türlerini listele"
+
+INVALID=%r "Geçersiz komut: `" %s "'"
+BAD_INT="Geçersiz sayısal değer."
+BAD_VAL="Değer erim dışında."
+
+DRIVE=Drive %_ %c: (ID 0x %b ) %_
+DRIVE_TYPE=%_ (ID 0x %b )
+DRIVE_TYPE_00=bilinmeyen sürücü türü
+DRIVE_TYPE_01='5.25"' 360Kib sürücü
+DRIVE_TYPE_02='5.25"' 1.2Mib sürücü
+DRIVE_TYPE_03='3.5"' 720Kib sürücü
+DRIVE_TYPE_04='3.5"' 1.44Mib sürücü
+DRIVE_TYPE_05=diğer sürücü türü
+
+DRIVE_SPEC=%i %_ bayt, %_ %I %_ sektör, %_ %I %_ iz, %_ %I %_ kenar
+
+PASS_LIMIT=Disketi okumak için şu kadar ek geçişe izin veriliyor: %_ %i %_
+BUFFERS=%i %_ bayt disket arabelleği, %_ %i %_ bayt iz sonuç arabelleği
+
+PASS=Disket okuma geçişi # %i. %_ %i %_ sektör kaldı.
+
+READ_FAST=OKUNAN İZ: %_ %i, KAFA: %_ %i
+READ_SLOW=OKUNAN İZ: %_ %i, KAFA: %_ %i, SEKTÖR: %_ %i
+
+FAILED=Kalıplama işlemi başarısız oldu.
+ABORTED=Kalıplama işlemi iptal edildi.
+COMPLETED=Kalıplama işlemi tamamlandı.
+
+; With a little modification, these BIOS and DOS error message texts are a
+; slimmed down version of those available online from a great DOS and ASM
+; resource at http://stanislavs.org/helppc/idx_interrupt.html
+
+BErr=%r "BIOS hata kodu: 0x" %b %_ --> %_
+BErr_01=sürücüye hatalı komut geçirildi
+BErr_02=adres imi bulunamadı veya hatalı sektör
+BErr_03=disket yazım koruması hatası
+BErr_04=sektör bulunamadı
+BErr_05=sabit disk sıfırlanması başarısız oldu
+BErr_06=disket değiştirildi veya kaldırıldı
+BErr_07=hatalı sabit disk parametre tablosu
+BErr_08=DMA aşımı
+BErr_09=DMA erişimi 64k sınırı çevresinde
+BErr_0a=hatalı sabit disk sektör bayrağı
+BErr_0b=hatalı sabit disk silindiri
+BErr_0c=desteklenmeyen iz
+BErr_0d=sabit disk biçiminde geçersiz sektör sayısı
+BErr_0e=sabit disk denetlenen veri adresi imi bulundu
+BErr_0f=sabit disk DMA uzlaştırma düzeyi erim dışı
+BErr_10=okunan diskte ECC/CRC hatası
+BErr_11=kurtarılabilir sabit disk veri hatası, veri ECC tarafından onarıldı
+BErr_20=denetleyici hatası
+BErr_40=arama hatası
+BErr_80=sürücü hazır değil
+BErr_aa=sabit disk sürücüsü hazır değil
+BErr_bb=sabit disk tanımlanmamış hatası
+BErr_cc=seçili diskte sabit disk yazım hatası
+BErr_e0=sabit disk durum hatası
+BErr_ff=tarama işlemi başarısız oldu
+
+DErr=%r "DOS hata kodu: 0x" %b %_ --> %_
+DErr_01=Geçersiz işlev numarası
+DErr_02=Dosya bulunamadı
+DErr_03=Yol bulunamadı
+DErr_04=Çok fazla açık dosya
+DErr_05=Erişim engellendi
+DErr_06=Geçersiz tutaç
+DErr_08=Yetersiz bellek
+DErr_0f=Geçersiz sürücü belirtimi
+DErr_15=Sürücü hazır değil
