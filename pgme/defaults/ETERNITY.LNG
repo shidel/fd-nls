@@ -1,0 +1,903 @@
+[#]
+	#=
+
+[*]
+	FILE.DATE=0[X3.2],1[L2],2[Z2];%1/%2/%0
+	FILE.TIME=0[Z2],1[L2],2[Z2],3[Z2],4{a,p};%1:%2%4
+	ID=en_US
+	MERGE=
+	NAME=US English
+	TYPE=LANGUAGE
+
+[HELP]
+	PGM=Program Manager Eternity Edition Help System
+
+		+=
+		+=The help system is context sensitive based on the current active
+		+=window. You can close the help window by clicking its close button
+		+=or outside the window with the mouse. Also, by using the keyboard
+		+=to generate a CloseWindow or Escape command (Default Alt+W or Esc).
+		+=Generating a Exit program command (Alt+Q) will close help and exit
+		+=the program. This assumes that the configuration option for CANCLOSE
+		+=is not set to FALSE. 
+
+	PGM.DIALOG.ABOUT=The "About" dialog box.
+
+		+=
+		+=This is dialog box provides some information regarding PGME.
+		+=Additional information is available in the BLAHBLAH.TXT file
+		+=and online at http://pgme.sourceforge.net
+
+	PGM.DIALOG.ABOUT.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.ABOUT.FRAME.TITLE=
+	PGM.DIALOG.CONFIG=The Program Manager Eternity program configuration settings dialog box.
+
+		+=
+		+=This is where you can change the language and other
+		+=settings of PGME.
+
+	PGM.DIALOG.CONFIG.BUTTON.OK=5;Use the "%0" button to apply any changes and close the
+
+		+=dialog box.
+
+	PGM.DIALOG.CONFIG.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.CONFIG.FRAME.TITLE=
+	PGM.DIALOG.CONFIG.LANGUAGE.DROP=Use the "Language File" field to select the desired language
+
+		+=for PGME to use. Please note that the program will always
+		+=fallback to English for itself and menus when the requested
+		+=language is not available.
+
+	PGM.DIALOG.CONFIG.LANGUAGE.DROP.BUTTON=
+	PGM.DIALOG.CONFIG.LANGUAGE.DROP.EDIT=
+	PGM.DIALOG.CONFIG.LANGUAGE.DROP.LIST=
+	PGM.DIALOG.CONFIG.LANGUAGE.DROP.LIST.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.CONFIG.LANGUAGE.DROP.LIST.FRAME.TITLE=
+	PGM.DIALOG.CONFIG.LANGUAGE.DROP.LIST.LIST=
+	PGM.DIALOG.CONFIG.LANGUAGE.DROP.LIST.LIST.VSCROLL=
+	PGM.DIALOG.CONFIG.LANGUAGE.LABEL=
+	PGM.DIALOG.DOSCOMMAND=The "DOS Command" dialog box.
+
+		+=
+		+=This is where you manually enter a DOS command to the program
+		+=execution process.
+
+	PGM.DIALOG.DOSCOMMAND.BUTTON.OK=5;Use the "%0" button to add the DOS command
+
+		+=and close the dialog box.
+
+	PGM.DIALOG.DOSCOMMAND.EDIT=
+	PGM.DIALOG.DOSCOMMAND.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.DOSCOMMAND.FRAME.TITLE=
+	PGM.DIALOG.DOSCOMMAND.LABEL=
+	PGM.DIALOG.EXECMISSING=This is an error dialog box.
+
+		+=
+		+=PGME was unable to locate a program file needed to launch
+		+=the requested item.
+		+=The "Required" program is specified in the FILE field of the
+		+=appropriate menu. Its path is absolute or relative to the
+		+=menu file. If the FILE field is defined, it is tested
+		+=for both Complex and Simple launching.
+		+=There are a couple of things that can cause
+		+=this error to occur. First, the program has been deleted or moved.
+		+=Second, it was located on removable media that is not currently
+		+=available. Finally, the main file is associated with a viewer
+		+=helper in the ETERNITY.CFG file and the viewer could not
+		+=be found.
+
+	PGM.DIALOG.EXECMISSING.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.EXECMISSING.FRAME.TITLE=
+	PGM.DIALOG.FINDEXEC=This is a standard "Select File" dialog box.
+
+		+=
+		+=You may use the dropdown path list to select one of the systems current
+		+=active directories. Or, you may type in one for direct access. Also,
+		+=recently entered paths are stored into the list for quick selection.
+		+=
+		+=The filter list can be used filter the directory listings by file types.
+		+=They will be sorted in the order listed. Also, if a filename is entered manually
+		+=that contains wildcards, it will be added as a user filter.
+		+=
+
+	PGM.DIALOG.FINDEXEC.BUTTON.CANCEL=
+	PGM.DIALOG.FINDEXEC.BUTTON.MAKEDIR=
+	PGM.DIALOG.FINDEXEC.BUTTON.OK=
+	PGM.DIALOG.FINDEXEC.DIRECTORY=
+	PGM.DIALOG.FINDEXEC.DIRECTORY.VSCROLL=
+	PGM.DIALOG.FINDEXEC.FILENAME=
+	PGM.DIALOG.FINDEXEC.FILTER=
+	PGM.DIALOG.FINDEXEC.FILTER.BUTTON=
+	PGM.DIALOG.FINDEXEC.FILTER.EDIT=
+	PGM.DIALOG.FINDEXEC.FILTER.LIST=
+	PGM.DIALOG.FINDEXEC.FILTER.LIST.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.FINDEXEC.FILTER.LIST.FRAME.TITLE=
+	PGM.DIALOG.FINDEXEC.FILTER.LIST.LIST=
+	PGM.DIALOG.FINDEXEC.FILTER.LIST.LIST.VSCROLL=
+	PGM.DIALOG.FINDEXEC.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.FINDEXEC.FRAME.TITLE=
+	PGM.DIALOG.FINDEXEC.PATH=
+	PGM.DIALOG.FINDEXEC.PATH.BUTTON=
+	PGM.DIALOG.FINDEXEC.PATH.EDIT=
+	PGM.DIALOG.FINDEXEC.PATH.LIST=
+	PGM.DIALOG.FINDEXEC.PATH.LIST.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.FINDEXEC.PATH.LIST.FRAME.TITLE=
+	PGM.DIALOG.FINDEXEC.PATH.LIST.LIST=
+	PGM.DIALOG.FINDEXEC.PATH.LIST.LIST.VSCROLL=
+	PGM.DIALOG.GORNERROR=This is an error dialog box.
+
+		+=
+		+=PGME encountered an error while trying to create a temporary
+		+=file called PGMEGORN.BAT in your TEMP directory. PGME needs to be
+		+=able to write to the "Go Run" file in order to free the
+		+=maximum amount of memory and to perform complex program launching.
+		+=If you can not give PGME write access to that location or file,
+		+=PGME can only perform simple launching. You may be able
+		+=to resolve the issue by deleting it manually, rebooting the
+		+=computer or standing on one leg, hopping up and down and
+		+=spelling your full name backwards three times.
+
+	PGM.DIALOG.GORNERROR.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.GORNERROR.FRAME.TITLE=
+	PGM.DIALOG.LANGTOO=The change language too "One more thing" question dialog box.
+
+		+=
+		+=The requested theme that is going to be applied highly suggests
+		+=using a different language than the one you are currently using.
+
+	PGM.DIALOG.LANGTOO.BUTTON.NO=
+	PGM.DIALOG.LANGTOO.BUTTON.YES=
+	PGM.DIALOG.LANGTOO.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.LANGTOO.FRAME.TITLE=
+	PGM.DIALOG.LAUNCH=This is "Execution Process" editor.
+
+		+=
+		+=It provides the basic functionality to add, edit and remove items 
+		+=from a programs launch process.
+
+	PGM.DIALOG.LAUNCH.BUTTON.ADD=5;Use the "%0" button to add another executable to the process.
+	PGM.DIALOG.LAUNCH.BUTTON.CLEAR=5;Use the "%0" button to clear the entire process and start over.
+	PGM.DIALOG.LAUNCH.BUTTON.COMMAND=5;Use the "%0" button to manually add a dos command.
+	PGM.DIALOG.LAUNCH.BUTTON.OK=5;Use the "%0" button accept all changes.
+	PGM.DIALOG.LAUNCH.BUTTON.OPTIONS=5;Use the "%0" button to modify an executables command line parameters.
+	PGM.DIALOG.LAUNCH.BUTTON.REMOVE=5;Use the "%0" button to remove a line from the process.
+	PGM.DIALOG.LAUNCH.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.LAUNCH.FRAME.TITLE=
+	PGM.DIALOG.LAUNCH.LABEL=
+	PGM.DIALOG.LAUNCH.PROCLIST=The "Process List" shows the current launch process.
+	PGM.DIALOG.LAUNCH.PROCLIST.VSCROLL=
+	PGM.DIALOG.MENU.ADD=The "Create New Menu" dialog box.
+
+		+=
+		+=This is where you can create a new menu and set its title
+		+=and other settings.
+
+	PGM.DIALOG.MENU.ADD.BUTTON.OK=5;Use the "%0" button to create the new menu, apply these settings
+
+		+=and close the dialog box.
+
+	PGM.DIALOG.MENU.ADD.FILE.LABEL=
+	PGM.DIALOG.MENU.ADD.FILE.NAME=The "Menu filename" is readonly and displays the path and filename
+
+		+=of the new menu that PGME will create.
+
+	PGM.DIALOG.MENU.ADD.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.MENU.ADD.FRAME.TITLE=
+	PGM.DIALOG.MENU.ADD.LONG.EDIT=Use the "Long menu title description" to enter the full title of
+
+		+=the menu.
+
+	PGM.DIALOG.MENU.ADD.LONG.LABEL=
+	PGM.DIALOG.MENU.ADD.SHORT.EDIT=Use the "Short menu name" to enter the short version of the title for
+
+		+=the menu.
+
+	PGM.DIALOG.MENU.ADD.SHORT.LABEL=
+	PGM.DIALOG.MENU.DELETE=The remove program dialog box.
+	PGM.DIALOG.MENU.DELETE.BUTTON.NO=5;"%0" Button: Will close the dialog and leave the menu
+
+		+=intact.
+
+	PGM.DIALOG.MENU.DELETE.BUTTON.OK=5;"%0" Button: Will cause the current selected menu and all of its
+
+		+=programs to be removed from the computer.
+		+=It will not remove it other
+		+=menus or delete the programs from the computer or its drive. It only
+		+=will remove this menu and its entries.
+
+	PGM.DIALOG.MENU.DELETE.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.MENU.DELETE.FRAME.TITLE=
+	PGM.DIALOG.MENU.EDIT=The "Menu Options" dialog box.
+
+		+=
+		+=This is where you can make changes to the current menu title
+		+=and other settings.
+
+	PGM.DIALOG.MENU.EDIT.BUTTON.OK=5;Use the "%0" button to apply the new settings to the current menu
+
+		+=and close the dialog box.
+
+	PGM.DIALOG.MENU.EDIT.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.MENU.EDIT.FRAME.TITLE=
+	PGM.DIALOG.MENU.EDIT.LOCK.ACCEPT=You must also check the "Lock Accept" check box to make the
+
+		+=menu readonly.
+
+	PGM.DIALOG.MENU.EDIT.LOCK.LABEL=
+	PGM.DIALOG.MENU.EDIT.LOCK.TOGGLE=The "Lock Menu" toggle will change the selected menu to readonly by
+
+		+=set its writable flag to false. When this flag is set, you will
+		+=not be able to add or remove programs on the menu or delete the menu
+		+=from within PGME. You will not even be able to turn the flag back
+		+=off or even open this dialog box for the menu. The only way to make
+		+=the menu writable again is to manually edit the menu file and
+		+=enable its writable flag using a text editor.
+
+	PGM.DIALOG.MENU.EDIT.LONG.EDIT=Use the "Long menu title description" to enter the full title of
+
+		+=the menu.
+
+	PGM.DIALOG.MENU.EDIT.LONG.LABEL=
+	PGM.DIALOG.MENU.EDIT.SHORT.EDIT=Use the "Short menu name" to enter the short version of the title for
+
+		+=the menu.
+
+	PGM.DIALOG.MENU.EDIT.SHORT.LABEL=
+	PGM.DIALOG.MOVE=The "Duplicate or Move" dialog box.
+
+		+=
+		+=This is dialog box provides a means to copy or move a menu entry from
+		+=one menu onto another.
+
+	PGM.DIALOG.MOVE.BUTTON.OK=5;Use the "%0" button to copy or move the program
+
+		+=and close the dialog box.
+
+	PGM.DIALOG.MOVE.CHECKBOX.MOVE=Use the "Move" checkbox to move the programs menu entry
+
+		+=instead of duplicating it.
+
+	PGM.DIALOG.MOVE.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.MOVE.FRAME.TITLE=
+	PGM.DIALOG.MOVE.NAME.LABEL=
+	PGM.DIALOG.MOVE.NAME.TEXT=
+	PGM.DIALOG.MOVE.TARGET.LABEL=
+	PGM.DIALOG.MOVE.TARGET.LIST=Use the "Target Menu" drop down list to select the menu where
+
+		+=you wish to copy or move the programs menu entry.
+
+	PGM.DIALOG.MOVE.TARGET.LIST.BUTTON=
+	PGM.DIALOG.MOVE.TARGET.LIST.EDIT=
+	PGM.DIALOG.MOVE.TARGET.LIST.LIST=
+	PGM.DIALOG.MOVE.TARGET.LIST.LIST.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.MOVE.TARGET.LIST.LIST.FRAME.TITLE=
+	PGM.DIALOG.MOVE.TARGET.LIST.LIST.LIST=
+	PGM.DIALOG.MOVE.TARGET.LIST.LIST.LIST.VSCROLL=
+	PGM.DIALOG.NOBATCH=This is an error dialog box.
+
+		+=
+		+=It means what it says. You ran PGME directly. When you
+		+=should be running it by using the PGM.BAT launcher file.
+		+=PGME does not really care how you start it. But, it can
+		+=only perform simple launching when you run it directly.
+		+=Complex and Max Memory style launches are not available unless
+		+=you start PGME by using PGM.BAT file.
+
+	PGM.DIALOG.NOBATCH.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.NOBATCH.FRAME.TITLE=
+	PGM.DIALOG.NOTEMPDIR=This is an error dialog box.
+
+		+=
+		+=It means what it says. You do not have a TEMP directory setup.
+		+=You should really think about adding one. Then declare it
+		+=in your AUTOEXEC batch file using the SET command.
+
+	PGM.DIALOG.NOTEMPDIR.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.NOTEMPDIR.FRAME.TITLE=
+	PGM.DIALOG.OPTEXEC=0,1; %0 is a simple dialog box.
+	PGM.DIALOG.OPTEXEC.BUTTON.OK=
+	PGM.DIALOG.OPTEXEC.EDIT.CMDLN=The "Command Line" edit allows you to enter optional command
+
+		+=command line parameters to use when a specific program is
+		+=executed.
+
+	PGM.DIALOG.OPTEXEC.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.OPTEXEC.FRAME.TITLE=
+	PGM.DIALOG.OPTEXEC.LABEL.CMDLN=
+	PGM.DIALOG.OPTEXEC.LABEL.EXEC=
+	PGM.DIALOG.OPTEXEC.LABEL.FILENAME=The "Executable Program" label shows which executable you are
+
+		+=modifying.
+
+	PGM.DIALOG.OPTIONS=The Program Manager Eternity program display options dialog box.
+
+		+=This is where you can make changes to the behaviour and
+		+=appearance of PGME.
+
+	PGM.DIALOG.OPTIONS.BUTTON.OK=5;Use the "%0" button to apply any changes and close the
+
+		+=dialog box.
+
+	PGM.DIALOG.OPTIONS.DAC.CHECK=Enable the "Custom Colors" checkbox to allow PGME to use custom
+
+		+=VGA color definitions in theme files.
+
+	PGM.DIALOG.OPTIONS.ESAVER.DELAY=
+	PGM.DIALOG.OPTIONS.ESAVER.DROP=Use the "Screen Saver" drop down list to select the desired
+
+		+=screen saver. If one is not specified, PGME will automatically
+		+=fall back to the "BLANKER.SCR" screen saver. Then if for some
+		+=reason that cannot be found, the built in plain empty screen
+		+=saver will be used. The screen saver cannot be turned off.
+
+	PGM.DIALOG.OPTIONS.ESAVER.DROP.BUTTON=
+	PGM.DIALOG.OPTIONS.ESAVER.DROP.EDIT=
+	PGM.DIALOG.OPTIONS.ESAVER.DROP.LIST=
+	PGM.DIALOG.OPTIONS.ESAVER.DROP.LIST.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.OPTIONS.ESAVER.DROP.LIST.FRAME.TITLE=
+	PGM.DIALOG.OPTIONS.ESAVER.DROP.LIST.LIST=
+	PGM.DIALOG.OPTIONS.ESAVER.DROP.LIST.LIST.VSCROLL=
+	PGM.DIALOG.OPTIONS.ESAVER.LABEL=
+	PGM.DIALOG.OPTIONS.ESAVER.SLIDE=Use the "Timeout" slider to select the desired
+
+		+=time that PGME should wait until it automatically launches the
+		+=screen saver.
+
+	PGM.DIALOG.OPTIONS.FADER.CHECK=Enable the "Screen Fader" checkbox to allow PGME to perform the fade in and
+
+		+=out effects. Please note that "Custom Colors" must also be enabled.
+
+	PGM.DIALOG.OPTIONS.FONT.DROP=Use the "Font File" drop down list to select a custom text font
+
+		+=for PGME to use. If one is specified, PGME will automatically
+		+=reset to the system default text font when launching programs
+		+=and when exit PGME.
+
+	PGM.DIALOG.OPTIONS.FONT.DROP.BUTTON=
+	PGM.DIALOG.OPTIONS.FONT.DROP.EDIT=
+	PGM.DIALOG.OPTIONS.FONT.DROP.LIST=
+	PGM.DIALOG.OPTIONS.FONT.DROP.LIST.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.OPTIONS.FONT.DROP.LIST.FRAME.TITLE=
+	PGM.DIALOG.OPTIONS.FONT.DROP.LIST.LIST=
+	PGM.DIALOG.OPTIONS.FONT.DROP.LIST.LIST.VSCROLL=
+	PGM.DIALOG.OPTIONS.FONT.LABEL=
+	PGM.DIALOG.OPTIONS.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.OPTIONS.FRAME.TITLE=
+	PGM.DIALOG.OPTIONS.THEME.DROP=Use the "Theme File" drop down list to select the theme you wish
+
+		+=PGME to use.
+
+	PGM.DIALOG.OPTIONS.THEME.DROP.BUTTON=
+	PGM.DIALOG.OPTIONS.THEME.DROP.EDIT=
+	PGM.DIALOG.OPTIONS.THEME.DROP.LIST=
+	PGM.DIALOG.OPTIONS.THEME.DROP.LIST.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.OPTIONS.THEME.DROP.LIST.FRAME.TITLE=
+	PGM.DIALOG.OPTIONS.THEME.DROP.LIST.LIST=
+	PGM.DIALOG.OPTIONS.THEME.DROP.LIST.LIST.VSCROLL=
+	PGM.DIALOG.OPTIONS.THEME.LABEL=
+	PGM.DIALOG.PROG.ADD=The "Add New Program" dialog box is for adding a program
+
+		+=to the current menu.
+
+	PGM.DIALOG.PROG.ADD.BUTTON.OK=
+	PGM.DIALOG.PROG.ADD.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.PROG.ADD.FRAME.TITLE=
+	PGM.DIALOG.PROG.ADD.FREE.LABEL=
+	PGM.DIALOG.PROG.ADD.FREE.TOGGLE=The "Free all memory" toggle will inform PGME to free as much memory
+
+		+=as possible before launching this menu item. This will free up about
+		+=10k more of ram for the program. It is probably never really needed,
+		+=but is provided anyway. Please note, that this happens automatically
+		+=for programs that multiple programs in its execution process. It
+		+=will also occur for any menu entry that includes custom DOS commands.
+
+	PGM.DIALOG.PROG.ADD.LAUNCH.BUTTON=Use the "Select" program launch process button to configure
+
+		+=the program(s) you wish to execute when PGME
+		+=launches this programs menu item.
+
+	PGM.DIALOG.PROG.ADD.LAUNCH.LABEL=
+	PGM.DIALOG.PROG.ADD.RETURN.LABEL=
+	PGM.DIALOG.PROG.ADD.RETURN.TOGGLE=The "Return to PGM Eternity" toggle is rather straight forward.
+
+		+=After the menu entry has completed running, the "ON" setting
+		+=will return you to PGME. If it is "OFF", you will return to the
+		+=command line.
+
+	PGM.DIALOG.PROG.ADD.TITLE.EDIT=Use the "Program Title" field to enter the full title of
+
+		+=the programs menu title.
+
+	PGM.DIALOG.PROG.ADD.TITLE.LABEL=
+	PGM.DIALOG.PROG.ADD.TONE.EDIT=Use the "Launch Tones" field to set the tones played when
+
+		+=this menu entry is launched. If this is left blank, PGME
+		+=will just play the default launching tones.
+		+=Custom tones are "Frequency:Duration[,...]" The
+		+=duration is value of 0 or larger and is 1/18th of a second
+		+=(or about 1000 bpm). If you wish this entry to make no
+		+=sound, just use "0:0" (No Frequency:No Duration) as its tone.
+
+	PGM.DIALOG.PROG.ADD.TONE.LABEL=
+	PGM.DIALOG.PROG.DELETE=The remove program dialog box.
+	PGM.DIALOG.PROG.DELETE.BUTTON.NO=5;"%0" Button: Will close the dialog and leave the program
+
+		+=on the current menu.
+
+	PGM.DIALOG.PROG.DELETE.BUTTON.OK=5;"%0" Button: Will cause the current selected program to be
+
+		+=removed from the current menu. It will not remove it from other
+		+=menus or delete the program from the computer or drive. It only
+		+=will remove it from this menu.
+
+	PGM.DIALOG.PROG.DELETE.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.PROG.DELETE.FRAME.TITLE=
+	PGM.DIALOG.PROG.EDIT=The "Edit Program" dialog box is for updating the currently
+
+		+=selected program.
+
+	PGM.DIALOG.PROG.EDIT.BUTTON.OK=
+	PGM.DIALOG.PROG.EDIT.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.PROG.EDIT.FRAME.TITLE=
+	PGM.DIALOG.PROG.EDIT.FREE.LABEL=
+	PGM.DIALOG.PROG.EDIT.FREE.TOGGLE=The "Free all memory" toggle will inform PGME to free as much memory
+
+		+=as possible before launching this menu item. This will free up about
+		+=10k more of ram for the program. It is probably never really needed,
+		+=but is provided anyway. Please note, that this happens automatically
+		+=for programs that multiple programs in its execution process. It
+		+=will also occur for any menu entry that includes custom DOS commands.
+
+	PGM.DIALOG.PROG.EDIT.LAUNCH.BUTTON=Use the "Modify" program launch process button to alter
+
+		+=the program(s) you wish to execute when PGME
+		+=launches this programs menu item.
+
+	PGM.DIALOG.PROG.EDIT.LAUNCH.LABEL=
+	PGM.DIALOG.PROG.EDIT.RETURN.LABEL=
+	PGM.DIALOG.PROG.EDIT.RETURN.TOGGLE=The "Return to PGM Eternity" toggle is rather straight forward.
+
+		+=After the menu entry has completed running, the "ON" setting
+		+=will return you to PGME. If it is "OFF", you will return to the
+		+=command line.
+
+	PGM.DIALOG.PROG.EDIT.TITLE.EDIT=Use the "Program Title" field to enter the full title of
+
+		+=the programs menu title.
+
+	PGM.DIALOG.PROG.EDIT.TITLE.LABEL=
+	PGM.DIALOG.PROG.EDIT.TONE.EDIT=Use the "Launch Tones" field to set the tones played when
+
+		+=this menu entry is launched. If this is left blank, PGME
+		+=will just play the default launching tones.
+		+=Custom tones are "Frequency:Duration[,...]" The
+		+=duration is value of 0 or larger and is 1/18th of a second
+		+=(or about 1000 bpm). If you wish this entry to make no
+		+=sound, just use "0:0" (No Frequency:No Duration) as its tone.
+
+	PGM.DIALOG.PROG.EDIT.TONE.LABEL=
+	PGM.DIALOG.THEMETOO=The change theme too "One more thing" question dialog box.
+
+		+=
+		+=The requested language that is going to be applied highly suggests
+		+=using a different theme than the one you are currently using.
+
+	PGM.DIALOG.THEMETOO.BUTTON.NO=
+	PGM.DIALOG.THEMETOO.BUTTON.YES=
+	PGM.DIALOG.THEMETOO.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.THEMETOO.FRAME.TITLE=
+	PGM.HELP=
+	PGM.HELP.FRAME.BUTTON.CLOSE=
+	PGM.HELP.FRAME.TITLE=
+	PGM.HELP.TEXT=
+	PGM.HELP.TEXT.VSCROLL=
+	PGM.MENUS=
+	PGM.MENUS.CLOCK.DATE=
+	PGM.MENUS.CLOCK.TIME=
+	PGM.MENUS.LABEL=
+	PGM.MENUS.LINE.BOTTOM=
+	PGM.MENUS.LINE.TOP=
+	PGM.MENUS.MENUS=
+	PGM.MENUS.MENUS.VSCROLL=
+	PGM.MENUS.SEARCH.EDIT=Use the "Find" edit field to enter text for searching.
+
+		+=By default, pressing "Alt+F" will automatically focus this field.
+
+	PGM.MENUS.SEARCH.LABEL=
+	PGM.PROGRAMS=The main Program List window:
+
+		+=
+
+	PGM.PROGRAMS.BUTTON.EDIT=5;"%0" Button: This will display the edit popup menu.
+	PGM.PROGRAMS.BUTTON.HELP=5;"%0" Button: This will open a help window.
+
+		+=The default keyboard shortcut is "ALT+H".
+
+	PGM.PROGRAMS.BUTTON.QUIT=5;"%0" Button: Assuming that PGME is not running in KIOSK mode
+
+		+=and allows you to quit to a command prompt this button will
+		+=shutdown PGME.
+		+=The default keyboard shortcut is "ALT+Q".
+
+	PGM.PROGRAMS.BUTTON.RUN=5;"%0" Button: This will launch the currently selected program.
+
+		+=The default keyboard shortcut is "ENTER".
+
+	PGM.PROGRAMS.BUTTON.SEARCH=5;"%0" Button: This will focus the "Find" field 
+
+		+=to input text for searching. Or, if that field
+		+=already contains text, it will search again.
+
+	PGM.PROGRAMS.FRAME.BUTTON.CLOSE=
+	PGM.PROGRAMS.FRAME.TITLE=
+	PGM.PROGRAMS.LINE.BOTTOM=
+	PGM.PROGRAMS.LINE.TOP=
+	PGM.PROGRAMS.POPUP.EDITMENU=A note regarding the edit button popup menu shortcut keys.
+
+		+=They will only work when popup menu is visible.
+
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.CONFIG=5;"%0" Option: Select this modify PGME behavior options.
+
+		+=The default keyboard shortcut is "P".
+
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.MENU.ADD=5;"%0" Option: Select this to add a new menu.
+
+		+=The default keyboard shortcut is "N".
+
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.MENU.DELETE=5;"%0" Option: Select this to delete the current menu.
+
+		+=The default keyboard shortcut is "K".
+
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.MENU.EDIT=5;"%0" Option: Select this to edit the current menus information.
+
+		+=The default keyboard shortcut is "N".
+
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.OPTIONS=5;"%0" Option: Select this modify PGME display options.
+
+		+=The default keyboard shortcut is "O".
+
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.ADD=5;"%0" Option: Select this to add a program to the current menu.
+
+		+=The default keyboard shortcut is "A".
+
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.DELETE=5;"%0" Option: Select delete the currently selected program from the menu.
+
+		+=The default keyboard shortcut is "D".
+
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.EDIT=5;"%0" Option: Select this to edit the selected programs information or
+
+		+=its execution process. The default keyboard shortcut is "E".
+
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.MOVE=5;"%0" Option: Select move or copy the currently selected program.
+
+		+=The default keyboard shortcut is "X".
+
+	PGM.PROGRAMS.POPUP.EDITMENU.FRAME.BUTTON.CLOSE=
+	PGM.PROGRAMS.POPUP.EDITMENU.FRAME.TITLE=
+	PGM.PROGRAMS.POPUP.EDITMENU.LINE.LOWER=
+	PGM.PROGRAMS.POPUP.EDITMENU.LINE.UPPER=
+	PGM.PROGRAMS.PROGRAMS=
+	PGM.PROGRAMS.PROGRAMS.VSCROLL=
+	PGM.PROGRAMS.TITLE.EDIT=
+	PGM.PROGRAMS.TITLE.LABEL=
+	PGM.TITLE=
+	PGM.TITLE.SAM_I_AM=
+
+[KEYNAMES]
+	$0008=BackSpace
+	$0009=Tab
+	$000D=Enter/Return
+	$001B=Escape
+	$0020=Space
+	$0021=Exclamation
+	$0022=Double Quote
+	$0023=Pound
+	$0024=Dollar
+	$0025=Percent
+	$0026=Ampersand
+	$0027=Single Quote
+	$0028=Open Parentheses
+	$0029=Close Parentheses
+	$002A=Star
+	$002B=Plus
+	$002C=Comma
+	$002D=Minus
+	$002E=Period
+	$002F=Backslash
+	$0030=0
+	$0031=1
+	$0032=2
+	$0033=3
+	$0034=4
+	$0035=5
+	$0036=6
+	$0037=7
+	$0038=8
+	$0039=9
+	$003A=Colon
+	$003B=Semicolon
+	$003C=Less Than
+	$003D=Equals
+	$003E=Greater Than
+	$003F=Question Mark
+	$0040=At
+	$005B=Open Bracket
+	$005C=Forward Slash
+	$005D=Close Bracket
+	$005E=Caret
+	$005F=Underscore
+	$0060=Quote
+	$0061=A
+	$0062=B
+	$0063=C
+	$0064=D
+	$0065=E
+	$0066=F
+	$0067=G
+	$0068=H
+	$0069=I
+	$006A=J
+	$006B=K
+	$006C=L
+	$006D=M
+	$006E=N
+	$006F=O
+	$0070=P
+	$0071=Q
+	$0072=R
+	$0073=S
+	$0074=T
+	$0075=U
+	$0076=V
+	$0077=W
+	$0078=X
+	$0079=Y
+	$007A=Z
+	$007B=Open Brace
+	$007C=Pipe
+	$007D=Close Brace
+	$007E=Tilda
+	$3B00=F1
+	$3C00=F2
+	$3D00=F3
+	$3E00=F4
+	$3F00=F5
+	$4000=F6
+	$4100=F7
+	$4200=F8
+	$4300=F9
+	$4400=F10
+	$4700=Home
+	$4800=Up
+	$4900=Page Up
+	$4B00=Left
+	$4D00=Right
+	$4F00=End
+	$5000=Down
+	$5100=Page Down
+	$5200=Insert
+	$5300=Delete
+	$8500=F11
+	$8600=F12
+
+[STRINGS]
+	PGM.BOOT.CACHE.UPDATE=Updating Menu Cache...
+	PGM.BOOT.RESUME=Resuming Eternity...
+	PGM.BOOT.STARTING=Beginning Eternity...
+	PGM.DIALOG.ABOUT.FRAME.TITLE= About PGM Eternity 
+	PGM.DIALOG.ABOUT.MESSAGE= 
+
+		+=The Program Manager Eternity Edition
+		+=Copyright 2015.
+		+= 
+		+=The QuickCRT Framework
+		+=Copyright 1990-2015.
+		+= 
+		+=Both PGME and QuickCRT are opensource and
+		+=can be found on sourceforge at:
+		+= 
+		+=http://pgme.sourceforge.net
+		+=http://quickcrt.sourceforge.net
+
+	PGM.DIALOG.CONFIG.BUTTON.OK=OK
+	PGM.DIALOG.CONFIG.FRAME.TITLE= Eternity Config Settings 
+	PGM.DIALOG.CONFIG.LANGUAGE.DROP.LIST.FRAME.TITLE=
+	PGM.DIALOG.CONFIG.LANGUAGE.DROP.LIST.LIST.COLUMN.NONE= 
+	PGM.DIALOG.CONFIG.LANGUAGE.LABEL=Language File:
+	PGM.DIALOG.DOSCOMMAND.BUTTON.OK=OK
+	PGM.DIALOG.DOSCOMMAND.FRAME.TITLE= Add DOS Command 
+	PGM.DIALOG.DOSCOMMAND.LABEL=Custom DOS Command:
+	PGM.DIALOG.EXECMISSING.FRAME.TITLE= Oh, NO! Me so sorry! :( 
+	PGM.DIALOG.EXECMISSING.MESSAGE= 
+
+		+=PGME was unable to locate a required executable item and
+		+=can not run that menu entry at this time.
+		+= 
+		+=Maybe, verify that the program has not been relocated.
+
+	PGM.DIALOG.FINDEXEC.BUTTON.CANCEL=Cancel
+	PGM.DIALOG.FINDEXEC.BUTTON.MAKEDIR=Make Dir
+	PGM.DIALOG.FINDEXEC.BUTTON.OK=OK
+	PGM.DIALOG.FINDEXEC.DIRECTORY.COLUMN.0=FILE NAME
+	PGM.DIALOG.FINDEXEC.DIRECTORY.COLUMN.1=SIZE
+	PGM.DIALOG.FINDEXEC.DIRECTORY.COLUMN.2=ATTR
+	PGM.DIALOG.FINDEXEC.DIRECTORY.COLUMN.3=DATE
+	PGM.DIALOG.FINDEXEC.DIRECTORY.COLUMN.4=TIME
+	PGM.DIALOG.FINDEXEC.DIRECTORY.COLUMN.5=WHEN
+	PGM.DIALOG.FINDEXEC.DIRECTORY.COLUMN.NONE= 
+	PGM.DIALOG.FINDEXEC.DIRECTORY.PARENT=<PARENT>
+	PGM.DIALOG.FINDEXEC.DIRECTORY.SUBDIR=<SUBDIR>
+	PGM.DIALOG.FINDEXEC.FILTER.LIST.FRAME.TITLE=
+	PGM.DIALOG.FINDEXEC.FILTER.LIST.LIST.COLUMN.NONE= 
+	PGM.DIALOG.FINDEXEC.FILTERS=Executable (*.EXE;*.COM;*.BAT)
+
+		+=Screen Saver (*.SCR)
+		+=Viewable (*.DOC;*.ME;*.TXT)
+		+=All Files (*.*)
+
+	PGM.DIALOG.FINDEXEC.FRAME.TITLE= Select Program 
+	PGM.DIALOG.FINDEXEC.PATH.LIST.FRAME.TITLE=
+	PGM.DIALOG.FINDEXEC.PATH.LIST.LIST.COLUMN.NONE= 
+	PGM.DIALOG.GORNERROR.FRAME.TITLE= Oh, NO! Me so sorry! :( 
+	PGM.DIALOG.GORNERROR.MESSAGE= 
+
+		+=An error occurred when trying to write to the PGMEGORN.BAT
+		+=temporary file. The file may be locked, readonly or just
+		+=unaccessible at this time.
+		+= 
+		+=Maybe, if you delete the file manually it will fix it.
+
+	PGM.DIALOG.LANGTOO.BUTTON.NO=Nope!
+	PGM.DIALOG.LANGTOO.BUTTON.YES=Yes
+	PGM.DIALOG.LANGTOO.FRAME.TITLE= Hmmm. One more thing? 
+	PGM.DIALOG.LANGTOO.MESSAGE= 
+
+		+=Hey, about that theme you want to apply. It would really
+		+=appreciate a different language file.
+		+= 
+		+=1;So, do you want to switch to the %0 language?
+
+	PGM.DIALOG.LAUNCH.BUTTON.ADD=Add
+	PGM.DIALOG.LAUNCH.BUTTON.CLEAR=Clear
+	PGM.DIALOG.LAUNCH.BUTTON.COMMAND=DOS Command
+	PGM.DIALOG.LAUNCH.BUTTON.OK=Done
+	PGM.DIALOG.LAUNCH.BUTTON.OPTIONS=Options
+	PGM.DIALOG.LAUNCH.BUTTON.REMOVE=Remove
+	PGM.DIALOG.LAUNCH.FRAME.TITLE=
+	PGM.DIALOG.LAUNCH.LABEL=Execution Process:
+	PGM.DIALOG.LAUNCH.PROCLIST.COLUMN.0=COMMAND
+	PGM.DIALOG.LAUNCH.PROCLIST.COLUMN.1=OPTIONS
+	PGM.DIALOG.LAUNCH.PROCLIST.COLUMN.NONE= 
+	PGM.DIALOG.MENU.ADD.BUTTON.OK=Create
+	PGM.DIALOG.MENU.ADD.FILE.LABEL=Menu filename:
+	PGM.DIALOG.MENU.ADD.FILE.NAME=
+	PGM.DIALOG.MENU.ADD.FRAME.TITLE= Create New Menu 
+	PGM.DIALOG.MENU.ADD.LONG.LABEL=Long menu title description:
+	PGM.DIALOG.MENU.ADD.SHORT.LABEL=Short menu name:
+	PGM.DIALOG.MENU.DELETE.BUTTON.NO=Cancel
+	PGM.DIALOG.MENU.DELETE.BUTTON.OK=Delete
+	PGM.DIALOG.MENU.DELETE.FRAME.TITLE= Delete Menu 
+	PGM.DIALOG.MENU.DELETE.MESSAGE= 
+
+		+=Are you sure you want to delete this
+		+=menu from the computer?
+
+	PGM.DIALOG.MENU.EDIT.BUTTON.OK=Update
+	PGM.DIALOG.MENU.EDIT.FRAME.TITLE= Menu Options 
+	PGM.DIALOG.MENU.EDIT.LOCK.ACCEPT=Really. Permanently lock menu.
+	PGM.DIALOG.MENU.EDIT.LOCK.LABEL=Lock menu and prevent changes:
+	PGM.DIALOG.MENU.EDIT.LOCK.TOGGLE=off,ON
+	PGM.DIALOG.MENU.EDIT.LONG.LABEL=Long menu title description:
+	PGM.DIALOG.MENU.EDIT.SHORT.LABEL=Short menu name:
+	PGM.DIALOG.MOVE.BUTTON.OK=OK
+	PGM.DIALOG.MOVE.CHECKBOX.MOVE=Move instead of copy.
+	PGM.DIALOG.MOVE.FRAME.TITLE= Duplicate or Move Program 
+	PGM.DIALOG.MOVE.NAME.LABEL=Program Title:
+	PGM.DIALOG.MOVE.NAME.TEXT=a program
+	PGM.DIALOG.MOVE.TARGET.LABEL=Target Menu:
+	PGM.DIALOG.MOVE.TARGET.LIST.LIST.FRAME.TITLE=
+	PGM.DIALOG.MOVE.TARGET.LIST.LIST.LIST.COLUMN.NONE= 
+	PGM.DIALOG.NOBATCH.FRAME.TITLE= Oh, NO! Me so sorry! :( 
+	PGM.DIALOG.NOBATCH.MESSAGE= 
+
+		+=Unfortunately, you did not use the launcher batch file
+		+=PGM.BAT and PGME can only perform simple launching at
+		+=this time.
+		+= 
+		+=Maybe, next time start PGME using the PGM.BAT launcher.
+
+	PGM.DIALOG.NOTEMPDIR.FRAME.TITLE= Oh, NO! Me so sorry! :( 
+	PGM.DIALOG.NOTEMPDIR.MESSAGE= 
+
+		+=Unfortunately, the system has no TEMP directory defined.
+		+=So, I am unable to execute that program at this time.
+		+= 
+		+=Maybe, try adding SET TEMP=C:\TEMP to the AUTOEXEC.BAT file.
+		+=(That assumes you have a directory called C:\TEMP somewhere)
+
+	PGM.DIALOG.OPTEXEC.BUTTON.OK=OK
+	PGM.DIALOG.OPTEXEC.FRAME.TITLE=
+	PGM.DIALOG.OPTEXEC.LABEL.CMDLN=Command line parameters:
+	PGM.DIALOG.OPTEXEC.LABEL.EXEC=Executable Program:
+	PGM.DIALOG.OPTEXEC.LABEL.FILENAME=D:\SOME.EXE
+	PGM.DIALOG.OPTIONS.BUTTON.OK=OK
+	PGM.DIALOG.OPTIONS.DAC.CHECK=Custom Colors
+	PGM.DIALOG.OPTIONS.ESAVER.DELAY=0,1{sec,min};Timeout %0 %1:
+	PGM.DIALOG.OPTIONS.ESAVER.DROP.LIST.FRAME.TITLE=
+	PGM.DIALOG.OPTIONS.ESAVER.DROP.LIST.LIST.COLUMN.NONE= 
+	PGM.DIALOG.OPTIONS.ESAVER.LABEL=Screen Saver:
+	PGM.DIALOG.OPTIONS.FADER.CHECK=Screen Fader
+	PGM.DIALOG.OPTIONS.FONT.DROP.LIST.FRAME.TITLE=
+	PGM.DIALOG.OPTIONS.FONT.DROP.LIST.LIST.COLUMN.NONE= 
+	PGM.DIALOG.OPTIONS.FONT.LABEL=Font File:
+	PGM.DIALOG.OPTIONS.FRAME.TITLE= Eternity Display Options 
+	PGM.DIALOG.OPTIONS.THEME.DROP.LIST.FRAME.TITLE=
+	PGM.DIALOG.OPTIONS.THEME.DROP.LIST.LIST.COLUMN.NONE= 
+	PGM.DIALOG.OPTIONS.THEME.LABEL=Theme File:
+	PGM.DIALOG.PROG.ADD.BUTTON.OK=Create
+	PGM.DIALOG.PROG.ADD.FRAME.TITLE= Add New Program 
+	PGM.DIALOG.PROG.ADD.FREE.LABEL=Free all memory:
+	PGM.DIALOG.PROG.ADD.FREE.TOGGLE=off,ON
+	PGM.DIALOG.PROG.ADD.LAUNCH.BUTTON=Select
+	PGM.DIALOG.PROG.ADD.LAUNCH.LABEL=Select program launch process:
+	PGM.DIALOG.PROG.ADD.RETURN.LABEL=Return to PGM Eternity:
+	PGM.DIALOG.PROG.ADD.RETURN.TOGGLE=off,ON
+	PGM.DIALOG.PROG.ADD.TITLE.LABEL=Program Title:
+	PGM.DIALOG.PROG.ADD.TONE.LABEL=Launch Tones:
+	PGM.DIALOG.PROG.DELETE.BUTTON.NO=Cancel
+	PGM.DIALOG.PROG.DELETE.BUTTON.OK=Delete
+	PGM.DIALOG.PROG.DELETE.FRAME.TITLE= Remove Program 
+	PGM.DIALOG.PROG.DELETE.MESSAGE= 
+
+		+=Are you sure you want to remove this
+		+=program from the menu?
+
+	PGM.DIALOG.PROG.EDIT.BUTTON.OK=Update
+	PGM.DIALOG.PROG.EDIT.FRAME.TITLE= Edit Program 
+	PGM.DIALOG.PROG.EDIT.FREE.LABEL=Free all memory:
+	PGM.DIALOG.PROG.EDIT.FREE.TOGGLE=off,ON
+	PGM.DIALOG.PROG.EDIT.LAUNCH.BUTTON=Modify
+	PGM.DIALOG.PROG.EDIT.LAUNCH.LABEL=Change program launch process:
+	PGM.DIALOG.PROG.EDIT.RETURN.LABEL=Return to PGM Eternity:
+	PGM.DIALOG.PROG.EDIT.RETURN.TOGGLE=off,ON
+	PGM.DIALOG.PROG.EDIT.TITLE.LABEL=Program Title:
+	PGM.DIALOG.PROG.EDIT.TONE.LABEL=Launch Tones:
+	PGM.DIALOG.THEMETOO.BUTTON.NO=Nope!
+	PGM.DIALOG.THEMETOO.BUTTON.YES=Yes
+	PGM.DIALOG.THEMETOO.FRAME.TITLE= Hmmm. One more thing? 
+	PGM.DIALOG.THEMETOO.MESSAGE= 
+
+		+=Hey, about that language you want to apply. It really
+		+=wants to use a different theme file.
+		+= 
+		+=0;So, do you want to switch to the %0 theme?
+
+	PGM.HELP.FRAME.TITLE=0; Help on "%0" 
+	PGM.MENU.TEXT.EMPTY=
+	PGM.MENU.TEXT.UNDESCRIBED=Untitled Menu
+	PGM.MENU.TEXT.UNNAMED=no name
+	PGM.MENU.TEXT.UNTITLED=Untitled Menu
+	PGM.MENUS.CLOCK.DATE=0[Z4],1{Null,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec},2,3{Sun,Mon,Tues,Wed,Thurs,Fri,Sat};%3 %1 %2, %0
+	PGM.MENUS.CLOCK.TIME=0[Z2],1[L2],2[Z2],3[Z2],4{am,pm};%1:%2:%3 %4
+	PGM.MENUS.LABEL=Available Menus:
+	PGM.MENUS.MENUS.COLUMN.NONE= 
+	PGM.MENUS.SEARCH.LABEL= Find>
+	PGM.PROGRAMS.BUTTON.EDIT=Edit
+	PGM.PROGRAMS.BUTTON.HELP=Help
+	PGM.PROGRAMS.BUTTON.QUIT=Quit
+	PGM.PROGRAMS.BUTTON.RUN=Execute
+	PGM.PROGRAMS.BUTTON.SEARCH=Search
+	PGM.PROGRAMS.FRAME.TITLE= Program Manager Eternity 
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.CONFIG=Config Settings...
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.MENU.ADD=Add Menu...
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.MENU.DELETE=Delete Menu...
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.MENU.EDIT=Edit Menu...
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.OPTIONS=Display Options...
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.ADD=Add Program...
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.DELETE=Delete Program...
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.EDIT=Edit Program...
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.MOVE=Move Program...
+	PGM.PROGRAMS.POPUP.EDITMENU.FRAME.TITLE=
+	PGM.PROGRAMS.PROGRAMS.COLUMN.NONE= 
+	PGM.PROGRAMS.TITLE.LABEL=Menu Title:
+	PGM.TITLE.SAM_I_AM=0[Z4,X3.2],1,2[Z2];Version %1/%2/%0
