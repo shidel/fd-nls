@@ -1,51 +1,51 @@
-# La traducci¢n de ingl‚s al espa¤ol ha sido efectuada por:
-# Aitor Santamar¡a (aitor.sm@terra.es)
+# La traducciÂ¢n de inglâ€šs al espaÂ¤ol ha sido efectuada por:
+# Aitor SantamarÂ¡a (aitor.sm@terra.es)
 # Mensajes usados por pdTree v1 y FreeDOS tree v3.6
 
-# campo com£n a muchas funciones [Conjunto 1]
+# campo comÂ£n a muchas funciones [Conjunto 1]
 1.1:\n
 # Principal [Conjunto 1] 
 1.2:Listado de las RUTAS de directorios\n
 # Debe incluir %s para la etiqueta de volumen 
 1.3:Listado de las RUTAS de directorio para el disco etiquetado %s\n
-# Debe incluir %s para el n£mero de serie  
-1.4:El n£mero de serie del volumen es %s\n
+# Debe incluir %s para el nÂ£mero de serie  
+1.4:El nÂ£mero de serie del volumen es %s\n
 1.5:No existen subdirectorios\n\n
 # MostrarUso [Conjunto 2]
-2.1:Visualiza gr ficamente la estructura de directorios de un disco o ruta.\n
+2.1:Visualiza grÂ ficamente la estructura de directorios de un disco o ruta.\n
 2.2:TREE [unidad:][ruta] [%c%c] [%c%c]\n
 2.3:   %c%c   Visualiza los nombres de los archivos en cada directorio.\n
 2.4:   %c%c   Utiliza el ASCII en vez de caracteres extendidos.\n
-# Mostrar Uso no v lido [Conjunto 3]
-# Debe incluir el %s para la opci¢n dada.
-3.1:La opci¢n es no v lida - %s\n
-3.2:Utilice TREE %c? para ver la informaci¢n sobre su uso.\n
+# Mostrar Uso no vÂ lido [Conjunto 3]
+# Debe incluir el %s para la opciÂ¢n dada.
+3.1:La opciÂ¢n es no vÂ lida - %s\n
+3.2:Utilice TREE %c? para ver la informaciÂ¢n sobre su uso.\n
 #showTooManyOptions
-3.3:Demasiados par metros - %s\n
-# Mostrar informaci¢n sobre la versi¢n [Conjunto 4]
-# Tambi‚n utiliza el mensaje 2.1 de treeDescription.
+3.3:Demasiados parÂ metros - %s\n
+# Mostrar informaciÂ¢n sobre la versiÂ¢n [Conjunto 4]
+# Tambiâ€šn utiliza el mensaje 2.1 de treeDescription.
 4.1:Escrito para ejecutarse bajo FreeDOS\n
 4.2:Ventana de Win32(c) y DOS con soporte para LFN.\n
-# Debe incluir el %s para la cadena de la versi¢n. 
-4.3:Versi¢n %s\n
+# Debe incluir el %s para la cadena de la versiÂ¢n. 
+4.3:VersiÂ¢n %s\n
 4.4:Escrito por:   Kenneth J. Davis\n
 4.5:Fecha:         Agosto/Septiembre/Octubre/Noviembre, 2000; Enero 2001\n
 4.6:Contacto:      jeremyd@computer.org\n
-4.7:Copyright (c): Dominio P£blico [Definici¢n De Estados Unidos]\n
+4.7:Copyright (c): Dominio PÂ£blico [DefiniciÂ¢n De Estados Unidos]\n
 #4.8 is only used when cats support is compiled in.
 4.8:Utiliza la biblioteca Cats de Jim Hall <jhall@freedos.org> \n  version 3.8 Copyright (C) 1999,2000 Jim Hall\n
 #4.20 20-30 reserved for FreeDOS tree derived from Dave Dunfield's tree
 #4.20:Copyright 1995 Dave Dunfield - Freely distributable.\n
-4.20:Copyright 1995, 2000 Dave Dunfield - De libre distribuci¢n (bajo GPL en el 2000).\n
-# MostrarUnidadNoV lida [Conjunto 5]
-5.1:El disco especificado no es v lido.\n
-# MuestraRutaNoV lida [Fije 6] 
-# Debe incluir %s para el camino no v lido dado. 
-6.1:La ruta no es v lida. - %s\n
+4.20:Copyright 1995, 2000 Dave Dunfield - De libre distribuciÂ¢n (bajo GPL en el 2000).\n
+# MostrarUnidadNoVÂ lida [Conjunto 5]
+5.1:El disco especificado no es vÂ lido.\n
+# MuestraRutaNoVÂ lida [Fije 6] 
+# Debe incluir %s para el camino no vÂ lido dado. 
+6.1:La ruta no es vÂ lida. - %s\n
 # Misc Errors [Conjunto 7]
 # MostrarExcedidoBuffer
-# %u requerido para mostrar cu l es el tama¤o actual del buffer. 
-7.1:Error: La ruta del archivo expecificado excede el espacio m ximo = %u bytes\n
+# %u requerido para mostrar cuÂ l es el tamaÂ¤o actual del buffer. 
+7.1:Error: La ruta del archivo expecificado excede el espacio mÂ ximo = %u bytes\n
 # showOutOfMemory
 # %s required to display what directory we were processing when ran out of memory.
 7.2:Memoria agotada en el subdirectorio: %s\n
