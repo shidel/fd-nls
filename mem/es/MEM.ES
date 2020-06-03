@@ -1,10 +1,10 @@
 # fatal errors
-0.0:No hay memoria suficiente. Se requieren %ld bytes m s.\n
+0.0:No hay memoria suficiente. Se requieren %ld bytes mÂ s.\n
 0.1:LA MEMORIA DEL SISTEMA EST CORRUPTA (fallo en int 21.5803)\n
-0.2:Cadena de MCBs corrupta: no llega al tope de la TPA en %dk (£ltimo=0x%x)\n
-0.3:Cadena de MCBs corrupta: sin MCB Z tras el £ltimo M (es %c, en seg 0x%x)\n
+0.2:Cadena de MCBs corrupta: no llega al tope de la TPA en %dk (Â£ltimo=0x%x)\n
+0.3:Cadena de MCBs corrupta: sin MCB Z tras el Â£ltimo M (es %c, en seg 0x%x)\n
 0.4:Use /? para la ayuda\n
-0.5:Opci¢n desconocida: %s\n%s
+0.5:OpciÂ¢n desconocida: %s\n%s
 # FIXME: to be translated
 0.6:The /NOSUMMARY option was specified, but no other output-producing options\nwere specified, so no output is being produced.\n%s
 # FIXME: to be translated
@@ -51,8 +51,8 @@
 2.6:Total bajo 1 MB
 2.7:Total Expandida (EMS)
 2.8:Libre Expandida (EMS)
-2.9:Tama¤o de programa ejecutable m s grande
-2.10:Bloque de memoria superior libre m s grande
+2.9:TamaÂ¤o de programa ejecutable mÂ s grande
+2.10:Bloque de memoria superior libre mÂ s grande
 2.11:%s reside en memoria alta (HMA).\n
 # FIXME: to be translated
 2.12:Available space in High Memory Area
@@ -81,11 +81,11 @@
 # block types
 3.0:
 3.1:libre
-3.2:c¢digo sistema
+3.2:cÂ¢digo sistema
 3.3:datos sistema
 3.4:programa
 3.5:entorno    
-3.6: rea de datos
+3.6:Â rea de datos
 3.7:reservada
 # FIXME: to be translated
 3.8:interrupt vector table
@@ -100,14 +100,14 @@
 # FIXME: to be translated
 3.14:(error)
 # classify msgs
-4.0:\nM¢dulos que usan memoria bajo 1 MB:\n\n
+4.0:\nMÂ¢dulos que usan memoria bajo 1 MB:\n\n
 4.1:  Nombre         Total           Convencional        Superior\n
 #     --------  ----------------   ----------------   ----------------
 4.2:SISTEMA
 4.3:Libre
 4.4:\nSegmento      Total           Nombre         Tipo\n
 #     -------  ----------------  ------------  -------------
-4.5:\n  Direcci¢n   Atrib.   Nombre     Programa\n
+4.5:\n  DirecciÂ¢n   Atrib.   Nombre     Programa\n
 #      -----------  ------ ----------  ----------
 4.6:\nSegmento      Total\n
 #     -------  ----------------
@@ -126,47 +126,47 @@
 # EMS stuff
 5.0:Error interno EMS.\n
 5.1: No hay controlador EMS en el sistema.\n
-5.2:Versi¢n del controlador EMS
-5.3:Marco de p gina EMS
+5.2:VersiÂ¢n del controlador EMS
+5.3:Marco de pÂ gina EMS
 5.4:Total memoria EMS
 5.5:Memoria EMS libre
 5.6:Referencias (handles) totales
 5.7:Referencias (handles) libres
-5.8:\n  Handle  P ginas  Tama¤o     Nombre\n
+5.8:\n  Handle  PÂ ginas  TamaÂ¤o     Nombre\n
 #      -------- ------  --------   ----------
 # XMS stuff
 6.0:No hay controlador XMS instalado en el sistema.\n
 6.1:\nComprobando la memoria XMS ...\n
 6.2:Error interno XMS.\n
 6.3:Se soporta INT 2F AX=4309\n
-6.4:Versi¢n XMS
-6.5:Versi¢n controlador XMS
+6.4:VersiÂ¢n XMS
+6.5:VersiÂ¢n controlador XMS
 6.6:Estado de HMA
 6.7:existe
 6.8:no existe
-6.9:Estado de la l¡nea A20
+6.9:Estado de la lÂ¡nea A20
 6.10:habilitado
 6.11:deshabilitado
 6.12:Memoria XMS libre
-6.13:Bloque libre XMS m s grande
+6.13:Bloque libre XMS mÂ s grande
 6.14:Referencias (handles) libres
-6.15: Bloque  Handle    Tama¤o  Bloqueos\n
+6.15: Bloque  Handle    TamaÂ¤o  Bloqueos\n
 #    ------- --------  --------  -------
 6.16:Memoria superior libre
-6.17:Bloque de memoria superior m s grande
+6.17:Bloque de memoria superior mÂ s grande
 6.18:No hay memoria superior disponible\n
 # help message
-7.0:FreeDOS MEM versi¢n %s
+7.0:FreeDOS MEM versiÂ¢n %s
 7.1:Muestra la cantidad de memoria ocupada y libre del sistema.
 # FIXME: to be translated
 7.2:Sintaxis: MEM [zero or more of the options shown below]
-7.3:/E          Devuelve informaci¢n sobre memoria expandida (EMS)
+7.3:/E          Devuelve informaciÂ¢n sobre memoria expandida (EMS)
 7.4:/FULL       Listado completo de bloques de memoria
-7.5:/C          Clasificar los m¢dulos de memoria en el primer MB
+7.5:/C          Clasificar los mÂ¢dulos de memoria en el primer MB
 7.6:/DEVICE     Lista los controladores de dispositivo en memoria
 7.7:/U          Lista los programas en memoria convencional y superior
-7.8:/X          Devuelve informaci¢n sobre memoria extendida (XMS)
-7.9:/P          Realiza una pausa despu‚s de cada pantalla completa
+7.8:/X          Devuelve informaciÂ¢n sobre memoria extendida (XMS)
+7.9:/P          Realiza una pausa despuâ€šs de cada pantalla completa
 7.10:/?          Muestra este mensaje de ayuda
 # FIXME: to be translated
 7.11:/DEBUG      Show programs and devices in conventional and upper memory
