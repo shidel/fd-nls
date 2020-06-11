@@ -1,0 +1,61 @@
+Language translation information for EDICT
+
+Note variable information comes in several types and in a specific order that
+cannot be changed (for now). Multiple white spaces are automatically compressed
+to a single space unless quoted. To display a quote, it must be quoted by a
+different type of quote. Finally, no spaces are inserted automatically
+before or after any variable.
+
+Your translated language file should be provided in UTF-8 format along with a
+DOS codepage version to prevent possible codepage conversions errors.
+For example, the Turkish files are EDICT.TR for the DOS version and
+EDICT.TR.UTF-8 for the UTF-8 version.
+
+See https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes for more information
+on language and country codes.
+
+Use one of the existing translation files, like EDICT.EN as a starting point
+for your translation. That way, no needed text is missing.
+
+Variables:
+
+    %_          A single space character
+    %%          A single percent symbol
+    %r          A CRLF
+
+    %c          Insert the single character variable
+    %s          Insert the text string variable
+    %b          Insert the byte hex value variable
+    %w          Insert the word hex value (unused) variable
+    %i          Insert the integer variable
+    %I          Insert the (integer + 1) variable
+
+
+TITLE is the program title.
+COPYRIGHT is my copyright message
+
+LANGUAGE is not in the default translation and should probably be in the
+lanugage of the translation. You can provide something like one of these:
+
+LANGUAGE=English Language Translation by Jerome Shidel
+LANGUAGE=Deutsche ”bersetzung durch Robert Riebisch
+
+HELP_* is the text for the help screen. Each entry is displayed on its own line.
+The first time it finds a missing item, help text output stops. Up to 0xff (255)
+is supported.
+
+INVALID is used when an unrecognized command line switch is provided.
+
+BAD_INT is used when an error occurs parsing a number from the command line.
+BAD_VAL is used when a number is out of range.
+
+BErr_* are BIOS error messages.
+DErr_* are DOS error messages.
+
+With a little modification, the BIOS and DOS error message texts in the default
+external English version are a slimmed down version of those available online
+from a great DOS and ASM resource at:
+
+    http://stanislavs.org/helppc/idx_interrupt.html
+
+Although, I may change them out for less droll customized error messages.
