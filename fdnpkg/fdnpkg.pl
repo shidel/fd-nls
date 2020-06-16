@@ -146,8 +146,8 @@
 10.1:wersja %s pod %s
 10.2:Nie znaleziono aktualizacji dla pakietu '%s'.
 10.3:Znaleziono aktualizacj‘ dla pakietu '%s'. Aktualizacja w toku...
-10.4:sprawdzono %d pakiet¢w, zaktualizowano %d pakiet¢w, %d b’‘dnych pakiet¢w.
-10.5:znaleziono aktualizacje dla %d pakiet¢w.
+10.4:Zaktualizowano %d pakiet¢w, %d b’‘dnych pakiet¢w.
+10.5:Znaleziono aktualizacje dla %d pakiet¢w.
 10.6:Pakiet %s nie jest zainstalowany.
 10.7:Poszukiwanie aktualizacji...
 

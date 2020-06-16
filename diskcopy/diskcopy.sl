@@ -1,4 +1,5 @@
-# Translated by Matej Horvat (http://matejhorvat.si/), last update 2013-11-28
+# Language: Slovenian (CP852)
+# Translated by Matej Horvat (http://matejhorvat.si/), last update 2013-06-04
 
 #### reserved to condition for example yes, no, quit     ####
 0.0:D
@@ -33,8 +34,8 @@
 1.26:Berem iz slikovne datoteke.
 1.27:Napaka pri zapisovanju sektorja
 1.28:¶elite Áe eno kopijo te
-1.29: slikovne datoteke (D/N)?
-1.30: diskete (D/N)?
+1.29:slikovne datoteke (D/N)?
+1.30:diskete (D/N)?
 1.31:Kopiram Áe eno disketo (D/N)?
 1.32:Ni mogoüe kopirati slikovne datoteke.
 1.33:Teßava pri branju slikovne datoteke.
@@ -57,11 +58,11 @@
 4.0:Kopiram
 4.1:gruü
 4.2:sektorjev na gruüo
-4.3:bajtov na sektor
+4.3:bajtov na sektor.
 4.4:Relevantna velikost pogona je
-4.5:bajtov
+4.5:bajtov.
 5.0:medpomnilnik
-5.1:bajtov
+5.1:bajtov.
 #### Space reserved to file parser.c                     ####
 #### Text is "Syntax error on line % in                  ####
 #### configuration file"                                 ####
@@ -95,7 +96,7 @@
 9.0:Kopiram
 9.1:gruü
 9.2:sektorjev na gruüo
-9.3:bajtov na sektor
+9.3:bajtov na sektor.
 9.4:Relevantna velikost pogona je
 9.5:bajtov.
 9.6:Kopiram...
@@ -105,18 +106,18 @@
 9.51:
 9.52:izvor
 9.53:cilj
-9.54:izvor: Pogon ali slikovna datoteka, s katerega/iz katere se kopira.
-9.55:cilj:  Pogon ali slikovna datoteka, na katerega/v katero se kopira.
-9.56:Uporabi zvoüna opozorila.
-9.57:Preveri branje in zapisovanje.
-9.58:Uporabi spomin le za kopiranje diskete.
-9.59:Prikaße porabo spomina (le informativno).
-9.60:PrepiÁe cilj, v primeru, da ta ße obstaja (za slikovne datoteke).
-9.61:Vedno samodejno konüa.
-9.62:Predpostavi, da je disketa ße v pogonu.
-9.63:Vkljuüi naüin odpravljanja napak na disketi.
-9.64:Vkljuüi hitro kopiranje, tako da kopira le zasedene sektorje.
+9.54:izvor: pogon ali slikovna datoteka, s katerega/iz katere se kopira.
+9.55:cilj:  pogon ali slikovna datoteka, na katerega/v katero se kopira.
+9.56:uporabi zvoüna opozorila.
+9.57:preveri branje in zapisovanje.
+9.58:uporabi spomin le za kopiranje diskete.
+9.59:prikaße porabo spomina (le informativno).
+9.60:prepiÁe cilj, v primeru, da ta ße obstaja (za slikovne datoteke).
+9.61:vedno samodejno konüa.
+9.62:predpostavi, da je disketa ße v pogonu.
+9.63:vkljuüi naüin odpravljanja napak na disketi.
+9.64:vkljuüi hitro kopiranje, tako da kopira le zasedene sektorje.
 9.65:Opombe: "-" po moßnosti izkljuüi moßnost.
 9.66:        Doloüite lahko isti pogon za izvor in clij.
-9.67:Za zdrußljivost z MS-DOS (ne naredi niüesar).
-9.40:Ne prosi za ciljno disketo ob kopiranju slikovne datoteke na isto disketo.
+9.67:za zdrußljivost z MS-DOS; ne naredi niüesar
+9.40:ne prosi za ciljno disketo, üe se kopira slikovna datoteka na isto disketo

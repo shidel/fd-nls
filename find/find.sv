@@ -1,4 +1,3 @@
-# Language: Swedish (CP850)
 # Translation by Martin Str”mberg <ams@ludd.luth.se>.
 0.0:Visar alla rader i en fil som inneh†ller en viss str„ng
 0.1:R„kna antalet g†nger str„ngen f”rekommer
