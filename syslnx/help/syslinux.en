@@ -1,0 +1,24 @@
+SYSLINUX
+
+SYSLINUX is a collection of bootloaders
+
+Installation:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+When booting and presented with commandline, type
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Alternatively, create a SYSLINUX.CFG, read documentation carefully for that!
+(in below example, a "CONTENTS" directory with within it, ISOLINUX directory,
+ with within it, the ISOLINUX.BIN CDROM bootloader - non-emulation style.
+ please be aware to use "/" and "\" exactly as below!
+ 
+For MEMDISK and ISOLINUX, please read documentation carefully!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents 
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso contents 
+
+Alternatives for CDRECORD (which includes MKISOFS) are XORRISO and CDRKIT
+(see http://sites.google.com/site/blairdude/cdrkit for DOS port)
