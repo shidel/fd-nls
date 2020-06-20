@@ -1,6 +1,6 @@
 #!/bin/bash
 
-url_main=https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/repositories/latest/listing.csv
+url_main=http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/repositories/latest/listing.csv
 url_aux=https://fd.lod.bz/repos/current/listing.csv
 
 INDENTING=''
@@ -90,9 +90,18 @@ function download () {
 function fetch_csv () {
 
     echo Retrieving latest translation CSV files.
-    download "${url_main}" ibiblio.csv || return $?
-    download "${url_aux}" fd-lod.csv || return $?
+    download "${url_main}" ibiblio.csv
+    if [[ $? -ne 0 ]] ; then
+        echo "problem downloading ${url_main}"
+        return 1
+    fi;
+    download "${url_aux}" fd-lod.csv
+    if [[ $? -ne 0 ]] ; then
+        echo "problem downloading ${url_aux}"
+        return 1
+    fi;
 
+    return 0
 }
 
 MASTER_HEADER=

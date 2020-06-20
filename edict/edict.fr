@@ -1,0 +1,100 @@
+TITLE=Outil am‚lior‚ de cr‚ation d'image disque, version %_ %s
+COPYRIGHT=Copyright (c) 2018, Jerome Shidel
+
+HELP_00="Informations sur les options d'EDICT : "
+HELP_01=
+HELP_02="  /d <lecteur>   sp‚cifier la lettre du lecteur"
+HELP_03="  /f <nomfich>   sp‚cifier le nom de fichier"
+HELP_04="  /p <limite>    limiter le nombre maximal des passes suppl‚mentaires"
+HELP_05=
+HELP_06="  /t <type>      outrepasser bios et choisir r‚glages pour le disque"
+HELP_07="                 (0=360Kib, 1=1.2Mib, 2=720Kib, 3=1.44Mib, a=auto)"
+HELP_08=
+HELP_09="  /c <nombre>    outrepasser le nombre de cylindre/pistes (0-1023)"
+HELP_0a="  /r <nombre>    outrepasser le nombre de faces/tˆtes par piste (0-255)"
+HELP_0b="  /s <nombre>    outrepasser le nombre de secteurs par face (0-63)"
+HELP_0c="  /b <nombre>    outrepasser le nombre d'octets par secteur (1-8192)"
+HELP_0d=
+HELP_0e="  /h             afficher les informations d'aide"
+
+; Possible future additions to EDICT should be translated as well
+
+HELP_??="  /T             tester en lecture seule"
+HELP_??="  /w             ‚crire l'image sur la disquette"
+HELP_??="  /v             v‚rifier la disquette"
+HELP_??="  /i             seulement des informations"
+HELP_??="  /o             un seul secteur seulement"
+HELP_??="  /q             mode silencieux"
+HELP_??="  /e             continuer depuis le fichier image existant"
+HELP_??="  /m <nomfich>   monter le fichier image"
+HELP_??="  /u             d‚monter le fichier image"
+HELP_??="  /l             lister les types de disque"
+
+INVALID=%r "Commande invalide : `" %s "'"
+BAD_INT="Valeur num‚rique invalide."
+BAD_VAL="Valeur hors plage."
+
+DRIVE=Drive %_ %c: (ID 0x %b ) %_
+DRIVE_TYPE=%_ (ID 0x %b )
+DRIVE_TYPE_00=type de lecteur inconnu
+DRIVE_TYPE_01=lecteur '5.25"' 360Kib
+DRIVE_TYPE_02=lecteur '5.25"' 1.2Mib
+DRIVE_TYPE_03=lecteur '3.5"' 720Kib
+DRIVE_TYPE_04=lecteur '3.5"' 1.44Mib
+DRIVE_TYPE_05=autre type de lecteur
+
+DRIVE_SPEC=%i %_ octets, %_ %I %_ secteurs, %_ %I %_ pistes, %_ %I %_ face(s)
+
+PASS_LIMIT=Jusqu'… %_ %i %_ passes suppl‚mentaire autoris‚es pour lire la d7
+BUFFERS=%i %_ octet de tampon disquette, %_ %i %_ octet de tampon de piste
+
+PASS=Passe le lecture de diquette # %i. %_ %i %_ secteurs restants.
+
+READ_FAST=LECTURE DE LA PISTE : %_ %i, TÒTE : %_ %i
+READ_SLOW=LECTURE DE LA PISTE : %_ %i, TÒTE : %_ %i, SECTEUR : %_ %i
+
+FAILED=chec du processus de cr‚ation d'image.
+ABORTED=Annulation du processus de cr‚ation d'image.
+COMPLETED=Processus de cr‚ation d'image termin‚.
+
+; With a little modification, these BIOS and DOS error message texts are a
+; slimmed down version of those available online from a great DOS and ASM
+; resource at http://stanislavs.org/helppc/idx_interrupt.html
+
+BErr=%r "Code d'erreur du BIOS : 0x" %b %_ --> %_
+BErr_01=mauvaise commande transmise au lecteur
+BErr_02=marque d'adresse introuvable ou secteur d‚fectueux
+BErr_03=erreur de protection d'‚criture sur la disquette
+BErr_04=secteur introuvable
+BErr_05=‚chec de la r‚initialisation du disque fixe
+BErr_06=disquette chang‚e ou enlev‚e
+BErr_07=table de paramŠtres de disque fixe incorrecte
+BErr_08=D‚passement DMA
+BErr_09=AccŠs DMA … travers la limite de 64 ko
+BErr_0a=indicateur de secteur de disque fixe incorrect
+BErr_0b=mauvais cylindre de disque fixe
+BErr_0c=piste non prise en charge
+BErr_0d=nombre de secteurs invalide sur le format de disque fixe
+BErr_0e=marque d'adresse de donn‚es contr“l‚e par disque fixe d‚tect‚e
+BErr_0f=niveau d'arbitrage DMA de disque fixe hors plage
+BErr_10=erreur ECC/CRC pendant la lecture du disque
+BErr_11=erreur de donn‚es de disque fixe r‚cup‚rable, donn‚es corrig‚es par ECC
+BErr_20=erreur de contr“leur
+BErr_40=‚chec de recherche
+BErr_80=le lecteur n'est pas prˆt
+BErr_aa=le lecteur de disque fixe n'est pas prˆt
+BErr_bb=erreur non d‚finie du disque fixe
+BErr_cc=erreur d'‚criture de disque fixe sur le lecteur choisi
+BErr_e0=erreur d'‚tat du disque fixe
+BErr_ff=‚chec de l'op‚ration de d‚tection
+
+DErr=%r "Code d'erreur DOS : 0x" %b %_ --> %_
+DErr_01=Num‚ro de fonction invalide
+DErr_02=Fichier introuvable
+DErr_03=Chemin introuvable
+DErr_04=Trop de fichiers ouverts
+DErr_05=AccŠs refus‚
+DErr_06=Handle invalide
+DErr_08=M‚moire insuffisante
+DErr_0f=Lecteur invalide sp‚cifi‚
+DErr_15=Le lecteur n'est pas prˆt
