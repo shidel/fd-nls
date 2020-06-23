@@ -8,10 +8,20 @@ APPS=0
 LANGS=0
 TRANS=0
 
+function summary () {
+
+    echo "? unable to locate default English version"
+    echo "! caution, English version is newer than translation"
+    echo "* problem, either missing or extras keys"
+    echo
+
+}
+
 function script_help () {
 
-    echo "usage: ${0##*/} language"
-
+    echo "usage: ${0##*/} program"
+    echo
+    summary
 }
 
 function get_stamp () {
@@ -25,28 +35,31 @@ function get_stamp () {
 
 function load_nls () {
 
+    # echo load "${2}"
     unset ${1}
-    [[ "${2}" != "${EN}" ]] && return 0
     local line flag hold t
-    hold=$( while [[ ! $flag ]] ; do
-        read -r line || flag=done
-        line="${line//[$'\t\r\n']}"
-        line="${line#${line%%[![:space:]]*}}"
-        line="${line%${line##*[![:space:]]}}"
-        t="${line}"
-        line="${line%%:*}"
-        line="${line%%=*}"
-        [[ "${line}" == "" ]] && continue
-        [[ "${t}" == "${line}" ]] && continue
-        line="${line%${line##*[![:space:]]}}"
-        [[ "${line// }" != "${line}" ]] && continue
-        [[ "${line:0:1}" == "#" ]] && continue
-        [[ "${line:0:1}" == ";" ]] && continue
-        echo "${line};"
-    done< "${2}" | sort )
+    if [[ -f "${2}" ]] ; then
+        hold=$( while [[ ! $flag ]] ; do
+            read -r line || flag=done
+            line="${line//[$'\t\r\n']}"
+            line="${line#${line%%[![:space:]]*}}"
+            line="${line%${line##*[![:space:]]}}"
+            t="${line}"
+            line="${line%%:*}"
+            line="${line%%=*}"
+            [[ "${line}" == "" ]] && continue
+            [[ "${t}" == "${line}" ]] && continue
+            line="${line%${line##*[![:space:]]}}"
+            [[ "${line// }" != "${line}" ]] && continue
+            [[ "${line:0:1}" == "#" ]] && continue
+            [[ "${line:0:1}" == ";" ]] && continue
+            echo "${line};"
+        done< "${2}" | sort -u )
+    else
+        hold="${2}"
+    fi
     hold="${hold//[$'\t\r\n']}"
     if [[ "${hold}" != "" ]] ; then
-        echo "${hold}"
         read -r ${1} <<<";${hold}"
     elif [[ "${2}" != "${EN}" ]] ; then
         EN_DATA="${EN}"
@@ -56,22 +69,61 @@ function load_nls () {
 
 function compare_nls () {
 
-    local t
+    local t x d n
     local p="${1%/*}"
     p="${p##*/}"
-    local EN_CMP=''
+    EN_CMP=''
     if [[ ${EN_STAMP} -eq 0 ]] ; then
         EN_CMP='?'
     elif [[ "${p}" == "nls" ]] ; then
         [[ "${EN_DATA}" == "" ]] && load_nls EN_DATA "${EN}"
         unset NLS_DATA
-        load_nls NLS_DATA "${i}"
+        load_nls NLS_DATA "${1}"
+        if [[ "${EN_DATA}" == "${EN}" ]] ; then
+            UC=yes
+        elif [[ "${NLS_DATA}" != "${EN_DATA}" ]] ; then
+            EN_CMP="*"
+
+            [[ ${NO_REP} ]] && return 0
+            t="${EN_DATA}"
+            d=
+            while [[ ${#t} -ne 0 ]] ; do
+                x="${t%%;*}"
+                t="${t:$(( ${#x} + 1 ))}"
+                n="${NLS_DATA//;${x};/;}"
+                if [[ "${n}" == "${NLS_DATA}" ]] ; then
+                    d="${d};${x}"
+                else
+                    NLS_DATA="${n}"
+                fi
+            done
+            d="${d//;;/;}"
+            d="${d:1}"
+            if [[ "${d}" != '' ]] ; then
+                [[ ! ${KEY_BR} ]] && echo
+                KEY_BR=yes
+                echo "translation file '${1}' is missing key(s): '${d//;/, }'"
+            fi
+            d="${NLS_DATA//;;/;}"
+            [[ ${#d} -gt 1 ]] && d="${d:1:$(( ${#d} - 2 ))}" || d=''
+            if [[ "${d}" != '' ]] ; then
+                [[ ! ${KEY_BR} ]] && echo
+                KEY_BR=yes
+                echo "translation file '${1}' has extra key(s): '${d//;/, }'"
+            fi
+        # else
+            # echo "${1}"
+            # echo "${EN_DATA}"
+            # echo "${NLS_DATA}"
+            # echo
+        fi
     else
         UC=yes
     fi
+
     if [[ "${EN_CMP}" == "" ]] ; then
         t=$(get_stamp "${1}")
-        [[ ${t} -lt ${EN_STAMP} ]] && EN_CMP='*'
+        [[ ${t} -lt ${EN_STAMP} ]] && EN_CMP='!'
     fi
 
     return 0
@@ -150,6 +202,7 @@ function calc_dir_languages () {
 function calc_src_languages () {
 
     [[ ! -d "${1}" ]] && return 1
+    US=yes
     local i utf l
     for i in "${1}"/* ; do
         [[ ! -e "${i}" ]] && continue
@@ -181,7 +234,9 @@ function calc_languages () {
     APPLANGS=''
     local prog
     unset UC
+    unset KEY_BR
     calc_dir_languages ${1}/nls && prog=y
+    calc_dir_languages ${1}/doc && prog=y
     calc_dir_languages ${1}/help && prog=y
     calc_src_languages ${1}/source && prog=y
 
@@ -223,17 +278,22 @@ function main () {
         if [[ "${opt}" == "-h" ]] ; then
             script_help
             return 0
-        elif [[ "${opt}" == "-s" ]] || [[ "${opt}" == "" ]]; then
+        elif [[ "${opt}" == "-n" ]] ; then
+            NO_REP=yes      # don't show key comparisons
+        elif [[ "${opt}" == "-s" ]] || [[ "${opt}" == "" ]] ; then
+            # summary
             each_app calc_languages
-            echo
-            echo "${APPS} total programs, ${LANGS} total languages, ${TRANS} total translations"
-            LANGUAGES=$(for i in ${LANGUAGES//;/ } ; do echo "${i}, "; done | sort | tr -d "[:cntrl:]")
-            LANGUAGES="${LANGUAGES:0:$(( ${#LANGUAGES} - 2))}"
-            echo "Languages: ${LANGUAGES}"
         else
-            :;
+            # summary
+            calc_languages "${opt}"
         fi
     done
+
+    echo
+    echo "${APPS} total programs, ${LANGS} total languages, ${TRANS} total translations"
+    LANGUAGES=$(for i in ${LANGUAGES//;/ } ; do echo "${i}, "; done | sort | tr -d "[:cntrl:]")
+    [[ "${LANGUAGES}" != "" ]] && LANGUAGES="${LANGUAGES:0:$(( ${#LANGUAGES} - 2))}" || LANGUAGES="(none)"
+    echo "Languages: ${LANGUAGES}"
 
 }
 
