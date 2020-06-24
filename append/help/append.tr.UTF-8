@@ -1,0 +1,27 @@
+FreeDOS APPEND. Programların belirli dizinlerdeki veri dosyalarını dosyalar
+                geçerli dizindeymiş gibi açabilmelerini sağlar.
+(C) 2004-2006 Eduardo Casino, GNU GPL, 2. sürüm altında yayımlanmıştır.
+
+Sözdizim:
+
+  APPEND [[sürücü:]yol[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+  APPEND ;
+
+    [sürücü:]yol İliştirilecek sürücü ve dizin
+    /X[:ON]      APPEND'i aramalara ve komut çalıştırmalarına genişletir.
+    /X:OFF       APPEND'i yalnızca dosya açma isteklerine uygular.
+                 Varsayılan olarak /X:OFF kullanır.
+    /PATH:ON     İliştirilen dizinleri halihazırda bir yol içeren dosya
+                 istekleri için arar. Bu öntanımlı ayardır.
+    /PATH:OFF    /PATH:ON'u kapatır.
+    /E           İliştirilen dizin listesini ortamda depolar.
+                 /E yalnızca APPEND'in ilk çalıştırılmasında kullanılabilir.
+                 /E ile aynı komut satırında herhangi bir yol içeremezsiniz.
+
+  APPEND ; iliştirilen dizinlerin listesini temizler.
+  Parametre olmadan APPEND iliştirilen dizinlerin listesini görüntüler.
+
+Not:
+
+  APPEND, ilk çalıştırılmasından sonra kendisini bir iç komut olarak yükler.
+  İkinci ve sonraki çalıştırmalar dosya yolu ve uzantısını hariç tutmalıdır.
