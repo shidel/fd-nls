@@ -309,7 +309,7 @@ function create_report () {
     echo "Translation file index key comparison:" | tee -a "${out}"
     echo | tee -a "${out}"
     each_app calc_languages | grep "^${KEYFILE_ERR}" | tee -a "${out}"
-    scan_summary | tee -a "${out}"
+
 
 }
 
@@ -330,6 +330,7 @@ function main () {
         elif [[ "${opt}" == "-s" ]] || [[ "${opt}" == "" ]] ; then
             # summary
             each_app calc_languages
+            scan_summary
         elif [[ "${opt}" == "-r" ]] ; then
             create_report
         else
@@ -338,7 +339,7 @@ function main () {
         fi
     done
 
-    [[ ! ${NO_REP} ]] && scan_summary
+
 
 }
 
