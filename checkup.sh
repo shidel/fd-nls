@@ -7,12 +7,17 @@ APPLANGS=''
 APPS=0
 LANGS=0
 TRANS=0
+PLATFORM="$(uname)"
 
 function summary () {
 
-    echo "? unable to locate default English version"
-    echo "! caution, English version is newer than translation"
-    echo "* problem, either missing or extras keys"
+    echo "When listing languages for a specific program, the language maybe followed"
+    echo "by a special character. Those characters mean the translation file failed"
+    echo "a specific test."
+    echo
+    echo "  ? unable to locate default English version"
+    echo "  ! caution, English version is newer than translation"
+    echo "  * problem, either missing or extras keys"
     echo
 
 }
@@ -25,8 +30,10 @@ function script_help () {
 }
 
 function get_stamp () {
-    stat -f%m "${*}" 2>/dev/null
-    if [[ $? -ne 0 ]] ; then
+
+    local ret=0
+    stat -f %m "${1}" 2>/dev/null || ret=$?
+    if [[ $ret -ne 0 ]] ; then
         echo 0
         return 1
     fi
@@ -179,7 +186,9 @@ function calc_dir_languages () {
                 l=$(ls -a1d "${1}"/*.en 2>/dev/null | wc -l )
                 [[ ${l} -eq 1 ]] && EN=$(ls -a1d "${1}"/*.en)
             fi
+            # echo "English version $EN"
             EN_STAMP=$(get_stamp "${EN}")
+            # echo "Timestamp $EN_STAMP"
             [[ ! -e "${EN}" ]] && UC=fail
         fi
         utf=$(ls -1d "${i}"* 2>/dev/null | grep -i "${i}\.utf-8" )
@@ -265,6 +274,23 @@ function each_app () {
 
 }
 
+function create_report () {
+
+    local out="report.txt"
+    echo "Generating '${out}'"
+    echo "Report date: $(date)" | tee "${out}"
+    echo | tee -a "${out}"
+    summary | tee -a "${out}"
+    echo | tee -a "${out}"
+    echo "Translation file overview:" | tee -a "${out}"
+    echo | tee -a "${out}"
+    ${0} -n -s | tee -a "${out}"
+    echo | tee -a "${out}"
+    echo "Translation file index key comparison:" | tee -a "${out}"
+    echo | tee -a "${out}"
+    ${0} | grep -i "translation file" | tee -a "${out}"
+
+}
 
 function main () {
 
@@ -283,17 +309,21 @@ function main () {
         elif [[ "${opt}" == "-s" ]] || [[ "${opt}" == "" ]] ; then
             # summary
             each_app calc_languages
+        elif [[ "${opt}" == "-r" ]] ; then
+            create_report
         else
             # summary
             calc_languages "${opt}"
         fi
     done
 
-    echo
-    echo "${APPS} total programs, ${LANGS} total languages, ${TRANS} total translations"
-    LANGUAGES=$(for i in ${LANGUAGES//;/ } ; do echo "${i}, "; done | sort | tr -d "[:cntrl:]")
-    [[ "${LANGUAGES}" != "" ]] && LANGUAGES="${LANGUAGES:0:$(( ${#LANGUAGES} - 2))}" || LANGUAGES="(none)"
-    echo "Languages: ${LANGUAGES}"
+    if [[ ! ${NO_REP} ]] ; then
+        echo
+        echo "${APPS} total programs, ${LANGS} total languages, ${TRANS} total translations"
+        LANGUAGES=$(for i in ${LANGUAGES//;/ } ; do echo "${i}, "; done | sort | tr -d "[:cntrl:]")
+        [[ "${LANGUAGES}" != "" ]] && LANGUAGES="${LANGUAGES:0:$(( ${#LANGUAGES} - 2))}" || LANGUAGES="(none)"
+        echo "Languages: ${LANGUAGES}"
+    fi
 
 }
 
