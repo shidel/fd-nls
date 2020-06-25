@@ -1,0 +1,24 @@
+FreeDOS NLSFUNC. NLS (Yerel Dil Desteği) işlevselliği ekler.
+(C) 2004 Eduardo Casino, GNU GPL, Sürüm 2 altında yayımlanmıştır.
+
+  NLSFUNC [/Y|/?] [[D:][YOL][DOSYA]
+
+  [D:][YOL]DOSYA   NLS içeren bir dosyaya olan yol
+  /Y               (İsteğe bağlı) YES/NO tablosunu yükler
+  /?               Kullanım bilgisini yazdırır
+
+Örnek:
+
+  CONFIG.SYS
+     COUNTRY=34,858,C:\COUNTRY.SYS
+
+  AUTOEXEC.BAT
+     LH DISPLAY CON=(EGA,858,2)
+     MODE CON CP PREP=((850) C:\CPI\EGA.CPI)
+     MODE CON CP PREP=((,437) C:\CPI\EGA.CPI)
+     LH NLSFUNC /Y
+
+Sonrasında FreeCOM'un CHCP komutunu kullanarak başka kod sayfasına geçin.
+
+Kod sayfalarını değiştirmeniz gerekmiyorsa MODE satırlarını yok sayın.
+
