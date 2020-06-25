@@ -310,7 +310,6 @@ function create_report () {
     echo | tee -a "${out}"
     each_app calc_languages | grep "^${KEYFILE_ERR}" | tee -a "${out}"
 
-
 }
 
 function main () {
