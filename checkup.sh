@@ -1,15 +1,16 @@
 #!/bin/bash
 
 SPECIAL=';packages;pgme;fdi;'
-EXCLUDE=';txt;docinfo;htm;'
+EXCLUDE=';txt;docinfo;htm;html;'
 LANGUAGES=''
 APPLANGS=''
 APPS=0
 LANGS=0
 TRANS=0
 PLATFORM="$(uname)"
+KEYFILE_ERR="translation file"
 
-function summary () {
+function script_summary () {
 
     echo "When listing languages for a specific program, the language maybe followed"
     echo "by a special character. Those characters mean the translation file failed"
@@ -19,6 +20,16 @@ function summary () {
     echo "  ! caution, English version is newer than translation"
     echo "  * problem, either missing or extras keys"
     echo
+    echo "Also note, this utility does no scan the following directories:"
+    echo
+    x="${SPECIAL:1:$(( ${#SPECIAL} - 2))}"
+    x="${x//;/, }"
+    echo "  ${x}"
+    echo
+    x="${EXCLUDE:0:$(( ${#EXCLUDE} - 1))}"
+    x="${x//;/, }"
+    x="${x:2}"
+    echo "and does not compare '${x}' file types or subdirectories."
 
 }
 
@@ -26,7 +37,7 @@ function script_help () {
 
     echo "usage: ${0##*/} program"
     echo
-    summary
+    script_summary
 }
 
 function get_stamp () {
@@ -109,14 +120,14 @@ function compare_nls () {
             if [[ "${d}" != '' ]] ; then
                 [[ ! ${KEY_BR} ]] && echo
                 KEY_BR=yes
-                echo "translation file '${1}' is missing key(s): '${d//;/, }'"
+                echo "${KEYFILE_ERR} '${1}' is missing key(s): '${d//;/, }'"
             fi
             d="${NLS_DATA//;;/;}"
             [[ ${#d} -gt 1 ]] && d="${d:1:$(( ${#d} - 2 ))}" || d=''
             if [[ "${d}" != '' ]] ; then
                 [[ ! ${KEY_BR} ]] && echo
                 KEY_BR=yes
-                echo "translation file '${1}' has extra key(s): '${d//;/, }'"
+                echo "${KEYFILE_ERR} '${1}' has extra key(s): '${d//;/, }'"
             fi
         # else
             # echo "${1}"
@@ -274,21 +285,31 @@ function each_app () {
 
 }
 
+function scan_summary () {
+    echo
+    echo "${APPS} total programs, ${LANGS} total languages, ${TRANS} total translations"
+    LANGUAGES=$(for i in ${LANGUAGES//;/ } ; do echo "${i}, "; done | sort | tr -d "[:cntrl:]")
+    [[ "${LANGUAGES}" != "" ]] && LANGUAGES="${LANGUAGES:0:$(( ${#LANGUAGES} - 2))}" || LANGUAGES="(none)"
+    echo "Languages: ${LANGUAGES}"
+}
+
 function create_report () {
 
     local out="report.txt"
     echo "Generating '${out}'"
     echo "Report date: $(date)" | tee "${out}"
     echo | tee -a "${out}"
-    summary | tee -a "${out}"
+    script_summary | tee -a "${out}"
     echo | tee -a "${out}"
     echo "Translation file overview:" | tee -a "${out}"
     echo | tee -a "${out}"
     ${0} -n -s | tee -a "${out}"
     echo | tee -a "${out}"
+    echo "(index comparison is filtered through grep, so output may not be displayed until complete)"
     echo "Translation file index key comparison:" | tee -a "${out}"
     echo | tee -a "${out}"
-    ${0} | grep -i "translation file" | tee -a "${out}"
+    each_app calc_languages | grep "^${KEYFILE_ERR}" | tee -a "${out}"
+    scan_summary | tee -a "${out}"
 
 }
 
@@ -317,13 +338,7 @@ function main () {
         fi
     done
 
-    if [[ ! ${NO_REP} ]] ; then
-        echo
-        echo "${APPS} total programs, ${LANGS} total languages, ${TRANS} total translations"
-        LANGUAGES=$(for i in ${LANGUAGES//;/ } ; do echo "${i}, "; done | sort | tr -d "[:cntrl:]")
-        [[ "${LANGUAGES}" != "" ]] && LANGUAGES="${LANGUAGES:0:$(( ${#LANGUAGES} - 2))}" || LANGUAGES="(none)"
-        echo "Languages: ${LANGUAGES}"
-    fi
+    [[ ! ${NO_REP} ]] && scan_summary
 
 }
 
