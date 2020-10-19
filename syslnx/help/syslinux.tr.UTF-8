@@ -1,0 +1,24 @@
+SYSLINUX
+
+SYSLINUX, bir önyükleyici koleksiyonudur
+
+Kurulum:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+Önyükleme sırasında komut istemi ile karşılaştığınızda şunu yazın
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Alternatif olarak, bir SYSLINUX.CFG oluşturun, belgelemeyi dikkatle okuyun!
+(aşağıdaki örnekte ISOLINUX.BIN CD-ROM önyükleyicisini içeren ISOLINUX dizini
+ve bu dizini içeren "CONTENTS" dizini vardır - öykünmesiz tür
+ lütfen "/" ve "\" karakterlerini tam olarak aşağıdaki gibi kullanın!
+
+MEMDISK ve ISOLINUX için belgelemeyi lütfen dikkatle okuyun!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso contents
+
+CDRECORD (ki MKISOFS içerir) için alternatifler XORRISO ve CDRKIT'dir
+(DOS taşıması için http://sites.google.com/site/blairdude/cdrkit sitesine bakın)

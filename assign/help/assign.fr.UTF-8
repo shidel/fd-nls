@@ -1,0 +1,134 @@
+
+     ASSIGN (1)                  08 août 1995                  ASSIGN (1)
+
+
+
+     NOM
+          assign - Attribuer une lettre de lecteur à un lecteur différent
+
+
+     SYNOPSIS
+          assign [/m] [/shadow] /?
+          assign [/m] [/shadow] /status
+          assign [/m] [/shadow] /u
+          assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+     DESCRIPTION
+          Assign attribue une lettre de lecteur à un lecteur différent.
+          Ce mappage affecte seulement la lettre du lecteur et pas le
+          chemin, ce qui rend Assign différent de Subst, par exemple :
+          Avec les répertoires de travail actuel C:\FREEDOS" et "B:\TEMP"
+          suite aux commandes "assign B=C" et "cd C:\", le chemin "B:"
+          pointe également au répertoire "C:\".
+          Tandis que suite aux commandes "subst B: ." et "cd C:\", le
+          chemin "B:" pointe encore sur "C:\FREEDOS".
+
+          Comme ce programme n'est pas un TSR, ne le chargez pas avec
+          les commandes "LOADHIGH" ou "LH".
+
+     OPTIONS
+
+       /? Affiche un écran d'aide.
+
+       /SHADOW Cette option cache la partie résidente d'Assign et la
+          rend difficilement détectable. Cela comprend :
+          1) Le bloc de mémoire la partie résidente est marqué comme
+          partie intégrante du système.
+          2) L'interruption de vérification d'installation retourne
+          "Pas installé, mais non autorisé pour l'installation" au
+          lie de "Installé" ou bien "Pas installé".
+
+          Si la partie résidente est installée avec cette option, mais
+          les invocations suivantes sont effectuées sans, un avertissement
+          apparaît, cependant l'action est effectuée.
+
+          L'option peut être abrégée en /SH.
+
+       /STATUS Affiche toutes les lettres de lecteur attribuées sous
+          la forme : dr1: => dr2:
+          où dr1  est la lettre de lecteur attribuée et dr2 ets le lecteur,
+          vers lequel dr1 pointe.
+
+          S'il n'y a aucune attribution, aucune sortie ne sera affichée.
+
+          Cette option empêche le chargement de la partie résidente,
+          si elle n'a pas déjà été installée.
+
+          L'option peut être abrégée en /S.
+
+       /u Désinstaller un Assign précédemment installé.
+
+
+
+                                      -1-
+
+
+     ASSIGN (1)          all letters point to themselves in result.        08 août 1995                  ASSIGN (1)
+
+
+       dr1[:]=dr2[:] Cela définit une attribution de lettre de lecteur,
+          où dr1 doit pointer vers dr2. Les deux-points ":" sont
+          optionnels. Aucun espace n'est autorisée entre les lettres,
+          seuls les deux-points et le signe d'égalité '=' sont
+          autorisés.
+
+          Si la partie résidente n'est pas déjà chargée, elle sera
+          chargée sans avertissement supplémentaire.
+
+       /m Déplacer la partie résidente dans l'espace UMB, si possible.
+          Cette option est ignorée lorsque la partie résidente est déjà
+          installée.
+
+       aucune option Si ni /STATUS, ni /u et ni une attribution n'est
+          spécifiée sur la ligne de commande, toutes les attributions
+          existantes sont brisées, toutes les lettres pointant vers
+          elles-mêmes.
+
+     BUGS CONNUS
+
+       o  Comme Assign n'est pas un TSR en lui-même, un chargement avec
+          les commandes "LOADHIGH" ou "LH" peut échouer. Si vous voulez
+          charger la partie résidente en mémoire haute, vous devez
+          spécifier l'option /m.
+
+       o  Les options /STATUS et /SHADOW ne suivent pas les standards des
+          options pour des raisons de compatibilité avec l'Assign original.
+
+       o  Les TSR installés par la suite ou un shell de commandes
+          secondaires empêchent la plupart du temps le processus de
+          désinstallation. Dans ce cas, Assign n'est pas suspendu, mais
+          reste actif en mémoire. Utilisez ASSIGN sans aucune option afin
+          d'effacer le tableau d'attributions.
+
+       o  Certains shells empêchent ASSIGN de trouver sa copie résidente
+          en mémoire, si ASSIGN est installé depuis une copie secondaire
+          du shell.
+
+     VOIR ÉGALEMENT
+          Subst, Join
+
+     CONTRIBUTEURS
+                                 Steffen Kaiser
+                             Mittelstrass 112/B115
+                         53757 Sankt Augustin - Menden
+                                  Allemagne
+
+                    e-mail: Steffen.Kaiser@FH-Rhein-Sieg.DE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                      -2-
+

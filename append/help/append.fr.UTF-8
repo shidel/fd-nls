@@ -1,0 +1,28 @@
+FreeDOS APPEND. Permet aux programmes d'ouvrir des fichiers de données dans des
+                répertoires spécifiés comme si les fichiers se trouvaient dans
+                le répertoire actuel.
+(C) 2004-2006 Eduardo Casino, selon les termes de la GNU GPL, version 2
+
+Syntaxe :
+
+  APPEND [[lecteur:]chemin[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+  APPEND ;
+
+    [lecteur:]chemin Lecteur et répertoire à ajouter.
+    /X[:ON]      Étendre APPEND aux recherches et à l'exécution de commandes.
+    /X:OFF       Applique APPEND seulement aux requêtes d'ouverture de fichiers.
+                 Valeur par défaut /X:OFF
+    /PATH:ON     Recherche dans les répertoires ajoutés les requêtes de fichiers
+                 qui comprennent déjà une chemin.  C'est la valeur par défaut.
+    /PATH:OFF    Désactive /PATH:ON.
+    /E           Stocke la liste des répertoires ajoutés dans l'environnement.
+                 /E ne peut être utilisé que lors de la première invocation
+                 d'APPEND. Vous ne pouvez inclure des chemins avec l'option /E.
+
+  APPEND ; efface la liste des répertoires ajoutés.
+  APPEND sans paramètre affiche la liste des répertoires ajoutés.
+
+Note :
+
+  APPEND s'installe comme une commande interne suite à sa première exécution.
+  Les invocations suivantes DOIVENT exclure le chemin de fichier et l'extension.

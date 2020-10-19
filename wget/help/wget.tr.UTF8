@@ -1,0 +1,116 @@
+GNU Wget 1.8.2, etkileşimsiz bir dosya/dizin indirme aracı.
+Usage: wget.exe [SEÇENEK]... [URL]...
+
+Uzun seçeneklerdeki mecburi argümanlar kısa seçeneklerde de mecburidir.
+
+Başlangıç:
+  -V,  --version           Wget sürümünü göster ve çık.
+  -h,  --help              bu yardım metnini göster.
+  -e,  --execute=COMMAND   '.wgetrc'-tarzı bir komut çalıştır
+
+Kütük kaydı ve girdi dosyası:
+  -o,  --output-file=DOSYA    günlük kayıtlarını DOSYA'ya yaz.
+  -a,  --append-output=DOSYA  mesajları DOSYA'ya ekle.
+  -d,  --debug                hata ayıklama bilgisi göster.
+       --wdebug               WATT-32 hata ayıklama çıktısı görüntüle.
+  -q,  --quiet                sessiz (çıktı yok).
+  -v,  --verbose              ayrıntılı bilgi ver (bu parametre varsayılandır).
+  -nv, --non-verbose          ayrıntılı bilgi vermeyi kapat, sessiz olmadan.
+  -i,  --input-file=DOSYA     yerelde ya da dışarıda bulunan DOSYA içerisindeki
+                              adresleri indir.
+  -F,  --force-html           girdi dosyasının HTML olduğu varsay.
+  -B,  --base=URL             HTML girdi-dosya bağlantılarını dönüştür (-i -F).
+       --sslcertfile=DOSYA    seçime dayalı istemci sertifikası.
+       --sslcertkey=KEYFILE   bu sertifika için seçime dayalı anahtar dosya.
+       --egd-file=DOSYA       EGD soketi için dosya ismi.
+
+İndirme:
+       --bind-address=ADRES     yerel makinedeki ADRES'e (makine ismi veya IP)
+                                bağlan.
+  -t,  --tries=SAYI             yeniden deneme sayısını SAYI olarak ayarla
+                                (0 sınırsız).
+  -O   --output-document=DOSYA  belgeleri DOSYA'ya yaz.
+  -nc, --no-clobber             mevcut dosyaları ezme veya .# soneki kullanma.
+  -c,  --continue               kısmi indirilen dosyayı indirmeye devam et.
+       --progress=TÜR           ilerleme göstergesi TÜR'ünü seç.
+  -N,  --timestamping           yerelden daha yeni olmayan dosyaları yeniden
+                                indirme.
+  -S,  --server-response        sunucunun cevabını göster.
+       --spider                 hiçbir şey indirme.
+  -T,  --timeout=SANİYE         zaman aşımı değerini SANİYE olarak ayarla.
+  -w,  --wait=SANİYE            bilgi çekmeler arasında SANİYE kadar bekle.
+       --waitretry=SANİYE       bilgi çekme yeniden denemeleri arasında 1...
+                                SANİYE bekle.
+       --random-wait            bilgi çekmeler arası 0...2*WAIT sn bekle.
+  -Y,  --proxy=on/off           vekil sunucuyu aç veya kapat.
+  -Q,  --quota=SAYI             alım kotasını SAYI'ya ayarla.
+       --limit-rate=ORAN        indirme oranını ORAN olarak sınırla.
+
+Dizinler:
+  -nd  --no-directories            dizin oluşturma.
+  -x,  --force-directories         dizin oluşturulmasını zorla.
+  -nH, --no-host-directories       ana bilgisayar dizinleri oluşturma.
+  -P,  --directory-prefix=ÖNEK     dosyaları şuraya kaydet: ÖNEK/...
+       --cut-dirs=SAYI           SAYI kadar uzak dizin bileşenini yoksay.
+
+HTTP seçenekleri:
+       --http-user=KULLANICI http kullanıcısını KULLANICI olarak ayarla.
+       --http-passwd=PAROLA  http kullanıcı parolasını PAROLA olarak ayarla.
+  -C,  --cache=on/off        sunucu tamponundaki verileri kullan veya kullanma
+                             (normal olarak izinlidir).
+  -E,  --html-extension      tüm metin/html belgeleri .html uzantısıyla kaydet.
+       --ignore-length       'Content-Length' başlık alanını yoksay.
+       --header=KARAKTERDİZİSİ başlıklara KARAKTERDİZİSİ'ni ilave et
+       --proxy-user=İSİM     vekil sunucu kullanıcı ismini İSİM olarak ayarla.
+       --proxy-passwd=PAROLA vekil sunucu parolasını PAROLA olarak ayarla.
+       --referer=URL         HTTP isteğine 'Referer: URL' başlığını da ekle.
+  -s,  --save-headers        HTTP başlıklarını dosyaya kaydet.
+  -U,  --user-agent=AJAN     Wget/SÜRÜM yerine AJAN olarak tanımla.
+       --no-http-keep-alive  HTTP keep-alive (sürekli bağlantı) özelliğini
+                             kapat.
+       --cookies=off         çerez kullanma.
+       --load-cookies=DOSYA  çerezleri oturumdan önce DOSYA'dan yükle.
+       --save-cookies=DOSYA  oturum sonrası çerezleri DOSYA'ya kaydet.
+
+FTP seçenekleri:
+  -nr, --dont-remove-listing   '.listing' dosyalarını silme.
+  -g,  --glob=on/off           FTP dosya ismi arama kalıplarını aç veya kapat.
+       --passive-ftp           "pasif" aktarma kipini kullan.
+       --retr-symlinks         yineleme sırasında, bağlantılanan dosyaları
+                               getir (dizinleri değil).
+
+Yinelemeli indirme:
+  -r,  --recursive          yinelemeli indirmeyi etkinleştir -- dikkatli
+                            kullanın!
+  -l,  --level=SAYI         azami yineleme derinliği (sonsuz için inf ya da 0).
+       --delete-after       indirdikten sonra dosyaları yerel olarak sil.
+  -k,  --convert-links      göreli olmayan bağlantıları göreli olarak dönüştür.
+  -K,  --backup-converted   X dosyasını dönüştürmeden önce X.orig olarak
+                            yedekle.
+  -m,  --mirror             -r -N -l inf -nr için kısayol.
+  -p,  --page-requisites    HTML sayfada gösterilmesi gerekenleri, bütün
+                            resimler vs. indir.
+
+Yinelemeli kabul/red seçenekleri:
+  -A,  --accept=LİSTE               kabul edilen uzantıların virgülle-ayrılmış
+                                    listesi.
+  -R,  --reject=LİSTE               reddedilen uzantıların virgülle-ayrılmış
+                                    listesi.
+  -D,  --domains=LİSTE              kabul edilen alan adlarının virgülle
+                                    ayrılmış listesi.
+       --exclude-domains=LİSTE      reddedilen alan adlarının virgülle-ayrılmış
+                                    listesi.
+       --follow-ftp                 HTML belgelerindeki FTP bağlantılarını
+                                    takip et.
+       --follow-tags=LİSTE          takip edilen HTML etiketlerini virgülle
+                                    ayrılmış listesi.
+  -G,  --ignore-tags=LİSTE          gözardı edilen HTML etiketlerinin virgülle
+                                    ayrılmış listesi.
+  -H,  --span-hosts                 yinelemeli kipte yabancı makinelere git.
+  -L,  --relative                   sadece göreli bağlantıları takip et.
+  -I,  --include-directories=LİSTE  izin verilen dizinlerin listesi.
+  -X,  --exclude-directories=LİSTE  dışlanan dizinlerin listesi.
+  -np, --no-parent                  bir üst dizine çıkma.
+
+Hata raporlarını ve önerileri <bug-wget@gnu.org> adresine gönderin (İngilizce
+olarak).

@@ -1,0 +1,131 @@
+
+     ASSIGN (1)                  08 ağustos 1995                  ASSIGN (1)
+
+
+
+     NAME
+          assign - Başka bir sürücüye sürücü harfi ata
+
+
+     ÖZET
+          assign [/m] [/shadow] /?
+          assign [/m] [/shadow] /status
+          assign [/m] [/shadow] /u
+          assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+     AÇIKLAMA
+          Assign başka bir sürücüye sürücü harfi eşleştirir. Bu eşleştirme
+          sadece sürücü harfini etkiler, yolu kapsamaz, ki bu da
+          Assign komutunu Subst komutundan farklı kılar, mesela:
+          "assign B=C" ile "cd C:\" komutlarının ardından güncel çalışma
+          yolları "C:\FREEDOS" ve "B:\TEMP" ile "B:" yolu da "C:\"
+          klasörüne işaret eder.
+          Halbuki "subst B: ." ve "cd C:\" komutlarının ardından "B:\"
+          yolu hâlâ "C:\FREEDOS" dizinine işaret eder.
+
+          Bu program TSR (bellekte kalan) olmadığından onu "LOADHIGH" veya
+          "LH" komutlarıyla yüklemeyiniz.
+
+     SEÇENEKLER
+
+       /? Küçük bir yardım ekranı görüntüler.
+
+       /SHADOW Bu seçenek Assign'ın bellekte kalan kısmını kolayca tespit
+          edilmekten korur. Bu, şunları da kapsar:
+          1) Bellekte kalan kısmı ihtiva eden bellek bloku sistemin bir
+          parçası olarak işaretlenir.
+          2) Kurulum denetleme kesintisi (interrupt) "Kurulu" veya
+          "Kurulu değil" yerine "Kurulu değil, kurlum için izinli de değil"
+          cevabını verir.
+
+          Şayet bellekte kalan kısım bu seçenekle kuruldu ise, fakat
+          sonraki çağrılar bu seçenek kullanılmadan yapılmışsa bir ikaz
+          gösterilecektir ancak işlem de yerine getirilecektir.
+
+          Bu seçenek /SH olarak kısaltılabilir.
+
+       /STATUS Tüm atanan sürücü harflerini şu şekilde görüntüler:
+          dr1: => dr2:
+          burada dr1 atanan sürücü harfi ve dr2 ise dr1'in işaret ettiği
+          sürücüdür.
+
+          Eğer hiçbir atama yoksa, hiçbir çıktı görüntülenmeyecektir.
+
+
+          Bu seçenek bellekte kalan kısmın yüklenmesine mani olur, şayet
+          zaten kurulu değilse.
+
+          Bu seçenek /S olarak kısaltılabilir.
+
+       /u halihazırda kurulu olan bir Assign'ın yüklenmesini kaldırır.
+
+
+
+                                      -1-
+
+
+     ASSIGN (1)                  08 ağustos 1995                  ASSIGN (1)
+
+
+       dr1[:]=dr2[:] Bu bir sürücü harfi atanmasını tanımlar, burada
+           dr1'in dr2'yi işaret etmesi gerekir.  İki nokta ":" seçime
+          bağlıdır. Sürücü harfleri arasında boşluğa izin verilmez,
+          sadece iki noktaya ve eşitlik işaretine '=' verilir.
+
+          Eğer bellekte kalan kısım zaten yüklü değilse, başka bir uyarı
+          gösterilmeden yüklenecektir.
+
+       /m Bellekte kalan kısmı mümkünse UMB alanına taşır.
+          Bellekte kalan kısım zaten yüklendiğinde bu seçenek görmezden
+          gelinir.
+
+       seçeneksiz Şayet komut satırında ne /STATUS ne /u ne de bir atama
+          belirtilmemişse, tüm mevcut atamalar kırılır, netice olarak
+          tüm harflerin kendilerine işaret edecekleri bir biçimde.
+
+     BİLİNEN HATALAR
+
+       o  Assign kendisi bir TSR olmadığından, "LOADHIGH" veya "LH"
+          komutlarıyla yüklenmesi başarısız olabilir. Eğer bellekte
+          kalan kısmı üst belleğe yüklemek istiyorsanız, /m seçeneğini
+          belirtmeniz gerekir.
+
+       o  /STATUS ve /SHADOW seçenekleri seçenek standardın uymazlar,
+          bunun sebebi orijinal Assign ile uyumluluktur.
+
+       o  İkinci bir kabuk veya sonradan kurulan TSR programlar ekseriyetle
+          yüklemenin kaldırılması sürecine mani olur. Bu durumda
+          Assign askıya alınmaz, bellekte etkin kalır. Bunun yerine
+          atama tablosunu silmek için ASSIGN komutunu seçeneksiz kullanın.
+
+       o  Bazı kabuklar ASSIGN'ın bellekte kalan kopyasını bulmasına mani
+          olur, eğer ASSIGN kabuğun ikinci bir kopyasından kurulduysa.
+
+     AYRICA BAKINIZ
+          Subst, Join
+
+     İŞTİRAKÇİLER
+                                 Steffen Kaiser
+                             Mittelstrass 112/B115
+                         53757 Sankt Augustin - Menden
+                                   Almanya
+
+                    e-posta: Steffen.Kaiser@FH-Rhein-Sieg.DE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                      -2-
+

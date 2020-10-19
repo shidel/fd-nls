@@ -1,0 +1,24 @@
+FreeDOS NLSFUNC. Ajoute le NLS (Prise en charge des langues nationales).
+(C) 2004 Eduardo Casino, sous la licence GNU GPL, Version 2
+
+  NLSFUNC [/Y|/?] [[D:][CHEMIN]FICHIER]
+
+  [D:][CHEMIN]FICHIER   Chemin vers un fichier contenant le NLS
+  /Y               Charge (facultatif) le tableau OUI/NON
+  /?               Affiche des informations d'utilisation
+
+Exemple :
+
+  CONFIG.SYS
+     COUNTRY=34,858,C:\COUNTRY.SYS
+
+  AUTOEXEC.BAT
+     LH DISPLAY CON=(EGA,858,2)
+     MODE CON CP PREP=((850) C:\CPI\EGA.CPI)
+     MODE CON CP PREP=((,437) C:\CPI\EGA.CPI)
+     LH NLSFUNC /Y
+
+Puis basculez entre les pages de code avec la commande CHCP de FreeCOM.
+
+Si vous n'avez pas besoin de changer de pages de code, omettez les lignes MODE.
+

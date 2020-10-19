@@ -1,0 +1,24 @@
+SYSLINUX
+
+SYSLINUX est une collection de chargeurs d'amorçage
+
+Installation :
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+Lors de l'amorçage, quand vous avez l'invite de commande, tapez
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+De façon alternative, créez un SYSLINUX.CFG, lisez la documentation pour cela !
+(dans l'exemple ci-dessous, un dossier "CONTENTS" contenant un dossier ISOLINUX
+qui, lui, contient le chargeur CD-ROM ISOLINUX.BIN - de genre non-émulation.
+ veuillez utiliser "/" et "\" exactement comme ci-dessous !
+
+Pour MEMDISK et ISOLINUX, veuillez lire attentivement la documentation ! :
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso contents
+
+Les alternatives pour CDRECORD (qui comprend MKISOFS) sont XORRISO et CDRKIT
+(voyez http://sites.google.com/site/blairdude/cdrkit pour le portage DOS)
