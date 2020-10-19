@@ -10,8 +10,7 @@ TRANS=0
 PLATFORM="$(uname)"
 KEYFILE_ERR="translation file"
 
-function script_summary () {
-
+function script_header () {
     echo "When listing languages for a specific program, the language maybe followed"
     echo "by a special character. Those characters mean the translation file failed"
     echo "a specific test."
@@ -20,7 +19,11 @@ function script_summary () {
     echo "  ! caution, English version is newer than translation"
     echo "  * problem, either missing or extras keys"
     echo
-    echo "Also note, this utility does no scan the following directories:"
+}
+
+function script_summary () {
+    script_header
+    echo "Also note, this utility does not scan the following directories:"
     echo
     x="${SPECIAL:1:$(( ${#SPECIAL} - 2))}"
     x="${x//;/, }"
@@ -35,7 +38,7 @@ function script_summary () {
 
 function script_help () {
 
-    echo "usage: ${0##*/} program"
+    echo "usage: ${0##*/} [program]"
     echo
     script_summary
 }
@@ -318,24 +321,26 @@ function main () {
     local once=yes
 
     while [[ "${1}" != "" ]] || [[ $once ]]; do
-        unset once
         opt="${1}"
         shift
-        if [[ "${opt}" == "-h" ]] ; then
+        if [[ "${opt}" == "-h" ]] || [[ "${opt}" == "--help" ]] ; then
             script_help
             return 0
         elif [[ "${opt}" == "-n" ]] ; then
             NO_REP=yes      # don't show key comparisons
         elif [[ "${opt}" == "-s" ]] || [[ "${opt}" == "" ]] ; then
             # summary
+            [[ $once ]] && script_header;
             each_app calc_languages
             scan_summary
         elif [[ "${opt}" == "-r" ]] ; then
             create_report
         else
             # summary
+            [[ $once ]] && script_header;
             calc_languages "${opt}"
         fi
+        unset once
     done
 
 
