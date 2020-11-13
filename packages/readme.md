@@ -27,4 +27,8 @@ translated entries and those marked in their "new" field.
 Generally, you should work on translating the "new" items in the "mixed.csv"
 file. When complete, submit it as the new "listing.csv" file.
 
+Please note, you will need place the CSV for your language in a language
+subdirectory and probably a Codepage & UTF-8 subdirectory under that. See the
+existing translations for languages like FR & TR for examples on the subdirectory
+layout.
 
