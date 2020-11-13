@@ -1,0 +1,114 @@
+
+			STAMP 2.0
+
+
+İçerik
+------
+
+	1. İşlevler
+	2. Hata seviyeleri
+	3. Yapılacaklar
+	4. Tarihçe
+	5. Geliştirici
+
+
+1. İşlevler
+-----------
+
+- dosyaların saat ve tarihini değiştirme
+- dosya ve dizinlerin özniteliklerini değiştirme
+- dosya ile dizinlerin saat ve tarihleriyle özniteliklerini karşılaştırma
+- zaman ve tarih ayarı seçenekleri zaman ve tarih değerlerini anlık değerlerden
+  veya aynı zamanda dosyalardan açık sayılarla elde edilmesine imkân sağlar
+- güncel tarih ve dosyaların değerleri ile karmaşık zaman ve tarih mukayesesi
+- COUNTRY ayarlarına uygun biçimlerde tarih ve zaman ayarlaması
+- UNC ve NetWare yollarına izin verilir
+- tek bir komut satırında çoklu hedef belirtebilme
+- genişletilmiş joker karakterler: isimler herhangi bir sayıda '*' ve '?'
+  içerebilirler; "isim", "isim." anlamına gelir fakat "*", "*.*" anlamına gelir
+- seçenek karakterinin otomatik algılanması  ('/' veya '-')
+- dizin isimlerini aramalarda joker karakterler ile eklemek için seçenek
+- hedefin tüm alt dizinlerindeki dosya ve dizinleri işlemek için seçenek
+- bir dosyayı bir hedef listesi ile işlemek için seçenek; eksik bir argüman
+  standart girdi anlamına gelir
+
+
+2. Hata seviyeleri
+------------------
+
+0   - zaman ve tarih veya öznitelik ayarlaması ya da mukayesesinin başarılı
+      olduğu anlamına gelir
+1   - karşılaştırmalardan biri başarısız olmuştur
+2   - dosyaya erişim hatası veya öznitelik ya da tarih ve zaman ayarlama hatası
+128 - geçersiz veya yinelenmiş seçenek
+129 - uyumsuz seçenekler, eksik hedef veya geçersiz argümanlar
+130 - dahili hata (yetersiz bellek veya çok derin bir dizin)
+
+
+3. Yapılacaklar
+---------------
+
+- işlenmiş dosyaların listesinin görüntülenmesi
+- bir dosyanın tarih ve zamanının/özniteliklerinin başka dosyalara kopyalanması
+  veya başka dosyalarla mukayese edilmesi
+- zaman ve tarih alanlarının artırılması/azaltılması
+- öznitelikler için büyük/küçük mukayesesi
+
+
+4. Tarihçe
+----------
+
+	1.0 [16.02.98]
++ İlk sürüm
+
+	1.1 [19.02.98]
++ Artık tarih ve zaman COUNTRY değişkenine uygun biçimlerde kabul edilir
+
+	1.2 [21.02.98]
+* Girilmemiş alanların ve argümanların biraz iyileştirilmiş yorumu
+* Çalıştırılabilir dosyanın boyutu küçültüldü
++ Dosya ve dizinlerin özniteliklerinin değiştirilebilmesi için -a seçeneği
+  ilave edildi
+
+	1.3 [21.02.98]
++ Artık tek bir komut satırında çoklu hedefler kabul edilir
++ -a seçeneği artık mukayeselerde kullanılabilir
+
+	1.4 [26.02.98]
+# Bir dosya için bir hata algılandığında yürütme artık durmaz, ancak sonraki
+  hedeflerde devam eder
+# Bir dosyaya yönlendirildiyse, artık çıktı konsola kopyalanmaz
+* -@ seçeneği -c olarak yeniden adlandırılmıştır
++ Dizinlerin tarih ve zaman damgası artık bir mukayese sırasında denetlenebilir
++ Hedefler için joker karakterler artık edilir
++ -r dizinlerin joker karakterlerle işlenmesini etkinleştirir
+
+	1.41 [28.02.98]
++ Seçenek karakteri, '/' veya '-' işaretinin ilk geçişine dayanılarak seçilir
++ Seçenek karakterinin bir çifti ("--" veya "//") başka seçenek aranmasını
+  durdurur
++ Tek bir seçenek karakteri standart girdi anlamına gelir
+- Bir isimden evvel bu ismi argüman olarak etkinleştirmek için ismin ilk
+  harfine denk gelen bir seçenek karakterinin eklenmesi hata mesajına yol açar;
+  bu tür isimleri girmek için önce bir çift seçenek karakteri kullanın
+
+	1.5 [14.03.98]
+# Hata düzeltmesi: bazı durumlarda doğru şekilde geçilen 30 ve 31 gün değerleri
+  reddedilmekteydi
+# Hata düzeltmesi: COUNTRY ayarlarına uygun şekilde artık hedefin ismi büyük
+  harfler kullanır
++ /s hedefin tüm alt dizinlerindeki dosya ve dizinleri de işler
+
+	2.0 [14.04.98]
+# Hata düzeltmesi:dosya zamanını okurken saniye işaret biti kaybı
++ /@ hedef listesiyle bir dosyayı işler
+* Tek bir seçenek karakteri artık standart girdiyi sadece /@ seçeneğinin
+  argümanı olarak belirtir
+* Çalıştırılabilir dosya boyutu küçültüldü
++ DIET çalıştırılabilir dosya boyutunu küçültmek için kullanıldı
+
+
+5. Geliştirici
+--------------
+					Arkady Belousov
+					E-mail: ark@mos.ru
