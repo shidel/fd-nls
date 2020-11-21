@@ -1,0 +1,56 @@
+
+hhstndrd.zip
+============
+
+Ceci contient la majeure partie des documents html qui seront
+utilis‚s avec help.exe (htmlhelp).
+
+IL N'A PAS BESOIN D'TRE DCOMPRESS - help.exe peut lire
+les fichiers html depuis hhstndrd.zip.
+
+(Vous pouvez d‚compresser les fichiers html pour qu'ils puissent
+ˆtre lus avec un autre navigateur, ou pour les ‚diter.
+Les fichiers Zip ont g‚n‚ralement la priorit‚ sur les fichiers
+d‚compress‚s ; si vous souhaitez vous assurer que help lit une version
+‚dit‚e et d‚compress‚e d'un fichier, vous devriez remplacer ou
+effacer la version originale dans hhstndrd.zip)
+
+
+
+PRISE EN CHARGE DES PAGES DE CODE :
+
+Les diff‚rentes langues de l'aide n‚cessitent des pages de code
+diff‚rentes. Si les caractŠres ne sont pas affich‚s comme vous
+l'esp‚riez, c'est que la page de code install‚e est erron‚e !
+
+Exemples FDCONFIG.SYS / CONFIG.SYS pour l'installation de pages de
+code :
+
+country=001,437,c:\fdos\bin\country.sys   (r‚glages pour les tats-Unis)
+country=033,858,c:\fdos\bin\country.sys   (r‚glages pour la France)
+country=034,858,c:\fdos\bin\country.sys   (r‚glages pour l'Espagne)
+country=049,858,c:\fdos\bin\country.sys   (r‚glages pour l'Allemagne)
+
+Vous pouvez trouver votre code de pays et la pages de code aff‚rente
+dans la section "commandes externes - country.sys" et dans la section
+"Divers - kpdos".
+
+
+Les fichiers FDAUTO.BAT /AUTOEXEC.BAT correspondants devraient
+ressembler … ceci :
+
+set LANG=EN
+lh display con=(EGA,437,1)
+mode con cp prep=((437) %DOSDIR%\CPI\EGA.CPX)
+mode con cop sel=437
+mode con cp refresh
+
+En fonction de votre pays, votre LANG(ue) devrait ˆtre r‚gl‚e sur
+EN/FR/ES/DE etc.
+Assurez-vous qu'il existe un "htmlhelp.en/fr/es/de" etc. dans le dossier
+"NLS", sinon help.exe se bloquera ! S'il n'existe pas, cr‚ez-en un,
+par exemple en copiant une autre langue.
+Veuillez remplacer "437" par votre page de code, voyez ci-dessus.
+Dans la section "Divers - cpidos" vous trouverez le fichier EGAx.CPX
+qui correspond … votre num‚ro de page de code. (Il existe EGA.cpx jusqu'…
+EGA18.cpx !)

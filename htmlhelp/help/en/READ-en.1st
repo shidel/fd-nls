@@ -1,0 +1,52 @@
+
+hhstndrd.zip
+============
+
+This contains the bulk of the html documents for use
+with help.exe (htmlhelp).
+
+IT DOES NOT NEED TO BE UNZIPPED - help.exe can read
+the html files from within hhstndrd.zip.
+
+(You may wish to unzip the html files so that they
+can be read with another browser, or to edit them.
+Zip files usually take priority over uncompressed files;
+if you want to make sure that help reads an edited,
+uncompressed version of a file, you should replace or
+delete the original version inside hhstndrd.zip)
+
+CODEPAGE SUPPORT:
+
+The different languages of the help require different codepages.
+If characters are not shown as you expect it, the installed
+codepage will be wrong!
+
+FDCONFIG.SYS / CONFIG.SYS examples for how to install codepages:
+
+country=001,437,c:\fdos\bin\country.sys   (US settings)
+country=033,858,c:\fdos\bin\country.sys   (French settings)
+country=034,858,c:\fdos\bin\country.sys   (Spanish settings)
+country=049,858,c:\fdos\bin\country.sys   (German settings)
+
+You can find your country code and the codepages at section
+"external commands - country.sys" and at section
+"Miscellaneous - kpdos".
+
+
+Corresponding, FDAUTO.BAT /AUTOEXEC.BAT should look like this:
+
+set LANG=EN
+lh display con=(EGA,437,1)
+mode con cp prep=((437) %DOSDIR%\CPI\EGA.CPX)
+mode con cop sel=437
+mode con cp refresh
+
+Depending on your country your LANG(uage) should be set to EN/FR/ES/DE
+etc.
+Ensure that there exists a "htmlhelp.en/fr/es/de" etc. in the "NLS"
+folder, otherwise help.exe will hang! If not, create one, e.g. by
+copying another language.
+Please replace "437" by your codepage, see above.
+In section "Miscellaneous - cpidos" you will find the EGAx.CPX file
+that corresonds with your codepage number. (There exist EGA.cpx until
+EGA18.cpx!)
