@@ -1,0 +1,98 @@
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC iki dosyayç veya dosya kÅmesini metin ve ikili kipte mukayese eder ve
+aralarçndaki farklarç gîrÅntÅler.
+
+FC, Paul Heckel'in Communications of the for Computing Machinery, nisan 1978,
+s264 - s268, yayçnçnda "A Technique for Isolating Differences Between Files",
+yani "Dosyalar Arasçndaki Farklarç Ayçrma Teknißi" adlç makalesindeki
+algoritmayç uygular.
+
+Bu algoritmançn, daha yaygçn kullançlan mukayese algoritmalarçna kçyasla hçzlç
+olmasç ve sçnçrç olmayan sayçda satçr arasçnda farklarç tespit edebilmesi
+avantajç vardçr. Äoßu uygulama iáin algoritma, en uzun ortak alt dizi
+tarafçndan ayrçlan farklara benzer farklarç ayçrçr.
+
+Sîzdizimi aüaßçdaki gibidir:
+
+FC [anahtarlar] [sÅrÅcÅ1:][yol1]dosyaadç1 [sÅrÅcÅ2][yol2]dosyaadç2 [anahtarlar]
+
+ /A    Her farklçlçk grubu iáin sadece ilk ve son satçrlarç gîrÅntÅle
+ /B    òkili bir karüçlaütçrma yap
+ /C    Harflerin bÅyÅk veya kÅáÅk olmasçnç dikkate alma
+ /L    Dosyalarç ASCII metin olarak karüçlaütçr
+ /LBn  Azami ardçüçk farklç ASCII satçr sayçsçnç n olarak ayarla
+ /Mn   òkili karüçlaütçrmada azami farklçlçklarç n bayt olarak ayarla
+ /N    Metin karüçlaütçrmasçnda satçr sayçlarçnç gîrÅntÅle
+ /Q    Farklçlçklarçn listesini gîrÅntÅleme
+ /R    Kçsa bir son rapor gîster (/S kullançldçßçnda daima etkindir)
+ /S    Taramayç alt dizinlerdeki dosyalara geniület
+ /T    Sekmeleri boüluklar olarak geniületme
+ /U    Karüçlçklarç olmayan dosyalarçn dosya isimlerini gîster
+ /W    Metin karüçlaütçrmasçnda beyaz boüluklarç (sekme ve boüluklar) grupla
+ /X    Metin karüçlaütçrmasçnda baßlam satçrlarçnç gîsterme
+ /nnn  Karüçlaütçrma yeniden eüleümesi iáin asgari ardçüçk eüleüen satçr
+       sayçsçnç nnn olarak ayarla
+
+Bu programçn LFN desteßi bulunmaktadçr ve iületim sistemi uzun dosya isimlerini
+destekliyorsa bunu otomatik olarak kullançr.
+
+FC, .EXE, .COM, .SYS, .OBJ, .BIN, .DLL ve .LIB dosyalarç iáin varsayçlan
+karüçlaütçrma kipi olarak ikili kipi kullançr.
+
+òkili kipte FC, farklç baytlarçn dosyasçndaki kaymayç (ofset), onlarçn
+onaltçlçk deßerini ve eßer yazdçrçlabilir ASCII karakterleri iseler ASCII
+karakterlerini gîsterir.
+
+Varsayçlan deßer olarak ikili kçyaslama 20 farklçlçk sonrasçnda durur fakat
+bu deßer /M anahtarç ile deßiütirilebilir. /M0  "sçnçrsçz farklçlçklar"
+anlamçna gelir. /M anahtarç /M0 olarak yorumlançr.
+
+Bu programçn bir tasarçm sçnçrlamasç, metin kipi kçyaslamasçnda sadece ilk
+32765 satçrçn kçyaslanacak olmasçdçr; kalan satçrlar gîrmezden gelinir. Satçr
+uzunlußu neredeyse sçnçrsçzdçr.
+
+FC, dosya belirtimlerinde joker karakterleri destekler. Bunun hakkçnda birkaá
+sîz:
+- bir dizin belirtmek, dizinin iáindeki tÅm dosyalarç belirtmekle aynç anlama
+  gelir (yani "*.*").
+  ôrnek: "FC C:\ A:" dizesi "FC C:\*.* A:*.*" ile aynç anlama gelir.
+- üayet dosyaadç2 girilmemiüse, "." (gÅncel dizin) varsayçlçr.
+  ôrnek: "FC C:\FOO.TXT" dizesi "FC C:\FOO.TXT .\*.*" ile aynç anlama gelir.
+- eßer dosyaadç1 joker karakter iáeriyorsa ama dosyaadç2 iáermiyorsa, dosyaadç1
+  ile eüleüen tÅm dosyalar dosyaadç2 dosyasçyla karüçlaütçrçlacaktçr.
+  ôrnek: "FC FOO.BK? FOO.TXT"
+	   TÅm FOO.BK? dosyalarç FOO.TXT ile karüçlaütçrçlçr.
+- eßer dosyaadç1 joker iáeriyorsa ve dosyaadç2 "*.*" ile takip edilen bir yolsa
+  dosyaadç1 ile eüleüen tÅm dosyalar, dosyaadç2 tarafçndan belirtilen yolda
+  bulunan aynç isimli tÅm dosyalar ile karüçlaütçrçlacaktçr (tabii ki dosyaadç2
+  dosyasç mevcutsa).
+  ôrnek: "FC *.* A:*.*" ya da daha kçsa olarak "FC . A:"
+	   GÅncel dizindeki tÅm dosyalar A: Åzerindeki kopyalarçyla
+	   karüçlaütçrçlacaktçr.
+- eßer dosyaadç1 joker ihtiva ediyorsa ve bu dosyaadç2 iáin de geáerliyse
+  dosyaadç1 yolunda bulunan ve dosyaadç1 ile eüleüen tÅm dosyalar, dosyaadç2
+  tarafçndan belirtilen yolda dosyaadç2 ile eüleüen ilgili dosya ile
+  karüçlaütçrçlacaktçr (tabii ki dosyaadç2 mevcutsa).
+  ôrnek: "FC *.TXT OLDS\*.BAK"
+	   GÅncel dizindeki tÅm dosyalar, OLDS alt dizininde .BAK olarak yeniden
+	   adlandçrçlmçü yedekleme kopyalarçyla karüçlaütçrçlçr.
+Yapmasç, sîylemesinden daha kolaydçr.
+Eßer geráekten bir dizindeki her dosyayç baüka bir dizindeki tÅm dosyalar ile
+karüçlaütçrmak istiyorsançz, üu üekli kullanabilirsiniz:
+FC *.* MYDIR\????????.???
+
+/S seáeneßi her iki yolda da aynç isme sahip alt dizinlerde aynç arama modelini
+yineler.
+  ôrnek: "FC /S C:*.TXT D:*.BAK"
+	   Mesela C:BOOK ve D:BOOK alt dizinlerinin mevcut olduklarçnç varsayar
+	   isek bu komut, gÅncel dizinlerde tÅm *.TXT dosyalarçnç *.BAK yedekleme
+	   kopyalarçyla kçyaslar ve ayrçca tÅm BOOK\*.TXT dosyalarçnç da
+	   BOOK\*.BAK yedekleme kopyalarç ile kçyaslar.
+
+ERRORLEVEL (hata seviyesi) iáin áçkçü kodlarç aüaßçdaki gibidir:
+	0	TÅm dosyalar eüleüiyor
+	1	En az bir áift dosya farklçlçk gîsteriyor
+	2	Komut satçrçnda geáersiz parametre
+	3	Dosya bulunamadç
+	4	Dosyalarçn veya dosyançn aáçlçüçnda hata

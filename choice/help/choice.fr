@@ -1,0 +1,55 @@
+NOM
+
+   CHOICE - Attend que l'utilisateur appuie sur une touche, … partir d'une
+   liste de choix
+
+SYNOPSIS
+
+   CHOICE [/B] [/C[:]choix] [/N] [/S] [/T[:]c,nn] [texte]
+
+OPTIONS
+
+ /B
+    Sonne une alerte (bip) … l'invite.
+
+ /C[:]choix
+    Sp‚cifie les touches autoris‚es dans l'invite. Lorsqu'elle est affich‚e,
+    les touches seront s‚par‚es par des virgules, apparaŒtront entre crochets
+    ([]), et seront suivies par un point d'interrogation. Si vous ne sp‚cifiez
+    pas l'option /C choice utilisera ON en tant que valeur par d‚faut. Le signe
+    deux-points (:) est facultatif.
+
+ /N
+   Fait en sorte que choice n'affiche pas l'invite. Le texte avant l'invite
+   sera cependant affich‚. Si vous sp‚cifiez l'option /N les touches sp‚cifi‚es
+   seront toujours valides.
+
+ /S
+   Fait en sorte que choice soit sensible … la casse. Si l'option /S n'est pas
+   sp‚cifi‚e, choice acceptera les minuscules et les majuscules des touches
+   que l'utilisateur aura sp‚cifi‚es.
+
+ /T[:]c,nn
+     Fait en sorte que choice attente le nombre de secondes sp‚cifi‚ avant de
+     passer par d‚faut … une touche sp‚cifi‚e. Les valeurs pour l'option /T
+     sont les suivantes :
+
+       c   Sp‚cifie le caractŠre … afficher aprŠs nn secondes. Le caractŠre
+           doit ˆtre dans le jeu de choix sp‚cifi‚ par l'option /C.
+
+       nn  Sp‚cifie le nombre de seconde … attendre. Les valeurs acceptables
+           vont de 0 … 99. Si 0 est sp‚cifi‚, il n'y aura pas de pause avant
+           le passage … la valeur par d‚faut.
+
+   texte
+     Le texte d'invite … afficher
+
+VALEUR DE RETOUR
+
+   Le niveau d'erreur (ERRORLEVEL) est d‚fini pour compenser (offset) la touche
+   sur laquelle l'utilisateur appuie dans les choix.
+
+AUTEUR
+
+   Jim Hall, jhall@freedos.org
+
