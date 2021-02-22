@@ -1,157 +1,82 @@
-#
-# FDNPKG language file
-#
-# Language..: French
-# Codepage..: 850
-# Translator: anonymous
-#
+# Help Message
 
+0.0:FDPKG v0.2 - GPL par Blair Campbell 2005\n
+0.1:Installe les paquets FreeDOS … la fois sous format normal et sp‚cialis‚.\n
+0.2:Syntaxe : FDPKG [/INSTALL] [/REMOVE] [/CHECK] [/CONFIGURE] [/E] PKGX.ZIP...\n
+0.3:   /INSTALL       Mode d'installation ; installe un paquet (par d‚faut)\n
+0.4:   /REMOVE        Mode d'effacement ; enlŠve un paquet\n
+0.5:   /CHECK         Mode de v‚rification ; v‚rifie les d‚pendances du paquet\n
+0.6:   /CONFIGURE     Mode de configuration ; configure un paquet\n
+0.7:   /DESC[:CHAMP]  Affiche la description depuis un LSM. Le champ optionnel\n
+0.8:                  est le champ du LSM … afficher. Les LSM sont recherch‚s\n
+0.9:                  dans le dossier courant puis dans %%DOSDIR%%\\APPINFO\n
+0.10:   /DISPLAY       Liste les paquets install‚s correspondant … l'argument\n
+0.11:   /E             Extrait seulement, ne v‚rifie pas les d‚pendances (sauf\n
+0.12:                  si d‚j… install‚), ne configure pas\n
+0.13:   /B             Sera r‚trocompatible avec fdpkg.bat\n
+0.14:   /S[:|=]ARG     Bascule les antislash de l'ARG en barres obliques\n
+0.15:   /[-]F|/[-]Y    Forcer ; ne pose pas de questions (PEUT ÒTRE DANGEREUX)\n
+0.16:   /?[E]|/H[E]    Cette aide ; /?E ou /HE affiche l'aide ‚tendue\n
+0.17:   PKGX.ZIP       Le paquet … installer, des noms multiples sont accept‚s\n
+0.18:Codes de sortie :\n
+0.19:   255            Chemin invalide\n
+0.20:   0              Aucun problŠme d‚tect‚\n
+0.21:   1              D‚pendances non r‚solues\n
+0.22:   2              Nom invalide\n
+0.23:   3              Variables d'environnement invalides\n
+0.24:   4              Options ou arguments invalides\n
+0.25:   5              Annul‚ par l'utilisateur\n
+0.26:   6              L'extracteur non trouv‚ sur le chemin\n
+0.27:   7              M‚moire insuffisante\n
+0.28:   8              Tous les fichiers n'ont pu ˆtre enlev‚s\n
+0.29:   9              chec de l'extraction\n
+0.30:   10             Changement r‚ussi\n
+0.31:   11             chec du changement\n
 
-#### Help ####
+# FDPKG Messages
 
-1.0:Ceci est un gestionnaire de paquets pour FreeDOS.
-1.1:Utilisation : FDNPKG action [paramŠtres]
-1.2:O— l'action est l'un des ‚l‚ments suivants :
-1.3: search [str]   - Recherche les paquets avec "str" sur les d‚p“ts en ligne
-1.4: vsearch [str]  - Identique … "search", mais affiche les d‚p“ts sources
-1.5: install pkg       - Installe le paquet "pkg" (ou un fichier local zip)
-1.6: remove pkg        - EnlŠve le paquet "pkg"
-1.7: dumpcfg           - Affiche la configuration charg‚e depuis le fichier cfg
-1.8: license           - Affiche la licence de ce logiciel
-1.9:FDNPKG est li‚ … la version de WatTCP ci-dessous :
-1.10: install-nosrc pkg - Installe "pkg" (ou un zip local) sans les sources
-1.11: install-wsrc pkg  - Installe "pkg" (ou un zip local) avec les sources
-1.12: showinstalled [str] - Affiche la liste de tout paquet install‚ avec "str"
-1.13: checkupdates      - v‚rifie les mises … jour disponibles et les affiche
-1.14: update pkg        - met … jour "pkg" vers une version plus r‚cente
-1.15: update [pkg]      - met … jour "pkg" ou tout sans arg. … la derniŠre version
-1.16: listlocal [str]   - Liste tous les paquets locaux contenant "str"
-1.17:FDNPKG est li‚ … la version de Watt-32 ci-dessous :
-1.18: listfiles pkg     - Liste les fichiers poss‚d‚s par le paquet "pkg"
+1.0:Variables d'environnement invalides.\n
+1.1:Arguments insuffisants.\n
+1.2:Lecteur ou r‚pertoire inexistant.\n
+1.3:Option invalide dans %s\n
+1.4:Champ LSM invalide : %s\n
 
+# FUNC Misc Messages
 
-### General stuff ####
+2.0:Appuyez sur une touche...
+2.1:Le gestionnaire d'archives n'est pas sur le chemin.\n
+2.2:chec de l'obtention de la version du logiciel install‚ suivant : %s %s.\n
+2.3:chec de l'obtention de la version … installer.\n
+2.4:La version … installer est la mˆme que le paquet install‚.\n
+2.5:La version du paquet install‚ est \"%s\"\net la version … installer est \"%s\".\nContinuer (O/N) ?
+2.6:Avertissements lors de l'extraction de %s.\n
+2.7:chec du d‚compactage pour %s.\n
+2.8:Configuration...\n
+2.9:binaires
+2.10:sources
 
-2.0:%TEMP% non d‚fini ! Le faire pointer vers r‚pertoire autoris‚ en ‚criture ?
-2.1:Exemple : SET TEMP=C:\\TEMP
-2.2:%DOSDIR% non d‚fini ! Le faire pointer vers le dossier principal de FreeDOS ?
-2.3:Exemple : SET DOSDIR=C:\\FDOS
-2.4:Nombre d'arguments invalide. Ex‚cutez fdnpkg sans paramŠtre pour l'aide.
-2.5:Aucun d‚p“t n'est configur‚. Vous avez besoin d'au moins un d‚p“t.
-2.6:Mettez au moins une entr‚e de la forme suivante dans votre fichier de config :
-2.7:REPO www.freedos.org/repo
-2.8:Voici la liste des d‚p“ts fdnpkg configur‚s :
-2.9:RafraŒchissement de %s...
-2.10:Le t‚l‚chargement du d‚p“t a ‚chou‚ !
-2.11:Erreur lors du chargement du d‚p“t depuis un fichier tmp...
-2.12:Attention : %TZ% non d‚fini ! L'horodatage des fichiers peut ˆtre inexact.
-2.13:La base de donn‚es des paquets charg‚e depuis le tampon local.
-2.14:M‚moire insuffisante ! (%s)
-2.15:Erreur : L'initialisation TCP/IP a ‚chou‚ !
-2.16:Chargement de %s en cours...
-2.17:ATTENTION : m‚moire virtuelle trop basse. FDNPKG pourrait ˆtre non fiable.
-2.18:ERREUR : impossible d'‚crire dans le dossier "%s". V‚rifiez la variable %%TEMP%%.
+# FUNC Messages
 
+3.0:Ce paquet n‚cessite que \"%s\" soit install‚\nTenter l'installation (O/N) ?
+3.1:Ce paquet est en conflit avec \"%s\" L'enlever (O/N) ?
+3.2:depends.bat en cours d'ex‚cution...\n
+3.3:V‚rification de l'existence...\n
+3.4:Aucun paquet trouv‚ : %s\n
+3.5:Variable %%DOSDIR%% invalide.\n
+3.6:Mise … niveau...\n
+3.7:Paquet extrait\n
+3.8:Extraction...\n
+3.9:Paquet install‚.\n
+3.10:chec de l'obtention du champ \"%s\" pour : %s\n
+3.11:Òtes-vous s–r ? Enlever le %s %s (O/N)?
+3.12:Tous les fichiers n'ont pu ˆtre effac‚s\n
+3.13:Toutes les d‚pendances ne sont pas satisfaites.\n
+3.14:Toutes les d‚pendances sont satisfaites ou il n'y pas de d‚pendances.\n
+3.15:Configuration termin‚e.\n
+3.16:Configuration non n‚cessaire.\n
+3.17:Ce paquet recommande \"%s\"\n
 
-#### Installing package ####
+# Yes character
 
-3.0:Le paquet %s est d‚j… install‚ ! Enlevez-le si vous voulez mettre … jour.
-3.1:Aucun paquet "%s" trouv‚ dans les d‚p“ts en ligne.
-3.2:Le paquet "%s" n'est pas disponible dans les d‚p“ts.
-3.3:%s est disponible sur plusieurs d‚p“ts. Choisissez lequel utiliser :
-3.4:Votre choix :
-3.5:Choix invalide !
-3.6:T‚l‚chargement du paquet %s en cours...
-3.7:Erreur lors du t‚l‚chargement du paquet. Annul‚.
-3.8:Erreur : archive zip invalide ! Le paquet n'a pas ‚t‚ install‚.
-3.9:Erreur : le paquet contient un fichier qui existe d‚j… au niveau local :
-3.10:Erreur : impossible de cr‚er %s !
-3.11:Le paquet %s a ‚t‚ install‚.
-3.12:Erreur : le paquet ne contient pas le fichier %s ! Paquet FreeDOS invalide.
-3.13:Erreur : le fichier t‚l‚charg‚ avec un CRC erron‚. Installation annul‚e.
-3.14:Erreur : ‚chec de l'ouverture du paquet t‚l‚charg‚. Installation annul‚e.
-3.15:Erreur : m‚moire insuffisante lors du calcul du CRC du paquet !
-3.16:Le paquet %s a ‚t‚ install‚ (avec les sources, si elles sont disponibles).
-3.17:Le paquet %s a ‚t‚ install‚ (sans les sources).
-3.18:Le paquet %s est d‚j… install‚ ! Utiliser l'action "mise … jour" ?
-3.19:Le paquet %s a ‚t‚ install‚ : %d fichiers extraits, %d erreurs.
-3.20:Erreur : le paquet contient un fichier crypt‚ :
-3.21:Erreur : ‚chec de l'ouverture du fichier lien "%s" pour lecture.
-3.22:Erreur : ‚chec de l'ouverture du fichier lien "%s" pour ‚criture.
-3.23:Erreur : le paquet contient un nom de fichier invalide :
+4.0:O
 
-
-#### Removing package ####
-
-4.0:Le paquet %s n'est pas install‚, il n'a donc pas ‚t‚ enlev‚.
-4.1:Erreur lors de l'ouverture du fichier lst !
-4.2:La limite Dirlist a ‚t‚ atteinte. Le r‚pertoire %s ne sera pas enlev‚ !
-4.3:M‚moire insuffisante ! Impossible de m‚moriser le r‚pertoire %s !
-4.4:effacement de %s en cours
-4.5:Le paquet %s a ‚t‚ enlev‚.
-
-
-#### Searching package ####
-
-5.0:Aucun paquet ne correspond … la recherche.
-5.1:M‚moire insuffisante lors du traitement des descriptions des paquets !
-
-
-#### Package database handling ####
-
-6.0:Erreur : fichier d'index invalide (mauvais en-tˆte) ! D‚p“t ignor‚.
-6.1:Erreur : fichier d'index invalide ! D‚p“t ignor‚.
-6.2:Erreur : m‚moire insuffisante lors du chargement de la base des paquets !
-6.3:Erreur : impossible d'ouvrir le fichier de donn‚es sur "%s".
-6.4:Attention : impossible d'ouvrir le tampon de base de donn‚es sur "%s" !
-
-
-#### Loading configuration ####
-
-7.0:Erreur : le d‚p“t "%s" est list‚ deux fois !
-7.1:Erreur : ‚chec de l'ouverture du fichier de configuration "%s" !
-7.2:Attention : jeton sans valeur sur la ligne #%d
-7.3:Attention : d‚passement du jeton de fichier de configuration sur la ligne #%d
-7.4:Attention : jeton avec une valeur vide sur la ligne #%d
-7.5:Attention : espace(s) aprŠs la valeur sur la ligne #%d
-7.6:Abandon d'un d‚p“t : trop de d‚p“ts configur‚s (max=%d)
-7.8:Attention : jeton "%s" inconnu … la ligne #%d
-7.9:Attention : d‚passement de la valeur de configuration … la ligne #%d
-7.10:Attention : une valeur ill‚gale "%s" a ‚t‚ ignor‚e … la ligne #%d
-7.11:Attention : directive "DIR" invalide trouv‚e … la ligne #%d
-7.12:Erreur : chemin DIR trop long … la ligne #%d
-7.13:Erreur : variable d'environnement "%s" inexistante trouv‚e … la ligne #%d
-7.14:Erreur : le d‚p“t "%s" est list‚ deux fois !
-7.15:Erreur : le r‚pertoire personnalis‚ "%s" n'est pas un chemin absolu valide !
-7.16:Erreur : le r‚pertoire personnalis‚ "%s" est un nom r‚serv‚ !
-
-
-#### Unziping package ####
-
-8.0:D‚passement de m‚moire !
-8.1:signature zip inconnue : 0x%08lx
-8.2:Erreur : fichier compress‚ avec une m‚thode non support‚e (%d) dans le paquet
-8.3:Erreur lors de l'extraction de "%s" vers "%s" !
-
-
-#### Handling the local list of installed packages ####
-
-9.0:Erreur : ‚chec de l'accŠs au r‚pertoire "%s".
-9.1:Erreur: le paquet local  %s n'a pas ‚t‚ trouv‚.
-
-
-#### Package updates ####
-
-10.0:%s (version locale : %s)
-10.1:version %s … %s
-10.2:Aucune mise … jour trouv‚e pour le paquet "%s".
-10.3:Une mise … jour de "%s" a ‚t‚ trouv‚e. Mise … jour en cours...
-10.4:%d paquet(s) v‚rifi‚s, %d paquet(s) mis … jour, ‚chec pour %d paquet(s).
-10.5:%d mis … jour de paquets trouv‚s.
-10.6:Le paquet %s n'est pas install‚.
-10.7:Recherche des mises … jour...
-
-
-#### Downloading ####
-
-11.0:T‚l‚chargement de %s en cours... %ld octets
