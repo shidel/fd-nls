@@ -1,0 +1,52 @@
+AD
+
+   CHOICE - Kullanıcının listeden bir seçim yapmasını bekler
+
+ÖZET
+
+   CHOICE [/B] [/C[:]seçimler] [/N] [/S] [/T[:]c,nn] [metin]
+
+SEÇENEKLER
+
+ /B
+    İstemde bir ses (bip) çalar.
+
+ /C[:]seçimler
+    İstemde izin verilecek düğmeleri belirtir. Görüntülendiklerinde, düğmeler
+    virgüllerle ayrılmış olacak, köşeli parantez içinde bulunacak ve
+    ardlarından bir soru imi gelecektir. Eğer /C anahtarını belirtmezseniz
+    choice öntanımlı olarak EH kullanır. Üst üste iki nokta imi (:) isteğe
+    bağlıdır.
+
+ /N
+   İstemi görüntüler. Ancak istemden önceki metin yine de görüntülenecektir.
+   /N anahtarını verilirse belirtilen düğmeler hâlâ geçerli olacaktır.
+
+ /S
+   choice'i BÜYÜK/küçük harf duyarlı yapar. Eğer /S anahtarı belirtilmediyse
+   choice kullanıcının belirteceği BÜYÜK/küçük harf basımını kabul edecektir.
+
+ /T[:]c,nn
+     Choice'un öntanımlı düğmenin basılmış olarak kabul edilmesinden önce
+     belirtilen saniye kadar bekletir. /T anahtarı için değerler şöyledir:
+
+       c   nn saniye sonra görüntülenecek karakteri belirtir. Karakterin
+           /C anahtarı tarafından belirtilen seçim kümesinde olması
+           gerekmektedir.
+
+       nn  Kaç saniye beklenileceğini belirtir. Kabul edilebilir değerler
+           0/99 arasındadır. Eğer 0 belirtilirse öntanımlı düğmeye
+           basım sayılmasından önce bekleme süresi olmayacaktır.
+
+   metin
+     Görüntülenecek istem dizesi
+
+GERİ GÖNDERİLEN DEĞER
+
+   ERRORLEVEL (hata düzeyi) kullanıcının seçimini dengeleyecek (ofsetleyecek)
+   biçimde ayarlanır.
+
+GELİŞTİRİCİ
+
+   Jim Hall, jhall@freedos.org
+
