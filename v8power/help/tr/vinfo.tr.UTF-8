@@ -1,0 +1,47 @@
+vinfo [seçenekler]
+
+Genel sistem bilgisi izlencesi.
+
+    [boş]       Hiçbir şey yapmaz.
+    /V          Ayrıntılı kip.
+    /D a        Sürücü durumunu sına.
+                Şu hata kodlarını döndürür:
+                    15 - Mevcut değil
+                     5 - Biçimlendirilmemiş (DOS için)
+                     4 - Ağ sürücüsü (denenmemiştir)
+                     3 - CD/DVD-ROM (sadece MSCDEX, çoğu 15 hatasını verir)
+                     2 - Çıkarılabilir ortam (disket gibi)
+                     1 - (Ayrılmış)
+                     0 - Özel koşul yok
+    /M          Makine türünü döndür (ileride değişebilir)
+                Şu çıkış kodlarını döndürür:
+                    0 - Bilinmeyen, normal veya doğrudan 8086 donanımı.
+                    1 - 80186
+                    2 - 80286
+                    3 - 80386
+                    4 - 80486
+                    5 - 80586
+                    6 - 80686 veya daha iyisi
+                  101 - DOSBox.
+                  102 - QEMU.
+                  103 - VirtualBox.
+                  104 - VMware.
+                  200 - Genel, başka bir öykünücü tespit edildi.
+    /P          /M anahtarı ile aynıdır. Ancak sonuçları dışlar ve sanal makine
+                sonuçları için test etmez.
+
+Bilhassa programcılar ve Ar-Ge için faydalı olan daha fazla seçenekleri aşağıda
+bulabilirsiniz. Bu seçenekler bir süredir mevcut, ancak resmi olarak V8 Power
+Tools API'nın bir parçası değildirler ve ileride kaldırılabilir veya değiştiri-
+lebilir. Bu araçların bazılarını kullandığımdan belki ileride ayrı bir izlence
+olarak yayımlanabilirler.
+
+    ASCII       Tüm ASCII tablosunu görüntüle
+    RAM         Tüm geleneksel belleği STDOUT'a dök.
+
+    /C *        Komut satırının geri kalanı için ASCII değerleri çıktıla
+    /R dize     Tüm geleneksel bellekte dizeyi ara
+    /U dize     Bellekte (a000:0000 ve üzeri) BÜYÜK/küçük harf farkı gözetmeden
+                dizeyi ara
+
+             (Henüz geliştirilme aşamasındadır, daha fazla bilgi eklenecektir.)
