@@ -221,6 +221,7 @@ function get_csv_id () {
 function process_line () {
 
     local line="${1}"
+
     local index=0
     local id=
     local sha=
@@ -228,6 +229,8 @@ function process_line () {
     local bit flag data storage plusone
     unset data
     local data
+
+    unset RECENT_ID
 
     while [[ "${line}" != '' ]] ; do
         (( index++ ))
@@ -270,6 +273,8 @@ function process_line () {
 
     [[ "${plusone}" == "yes" ]] && (( index++ ))
 
+    RECENT_ID="${id}"
+
     if [[ ! ${index} -eq ${CSV_FIELDS} ]] ; then
         echo "warning: field count ${index}/${CSV_FIELDS} missmatch for \`${id}'" | errorlog
     fi;
@@ -288,7 +293,7 @@ function process_line () {
         id_in_master "${id}"
         if [[ $? -eq 1 ]] ; then
             echo "warning: no master entry for \`${id}', entry excluded" | errorlog
-            return 0
+            return 42
         fi
     fi
 
@@ -319,7 +324,7 @@ function import_csv () {
     CSV_TOTAL=0
     unset CSV_ID
     dented "Import ${1}"
-    local flag line header
+    local flag line header ret
     setIndent +
     flag=first
     while [[ ${flag} ]] ; do
@@ -334,7 +339,15 @@ function import_csv () {
                 flag=true
                 dented "Processing CSV table"
             fi
-            process_line "${line}" || break
+            process_line "${line}"
+            ret=$?
+            if [[ ${ret} -eq 42 ]] && [[ "${RECENT_ID}" != "" ]] ; then
+                [[ -d "${CSV_FILE%/*}/excluded" ]] || mkdir -p "${CSV_FILE%/*}/excluded"
+                echo "${header}">"${CSV_FILE%/*}/excluded/${RECENT_ID}.csv"
+                echo "${line}">>"${CSV_FILE%/*}/excluded/${RECENT_ID}.csv"
+            elif [[ ${ret} -ne 0 ]] ; then
+                break
+            fi
         fi
     done< "${1}"
     dented "${CSV_TOTAL} total entries processed"
