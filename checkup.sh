@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SPECIAL=';packages;pgme;fdi;'
+SPECIAL=';packages;pgme;fdi;htmlhelp;'
 EXCLUDE=';txt;docinfo;htm;html;'
 LANGUAGES=''
 APPLANGS=''
