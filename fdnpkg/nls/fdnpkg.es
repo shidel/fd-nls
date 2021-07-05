@@ -28,6 +28,7 @@
 1.16: listlocal         - Lista todos los paquetes locales (instalados) que             [cadena]          contienen 'cadena'
 1.17:FDNPKG se vincula con la versi¢n de Watt-32 a continuaci¢n:
 1.18: listfiles pkg     - Lista de archivos propiedad del paquete 'pkg'
+1.19: clearcache        - Limpiar la cach‚ local de FDNPKG
 
 
 ### Cosas generales ####
@@ -51,6 +52,7 @@
 2.16:Cargando %s...
 2.17:ADVERTENCIA: Memoria virtual demasiado baja. FDNPKG podr¡a comportarse          de manera poco fiable.
 2.18:ERROR: no se puede escribir en el directorio '%s'. Verifique su                 variable %%TEMP%%.
+2.19:Cach‚ borrada
 
 
 #### Instalaci¢n del paquete ####
@@ -104,6 +106,7 @@
 6.2:Error: ­Memoria insugiciente al cargar la base de datos del paquete!
 6.3:Error: No se pudo abrir el archivo de datos en '%s'.
 6.4:Advertencia: ­No se pudo abrir el archivo db cache en %s!
+6.5:Mensaje de %s
 
 
 #### Cargando configuraci¢n ####
