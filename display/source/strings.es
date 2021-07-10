@@ -8,6 +8,8 @@ sInXMS           DB     " en extendida$"
 
 ; Hardware-driver specific messages
 errAcient        DB     "FD-DISPLAY requiere al menos un adaptador EGA", 0dH, 0aH, "$"
+errNoCGA         DB     "DISPLAY: adaptador CGA no encontrado", 0dH, 0aH, "$"
+errDrvSpecific   DB     "DISPLAY: Error cr¡tico del controlador", 0dH, 0aH, "$"
 
 ; Commandline parsing error messages
 SyntaxErrorStr:         DB      "Error de sintaxis($"
@@ -24,4 +26,4 @@ SES_TooManyPools        DB      ") Demasiados c¢digos de p gina de software (MAX
 SES_ListTooLong         DB      ") Lista demasiado larga", 0dH, 0aH, "$"
 SES_TooManyHWPools      DB      ") Demasiados c¢digos de p gina de hardware", 0dh, 0ah, "$"
 SES_NoAllocatedBufs     DB      ") No hay memoria suficiente para buffers", 0dH, 0aH, "$"
-
+SES_InvalidParameter    DB      ") Par metro inv lido", 0dh, 0ah, "$"
