@@ -1,20 +1,20 @@
 vinfo [se‡enekler]
 
-Genel sistem bilgisi izlencesi.
+Genel sistem bilgisi yardmc arac.
 
-    [boŸ]       Hi‡bir Ÿey yapmaz.
+    [boŸ ]      Hi‡bir Ÿey yapmaz.
     /V          Ayrntl kip.
-    /D a        Src durumunu sna.
-                u hata kodlarn d”ndrr:
+    /D a        Src durumunu test et.
+                u hata kodlarn geri g”nderir:
                     15 - Mevcut de§il
                      5 - Bi‡imlendirilmemiŸ (DOS i‡in)
                      4 - A§ srcs (denenmemiŸtir)
                      3 - CD/DVD-ROM (sadece MSCDEX, ‡o§u 15 hatasn verir)
-                     2 - €karlabilir ortam (disket gibi)
+                     2 - €kartlabilir ortam (disket gibi)
                      1 - (AyrlmŸ)
                      0 - ™zel koŸul yok
-    /M          Makine trn d”ndr (ileride de§iŸebilir)
-                u ‡kŸ kodlarn d”ndrr:
+    /M          Makine trn g”nder (Bu, gelecek platformlarda bozulabilir)
+                u ‡kma kodlarn geri g”nderir:
                     0 - Bilinmeyen, normal veya do§rudan 8086 donanm.
                     1 - 80186
                     2 - 80286
@@ -26,22 +26,27 @@ Genel sistem bilgisi izlencesi.
                   102 - QEMU.
                   103 - VirtualBox.
                   104 - VMware.
-                  200 - Genel, baŸka bir ”yknc tespit edildi.
-    /P          /M anahtar ile ayndr. Ancak sonu‡lar dŸlar ve sanal makine
-                sonu‡lar i‡in test etmez.
+                  200 - Genel, baŸka bir ”yknmc tespit edildi.
+    /P          /M anahtar ile ayndr. Ancak sanal makine testlerini dŸlar.
 
-Bilhassa programclar ve Ar-Ge i‡in faydal olan daha fazla se‡enekleri aŸa§da
-bulabilirsiniz. Bu se‡enekler bir sredir mevcut, ancak resmi olarak V8 Power
-Tools API'nn bir par‡as de§ildirler ve ileride kaldrlabilir veya de§iŸtiri-
-lebilir. Bu ara‡larn bazlarn kulland§mdan belki ileride ayr bir izlence
-olarak yaymlanabilirler.
+    /E n        MBR durumu i‡in fiziki sabit disk #n (1, 2, vs)'yi snar
+                    0  - MBR tamamen boŸtur
+                    5  - MBR sadece b”lm bilgileri i‡ermektedir
+                    10 - MBR bir ”nykleyici i‡ermektedir
+                    101 - Bir hata meydana gelmiŸtir
+
+Bilhassa programclar ve Ar-Ge i‡in faydal olan daha fazla se‡enek. Uzun bir
+sredir mevcut olmuŸlardr. Fakat resmŒ olarak (benim tarafmdan) V8Power Tools
+API'snn bir par‡as de§ildirler ve herhangi bir zamanda de§iŸtirilebilir veya
+kaldrlabilirler. Ancak bazlarn kulland§mdan, belki kendi yardmc
+ara‡larna taŸnabilirler.
 
     ASCII       Tm ASCII tablosunu g”rntle
     RAM         Tm geleneksel belle§i STDOUT'a d”k.
 
-    /C *        Komut satrnn geri kalan i‡in ASCII de§erleri ‡ktla
+    /C *        Komut satrnn geri kalan i‡in ASCII de§erleri ‡ktsn ver
     /R dize     Tm geleneksel bellekte dizeyi ara
-    /U dize     Bellekte (a000:0000 ve zeri) BšYšK/k‡k harf fark g”zetmeden
+    /U dize     Bellekte (a000:0000 ve zeri) k‡k byk harf fark g”zetmeden
                 dizeyi ara
 
-             (Henz geliŸtirilme aŸamasndadr, daha fazla bilgi eklenecektir.)
+               (Hƒlƒ geliŸtirilme aŸamasndadr, daha fazlas a‡klanacaktr)
