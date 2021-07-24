@@ -37,7 +37,6 @@ LSM.ALTERNATE-SITE=Sitio web alternativo
 LSM.ORIGINAL-SITE=Sitio web original
 LSM.WIKI-SITE=Sitio web de ayuda
 LSM.MIRROR-SITE=Sitio web espejo
-LSM.NA=(n/a)
 
 MISSING.NONE=No faltan archivos
 MISSING.SOME=Falta $0 del archivo $1

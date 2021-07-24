@@ -200,6 +200,11 @@ function calc_dir_languages () {
                 l=$(ls -a1d "${1}"/*.en 2>/dev/null | wc -l )
                 [[ ${l} -eq 1 ]] && EN=$(ls -a1d "${1}"/*.en)
             fi
+            [[ ! -e "${EN}" ]] && EN="${1}/${1%%/*}.EN"
+            if [[ ! -e "${EN}" ]] ; then
+                l=$(ls -a1d "${1}"/*.EN 2>/dev/null | wc -l )
+                [[ ${l} -eq 1 ]] && EN=$(ls -a1d "${1}"/*.EN)
+            fi
             # echo "English version $EN"
             EN_STAMP=$(get_stamp "${EN}")
             # echo "Timestamp $EN_STAMP"
@@ -210,7 +215,7 @@ function calc_dir_languages () {
         l=$(lang_of_nls "${i}")
         [[ "${l}" == "" ]] && continue
 
-        if [[ "${l}" == 'en' ]] ; then
+        if [[ "${l}" == 'en' ]] || [[ "${l}" == 'EN' ]] ; then
             calc_add_language "${l}"
         else
             compare_nls "$i"
@@ -253,7 +258,7 @@ function calc_src_languages () {
 }
 
 function calc_languages () {
-
+    # [[ "${1/pkgtools}" == "${1}" ]] && return 0
     APPLANGS=''
     local prog
     unset UC
