@@ -15,6 +15,7 @@ LINE.TOOLONG=Error: La l¡nea #$ es demasiado larga
 ERROR=Error ($)
 ERROR.NUMBER=#$
 ERROR.2=archivo no encontrado
+ERROR.3=directorio no encontrado
 
 PKG.INSTALLED=El paquete '$' est  instalado
 PKG.NOTFOUND=No se puede encontrar un paquete que coincida con '$'
