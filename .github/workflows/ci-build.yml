@@ -1,0 +1,35 @@
+name: Validate
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: build and test
+      run:  python3 ./test/main.py
+
+    - name: name snapshot
+      id: snapshotname
+      run: |
+        (
+          today=`date -u +%F | tr '\n' '-'`
+          s_sha=`echo -n ${GITHUB_SHA} | cut -c1-8`
+          printf "fname=snapshot-%s%s\n" $today $s_sha >> $GITHUB_OUTPUT
+        )
+
+    - name: upload
+      if: github.repository == 'shidel/fd-nls' &&
+        (github.event_name == 'push' || github.event.pull_request.merged == true)
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ steps.snapshotname.outputs.fname }}
+        path: _output/*
