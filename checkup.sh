@@ -9,6 +9,8 @@ LANGS=0
 TRANS=0
 PLATFORM="$(uname)"
 KEYFILE_ERR="translation file"
+DEBUGGING=pkgtools
+unset DEBUGGING
 
 function script_header () {
     echo "When listing languages for a specific program, the language maybe followed"
@@ -41,6 +43,63 @@ function script_help () {
     echo "usage: ${0##*/} [program]"
     echo
     script_summary
+}
+
+if [[ "$(uname)" == "Darwin" ]] ; then
+	DARWIN=yes
+else
+	unset DARWIN
+fi
+
+UPPER_CHARS='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+LOWER_CHARS='abcdefghijklmnopqrstuvwxyz'
+SPACE_CHARS=' '
+
+while [[ ${#SPACE_CHARS} -lt 128 ]] ; do
+	SPACE_CHARS="${SPACE_CHARS}${SPACE_CHARS}"
+done
+
+function upperCase () {
+
+	local s="${*}"
+	if [[ ${DARWIN} ]] ; then
+		# unfortunately cannot use the simple ${var^^} on OS-X to convert to upper case
+	    local out c i
+		for (( i=0;i<${#s};i++ )) ; do
+			c="${s:${i}:1}"
+			if [[ "${LOWER_CHARS//${c}}" != "${LOWER_CHARS}" ]] ; then
+				c="${LOWER_CHARS%${c}*}"
+				c="${UPPER_CHARS:${#c}:1}"
+			fi
+			out="${out}${c}"
+		done
+		echo "${out}"
+	else
+		echo "${s^^}"
+	fi
+
+}
+
+function lowerCase () {
+
+    local s="${*}"
+	if [[ ${DARWIN} ]] ; then
+		# unfortunately cannot use the simple ${var,,} on OS-X to convert to lower case
+		local out c i t
+		for (( i=0;i<${#s};i++ )) ; do
+			c="${s:${i}:1}"
+			if [[ "${c//[A-Z]}" != "${c}" ]] ; then
+				t="${UPPER_CHARS%${c}*}"
+				t="${LOWER_CHARS:${#t}:1}"
+				[[ "${t}" != "" ]] && c="${t}"
+			fi
+			out="${out}${c}"
+		done
+		echo "${out}"
+	else
+		echo "${s,,}"
+	fi
+
 }
 
 function get_stamp () {
@@ -196,15 +255,8 @@ function calc_dir_languages () {
         [[ ! -e "${i}" ]] && continue
         if [[ "${EN}" == "" ]] ; then
             EN="${1}/${1%%/*}.en"
-            if [[ ! -e "${EN}" ]] ; then
-                l=$(ls -a1d "${1}"/*.en 2>/dev/null | wc -l )
-                [[ ${l} -eq 1 ]] && EN=$(ls -a1d "${1}"/*.en)
-            fi
-            [[ ! -e "${EN}" ]] && EN="${1}/${1%%/*}.EN"
-            if [[ ! -e "${EN}" ]] ; then
-                l=$(ls -a1d "${1}"/*.EN 2>/dev/null | wc -l )
-                [[ ${l} -eq 1 ]] && EN=$(ls -a1d "${1}"/*.EN)
-            fi
+            [[ ! -e "${EN}" ]] && EN="${1}/$(lowerCase ${1%%/*}).en"
+            [[ ! -e "${EN}" ]] && EN="${1}/$(upperCase ${1%%/*}).EN"
             # echo "English version $EN"
             EN_STAMP=$(get_stamp "${EN}")
             # echo "Timestamp $EN_STAMP"
@@ -288,6 +340,15 @@ function each_app () {
     for app in * ; do
         [[ ! -d "${app}" ]] && continue
         [[ "${SPECIAL//;${app};}" != "${SPECIAL}" ]] && continue
+
+        if [[ ${DEBUGGING} ]] ; then
+            if [[ "${app}" != "${DEBUGGING}" ]]; then
+                # echo  "DEBUG SKIP: ${1} ${app}"
+                continue
+            else
+                echo "DEBUG: ${1} ${app}"
+            fi
+        fi
         ${1} ${app}
     done
 

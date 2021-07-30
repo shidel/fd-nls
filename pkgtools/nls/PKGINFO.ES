@@ -8,6 +8,10 @@ PROG.TITLE=PkgInfo
 PROG.DESC=Utilidad de informaci¢n del paquete
 PROG.ABORT=programa abortado
 
+GBYTE=$GB
+OVERBYTE=>$GB
+PAUSED=presione una tecla para continuar...
+
 MEM.USAGE=Uso de memoria
 BAD.SWITCH=Ver ayuda: opci¢n inv lida '$'
 LINE.TOOLONG=Error: La l¡nea #$ es demasiado larga
