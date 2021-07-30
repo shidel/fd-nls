@@ -1,0 +1,72 @@
+Package Tools for FreeDOS
+
+(a very hasty rough draft)
+
+PKGINFO
+
+    Command line utility to to display metadata and file information for
+installed packages. Mostly, using it is straight forward. Just a couple things
+to note. First, the list of packages can be limited by using an advanced
+wildcard. For example, *XMS* and ?D*N all return expected results. Second, is
+the search option. You can limit search to only specified packages or by default
+all packages will have there metadata searched. The search is basically another
+advanced wildcard as well. So, you could do a "pkginfo *fd* /s gnu*ver*2" and
+get a list of all packages that whose id contains FD and contain gnu*ver*2
+somewhere in there metadata. You can also tack on /d to have the metadata
+displayed as well. For the most part, the order of command-line parameters
+makes no difference.
+
+PKGMAKER
+
+    Command line utility to assist in creating packages for FreeDOS. It can be
+used in several ways.
+
+    Lets say you have a program with an installer that you want to convert over
+to a package. Easy. Simply run PKGMAKER. Perform your install. Run PKGMAKER
+again. It would look something like this:
+
+    pkgmaker anewpkg
+    install
+    pkgmaker
+    edit %DOSDIR%\APPINFO\ANEWPKG.LSM
+    pkgmaker /z
+
+Thats all there is to it. Well mostly all. Well, I guess there is a lot more
+to mention...
+
+The first time it is run it records the state of the drive where FreeDOS is
+installed. You can have it record additional drives using the /d switch. Do you
+want to include drive D: and E:? Then, just put a /d de on the command line.
+Don't panic if you forgot to do it. Simply tell PKGMAKER to do the initial
+scan again using the /i switch.
+
+After you do you install, you run PKGMAKER a second time. If you did not provide
+the package name on the first pass, you'll need to do it now. It will scan
+the drive(s) a second time and compare it to the original scan. A package file
+list will be generated using any new files it finds. It will also create
+a template LSM file at this time. Also, if it finds that a pre-existing file was
+modified it will create a .MOD file listing those files.
+
+The created .LSM, .LST and .MOD files will be stored in the normal package
+management directories under %DOSDIR%\APPINFO and %DOSDIR%\PACKAGES. And you
+could use a package manager like FDNPKG to "uninstall" your newly created
+package now. But, we aren't done yet.
+
+At this point, you'll probably want to edit your text base metadata file.
+It was stored at %DOSDIR%\APPINFO\ANEWPKG.LSM with some bland generic text.
+Things like Title, Version, Description, and License will all need updated.
+
+Now, we want to "zip-n-ship" it. PKGMAKER comes with a default config file
+that is used to remap "real" directories to the "pseudo" directory structure
+used for packages. If things are not ending up where you expect when your
+package is installed, it probably is a remapping issue. Mapping
+multiple "pseudo" directories to a single "real" directory can be confusing
+to re-mapper. It really has no way to tell which one you really want and
+will just pick one.
+
+I hope that covers most of the important things. Oh, did I mention you can
+attach and detach files from packages as well? Or sometimes you can
+force PKGMAKER to ignore a bunch of different errors and procede anyway?
+
+NOTE: At present Long File Names (LFN) are not supported. You also need to
+have ZIP installed.
