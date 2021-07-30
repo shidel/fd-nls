@@ -1,0 +1,74 @@
+FreeDOS iáin Paket Araálarç
+
+(áok aceleyle yazçlmçü kaba bir taslak)
+
+PKGINFO
+
+    Kurulu paketler iáin Åst verileri ve dosya bilgilerini gîrÅntÅleyen komut
+satçrç programç. Ekseriyetle kullançmç kolaydçr. Sadece bir iki hususa dikkat
+etmek gerekir. òlk olarak, paket listeleri geliümiü jokerler kullançlarak
+sçnçrlanabilir. Mesela, *XMS* ve ?D*N beklenen neticeleri geri gînderir. òkinci
+olarak da arama seáeneßi. Aramayç sadece belirtilen paketlerle
+sçnçrlayabilirsiniz, yoksa tÅm paketlerin Åst verileri aranacaktçr. Arama
+temelde baüka bir geliümiü jokerdir. Yani "pkginfo *fd* /s gnu*ver*2" girebilir
+ve kimlißi FD iáeren ve Åst verilerinde gnu*ver*2 bulunan tÅm paketlerin
+listesini alabilirsiniz. Ayrçca /d ekleyip Åst verilerin de gîrÅntÅlenmesini
+saßlayabilirsiniz. Äoßunlukla komut satçrç parametrelerinin sçrasçnçn bir
+etkisi yoktur.
+
+PKGMAKER
+
+    FreeDOS iáin paket oluüturma maksadçnç taüçyan komut satçrç programç.
+Biráok üekilde kullançlabilir.
+
+    Farzedelim ki kurulumcusu bulunan bir programç bir pakete dînÅütÅrmek
+istiyorsunuz. Kolay. Sadece PKGMAKER'ç áalçütçrçn. Kurulumu yapçn. PKGMAKER'ç
+tekrar áalçütçrçn. Aüaßçdakine benzer bir üey olacaktçr:
+
+    pkgmaker anewpkg
+    install
+    pkgmaker
+    edit %DOSDIR%\APPINFO\ANEWPKG.LSM
+    pkgmaker /z
+
+òüte bu kadar. Neredeyse bu kadar. Sançrçm bahsetmem gereken daha áok üey var...
+
+òlk defa áalçütçrçldçßçnda FreeDOS'un kurulu oldußu sÅrÅcÅnÅn durumunu kaydeder.
+òlave sÅrÅcÅlerin durumunu kaydetmesini /d seáeneßi ile saßlayabilirsiniz. D:
+ile E: sÅrÅcÅlerini de mi eklemek istiyorsunuz? O hÉlde komut satçrçna sadece
+/d de ilave edin. Bunu unuttuysançz panik yapmayçn. PKGMAKER'a ilk taramayç
+tekrarlamasçnç /i seáeneßini kullanarak belirtmeniz kafi olacaktçr.
+
+Kurulum tamamlandçßçnda, PKGMAKER ikinci bir kez áalçütçrçrsçnçz. Eßer ilk
+taramada paket ismi girmediyseniz, bunu üimdi yapmançz gerekecektir. Program
+sÅrÅcÅleri ikinci defa tarayacak ve bunu orijinal tarama ile mukayese edecektir.
+Bulunan yeni dosyalar ile bir paket dosyasç oluüturacaktçr. Ayrçca bir üablon
+LSM dosyasç da oluüturacaktçr üu anda. Bu ilaveten, mevcut bir dosyançn
+deßiütirildißini fark ederse bu dosyalarç listeleyen bir .MOD dosyasç da
+oluüturacaktçr.
+
+Oluüturulan .LSM, .LST ve .MOD dosyalarç, %DOSDIR%\APPINFO ve %DOSDIR%\PACKAGES
+iáinde normal paket yînetimi dizinlerinde depolanacaktçr. Ve FDNPKG gibi bir
+paket yîneticisini kullanarak yeni oluüturulan paketinizi üimdi
+kaldçrabilirsiniz. Ama daha bitmedi.
+
+Bu noktada, muhtemelen metin temelli Åst veri dosyançzç dÅzenlemek
+isteyeceksiniz. O, %DOSDIR%\APPINFO\ANEWPKG.LSM olarak depolanmçütç ve jenerik
+metin iáerir. Baülçk, SÅrÅm, Aáçklama ve Lisans gibi alanlarçn hepsinin
+gÅncellenmesi gerekecektir.
+
+ûimdi paketi zip ile sçkçütçrçp yayçnlamak istiyoruz. PKGMAKER, varsayçlan bir
+yapçlandçrma dosyasçyla gelir, ve bu dosya "geráek" dizinleri paketler iáin
+kullançlan "sîzde" bir dizin yapçsç ile denkleütirir. ûayet paket kuruldußunda
+dosyalar bekledißiniz yerlerde deßillerse, muhtemelen bir denkleüme sorunu var
+demektir. Äoklu "sîzde" dizini "geráek" tek bir dizinle denkleütirmek program
+iáin kafa karçütçrçcç olabilir. Hangisini hakikaten istedißinizi tahmin
+etmesinin hiábir yolu yoktur ve bir tanesini seáecektir.
+
+Umarçm bu belge înemli noktalarçn áoßunu kapsar. Bu arada, paketlere dosya
+ekleyip onlardan dosya áçkartabileceßinizden bahsetmiümiydim? Veya bazen
+PKGMAKER'ç áeüitli hatalarç gîrmezden gelmeye ve devam etmeye
+zorlayabileceßinizden bahsetmiümiydim?
+
+NOT: üu anda uzun dosya isimleri (LFN) desteklenmemektedir. Ayrçca ZIP
+programçnçn kurulu olmasç gerekmektedir.

@@ -1,0 +1,78 @@
+Outils de paquets pour FreeDOS
+
+(un brouillon trŠs hƒtif)
+
+PKGINFO
+
+    Utilitaire en ligne de commande pour afficher les m‚tadonn‚es et les infos
+de fichiers pour les paquets install‚s. Son utilisation est souvent simple.
+Quelques points … noter : d'abord, la liste des paquets peut ˆtre limit‚e avec
+un joker avanc‚. Par exemple, *XMS* et ?D*N retournent les r‚sultats attendus.
+Ensuite, l'option de recherche. Vous pouvez limiter la recherche aux paquets
+sp‚cifi‚s, sinon par d‚faut les m‚tadonn‚es de tous les paquets seront
+recherch‚es. La recherche est fondamentalement un autre joker avanc‚. Donc vous
+pouvez ex‚cuter "pkginfo *fd* /s gnu*ver*2" et obtenir une liste de tous les
+paquets dont l'ID contient FD et pour lesquels gnu*ver*2 est pr‚sent dans les
+m‚tadonn‚es. Vous pouvez aussi ajouter /d pour que les m‚tadonn‚es soient
+‚galement affich‚es. La plupart du temps, l'ordre des paramŠtres de la ligne
+de commande ne fait aucune diff‚rence.
+
+PKGMAKER
+
+    Utilitaire en ligne de commande pour assister … la cr‚ation de paquets
+pour FreeDOS. Peut ˆtre utilis‚ de plusieurs fa‡ons.
+
+    Supposons que vous avez un programme avec un installeur que vous souhaitez
+convertir en un paquet. C'est facile. Ex‚cutez simplement PKGMAKER. Effectuez
+l'installation. Ex‚cutez … nouveau PKGMAKER. Cela devrait ressembler … ceci :
+
+    pkgmaker anewpkg
+    install
+    pkgmaker
+    edit %DOSDIR%\APPINFO\ANEWPKG.LSM
+    pkgmaker /z
+
+C'est tout ce que l'on peut en dire. Presque tout. Eh bien, je crois qu'il y a
+bien plus … dire...
+
+La premiŠre fois qu'il est ex‚cut‚, il enregistre l'‚tat du lecteur o— FreeDOS
+est install‚. Vous pouvez faire en sorte qu'il enregistre l'‚tat de lecteurs
+suppl‚mentaires avec le commutateur /d. Souhaitez-vous inclure les lecteurs D:
+et E: ? Alors, mettez simplement /d de sur la ligne de commande. Ne paniquez
+pas si vous l'oubliez. Indiquez simplement … PKGMAKER d'ex‚cuter l'analyse
+initiale … nouveau avec le commutateur /i.
+
+AprŠs que vous avez fait l'installation, vous ex‚cutez PKGMAKER une seconde
+fois. Si vous n'avez pas fourni le nom du paquet lors de la premiŠre fois, vous
+devrez le faire maintenant. Il analysera les lecteurs une seconde fois et
+comparera le r‚sultat avec le premier. Une liste de fichiers de paquet sera
+g‚n‚r‚e avec tous les nouveaux fichiers qu'il trouvera. Il cr‚era ‚galement un
+fichier modŠle LSM … ce moment-l…. Aussi, s'il trouve qu'un fichier pr‚existant
+a ‚t‚ modifi‚, il cr‚era un fichier .MOD listant les fichiers modifi‚s.
+
+Les fichiers .LSM, .LST et .MOD cr‚‚s seront stock‚s dans les dossiers normaux
+de gestion de paquets sous %DOSDIR%\APPINFO et %DOSDIR%\PACKAGES. Et vous
+pourriez utiliser un gestionnaire de paquets tel que FDNPKG pour "d‚sinstaller"
+maintenant votre paquet nouvellement cr‚‚. Mais ce n'est pas fini.
+
+· ce stade, vous voudrez probablement modifier votre fichier texte de
+m‚tadonn‚es. Il a ‚t‚ stock‚ dans %DOSDIR%\APPINFO\ANEWPKG.LSM avec du texte
+g‚n‚rique. Des choses telles que le titre, la version, la description et la
+licence auront toutes besoin d'ˆtre mises … jour.
+
+Maintenant, nous voulons le zipper et le distribuer. PKGMAKER est fourni avec
+un fichier de configuration par d‚faut qui est utilis‚ pour remapper les
+r‚pertoires r‚els en une pseudo-structure de r‚pertoires utilis‚e pour les
+paquets. Si les fichiers ne sont pas l… o— vous les attendiez lorsque le paquet
+est install‚, il s'agit probablement d'un problŠme de remappage. Faire
+correspondre des multiples pseudo-r‚pertoires en un seul r‚pertoire r‚el peut
+ˆtre d‚routant pour le logiciel. Il n'a vraiment aucun moyen de deviner celui
+que vous d‚sirez r‚ellement et en choisira simplement un.
+
+J'espŠre que cela couvre les aspects les plus importants. Oh, ai-je mentionn‚
+que vous pouvez aussi attacher et d‚tacher des fichiers depuis les paquets ? Ou
+que parfois vous pouvez forcer PKGMAKER … ignorer un tas d'erreurs et de
+continuer malgr‚ tout ?
+
+REMARQUE : … l'heure actuelle, les noms de fichiers longs (LFN) ne sont pas
+pris en charge. Vous devez ‚galement avoir install‚ ZIP.
