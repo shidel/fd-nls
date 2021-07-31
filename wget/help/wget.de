@@ -1,0 +1,98 @@
+GNU Wget 1.8.2, ein nicht interaktiver Netzwerkabrufer.
+Aufruf: wget.exe [OPTION]... [URL]...
+
+Obligatorische Argumente fÅr lange Optionen sind auch fÅr kurze Optionen
+obligatorisch.
+
+Startup:
+  -V,  --version           Wget Version anzeigen und beenden.
+  -h,  --help              Zeigt die Hilfe
+  -e,  --execute=COMMAND   Einen Befehl im Stil von `.wgetrc'ausfÅhren.
+
+Logging und Eingabedatei:
+  -o,  --output-file=FILE     Protokolliere Nachrichten in DATEI.
+  -a,  --append-output=FILE   HÑnge Nachrichten an DATEI an.
+  -d,  --debug                Gebe debug-Ausgaben aus.
+       --wdebug               Gebe WATT-32 debug-Ausgaben aus.
+  -q,  --quiet                ruhig (keine Ausgabe).
+  -v,  --verbose              AusfÅhrliche Ausgabe (Standardeinstellung).
+  -nv, --non-verbose          AusfÅhrliche Ausgabe, aber nicht ruhig.
+  -i,  --input-file=FILE      Lade in DATEI gefundene URLs herunter.
+  -F,  --force-html           Eingabedatei als HTML behandeln.
+  -B,  --base=URL             Stellt URL relativen Links in der Datei -F -i voran.
+       --sslcertfile=FILE     Optionales Client-Zertifikat.
+       --sslcertkey=KEYFILE   Optionale SCHLöSELDATEI fÅr dieses Zertifkat.
+       --egd-file=FILE        DATEIname des EGD-Sockets.
+
+Download:
+       --bind-address=ADDRESS   Binde auf lokalem Host an ADDRESSE (Hostname oder IP).
+  -t,  -tries==NUMBER           Setze  Anzahl Versuche auf NUMMER (0=unbegrenzt).
+  -O   --output-document=FILE   Schreibe Dokumente in DATEI.
+  -nc, --no-clobber             öberlagere keine vorhandenen Dateien, keine .#-Suffixe!
+  -c,  --continue               Stelle teilweise heruntergeladene Datei fertig.
+       --progress=TYPE          WÑhle TYP der Fortschrittsanzeige
+  -N,  --timestamping           Rufe Dateien nicht erneut ab au·er neuere als lokale.
+  -S,  --server-response        Antwort des Druckservers.
+       --spider                 Lade nicht herunter.
+  -T,  --timeout=SECONDS        Setze das Lesetimeout auf SEKUNDEN.
+  -w,  --wait=SECONDS           Warte SEKUNDEN zwischen den Abrufen.
+       --waitretry=SECONDS      Warte 1 bis x SEKUNDEN zwischen Abrufwiederholung.
+       --random-wait            Warte 0...2*WAIT Sekunden zwischen Abrufen.
+  -Y,  --proxy=on/off           Schalte Proxy ein- oder aus.
+  -Q,  --quota=NUMBER           Setze Abrufkontingent auf NUMMER.
+       --limit-rate=RATE        Begrenze Downloadrate auf RATE.
+
+Verzeichnisse:
+  -nd  --no-directories            Erstelle keine Verzeichnisse.
+  -x,  --force-directories         Erzwinge Erstellung von Verzeichnissen.
+  -nH, --no-host-directories       Erstelle keine Hostverzeichnisse
+  -P,  --directory-prefix=PREFIX   Speichere Dateien unter PREFIX/...
+       --cut-dirs=NUMBER           Ignoriere NUMBER Remoteverzeichniskomponenten.
+
+HTTP Optionen:
+       --http-user=USER      Setze http-Benutzer auf BENUTZER.
+       --http-passwd=PASS    Setze das HTTP-Passwort auf PASS.
+  -C,  --cache=on/off        Verbiete Server-gecachte Daten (Standard: erlaubt).
+  -E,  --html-extension      Speichere alle Text-/HTML-Dokumente mit html-Erweiterung.
+       --ignore-length       Ignoriere das "InhaltslÑnge" Header-Feld.
+       --header=STRING       FÅge STRING zwischen die Header ein.
+       --proxy-user=USER     Setze USER als Proxy-Benutzername.
+       --proxy-passwd=PASS   SETZE PASS als Proxy-Passwort.
+       --referer=URL         Schlie·e Referer: URL Header in HTTP-Anfrage ein.
+  -s,  --save-headers        Speichere die HTTP-Header in einer Datei.
+  -U,  --user-agent=AGENT    Identifiziere als AGENT anstelle von Wget/VERSION.
+       --no-http-keep-alive  Deaktiviere HTTP-Keep-Alive (persistente Verbindungen).
+       --cookies=off         Verwende keine Cookies.
+       --load-cookies=FILE   Lade Cookies vor der Sitzung aus DATEI.
+       --save-cookies=FILE   Speichere Cookies nach der Sitzung in DATEI.
+
+FTP Optionen:
+  -nr, --dont-remove-listing   Entferne `.listing' Dateien nicht.
+  -g,  --glob=on/off           Schalte Dateinamen'globbing' ein oder aus.
+       --passive-ftp           Verwende den "passive" Transfermodus.
+       --retr-symlinks         Wenn wiederholend, erhalte verlinkt-mit-Dateien (nicht Verzeichnisse).
+
+Rekursiver Abruf:
+  -r,  --recursive          Rekursives Web-Saugen - vorsichtig benutzen!
+  -l,  --level=NUMBER       max. Rekursionstiefe (inf oder 0 fÅr unendlich).
+       --delete-after       Lîsche Dateien nach dem Download lokal.
+  -k,  --convert-links      Konvertiere nicht-relative Links in relative.
+  -K,  --backup-converted   Sichere Datei X vor dem Konvertieren als X.orig.
+  -m,  --mirror             Shortcut Option Ñquivalent zu -r -N -l inf -nr.
+  -p,  --page-requisites    Rufe alle Bilder usw. der HTML-Seite ab.
+
+Rekursives Akzeptieren/Ablehnen:
+  -A,  --accept=LIST                CSV-LISTE akzeptierter Erweiterungen.
+  -R,  --reject=LIST                CSV-LISTE abgelehnter Erweiterungen.
+  -D,  --domains=LIST               CSV-LISTE akzeptierter DomÑnen.
+       --exclude-domains=LIST       CSV-LISTE abgelehnter DomÑnen.
+       --follow-ftp                 Folge FTP-Links aus HTML-Dokumenten.
+       --follow-tags=LIST           CSV-Liste von gefolgten HTML-Tags.
+  -G,  --ignore-tags=LIST           CSV-LISTE von ignorierten HTML-Tags.
+  -H,  --span-hosts                 Gehe bei Rekursion zu fremden Hosts.
+  -L,  --relative                   Folge nur relativen Links.
+  -I,  --include-directories=LIST   LISTE erlaubter Verzeichnisse.
+  -X,  --exclude-directories=LIST   LISTE ausgeschlossener Verzeichnisse.
+  -np, --no-parent                  Gehe nicht zum öberverzeichnis.
+
+Maile Fehlerberichte und VorschlÑge an <bug-wget@gnu.org>.
