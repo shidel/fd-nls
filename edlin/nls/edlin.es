@@ -12,42 +12,42 @@
 # Aitor SANTAMARIA_MERINO (aitor.sm@wanadoo.es)
 # 
 1.0:Ss
-1.1: :  \b
-1.2:Â¨De acuerdo?  \b
-1.3:Entrada errÂ¢nea
-1.4:%s: %lu lÂ¡nea leÂ¡da\n
-1.5:%s: %lu lÂ¡neas leÂ¡das\n
-1.6:%s: %lu lÂ¡nea escrita\n
-1.7:%s: %lu lÂ¡neas escritas\n
+1.1:\040:\040
+1.2:¨De acuerdo?\040
+1.3:Entrada err¢nea
+1.4:%s: %lu l¡nea le¡da\n
+1.5:%s: %lu l¡neas le¡das\n
+1.6:%s: %lu l¡nea escrita\n
+1.7:%s: %lu l¡neas escritas\n
 1.8:%lu:%c%s\n
 1.9:Pulse <Enter> para continuar
-1.10:%lu:  \b
+1.10:%lu:\040
 1.11:No encontrado
 1.12:%lu: %s\n
-1.13:\nEl programa edlin tiene las siguientes subÂ¢rdenes:\n
-1.14:#               Editar una sola lÂ¡nea      [#],[#],#m      Mover
-1.15:a               AÂ¤adir                     [#][,#]p        PÂ gina
+1.13:\nEl programa edlin tiene las siguientes sub¢rdenes:\n
+1.14:#               Editar una sola l¡nea      [#],[#],#m      Mover
+1.15:a               A¤adir                     [#][,#]p        P gina
 1.16:[#],[#],#,[#]c  Copiar                     q               Salir
 1.17:[#][,#]d        Eliminar                   [#][,#][?]r$,$  Sustituir
 1.18:e<>             Fin (guardar y salir)      [#][,#][?]s$    Buscar
 1.19:[#]i            Introducir                 [#]t<>          Transferir
-1.20:[#][,#]l        Listar                     [#]w<>          Escribir\n
-1.21:donde $ es una cadena de caracteres, <> Es un nombre de
-1.22:archivo, # es un nÂ£mero (que puede ser . = la lÂ¡nea actual,
-1.23:$ = la Â£ltima lÂ¡nea, o bien un nÂ£mero + o - otro nÂ£mero).\n
+1.20:[#][,#]l        Enumerar                   [#]w<>          Escribir\n
+1.21:donde $ es una cadena de caracteres, <> es un nombre de
+1.22:archivo, # es un n£mero (que puede ser . = la l¡nea actual,
+1.23:$ = la £ltima l¡nea, o bien un n£mero + o - otro n£mero).\n
 1.24:, copyright (c) 2003 Gregory Pietsch
-1.25:Este programa se distribuye ABSOLUTAMENTE SIN GARANTIA.
+1.25:Este programa se distribuye SIN GARANTÖA ALGUNA.
 1.26:Este programa es software libre, y se le invita a redistribuirlo
-1.27:bajo los tâ€šrminos de la Licencia PÂ£blica General de GNU -
-1.28:la versiÂ¢n 2 o, a su criterio, cualquier versiÂ¢n posterior.
-1.29:
+1.27:bajo los tâ€šrminos de la Licencia P£blica General de GNU -
+1.28:la versi¢n 2 o, a su criterio, cualquier versi¢n posterior.
+1.29:\n
 1.30:Memoria agotada
-1.31:Error en la longitud de la lÂ¡nea
-1.32:Error ee la posiciÂ¢n de la lÂ¡nea
-1.33:Entrada no vÂ lida, use ? para la ayuda
+1.31:Error en la longitud de la l¡nea
+1.32:Error ee la posici¢n de la l¡nea
+1.33:Entrada no v lida, use ? para la ayuda
 1.34:No hay nombre de archivo
-1.35:El bÂ£fer es demasiado grande
-1.36:PosiciÂ¢n no vÂ lida del bÂ£fer
+1.35:El b£fer es demasiado grande
+1.36:Posici¢n del b£fer no v lida
 1.37:ERROR: %s\n
 
 # END OF FILE
