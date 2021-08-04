@@ -1,6 +1,7 @@
 @ECHO OFF
+REM country changed to 049, W. Spiegl,
 
-rem COUNTRY=001,858,C:\FDOS\BIN\COUNTRY.SYS
+rem COUNTRY=049,858,C:\FDOS\BIN\COUNTRY.SYS
 
 set LANG=DE
 

@@ -1,0 +1,60 @@
+REM german language by W. Spiegl
+@echo off
+
+REM FDI Installationsanpasser
+
+REM Einige nÅtzliche Umgebungsvariablen:
+
+REM %FDRIVE%   Laufwerksbuchstabe des Installationsziels: C: oder D:
+REM %FTARGET%  Der DOSDIR Pfad des Installationsziels. (wie C:\FDOS)
+REM %FMEDIA%   Basisverzeichnis des Medienpaketbaums.
+REM %FBOOTD%   Laufwerksbuchstabe fÅr das Installationsmedium. (A:, B:, C:, D:, E: .....)
+REM %FINSP%    Pfad fÅr Installationsdateien wie diese. (?:\FREEDOS\SETUP)
+REM %OALL%     n = Nur die Basis, y = Alle Pakete, ? = Mit FDIMPLES angepa·t
+REM %OSRC%     n = Quellen nicht installiert, y = Quellen installiert
+
+vcls /f %TSF% /b %TSB% /c %TSC% /y2 /h24
+vframe /p0 /b %TFB% /f %TFF% %TFS% Textbox /w50 /h5 /c
+vecho /k0 /n /f %TFF% Bin bei der /f %TFH% Anpassung /f %TFF% der /f %TFH% %OS_NAME% /f %TFF% Installation.
+vdelay %FDEL%
+vdelay %FDEL%
+vcls /l
+vprogres /k0 /f %TFP% 0
+
+
+REM Step 1
+vprogres /k0 /f %TFP% 1 of 5
+rem xcopy %FMEDIA%\DONSTUFF\*.* %FDRIVE%\ >NUL
+vdelay 250
+
+REM Step 2
+vprogres /k0 /f %TFP% 2 of 5
+vdelay 250
+
+REM Step 3
+vprogres /k0 /f %TFP% 3 of 5
+vdelay 250
+
+REM Step 4
+vprogres /k0 /f %TFP% 4 of 5
+vdelay 250
+
+REM Step 5
+vprogres /k0 /f %TFP% 5 of 5
+echo vecho /k0 /n /p /fLightRed Warnung: /fGray /s- /c32 >>%FDRIVE%\AUTOEXEC.BAT
+echo vecho /k0 Dieses OS hat eine ernsthafte /fLightCyan Coolness /s- /fGray. /p>>%FDRIVE%\AUTOEXEC.BAT
+vdelay 250
+
+:Success
+vcls /l
+vecho /k0 /n /f %TFF% Es wurde /f %TFH% gekÅhlt /f %TFF% /s-.
+vdelay %FDEL%
+vdelay %FDEL%
+verrlvl 0
+goto AllDone
+
+:Failure
+verrlvl 1
+goto AllDone
+
+:AllDone
