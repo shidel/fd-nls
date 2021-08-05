@@ -100,27 +100,27 @@ Modificador no v lido. - /%s
 
 ## Issued if the context, the type of argument etc. is invalid
 :TEXT_ERROR_ILLFORMED_OPTION
-Argumento no v lido: '%s'
+Opci¢n no v lida: '%s'
 .
 
 :TEXT_ERROR_OPT_ARG
-La opci¢n '%s' no puede tener un argumento
+La opci¢n '%s' no puede tener un par metro
 .
 
 :TEXT_ERROR_OPT_NOARG
-La opci¢n '%s' requiere un argumento
+La opci¢n '%s' requiere un par metro
 .
 
 :TEXT_INVALID_NUMBER
-N£mero especificado no v lido en '%s'
+N£mero especificado en '%s' no v lido 
 .
 
 :TEXT_ERROR_CLOSE_QUOTE
-Falta cerrado de comillas: %c
+Comillas sin cerrar: %c
 .
 
 :TEXT_ERROR_TEMPFILE
-No se puede crear archivo temporal
+No se pudo crear archivo temporal
 .
 
 :TEXT_ERROR_TOO_MANY_PARAMETERS_STR
@@ -152,7 +152,7 @@ Falta par metro obligatorio.
 .
 
 :TEXT_ERROR_INVALID_DRIVE
-Unidad no v lida %c:.
+Unidad %c: no v lida.
 .
 
 :TEXT_ERROR_BADCOMMAND#2
@@ -189,7 +189,7 @@ El archivo por lotes '%s' no contiene la etiqueta '%s'.
 # The next three errors must remain in this order!
 :TEXT_ERROR_SET_ENV_VAR
 No se puede establecer la variable de entorno '%s'.
-El espacio de almacenamiento puede estar lleno.
+El espacio del entorno puede estar lleno.
 .
 :TEXT_ERROR_ENV_VAR_NOT_FOUND
 Variable de entorno '%s' no encontrada.
@@ -226,7 +226,7 @@ No se puede copiar '%s' en s¡ mismo
 .
 
 :TEXT_ERROR_COMMAND_TOO_LONG
-La l¡nea de ¢rdenes es demasiado larga tras la expansi¢n de los aliases
+La l¡nea de ¢rdenes es demasiado larga tras la expansi¢n de los alias
 .
 
 :TEXT_ERROR_LINE_TOO_LONG
@@ -275,7 +275,7 @@ FOR: se requiere DO.
 .
 
 :TEXT_ERROR_NO_COMMAND_AFTER_DO#1
-FOR: No hay instrucci¢n despu‚s de DO.
+FOR: No hay instrucci¢n despu‚s del DO.
 .
 
 :TEXT_ERROR_REDIRECT_FROM_FILE
