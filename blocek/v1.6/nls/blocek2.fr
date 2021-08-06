@@ -1,7 +1,9 @@
+#identifikuj_se
+fran‡ais
 #sys_font
-<FONT=latin216.ch>
+<FONT=unismall.ufn>
 #sys_font_maly
-latin214.ch
+unismall.ufn
 #m1
 Fichier
 #m2
@@ -29,11 +31,21 @@ Quitter           <<chap>>
 #m16
 Fermer le fichier <<Alt-F3>>
 #m21
+Couleurs
+#m211
 Couleur d'avant-plan
-#m22
+#m212
 Couleur d'arriŠre-plan
-#m23
+#m213
 Couleur du bureau
+#m214
+Texte s‚lectionn‚
+#m215
+Couleur de ligne en surbrillance
+#m22
+Langue
+#m23
+Mettre en surbrillance la ligne actuelle
 #m24
 Changement de police
 #m25
@@ -51,19 +63,29 @@ Conversion vers l'UTF-8
 #m42
 Conversion depuis l'UTF-8
 #m43
-Corriger le retour … la ligne courant
-#m43_pomoc
+Retour … la ligne
+#m431
+Corriger le retour … la ligne
+#m431_pomoc
 Toutes les lignes avec un "retour … la ligne doux" par des algorithmes de retour … la ligne sont convertis en "retour … la ligne dure".
 #m44
-Rechercher       <<Ctrl-F>>
+Rechercher   <<Ctrl-F>>
 #m45
 Rechercher … nouveau <<Ctrl-S>>
 #m46
-Remplacer       <<Ctrl-H>>
+Remplacer    <<Ctrl-H>>
 #m47
 Table des caractŠres
 #m48
 Conversions ASCII
+#m49
+Bloc des op‚rations
+#m491
+CaractŠres en entit‚s HTML
+#m492
+Convertir la casse en majuscules
+#m493
+Convertir la casse en minuscules
 #vyber_soubor
 S‚lectionner un fichier :
 #jak_to_ulozit
@@ -99,6 +121,8 @@ S‚lectionner la couleur d'avant-plan
 S‚lectionner la couleur d'arriŠre-plan
 #vyber_barvu_zakladu
 S‚lectionner la couleur du bureau
+#zda_pro_rad
+Voulez-vous mettre en surbrillance la ligne actuelle ?
 #nastaveni_ulozeno
 R‚glages enregistr‚s
 #ok
@@ -109,17 +133,19 @@ R‚glages enregistr‚s
 Cette fonction n'est pas encore disponible.
 #text_napovedy
 <FONT=surea37.fn>Blocek<SF>
-<FONT=latin216.ch>version 1.4
-Date de compilation : <BARVA=65535>27.6.2013<SB>
+<FONT=latin216.ch>version 1.62
+Date de compilation : <BARVA=65535>15.1.2019<SB>
 programm‚ par Laaca (laaca@seznam.cz)
 
 Blocek est un ‚diteur de texte et visionneur d'images
 qui est capable d'‚diter les fichiers avec le codage Unicode
 UTF-8 donc il est trŠs pratique pour ‚crire des pages WWW.
+Blocek peut ‚diter de trŠs grands fichiers et des lignes trŠs longues.
+Merci … Mateusz Viste pour ses polices Unicode.
+Blocek est ‚galement utilisable comme un visionneur simple de fichiers
+dans les formats graphiques communs. Il n'est cependant pas capable
+d'‚diter les images.
 
-Blocek n'a aucune restriction quant … la taille maximale des fichiers ou … la
-longueur des lignes.
-Merci … Mateusz "Fox" Viste pour ces polices Unicode.
 Ce programme est publi‚ en tant que logiciel libre et open source
 dans le cadre de la licence GNU/GPL<SF>
 #vyber_filtr
@@ -134,32 +160,48 @@ Voulez-vous remplacer les caractŠres inconnus par des "?"
 #parametr_otaznik
 Syntaxe :
 BLOCEK [fichier1 [,fichier2 [,...]]]
-#zoom
-plein ‚cran
+#ovladani_obrazku
+plein ‚cran*o<<>>O*+90*-90*horiz*vert*donn‚es Exif
 #zoom_info
-Visionner les images en plein ‚cran.
-#plus90
-+90›
+Visionner une image en plein ‚cran.
+#obrorig_info
+Bascule entre la taille originale et la taille optimale pour afficher l'image entiŠre … l'‚cran
 #plus90_info
 tourne l'image … 90 degr‚s dans le sens des aiguilles d'une montre
-#minus90
--90›
 #minus90_info
 tourne l'image … 90 degr‚s dans le sens antihoraire
+#fliphorz_info
+Rotation horizontale
+#flipvert_info
+Rotation verticale
+#exifdata_info
+Affiche les donn‚es de l'‚tiquette EXIF (disponible sur certains fichiers JPEG)
 #chyba
 Erreur !
 #soubor_nebyl_ulozen
 Le fichier n'a pas ‚t‚ enregistr‚ !
 Il n'y a pas assez d'espace sur le disque
 ou le lecteur est en lecture seule
-#fliphorz
-horiz.
-#flipvert
-vert.
-#fliphorz_info
-Retourne horizontalement
-#flipvert_info
-Retourne verticalement
+#informace_exif
+Informations Exif
+#exif_date_strs
+Date et heure :          *Date et heure de l'original :*Date et heure de la prise de vue :
+#exif_camera_info
+Fabriquant :*ModŠle :*Description :*Logiciel :*Source de lumiŠre :*Flash :*Mode d'exposition :*ISO :*Temps d'exposition :*Orientation :*Zoom :
+#exif_lightsrc_info
+Inconnue*LumiŠre de jour*Fluorescent*TungstŠne*Flash*LumiŠre standard A*LumiŠre standard B*LumiŠre standard C*D55*D65*D75*Autre*Inconnue
+#exif_flash_info
+Pas de Flash*Flash*Flash non stroboscopique*Flash stroboscopique*Flash (Auto)*Pas de flash*Inconnu
+#exif_expos_mode
+Inconnu*Contr“le manuel*Programme normal*Priorit‚ d'ouverture*Priorit‚ d'obturation*Programme cr‚atif*Programme d'action*Mode portrait*Mode paysage*Inconnu
+#exif_orientation_desc
+Normal*Miroir horiz.*Pivot‚ de 180*Miroir verti*Pivot‚ de 90 … gauche et en miroir*Pivot‚ de 90 … droite*Pivot‚ de 90 … droite et en miroir*Pivot‚ de 90 … gauche*Inconnu
+#exif_zoom_unused
+Non utilis‚
+#exif_GPS_info
+Informations GPS*latitude:*longitude:*altitude:*azimut*N*S*O*E*m*›*‹*¤
+#zkopirovat_exif
+Vers le presse-papiers
 #nejde_o_obrazek
 Le fichier est corrompu ou les donn‚es de l'image
 ne sont pas dans format pris en charge
@@ -201,7 +243,7 @@ S‚lectionner un filtre d'image
 Le fichier … ‚t‚ modifi‚.
 Le sauvegarder ?
 #bezejmenny
-<BARVA=46815><<nouveau fichier>><SB>
+<BARVA=46815><<new file>><SB>
 #bezejmenny_soubor
 Nouveau fichier
 #nacitam
@@ -211,19 +253,17 @@ Chargement...
 #zrusit_nac
 Annuler le chargement ?
 #chybi_bcfg
-File <BARVA=65535>BLOCEK.CFG<SB> est manquant.
+Le fichier <BARVA=65535>BLOCEK.CFG<SB> est manquant.
 Il sera cr‚‚ … partir du fichier par d‚faut
 <BARVA=65535>DEFAULT.CFG<SB>
 #chybny_bcfg
-File <BARVA=65535>BLOCEK.CFG<SB> n'est pas dans un format valide.
+Le fichier <BARVA=65535>BLOCEK.CFG<SB> n'est pas dans un format valide.
 Je le cr‚erai depuis le fichier
 <BARVA=65535>DEFAULT.CFG<SB>
 #pridani_bcfg
 Ces variables ont ‚t‚ ajout‚es au fichier <BARVA=65535>BLOCEK.CFG<SB> :
-#pocet_zmenautod‚tection
+#pocet_zmen
 modifications :
-#pametinfo
-Cette fonction n'est pas encore impl‚ment‚e :-(
 #neniswap
 Votre systŠme ne prend pas en charge la m‚moire virtuelle !
 Cela peut ˆtre dangereux lorsque toute la RAM est consomm‚e.
@@ -245,7 +285,7 @@ Les conversions ASCII ne peuvent ˆtre utilis‚es pour les textes en Unicode
 #asciiauto
 d‚tection automatique
 #asciiautovaruj
-La d‚tection automatique n'est pas toujours fiable … 100 %.
+L'autod‚tection n'est pas toujours fiable … 100 %.
 Dois-je continuer ?
 #vkod
 <PODTRH=+>source<PODTRH=->
@@ -255,24 +295,43 @@ Dois-je continuer ?
 s‚lectionn‚ :
 #ozn_nic
 rien
-#procesor
-Processeur :
-#pamet
-Memoire :
-#mb_ram
-Mo RAM
-#video
-Vid‚o
-#videopamet
-M‚moire vid‚o
-#verzevesa
-Version VESA :
-#videomod
-Mode vid‚o :
-#refreshfq
-Fr‚quence de rafraŒchissement :
-#verzedosu
-Version de DOS :
-#biosdefault
-BIOS par d‚faut
-
+#kompinfo
+Processeur :*M‚moire :*Mo RAM*Vid‚o :*Version VESA :*Mode vid‚o :*M‚moire vid‚o*Fr‚quence de rafraŒchissement :*Valeur par d‚faut du BIOS*Version de DOS :
+#schranka_c
+No de presse-papiers
+#schranka_do
+Copier dans le presse-papiers
+#schranka_ze
+Coller depuis le presse-papiers
+#schranka_copy
+Copier vers un autre presse-papiers
+#schranka_smaz
+Effacer
+#vyber_jazyk
+Choisir votre langue
+#nutny_restart
+Vous devez red‚marrer le programme pour que le changement soit pris en compte.
+#prevod_html_entity
+Conversion en entit‚s HTML
+#prevod_html_ent_info
+Les caractŠres avec une valeur ASCII ou Unicode sup‚rieure … 255
+seront convertis en entit‚s HTML.
+La port‚e de la conversion est d‚finie par le bloc.
+#text_je_v_unicode
+Le texte est en Unicode.
+#text_je_v_ascii
+Le texte est en ASCII et la conversion
+sera effectu‚e en utilisant une table de conversion.
+#neni_oz_blok
+Aucun bloc de texte n'a ‚t‚ s‚lectionn‚, donc la conversion
+aura lieu pour tout le texte.
+#prevod_mala_velka
+Convertir la casse en majuscules
+#prevod_mala_velka_inf
+Convertit la casse des lettres du bloc en majuscules.
+Ne touche pas aux autres caractŠres.
+#prevod_velka_mala
+Convertir la casse en minuscules
+#prevod_velka_mala_inf
+Convertit la casse des lettres du bloc en minuscules.
+Ne touche pas aux autres caractŠres.
