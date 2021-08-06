@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: erase</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: erase</h1>
+<pre>
+  ERASE borra uno o m s archivos.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  ERASE [unidad][ruta]nombre_archivo [/P] [/V] [/?]
+        unidad    Especifica la letra de la unidad donde se encuentra el
+                  archivo, por ejemplo, C:
+        ruta      Especifica la ruta donde se encuentra el archivo, por
+                  ejemplo, \ejemplo\
+  nombre_archivo  Especifica el (los) archivo(s) a eliminar. Especifique
+                  multiples archivos utilizando comodines (*,?).
+                  Puede utilizarse un per¡odo para especificar todos los
+                  archivos en el dirctorio actual, y es lo mismo que *.*
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /P  Solicita confirmaci¢n antes de eliminar cada archivo.
+  /V  muestra todo los archivos borrados.
+  /?  Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Por razones de rendimiento, ERASE sobreescribe la primera letra del
+  nombre del archivo por un '?'. No elimina el archivo en si, pero
+  desasigna el espacio donde se escribe el contenido del archivo.  
+  FreeDOS, como otras DOSes, reconoce el archivo renombrado (ejp.txt 
+  se convierte en ?jp.txt) como eliminado, ya no lo muestra y no ofrece
+  acceso a ‚l. Programas como <a href="../base/debug.htm">DEBUG</a> que tiene acceso al sector 
+  puede leer los contenidos del archivo.
+  Mientras no escriba en el disco, tiene la oportunidad de restaurar el
+  archivo nuevamente con <a href="../base/undelete.htm">UNDELETE</a>, solo el primer car cter del nombre del
+  archivo se perder  (_jp.txt). Las £nicas formas de borrar el CONTENIDO
+  DEL ARCHIVO ABSOLUTAMENTE es llenar el disco completamente con otros 
+  archivos o utilizando una herramienta de borrado. La £nica forma para
+  borrar EL MONBRE DEL ARCHIVO ABSOLUTAMENTE es <a href="../command/rename.htm">RENAME</a> <a href="../command/ren.htm">(REN)</a> el archivo
+  primero (por ejemplo, "a") y eliminarlo m s tarde (solo correcto en 8.3,
+  no en nombres de archivos largos).
+  tambi‚n puedes usar <a href="../command/del.htm">DEL</a> en lugar de borrar.
+  ERASE es un comando interno de command.com y no necesita otro archivo
+  para que funcione.
+</pre>
+<h2>Ejemplo:</h2>
+<pre>
+  erase C:\PROGRAM\test.txt
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../base/debug.htm">debug</a>
+  <a href="../command/del.htm">del</a>
+  <a href="../base/deltree.htm">deltree</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/ren.htm">ren</a>
+  <a href="../command/rename.htm">rename</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 1998 <b>Jim Hall</b>, Modificado en 2007 por <b>W. Spiegl.</b>
+  Traducido en 2018 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+</pre></body></html>

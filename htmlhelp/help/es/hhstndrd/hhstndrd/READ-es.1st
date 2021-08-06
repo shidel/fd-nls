@@ -1,0 +1,56 @@
+hhstndrd.zip
+============
+
+Este archivo contiene el grueso de los documentos html
+que se utilizan con help.exe (htmlhelp).
+
+NO SE NECESITA QUE SE DESCOMPRIMA - help.exe puede
+leer les archivos que estan en hhstndrd.zip.
+
+(Es posible que desee descomprimir los archivos HTML
+para que se puedan leer con otro navegador, o para 
+editarlos. Los archivos Zip normalmente tienen 
+prioridad sobre los archivos descomprimidos; si usted
+esta seguro que quiere leer y editar la ayuda,
+descomprima la versi¢n del archivo y remplazar o borrar
+la versi¢n original HHSTNDRD.ZIP)
+
+Traducido por Lorenzo del Toro Saravia en 2018.
+
+
+SOPORTE DE PµGINA DE C‡DIGO:
+
+Los diferentes idiomas de la ayuda requieren diferentes
+p†ginas de c¢digos. Si los caracteres no se muestran
+como esperaba, el La p†gina de c¢digos ser† incorrecta.
+
+Ejemplos de FDCONFIG.SYS / CONFIG.SYS sobre c¢mo instalar
+p†ginas de c¢digos:
+
+country=001,437,c:\fdos\bin\country.sys   (US settings)
+country=033,858,c:\fdos\bin\country.sys   (French settings)
+country=034,858,c:\fdos\bin\country.sys   (Configuraci¢n espa§ola)
+country=049,858,c:\fdos\bin\country.sys   (German settings)
+
+Puede encontrar su c¢digo de pa°s y las p†ginas de c¢digos en
+la secci¢n "comandos externos - country.sys" y en la secci¢n
+"Varios - kpdos".
+
+
+En correspondencia, FDAUTO.BAT /AUTOEXEC.BAT deber°a verse as°:
+
+set LANG=EN
+lh display con=(EGA,437,1)
+mode con cp prep=((437) %DOSDIR%\CPI\EGA.CPX)
+mode con cop sel=437
+mode con cp refresh
+
+Dependiendo de su pa°s, su idioma ("LANG"uage) debe estar configurado
+en EN / FR / ES / DE etc.
+Aseg£rese de que exista un "htmlhelp.en / fr / es / de", etc.
+en el "NLS" carpeta, de lo contrario help.exe se bloquear†! Si
+no es as°, cree uno, p. Ej. por copiando otro idioma.
+Reemplace "437" por su p†gina de c¢digos, consulte m†s arriba.
+En la secci¢n "Varios - cpidos" encontrar† el archivo EGAx.CPX
+que corresponde con su n£mero de p†gina de c¢digos. (Existe
+EGA.cpx hasta EGA18.cpx!)

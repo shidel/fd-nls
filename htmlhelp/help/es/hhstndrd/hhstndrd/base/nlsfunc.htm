@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: nlsfunc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: nlsfunc</h1>
+<pre>
+  NLSFUNC agrega la funcionalidad NLS (Soporte Nacional de Lenguaje).
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  NLSFUNC [/Y] [unidad][ruta]NomArchivo
+  NLSFUNC [/?]
+    unidad                     La letra de unidad, p. ej. C:
+    ruta                       El directorio, p. ej. \ejemplo\
+    NomArchivo                 El archivo que contiene la 
+                               informaci¢n NLS
+    [unidad][ruta] NomArchivo  Unidad y ruta a un archivo v lido
+                               COUNTRY.SYS, que contiene la informaci¢n
+                               espec¡fica del pa¡s.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /Y                 Carga la tabla opcional SI / NO.
+  /?                 Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Esta implementaci¢n de NLSFUNC es espec¡fica de FreeDOS.
+  No funcionar  con MS-DOS o cualquier otra variante de DOS.
+  ­Tampoco funciona con el n£cleo 2.036!
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    COUNTRY=34,858,C:\FDOS\COUNTRY.SYS
+  EN AUTOEXEC.BAT:
+    LH DISPLAY CON=(EGA,858,2)
+    MODE CON CP PREP=((850) C:\FDOS\CPI\EGA.CPX)
+    MODE CON CP PREP=((,437) C:\FDOS\CPI\EGA.CPX)
+    LH NLSFUNC /Y
+  Luego cambie las p ginas de c¢digos usando CHCP.
+  Si no necesita cambiar las p ginas de c¢digos, simplemente omita las
+  l¡neas MODE.
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/mode.htm">mode</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eduardo Casino, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

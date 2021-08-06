@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: tree / pdtree</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: tree / pdtree</h1>
+<pre>
+  TREE / PDTREE salida gr fica de directorios [carpetas] estructura
+  de una unidad o ruta dada. Opcionalmente incluye una lista de archivos
+  en la salida.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  TREE [d:][ruta] [/F] [/A] [/?]
+  PDTREE [d:][ruta] [/F] [/A] [/V] [/S][/P] [/?]
+       d:ruta  La unidad y directorio por el que se comienza. Si no hay
+       ruta a seguir, TREE/PDTREE comenzaran por el directorio actual.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+   /F  Representa los nombres de los archivos en cada directorio.
+   /A  Usa caracteres ASCII para la represantaci¢n visual de la estructura
+       de directorios.
+   /?  Muestra la ayuda y termina.
+
+ Opciones adicionales en FreeDOS pdTree: (no disponibles en TREE estandar)
+   /V  Muestra informaci¢n de la versi¢n y termina.
+   /S  S¢lo nombres cortos (usa nombres de archivos cortos, alternativa, 
+       cuando existen). S¢lo la versi¢n de DOS, usa la visualizaci¢n de
+       <a href="../util/doslfn.htm">LFN</a> API para encontar el primero/siguiente.
+   /P  Para despu‚s de cada p gina. (Nota: por defecto la presentaci¢n de
+       pantalla es de 80x25) S¢lo en la versi¢n de Win32, ignora la opci¢n
+       de pausa si la redirecci¢n de salida de archivos o hila a otro 
+       programa, tal que TREE | MORE; algunos intentos para usar el tama¤o
+       de la pantalla (TODO para la versi¢n de DOS).
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  PDTREE soporta NLS (soporte nacional de lenguaje).
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  Para mostrar la jerarqu¡a completa de directorios de la unidad C y parar
+  despu‚s de cada pantalla completa, ejecuta TREE especificando C: como el
+  comienzo de la ruta y dirije la salida con el comando <a href="../base/more.htm">MORE</a>:
+    tree C:\ | more
+  Cuando usas PDTREE, el anterior ejemplo tambi‚n puede activarse usando:
+    pdtree C:\ /p
+  Para mostrar la jerarqu¡a de directorios o un subderectorio y teniendo 
+  la salida de datos solo usando los caracteres estandar ASCII (tal como
+  para imprimir o guardarlo en alg£n sitio puede verlo sin las 
+  lineas/cuadros dibujados por caracteres soportados en DOS), especifica
+  el subdirectorio y la opci¢n /A:
+    tree ASUBDIR /a
+  Para mostrar la estructura de un directorio TREE y los archivos 
+  contenidos, a¤ade la opci¢n /F:
+    tree ASUBDIR /f | more 
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../command/dir.htm">dir</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../base/more.htm">more</a>
+  <a href="../base/tree.htm">tree</a>
+</pre>
+<hr>
+<pre>
+  Copyright: Este documento es de dominio p£blico, s¢lo las adesiones de 
+  dominio publico ser n aceptadas. As¡ este documento puede ser libremente
+  copiado, etc. pero no se garantiza, pretendiendo corregir, ni se le da
+  la actitud para cualquier prop¢sito. KJD 2003,2004. descargado en 2008
+  por W. Spiegl. Actualizado en 2013 por Lorenzo del Toro Saravia.
+
+</pre></body></html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: command (command.com o FreeCom)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: command (command.com o FreeCom)</h1>
+<pre>
+  COMMAND inicia una nueva copia del shell de comandos de FreeDOS.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  COMMAND [[unidad]ruta] [dispositivo] [/E:nnnnn] [/L:nnnn] [/U:nnn] [/P]
+          [/MSG] [/LOW] [/Y [/[C|K] comando]]
+  COMMAND [/?]
+          [unidad]ruta Especifica el directorio que contiene COMMAND.COM,
+                       por ejemplo, C:\ejemplo\
+          unidad       La letra de la unidad, por ejemplo C:
+          ruta         El directorio, por ejemplo \ejemplo\
+          dispositivo  Especifica el dispositivo a usar para el comando
+                       entrada y salida.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /E:nnnnn    Establece el tama¤o del entorno inicial en nnnnn bytes.
+              (nnnnn debe estar entre 256 y 32,768).
+  /L:nnnn     Especifica la longitud de los buffers internos (requiere
+              /P tambi‚n). (nnnn debe estar entre 128 y 1,024).
+  /U:nnn      Especifica la longitud del b£fer de entrada (requiere /P
+              tambi‚n). (nnn debe estar entre 128 y 255).
+  /P          Hace que el nuevo command shell sea permanente (no se puede
+              salir).
+  /MSG        Almacena todos los mansajes de error en la memoria (requiere
+              /P tambi‚n).
+  /LOW        Obliga al shell de comandos a mantener sus datos residentes
+              en la memoria baja.
+  /Y          Pasa por el programa por lotes especificado por /C o /K
+  /C comando  Ejecuta el comando especificado y lo devuelve
+  /K comando  Ejecuta el comando especificado y contin£a
+  /?          Muestra la ayuda
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  [unidad]ruta La unidad y la ruta donde est  el shell para buscar la
+               parte transitoria del programa. Por lo general, esto solo
+               es necesario para configurar el COMSPEC.
+  dispositivo  Un dispositivo alternativo para todas las entradas y 
+               salidas.
+  /e:nnnnn     El tama¤o del entorno, en bytes, en el rango 160-32768.
+               Este n£mero se redondear  a los 16 bytes m s cercanos.
+               El valor por defecto es 256.
+  /p           Hace que el shell sea permanente, por lo que el comando
+               EXIT no sale del shell.
+  /c {cadena}  Ejecuta el comando en {cadena}, luego sale.
+  /msg         Carga cualquier mensaje de error que pueda estar almacenado
+               en el disco de memoria.
+  Command (command.com) tambi‚n se llama FreeCom. Contiene muchos comandos
+  internos que no necesitan ning£n otro archivo para funcionar. Puedes
+  encontrar la lista de comandos internos <a href="../../index.htm#command">aqu¡</a>.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  C:\command /E:1024 /L:1024 /U:128 /P
+  command /?
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../command/exit.htm">exit</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../cnfigsys/shell.htm">shell</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 1998 <b>Jim Hall</b>, Modificado en 2008 por <b>W. Spiegl.</b>
+  Traducido en 2018 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+</pre></body></html>

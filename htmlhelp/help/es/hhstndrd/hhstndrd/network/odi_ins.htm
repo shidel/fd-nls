@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Redes de FreeDOS - instalaci¢n del controlador ODI</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Redes de FreeDOS - instalaci¢n del controlador ODI</h1>
+<h2><a name="zzz"></a>Descripci¢n general</h2>
+<pre>
+    (Imagen del modelo de ODI)
+  Controladores (<a href="../network/odi.htm">ODI</a>) "Abrir la interfaz de enlace de datos"
+  originalmente se necesitaban para <a href="../network/novell.htm">Novell</a> NetWare. Pero eso no quiere
+  decir que no pueden ser utilizados para aplicaciones <a href="../network/tcpip.htm">TCP/IP</a> basados
+  en paquetes controladores. En realidad, estos se utilizaron para este
+  desde que se inventaron.
+  Un controlador <a href="../network/odi.htm">ODI</a> es una buena opci¢n, si usted no puede conseguir
+  un controlador de paquetes para su NIC. Porque NetWare era un sistema
+  muy popular durante los a¤os ochenta y noventa del siglo pasado, hay
+  una muy buena posibilidad de que el fabricante de su <a href="../network/network.htm">tarjeta de red</a>
+  incluy¢ un controlador de como ODI.
+</pre>
+<h2><a name="aaa"></a>D¢nde encontrarlos</h2>
+<pre>
+  Busque un directorio llamado "NetWare", "nwclient", "ODI" o "VLM" en
+  el disquete de instalaci¢n o CD-ROM de la tarjeta. Los controladores
+  son ejecutables, sus nombres se parecen a "3C574.COM" o "DFE670.COM".
+</pre>
+<h2><a name="bbb"></a>C¢mo funciona</h2>
+<pre>
+  En el lenguaje de <b>la especificaci¢n ODI</b> (ver: <b>http://developer.novell
+  .com/ndk/doc/lancomp/dos_psta/dos_pstack.pdf (*01)</b>) estos
+  controladores de la tarjeta de red se llaman <b>"Controlador de interfaz
+  de enlace m£ltiple" (MLID)</b>.                                                                 
+  Como se puede ver en la figura anterior, el <b>MLID</b> se comunica
+  directamente con el hardware de la tarjeta de interfaz de <a href="../network/network.htm">red</a>. El <b>MLID</b>
+  recibe paquetes para diferentes pilas de protocolos (n£cleos) en el
+  sistema y pasa estos paquetes a una segunda pieza de software, el <b>
+  "Link Layer Support" (LSL)</b>. La <b>LSL</b> determina entonces qu‚ protocolo
+  de pila es para recibir el paquete.Ambos, <b>MLID</b> y <b>LSL</b> forman la
+  arquitectura ODI.
+  As¡ que tenemos un archivo adicional para conseguir trabajo ODI: El
+  <b>LSL</b>, que es un archivo llamado "LSL.COM". Este archivo es parte
+  de la "DOS NetWare Client", que se puede descargar de <a href="../network/novell.htm">Novell</a> (ver:
+  <b>http://www.novell.com/coolsolutions/tools/downloads/dw271e.zip (*02)</b>).
+  Sitio de descarga de <a href="../network/novell.htm">Novell</a> (ver: <b>http://www.novell.com/coolsolutions/
+  tools/13555.html (*03)</b>) comenta expl¡citamente "LICENCIA: LIBRE"
+  por ello. Despu‚s de la descarga y extracci¢n, el archivo "LSL.COM"
+  se puede encontrar en la carpeta "NIOS".
+</pre>
+<h2><a name="ccc"></a>El conversor/cu¤a</h2>
+<pre>
+    (Imagen de Webspyder)
+  Como queremos usar ODI con aplicaciones <a href="../network/tcpip.htm">TCP/IP</a> basados en controlador
+  de paquetes, tenemos que descargar otra pieza de software, un
+  <b>"controlador de paquetes para conversores ODI"</b>. Estos conversores
+  tambi‚n son llamados "envoltorios" o una "cu¤a". Tenemos tres
+  opciones:
+    * <a href="../network/history.htm#bbe">ODIPKT.COM</a> v3.1 por Dan Lanciani (ver: <b>http://www.danlan.com
+      (*04)</b>) en la Universidad de Harvard. El software es de dominio
+      p£blico; su licencia permite la libre redistribuci¢n de binarios
+      y fuente, y la modificaci¢n de la fuente (ensamblador). <a href="../network/history.htm#bbe">ODIPKT.COM</a>
+      es parte de FreeDOS 1.0. Si ha instalado las aplicaciones de red
+      de la distribuci¢n FullCD, que puede estar ubicado en C:\FDOS\BIN.
+      <b>Este es el software de la mayor¡a de los usuarios eligen</b>.
+    * <a href="../network/pkt2odi.htm">PKT2ODI</a>.EXE por Caldera. Este archivo es parte del software de DR
+      "WebSpyder", un navegador gr fico de DOS, que Caldera lanz¢ en
+      1998. WebSpyder ten¡a licencia de xChaos/<a href="../network/tcpip_ap.htm#ccc">Arachne</a>. El software se
+      puede <b>descargar aqu¡</b> (ver: <b>http://lazybrowndog.net/webspyder
+      (*05)</b>). Es la licencia permite que sea evaluado y redistribuido
+      libremente para fines no comerciales.
+    * Si ya est  ejecutando completo NetWare, puede utilizar IPXPKT.COM
+      para ejecutar un controlador de paquetes sobre IPX.COM. IPXPKT.COM
+      es software libre de <a href="../network/crynwr.htm">Crynwr</a> y es una parte de su paquete de
+      recopilaci¢n de controlador PKTD11.ZIP (ver: <b>http://www.crynwr.
+      com/drivers/pktd11.zip (*06)</b>). Este es un caso especial y no se
+      investig¢ m s lejos en este documento.
+  Con la <b>MLID</b>, la <b>LSL</b> y el convertidor que tenemos la mayor¡a de los
+  archivos necesarios. El £nico que falta es el archivo de configuraci¢n
+  "NET.cfg". Un archivo de ejemplo con los ajustes supuestos para la
+  tarjeta se puede encontrar en el CD o disquete que vino con ‚l y debe
+  estar ubicado en el mismo directorio que el controlador ODI.
+</pre>
+<h2><a name="ddd"></a>Configuraci¢n de NET.CFG</h2>
+<pre>
+  Ahora, vamos a editar nuestro principal archivo de configuraci¢n
+  NET.cfg. Si no existe, lo crea. Tienes que elegir un directorio -
+  ubicaciones predeterminadas de NET.cfg parecen ser C:\nwclient o
+  C:\NET. De todos modos, la ubicaci¢n debe estar en el mismo
+  directorio, donde se pueden encontrar LSL.COM y el controlador.
+  Un ejemplo NET.CFG (ver m s abajo), que entr¢ con la <a href="../network/3com.htm">3Com</a> 3c574
+  PC card muestra una gran cantidad de opciones de configuraci¢n, que
+  se necesitan para <a href="../network/novell.htm">Novell</a> NetWare y otro software. Para el uso
+  de las aplicaciones <a href="../network/tcpip.htm">TCP/IP</a> basados en controlador de paquetes los
+  siguientes cuatro l¡neas en NET.cfg son suficientes:
+      --- NET.CFG ---
+      Link Support
+        buffers 8 1600
+      Link Driver 3C574
+        Frame Ethernet_II
+  <b>Expansi¢n de los parametros:</b>
+      link support
+  La l¡nea de "Link Support" configura la <b>LSL</b>. Las opciones son:
+  "buffers", "max boards", "max stacks" y "mempool". Tan s¢lo hay que
+  configurar:
+      buffers 8 1600
+  Esto determina el n£mero y el tama¤o de los buffers de recepci¢n de la
+  <b>LSL</b>. El n£mero predeterminado de comunicaci¢n <a href="../network/tcpip.htm">TCP/IP</a> es 8. El autor de
+  <a href="../network/history.htm#bbe">ODIPKT</a>, Dan Lanciani recomienda utilizar un tama¤o de b£fer de 1600
+  bytes para ODIPKT. (ver: <b>http://groups.google.de/group/comp.protocols.
+  tcp-ip/msg/b8ba79ab39cacc4f/ (*07)</b>)
+      Link Driver 3C574
+  La l¡nea "Link Driver" configura el <b>MLID</b> (el controlador de la
+  tarjeta de <a href="../network/network.htm">red</a>). En primer lugar, se especifica el nombre del
+  controlador. Arriba puede ver el ejemplo de una PC Card <a href="../network/3com.htm">3Com</a> 3c574.
+  Cambie esto al nombre de la tarjeta de red.
+  Luego configuramos el "marco" o "tipo de sobre" (ambas declaraciones
+  trabajan y significan lo mismo) que utiliza este controlador:
+      Frame Ethernet_II
+  Es posible definir m s de un tipo de marco aqu¡: Ya hemos o¡do que
+  es un controlador ODI multiprotocolo, por lo que el <b>MLID</b> es capaz
+  de utilizar m s de un marco y un protocolo con la misma tarjeta de red
+  de hardware.
+  Para ello define tablas l¢gicas para cada trama definida. Marcos
+  posibles son, por ejemplo, "<a href="../network/ethernet.htm">ETHERNET</a>_II" (protocolo IP),
+  "ETHERNET_802.2" o "ETHERNET_802.3" (tanto el protocolo <a href="../network/ipxspx.htm">IPX/SPX</a>).
+  Para el convertidor de controlador de paquetes, que queremos empezar
+  m s tarde, es obligatorio definir al menos la trama de <a href="../network/ethernet.htm">Ethernet</a> II
+  aqu¡.
+  Usted tambi‚n tiene que informar ODIPKT en un par metro de l¡nea de
+  comandos para utilizar la tarjeta con el marco ETHERNET_II (v‚ase m s
+  adelante).
+  Para una documentaci¢n completa de los par metros de NET.CFG ver el
+  "Cliente NetWare para DOS y MS Windows Referencia t‚cnica" (ver:
+  <b>http://www.docs.hp.com/en/J2771-90016/index.html (*08)</b>).
+</pre>
+<h2><a name="eee"></a>Instalaci¢n</h2>
+<pre>
+  Despu‚s de que hayamos configurado NET.cfg podemos iniciar los
+  controladores ODI en <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> en el arranque.
+  Lo primero que tenemos que empezar es la capa de enlace de apoyo:
+      LH C:\NETWORK\NWCLIENT\LSL.COM /C C:\NETWORK\NET\NET.CFG
+  Por favor, cambie las rutas a los que utiliza en su sistema. La opci¢n
+  "/C" cuenta a la <b>LSL</b> d¢nde encontrar NET.CFG. Esta opci¢n s¢lo es
+  necesaria, si NET.cfg no est  en el mismo directorio que LSL.COM.
+  Ahora empezamos la <b>MLID</b>:
+      LH C:\NETWORK\PCMCIA\3C574\ODI\3C574.COM
+  Como £ltimo paso que tenemos que instalar el controlador de paquetes
+  para ODI Converter. Aqu¡ podemos elegir entre <a href="../network/history.htm#bbe">ODIPKT</a> o la <a href="../network/pkt2odi.htm">PKT2ODI</a>
+  m s ex¢tico. La mayor¡a de la gente utilizar  la <a href="../network/history.htm#bbe">ODIPKT.COM</a>
+  convertidor libre por Dan Lanciani, que se puede descargar aqu¡:
+  <b>http://danlan.com/pdr_shim/odipkt/odipkt.zip (*09)</b>. Extraiga e
+  archivo zip y cargar ODIPKT.COM con un comando como este en
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>:
+    LH C:\NETWORK\NWCLIENT\ODIPKT.COM 0 96
+  El primer n£mero de los par metros anteriores ("0") determina el
+  tablero que utiliza el marco ETHERNET_II. El ejemplo siguiente se
+  supone que ha definido diferentes marcos (tambi‚n conocidos como
+  "los tipos de sobres") en NET.CFG:
+      --- NET.CFG ---
+      Link Driver 3C574
+        FRAME ETHERNET_II
+        FRAME ETHERNET_802.2
+        FRAME ETHERNET_802.3
+        FRAME ETHERNET_SNAP
+  Entonces usted tiene que decirle ODIPKT el n£mero de ¡ndice de la
+  tabla de l¢gica que apoya la trama de <a href="../network/ethernet.htm">Ethernet</a> II. S¢lo se cuentan los
+  marcos en NET.CFG: Ethernet II es el primero, el marco 802.2 es el
+  segundo, el marco 802.3 es la tercera, complemento es cuarto.
+  Para hacer las cosas un poco dif¡cil, ODIPKT empieza a contar con "0"
+  (al igual que los programadores lo hacen). Eso significa que, de
+  acuerdo con el ejemplo anterior:
+      ODIPKT.COM 0 | board with ETHERNET_II
+      ODIPKT.COM 1 | ETHERNET_802.2 (won't work)
+      ODIPKT.COM 2 | ETHERNET_802.3 (won't work)
+      ODIPKT.COM 3 | ETHERNET_SNAP (won't work)
+  La £nica opci¢n que funcione para ODIPKT es el n£mero que define la
+  tabla de l¢gica con el marco <a href="../network/ethernet.htm">Ethernet</a> II, que es "0" en nuestro
+  ejemplo. Ahora nos fijamos en el segundo par metro ("96") que se
+  utiliza para iniciar ODIPKT. Este par metro define el software
+  de interrupci¢n (vector) utilizado por el controlador. Como ya
+  hemos escuchado al configurar un controlador de paquetes, el
+  n£mero de interrupciones de software del controlador de paquetes
+  m s utilizado es 0x60, que es el valor hexadecimal 60 (el "0x"
+  s¢lo nos dice que es el formato hexadecimal). Desafortunadamente
+  ODIPKT no entender los valores hexadecimales, as¡ que tienes
+  que traducir este par metro en un n£mero decimal - que es 96.
+  Si desea utilizar otros valores y no est  acostumbrado a hexadecimal,
+  puede intentar una calculadora hexadecimal-dicimal (ver:
+  <b>http://www.langeneggers.ch/Nuetzliches/Hex_Dez.htm (*10)</b>) o vea la
+  siguiente lista:
+        0x60 = 96
+        0x61 = 97
+        0x62 = 98
+         ...
+        0x69 = 105
+        0x6A = 106
+         ...
+        0x7D = 125
+        0x7E = 126
+
+  <b>Ejemplo de NET.CFG</b>
+    ; version 2.0
+    ; max tasks = 60
+    ; show dots = on
+    link support
+    buffers 8 1514
+    ; mempool 4096
+    ; THIS SECTION IS FOR CONFIGURATION OF LINKWATCH MANAGEABLE
+    ; END NODES
+    ;
+    Protocol DME
+    BIND #1
+    ; replace with your specific information for LinkWatch
+    USER_NAME "Your Name"
+    NODE_NAME "Your Node Name"
+    NODE_LOCATION "Your Node Location"
+    ; set password according to your network administrator's
+    ; instructions
+    ; NODE_PASSWORD "ABCDEFGH"
+    PHONE_NUMBER "Your Phone Number"
+    NOTES "Miscellaneous text"
+    NOTES "and more text"
+    LINK DRIVER 3C574
+    INT 10
+    ; PORT 300
+    NO_AMP
+    FRAME ETHERNET_802.2
+    FRAME ETHERNET_802.3
+    ; PROTOCOL IPX 0 ETHERNET_802.3
+    FRAME ETHERNET_II
+    FRAME ETHERNET_SNAP
+    Netware DOS Requester
+    FIRST NETWORK DRIVE = F
+    NETWARE PROTOCOL = NDS BIND
+</pre>
+<h2><a name="fff"></a>Reinicio</h2>
+<pre>
+  Despu‚s de un reinicio del controlador de paquetes est  <a href="../network/install.htm">instalado</a> y
+  listo. Usted puede utilizar una aplicaci¢n para probar si funciona,
+  por ejemplo, el comando "ping" desde el paquete WATTCP.
+  Buena suerte!
+    (Imagen: mensajes de arranque)
+
+  <b>(*01) OK</b>
+  <b>(*02) OK</b>
+  <b>(*03) OK</b>
+  <b>(*04) https://web.archive.org/web/20110722171549/http:
+        //www.danlan.com/</b>
+  <b>(*05) OK</b>
+  <b>(*06) http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/
+        repositories/latest/net/crynwr.zip</b>
+  <b>(*07) OK</b>
+  <b>(*08) https://support.hpe.com/hpesc/public/docDisplay?docId=
+        c02037554&docLocale=en_US</b>
+  <b>(*09) https://web.archive.org/web/20110722171549/http://
+        www.danlan.com/</b>
+  <b>(*10) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Alemania), modificado en
+  2010 por W.Spiegl. Actualizado en 2014 por Lorenzo del Toro Saravia.</b>
+  Para mas informaci¢n <a href="../network/intro.htm#ddd">Consulte aqu¡</a>.
+
+  Se concede permiso para copiar, distribuir y/o modificar este documento
+  en los t‚rminos de la licencia de documentaci¢n libre GNU, versi¢n 1.2
+  o cualquier versi¢n posterior publicada por la Free Software
+  Foundation.
+  Una copia de la licencia est  incluida en la secci¢n titulada
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

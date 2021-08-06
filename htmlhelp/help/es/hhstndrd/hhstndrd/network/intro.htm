@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Redes de FreeDOS - Introducci¢n</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Redes de FreeDOS - Introducci¢n</h1>
+<pre>
+  Gracias al Sr. Ulrich Hansen por su permiso para publicar este articulo
+  en la ayuda de FreeDOS.
+</pre>
+<h2><a name="zzz"></a>Resumen</h2>
+<pre>
+  En este documento se describe la forma de <a href="../network/network.htm">red</a> de un equipo que ejecuta
+  FreeDOS (<b>http://www.freedos.org/</b>). La mayor¡a de las cosas se supone
+  que deben trabajar con otras versiones de DOS tambi‚n.
+  El <a href="../network/history.htm">primer cap¡tulo</a> trara sobre la historia de las <a href="../network/network.htm">redes</a> DOS, que en su
+  mayor¡a ocurri¢ en los a¤os 1981 a 1995. En el <a href="../network/dosnetto.htm">segundo cap¡tulo</a> se
+  encuentra una versi¢n general de los controladores, protocolos y
+  aplicaciones que a£n est n todas en el siglo 21. El <a href="../network/install.htm">tercero</a> y <a href="../network/ldtcpipk.htm">cuarto</a>
+  cap¡tulo finalmente explica como instalar <a href="../network/tcpip.htm">TCP/IP</a> en una m quina de DOS.
+  Es una gu¡a detallada a trav‚s de la instalaci¢n y configuraci¢n de
+  los controladores y otras cosas que se requiera por es software.
+</pre>
+<h2><a name="aaa"></a>Alternativas</h2>
+<pre>
+  Si hay un puntero LPT disponible en ambas m quinas tambi‚n se puede
+  utilizar una conexi¢n de cable paralelo para transterir archivos (f.i.
+  con MS DOS 6.22 Interlnk, Open/DR DOS FileLink, Laplink, Winlink o
+  <b>FileMaven</b> ver: <b>http://www.briggsoft.com/fmdos.htm (*01)</b>).
+</pre>
+<h2><a name="bbb"></a>Hardware</h2>
+<pre>
+    (Imagen Testsuite para esta Wiki: Un Compaq Contura Aero 4/33C con
+    PCMCIA)
+  Para conectarse a una <a href="../network/network.htm">red</a> se necesita alg£n dispositivo f¡sico para
+  permitir una conexi¢n entre el PC y la <a href="../network/network.htm">red</a>. Esto se puede hacer:
+    * A trav‚s de <a href="../network/modem.htm">m¢dem</a>, utilizando la l¡nea de tel‚fono.
+    * A trav‚s de una <a href="../network/ethernet.htm">Ethernet</a> tarjeta de red, utilizando cableado
+      directo.
+    * A trav‚s de <a href="../network/wifi.htm">Wifi</a>.
+
+  <a href="../network/modem.htm">M¢dem</a>
+  Interconexi¢n a trav‚s de <a href="../network/modem.htm">m¢dem</a> no est  todav¡a descritos en esta
+  Wiki, tal vez desee usted ayudar?
+
+  <a href="../network/ethernet.htm">Ethernet</a>
+  Si usted est  considerando comprar una tarjeta de <a href="../network/ethernet.htm">red</a> para su m
+  quina de FreeDOS, mirar si viene con un controlador de paquetes.
+  Muchas aplicaciones <a href="../network/tcpip.htm">TCP/IP</a> de DOS necesitar n un controlador de
+  paquetes para trabajar (ver <a href="../network/pack_ins.htm">aqu¡</a> para m s informaci¢n). Si la
+  tarjeta viene con otros controladores para DOS o Windows 3.1, como
+  los <a href="../network/odi_ins.htm">controladores ODI</a> (<a href="../network/novell.htm">Novell</a>) o <a href="../network/ndis_ins.htm">controladores NDIS2</a> (Microsoft),
+  que tambi‚n trabajar n en DOS (que son s¢lo un poco m s complicados
+  de instalar). Si usa PCMCIA, las siguientes tarjetas se ha comprobado
+  que funcionan:
+    * La tarjeta <a href="../network/3com.htm">3Com</a> Megahertz 3c574 10/100 LAN PC (sin controlador de
+      paquetes, pero con <a href="../network/odi.htm">ODI</a> y <a href="../network/ndis.htm">NDIS</a>2).
+    * La tarjeta <a href="../network/3com.htm">3Com</a> 10Mbit 3C589 EtherLink III (con controlador de
+      paquetes).
+    * La tarjeta Fast D-Link DFE-670TXD <a href="../network/ethernet.htm">Ethernet</a> PC (con controlador de
+      paquetes).
+  Tarjetas PCMCIA necesitan ser instalados con el software de 3¦ partes
+  como SystemSofts CardSoft. Se puede descargar desde driverguide como
+  "System Soft Version 3.1, <b>CARDSOFT.ZIP</b>" (ver: <b>http://www2.driverguide.
+  com/uploads/uploads9/26188.html (*02)</b>)
+
+  <a href="../network/wifi.htm">WiFi</a>
+  Agunas tarjetas antiguas <a href="../network/wifi.htm">WiFi</a> funcionan con FreeDOS.
+  Ver <a href="../network/wifi.htm">aqu¡ para m s informaci¢n</a>.
+</pre>
+<h2><a name="ccc"></a>Observaciones</h2>
+<pre>
+  Escribir este documento s¢lo ha sido posible porque muchas otras
+  personas est n dispuestos a compartir la informaci¢n y el c¢digo
+  en Internet. ¨Gracias!
+  Algunas partes de este documento fueron inspirados por Michael Bernardi
+  <b>DOS Networking HOWTO</b> (<b>http://www.dendarii.co.uk/FAQs/dos-net.html
+  (*03)</b>). Tambi‚n sus colecciones de <b>FAQs</b> (<b>http://www.dendarii.co.uk
+  FAQs/ (*04)</b>) y <b>Aplicaciones de redes</b> (<b>http://www.dendarii.co.uk/
+  FAQs/dos-apps.html (*05)</b>) y su <b>DOS-Meta FAQ about networking
+  DOS machines</b> (<b>http://www.dendarii.co.uk/FAQs/dos-meta_faq.html
+  (*06)</b>) son de gran valor.
+  Otra buena introducci¢n a la creaci¢n de redes de DOS fue escrito por
+  Michael B. Brutman. El t¡tulo: <b>"<a href="../network/tcpip.htm">TCP/IP</a> Networking on DOS. Why on Earth
+  would anybody want to do that?"</b> (<b>http://www.brutman.com/Dos_Networking/
+  dos_networking.html (*07)</b>).
+</pre>
+<h2><a name="ddd"></a>Derechos de autor</h2>
+<pre>
+  Toda la obra ("Networking under FreeDOS") est  disponible bajo los
+  t‚rminos de la <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a> (GNU FDL).
+  La captura de pantalla de "<a href="../network/history.htm#aab">LAN manager</a> 2.1" en el cap¡tulo <a href="../network/history.htm#aab">LAN manager</a>
+  (<b>http://lazybrowndog.net/freedos/#Manager (*08)</b>) fue tomada por Michal
+  Necasek para su <b>"History of OS/2"</b> (<b>http://pages.prodigy.net/michaln/
+  history (*09)</b>). Dio su amable permiso para utilizar esta pantalla y
+  publicarlo bajo la GNU FDL.
+  A la foto del paquete de software "Workgroup Add-On para MS-DOS" en el
+  mismo cap¡tulo ha sido hecha por Dirk Makowski por su <b>"Winhistory"</b>
+  (<b>http://www.winhistory.de/ (*10)</b>), una enorme colecci¢n de art¡culos y
+  salvapantallas de software hist¢ricos. Tambi‚n permite el uso de su
+  foto como imagen previsualizada en el presente documento y publicarlo
+  bajo la GNU FDL. Las partes principales del texto y muchos gr ficos
+  fueron creados por <b>Ulrich Hansen</b> (<b>http://www.ulrich-hansen.de/
+  (*11)</b>). Copyright (c) 2007 por Ulrich Hansen, Mainz (Alemania).
+  Licencia: GNU FDL. Se concede permiso para copiar, distribuir y/o
+  modificar este documento en los t‚rminos de la liciencia de
+  documentaci¢n libre GNU, versi¢n 1.2 o cualquier versi¢n posterior
+  publicada por la Free Software Foundation; sin secciones invariantes
+  ni textos de cubierta delantera y sin textos de la cubierta. Una copia
+  de la licencia se puede encontrar aqu¡: <b>Licencia de  documentaci¢n
+  libre de GNU (http://www.gnu.org/licenses/gfdl.htm (*12).</b>
+</pre>
+<h2><a name="eee"></a>Renuncia</h2>
+<pre>
+  Este texto refleja nuestras propias esperiencias con la creaci¢n de
+  redes de DOS. Las soluciones y sugerncias pueden o no pueden trabajar
+  en su entrono. As¡ que por favor cuidado: Instalaci¢n de software en
+  su sistema o de cambiar los archivos del sistema puede da¤ar la m
+  quina, perturbar flujo de trabajo y perder el tiempo.
+
+  <b>(*01) OK</b>
+  <b>(*02) https://archive.org/details/SYSUTI11
+        y: https://support.advantech.com.tw/support/DownloadSRDetail_
+        New.aspx?SR_ID=1-17FJK&Doc_Source=Download
+        y: https://support.advantech.com.tw/support/DownloadSRDetail_
+        New.aspx?SR_ID=1%2BGE%2B626&Doc_Source=Download</b>
+  <b>(*03) OK</b>
+  <b>(*04) OK</b>
+  <b>(*05) OK</b>
+  <b>(*06) OK</b>
+  <b>(*07) OK</b>
+  <b>(*08) http://freedos.sourceforge.net/wiki/index.php/
+        Networking_FreeDOS</b>
+  <b>(*09) http://ps-2.kev009.com/michaln/history/index.html</b>
+  <b>(*10) OK</b>
+  <b>(*11) OK</b>
+  <b>(*12) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Alemania), modificado en 2010
+  por W.Spiegl. Actualizado en 2013 por Lorenzo del Toro Saravia.</b>
+  Para mas informaci¢n <a href="../network/intro.htm#ddd">Consulte aqu¡</a>.
+
+  Se concede permiso para copiar, distribuir y/o modificar este documento
+  en los t‚rminos de la licencia de documentaci¢n libre GNU, versi¢n 1.2
+  o cualquier versi¢n posterior publicada por la Free Software
+  Foundation.
+  Una copia de la licencia est  incluida en la secci¢n titulada
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

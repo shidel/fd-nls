@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: menu</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: menu</h1>
+<pre>
+  MENU muestra un men£ mientras se ejecuta config.sys / fdconfig.sys.
+  MENU es un comando de <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+   menu [texto]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  texto  El texto que desea que se muestre mientras se ejecuta config.sys
+    Uso:
+      Utilice menudefault para establecer una opci¢n predeterminada de
+      tiempo retrasado. ¨L¡neas que comienzan con 1? s¢lo se procer  si el
+      usuario presiona 1. ¨L¡neas que empiezan con 23? se cargar  si el
+      usuario presiona 2 o 3. Las opciones que no sean 0 solo se pueden
+      seleccionar si al menos una l¡nea de "n£meros?" las utiliza
+      realmente, como se muestra en el ejemplo siguiente.
+    Uso con autoexec.bat:
+      La variable de entorno CONFIG se establece en el valor de la opci¢n
+      de men£. Por lo tanto, %CONFIG% se puede utilizar en autoexec.bat
+      junto con el comando if. Por ejemplo:
+        En config.sys "1" se eligi¢:
+      En autoexec.bat:
+        IF "%config%"=="1" SHSUCDX /D:FDCD001
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  MENU muestra un men£ mientras se ejecuta config.sys / fdconfig.sys.
+  MENU es un comando interno de kernel.sys y no necesita ning£n otro
+  archivo para funcionar.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    MENU Seleccione configuraci¢n:
+    MENU
+    MENU Opci¢n 0    s¢lo material b sico
+    MENU Opci¢n 1    CD-ROM
+    MENU Opci¢n 2    TROUSERS
+    MENU Opci¢n 3    CD-ROM y TROUSERS
+    0? ECHO Advertencia: ­solo cosas b sicas!
+    13?DEVICE=uide.sys /S125 /D:FDCD001
+    23?DEVICE=TROUSERS.SYS
+  EN AUTOEXEC.BAT:
+    IF "%config%"=="1" SHSUCDX /D:FDCD001
+    IF "%config%"=="3" SHSUCDX /D:FDCD001
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/menucol.htm">menucolor</a>
+  <a href="../cnfigsys/menudef.htm">menudefault</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 2003 <b>Robert Platt</b>, modificado en 2011 <b>W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+
+</pre></body></html>

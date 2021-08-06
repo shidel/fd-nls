@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: jemm386</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: jemm386</h1>
+<pre>
+  JEMM386 es un administrador de memoria expandido.
+  JEMM386 tiene que cargarse en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  DEVICE=[unidad][ruta][jemm386.exe] [opciones]
+         unidad  La letra de unidad, p. ej. C:
+         ruta    El directorio, p. ej. \ejemplo\
+  o ejec£telo desde la l¡nea de comando:
+  [unidad][ruta][jemm386.exe] [opciones]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+ +A20/NOA20     A20-desactiva la emulaci¢n activado/desactivado (opci¢n
+                predeterminada activada).
+  ALTBOOT       Use una estrategia de reinicio alternativa.
+  B=####        Especifique la direcci¢n del segmento m s bajo para la
+                banca EMS (predeterminado=4000).
+  D=###         Establece el tama¤o del b£fer DMA en Kb 
+                (predeterminado=64, el m ximo es 128).
+  EMX           Mayor compatibilidad con el extensor EMX de DOS.
+  FASTBOOT      Reinicio r pido. Requiere que Jemm386 se cargue en
+                CONFIG.SYS.
+  FRAME=E000    Establecer marco de p gina EMS (FRAME=NONE desactiva el
+                marco). Se acepta cualquier valor entre 8000 y E000, pero
+                no todos funcionar n.
+  I=D000-D7FF   Forzar el uso de una regi¢n para UMB. Sin esta opci¢n, el
+                rango C000-EFFF se escanea en busca de p ginas no
+                utilizadas. Tambi‚n se puede usar para agregar (partes de)
+                las regiones A000-BFFF o F000-F7FF como UMB. ­No use esta
+                opci¢n se no sabe lo que est  haciendo!
+  I=TEST        Escanee ROMs en busca de p ginas no utilizadas, incluya
+                regiones encontradas como UMB.
+  [MAX=]#####   L¡mite de memoria VCPI (y EMS si <32M) en kB
+                (predeterminado 120 MB).
+  MIN=#####     Reserve hasta ##### kB para la memoria EMS / VCPI en init
+                (predeterminado=0).
+  NOCHECK       No permitir el acceso al espacio de direcciones sin RAM
+                (MMIO)
+  NOEMS         Deshabilitar el manejo de EMS. Use NOEMS para obtener m s
+                UMB gratis si no necesita EMS.
+  NODYN         Sin asignaci¢n din mica de memoria XMS (use MIN = para
+                establecer la cantidad fija).
+  NOHI          No mueva la parte residente a la primera UMB.
+  NOINVLPG      No use el c¢digo de operaci¢n INVLPG.
+ +PGE/NOPGE     Activaci¢n / desactivaci¢n del uso de la funci¢n de
+                habilitaci¢n global de p gina (opci¢n predeterminada
+                desactivada).
+  RAM/NORAM     Intente suministrar UMBs activado / desactivado 
+                (predeterminado activado).
+  S=D000-D7FF   Suponga que Shadow-RAM es activado por UMBPCI, incl£yalo
+                como UMB.
+  SB            Modo de compatibilidad del controlador SoundBlaster.
+  SPLIT         Recupere p ginas EPROM 4k parcialmente usadas para UMBs.
+ +VCPI/NOVCPI   Soporte VCPI activado / desactivado 
+                (predeterminado activado).
+  VDS/NOVDS     Servicios virtuales de DMA activados / desactivados
+                (predeterminado activado).
+ +VME/NOVME     Extensiones de V86-Modo activados / desactivados
+                (predeterminado activado).
+  VERBOSE       Mostrar detalles adicionales durante el inicio (abbr: /V).
+  X=D000-D7FF   Excluya la regi¢n de ser tocada o utilizada por Jemm386.
+                X=D000-D7FF puede ser necesario, p. ej. para alguna red.
+  X=TEST        Escanee la regi¢n de memoria C000-EFFF para la exclusi¢n
+                de UMB.
+  /?            Muestra la ayuda.
+  '+': la opci¢n se puede configurar din micamente ejecutando Jemm386
+       desde la l¡nea de comando.
+  Cuando se invoca desde la l¡nea de comando, Jemm386 comprender 
+  adicionalmente:
+    LOAD        instalar
+    UNLOAD      desinstalar
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  JEMM386 requiere una CPU 80386+. <a href="../base/himemx.htm">HIMEMX</a> debe cargarse antes.
+  Cargue JEMM386 como DEVICE=JEMM386.EXE en CONFIG.SYS (aunque es un
+  archivo ".exe")
+  JEMM386 tiene que cargarse en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\himemx.exe
+    device=c:\fdos\bin\jemm386.exe
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

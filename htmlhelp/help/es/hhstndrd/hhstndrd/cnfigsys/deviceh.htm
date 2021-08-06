@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: devicehigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: devicehigh</h1>
+<pre>
+  DEVICEHIGH carga un controlador en memoria alta, mientras que DEVICE 
+  carga el controlador en memoria baja o convencional.
+  DEVICEHIGH es un comando <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  devicehigh=[unidad][ruta]nombre_archivo [opciones]
+             unidad         La letra de la unidad, por ejemplo C:
+             ruta           El directorio por ejemplo \ejemplo\
+             nombre_archivo El controlador (archivo) que se va a cargar,
+                            por ejemplo himemx.exe
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  opciones  Estas son opciones para el controlador del programa, no
+            al comando 'device'.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  DEVICEHIGH carga el controlador de dispositivo especificado por la
+  unidad:\ruta\nombre_archivo en memoria alta [ABOVE 640KB] (en su defecto
+  se cargar  en memoria convencional). Las opciones son para el propio
+  controlador; consulta la documentaci¢n que ven¡a con su dispositivo
+  particular para las opciones compatibles y su uso.
+  A medida que DEVICEHIGH carga el controlador en una memoria alta, sigue
+  teniendo mas espacio libre en memoria baja o convencional para otros
+  controladores o para programas. Para cargar un controlador o un programa
+  en una memoria alta, primero tienes que cargar un controlador como 
+  (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a> o <a href="../base/jemmex.htm">JEMMEX</a> en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  DEVICEHIGH es un comando interno del kernel.sys y no necesita otro 
+  archivo para poder trabajar.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    DEVICEHIGH=C:\FDOS\DRIVERS\UIDE.SYS /S125 /D:MYDVD
+  DENTRO DE UN MEN£:
+    23?DEVICEHIGH=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    23?DEVICEHIGH=C:\FDOS\DRIVERS\UIDE.SYS /S125 /D:MYDVD
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/device.htm">device</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 1998 <b>Jim Hall</b>, modificado en 2011 <b>W. Spiegl.</b>
+  Traducido en 2019 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+
+</pre></body></html>

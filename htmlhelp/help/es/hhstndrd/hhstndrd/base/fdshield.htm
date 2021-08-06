@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: fdshield</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: fdshield</h1>
+<pre>
+  El escudo de malware FreeDOS FDSHIELD monitorea las sesiones de DOS y
+  ayuda a bloquear la actividad peligrosa t¡pica de troyanos, virus,
+  malware y errores humanos. No es un esc ner de virus como Clamscan y no
+  verifica las firmas de virus conocidas, sino que solo controla el
+  comportamiento del riesgo conocido.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  FdShield [/v][/t][/T][/x][/X][/b][/B][/w][/W]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+      Protecci¢n b sica cuando se llama sin opciones. Detiene el sistema
+      si un programa intenta deshabilitar ciertos otros monitores 
+      antivirus comunes y bloquea ciertas eliminaciones potencialmente
+      peligrosas basadas en <a href="../cnfigsys/fcbs.htm">FCB</a> con comodines en la extensi¢n del nombre
+      de archivo. Si usa FdShield en un cuadro de DOS, solo se detiene el
+      DOS en el cuadro, no todo el sistema.
+  /v  Hace mas detallado. Brinda informaci¢n adicional detallada sobre
+      por qu‚ se prohibi¢ una acci¢n, y cuando FdShield detiene el
+      sistema, esperar  20 segundos antes de reiniciar o cerrar
+      autom ticamente el DOS box.
+  /t  Proh¡be TSR. Cuando se selecciona esto, FdShield imprimir  un
+      mensaje detenido del sistema y reiniciar  o cerrar  la sesi¢n si un
+      programa intenta finalizar y permanecer residente. Esto puede ayudar
+      a detener los troyanos y algunos infectores de archivos residentes y
+      virus multiparte. Los extensores de DOS CWSDPMI y RTM pueden 
+      cargarse expl¡citamente en este modo. Tenga en cuenta que los virus
+      tienden a ser residentes sin usar las funciones de DOS para eso, lo
+      que muchos programas como <a href="../util/dosfsck.htm">DOSFSCK</a>, BZIP2, UPX, WGET y otros
+      originalmente provienen de UNIX y son portados a DOS por 
+      herramientas de compilaci¢n como DJGPP y necesitan CWSDPMI.
+  /T  Proh¡be TSR. Cuando se selecciona esto, FdShield imprimir  un
+      mensaje detenido del sistema y reiniciar  o cerrar  la sesi¢n si un
+      programa intenta finalizar y permanecer residente. Esta opci¢n
+      funciona m s o menos como la opci¢n /t. Los extensores CWSDPMI y
+      RTM DOS no pueden cargarse en este modo. En el OS/2 DOS box y
+      similares, CWSDPMI no es necesario de todos modos. Algunos otros
+      extensores de DOS no son TSR en absoluto y, por lo tanto, funcionan
+      sin problemas con FdShield /T.
+  /x  Los archivos de programa de escritura protegida con sufijo com, exe
+      y sys. Cuando selecciona esta opci¢n, FdShield evita la mayor¡a de
+      los intentos de escribir en archivos del sistema, pero permite
+      crear nuevos archivos de programa de manera que evite expl¡citamente
+      sobrescribir los archivos existentes. Muchas herramientas como
+      compiladores o archovadores utilizan otras formas inseguras para
+      crear archivos, por lo que FdShield los bloquear . Debe iniciar sin
+      la protecci¢n FdShield /x si planea instalar o compilar programas.
+      Sin embargo, si tiene la protecci¢n /x activada, muchos virus no
+      podr n infectar archivos de programa.
+  /X  Protege contra escritura los archivos del sistema con el sufijo bat,
+      com, exe y sys. Esta opci¢n no permite crear archivos del sistema en
+      absoluto. Los archivos por lotes no son un objetivo com£n para los
+      virus, pero hay situaciones en las que no desea que se modifiquen de
+      todos modos. Ni la protecci¢n /x ni /X impiden el acceso basado en 
+      <a href="../util/doslfn.htm">monbres de archivos largos</a> a los archivos de programa. Esto afecta 
+      solo a las versiones de DOS que admiten nombres largos de archivos
+      de alguna manera.
+  /b  La escritura protege las  reas de arranque del disquete. Esto puede
+      evitar que el sector de arranque y los virus multipartitos se
+      propaguen a disquetes en DOS simple. Sin embargo, la protecci¢n no
+      funciona en los OS/2 box y Win NT DOS. Como estos sectores
+      generalmente solo est n escritos por herramientas como <a href="../base/format.htm">FORMAT</a>, <a href="../base/sys.htm">SYS</a>
+      y <a href="../base/fdisk.htm">FDISK</a> /b y /B no deben usarse al ejecutar estas herramientas.
+  /B  La escritura protege las  reas de ARRANQUE del disco duro. Esto
+      puede evitar que los virus multipartitos se propaguen a las
+      particiones del disco duro. Es posible que no funcione en los
+      OS/2 box y Win NT DOS, pero han incorporado protecci¢n contra
+      modificaciones del sector de arranque.
+  /w  La escritura protege los disquetes (/w). Las tuber¡as no funcionan
+      si el directorio temporal (si no est  <a href="../command/set.htm">configurado</a>: directorio
+      actual) est  en un disco de solo lectura. Esta protecci¢n no
+      funciona en los OS/2 box y NT DOS.
+  /W  Protecci¢n de escritura de disco duros y todas las dem s unidades
+      sin disquete con el sistema de archivos FAT, como RAMDISK. Si DOS
+      intenta escribir en un disco "fijo", puede atascarse en un mensaje
+      que solo le permite volver a intentar pero no abordar el intento de
+      escritura. Si usa /w y /W al mismo tiempo, FdShield har  que todos
+      los archivos se vean como de solo lectura, lo que generalmente
+      evita que DOS intente escribir en el disco. La misma advertencia
+      sobre las tuber¡as y los DOS box que para la protecci¢n /w se
+      aplica a la protecci¢n /W.
+  /?  Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Cargue FdShield lo antes posible (despu‚s de los programas TSR, como los
+  controladores de teclado y CD-ROM) para obtener su protecci¢n, ya que
+  todas las acciones antes de cargar FdShield pueden da¤ar su sistema. Por
+  esta raz¢n, debe cambiar el orden de inicio en el BIOS a C: en lugar de
+  A: primero. Muchas m quinas nuevas ofrecen un cambio manual del orden de
+  arranque al iniciar la computadora si la necesita. Como FdShield no
+  ofrede ninguna funci¢n para descargar, debe reiniciar la computadora si
+  algunos porgramas est n bloqueados por sus funciones. Por esta raz¢n, se
+  recomienda agregar un men£ de arranque (ver ejemplo) para diferentes
+  prop¢sitos.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  En CONFIG.SYS / FDCONFIG.SYS:
+    MENU 0. sistema de FreeDOS
+    MENU 1. protecci¢n minima de virus
+    MENU 2. protecci¢n media (1.-TSR +Protecci¢n de escritura del sector
+            de arranque del Disco Duro)
+    MENU 3. protecci¢n media (recomendado) (2.+protecci¢n contra
+            escritura del programa)
+    MENU 4. Protecci¢n m xima (3.-todo TSR+protecci¢n contra escritura
+            completa)
+  y en AUTOEXEC.BAT:
+    IF "%CONFIG%"=="0" echo El sistema no est  protegido por FdShield
+    IF "%CONFIG%"=="1" LH FdShield /v
+    IF "%CONFIG%"=="2" LH FdShield /v /t /B
+    IF "%CONFIG%"=="3" LH FdShield /v /t /B /x
+    IF "%CONFIG%"=="4" LH FdShield /v /T /B /b /X /w /W
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../util/dosfsck.htm">dosfsck</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../cnfigsys/fcbs.htm">fcbs</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../command/set.htm">set</a>
+  <a href="../base/sys.htm">sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2005 Eric Auer, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

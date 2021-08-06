@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Redes FreeDOS - NTCPDRV</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Redes FreeDOS - NTCPDRV</h1>
+<h2><a name="zzz"></a>Informaci¢n General:</h2>
+<pre>
+  El driver Trumpet es un TCP del <a href="../network/ldtcpipk.htm">nucleo externo del TCP/IP</a>. Funciona
+  como un TSR (= terminar y permanecer residente) programa que se
+  ejecuta en la parte superior de un controlador de paquetes. TCPDRV
+  fue creado en 1992 por Peter Tattam, un programador en el departamento
+  de Psicolog¡a de la Universidad de Tasmania en Hobart, Australia.
+  De acuerdo con una biograf¡a publicada en su sitio web (ver: <b>http://
+  www.tattsoft.com/aboutUs.htm (*01)</b>), desarroll¢ el shareware
+  "Trumpet Newsreade" poco tiempo antes y escribi¢ el conductor TCP
+  s¢lo porque nada m s estaba abiertamente disponible para Turbo Pascal.
+  Desarrollo eventualmente lead a la popular software de Windows
+  "Trumpet Winsock", que Tattam vende a trav‚s de su propia compa¤¡a 
+  "Trumpet International of Australia", fundada en 1994 (v‚ase: <b>http://
+  www.trumpet.com.au/ (*02)</b>).
+  TCPDRV 2.01 fue lanzado como "versi¢n experimental". En 1993 una
+  versi¢n 3.01 sigui¢, que se llamaba NTCPDRV. Las mejoras incluyeron 
+  un uso de memoria y correcciones de errores m s eficientes (ver:
+  <b>http://alumnus.caltech.edu/dank/trumpet/ (*03)</b>). Ambas versiones y la
+  TCP201.SPE archivo de texto (v‚ase: <b>http://wiretap.area.com/Gopher/pub/
+  tsoft/trumpet-abi/tcp201.specification (*04)</b>) - la especificaci¢n para
+  los programadores - se pusieron a disposici¢n del p£blico en el sitio
+  web Trumpet (ver: <b>http://www.trumpet.com.au/dosapps/ (*05)</b>).
+  Temas sobre licencia en este sitio se mantienen cortas y simples:
+  "Estas aplicaciones DOS son gratis y sin soporte." Gracias a la
+  popularidad del software de trumpet, que se puede descargar desde
+  varios mirrors (ver: <b>http://wiretap.area.com/Gopher/pub/tsoft/
+  trumpet-abi/ (*06)</b>).
+  Una versi¢n commerical del controlador TCP est disponible en Peter
+  Tattams nueva compa¤¡a "Tattam Software Enterprises"
+  (ver: <b>http://www.tattsoft.com/index.php/products/tcpip-driver.html
+  (*07)</b>).
+</pre>
+<h2><a name="aaa"></a>Instalaci¢n y configuraci¢n:</h2>
+<pre>
+  Descarga NTCPDRV.ZIP (ver: <b>http://wiretap.area.com/Gopher/pub/tsoft/
+  trumpet-abi/ntcpdrv.zip (*08)</b>) y extraerlo. Si usted necesita una
+  documentaci¢n, descargue la versi¢n m s antigua TCP201.ZIP (ver:
+  <b>http://wiretap.area.com/Gopher/pub/tsoft/trumpet-abi/tcp201.zip (*09)</b>)
+  as¡, que tambi‚n incluye varias aplicaciones.
+  El <a href="../network/ldtcpipk.htm">n£cleo TCP/IP</a> tiene que ser configurado con la configuraci¢n de tu
+  <a href="../network/network.htm">red</a>. Esto se hace ya sea por los
+  par metros de l¡nea de comandos o mediante el establecimiento de las
+  variables de entorno DOS.
+  As¡ que empieza a NTCPDRV.EXE con un comando como este (una l¡nea):
+      NTCPDRV -ip=192.168.1.80 -netmask=255.255.255.0
+      -gateway=192.168.1.1 -dns-host=192.168.1.1
+  o configurarlo por primera vez por el establecimiento de las variables
+  de entorno: A¤adir estas l¡neas a <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> o en un archivo por
+  lotes que se inici¢ antes de NTCPDRV.EXE.
+      --- <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ---
+      set ip=192.168.1.80
+      set netmask=255.255.255.0
+      set gateway=192.168.1.1
+      set dns=192.168.1.1
+  Como se muestra en la imagen siguiente, el nucleo buscar autom
+  ticamente con un vector de interrupci¢n utilizable, despu‚s de que
+  se ha iniciado.
+  Tambi‚n puede utilizar el par metro "-vec = 61" para especificar, por
+  ejemplo, el vector 0x61 que se proporciona por el controlador de
+  paquetes para las aplicaciones. Consulte la documentaci¢n para m s
+  posibilidades.
+    (Imagen: Comienza mensajes de NTCPDRV)
+  Despu‚s de la trompeta de <a href="../network/ldtcpipk.htm">TCP/IP del n£cleo</a> se ha iniciado, usted es
+  capaz de ejecutar varias aplicaciones <a href="../network/tcpip.htm">TCP/IP</a> que requieren una
+  conexi¢n <a href="../network/ldtcpipk.htm">TCP/IP del n£cleo</a> (por ejemplo, la trompeta de Noticias,
+  el DOS servidores web Sioux o Webserv). El equipo tambi‚n ser accesible
+  desde la <a href="../network/network.htm">red</a> ahora, s¢lo tratar una solicitud de ping.
+    (Imagen: ping desde una m quina Windows)
+  En la imagen de arriba, nos ping a la m quina con FreeDOS y el
+  funcionamiento NTCPDRV TSR desde otro equipo con Windows XP. No es el
+  rendimiento m s r pido y el primer paquete se pierde.
+
+  Luego hacer ping desde una m quina Debian GNU/Linux:
+    (Imagen: ping desde un cuadro de GNU / Linux)
+  El primer paquete necesita m s tiempo de nuevo, la tercera se recibe
+  en un plazo razonable. Por lo menos vemos: La <a href="../network/network.htm">red</a> est  en marcha y el
+  controlador de la trompeta TCP responde a nuestras llamadas.
+
+  <b>(*01) http://www.tattsoft.com/index.php/about-us.html</b>
+  <b>(*02) OK</b>
+  <b>(*03) https://web.archive.org/web/20100127193745/http://alumnus.
+        caltech.edu/~dank/trumpet/</b>
+  <b>(*04) ftp://ftp.tsoft.net/pub/tsoft/trumpet-abi/</b>
+  <b>(*05) http://www.trumpet.com.au/ ?</b>
+  <b>(*06) http://ftp.gnome.org/mirror/archive/ftp.sunet.se/pub/
+        simtelnet/trumpet/tcp-abi/</b>
+  <b>(*07) OK</b>
+  <b>(*08) ftp://ftp.oldskool.org/pub/tvdog/internet/ntcpdrv.zip</b>
+  <b>(*09) ftp://ftp.oldskool.org/pub/tvdog/internet/tcp201.zip
+        ftp://ftp.oldskool.org/pub/tvdog/internet/tcp201.txt</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Alemania), modificado en 2010
+  por W.Spiegl. Actualizado en 2013 por Lorenzo del Toro Saravia.</b>
+  Para mas informaci¢n <a href="../network/intro.htm#ddd">Consulte aqu¡</a>.
+
+  Se concede permiso para copiar, distribuir y/o modificar este documento
+  en los t‚rminos de la licencia de documentaci¢n libre GNU, versi¢n 1.2
+  o cualquier versi¢n posterior publicada por la Free Software
+  Foundation.
+  Una copia de la licencia est  incluida en la secci¢n titulada
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

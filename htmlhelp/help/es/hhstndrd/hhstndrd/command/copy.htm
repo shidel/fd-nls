@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: copy</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: copy</h1>
+<pre>
+  COPY copia uno o m s archivos en otra ubicaci¢n.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  COPY [unidad][ruta]nombre_archivo [/A | /B]  
+       + [unidad][ruta]nombre_archivo [/A | /B]
+       [+ [...]] [unidad][ruta]nombre_archivo [/A | /B] [/V] [/Y | /-Y] [/?]
+       unidad          La letra de la unidad, p. ej. C:
+       ruta            El directorio, p. ej. \ejemplo\
+       nombre_archivo  El nombre del archivo, p.ej. test.txt
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  fuente       Especifica el archivo o archivos que se copiar n. 
+               (= primero [[unidad][ruta][archivo]]).
+  /A           Indica que es un archivo de texto ASCII.
+  /B           Indica que es un archivo binario.
+  destino      Especifica el directorio y/o nombre de archivo para el nuevo
+               archivo(s) (=£ltimo [[unidad][ruta][archivo]]).
+  /V           Verifica que los archivos nuevos est n escritos 
+               correctamente.
+  /Y           Suprime la solicitud para confirmar que desea sobrescribir
+               el archivo en el destino si existe.
+  /-Y          Fuerza la aparici¢n del mensaje de confirmaci¢n de desea
+               sobrescribir el archivo en el destino si existe.
+  /?           Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  COPY no copiar  directorios o archivos de longitud cero.
+  Para copiar cualquiera de estos, use <a href="../base/xcopy.htm">XCOPY</a>.
+  La variable de entorno COPYCMD se puede configurar para que /Y sea el 
+  valor predeterminado:
+    <a href="../command/set.htm">SET</a> COPYCMD=/Y
+  Para cancelar el /Y para un comando de copia en particular, use /-Y en la
+  l¡nea de comandos. La variable COPYCMD tambi‚n afecta al comando <a href="../base/xcopy.htm">XCOPY</a>.
+  Para agregar archivos, especifique un solo archivo para el destino, pero
+  m£ltiples archivos para la fuente (usando comodines o formato archivo1 +
+  archivo2 + archivo3).
+  Explicaci¢n detallada de las opciones:
+    fuente       La fuente consta de "unidad" "ruta" y "archivo".
+    unidad       La letra de la unidad, p. ej. "C:" o "D:".
+    ruta         El directorio, p.ej. "\ejemplo\"
+    archivo      El nombre de un archivo para copiar, p.ej. "test.txt". 
+                 Unido es: C:\ejemplo\test.txt .
+    destino      El nombre del archivo(s) o directorio de destino. Si el
+                 nombre del archivo de destino contiene un *, luego este
+                 es reemplazado por esa parte del nombre del archivo con
+                 la misma parte que la funte.
+    /A           Copia un archivo ASCII. Si esto procede a un nombre de
+                 archivo en una lista de archivos, luego desde este
+                 archivo, copia como ASCII el resto de la lista.
+         p. ej.: copy /A ASCI1.txt+ASCI2.txt+ASCI3.txt /B+BIN1.bin TARGET
+    /B           Copia un archivo binario. Este es el predeterminado. Si
+                 esto precede a un nombre de archivo en una lista de
+                 archivos, despu‚s de archivar este, copia como archivos
+                 binarios.
+         p. ej.: copy /B BIN1.bin+BIN2.bin+BIN3.bin /A+ASCI1.txt TARGET
+    /V           Verifica que los archivos est‚n escritos correctamente.
+    /Y           Suprime el mensaje de confirmaci¢n de sobrescritura; si
+                 existen archivos con el mismo nombre en el destino ser n
+                 sobrescritos.
+  COPY es un comando interno de command.com y no necesita otro archivo 
+  para que funcione.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  copy c:\command.com a:
+  copy c:\*.exe d:\ejemplo
+  copy c:\fdos\bin\edit.* a:
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../command/set.htm">set</a>
+  <a href="../command/verify.htm">verify</a>
+  <a href="../base/xcopy.htm">xcopy</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 1998 <b>Jim Hall</b>, Modificado en 2007 por <b>W. Spiegl.</b>
+  Traducido en 2018 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+</pre></body></html>

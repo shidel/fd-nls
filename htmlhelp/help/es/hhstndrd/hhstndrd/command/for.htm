@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: for</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: for</h1>
+<pre>
+  FOR ejecuta un comando espec¡fico para cada archivo o un conjunto de
+  archivos.
+  FOR es un comando de <a href="../batch/index.htm">ARCHIVO POR LOTES</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+  Tambi‚n se puede utilizar en la l¡nea de comandos.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  FOR %variable IN (conjunto) DO comando [parametros-cmd]
+  FOR %%variable IN (conjunto) DO comando [parametros-cmd]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  %variable       Un nombre para el par metro que ser  reemplazado con cada
+                  nombre de archivo.
+  %%variable      Un nombre para el par metro que ser  reemplazado con cada
+                  nombre de archivo.
+  (conjunto)      Especifica un conjunto de uno o m s archivos. Comodines y
+                  ? puden ser usados.
+  comando         Especifica el comando que se ejecutar  para cada archivo.
+  parametros-cmd  Especifica par metros o interruptores para el comando
+                  especificado.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Para usar el comando FOR en un programa por lotes, especifique %%variable
+  en lugar de %variable.
+  FOR es un comando interno de command.com y no necesita otro archivo para
+  que funcione.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN UN ARCHIVO .BAT / AUTOEXEC.BAT:
+    Muestra todos los archivos de texto en el directorio actual, uno 
+    despu‚s de otro:
+      FOR %f in (*.txt) DO more %f
+    Los dos comandos siguientes enumeran todos ls archivos que comienzan
+    con una "a". La lista comienza con "--- start ---" y termina con
+    "--- end ---". Los signos "-" al pricipio y al final de cada l¡nea
+    proviene de "DO ECHO - %f -".
+      ECHO off
+      FOR %f IN (---start--- a*.* ---end---) DO ECHO - %f -
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">archivos por lotes</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 2003 <b>Robert Platt</b>, Modificado en 2007 por <b>W. Spiegl.</b>
+  Traducido en 2018 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+</pre></body></html>

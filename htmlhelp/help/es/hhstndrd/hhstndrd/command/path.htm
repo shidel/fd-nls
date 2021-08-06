@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: path</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: path</h1>
+<pre>
+  PATH muestra o establece una ruta de b£squeda para archivos ejecutables.
+  PATH es un comando para <a href="../batch/index.htm">Archivo por lotes</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+  Tambi‚n se puede utilizar en la l¡nea de comandos.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  PATH [[unidad]ruta[;...]]
+  PATH [lista_rutas]
+  PATH ;
+  PATH [/?]
+
+  unidad    la letra de la unidad, por ejemplo C:
+  ruta      El directorio, por ejemplo \ejemplo\
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  lista_rutas  Establece la lista de rutas. Separa las rutas con punto y
+               coma (;).
+  ;            Borra todas las configuraciones de la ruta de b£squeda y
+               dirige el comando shell para buscar solo en el directorio
+               actual.
+  /?           Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Escriba "PATH ;" para borrar todos los ajustes de la ruta de b£squeda y
+  dirigir el comando shell para buscar solo en el directorio actual.
+  Escriba "PATH" sin par metros para mostrar la ruta actual.
+  Algunos comandos son internos a FreeDOS. Sin embargo, muchos est n en el
+  \bin o el directorio \freedos\bin, por lo que puede desear tener este
+  directorio en la lista de rutas (como en el primer ejemplo a 
+  continuaci¢n).
+  Las rutas de los programas de uso frecuente se pueden colocar en la 
+  lista de rutas por conveniencia.
+  Cuando se ingresa un programa o comando externo en el s¡mbolo del
+  sistema, FreeDOS lo busca en el directorio actual y luego un cada uno de
+  las rutas especificadas por el comando path.
+  Si el mismo nombre de programa est  en directorios de ruta diferentes,
+  el programa se iniciar  desde la ruta que se menciona por primera vez en
+  la lista de rutas.
+  PATH tambi‚n se puede utilizar fuera de un archivo por lotes.
+  PATH es un comando interno de command.com y no necesita otro archivo
+  para que funcione.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN UN ARCHIVO .BAT / AUTOEXEC.BAT:
+    path c:\fdos\bin;c:\util
+    path %path%;c:\games
+    El segundo ejemplo agrega c:\games a la lista existente, preservando
+    el previamente establecido en PATH.
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../base/append.htm">append</a>
+  <a href="../batch/index.htm">batch files</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 2003 <b>Robert Platt</b>, Modificado en 2007 por <b>W. Spiegl.</b>
+  Traducido en 2018 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+
+</pre></body></html>

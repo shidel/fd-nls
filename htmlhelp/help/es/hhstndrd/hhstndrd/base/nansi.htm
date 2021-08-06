@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: nansi.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: nansi.sys</h1>
+<pre>
+  NANSI.SYS es un controlador que mejora la consola. FreeDOS usa 
+  NANSI.SYS en lugar de ANSI.SYS.
+  NANSI.SYS tiene que cargarse en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>
+  Cuando FreeDOS ya se est  ejecutando, puede cargar NANSI.SYS m s 
+  tarde con <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  DEVICE[HIGH]=[unidad:][ruta]NANSI.SYS [/K] [/C] [/X] [/S] [/Tnn] [/R]
+               [/B|/Q] [/P]
+  DEVLOAD      [unidad:][ruta]NANSI.SYS [/K] [/C] [/X] [/S] [/Tnn] [/R]
+               [/B|/Q] [/P]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /K    Forzar el estilo del teclado de 84 teclas.
+  /X    Definiciones clave extendidas.
+  /S    Modo seguro - sin redefiniciones de teclas.
+  /Tnn  El modo nn es un modo de texto.
+  /R    Usa BIOS (para algunos lectores de pantalla).
+  /B    Usa BIOS para sonido de campana.
+  /Q    No use ning£n sonido de campana (silencio).
+  /P    Pase todas las solicitudes desconocidas a CON.
+  /C    Fuerza 101+ estilo de teclado clave.
+  /?    Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Cuando se carga (para obtener m s informaci¢n, lea nansi.doc):
+    ESC[#;#H        Posici¢n del cursor especificada por par metros.
+    ESC[#;#f        Posici¢n horizontal y vertical.
+    ESC[#A          Cursor Arriba.
+    ESC[#B          Cursor Abajo.
+    ESC[#C          Cursor Hacia Adelante.
+    ESC[#D          Cursor Al Rev‚s.
+    ESC[#n          Estado del dispositivo, ­Informe! # debe ser 6. La
+                    secuencia ESC[6n hace que el controlador de la
+                    consola muestre el informe de posici¢n del cursor.
+    ESC[#;#R        Informe de posici¢n del cursor.
+    ESC[s           Guardar posici¢n del cursor.
+    ESC[u           Restaurar la posici¢n del cursor.
+    ESC[#J          Borrar en pantalla. # debe ser 2. Borra toda la
+                    pantalla.
+    ESC[K           Borrar en l¡nea. Elimina desde el cursor hasta el
+                    final de la l¡nea.
+    ESC[#L          Insertar l¡neas - no admitido en ANSI.SYS.
+    ESC[#M          Eliminar l¡neas - no es compatible con ANSI.SYS.
+    ESC[#@          Insertar caracteres - no se admite en ANSI.SYS.
+    ESC[#P          Eliminar caracteres - no es compatible con ANSI.SYS.
+    ESC["cadena"p   Reasignaci¢n de teclas del teclado. Esta 
+                    caracter¡sticas es un riesgo de seguridad y se puede
+                    deshabilitar con la opci¢n /s al cargar NANSI.SYS en
+                    config.sys.
+    ESC[#;#;...#m   Establecer representaci¢n gr fica:
+            0       Todos los atributos desactivados (blanco normal
+                    sobre negro)
+            1       Negrita
+            4       Subrayado
+            5       Parpadeo
+            7       Video inverso
+            30      Primer Plano Negro
+            31      Primer Plano Rojo
+            32      Primer Plano Verde
+            33      Primer Plano Amarillo
+            34      Primer Plano Azul
+            35      Primer Plano Magenta
+            36      Primer Plano Cian
+            37      Primer Plano Blanco
+            40      Fondo Negro
+            41      Fondo Rojo
+            42      Fondo Verde
+            43      Fondo Amarillo
+            44      Fondo Azul
+            45      Fondo Magenta
+            46      Fondo Cian
+            47      Fondo Blanco
+    Esta configuraci¢n tambi‚n funciona en <a href="../batch/prompt.htm">PROMPT</a>. Tienes que
+    escribir all¡:
+            prompt $e[1;33;44m para negrita / amarillo / azul.
+    ESC[=nh         Establece modo de video:
+      C¢digo de modo:    Valor:
+            0            texto 40x25 Blanco y Negro
+            1            texto 40x25 Color
+            2            texto 80x25 Blanco y Negro
+            3            texto 80x25 Color
+            4            mapa de bits 320x200 4 bits/p¡xel
+            5            mapa de bits 320x200 1 bits/p¡xel
+            6            mapa de bits 640x200 1 bits/p¡xel
+            13           mapa de bits 320x200 4 bits/p¡xel
+            14           mapa de bits 640x200 4 bits/p¡xel
+            15           mapa de bits 640x350 1 bits/p¡xel
+            16           mapa de bits 640x350 4 bits/p¡xel
+            17           mapa de bits 640x480 1 bits/p¡xel
+            18           mapa de bits 640x480 4 bits/p¡xel
+            19           mapa de bits 320x200 8 bits/p¡xel
+    Los modos 0-1 y 4-19 requieren un CGA, EGA o VGA.
+    Los modos 13-16 requieren un EGA or VGA.
+    Los modos 17-19 requieren un VGA.
+  Para obtener m s informaci¢n, lea nansi.doc.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    device=C:\fdos\bin\nansi.sys
+    devicehigh=C:\fdos\bin\nansi.sys
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/device.htm">device</a>
+  <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../batch/prompt.htm">prompt</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 - 2004 Robert Platt, modificado en 2008
+  por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>
