@@ -6,6 +6,43 @@
 		+=that are used must be mapped. They are in the ASSIMLATE and COMMANDS sections.
 		+=Other sections and keys are not required. Unless, you need to override their
 		+=default values.
+		+=
+		+=	Example: 
+		+=
+		+=	If you wish Delete, Ctrl+Delete, Alt+Delete to all behave
+		+=	like Delete, then this is where you map them. See the $0008
+		+=	entry. (Names of keys are in the language file)
+		+=
+		+=	Format is:
+		+=
+		+=	TO_KEY=FROM_KEY:(A | M | C)+SHIFT_CODE,....
+		+=
+		+=	TO_KEY is the key code that is desired.
+		+=	FROM_KEY is the original pressed keycode.
+		+=	:A is match any shift code at keypress. (Assumed if not present)
+		+=	:M is must match shift code exactly.
+		+=	:C is must contain shift code, but can have additional shifts.
+		+=	+SHIFT_CODE is shift code if present.
+		+=		SHIFT CODES are bit values and can be added together for any combination.
+		+=			kbRightShift  = $0001
+		+=			kbLeftShift   = $0002
+		+=			kbEitherShift = kbRightShift or kbLeftShift
+		+=			kbEitherCtrl  = $0004
+		+=			kbEitherAlt   = $0008
+		+=			kbScrollLock  = $0010
+		+=			kbNumsLock    = $0020
+		+=			kbCapsLock    = $0040
+		+=			kbInsertLock  = $0080
+		+=			kbLeftCtrl    = $0100
+		+=			kbLeftAlt     = $0200
+		+=			kbSysDown     = $0400
+		+=			kbPauseFlag   = $0800
+		+=			kbScrollDown  = $1000
+		+=			kbNumsDown    = $2000
+		+=			kbCapsDown    = $4000
+		+=			kbInsertDown  = $8000
+		+=
+		+=	,.... additional FROM_KEY sequences.
 
 
 [*]
@@ -97,10 +134,13 @@
 	CLOSE=$0000
 	CLOSEFILE=$0000
 	COPY=$0000
+	CREATEITEM=$004E:M+$0008,$004E:M+$0208
 	CUT=$0000
 	DELETE=$0000
+	DELETEITEM=$0044:M+$0008,$0044:M+$0208
 	DOWN=$0000
 	EDITFILE=$0000
+	EDITITEM=$0065:M+$0008,$0065:M+$0208
 	ENTER=$0000
 	ESCAPE=$0000
 	EXECUTEFILE=$0000

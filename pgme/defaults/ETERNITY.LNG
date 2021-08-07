@@ -3,6 +3,7 @@
 
 [*]
 	FILE.DATE=0[X3.2],1[L2],2[Z2];%1/%2/%0
+	FILE.NONE=<none>
 	FILE.TIME=0[Z2],1[L2],2[Z2],3[Z2],4{a,p};%1:%2%4
 	ID=en_US
 	MERGE=
@@ -27,14 +28,22 @@
 		+=This is dialog box provides some information regarding PGME.
 		+=Additional information is available in the BLAHBLAH.TXT file
 		+=and online at http://pgme.sourceforge.net
+		+=
+		+=PGME Memory Statistics:
+		+=
+		+=  Using 81024 of 348960 bytes available
+		+=
+		+=  Largest free block is 267808 bytes available
+		+=
+		+=  Peak usage 81280 of 348960 bytes available
 
 	PGM.DIALOG.ABOUT.FRAME.BUTTON.CLOSE=
 	PGM.DIALOG.ABOUT.FRAME.TITLE=
 	PGM.DIALOG.CONFIG=The Program Manager Eternity program configuration settings dialog box.
 
 		+=
-		+=This is where you can change the language and other
-		+=settings of PGME.
+		+=This is where you can change the language and some other
+		+=settings for PGME.
 
 	PGM.DIALOG.CONFIG.BUTTON.OK=5;Use the "%0" button to apply any changes and close the
 
@@ -42,6 +51,22 @@
 
 	PGM.DIALOG.CONFIG.FRAME.BUTTON.CLOSE=
 	PGM.DIALOG.CONFIG.FRAME.TITLE=
+	PGM.DIALOG.CONFIG.IDLE.DROP=Use the "Power Saving" field to select the desired method
+
+		+=for PGME to use to conserve power while idle. This takes
+		+=effect immediately on "OK" and may cause the system to freeze.
+		+=However, the change is not saved until after the power setting
+		+=has been activated. If it is unable to set the request power
+		+=saving mode, it may downgrade or disable the setting.
+
+	PGM.DIALOG.CONFIG.IDLE.DROP.BUTTON=
+	PGM.DIALOG.CONFIG.IDLE.DROP.EDIT=
+	PGM.DIALOG.CONFIG.IDLE.DROP.LIST=
+	PGM.DIALOG.CONFIG.IDLE.DROP.LIST.FRAME.BUTTON.CLOSE=
+	PGM.DIALOG.CONFIG.IDLE.DROP.LIST.FRAME.TITLE=
+	PGM.DIALOG.CONFIG.IDLE.DROP.LIST.LIST=
+	PGM.DIALOG.CONFIG.IDLE.DROP.LIST.LIST.VSCROLL=
+	PGM.DIALOG.CONFIG.IDLE.LABEL=
 	PGM.DIALOG.CONFIG.LANGUAGE.DROP=Use the "Language File" field to select the desired language
 
 		+=for PGME to use. Please note that the program will always
@@ -56,6 +81,7 @@
 	PGM.DIALOG.CONFIG.LANGUAGE.DROP.LIST.LIST=
 	PGM.DIALOG.CONFIG.LANGUAGE.DROP.LIST.LIST.VSCROLL=
 	PGM.DIALOG.CONFIG.LANGUAGE.LABEL=
+	PGM.DIALOG.CONFIG.SOUND.TOGGLE=
 	PGM.DIALOG.DOSCOMMAND=The "DOS Command" dialog box.
 
 		+=
@@ -380,6 +406,12 @@
 		+=to the current menu.
 
 	PGM.DIALOG.PROG.ADD.BUTTON.OK=
+	PGM.DIALOG.PROG.ADD.CPUCACHE.LABEL=
+	PGM.DIALOG.PROG.ADD.CPUCACHE.TOGGLE=The "Disable CPU Cache" toggle is a great way to slow many machines
+
+		+=down for running very old games. If CPUCACHE is installed, the "ON" setting
+		+=will disable CPU caching for the program.
+
 	PGM.DIALOG.PROG.ADD.FRAME.BUTTON.CLOSE=
 	PGM.DIALOG.PROG.ADD.FRAME.TITLE=
 	PGM.DIALOG.PROG.ADD.FREE.LABEL=
@@ -437,6 +469,12 @@
 		+=selected program.
 
 	PGM.DIALOG.PROG.EDIT.BUTTON.OK=
+	PGM.DIALOG.PROG.EDIT.CPUCACHE.LABEL=
+	PGM.DIALOG.PROG.EDIT.CPUCACHE.TOGGLE=The "Disable CPU Cache" toggle is a great way to slow many machines
+
+		+=down for running very old games. If CPUCACHE is installed, the "ON" setting
+		+=will disable CPU caching for the program.
+
 	PGM.DIALOG.PROG.EDIT.FRAME.BUTTON.CLOSE=
 	PGM.DIALOG.PROG.EDIT.FRAME.TITLE=
 	PGM.DIALOG.PROG.EDIT.FREE.LABEL=
@@ -526,7 +564,9 @@
 	PGM.PROGRAMS.BUTTON.SEARCH=5;"%0" Button: This will focus the "Find" field 
 
 		+=to input text for searching. Or, if that field
-		+=already contains text, it will search again.
+		+=already contains text, it will search again. With
+		+=the default settings, pressing "ALT+F" will also
+		+=focus the "Find" field.
 
 	PGM.PROGRAMS.FRAME.BUTTON.CLOSE=
 	PGM.PROGRAMS.FRAME.TITLE=
@@ -536,39 +576,39 @@
 
 		+=They will only work when popup menu is visible.
 
-	PGM.PROGRAMS.POPUP.EDITMENU.BTN.CONFIG=5;"%0" Option: Select this modify PGME behavior options.
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.CONFIG=5;"%0" Option: Select this option to change someof PGME's behavior options.
 
 		+=The default keyboard shortcut is "P".
 
-	PGM.PROGRAMS.POPUP.EDITMENU.BTN.MENU.ADD=5;"%0" Option: Select this to add a new menu.
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.MENU.ADD=5;"%0" Option: Select this option to add a new menu.
 
 		+=The default keyboard shortcut is "N".
 
-	PGM.PROGRAMS.POPUP.EDITMENU.BTN.MENU.DELETE=5;"%0" Option: Select this to delete the current menu.
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.MENU.DELETE=5;"%0" Option: Select this option to delete the current menu.
 
 		+=The default keyboard shortcut is "K".
 
-	PGM.PROGRAMS.POPUP.EDITMENU.BTN.MENU.EDIT=5;"%0" Option: Select this to edit the current menus information.
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.MENU.EDIT=5;"%0" Option: Select this option to edit the current menu's information.
 
 		+=The default keyboard shortcut is "N".
 
-	PGM.PROGRAMS.POPUP.EDITMENU.BTN.OPTIONS=5;"%0" Option: Select this modify PGME display options.
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.OPTIONS=5;"%0" Option: Select this option to modify PGME's display options.
 
 		+=The default keyboard shortcut is "O".
 
-	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.ADD=5;"%0" Option: Select this to add a program to the current menu.
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.ADD=5;"%0" Option: Select this option to add a program to the current menu.
 
 		+=The default keyboard shortcut is "A".
 
-	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.DELETE=5;"%0" Option: Select delete the currently selected program from the menu.
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.DELETE=5;"%0" Option: Select delete to remove the currently selected program from the menu.
 
 		+=The default keyboard shortcut is "D".
 
-	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.EDIT=5;"%0" Option: Select this to edit the selected programs information or
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.EDIT=5;"%0" Option: Select this option to edit the selected programs information or its execution process.
 
-		+=its execution process. The default keyboard shortcut is "E".
+		+=The default keyboard shortcut is "E".
 
-	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.MOVE=5;"%0" Option: Select move or copy the currently selected program.
+	PGM.PROGRAMS.POPUP.EDITMENU.BTN.PROG.MOVE=5;"%0" Option: Select this option to move or copy the currently selected program.
 
 		+=The default keyboard shortcut is "X".
 
@@ -682,16 +722,17 @@
 
 [STRINGS]
 	PGM.BOOT.CACHE.UPDATE=Updating Menu Cache...
+	PGM.BOOT.PAUSE=press any key to continue . . .
 	PGM.BOOT.RESUME=Resuming Eternity...
 	PGM.BOOT.STARTING=Beginning Eternity...
 	PGM.DIALOG.ABOUT.FRAME.TITLE= About PGM Eternity 
 	PGM.DIALOG.ABOUT.MESSAGE= 
 
 		+=The Program Manager Eternity Edition
-		+=Copyright 2015.
+		+=Copyright 2015-2021.
 		+= 
 		+=The QuickCRT Framework
-		+=Copyright 1990-2015.
+		+=Copyright 1990-2021.
 		+= 
 		+=Both PGME and QuickCRT are opensource and
 		+=can be found on sourceforge at:
@@ -701,9 +742,17 @@
 
 	PGM.DIALOG.CONFIG.BUTTON.OK=OK
 	PGM.DIALOG.CONFIG.FRAME.TITLE= Eternity Config Settings 
+	PGM.DIALOG.CONFIG.IDLE.DROP.ITEM.ANY=ANY
+	PGM.DIALOG.CONFIG.IDLE.DROP.ITEM.BIOS=BIOS APM
+	PGM.DIALOG.CONFIG.IDLE.DROP.ITEM.HALT=CPU Halt
+	PGM.DIALOG.CONFIG.IDLE.DROP.ITEM.OFF=<disabled>
+	PGM.DIALOG.CONFIG.IDLE.DROP.LIST.FRAME.TITLE=
+	PGM.DIALOG.CONFIG.IDLE.DROP.LIST.LIST.COLUMN.NONE= 
+	PGM.DIALOG.CONFIG.IDLE.LABEL=Power Saving:
 	PGM.DIALOG.CONFIG.LANGUAGE.DROP.LIST.FRAME.TITLE=
 	PGM.DIALOG.CONFIG.LANGUAGE.DROP.LIST.LIST.COLUMN.NONE= 
 	PGM.DIALOG.CONFIG.LANGUAGE.LABEL=Language File:
+	PGM.DIALOG.CONFIG.SOUND.TOGGLE=off,ON
 	PGM.DIALOG.DOSCOMMAND.BUTTON.OK=OK
 	PGM.DIALOG.DOSCOMMAND.FRAME.TITLE= Add DOS Command 
 	PGM.DIALOG.DOSCOMMAND.LABEL=Custom DOS Command:
@@ -835,6 +884,8 @@
 	PGM.DIALOG.OPTIONS.THEME.DROP.LIST.LIST.COLUMN.NONE= 
 	PGM.DIALOG.OPTIONS.THEME.LABEL=Theme File:
 	PGM.DIALOG.PROG.ADD.BUTTON.OK=Create
+	PGM.DIALOG.PROG.ADD.CPUCACHE.LABEL=Disable CPU Cache:
+	PGM.DIALOG.PROG.ADD.CPUCACHE.TOGGLE=off,ON
 	PGM.DIALOG.PROG.ADD.FRAME.TITLE= Add New Program 
 	PGM.DIALOG.PROG.ADD.FREE.LABEL=Free all memory:
 	PGM.DIALOG.PROG.ADD.FREE.TOGGLE=off,ON
@@ -853,6 +904,8 @@
 		+=program from the menu?
 
 	PGM.DIALOG.PROG.EDIT.BUTTON.OK=Update
+	PGM.DIALOG.PROG.EDIT.CPUCACHE.LABEL=Disable CPU Cache:
+	PGM.DIALOG.PROG.EDIT.CPUCACHE.TOGGLE=off,ON
 	PGM.DIALOG.PROG.EDIT.FRAME.TITLE= Edit Program 
 	PGM.DIALOG.PROG.EDIT.FREE.LABEL=Free all memory:
 	PGM.DIALOG.PROG.EDIT.FREE.TOGGLE=off,ON
