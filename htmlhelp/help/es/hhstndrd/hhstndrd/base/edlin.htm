@@ -24,77 +24,79 @@
   \a              alerta
   \b              retroceso
   \e              escape
-  \f              alimentaci¢n
+  \f              nueva p gina
   \t              tabulador horizontal
-  \v              pesta¤a vertical
+  \v              tabulador vertical
   \"              comillas dobles
   \'              comillas simples
   \.              punto
   \\              barra invertida
-  \xXX            Donde X es un d¡gito hexadecimal (0-9, a-f, A-F) -
-                  constante hexadecimal
-  \dddd           Donde d es un d¡gito decimal (0-9) - constante decimal
-  \OOO            Donde O es un d¡gito octal (0-7) - constante octal
-  \^C             personaje de control
+  \xXX            Constante hexadecimal.
+                  X es un d¡gito hexadecimal (0-9, a-f, A-F)
+  \dDDD           Constante decimal.
+                  D es un d¡gito decimal (0-9)
+  \Ooo            Constante octal - 
+                  o es un d¡gito octal (0-7)
+  \^C             Car cter de control
 
   En las siguientes listas de comandos, los corchetes [] representan
   construcciones opcionales. El s¡mbolo # representa un n£mero de l¡nea,
   que es una cadena de d¡gitos, un punto (.) que representa la l¡nea
   actual, un signo de d¢lar ($) que representa la £ltima l¡nea de archivo
-  o un n£mero de l¡nea agregado o restado de otra l¡nea n£mero, para que
+  o un n£mero de l¡nea sumado o restado de otro n£mero de l¡nea; por ejemplo:
     .,.+1p
   imprime la l¡nea actual y la l¡nea siguiente. Edlin tiene los siguientes
   comandos internos (utilizados mientras se ejecuta edlin):
 
   #               editar una sola l¡nea
-  a               ap‚ndice
-  [#],[#],#,[#]c  copia un rango de l¡neas
+  a               a¤adir debajor
+  [#],[#],#,[#]c  copiar un rango de l¡neas
   [#][,#]d        eliminar un bloque de l¡neas
-  enom_archi      salida (guardar y salir)
+  enom_archi      salir (guardar y salir)
   [#]i            modo insertar
-  [#][,#]l        l¡neas de lista
-  [#],[#],#m      bloque mover
-  [#][,#]p        p gina
-  q               quitar
-  [#][,#][?]r$,$  remplazar cadena
-  [#][,#][?]s$    buscar subcadena
-  [#]tNom_Archi   transferencia de archivo
-  [#]wNom_Archi   escribir archivo
+  [#][,#]l        mostrar l¡neas
+  [#],[#],#m      mover bloque
+  [#][,#]p        paginar
+  q               salir sin guardar
+  [#][,#][?]r$,$  reemplazar cadena
+  [#][,#][?]s$    buscar cadena
+  [#]tArchivo     mover archivo
+  [#]wArchivo     guardar archivo
 
-  # - EDITAR UNA LINEA SIMPLE
+  # - EDITAR SOLO UNA LÖNEA
   El programa edline genera la £nica l¡nea indicada por el n£mero, y la
   siguiente l¡nea ingresada reemplaza la l¡nea emitida en el archivo.
 
   a - A¥ADIR
   Este comando es equivalente a $+1i .
 
-  [#],[#],#,[#]c - COPIAR UNA GAMA DE LINEAS
+  [#],[#],#,[#]c - COPIAR UN RANGO DE LÖNEAS
   Este comando copia un bloque de l¡neas consecutivas a otra ubicaci¢n
   en el b£fer. Los par metros son:
     * La primera l¡nea que desea copiar (predeterminado = l¡nea actual)
     * La £ltima l¡nea que desea copiar (predeterminado = l¡nea actual)
     * La l¡nea antes de la cual desea insertar el bloque de l¡neas
     * El n£mero de veces que desea copiar el bloque (predeterminado = 1)
-  Despu‚s de que edlin copia las l¡neas, puede usar el comando l (lista)
+  Despu‚s de que edlin copie las l¡neas, puede usar el comando l (mostrar)
   para ver las l¡neas correctamente renumeradas.
 
-  [#][,#]d - BORRAR UN BLOQUE DE LINEAS
+  [#][,#]d - BORRAR UN BLOQUE DE LÖNEAS
   Este comando elimina un bloque de l¡neas consecutivas. Los par metros
   son la primera y la £ltima l¡nea del bloque que se eliminar . Si omite
-  el segundo par metro, elimina solo la l¡nea especificada en el primer
-  par metro. Si omite el primer par metro, elimina el bloque de la l¡nea
+  el segundo par metro, se elimina solo la l¡nea especificada en el primer
+  par metro. Si se omite el primer par metro se elimina el bloque desde la l¡nea
   actual a la l¡nea especificada en el segundo par metro (aseg£rese de
   incluir la coma). La omisi¢n de ambos par metros hace que se elimine
   la l¡nea actual.
 
-  eNom_Archi - GUARDAR Y SALIR
+  eArchivo - GUARDAR Y SALIR
   Este comando es equivalente a:
-    w Nom_Archi  seguido de: q
+    w Archivo  seguido de: q
 
   [#]i - MODO INSERTAR
   Este comando ingresa al modo de inserci¢n. Su par metro es el n£mero de
   l¡nea antes del cual desea insertar l¡neas. Durante la inserci¢n, las
-  secuencias de escape como las anteriores son legales para escribir.
+  secuencias de escape indicadas anteriormente se pueden usar para escribir.
   Para salir del modo de inserci¢n, escriba un punto (.) en una l¡nea en
   blanco (si necesita una l¡nea con solo un punto, escape).
   Despu‚s de salir del modo de inserci¢n, la l¡nea despu‚s del texto
@@ -102,10 +104,10 @@
   haya agregado al final del texto, en cuyo caso la £ltima l¡nea del
   texto se convierte en la nueva l¡nea actual.
 
-  [#][,#]l - LINEAS DE LISTA
+  [#][,#]l - MOSTRAR LÖNEAS
   Este comando enumera l¡neas de texto en la pantalla. Si omite el primer
-  par metro, el comando comienza a mostrar texto que comienza con 11
-  l¡neas de texto antes de la l¡nea actual. Omitir el segundo par metro
+  par metro, el comando comienza a mostrar texto a partir de la 11¦
+  l¡nea de texto antes de la l¡nea actual. Omitir el segundo par metro
   muestra una p gina de texto que comienza con la l¡nea especificada en el
   primer par metro. Omitir ambos muestra una p gina de texto que comienza
   en 11 l¡neas antes de la l¡nea actual. En todos los casos, si el n£mero
@@ -117,13 +119,13 @@
   especificado en el tercer par metro. Es similar a copiar, luego 
   eliminar el bloque original.
 
-  [#][,#]p - PAGINA
-  Esto es similar a l escepto que la p gina predeterminada comienza con
+  [#][,#]p - PAGINAR
+  Esto es similar a l excepto que la p gina predeterminada comienza con
   la l¡nea actual en lugar de las 11 l¡neas anteriores.
 
   q - SALIR
-  Cierre el archivo que se est  editando perdiendo todos los cambios y
-  salga de EDLIN.
+  Cierre el archivo que se est  editando, perdiendo todos los cambios no
+  guardados, y EDLIN se cierra.
 
   [#][,#][?]r$,$ - REEMPLAZAR CADENA
   Este comando reemplaza todas las apariciones de la primera cadena con
@@ -136,13 +138,13 @@
   [#][,#][?]s$ - BUSCAR SUBCADENA
   Este comando busca la primera l¡nea que contiene la subcadena
   especificada. Omitir el primer par metro hace que la b£squeda comience
-  en la l¡nea actual; Si omite el segundo, la b£squeda se detendr  al
+  en la l¡nea actual; si omite el segundo, la b£squeda se detendr  al
   final del archivo. El signo de interrogaci¢n hace que la b£squeda env¡e
   un mensaje de confirmaci¢n. Decir no al mensaje de confirmaci¢n 
-  contin£a la b£squeda; decir que si lo termina. La l¡nea actual se
-  restablecer  a la l¡nea donde finaliz¢ la b£squeda si fue exitosa.
+  continuar  la b£squeda, decir que si lo termina. La l¡nea actual se
+  restablecer  a la l¡nea donde finaliz¢ la b£squeda, si esta fue exitosa.
 
-  [#]tNom_Archi - TRANSFER ARCHIVO
+  [#]tNom_Archi - TRANSFERIR ARCHIVO
   Este comando hace que el contenido del archivo se inserte antes del
   n£mero de l¡nea especificado. Si se omite el n£mero de l¡nea, el
   valor predeterminado es la l¡nea actual.
@@ -168,7 +170,7 @@
   edlin c:\config.sys  Abre el archivo config.sys para editarlo.
   edlin                Si no se especifica ning£n archivo, edline 
                        comienza con un documento en blanco.
-  Quiero ingresar y guardar cuatro oraciones, una debajo de la otra.
+  Quiero ingresar y guardar cuatro oraciones, una debajo de la otra:
 
   Esta es la oraci¢n cuatro.
   Esta es la oraci¢n tres.
@@ -177,7 +179,7 @@
 
   (desde el indicador * de edlin, con un b£fer vac¡o ...)
 
-  yo
+  i
   Esta es la oraci¢n cuatro.
   Esta es la oraci¢n tres.
   Esta es la oraci¢n tres.
@@ -185,17 +187,17 @@
   .
 
   Ahora quiero guardar estas cuatro oraciones en un archivo .txt en
-  C:\test.txt
+  C:\test.txt:
 
   wc:\test.txt
 
-  Luego descubro que la tercera oraci¢n esta quivocada (correcto: esta
+  Luego descubro que la tercera oraci¢n esta mal (correcto: esta
   es la oraci¢n dos). ¨C¢mo corregirlo y guardarlo?
 
   3rtres,dos
   wc:\test1.txt
 
-  Entonces quiero agregar una quita oraci¢n al principio (Esta es la
+  Entonces quiero agregar una quinta oraci¢n al principio (Esta es la
   oraci¢n cinco). ¨C¢mo agregarlo?
 
   1i

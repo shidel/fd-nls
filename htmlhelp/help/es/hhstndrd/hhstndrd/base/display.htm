@@ -8,8 +8,7 @@
 <body>
 <h1>Comando: display</h1>
 <pre>
-  DISPLAY carga las capacidades de administraci¢n de la p gina de
-  c¢digos de la consola.
+  DISPLAY carga la administraci¢n de la codificaci¢n de la consola.
 </pre>
 <h2>Sintaxis:</h2>
 <pre>
@@ -20,71 +19,69 @@ DISPLAY nombre_dispositivo[:]=(Tipo_hardware,[n|(n1[,n2]...)],[m|(m,p)])
 <pre>
   nombre_dispositivo  Un nombre de dispositivo v lido (que se ignora en
                       esta versi¢n).
-                      Use cualquiera (como CON).
-  Tipo_herdware       Una etiqueta de tipo de hardware compatible (como
+                      Use cualquiera (por ejemplo CON).
+  Tipo_hardware       Una etiqueta compatible de tipo de hardware (como
                       EGA o VGA)
-  n                   P gina de c¢digos de hardware predeterminada (para
+  n                   Codificaci¢n de hardware predeterminada (para
                       una p gina de c¢digos de hardware).
                       Normalmente ser  437.
-  n1, n2, ...         P ginas de c¢digos de hardware, si hay m s de una
-                      (generalmente tendr  para usar controladores 
+  n1, n2, ...         Codificaciones de hardware, si hay m s de una
+                      (generalmente tendr  que usar controladores 
                       ARABICOS/HEBREOS de terceros).
-  m                   N£mero de b£fer para p ginas de c¢digos preparadas
+  m                   N£mero de b£fer para codificaciones preparadas
                       (1 por defecto).
   p                   Par metros espec¡fico de hardware adicional.
-  /C                  Exclusivo: no se carga si DISPLAY ya est  presente.
+  /C                  No se carga si DISPLAY ya est  presente.
   /NOHI               Desactiva el uso de la memoria XMS para las p ginas
                       de c¢digos preparadas.
-  /V                  Verboso: informaci¢n extendida.
+  /V                  Informaci¢n extendida.
 </pre>
 <h2>Comentarios:</h2>
 <pre>
 Hardware soportado:
-  VGA     VGA adaptadores. Se utilizar n 3 subfondos en cualquier caso
+  VGA     Adaptadores VGA. Se utilizar n 3 fuentes secundarias si hay
           adaptadores EGA.
-  EGA     Determine autom ticamente el n£mero de subfondos que se
+  EGA     Se determinan autom ticamente el n£mero de fuentes secundarias que se
           utilizar n.
   EGA 14  Obligar a usar dos fuentes secundarias (8x8 y 8x14).
-  EGA 8   Obligar a usar solo una subfondos (8x8).
+  EGA 8   Obligar a usar solo una fuente secundaria (8x8).
   LCD     Adaptadores LCD (igual que EGA 8).
   
           Para todos los adaptadores anteriores, el par metro p intentar 
-          forzar el n£mero de subfondos a utilizar (1=8x8, 3=8x8, 8x14,
-          3=8x8, 8x14, 8x16) siempre que el hardware lo permita.
+          forzar el n£mero de fuentes secundarias a utilizar (1=8x8, 3=8x8,
+          8x14, 3=8x8, 8x14, 8x16) siempre que el hardware lo permita.
   CGA     Adaptador CGA (FreeDOS GRAFTABL). El par metro p se ignora.
-  DISPLAY no produce <a href="../batch/if.htm#comment">EXITCODES</a>, pero proporciona un conjunto de arrores a
-  trav‚s de la funci¢n int2Fh/AD03h para cada funci¢n Debe verificarlo
+  DISPLAY no produce <a href="../batch/if.htm#comment">EXITCODES</a>, pero proporciona un conjunto de errores a
+  trav‚s de la funci¢n int2Fh/AD03h para cada funci¢n. Deber  verificarlos
   despu‚s de cada operaci¢n fallida.
 
   C¢digo de Error   Operaci¢n     Significado
   -------------------------------------------------------------------
   1                 Todas         Funci¢n desconocida
-  26                Seleccionar   La p gina de c¢digos no estaba
+  26                Seleccionar   La codificaci¢n no estaba
                                   preparada
-  26                Consulta      No se seleccion¢ ninguna p gina
-                                  de c¢digos
-  27                Seleccionar   KEYB no pudo cambiar la p gina
-                                  de c¢digos
-  27                Consulta      Error del dispositivo
-  27                Prepararse    La p gina de c¢digos no se encontr¢
+  26                Consultar     No se seleccion¢ ninguna codificaci¢n
+  27                Seleccionar   KEYB no pudo cambiar la codificaci¢n
+  27                Consultar     Error del dispositivo
+  27                Preparar      No se encontr¢ la codificaci¢n
                                   en el archivo
   29                Seleccionar   Error del dispositivo
-  29                Prepararse    Error del dispositivo OR XMS error
-  31                Prepararse    Archivo fuente da¤ado OR XMS error
-  31                Fin preparar  No empieza a preparar para buscar
+  29                Preparar      Error del dispositivo o error de XMS
+  31                Preparar      Archivo fuente da¤ado o error de XMS
+  31                Fin preparar  No se encontr¢ ®Inicio preparar¯.
   -------------------------------------------------------------------
 </pre>
 <h2>Ejemplos:</h2>
 <pre>
   DISPLAY CON=(VGA,437,1)
-    VGA adaptador, cuya p gina de c¢digos est ndar de BIOS es 437. Se
-    utiliza 1 b£fer para la p gina de c¢digos de software. Este es el
-    est ndar para la mayor¡a de los usuarios.
+    adaptador VGA, cuya codificaci¢n normalizada de BIOS es 437. Se
+    utiliza 1 b£fer para la codificaci¢n de programas. Esto es normativo
+    para la mayor¡a de los usuarios.
                  
   DISPLAY CON=(EGA,,2)
     El adaptador de gr ficos es EGA o mejor, pero se desconoce. La
-    p gina de c¢digos predeterminada del BIOS tambi‚n es desconocida.
-    Se requieren dos amortiguadores.
+    codificaci¢n predeterminada del BIOS tambi‚n es desconocida.
+    Se requieren dos b£feres.
 </pre>
 <h2>Ver tambi‚n:</h2>
 <pre>

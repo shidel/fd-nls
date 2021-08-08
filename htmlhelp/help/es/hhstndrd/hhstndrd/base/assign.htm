@@ -8,7 +8,7 @@
 <body>
 <h1>Comando: assign</h1>
 <pre>
-  ASSIGN reasigna operaciones de disco de una unidad a otra.
+  ASSIGN cambia la letra asignada a una unidad.
 </pre>
 <h2>Sintaxis:</h2>
 <pre>
@@ -22,26 +22,25 @@
   /SHADOW  Hace que la presencia de ASSIGH en la memoria sea dif¡cil
            de detectar. Los usos posteriores de ASSIGH emitir n una
            advertencia si la opci¢n /SHADOW no se usa (pero a£n as¡
-           realiza el comando).
+           realiza la acci¢n).
   /STATUS  Muestra todas las letras de unidad asignadas. Si ASSIGN a£n
-           no est  cargado, un mensaje lo refleja, pero ASSIGN no est 
-           cargado.
+           no est  cargado saltar  un mensaje.
   /M       Intenta utilizar la memoria superior, en lugar de la memoria
            convencional, para almacenar el ASSIGN.
-  /U       Desistala un ASSIGN instalada previamente.
+  /U       Desinstala un ASSIGN instalado previamente.
   /?       Muestra la ayuda.
 </pre>
 <h2>Comentarios:</h2>
 <pre>
-  Los caracteres ':' son opcionales, entre las letras de unidad y el
-  signo igual '=' no se permiten espacios en blanco. Si no se nombran
-  unidades y no se usa /SHADOW o /U, se asigna reinstalar (borrando todas
-  las asignaciones de unidades anteriores). ASSIGN tiene los siguientes
-  EXITCODES (ERRORLEVEL):
+  Los caracteres ':' entre las letras de unidad son opcionales.
+  No se permiten espacios en blanco ni antes ni despu‚s del signo igual ®=¯.
+  Si no se nombran unidades y no se usa /SHADOW o /U, ASSIGN se reinstalar 
+  (borrando todas las asignaciones de unidades anteriores).
+  ASSIGN tiene los siguientes EXITCODES (ERRORLEVEL):
     0 ‚xito/ayuda
     3 abortado por el usuario (por ejemplo, Ctrl-C)
     4 error de sintaxis
-  No utilice asignar en combinaci¢n con los siguientes comandos:
+  No use ASSIGN en combinaci¢n con los siguientes comandos:
     diskcomp
     diskcopy
     format
