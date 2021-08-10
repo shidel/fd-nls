@@ -10,7 +10,7 @@ LANGS=0
 TRANS=0
 PLATFORM="$(uname)"
 KEYFILE_ERR="translation file"
-DEBUGGING=";pgme;pkgtools;"
+DEBUGGING=";pgme;pkgtools;slicer;"
 unset DEBUGGING
 
 function script_header () {
@@ -20,7 +20,8 @@ function script_header () {
     echo
     echo "  ? unable to locate default English version"
     echo "  ! caution, English version is newer than translation"
-    echo "  * problem, either missing or extras keys"
+    echo "  + caution, has some extras keys and probably nothing to worry about"
+    echo "  * problem, either missing (and maybe extras keys)"
     echo
 }
 
@@ -36,7 +37,7 @@ function script_summary () {
     x="${x//;/, }"
     x="${x:2}"
     echo "and does not compare '${x}' file types or subdirectories."
-
+    echo
 }
 
 function script_help () {
@@ -44,6 +45,7 @@ function script_help () {
     echo "usage: ${0##*/} [program]"
     echo
     script_summary
+
 }
 
 if [[ "$(uname)" == "Darwin" ]] ; then
@@ -279,7 +281,7 @@ function compare_nls () {
             [[ "${UCP//;${p};}" == "${UCP}" ]] && UCP="${UCP};${p};"
             UC=yes
         elif [[ "${NLS_DATA}" != "${EN_DATA}" ]] ; then
-            EN_CMP="*"
+            EN_CMP="@"
 
             [[ ${NO_REP} ]] && return 0
             t="${EN_DATA}"
@@ -297,15 +299,13 @@ function compare_nls () {
             d="${d//;;/;}"
             d="${d:1}"
             if [[ "${d}" != '' ]] ; then
-                [[ ! ${KEY_BR} ]] && echo
-                KEY_BR=yes
+                EN_CMP="*"
                 echo "${KEYFILE_ERR} '${1}' is missing key(s): '${d//;/, }'"
             fi
             d="${NLS_DATA//;;/;}"
             [[ ${#d} -gt 1 ]] && d="${d:1:$(( ${#d} - 2 ))}" || d=''
             if [[ "${d}" != '' ]] ; then
-                [[ ! ${KEY_BR} ]] && echo
-                KEY_BR=yes
+                [[ "${EN_CMP}" == "@" ]] && EN_CMP="+"
                 echo "${KEYFILE_ERR} '${1}' has extra key(s): '${d//;/, }'"
             fi
         # else
@@ -368,8 +368,8 @@ function calc_dir_languages () {
     local i utf l
     for i in "${1}"/* ; do
         [[ ! -e "${i}" ]] && continue
-        utf=$(ls -1d "${i}"* 2>/dev/null | grep -i "${i}\.utf-8" )
-        [[ "${utf}" != "" ]] && continue
+        utf=$(upperCase "${i##*/}")
+        [[ "${utf//UTF-8}" != "${utf}" ]] && continue
         l=$(lang_of_nls "${i}")
         [[ "${l}" == "" ]] && continue
 
@@ -423,7 +423,6 @@ function calc_languages () {
     local prog
     unset UC
     unset UCP
-    unset KEY_BR
     calc_dir_languages ${1}/nls && prog=y
     calc_dir_languages ${1}/doc && prog=y
     calc_dir_languages ${1}/help && prog=y
@@ -542,22 +541,48 @@ function scan_summary () {
     echo "Languages: ${LANGUAGES}"
 }
 
+function do_report () {
+    echo "Generating '${1}'"
+    echo "Report date: $(date)"
+    echo
+    script_summary
+    echo
+    echo "Translation file overview:"
+    echo
+    each_app calc_languages
+    echo
+    echo "Translation file index key comparison:"
+    echo
+}
+
+function filter_out () {
+    local out="${1}"
+    local l
+    while IFS=''; read -r l ; do
+        if [[ "${l:0:${#KEYFILE_ERR}}" == "${KEYFILE_ERR}" ]] ; then
+            echo "${l}" >>"${out}"
+        else
+            echo "${l}"
+        fi
+    done
+}
+
 function create_report () {
 
-    local out="report.txt"
-    echo "Generating '${out}'"
-    echo "Report date: $(date)" | tee "${out}"
-    echo | tee -a "${out}"
-    script_summary | tee -a "${out}"
-    echo | tee -a "${out}"
-    echo "Translation file overview:" | tee -a "${out}"
-    echo | tee -a "${out}"
-    ${0} -n -s | tee -a "${out}"
-    echo | tee -a "${out}"
-    echo "(index comparison is filtered through grep, so output may not be displayed until complete)"
-    echo "Translation file index key comparison:" | tee -a "${out}"
-    echo | tee -a "${out}"
-    each_app calc_languages | grep "^${KEYFILE_ERR}" | tee -a "${out}"
+    local out="report"
+    [[ -f "${out}.bak" ]] && rm "${out}.bak" >/dev/null 2>&1
+    [[ -f "${out}.txt" ]] && mv "${out}.txt" "${out}.bak">/dev/null 2>&1
+    [[ -f "${out}.tmp" ]] &&  rm "${out}.tmp" >/dev/null 2>&1
+    touch "${out}.txt"
+    touch "${out}.tmp"
+    do_report "${out}.txt" | filter_out "${out}.tmp" | tee -a "${out}.txt"
+    # each_app calc_languages | grep "^${KEYFILE_ERR}" | tee -a "${out}"
+    cat "${out}.tmp" | grep -i "is missing" | tee -a "${out}.txt"
+    echo | tee -a "${out}.txt"
+    echo "(please note that extra KEYS are probably fine)" | tee -a "${out}.txt"
+    echo | tee -a "${out}.txt"
+    cat "${out}.tmp" | grep -i "has extra" | tee -a "${out}.txt"
+    [[ -f "${out}.tmp" ]] &&  rm "${out}.tmp" >/dev/null 2>&1
 
 }
 
@@ -572,15 +597,9 @@ function main () {
         if [[ "${opt}" == "-h" ]] || [[ "${opt}" == "--help" ]] ; then
             script_help
             return 0
-        elif [[ "${opt}" == "-n" ]] ; then
-            NO_REP=yes      # don't show key comparisons
-        elif [[ "${opt}" == "-s" ]] || [[ "${opt}" == "" ]] ; then
-            # summary
-            [[ $once ]] && script_summary;
-            each_app calc_languages
-            scan_summary
-        elif [[ "${opt}" == "-r" ]] ; then
+        elif [[ "${opt}" == "-r" ]] || [[ "${opt}" == "" ]] ; then
             create_report
+            return 0
         else
             # summary
             [[ $once ]] && script_summary;
