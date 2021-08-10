@@ -1,6 +1,7 @@
 #!/bin/bash
 
-SPECIAL=';packages;pgme;fdi;htmlhelp;'
+EXCEPT=';packages;pgme;fdi;htmlhelp;'
+SPECIAL=';pgme;'
 EXCLUDE=';txt;docinfo;htm;html;'
 LANGUAGES=''
 APPLANGS=''
@@ -9,7 +10,7 @@ LANGS=0
 TRANS=0
 PLATFORM="$(uname)"
 KEYFILE_ERR="translation file"
-DEBUGGING=pkgtools
+DEBUGGING=";pgme;pkgtools;"
 unset DEBUGGING
 
 function script_header () {
@@ -27,7 +28,7 @@ function script_summary () {
     script_header
     echo "Also note, this utility does not scan the following directories:"
     echo
-    x="${SPECIAL:1:$(( ${#SPECIAL} - 2))}"
+    x="${EXCEPT:1:$(( ${#EXCEPT} - 2))}"
     x="${x//;/, }"
     echo "  ${x}"
     echo
@@ -102,6 +103,102 @@ function lowerCase () {
 
 }
 
+function leftTrim () {
+    local x="$@"
+    local t=""
+    while [[ "${t}" != "$x" ]] ; do
+        t="${x}"
+        x="${x#${x%%[![:space:]]*}}"
+    done
+    echo "${x}"
+}
+
+function rightTrim () {
+    local x="$*"
+    local t=""
+    while [[ "${t}" != "$x" ]] ; do
+        t="${x}"
+        x="${x%${x##*[![:space:]]}}"
+    done
+    echo "${x}"
+}
+
+function trim () {
+    local x=$(rightTrim "$@")
+    x=$(leftTrim "$x")
+    echo "$x"
+}
+
+function fileCaseItem() {
+	local line i x t r q
+	if [[ "${1}" == '-q' ]] ; then
+		shift
+		q=yes
+	fi
+	i=$(lowerCase "${1##*/}")
+	x="${1%/*}"
+	while read line ; do
+		t=$(lowerCase "${line##*/}")
+		if [[ "${i}" == "${t}" ]] ; then
+			echo "${line}"
+			return 0
+		fi
+	done<<<$(ls -a1d "${1%/*}"/* 2>/dev/null )
+	if [[ "${q}" != '' ]] ; then
+		echo "unable to match file name case for '${1}'" | errorlog
+	fi
+	return 1
+}
+
+function fileCase () {
+
+	# files should always be relevant to the current dir
+	# so / causes failure on purpose
+
+	local q
+	if [[ "${1}" == '-q' ]] ; then
+		shift
+		q='-q'
+	fi
+
+	# if [[ "${1}" != '-a' ]] ; then
+	#	fileCaseItem ${q} "${@}" || return 1
+	# else
+	#	shift
+
+	if [[ "${1}" == '-a' ]] ; then
+		shift
+	fi
+
+		local i="${1}"
+		if [[ -e "${i}" ]] ; then
+			echo "${i}"
+			return 0
+		fi
+		local o s x
+		if [[ "${i%/*}/" == "${i}" ]] ; then
+			x='/'
+			i="${i%/*}"
+		fi
+		while [[ ${#i} -ne 0 ]] ; do
+			s="${i%%/*}"
+			if [[ ${#o} -eq 0 ]] ; then
+				[[ ${#s} -eq 0 ]] && o='/' || o="./${s}"
+			else
+				[[ ${#s} -eq 0 ]] && continue || o="${o}/${s}"
+			fi
+			# echo -n "${o}->" >&2
+			o=$(fileCaseItem ${q} "${o}") || return $?
+			# echo "${o}" >&2
+			i="${i:1}"
+			i="${i:${#s}}"
+		done
+		[[ -d "${o}" ]] && [[ "${x}" != '' ]] && [[ "${o%/*}/" != "${o}" ]] && o="${o}/"
+		echo ${o}
+	# fi
+	return 0
+}
+
 function get_stamp () {
 
     local ret=0
@@ -149,10 +246,29 @@ function load_nls () {
 
 function compare_nls () {
 
+    unset EN
+    unset EN_STAMP
+    unset EN_DATA
     local t x d n
     local p="${1%/*}"
     p="${p##*/}"
     EN_CMP=''
+    local EN=$(upperCase "${1##*/}")
+    [[ "${EN%.UTF*}" != "${EN}" ]] && EN="${EN%.*}"
+    EN="${EN%.*}"
+    EN="${1%/*}/${EN}.en"
+    EN=$(fileCase -a "${EN}")
+    if [[ ! -e "${EN}" ]] ; then
+        unset EN
+        UC="${UC}, NO EN"
+        EN_CMP='?'
+    else
+        # echo "English version $EN"
+        EN_STAMP=$(get_stamp "${EN}")
+        # echo "Timestamp $EN_STAMP"
+        [[ ! -e "${EN}" ]] && UC="${UC}, EN FAIL"
+
+    fi
     if [[ ${EN_STAMP} -eq 0 ]] ; then
         EN_CMP='?'
     elif [[ "${p}" == "nls" ]] ; then
@@ -160,6 +276,7 @@ function compare_nls () {
         unset NLS_DATA
         load_nls NLS_DATA "${1}"
         if [[ "${EN_DATA}" == "${EN}" ]] ; then
+            [[ "${UCP//;${p};}" == "${UCP}" ]] && UCP="${UCP};${p};"
             UC=yes
         elif [[ "${NLS_DATA}" != "${EN_DATA}" ]] ; then
             EN_CMP="*"
@@ -198,7 +315,8 @@ function compare_nls () {
             # echo
         fi
     else
-        UC=yes
+        [[ "${UCP//;${p};}" == "${UCP}" ]] && UCP="${UCP};${p};"
+        UC="${UC}, OTHER DIR"
     fi
 
     if [[ "${EN_CMP}" == "" ]] ; then
@@ -248,20 +366,8 @@ function calc_dir_languages () {
 
     [[ ! -d "${1}" ]] && return 1
     local i utf l
-    unset EN
-    unset EN_STAMP
-    unset EN_DATA
     for i in "${1}"/* ; do
         [[ ! -e "${i}" ]] && continue
-        if [[ "${EN}" == "" ]] ; then
-            EN="${1}/${1%%/*}.en"
-            [[ ! -e "${EN}" ]] && EN="${1}/$(lowerCase ${1%%/*}).en"
-            [[ ! -e "${EN}" ]] && EN="${1}/$(upperCase ${1%%/*}).EN"
-            # echo "English version $EN"
-            EN_STAMP=$(get_stamp "${EN}")
-            # echo "Timestamp $EN_STAMP"
-            [[ ! -e "${EN}" ]] && UC=fail
-        fi
         utf=$(ls -1d "${i}"* 2>/dev/null | grep -i "${i}\.utf-8" )
         [[ "${utf}" != "" ]] && continue
         l=$(lang_of_nls "${i}")
@@ -282,7 +388,9 @@ function calc_dir_languages () {
 function calc_src_languages () {
 
     [[ ! -d "${1}" ]] && return 1
-    US=yes
+    UC="${UC}, SRC DIR"
+    local p="${1##*/}"
+    [[ "${UCP//;${p};}" == "${UCP}" ]] && UCP="${UCP};${p};"
     local i utf l
     for i in "${1}"/* ; do
         [[ ! -e "${i}" ]] && continue
@@ -314,6 +422,7 @@ function calc_languages () {
     APPLANGS=''
     local prog
     unset UC
+    unset UCP
     unset KEY_BR
     calc_dir_languages ${1}/nls && prog=y
     calc_dir_languages ${1}/doc && prog=y
@@ -325,7 +434,10 @@ function calc_languages () {
         APPLANGS="${APPLANGS:1:$(( ${#APPLANGS} - 2))}"
         APPLANGS="${APPLANGS//;/, }"
         /bin/echo -n "${1}: ${APPLANGS}"
-        [[ ${UC} ]] && /bin/echo -n " (compare manually)"
+        UCP="${UCP//;;/, }"
+        UCP="${UCP//;/}"
+        [[ "${UCP}" != "" ]] && UCP="'${UCP}' "
+        [[ ${UC} ]] && /bin/echo -n " (compare ${UCP}manually)" #  Show UC for reason codes
         echo
         sleep 1
     fi
@@ -334,22 +446,90 @@ function calc_languages () {
 
 }
 
+function cfg_section () {
+    local found line sec="${1}"
+    [[ "${sec}" == '*' ]] && sec='\*'
+    while IFS=''; read -r line ; do
+        line="${line//[[:cntrl:]]}"
+        line=$(leftTrim "${line}")
+        [[ "${line// }" == "" ]] && continue
+        if [[ ! ${found} ]] ; then
+            line=$(rightTrim "${line}")
+            if [[ "${line//\[${sec}\]}" == "" ]] ; then
+                found=true
+            fi
+        else
+            [[ "${line:0:1}" = "[" ]] && break
+            [[ "${line:0:2}" = "+=" ]] && continue
+            if [[ "${2}" == '-x' ]] ; then
+                echo "${line%%=*}"
+                break
+            else
+                echo "${line}"
+            fi
+        fi
+    done
+}
+
+function special_pgme () {
+    local lfile lfiles lname cfg app appl apps appls tappls
+    APPLANGS=''
+    for lfile in pgme/language/* ; do
+        [[ ! -e "${lfile}" ]] && continue
+        lname="${lfile##*/}"
+        lname=$(upperCase "${lname%.*}")
+        [[ "${lname}" == 'DEFAULT' ]] && continue
+        [[ "${lname}" == 'EN-US' ]] && continue
+        [[ "${lname}" == 'EN_US' ]] && continue
+        cfg=$(cfg_section '*'<${lfile})
+        app=$(cfg_section 'HELP' -x<${lfile})
+        appl=$(echo "$cfg" | grep "^ID=" | cut -d '=' -f 2)
+        case $(upperCase "${appl}") in
+            'FRENCH') appl="FR";;
+            'SPANISH') appl="ES";;
+            'TURKISH') appl="TR";;
+        esac
+        [[ "${apps//;${app};}" == "${apps}" ]] && apps="${apps};${app};"
+        [[ "${appls//;${appl};}" == "${appls}" ]] && appls="${appls};${appl};"
+        lfiles="${lfiles};${app}.${appls}=${lfile##*/}"
+    done
+    while [[ ${apps} ]] ; do
+        app="${apps%%;*}"
+        apps="${apps:$((${#app} + 1))}"
+        [[ ! ${app} ]] && continue
+        echo ${app}
+        tappls="${appls}"
+        while [[ ${tappls} ]] ; do
+            appl="${tappls%%;*}"
+            tappls="${tappls:$((${#appl} + 1))}"
+            [[ ! ${appl} ]] && continue
+            echo "  ${appl}"
+        done
+    done
+
+}
+
 function each_app () {
 
     local app
     for app in * ; do
         [[ ! -d "${app}" ]] && continue
-        [[ "${SPECIAL//;${app};}" != "${SPECIAL}" ]] && continue
+        [[ "${EXCEPT//;${app};}" != "${EXCEPT}" ]] && continue
 
         if [[ ${DEBUGGING} ]] ; then
-            if [[ "${app}" != "${DEBUGGING}" ]]; then
+            if [[ "${DEBUGGING//;${app};}" == "${DEBUGGING}" ]]; then
                 # echo  "DEBUG SKIP: ${1} ${app}"
                 continue
             else
                 echo "DEBUG: ${1} ${app}"
             fi
         fi
-        ${1} ${app}
+
+        if [[ "${SPECIAL//;${app};}" != "${SPECIAL}" ]] ; then
+            special_${app} ${1}
+        else
+            ${1} ${app}
+        fi
     done
 
 }
@@ -396,14 +576,14 @@ function main () {
             NO_REP=yes      # don't show key comparisons
         elif [[ "${opt}" == "-s" ]] || [[ "${opt}" == "" ]] ; then
             # summary
-            [[ $once ]] && script_header;
+            [[ $once ]] && script_summary;
             each_app calc_languages
             scan_summary
         elif [[ "${opt}" == "-r" ]] ; then
             create_report
         else
             # summary
-            [[ $once ]] && script_header;
+            [[ $once ]] && script_summary;
             calc_languages "${opt}"
         fi
         unset once
