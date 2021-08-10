@@ -10,7 +10,9 @@ LANGS=0
 TRANS=0
 PLATFORM="$(uname)"
 KEYFILE_ERR="translation file"
-DEBUGGING=";pgme;pkgtools;slicer;"
+unset CHECK_PGME
+
+DEBUGGING=";;"
 unset DEBUGGING
 
 function script_header () {
@@ -470,9 +472,158 @@ function cfg_section () {
     done
 }
 
+function cfg_all () {
+    local found line xx t
+    while IFS=''; read -r line ; do
+        line="${line//[$'\t\r\n']}"
+        line=$(leftTrim "${line}")
+        [[ "${line// }" == "" ]] && continue
+        if [[ ! ${found} ]] ; then
+            line=$(rightTrim "${line}")
+            if [[ "${line//\[\*\]}" == "" ]] ; then
+                found=maybe
+            fi
+        elif [[ "${found}" == "maybe" ]] ; then
+            [[ "${line:0:$(( ${#3} + 2 ))}" = "[${3}]" ]] && found=true
+        elif [[ "${line:0:1}" = "[" ]] ; then
+            break
+        elif [[ "${line:0:2}" = "+=" ]] ; then
+            [[ "${xx}" != '' ]] && echo "${xx}"
+            xx=
+        else
+            t="$(trim ${line#*=})"
+            if [[ "${t}" != '' ]] || [[ "${2}" != "-x" ]] ; then
+                echo "${line%%=*}="
+                xx=
+            else
+                xx="${line%%=*}="
+            fi
+        fi
+    done< "${1}" | sort
+}
+
+function load_sections () {
+
+    local line flag t hold
+    if [[ -f "${1}" ]] ; then
+        /bin/echo -n ";"
+        while [[ ! $flag ]] ; do
+            read -r line || flag=done
+            line="${line//[$'\t\r\n']}"
+            line="${line#${line%%[![:space:]]*}}"
+            line="${line%${line##*[![:space:]]}}"
+            t="${line}"
+            line="${line%%:*}"
+            line="${line%%=*}"
+            [[ "${line}" == "" ]] && continue
+            [[ "${t}" == "${line}" ]] && continue
+            line="${line%${line##*[![:space:]]}}"
+            [[ "${line// }" != "${line}" ]] && continue
+            [[ "${line:0:1}" == "#" ]] && continue
+            [[ "${line:0:1}" == ";" ]] && continue
+            /bin/echo -n "${line};"
+        done<<<"$(cfg_all ${1} ${2} ${3})"
+    fi
+}
+
+function compare_pgme () {
+
+    local t x d n ht hd
+    local sec="${4}"
+    local p="${3%/*}"
+    p=$(lowerCase "${p##*/}")
+    # if [[ ! ${EN} ]] ; then
+        local EN="${3%%/*}/defaults/${1}"
+        [[ "${p}" == "language" ]] && EN="${EN}.LNG"
+        EN=$(fileCase -a "${EN}")
+        if [[ ! -e "${EN}" ]] ; then
+            unset EN
+            echo "$1, unable to locate English version"
+            return 0
+        else
+            # echo "English version $EN"
+            EN_STAMP=$(get_stamp "${EN}")
+            # echo "Timestamp $EN_STAMP"
+            if [[ ${EN_STAMP} -eq 0 ]] ; then
+                unset EN
+                echo "$1, internal error"
+                return 0
+            fi
+
+        fi
+        # echo "Reading ${EN} [${sec}]" >&2
+        EN_DATA=$(load_sections "${EN}" -x "${sec}")
+    # fi
+
+
+    # echo "Reading ${3} [${sec}]" >&2
+    NLS_DATA=$(load_sections "${3}" -a "${sec}")
+
+    ht="${EN_DATA}"
+    t=
+    d=
+    hd=
+    /bin/echo -n "comparing ${1}, ${2} [${sec}]" >&2
+    while [[ ${#t} -ne 0 ]] || [[ ${#ht} -ne 0 ]] ; do
+        if [[ ${#t} -lt 250 ]] ; then
+            t="${t}${ht:0:500}"
+            ht="${ht:500}"
+        fi
+        x="${t%%;*}"
+        t="${t:$(( ${#x} + 1 ))}"
+        if [[ "${x}" == '' ]] ; then
+            /bin/echo -n ' ' >&2
+            continue
+        fi
+        n="${NLS_DATA/;${x};/;}"
+        if [[ "${#n}" == "${#NLS_DATA}" ]] ; then
+            /bin/echo -n 'X' >&2
+            d="${d};${x}"
+            if [[ ${#d} -gt 500 ]] ; then
+                hd="${hd}${d}"
+                d=
+            fi;
+        else
+            /bin/echo -n '.' >&2
+            NLS_DATA="${n}"
+        fi
+    done
+    echo >&2
+    d="${hd}${d}"
+    d="${d//;;/;}"
+    d="${d:1}"
+    if [[ "${d}" != '' ]] ; then
+        EN_CMP="*"
+        echo "${KEYFILE_ERR} '${3}' is missing key(s): [${sec}] '${d//;/, }'"
+    fi
+    d="${NLS_DATA//;;/;}"
+    [[ ${#d} -gt 1 ]] && d="${d:1:$(( ${#d} - 2 ))}" || d=''
+    #if [[ "${d}" != '' ]] ; then
+    #    [[ "${EN_CMP}" == "@" ]] && EN_CMP="+"
+    #    echo "${KEYFILE_ERR} '${3}' has extra key(s): [${sec}] '${d//;/, }'"
+    #fi
+
+    t=$(get_stamp "${3}")
+
+    if [[ "${EN_CMP}" == "*" ]] ; then
+         [[ "${5}" == '-x' ]] && echo "${1}, ${2} has issues"
+    elif [[ ${t} -lt ${EN_STAMP} ]] ; then
+        [[ "${5}" == '-x' ]] && echo "${1}, ${2} is older than English version"
+        EN_CMP='!'
+    fi
+
+    if [[ "${EN_CMP}" == "@" ]] ; then
+        [[ "${5}" == '-x' ]] && echo "${1}, ${2} looks fine"
+    fi
+    return 0
+
+}
+
+
 function special_pgme () {
-    local lfile lfiles lname cfg app appl apps appls tappls
+    local lfile lfiles lname cfg app appl apps appls tappls xapp sec lsec tsec x
     APPLANGS=''
+    lsec='HELP;STRINGS;KEYNAMES'
     for lfile in pgme/language/* ; do
         [[ ! -e "${lfile}" ]] && continue
         lname="${lfile##*/}"
@@ -490,19 +641,39 @@ function special_pgme () {
         esac
         [[ "${apps//;${app};}" == "${apps}" ]] && apps="${apps};${app};"
         [[ "${appls//;${appl};}" == "${appls}" ]] && appls="${appls};${appl};"
-        lfiles="${lfiles};${app}.${appls}=${lfile##*/}"
+        lfiles="${lfiles};${app}.${appl}=${lfile};"
     done
     while [[ ${apps} ]] ; do
         app="${apps%%;*}"
         apps="${apps:$((${#app} + 1))}"
         [[ ! ${app} ]] && continue
-        echo ${app}
+        case "${app}" in
+            "PGM")       xapp='ETERNITY';;
+            "INSTALLER") xapp="INSTALL";;
+            *)           xapp="${app}"
+        esac
         tappls="${appls}"
+        unset EN_DATA
+        unset EN
+        unset EN_STAMP
         while [[ ${tappls} ]] ; do
+            unset UC
+            unset UCP
+            EN_CMP="@"
             appl="${tappls%%;*}"
             tappls="${tappls:$((${#appl} + 1))}"
             [[ ! ${appl} ]] && continue
-            echo "  ${appl}"
+            lfile="${lfiles##*;${app}.${appl}=}"
+            lfile="${lfile%%;*}"
+            [[ "$lfile" == '' ]] && continue # no translation in this language
+            tsec="${lsec}"
+            while [[ ${#tsec} -gt 0 ]]; do
+                sec="${tsec%%;*}"
+                tsec="${tsec:$(( ${#sec} + 1 ))}"
+                [[ ${#tsec} -eq 0 ]] && x=-x || x=
+                compare_pgme "${xapp}" "${appl}" "${lfile}" "${sec}" "${x}"
+            done
+            # echo $UC, $UCP
         done
     done
 
@@ -551,8 +722,17 @@ function do_report () {
     echo
     each_app calc_languages
     echo
+    if [[ ! ${CHECK_PGME} ]] ; then
+        echo "PGME status not checked (very timeconsuming)"
+    else
+        echo "PGME status: (extra keys ignored)"
+        echo
+        special_pgme
+    fi
+    echo
     echo "Translation file index key comparison:"
     echo
+
 }
 
 function filter_out () {
@@ -600,6 +780,9 @@ function main () {
         elif [[ "${opt}" == "-r" ]] || [[ "${opt}" == "" ]] ; then
             create_report
             return 0
+        elif [[ "${opt}" == "-p" ]] ; then
+            CHECK_PGME=true
+            continue
         else
             # summary
             [[ $once ]] && script_summary;
