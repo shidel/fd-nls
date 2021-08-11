@@ -307,11 +307,12 @@ function compare_nls () {
                 echo "${KEYFILE_ERR} '${1}' is missing key(s): '${d//;/, }'"
             fi
             t="${NLS_DATA}"
+            d=
             while [[ ${#t} -ne 0 ]] ; do
                 x="${t%%;*}"
                 t="${t:$(( ${#x} + 1 ))}"
                 [[ "${x}" == "" ]] && continue
-                if [[ "${x:0:5}" != "HELP." ]] ; then
+                if [[ "${x:0:5}" != "HELP." ]] && [[ "${x:0:5}" != "HELP_" ]] ; then
                     d="${d};${x}"
                 fi
             done
