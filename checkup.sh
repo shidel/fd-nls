@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EXCEPT=';packages;pgme;fdi;htmlhelp;'
+EXCEPT=';packages;fdi;htmlhelp;'
 SPECIAL=';pgme;'
 EXCLUDE=';txt;docinfo;htm;html;'
 LANGUAGES=''
@@ -12,7 +12,7 @@ PLATFORM="$(uname)"
 KEYFILE_ERR="translation file"
 unset CHECK_PGME
 
-DEBUGGING=";;"
+DEBUGGING=";pkgtools;pgme;pause;"
 unset DEBUGGING
 
 function script_header () {
@@ -299,13 +299,25 @@ function compare_nls () {
                 fi
             done
             d="${d//;;/;}"
-            d="${d:1}"
+            while [[ "${d:0:1}" == ';' ]]; do
+                d="${d:1}"
+            done
             if [[ "${d}" != '' ]] ; then
                 EN_CMP="*"
                 echo "${KEYFILE_ERR} '${1}' is missing key(s): '${d//;/, }'"
             fi
-            d="${NLS_DATA//;;/;}"
-            [[ ${#d} -gt 1 ]] && d="${d:1:$(( ${#d} - 2 ))}" || d=''
+            t="${NLS_DATA}"
+            while [[ ${#t} -ne 0 ]] ; do
+                x="${t%%;*}"
+                t="${t:$(( ${#x} + 1 ))}"
+                [[ "${x}" == "" ]] && continue
+                if [[ "${x:0:5}" != "HELP." ]] ; then
+                    d="${d};${x}"
+                fi
+            done
+            while [[ "${d:0:1}" == ';' ]]; do
+                d="${d:1}"
+            done
             if [[ "${d}" != '' ]] ; then
                 [[ "${EN_CMP}" == "@" ]] && EN_CMP="+"
                 echo "${KEYFILE_ERR} '${1}' has extra key(s): '${d//;/, }'"
@@ -538,7 +550,7 @@ function compare_pgme () {
         EN=$(fileCase -a "${EN}")
         if [[ ! -e "${EN}" ]] ; then
             unset EN
-            echo "$1, unable to locate English version"
+            echo "$1, unable to locate English version" >&2
             return 0
         else
             # echo "English version $EN"
@@ -606,14 +618,14 @@ function compare_pgme () {
     t=$(get_stamp "${3}")
 
     if [[ "${EN_CMP}" == "*" ]] ; then
-         [[ "${5}" == '-x' ]] && echo "${1}, ${2} has issues"
+         [[ "${5}" == '-x' ]] && echo "${1}, ${2} has issues" >&2
     elif [[ ${t} -lt ${EN_STAMP} ]] ; then
-        [[ "${5}" == '-x' ]] && echo "${1}, ${2} is older than English version"
+        [[ "${5}" == '-x' ]] && echo "${1}, ${2} is older than English version" >&2
         EN_CMP='!'
     fi
 
     if [[ "${EN_CMP}" == "@" ]] ; then
-        [[ "${5}" == '-x' ]] && echo "${1}, ${2} looks fine"
+        [[ "${5}" == '-x' ]] && echo "${1}, ${2} looks fine" >&2
     fi
     return 0
 
@@ -621,7 +633,13 @@ function compare_pgme () {
 
 
 function special_pgme () {
+
+    if [[ ! ${CHECK_PGME} ]] ; then
+        echo "pgme: (not compared, very timeconsuming)"
+        return 0
+    fi
     local lfile lfiles lname cfg app appl apps appls tappls xapp sec lsec tsec x
+    local msg
     APPLANGS=''
     lsec='HELP;STRINGS;KEYNAMES'
     for lfile in pgme/language/* ; do
@@ -656,6 +674,7 @@ function special_pgme () {
         unset EN_DATA
         unset EN
         unset EN_STAMP
+        msg="${2}, $(lowerCase ${xapp}):"
         while [[ ${tappls} ]] ; do
             unset UC
             unset UCP
@@ -673,8 +692,12 @@ function special_pgme () {
                 [[ ${#tsec} -eq 0 ]] && x=-x || x=
                 compare_pgme "${xapp}" "${appl}" "${lfile}" "${sec}" "${x}"
             done
+            msg="${msg} $(lowerCase ${appl})"
+            [[ "${EN_CMP}" != "@" ]] && msg="${msg}${EN_CMP}"
+            msg="${msg},"
             # echo $UC, $UCP
         done
+        echo "${msg:0:$(( ${#msg} - 1))} (language files only)"
     done
 
 }
@@ -691,12 +714,12 @@ function each_app () {
                 # echo  "DEBUG SKIP: ${1} ${app}"
                 continue
             else
-                echo "DEBUG: ${1} ${app}"
+                echo "DEBUG: ${1} ${app}" >&2
             fi
         fi
 
         if [[ "${SPECIAL//;${app};}" != "${SPECIAL}" ]] ; then
-            special_${app} ${1}
+            special_${app} ${1} ${app}
         else
             ${1} ${app}
         fi
@@ -722,17 +745,8 @@ function do_report () {
     echo
     each_app calc_languages
     echo
-    if [[ ! ${CHECK_PGME} ]] ; then
-        echo "PGME status not checked (very timeconsuming)"
-    else
-        echo "PGME status: (extra keys ignored)"
-        echo
-        special_pgme
-    fi
-    echo
     echo "Translation file index key comparison:"
     echo
-
 }
 
 function filter_out () {
@@ -759,11 +773,12 @@ function create_report () {
     # each_app calc_languages | grep "^${KEYFILE_ERR}" | tee -a "${out}"
     cat "${out}.tmp" | grep -i "is missing" | tee -a "${out}.txt"
     echo | tee -a "${out}.txt"
-    echo "(please note that extra KEYS are probably fine)" | tee -a "${out}.txt"
+    echo "(please note that extra KEYS are probably fine and some are filtered out)" | tee -a "${out}.txt"
     echo | tee -a "${out}.txt"
     cat "${out}.tmp" | grep -i "has extra" | tee -a "${out}.txt"
     [[ -f "${out}.tmp" ]] &&  rm "${out}.tmp" >/dev/null 2>&1
-
+    echo | tee -a "${out}.txt"
+    # scan_summary | tee -a "${out}.txt" # new process, subshell values lost.
 }
 
 function main () {
@@ -790,8 +805,6 @@ function main () {
         fi
         unset once
     done
-
-
 
 }
 
