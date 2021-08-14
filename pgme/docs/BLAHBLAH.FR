@@ -1,0 +1,493 @@
+### Manuel du gestionnaire de programmes Eternity Edition. (un peu moins
+                                                                     brouillon)
+
+Pr‚sentation :
+
+    Lors d'un premier coup d'oeil, PGME semble assez simple. Son pr‚d‚cesseur
+    PGM7.2 ‚tait plut“t simple. Mais PGME est vraiment un monstre de complexit‚.
+    Il est g‚r‚ par les ‚v‚nements, est multi-langues, prend en charge les
+    thŠmes, et est bƒti sur un framework d'application orient‚ objet que j'ai
+    entiŠrement cr‚‚. Tout ce que vous voyez est une sorte de "contr“le" qui
+    h‚rite du code de son ancˆtre et qui a un parent … qui il "appartient".
+    Il a mˆme un systŠme d'aide sensible au contexte et qui s'auto-assemble.
+    De mˆme, mˆme les menus de lancement des programmes passent par une sorte
+    de systŠme autonome de mise en m‚moire tampon des donn‚es.
+
+    Tout ce jargon ne lui rend pas vraiment justice et ne fait que gratter la
+    surface des choses qui se passent au sein de ce l‚viathan.
+
+    Mais que fait-il au juste ? Si vous ˆtes en train de lire ce fichier, vous
+    connaissez probablement d‚j… la r‚ponse … cette question. Mais juste au cas
+    o— ce texte aurait ‚t‚ s‚par‚ du programme... C'est un lanceur de
+    programmes fond‚ sur les menus pour DOS pouss‚ … son extrˆme. Il est
+    cens‚ ˆtre le mot de la fin pour les lanceurs de programmes de ce genre.
+
+    Par exemple, les thŠmes de PGME dont bien plus que quelques piŠces par-ci,
+    par-l… pour changer quelques couleurs. Ils peuvent totalement modifier
+    l'apparence de l'interface utilisateur. Dans le thŠme par d‚faut int‚gr‚,
+    presque toutes les fonctionnalit‚s de PGME sont pr‚sent‚es quelque part.
+    Mais basculez sur le mode kiosque et PGME utilisera le programme QCNFTOOL
+    inclus pour modifier les thŠmes et quelques r‚glages. Dans le thŠme kiosque
+    seul un menu est affich‚ au milieu de l'‚cran et vous ne pouvez plus
+    quitter vers DOS. Heureusement, l'‚l‚ment de menu pour basculer en mode de
+    d‚monstration du kiosque est remplac‚ par un ‚l‚ment pour basculer hors
+    du mode kiosque. :-)
+
+Configuration requise :
+
+    SystŠme d'exploitation compatible avec FreeDOS v1.1
+    1024 Ko d'espace disque libre.
+    640 Ko de m‚moire (400 Ko libres, 500 Ko sont vraiment, vraiment
+    conseill‚s).
+    Carte vid‚o compatible VGA.
+    Microprocesseur 286 ou plus r‚cent.
+    Clavier.
+    (La souris est hautement conseill‚e, et lors de l'utilisation du thŠme par
+    par d‚faut ainsi que des paramŠtres de clavier elle est requise).
+    (Un moniteur couleur est conseill‚).
+
+ProblŠmes connus (que je ne peux ou que je ne vais pas r‚soudre) :
+
+    Les polices transform‚es en r‚sidents avec QFNT2TSR ne fonctionneront pas
+    sous DOSBox. Ce n'est pas un souci du r‚sident (TSR) cr‚‚.
+
+    Les sons ne peuvent ˆtre entendus sous VirtualBox, VMware ou d'autres
+    machines virtuelles. C'est triste. Mais malheureusement, la plupart des
+    logiciels de machine virtuelle (sauf DOSBox) n'impl‚mentent pas la prise en
+    charge des sons rudimentaires du haut-parleur du PC.
+
+    Le d‚filement doux QScroll ne fonctionne pas dans ma machine virtuelle.
+    Encore une fois, les machines virtuelles ne fournissent pas la prise en
+    charge mat‚rielle sp‚cifique au VGA afin de r‚aliser un d‚filement doux en
+    mode texte. Dans de rares cas, certains mat‚riels ne le prennent pas non
+    plus en charge. Par d‚faut, le d‚filement doux est activ‚ sous DOSBox et du
+    mat‚riel r‚el. Pour les machines virtuelles telles que VirtualBox, VMware
+    et QEMU il est d‚sactiv‚.
+
+· faire (t“t ou tard, peut-ˆtre) :
+
+    Analyse de lecteur pour le chemin du menu pour les insertions de disque.
+    Prise en charge de l'interface utilisateur pour PGMVars.
+    R‚glage des options et invite pour les options avant le lancement.
+    D'autres utilitaires, thŠmes, polices, etc.
+
+La compilation de PGME depuis le code source requiŠre :
+
+    Le tronc du code source de PGME depuis http://pgme.sourceforce.net
+    Un OS compatible avec DOS. FreeDOS ou DOSBox font l'affaire.
+    Borland Turbo Pascal 7.0.
+    V8Power Tools pour DOS.
+    Ex‚cuter BUILD.BAT
+
+Par d‚faut, les programmes fond‚s sur QuickCRT :
+(Peuvent ˆtre modifi‚s dans un fichier KMP personnalis‚)
+
+    Alt-W ferme une fenˆtre et s'il s'agit de la fenˆtre principale, le
+          programme sera ferm‚.
+    Alt-Q quitte le programme.
+    Alt-H affiche l'‚cran d'aide.
+    Alt-H, puis Alt-H affiche l'‚cran d'aide principal du programme.
+
+** FICHIERS ABSOLUMENT NCESSAIRES **
+
+    PGME.EXE        Le lanceur du gestionnaire de programme Eternity.
+    ETERNITY.BIN    Blob binaire qui contient la plupart du code de PGME.
+
+** FICHIERS QUE VOUS DEVRIEZ VRAIMENT, VRAIMENT AVOIR **
+
+    PGM.BAT         C'est le fichier que vous devriez vraiment utiliser pour
+                    ouvrir PGME. Il lui permettra d'effectuer des lancements de
+                    programmes trŠs compliqu‚es … plusieurs ‚tapes. Il va aussi
+                    permettre … PGME de s'effacer entiŠrement de la m‚moire
+                    lorsqu'il lui sera demand‚ de lib‚rer les 10 Ko
+                    additionnels. Donc sauf si vous utilisez PGME sur un
+                    systŠme de fichiers en lecture seule, ce fichier devrait
+                    ˆtre pr‚sent dans un r‚pertoire mentionn‚ dans votre
+                    variable d'environnement %PATH%. Si vous l'avez install‚
+                    avec un l'installeur, il vous a ‚t‚ demand‚ o— le mettre.
+                    Si vous l'avez install‚ avec un gestionnaire de paquets
+                    pour FreeDOS tel que FDNPKG, il sera dans votre r‚pertoire
+                    %DOSDIR%\BIN
+
+                    H‚, saviez-vous que vous pouviez passer des termes …
+                    rechercher … PGME depuis la ligne de commande ? Eh oui,
+                    tapez "pgm static" et lorsque PGME s'ouvrira, il aura
+                    recherch‚ les menus et les programmes pour souligner la
+                    premiŠre correspondance.
+
+** DAVANTAGE DE FICHIERS ***
+
+    Fondamentalement, ces 2 ou 3 fichiers ci-dessus sont tout ce qui est
+    n‚cessaire pour ex‚cuter PGME. Il cr‚era les menus, les fichiers de
+    configuration, etc. lorsque cela sera n‚cessaire. Tous les fichiers list‚s
+    ci-dessous ne sont que "la cerise sur le gƒteau". :-)
+
+
+** FICHIERS DE SUPPORT **
+
+    ETERNITY.CFG    Le fichier de configuration de PGME.
+    EFNTDSGN.EXE    Concepteur de polices QuickCRT.
+    EFNTDSGN.CFG    Fichier de configuration de QuickCRT.
+    BLANKER.SCR     conomiseur d'‚cran ‚cran vide pour PGME.
+    ATOM.SCR        L'‚conomiseur d'‚cran "Atome" pour PGME.
+    CONWAY.SCR      Un ‚conomiseur d'‚cran quelque peu fond‚ sur le "jeu de la
+                    vie de Conway".
+    STATIC.SCR      Rappelle une vieille TV qui ne recevrait pas de signal.
+                    Devrait-il avoir du son? Il semble diminu‚ sans. Ah, il
+                    serait probablement encore plus ennuyeux avec.
+    TIME.SCR        Une grande horloge de style LCD de 24 heures qui se d‚place
+                    et qui change de couleur.
+
+** UTILITAIRES SUPPLMENTAIRES **
+
+    QFNTLOAD.EXE    Chargeur de police temporaire pour QuickCrt. Charger et
+                    et utiliser toute police de taille personnalis‚e jusqu'… la
+                    prochaine remise … z‚ro du mode vid‚o.
+    QFNT2RAW.EXE    Convertit une police QuickCRT en une image binaire brute
+                    et plate qui contient seulement les donn‚es de caractŠre de
+                    la police. Perd toutes les m‚tadonn‚es et les v‚rifications
+                    de s‚curit‚ int‚gr‚es … un fichier de police QuickCRT.
+    RAW2QFNT.EXE    Convertit un binaire brut en une police QuickCRT.
+    QFNT2TSR.EXE    Convertit un fichier de police QuickCRT en un programme COM
+                    ex‚cutable r‚sident (TSR) qui persistera jusqu'au
+                    red‚marrage de l'ordinateur. Utilisez cela pour charger de
+                    fa‡on permanente vos polices pour les utiliser sur l'invite
+                    DOS et la plupart des programmes en mode texte. Veuillez
+                    noter qu'il permettra de transformer tout FNT en un TSR.
+                    Cependant, je n'ai jamais vu un systŠme VGA qui utilise une
+                    police qui n'est pas du 8x16 avec cette technique. Mais on
+                    ne sait jamais donc il se plaindra et cr‚era la police TSR.
+    QDETUNE.EXE     (Pas encore commenc‚) Programme pour aider … cr‚er des
+                    se‚uences de sons pour les logiciels.
+    QKEYS.EXE       (Pas encore commenc‚) Programme pour aider … modifier les
+                    mappages clavier et commandes dans les fichiers KMP.
+    QSCROLL.EXE     Visionneur de fichier texte avec d‚filement doux. Prend en
+                    en charge diff‚rentes hauteurs de caractŠres et les fins de
+                    lignes DOS/UNIX. Tout appui sur une touche autre que haut,
+                    bas, PageUP et PageDown quitte le programme. Vous pouvez
+                    aussi activer ou d‚sactiver le d‚filement doux avec la
+                    touche S.
+    QCNFTOOL.EXE    Utilitaire en ligne de commande pour manipuler les fichiers
+                    de donn‚es au format texte de PGME. Tels que les fichiers
+                    MNU, CFG, THM, LNG, KMP et PMI.
+                    Ces fichiers sont similaires …, mais trŠs diff‚rents d'un
+                    fichier INI de Windows et cet outil ne devrait pas ˆtre
+                    utilis‚ sur ces types de fichiers. Pour l'utilisation de
+                    base de QCNFTOOL, voyez ci-dessous.
+
+** FICHIERS DE POLICE **
+
+    *.FNT           Tous les fichiers se terminant avec l'extension *.FNT sont
+                    des fichiers de police QuickCRT.
+
+** QCNFTOOL.EXE **
+                    Utilisation de base de QCNFTOOL. D'abord, veuillez noter
+                    que si vous n'entrez pas une commande  /W ou /X (/WRITE ou
+                    /EXPORT), aucune modification ou fichier ne sera ‚crit sur
+                    le disque.
+
+                    Le fichier de sortie. Lorsque cet utilitaire d‚marre, le
+                    nom du fichier de sortie n'est pas d‚fini et si une
+                    commande /W ou /X est entr‚e, un fichier "NONAME.CFG" sera
+                    utilis‚. Cependant, le premier fichier que vous lirez avec
+                    /READ d‚finira le nom de sortie au nom de fichier qui sera
+                    lu. Toute modification future du nom de fichier de sortie
+                    n‚cessitera de le d‚finir avec l'option /OUTPUT.
+
+                    Aussi, pour entrer des commandes trŠs longues ou nombreuses
+                    utilisez l'option /FILE. Le fichier sera trait‚ de la mˆme
+                    maniŠre qu'un seul jeu de commandes. Voyez les fichiers
+                    KIOSK.OFF et KIOSK.ON inclus pour un exemple.
+
+
+** FICHIERS DE MENU, DE MODÔLE, PAR DFAUT ET DE CONFIGURATION **
+
+    DEFAULTS\*.*    Tous les fichiers commencent dans le r‚pertoire DEFAULTS
+                    quel que soit leur nom ou leur extension.
+
+                    Ceux-ci sont g‚n‚r‚s automatiquement au moment de la
+                    compilation en utilisant les valeurs par d‚faut qui sont
+                    int‚gr‚es … leurs programmes respectifs. Pour les fichiers
+                    *.THM (ThŠme) etz *.LNG (Langue) vous devriez enlever tout
+                    ‚l‚ment que vous ne souhaitez pas remplacer. Cela peut
+                    aider … am‚liorer la performance lorsque le programme
+                    d‚marrera. Les fichiers *.KMP (mappage de clavier) sont un
+                    peu diff‚rents. S'il est pr‚sent, tous les ‚l‚ments avec
+                    lesquels vous souhaiterez travailler dans les sections vous
+                    ASSIMILATE et COMMAND devront ˆtre l…. Les autres sections
+                    d'un fichier KMP peuvent ˆtre enlev‚s.
+
+                    De plus, la section * devrait ˆtre incluse. Mais … l'heure
+                    actuelle ce n'est pas requis.
+
+                    La section  # section est ignor‚e.
+
+                    Les entr‚es de valeur sont une seule ligne et tout (y
+                    compris les espaces) … la suite du symbole = font partie de
+                    la valeur. Cependant, il existe certaines entr‚es sur
+                    plusieurs lignes. Tout simplement, un += ajoute une ligne …
+                    valeur pr‚c‚dente. Seules les valeurs qui prennent en
+                    charge les entr‚es sur plusieurs lignes utiliseront les
+                    lignes suppl‚mentaires.
+
+                    Une remarque g‚n‚rale de plus sur ces fichiers. Dans la
+                    section * se trouve une entr‚e MERGE. Si elle a une valeur,
+                    alors ce fichier est fusionn‚ avec l'actuel et toutes les
+                    valeurs dans le nouveau fichier remplaceront les valeurs
+                    pr‚c‚dentes. Il n'y a pas de limite sur le nombre de
+                    fusions qui peuvent avoir lieu. Je ne conseille pas d'en
+                    faire plus de deux. De toute fa‡on, la fusion finale sera
+                    consid‚r‚ comme ‚tant le fichier de config courant et s'il
+                    est enregistr‚ alors tous les r‚glages ne seront ‚crits que
+                    dans ce fichier. En th‚orie, tous les fichiers de config
+                    pourraient r‚sider dans un systŠme de fichier en lecture
+                    seule et les modifications de l'utilisateur ‚crites dans un
+                    fichier diff‚rent.
+
+                    Oh, encore une chose. Les indentations et les lignes vides
+                    n'ont pas d'importance et toute clef ou section incomprise
+                    sera ignor‚e.
+
+** Un fichier KMP de mappage de clavier **
+
+    Section ASSIMILATE ( Je pourrais d‚placer cette section hors de ce fichier)
+
+        Cette section contient une table de mappage des codes de num‚risation
+        de clavier de niveau extrˆmement basse. Vous ne devriez probablement
+        pas jouer avec ce fichier sauf si vous avez un clavier ‚trange. De
+        toute fa‡on, toutes les touches devraient correspondre … leur valeur
+        de base. Par exemple la lettre a a le scancode $0061. Toutes les
+        combinaisons possibles de Maj, Control et Alt doivent ˆtre mapp‚es …
+        $0061. Donc la ligne $0061=$0041:A,$0001:C+$0104,$1E00:A fait cela.
+        Ventil‚ ainsi :
+
+            target=original:mode+shiftcode,....
+
+            Target est le code souhait‚.
+            Original est le code d'origine entrant.
+            Mode est l'algorithme de correspondance utilis‚.
+                (A, M, ou C pour Any (tout), Match (correspondance) ou Contains
+                (contient))
+            Shift est le code de modification d'origine … correspondre.
+
+        Any r‚sultera en une correspondance ind‚pendamment de l'‚tat du code
+        de modification (shiftcode).
+        Match ne correspondra que s'il s'agit exactement du mˆme shiftcode.
+        Contains correspondra s'il contient l'un des bits du shiftcode.
+
+        Les valeurs du shiftcode devraient ˆtre mises ensemble avec OR (OU)
+        dans une valeur hexad‚cimale.
+
+        Il s'agit de :
+
+            kbRightShift  = $0001;
+            kbLeftShift   = $0002;
+            kbEitherShift = kbRightShift oi kbLeftShift;
+            kbEitherCtrl  = $0004;
+            kbEitherAlt   = $0008;
+            kbScrollLock  = $0010;
+            kbNumsLock    = $0020;
+            kbCapsLock    = $0040;
+            kbInsertLock  = $0080;
+            kbLeftCtrl    = $0100;
+            kbLeftAlt     = $0200;
+            kbSysDown     = $0400;
+            kbPauseFlag   = $0800;
+            kbScrollDown  = $1000;
+            kbNumsDown    = $2000;
+            kbCapsDown    = $4000;
+            kbInsertDown  = $8000;
+
+    Section COMMANDS
+
+            Cette section effectue une carte directe de bas niveau de certaines
+            combinaisons de frappes directement en commandes et peut ˆtre
+            utilis‚e pour modifier certains comportements par d‚faut du
+            programme. Elle fonctionne comme la section Assimilate de mappage
+            des touches. Mais c'est pour le mappage direct des touches en
+            commandes. Par exemple, vous pourriez utiliser cette section pour
+            modifier la commande Quitter d'Alt+Q en Alt+X.
+
+            · titre d'information, pour le meilleur r‚sultat utilisez +M pour
+            la correspondance exacte.
+
+    Section EVENTS
+
+            Lorsqu'un objet dans le programme est cliqu‚, il g‚n‚rera ces
+            commandes lorsqu'il sera d‚clench‚.
+
+    Section KEYSTROKES
+
+            Un objet r‚pondra aux appuis sur le clavier list‚s ici.
+
+** Un fichier de langue LNG **
+
+    Cela devrait ˆtre ‚vident … pr‚sent. Sauf pour les valeurs de formatage.
+
+            FileDate
+                0 : Ann‚e en 4 chiffres
+                1 : Mois
+                2 : Jour
+            FileTime:
+                0 : Heure d'horloge … 24 heures
+                1 : Heure d'horloge … 12 heures
+                2 : Minutes
+                3 : Secondes
+                4 : 0/1 (Faux/Vrai) AM ou PM
+
+    Les chaŒnes format‚es sont des donn‚es de formatage ; puis une chaŒne …
+    afficher.
+
+    Exemple '0[Z2.1,C10]{One,Two,Three},1[U,C10,X1-10,T],0[L5,Z3];Salut %2%1%0!'
+
+        0-9 Valeur … utiliser
+        [] Options de formatage
+        {} D‚finit la chaŒne, si la valeur n'est pas d‚finie alors elle est
+           utilis‚e {bool‚en & entier}
+        Z ZeroPad avant.aprŠs le point d‚cimal { entier & r‚el }
+        T Enlever les espaces de la chaŒne (avant le remplissage ou le
+          d‚coupage)
+        C, L ou R Remplissage avec des espaces au Centre, … gauche (Left) et …
+          droite (Right).
+        X Couper la chaŒne pour qu'elle n'excŠde pas la taille sp‚cifi‚e. {si
+          c'est n.c alors n est le d‚but et c est la d‚compte}
+        U, D ou W Modifier la casse en Upper (majuscules), Lower (minuscules)
+          ou par Words (mots).
+
+        ; termine la d‚finition de formatage et commence la chaŒne … formater
+        %0-9 D‚finition de format … ins‚rer.
+
+
+** Fichier ThŠme THM **
+
+    ALIGN alignement du texte de l‚gende.
+        High Byte (octet ‚lev‚) est l'alignement horizontal, Lo Byte
+        (l'octet bas) est l'alignement vertical.
+            Top    (Haut)   $0000
+            Middle (Milieu) $0001
+            Bottom (Bas)    $0002
+            Left   (Gauche) $0000
+            Center (Centre) $0100
+            Right  (Droite) $0200
+
+    ANCHORS Contr“le de l'ancrage et de l'alignement.
+
+       Soyez attentif lorsque vous m‚langez des ancrages et un alignement dans
+       la mˆme valeur.
+
+            Ancrages :
+            abNone   = $0000;
+            abLeft   = $0001;
+            abRight  = $0002;
+            abTop    = $0004;
+            abBottom = $0008;
+            abAll    = abLeft ou abRight ou abTop ou bien abBottom ;
+
+            Alignement :
+            alNone   = abNone;
+            alLeft   = $0100;
+            alRight  = $0200;
+            alTop    = $0400;
+            alBottom = $0800;
+            alClient = alLeft ou alRight ou alTop ou bien alBottom ;
+
+    DISPLAY Habituellement une chaŒne hexad‚cimale qui est utilis‚e par un
+            objet pour son affichage.
+
+    COLORS Les couleurs principales d'un objet.
+
+        Remarque : Les boutons et plusieurs autres objets ne fonctionneront pas
+        si leur couleur normale et de survol (hover) par la souris sont les
+        mˆmes.
+
+        S‚par‚s par des virgules dans cet ordre. Normal, Disabled (d‚sactiv‚),
+        Hover (survol‚), Click (cliqu‚) et Focused (ayant le focus).
+
+    BOUNDS (Limites) La position d'un objet enfant bas‚ sur son parent.
+
+    OUTSIDE Lorsque cela est vrai, l'objet peut ˆtre dessin‚ … l'ext‚rieur de
+            son parent. Sinon, ce n'est pas possible. Les limites sont toujours
+            relatives … son parent.
+
+    MARGINS La quantit‚ d'indentation d'un objet enfant.
+
+** Fichiers de configuration CFG **
+
+    Section Programs :
+
+        CLEAR,  Effacer l'‚cran avant le dessin du programme.
+
+        USE_DAC, Utiliser la palette de couleur VGA DAC. (Peut avoir des
+                 problŠmes de compatibilit‚)
+
+        USE_FADER, Lorsque USE_DAC est aussi vrai, effectue un fondu de la
+        palette des couleurs au d‚marrage et … la fin du programme.
+
+        USE_SOUND, Permet aux sons du haut-parleur du PC d'ˆtre g‚n‚r‚s.
+
+** Fichier ETERNITY.CFG, Options sp‚ciales **
+
+    CANQUIT, Sauf install‚ en mode kiosque, laissez cela … la valeur True. Si
+        la valeur est false (faux), vous ne pouvez que lancer d'autres
+        programmes et retourner … PGME. Vous ne pourrez pas quitter PGME vers
+        l'invite de commande.
+
+    READONLY, Cette option n'est probablement utile qu'en mode kiosque
+        ‚galement. Si PGME fonctionne en mode lecture seule, les menus ne
+        ne peuvent ˆtre modifi‚s.
+
+    PATH.MENU, Similaire … la variable d'environnement PATH de DOS, il s'agit
+        d'endroits o— PGME recherchera et incluera les menus. Si elle est
+        laiss‚e vide, seul le chemin du programme PGME sera recherch‚. Si elle
+        est d‚finie, seuls les endroits sp‚cifi‚s du disque durs seront inclus.
+        Probablement inutile sauf si PGME est install‚ et ex‚cut‚ depuis un
+        systŠme de fichier en lecture seule.
+
+    Avant que l'utilisateur ne d‚finisse une langue, thŠme, police, option,
+    un ‚conomiseur d'‚cran, etc. PGME tentera d'utiliser la variable
+    d'environnement %LANG% pour s‚lectionner un jeu d'options appropri‚es
+    de l'une des sections sp‚cifiques aux langues. Si la variable n'est pas
+    d‚finie, il utilisera les paramŠtres [LANG.NULL].
+
+** Fichiers de mendu *.MNU **
+
+    La plupart du temps, vous ne devriez pas y toucher. :-) Mais si vous pensez
+    en modifier un manuellement, voici quelques remarques.
+
+    D'abord, vous verrez des options DESCRIPTION.* et TITLE.* (titre). Il
+    s'agit de versions sp‚cifiques aux langues bas‚es sur leur ID dans leur
+    fichier de traduction correspondant. Si l'une est pr‚sente pour une langue
+    donn‚e, alors la version sans la partie .* est utilis‚e. Cette version du
+    texte n'est modifi‚e que lorsqu'une entr‚e est cr‚‚e.
+
+    Sous la section globale [*], il existe trois options notables.
+
+        WRITABLE        L'utilisateur peut-il modifier ce menu... (oui/non)
+        HIDE            Si et quand le menu doit apparaŒtre. Off=Toujours
+                        l'afficher, On=Cacher/d‚sactiver ce menu.
+                        Auto=L'afficher sauf si elle n'a rien … montrer.
+        PAUSE           Attendre aprŠs ˆtre revenu … PGME avant d'afficher le
+                        menu pour permettre la lecture des messages de sortie
+                        du programme. Off=Ne pas attendre, On=Attendre
+                        ind‚finiment ou jusqu'… l'appui sur une touche ou
+                        un clic de souris, ou bien NUMBER=D‚lai en secondes
+
+
+    Ensuite chaque ‚l‚ment de menu prend ‚galement en charge les paramŠtres
+    HIDE et PAUSE sp‚cifiques au programme donn‚.
+
+    Les fichiers de menu ressemblent … du texte brut. Mais soyez pr‚venus, les
+    versions par d‚faut fournies avec PGME contiennent des chaŒnes en de
+    multiples pages de code. La plupart des ‚diteurs modernes d‚formeront ces
+    chaŒnes.
+
+** Traductions et autres cr‚dits Translations **
+
+    La langue native de PGME est l'anglais des tats-Unis. Cependant, voici
+    quelques cr‚dits pour les fichiers de traductions inclus.
+
+    Espagnol :
+        Traduction Google, German Ivani, Andr‚s Miguel Pitcovsky
+
+    Traduction en fran‡ais et en turc :
+        Merci … "CardPuncher" Berki Yenign :-)
