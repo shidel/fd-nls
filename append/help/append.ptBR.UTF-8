@@ -1,0 +1,27 @@
+FreeDOS APPEND. Habilita os programas a abrir arquivos em diretórios específicos
+                como se os arquivos estivessem no diretório corrente.
+(C) 2004-2006 Eduardo Casino, sob os termos da licença GNU GPL versão 2
+
+Sintaxe:
+
+  APPEND [[drive:]path[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+  APPEND ;
+
+    [drive:]path Drive e diretório a anexar.
+    /X[:ON]      Estende APPEND para busca e execução de comandos.
+    /X:OFF       Aplica APPEND somente para requisiçõers de abertura de arquivos.
+                 Por padrão, /X:OFF
+    /PATH:ON     Busca diretórios anexados por requisições de arquivos que já
+                 incluem um caminho. Esta é a configuração padrão.
+    /PATH:OFF    Desliga o /PATH:ON.
+    /E           Armazena a lista de diretórios anexados no ambiente.
+                 /E só pode ser utilizado na primeira invocação de APPEND. Você
+                 não pode incluir nenhum caninho na mesma linha de comando de um /E.
+
+  APPEND ; limpa a lista de diretórios anexados.
+  APPEND sem parâmetros exibe a lista de diretórios anexados.
+
+Nota:
+
+  APPEND instala a si mesmo como comando interno após sua primeira execução.
+  As segunda e seguintes invocações DEVEM excluir caminho e extensão do arquivo.
