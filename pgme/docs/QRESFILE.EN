@@ -7,6 +7,18 @@ It supports EXE, COM and other file types. Even stand alone files. These are
 not like archives or databases. It uses a very simple format that can be
 implemented in just a few lines of code.
 
+QResFile and the XBINRSCR appendix format is designed to allow attaching any
+type of file data onto an executable. However if you only want to attach
+translations for programs that use catgets/kitten style translations, I
+recommend using KITTENC instead. It is better suited for programs that already
+use kitten and provides libraries to simplify integration. The XBINRSCR format
+was created without knowledge of KITTENC and serves slightly different purpose.
+XNINRSCR can store anything. It can be used for NLS translations. But, no
+libraries are provided at present. So, if you like using catgets/kitten and
+have no need to attach anything other than translations, you should probably
+stick with KITTENC. On the other hand, if you want to "glue" other types of
+data onto your executable, the XBINRSRC is the way to go.
+
 To use the the attached data with an EXE file, simple read the last 20 bytes
 of the file into a buffer. The format of this structure stored there is:
 
@@ -69,9 +81,11 @@ The utility can also remove all attached resources and the signature using
 the delete all option.
 
 You can attach data to a text file as well. I advise putting a EOF character
-at the end of your text first. :-)
+at the end of your text first. But, be warned. Attaching "invisible" data
+onto a text file is not the greatest practice and encourages data loss! It
+should only be done in very rare circumstances when some pre-text message is
+required. However, even then, you'd probably be better served with a good
+readme document.
 
-
-
-
+:-)
 
