@@ -8,6 +8,19 @@ d'autres. Mˆme les fichiers autonomes. Ceux-ci ne sont pas comme des archives
 ou des bases de donn‚es. Le programme utilise un format trŠs simple qui peut
 ˆtre impl‚ment‚ en quelques lignes de code.
 
+QResFile et le format d'annexe XBINRSCR sont con‡us pour permettre d'attacher
+tout type de donn‚es de fichier … un ex‚cutable. Cependant si vous souhaitez
+seulement attacher des traductions pour les programmes qui utilisent des
+traductions de la forme catgets/kitten, je conseille d'utiliser KITTENC. Il est
+mieux adapt‚ aux programmes qui utilisent kitten et fournit des bibliothŠques
+pour simplifier l'int‚gration. Le format XBINRSCR a ‚t‚ cr‚‚ sans connaissance
+de KITTENC et sert un but l‚gŠrement diff‚rent. XNINRSCR peut tout stocker.
+Il peut ˆtre utilis‚ pour les traductions NLS. Mais aucune bibliothŠque n'est
+fournie … l'heure actuelle. Donc, si vous appr‚ciez l'utilisation de catgets
+et kitten et n'avez besoin de n'attacher que des traductions, utilisez KITTENC.
+D'un autre c“t‚, si vous souhaitez "coller" d'autres types de donn‚es … votre
+ex‚cutable, XBINRSRC est la voie … suivre.
+
 Afin d'utiliser les donn‚es attach‚es … un fichier EXE, lisez simplement les 16
 derniers octets du fichier dans un tampon. Le format de cette structure stock‚e
 dans cette partie est comme suit :
@@ -71,9 +84,12 @@ L'utilitaire peut ‚galement enlever toutes les ressources attach‚es ainsi que
 la signature en utilisant l'option tout effacer.
 
 Vous pouvez aussi attacher des donn‚es … un fichier texte. Je conseille de
-d'abord mettre un caractŠre EOF (fin de fichier) … la fin de votre texte. :-)
+d'abord mettre un caractŠre EOF (fin de fichier) … la fin de votre texte.
+Mais soyez pr‚venu. Attacher des donn‚es "invisibles" … un fichier texte ne
+constitue pas la meilleure pratique et encourage la perte de donn‚es ! Cela ne
+devrait ˆtre effectu‚ que dans de trŠs rares circonstances lorsque des messages
+avant le texte sont requis. Cependant, mˆme dans ces conditions, vous serez
+probablement mieux servi par un bon document readme (lisezmoi).
 
-
-
-
+:-)
 
