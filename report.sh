@@ -781,17 +781,20 @@ function create_report () {
     # scan_summary | tee -a "${out}.txt" # new process, subshell values lost.
 }
 
-function create_readme () {
-    local out=README.md
+function create_readme_html () {
+    local out=README.html
     local rdate=$(grep -i "^Report Date: " report.txt | cut -d ':' -f 2-)
     local langs lng lcnt=0 tcnt=0 tlng
-    local apps app acnt=0 tapp x alng tline line s v
+    local apps app acnt=0 tapp x alng tline line s v alt
     rdate=$(trim "${rdate}")
 
     while IFS=''; read -r line ; do
         [[ "${line}" == '' ]] && continue
         app="${line%%:*}"
-        [[ "${app/ /}" != "${app}" ]] && continue
+        if [[ "${app/ /}" != "${app}" ]] ; then
+            [[ "${app/pgme/}" == "${app}" ]] && continue
+            [[ "${app/(/}" != "${app}" ]] && continue
+        fi
         (( acnt++ ))
         apps="${apps};${app};"
         line="${line#*:}"
@@ -809,26 +812,34 @@ function create_readme () {
         done;
     done<report.txt
 
-    cp .report-header ${out}
-    echo '### Individual translation status'>>${out}
+    echo "<html><body>">${out}
+
+    cat .report-html >>${out}
+    echo '<h2>Individual translation status</h2>'>>${out}
 
     langs="${langs};!!;"
     # echo "${langs}">>${out}
 
-
     echo '<table>'>>${out}
     tapp="${apps}"
+    alt=
     while [[ ${#tapp} -gt 0 ]] ; do
         app="${tapp%%;*}"
         tapp="${tapp:$(( ${#app} + 1 ))}"
         [[ ${#app} -eq 0  ]] && continue
+        if [[ "${alt}" == "" ]] ; then
+            alt=" style=\"background:#eee;\""
+        else
+            alt=
+        fi
         tlng="${langs}"
-        x="<tr><td>${app}</td>"
+        x="<tr${alt}><td style=\"padding-left:1pc;padding-right:0.2pc;\">${app}</td>"
         line=$(grep "^${app}:" report.txt)
         line="${line#*: }"
         while [[ ${#tlng} -gt 0 ]] ; do
             lng="${tlng%%;*}"
             tlng="${tlng:$(( ${#lng} + 1 ))}"
+            [[ ${#lng} -eq 0 ]] && continue
             tline="${line}"
             s=''
             v=
@@ -836,6 +847,7 @@ function create_readme () {
                 alng="${tline%% *}"
                 if [[ "${alng/(}" != "${alng}" ]] && [[ "${lng}" == '!!' ]] ; then
                     s="<i>${tline}</i>"
+                    v=" style=\"padding-left:0.2pc;padding-right:1pc;\""
                     break
                 fi
                 tline="${tline:$(( ${#alng} + 1))}"
@@ -866,10 +878,8 @@ function create_readme () {
         echo "${x}">>${out}
     done
 
-
-
     echo '</table>'>>${out}
-    echo >>${out}
+    echo "<br>">>${out}
     echo "<table>">>${out}
     echo "<tr><td style=\"color:white;background:green;padding-left:2pc;padding-right:2pc;\">Good, no problems detected</td></tr>">>${out}
     echo "<tr><td style=\"color:white;background:blue;padding-left:2pc;padding-right:2pc;\">Probably good, contains extra keys</td></tr>">>${out}
@@ -881,8 +891,124 @@ function create_readme () {
     echo >>${out}
     echo '<hr>'>>${out}
     echo >>${out}
+    echo "<b>${acnt}</b> total programs, <b>${lcnt}</b> total languages, <b>${tcnt}</b> total translations">>${out}
+    echo "Report date: <i>${rdate}</i>">>${out}
+    echo "</body></html>">>${out}
+
+}
+
+function create_readme_md () {
+    local out=README.md
+    local rdate=$(grep -i "^Report Date: " report.txt | cut -d ':' -f 2-)
+    local langs lng lcnt=0 tcnt=0 tlng
+    local apps app acnt=0 tapp x alng tline line s v
+    rdate=$(trim "${rdate}")
+
+    while IFS=''; read -r line ; do
+        [[ "${line}" == '' ]] && continue
+        app="${line%%:*}"
+        if [[ "${app/ /}" != "${app}" ]] ; then
+            [[ "${app/pgme/}" == "${app}" ]] && continue
+            [[ "${app/(/}" != "${app}" ]] && continue
+        fi
+        (( acnt++ ))
+        apps="${apps};${app};"
+        line="${line#*:}"
+        while [[ ${#line} -gt 0 ]] ; do
+            lng="${line%% *}"
+            line="${line:$(( ${#lng} + 1))}"
+            [[ "${lng/(}" != "${lng}" ]] && break
+            (( tcnt++ ))
+            lng="${lng//[![:alpha:]]}"
+            [[ "${lng}" == "" ]] && continue
+            if [[ "${langs/;${lng};}" == "${langs}" ]] ; then
+                langs="${langs};${lng};"
+                (( lcnt++ ))
+            fi
+        done;
+    done<report.txt
+
+    cp .report-markdown ${out}
+
+    langs="${langs};!!;"
+    # echo "${langs}">>${out}
+    local tables=0
+    local sets
+    while [[ ${tables} -lt 5 ]] ; do
+        case ${tables} in
+            0)
+                sets='-'
+                echo '### Individual "missing" translations'>>${out}
+            ;;
+            1)
+                sets='*'
+                echo '### Individual "Known problems" translations, missing keys'>>${out}
+            ;;
+            2)
+                sets='!'
+                echo '### Individual "Could not compare" translations, unsupported format'>>${out}
+            ;;
+            3)
+                sets='@'
+                echo '### Individual "GOOD" translations'>>${out}
+            ;;
+            *)
+                break
+        esac
+        echo '<table>'>>${out}
+        tapp="${apps}"
+        while [[ ${#tapp} -gt 0 ]] ; do
+            app="${tapp%%;*}"
+            tapp="${tapp:$(( ${#app} + 1 ))}"
+            [[ ${#app} -eq 0  ]] && continue
+            tlng="${langs}"
+            x="<tr><td>${app}</td>"
+            line=$(grep "^${app}:" report.txt)
+            line="${line#*: }"
+            while [[ ${#tlng} -gt 0 ]] ; do
+                lng="${tlng%%;*}"
+                tlng="${tlng:$(( ${#lng} + 1 ))}"
+                tline="${line}"
+                v='-'
+                [[ "${lng}" == "" ]] && continue
+                while [[ ${#tline} -gt 0 ]] ; do
+                    alng="${tline%% *}"
+                    if [[ "${alng/(}" != "${alng}" ]] && [[ "${lng}" == '!!' ]] ; then
+                        v="<i>${tline}</i>"
+                        break
+                    fi
+                    tline="${tline:$(( ${#alng} + 1))}"
+                    if [[ "${alng//[![:alpha:]]}" == "${lng}" ]] ; then
+                        v="${alng//[[:alpha:]]}"
+                        v="${v//,}"
+                        [[ "${v}" == '' ]] && v='@'
+                        [[ "${v}" == '?' ]] && v='!'
+                        [[ "${v}" == "${sets}" ]] && v="<b>${lng}</b>" ||  v="&nbsp;"
+                        break
+                    fi
+                done
+                if [[ "${v}" == "-" ]] ; then
+                    [[ "${sets}" == "-" ]] && v="<b>${lng}</b>" || v=""
+                fi
+                [[ "${lng}" == "!!" ]] && v=""
+
+                x="${x}<td>${v}</td>"
+            done
+            x="${x}</tr>"
+            echo "${x}">>${out}
+        done
+
+        echo '</table>'>>${out}
+        echo >>${out}
+        (( tables++ ))
+    done
+
+    echo >>${out}
+    echo >>${out}
+    echo >>${out}
     echo "**${acnt}** total programs, **${lcnt}** total languages, **${tcnt}** total translations">>${out}
     echo "Report date: *${rdate}*">>${out}
+
 }
 
 function main () {
@@ -898,7 +1024,12 @@ function main () {
             return 0
         elif [[ "${opt}" == "-r" ]] || [[ "${opt}" == "" ]] ; then
             create_report
-            create_readme
+            create_readme_md
+            create_readme_html
+            return 0
+        elif [[ "${opt}" == "-x" ]] ; then
+            create_readme_md
+            create_readme_html
             return 0
         elif [[ "${opt}" == "-p" ]] ; then
             CHECK_PGME=true
