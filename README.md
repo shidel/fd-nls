@@ -1,4 +1,3 @@
-<html><body>
 ## fd-nls
 
 User language contributions and submissions for software related to FreeDOS
