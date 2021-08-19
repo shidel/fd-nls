@@ -23,7 +23,7 @@ function script_header () {
     echo "  ? unable to locate default English version"
     echo "  ! caution, English version is newer than translation"
     echo "  + caution, has some extras keys and probably nothing to worry about"
-    echo "  * problem, either missing (and maybe extras keys)"
+    echo "  * problem, has some missing keys"
     echo
 }
 
@@ -632,7 +632,6 @@ function compare_pgme () {
 
 }
 
-
 function special_pgme () {
 
     if [[ ! ${CHECK_PGME} ]] ; then
@@ -782,6 +781,110 @@ function create_report () {
     # scan_summary | tee -a "${out}.txt" # new process, subshell values lost.
 }
 
+function create_readme () {
+    local out=README.md
+    local rdate=$(grep -i "^Report Date: " report.txt | cut -d ':' -f 2-)
+    local langs lng lcnt=0 tcnt=0 tlng
+    local apps app acnt=0 tapp x alng tline line s v
+    rdate=$(trim "${rdate}")
+
+    while IFS=''; read -r line ; do
+        [[ "${line}" == '' ]] && continue
+        app="${line%%:*}"
+        [[ "${app/ /}" != "${app}" ]] && continue
+        (( acnt++ ))
+        apps="${apps};${app};"
+        line="${line#*:}"
+        while [[ ${#line} -gt 0 ]] ; do
+            lng="${line%% *}"
+            line="${line:$(( ${#lng} + 1))}"
+            [[ "${lng/(}" != "${lng}" ]] && break
+            (( tcnt++ ))
+            lng="${lng//[![:alpha:]]}"
+            [[ "${lng}" == "" ]] && continue
+            if [[ "${langs/;${lng};}" == "${langs}" ]] ; then
+                langs="${langs};${lng};"
+                (( lcnt++ ))
+            fi
+        done;
+    done<report.txt
+
+    cp .report-header ${out}
+    echo '### Individual translation status'>>${out}
+
+    langs="${langs};!!;"
+    # echo "${langs}">>${out}
+
+
+    echo '<table>'>>${out}
+    tapp="${apps}"
+    while [[ ${#tapp} -gt 0 ]] ; do
+        app="${tapp%%;*}"
+        tapp="${tapp:$(( ${#app} + 1 ))}"
+        [[ ${#app} -eq 0  ]] && continue
+        tlng="${langs}"
+        x="<tr><td>${app}</td>"
+        line=$(grep "^${app}:" report.txt)
+        line="${line#*: }"
+        while [[ ${#tlng} -gt 0 ]] ; do
+            lng="${tlng%%;*}"
+            tlng="${tlng:$(( ${#lng} + 1 ))}"
+            tline="${line}"
+            s=''
+            v=
+            while [[ ${#tline} -gt 0 ]] ; do
+                alng="${tline%% *}"
+                if [[ "${alng/(}" != "${alng}" ]] && [[ "${lng}" == '!!' ]] ; then
+                    s="<i>${tline}</i>"
+                    break
+                fi
+                tline="${tline:$(( ${#alng} + 1))}"
+                if [[ "${alng//[![:alpha:]]}" == "${lng}" ]] ; then
+                    s="${alng//[![:alpha:]]}"
+                    v="${alng//[[:alpha:]]}"
+                    v="${v//,}"
+                    if [[ "${v}" == '' ]] ; then
+                        v="color:white;background:green"
+                    elif [[ "${v}" == '*' ]] ; then
+                        v="color:white;background:red"
+                    elif [[ "${v}" == '+' ]] ; then
+                        v="color:white;background:blue"
+                    elif [[ "${v}" == '!' ]] ; then
+                        v="color:black;background:yellow"
+                    elif [[ "${v}" == '?' ]] ; then
+                        v="color:black;background:orange"
+                    fi
+                    if [[ "${v}" != '' ]] ; then
+                        v=" style=\"${v};padding-left:0.2pc;padding-right:0.2pc;\""
+                    fi
+                    break
+                fi
+            done
+            x="${x}<td${v}>${s}</td>"
+        done
+        x="${x}</tr>"
+        echo "${x}">>${out}
+    done
+
+
+
+    echo '</table>'>>${out}
+    echo >>${out}
+    echo "<table>">>${out}
+    echo "<tr><td style=\"color:white;background:green;padding-left:2pc;padding-right:2pc;\">Good, no problems detected</td></tr>">>${out}
+    echo "<tr><td style=\"color:white;background:blue;padding-left:2pc;padding-right:2pc;\">Probably good, contains extra keys</td></tr>">>${out}
+    echo "<tr><td style=\"color:black;background:yellow;padding-left:2pc;padding-right:2pc;\">Might be good, older than English but no known problems</td></tr>">>${out}
+    echo "<tr><td style=\"color:black;background:orange;padding-left:2pc;padding-right:2pc;\">Might be good, cannot compare or no English version found</td></tr>">>${out}
+    echo "<tr><td style=\"color:white;background:red;padding-left:2pc;padding-right:2pc;\">Problem found, missing keys detected</td></tr>">>${out}
+    echo "</table>">>${out}
+
+    echo >>${out}
+    echo '<hr>'>>${out}
+    echo >>${out}
+    echo "**${acnt}** total programs, **${lcnt}** total languages, **${tcnt}** total translations">>${out}
+    echo "Report date: *${rdate}*">>${out}
+}
+
 function main () {
 
     local opt i
@@ -795,6 +898,7 @@ function main () {
             return 0
         elif [[ "${opt}" == "-r" ]] || [[ "${opt}" == "" ]] ; then
             create_report
+            create_readme
             return 0
         elif [[ "${opt}" == "-p" ]] ; then
             CHECK_PGME=true
