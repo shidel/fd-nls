@@ -781,8 +781,54 @@ function create_report () {
     # scan_summary | tee -a "${out}.txt" # new process, subshell values lost.
 }
 
+
+function header_markdown () {
+
+echo '## fd-nls
+
+User language contributions and submissions for software related to FreeDOS
+
+### Contribution Licensing
+
+All user accepted contributions in this project are required for their
+submissions to accept and be bound by the overall license of this project and
+the license for any software projects to which their submission is related.
+Any accepted submission will automatically be covered by the GNU General
+Public License, version 2 or later. Also when required, the submissions will
+automatically be licensed under any additional open source licenses to
+maintain consistency and compatibility to the project for which it is
+submitted. This includes, but is not limited to, any licensing additions or
+changes that may be required to release, modify and distribute any provided
+submissions. This includes any subsequent changes to this project or any of
+the related projects licenses.
+
+'
+}
+
+function header_html () {
+echo '<h1>fd-nls</h1>
+<p>
+User language contributions and submissions for software related to FreeDOS
+</p>
+<h2> Contribution Licensing </h2>
+<p>
+All user accepted contributions in this project are required for their
+submissions to accept and be bound by the overall license of this project and
+the license for any software projects to which their submission is related.
+Any accepted submission will automatically be covered by the GNU General
+Public License, version 2 or later. Also when required, the submissions will
+automatically be licensed under any additional open source licenses to
+maintain consistency and compatibility to the project for which it is
+submitted. This includes, but is not limited to, any licensing additions or
+changes that may be required to release, modify and distribute any provided
+submissions. This includes any subsequent changes to this project or any of
+the related projects licenses.
+
+'
+}
+
 function create_readme_html () {
-    local out=README.html
+    local out=report.html
     local rdate=$(grep -i "^Report Date: " report.txt | cut -d ':' -f 2-)
     local langs lng lcnt=0 tcnt=0 tlng
     local apps app acnt=0 tapp x alng tline line s v alt
@@ -814,7 +860,7 @@ function create_readme_html () {
 
     echo "<html><body>">${out}
 
-    cat .report-html >>${out}
+    header_html >>${out}
     echo '<h2>Individual translation status</h2>'>>${out}
 
     langs="${langs};!!;"
@@ -928,7 +974,7 @@ function create_readme_md () {
         done;
     done<report.txt
 
-    cp .report-markdown ${out}
+    header_markdown >${out}
 
     langs="${langs};!!;"
     # echo "${langs}">>${out}
@@ -940,7 +986,7 @@ function create_readme_md () {
                 sets='-'
                 echo '### Individual "missing" translations'>>${out}
             ;;
-            1)
+            11)
                 sets='*'
                 echo '### Individual "Known problems" translations, missing keys'>>${out}
             ;;
