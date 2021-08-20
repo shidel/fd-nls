@@ -858,7 +858,8 @@ function create_readme_html () {
         done;
     done<report.txt
 
-    echo "<html><body>">${out}
+    echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'>${out}
+    echo "<html><head><title>FD-NLS Translation Status</title></head><body>">>${out}
 
     header_html >>${out}
     echo '<h2>Individual translation status</h2>'>>${out}
