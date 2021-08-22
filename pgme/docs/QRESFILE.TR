@@ -1,0 +1,88 @@
+QRESFILE GeliŸtirici Readme'si, Belgelendirme, tanmlama
+
+Temel olarak QResFile herhangi bir dosya trne kaynak eklemek, ‡karmak veya
+dŸa aktarmak i‡in kullanlabilir. Bu en ‡ok ‡alŸtrlabilir dosyalar i‡in
+kullanŸldr. Onlarn ikili dosyalarna eklenmesi gereken tm di§er kaynaklar
+i‡ermelerini sa§lar. EXE, COM ve di§er dosya trlerini destekler. Tek baŸna
+olan dosyalar bile. Bunlar arŸiv veya veri taban gibi de§ildirler. QResFile
+‡ok sade bir bi‡im kullanr, ki bu sadece birka‡ kod satr ile uygulanabilir.
+
+QResFile ile XBINRSCR ek bi‡imi ‡alŸtrlabilir dosyalara herhangi bir tr
+dosya verisi iliŸtirmek i‡in tasarlanmŸtr. Fakat catgets/kitten tr tercme
+kullanan programlara sadece tercme eklemek istiyorsanz, bunun yerine KITTENC
+kullanmanz tavsiye ederim. O zaten kitten kullan programlara daha uygundur ve
+birleŸimi sadeleŸtiren ktphaneler sunar. XBINRSCR bi‡imi KITTENC'nin mevcut
+oldu§unu bilmeden oluŸturulmuŸtu ve biraz farkl bir maksada hizmet eder.
+XNINRSCR her Ÿeyi depolayabilir. NLS tercmeleri i‡in de kullanlabilir. Ancak
+gncel olarak hi‡bir ktphanesi bulunmamaktadr. Dolaysyla catgets/kitten
+kullanmay seviyorsanz ve tercme dŸnda bir Ÿey ilave etmeye ihtiyacnz
+yoksa, muhtemelen KITTENC kullanmalsnz. Di§er yandan, baŸka tr verileri
+‡alŸtrlabilir dosyanza "yapŸtrmak" istiyorsanz, XBINRSRC en uygun
+‡”zmdr.
+
+Ekli kaynaklar bir EXE dosyas ile kullanmak i‡in sadece son 16 bayt bir
+arabelle§e okuyun. Burada depolanan yapnn bi‡imi Ÿu Ÿekildedir:
+
+dw 0                ; Blok Tr Kimli§i = 0
+dd ?                ; Bu dosyaya eklenmiŸ veri zincirindeki ilk bloka iŸaret
+                    ; eden uzun bir tamsay / ‡ift kelime de§eri.
+                    ;
+db 'XBINRSRCv1'     ; Bu, bir veri yapsnn mevcut oldu§unu teyit eden
+                    ; imzadr. Boyutu 10 bayttr ve dosyann en sonunda
+                    ; bulunur.
+
+˜mzay kontrol ettikten sonra sadece zincirdeki ilk blo§u arayn. Zincirdeki
+tm bloklar (imza blo§u haricinde) asgari 6 bayt boyutunda olacaktr.
+
+dw ?                ; Blok Tr Kimli§i = bir de§er
+dd ?                ; bu verileri ve herhangi ilave verileri i‡eren blo§un
+                    ; toplam boyutu.
+
+ayet tannmayan bir blok tryle karŸlaŸrsanz, blo§un kalan ksmn yok
+sayp zincirdeki bir sonraki blok ile devam etmeniz yeterli olacaktr.
+
+Gncel olarak sadece tek bir baŸka blok tr vardr. Onun tr 1'dir ve g”ml
+dosyalar i‡indir. Tam yaps Ÿu Ÿekildedir...
+
+dw 1                ; Blok Tr Kimli§i = 1 (dosya tr i‡in)
+dd ?                ; Bu blok ve varsa di§er verilerin toplam boyutu
+db ?                ; Depolanan dosyann DOS dosya ”zniteli§i
+dd ?                ; DOS dosya zaman damgas (paketlenmiŸ)
+dd ?                ; Bayt olarak dosya boyutu, bu hesaplanabilirdi fakat
+                    ; sadece kaydetmek y”nnde karar verdim.
+db ?                ; Kaynak Ad'nn boyutu
+db....              ; Kaynak Ad Ascii Karakterleri, 0 ila 255 bayt aras.
+db 0                ; Null sonlandrma karakteri
+
+db....              ; Boyutu ka‡ bayt olursa olsun tam dosya.
+
+Bu, derhal baŸka bir blok veya imza blo§u tarafndan takip edilir. Zinciri
+imza blo§una rastlayana kadar katedebilirsiniz.
+
+Sadece baz notlar....
+
+E§er hi‡bir ilave kaynak yoksa ve bir imza blo§u mevcutsa, kendi kendine iŸaret
+edecektir.
+
+COM dosyalar i‡in, programnzn sonunu bilirsiniz. Sadece ilk blo§u
+okuyabilirsiniz ve bir dosya a‡manza bile gerek olmayabilir. Ama unutmayn ki
+buraya veri depolarsanz, ”nce zinciri sonunu bulmak i‡in katetmeniz
+gerekecektir.
+
+UPX uyumlulu§u... Problem olmamal. Kaynak eklemeden evvel EXE dosyanz
+skŸtrn. COM dosyalarna gelince muhtemelen eklemeyi ”nce yapmak istersiniz.
+B”ylece otomatik olarak skŸtrlrlar ve skŸtrlmalar a‡lr, bu da
+dosyadan yklenmesi ihtiyacna engel olur.
+
+Bu yardmc program ayrca tm ek kaynaklar ve imzay tmn sil se‡ene§i
+vastasyla kaldrabilir.
+
+Bir metin dosyasna da beri ekleyebilirsiniz. ™nce metninizin sonuna bir EOF
+karakteri koymanz tavsiye ederim. Ama ikaz etmem gerekir. Metin dosyalarna
+"g”rnmez" veri eklemek en iyi pratik de§ildir ve veri kaybn teŸvik eder!
+Bu, sadece ‡ok nadir koŸullarda, metin ”ncesi bir mesaj gerekti§inde
+yaplmaldr. Ancak b”yle bir durumda bile muhtemelen iyi bir readme (benioku)
+belgesi size daha iyi hizmet edecektir.
+
+:-)
+

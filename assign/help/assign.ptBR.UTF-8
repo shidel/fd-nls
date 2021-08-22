@@ -1,0 +1,132 @@
+
+     ASSIGN (1)                  08 August 1995                  ASSIGN (1)
+
+
+
+     NOME
+          assign - Atribui uma letra de drive para um drive diferente
+
+
+     SINOPSE
+          assign [/m] [/shadow] /?
+          assign [/m] [/shadow] /status
+          assign [/m] [/shadow] /u
+          assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+     DESCRIÇÃO
+
+          Assign mapeia  uma letra  de drive para um  drive diferente,
+          Este mapeamento tem efeito somente no na letra do drive, mas
+          não no caminho, o que faz Assign diferir de Subst, e.g.:
+          Com os caminhos de  trabalho atuais "C:\FREEDOS" e "B:\TEMP"
+          após os  comandos "assign  B=C" e "cd  C:\", o  caminho "B:"
+          também aponta para o diretório  "C:\".  Ao passo que após os
+          comandos  "subst B:  ."  e  "cd C:\",  o caminho  "B:" ainda
+          aponta para "C:\FREEDOS".
+
+          Dado que  este programa não  é TSR, não o  carregue mediante
+          "LOADHIGH" ou o comando "LH".
+
+     OPÇÕES
+
+       /? Exibe uma pequena tela de ajuda.
+
+       /SHADOW  Esta  opção  esconde  a porção  residente  de  Assign,
+          evitando ser detectada facilmente. Isto inclui:
+          1) O bloco de memória  contendo a porção residente é marcada
+          como parte do sistema.
+          2)  A interrupção  de  checagem da  instalação retorna  "Not
+          installed, but not allowed to install" em vez de "Installed"
+          ou "Not installed".
+
+          Se a  porção residente  é instalada com  esta opção,  mas as
+          invocações  seguintes  são  realizadas sem  esta  opção,  um
+          alerta surge, porém a ação é realizada.
+
+          A opção pode ser abreviada para /SH.
+
+       /STATUS Exibe todas as letras de drives no formato:
+          dr1: => dr2:
+          onde dr1 é a letra atribuída ao drive e dr2 é o drive para o
+          qual dr1 aponta.
+
+          Se não existir nenhuma  atribuição, então nenhuma saída será
+          exibida.
+
+          Esta opção evita o carregamento  da porção residente, se ela
+          não tiver sido instalada antes.
+          
+          A opção pode ser abreviada para /S.
+
+       /u Desinstala um Assign instalado anteriormente.
+
+
+                                      -1-
+
+
+     ASSIGN (1)                  08 August 1995                  ASSIGN (1)
+
+
+       dr1[:]=dr2[:] Define  uma letra  de atribuição de  driver, onde
+          dr1  deverá  apontar  para   dr2.  Os  dois-pontos  ":"  são
+          opcionais.  Não são  permitidos espaços  em branco  entre as
+          letras de driver, os dois-pontos e o sinal de igual "=".
+
+          Se  a porção  residente ainda  não foi  carregada, ela  será
+          carregada sem notificação.
+
+       /m Move  a porção residente  para a  área do bloco  superior de
+          memória (UMB), se possível.
+          Esta  opção é  ignorada quando  a porção  residente já  está
+          instalada.
+
+       nenhuma  opção Se  não há  /STATUS  nem /u  nem uma  atribuição
+          especificada  na  linha  de comando,  todas  as  atribuições
+          existentes são destruídas, tal que todas as letras apontarão
+          para si mesmas em resultado.
+
+     PROBLEMAS CONHECIDOS
+
+       o  Como  Assign não  é ele  mesmo TSR,  um carregamento  com os
+          comandos  "LOADHIGH"  ou  "LH"  pode falhar.  Se  você  quer
+          carregar  a  porção  residente  na  parte  alta,  você  deve
+          especificar a opção /m.
+
+       o  As opções /STATUS e /SHADOW não seguem o padrão de opção por
+          causa da compatibilidade com o Assign original.
+
+       o  Programas residentes instalados posteriormente ou um segundo
+          processador de  comandos (shell) majoritariamente  impedem o
+          processo  de  desinstalação.   Neste   caso,  Assign  não  é
+          suspenso, mas  permanece ativo  na memória. Use  ASSIGN, sem
+          opções, para limpar a tabela de atribuições.
+
+       o  Algumas  shells  impedem   que  ASSIGN  encontre  sua  cópia
+          residente na memória, se ASSIGN  é instalado a partir de uma
+          cópia secundária da shell.
+
+     VEJA TAMBÉM
+          Subst, Join
+
+     CONTRIBUIDORES
+                                 Steffen Kaiser
+                             Mittelstraáe 112/B115
+                         53757 Sankt Augustin - Menden
+                             Deutschland - Germany
+
+                    e-mail: Steffen.Kaiser@FH-Rhein-Sieg.DE
+
+
+
+
+
+
+
+
+
+
+
+
+                                      -2-
+

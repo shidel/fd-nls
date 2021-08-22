@@ -1,0 +1,91 @@
+QRESFILE Developer Readme, DOC, Specification thing (v2)
+
+Basically, QResFile can be used to attach, remove, export resources to any
+type of file. Mostly, this can be useful for executables. It allows them
+to include all other resources they need tacked on to their binary.
+It supports EXE, COM and other file types. Even stand alone files. These are
+not like archives or databases. It uses a very simple format that can be
+implemented in just a few lines of code.
+
+QResFile and the XBINRSCR appendix format is designed to allow attaching any
+type of file data onto an executable. However if you only want to attach
+translations for programs that use catgets/kitten style translations, I
+recommend using KITTENC instead. It is better suited for programs that already
+use kitten and provides libraries to simplify integration. The XBINRSCR format
+was created without knowledge of KITTENC and serves slightly different purpose.
+XNINRSCR can store anything. It can be used for NLS translations. But, no
+libraries are provided at present. So, if you like using catgets/kitten and
+have no need to attach anything other than translations, you should probably
+stick with KITTENC. On the other hand, if you want to "glue" other types of
+data onto your executable, the XBINRSRC is the way to go.
+
+To use the the attached data with an EXE file, simple read the last 20 bytes
+of the file into a buffer. The format of this structure stored there is:
+
+dw 0                ; Block Type ID = 0
+dd ?                ; A Long integer / Double word value that points to the
+                    ; First block in the chain of data that is attached to
+                    ; the file.
+dd ?                ; LastSize of file, just in case compressed with UPX.
+db 'XBINRSRCv2'     ; This is the "Signature" to confirm there is actually
+                    ; a data data stricture present. It is 10 bytes and is
+                    ; at the very end of the file.
+
+Once you verified the signature. You need to check the LastSize. It is a
+Long Integer that contains the size of file the last time resources were
+modified. If the program has been compressed or uncompressed with UPX, you will
+need to adjust the location of the First Block accordingly. Once that is done,
+simple seek to the First block in the chain. All blocks in the chain (excluding
+the signature block) will be at minimum 6 bytes long.
+
+dw ?                ; Block Type ID = some value
+dd ?                ; Total size of the block including this data and any
+                    ; additional data.
+
+If you were to encounter a unknown block type, you simple skip the remaining
+portion of the block and go on to the next one in the chain.
+
+At present, there is only one other Block type. It is type 1 which is for an
+embedded file. It's complete structure is as follows...
+
+dw 1                ; Block Type ID = 1 (for file type)
+dd ?                ; Total size of this block and any data
+db ?                ; DOS file attribute of stored file
+dd ?                ; DOS file timestamp (packed)
+dd ?                ; File Size in byte, this could be computed but I decided
+                    ; to just store it.
+db ?                ; Length of Resource Name
+db....              ; Resource Name Ascii Characters, 0-255 bytes long.
+db 0                ; Null termination character
+
+db....              ; The entire file of however many bytes.
+
+This is immediately followed by either another block or a signature block. You
+can just run through the chain until you hit the signature block.
+
+Just some notes....
+
+If there is no attached resources and there is a signature block, it will
+just point to itself.
+
+For COM files, you know the end of your program. You can simple read the
+first block and never even need to open a file. But remember, if you store
+data there, you should first run through the chain to find the end.
+
+UPX compatibility... Should be no problem. Compress your EXE before attaching
+any resources. As for COM files, you probably want to attach them first. That
+way, they get compressed and expanded automatically preventing the need to
+load them from the file.
+
+The utility can also remove all attached resources and the signature using
+the delete all option.
+
+You can attach data to a text file as well. I advise putting a EOF character
+at the end of your text first. But, be warned. Attaching "invisible" data
+onto a text file is not the greatest practice and encourages data loss! It
+should only be done in very rare circumstances when some pre-text message is
+required. However, even then, you'd probably be better served with a good
+readme document.
+
+:-)
+

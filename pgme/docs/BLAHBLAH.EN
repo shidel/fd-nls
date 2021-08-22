@@ -1,0 +1,447 @@
+### The Program Manager Eternity Edition Manual. (A little less rough draft)
+
+About:
+
+    At a casual glance, PGME looks fairly simple. It's predecessor PGM7.2 was
+    rather uncomplicated. But, PGME is truly a monster of complexity. It is
+    multi-language, completely theme-able, event driven behemoth built on-top
+    of a fairly comprehensive object oriented application framework I created
+    from the ground up. Everything you see is some sort of "control" that
+    inherits code from it's ancestor and has some sort of parent that "owns"
+    it. It even has a context aware self-assembling dynamic help system.
+    Likewise, even the Launch Menus for the programs go through a sort-of self
+    building data caching system.
+
+    All that jargon really doesn't do it justice and barely scratches the
+    surface of the things going on inside this leviathan.
+
+    But what does it do? Well if you are reading this file, you probably
+    already know the answer to that question. But, just in case this text
+    got separated from the program somehow... It is menu based program
+    launcher for DOS taken to the extreme. With a vast amount of overkill,
+    it is meant to be the final word in program launchers of this type.
+
+    For example, Themes in PGME are far more than a few bits here and there
+    that change a couple colors. They can completely change the look and feel
+    of the user interface. In the Default built-in theme, nearly all the
+    features of PGME are presented somewhere. But, run the KIOSK demo and
+    PGME will use the included QCNFTOOL to switch themes and change a few
+    settings. In KIOSK theme, only one menu is shown in the middle of the
+    screen and you can no longer exit to DOS. Thankfully, the Switch to KIOSK
+    demo menu item is replaced with a Switch Out of KIOSK mode. :-)
+
+System Requirements:
+
+    FreeDOS v1.1 Compatible Operating System
+    1024K Free Disk Space.
+    640K Memory (400K Free, 500K free is really, really, really recommended).
+    VGA Compatible Video Card.
+    286 or Better CPU.
+    Keyboard.
+    (Mouse is highly recommended, and when using default theme and keymap
+    settings it is required).
+    (Color monitor is recommended).
+
+Known Issues (That I either can not or will not do anything about):
+
+    Font's turned into TSRs with QFNT2TSR will not function in DosBox. This is
+    not an issue with the created TSR.
+
+    Sounds cannot be heard in VirtualBox, VMware or other virtual machines. It
+    is sad. But unfortunately, most virtual machine software (excluding DOSBox)
+    do not implement support for rudimentary PC speaker sounds.
+
+    QScroll Smooth scrolling doesn't work in my virtual machine. Again, most
+    virtual machines do not provide the VGA specific hardware support required
+    to pull off smooth scrolling in text mode. On rare occasions, some hardware
+    doesn't support it either. By default, smooth scrolling is turned ON under
+    DOSBox and real hardware. For virtual machines, like VirtualBox, VMware
+    and QEMU, it is turned OFF.
+
+To-Do (Sooner or later, maybe):
+
+    Menu Path Drive Scanning for Disc Insertion.
+    User Interface Support for PGMVars.
+    Option Sets and Option prompting before launching.
+    Some other utilities, themes, font, etc.
+
+Building PGME from source requires:
+
+    PGME source trunk from http://pgme.sourceforce.net
+    DOS compatible OS. FreeDOS or DOSBox is fine.
+    Borland Turbo Pascal 7.0.
+    V8Power Tools for DOS.
+    Run BUILD.BAT
+
+By default, QuickCRT based programs:
+(These maybe changed in a custom KMP file)
+
+    Alt-W closes a window and if it the main window the program will close.
+    Alt-Q quits the program.
+    Alt-H Shows a help screen.
+    Alt-H, then Alt-H to Show Program's main Help Screen.
+
+** ABSOLUTELY REQUIRED FILES **
+
+    PGME.EXE        The Program Manager Eternity Launcher.
+    ETERNITY.BIN    Binary blob that contains most of PGME's program code.
+
+** REALLY REALLY SHOULD HAVE FILES **
+
+    PGM.BAT         This is the file you should really use to open PGME.
+                    It will allow it to perform very complicated multi-step
+                    program launches. It will also permit PGME to completely
+                    remove itself from memory when requested to free up the
+                    additional 10k if needed. So unless you are using PGME
+                    on a completely read-only filesystem, this file should
+                    be present in some directory in your %PATH% environment
+                    variable. If you installed with the installer, you were
+                    asked where to put it. If you installed using a FreeDOS
+                    package manager like FDNPKG, it will be in you %DOSDIR%\BIN
+                    directory.
+
+                    Hey, did you know you can pass search terms to PGME from
+                    the command line? Yep type "pgm static" and when PGME opens
+                    it will have searched the menus and programs to highlight
+                    the first match.
+
+** MORE FILES ***
+
+    Basically, those 2 or 3 files above are all that is required to run PGME.
+    It will create menus, config files, etc. as needed. All the files listed
+    below are just "Icing on the Cake". :-)
+
+
+** SUPPORTING FILES **
+
+    ETERNITY.CFG    PGME's configuration file.
+    EFNTDSGN.EXE    QuickCRT Font Designer.
+    EFNTDSGN.CFG    QuickCRT Font Designer configuration file.
+    BLANKER.SCR     Screen Blanking Screen Saver for PGME.
+    ATOM.SCR        The "Atom" screen saver for PGME.
+    CONWAY.SCR      A sort-of "Conway's Game Of Life" based screen saver.
+    STATIC.SCR      Reminiscent of an old TV with no signal. Should it have
+                    sound? It seems lacking without it. Ah, probably be
+                    even more annoying with it.
+    TIME.SCR        A big 24hr LCD style moving and color changing clock.
+
+** EXTRA UTILITIES **
+
+    QFNTLOAD.EXE    QuickCrt Temporary Font Loader. Load use any size custom
+                    font until the next video mode reset.
+    QFNT2RAW.EXE    Convert a QuickCRT font to a flat stripped-down raw
+                    binary image contains only the character data from the
+                    font. Losing all of the metadata and safty checks built
+                    into a QuickCRT Font file.
+    RAW2QFNT.EXE    Convert a raw flat binary into a QuickCRT font file.
+    QFNT2TSR.EXE    Convert a QuickCRT font file into a Terminate-and-Stay-
+                    Resident executable COM program that will persist until
+                    the computer is rebooted. Use this to permanently load
+                    youe own fonts to use with DOS prompt and most Text-Mode
+                    programs. Please note, it will allow you to turn any FNT
+                    into a TSR. However, I have never seen a VGA system that
+                    will use any font that is not 8x16 using this technique.
+                    But, you never know so it will complain and still make
+                    the TSR font.
+    QDETUNE.EXE     (Not yet started) Program to aid in creating program tone
+                    sequences.
+    QKEYS.EXE       (Not yet started) Program to aid in modifing keyboard and
+                    command mappings in KMP files.
+    QSCROLL.EXE     Smooth scrolling text file viewer. Supporting, various
+                    character heights and DOS/UNIX line endings. Any keypress
+                    other than UP, Down, PageUp or PageDown quits the program.
+                    You can also toggle smooth scrolling on/off using the S
+                    key.
+    QCNFTOOL.EXE    Command line utility for manipulating PGME text based data
+                    files. Such as the MNU, CFG, THM, LNG, KMP and PMI files.
+                    These files are similar to, but very different from, a
+                    Windows INI file and this tool should not be used on
+                    those types of files. For basic usage of QCNFTOOL see
+                    below.
+
+** FONT FILES **
+
+    *.FNT           All Files ending in the *.FNT extension are QuickCRT font
+                    files.
+
+** QCNFTOOL.EXE **
+                    Basic usage of QCNFTOOL. First, please note that if you
+                    do not issue a /W or /X (/WRITE or /EXPORT) command, no
+                    changes or files will be written to disk.
+
+                    The output file. When this utility starts, the output
+                    filename is unassigned and if a /W or /X comand is
+                    issued the "NONAME.CFG" filename will be used. However,
+                    the first file you /READ will set the output name
+                    to the same filename that is read. Any future changes to
+                    the output filename will reguire setting it using the
+                    /OUTPUT switch.
+
+                    Also to issue many or extremely long commands, us the
+                    /FILE option. The file will be process the same as one
+                    single set of commands. See the incleuded KIOSK.OFF and
+                    KIOSK.ON files for an example.
+
+
+** MENU, TEMPLATE, DEFAULT and CONFIG files***
+
+    DEFAULTS\*.*    All files the start in the DEFAULTS directory regardless
+                    of there name or extension.
+
+                    These are auto-generated at compile time using the
+                    defaults that are built into their respective programs.
+                    For *.THM (Theme) and *.LNG (Language) files, you should
+                    remove any item you do not wish to override. This can help
+                    speed up performance when the program starts. *.KMP
+                    (Keyboard Mapping) files are a little different. If it is
+                    present, all items you wish to work in the ASSIMILATE and
+                    COMMAND sections must be present. Other sections in a KMP
+                    file can be removed.
+
+                    Also, the * section should be included. But, at present is
+                    not required.
+
+                    The # section is ignored.
+
+                    Value entries are a single line and everything (including
+                    white-spaces) after the = symbol is part of the value.
+                    However, there are some multi-line entries. Simply put, a
+                    += adds a line to the previous value. Only value's that
+                    support multi-line entries will use the extra lines.
+
+                    One more general note on these files. In the * section is
+                    a MERGE entry. If it has a value, then that file is merged
+                    over the current and any values in the new file will
+                    override previous values. There is no limit on how many
+                    merges can take place. I don't recommend doing more than a
+                    couple. Anyhow, the final merge will be considered the
+                    actual config file and if it is saved then all settings
+                    will be written only to it. In theory, all real config
+                    files could reside on a read-only filesystem and user
+                    changes written to a different one.
+
+
+                    Oh, another thing. Indent's and blank lines don't matter
+                    and any KEY or section it doesn't understand is ignored.
+
+** A KMP Keymap file **
+
+    ASSIMILATE Section ( I may move this section out of this file )
+
+        This section contains an extremely low level keyboard scancode mapping
+        table. You probably shouldn't mess with it unless you have a weird
+        keyboard. Anyhow, all keys should translate to their basic value. For
+        example take the letter a has the scancode of $0061. All possible
+        combinations of Shift, Control and Alt must be mapped to $0061. So,
+        the line $0061=$0041:A,$0001:C+$0104,$1E00:A does just that. Broken
+        down like this:
+
+            target=original:mode+shiftcode,....
+
+            Target is the desired code.
+            Original is the incoming original code.
+            Mode is the matching algorithm used.
+                (A, M, or C for Any, Match or Contains)
+            Shift is the original shiftcode to match.
+
+        Any will result in a match regardless of the shiftcode state.
+        Match will only match if it is exactly the same shiftcode.
+        Contains will match if it contains any of the bits in the shiftcode.
+
+        The shiftcode values should be or'd together into a hex value.
+
+        They are:
+
+            kbRightShift  = $0001;
+            kbLeftShift   = $0002;
+            kbEitherShift = kbRightShift or kbLeftShift;
+            kbEitherCtrl  = $0004;
+            kbEitherAlt   = $0008;
+            kbScrollLock  = $0010;
+            kbNumsLock    = $0020;
+            kbCapsLock    = $0040;
+            kbInsertLock  = $0080;
+            kbLeftCtrl    = $0100;
+            kbLeftAlt     = $0200;
+            kbSysDown     = $0400;
+            kbPauseFlag   = $0800;
+            kbScrollDown  = $1000;
+            kbNumsDown    = $2000;
+            kbCapsDown    = $4000;
+            kbInsertDown  = $8000;
+
+    COMMANDS Section
+
+            This section does a low level direct map of some keystroke
+            combinations straight to commands and can be used to change some
+            default behavior of the program. It works like the key mapping
+            Assimilate section. But, it is for direct key to command mapping.
+            For example you could use this section to change the Quit from
+            using Alt+Q to use Alt+X. FYI, for best result use the +M for
+            exact matching.
+
+    EVENTS Section
+
+            When an object in the program is clicked it will generate these
+            commands when triggered.
+
+    KEYSTROKES Section
+
+            An Object will respond to keystrokes listed here.
+
+** A LNG Language File **
+
+    Should mostly be self evident by now.  Except for formatting values.
+
+            FileDate
+                0 : 4-digit year
+                1 : Month
+                2 : Day
+            FileTime:
+                0 : 24-hour Clock Hour
+                1 : 12-hour Clock Hour
+                2 : Minutes
+                3 : Seconds
+                4 : 0/1 (False/True) AM or PM
+
+    Formatted strings are Formatting data ; then string to display.
+
+    Example '0[Z2.1,C10]{One,Two,Three},1[U,C10,X1-10,T],0[L5,Z3];Hi %2%1%0!'
+
+        0-9 Value to use
+        [] Formating Options
+        {} String Set, if value is not in set than value is used
+            {boolean & integer}
+        Z ZeroPad Before.after decimal point { integer & real }
+        T Trim Spaces from string (before padding or cutting)
+        C, L or R Space padding Center, Left and Right
+        X Crop string to not excede Specified Length.{if it is n.c then n is
+            start c is count}
+        U, D or W Change Case to Upper, Lower or by Words
+
+        ; ends format definitions and begins string to format
+        %0-9 Format definition to insert.
+
+
+** A THM Theme File **
+
+    ALIGN Caption Text Alignment.
+        High Byte is Horizontal Alignment, Lo Byte is Vertical Alignment.
+            Top     $0000
+            Middle  $0001
+            Bottom  $0002
+            Left    $0000
+            Center  $0100
+            Right   $0200
+
+    ANCHORS Control Anchoring and Alignment.
+
+        Use care when Mixing Anchors and Alignment within the same value.
+
+            Anchors:
+            abNone   = $0000;
+            abLeft   = $0001;
+            abRight  = $0002;
+            abTop    = $0004;
+            abBottom = $0008;
+            abAll    = abLeft or abRight or abTop or abBottom;
+
+            Alignment:
+            alNone   = abNone;
+            alLeft   = $0100;
+            alRight  = $0200;
+            alTop    = $0400;
+            alBottom = $0800;
+            alClient = alLeft or alRight or alTop or alBottom;
+
+    DISPLAY Usually a hex string that is used by an object for its display.
+
+    COLORS The main colors of an object.
+
+        Note: Buttons and several other objects will not function if their
+        Normal and Hover colors are the same.
+
+        Comma Separated in this order. Normal, Disabled, Hover, Click,
+        and Focused.
+
+    BOUNDS The position of a child object based on it's parent.
+
+    OUTSIDE When True, the object can been drawn outside of it parent.
+        Otherwise, it cannot. Bounds are still relative to its parent.
+
+    MARGINS The amount a child will need to be indented.
+
+** A CFG Config Files **
+
+    The Programs Section:
+
+        CLEAR,  Clear the screen prior to program drawing.
+
+        USE_DAC, Use the VGA color DAC pallet. (May have compatiblility
+        issues)
+
+        USE_FADER, When USE_DAC is also true, fades the color pallete in and
+        out at startup and shutdown of the program.
+
+        USE_SOUND, Allows PC Speaker tones to be generated.
+
+** ETERNITY.CFG File, Special Options **
+
+    CANQUIT, Unless this is installed in a KIOSK, leave it True. If it is
+        false, you can only launch other programs and return to PGME. You will
+        not be able to exit PGME to a command prompt.
+
+    READONLY, This option is probably only usefull for a KIOSK as well. If
+        PGME is running in readonly mode, menus cannot be modified.
+
+    PATH.MENU, Like the DOS PATH environment variable, this is the locations
+        that PGME will search for and include menus from. If left blank, only
+        the path of the PGME program will be searched. If it is set, only the
+        specified fixed disk locations will be included. Probably not usefull
+        unless PGME is installed to and run from a readonly filesystem.
+
+    Before a user sets any, language, theme, font, screen saver, etc. options
+    PGME will try to use the %LANG% environment variable setting to select
+    a set of appropriate options from one of the language specific sections.
+    If the variable is not set, it will use the [LANG.NULL] settings.
+
+** *.MNU Menu Files **
+
+    Mostly, You should stay out of these. :-) But if your thinking of digging
+    into one and modifying it by hand, here are a couple notes.
+
+    First, you'll see some DESCRIPTION.* and TITLE.* options. These are
+    language specific versions based on their ID in their corresponding
+    language translation file. If one is not present for a given language,
+    then the version without the .* portion is used. That version of the text
+    is only modified when an entry is first created.
+
+    Under the global section [*], there are 3 options of note.
+
+        WRITABLE        Can the user make changes to this menu... (yes/no)
+        HIDE            If and when the menu should appear. Off=Always show it,
+                        On=Hide/disable this menu. Auto=Show it unless it
+                        has nothing to display.
+        PAUSE           Wait after returning to PGME before displaying the
+                        menu to allow reading program output messages.
+                        Off=Don't wait, On=Wait forever or until a key is
+                        pressed or mouse clicked, or NUMBER=some time in
+                        seconds.
+
+    Then each menu item also has support for HIDE and PAUSE settings specific
+    to that individual program.
+
+    Menu files look like plain text. But be warned, the default versions that
+    come with PGME contain multiple codepage strings. Most modern editors will
+    mangle these strings.
+
+** Language Translations and other Credits **
+
+    PGME's native language is US English. However, here are some credits
+    for the included language translations.
+
+    Spanish:
+        Google Translate, German Ivani, Andrs Miguel Pitcovsky
+
+    French and Turkish Translations:
+        Thank you "CardPuncher" :-)
