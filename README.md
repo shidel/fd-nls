@@ -16,4 +16,4 @@ changes that may be required to release, modify and distribute any provided
 submissions. This includes any subsequent changes to this project or any of
 the related projects licenses.
 
-## View the [Current Translations Status](https://shidel.github.io/fd-nls/report.html) report file.
+### View the [Current Translations Status](https://shidel.github.io/fd-nls/report.html) report file.
