@@ -908,6 +908,8 @@ function create_readme_html () {
                     v="${v//,}"
                     if [[ "${v}" == '' ]] ; then
                         v="color:white;background:green"
+                    elif [[ "${v}" == '@' ]] ; then
+                        v="color:white;background:green"
                     elif [[ "${v}" == '*' ]] ; then
                         v="color:white;background:red"
                     elif [[ "${v}" == '+' ]] ; then
