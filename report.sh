@@ -10,6 +10,7 @@ LANGS=0
 TRANS=0
 PLATFORM="$(uname)"
 KEYFILE_ERR="translation file"
+URL="https://github.com/shidel/fd-nls/tree/master"
 unset CHECK_PGME
 
 DEBUGGING=";pkgtools;pgme;pause;"
@@ -784,11 +785,11 @@ function create_report () {
 
 function header_markdown () {
 
-echo '## fd-nls
+echo '# fd-nls
 
 User language contributions and submissions for software related to FreeDOS
 
-### Contribution Licensing
+## Contribution Licensing
 
 All user accepted contributions in this project are required for their
 submissions to accept and be bound by the overall license of this project and
@@ -801,6 +802,9 @@ submitted. This includes, but is not limited to, any licensing additions or
 changes that may be required to release, modify and distribute any provided
 submissions. This includes any subsequent changes to this project or any of
 the related projects licenses.
+
+
+### View the [Current Translations Status](https://shidel.github.io/fd-nls/report.html) report file.
 
 '
 }
@@ -880,7 +884,7 @@ function create_readme_html () {
             alt=
         fi
         tlng="${langs}"
-        x="<tr${alt}><td style=\"padding-left:1pc;padding-right:0.2pc;\">${app}</td>"
+        x="<tr${alt}><td style=\"padding-left:1pc;padding-right:0.2pc;\"><a href=\"${URL}/${app%%,*}\" TARGET=\"_BLANK\">${app}</a></td>"
         line=$(grep "^${app}:" report.txt)
         line="${line#*: }"
         while [[ ${#tlng} -gt 0 ]] ; do
@@ -1071,11 +1075,11 @@ function main () {
             return 0
         elif [[ "${opt}" == "-r" ]] || [[ "${opt}" == "" ]] ; then
             create_report
-            create_readme_md
+            # create_readme_md
             create_readme_html
             return 0
         elif [[ "${opt}" == "-x" ]] ; then
-            create_readme_md
+            # create_readme_md
             create_readme_html
             return 0
         elif [[ "${opt}" == "-p" ]] ; then
