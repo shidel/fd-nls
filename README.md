@@ -1,6 +1,7 @@
 # fd-nls [FreeDOS Translation Project](https://shidel.github.io/fd-nls)
 
-User language contributions and submissions for software related to FreeDOS
+This project contains language contributions and other submissions 
+for software related to [FreeDOS&trade;](https://www.freedos.org).
 
 ## Contribution Licensing
 
@@ -17,3 +18,5 @@ and distribute any provided submissions. This includes any subsequent changes
 to this project or any of the related projects licenses.
 
 ### View the [Current Translations Status](https://shidel.github.io/fd-nls/report.html) report file.
+<hr>
+<!-- Additional Help and other text -->
