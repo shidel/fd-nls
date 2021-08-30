@@ -809,33 +809,388 @@ the related projects licenses.
 '
 }
 
-function header_html () {
-echo '<h1>fd-nls</h1>
-<p>
-User language contributions and submissions for software related to FreeDOS
-</p>
-<h2> Contribution Licensing </h2>
-<p>
-All user accepted contributions in this project are required for their
+function html_intro () {
+echo '<body>
+<h1 id="fd-nls-freedos-translation-project">fd-nls <a href="https://shidel.github.io/fd-nls">FreeDOS Translation Project</a></h1>
+
+<p>This project contains language contributions and other submissions
+for software related to <a href="https://www.freedos.org">FreeDOS&trade;</a>.</p>
+
+<h2 id="contribution-licensing">Contribution Licensing</h2>
+
+<p>All user accepted contributions to this project are required for their
 submissions to accept and be bound by the overall license of this project and
 the license for any software projects to which their submission is related.
-Any accepted submission will automatically be covered by the GNU General
-Public License, version 2 or later. Also when required, the submissions will
-automatically be licensed under any additional open source licenses to
-maintain consistency and compatibility to the project for which it is
-submitted. This includes, but is not limited to, any licensing additions or
-changes that may be required to release, modify and distribute any provided
-submissions. This includes any subsequent changes to this project or any of
-the related projects licenses.
+Any accepted submission will automatically be covered by the
+<a href="https://opensource.org/licenses/GPL-2.0">GNU General
+Public License, version 2</a> or later.
+Also when required, the submissions will automatically be licensed under any
+additional open source licenses to maintain consistency and compatibility
+to the project for which it is submitted. This includes, but is not limited
+to, any licensing additions or changes that may be required to release, modify
+and distribute any provided submissions. This includes any subsequent changes
+to this project or any of the related projects licenses.</p>
 
 '
 }
 
+function sortlangs() {
+    local lng
+    local langs="${1}"
+    while [[ ${#langs} -gt 1 ]] ; do
+        lng="${langs%%;*}"
+        langs="${langs:$(( ${#lng} + 1 ))}"
+        [[ ${#lng} -eq 0 ]] && continue
+        [[ "${lng}" == 'en' ]] && continue
+        echo "${lng};"
+    done | sort -u
+}
+function html_header () {
+echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#151515">
+        <meta name="msapplication-navbutton-color" content="#151515">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <title>FD-NLS Translation Status</title>
+    </head>
+'
+}
+function css_style () {
+echo '<style>
+.highlight {
+    color:#d0d0d0
+}
+
+.highlight table td {
+    padding:5px
+}
+
+.highlight table pre {
+    margin:0
+}
+
+.highlight .w {
+    color:#d0d0d0
+}
+
+.highlight .err {
+    color: #151515;
+    background-color:#ac4142
+}
+
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+    color:#888
+}
+
+.highlight .cp {
+    color:#f4bf75
+}
+
+.highlight .o, .highlight .ow {
+    color:#f4bf75
+}
+
+.highlight .p, .highlight .pi {
+    color:#d0d0d0
+}
+
+.highlight .gi {
+    color:#90a959
+}
+
+.highlight .gd {
+    color:#ac4142
+}
+
+.highlight .gh {
+    color: #6a9fb5;
+    font-weight:bold
+}
+
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+    color:#aa759f
+}
+
+.highlight .kc, .highlight .kt, .highlight .kd {
+    color:#d28445
+}
+
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+    color:#90a959
+}
+
+.highlight .sr {
+    color:#75b5aa
+}
+
+.highlight .si, .highlight .se {
+    color:#8f5536
+}
+
+.highlight .nt, .highlight .nn, .highlight .nc, .highlight .no {
+    color:#f4bf75
+}
+
+.highlight .na {
+    color:#6a9fb5
+}
+
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+    color:#90a959
+}
+
+.highlight .ss {
+    color:#90a959
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #151515 url("../images/bkg.png") 0 0;
+    color: #eaeaea;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin:0 auto
+}
+
+section {
+    display: block;
+    margin:0 0 20px 0
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin:0 0 20px
+}
+
+li {
+    line-height:1.4
+}
+
+header {
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-bottom: 1px dashed #b5e853;
+    padding: 20px 0;
+    margin:0 0 40px 0
+}
+
+header h1 {
+    font-size: 30px;
+    line-height: 1.5;
+    margin: 0 0 0 -40px;
+    font-weight: bold;
+    font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+    color: #b5e853;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(181, 232, 83, 0.1), 0 0 10px rgba(181, 232, 83, 0.1);
+    letter-spacing: -1px;
+    -webkit-font-smoothing:antialiased
+}
+
+@media (max-width: 1000px) {
+    header h1 {
+        margin-left:0
+    }
+}
+
+header h1:before {
+    content: "./ ";
+    font-size:24px
+}
+
+header h2 {
+    font-size: 18px;
+    font-weight: 300;
+    color:#666
+}
+
+#downloads .btn {
+    display: inline-block;
+    text-align: center;
+    margin:0
+}
+
+#main_content {
+    width: 100%;
+    -webkit-font-smoothing:antialiased
+}
+
+section img {
+    max-width:100%
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+    color: #b5e853;
+    letter-spacing: -0.03em;
+    text-shadow:0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(181, 232, 83, 0.1), 0 0 10px rgba(181, 232, 83, 0.1)
+}
+
+#main_content h1 {
+    font-size:30px
+}
+
+#main_content h2 {
+    font-size:24px
+}
+
+#main_content h3 {
+    font-size:18px
+}
+
+#main_content h4 {
+    font-size:14px
+}
+
+#main_content h5 {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin:0 0 5px 0
+}
+
+#main_content h6 {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #999;
+    margin:0 0 5px 0
+}
+
+dt {
+    font-style: italic;
+    font-weight:bold
+}
+
+ul li {
+    list-style-image: url("../images/bullet.png")
+}
+
+blockquote {
+    color: #aaa;
+    padding-left: 10px;
+    border-left:1px dotted #666
+}
+
+pre {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px;
+    font-size: 16px;
+    color: #b5e853;
+    border-radius: 2px;
+    word-wrap: normal;
+    overflow: auto;
+    overflow-y:hidden
+}
+
+code.highlighter-rouge {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0px 3px;
+    margin: 0px -3px;
+    color: #aa759f;
+    border-radius:2px
+}
+
+table {
+    width: 100%;
+    margin:0 0 20px 0
+}
+
+th {
+    text-align: left;
+    border-bottom: 1px dashed #b5e853;
+    padding:5px 10px
+}
+
+td {
+    padding:5px 10px
+}
+
+hr {
+    height: 0;
+    border: 0;
+    border-bottom: 1px dashed #b5e853;
+    color:#b5e853
+}
+
+.btn {
+    display: inline-block;
+    background: -webkit-linear-gradient(top, rgba(40, 40, 40, 0.3), rgba(35, 35, 35, 0.3) 50%, rgba(10, 10, 10, 0.3) 50%, rgba(0, 0, 0, 0.3));
+    padding: 8px 18px;
+    border-radius: 50px;
+    border: 2px solid rgba(0, 0, 0, 0.7);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.7);
+    border-top: 2px solid #000;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
+    box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.05)
+}
+
+.btn:hover {
+    background:-webkit-linear-gradient(top, rgba(40, 40, 40, 0.6), rgba(35, 35, 35, 0.6) 50%, rgba(10, 10, 10, 0.8) 50%, rgba(0, 0, 0, 0.8))
+}
+
+.btn .icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 1px 8px 0 0;
+    float:left
+}
+
+.btn-github .icon {
+    opacity: 0.6;
+    background: url("../images/blacktocat.png") 0 0 no-repeat
+}
+
+a {
+    color: #63c0f5;
+    text-shadow:0 0 5px rgba(104, 182, 255, 0.5)
+}
+
+.cf:before, .cf:after {
+    content: "";
+    display:table
+}
+
+.cf:after {
+    clear:both
+}
+
+.cf {
+    zoom:1
+}
+
+#a-title {
+    text-decoration: none
+}
+
+</style>'
+}
+
 function create_readme_html () {
+    local bkg_off="" # " style=\"background:#333;\""
+    local bkg_on=" style=\"background:#444;\""
+
     local out=report.html
     local rdate=$(grep -i "^Report Date: " report.txt | cut -d ':' -f 2-)
     local langs lng lcnt=0 tcnt=0 tlng
-    local apps app acnt=0 tapp x alng tline line s v alt
+    local apps app acnt=0 tapp x alng tline line s v alt bkg
     rdate=$(trim "${rdate}")
 
     while IFS=''; read -r line ; do
@@ -862,13 +1217,16 @@ function create_readme_html () {
         done;
     done<report.txt
 
-    echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'>${out}
-    echo "<html><head><title>FD-NLS Translation Status</title></head><body>">>${out}
+    html_header>${out}
 
-    header_html >>${out}
-    echo '<h2>Individual translation status</h2>'>>${out}
+    css_style >>${out}
 
-    langs="${langs};!!;"
+    html_intro >>${out}
+    echo '<h2>Individual program translation status</h2>'>>${out}
+
+    langs=$(sortlangs "${langs}")
+    langs=";en;${langs//[[:cntrl:]]};!!;"
+    langs="${langs//;;/;}"
     # echo "${langs}">>${out}
 
     echo '<table>'>>${out}
@@ -880,13 +1238,17 @@ function create_readme_html () {
         [[ ${#app} -eq 0  ]] && continue
         if [[ "${alt}" == "" ]] ; then
             alt=" style=\"background:#eee;\""
+            bkg="${bkg_on}"
         else
             alt=
+            bkg="${bkg_off}"
         fi
+
         tlng="${langs}"
-        x="<tr${alt}><td style=\"padding-left:1pc;padding-right:0.2pc;\"><a href=\"${URL}/${app%%,*}\" TARGET=\"_BLANK\">${app}</a></td>"
+        x="<tr${bkg}><td style=\"padding-left:1pc;padding-right:0.2pc;\"><a href=\"${URL}/${app%%,*}\" TARGET=\"_BLANK\">${app}</a></td>"
         line=$(grep "^${app}:" report.txt)
         line="${line#*: }"
+        [[ "${app%%,*}" == "pgme" ]] && line="en, ${line}"
         while [[ ${#tlng} -gt 0 ]] ; do
             lng="${tlng%%;*}"
             tlng="${tlng:$(( ${#lng} + 1 ))}"
@@ -945,7 +1307,10 @@ function create_readme_html () {
     echo '<hr>'>>${out}
     echo >>${out}
     echo "<b>${acnt}</b> total programs, <b>${lcnt}</b> total languages, <b>${tcnt}</b> total translations">>${out}
+    echo "<br>">>${out}
     echo "Report date: <i>${rdate}</i>">>${out}
+    echo "<br>">>${out}
+    echo "<br>">>${out}
     echo "</body></html>">>${out}
 
 }
