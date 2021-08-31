@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : country.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : country.sys</h1>
+<pre>
+  COUNTRY.SYS est le fichier d'aide duquel COUNTRY obtient ses
+  informations.
+  COUNTRY.SYS doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS fonctionne d‚j…, vous pouvez charger COUNTRY.SYS plus
+  tard avec <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>  - aucune -</pre>
+<h2>Options :</h2>
+<pre>  - aucun -</pre>
+<h2>Commentaires :</h2>
+<pre>
+  <a href="../cnfigsys/country.htm">COUNTRY</a> active/d‚finit les fonctionnalit‚s internationales de DOS
+  en choisissant un code de pays et (seulement avec un kernel de
+  d‚veloppement) optionnellement aussi une page de code et un fichier de
+  pays. Le kernel stable utilise seulement la valeur nnn. Pour un support
+  complet, utilisez le kernel instable. Vous avez besoin d'un COUNTRY.SYS
+  pour ce-dernier, alors que le premier ignore l'argument de nom de
+  fichier et d‚finit seulement les formats date/temps/nombre, en
+  utilisant les valeurs compil‚es dans le kernel pour quelques pays
+  communs. Il ne d‚finit pas d'ordre ni des tableaux de traduction
+  minuscules/majuscules. <a href="../base/nlsfunc.htm">NLSFUNC</a> peut seulement ˆtre utilis‚ avec le
+  kernel instable.
+  COUNTRY.SYS a un support complet des infos NLS (COUNTRY, UCASE, LCASE,
+  FUCASE, COLLATE, DBCS and YESNO) pour les pays suivants :
+
+  Codes standard :
+  Pays                  Code Pages de code
+  tats-Unis              1 437,850,858
+  Canada (fran‡ais)       2 863,850,858
+  Am‚rique Latine         3 858,850,437
+  Russie                  7 866,808,855
+                            872,852,850
+                            858,437
+  GrŠce                  30 869,737,850
+                            858
+  Pays-Bas               31 858,850,437
+  Belgique               32 858,850,437
+  France                 33 858,850,437
+  Espagne                34 858,850,437
+  Hongrie                36 852,850,858
+  Yougoslavie            38 852,855,872
+                            850,858
+  Italie                 39 858,850,437
+  Roumanie               40 852,850,858
+  Suisse                 41 858,850,437
+  R‚publique TchŠque     42 852,850,858
+  Autriche               43 858,850,437
+  Royaume-Uni            44 858,850,437
+  Danemark               45 865,850,858
+  SuŠde                  46 858,850,437
+  NorvŠge                47 865,850,858
+  Pologne                48 852,850,858
+  Allemagne              49 858,850,437
+  Argentine              54 858,850,437
+  Br‚sil                 55 858,850,437
+  Malaisie               60 437
+  Australie              61 437,850,858
+  Singapour              65 437
+  Japon                  81 437,932*
+  Cor‚e                  82 437,934*
+  Chine                  86 437,936*
+  Turquie                90 857,850
+  Inde                   91 437
+  Portugal              351 860,850,858
+  Finlande              358 858,850,437
+  Bulgarie              359 855,872,850
+                            858,866,808
+                            849,1131
+                            30033
+  Bi‚lorussie           375 849,850,858
+                            1131
+  Ukraine               380 848,1125
+  Serbie et Mont‚n‚gro  381 855,872,852
+                            850,858
+  Croatie               384 852,850,858
+  Slov‚nie              386 852,850,858
+  Bosnie-Herz‚govine    387 852,850,858
+                            855,872
+  ARYM                  389 855,872,850
+                            858
+  Moyen-Orient          785 858,850,864*
+  Isra‰l                972 858,850,862*
+
+  Codes tendus (Pays multilingues) :
+  Pays                Code Pages de code
+  Belgique/n‚erland.  40032 858,850,437
+  Belgique/fran‡ais   41032 858,850,437
+  Belgique/allemand   42032 858,850,437
+  Espagne/espagnol    40034 858,850,437
+  Espagne/catalan     41034 858,850,437
+  Espagne/galicien    42034 858,850,437
+  Espagne/basque      43034 858,850,437
+  Suisse/allemand     40041 858,850,437
+  Suisse/fran‡ais     41041 858,850,437
+  Suisse/italien      42041 858,850,437
+
+  * Ces pages ne sont pas encore disponibles dans FreeDOS.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Dans CONFIG.SYS / FDCONFIG.SYS
+    device=c:\fdos\bin\himemx.exe
+    device=c:\fdos\bin\jemm386.exe
+    dos=high,umb
+    country=001,437,c:\fdos\bin\country.sys
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-development</a>
+  <a href="../base/nlsfunc.htm">nlsfunc</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

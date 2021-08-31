@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: zip</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: zip</h1>
+<pre>
+  ZIP ist ein Komprimierungs- und Dateipackprogramm wie PKZIP.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  zip [-AcdDefFghjJklLmoqrRSTuvXz019@$] [-b Pfad] [-n Suffixe]
+      [-t mmddyyyy] [-tt mmddyyyy] [ Zipdatei [ Datei1 Datei2 ...]]
+      [-xi Liste]
+  Die voreinstellte Aktion ist das Hinzufuegen oder Ersetzen von Eint-
+  raegen in einer Zipdatei aus einer Liste, die auch spezielle Namen
+  wie fuer die Standardeingabe enthalten kann. Wenn Zipdatei und Liste
+  weggelassen werden, komprimiert zip von der Standardeingabe zur
+  Standardausgabe.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  -A   Anpassen von selbstextrahierendem ausfuehrbarem Archiv.
+  -c   Hinzufuegen von Einzeilen-Kommentaren fuer jede Datei.
+  -d   Entferne (delete) Eintraege aus einem Zip-Archiv. Zum Beispiel:
+       zip -d foo foo/tom/junk foo/harry/\* \*.o entfernt den Eintrag
+       foo/tom/junk, alle Dateien, die mit foo/harry/ starten und alle
+       Dateien mit der Endung .o (in jedem Pfad).
+  -D   Erstellt keine Eintraege fuer Verzeichnisse (directories).
+  -e   Verschluesselt (encrypt) den Inhalt des Zip-Archives mit einem
+       Passwort, das nach einer Eingabeaufforderung auf dem Terminal ein
+       gegeben wird. (Dieses wird nicht wiederholt. Wenn die
+       Standardfehlerausgabe kein Terminal ist, wird zip mit einem Fehler
+       beendet). Die Eingabe des Passwortes wird wiederholt, um den
+       Benutzer vor Tippfehlern zu schuetzen. Beachten Sie, dass die
+       Standard pkzip-Verschluesselung als schwach betrachtet wird.
+  -f   Ersetzt (erfrischt) einen vorhandenen Eintrag im Zip-Archiv, nur
+       wenn dieser aktueller ist.
+  -F   Fehler korrigieren in dem Zip-Archive. (-FF versucht es diffiziler)
+       -D  keine Eintraege fuer Verzeichnisse (directories) hinzufuegen
+       -A  Anpassung von selbstextrahierenden ausfuehrbaren Archiven
+  -g   Vergroessern des angegebenen Zip-Archivs, anstelle der Erzeugung
+       eines Neuen.
+  -h   Zeigt die Hilfeinformation zu zip an (diese wird auch angezeigt,
+       wenn zip ohne Argumente auf gerufen wird).
+  -j   Speichert nur den Namen einer Datei ohne Verzeichnisnamen.
+       Standardmaessig speichert zip den ganzen Namen mit Pfad.
+  -J   Entfernt alle vorangestellten Daten (z. B. ein SFX-Stumpf) aus dem
+       Archiv.
+  -k   Versucht die Namen und Pfade MSDOS konform zu konvertieren,spei-
+       chert nur das MSDOS-Attribut (Schreibenattribut des Benutzers
+       von UNIX) und markiert den Eintrag als unter MSDOS erstellt
+       (auch wenn es nicht stimmt); fuer die Kompatibilitaet mit PKUNZIP
+       unter MSDOS, die bestimmten Namen wie jene mit zwei Punkten nicht
+       handhaben kann.
+  -l   Uebersetzt den Unix Zeilenvorschub (LF) in MSDOS Zeilenende
+       Kombination (CR LF).
+  -ll  Uebersetzt die MSDOS Zeilenende Kombination (CR LF) in den Unix
+       Zeilenvorschub (LF).
+  -L   Zeigt die Lizenz von zip an.
+  -m   Verschiebt (move) die angegebenen Dateien in das Zip-Archiv;
+       dies loescht die Verzeichnisse und Dateien nach der Erzeugung der
+       angegebenen Zipdatei.
+  -MM  Alle Eingangsmuster muessen mit mindestens einer Datei
+       uebereinstimmen und allen Eingabedateien muessen lesbar sein.
+  -o   Setzt die Modifikationszeit des ZIP-Archives auf die neuste unter
+       den Eintraegen in der Zipdatei.
+  -q   Stiller (quiet) Modus; unterdrueckt informative Nachrichten und
+       Eingabeaufforderungen. (Nuetzlich zum Beispiel in Shell-Skripts
+       und Hintergrundaufgaben).
+  -r   Verarbeitet die Verzeichnisstruktur rekursiv.
+  -R   Arbeitet rekursiv beginnend bei dem aktuellen Verzeichnis.
+  -S   Einschliessen von Systemdateien und versteckten Dateien.
+  -T   Testet die Integritaet der Zipdatei. Wenn die Ueberpruefung
+       fehlschlaegt, wird die alte Zipdatei nicht veraendert und (mit
+       der Option -m) keine Eingabedateien werden entfernt.
+  -u   Aktualisiert (update) einen Eintrag im Zip-Archiv.
+  -v   Ausfuehrlicher (verbose) Modus oder Versions-Informationen
+       ausgeben.
+  -z   Eingabeaufforderung fuer einen Mehrzeilen-Kommentar fuer das
+       ZIP-Archiv.
+  -X   Speichert die zusaetzlichen Dateiattribute nicht.
+  -0   Keine Kompression der Dateien.
+  -1   Verwendet die schnellste Kompressionmethode (weniger Kompression).
+  -9   Benutzt die langsamste Methode (optimale Komprimierung, ignoriert
+       die Suffix-Liste). Die Standard-Kompression ist -6.
+  -@   Die Liste der Dateien erfolgt von der Standardeingabe, wobei pro
+       Zeile nur ein Dateiname steht.
+  -$   Einschliessen der Datentraegerbezeichnung vom Laufwerk der ersten
+       zu komprimierenden Datei.
+  -b Pfad       Verwendet den angegebenen Pfad fuer temporaere Dateien.
+                Zum Beispiel: zip -b /tmp stuff * verwendet das Verzeich-
+                nis /tmp fuer das temporaeren Archiv, bevor es stuff.zip
+                im aktuellen Verzeichnis damit ueberschreibt.
+  -i Dateien    Nur die angegebenen Dateien beifuegen, wie in:
+                zip -r foo . -i \*.c
+                Nur die Dateien mit der Endung .c im aktuellen Verzeich-
+                nis und dessen Unterordnern einarbeiten.
+                -F Fehler korrigieren in dem Zip-Archive.
+                (-FF versucht es diffiziler)
+                -D  keine Eintraege fuer Verzeichnisse hinzufuegen
+                -A  Anpassung von selbstextrahierenden Archiven
+  -n Suffixe    Komprimiert keine Dateien, deren Namen mit einem der
+                gegebenen Suffixe enden.
+  -P Passwort   Verwendet das Kennwort zum Verschluesseln der
+                Zipdatei-Eintraege (sofern vorhanden). DIES IST NICHT
+                SICHER!
+  -t mmddyyyy   Verarbeitet nur Dateien ab dem genannten Zeitpunkt, wobei
+                mm der Monat (0-12), dd  der Tag des Monats (1-31) und
+                yyyy das Jahr ist. Das ISO 8601 Datumsformat jjjj-mm-tt
+                wird auch akzeptiert.
+  -tt mmddyyyy  Verarbeitet nur Dateien vor dem genannten Zeitpunkt,
+                wobei mm der Monat (0-12), dd  der Tag des Monats (1-31)
+                und yyyy das Jahr ist. Das ISO 8601 Datumsformat
+                jjjj-mm-tt wird auch akzeptiert.
+  -x Dateien    Explizit die angegebenen Dateien ausschliessen.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Um mehr Informationen zu erhalten, lesen Sie bitte das MANUAL
+  (Handbuch).
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  Das einfachste Beispiel:
+    zip stuff *
+  erzeugt das Archive stuff.zip (vorausgesetzt, es ist nicht vorhanden)
+  mit allen Dateien aus dem aktuellen Verzeichnis.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../util/unzip.htm">unzip</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl, uebersetzt von J. Jenderek.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

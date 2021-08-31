@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : replace</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : replace</h1>
+<pre>
+  REPLACE remplace les fichiers dans le r‚pertoire de destination par
+  des fichiers du mˆme nom provenant du r‚pertoire source.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  REPLACE [lecteur1:][chemin1]nomfichier [lecteur2:][chemin2] [options]
+          [lecteur1:][chemin1]nomfichier Sp‚cifie le ou les fichiers
+                                         source.
+          [lecteur2:][chemin2]           Sp‚cifie le r‚pertoire o— les
+                                         fichiers devront ˆtre remplac‚s.
+</pre>
+<h2>Options :</h2>
+<pre>
+  /A  Ajoute de nouveaux fichiers au r‚pertoire de destination. Ne peut
+      ˆtre utilis‚ avec les commutateurs /S et /U.
+  /H  Ajoute ou remplace les fichiers systŠme et cach‚s, ainsi que les
+      fichiers non prot‚g‚s.
+  /N  Mode de pr‚visualisation - n'ajoute ou ne remplace aucun fichier.
+  /P  Demande confirmation avant de remplacer un fichier ou d'ajouter
+      un fichier source.
+  /R  Remplace les fichiers en lecture seule ainsi que les fichiers non
+      prot‚g‚s.
+  /S  Remplace les fichiers dans tous les sous-r‚pertoires du r‚pertoire
+      de destination. Ne peut ˆtre utilis‚ avec le commutateur /A.
+  /W  Attend que vous ins‚riez un disque avant de commencer.
+  /U  Remplace (met … jour) seulement les fichiers qui sont plus anciens
+      que les fichiers source. Ne peut ˆtre utilis‚ avec le commutateur
+      /A.
+  /?  Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  REPLACE a les <a href="../batch/if.htm#comment">CODES DE SORTIE (ERRORLEVEL)</a> suivants :
+    0   Aucune erreur. REPLACE a remplac‚ ou ajout‚ des fichiers avec
+        succŠs.
+    1   Num‚ro de fonction invalide. L'ordinateur a une version de DOS
+        qui est incompatible avec REPLACE. (Pas encore impl‚ment‚ !)
+    2   Fichier non trouv‚. REPLACE n'a pas pu trouver les fichiers
+        source.
+    3   Chemin non trouv‚. REPLACE n'a pas pu trouver le chemin source
+        ou de destination.
+    5   AccŠs refus‚. L'utilisateur n'a pas accŠs aux fichiers source
+        ou de destination.
+    8   M‚moire insuffisante. Il n'y a pas assez de m‚moire systŠme pour
+        ex‚cuter la commande. (Pas impl‚ment‚ car impossible … g‚rer
+        avec un langage de haut niveau comme C !)
+    11  Format invalide. L'utilisateur a entr‚ une syntaxe erron‚e sur
+        la ligne de commande.
+    29  Erreur d'‚criture. REPLACE n'a pas pu ‚crire les fichiers de
+        destination.
+    30  Erreur de lecture. REPLACE n'a pas pu lire les fichiers source.
+    39  Espace disque insuffisant. L'espace disque est insuffisant sur
+        le chemin de destination.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  replace c:\newfiles\*.* c:\fdos\bin /P /U
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../command/copy.htm">copy</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../base/xcopy.htm">xcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2001 Rene Ableidinger, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

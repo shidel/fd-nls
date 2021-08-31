@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: undelete</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: undelete</h1>
+<pre>
+  UNDELETE intenta la recuperaci¢n de archivos eliminados.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  undelete [directorio] [opciones]
+           directorio  La ubicaci¢n donde est  el archivo que se va a
+                       recuperar es. Si no se proporciona ning£n
+                       directorio, se supone el directorio de trabajo
+                       actual.
+  Tambi‚n hay opciones de recuperaci¢n m s avanzadas:
+  undelete /acci¢n que destino [tama¤o]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+    /ALL      Recupere TODOS los archivos en el directorio dado sin
+              solicitar cada archivo.
+    /LIST     Enumera los archivos que se pueden recuperar sin solicitar
+              la recuperaci¢n; No se toman medidas.
+    /E        Exporta todos los archivos no eliminados a un disco externo
+              y directorio. Con esta opci¢n, el disco de origen no se 
+              modifica.
+  Posibles [acci¢n]es:
+    /syssave  Guarda la primera o segunda copia de FAT, sector de
+              arranque o directorio ra¡z. Seleccione fat1, fat2, boot o
+              root en [what].
+    /follow   Busca un archivo (posiblemente eliminado) que comience en
+              el cl£ster [what] y guarda los datos en un archivo dado
+              como [destino]. El resultado de DIRSAVE le ayuda a
+              encontrar el n£mero de cl£ster correcto.
+    /dirsave  Como FOLLOW, pero guarda un directorio en un archivo. El
+              directorio [what] debe ser dado por una ruta absoluta que
+              comienza con \ OR por un n£mero de cl£ster. Tambi‚n
+              muestra una lista de directorios t‚cnicos en la pantalla.
+    destino   Debe estar en una unidad que no sea la unidad actual. Los
+              datos siempre se leen/recuperan de la unidad desde la que
+              se invoca recuperar.
+    tama¤o    No es necesario especificar el tama¤o, pero puede anular
+              la autodetecci¢n especificando el tama¤o (en grupos para
+              FOLLOW, en sectores para DIRSAVE).
+</pre>
+<h2><a name="comment"></a>Comentarios:</h2>
+<pre>
+  ­UNDELETE solo funciona en discos FAT12 / FAT16!
+  Usando UNDELTE:
+    1. Encontrar archivos y directorios no recuperables:
+       Ejecuta recuperar en modo DIRSAVE. Ver  entradas de directorio
+       eliminadas especialmente marcadas, y ver  sus n£meros de cl£ster
+       en la pantalla. Puede redirigir la salida de la pantalla a un
+       archivo, por ejemplo:
+         undelete /DIRSAVE \ x:\rescued.dir >y:\logfile
+       Donde el archivo de registro contendr  la salida de la pantalla.
+       Si tiene las utilidades FreeDOS instaladas en su sistema, podr¡a
+       usar algo como uno de los siguientes:
+         undelete  /DIRSAVE \ x:\rescued.dir | <a href="../util/tee.htm">TEE</a> y:\logfile
+         undelete /DIRSAVE \ x:\rescued.dir | <a href="../util/tee.htm">TEE</a> y:\logfile | <a href="../base/more.htm">MORE</a>
+       Estos mostrar n la informaci¢n en la pantalla y la alamacenar n
+       en el archivo de registro.
+    2. Recuperaci¢n de un archivo no recuperable Busque el cl£ster
+       inicial del archivo utilizando DIRSAVE, como se explic¢
+       anteriormente. Luego use FOLLOW en ese cl£ster, por ejemplo:
+         undelete FOLLOW 1234 x:\rescued.bin
+       guardar¡a el contenido del archivo eliminado que comienza en el
+       cl£ster 1234 en el archivo rescued.bin en la unidad x.
+  Usos Avanzados:
+    - Recuperaci¢n desde dentro de directorios eliminados.
+      Ejecutar DIRSAVE en un directorio existente para encontrar el
+      cl£ster inicial del directorio eliminado. Luego ejecute DIRSAVE en
+      ese cl£ster para buscar archivos y directorios eliminados dentro
+      del directorio eliminado ... y as¡ sucesivamente con los n£meros
+      de cl£ster sucesivos seg£n sea necesario.
+    - Recuperaci¢n de archivos parcialmente sobrescritos.
+      Use FOLLOW en los nuevos archivos existentes y anule el valor del
+      tama¤o (en grupos, undelete le dice qu‚ tan grande es un grupo en
+      la unidad actual cuando comienza a recuperar). Entonces, si ha
+      sobrescrito accidentalmente un archivo largo "ANTIGUO" con un
+      nuevo archivo corto "NUEVO":
+      * encuentre el n£mero de cl£ster de "NUEVO"
+      * dar el tama¤o de "ANTIGUO" cuando se utiliza FOLLOW
+      * La salida recuperada comenzar  con el contenido de "NUEVO" pero
+        tambi‚n deber¡a contener el final no sobrescrito de "ANTIGUO",
+        con suerte.
+    - Usar undelete para "reflejar" datos importantes del disco.
+      Si su sistema de archivos se romple por completo, puede intentar
+      escribir los datos importantes guardados por SYSSAVE. La
+      informaci¢n guardada debe almacenarse en un disco separado. Tambi‚n
+      puede usar el comando <a href="../base/mirror.htm">MIRROR</a>, que es m s simple de usar pero
+      almacena la informaci¢n guardada al final del disco.
+      * Ejecuta undelete en modo SYSSAVE para las 4 fuentes: fat1, fat2,
+        boot, root.
+      * Mantenga los archivos en un lugar seguro.
+    - Restauraci¢n de los datos "mirror".
+      Esto puede ser necesario en algunos casos de desastre de disco.
+      ADVERTENCIA: ­Esto es solo para expertos, reparadores y personas
+      muy desesperadas! ­Hacer esto de manera incorrecta o innecesaria
+      podr¡a empeorar las cosas!
+      * Pegue las 4 fuentes juntas en el orden "boot fat1 fat2 root"
+        para reconstruir la primera parte de su partici¢n, comenando con
+        el primer sector.
+      * Podr¡a usar <a href="../base/debug.htm">DEBUG</a> (comando w) para restaurar esta informaci¢n.
+      * Tambi‚n puede combinar datos guardados y existentes con un
+        editor hexadecimal.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  - Ver <a href="#comment">comentarios</a> -
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../base/debug.htm">debug</a>
+  <a href="../command/del.htm">del</a>
+  <a href="../base/deltree.htm">deltree</a>
+  <a href="../command/erase.htm">erase</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/more.htm">more</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+  <a href="../util/tee.htm">tee</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Eric Auer, modificado en 2008 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

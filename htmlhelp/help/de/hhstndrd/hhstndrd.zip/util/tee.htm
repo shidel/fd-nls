@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: tee</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: tee</h1>
+<pre>
+  TEE speichert eine Kopie der Eingabe (STDIN) in einer oder mehreren
+  Dateien und gibt sie auf dem Bildschirm aus.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  tee [/A] [/I] [d:][Pfad]Datei [[d:][Pfad]Datei2] ...
+      [d:][Pfad]Datei [[d:][Pfad]Datei2]  Die Ausgabe-Datei(en)
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /A  An Datei(en) anhaengen: Die Eingabe an die Ausgabe-Datei(en)
+      haengen anstatt sie zu ueberschreiben.
+  /I  Unterbrechungen ignorieren: Unterbrechungsversuche eines Benutzers
+      ignorieren.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  TEE liest Daten vom Standardeingang und schreibt sie sowohl in den
+  Standardausgang als auch in vom Benutzer gewaehlte Dateien.
+  TEE kommt mit zwei Standardversionen. TEE.EXE ist die TEE Version mit
+  KITTEN Unterstuetzung. _TEE.EXE ist ohne KITTEN erstellt. 
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  echo "Hello, World!" | tee hello.txt
+    "Hello, World!" auf dem Bildschirm anzeigen und in hello.txt
+    speichern.
+  tee log.txt weiterer_log.txt < input.txt
+    Den Inhalt von input.txt anzeigen und ihn in log.txt und
+    weiterer_log.txt speichern.
+  catdoc brief.doc | tee /I brief.txt | wc
+    Den durch catdoc verarbeiteten Inhalt von brief.doc in brief.txt
+    speichern und an wc weitergeben, um die Woerter zu zaehlen.
+    Keine Unterbrechungen durch einen Benutzer erlauben.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/more.htm">more</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

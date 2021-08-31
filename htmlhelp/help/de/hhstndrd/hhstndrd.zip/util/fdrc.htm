@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: fdrc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: fdrc</h1>
+<pre>
+  FreeDOS Resident Calculator (FDRC) ist ein residenter Taschenrechner
+  fuer Programmierer.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  fdrc [Optionen]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  FDRC unterstuetzt die folgenden Kommandozeilenparameter (Sie koennen
+  '/' anstelle von '-' verwenden:
+  -h         Kurze Hilfe
+  -?         Kurze Hilfe (wie -h)
+  -H         Hilfe ueber die Tastatur und Bedienungsanleitung.
+  -a         Berechnet das Ergebnis nach Druecken irgendeiner Taste, nicht
+             nur nach Druecken von 'Enter'. Anmerkung: Die aktuelle
+             Zeichenkette wird nur nach dem Druecken von 'Enter' in der
+             History gespeichert, auch bei diesem Modus.
+  -c         Loescht die Eingabezeile wenn man eine alphanumerische
+             Taste sofort nach dem Auftauchen drueckt. Das Druecken von
+             'Delete', 'Backspace' oder aehnlichen Tasten loescht die
+             Eingabezeile nicht.
+  -e         Erlaubt das Laden einer zweiten, dritten ... Kopie von FDRC
+             im Speicher.
+  -n         Nichtresidenter Modus.
+  -w         Verhindert das Laden von FDRC in die UMB. Normalerweise laedt
+             FDRC sich in die UMB, falls vorhanden.
+  -u         Entladen. Wenn INT 09h und/oder INT 10h von einem anderen
+             Programm abgebrochen werden, druckt FDRC eine Warnmeldung
+             und beendet sich.
+  -D         Deaktiviert FDRC temporaer.
+  -E         Aktiviert FDRC wieder.
+  -q         Stiller Modus. Wenn Sie versuchen, FDRC innerhalb eines
+             Programms mit grafischem Modus aufzurufen, wird FDRC zweimal
+             piepsen. Wenn Sie den ersten oder letzten Eintrag in der
+             History erreicht haben, wird FDRC einmal piepsen. Der -q
+             Schalter schaltet alle Sounds aus.
+  -l:number  Spalte der linken Seite von FDRC's Fenster.
+  -t:number  Zeile der Oberseite von FDRC's Fenster.
+             number -- decimal number >= 0.
+  -k:number  Scancode des Aktivierungsschluessels (hexadecimal). Siehe
+             'rbil_i09.txt' fuer Details. Standardwert -- 35h ('/').
+  -s:number  Code der Shift Tasten (hexadezimal).
+               Rechte Shift (Hochtaste):  01
+               Linke Shift (Hochtaste):   02
+               Ctrl(Strg) (irgendeine):   04
+               Alt (irgendeine):          08
+               Scroll Lock:               10
+               Num Lock:                  20
+               Caps Lock:                 40
+               Insert (Einfuegen):        80
+               Standardwert -- 04 (Ctrl).
+               Zum Beispiel: Rechte Hochtaste +Alt ==  == 1 + 8 == 9.
+  -y:number  Groesse der History-Puffer (dezimal). Standardwert -- 0.
+             Minimaler Wert ist 200, maximal ist 16000 (kann in der
+             'config.inc' geaendert werden).
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  FDRC unterstuetzt die folgenden Operationen:
+    + -- Addition              &amp; -- Bitwise UND
+    - -- Subtraktion           | -- Bitwise ODER
+    * -- Multiplikation        ^ -- Bitwise XOR
+    / -- Division              < -- Logischer 'shift left'
+    % -- Prozent               > -- Logischer 'shift right'
+    \ -- Quadratwurzel         { -- Arithmetischer 'shift left'
+    ~ -- Bitwise NOT           } -- Arithmetischer 'shift right'
+    ` -- Negation
+
+  Sie koennen die folgenden Tasten verwenden:
+  Zahlen und Buchstaben -- geben Werte ein.
+  " -- wenn Sie ein Anfuehrungszeichen eingeben, wird das zweite
+  automatisch eingegeben.
+  Rechte und linke Pfeiltasten -- bewegen den Cursor.
+  Pfeil nach oben und unten -- vorhergehender/naechster String der
+    History.
+  Seite nach oben und unten -- erstes und letztes Zeichen in der History.
+  Home und End -- bewegt den Cursor.
+  Enter -- Berechne das Ergebnis und speichere es im History-Puffer.
+  Insert (Einfuegen) -- Schaltet zwischen Einfuege- / Umschaltmodus um. 
+  Backspace (Rueckwaerts) -- loescht Zeichen vor dem Cursor.
+  Delete (Entfernen) -- loescht Zeichen unter dem Cursor.
+  Ctrl-Y -- Entfernt den String.
+  Ctrl-K -- Entfernt den Text bis zum Ende des Strings.
+  Sie koennen das FDRC-Fenster bewegen, indem Sie Wordstar-vergleichbare
+  Tastenkombinationen verwenden (Standard):
+    Ctrl-S -- links
+    Ctrl-D -- rechts
+    Ctrl-E -- nach oben
+    Ctrl-X -- nach unten
+  oder Vi-vergleichbare Tastenkombinationen (wenn Sie VI_KEYS constant
+  in der config.inc definiert haben):
+    Alt-H -- links
+    Alt-L -- rechts
+    Alt-K -- nach oben
+    Alt-J -- nach unten
+  Alt-S -- Schalter zwischen vorzeichenbehafteter und vorzeichenloser
+  Darstellungsweise des Ergebnisses.
+  Alt-D -- Fuellt den Tastaturpuffer mit der dezimalen Darstellung des
+  Ergebnisses und beendet.
+  Alt-H -- Fuellt den Tastaturpuffer mit der hexadezimalen Darstellung
+  des Ergebnisses und beendet.
+  Alt-1 .. Alt-4 -- Fuellt den Tastaturpuffer mit dem korrespondierenden
+  Teil der binaeren Darstellung des Ergebnisses und beendet.
+  Esc -- Ende.
+</pre>
+<h2>Beispiel:</h2>
+<pre>  - keines -</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../util/foxcalc.htm">foxcalc</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

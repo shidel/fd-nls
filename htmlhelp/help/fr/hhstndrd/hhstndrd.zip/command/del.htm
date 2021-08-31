@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : del</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : del</h1>
+<pre>
+  DEL efface un ou plusieurs fichiers.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEL [lecteur][chemin]nomfichier [/P] [/V] [/?]
+      lecteur    Sp‚cifie la lettre du lecteur o— se trouve le fichier,
+                 par exemple C:
+      chemin     Sp‚cifie le chemin vers l'emplacement o— se trouve
+                 le fichier, par exemple \exemple\
+      nomfichier Sp‚cifie les fichiers … effacer. Sp‚cifiez de multiples
+                 fichiers au moyen des jokers (*,?).
+                 Un point peut ˆtre utilis‚ pour sp‚cifier tous les
+                 fichiers dans le dossier actuel, et est identique … *.*
+</pre>
+<h2>Options :</h2>
+<pre>
+  /P  Demande une confirmation avant d'effacer chaque fichier.
+  /V  Affiche tous les fichiers effac‚s.
+  /?  Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Pour des raisons de performance, DEL ‚crase la premiŠre lettre du
+  nom de fichier par un '?'. Il n'efface pas le fichier lui-mˆme mais
+  d‚salloue l'espace o— le contenu du fichier se trouve. FreeDOS, comme
+  d'autres DOS, reconnaŒt le fichier renomm‚ (monfichier.txt devient
+  ?onfichier.txt) comme ‚tant effac‚, ne l'affiche plus et n'y offre
+  plus l'accŠs. Les programmes comme <a href="../base/debug.htm">DEBUG</a> qui ont un accŠs aux
+  secteurs sont capables de lire le contenu du fichier. Tant que vous
+  n'‚crasez pas le fichier ‚crit sur le disque, vous avez une chance de
+  le restaurer avec <a href="../base/undelete.htm">UNDELETE</a>, seul le premier caractŠre du fichier
+  sera perdu (_onfichier.txt). La seule fa‡on d'effacer LES CONTENUS DE
+  MANIÔRE ABSOLUMENT SêRE est de remplir le disque entiŠrement en
+  utilisant un outil d'effacement. La seule fa‡on d'effacer le NOM DE
+  MANIÔRE ABSOLUMENT SêRE est de <a href="../command/rename.htm">RENOMMER</a> <a href="../command/ren.htm">(REN)</a> d'abord le fichier
+ (par exemple "a.") et de l'effacer ensuite (seulement vrai pour 8.3,
+  pas pour les noms de fichiers longs !)
+  Vous pouvez aussi utiliser <a href="../command/erase.htm">ERASE</a> au lieu de DEL.
+  DEL est une commande interne … command.com et ne n‚cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  del C:\PROGRAM\test.txt
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../base/debug.htm">debug</a>
+  <a href="../base/deltree.htm">deltree</a>
+  <a href="../command/erase.htm">erase</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/ren.htm">ren</a>
+  <a href="../command/rename.htm">rename</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

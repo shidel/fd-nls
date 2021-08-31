@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: fdxms286.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: fdxms286.sys</h1>
+<pre>
+  FDXMS286.SYS ist ein erweiterter Speichertreiber fuer FreeDOS.
+  FDXMS286.SYS ist fuer 286er Computer. FDXMS ist fuer 386+ Computer. 
+  <b>FXMS 286.SYS muss in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen werden.
+  FDXMS286.SYS ist veraltet. Sie sollten stattdessen <a href="../base/himemx.htm">HIMEMX</a> oder 
+  <a href="../base/jemmex.htm">JEMMEX</a> verwenden</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE=[Laufwerk][Pfad]\fdxms286.sys [Optionen]
+         Laufwerk  Der Laufwerksbuchstabe, z.B.: C:
+         Pfad      Der zu waehlende Pfad, z.B.: \Beispiel\
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  NUMHANDLES=  Setzt die Anzahl der XMS Handles. Standard ist 32. Minimum
+               ist 2 (wenig Verwendung von XMS ohne irgendwelche Handles!)
+               und maximum ist derzeit 1024. Jedes Handle braucht 5 Bytes
+               (FDXMS.SYS) oder 9 Bytes (FDXXMS.SYS).
+  BIOS         Laesst FDXMS286 immer das BIOS ueber INT15 aufrufen, an-
+               statt seine eigene 'Protected Mode' Umschaltung zu
+               verwenden.
+  PS           Wechselt zu dem auf PS/2 Maschinen notwendigen besonderen
+               A20 Handling.
+  GEODE        Beseitigt Verzoegerungen waehrend des Wechsels der A20 
+               Adresslinie. Soll dabei helfen, dass FDXMS286 auf National 
+               Semiconductor's Geode GX1 Prozessor funktioniert.
+  DELAY=       Zahl der Aufrufe der Verzoegerungsroutine nach Wechsel der
+               A20 Adresslinie. Falls Sie die Fehlermeldung "Unable to
+               switch A20 address line" (Kann die A20 Adresslinie nicht
+               umschalten) erhalten, versuchen Sie, einen groesseren Wert
+               (z.B. 4000) einzugeben und probieren Sie, ob es hilft.
+               Dann machen Sie eine Feinabstimmung soweit wie moeglich
+               nach unten um Geschwindigkeit zu erhalten. Standard ist 1.
+               Maximum ist 65535 und 0 mapt nach 65536.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  FDXMS286.SYS muss in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen werden.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\fdxms286.sys 
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Martin Stromberg, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

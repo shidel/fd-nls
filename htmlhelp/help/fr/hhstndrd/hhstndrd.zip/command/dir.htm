@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : dir</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : dir</h1>
+<pre>
+  DIR affiche une liste des fichiers des sous-dossiers dans un
+  r‚pertoire.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DIR [lecteur][chemin][nomfichier] [/P] [/W] [/A[[:]attributs]]
+      [/O[[:]ordredetri]] [/S] [/B] [/L] [/Y] [/?]
+      lecteur     La lettre du lecteur, par exemple C:
+      chemin      Le r‚pertoire, par exemple \exemple\
+      nomfichier  Le fichier … afficher, par exemple test.txt
+                  [lecteur][chemin][nomfichier]
+                  Sp‚cifier le lecteur, le dossier et/ou les fichiers
+                  … lister. (Peut ˆtre une sp‚cification de fichier
+                  am‚lior‚e ou plusieurs sp‚cifications de fichier.)
+</pre>
+<h2>Options :</h2>
+<pre>
+  /P  Affiche une page de la liste … la fois
+  /W  Affiche la liste au format large
+  /A:attributs
+      Affiche seulement les fichiers et dossiers avec les attributs
+      sp‚cifi‚s. La valeur par d‚faut est /a:hsdar. Vous pouvez utiliser
+      les ‚l‚ments suivants pour les attributs :
+        h | -h  Fichiers caches         h fichiers qui ne sont pas cach‚s
+        s | -s  Fichiers systŠme       -s fichiers qui ne sont pas des
+                                          fichiers systŠme
+        d | -d  R‚pertoires            -d fichiers
+        a | -a  Fichiers avec le bit   -a fichiers sans le bit archive
+                archive
+        r | -r  Fichiers en lecture    -r fichiers qui ne sont pas en
+                seule                     lecture seule
+  /O:ordredetri
+      Affiche la liste dans l'ordre sp‚cifi‚. La valeur par d‚faut est
+     /O:g.
+      Vous pouvez utiliser les ‚l‚ments suivant pour sp‚cifier l'ordre
+      de tri :
+        a | -a  Alphab‚tiquement (A-Z) -a Alphab‚tiquement (Z-A)
+        e | -e  Par l'extension A-Z    -e Extension (Z-A)
+        d | -d  Par l'horodatage       -d Horodatage dans l'ordre inverse
+        s | -s  Par la taille          -s Taille (le + > - le + <)
+                (le + < - le + >)
+        g | -g  Groupe les dossiers    -g Groupe les dossiers … la fin.
+                d'abord
+  /S  Affiche les fichiers dans le dossier sp‚cifi‚ et tous les
+      sous-dossiers.
+  /B  Utilise le format nu (aucune information de titre ou r‚sum‚).
+      Cela liste un nom par ligne
+  /L  Affiche les noms en minuscules
+  /Y ou /4
+      Affiche l'ann‚e en 4 chiffres.
+  /?  Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Afin de personnaliser l'apparence par d‚faut de dir, utilisez la
+  variable d'environnement DIRCMD. Par exemple :
+    <a href="../command/set.htm">SET</a> DIRCMD=/w/p
+  Pour passer outre un ‚l‚ment d‚fini dans DIRCMD, utilisez un trait
+  d'union ("-") sur ce commutateur sur la ligne de commande. (par
+  exemple /-w)
+  DIR est une commande interne … command.com et ne n‚cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  dir c:\exemple /p
+  dir c:\exemple /w
+  dir c:\exemple /O: a
+  dir c:\fdos | more
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../command/set.htm">set</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

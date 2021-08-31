@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : dos</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : dos</h1>
+<pre>
+  DOS indique au kernel DOS comment il doit se charger.
+  DOS est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  dos=high|low[,umb|noumb]
+    ou
+  dos=[high|low,]umb|noumb
+</pre>
+<h2>Options:</h2>
+<pre>
+  dos=high   Dit … DOS de se charger dans la m‚moire haute (UMA). Vous
+             devez charger un gestionnaire de m‚moire haute (ex : FDXMS,
+             HIMEM, HIMEMX).
+  dos=low    Indique … DOS de se charger dans la m‚moire conventionnelle.
+  dos=umb    Indique … DOS de garder un lien entre UMA et la m‚moire
+             conventionnelle.
+  dos=noumb  Indique … DOS de ne pas garder de lien entre la m‚moire UMA
+             et conventionnelle.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  DOS indique si le kernel doit essayer de se charger dans la m‚moire
+  haute (HIGH) ou seulement conventionnelle (LOW), et s'il doit ‚tablir
+  un lien entre les blocs de m‚moire haute et la m‚moire normale (UMB)
+  ou pas (NOUMB).
+  Remarque : seul un ensemble doit ˆtre donn‚, c'est-…-dire que dos=high
+  et dos=noumb sont corrects.
+  Important : si vous sp‚cifiez dos=high[,umb|noumb] alors vous devez
+  aussi charger un gestionnaire de m‚moire haute (d'abord), par exemple
+  (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a> ou <a href="../base/jemmex.htm">JEMMEX</a>.
+  DOS est une commande interne … kernel.sys et ne n‚cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    DOS=HIGH,UMB
+  OU :
+    DOS=LOW,NOUMB
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

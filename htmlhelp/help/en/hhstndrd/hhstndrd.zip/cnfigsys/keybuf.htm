@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: keybuf</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: keybuf</h1>
+<pre>
+  KEYBUF relocates the keyboard buffer from the default location at
+  0x40:0x1e-0x3e to 0x40:n-m.
+  KEYBUF is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  keybuf=n[,m]
+    where n is in 0xac-0xde or 0x106-0x1de range and m is <= 0x200
+</pre>
+<h2>Options:</h2>
+<pre>  - none -</pre>
+<h2>Comments:</h2>
+<pre>
+  KEYBUF relocates the keyboard buffer from the default location at
+  0x40:0x1e-0x3e to 0x40:n-m. The buffer must be more than 32 bytes and
+  must not touch offsets 0x100-0x105.
+  Default for m is "next multiple of 0x100 after n".
+  Note: Some BIOSes store data in the 0xac-0xff area. BASICA will use the
+  0x106-0x120 area. Other hardware, drivers or apps can collide with
+  KEYBUF, too, so use it at your own risk.
+  A reasonably safe choice should be "keybuf=0x140,0x1c0".
+  KEYBUF is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    keybuf=0x140,0x1c0
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

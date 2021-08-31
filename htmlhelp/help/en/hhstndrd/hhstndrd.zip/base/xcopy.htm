@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: xcopy</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: xcopy (rxcopy)</h1>
+<pre>
+  XCOPY copies files and directories, including subdirectories.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  XCOPY source [destination] [options]
+        source       Specifies the directory and/or name of file(s) to
+                     copy. The source must be either a drive or a full
+                     path.
+        destination  Specifies the location and/or name of new file(s).
+                     The destination to copy to. If not present, xcopy
+                     assumes the working directory.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /A          Copies only files with the archive attribute set and 
+              doesn't change the attribute.
+  /C          Continues copying even if errors occur.
+  /D[:M/D/Y]  Copies only files which have been changed on or after the
+              specified date. When no date is specified, only files which
+              are newer than existing destination files will be copied.
+  /E          Copies any subdirectories, even if empty.
+  /F          Display full source and destination name.
+  /H          Copies hidden and system files as well as unprotected 
+              and system files.
+  /I          If destination does not exist and copying more than one
+              file, assume destination is a directory.
+  /L          List files without copying them. (simulates copying).
+  /M          Copies only files with the archive attribute set and turns
+              off the archive attribute of the source files after copying
+              them.
+  /N          Suppresses prompting to confirm you want to overwrite an
+              existing destination file and skips these files.
+  /P          Prompts for confirmation before creating each destination
+              file.
+  /Q          Quiet mode, don't show copied filenames.
+  /R          Overwrite read-only files as well as unprotected files.
+  /S          Copies directories and subdirectories except empty ones.
+  /T          Creates directory tree without copying files. Empty 
+              directories will not be copied. To copy them add switch /E.
+  /V          Verifies each new file.
+  /W          Waits for a keypress before beginning.
+  /Y          Suppresses prompting to confirm you want to overwrite an
+              existing destination file and overwrites these files.
+  /-Y         Causes prompting to confirm you want to overwrite an
+              existing destination file.
+  /?          Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The switch <b>/Y</b> or <b>/N</b> may be preset in the COPYCMD environment variable.
+  This may be overridden with <b>/-Y</b> on the command line.
+    e.g. <a href="../cnfigsys/set.htm">SET</a> COPYCMD=/Y.
+  To cancel the <b>/Y</b> for a particular XCOPY command, use <b>/-Y</b> at the
+  command line.
+  The COPYCMD variable also affects the <a href="../command/copy.htm">COPY</a> command. Use <b>/Y</b> to change 
+  the way both <a href="../command/copy.htm">COPY</a> and XCOPY behave. Use <b>/N</b>, which ignores <a href="../command/copy.htm">COPY</a>, to
+  change only the way XCOPY behaves.
+  XCOPY may be used to determine if a drive is valid in a <a href="../batch/index.htm">BATCH FILE</a>.
+    XCOPY %drive%\NUL /L >NUL
+    <a href="../batch/if.htm">IF</a> NOT ERRORLEVEL 5 <a href="../batch/goto.htm">GOTO</a> invaliddrive
+  XCOPY may be used to determine if the destination drive is full in a
+  <a href="../batch/index.htm">BATCH FILE</a>.
+    XCOPY %drive1%\%dir% %drive1%\%dir% /S
+    <a href="../batch/if.htm">IF</a> ERRORLEVEL 39 <a href="../batch/goto.htm">GOTO</a> destinationfull
+
+  XCOPY supports NLS (national language support).
+  XCOPY has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+     0  No error. XCOPY successfully copied the files.
+     1  File not found. XCOPY could not find the source file(s).
+     4  Path not found. XCOPY could not find the source or
+        destination path. Format invalid. 
+        The user used the wrong syntax on the command line.
+     5  Access denied. The user does not have access to the
+        source or destination files.
+     8  Insufficient memory. There is insufficient system memory
+        to carry out the command. (Not implemented because not
+        possible to handle in a high level language like C!)
+    29  Write fault. XCOPY could not write a destination file
+        or directory.
+    30  Read fault. XCOPY could not read a source file.
+    39  Insufficient disk space. There is insufficient disk
+        space in the destination path.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  xcopy a:\test\*.* c:\test /q
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/index.htm">Batch file</a>
+  <a href="../command/copy.htm">copy</a>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../batch/goto.htm">goto</a>
+  <a href="../batch/if.htm">if</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../cnfigsys/set.htm">set (config.sys command)</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

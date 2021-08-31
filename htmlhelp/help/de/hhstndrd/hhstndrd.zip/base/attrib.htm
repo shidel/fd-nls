@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: attrib</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: attrib</h1>
+<pre>
+  ATTRIB zeigt oder aendert Dateiattribute.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  ATTRIB { Optionen | [Laufwerk][Pfad]Dateiname | /@[Liste] }
+         Laufwerk   Der Laufwerksbuchstabe, z.B: C:
+         Pfad       Der zu waehlende Pfad, z.B.: \Beispiel\
+         Dateiname  Die zu waehlende Datei, z.B. test.exe
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  +A  Setzt das "Archiv" Attribut.
+  -A  Loescht das "Archiv" Attribut.
+  +H  Setzt das "Versteckt" Attribut.
+  -H  Loescht das "Versteckt" Attribut.
+  +R  Setzt das "Nur Lesen" Attribut.
+  -R  Loescht das "Nur Lesen" Attribut.
+  +S  Setzt das "System" Attribut.
+  -S  Loescht das "System"Attribut.
+  /@  Bearbeite die Dateien, die in der angesprochenen Datei
+      aufgefuehrt sind [oder in stdin].
+  /D  Bearbeite Verzeichnisnamen fuer Argumente mit Wildcards.
+  /S  Bearbeite auch die Dateien in Unterverzeichnissen 
+      des / der angegebenen Pfads(e).
+  /?  Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Wenn keine spezielle Datei angegeben wird, werden die
+  Attribute von allen Dateien im gegenwaertigen Verzeichnis
+  geaendert (oder einfach angezeigt, wenn keine der oben
+  angegebenen Optionen verwendet wird).
+  Das Archivattribut (+A) wird gesetzt, wenn eine Datei veraendert
+  wird. Backup-Programme koennen das Attribut loeschen um 
+  anzuzeigen, dass die Datei gesichert wurde.
+  Wenn das "versteckt (+H)" Attribut gesetzt ist, wird die Datei mit
+  "dir" nicht angezeigt.
+  Wenn das "Nur Lesen (+R)" Attribut gesetzt ist, kann die Datei zwar
+  gelesen, aber nicht beschrieben (geaendert) werden.
+  Wenn das "System (+S)" Attribut gesetzt ist, wird die Datei besonders
+  geschuetzt, sie kann z.B. nicht geloescht oder ueberschrieben werden.
+  ATTRIB hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    0  erfolgreich ausgefuehrt; /? Option verwendet.
+    1  Fehler beim Aendern der Attribute der Datei(en).
+    2  keine passende(n) Datei(en) fuer das/die Ziel(e) gefunden.
+    3  Fehler beim Oeffnen der Datei(en), die in den /@ Option(en)
+       aufgefuehrt sind.
+    4  Fehler in der Kommandozeile.
+  </pre>
+<h2>Beispiel:</h2>
+<pre>
+  attrib filename -rhs
+  attrib +a -r dir1 dir2*.dat /s
+  attrib -hs/sd /@list.txt *.*
+</pre>
+<h2>Siehe auch:</h2>
+<pre>  - nirgendwo -</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : touch</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : touch</h1>
+<pre>
+  Le programme TOUCH modifie la date et/ou le temps des fichiers sur
+  un disque.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  touch [-?] [-C] [-Dnomchemin] [-F] [Date] [Temps] Pathspec [...]
+  touch [/?] [/C] [/Dnomchemin] [/F] [Date] [Temps] Pathspec [...]
+        Pathspec sp‚cifie un fichier ou groupe de fichiers que Touch
+        traitera, et peut contenir une sp‚cification de lecteur initial,
+        une sp‚cification de chemin de r‚pertoires et/ou une
+        sp‚cification de fichier, et peut sp‚cifier un groupe de
+        fichiers (en utilisant les jokers '?' et '*') ou un fichier
+        seul (une sp‚cification sans ambigu‹t‚). Pathspec peut ˆtre
+        r‚p‚t‚ autant de fois que n‚cessaire.
+</pre>
+<h2>Options :</h2>
+<pre>
+  -C          Ne pas cr‚er les fichiers qui n'existent pas d‚j….
+  -Dnomchemin Dupliquer l'horodatage depuis le fichier sp‚cifi‚. Si
+              cette option est utilis‚e, la date ou le temps ne
+              peuvent ˆtre sp‚cifi‚s.
+  -F          R‚gler le temps sur le num‚ro de version du fichier.
+  -?          Affiche l'aide.
+  Date        La nouvelle date des fichiers qui doivent ˆtre modifi‚s.
+              Si cette option est utilis‚e, -Dnomchemin ne peut ˆtre
+              sp‚cifi‚.
+  Time        Le nouveau temps des fichiers qui doivent ˆtre modifi‚s.
+              Si cette option est utilis‚e, -Dnomchemin ne peut ˆtre
+              sp‚cifi‚.
+  Le format de la date est d‚termin‚ par votre r‚glage de <a href="../cnfigsys/country.htm">COUNTRY</a>,
+  voyez <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Le caractŠre '/' peut ˆtre utilis‚ en tant que s‚parateur de date.
+  Les suffixes A et P (a.m, p.m) sur le paramŠtre de temps sont
+  optionnels.
+  Si aucune date ni temps ne sont fournis, la date et l'heure actuelles
+  seront utilis‚es.
+  Les fichiers inexistants seront cr‚‚s sauf si -C est utilis‚.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  TOUCH permet de modifier la date, le temps, ou … la fois la date et
+  le temps d'un fichier. TOUCH peut r‚gler la date et le temps sur la
+  date et le temps actuels, ou sur n'importe quelle date et temps
+  sp‚cifi‚ par l'utilisateur. La date et le temps peuvent aussi ˆtre
+  r‚gl‚s sur z‚ro, ce qui fera que les valeurs ne seront pas affich‚es
+  dans certaines versions de DOS.
+  La date doit ˆtre format‚e ainsi :
+    nn-nn-nn or nn/nn/nn.
+  L'ordre dans lequel les chiffres de la date sont interpr‚t‚s d‚pend
+  du num‚ro de pays. Il existe trois ordres standard de date :
+    mm-jj-aa  (Am‚ricain)
+    jj-mm-aa  (Europ‚en)
+    aa.mm.jj  (Japonais)
+  Un paramŠtre de temps doit ˆtre format‚ ainsi :
+    hh:mm[:ss][a|p]
+  Le deuxiŠme deux-points et la valeur 'ss' sont facultatifs. S'ils
+  ne sont pas fournis, une valeur de z‚ro sera utilis‚e pour les
+  secondes. Les suffixes 'a' et 'p' (a.m et p.m) sont facultatifs, et
+  si aucun n'est utilis‚, TOUCH supposera que le temps sp‚cifi‚ est
+  au format 24 heures.
+  L'OPTION -C :
+    TOUCH cr‚era (par d‚faut) les fichiers sp‚cifi‚s sans ambigu‹t‚
+     (c'est-…-dire nomm‚s explicitement, sans jokers) s'ils n'existent
+    pas d‚j….
+    Cela est apparemment le comportement de 'touch' d'UNIX, bien que
+    ce ne soit pas habituel dans les impl‚mentations DOS. Cette
+    fonctionnalit‚ peut ˆtre empˆch‚e avec le commutateur de ligne de
+    commande -C, qui indique … TOUCH de ne pas cr‚er le fichier sp‚cifi‚
+    s'il n'existe pas d‚j…. Je crois que cela est ‚galement le standard
+    dans les impl‚mentations UNIX.
+    Par exemple, la commande TOUCH NOSUCH.FIL (si NOSUCH.FIL n'existe
+    pas d‚j…), cr‚era un fichier vide (d'une taille de z‚ro octet)
+    appel‚ NOSUCH.FIL. La commande TOUCH -C NOSUCH.FIL signalera une
+    erreur et ne cr‚era pas le fichier.
+  TOUCH a les <a href="../batch/if.htm#comment">CODES DE SORTIE (NIVEAUX D'ERREUR)</a> suivants :
+    0    AchŠvement normal; aucune erreur
+    2    Une ou plusieurs erreurs se sont produites lors du traitement
+    48   Erreur lors du traitement de l'option -Dnomchemin
+    162  M‚moire insuffisante (environ 64 Ko de m‚moire sont n‚cessaires)
+    255  Syntaxe d'utilisation incorrecte
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  touch 12-31-2008 06:10p C:\FDOS\BIN\*.*
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

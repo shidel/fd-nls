@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : emm386</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : emm386</h1>
+<pre>
+  EMM386 est le gestionnaire de m‚moire ‚tendue.
+  EMM386 doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  <b>EMM386 est p‚rim‚. Vous devriez utiliser <a href="../base/himemx.htm">HIMEMX</a> / <a href="../base/jemm386.htm">JEMM386</a>
+  ou <a href="../base/jemmex.htm">JEMMEX</a> … la place</b>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEVICE=[lecteur][chemin][EMM386.EXE] [options]
+         lecteur  La lettre du lecteur, par exemple C:
+         chemin   Le r‚pertoire, par exemple \exemple\
+  ou lancez-le depuis la ligne de commande :
+  [lecteur][chemin][emm386.exe] [options]
+</pre>
+<h2>Options :</h2>
+<pre>
+  ALTBOOT       Accrocher l'interruption clavier pour le traitement du
+                red‚marrage.
+  EMM=#####     R‚server jusqu'… #####Ko pour la m‚moire EMS/VCPI
+                seulement.
+  FRAME=E000    S‚lectionner le pageframe voulu pour EMS.
+  I=hhhh:hhhh   Utiliser la m‚moire qui r‚serv‚e pour certains
+                p‚riph‚riques. Par exemple :
+                  I=A000-AFFF (graphiques VGA)
+                  I=B000-B7FF (graphiques Hercules)
+                Utiliser I=hhhh:hhhh pour forcer UMB sur d'autres
+                endroits.
+  I=TEST        Tester les localisations ROM pour l'inclusion UMB.
+  MAX=#####     M‚moire maximale disponible pour VCPI en Ko ; ‚galement
+                EMS si inf‚rieur … 32 Mo.
+  MEMCHECK      Acc‚der … l'espace d'adressage complet de 4Go sans RAM
+                (MMIO).
+  NOALTBOOT     Ne pas accrocher l'interruption clavier pour le
+                traitement du red‚marrage (valeur par d‚faut).
+  NOCHECK       Interdit l'accŠs … l'espace d'adressage sans RAM (MMIO).
+  NODISABLEA20  Ne pas autoriser EMM386 … d‚sactiver A20.
+  NOEMS         Ne pas activer la m‚moire ‚tendue. Utiliser NOEMS pour
+                obtenir plus d'UMB libres si vous n'avez pas besoin
+                d'EMS.
+  NOVCPI        Ne pas utiliser VCPI (doit ˆtre utilis‚ avec NOEMS).
+  NOVDS         D‚sactiver les services virtuels DMA.
+  SB            Mode de compatibilit‚ avec le pilote SoundBlaster.
+  VDS           Active les services virtuels DMA (valeur par d‚faut).
+  /VERBOSE      Afficher une sortie d‚taill‚e lorsque emm386 est charg‚.
+  X=hhhh:hhhh   D‚finir une plage de m‚moire pour les p‚riph‚riques
+                mapp‚s en m‚moire.
+                Par exemple X=D000-D800 X=hhhh:hhhh peut ˆtre n‚cessaire
+                par exemple pour certains r‚seaux.
+  X=TEST        Tester les emplacements de la ROM pour d‚terminer s'ils
+                sont exclus de l'UMB.
+  /?            Afficher l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  EMM386 n‚cessite un processeur 80386+. HIMEM devrait ˆtre charg‚ avant.
+  Chargez EMM386 comme DEVICE=EMM386.EXE dans CONFIG.SYS (bien que ce
+  soit un fichier ".exe" !)
+  EMM386 doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\himem.exe
+    device=c:\fdos\bin\emm386.exe
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-2004 Robert Platt, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ du FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: tree / pdtree</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: tree / pdtree</h1>
+<pre>
+  TREE / PDTREE graphically displays the directory [folder] structure
+  of a given drive or path. It optionally includes a filelist in 
+  the display.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  TREE [d:][path] [/F] [/A] [/?]
+  PDTREE [d:][path] [/F] [/A] [/V] [/S][/P] [/?]
+       d:path  The drive and path to start from. If no path is given,
+       tree/pdtree will start from the current directory.
+</pre>
+<h2>Options:</h2>
+<pre>
+   /F  Display the names of files in each directory.
+   /A  Use ASCII characters to visually represent the directory
+       structure.
+   /?  Display help and exit.
+
+ Additional Options in FreeDOS pdTree: (Not available in standard Tree.)
+   /V  Display version information and exit.
+   /S  Shortnames only (uses short, ie alternate, filename when exists).
+       DOS version only, disables use of <a href="../util/doslfn.htm">LFN</a> API for find first/next.
+   /P  Pause after each page. (Note: presently defaults to 80x25 screen)
+       Win32 version only, ignores pause option if output is redirected
+       to file or piped to another program, such as tree | more;
+       also attempts to use current console size (TODO for DOS version).
+</pre>
+<h2>Comments:</h2>
+<pre>
+  PDTREE supports NLS (national language support).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  To display the complete directory hierarchy of drive C and pause
+  after each screenful, run tree specifying C: as the start path and
+  pipe its output to the <a href="../base/more.htm">MORE</a> command:
+    tree C:\ | more
+  When using pdTree, the above example may also be achieved using:
+    pdtree C:\ /p
+  To display the directory hierarchy of a subdirectory and have the
+  output only use standard ASCII characters (such as for printing or
+  sending to someone who may view it without DOS line/box drawing
+  character support), specify the subdirectory and the /A switch:
+    tree ASUBDIR /a
+  To display the structure of a directory tree and the files within
+  each directory, add the /F switch:
+    tree ASUBDIR /f | more 
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/dir.htm">dir</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../base/more.htm">more</a>
+  <a href="../base/tree.htm">tree</a>
+</pre>
+<hr>
+<pre>
+  Copyright: This document is public domain, only public domain additions
+  will be accepted. Thus this document may be freely copied, etc. but no
+  warranty, claim of correctness, nor fitness for any purpose is given.
+  KJD 2003,2004. Updated 2008 by W. Spiegl.
+
+</pre></body></html>

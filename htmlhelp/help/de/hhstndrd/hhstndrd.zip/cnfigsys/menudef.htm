@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: menudefault</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: menudefault</h1>
+<pre>
+  MENUDEFAULT setzt eine zeitverzoegerte Standardoption fuer ein 
+  config.sys / fdconfig.sys Auswahlmenue.
+  MENUDEFAULT ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+    menudefault=Standardoption,Verzoegerung
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Verzoegerung    Verzoegerungszeit in Sekunden.
+  Standardoption  Verwendete Standardoption, nachdem die Verzoegerungs-
+                  zeit vorbei ist.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  MENUDEFAULT setzt eine zeitverzoegerte Standardoption fuer ein 
+  config.sys / fdconfig.sys Auswahlmenue: Wenn waehrend der 'Verzoege-
+  rungs"-Sekunden keine Taste gedrueckt wurde, wird die Standardauswahl
+  aktiviert.
+  Das Druecken einer Taste stoppt den Countdown, der Kernel wird endlos
+  warten, bis der Benutzer eine Auswahl getroffen hat. Bitte beachten Sie,
+  dass einige virtuelle Maschinen wie Bochs ein defektes (zu schnelles)
+  Timing haben koennen.
+  MENUDEFAULT ist ein interner Befehl, d.h. der Befehl ist in der
+  kernel.sys enthalten. Es wird zur Ausfuehrung des Befehls kein 
+  zusaetzlicher Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    menucolor 15,1
+    MENU Bitte waehlen Sie:
+    MENU
+    MENU 0)    normale Treiber (himem und emm386)
+    MENU 1)    alternative Treiber (himemx und jemm386)
+    MENUDEFAULT=0,5
+    0?DEVICE=A:\himem.exe
+    1?DEVICE=A:\himemx.exe
+    0?DEVICE=A:\emm386.exe
+    1?DEVICE=A:\jemm386.exe
+  Das Menue wartet 5 Sekunden. Wenn in dieser Zeit keine Taste (Zahl)
+  gedrueckt wurde, wird automatisch 0 gewaehlt. menucolor 15,1 aendert
+  die Farben auf weissen Text auf blauem Hintergrund.
+    0 waehlt himem.exe und emm386.exe
+    1 waehlt himem.exe und jemm386.exe
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/menu.htm">menu</a>
+  <a href="../cnfigsys/menucol.htm">menucolor</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

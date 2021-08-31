@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Mise en r‚seau de FreeDOS - Introduction</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Mise en r‚seau de FreeDOS - Introduction</h1>
+<pre>
+  Remerciements … M. Ulrich Hansen pour son autorisation … publier cet
+  article dans l'aide de FreeDOS !
+</pre>
+<h2><a name="zzz"></a>R‚sum‚</h2>
+<pre>
+  Ce document d‚crit comment mettre en <a href="../network/network.htm">r‚seau</a> un ordinateur sous FreeDOS
+  (<b>http://www.freedos.org/</b>). La plupart des informations sont cens‚es
+  marcher avec d'autres versions de DOS ‚galement.
+  Le <a href="../network/history.htm">premier chapitre<a> couvre l'historique <a href="../network/network.htm">r‚seau</a> de DOS, qui s'est
+  essentiellement produit entre 1981 et 1995. Dans le <a href="../network/dosnetto.htm">second chapitre</a>
+  vous pouvez trouver une vue d'ensemble des pilotes, protocoles et
+  applications qui sont toujours l… au XXIe siŠcle. Le <a href="../network/install.htm">troisiŠme</a> et
+  <a href="../network/ldtcpipk.htm">quatriŠme chapitres</a> expliquent comment installer <a href="../network/tcpip.htm">TCP/IP</a> sur une
+  machine sous DOS. Il s'agit d'un guide d‚taill‚ sur l'installation et
+  la configuration des pilotes et d'autres logiciels n‚cessaires.
+</pre>
+<h2><a name="aaa"></a>Les alternatives</h2>
+<pre>
+  S'il existe un port LPT disponible sur les deux machines vous pouvez
+  aussi utiliser une connexion avec un cƒble parallŠle pour transf‚rer
+  des fichiers (par exemple avec MS DOS 6.22 Interlink, Open/DR DOS
+  Filelink, Laplink, Winlink ou <b>FileMaven</b> cf. <b>http://www.briggsoft.com/
+  fmdos.htm (*01)</b>).
+</pre>
+<h2><a name="bbb"></a>Le mat‚riel</h2>
+<pre>
+    (Image Suite de tests pour ce wiki : un Compaq Contura Aero 4/33C
+    avec une carte PCMCIA)
+  Pour vous connecter … un <a href="../network/network.htm">r‚seau</a> vous aurez besoin d'un appareil pour
+  permettre la connexion entre votre PC et le <a href="../network/network.htm">r‚seau</a>. Cela peut
+  se faire :
+    * via un <a href="../network/modem.htm">Modem</a>, en utilisant la ligne t‚l‚phonique ou
+    * via une carte r‚seau <a href="../network/ethernet.htm">Ethernet</a>, en utilisant un cƒblage direct ou
+    * via le <a href="../network/wifi.htm">Wi-Fi</a>.
+
+  <a href="../network/modem.htm">Modem</a>
+  La mise en r‚seau avec un <a href="../network/modem.htm">Modem</a> n'est pas encore d‚crit sur ce Wiki -
+  peut-ˆtre voudrez-vous contribuer ?
+
+  <a href="../network/ethernet.htm">Ethernet</a>
+  Si vous pensez acheter une carte <a href="../network/ethernet.htm">Ethernet</a> pour votre machine sous
+  FreeDOS, voyez s'il est fourni avec un pilote de paquets. De nombreuses
+  applications <a href="../network/tcpip.htm">TCP/IP</a> pour DOS n‚cessitent un pilote de paquets pour
+  marcher (voyez <a href="../network/pack_ins.htm">ici</a> pour plus d'informations. Si la carte est fournie
+  avec d'autres pilotes pour DOS ou Windows 3.1 comme des <a href="../network/odi_ins.htm">pilotes ODI</a>
+  (<a href="../network/novell.htm">Novell</a>) ou des pilotes <a href="../network/ndis_ins.htm">NDIS2</a> (Microsot) elles fonctionneront ‚galement
+  sous DOS (elles sont juste un peu plus compliqu‚es … installer).
+  Si vous utilisez PCMCIA, les cartes suivantes devraient fonctionner :
+    * La carte <a href="../network/3com.htm">3Com</a> Megahertz 3C574 10/100 LAN PC (pas de pilote de
+      paquets mais avec l'<a href="../network/odi.htm">ODI</a> et le <a href="../network/ndis.htm">NDIS</a>2),
+    * la carte <a href="../network/3com.htm">3Com</a> EtherLink III 3C589 10Mbit (avec un pilote de
+      paquets) et
+    * la carte D-Link DFE-670TXD Fast <a href="../network/ethernet.htm">Ethernet</a> PC (avec un pilote de
+      paquets).
+  Les cartes PCMCIA doivent ˆtre install‚es avec un logiciel tierce
+  partie comme SystemSofts CardSoft. Il peut ˆtre t‚l‚charg‚ depuis
+  driverguide en tant que "System Soft Version 3.1, <b>CARDSOFT.ZIP</b>"
+  (voyez : <b>http://www2.driverguide.com/uploads/uploads9/26188.html (*02)</b>)
+
+  <a href="../network/wifi.htm">Wi-Fi</a>
+  Certaines anciennes cartes <a href="../network/wifi.htm">Wi-Fi</a> fonctionnent avec FreeDOS. Voyez
+  <a href="../network/wifi.htm">ici pour davantage d'informations</a>.
+</pre>
+<h2><a name="ccc"></a>Remarques</h2>
+<pre>
+  L'‚criture de ce document n'a ‚t‚ possible que parce que bien d'autres
+  personnes ont bien voulu partager des informations et du code sur
+  Internet. Merci !
+  Certaines parties de cette fiche ont ‚t‚ inspir‚es par le document <b>DOS
+  Networking HOWTO</b> (<b>http://www.dendarii.co.uk/FAQs/dos-net.html (*03)</b>)
+  de Michael Bernardi. De mˆme, ses collections de <b>FAQs</b>
+  (<b>http://www.dendarii.co.uk/FAQs/ (*04)</b>), ses <b>applications r‚seau</b>
+  (<b>http://www.dendarii.co.uk/FAQs/dos-apps.html (*05)</b>) et son
+  <b>DOS-Meta FAQ about networking DOS machines</b> (m‚ta-FAQ au sujet des
+  machines DOS en r‚seau) (<b>http://www.dendarii.co.uk/FAQs/dos-meta
+  _faq.html (*06)</b>) sont d'une grande valeur.
+  Une autre bonne introduction … la mise en r‚seau sous DOS a ‚t‚ ‚crit
+  par Michael B. Brutman. Le titre : <b>"<a href="../network/tcpip.htm">TCP/IP</a> Networking on DOS. Why on
+  Earth would anybody want to do that?"</b> (<b>http://www.brutman.com/
+  Dos_Networking/dos_networking.html (*07)</b>) (R‚seaux TCP/IP sous DOS.
+  Pourquoi quelqu'un voudrait faire cela ?).
+</pre>
+<h2><a name="ddd"></a>Copyright</h2>
+<pre>
+  L'ensemble de l'oeuvre ("Mise en r‚seau de FreeDOS") est couverte par
+  la <a href="../other/fdl12.htm">"licence de documentation libre GNU 1.2"</a> (GNU FDL).
+  La capture d'‚cran de "<a href="../network/history.htm#aab">LAN manager</a> 2.1" dans le chapitre :
+  <a href="../network/history.htm#aab">gestionnaire LAN</a> (<b>http://lazybrowndog.net/freedos/#Manager (*08)</b>)
+  a ‚t‚ prise par Michal Necasek pour son <b>"Historique d'OS/2"</b>
+  (<b>http://pages.prodigy.net/michaln/history (*09)</b>). Il a donn‚ son
+  autorisation amicale pour utiliser cette capture d'‚cran et de la
+  publier sous GNU FDL.
+  La photo du paquet logiciel "Extension groupe de travail pour MS-DOS"
+  dans le mˆme chapitre a ‚t‚ prise par Dirk Makowski pour son
+  <b>"Winhistory"</b> (<b>http://www.winhistory.de/ (*10)</b>), une grande collection
+  d'objets et de captures d'‚crans de logiciels historiques. Il a aussi
+  permis l'utilisation de sa photo en tant qu'image d'aper‡u dans ce
+  document et de la publier sous GNU FDL. Les parties principales du
+  texte et de nombreux graphiques ont ‚t‚ cr‚‚s par <b>Ulrich Hansen</b>
+  (<b>http://www.ulrich-hansen.de/ (*11)</b>).
+  Copyright (c) 2007 par Ulrich Hansen, Mainz (Allemagne). Licence :
+  GNU FDL.
+  La permission est accord‚e de copier, distribuer et/ou modifier ce
+  document selon les termes de la licence de documentation libre GNU,
+  version 1.2 ou toute version ult‚rieure publi‚e par la Free Software
+  Foundation, sans sections invariantes, sans texte de couverture et
+  sans texte de couverture arriŠre. Une copie de la licence peut ˆtre
+  trouv‚e ici :
+  <b>GNU Free Documentation License</b> (<b>http://www.gnu.org/licenses/gfdl.html
+  (*12)</b>).
+</pre>
+<h2><a name="eee"></a>Avertissement</h2>
+<pre>
+  Ce texte reflŠte nos propres exp‚riences avec la mise en r‚seau sous
+  DOS. Les solutions et suggestions peuvent marcher ou pas dans votre
+  environnement. Donc veuillez faire attention : l'installation de
+  logiciels sur votre systŠme ou modifier vos fichiers systŠme peut
+  endommager votre machine, d‚ranger vos habitudes de travail et vous
+  faire perdre votre temps.
+
+  <b>(*01) OK</b>
+  <b>(*02) https://archive.org/details/SYSUTI11
+        et: https://support.advantech.com.tw/support/DownloadSRDetail_
+        New.aspx?SR_ID=1-17FJK&Doc_Source=Download
+        et: https://support.advantech.com.tw/support/DownloadSRDetail_
+        New.aspx?SR_ID=1%2BGE%2B626&Doc_Source=Download</b>
+  <b>(*03) OK</b>
+  <b>(*04) OK</b>
+  <b>(*05) OK</b>
+  <b>(*06) OK</b>
+  <b>(*07) OK</b>
+  <b>(*08) http://freedos.sourceforge.net/wiki/index.php/
+        Networking_FreeDOS</b>
+  <b>(*09) http://ps-2.kev009.com/michaln/history/index.html</b>
+  <b>(*10) OK</b>
+  <b>(*11) OK</b>
+  <b>(*12) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Allemagne), modifi‚ en 2010
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Pour plus d'informations, <a href="../network/intro.htm#ddd">voyez ici</a>.
+
+  La permission est accord‚e de copier, distribuer et/ou modifier ce
+  document selon les termes de la licence de documentation libre GNU,
+  version 1.2 ou toute version ult‚rieure publi‚e par la Free Software
+  Foundation.
+  Une copie de la licence est incluse dans la section intitul‚e
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: dir</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: dir</h1>
+<pre>
+  DIR displays a list of files and subdirectories in a directory.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DIR [drive][path][filename] [/P] [/W] [/A[[:]attributes]]
+      [/O[[:]sortorder]] [/S] [/B] [/L] [/Y] [/?]
+      drive     The drive letter, e.g. C:
+      path      The directory, e.g. \example\
+      filename  The file to display, e.g. test.txt
+                [drive][path][filename]
+                Specify drive, directory, and/or files to list. (Could
+                be enhanced file specification or multiple filespecs.)
+</pre>
+<h2>Options:</h2>
+<pre>
+  /P  Displays one page of the listing at a time
+  /W  Displays the listing in wide format
+  /A:attributes  
+      Displays only the files and directories with the specified
+      attributes. Default is /a:hsdar. You may use the following 
+      for attributes:
+        h | -h  Hidden files                -h files that are not hidden
+        s | -s  System files                -s files that are not system 
+                                               files
+        d | -d  Directories                 -d files
+        a | -a  Files with the archive      -a files without the archive
+                bit                            bit
+        r | -r  Read-only files             -r files that are not 
+                                               read-only
+  /O:sortorder   
+      Displays the listing in the specified order. Default is /O:g. 
+      You may use the following to specify the sort order:
+        a | -a  Alphabetically (A-Z)        -a Alphabetically (Z-A)
+        e | -e  By extension A-Z            -e Extension (Z-A)
+        d | -d  By date and time            -d Date/time in reverse order.
+        s | -s  By size (smallest-biggest)  -s Size (biggest-smallest)
+        g | -g  Group directories first     -g Group directories last.
+  /S  Displays files in specified directory and all subdirectories.
+  /B  Uses bare format (no heading information or summary).
+      This lists one name per line
+  /L  Displays names in lowercase
+  /Y or /4  
+      Display 4-digit year.
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  To customize the default appearance for dir, use the DIRCMD environment 
+  variable. For instance:
+    <a href="../command/set.htm">SET</a> DIRCMD=/w/p
+  To override something set in DIRCMD, use a hypen ("-") on that switch 
+  at the command line. (for example /-w)
+  DIR is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  dir c:\example /p
+  dir c:\example /w
+  dir c:\example /O: a
+  dir c:\fdos | more
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/set.htm">set</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 and 2020 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

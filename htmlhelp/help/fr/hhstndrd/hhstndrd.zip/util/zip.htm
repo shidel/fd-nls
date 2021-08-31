@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : zip</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : zip</h1>
+<pre>
+  ZIP est un outil de compression et d'archivage de fichiers,
+  comme PKZIP.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  zip [-AcdDefFghjJklLmoqrRSTuvXz019@$] [-b chemin] [-n suffixes]
+      [-t mmjjaaaa] [-tt mmjjaaaa] [ fichierzip [ fichier1 fichier2 ...]]
+      [-xi liste]
+  L'action par d‚faut est d'ajouter ou de remplacer les entr‚es de
+  fichier depuis la liste, qui peut inclure le nom sp‚cial - pour
+  compresser l'entr‚e standard.
+  Si le fichier zip et la liste sont omis, zip compressera stdin vers
+  stdout.
+</pre>
+<h2>Options :</h2>
+<pre>
+  -A   Ajuster l'archive ex‚cutable auto-extractible.
+  -c   Ajouter des commentaires d'une ligne pour chaque fichier.
+  -d   Enlever (effacer) des entr‚es depuis une archive zip. Par
+       exemple :
+       zip -d foo foo/tom/junk foo/harry/\* \*.o enlŠvera l'entr‚e
+       foo/tom/junk, tous les fichiers qui commencent par foo/harry/ et
+       tous les fichiers qui se terminent par .o (dans n'importe quel
+       chemin).
+  -D   Ne pas cr‚er d'entr‚es dans l'archive zip pour les r‚pertoires.
+  -e   Chiffrer les contenus de l'archive zip en utilisant un mot de
+       passe qui sera entr‚ sur le terminal en r‚ponse … une invite
+       (cela ne sera pas r‚p‚t‚ en "‚cho" ; si l'erreur standard n'est
+       pas un tty, zip quittera avec une erreur). L'invite de mot de
+       passe est r‚p‚t‚e pour ‚viter … l'utilisateur de taper des
+       erreurs. Notez que cela chiffre en utilisant le cryptage
+       standard de pkzip qui est consid‚r‚e faible.
+  -f   Remplacer (rafraŒchir) une entr‚e existante dans l'archive
+       zip seulement si elle a ‚t‚ modifi‚e plus r‚cemment que la
+       version d‚j… dans l'archive.
+  -F   Corriger l'archive. (-FF essayer plus fort)
+       -D  ne pas ajouter des entr‚es de r‚pertoire
+       -A  ajuster l'exe auto-extractible
+  -g   Agrandir (ajouter …) l'archive zip sp‚cifi‚e au lieu d'en cr‚er
+       une nouvelle.
+  -h   Afficher les informations d'aide de zip (cela apparaŒt ‚galement
+       si zip est ex‚cut‚ sans arguments).
+  -j   Stocker uniquement le nom du fichier sauvegard‚ (jeter le chemin)
+       et ne pas stocker les noms de r‚pertoire. Par d‚faut, zip
+       stockera le chemin entier.
+  -J   Supprimer toutes les donn‚es ajout‚es (par exemple un stub SFX)
+       de l'archive.
+  -k   Tenter de convertir les noms et les chemins pour se conformer
+       … MS-DOS, stocker uniquement l'attribut MS-DOS (seulement
+       l'attribut d'‚criture utilisateur d'UNIX) et marquer l'entr‚e
+       comme effectu‚e sous MS-DOS (mˆme si ce n'‚tait pas le cas) ;
+       pour la compatibilit‚ avec PKUNZIP sous MS-DOS qui ne peut pas
+       g‚rer certains noms comme ceux avec deux points.
+  -l   Traduire le caractŠre de fin de ligne UNIX en la convention
+       MS-DOS de CR LF (retour charriot nouvelle ligne).
+  -ll  Traduire la fin de ligne MS-DOS CR LF en UNIX LF (nouvelle
+       ligne).
+  -L   Afficher la licence de zip.
+  -m   D‚placer les fichiers sp‚cifi‚s dans l'archive zip ; en v‚rit‚,
+       cela efface les fichiers/r‚pertoires cibles aprŠs avoir cr‚‚
+       l'archive zip sp‚cifi‚e.
+  -MM  Tous les motifs d'entr‚e doivent correspondre … au moins un
+       fichier et tous les fichiers d'entr‚e trouv‚s doivent ˆtre
+       lisibles.
+  -o   R‚gler le temps de "derniŠre modification" de l'archive zip sur
+       le dernier (le plus ancien) temps de "derniŠre modification"
+       trouv‚ parmi les entr‚es de l'archive zip.
+  -q   Mode silencieux ; ‚limine les messages d'information et les
+       invites de commentaires. (Utile, par exemple, pour les scripts
+       shell et les tƒches d'arriŠre-plan).
+  -r   Parcourir la structure du r‚pertoire de maniŠre r‚cursive.
+  -R   Parcourir la structure du r‚pertoire de maniŠre r‚cursive en
+       commen‡ant au r‚pertoire courant.
+  -S   Inclure les fichiers systŠme et les fichiers cach‚s.
+  -T   Tester l'int‚grit‚ du nouveau fichier zip. Si la v‚rification
+       ‚choue, l'ancien fichier zip n'est pas modifi‚ et (avec l'option
+       -m) aucun fichier d'entr‚e n'est enlev‚.
+  -u   Remplacer (mettre … jour) une entr‚e existante dans l'archive zip
+       seulement si elle a ‚t‚ modifi‚e plus r‚cemment que la version
+       d‚j… pr‚sente dans l'archive zip.
+  -v   Mode verbeux ou afficher les informations de diagnostic
+       de version.
+  -z   Afficher une invite de commentaire sur plusieurs lignes
+       pour l'archive zip entiŠre.
+  -X   Ne pas enregistrer les attributs de fichier suppl‚mentaires.
+  -0   Ne pas compresser (stocker tous les fichiers).
+  -1   Indique la m‚thode de compression la plus rapide (moins
+       de compression).
+  -9   Indique la m‚thode de compression la plus lente (compression
+       optimale, ignore la liste des suffixes). Le niveau de compression
+       par d‚faut est -6.
+  -@   Prendre la liste des fichiers d'entr‚e depuis l'entr‚e standard.
+       Seulement un nom de fichier par ligne.
+  -$   Inclure l'‚tiquette de volume du lecteur contenant le premier
+       fichier … ˆtre compress‚.
+  -b chemin     Utiliser le chemin sp‚cifi‚ pour l'archive zip
+                temporaire. Par exemple: zip -b /tmp stuff * mettra
+                l'archive zip temporaire dans le r‚pertoire /tmp,
+                copiant stuff.zip dans le r‚pertoire courant lorsque
+                c'est termin‚.
+  -i fichiers   Inclure seulement les fichiers sp‚cifi‚s, comme dans :
+                zip -r foo .
+                -i \*.c qui inclura seulement les fichiers qui se
+                terminent avec .c dans le r‚pertoire courant et ses
+                sous-r‚pertoires.
+                -F  corriger le fichier zip (-FF essayer plus fort)
+                -D  ne pas ajouter d'entr‚es de r‚pertoire
+                -A  ajuster l'exe auto-extractible
+  -n suffixes   Ne pas tenter de compresser les fichiers nomm‚s avec
+                les suffixes donn‚s.
+  -P motdepasse Utiliser un mot de passe pour chiffrer les entr‚es du
+                fichier zip (s'il y en a). CELA N'EST PAS SCURIS !
+  -t mmjjaaaa   Ne pas op‚rer sur les fichiers modifi‚s avant la date
+                sp‚cifi‚e, o— mm est le mois (0-12), jj est le jour du
+                mois (1-31) et aaaa est l'ann‚e. Le format de date
+                ISO 8601 aaaa-mm-jj est ‚galement accept‚.
+  -tt mmjjaaaa  Ne pas op‚rer sur les fichiers modifi‚s aprŠs la date
+                sp‚cifi‚e, o— mm est le mois (0-12), jj est le jour
+                du mois (1-31) et aaaa est l'ann‚e. Le format de
+                date ISO 8601 aaaa-mm-jj est ‚galement accept‚.
+  -x fichiers   Exclure explicitement les fichiers sp‚cifi‚s.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Pour davantage d'informations veuillez lire le MANUEL.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  L'exemple le plus simple :
+    zip stuff *
+  cr‚e l'archive stuff.zip (en supposant qu'il n'existe pas) et met tous
+  les fichiers du r‚pertoire courant dans l'archive, sous forme
+  compress‚e.
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../util/unzip.htm">unzip</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

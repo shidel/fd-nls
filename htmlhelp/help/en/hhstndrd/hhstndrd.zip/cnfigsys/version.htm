@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: version</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: version</h1>
+<pre>
+  VERSION tells FreeDOS what version of DOS to report.
+  VERSION is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  version=x.y
+    Where x and y are numbers (they each can have one or more digits).
+    The default value is 5.0.
+</pre>
+<h2>Options:</h2>
+<pre>  - none -</pre>
+<h2>Comments:</h2>
+<pre>
+  VERSION is a FreeDOS specific command to specify what DOS version to
+  report. For a kernel with FAT32 support, 7.10 is a good choice.
+  Otherwise, 5.0 and 6.22 are common values. FreeCOM command.com 
+  'ver /r' displays both the reported and the FreeDOS internal version
+  numbers. VERSION does not change the FreeCOM version number as reported
+  by running 'ver'.
+  However, the DOS version number is changed, as reported in 'ver /R'.
+  VERSION is needed to make some old DOS programs think that it works with
+  the correct DOS version.
+  VERSION is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    version=6.22
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/callver.htm">callver</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/setver.htm">setver</a>)
+  <a href="../command/ver.htm">ver</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

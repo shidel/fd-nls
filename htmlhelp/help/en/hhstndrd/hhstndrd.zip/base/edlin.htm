@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: edlin</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: edlin</h1>
+<pre>  EDLIN is a small line editor.
+</pre>
+<h2>Syntax:</h2>
+<pre>  edlin [[drive][path]file]
+        drive  The drive letter, e.g. C:
+        path   The directory, e.g. \example\
+        file   The file, e.g. test.txt.
+</pre>
+<h2>Options:</h2>
+<pre>
+  A dollar sign in the following lists represents a string of
+  characters. They may be enclosed in either single or double quotes
+  and may contain the following escape sequences:
+
+  \a              alert
+  \b              backspace
+  \e              escape
+  \f              formfeed
+  \t              horizontal tab
+  \v              vertical tab
+  \"              double quote
+  \'              single quote
+  \.              period
+  \\              backslash
+  \xXX            where X is a hex digit (0-9, a-f, A-F) - hexadecimal
+                  constant
+  \dddd           where d is a decimal digit (0-9) - decimal constant
+  \OOO            where O is an octal digit (0-7) - octal constant
+  \^C             control character
+
+  In the following command lists, brackets [ ] represent optional
+  constructs. The # symbol represents a line number, which is either a
+  string of digits, a period (.) representing the current line, a dollar
+  sign ($) representing the last line in the file, or a line number added
+  or subtracted from another line number, so that
+    .,.+1p
+  prints the current line and the succeeding line.
+  Edlin has the following internal commands (used while running edlin):
+
+  #               edit a single line
+  a               append
+  [#],[#],#,[#]c  copy a range of lines
+  [#][,#]d        delete a block of lines
+  efilename       exit (save and quit)
+  [#]i            insert mode
+  [#][,#]l        list lines
+  [#],[#],#m      move block
+  [#][,#]p        page
+  q               quit
+  [#][,#][?]r$,$  replace string
+  [#][,#][?]s$    search for substring
+  [#]tfilename    transfer file
+  [#]wfilename    write file
+
+  # - EDIT A SINGLE LINE
+  The edline program outputs the single line indicated by the number,
+  and the next inputted line replaces the outputted line in the file.
+
+  a - APPEND
+  This command is equivalent to $+1i .
+
+  [#],[#],#,[#]c - COPY A RANGE OF LINES
+  This command copies a block of consecutive lines to another location
+  in the buffer. The parameters are:
+    * The first line you want to copy (default = current line)
+    * The last line you want to copy (default = current line)
+    * The line before which you want to insert the block of lines
+    * The number of times you want to copy the block (default = 1) 
+  After edlin copies lines, you may use the l (list) command to see the
+  correctly renumbered lines.
+
+  [#][,#]d - DELETE A BLOCK OF LINES
+  This command deletes a block of consecutive lines. The parameters are
+  the first and last line of the block to be deleted.
+  If you omit the second parameter, it deletes only the line specified in
+  the first parameter. If you omit the first parameter, it deletes the
+  block from the current line to the line specified in the second
+  parameter (be sure to include the comma). Omitting both parameters
+  causes the current line to be deleted.
+
+  eFilename - SAVE AND QUIT
+  This command is equivalent to:
+    w filename  followed by: q
+
+  [#]i - INSERT MODE
+  This command enters insert mode. Its parameter is the line number
+  before which you want to insert lines. While inserting, escape
+  sequences such as those above are legal to type in. To exit insert
+  mode, type a period (.)
+  on an otherwise blank line (if you need a line with just a period,
+  escape it).
+  After exiting insert mode, the line after the inserted text becomes
+  the current line unless the insertion was appended to the end of the
+  text, in which case the last line of the text becomes the new current
+  line.
+
+  [#][,#]l - LIST LINES
+  This command lists lines of text on the screen. If you omit the first
+  parameter, the command starts showing text beginning with 11 lines of
+  text before the current line. Omitting the second parameter shows a
+  page of text beginning with the line specified in the first parameter.
+  Omitting both shows one page of text starting at 11 lines before the
+  current line. In all cases, if the number of lines is larger than the
+  number of lines in a page, the program will prompt after each page of
+  lines.
+
+  [#],[#],#m - MOVE BLOCK
+  This command moves a block of text to the line before the number
+  specified in the third parameter. It is similar to copying, then
+  deleting the original block.
+
+  [#][,#]p - PAGE
+  This is similar to l except that the default page starts with the
+  current line instead of 11 lines before.
+
+  q - QUIT
+  Close file being edited losing all changes and exit EDLIN. 
+
+  [#][,#][?]r$,$ - REPLACE STRING
+  This command replaces all occurrences of the first string with the
+  second between the two lines specified. An omitted first parameter
+  starts the replacing at the line after the current line; an omitted
+  second parameter stops the replacing at the last line of the file.
+  The question mark sends a confirmation message before replacement.
+
+  [#][,#][?]s$ - SEARCH FOR SUBSTRING
+  This command searches for the first line containing the substring
+  specified. Omitting the first parameter causes the search to start on
+  the current line; omitting the second causes the search to stop at
+  the end of the file. The question mark causes the search to send a
+  confirmation message. Saying no to the confirmation message continues
+  the search; saying yes ends it. The current line will be reset to the
+  line where the search ended if it was successful.
+
+  [#]tFilename - TRANSFER FILE
+  This command causes the contents of the file to be inserted before the
+  line number specified. If the line number is omitted, the default is
+  the current line.
+
+  [#]wFilename - WRITE FILE
+  This command causes the first number of lines specified by the
+  parameter to be written to the file specified. If the parameter is
+  omitted, it will write all the lines in the buffer to the file.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  EDLIN is a small line editor, written for FreeDOS as a functional 
+  clone of the old MS-DOS program EDLIN. It's main purpose is to create
+  <a href="../batch/index.htm">batch files</a> and small programs. It
+  differs from MS EDLIN in that first, it's free software, and second,
+  the user interface is slightly different in a few places. The reason
+  for the difference is so that the user does not have to type in
+  control characters mandated by EDLIN's syntax.
+  EDLIN supports NLS (national language support).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  edlin c:\config.sys  Opens the file config.sys for editing.
+  edlin                If no file is specified, edline begins with a
+                       blank document.
+  I want to enter and save four sentences, one below the other.
+
+  This is sentence four.
+  This is sentence three.
+  This is sentence three.
+  This is sentence one.
+
+  (from edlin's * prompt, with an empty buffer...)
+
+  i
+  This is sentence four.
+  This is sentence three.
+  This is sentence three.
+  This is sentence one.
+  .
+
+  Now I want to save these four sentences in a .txt file at C:\test.txt
+
+  wc:\test.txt
+
+  Then I find out that the third sentence is wrong (correct: This is 
+  sentence two). How to correct and to save it?
+
+  3rthree,two
+  wc:\test1.txt
+
+  Then I want to add a fifth sentence at the beginning (This is sentence
+  five). How to add it?
+
+  1i
+  This is sentence five.
+  .
+  wc:\test2.txt
+
+  I want to see if everything is correct.
+
+  l
+
+  I want to exit.
+
+  q
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../base/edit.htm">edit</a>
+  <a href="../util/freemacs.htm">freemacs</a>
+  <a href="../util/ospedit.htm">ospedit</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright © 2003 Gregory Pietsch, updated 2007 and 2020 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

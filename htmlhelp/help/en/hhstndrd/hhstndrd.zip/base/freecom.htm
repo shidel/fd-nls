@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: FreeCom (command.com)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: FreeCom (command.com)</h1>
+<pre>
+  FREECOM (command.com) starts a new copy of the FreeDOS command shell.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  COMMAND [[drive]path] [device] [/E:nnnnn] [/L:nnnn] [/U:nnn] [/P]
+          [/MSG] [/LOW] [/Y [/[C|K] command]]
+  COMMAND [/?]
+          [drive]path  Specifies the directory containing COMMAND.COM, 
+                       e.g. C:\example\
+          drive        The drive letter, e.g. C:
+          path         The directory, e.g. \example\
+          device       Specifies the device to use for command input and 
+                       output.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /E:nnnnn    Sets the initial environment size to nnnnn bytes.
+              (nnnnn should be between 256 and 32,768).
+  /L:nnnn     Specifies internal buffers length (requires /P as well).
+              (nnnn should be between 128 and 1,024).
+  /U:nnn      Specifies the input buffer length (requires /P as well).
+              (nnn should be between 128 and 255).
+  /P          Makes the new command shell permanent (can't exit).
+  /MSG        Stores all error messages in memory (requires /P as well).
+  /LOW        Forces the command shell to keep its resident data in
+              low memory.
+  /Y          Steps through the batch program specified by /C o.
+  /C command  Executes the specified command and returns.
+  /K command  Executes the specified command and continues.         
+  /?          Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  [drive]path  The drive and path where the shell is to look for the 
+               transient part of the program. This is usually only 
+               needed to set the COMSPEC.
+  device       An alternate device for all i/o.
+  /e:nnnnn     The environment size, in bytes, in the range 160-32768.
+               This number will be rounded up the nearest 16 bytes.
+               The default is 256.
+  /p           Makes the shell permanent, so the EXIT command does 
+               not exit the shell.
+  /c {string}  Executes the command in {string}, then exits.
+  /msg         Loads any error messages that might be stored on disk 
+               into memory.
+  Command (command.com) is also named FreeCom. It contains a lot of 
+  internal commands which need no other file in order to work. You can 
+  find the list of internal commands <a href="../../index.htm#command">here</a>.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  C:\command /E:1024 /L:1024 /U:128 /P
+  command /?
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/exit.htm">exit</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../cnfigsys/shell.htm">shell</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : path</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : path</h1>
+<pre>
+  PATH affiche ou d‚finit un chemin de recherche pour les fichiers
+  ex‚cutables. PATH est une commande de <a href="../batch/index.htm">FICHIER BATCH</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+  Elle peut ‚galement ˆtre utilis‚e sur la ligne de commande.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  PATH [[lecteur]chemin[;...]]
+  PATH [listedeschemins]
+  PATH ;
+  PATH [/?]
+
+  lecteur     La lettre du lecteur, par exemple C:
+  chemin      Le r‚pertoire, par exemple \exemple\
+</pre>
+<h2>Options :</h2>
+<pre>
+  listedeschemins  D‚finit la liste des chemins. S‚parez les chemins
+            avec des points-virgules (;).
+  ;         Efface tous les r‚glages de chemin de recherche et indique
+            le shell de commande de ne rechercher que dans le r‚pertoire
+            courant.
+  /?        Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Tapez "PATH ;" pour effacer tous les r‚glages de chemin de recherche
+  et indiquer au shell de commande de ne rechercher que dans le dossier
+  courant.
+  Tapez "PATH" sans paramŠtres pour afficher le chemin actuel.
+  Certaines commandes sont internes … FreeDOS. Cependant, beaucoup sont
+  dans le dossier \bin ou \freedos\bin vous pouvez donc souhaiter avoir
+  ce dossier dans la liste des chemins (comme dans le premier exemple
+  ci-dessous). Les chemins des programmes fr‚quemment utilis‚s peuvent
+  ˆtre mis sur la liste des chemins pour des raisons de convenance.
+  Lorsqu'un programme ou une commande externe est entr‚ sur l'invite de
+  commande FreeDOS le recherche dans le r‚pertoire courant puis dans
+  chacun des chemins sp‚cifi‚s par la commande path.
+  Si le mˆme nom de programme se trouve dans diff‚rents r‚pertoires de
+  path, le programme sera lanc‚ depuis le chemin qui sera mentionn‚ le
+  premier sur la liste des chemins de path.
+  PATH peut ‚galement ˆtre utilis‚e dans un fichier batch.
+  PATH est une commande interne … command.com et ne n‚cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS UN FICHIER .BAT / AUTOEXEC.BAT :
+    path c:\fdos\bin;c:\util
+    path %path%;c:\jeux
+    Le second exemple ajoute c:\jeux … la liste existante, tout en
+   pr‚servant les chemins d‚j… d‚finis.
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../base/append.htm">append</a>
+  <a href="../batch/index.htm">fichiers batch</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: print</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: print</h1>
+<pre>
+  PRINT druckt im Hintergrund eine Datei waehrend Sie andere
+  DOS-Befehle ausfuehren.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+   print [Optionen] [[Laufwerk:][Pfad]Datei] [[drive:][path]file] [...]
+           Laufwerk:Pfad\Datei Die Datei die Sie drucken wollen.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /D:device  Spezifiziert den Namen des Geraetes auf dem gedruckt wird.
+             Wenn nichts angegeben, wird Print standardmaessig das Geraet
+             LPT (Drucker) verwenden.
+  /B:size    Setzt die Groesse der Puffer in Bytes im Bereich von
+             512-16.384 Bytes. Standard ist 512.
+  /U:ticks   Die Verzoegerungszeit im Bereich von 1-255, die Print wartet,
+             bis der Drucker fuer den Druckauftrag bereit ist.
+  /M:ticks   Die maximale Verzoegerungszeit, um ein einzelnes Zeichen an
+             den Drucker zu senden, im Bereich von 1-255.
+  /S:ticks   Die Verzoegerungszeit im Bereich 1-255 fuer den Hintergrund-
+             Spoolerprozess. Standard ist 2. Grosse Zahlen beschleunigen
+             das Drucken, bremsen aber andere DOS Programme.
+  /Q:nn      Die Anzahl der Dateien, die in der Druckerwarteschleife sein
+             duerfen, im Bereich 1-32. Standard ist 10.
+  /T         Entfernt alle Dateien in der Druckerwarteschleife. Beendet
+             den aktuell zu druckenden Auftrag.
+  /C         Beendet Auftraege aus der Druckerwarteschlange. Wenn dies
+             zusammen mit einer Liste von Dateinamen verwendet wird,
+             werden nur diese Dateien aus der Schlange entfernt. Wenn die
+             Option fuer sich allein verwendet wird, werden alle Druckauf-
+             traege (bis auf den aktuellen Auftrag) beendet. 
+  /P         Fuegt der Druckerwarteschlange eine Datei hinzu. Wenn diese
+             Option einer Dateiliste vorangestellt wird, werden nur diese
+             Dateien gedruckt. Sie koennen /P und /C in der Kommandozeile
+             zusammen verwenden.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Wenn PRINT keine Optionen mitgegeben werden, wird unterstellt, dass
+  /P gewaehlt ist. Wenn keine Optionen und keine Dateien angegeben werden,
+  zeigt PRINT den Inhalt der Druckerwarteschlange an.
+  Dieser PRINT Befehl akzeptiert nur /1 /2 /3 als "D:lpt1" usw.
+  gleichwertige Option oder einen Dateinamen um eine Datei zu drucken.
+  Bitte verwenden Sie das freie <a href="../base/printq.htm">PRINTQ</a>-Tool um "eine Datei zu drucken",
+  "print /t" um die Warteschlange inclusive aktuellen Auftrag zu loeschen,
+  "print /c" um die Warteschlange zu loeschen und "print /p Datei" um
+  eine Datei zur Warteschlange hinzuzufuegen.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  print c:\foo.txt c:\test.txt
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/printer.htm">printer.sys</a>
+  <a href="../base/printq.htm">printq</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998-2003 Jim Hall, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

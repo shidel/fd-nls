@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: udvd.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: udvd.sys</h1>
+<pre>
+  UDVD.SYS is a DOS driver for 1 to 3 CD/DVD drives, including SATA,
+  UltraDMA and older "PIO mode" drives.
+  UDVD.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  When FreeDOS is already running, you can load UDVD.SYS later
+  with <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>UDVD.SYS is out of date. There is NO MORE support by the author!
+  You should use <a href="../base/uide.htm">UIDE.SYS</a> instead</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE = [path] UDVD.SYS [/A] [/C] [/D:DeviceName] [/UX]
+  DEVICEHIGH = [path] UDVD.SYS [/A] [/C] [/D:DeviceName] [/UX]
+</pre>
+<h2>Options:</h2>
+<pre>
+  UDVD.SYS usually needs only /C for caching and /D: to specify
+  a device name for the <a href="../base/shsucdx.htm">SHSUCDX</a> "CD-ROM Redirector".
+  UDVD.SYS switch options are:
+  /A   Specifies use of ALTERNATE "legacy" IDE I/O addresses. See
+       the /A description for <a href="../base/uide.htm">UIDE.SYS</a>.
+  /C   Requests data-file caching by the UDMA driver. This causes
+       "raw mode" input requests to be rejected, as UDMA requires
+       sectors that are an even multiple of 512 bytes for caching
+       ("raw" sectors are 2352 bytes!). If /C is omitted, "raw
+       mode" input (audio, track-writers, etc.) will be accepted.
+  /D:  Specifies the desired device name, used by <a href="../base/shsucdx.htm">SHSUCDX</a> to access
+       the CD/DVD drives. 
+       Example: /D:CDROM1 /D:MYCDROM etc.
+       Device names must be from 1 to 8 bytes valid for use in DOS
+       filenames. If /D: is omitted, or the device name after a
+       /D: is missing or invalid, UDVD1 will be used by default.
+  /UX  Disables ALL UltraDMA, even for a CD/DVD drive capable of it.
+       UDVD.SYS then uses "PIO mode" for every I/O request. /UX is
+       rarely needed. It is mainly for tests and diagnostics.
+  For each switch, a dash may replace the slash, and lower-case letters
+  may be used.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  On loading, UDVD.SYS tests up to 4 "Legacy" or "Native PCI" IDE
+  controllers in order from primary-master to secondary-slave, and
+  it runs the first 3 CD/DVD drives found. UDVD.SYS has switches to
+  specify a driver name or to request other options. It handles file
+  input requests from <a href="../base/shsucdx.htm">SHSUCDX</a> or other "CD-ROM Redirector" programs
+  like <a href="../base/mscdex.htm">MSCDEX</a>, etc. It also handles DOS "audio" requests and can
+  "play back" audio CDs. If "raw" CD/DVD input is unneeded and
+  <a href="../base/udma.htm">UDMA.SYS</a> is also loaded, UDVD's /C switch enables caching of data
+  files through the UDMA driver!
+</pre>
+<h2>Examples:</h2>
+<pre>
+  In CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    DEVICEHIGH=C:\FDOS\DRIVERS\UDMA.SYS /S125
+    DEVICEHIGH=C:\FDOS\BIN\UDVD.SYS /D:MYDVD /C
+  IN AUTOEXEC.BAT:
+    c:\fdos\bin\SHSUCDX /D:MYDVD
+</pre>
+<h2>See also:</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+ (<a href="../base/udma.htm">udma.sys</a>)
+ (<a href="../base/udma2.htm">udma2.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+ (<a href="../base/xdma.htm">xdma.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

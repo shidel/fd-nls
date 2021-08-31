@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: copy</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: copy</h1>
+<pre>
+  COPY copies one or more files to another location.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  COPY [drive][path]filename [/A | /B]  
+       + [drive][path]filename [/A | /B]
+       [+ [...]] [drive][path]filename [/A | /B] [/V] [/Y | /-Y] [/?]
+       drive     The drive letter, e.g. C:
+       path      The directory, e.g. \example\
+       filename  The file name, e.g. test.txt
+</pre>
+<h2>Options:</h2>
+<pre>
+  source       Specifies the file or files to be copied 
+               (= first [[drive][path][file]]).
+  /A           Indicates an ASCII text file.
+  /B           Indicates a binary file.
+  destination  Specifies the directory and/or filename for the new 
+               file(s) (=last [[drive][path][file]]).
+  /V           Verifies that new files are written correctly.
+  /Y           Suppresses prompting to confirm you want to overwrite an
+               existing destination file.
+  /-Y          Causes prompting to confirm you want to overwrite an
+               existing destination file.
+  /?           Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  COPY won't copy directories or files that are of zero length. 
+  To copy either of these, use <a href="../base/xcopy.htm">XCOPY</a>.
+  The COPYCMD environment variable can be set to make /Y the default:
+    <a href="../command/set.htm">SET</a> COPYCMD=/Y
+  To cancel the /Y for a particular copy command, use /-Y at the command 
+  line. The COPYCMD variable also affects the <a href="../base/xcopy.htm">XCOPY</a> command.
+  To append files, specify a single file for destination, but multiple 
+  files for source (using wildcards or file1+file2+file3 format).
+  Detailled explanation of the Options:
+    source       The source consists of "drive" "path" and "file".
+    drive        The drive letter, e.g. "C:" or "D:".
+    path         The directory, e.g. "\example\"
+    file         The name of a file to copy, e.g. "test.txt". 
+                 Completely: C:\example\test.txt .
+    destination  The name of destination file(s) or directory. If the
+                 dest filename contains a *, then this is replaced by
+                 that part of the filename with the same part as the
+                 source.
+    /A           Copies an ASCII file. If this precedes a filename in a 
+                 list of files, then from this file on, copy as ASCII 
+                 files.
+                 e.g.: copy /A ASCI1.txt+ASCI2.txt+ASCI3.txt  /B+BIN1.bin 
+                 TARGET
+    /B           Copies a binary file. This is the default. If this 
+                 precedes a filename in a list of files, then from this 
+                 file on, copy as binary files. E.g.:
+                 copy /B BIN1.bin+BIN2.bin+BIN3.bin /A+ASCI1.txt TARGET
+    /V           Verifies that the files are written correctly.
+    /Y           Suppresses the overwrite confirmation message; existing 
+                 files with the same name at the destination will be 
+                 overwritten.
+  COPY is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  copy c:\command.com a:
+  copy c:\*.exe d:\example
+  copy c:\fdos\bin\edit.* a:
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../command/set.htm">set</a>
+  <a href="../command/verify.htm">verify</a>
+  <a href="../base/xcopy.htm">xcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

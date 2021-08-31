@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: printer.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: printer.sys</h1>
+<pre>
+  PRINTER.SYS proporciona capacidades de administraci¢n de p gina de
+  c¢digos para un controlador de impresora. PRINTER.SYS se debe cargar
+  en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>. Cuando FreeDOS ya se est  ejecutando,
+  puede cargar PRINTER.SYS m s tarde con <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  printer [Disp_nomb][:]=([TipoHardware],[{n|(n1,[n2,]...)}],[m])
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  Disp_nomb     Nombre del dispositivo del puerto de impresora que se va
+                a expandir, como PRN o LPTx. El color es opcional.
+  TipoHardware  El identificador del tipo de adaptador de pantalla de
+                hardware. Tambi‚n puede determinar la cantidad de
+                subfondos a usar. Todav¡a no hay tipos compatibles.
+  n, n1, n2,..  N£meros para los n£meros de p gina de c¢digos de las
+                p ginas de c¢digos de hardware.
+  m             N£mero de buffers que desea especificar para preparar
+                p ginas de c¢digos (el valor predeterminado es 1)
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Este controlador a£n no tiene una forma binaria, porque todav¡a no
+  se ha agregado una administraci¢n espec¡fica del hardware de la
+  impresora (puede compilar tanto PRINTER.SYS como DISPLAY.SYS desde las
+  fuentes de <a href="../base/display.htm">DISPLAY</a>).
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  Cuando PRINTER.SYS tenga alg£n soporte de hardware, podr  hacer:
+    PRINTER PRN=(IBMPro,437,1)
+  Usted especifica que tiene una impresora compatible con IBM Proprinter,
+  con la p gina de c¢digos de hardware 437, y solicita solo 1 b£fer, para
+  minimizar la huella de memoria residente.
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/print.htm">print</a>
+  <a href="../base/printq.htm">printq</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; Aitor SANTAMARIA MERINO, modificado en 2008
+  por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

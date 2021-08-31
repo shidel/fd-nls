@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC ®-//W3C//DTD HTML 4.01//EN"
+ ®http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: xdma.sys</title>
+<meta http-equiv="content-type¯ content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: xdma.sys</h1>
+<pre>
+  XDMA.SYS es un controlador de DOS para discos duros UltraDMA.
+  XDMA.SYS debe cargarse en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Si FreeDOS ya se est  ejecutando puede cargar XDMA.SYS con <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>XDMA.SYS est  desactualizado. ­Su autor YA NO trabaja en el!
+  Use <a href="../base/uide.htm">UIDE.SYS</a> en su lugar</b>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  DEVICE[HIGH] = [ruta]XDMA.SYS [/O] [/L] [/Q]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /O   Permite la superposici¢n de salida.
+  /L   Limita DMA a ®memoria baja¯ por debajo de 640K. Se REQUIERE /L
+       para usar UMBPCI, o controladores similares, cuyas  reas de memoria
+       superior no pueden hacer DMA. Si se da /L, el controlador debe
+       estar en memoria BAJA (las listas de comandos de E/S usan DMA),
+       o el controlador abortar  la carga. /L hace que el controlador use su
+       ®b£fer local¯ para E/S de datos m s all  de 640K.
+  /Q   Suprime el ®pitido¯ en los errores de superposici¢n de salida
+       (modo ®silencioso¯).
+  Para cada interruptor, un gui¢n puede reemplazar la barra oblicua y se
+  pueden usar letras min£sculas.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  XDMA.SYS es un controlador de DOS para discos duros UltraDMA. Admite
+  placas base de PC normales para ®usuarios finales¯ que tienen un
+  cotrolador Intel, VIA, SiS, ALi o similar UltraDMA configurado por la
+  BIOS en ®modo IDE heredado¯. XDMA.SYS NO maneja servidores Serial-ATA,
+  ®Modo PCI nativo¯ o tarjetas adaptadoras ®complementarias¯ hechas por
+  Promise, SiiG, etc. XDMA.SYS ejecuta circuitos integrados IDE de placa base
+  normales y EVITA la necesidad de un tarjeta extra.
+  XDMA.SYS maneja hasta 4 discos UltraDMA de cualquier tama¤o, incluidos
+  los modelos m s nuevos de m s de 128 gigabytes de almacenamiento.
+  Tambi‚n se requiere un administrador XMS, <a href="../base/himemx.htm">HIMEMX</a>, <a href="../base/jemmex.htm">JEMMEX</a> o similar, y
+  128K de memoria XMS, por lo que XDMA.SYS puede asignar un ®b£fer local¯.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  DEVICE=C:\FDOS\BIN\XDMA.SYS
+  DEVICEHIGH=C:\FDOS\BIN\XDMA.SYS /O
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+ (<a href="../base/udma.htm">udma.sys</a>)
+ (<a href="../base/udma2.htm">udma2.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, modificado en 2011 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

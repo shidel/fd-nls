@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: fileshigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: fileshigh</h1>
+<pre>
+  FILESHIGH tells FreeDOS how many files it should be able to 
+  have open simulataneously.
+  FILESHIGH is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  fileshigh=n
+    where n is the number of files, in the range 8-255. The default
+    setting is 8, but a good number for most modern systems is 20 - 40.
+    Some programs may need a higher setting to function correctly; such
+    programs will usually give the value that is needed in their
+    documentation.
+</pre>
+<h2>Options:</h2>
+<pre>  - none -</pre>
+<h2>Comments:</h2>
+<pre>
+  FILESHIGH specifies how many files are allowed open at once (reserves
+  memory necessary to support opening this many files).
+  Note: there are other restrictions, so a given program may not be able
+  to actually open this amount. A good number is 20, though some programs
+  suggest/require 30, 40, or even 255.
+  FILESHIGH is like FILES, except it attempts to load into high memory 
+  first (failing that it should load in conventional memory).
+  Note: The order you load devices may have a large impact on amount
+  of free memory available. In general try to load large (in memory
+  usage) programs into high memory first.
+  Important: You should have a high memory manager such as (<a href="../base/himem.htm">HIMEM</a>) or
+  <a href="../base/himemx.htm">HIMEMX</a> or <a href="../base/jemmex.htm">JEMMEX</a> installed (prior device=himem.exe or device=himemx.exe
+  in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>) before using this option.
+  FILESHIGH is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    fileshigh=20
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fcbs.htm">fcbs</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+  <a href="../cnfigsys/files.htm">files</a>
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

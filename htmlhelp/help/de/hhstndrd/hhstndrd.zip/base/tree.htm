@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: tree</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: tree</h1>
+<pre>
+  TREE / PDTREE zeigt die Verzeichnis- (Ordner)struktur eines bestimmten
+  Laufwerkes oder Pfades grafisch an. Optional kann auch eine Dateiliste
+  mit angezeigt werden.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  TREE [Laufwerk:][Pfad] [/F] [/A] [/?]
+  PDTREE [Laufwerk:][Pfad] [/F] [/A] [/V] [/S][/P] [/?]
+         Laufwerk  Der Laufwerksbuchstabe, z.B.: C:
+         Pfad      Der Pfad von dem gestartet werden soll, z.B.:
+                     \Beispiel\
+                   Wenn kein Pfad angegeben wird, wird tree/pdtree vom
+                   aktuellen Verzeichnis aus starten.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+   /F  Zeigt in jedem Verzeichnis die Dateinamen an.
+   /A  Verwendet ASCII Zeichen um die Verzeichnisstruktur visuell darzu-
+       stellen.
+   /?  Zeigt die Hilfe und beendet das Programm.
+
+ Zusaetzliche Optionen in FreeDOS pdTree (nicht unter dem normalen Tree):
+   /V  Zeigt Versionsinformationen an und beendet das Programm.
+   /S  Nur kurze Namen (verwendet kurzen, d.h. anderen Namen, falls vor-
+       handen). Nur in der DOS-Version; deaktiviert die Verwendung der
+       <a href="../util/doslfn.htm">LFN</a> API (LFN=lange Dateinamen)
+       um vorherige/naechtste Datei zu finden.
+   /P  Nach jeder Seite eine Pause. (Anmerkung: laeuft aktuell im 80x25
+       Bildschirmmodus) Nur die Win32 Version ignoriert die Pause Option
+       wenn die Ausgabe an eine Datei oder ein anderes Programm weiter-
+       geleitet wird, z.B. tree | more; es wird auch versucht die aktu-
+       elle Konsolengroesse zu verwenden (bei DOS Version noch nicht
+       implementiert).
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  TREE unterstuetzt NLS (national language support - nationale Sprach-
+  unterstuetzung).
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  Um die komplette Verzeichnishierarchie des Laufwerks C anzuzeigen und
+  nach jeder Bildschirmseite eine Pause zu machen, starten Sie tree,
+  indem Sie C: als Startseite angeben und die Ausgabe an den <a href="../base/more.htm">MORE</a>
+  Befehl weiterleiten:
+    tree C:\ | more
+  Bei Verwendung von pdTree erhalten Sie das gleiche Ergebnis, indem Sie
+  folgenden Befehl verwenden:
+    pdtree C:\ /p
+  Um die Verzeichnishierarchie eines Unterverzeichnisses anzuzeigen und
+  die Ausgabe nur in Standard ASCII Zeichen zu haben (um es z.B. fuer
+  jemanden auszudrucken oder an jemanden zu senden, der es nur auf diese
+  Weise ansehen kann), geben Sie das Unterverzeichnis und den /A-Schalter
+  an:
+    tree ASUBDIR /a
+  Um die Struktur eines Verzeichnisbaumes und die Dateien innerhalb jedes
+  Verzeichnisses anzuzeigen, verwenden Sie bitte den /F-Schalter:
+    tree ASUBDIR /f | more
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/dir.htm">dir</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../base/more.htm">more</a>
+  <a href="../util/pdtree.htm">pdtree</a>
+</pre>
+<hr>
+<pre>
+  Copyright: Dieses Dokument ist Public Domain, nur Public Domain
+  Ergaenzungen werden akzeptiert. Deshalb darf dieses Dokument frei
+  kopiert werden usw., aber es wird keine Garantie auf Richtigkeit oder
+  Verwendbarkeit fuer irgendwelche Zwecke garantiert.
+  KJD 2003,2004, aktualisiert 2008 von W. Spiegl.
+
+</pre></body></html>

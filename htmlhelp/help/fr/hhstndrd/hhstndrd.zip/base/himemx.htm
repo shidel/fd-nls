@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : himemx</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : himemx</h1>
+<pre>
+  HIMEMX est le gestionnaire de m‚moire haute.
+  HIMEMX doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  HIMEMX [/MAX=####] [/METHOD:xxx] [/HMAMIN=n] [/NUMHANDLES=m]
+        [/TESTMEM:ON|OFF] [/VERBOSE] [/NOABOVE16] [/X] [/LOG]
+</pre>
+<h2>Options :</h2>
+<pre>
+  /MAX=#####       Limite la m‚moire contr“l‚e par XMM … ##### Ko.
+  /METHOD:xxx      Sp‚cifie la m‚thode … utiliser pour la gestion A20.
+                   Valeurs possibles pour xxx :
+                   ALWAYSON    Suppose que la ligne A20 est toujours
+                               allum‚e
+                   BIOS        Utilise le BIOS pour basculer la ligne A20
+                   FAST        Utilise le port 92h, contourne le test
+                               INT 15h
+                   PS2         Utilise le port 92h, contourne le test
+                               PS/2
+                   KBC         Utilise le contr“leur de clavier
+                   PORT92      Utilise toujours le port 92h
+  /HMAMIN=n        Sp‚cifie le nombre minimal de Ko de HMA qu'un
+                   programme doit demander pour obtenir l'accŠs au
+                   HMA (par d‚faut : 0Ko).
+  /NOX2MAX32       Pas de limite pour les rapports de m‚moire XMS 2.0
+                   libre/disponible (valeur par d‚faut).
+  /NUMHANDLES=m    Sp‚cifie le nombre d'indicateurs XMS disponibles
+                   (d‚f : 48).
+  /TESTMEM:ON|OFF  Effectue ou ignore le test de m‚moire ‚tendue
+                   (d‚f: OFF).
+  /VERBOSE         Donne des informations suppl‚mentaires pendant
+                   l'installation.
+  /NOABOVE16       N'utilise pas la fonction E801h d'INT 15h pour
+                   d‚tecter >64Mo.
+  /X               N'utilise pas la fonction E820h d'INT 15h pour
+                   d‚tecter >64Mo.
+  /X2MAX32         Limite le rapport de m‚moire XMS 2.0 libre/dispo.
+                   … 32Mo-1Ko
+  /LOG             Affiche l'activit‚ du pilote sur l'‚cran.
+  /?               Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  HIMEMX n‚cessite un processeur 80386+. <a href="../base/jemm386.htm">JEMM386</a> peut ˆtre charg‚
+  aprŠs ce pilote. Chargez HIMEMX comme DEVICE=HIMEMX.EXE dans CONFIG.SYS
+  (bien que ce soit un fichier ".exe" !)
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\himemx.exe
+    device=c:\fdos\bin\jemm386.exe
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+</pre></body></html>

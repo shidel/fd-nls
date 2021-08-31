@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: shell</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: shell</h1>
+<pre>
+  SHELL le dice al shell de FreeDOS qu‚ comando ejecutar.
+  SHELL es un comando de <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  shell=[unidad][ruta]nombre_archivo [opciones]
+        unidad          La letra de unidad, por ejemplo C:
+        ruta            El directorio, por ejemplo \ejemplo\
+        nombre_archivo  El shell de comandos para ejecutar. Por ejemplo,
+                        C:\ejemplo\COMMAND.COM
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  opciones  Estas se pasan al shell de comandos.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  SHELL indica al shell que usar; a menudo se usa para alterar el
+  comportamiento de <a href="../base/command.htm">COMMAND.COM</a>. Nota: es command.com que procesa 
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>; Al usar la opci¢n SHELL, puede hacer que command.com
+  procese un archivo con un nombre diferente (como FDAUTO.BAT por
+  coexistir con otro DOS usando diferentes opciones de configuraci¢n) o
+  ejecutar un int‚rprete de comandos completamente diferente como 4DOS
+  o una variante sh (unix).
+  SHELL es un comando interno de kernel.sys y no necesita ning£n otro
+  archivo para funcionar.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    shell=C:\4DOS.COM /E:256 /P
+    shell=C:\FDOS\bin\command.com C:\FDOS\bin /E:1024 /P=C:\fdauto.bat
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../base/command.htm">command.com</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/shellh.htm">shellhigh</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 1998 <b>Jim Hall</b>, modificado en 2011 <b>W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+
+</pre></body></html>

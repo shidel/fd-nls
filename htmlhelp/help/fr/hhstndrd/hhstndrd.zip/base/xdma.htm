@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : xdma.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : xdma.sys</h1>
+<pre>
+  XDMA.SYS est un pilote DOS pour les disques durs UltraDMA.
+  XDMA.SYS doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS fonctionne d‚j…, vous pouvez charger XDMA.SYS par
+  la suite avec <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>XDMA.SYS est obsolŠte. Son auteur NE le prend PLUS en charge !
+  Vous devriez utiliser <a href="../base/uide.htm">UIDE.SYS</a> … la place</b>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEVICE[HIGH] = [chemin]XDMA.SYS [/O] [/L] [/Q]
+</pre>
+<h2>Options :</h2>
+<pre>
+  /O   Active le chevauchement des sorties.
+  /L   Limite l'UltraDMA … la "m‚moire basse" sous 640K. /L est
+       NCESSAIRE pour utiliser un pilote UMBPCI ou similaire dont les
+       zones de m‚moire sup‚rieures qui ne peuvent pas ex‚cuter
+       l'UltraDMA. Si /L est entr‚, le pilote doit ˆtre en m‚moire
+       BASSE (les listes de commande E/S utilisent DMA), ou le chargement
+       du pilote sera ANNUL ! /L fait que le pilote utilisera son
+       "tampon local" pour les E/S de donn‚es au-del… de 640 Ko.
+  /Q   Supprime le "bip" en cas d'erreurs de chevauchement de sorties
+       (mode silencieux, "quiet").
+  Pour chaque option, un tiret d'union peut remplacer la barre oblique,
+  et des lettres minuscules peuvent ˆtre utilis‚es.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  XDMA.SYS est un pilote DOS pour les disques durs UltraDMA. Il prend
+  en charge les cartes mŠres PC "utilisateur final" ayant un contr“leur
+  UltraDMA Intel, VIA, SiS, ALi, ou similaire d‚fini par le BIOS en
+  mode "Legacy IDE". XDMA.SYS ne gŠre PAS Serial-ATA, les serveurs mode
+  "PCI natif" ou les adaptateurs "add-on" produits par Promise, SiiG,
+  etc. XDMA.SYS utilise des puces IDE normales et ‚vite le besoin d'une
+  carte additionnelle !
+  XDMA.SYS gŠre jusqu'… 4 disques UltraDMA de toute taille, y compris
+  les modŠles r‚cents avec plus de 128 gigaoctets de stockage.
+  Un gestionnaire XMS, <a href="../base/himemx.htm">HIMEMX</a> ou <a href="../base/jemmex.htm">JEMMEX</a> ou similaire, et 128 Ko de
+  m‚moire XMS sont ‚galement n‚cessaires pour que XDMA.SYS puisse
+  allouer un "tampon local".
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DEVICE=C:\FDOS\BIN\XDMA.SYS
+  DEVICEHIGH=C:\FDOS\BIN\XDMA.SYS /O
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+ (<a href="../base/udma.htm">udma.sys</a>)
+ (<a href="../base/udma2.htm">udma2.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

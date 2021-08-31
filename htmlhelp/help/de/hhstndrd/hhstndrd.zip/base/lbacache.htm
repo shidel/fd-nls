@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: lbacache</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: lbacache</h1>
+<pre>
+  Lbacache ist ein Zwischenspeicher-Programm (Cache) zur Verbesserung der
+  Leistung bei Zugriffen auf die Festplatte. Es erfordert <a href="../base/himemx.htm">XMS-Speicher</a>
+  und mindestens einen 386-Computer.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  Zum Laden:    LBACACHE  [Groesse] [DRV Plattenliste] [FLOP] [TUNA]
+                          [TUNW] [TUNS]
+  Wenn geladen: LBACACHE  [INFO] [SYNC] [STOP] [STAT] [ZERO]
+  Fuer Hilfe:   LBACACHE  HELP|/HELP|/?
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Groesse   Gibt die Puffergroesse an. Standard: 2048K. Bei 1 bis 2
+            Ziffern ist die Puffereinheit (im XMS) 256 Kilobyte, andern-
+            falls 1 wie z.B.: 'LBACACHE 8192'. Vor die Groessenangabe
+            kann auch noch das Schluesselwort "BUF" gesetzt werden.
+  FLOP      Zwischenspeicherung bei Diskettenzugriffen (automatisch A:
+            und B:). Laden Sie zusaetzlich das Programm TICKLE, um den
+            Diskettenzugriff zu beschleunigen. Bitte melden Sie Fehler.
+            Zum Beispiel koennten falsche Annahmen ueber die
+            Diskettengeometrie dazu fuehren, dass Daten bei Kopieraktionen
+            mit den Disketten beschaedigt werden. Wenn Sie nur 1,44 MB
+            Disketten in einem entsprechenden Laufwerk verwenden, sind
+            Fehler sehr unwahrscheinlich, aber nicht ausgeschlossen.
+  DRV Liste Auswahl von Festplatten, die zwischengespeichert werden
+            sollen. NULL bedeutet keine. Anstatt diese Option zu verwenden
+            wird dringend empfohlen LBAcache automatisch alle cachebaren
+            Festplatte entdecken zu lassen!
+            Die Liste kann  Ziffern von 0 bis 7 enthalten, fuer die BIOS-
+            Laufwerke 80h + x. z.B.:
+            023   BIOS Laufwerke 80h, 82h, 83h - erste, dritte und vierte
+                  Festplatte (hda, hdc, hdd in der Linux-Terminologie).
+            Wichtig: Erste BIOS-Festplatte bedeutet alle Laufwerks-
+            Buchstaben, die sich auf der ersten physischen Festplatte
+            befinden.
+  TUNA      voll assoziative Zwischenspeicherung: Durchsucht im schlimm-
+            sten Fall den ganzen Cache nach einem Sektor oder nach freien
+            Platz. Ist bei grossen Caches langsamer, kann aber 
+            mehr Cachetreffer ergeben als bei der neuen (seit Juni 2004)
+            Standardsuche mit bis zu N (aktuelle Einstellung: 16)
+            Cache-Elementen (aktuelle Groesse eines Elements: 8kB).
+  TUNW      Zwischenspeicherung auch beim Schreiben: Wenn Daten auf die
+            Festplatte geschrieben werden, wird eine Kopie im Cache
+            gespeichert, selbst wenn dies auch bedeutet, in Erwartung des
+            spaeteren Wiedereinlesens neuen Platz fuer die Daten zu reser-
+            vieren. Dies war der Standard bis Juli 2004. Schreibzugriffe
+            brauchen mehr Cache, aber dies ist nuetzlich fuer Aufgaben mit
+            einer Menge von temporaeren Dateien. Wenn Daten schon im Cache
+            gespeichert sind, werden diese aktualisiert unabhaengig von
+            dieser Option.
+  TUNS      belegt 320 Bytes RAM niedrigen Arbeitsspeicher fuer Stacks
+            (neu seit Juli 2004). Verwenden sie diese Option, wenn Sie
+            LBAcache in den oberen Speicher von JEMM386 oder einem
+            sonstigen DMA-problematischen UMB-Treiber laden moechten und
+            ein SCSI-System haben, denn diese nutzen DMA fuer Geometrie-
+            Check-Aufrufe.
+            Beachten Sie, dass dieser Speicher per LBAcache STOP nicht 
+            freigegeben wird, da das Entlade-Protokoll dafuer zu viel
+            geaendert werden muesste.
+Nichtlade-Optionen:
+  INFO      Zeigt Cache-Statistiken und Informationen ueber LBAcache.
+            Nuetzlich fuer Debugging-Zwecke, aber eher schwer zu
+            verstehen.
+  STAT      Zeigt nur eine leichter zu verstehende Cache-Statistik.
+  ZERO      Setzt die Cache-Statistiken Zaehler auf Null.
+  SYNC      Synchronisiert alle laufenden LBAcache Puffer fuer alle
+            Laufwerke. Da LBAcache nie verzoegert schreibt, werden
+            dadurch alle zwischengespeicherten Daten vergessen.
+            Dies geschieht durch den Aufruf von int 13.46 (BIOS
+            Festplatte: eject) fuer alle cache-faehigen Laufwerke
+            (0, 1, 0x80..0x87).
+            Es wird empfohlen danach LBACACHE ZERO anzuwenden, um die
+            Statistiken intuitiver lesen zu koennen.
+  STOP      Beendet und entfernt alle laufenden Instanzen von LBAcache und
+            gibt den XMS- und DOS-Speicher, den sie belegten, frei. Wenn
+            die Interrupt-Kette nicht wiederhergestellt werden kann,
+            verbleibt LBAcache im Speicher, aber mit einer reduzierten
+            Groesse von < 500 Bytes. Der XMS-Speicher wird immer
+            freigegeben. Wenn LBAcache als letztes speicherresidentes
+            Festplattenprogramm geladen wurde, sollte es sich meistens
+            entladen lassen. Beim mehrmaligem Laden von LBAcache kann oft
+    	    nur die letzte Instanz vollstaendig entladen werden.
+  COOL      versetzt den Cache in den "cool"-Modus: Zugriff auf Sektoren
+            im Cache ist eingefroren (so weit wie moeglich - verwenden Sie
+            TUNA um den Effekt zu verbessern). Siehe die Erlaeuterungen
+            zu BINSEL, um herauszufinden, ob dieser experimentelle
+            (9/2004) Modus fuer Sie nuetzlich ist.
+  WARM      Versetzt den Cache in den "melt"-Modus: Sektoren, auf die
+            zugegriffen wurde, werden aufgetaut (geschmolzen? :-)). Siehe
+            oben.
+            Hinweis: WARM, COOL und TEMP zeigen alle Diagnose-Status Werte
+            fuer die Fehlersuche, zum Beispiel den aktuellen "locked
+            element count". Danach wird die normale Ausgabe von STAT
+            angezeigt.
+  TEMP      Stellt die "normale Temperatur" des Caches wieder her: Der
+            eingefrorene Zustand des aktuellen Inhaltes wird so weit wie
+            moeglich erhalten (wenn der Cache wirklich voll ist, werden
+            Dinge geschmolzen).
+            Jetzt haben Sie reservierte Teile des Caches fuer gefrorene /
+            gesperrte Daten und den Rest des Cache im klassischen Modus.
+            (9/2004)
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Fuer weitere Informationen siehe lbacache.txt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  In der CONFIG.SYS / FDCONFIG.SYS:
+    INSTALL=LBACACHE.COM [Argumente]
+  oder
+    INSTALLHIGH=LBACACHE.COM [Argumente]
+  oder auf der Kommandozeile oder in AUTOEXEC.BAT:
+    LBACACHE [Argumente]
+  oder
+    LOADHIGH LBACACHE.COM [Argumente]
+
+    LBACACHE              Aufruf des Kommandos ohne Optionen benutzt bei
+                          Zugriffen auf Festplatten (falls durch das BIOS
+                          ansprechbar) einen Cache mit der Standard-Puffer
+                          Groesse.
+    LBACACHE buf 20 flop  verwendet einen 5MB grossen Cache beim Lesen
+                          von Festplatten und Disketten.
+    LBACACHE info         zeigt Informationen ueber den Zwischenspeicher.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/cdrcache.htm">cdrcache.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/tickle.htm">tickle</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, uebersetzt 2011 von J. Jenderek.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: install</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: install</h1>
+<pre>
+  INSTALL startet ein TSR-Programm (ein Programm, das im Speicher bleibt)
+  ohne eine Umgebung, anstelle von Befehlen wie lh oder loadhigh.
+  INSTALL laedt ein TSR-Programm in den unteren oder konventionellen
+  Speicher, waehrend INSTALLHIGH das TSR-Programm in den oberen Speicher
+  laedt.
+  INSTALL ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  install=[[Laufwerk][Pfad][Dateiname]] [Optionen]
+          Laufwerk   Der Laufwerksbuchstabe, z.B.: C:
+          Pfad       Der zu waehlende Pfad, z.B.: \Beispiel\
+          Dateiname  Die zu startende TSR-Datei, z.B.: test.sys
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Optionen  Das sind die Optionen des zu startenden TSR-Programms. Es
+            handelt sich nicht um Optionen des 'install'-Befehls.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  INSTALL laedt das durch Laufwerk:\Pfad\Dateiname spezifizierte Programm.
+  Es wird normalerweise dazu benutzt, TSR Programme (TSR = beende und
+  bleibe resident im Speicher) mit einem minimalen Umgebungsblock zu
+  laden.
+  Die Optionen sind fuer den Treiber selbst; vgl. auch die Dokumentation
+  zu den Optionen und ihre Verwendung, die mit dem speziellen Treiber
+  geliefert wurde.
+  INSTALL ist ein interner Befehl, d.h. der Befehl ist in der kernel.sys
+  enthalten. Es wird zur Ausfuehrung des Befehls kein zusaetzlicher
+  Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    install=C:\fdos\bin\ctmouse.exe
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/installh.htm">installhigh</a>
+  <a href="../batch/lh.htm">lh</a>
+  <a href="../batch/loadhigh.htm">loadhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

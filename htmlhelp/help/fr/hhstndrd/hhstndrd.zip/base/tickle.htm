@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : tickle</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : tickle</h1>
+<pre>
+  TICKLE est un read-ahead (lecture anticip‚e) pour <a href="../base/lbacache.htm">LBACACHE</a>. Cela
+  augmente la vitesse des lecteurs de disquettes.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  tickle [/CHS] [/LBA] [/?]
+</pre>
+<h2>Options :</h2>
+<pre>
+  /CHS  Lecture anticip‚e pour anciens disques durs activ‚e
+        (mode CHS - Cylinder/Head/Sector).
+  /LBA  Lecture anticip‚e pour nouveaux disques durs activ‚e
+        (mode LBA - Logical Block Adressing).
+  /?    Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  TICKLE lit toute la piste de la disquette en une fois lorsque
+  vous lisez quelque chose sur cette piste - c'est plus rapide car
+  la disquette doit tourner moins souvent.
+  La lecture anticip‚e pour les disquettes est toujours activ‚e.
+  Chargez d'abord <a href="../base/lbacache.htm">LBACACHE</a> avec l'option FLOP activ‚e !
+  N'utilisez pas <a href="../command/loadhigh.htm">LOADHIGH</a> avec TICKLE, risque de perte de
+  donn‚es / problŠmes DMA !
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  lbacache FLOP
+  tickle /lba
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../base/cdrcache.htm">cdrcache.sys</a>
+  <a href="../base/lbacache.htm">lbacache</a>
+  <a href="../command/loadhigh.htm">loadhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, mis … jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

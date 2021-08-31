@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : rdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Commande : rdisk</h1>
+<pre>
+  RDISK est un lecteur de disque DOS RAM (m‚moire vive) similaire …
+  <a href="../base/tdsk.htm">tdsk (Turbodisk)</a>.
+</pre>
+<h2><a name="syntax"></a>Syntaxe :</h2>
+<pre>
+  rdisk [/Sn] [/:L]
+</pre>
+<h2><a name="options"></a>Options :</h2>
+<pre>
+  /Sn  Sp‚cifie la taille du disque RAM en m‚gaoctets de m‚moire XMS.
+       Les valeurs peuvent aller de 2 … 2047. /S1024 ou plus
+       cr‚e un disque RAM de 1- … 2-GIGAOCTETS ! Si /S est omis ou
+       invalide, un disque RAM de 25 Mo est cr‚‚ par d‚faut. Pour les
+       anciens gestionnaires XMS V2.0 (ROM-DOS etc.) uniquement /S2 …
+       /S60 peuvent ˆtre utilis‚s.
+  /:L  Sp‚cifie la lettre de lecteur DOS souhait‚ pour acc‚der aux
+       fichiers RDISK. L peut ˆtre n'importe quelle lettre de lecteur
+       disponible de A … Z, par exemple /:N attribue le lecteur N:
+       … tous les fichiers RDISK. Si la lettre du lecteur est trop
+       ‚lev‚ ou d‚j… utilis‚, RDISK abandonnera et les utilisateurs
+       peuvent avoir besoin de "<a href="../cnfigsys/lastdrv.htm">LASTDRIVE=</a>" dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> pour
+       configurer plus de disques. Si RDISK est charg‚ par CONFIG.SYS
+       ou si /: est omis, la prochaine lettre de lecteur disponible
+       sera utilis‚e.
+</pre>
+<h2><a name="comment"></a>Commentaires :</h2>
+<pre>
+  RDISK cr‚e un lecteur de disque "rapide" en utilisant de 2 M‚gaoctets
+  … 2 GIGAOCTETS de m‚moire XMS ! Il se charge comme un pilote systŠme
+  dans CONFIG.SYS ou bien il peut ˆtre charge plus tard dans
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ou encore par une commande utilisateur.
+  DOS peut copier des programmes critiques, des fichiers de donn‚es et
+  d'autres r‚pertoires qui n‚cessitent un accŠs rapide (fichiers TEMP
+  des compilateurs, bases de donn‚es, etc.) vers le disque RAM, o— ils
+  peuvent ˆtre lus et ‚crits avec des vitesses de m‚moire ! S'ils sont
+  charg‚s aprŠs <a href="../cnfigsys/index.htm">CONFIG.SYS</a>, les fichiers RDISK peuvent se voir attribuer
+  n'importe quelle lettre de lecteur DOS en utilisant son commutateur
+  /:. RDISK fonctionne avec les gestionnaires de m‚moire XMS V2.0 ou
+  V3.0 (60 Mo maximum avec XMS V2.0). Il n'utilise que de 656 … 752
+  octets de m‚moire haute en fonction de la configuration systŠme,
+  et il peut ‚galement se charger dans la m‚moire DOS de 640 Ko. RDISK
+  est un petit lecteur "chargez-le et oubliez-le" … utiliser lorsque le
+  redimensionnement et les autres fonctionnalit‚s ne sont pas
+  n‚cessaires. Pour plus d'informations, veuillez lire "README.txt"
+  dans drivers.zip.
+</pre>
+<h2><a name="example"></a>Exemples:</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS :
+    Un exemple de fichier CONFIG.SYS utilisant V3.70+ UMBPCI et XMGR
+    est le suivant :
+      SHELL=C:\DOS\COMMAND.COM C:\DOS /E:512 /P
+      DEVICE=C:\BIN\UMBPCI.SYS
+      DEVICE=C:\BIN\XMGR.SYS /W
+      DOS=HIGH,UMB
+      DEVICE=C:\BIN\JEMM386.EXE I=B000-B7FF X=C800-EFFF NOEMS ;Optionnel
+      DEVICEHIGH=C:\BIN\UIDE.SYS /S500 /D:CDROM1              ;Ou UIDEJR
+      DEVICEHIGH=C:\BIN\RDISK.COM /S250                       ;Optionnel
+          ..
+          ..  Etc.
+          ..
+  Un exemple pour AUTOEXEC.BAT :
+      LH C:\BIN\RDISK.COM /S500 /:Q    [Charger RDISK, attribuer lecteur
+                                       Q:]
+         ...
+         ...
+         ...
+      MD Q:\DOS                        [Cr‚er les dossiers de disque RAM]
+      MD Q:\USERPROG
+      MD Q:\ ...
+      COPY C:DOS\*.* Q:\DOS            [Copier les fichiers DOS sur le
+                                       disque RAM]
+      COPY C:\USERPROG\*.* Q:\USERPROG [Copier les programmes sur le
+                                       disque RAM]
+      COPY C:\...\*.* Q:\...           [Copier les autres fichiers, si
+                                       n‚cessaire]
+         ...
+         ...                           [Optionnel:  V‚rifier les
+                                       fichiers RAM]
+         ...
+      PATH Q:\DOS;Q:\USERPROG;Q:\...   [Indiquer … DOS les "nouveaux
+                                       dossiers !"]
+</pre>
+<h2><a name="see"></a>Voir ‚galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms (XMS)</a>)
+ (<a href="../base/fdxms286.htm">fdxms286 (XMS)</a>)
+ (<a href="../base/himem.htm">himem (XMS)</a>)
+  <a href="../base/himemx.htm">himemx (XMS)</a>
+  <a href="../base/jemmex.htm">jemmex (EMS)</a>
+  <a href="../cnfigsys/lastdrv.htm">lastdrive</a>
+  <a href="../base/tdsk.htm">tdsk</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2010 Jack Ellis, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

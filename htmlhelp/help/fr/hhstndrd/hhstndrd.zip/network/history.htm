@@ -1,0 +1,420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Mise en r‚seau de FreeDOS - Historique de la mise en r‚seau de DOS</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Mise en r‚seau de FreeDOS - Historique de la mise en r‚seau de DOS</h1>
+<h2><a name="zzz"></a>Pourquoi DOS ‚tait livr‚ sans connectivit‚ r‚seau</h2>
+<pre>
+  L'IBM Personal Computer (PC) a ‚t‚ mis sur le march‚ le 12 ao–t 1981
+  en tant que r‚ponse … l'Apple II qui mena‡ait le march‚ d'IBM avec
+  des logiciels bureatiques comme VisiCalc et WordStar. Le systŠme
+  d'exploitation (SE) pour le PC a d– ˆtre fait dans un laps de temps
+  extrˆmement court, aprŠs que Digital Research (DR) ait rat‚ l'occasion
+  d'accorder une licence de leur "Control Program for Micros" ou
+  "Programme de contr“le pour micros" (CP/M) … IBM. La jeune compagnie
+  de logiciels Microsoft, … l'origine seulement cens‚e fournir les
+  interpr‚teurs et compilateurs de langage tels que BASIC et Fortran,
+  est intervenue. Microsoft a accept‚ de proposer un prototype de systŠme
+  d'exploitation similaire … CP/M, en seulement trois mois. Ils ont
+  achet‚ et adapt‚ le "Quick and Dirty OS" (QDOS) de Seattle Computer
+  pour r‚pondre aux attentes d'IBM. La version 1.0 du "Microsoft Disk
+  Operating System" (MS DOS, aussi vendu en tant que "PC DOS" par IBM)
+  avait 4000 lignes de code. La mise en <a href="../network/network.htm">r‚seau</a> ne faisait pas partie de
+  ses fonctionnalit‚s et d'autres tƒches ont pu ˆtre bien plus
+  importantes :
+  Le premier DOS ne savait mˆme pas comment g‚rer les disques durs.
+  Microsoft ‚tait aussi occup‚e … travailler sur les applications qui
+  devaient devenir la pierre angulaire de son succŠs : "Multiplan"/
+  "Excel" et "Word". Les fonctionnalit‚s <a href="../network/network.htm">r‚seau</a> semblent avoir ‚t‚
+  report‚es au successeur de DOS, soit OS/2, qui a ‚t‚ officiellement
+  annonc‚ par Microsoft et IBM en 1985 (et lanc‚ en 1987). En attendant,
+  Microsoft a fourni XENIX, une variante UNIX qui ‚tait disponible pour
+  l'IBM PC depuis 1983. Cela a laiss‚ du temps … d'autres. Il y avait
+  deux approches pour la mise en <a href="../network/network.htm">r‚seau</a> de DOS, qui peuvent ˆtre
+  appel‚es les approches "centr‚e sur le PC" et "centr‚e sur UNIX"
+  (<b>http://www.sju.edu/~jhodgson/netw/kw_hwk4.html (*01)</b>).
+    * L'approche "centr‚e sur le PC" veut dire une fa‡on de mettre en
+      <a href="../network/network.htm">r‚seau</a> un groupe de PC pour partager des fichiers et des
+      ressources (par exemple des imprimantes).
+    * L'approche "centr‚e sur UNIX" consiste … d‚velopper des versions
+      DOS de programmes <a href="../network/network.htm">r‚seau</a> standards UNIX et … les utiliser pour
+      acc‚der … ou fournir des services similaires … UNIX sur des
+      r‚seaux locaux ou sur Internet (ce qui, au bout du compte,
+      revenait aussi … partager des fichiers et des ressources).
+</pre>
+<h2><a name="aaa"></a>L'approche "centr‚e sur le PC"</h2>
+<pre>
+  <b><a href="../network/novell.htm">Novell</a> NetWare</b>
+
+  En 1985 <a href="../network/novell.htm">Novell</a>, un ancien
+  fabriquant de systŠmes CP/M, a lanc‚ son produit "NetWare 86" (v 1.5)
+  pour le PC. Une version pour AT a suivi avec "NetWare 286" (v 2.0)
+  en 1986.
+  <a href="../network/novell.htm">Novell</a> a mis en r‚seau les ordinateurs selon le modŠle client/serveur:
+  Les clients ex‚cutant MS DOS et certains logiciels r‚sidents en
+  m‚moire (TSR) <a href="../network/novell.htm">Novell</a> ‚taient en mesure "d'ouvrir une session" sur un
+  serveur qui ex‚cutait "<a href="../network/novell.htm">Novell</a> NetWare Server" (serveur Netware).
+  Ce serveur ‚tait une machine con‡ue pour g‚rer le <a href="../network/network.htm">r‚seau</a> et contr“ler
+  l'accŠs aux p‚riph‚riques partag‚s, tels que les lecteurs de disques
+  et les imprimantes. Une fois connect‚s, les clients pouvaient "mapper"
+  un volume sur le serveur … une lettre de lecteur sous DOS et l'utiliser
+  comme un lecteur local. Ils ‚taient aussi capables d'utiliser les
+  imprimantes connect‚es au serveur.
+  Le client et le serveur communiquaient sur le protocle "Internetwork
+  Packet Exchange/Sequenced Packet Exchange" de <a href="../network/novell.htm">Novell</a> (<a href="../network/ipxspx.htm">protocole IPX/SPX</a>)
+  L'architecture du pilote ‚tait appel‚ "Open Datalink Interface" (<a href="../network/odi.htm">ODI</a>).
+  NetWare a ‚tabli une position dominante sur le march‚ jusqu'au milieu
+  des ann‚es quatre-vingt-dix.
+
+  <b><a name="aab"></a>GESTIONNAIRE LAN</b>
+    (Image du gestionnaire LAN)
+  En 1983, ind‚pendamment de <a href="../network/novell.htm">Novell</a>, IBM et la compagnie californienne
+  Sytek Inc. (rachet‚e par Hughes <b>http://www.hughes.com/ (*02)</b> en 1989)
+  ont d‚velopp‚ le protocole de mise en r‚seau <b>NetBIOS</b>.
+  Il ‚tait con‡u pour des petites installations LAN de 72 … 80 machines.
+  En 1985 IBM a produit un ‚mulateur de <b>NetBIOS</b>, appel‚ <a href="../network/cifs.htm">NetBEUI</a> (<b>NetBIOS</b>
+  Extended User Interface) qui prenaient en charge jusqu'… 260 machines.
+  En 1985 Microsoft a lanc‚ sa propre impl‚mentation de <b>NetBIOS</b>, appel‚e
+  MS-Net. Elle n'a pas ‚t‚ utilis‚e … grande ‚chelle. En 1987
+  l'entreprise a lanc‚  "Microsoft LAN Manager" 1.0 - sa premiŠre
+  comp‚tition s‚rieuse contre <a href="../network/novell.htm">Novell</a> Netware. Tout comme <a href="../network/novell.htm">Novell</a> Netware,
+  le gestionnaire LAN de Microsoft impl‚mentait une architecture
+  <b>client/</b><b>serveur</b> :
+    * Le serveur ex‚cutait le systŠme d'exploitation OS/2 et le
+      gestionnaire LAN en tant que logiciel serveur.
+    * Le client ex‚cutait DOS, OS/2 ou Macintosh en tant que SE et
+      utilisait un logiciel client comme "LAN Manager client" or
+      "<a href="../network/msclient.htm">Client MS</a>" pour la connexion au serveur.
+  Avec l'ajout du protocole <b>"Server Message Block" (SMB)</b> au gestionnaire
+  LAN depuis 1991, les <a href="../network/network.htm">r‚seaux</a> Microsoft sont ‚galement devenus capables
+  d'‚changes <b>pair … pair</b>. Cela ‚tait utilis‚ par Windows for Workgroups
+  3.11, lanc‚ en 1993. Le m‚canisme est connu des utilisateurs Windows
+  en tant que "Partage Windows", "voisinage <a href="../network/network.htm">r‚seau</a>" ou "Workgroup"
+  (groupe de travail).
+    (Image de l'extension groupe de travail pour MS-DOS)
+  En octobre 1993 Microsoft a lanc‚ un outil appel‚ "Extension groupe de
+  travail Microsoft pour MS-DOS" qui a permis d'avoir les mˆmes
+  possibilit‚s de mise en <a href="../network/network.htm">r‚seau</a> pair … pair sous DOS. Bien que l'outil
+  ne soit plus en vente, la plupart de ses fonctionnalit‚s sont toujours
+  disponibles avec l'utilisation du "<a href="../network/msclient.htm">client MS</a>" et une mise … jour
+  sp‚ciale appel‚e "WG1049" (voyez : <a href="../network/msclient.htm">Client MS</a>).
+  Les logiciels de mise en r‚seau de Microsoft ‚taient livr‚s avec son
+  propre modŠle de pilote  <a href="../network/network.htm">r‚seau</a> appel‚ "Network Driver Interface
+  Specification" (<a href="../network/ndis.htm">NDIS</a>) que l'entreprise avait d‚velopp‚ avec <a href="../network/3com.htm">3Com</a>.
+  Le gestionnaire LAN n'a pas battu son comp‚titeur <a href="../network/novell.htm">Novell</a> Netware.
+  En plus d'ˆtre  second sur le march‚, un autre inconv‚nient peut-ˆtre
+  ‚t‚ caus‚ par fait que vous deviez installer le systŠme d'exploitation
+  OS/2 sur le serveur. OS/2 n'‚tait pas populaire chez les consommateurs.
+  Depuis 1993, "Microsoft Windows NT Advanced Server (v3.1)" ‚tait
+  utilis‚ … sa place du c“t‚ serveur. En ao–t 1995, le lancement (et la
+  r‚ception positive) de "Windows 95" a mis fin aux activit‚s r‚seau
+  sous DOS. Cette version Windows avait sa propre pile <a href="../network/tcpip.htm">TCP/IP</a> d‚j…
+  int‚gr‚e et ‚tait livr‚ avec le r‚seau <b>SMB</b> pair … pair donc de
+  nombreuses solutions tierces parties n'‚taient plus n‚cessaires.
+</pre>
+<h2><a name="bbb"></a>L'approche "centr‚e sur Unix"</h2>
+<pre>
+  Les exp‚riences pour faire fonctionner <a href="../network/tcpip.htm">TCP/IP</a> sur PC ont commenc‚ peu
+  de temps aprŠs son lancement par IBM. Les premiers … travailler sur
+  le sujet ‚taient Dave Clark, Jerry Saltzer et l'‚tudiant de premiŠre
+  ann‚e John Romkey (<b>http://www.romkey.com/ (*03)</b>) au laboratoire
+  d'informatique du Massachusetts Institute of Technology (MIT). En 1981
+  ils ont commenc‚ un projet de recherche dont le but ‚tait "de voir
+  si <a href="../network/tcpip.htm">TCP/IP</a> pouvait fonctionner sur quelque chose d'aussi petit que
+  l'IBM PC" comme s'en souvient Romkey
+  (<b>http://www.drizzle.com/~aboba/internaut/pc-ip.html (*04)</b>).
+
+  <b><a name="bbc"></a>PC-IP (PC/IP)</b>
+
+  Le r‚sultat ‚tait appel‚ "PC-IP", une impl‚mentation <a href="../network/tcpip.htm">TCP/IP</a> l‚gŠre
+  qui ‚tait li‚e … quelques applications comme finger, whois et netwatch.
+  PC-IP a ‚t‚ publi‚ avec son code source dans le domaine public. Drew
+  Perkins de l'Universit‚ Carnegie Mellon (CMU) et Dan Lanciani de
+  l'Universit‚ Harvard ont encore am‚lior‚ le code. PC-IP peut encore
+  ˆtre trouv‚ sur Internet (<b>http://members.aol.com/Karima4483/pcip/
+  (*05)</b>) ou
+  (<b>ftp://ftp.kuzbass.ru/pub/networks/tcpip/tool/pcip.zip (*06)</b>).
+
+  <b><a name="bbd"></a>PC-TCP (PC/TCP)</b>
+    (Ic“nes des applications PC/TCP)
+  Le succŠs de PC-IP a inspir‚ Romkey et ses amis … prendre la version
+  CMU du code et … le d‚velopper en un produit propri‚taire : "PC/TCP",
+  qu'ils ont vendu … travers leur entreprise "FTP Software, Inc.",
+  fond‚e en 1986 (<b>http://en.wikipedia.org/wiki/FTP_Software (*07)</b>).
+  Le nom avait ‚t‚ choisi d'aprŠs le populaire protocole de transfert de
+  fichiers : PC/TCP comprenait l'une des premiŠres applications pour les
+  services FTP sur le PC.
+
+  <b><a name="bbe"></a>Les pilotes de paquets</b>
+
+  Avec PC/TCP, FTP Software Inc. a d‚velopp‚ "la sp‚cification de pilote
+  de paquets", (<b>http://www.crynwr.com/packet_driver.html (*08)</b>)
+  la premiŠre sp‚cification multiprotocole pour les cartes d'interface
+  <a href="../network/network.htm">r‚seau</a> pour PC. Le 12 d‚cembre 1988, cette sp‚cification a ‚t‚
+  publi‚e en tant que standard ouvert, pour que tout un chacun puisse
+  l'impl‚menter.
+  Les pilotes de paquets se sont r‚v‚l‚s utiles … la fois pour les
+  fabricants de mat‚riel et les d‚veloppeurs de logiciels. La plupart
+  des applications <a href="../network/tcpip.htm">TCP/IP</a> du domaine public ou shareware ont ‚t‚ ‚crits
+  pur s'interfacer seulement avec les pilotes de paquets. De nombreux
+  pilotes de paquets furent ‚crits ou g‚r‚s par Russ Nelson … l'Universit‚
+  de Clarkson, qui fut connu comme le "roi des pilotes de paquets" - une
+  histoire qu'il raconte sur son site Internet (<b>http://russnelson.com/
+  bio.html (*09)</b>). Nelson distribue toujours ces pilotes en tant que
+  logiciels libres … travers le site de son entreprise "<a href="../network/crynwr.htm">Crynwr</a>"
+  (<b>http://www.crynwr.com/ (*10)</b>) (qui fut nomm‚ d'aprŠs le mot gallois
+  signifiant "Quaker", sa croyance religieuse). Apprenez-en davantage
+  sur <a href="../network/crynwr.htm">Crynwr</a> ici.
+  L'une des raisons du succŠs de PC/TCP de FTP Software ‚tait cette
+  interface ouverte de pilote de paquets, qui a rendu facile le
+  d‚veloppement des pilotes et des applications. Lorsque d'autres
+  interfaces comme <a href="../network/odi.htm">ODI</a> et <a href="../network/ndis.htm">NDIS</a> sont apparues sur la scŠne, PC/TCP a
+  inclus des convertisseurs : avec un outil appel‚ <a href="../network/odi_ins.htm#ccc">ODIPKT.COM</a>, les
+  pilotes ODI sont devenus utilisables en tant que pilotes de paquets,
+  un outil appel‚ DIS_PKT.GUP a fait de mˆme pour les <a href="../network/ndis_ins.htm">pilotes NDIS</a>.
+  PC/TCP ‚tait aussi livr‚ avec un <a href="../network/ldtcpipk.htm">Kernel TCP/IP</a> externe appel‚
+  ETHDRV.EXE qui permettait … d'autres programmeurs d'appeler les
+  fonctionnalit‚s <a href="../network/network.htm">r‚seau</a> depuis leurs programmes sans avoir … le
+  programmer eux-mˆmes. Toutes ces fonctionnalit‚s et une suite
+  d'applications qui a permis aux ordinateurs sous DOS d'acc‚der … ou
+  de fournir des services <a href="../network/tcpip.htm">TCP/IP</a> tels que les news, l'e-mail, le ftp,
+  <b>Telnet</b> ou le stockage <a href="../network/network.htm">r‚seau</a> (PC/TCP avait mˆme inclus un client
+  <a href="../network/nfs.htm">NFS</a> appel‚ InterDrive) ont fait de FTP Software le leader du march‚
+  des logiciels <a href="../network/tcpip.htm">TCP/IP</a> pour DOS.
+  PC/TCP a ‚t‚ install‚ sur plus de 10 millions de machines DOS machines
+  … travers le monde. Au milieu des ann‚es 90, FTP Software Inc. avait
+  plus de 700 employ‚s (voyez ici pour plus d'informations
+  <b>http://www.answers.com/topic/ftp-software?cat=biz-fin (*11)</b>).
+
+  <b>Logiciels d‚velopp‚s par les universit‚s et les passionn‚s</b>
+
+  PC-IP et son successeur PC/TCP ont peut-ˆtre ‚t‚ les premiers et les
+  plus r‚ussis des <a href="../network/ldtcpipk.htm">noyaux TCP/IP</a> pour DOS mais ils n'‚taient pas
+  les seuls.
+
+  <b><a name="bbf"></a>KA9Q</b>
+
+  DeuxiŠme aprŠs le premier kernel PC-IP ‚tait le "systŠme d'exploitation
+  <a href="../network/network.htm">r‚seau</a> KA9Q" (NOS, voyez : <b>http://www.ka9q.net/code/ka9qnos/ (*12)</b>) par
+  Phil Karn en 1985. Karn, un ing‚nieur de Baltimore, Maryland l'avait
+  cr‚‚ pour CP/M deux ans auparavant puis l'avait port‚ sous DOS. C'‚tait
+  aussi l'une des premiŠres applications <a href="../network/tcpip.htm">TCP/IP</a> pour DOS qui utilisaient
+  la sp‚cification de pilote de paquets de FTP Software. KA9Q agissait
+  simultan‚ment comme un client Internet, un serveur et un routeur de
+  paquets IP. Le programme ‚tait sp‚cialis‚ dans la radio par paquets
+  amateur, mais pouvait aussi ˆtre utilis‚ par exemple comme serveur web
+  ou ftp. KA9Q a attir‚ de nombreux contributeurs. Comme le d‚crit
+  Karn : "c'‚tait le Linux de son ‚poque" (<b>http://www.ka9q.net/code/
+  ka9qnos/ (*13)</b>). En 2002 KA9Q est devenu un logiciel libre (GNU GPL).
+  Ses descendants, JNOS (<b>http://www.langelaar.net/projects/jnos2/ (*14)</b>)
+  et <a href="../network/tcpip_ap.htm#ddd">EZ-NOS2</a> (<b>http://eznos.knevel.info/index.php (*15)</b>) (voyez ‚galement
+  <b>http://www.hippy.freeserve.co.uk/eznos.htm (*16)</b> and
+  <b>http://www.dossolutions.pwp.blueyonder.co.uk/eznos.htm (*17)</b>)
+  sont toujours activement maintenus.
+
+  <b><a name="bbg"></a>NCSA Telnet</b>
+
+  Sur la base de la sp‚cification des pilotes de paquets, plusieurs
+  universit‚s ont ‚crit des applications et utilitaires <a href="../network/tcpip.htm">TCP/IP</a> pour les
+  PC DOS. En 1986, le "National Center for Supercomputing Applications"
+  (NCSA) … l'Universit‚ d'Illinois a publi‚ "<b>Telnet</b>"
+  (<b>ftp://ftp.uu.net/.vol/1/applic/NCSA_Telnet/PC/tel2308b.zip (*18)</b>)
+  - un client pour les services <b>Telnet</b> UNIX qui pouvait  ‚galement
+  agir en tant que serveur FTP et rcp. Il ‚tait accompagn‚ par des
+  outils <a href="../network/tcpip.htm">TCP/IP</a> comme finger, whois et lpr. NCSA <b>Telnet</b> ‚tait livr‚
+  avec son propre <a href="../network/ldtcpipk.htm">kernel TCP/IP</a>, qui ‚tait d‚j… int‚gr‚ aux applications.
+  Le logiciel a ‚t‚ d‚velopp‚ jusqu'en 1995 (v2.308) et publi‚ avec son
+  code source dans le domaine public.
+  (<b>ftp://ftp.uu.net/.vol/1/applic/NCSA_Telnet/PC/tel2308s.zip (*19)</b>)
+
+  <b><a name="bbh"></a>CUTCP</b>
+
+  L'Universit‚ de Clarkson … Potsdam, New York a pris la version 2.2 de
+  NCSA <b>Telnet</b> et l'a modifi‚. Ils ont appel‚ leur version CUTE ou CUTCP.
+  Par la suite l'Universit‚ de Rutgers … New Jersey a repris la
+  maintenance et a publi‚ la derniŠre version en juillet 1993
+  (<b>ftp://ftp.cc.umanitoba.ca/software/pc_network/cutcp-b.zip (*20)</b>).
+  · la diff‚rence de NCSA <b>Telnet</b>, CUTCP prenait en charge
+  l'‚mulation IBM-3270 et ‚tait techniquement am‚lior‚. Il est aussi
+  entr‚ dans le domaine public.
+
+   <b><a name="bbi"></a>Autres</b>
+    (Image de MINUET Version 1.0 Beta 18A)
+  D'autres d‚veloppements par des universit‚s qui devraient ˆtre
+  mentionn‚s sont "Kermit", (<b>http://www.columbia.edu/kermit/ (*21)</b>)
+  un ‚mulateur de terminal pour DOS ‚crit … l'Universit‚ de Columbia …
+  New York et "Minnesota InterNet Users Essential Tool" de l'Universit‚
+  de Minnesota ("<b>MINUET</b>" <b>http://www.fdisk.com/doslynx/minuet/ (*22)</b>),
+  une suite d'applications <a href="../network/tcpip.htm">TCP/IP</a> fond‚ sur un pilote de paquets.
+  Minuet fournissait une interface graphique utilisable … la souris qui
+  avait des applications clientes comme l'E-mail, le Gopher, <b>Telnet</b>,
+  Usenet, un navigateur web et FTP. Minuet est un bon exemple de la
+  malheureuse conception des licences des logiciels DOS durant cette
+  ‚poque. · la diff‚rence de la Licence publique g‚n‚rale GNU (GPL) qui
+  est devenu le standard dans le monde GNU/Linux, les licences pour les
+  logiciels DOS ‚crits par les universit‚s et les passionn‚s ‚taient
+  principalement "fait maison". Par exemple la licence Minuet autorisait
+  une utilisation libre pour les professeurs, le personnel et les
+  ‚tudiants de l'Universit‚ du Minnesotta. Tous les autres devaient
+  payer 50$ au bout de 15 jours d'‚valuation. La distribution n'‚tait
+  autoris‚e que pour des buts non commerciaux.
+  Alors que ces licences shareware ont peut-ˆtre fonctionn‚ il y a
+  quinze ans, aujourd'hui elles ressemblent plus … un certificat de
+  d‚cŠs pour le logiciel :
+  Celui-ci n'est plus vendu ou distribu‚ officiellement. Alors que vous
+  pouvez peut-ˆtre encore trouver quelqu'un … qui payer les 50$, il est
+  peu probable qu'il vous fournisse un support ou des mises … jour. Donc
+  le co–t peut d‚passer ce que le logiciel vaut aujourd'hui, aprŠs que
+  son march‚ ait disparu et que les d‚veloppeurs d'origine ont perdu
+  l'int‚rˆt qu'ils y portaient. Plus important encore : sans la source,
+  il n'est pas utile aux autres programmeurs donc le d‚veloppement
+  s'arrˆte … cause de la licence. Et interdire la "distribution
+  commerciale" a pour effet que les endroits o— par exemple Minuet
+  peut ˆtre trouv‚e sont pour la plupart changeantes et peu stables.
+  Grƒce … certains d‚veloppeurs, des logiciels essentiels de <a href="../network/network.htm">r‚seau</a> pour
+  DOS avec leur code source respectif sont dans le domaine public ou
+  sont des logiciels libres. Cela permet aux utilisateurs comme aux
+  d‚veloppeurs d'‚crire encore et d'utiliser des applications <a href="../network/tcpip.htm">TCP/IP</a>
+  pour DOS.
+  Ces logiciels importants comprennent :
+    * Des versions libres des convertisseurs de pilotes de paquets pour
+      les pilotes <a href="../network/odi_ins.htm">ODI</a> et <a href="../network/ndis_ins.htm">NDIS</a> communs d'aujourd'hui : <a href="../network/odi_ins.htm#ccc">ODIPKT.COM</a>, ‚crit
+      par Dan Lanciani (Universit‚ de Harvard) permet d'utiliser les
+      <a href="../network/odi_ins.htm">pilotes ODI</a> comme des pilotes de paquets, DIS_PKT9.DOS par Prof.
+      Joe R. Doupnik (Universit‚ de l'tat de l'Utah) et Dan Lanciani
+      fait de mˆme avec les <a href="../network/ndis_ins.htm">pilotes NDIS</a>.
+    * "<a href="../network/wattcp.htm">WatTCP</a>", une librairie de <a href="../network/ldtcpipk.htm">kernel TCP/IP</a> populaire libre ‚crit
+      en 1990 par Erick Engelke de l'Universit‚ canadienne de Waterloo
+      et son successeur <a href="../network/wattcp.htm">Watt-32</a> par Gisle Vanem (NorvŠge). Ces
+      librairies permettent aux programmeurs d'int‚grer des
+      fonctionnalit‚s <a href="../network/tcpip.htm">TCP/IP</a> … leurs applications sans avoir …
+      r‚inventer la roue.
+    * "Pilote TCP Trumpet (<a href="../network/ntcpdrv.htm">NTCPDRV</a>)" de 1992, un <a href="../network/ldtcpipk.htm">kernel TCP/IP</a> libre
+       externe cr‚‚ par le programmeur australien Peter Tattam (aussi
+       c‚lŠbre pour son Trumpet Winsock).
+  Nous en apprendrons davantage sur ce logiciel un peu plus loin dans
+  ce document.
+
+  <b>Logiciels propri‚taires</b>
+
+  · part PC/TCP de FTP Software Inc. beaucoup d'autres applications
+  commerciales pouvaient ˆtre trouv‚es sur le march‚ pour la mise en
+  <a href="../network/network.htm">r‚seau</a> <a href="../network/tcpip.htm">TCP/IP</a> de DOS il y a dix ou quinze ans. Jusqu'… 30 paquets
+  <a href="../network/tcpip.htm">TCP/IP</a> (<b>ftp://ftp.cac.psu.edu/pub/dos/info/tcpip.packages (*23)</b>)
+  pour DOS ‚taient disponibles au milieu des ann‚es quatre-vingt-dix, y
+  compris IBM "<a href="../network/tcpip.htm">TCP/IP</a> pour DOS", NetManage "Chameleon", Sun "PC-<a href="../network/nfs.htm">NFS</a>",
+  <a href="../network/novell.htm">Novell</a> "LAN WorkPlace", "SuperTCP" de Frontier Technologies ou Artisoft
+  "LANtastic" - un systŠme de <a href="../network/network.htm">r‚seau</a> qui ‚tait presque aussi populaire
+  dans la premiŠre moiti‚ des ann‚es quatre-vingt-dix que le leader du
+  march‚ de l'‚poque, <a href="../network/novell.htm">Novell</a>. Une comparaison de leurs fonctionnalit‚s
+  peut ˆtre trouv‚e ici (<b>http://img.cmpnet.com/nc/820/graphics/tcpip.pdf
+  (*24)</b>). Lisez ‚galement l'article correspondant dans le magazine
+  "<a href="../network/network.htm">Network</a> Computing"
+  (<b>http://www.networkcomputing.com/820/820buyers.html (*25)</b>).
+</pre>
+<h2><a name="ccc"></a>La fin de la mise en r‚seau de DOS</h2>
+<pre>
+  Nous devons garder … l'esprit que tout ce d‚veloppement des logiciels
+  <a href="../network/tcpip.htm">TCP/IP</a> pour DOS s'est produit dans une p‚riode relativement courte.
+  Le PC d'IBM n'avait aucune capacit‚ de <a href="../network/network.htm">r‚seau</a> lorsqu'il a ‚t‚ lanc‚
+  en 1981. Ceux qui travaillaient avec des machines UNIX … cette ‚poque
+  consid‚raient le comme un jouet. Mais le  <a href="../network/network.htm">r‚seau</a> est devenu une option
+  s‚rieuse quand le PC AT (i286) a ‚t‚ lanc‚ en 1984 et en 1986, lorsque
+  Compaq a lanc‚ le premier PC avec un processeur i386. Cette fenˆtre
+  d'opportunit‚ a commenc‚ … se refermer avec l'introduction de Windows
+  NT en 1993 et s'est referm‚e avec Windows 95 en ao–t 1995, qui avait
+  son propre <a href="../network/ldtcpipk.htm">kernel TCP/IP</a> d‚j… int‚gr‚ et comprenait le protocole
+  Point-to-Point (PPP), un num‚roteur ainsi que la prise en charge des
+  <a href="../network/network.htm">r‚seaux</a> <b>SMB</b> pair … pair.
+  Ce fut un coup dur pour les logiciels r‚seau commerciaux, y compris
+  <a href="../network/novell.htm">Novell</a> NetWare.
+  FTP Software Inc. a ‚t‚ rachet‚ en 1998 par l'ancien concurrent
+  NetManage pour un prix … peine sup‚rieur … la somme des fonds dans le
+  compte bancaire de FTP software (voyez ici pour plus d'informations
+  <b>http://www.apocalypse.org/pub/ftp-alumni/archives/ftp-alumni.9806
+  (*26)</b>). Aujourd'hui, il n'existe plus, bien entendu. En 2007 le march‚
+  des logiciels <a href="../network/network.htm">r‚seau</a> pour DOS est abandonn‚. La plupart des solutions
+  commerciales ne sont plus disponibles. Leurs fabricants ont chang‚ de
+  propri‚taires ou de march‚, ou ont simplement cess‚ d'exister. Ceux
+  qui travaillaient sur l'approche "centr‚e sur UNIX" il y a 10 ans
+  travaillent peut-ˆtre aujourd'hui sur des solutions GNU/Linux.
+  Lisez davantage sur l'historique de la mise en <a href="../network/network.htm">r‚seau</a> <a href="../network/tcpip.htm">TCP/IP</a> sur des
+  ordinateurs sous DOS dans l'article de Steven Baker "Net Worth -
+  Desktop <a href="../network/tcpip.htm">TCP/IP</a> At Middle Age"
+  (<b>http://web.archive.org/web/20070314043508/http://www.ece.ubc.ca/
+  ~gillies/9802net.html (*27)</b>).
+</pre>
+<h2><a name="ddd"></a>Ramasser les morceaux</h2>
+<pre>
+  <a href="../network/network.htm">La mise en r‚seau</a> de DOS au XXIe siŠcle signifie essentiellement de
+  prendre ce qui reste de l'‚poque du <a href="../network/network.htm">r‚seau</a> DOS du milieu des ann‚es
+  quatre-vingt jusqu'au milieu des ann‚es quatre-vingt-dix. Certains
+  outils <a href="../network/novell.htm">Novell</a> et Microsoft peuvent toujours ˆtre l‚galement t‚l‚charg‚s
+  et utilis‚s. Et les solutions  <a href="../network/tcpip.htm">TCP/IP</a> des universit‚s et passionn‚s
+  qui ont ‚t‚ publi‚s dans le domaine public, en tant que shareware
+  voire postcardware, sont toujours l…, mˆme si la plupart ne peuvent
+  plus ˆtre trouv‚es … son emplacement d'origine.
+  Mais il y a davantage. Certains projets sont toujours vivants : Le
+  navigateur graphique DOS <a href="../network/tcpip_ap.htm#ccc">Arachne</a> est … nouveau d‚velopp‚ activement par
+  un groupe de programmeurs aprŠs qu'il a ‚t‚ publi‚ sous GNU GPL.
+  galement <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a>, <a href="../network/wattcp.htm">Watt-32</a> et les successeurs de KA9Q <a href="../network/tcpip_ap.htm#ddd">EZ-NOS2</a> et JNOS2
+  sont toujours maintenus et d‚velopp‚s. Un nouveau logiciel DOS <a href="../network/tcpip.htm">TCP/IP</a>
+  a mˆme ‚t‚ ‚crit r‚cemment.
+
+  <b>(*01) http://people.sju.edu/~jhodgson/netw/kw_hwk4.html</b>
+  <b>(*02) OK</b>
+  <b>(*03) OK</b>
+  <b>(*04) https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=
+        &cad=rja&uact=8&ved=2ahUKEwjmnqmTiJvqAhVtQUEAHSx2BBYQFjAAegQIB
+        hAB&url=ftp%3A%2F%2Fnic.funet.fi%2Findex%2Fnetworking%2Fmagazines
+        %2FInternaut%2Fpc-ip.html&usg=AOvVaw2xp6u7ieLlJMNfvpiqtLq5</b>
+  <b>(*05) https://web.archive.org/web/20050529012400/http://members.
+        aol.com/Karima4483/pcip/</b>
+  <b>(*06) ?</b>
+  <b>(*07) OK</b>
+  <b>(*08) https://web.archive.org/web/20120608031912/
+        http://www.crynwr.com/packet_driver.html</b>
+  <b>(*09) OK</b>
+  <b>(*10) https://web.archive.org/web/20200110122004/http://crynwr.com/</b>
+  <b>(*11) OK</b>
+  <b>(*12) OK</b>
+  <b>(*13) OK</b>
+  <b>(*14) OK</b>
+  <b>(*15) https://vetusware.com/download/EZ-NOS%202.0%20DOS%20Internet
+        %20server%20OS%202.0/</b>
+  <b>(*16) https://web.archive.org/web/20090711165409/http:
+        //www.hippy.freeserve.co.uk/eznos.htm</b>
+  <b>(*17) https://web.archive.org/web/20081016111245/http:
+        //www.dossolutions.pwp.blueyonder.co.uk/eznos.htm</b>
+  <b>(*18) https://ftp.gwdg.de/pub/msdos/ncsa-telnet/</b>
+  <b>(*19) https://ftp.gwdg.de/pub/msdos/ncsa-telnet/</b>
+  <b>(*20) OK</b>
+  <b>(*21) OK http://www.kermitproject.org/</b>
+  <b>(*22) OK</b>
+  <b>(*23) ?</b>
+  <b>(*24) OK</b>
+  <b>(*25) https://web.archive.org/web/20090308122027/http://www.
+        networkcomputing.com/820/820buyers.html</b>
+  <b>(*26) https://en.wikipedia.org/wiki/FTP_Software</b>
+  <b>(*27) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Allemagne), modifi‚ en 2010
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Pour plus d'informations, <a href="../network/intro.htm#ddd">voyez ici</a>.
+
+  La permission est accord‚e de copier, distribuer et/ou modifier ce
+  document selon les termes de la licence de documentation libre GNU,
+  version 1.2 ou toute version ult‚rieure publi‚e par la Free Software
+  Foundation.
+  Une copie de la licence est incluse dans la section intitul‚e
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

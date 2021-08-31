@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>R‚daction pour le systŠme d'aide HTML :</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>R‚daction pour le systŠme d'aide HTML :</h1>
+<pre>
+  Les contributions sont plus que bienvenues. Si vous souhaitez faire une
+  contribution au systŠme d'aide HTML, veuillez contacter le mainteneur :
+    fritzdotmuelleratmaildotcom
+</pre>
+<h2>La structure du r‚pertoire \help :</h2>
+<pre>
+  <b>\help\index.htm</b>
+    Liste les langues d'aide install‚es sur le systŠme.
+    Charg‚ automatiquement si LANG n'est pas d‚fini en une langue
+    disponible et si l'anglais (EN) n'est pas install‚.
+  <b>\help\%LANG%\index.htm</b>
+    HELP chargera ceci par d‚faut. %LANG% est la langue s‚lectionn‚e
+    en d‚finissant la variable d'environnement LANG. Si LANG n'est pas
+    d‚fini, EN est suppos‚.
+  <b>\help\%LANG%\help.htm</b>
+    HELP chargera ceci lorsque l'utilisateur appuie sur F1 ou clique
+    sur "Aide sur l'aide".
+  <b>\help\docinfo\bi\nls\%LANG%.bi</b>
+    Stocke les fichiers de rayons de bibliothŠque, pour ˆtre utilis‚s
+    avec l'outil bookshlf d'Aitor afin de cr‚er l'indexe de la langue
+    (\help\index.htm).
+</pre>
+<h2>Cr‚ation de fichiers d'aide compress‚s :</h2>
+<pre>
+  Pour votre jeu de fichiers compress‚s, vous devriez utiliser un nom
+  comme :
+    <b>\help\...\[nom]\[nom].zip</b>
+  Si vous voulez compresser vos fichiers d'aide, ils devraient ˆtre au
+  format zip. Ils devraient avoir le mˆme nom de fichier que le
+  r‚pertoire dans lequel ils sont stock‚s, et l'extension zip.
+  Par exemple :
+    <b>\help\en\monaide\monaide.zip</b>
+  Le fichier index.htm peut ˆtre dans le fichier zip, mais l'aide et
+  le bookshlf fonctionneront tous deux mieux s'il ne l'est pas.
+  Les structures de r‚pertoire sont autoris‚es dans le fichier zip.
+  Cependant le cryptage et certaines des anciennes m‚thodes de
+  compression ne sont pas prises en charge.
+</pre>
+<h2>Cr‚ation des versions modifi‚es des fichiers d'aide :</h2>
+<pre>
+  Utilisez un titre diff‚rent sur la page de titre (souvent index.htm)
+  dans les versions modifi‚es. Le but est d'‚viter les confusions ou
+  conflits, et plus important encore, cela est n‚cessaire selon la
+  partie 4A de <a href="../other/fdl11.htm">la licence de documentation libre GNU 1.1<a>.
+  En plus de changer le titre, veuillez mettre … jour l'historique,
+  la liste des auteurs etc., conform‚ment … la section 4 de
+  <a href="../other/fdl11.htm">la licence de documentation libre GNU 1.1</a>.
+  Si le jeu de fichiers a pour but de d‚crire un paquet modifi‚ ou
+  nouveau, ou si le jeu de fichiers subit des modifications fondamentales
+  (par ex. traduction), alors il vaut mieux ajouter un nom de
+  sous-dossier diff‚rent comme expliqu‚ dans "la structure du dossier
+  \help " ci-dessus. Il s'agit de faire une recherche et un remplacement
+  du nom de sous-dossier dans index.htm et cela en vaut bien la peine.
+  Par exemple, une version simplifi‚e du jeu de fichiers "hhstndrd"
+  pourrait ˆtre appel‚ "hhmicro". Cela serait le nom du sous-dossier
+  et le titre dans index.htm pourrait ˆtre :
+    FreeDOS Hilfe (hhmicro 1.0)
+  Il est raisonnable de modifier seulement le num‚ro de version (plut“t
+  que le nom et le dossier "hhmicro") lors des publications de mises
+  … jour.
+</pre>
+<h2>Cr‚ation ou ajout de nouveaux fichiers :</h2>
+<pre>
+  Il est conseill‚ de mettre le message de licence suivant … la fin de
+  tout nouveau fichier d'aide (sauf s'il sera un fichier seul, non
+  inclus dans le jeu de fichiers d'aide) :
+
+    ...
+    &lt;hr&gt;
+    &lt;address&gt;
+
+    &lt;b&gt;Copyright &amp;copy; 2008
+    &lt;a href="mailto:<b>monemail@adresse.com</b>"&gt;<b>Mon nom</b>&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
+    Ce fichier fait partie de la documentation d'aide HTML de FreeDOS,
+    et est sujet … ses conditions de licence, cf. :
+    &lt;a href="../index.htm"&gt;index.htm&lt;/a&gt;
+
+    &lt;/address&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+
+  Fournir un e-mail est totalement optionnel, si vous mettez vos
+  fichiers d'aide sur un site web alors les adresses e-mails pourraient
+  ˆtre spamm‚s. La licence est <a href="../other/fdl11.htm">la licence de documentation libre GNU 1.1</a>.
+</pre>
+<h2>dition d'un fichier stock‚ dans un zip :</h2>
+<pre>
+  Vous pourriez vouloir d‚zipper les fichiers html pour qu'ils soient
+  lisibles avec un autre navigateur ou pour les ‚diter. Les fichiers
+  Zip ont d'habitude la priorit‚ sur les fichiers non compress‚s ;
+  si vous voulez ˆtre s–r que l'aide lira une version ‚dit‚e et non
+  compress‚e d'un fichier, vous devriez remplacer ou effacer la version
+  originale dans ce zip.
+</pre>
+<h2>Test des fichiers d'aide :</h2>
+
+<pre>
+  Les navigateurs de r‚f‚rence pour tester les fichiers d'aide sont :
+    * Le visionneur d'aide HTML de FreeDOS (help.exe)
+    * Navigateur d‚riv‚ de Chromium.
+</pre>
+<h2>Cr‚ation de tableaux :</h2>
+<pre>
+  Malheureusement, l'aide ne prend pas en charge les balises table.
+  Utilisez les balises de pr‚formatage &lt;pre&gt; &lt;/pre&gt; pour
+  les tableaux d'info.
+</pre>
+<h2>Conseils g‚n‚raux :</h2>
+<pre>
+  Appuyez sur F5 ou Ctrl+R pour rafraŒchir le fichier affich‚ par l'aide.
+  Les modifications de l'aide seront visibles imm‚diatement. C'est
+  utile lors de l'‚dition des fichiers d'aide dans un environnement
+  Windows. Pour l'utilisation du visionneur d'aide HTML afin de
+  visualiser des fichiers qui ne sont pas encore int‚gr‚s au jeu de
+  fichiers, le commutateur de d‚rogation du chemin d'aide peut ˆtre
+  utilis‚ :
+  help /O[lecteur:][chemin]nomdefichier[.htm]
+  ou si relatif au dossier /HELP :
+    help /L[sousdossiers]nomdefichier[.htm]
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="tags.htm">Balises prises en charge par l'aide HTML</a>
+  <a href="index.htm">Ressources de cr‚ation</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-4 Robert Platt, mis … jour en 2008 par W. Spiegl</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier fait partie de la documentation d'aide HTML de FreeDOS et
+  est sujet … ses conditions de licence : cf. <a href="../../index.htm">index.htm</a>
+
+</pre></body></html>

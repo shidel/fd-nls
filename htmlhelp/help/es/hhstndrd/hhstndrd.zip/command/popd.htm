@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: popd</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: popd</h1>
+<pre>
+  POPD saca un directorio de la pila de directorios (creado por pushd)
+  y cambios en el mismo.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  POPD [*] [/?]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  *   Borra la pila de directorios.
+  /?  Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  <a href="../command/pushd.htm">PUSHD</a> es muy parecido a un CD,excepto que almacena el directorio actual
+  antes de cambiarlo m s tarde, POPD se puede utilizar para restaurarlo.
+  <a href="../command/pushd.htm">PUSHD</a> su puede usar varias veces, almacenando una pila de directorios.
+  El uso de <a href="../command/pushd.htm">PUSHD</a> sin especificar un directorio almacenar  el actual
+  directorio, pero no cambiarlo.
+  POPD es un comando interno de command.com y no necesita otro archivo
+  para que funcione.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+Este comando            cambia el directorio actual a /muestra:
+============            =========================================
+cd c:\fdos\bin          c:\fdos\bin
+pushd c:\games          c:\games      (y almacena c:\fdos\bin)
+pushd c:\utils          c:\utils      (y almacena c:\games)
+pushd c:\packages       c:\packages   (y almacena c:\utils)
+dirs                    muestra los directorios almacenados por pushd:
+                          0001=c:\fdos\bin
+                          0002=c:\games
+                          0003=c:\utils
+popd                    c:\utils      (y elimina c:\utils (0003)
+                                      desde la pila de directorios)
+popd                    c:\games      (y elimina c:\games (0002)
+                                      desde la pila de directorios)
+popd                    c:\fdos\bin   (y elimina c:\fdos\bin (0001)
+                                      desde la pila de directorios)
+popd                    muestra el mensaje: 
+                          "Pila de directorios vacia"
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../command/cd.htm">cd</a>
+  <a href="../command/chdir.htm">chdir</a>
+  <a href="../command/dirs.htm">dirs</a>
+  <a href="../command/pushd.htm">pushd</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 2003 <b>Robert Platt</b>, Modificado en 2007 por <b>W. Spiegl.</b>
+  Traducido en 2018 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+
+</pre></body></html>

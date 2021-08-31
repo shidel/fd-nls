@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : cdrcache.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : cdrcache.sys</h1>
+<pre>
+  CDRCACHE.SYS est un programme de cache de lecteur CD. Il am‚liore les
+  performances du lecteur. N‚cessite la m‚moire XMS, et au moins un
+  ordinateur 386. CDRCACHE.SYS doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> /
+  <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS fonctionne d‚j…, vous pouvez charger CDRCACHE.SYS plus
+  tard avec <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  In config.sys, soit :
+    p‚riph‚rique=cdrcache.sys nom du p‚riph‚rique taille du cache
+  soit :
+    devicehigh=cdrcache.sys nom du p‚riph‚rique taille du cache
+</pre>
+<h2>Options:</h2>
+<pre>
+  p‚riph‚r   Le mˆme nom que le p‚riph‚rique que vous avez d‚j… charg‚
+             avec votre pilote de lecteur de CD-ROM.
+  nom        Un nouveau nom que vous transmettrez … shsucdx dans
+             autoexec.bat
+  cachesize  Sp‚cifie la taille du cache tampon en Ko. Le cache est
+             stock‚ dans la m‚moire XMS.
+             La valeur minimale est 128
+             La valeur maximale est 65280
+             Les valeurs sous 100 sont valides pour la compatibilit‚
+             avec les versions pr‚c‚dentes de CDRCACHE.SYS. Sous 100,
+             les tailles sont interpr‚t‚es comme ‚tant des multiples
+             de 0.25 Mo.
+  Contr“le du pilote aprŠs le chargement :
+    Utilisation :
+  echo commande > nom
+  Commande :
+    F     Vide le cache.
+    S     Affiche les statistiques.
+    I     Affiche les statistiques avec des informations techniques.
+    C     Efface les statistiques.
+    Q     Mode silencieux.
+    N     Verbosit‚ normale.
+    V     Mode verbeux/ de tra‡age.
+    0     Arrˆte la mise en cache.
+    1     Continue la mise en cache (aprŠs un arrˆt par exemple).
+    ?     Affiche l'aide.
+    nom   Est le paramŠtre transmis … CDRCACHE.SYS (cf. l'exemple).
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Chargez CDRCACHE.SYS aprŠs le chargement de votre pilote de CD-ROM
+  device (g‚n‚ralement uide.sys).
+  Comme CDRCACHE.SYS (2003) est bas‚ sur <a href="../base/lbacache.htm">LBACACHE.SYS</a>, veuillez lire
+  la documentation LBAcache pour des d‚tails techniques et de
+  programmation additionnels.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Dans config.sys / fdconfig.sys:
+    DEVICE=c:\fdos\bin\xcdrom.sys /D:FDCD0000
+    DEVICE=c:\fdos\bin\CDRCACHE.SYS FDCD0000 CDRCACH$ 2048
+  puis dans autoexec.bat:
+    c:\fdos\bin\shsucdx /D:CDRCACH$
+  Cela alloue un cache tampon de 2048KB (2MB) pour un seul lecteur
+  CD IDE CD.
+    echo F > cdrcach$    (vider le cache)
+    echo SCF > cdrcach$  (afficher les statistiques, puis les effacer
+                         et vider le cache)
+    echo S > cdrcach$    (afficher seulement les statistiques)
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+  <a href="../base/lbacache.htm">lbacache</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+  <a href="../base/tickle.htm">tickle</a>
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

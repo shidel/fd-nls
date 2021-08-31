@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: jemm386</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: jemm386</h1>
+<pre>
+  JEMM386 is an Expanded Memory Manager.
+  JEMM386 has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE=[drive][path][jemm386.exe] [options]
+         drive  The drive letter, e.g. C:
+         path   The directory, e.g. \example\
+  or run it from the command line:
+  [drive][path][jemm386.exe] [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+ +A20/NOA20     A20-disable emulation on/off (default on).
+  ALTBOOT       Use alternate reboot strategy.
+  B=####        Specify lowest segment address for EMS banking
+                (default=4000).
+  D=###         Set DMA buffer size in kB (default=64, max is 128).
+  EMX           Increased EMX DOS extender compatibility.
+  FASTBOOT      Fast reboot. Requires Jemm386 to be loaded in CONFIG.SYS.
+  FRAME=E000    Set EMS page frame (FRAME=NONE disables frame). Any value
+                between 8000 and E000 is accepted, but not all will work.
+  I=D000-D7FF   Force a region to be used for UMBs. Without this option
+                range C000-EFFF is scanned for unused pages. May also be
+                used to add (parts of) regions A000-BFFF or F000-F7FF
+                as UMBs. Don't use this option if you don't know what
+                you are doing!
+  I=TEST        Scan ROMs for unused pages, include found regions as UMBs.
+  [MAX=]#####   Limit for VCPI (and EMS if < 32M) memory in kB
+                (default 120 MB).
+  MIN=#####     Reserve up to ##### kB for EMS/VCPI memory on init
+                (default=0).
+  NOCHECK       Disallow access to address space without RAM (MMIO)
+  NOEMS         Disable EMS handling. Use NOEMS to get more            
+                free UMBs if you need no EMS.
+  NODYN         No dynamic XMS memory allocation (use MIN= to set fix
+                amount).
+  NOHI          Don't move resident part into first UMB.
+  NOINVLPG      Don't use INVLPG opcode.
+ +PGE/NOPGE     Page Global Enable feature usage on/off (default off).
+  RAM/NORAM     Try to supply UMBs on/off (default on).
+  S=D000-D7FF   Assume Shadow-RAM activated by UMBPCI, include it as UMB.
+  SB            SoundBlaster driver compatibility mode.
+  SPLIT         Regain partially used EPROM 4k pages for UMBs.
+ +VCPI/NOVCPI   VCPI Support on/off (default on).
+  VDS/NOVDS     Virtual DMA Services on/off (default on).
+ +VME/NOVME     V86-Mode Extensions on/off (default on).
+  VERBOSE       Display additional details during start (abbr: /V).
+  X=D000-D7FF   Exclude region from being touched or used by Jemm386.
+                X=D000-D7FF can be needed e.g. for some network.
+  X=TEST        Scan memory region C000-EFFF for UMB exclusion.
+  /?            Shows the help.
+ '+': option can be set dynamically by running Jemm386 from the command
+      line.
+  When invoked from the command line Jemm386 additionally will understand:
+    LOAD        install
+    UNLOAD      uninstall
+</pre>
+<h2>Comments:</h2>
+<pre>
+  JEMM386 requires a 80386+ CPU. <a href="../base/himemx.htm">HIMEMX</a> should be loaded before.
+  Load JEMM386 as DEVICE=JEMM386.EXE in CONFIG.SYS (although it is
+  an ".exe"-file!
+  JEMM386 has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\himemx.exe
+    device=c:\fdos\bin\jemm386.exe
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

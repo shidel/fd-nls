@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: screen</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: screen</h1>
+<pre>
+  SCREEN sets the number of lines of text on screen.
+  SCREEN is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  screen=xx
+</pre>
+<h2>Options:</h2>
+<pre>
+  xx (Codes):
+    0x11  8x14 font (28 lines VGA, 25 lines EGA)
+    0x12  8x8  font (50 lines VGA, 43 lines EGA)
+    0x14  default VGA font (25 lines VGA)
+</pre>
+<h2>Comments:</h2>
+<pre>
+  SCREEN switches into videomode xxx (INT10/11xx/000).
+  Some newer graphics cards may not have 8x14 fonts in the BIOS. In that
+  case, a driver can be loaded to load a suitable font in RAM, but 
+  SCREEN=0x11 should not be used. If xx is less than 15 (0x0f), it is
+  treated as screen mode number, for example 1 for CGA 40x25 color text
+  or 7 for monochrome text.
+  SCREEN is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    screen=0x12
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

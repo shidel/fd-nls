@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: foxcalc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: foxcalc</h1>
+<pre>
+  FOXCALC ist ein einfacher Taschenrechner fuer DOS mit einer graphischen
+  Benutzeroberflaeche. Das Programm hat eine Mausunterstuetzung, d.h. Sie
+  sollten Ihren Maustreiber vor dem Start von FOXCALC geladen haben; die
+  Benutzung wird dadurch viel einfacher.
+</pre>
+<h2>Syntax:</h2>
+<pre>  - keine -</pre>
+<h2>Optionen:</h2>
+<pre>
+  Wenn Sie wirklich keine Maus verwenden koennen, finden Sie unten eine
+  Liste von Tastenbefehlen. Diese Liste sollte immer dann automatisch 
+  erscheinen, wenn FoxCalc keinen Maustreiber findet.
+  Taste          Funktion     
+  0-9            0-9 (Zahlen)            
+  "+"            +   (Addition)           
+  "-"            -   (Subtraktion)        
+  "=" or ENTER   =   (Return)             
+  "."            .   (Komma)              
+  "*"            *   (Multiplikation)     
+  "/"            /   (Division)           
+  "%"            %   (Prozent)            
+  "]"                (Quadratwurzel)        
+  "["                (Quadrat)             
+  "^"                (Exponent)     
+  "!"            x!  (Fakultaet)      
+  ":"            MOD (Modulo)             
+  "m"            M+  (Memory Addition)    
+  "M"            M-  (Memory Subtraktion) 
+  "r"            MR  (Memory Recall)      
+  "c"            MC  (Memory Clear)       
+  "\"            +/- (Vorzeichenwechsel)      
+  ESC            OFF (ENDE)               
+  DEL            AC  (Clear all)          
+  BackSpace      C   (Clear)              
+  "s"            snd (sound an/aus)       
+  "?"            ?   (Ueber das Programm)
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  BERECHNUNGEN
+  FoxCalc verwendet die GMP (GNU Multi Precision Library) und die MPFR
+  Libary fuer alle Berechnungen. Dadurch wird es ein fehlerfreies und
+  sehr zuverlaessiges Tool. Alle Operationen werden mit einer 60 stelligen
+  Aufloesung ausgefuehrt. Gleitkommazahlen, die nicht in das Fenster
+  passen, werden ohne Rundung abgeschnitten.
+  Wenn Sie die MOD Funktion in FoxCalc benutzen, koennen Sie andere 
+  Ergebnisse als bei anderen Computertaschenrechnern oder Programmier-
+  sprachen erhalten. Das ist kein Bug.
+  Die Modulo Operation bei negativen Zahlen kann auf verschiedene Arten
+  ausgefuehrt werden. Normalerweise fuehren Computer eine "X MOD Y"
+  Operation aus, indem sie absolute Werte von X und Y verwenden und
+  veraendern das Ergebnis des Signums zu dem X-Zeichen. Das ist der ein-
+  fachste Weg und die Art und Weise wie Intel Prozessoren arbeiten.
+  FoxCalc verhaelt sich anders. Deshalb wird die "7 MOD -3" Operation
+  bei anderen Taschenrechnern als "1" berechnet, waehrend FoxCalc "-2"
+  ausgibt. Beide Ergebnisse sind richtig.
+  <a href="../other/cpidos.htm">CODEPAGE</a> UND LOKALE EINSTELLUNGEN:
+  Da es einige Tasten gibt, die ASCII-Zeichen hoeher als ASCII #127 ver-
+  wenden, ueberprueft FoxCalc die Codepage des Systems und aendert die
+  Tastenbeschriftungen, wenn die Codepage sie nicht richtig beschreiben
+  kann. Zum Beispiel ist die Quadrattaste bei Codepage 437 "û" und wird
+  bei CP850 zu "SQR". Die Trennzeichen (Dezimaltrennzeichen und Tausender-
+  trennzeichen) werden aus den Systemeinstellungen uebernommen. Wenn Sie
+  diese aendern wollen, aendern Sie einfach Ihre Systemeinstellungen
+  (normalerweise durch die Verwendung von <a href="../base/cntrysys.htm">COUNTRY.SYS</a>).
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  foxcalc
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../other/cpidos.htm">codepage</a>
+  <a href="../base/cntrysys.htm">country.sys</a>
+  <a href="../util/fdrc.htm">fdrc</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Mateusz Viste "Fox". 2020 aktualisiert
+  von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

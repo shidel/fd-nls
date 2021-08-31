@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Netzwerken unter FreeDOS - Einfuehrung</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Netzwerken unter FreeDOS - Einfuehrung</h1>
+<pre>
+  Vielen Dank an Herrn Ulrich Hansen fuer seine Erlaubnis, diesen
+  Artikel in der FreeDOS Hilfe zu veroeffentlichen!
+</pre>
+<h2><a name="zzz"></a>Kurzuebersicht</h2>
+<pre>
+  Dieses Dokument beschreibt, wie man unter FreeDOS ein <a href="../network/network.htm">Netzwerk</a>
+  einrichtet. (<b>http://www.freedos.org/</b>). Das Meiste duerfte unter
+  anderen DOS-Versionen ebenfalls funktionieren.
+  Das <a href="../network/history.htm">erste Kapitel</a> behandelt die Geschichte des <a href="../network/network.htm">Netzwerkens</a> unter
+  DOS, die sich hauptsaechlich in den Jahren 1981 bis 1995 ereignete.
+  Im <a href="../network/dosnetto.htm">zweiten Kapitel</a> finden Sie eine Uebersicht ueber die Treiber,
+  Protokolle und Anwendungen, die es in das 21ste Jahrhundert ueberlebt
+  haben. Das <a href="../network/install.htm">dritte</a> und das <a href="../network/ldtcpipk.htm">vierte Kapitel</a> erklaeren schliesslich,
+  wie man <a href="../network/tcpip.htm">TCP/IP</a> auf einer DOS Maschine installiert. Es ist ein aus-
+  fuehrlicher Fuehrer durch die Installation und Konfiguration von
+  Treibern und andere erforderliche Software.
+</pre>
+<h2><a name="aaa"></a>Alternativen</h2>
+<pre>
+  Wenn auf beiden Maschinen ein Parallelport (= Druckerport, Anmerkung:
+  gibt es auf modernen Maschinen nicht mehr!) vorhanden ist, koennen
+  Sie auch eine Parallelkabelverbindung verwenden, um Daten zu trans-
+  ferieren (z.B. mit MS DOS 6.22 Interlnk, Open/DR DOS Filelink,
+  Laplink, Winlink oder <b>FileMaven</b>
+  vgl.: <b>http://www.briggsoft.com/fmdos.htm (*01)</b>).
+</pre>
+<h2><a name="bbb"></a>Hardware</h2>
+<pre>
+    (Bild einer Testsuite fuer dieses Wiki: Ein Compaq Contura Aero
+    4/33C mit PCMCIA)
+  Um sich mit einem <a href="../network/network.htm">Netzwerk</a> zu verbinden, benoetigen sie ein
+  physikalische Geraet, um eine Verbindung zwischen Ihrem PC und
+  dem <a href="../network/network.htm">Netzwerk</a> herzustellen. Das kann folgendermassen erfolgen:
+    * ueber <a href="../network/modem.htm">Modem</a>, durch Verwendung der Telefonleitung, oder
+    * ueber eine <a href="../network/ethernet.htm">Ethernet</a> Netzwerk Karte, durch Verwendung einer
+      direkten Leitung, oder
+    * ueber <a href="../network/wifi.htm">WiFi</a> (drahtloses Netzwerk). 
+
+  <a href="../network/modem.htm">Modem</a>
+  Das Netzwerken ueber ein <a href="../network/modem.htm">Modem</a> wird in diesem Wiki leider noch
+  nicht beschrieben - vielleicht koennen Sie dabei helfen?
+
+  <a href="../network/ethernet.htm">Ethernet</a>
+  Falls Sie beabsichtigen, eine <a href="../network/ethernet.htm">Ethernet</a> Netzwerkkarte fuer Ihre
+  FreeDOS Maschine kaufen zu wollen, pruefen Sie bitte, ob sie einen
+  Pakettreiber dabei hat. Viele <a href="../network/tcpip.htm">TCP/IP</a> Anwendungen fuer DOS benoetigen
+  zum Funktionieren einen Pakettreiber (siehe <a href="../network/pack_ins.htm">hier</a> fuer weiter Info).
+  Wenn die Karte andere Treiber fuer DOS oder Windows 3.1 wie z.B.
+  <a href="../network/odi_ins.htm">ODI Treiber</a> (<a href="../network/novell.htm">Novell</a>) oder <a href="../network/ndis_ins.htm">NDIS2 Treiber</a> (Microsoft) benoetigt,
+  wird sie auch unter DOS funktionieren (sie ist nur etwas schwieriger
+  zu installieren).
+  Unter PCMCIA sind folgende Karten unter DOS als funktionsfaehig bekannt:
+    * die <a href="../network/3com.htm">3Com</a> Megahertz 3C574 10/100 LAN PC Card (kein Pakettreiber,
+      aber mit <a href="../network/odi.htm">ODI</a> und <a href="../network/ndis.htm">NDIS</a>2),
+    * die <a href="../network/3com.htm">3Com</a> EtherLink III 3C589 10Mbit Karte (mit Pakettreiber) und
+    * die D-Link DFE-670TXD Fast <a href="../network/ethernet.htm">Ethernet</a> PC Karte (mit Pakettreiber). 
+  PCMCIA Karten muessen mit Software von Drittherstellern wie z.B.
+  SystemSofts Cardsoft installiert werden. Es kann von Driverguide als
+  "SystemSoft Version 3.1, <b>CARDSOFT.ZIP</b>" (vgl.: <b>http://www2.
+  driverguide.com/uploads/uploads9/26188.html (*02)</b>) heruntergeladen
+  werden.
+
+  <a href="../network/wifi.htm">WiFi</a>
+  Einige aeltere <a href="../network/wifi.htm">WiFi</a> (drahtloses Netzwerk) Karten arbeiten mit FreeDOS
+  zusammen. Mehr Informationen darueber erhalten Sie <a href="../network/wifi.htm">hier</a>.  
+</pre>
+<h2><a name="ccc"></a>Anmerkung</h2>
+<pre>
+  Das Erstellen dieses Dokuments war nur moeglich, weil viele andere
+  Leute dazu bereit waren, Informationen und Code im Internet zu teilen.
+  Vielen herzlichen Dank!
+  Einige Teile dieses Dokuments beruhen auf Eingebungen von Michael
+  Bernardi's <b>DOS Networking HOWTO</b> (<b>http://www.dendarii.co.uk/FAQs/
+  dos-net.html (*03)</b>). Auch seine Sammlungen von <b>FAQs</b> (haeufig gestellte
+  Fragen, <b>http://www.dendarii.co.uk/FAQs/ (*04)</b>) und <b>Netzwerkanwendungen</b>
+  (<b>http://www.dendarii.co.uk/FAQs/dos-apps.html (*05)</b>) und seine <b>DOS-Meta
+  FAQ about networking DOS machines</b> (<b>http://www.dendarii.co.uk/FAQs/
+  dos-meta_faq.html (*06)</b>) sind sehr wertvoll.
+  Eine andere schoene Einfuehrung in das Netzwerken unter DOS wurde
+  von Michael B. Brutmann geschrieben. Der Titel lautet: <b>"<a href="../network/tcpip.htm">TCP/IP</a>
+  Networking on DOS. Why on Earth would anybody want to do that?"</b>
+  (<b>http://www.brutman.com/Dos_Networking/dos_networking.html (*07)</b>).
+</pre>
+<h2><a name="ddd"></a>Copyright</h2>
+<pre>
+  Das ganze Werk ("Netzwerken unter FreeDOS") ist lizensiert unter
+  den Bedingungen der <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a> (GNU FDL).
+  Der Screenshot vom "<a href="../network/history.htm#aab">LAN manager</a> 2.1" im Kapitel <a href="../network/history.htm#aab">LAN manager</a>
+  (<b>http://lazybrowndog.net/freedos/#Manager (*08)</b>) stammt von Michal
+  Necasek fuer seine <b>"History of OS/2"</b> (Geschichte von OS/2)
+  (<b>http://pages.prodigy.net/michaln/history (*09)</b>). Er gab uns freund-
+  licherweise die Erlaubnis, den Screenshot zu verwenden und unter
+  der GNU FDL zu veroeffentlichen.
+  Das Foto des Softwarepakets "Workgroup Add-On fuer MS-DOS" im
+  gleichen Kapitel wurde von Dirk Makowski fuer seine <b>"Winhistory"</b>
+  (Windowsgeschichte) (<b>http://www.winhistory.de/ (*10)</b>) gemacht, einer
+  grossen Sammlung von Sachen und Screenshots historischer Software.
+  Er erlaubte uns ebenfalls, sein Foto als Vorschaubild in diesem
+  Dokument zu verwenden und es unter der GNU FDL zu veroeffentlichen.
+  Grosse Teile des Texts und viele Grafiken / Bilder wurden erstellt
+  von <b>Ulrich Hansen</b> (<b>http://www.ulrich-hansen.de/ (*11)</b>). Copyright
+  (c) 2007 von Ulrich Hansen, Mainz (Deutschland). Lizenz: GNU FDL.
+  Die Genehmigung ist erteilt, dieses Dokument unter den Bedingungen
+  der GNU Free Documentation License (GNU freie Dokumentationslizenz)
+  Version 1.2 oder jeder von der Free Software Foundation spaeter
+  veroeffentlichten Version zu kopieren, verteilen und/oder zu modifi-
+  zieren; ohne unveraenderliche Bereiche, keine Front-Cover Texte
+  (vorne ueberdeckende Texte) und keine Back-Cover Texte (hinten
+  ueberdeckende Texte).
+  Eine Kopie der Lizenz kann hier gefunden werden: <b>GNU Free
+  Documentation License</b> (<b>http://www.gnu.org/licenses/gfdl.html (*12)</b>).
+</pre>
+<h2><a name="eee"></a>Hinweis</h2>
+<pre>
+  Dieser Text gibt meine eigenen Erfahrungen mit Netzwerken unter DOS
+  wieder. Die Loesungen und Vorschlaege koennen in Ihrer DOS-Umgebung
+  funktionieren - oder auch nicht. Seien Sie deshalb bitte vorsichtig:
+  Die Installation von Software auf Ihrem System oder das Veraendern
+  von Systemdateien kann Ihre Maschine beschaedigen, Ihren Arbeitsfluss
+  stoeren und Ihre Zeit verschwenden.
+
+  <b>(*01) OK</b>
+  <b>(*02) https://archive.org/details/SYSUTI11
+        und: https://support.advantech.com.tw/support/DownloadSRDetail_
+        New.aspx?SR_ID=1-17FJK&Doc_Source=Download
+        und: https://support.advantech.com.tw/support/DownloadSRDetail_
+        New.aspx?SR_ID=1%2BGE%2B626&Doc_Source=Download</b>
+  <b>(*03) OK</b>
+  <b>(*04) OK</b>
+  <b>(*05) OK</b>
+  <b>(*06) OK</b>
+  <b>(*07) OK</b>
+  <b>(*08) http://freedos.sourceforge.net/wiki/index.php/
+        Networking_FreeDOS</b>
+  <b>(*09) http://ps-2.kev009.com/michaln/history/index.html</b>
+  <b>(*10) OK</b>
+  <b>(*11) OK</b>
+  <b>(*12) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), 2011 und 2020
+  an die FreeDOS-Hilfe angepasst von W.Spiegl.</b>
+  Weitergehende Informationen <a href="../network/intro.htm#ddd">finden Sie hier</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

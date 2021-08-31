@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: defrag</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: defrag</h1>
+<pre>
+  DEFRAG optimiert die Dateiladezeit, indem es Dateifragmente
+  zusammenlegt.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  defrag [/C] [Laufwerk] [{/F|/U|/DF|/FF|/FD}] [/Sorder[-]] [/B] [/X] 
+         [/A] [/FO] [/?]
+         Laufwerk  Das ist der Laufwerksbuchstabe des Laufwerks, das Sie
+                   defragmentieren wollen. Z.B.: defrag c:
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /C   Verwendet die Kommandozeilenversion. Defrag wird mit dieser
+       Option seine menuegesteuerte Benutzeroberflaeche nicht verwenden.
+       Es wird stattdessen ueber die Kommandozeile mit Ihnen kommuni-
+       zieren. Sie muessen unbedingt das Laufwerk angeben, wenn sie die
+       Option /c verwenden wollen, z.B. defrag /c c:
+  /F   Volloptimierung des Laufwerks. Mit dieser Option wird defrag eine
+       volle Optimierung machen und sicherstellen, dass alle Dateien am
+       Beginn der Festplatte stehen, ohne Loecher zwischen den einzelnen
+       Dateien.
+  /U   Mit dieser Option wird defrag die Dateien defragmentieren, aber
+       zwischen den Dateien bleiben Loecher bestehen. 
+  /FF  Volloptimierung des Laufwerks; bewegt alle Dateien nach vorne.
+  /DF  Volloptimierung des Laufwerks: bewegt alle Verzeichnisse nach
+       vorne.
+  /FD  Volloptimierung des Laufwerks: schiebt alle Dateien des gleichen
+       Verzeichnisses zusammen.
+  /S   Sortiere Dateien nach der gewaehlten Reihenfolge.
+       Reihenfolge: N  nach Namen (alphabetisch)
+                    E  nach Dateiendung (alphabetisch)
+                    D  nach Datum und Uhrzeit (aeltestes Datum zuerst)
+                    S  nach der Groesse (das Kleinste zuerst)
+                    -  Vorzeichen, um in umgekehrter Reihenfolge zu
+                       sortieren.
+  /B   Startet den Computer nach der Optimierung neu.
+  /X   Zwingt defrag zu beenden, sobald es mit der Optimierung fertig
+       ist.
+  /A   Zusammen mit der /C Option; defrag wird eine hoerbare Warnung
+       geben, bevor es in Aktion tritt.
+  /FO  Zusammen mit der /C Option; dies sagt defrag, dass es eine
+       umfangreichere Information ausgeben soll.
+  /?   Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Tippen Sie defrag /no-ops fuer eine Liste der Operationen, die nicht
+  ausgefuehrt werden (/SKIPHIGH, /LCD, /BW, /GO).
+  Tippen Sie defrag /contrib fuer eine Liste der Mitwirkenden.
+  Es wird empfohlen, DEFRAG mit Benutzeroberflaeche zu verwenden
+  (kein: /C).
+  Was ist eine Festplattenfragmentierung?
+  Wenn Dateien geloescht werden oder kleiner werden, hinterlaesst dies
+  Luecken im bisher voll beschriebenen Bereich der Festplatte. Wenn eine
+  neue Datei erzeugt wird oder die Datei groesser wird, wird sie in diese
+  Luecken geschrieben, aber wenn der Platz nicht gross genug ist, wird die
+  Datei irgendwo anders auf der Festplatte weitergeschrieben. Nach sehr
+  vielen solchen Operationen koennen die einzelnen Teile einer Datei sehr
+  zerstreut auf der Festplatte liegen. Dieser Fragmentationsprozess bremst
+  den Dateizugriff stark ab, weil das Betriebssystem sich die einzelnen
+  Teile erst wieder zusammensuchen muss. Die Fragmentation ist auf DOS
+  Festplatten ein normaler Prozess.
+  Wann sollte ich DEFRAG benutzen?
+  Benutzen Sie DEFRAG gelegentlich bzw. wenn Sie sehr viele neue Programme
+  installiert haben oder sehr viele neue Dateien erstellt haben.
+  DEFRAG hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    0  Erfolg
+    1  interner Fehler
+    2  Laufwerk zu voll zum Defragmentieren
+    3  Abbruch durch Benutzer
+    4  Genereller Fehler
+    5  Lesefehler
+    6  Schreibfehler
+    7  FAT-Zuweisungsfehler
+    8  Speicherfehler
+    9  Zu wenig Speicher
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  defrag c: /F
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/chkdsk.htm">chkdsk</a>
+  <a href="../util/dosfsck.htm">dosfsck</a>
+ (<a href="../base/scandisk.htm">scandisk</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 - 2004 Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

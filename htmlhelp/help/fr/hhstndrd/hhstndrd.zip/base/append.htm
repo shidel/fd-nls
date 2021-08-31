@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : append</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : append</h1>
+<pre>
+  APPEND permet aux programmes d'ouvrir des fichiers de donn‚es dans les
+  dossiers sp‚cifi‚s comme s'ils ‚taient dans le r‚pertoire courant.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  APPEND [[lecteur]chemin[;...]] [/X[:ON|:OFF]] [/chemin:ON|/chemin:OFF]
+         [/E]
+  APPEND ;
+  APPEND [/?]
+         lecteur  Lettre de lecteur, par ex. C:
+         chemin   R‚pertoire … ajouter, par ex. \exemple
+</pre>
+<h2>Options :</h2>
+<pre>
+  /X[:ON]    tendre APPEND aux recherches et ex‚cutions de commandes.
+  /X:OFF     Applique APPEND seulement aux requˆtes d'ouverture de
+             fichiers. /X:OFF est la valeur par d‚faut.
+  /PATH:ON   Rechercher dans les dossiers ajout‚s pour les requˆtes
+             de fichiers qui comprennent d‚j… un chemin. C'est la
+             valeur par d‚faut.
+  /PATH:OFF  D‚sactive /PATH:ON.
+  /E         Stocke le dossier ajout‚ dans l'environnement.
+             /E ne peut ˆtre utilis‚ que dans la premiŠre invocation
+             d'APPEND. Vous ne pouvez pas inclure des chemins sur
+             la mˆme commande que /E.
+  APPEND ;   nettoie la liste des r‚pertoires ajout‚s.
+  APPEND     sans paramŠtres affiche la liste des r‚pertoires ajout‚s.
+  /?         Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  N'utilisez pas APPEND avec Windows ou les extenseurs 32 bits.
+  APPEND s'installe lui-mˆme comme une commande interne aprŠs sa premiŠre
+  ex‚cution. Les invocations suivantes DOIVENT exclure le chemin de
+  fichier et l'extension de la commande APPEND.
+  APPEND prend en charge le NLS (support des langues nationales).
+</pre>
+<h2>Exemples :</h2>
+<pre>
+    PremiŠre utilisation :
+  C:\command\append.exe D:\Data\df1.dat
+    Utilisation parfaitement l‚gitime de la commande Append pour la
+    premiŠre invocation.
+    Seconde utilisation erron‚e :
+  C:\command\append.exe D:\Data\df2.dat
+    Seconde utilisation invalide. Le r‚sultat est que le nouvel append
+    charg‚ par command.com se voit dans la m‚moire et quitte avec une
+    erreur. 
+    Seconde utilisation valide :
+  append D:\Data\df2.dat
+    Seconde utilisation valide. Command.com regarde sa liste de commandes
+    internes, voit append et l'ex‚cute en lui transmettant le restant de
+    la ligne de commande.
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../command/path.htm">path</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eduardo Casino, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

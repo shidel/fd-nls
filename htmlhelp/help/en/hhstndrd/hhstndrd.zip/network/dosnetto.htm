@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Networking FreeDOS - DOS networking today</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Networking FreeDOS - DOS networking today</h1>
+<h2><a name="zzz"></a>Overview</h2>
+<pre>
+  In this chapter we will learn more about the <a href="../network/network.htm">network</a> drivers, protocols
+  and <a href="../network/network.htm">networking</a> software that can be used with a FreeDOS PC in the 21st
+  century. For deeper information about <a href="../network/network.htm">networking</a> try Eugene Blanchard's
+  <b>"Introduction to Data Communications"</b> (see: <b>http://www.techbooksforfree
+  .com/intro_to_data_com/ (*01)</b>, GNU GPL, a more recent but non free
+  version <b>can be found here</b> (see: <b>http://learnat.sait.ab.ca/ict/
+  txt_information/Intro2dcRev2/index.html (*02)</b>). 
+</pre>
+<h2><a name="aaa"></a>Drivers</h2>
+<pre>
+  <a href="../network/ethernet.htm">Ethernet</a> is today's dominant <a href="../network/network.htm">network</a> hardware technology. For this type
+  of <a href="../network/network.htm">network</a> adapters generally three sorts of drivers can be used under
+  DOS (and you should be able to find at least one of them for your
+  card):
+    * <a href="../network/install.htm">Packet drivers</a>, invented by FTP Software Inc. Many of them were
+      written and distributed by <a href="../network/crynwr.htm">Crynwr</a>.
+    * Open Datalink Interface (<a href="../network/odi.htm">ODI</a>) drivers, developed by <a href="../network/novell.htm">Novell</a> and
+      Apple and the
+    * <a href="../network/network.htm">Network</a> Driver Interface Specification (<a href="../network/ndis.htm">NDIS</a>) drivers, developed by
+      Microsoft and <a href="../network/3com.htm">3Com</a>. 
+  All three are <b>multiprotocol</b> <a href="../network/network.htm">network</a> drivers, which means that they are
+  able to support multiple protocols over the same card. Earlier drivers
+  did support only a single protocol. Multiprotocol drivers communicate
+  directly with the <a href="../network/network.htm">network</a> interface card and provide a published
+  interface specification, to which applications can be written.
+  For a good general introduction into this topic see <b>"Implementing
+  Multi-Protocol <a href="../network/network.htm">Network</a> Drivers in a DOS Environment"</b> by the University
+  of Georgia, Athens, Georgia (U.S.) (see: <b>http://www.eits.uga.edu/~ucns/
+  lans/docs/netdrive.html (*03)</b>). 
+</pre>
+<h2><a name="bbb"></a>Protocols</h2>
+<pre>
+  The following protocols are supported by these three drivers:
+    * Transmission Control Protocol/Internet Protocol (<a href="../network/tcpip.htm">TCP/IP</a>) used for
+      instance by UNIX, GNU/Linux, Windows Vista, OS X and the Internet,
+    * Internetwork Packet Exchange/Sequenced Packet Exchange (<a href="../network/ipxspx.htm">IPX/SPX</a>)
+      protocols, used for instance by <a href="../network/novell.htm">Novell Netware</a>,
+    * <a href="../network/network.htm">Network</a> Basic Input Output System (<a href="../network/history.htm#aaa">NetBIOS</a>) Extended User Interface
+      (NetBEUI a.k.a. <a href="../network/cifs.htm">CIFS</a>) protocol used for instance by OS/2,
+      Windows 9x, ME and 2000. 
+  <a href="../network/tcpip.htm">TCP/IP</a> is the standard for basic internet services such as http,
+  smtp or ftp and it also became the default protocol for connecting
+  Local Area <a href="../network/network.htm">Networks</a> (LAN).
+  <a href="../network/cifs.htm">NetBEUI</a> was the default protocol for LANs in Microsoft systems until
+  Windows 2000. It was replaced by <a href="../network/history.htm#aaa">NetBIOS</a> over <a href="../network/tcpip.htm">TCP/IP</a> (NBT) and then by
+  <a href="../network/tcpip.htm">TCP/IP</a>. The application level <a href="../network/network.htm">network</a> protocol <a href="../network/history.htm#aab">SMB</a> for instance <b>can run</b>
+  (see: <b>http://support.microsoft.com/default.aspx?scid=kb;en-us;Q204279
+  (*04)</b>) directly atop of TCP since Windows XP.
+  <a href="../network/novell.htm">Novell's</a> <a href="../network/ipxspx.htm">IPX</a> was used in <a href="../network/novell.htm">Novell Netware</a>, which has been the default net-
+  working solution for personal computers running DOS or Windows 3.x.
+  Since 1998 NetWare is able to run on <a href="../network/tcpip.htm">TCP/IP</a>, more recent versions use
+  it per default.
+  Conclusion: <a href="../network/tcpip.htm">TCP/IP</a> is the "lingua franca" of modern <a href="../network/network.htm">networks</a>. It is
+  still possible to use other protocols, but support may come to an end. 
+</pre>
+<h2><a name="ccc"></a>Networking software</h2>
+<pre>
+  In general we can distinguish the following three ways of networking
+  that still can be used with DOS. Learn more about them in the following
+  chapters:
+    * <a href="../network/novell.htm">Novell Netware</a> - <a href="../network/odi.htm">ODI</a> driver based <b>Novell NetWare</b> programs for
+      accessing a NetWare <a href="../network/network.htm">network</a> and using <a href="../network/tcpip.htm">TCP/IP</a> services. 
+    * <a href="../network/msclient.htm">MS client</a> - <a href="../network/ndis.htm">NDIS</a> driver based <b>Microsoft "<a href="../network/history.htm#aab">LAN manager</a> Client" or "MS
+      Client 3.0"</b> to integrate DOS machines into a Windows/<a href="../network/history.htm#aab">SMB</a> workgroup. 
+    * <a href="../network/tcpip.htm">TCP/IP applications</a> - Packet driver based "UNIX-like" <b>TCP/IP appli-
+      cations</b> to access or provide <a href="../network/network.htm">network</a> services like http, smtp, ftp,
+      SSH (see: <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a>) or <a href="../network/nfs.htm">NFS</a>. 
+    * <a href="../network/others.htm">Others</a>
+
+  <b>(*01) OK</b>
+  <b>(*02) http://www.telecomworld101.com/Intro2dcRev2/index.html</b>
+  <b>(*03) https://web.archive.org/web/20090112073628/http://www.
+        eits.uga.edu/~ucns/lans/docs/netdrive.html</b>
+  <b>(*04) https://web.archive.org/web/20060315052325/http://support.
+        microsoft.com/default.aspx?scid=kb;en-us;Q204279</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), modified 2010
+  and 2020 by W.Spiegl.</b>
+  For more information <a href="../network/intro.htm#ddd">see here</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: fdrc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: fdrc</h1>
+<pre>
+  FreeDOS Resident Calculator (FDRC) is a resident calculator for
+  programmers.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  fdrc [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  FDRC supports the following command line parameters (you can use '/'
+  instead of '-'):
+  -h         Short help.
+  -?         Same as -h.
+  -H         Help on keyboard and operators usage.
+  -a         Calculate result after pressing any key, not only after
+             pressing 'Enter'. Note: current string will be stored in
+             history only after pressing 'Enter', even in this mode.
+  -c         Clear input line when pressing any alpha-numeric key
+             _immediately_ after popup. Pressing 'Delete', 'Backspace'
+             or any such keys doesn't clear the input line.
+  -e         Allow loading 2nd, 3rd,... copy of FDRC into memory.
+  -n         non-resident mode.
+  -w         Prevent loading FDRC into UMB. By default FDRC loads itself
+             into UMB if it is available.
+  -u         Unload. If INT 09h and/or INT 10h intercepted by other
+             program, FDRC will print warning message and exit.
+  -D         Temporarily disables FDRC.
+  -E         Enables FDRC.
+  -q         Quiet mode. If you try to call FDRC within graphics-mode
+             program, FDRC will beep twice. If you reached 1st or last
+             entry in history, FDRC will beep once. -q switch disables
+             all such sounds.
+  -l:number  Column of left side of FDRC's window.
+  -t:number  Row of top side of FDRC's window.
+             number -- decimal number >= 0.
+  -k:number  Scancode of activation key (hexadecimal). See 'rbil_i09.txt'
+             for details. Default value -- 35h ('/').
+  -s:number  Code of shift keys (hexadecimal).
+               Right Shift:  01
+               Left Shift:   02
+               Ctrl (any):   04
+               Alt (any):    08
+               Scroll Lock:  10
+               Num Lock:     20
+               Caps Lock:    40
+               Insert:       80
+               Default value -- 04 (Ctrl). For example: RightShift+Alt ==
+               == 1 + 8 == 9.
+  -y:number  Size of the history buffer (decimal). Default value -- 0.
+             Minimal value is 200, maximal is 16000 (can be changed in
+             'config.inc').
+</pre>
+<h2>Comments:</h2>
+<pre>
+  FDRC supports following operations:
+    + -- addition              &amp; -- bitwise AND
+    - -- subtraction           | -- bitwise OR
+    * -- multiplication        ^ -- bitwise XOR
+    / -- division              < -- logical shift left
+    % -- remainder             > -- logical shift right
+    \ -- square root           { -- arithmetical shift left
+    ~ -- bitwise NOT           } -- arithmetical shift right
+    ` -- negation
+
+  You can use the following keys:
+  Numerals and letters -- enter numbers.
+  " -- if you enter one double quote symbol, the second such symbol
+    will be entered automatically.
+  Right and left arrow keys -- move cursor.
+  Up and Down arrow keys -- previous / next string from history.
+  Page Up and Page down -- first and last strings in the history.
+  Home and End -- move cursor.
+  Enter -- calculate result and store it into history buffer.
+  Insert -- toggle insert/overstrike mode.
+  Backspace -- delete char before cursor.
+  Delete -- delete char under cursor.
+  Ctrl-Y -- clear string.
+  Ctrl-K -- clear text to the end of string.
+  You can move FDRC's window using WordStar-like keys (by default):
+    Ctrl-S -- left
+    Ctrl-D -- right
+    Ctrl-E -- up
+    Ctrl-X -- down
+  or Vi-like keys (if you defined VI_KEYS constant in config.inc):
+    Alt-H -- left
+    Alt-L -- right
+    Alt-K -- up
+    Alt-J -- down
+  Alt-S -- switch between signed and unsigned decimal representation
+  of result.
+  Alt-D -- stuff decimal representation of result to keyboard buffer and
+  exit.
+  Alt-H -- stuff hexadecimal representation of result to keyboard buffer
+  and exit.
+  Alt-1 .. Alt-4 -- stuff corresponding part of binary representation of
+  result to keyboard buffer and exit.
+  Esc -- exit.
+</pre>
+<h2>Examples:</h2>
+<pre>  - none -</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/foxcalc.htm">foxcalc</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl, updated in 2020.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

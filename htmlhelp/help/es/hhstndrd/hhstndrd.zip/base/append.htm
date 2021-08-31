@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: append</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: append</h1>
+<pre>
+  APPEND permite que los programas abran archivos de cualquier carpeta
+    como si estuvieran en el directorio actual.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  APPEND [[unidad]ruta[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+  APPEND ;
+  APPEND [/?]
+         unidad  Letra de unidad, por ejemplo C:
+         ruta    Directorio para anexar, \ejemplo
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /X[:ON]    Usar APPEND en las b£squedas y en la ejecuci¢n de comandos.
+  /X:OFF     Usar APPEND solo al abrir ficheros.
+             Se usa /X:OFF por omisi¢n.
+  /PATH:ON      Al recibir peticiones de archivos que incluyan una ruta se
+                anexar n las carpetas indicadas. Opci¢n por omisi¢n.
+  /PATH:OFF     Desactiva /PATH:ON.
+  /E            Se guarda la lista de carpetas anexadas en la variable APPEND
+                del entorno. /E solo se puede usar la primera vez que se
+                use APPEND. No se pueden incluir directorios y /E a la vez.
+
+  APPEND ; borra la lista de directorios anexados.
+  APPEND sin par metros muestra los directorios anexados
+  /?         Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  No use APPEND con Windows o extensores de 32 bits. APPEND se instala
+  como un comando interno despu‚s de su primera ejecuci¢n. Las 
+  invocaciones segundas y sucesivas DEBEN excluir la ruta del archivo y
+  la extensi¢n de comando APPEND. APPEND admite NLS (soporte de idioma
+  nacional).
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+    Primer uso:
+  C:\command\append.exe D:\Data\df1.dat
+    Uso perfectamente leg¡timo del comando Append para la primera
+    invocaci¢n de append.
+    Segundo uso incorrecto:
+  C:\command\append.exe D:\Data\df2.dat
+    Segundo uso no v lido. El nuevo APPEND se encuentra a si mismo
+    en la memoria de COMMAND.COM y salta un error.
+    Segundo uso v lido:
+  append D:\Data\df2.dat
+    V lido segundo uso. Command.com mira su lista de comandos internos,
+    ve APPEND y lo ejecuta, pasandole el resto de la l¡nea de comandos.
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../command/path.htm">path</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eduardo Casino, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del ®FreeDOS Spec Command HOWTO¯.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

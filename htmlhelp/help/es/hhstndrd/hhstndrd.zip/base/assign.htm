@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: assign</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: assign</h1>
+<pre>
+  ASSIGN cambia la letra asignada a una unidad.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  ASSIGN [/SHADOW] [/STATUS] [/?]
+  ASSIGN [/SHADOW] [/M] [/U] [{unidad1[:]=unidad2[:]}]
+         unidad1:  letra de unidad que se reemplazar , por ejemplo C:
+         unidad2:  letra de unidad a la que apunta, por ejemplo D:
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /SHADOW  Hace que la presencia de ASSIGH en la memoria sea dif¡cil
+           de detectar. Los usos posteriores de ASSIGH emitir n una
+           advertencia si la opci¢n /SHADOW no se usa (pero a£n as¡
+           realiza la acci¢n).
+  /STATUS  Muestra todas las letras de unidad asignadas. Si ASSIGN a£n
+           no est  cargado saltar  un mensaje.
+  /M       Intenta utilizar la memoria superior, en lugar de la memoria
+           convencional, para almacenar el ASSIGN.
+  /U       Desinstala un ASSIGN instalado previamente.
+  /?       Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Los caracteres ':' entre las letras de unidad son opcionales.
+  No se permiten espacios en blanco ni antes ni despu‚s del signo igual ®=¯.
+  Si no se nombran unidades y no se usa /SHADOW o /U, ASSIGN se reinstalar 
+  (borrando todas las asignaciones de unidades anteriores).
+  ASSIGN tiene los siguientes EXITCODES (ERRORLEVEL):
+    0 ‚xito/ayuda
+    3 abortado por el usuario (por ejemplo, Ctrl-C)
+    4 error de sintaxis
+  No use ASSIGN en combinaci¢n con los siguientes comandos:
+    diskcomp
+    diskcopy
+    format
+    label
+    print
+    restore
+    subst
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  assign B:=A:
+  assign B=A
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../base/join.htm">join</a>
+  <a href="../base/subst.htm">subst</a>
+  <a href="../base/swsubst.htm">swsubst</a>
+  <a href="../command/truename.htm">truename</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

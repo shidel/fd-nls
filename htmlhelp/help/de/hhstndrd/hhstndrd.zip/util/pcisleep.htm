@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: pcisleep</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: pcisleep</h1>
+<pre>
+  PCISLEEP zeigt Informationen ueber Ihre PCI/AGP-Geraete, scannt nach
+  Geraeten einer gewaehlten Klasse, aktiviert Energiesparmodi inklusive
+  VGA suspend (aussetzen) fuer Geraete. Kombinieren Sie es mit <a href="../base/fdapm.htm">FDAPM</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  PCISLEEP L(ist), S(leep), V(ga-sleep), Qnnnn
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  L(ist)   Zeigt eine umfangreiche Liste von PCI/AGP Geraeten. Suchen Sie
+           bitte im www nach den Hersteller-/Geraetenummern.
+             Beispiel: https://pci-ids.ucw.cz/
+  Qnnnn    Zeigt eine numerische Liste aller Geraete der Klasse n.
+           N muss 2 oder 4 Stellen haben: Qff und Qffff zeigt eine
+           Liste der Klassen. Beispiel:
+             Q02 listet Ihre Netzwerkkarte(n) auf.
+           <a href="../batch/if.htm#comment">ERRORLEVEL</a> ist die Zahl der gefundenen Geraete.
+  S(leep)  Haelt die CPU an und setzt (nur) die D1/D2 schlaffaehigen
+           Geraete (vgl. auch Ausgabe von LIST) in den D1/D2 Energiespar-
+           status. V(ga-schlafen) fuehrt S(chlafen) aus und stellt D3
+           faehige VGA-Karten ruhig. Der Monitor wird auch in den (DPMS)
+           Schlaf versetzt.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Druecken Sie eine Taste, um den V(GA)- oder S-Schlaf zu beenden.
+  Ein PCI BIOS ist erforderlich.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  pcisleep L
+  pcisleep Q02
+  pcisleep S
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/fdapm.htm">fdapm</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl. 2020 aktualisiert.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

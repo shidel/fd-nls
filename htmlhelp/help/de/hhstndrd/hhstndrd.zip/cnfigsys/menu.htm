@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: menu</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: menu</h1>
+<pre>
+  MENU zeigt waehrend der config.sys / fdconfig.sys ein Auswahlmenue an.
+  MENU ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+   menu [text]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  text  Der Text, den Sie waehrend der config.sys ausgegeben haben
+        moechten.
+    Gebrauch:
+      Benuetzen Sie "menudefault" um eine eine zeitverzoegerte Standard-
+      option zu waehlen. Zeilen, die mit 1? beginnen, werden nur dann
+      ausgefuehrt, wenn der Benutzer "1" waehlt (eintippt). Zeilen, die
+      mit 23? beginnen, werden nur dann ausgefuehrt, wenn der Benutzer
+      entweder 2 oder 3 waehlt (eintippt). Andere Optionen als 0 koennen
+      nur gewaehlt werden, wenn wenigstens eine "Nummer?" Zeile sie
+      aktuell verwendet, wie im Beispiel unten gezeigt.
+    Gebrauch in Zusammenhang mit der autoexec.bat:
+      Die Umgebungsvariable CONFIG wird auf den gewaehlten Menueoptions-
+      wert gesetzt. Deshalb kann %CONFIG% in der autoexec.bat in
+      Verbindung mit dem if-Befehl verwendet werden. Zum Beispiel:
+        In der config.sys wurde der Wert 1 gewaehlt.
+      In der Autoexec.bat:
+        IF "%config%"=="1" SHSUCDX /D:FDCD001
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  MENU zeigt waehrend der config.sys / fdconfig.sys ein Auswahlmenue an.
+  MENU ist ein interner Befehl, d.h. der Befehl ist in der kernel.sys
+  enthalten. Es wird zur Ausfuehrung des Befehls kein zusaetzlicher
+  Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    MENU Bitte waehlen Sie eine Startoption:
+    MENU
+    MENU Option 0    nur Standardtreiber
+    MENU Option 1    CD-ROM
+    MENU Option 2    TROUSERS
+    MENU Option 3    CD-ROM und TROUSERS
+    0? ECHO Warnung: Nur Standardtreiber !
+    13?DEVICE=uide.sys /S125 /D:FDCD001
+    23?DEVICE=TROUSERS.SYS
+  IN DER AUTOEXEC.BAT:
+    IF "%config%"=="1" SHSUCDX /D:FDCD001
+    IF "%config%"=="3" SHSUCDX /D:FDCD001
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/menucol.htm">menucolor</a>
+  <a href="../cnfigsys/menudef.htm">menudefault</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

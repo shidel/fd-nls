@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: diskcomp</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: diskcomp</h1>
+<pre>
+  DISKCOMP vergleicht den Inhalt von zwei Disketten, Spur fuer Spur.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  diskcomp [Laufwerk [Laufwerk]] [/1] [/8] [/4[0]] [/b] [/?]
+           Laufwerk  Der Laufwerksbuchstabe der Diskette. Wenn nur ein 
+                     Laufwerksbuchstabe angegeben wird, wird davon 
+                     ausgegangen, dass dies auch das Vergleichslaufwerk
+                     sein soll (bei Disketten). Wenn keine Laufwerksbuch-
+                     staben angegeben werden, wird davon ausgegangen, dass
+                     das Arbeitslaufwerk auch das Vergleichslaufwerk ist
+                     (bei Disketten). Wenn beide Laufwerke (Quelle und 
+                     Vergleichsziel) identisch sind, muessen die Disketten
+                     zum Vergleichen mehrfach gewechselt werden.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /1   Vergleicht nur die erste Seite der Disketten, selbst wenn es
+       doppelseitige Disketten sind. 
+  /8   Vergleicht nur die ersten 8 Sektoren pro Spur.
+  /40  Vergleicht nur die ersten 40 Spuren (Abkuerzung: /4)
+  /b   Zwingt diskcomp, das BIOS zu verwenden, um auf das Floppylaufwerk
+       zuzugreifen. (Das BIOS ist langsamer, dies kann aber aus 
+       Kompatibilitaetsgruenden auf manchen Maschinen erforderlich sein.)
+  /?   Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Das Programm vergleicht zwei Disks (maximal jeweils 32 MB) und zeigt
+  die md5-Summen-Uebersicht der Inhalte. Es meldet, ob die Diskinhalte
+  unterschiedlich sind (zeigt eine Meldung und setzt den entsprechenden
+  <a href="../batch/if.htm#comment">ERRORLEVEL</a>).
+  Wenn Sie nur einen Laufwerksbuchstaben angeben, muessen Sie die Disks
+  nach dem Einlesen der ersten Disk wechseln. Wenn Sie keine Laufwerks-
+  optionen angeben, werden im aktuellen Laufwerk zwei Disks miteinander
+  verglichen.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  diskcomp A: A:  vergleicht zwei Disketten
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/comp.htm">comp</a>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../base/fc.htm">fc</a>
+  <a href="../util/md5sum.htm">md5sum</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : subst</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : subst</h1>
+<pre>
+  FreeDOS utilise SWSUBST au lieu de SUBST.
+  SWSUBST combine subst avec join avec des options am‚lior‚es.
+  SWSUBST remplace un chemin par une lettre de lecteur pour que vous
+  ayez accŠs … un chemin par une lettre de lecteur.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  swsubst [option] [commande]
+  Si swsubst est utilis‚e sans sp‚cifier une commande, alors la table
+  CDS est affich‚e.
+</pre>
+<h2>Options :</h2>
+<pre>
+  /#     Affiche les statistiques des lecteurs JOINts dans le tableau
+         CDS.
+  /!     Comme /#; initialise l'indicateur JOIN, s'il est diff‚rent.
+  /f     Affiche les caractŠres non imprimables en hexad‚cimal.
+  /a     Affiche le tableau CDS aprŠs la commande.
+  /k     Cr‚e les chemins mentionn‚s dans la commande.
+  /t     Comme /k, dans SUBST v‚rifie seulement, si le chemin existe.
+  /_     Vide tous les attributs de la table CDS.
+  /o=#   Utilise l'offset de la barre oblique invers‚e, ne le calcule
+         pas.
+  /x=??  Liste des lettres de lecteur … ignorer pendant une recherche
+         ::label:
+  Commandes :
+  -                      Initialise tous les lecteurs JOINts et SUBST.
+  --                     Initialise tous les lecteurs non mis en r‚seau.
+  dr [-]chemin           Similaire … %s dr [-]chemin.
+  /u dr [-]chemin        Substitue dr pour pointer vers le chemin.
+  /j dr [-]chemin        Rejoint dr au chemin.
+  /d dr | dr /d | dr -   Initialise le lecteur dr (et casse SUBST/JOIN).
+  /s dr1 dr2             change dr1 et dr2.
+  /n [dr1 dr2]           change les num‚ros d'unit‚ du mˆme pilote de
+                         p‚riph‚rique (Std.: disquettes).
+  /w dr                  D‚finit ERRORLEVEL sur la lettre du lecteur.
+  /m [-]chemin           Cr‚e un chemin incluant tous les principaux
+                         r‚pertoires au-dessus.
+  /c [-]chemin           Comme /m, ex‚cute ensuite chdir pour le
+                         r‚pertoire.
+  dr:[+-=]{off,on,phys,net,join,subst,hidden}  D‚finit directement les
+                                               indicateurs du lecteur.
+  /q dr:[+-]{phys,net,join,subst,hidden}       Interroge les indicateurs
+                                               du lecteur.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Les entit‚s standards de DOS ‚mulant SWSUBST, SUBST and JOIN, ont la
+  mˆme ligne de commande que les DOS. Mais elles diffŠrent sur les
+  points suivants :
+    - Le chemin sp‚cifi‚ sera cr‚‚, avec le chemin complet y menant,
+      par exemple "SUBST c: d:/blah/humpf" cr‚‚ le chemin
+      "d:\blah\humpf", que d:\blah existe ou non.
+    - Vous ˆtes autoris‚ … rompre les relations … la vol‚e, ce qui veut
+      dire :
+      quelque chose de d‚j… sujet … SUBST peut ˆtre … nouveau sujet … un
+      autre SUBST ou JOIN sans notification ou avertissement
+      suppl‚mentaire.
+    - Vous ˆtes autoris‚ … traiter un lecteur avec lui-mˆme, par
+      exemple : "JOIN a: a:\blah"
+    - Le vidage du tableau est diff‚rent, SWSUBST affiche
+      "X: => Y:\CHEMIN" au lieu de "X: is joined to Y:\CHEMIN".
+    - Vous ne pouvez pas renommer les ex‚cutables SUBST and JOIN.
+    - La version de DOS ne sera pas test‚e, sauf si c'est n‚cessaire
+      pour ajuster les tailles des diff‚rentes structures de donn‚es.
+  Si vous avez besoin de SUBST ou JOIN ex‚cutez simplement :
+  "copy SWSUBST.EXE JOIN.EXE ou SUBST.EXE".
+  Un <a href="../batch/if.htm#comment">ERRORLEVEL</a> entre 65 (ASCII 'A') et 90 (ASCII 'Z') indique OK
+  et la lettre du lecteur lui-mˆme ; alors qu'un <a href="../batch/if.htm#comment">ERRORLEVEL</a> de z‚ro
+  indique qu'il n'existe pas un tel lecteur ; et les autres <a href="../batch/if.htm#comment">ERRORLEVELS</a>
+  indiquent une erreur.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  swsubst b: c:\blah\humpf
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../base/assign.htm">assign</a>
+  <a href="../base/join.htm">join</a>
+  <a href="../base/swsubst.htm">swsubst</a>
+  <a href="../command/truename.htm">truename</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1995 Steffen Kaiser, mise … jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ du HOWTO FreeDOS Spec Command.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

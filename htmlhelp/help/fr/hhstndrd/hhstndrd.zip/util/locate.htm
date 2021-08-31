@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : locate</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : locate</h1>
+<pre>
+  LOCATE est un outil pour rechercher des fichiers sous DOS.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  LOCATE [filespec] [options]
+         Filespec peut contenir une lettre de lecteur, un nom de
+         r‚pertoire ou les deux … la fois. Si une lettre de lecteur
+         est sp‚cifi‚e, la recherche ne sera effectu‚e que sur ce
+         lecteur. Si aucun lecteur n'est sp‚cifi‚, Locate d‚cidera
+         seul les lecteurs sur lesquels la recherche sera effectu‚e.
+         Tout ce qui pr‚cŠde la derniŠre barre oblique inverse dans la
+         sp‚cification de fichier est suppos‚ ˆtre le nom d'un
+         r‚pertoire dans lequel la recherche sera effectu‚e ; Locate
+         recherchera dans ce r‚pertoire et les sous-r‚pertoires qu'il
+         contient. Si un nom de r‚pertoire est sp‚cifi‚ sans lettre de
+         lecteur, le r‚pertoire sera suppos‚ ˆtre sur le lecteur actuel,
+         la recherche ne sera effectu‚e que sur le lecteur actuel.
+         Les jokers ne sont pas autoris‚s dans le nom de r‚pertoire.
+</pre>
+<h2>Options :</h2>
+<pre>
+  Que rechercher :
+    /D              · la fois les fichiers et les sous-r‚pertoires (la
+                    valeur  par d‚faut).
+    /D-             Seulement les fichiers, pas les sous-r‚pertoires
+                    (valeur par d‚faut avec /B /K /X /S: /0).
+    /D+             Les sous-r‚pertoires seulement, pas les fichiers.
+    /H              Les ‚l‚ments cach‚s ou systŠme seulement.
+    /X              Les fichiers ex‚cutables seulement (.COM .EXE .BAT).
+    /0              Les fichiers vides (0 octet) seulement.
+    /S:[min][,max]  Les fichiers dans une plage de taille.
+    /D:[min][,max]  Les ‚l‚ments dans une plage de dates.
+    /D:dowlist      Les ‚l‚ments dat‚s de jours sp‚cifiques de la
+                    semaine.
+    /T:[min][,max]  Les ‚l‚ments dans une plage de temps.
+    /A:[a+][a-]     Masquer selon les attributs.
+  O— rechercher :
+    /T              R‚pertoire courant et chemin de recherche seulement.
+    /NR             Ne pas rechercher r‚cursivement dans les
+                    sous-r‚pertoires.
+    /R              Les disques fixes locaux seulement.
+    /M              Inclure les mappages de lecteurs r‚seau en double.
+    /E:var          Les r‚pertoires list‚s dans une variable
+                    d'environnement.
+  Comment afficher les ‚l‚ments trouv‚s :
+    /P              Affichage de style Peter, avec les dates, horaires,
+                    attributs et tailles.
+    /I              Avec les num‚ros d'index, dates, heures, attributs,
+                    tailles.
+    /W              Affichage large.
+    /N              Affichage brut (liste de fichiers).
+    /B:"commande"   En tant que fichier batch.
+    /L              En utilisant les noms de fichiers longs de
+                    Windows 95.
+    /O:"chaŒne"     Sortie format‚e … l'aide de macros.
+    /S              Informations de r‚sum‚ seulement.
+    /US             Utiliser le format de date et d'horaire des
+                    tats-Unis (Tue May 31 1994).
+    /UK             Utiliser le format de date et d'horaire du
+                    Royaume-Uni (Tue 31 May 1994).
+    /UJ             Utiliser le format de date et d'horaire nippon
+                    (ISO) (Tue 1994-05-31).
+    /12             Format d'heure de 12 heures.
+    /24             Format d'heure de 24 heures.
+    /NP             Pas de pagination.
+  Quoi faire avec les ‚l‚ments trouv‚s :
+    /G              Aller au r‚pertoire.
+    /K              Tuer (kill, effacer) les ‚l‚ments trouv‚s.
+    /C:"chaŒne"     Ex‚cuter des commandes, en utilisant les mˆmes
+                    macros que /O.
+    /F:n            S'arrˆter aprŠs les premiers n ‚l‚ments.
+  Other options:
+    /Y              Yes, Oui -- ne pas demander confirmation pour
+                    /K ou /C.
+    /NV             Pas d'appels vid‚o BIOS.
+    /V              changer la barre d'espace et la touche Entr‚e
+                    lors de la pagination.
+    /NA             Ne pas romaniser les lettres … des fins de
+                    comparaison.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Veuillez lire locate.txt pour davantage d'informations.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  locate           trouver tous les fichiers et r‚pertoires ("‚l‚ments")
+  locate *.SYS     trouver tous les ‚l‚ments avec une extension .SYS
+  locate /H        trouver tous les ‚l‚ments cach‚s ou systŠme
+  locate *.SYS /H  trouver les ‚l‚ments cach‚s/systŠme avec
+                   l'extension .SYS
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>  - vide -</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

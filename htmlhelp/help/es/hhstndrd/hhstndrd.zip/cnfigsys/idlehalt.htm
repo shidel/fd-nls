@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: idlehalt</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: idlehalt</h1>
+<pre>
+  IDLEHALT activa la funcionalidad integrada de ahorro de energ¡a del
+  n£cleo si n no es 0.
+  IDLEHALT es un comando de <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  idlehalt=n
+    Donde n puede ser -1, 0, 1 o superior (predeterminado 0)
+</pre>
+<h2>Opciones:</h2>
+<pre>  - ninguna -</pre>
+<h2>Comentarios:</h2>
+<pre>
+  IDLEHALT activa la funcionadidad de ahorro de energ¡a del n£cleo
+  incorporado si n no es 0. El valor -1 habilita todos los ganchos, 1
+  habilita solo los ganchos "seguros", la CPU se detiene solo si el n£cleo
+  est  esperando la entrada del dispositivo CON con un char.
+  Los ganchos adicionales para n=-1 y n>0 dependen de la versi¢n del
+  n£cleo: Adem s de los ganchos seguros, se pueden activar otros ganchos,
+  por ejemplo uno para int 0x2f, ax=0x1680 "intervalo de tiempo de
+  liberaci¢n"
+  Nota: En casos excepcionales, entrar o salir del modo HLT (lo que provoca
+  grandes cambios en el consumo de energ¡a de la CPU) puede causar fallos
+  si las fuentes de alimentaci¢n son baratas o las placas base no se pueden
+  filtrar adecuadamente los transitorios. Hacer un overlocking de todo el
+  sistema puede ayudar.
+  Linux siempre hace algunas HLT en el momento del arranque, para forzar un
+  bloqueo anticipado de los sistemas con errores (Arranque sin-hlt para
+  deshabilitar HLT). P90 puede tener buggy HLT?
+  www.tavi.co.uk/ps2pages/ohland/halt.html
+  IDLEHALT es un comando interno de kernel.sys y no necesita ning£n otro
+  archivo para funcionar.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    idlehalt=1
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 2003 <b>Robert Platt</b>, modificado en 2008 <b>W. Spiegl.</b>
+  Traducido en 2019 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+
+</pre></body></html>

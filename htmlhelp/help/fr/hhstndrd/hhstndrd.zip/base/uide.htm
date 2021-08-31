@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : uide.sys / uidejr.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : uide.sys / uidejr.sys</h1>
+<pre>
+  UIDE.SYS / UIDEJR.SYS est un pilote de mise en cache DOS "IDE
+  universel" qui prend en charge les disques durs IDE et SATA, les
+  CD et les DVD.
+  UIDE.SYS / UIDEJR.SYS doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS fonctionne d‚j…, vous pouvez charger UIDE.SYS /
+  UIDEJR.SYS par la suite avec <a href="../util/devload.htm">DEVLOAD</a>.
+  Comme UIDE.SYS est toujours en d‚veloppement, il se peut que certaines
+  options ne soient pas disponibles dans la version actuelle. Veuillez
+  vous r‚f‚rer au fichier d'aide actuel dans un tel cas.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEVICE = [chemin] UIDE.SYS [/A] [/B] [/D:NomAppareil] [/F] [/H] [/N1]
+           [/N2] [/N3] [/N4] [/Q] [/Rnn] [/Snnnn] [/UX] [/Z]
+  DEVICEHIGH = [chemin] UIDE.SYS [/A] [/B] [/D:NomAppareil] [/F] [/H]
+               [/N1] [/N2] [/N3] [/N4] [/Q] [/Rnn] [/Snnnn] [/UX] [/Z]
+</pre>
+<h2>Options :</h2>
+<pre>
+  UIDE.SYS a g‚n‚ralement besoin seulement de l'option taille /Sn et
+  /D: pour sp‚cifier un nom d'appareil pour le redirecteur de CD-ROM
+  <a href="../base/shsucdx.htm">SHSUCDX</a>.
+  Les options de UIDE.SYS sont :
+  /A   Sp‚cifie l'utilisation des adresses E/S "IDE ancien" ALTERNATIFS.
+       Le premier contr“leur ancien utilisera les adresses alternatives
+       01E8h/0168h et un second contr“leur utilisera les adresses
+       normales 01F0h/0170h. Si /A est omis, le premier contr“leur
+       utilisera les adresses normales et le second contr“leur les
+       adresses alternatives, comme c'est g‚n‚ralement le cas pour la
+       plupart des programmes de BIOS et des cartes mŠres.
+       /A est pour les cas "singuliers" o— les adresses "IDE anciennes"
+       sont INVERSES.
+       /A n'affecte pas les contr“leurs "PCI natifs".
+  /B   Pour l'UIDE seulement, demande un pilote basique "autonome"
+       UltraDMA pour les disques ou lecteurs CD/DVD (pas de cache ou
+       disquettes). Cela peut aider lors des tests et les diagnostics.
+       L'UIDE basique peut utiliser 128Ko de m‚moire XMS et peut
+       d‚sormais se charger dans l'espace HMA. UIDEJR ignorera /B.
+  /D:  Sp‚cifie le nom d'appareil voulu, utilis‚ par <a href="../base/shsucdx.htm">SHSUCDX</a> pour
+       acc‚der aux lecteurs CD/DVD.
+       Exemple : /D:CDROM1 /D:MONCDROM etc.
+       Les noms de p‚riph‚rique doivent comporter de 1 … 8 octets valides
+       pour ˆtre utilis‚s dans les noms de fichier DOS. Si /D: est omis,
+       ou si le nom de p‚riph‚rique aprŠs le /D: est manquant ou
+       invalide, UDVD1 est utilis‚ par d‚faut. Lorsque des disques/
+       disquettes sont pr‚sents mais qu'il n'y a pas de lecteur CD/DVD,
+       le nom UIDE$  ou UIDEJR$ remplacera tout nom /D:.
+  /E   Pour UIDE seulement, fait en sorte que le lecteur "appelle le
+       BIOS" pour toute E/S disque dur. /E ‚vite les problŠmes de
+       configuration avec certains "‚mulateurs" (VirtualBox, etc.) qui
+       n'‚mulent pas toute la logique mat‚rielle ! /E permet encore …
+       l'UIDE de mettre en cache les donn‚es du disque dur (au contraire
+       de /N1 qui n'effectue aucune gestion de disque dur). UIDEJR
+       ignorera /E.
+       ***** REMARQUE *****
+       L'utilisation de /E sur les systŠmes en mode prot‚g‚ (JEMM386
+       etc.) peut r‚sulter en un fonctionnement TRÔS lent ! De nombreux
+       programmes BIOS bas de gamme omettent la logique "VDS" DOS pour
+       les disques durs, et en mode prot‚g‚ ils ne peuvent que g‚rer les
+       transferts en "mode PIO" ancien, pas en UltraDMA ! Si /E est
+       n‚cessaire pour l'UIDE, les utilisateurs devraient configurer
+       leur systŠme en mode r‚el (UMBPCI, etc.) chaque fois que ce sera
+       possible.
+  /F   Pour l'UIDE seulement, demande un cache "rapide" utilisant des
+       blocs de cache de 32Ko avec des caches de 40 ou 50 Mo et des
+       blocs de cache de 64Ko avec des caches de 80 Mo ou plus. Sans
+       /F, les caches de 40 … 1023 Mo ont des blocs de 16 Ko, et les
+       caches de 1024 … 2047 Mo ont des blocs de 32 Ko, pour jusqu'…
+       25% de capacit‚ de cache suppl‚mentaire en raison de moins
+       "d'espace perdu" dans le dernier bloc de cache d'un fichier.
+       /F renonce a une petite quantit‚ de capacit‚ au profit d'une
+       vitesse plus rapide, car moins de blocs sont g‚r‚s.
+       /F est ignor‚ avec les caches de 2048 Mo (2 Gigaoctets) et
+       davantage, puisqu'ils doivent utiliser des blocs de 64 Ko.
+       UIDEJR ignorera /F.
+  /H   Demande l'utilisation de l'espace HMA "libre" pour la plus grande
+       partie du pilote. /H fait en sorte que l'UIDE utilise seulement
+       944 octets ou que UIDEJR n'utilise que 768 octets de m‚moire
+       haute. /D NE doit PAS ˆtre utilis‚ avec ROM-DOS qui n'a aucun
+       HMA ! Lorsque /N3 est aussi entr‚, /H est ignor‚.
+       ***** REMARQUE *****
+         Les noyaux MS-DOS ont des ERREURS dans l'indication de
+         l'espace HMA libre, ce qui peut provoquer des PLANTAGES !
+         Entrer /H est aux risques et p‚rils de l'utilisateur !
+         Aucun tel plantage n'sest not‚ pour d'autres noyaux DOS, mais
+         les utilisateurs devraient TESTER un systŠme avant d'utiliser
+         /H ou /HL avec l'UIDE et l'UIDEJR !
+  /N1  NE demande AUCUNE gestion des lecteurs de disque dur. /N1 est
+       destin‚ aux diagnostics et aux situations particuliŠres, pas …
+       une utilisation normale !
+  /N2  NE demande AUCUNE gestion des lecteurs CD ou DVD.
+       seulement, toute la logique CD/DVD sera ignor‚e, ce qui
+       ‚conomisera 1680 octets HMA ! /N2 est destin‚ aux diagnostics
+       et aux situations particuliŠres, pas … une utilisation normale !
+  /N3  Ne demande pas de m‚moire XMS. /N3 n‚cessite un chargement en
+       m‚moire basse ou le pilote quittera. Pour l'UIDE, son pilote /B
+       "basique" sera utilis‚. /N3 perd beaucoup de vitesse, car une
+       E/S "mal align‚e" ou inadapt‚ d'une autre fa‡on … l'UltraDMA doit
+       utiliser la logique BIOS pour les disques ou le "mode PIO" pour
+       l'entr‚e CD/DVD.
+  /N4  Cf. /Z ci-dessous.
+  /Q   Active l'attente d'une "demande de donn‚es" avant de d‚marrer
+       les transferts de disque UltraDMA. /Q est pour les systŠmes
+       "anciens" et ne doit ˆtre utilis‚ que si l'UIDE se charge
+       correctement mais semble incapable de transf‚rer des donn‚es.
+       /Q doit ˆtre omis avec un adaptateur SATA-vers-IDE de chez
+       Sabrent ou d'autres, car de telles cartes n'‚mulent pas les
+       "demandes de donn‚es" depuis un disque SATA !
+       /Q n'affecte pas les lecteurs CD/DVD.
+  /R15 RŠgle la m‚moire XMS du pilote … 16 ou 64 Mo. /R15 r‚servera
+       15 Mo de
+  /R63 XMS, et /R63 r‚servera 63 Mo de XMS, pour les anciens programmes
+       de "jeu" qui n‚cessitent de la m‚moire XMS sous 16 Mo ou 64 Mo !
+       UIDE/UIDEJR doit ˆtre capable de r‚server cette m‚moire, puis de
+       r‚server leur XMS requis au-dessus de cela, puis de "lib‚rer" la
+       m‚moire XMS r‚serv‚e. Sinon le pilote affichera "XMS init error"
+       et quittera !
+       /R15 ou /R63 n‚cessitent que UIDE/UIDEJR soient charg‚s aprŠs
+       le gestionnaire XMS de l'utilisateur (XMGR, HIMEMX, etc.) donc un
+       autre pilote ne peut pas prendre de la m‚moire XMS en premier,
+       et la m‚moire XMS doit ˆtre juste au-del… de l'espace HMA. Voyez
+       la section 7 du fichier README pour davantage de d‚tails.
+  /Sn  Pour l'UIDE seulement, sp‚cifie la taille du cache d‚sir‚, en
+       m‚gaoctets de m‚moire XMS. Les valeurs pour /S sont 5, 15, 25,
+       40, 50, et n'importe quel nombre de 80 … 4093. /S1024 ou plus
+       donne un cache de 1- … 4-GIGAOCTETS ! Utilisez un cache aussi
+       grand que possible pour g‚rer les GROS fichiers de donn‚es de
+       nos jours --
+         Sous 128-Mo de m‚moire :     Utilisez /S5 /S15 /S25 ou /S40
+         Avec 128-Mo de m‚moire :      Utilisez /S25 /S40 /S50 ou /S80
+         Avec 256-Mo de m‚moire :      Utilisez /S80  jusqu'… /S127
+         Avec 512-Mo de m‚moire :      Utilisez /S160 jusqu'… /S255
+         Avec 1-Go de m‚moire :        Utilisez /S320  jusqu'… /S511
+         Avec 2-Go de m‚moire :        Utilisez /S640  jusqu'… /S1023
+         Avec 4-Go de m‚moire :        Utilisez /S1280 jusqu'… /S3072
+       Les petits systŠmes peuvent pr‚f‚rer /S25 ou /S50 qui d‚finissent
+       des blocs de cache de 1600 et sont plus efficaces. Si /S est
+       omis/invalide, un cache de 80-Mo est d‚fini. Sauf pour 25 ou 50,
+       les valeurs en-dessous de 80 sont "arrondies" … 40- 15- ou 5-Mo.
+       UIDE affiche "XMS init error" et quitte lorsqu'il n'y a pas assez
+      de m‚moire XMS de libre !
+       Si c'est le cas, un cache plus petit doit ˆtre demand‚. Pour les
+       gestionnaires XMS V2.0 anciens (ROM-DOS etc.), seuls les options
+       de /S5 … /S50 peuvent ˆtre utilis‚es. UIDEJR ignorera /S.
+  /U8  Pour UIDEJR seulement, gŠre jusqu'… 8 lecteurs CD/DVD, pas 4.
+       Cela ajoute 80 octets … la taille d'UIDEJR. /U8 est rarement
+       n‚cessaire, car peu de PC ont plus de 4 CD/DVD. UIDE et UIDE2
+       ignoreront /U8, car ils gŠrent toujours jusqu'… 8 lecteurs
+       CD/DVD.
+  /UX  D‚sactive tout l'UltraDMA des CD/DVD, mˆme pour les lecteurs qui
+       peuvent le g‚rer. Le mode PIO est alors utilis‚ pour toutes les
+       requˆtes CD/DVD.
+       · l'exception de certains lecteurs "inhabituels" de Sony, etc.
+       qui ne se conforment pas … toutes les "rŠgles" ATAPI, /UX est
+       rarement .
+       n‚cessaire. /UX n'affecte pas les disques durs.
+  /Z   Pour XMGR ou UIDE seulement, limite leur d‚placement … 2 Ko en
+       mode prot‚g‚, pas … 64 Ko. /Z est ignor‚ par les systŠmes de
+       mode r‚el (UMBPCI etc.) et n'est pas n‚cessaire si JEMM386 ou
+       EMM386 gŠrent le mode prot‚g‚. Les systŠmes utilisant d'autres
+       pilotes VCPI/DPMI/EMM doivent ˆtre TESTS pour voir si XMGR ou
+       UIDE ont besoin de /Z
+       -- de MAUVAIS sch‚mas n'autorisant PAS assez d'interruptions
+       dans un d‚placement XMS peuvent encore exister ! L'ancienne
+       option /N4 de l'UIDE est identique … /Z et peut toujours ˆtre
+       utilis‚e. UIDEJR ignore /Z ou /N4 et ‚m‚t toujours des appels
+       XMS standards.
+  Pour chaque option un tiret d'union peut remplacer la barre oblique,
+  et des lettres minuscules peuvent ˆtre utilis‚es.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  UIDE.SYS est un pilote de mise cache DOS "IDE universel". Il intercepte
+  les requˆtes BIOS E/S "Int13h" et met en cache les donn‚es pour
+  jusqu'… 34 unit‚s de BIOS, y compris les disquettes A: et B: si elles
+  sont pr‚sentes, et les disques durs jusqu'… 2 To. UIDE.SYS accepte
+  les appels E/S 48-bit LBA et 24-bit CHS par les systŠmes DOS nouveaux
+  ou anciens. Il utilise sa propre logique pour les disques durs SATA
+  ou IDE et fera fonctionner jusqu'… 10 contr“leurs "anciens" ou "PCI
+  natifs". Toute l'E/S possible est g‚r‚e en m‚moire cache pour obtenir
+  une vitesse ‚lev‚e. UIDE "appelle le BIOS" pour les diquettes, le SCSI
+  et d'autres modŠles de disques pour pouvoir mettre en cache TOUS les
+  diques sur un systŠme DOS ! Les pilotes "Int 13h" peuvent ˆtre
+  charg‚s avant UIDE, et il interceptera et mettra en cache l'E/S pour
+  leurs disques aussi. ("ASPI et d'autres pilotes qui n'utilisent pas
+  Int 13h ne sont pas pris en charge.)
+  UIDE prend aussi en charge jusqu'… 8 lecteurs CD/DVD, y compris les
+  contr“leurs SATA, IDE, ou ceux du "mode PIO" plus anciens. Au
+  chargement, il v‚rifie jusqu'… 10 contr“leurs IDE "natifs PCI" ou
+  "anciens" et ex‚cute les 8 premiers lecteurs CD/DVD trouv‚s. UIDE
+  gŠre les entr‚es de fichiers pour SHCDX33E et d'autres "redirecteurs
+  de CD-ROM" comme MSCDEX, et il met en cache toutes les donn‚es de
+  fichier et de r‚pertoire pour une vitesse accrue ! Il gŠre ‚galement
+  les requˆtes "audio" DOS et peut jouer un CD audio. Les donn‚es,
+  jouer un CD et les programmes "trackwriter" peuvent ˆtre g‚r‚s par
+  UIDE en utilisant plusieurs lecteurs sur un seul systŠme.
+  L'audio et le "trackwriting" ne sont pas mis en cache. UIDE met en
+  cache de 5 M‚gaoctets … 4 GIGAOCTETS de donn‚es ! Il utilise 5344
+  octets de m‚moire haute quelle que soit la taille du cache. Tous les
+  tableaux de cache et les donn‚es sont en m‚moire XMS. Un UIDE
+  "autonome" (option /B, pas de mise en cache ni disquettes) peut ˆtre
+  utilis‚e pour des test/diagnostics et prend 3824 octets de m‚moire
+  haute. UIDE peut aussi ˆtre charg‚ dans la m‚moire DOS de 640Ko, et
+  son option /H peut ˆtre utilis‚e pour mettre la plupart du pilote
+  en espace HMA libre, ne prenant ainsi que 944 octets de m‚moire
+  haute ou de DOS. UIDEJR.SYS ("UIDE junior") omet la mise en cache
+  mais gŠre encore jusqu'… 10 contr“leurs SATA/IDE, 32 disques durs
+  SATA/IDE et 8 lecteurs CD/DVD SATA/IDE/"mode PIO".
+  Vous devriez charger un gestionnaire XMS (par ex. <a href="../base/xmgr.htm">XMGR.SYS</a>, <a href="../base/himemx.htm">HIMEMX</a>
+  ou <a href="../base/jemmex.htm">JEMMEX</a> avant UIDE.SYS.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Dans CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    DEVICEHIGH=C:\FDOS\DRIVERS\UIDE.SYS /S125 /D:MONDVD
+  Dans AUTOEXEC.BAT:
+    c:\fdos\bin\SHSUCDX /D:MONDVD
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+ (<a href="../base/udma.htm">udma.sys</a>)
+ (<a href="../base/udma2.htm">udma2.sys</a>)
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+ (<a href="../base/xdma.htm">xdma.sys</a>)
+  <a href="../base/xmgr.htm">xmgr.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

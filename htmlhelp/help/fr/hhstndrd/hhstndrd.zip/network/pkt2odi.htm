@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Mise en r‚seau de FreeDOS - PKT2ODI</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Mise en r‚seau de FreeDOS - PKT2ODI</h1>
+<pre>
+  En tant qu'alternatif … <a href="../network/odi_ins.htm#ccc">ODIPKT.COM</a> qui est plus commun‚ment utilis‚,
+  certaines personnes peuvent aussi vouloir essayer PKT2ODI.EXE de
+  Caldera comme un convertisseur pilote de paquets vers <a href="../network/odi.htm">ODI</a>. Mais nous
+  devons garder … l'esprit que la licence de WebSpyder de Novell (qui
+  s'applique aussi … PKT2ODI.EXE) ne permet que d'utiliser le logiciel
+  dans un but d'‚valuation.
+  Pour les utilisateurs commerciaux, la dur‚e d'‚valuation et limit‚e
+  … 90 jours. Pour les utilisateurs non commerciaux, l'‚valuation est
+  permise pour "une dur‚e raisonnable". (Jusqu'… quel point peut-il ˆtre
+  raisonnable d'‚valuer ce logiciel au XXIe siŠcle?)
+  En tout cas, PKT2ODI.EXE devra ˆtre d‚marr‚ dans <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> avec une
+  commande comme celle-ci :
+    LH C:\NETWORK\NWCLIENT\PKT2ODI.EXE /B:1 /I:69
+  L'option "/B" indique … PKT2ODI.EXE quelle carte logicielle il doit
+  utiliser. Comme expliqu‚ plus haut, nous devons choisir la carte qui
+  utilise la trame <a href="../network/ethernet.htm">ETHERNET</a> II. · la diff‚rence de <a href="../network/odi_ins.htm#ccc">ODIPKT</a>, PKT2ODI
+  commence … compter avec "1", donc si NET.CFG ressemble … cet exemple :
+    --- NET.CFG ---
+      Link Driver 3C574
+        FRAME ETHERNET_II
+        FRAME ETHERNET_802.2
+        FRAME ETHERNET_802.3
+        FRAME ETHERNET_SNAP
+  nous devons utiliser le paramŠtre
+    PKT2ODI.EXE /B:1
+  pour d‚finir l'utilisation de la premiŠre carte (celle avec
+  ETHERNET_II). Rappelez-vous que nous devons utiliser la carte avec
+  Ethernet II, sinon le convertisseur ne pourra pas communiquer avec
+  le pilote et se plaindra de ne pas trouver le MLID (Multiple Link
+  Interface Driver).
+
+  Le second paramŠtre, le "/I" d‚finit l'interruption logicielle
+  (vecteur) utilis‚ par le pilote. Nous savons d‚j… que cela doit
+  ˆtre 0x60, mais malheureusement cela ne fonctionnera pas avec
+  PKT2ODI. Le programme n'accepte pas les vecteurs d'interruption
+  0x60 … 0x68. Nous pouvons utiliser le vecteur 0x69 avec le paramŠtre :
+    PKT2ODI.EXE /I:69
+  L'utilisation d'un vecteur d'interruption inhabituelle comme 0x69
+  peut ˆtre un problŠme pour certaines applications TCP/IP. Elles
+  doivent ˆtre configur‚es pour utiliser ce vecteur. Certains
+  programmes, comme le serveur web SIOUX, peut ne pas fonctionner
+  correctement si le vecteur n'est pas 0x60.
+  C'est tout. AprŠs avoir d‚marr‚ la LSL (Link Support Layer,
+  c'est-…-dire la couche de support de liaison), le MLID (Multiple
+  Link Interface Driver), le convertisseur et le pilote de paquets
+  devraient maintenant ˆtre op‚rationnels.
+    (Image messages d'amor‡age de PKT2ODI)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Allemagne), modifi‚ en 2010
+  par W. Spiegl.</b>
+ <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Pour plus d'informations, <a href="../network/intro.htm#ddd">voyez ici</a>.
+  La permission est accord‚e de copier, distribuer et/ou modifier ce
+  document selon les termes de la licence de documentation libre GNU,
+  version 1.2 ou toute version ult‚rieure publi‚e par la Free Software
+  Foundation.
+  Une copie de la licence est incluse dans la section intitul‚e
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

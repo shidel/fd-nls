@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: prompt</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: prompt</h1>
+<pre>
+  PROMPT changes the way command prompt appears.
+  PROMPT is a <a href="../batch/index.htm">BATCH-FILE</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> command.
+  It can also be used in command line.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  PROMPT [Options] [text]
+  text    Specifies a new command prompt.
+</pre>
+<h2>Options:</h2>
+<pre>
+  Prompt can be made up of normal characters and the following special
+  codes:
+
+  $$   $ (dollar sign)
+  $_   Carriage return and linefeed
+  $B   | (pipe)
+  $D   Current date
+  $E   Escape code (ASCII code 27)
+  $G   > (greater-than sign)
+  $H   Backspace (erases previous character)
+  $L   < (less-than sign)
+  $N   Current drive
+  $P   Current drive and path
+  $Q   = (equal sign)
+  $T   Current time
+  $V   the FreeDOS command shell version number
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Type PROMPT without parameters to reset the prompt to the default 
+  setting. PROMPT can also be used outside a batch file.
+  When <a href="../base/nansi.htm">NANSI.SYS</a> is loaded, PROMPT can also use different foreground /
+  background colours with the setting: prompt $e[#;#;#m.
+  PROMPT is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN A .BAT FILE / AUTOEXEC.BAT:
+    prompt $p$g            This is the same as the default setting
+    prompt $p$g Please enter a command!
+  When NANSI.SYS is loaded, you can also change the colours:
+    prompt $e[1;33;44m for bold / yellow /blue.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../base/nansi.htm">nansi.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

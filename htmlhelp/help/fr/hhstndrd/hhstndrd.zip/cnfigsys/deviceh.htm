@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : devicehigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : devicehigh</h1>
+<pre>
+  DEVICEHIGH charge un pilote dans la m‚moire haute, tandis que DEVICE
+  charge le pilote dans la m‚moire basse ou conventionnelle.
+  DEVICEHIGH est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  device=[lecteur][chemin]nomfichier [options]
+         lecteur    La lettre du lecteur, par exemple C:
+         chemin     Le r‚pertoire, par exemple \exemple\
+         nomfichier Le (fichier de) pilote … charger, par exemple
+                    himemx.exe
+</pre>
+<h2>Options :</h2>
+<pre>
+  options  Il s'agit l… d'options pour le programme du
+           pilote, pas pour la commande 'device'.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  DEVICEHIGH charge le pilote de p‚riph‚rique sp‚cifi‚ par
+  lecteur:\chemin\nomfichier dans la m‚moire haute [AU-DESSUS DE 640 Ko]
+  (si cela ne marche pas, il devrait le charger dans la m‚moire
+  conventionnelle).
+  Les options sont pour le pilote, veuillez vous r‚f‚rer … la
+  documentation de votre p‚riph‚rique pour les options prises en
+  charge et leur utilisation.
+  Comme DEVICEHIGH charge le pilote dans la m‚moire haute il reste
+  davantage d'espace libre dans la m‚moire basse ou conventionnelle
+  pour les autres pilotes ou programmes. Pour charger un pilote ou
+  un programme dans la m‚moire haute vous devez d'abord charger un
+  pilote comme (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a> ou <a href="../base/jemmex.htm">JEMMEX</a> dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  DEVICEHIGH est une commande interne … kernel.sys et ne n‚cessite
+  aucun autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    DEVICEHIGH=C:\FDOS\DRIVERS\UIDE.SYS /S125 /D:MYDVD
+  DANS UN MENU :
+    23?DEVICEHIGH=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    23?DEVICEHIGH=C:\FDOS\DRIVERS\UIDE.SYS /S125 /D:MYDVD
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/device.htm">device</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

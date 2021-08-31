@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: tdsk</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: tdsk</h1>
+<pre>
+  TDSK erzeugt eine RAM Disk. Ein Teil des Speichers wird dazu verwendet,
+  wie eine Festplatte zu arbeiten. Da der Speicher viel schneller ist als
+  eine echte Festplatte, sind RAM Disks sehr schnell, aber alles was auf 
+  ihnen gespeichert ist, geht verloren, sobald der Computer ausgeschaltet
+  oder neu gestartet wird.
+  TDSK unterstuetzt <a href="../base/himemx.htm">XMS</a>, <a href="../base/jemm386.htm">EMS</a> und konventionellen Speicher.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+   device=tdsk.exe size [[s_sector [files [s_cluster]]]] [/E] [/A|X] [/C]
+                        [/M]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  size    Die Groesse der RAM Disk von 8 - 65534 KB.
+  [[s_sector [files [s_cluster]]]]
+          Nur fuer Fortgeschrittene. Die Groesse der Sektoren,
+          Cluster und Rooteintraege auf der RAM Drive.
+          Gueltige Werte fuer sector sind 32,64,128,256,512,1024,
+          2048 Bytes.
+          Dateien (im Rootverzeichnis) koennen 1 - 65.534 sein.
+          Cluster koennen zwischen 1 und 255 sein (manche Systeme
+          sind begrenzt auf 1,2,4,8,16,32,64,128)
+  /E      Erzwingt die Verwendung von <a href="../base/himemx.htm">XMS</a> Speicher
+  /A      Spezifiziert die Verwendung von <a href="../base/jemm386.htm">EMS</a> Speicher
+  /X      Spezifiziert die Verwendung von <a href="../base/jemm386.htm">EMS</a> Speicher
+  /C      Erzwingt die Verwendung von konventionellem Speicher
+          (nicht ideal; wird grundsaetzlich nur fuer Systeme
+          empfohlen, die keinen <a href="../base/himemx.htm">XMS</a>/<a href="../base/jemm386.htm">EMS</a>-Speicher haben oder
+          wenn Sie mit <a href="../base/himemx.htm">XMS</a>/<a href="../base/jemm386.htm">EMS</a>-Speicher Probleme haben).
+  /I:nnn  nnn=Laendercode. Das zeigt die Hilfe in anderen Sprachen.
+  /M      Schaltet den Ausgabebildschirm von Farbe auf Monochrome um
+          (umschaltbar) waehrend in der CONFIG.SYS Monochrom als Stan-
+          dard verwendet wird.
+  /B      Vermeidet das Laden von TURBODSK wenn wenigstens eine Fest-
+          platte im System vorhanden ist.
+  /F      Aendert die Zahl der FAT-Kopien (Standard: 1) auf maximal 2.
+  /H      Zeigt die Hilfe.
+  /?      Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Size (Groesse der RAM Disk) muss zwischen 8 - 65534 KB liegen; gueltige
+  sectors sind zwischen 32 - 2048 Bytes (Vielfaches von 2), obwohl manche
+  DOS Versionen nur 128, 256 und 512 Bytes unterstuetzen.
+  Die Anzahl von Dateien im Rootverzeichnis kann zwischen 1 und 65534
+  liegen und die Sektoren pro Cluster koennen zwischen 1 und 255 liegen
+  (manche Systeme benoetigen ein Vielfaches von 2). Nur die Angabe der
+  Groesse ist unbedingt erforderlich.
+  Turbodsk startet standardmaessig mit <a href="../base/himemx.htm">XMS</a> oder <a href="../base/jemm386.htm">EMS</a>.
+  Nach der Installation von TURBODSK (TDSK) in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> kann es
+  von der <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> oder der Eingabeaufforderung aus gestartet wer-
+  den, um die Groesse des Laufwerks (Menge des verwendeten Speichers)
+  zu veraendern; dies loescht gleichzeitig den Inhalt des bisherigen
+  virtuellen Laufwerks.
+  Sie koennen auch eine Groesse von 0 waehlen, um den vom Laufwerk 
+  verwendeten Speicher komplett freizugeben: Wenn Sie konventionellen
+  Speicher verwenden, ist es nuetzlich, ein Laufwerk zu loeschen, bevor
+  Sie die Groesse aendern. Wenn mehr als ein TURBODSK installiert ist, 
+  koennen sie identifiziert werden, indem man zusaetzlich den Laufwerks-
+  buchstaben angibt.
+  Standardmaessig versucht TDSK <a href="../base/himemx.htm">XMS</a> oder <a href="../base/jemm386.htm">EMS</a> zu verwenden, bevor es
+  konventionellen Speicher zu verwenden sucht. Die meisten modernen
+  Computer haben <a href="../base/himemx.htm">XMS</a>.
+
+  Wozu verwendet man eine RAM Disk?
+
+  Viele Programme erzeugen temporaere Dateien, die in einem temporaeren 
+  Verzeichnis gespeichert werden, das durch eine Umgebungsvariable gesetzt
+  wurde:  
+  set temp=c:\temp
+  Temporaere Dateien werden sowieso geloescht, wenn ein Programm beendet 
+  wird. Deshalb ist es eine der Hauptaufgaben von RAM Disks, dieses 
+  temporaere Verzeichnis zu halten.
+  Dies beschleunigt die Leistung von solchen Programmen, da waehrend des 
+  Betriebs viel schneller darauf zugegriffen werden kann.
+  TDSK hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+      0: Laufwerk nicht formatiert (Laufwerksgroesse 0)
+    252: Syntaxfehler
+    253: Versuch, ein virtuelles Laufwerk in einer Multitasking-Umgebung
+         wie Windows, DOSSHELL, TASKMAX/TASKMGR o.ae. zu modifizieren
+    254: Ungueltiger Laufwerksbuchstabe
+    255: Treiber wurde nicht in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> installiert
+  Ferner koennen auch Werte von 1 bis 127 zurueckgeliefert werden,
+  diese haengen von den Behandlungsroutinen des <a href="../base/himemx.htm">XMS</a> bzw. <a href="../base/jemm386.htm">EMS</a> ab.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS
+    device(high)=c:\fdos\bin\tdsk.exe 8096
+                   (erzeugt 8096 KB grosse RAM Disk)
+    tdsk.exe 0     verkleinert die RAM Disk auf 0 Byte Groesse (loescht
+                   alle Dateien)
+    tdsk.exe 2048  veraendert die RAM Disk auf 2048 KB Groesse (loescht 
+                   alle Dateien)
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+ (<a href="../base/emm386.htm">emm386 (EMS)</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms (XMS)</a>)
+ (<a href="../base/fdxms286.htm">fdxms286 (XMS)</a>)
+ (<a href="../base/himem.htm">himem (XMS)</a>)
+  <a href="../base/himemx.htm">himemx (XMS)</a>
+  <a href="../base/jemm386.htm">jemm386 (EMS)</a>
+  <a href="../base/jemmex.htm">jemmex (EMS)</a>
+  <a href="../util/rdisk.htm">rdisk</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : pushd</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : pushd</h1>
+<pre>
+  PUSHD pousse le r‚pertoire courant sur la pile de r‚pertoires,
+  avec la possibilit‚ de changer le r‚pertoire de travail actuel.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  PUSHD [[lecteur]chemin] [/?]
+        [[lecteur]chemin] est un chemin vers lequel vous souhaitez
+                          changer.
+</pre>
+<h2>Options :</h2>
+<pre>
+  /?  Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  PUSHD ressemble beaucoup … CD, sauf qu'il stocke le r‚pertoire courant
+  avant de le changer. Par la suite, <a href="../command/popd.htm">POPD</a> peut ˆtre utilis‚e pour le
+  restaurer.
+  PUSHD peut ˆtre utilis‚e plusieurs fois, stockant une pile de
+  r‚pertoires.
+  Utiliser PUSHD sans sp‚cifier un r‚pertoire stockera le r‚pertoire
+  courant, mais ne le changer pas.
+  PUSHD est une commande interne … command.com et ne n‚cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+cette commande          change le dossier courant en / affiche :
+==============          =========================================
+cd c:\fdos\bin          c:\fdos\bin
+pushd c:\jeux           c:\jeux       (et stocke c:\fdos\bin)
+pushd c:\utils          c:\utils      (et stocke c:\jeux)
+pushd c:\paquets        c:\paquets    (et stocke c:\utils)
+dirs                    affiche les r‚pertoires stock‚s par pushd :
+                          0001=c:\fdos\bin
+                          0002=c:\jeux
+                          0003=c:\utils
+popd                    c:\utils      (et enlŠve c:\utils (0003)
+                                      de la pile de r‚pertoires)
+popd                    c:\jeux       (et enlŠve c:\jeux (0002)
+                                      de la pile de r‚pertoires)
+popd                    c:\fdos\bin   (et enlŠve c:\fdos\bin (0001)
+                                      de la pile de r‚pertoires)
+popd                    affiche le message :
+                          "La pile de r‚pertoires est vide"
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../command/cd.htm">cd</a>
+  <a href="../command/chdir.htm">chdir</a>
+  <a href="../command/dirs.htm">dirs</a>
+  <a href="../command/popd.htm">popd</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

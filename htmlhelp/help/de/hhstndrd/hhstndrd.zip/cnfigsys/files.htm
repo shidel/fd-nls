@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: files</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: files</h1>
+<pre>
+  FILES sagt FreeDOS, wieviele Dateien es gleichzeitig geoeffnet haben
+  kann.
+  FILES ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  files=n
+    Wobei die Anzahl der Dateien sich im Bereich 8-255 bewegt. Die
+    Standardeinstellung ist 8, aber fuer die meisten modernen Systeme ist
+    20 - 40 ein guter Wert. Manche Programme brauchen sogar einen noch
+    hoeheren Wert um korrekt zu arbeiten; diese Programme sollten aber in
+    ihrer Dokumentation Angaben ueber den benoetigten Wert enthalten.
+</pre>
+<h2>Optionen:</h2>
+<pre>  - keine -</pre>
+<h2>Kommentar:</h2>
+<pre>
+  FILES gibt an, wieviele Dateien gleichzeitig geoeffnet werden duerfen
+  (reserviert den erforderlichen Speicher um diese vielen Dateien oeffnen
+  zu koennen). Anmerkung: Es gibt auch noch andere Beschraenkungen, so
+  dass es sein kann, dass ein bestimmtes Programm nicht in der Lage ist,
+  diese Menge momentan zu oeffnen. Eine guter Wert ist 20, obwohl manche
+  Programme 30, 40 oder sogar 255 vorschlagen / erfordern.
+  FILES ist ein interner Befehl, d.h. der Befehl ist in der kernel.sys
+  enthalten. Es wird zur Ausfuehrung des Befehls kein zusaetzlicher
+  Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    files=20
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fcbs.htm">fcbs</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/filesh.htm">fileshigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

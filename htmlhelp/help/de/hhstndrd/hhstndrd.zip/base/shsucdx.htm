@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: shsucdx</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: shsucdx</h1>
+<pre>
+  SHSUCDX ist ein entladbarer CD-ROM-Laufwerkstreiber-Ersatz fuer MSCDEX.
+  Er unterstuetzt bis zu 10 Laufwerke. Jedes Laufwerk ist einzel-Sektor-
+  gepuffert und die letzten 10 Verzeichniseintraege werden zwischenge-
+  speichert. Es kann jedem Laufwerk von jedem Treiber ein bestimmter
+  Laufwerksbuchstabe zugeordnet werden.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  shsucdx /D[:][?|*]Treiber[,[Buchstabe][,[Einheit][,[max]]]] [Schalter]
+        TREIBER ist der Name des Geraetetreibers, der installiert ist, um
+          das CD-ROM-Laufwerk zu kontrollieren. Eine Vorfixierung des
+          Treibers mit '?' wird still ignorieren, dass es nicht existiert
+          (oder aktuell kein CD-ROM ist); eine Vorfixierung mit '*' wird
+          das ebenfalls ignorieren, aber es wird ein Laufwerk reserviert
+          (siehe unten).
+        BUCHSTABE ist der erste Laufwerksbuchstabe der der EINHEIT auf
+          diesem TREIBER zugewiesen wird. Standard ist der erste verfueg-
+          bare Buchstabe. Anmerkung: Die Laufwerksbuchstaben, die nach-
+          folgenden EINHEITEN zugewiesen werden, werden immer hoeher sein,
+          als diejenigen, die frueheren Einheiten zugewiesen wurden.
+        EINHEIT ist die erste Einheit auf diesem Treiber, der ein Laufwerk
+          zugewiesen wurde. Einheit 0 ist Standard.
+        MAX ist die maximale Anzahl von EINHEITEN auf diesem TREIBER die
+          Laufwerken zugewiesen wurde. Standard ist alle EINHEITEN (oder
+          alle verbleibenden EINHEITEN, falls EINHEIT angegeben wurde).
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /D  Driver (TREIBER): Diese Option wird dazu verwendet, den Namen des
+      Geraetetreibers zu spezifizieren. Es kann auch anzeigen, welche
+      Einheit(en) zugewiesen werden sollten und mit welchem Buchstaben.
+      Laufwerksmanipulation: Beim Installieren kann /D auch dazu verwendet
+      werden, Platz fuer zusaetzliche Laufwerke zu reservieren. Verwenden
+      Sie eine einzelne Ziffer um anzugeben, wieviele Laufwerke reserviert
+      werden sollen (z.B.: /D1). (Falls Sie zufaellig einen Geraetetrei-
+      bernamen mit einer einzelnen Ziffer haben sollten, verwenden Sie das
+      '?' Vorzeichen.) Nach der Installation wird die gleiche Option die
+      zuletzt zugewiesenen Laufwerke entfernen. Es ist moeglich, beide
+      Varianten von /D anzugeben; in diesem Fall wird das (die)
+      aktuelle(n) Laufwerk(e) entfernt und danach das (die) neue
+      Laufwerk(e) hinzugefuegt. Es kann aber nur ein Laufwerksbuchstabe
+      verwendet werden, der kleiner oder gleich dem Wert von
+      <a href="../cnfigsys/lastdrv.htm">LASTDRIVE</a> / <a href="../cnfigsys/lastdrvh.htm">LASTDRIVEHIGH</a> ist.
+  /L  Letter (BUCHSTABE): Diese Option ist eine Alternative zu der
+      BUCHSTABEN Komponente /D, der es folgen muss (z.B.: /D:TREIBER
+      /L:BUCHSTABE). Es kann auch dazu verwendet werden, die Zahl der
+      installierten Laufwerke auszugeben (/L:0, wird 255 ausgeben, wenn
+      nicht installiert) und den Buchstaben jedes zugewiesenen Laufwerkes
+      (/L:1, /L:2 usw, mit A: = 1 und 255 wenn das Laufwerk nicht
+      zugewiesen ist). Es kann aber nur ein Laufwerksbuchstabe verwendet
+      werden, der kleiner oder gleich dem Wert von <a href="../cnfigsys/lastdrv.htm">LASTDRIVE</a> /
+      <a href="../cnfigsys/lastdrvh.htm">LASTDRIVEHIGH</a> ist.
+  /C  Verwendet konventionellen anstelle von hohem Speicher.
+  /V  Speicherstatistik: Wenn diese Option bei der Installation verwendet
+      wird, wird eine Zusammenfassung des Speicherverbrauchs angezeigt.
+      Diese Zusammenfassung beinhaltet:
+        Static   Code und Variablen
+        Dynamic  Daten fuer jedes Laufwerk und Absatzrundung
+        Total    Gesamter Speicherverbrauch
+      Information: Wenn /V zusammen mit /? verwendet wird oder nach der
+      der Installation zeigt diese Option auch die Kompilier- und Lauf-
+      zeitoptionen von SHSUCDX an. Diese Information beinhaltet:
+        8086/386      Den erforderlichen Mindestprozessor
+        CD root form  TRUENAME gibt \\D.\A.\ anstelle von D:\ aus
+        High Sierra   Das Originalformat fuer das CD Dateisystem
+        Joliet        Das Windowsformat fuer lange Namen
+        Image on CD   Ermoeglicht den Zugang zu einem Image das selbst
+                      auf einer CD ist.
+  /~   Verwendung der Tilde: Der ISO Standard erlaubt es bei CDs, dass
+       Namen bis zu 31 Zeichen haben duerfen und Joliet darf Namen mit bis
+       zu 64 Zeichen haben. Wenn das bei DOS auf 8.3 reduziert wird, kann
+       das zu mehreren gleichen Eintraegen fuehren. Diese Option entfernt
+       die Duplikate, indem es eine Tilde mit einer Zahl nach dem Namen
+       (den ersten Zeichen) anhaengt (vergleichbar mit dem, was Windows
+       tut). Standardmaessig sind Tilden ausgeschaltet.
+       Diese Option ist auch nach der Installation verfuegbar. Es wird
+       selbstaendig den Status wechseln (wenn z.B: die Tilden aktuell
+       eingeschaltet sind, wird /~ sie ausschalten und umgekehrt). Tilden
+       koennen explizit ein- oder ausgeschaltet werden, indem man ein  '+'
+       oder ein '-' Zeichen anfuegt (z.B: /~+ schaltet Tilden ein, unab-
+       haengig vom aktuellen Zustand). Die Problematik mit den langen
+       Dateinamen (Long File Names) wird umgangen, wenn eine LFN-Schnitt-
+       stelle bereit gestellt wird zum Beispiel durch das Programm 
+       <a href="../util/doslfn.htm">DOSLFN</a>.
+  /R  Entfernt das "Nur-Lesen" Attribut.
+  /I  Installiert unter allen Umstaenden, selbst wenn ein anderer
+      CD-ROM-Laufwerkstreiber aktiv ist.
+  /U  Entlaedt den shsucdx Treiber aus dem Speicher.
+  /Q  Still (Quiet). Verhindert das Anzeigen der Urheberrechtsnotiz.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  SHSUCDX hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+       0  Nicht installiert, Hilfe, Option gesetzt
+    1-32  Laufwerksnummer des ersten installierten Laufwerks (A=1)
+     246  Ungueltige oder unbekannte Option
+     247  Kann nicht deinstallieren
+     248  Nicht genuegend Speicher
+     249  Keine Laufwerke zugewiesen (z.B. nicht installiert)
+     250  Keine Laufwerksbuchstaben verfuegbar
+     251  Die Einheit auf dem Treiber existiert nicht
+     252  Ungueltiger oder nicht existenter Treiber
+     253  Bereits installiert
+     254  Nicht unterstuetzte DOS-Version
+     255  386 erforderlich
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  In der CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=XCDROM.SYS /D:SHSU001
+  In der AUTOEXEC.BAT:
+    SHSUCDX /D:SHSU001
+
+  Komplexeres Beispiel mit mehreren CD-Laufwerken:
+  In der CONFIG.SYS /FDCONFIG.SYS:
+
+    MENU 1.    FreeDOS
+    MENU 2.    FreeDOS  + IDE CD-ROM (XDROM)
+    MENU 3.    FreeDOS  + USB CD-ROM (NOVAC)
+    MENU 4.    FreeDOS  + ASPI CD-ROM  (SCSI AIC-75XX 78XX)
+    MENU 5.    FreeDOS  + IDE CD-ROM + USB CD-ROM + ASPI CD-ROM
+    lastdrivehigh=U
+    25?DEVICEHIGH=\fdos\bin\xcdrom.sys /D:IDE-CD
+    35?DEVICEHIGH=\fdos\drivers\usb\usbaspi.sys
+    35?DEVICEHIGH=\fdos\drivers\usb\usbcd.sys /D:USB-CD
+    45?DEVICEHIGH=\fdos\drivers\aspi\aspi8dos.sys
+    45?DEVICEHIGH=\drivers\scsi\aspicd.sys /D:ASPICD
+
+  IN DER AUTOEXEC.BAT:
+    SHSUCDX /D:IDE-CD,R /D:*ASPICD,S /D:?USB-CD,U /L:0
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+  <a href="../cnfigsys/lastdrv.htm">lastdrive</a>
+  <a href="../cnfigsys/lastdrvh.htm">lastdrivehigh</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-2004 Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

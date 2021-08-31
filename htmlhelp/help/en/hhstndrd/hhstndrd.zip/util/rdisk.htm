@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: rdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Command: rdisk</h1>
+<pre>
+  RDISK is a DOS RAM-disk driver like <a href="../base/tdsk.htm">tdsk (Turbodisk)</a>.
+</pre>
+<h2><a name="syntax"></a>Syntax:</h2>
+<pre>
+  rdisk [/Sn] [/:L]
+</pre>
+<h2><a name="options"></a>Options:</h2>
+<pre>
+  /Sn  Specifies a desired RAM-disk size in megabytes of XMS memory.
+       Values may be any number from 2 to 2047. /S1024 or more
+       creates a 1- to 2-GIGABYTE RAM-disk! If /S is omitted or
+       invalid, a 25-MB RAM-disk is created by default. For old
+       V2.0 XMS managers (ROM-DOS etc.) only /S2 through /S60 may
+       be used.
+  /:L  Specifies the DOS drive letter desired to access RDISK files.
+       L may be any available drive letter from A to Z, e.g. /:N
+       assigns drive N: to all RDISK files. If the drive letter
+       is too high or already in use, RDISK will abort, and users
+       may need "<a href="../cnfigsys/lastdrv.htm">LASTDRIVE=</a>" in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> to set up more drives.
+       If RDISK is loaded by CONFIG.SYS, or if /: is omitted, the
+       next free drive letter will be used.
+</pre>
+<h2><a name="comment"></a>Comments:</h2>
+<pre>
+  RDISK creates a "fast" disk drive using 2 Megabytes to 2 GIGABYTES of
+  XMS memory! It loads as a system driver in CONFIG.SYS, or it can load
+  later in <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> or by user command.
+  DOS can copy critical programs, data files, and other directories which
+  need fast access (compiler TEMP files, databases, etc.) to the RAMdisk,
+  where they can be read and written at memory speeds! If loaded after
+  <a href="../cnfigsys/index.htm">CONFIG.SYS</a>, RDISK files can be assigned to any free DOS drive letter by
+  using its /: switch. RDISK runs with V2.0 or V3.0 XMS managers (60-MB
+  maximum with V2.0 XMS). It uses only 656 to 752 bytes of upper-memory
+  depending on the system configuration, and it can also load in 640K DOS
+  memory. RDISK is a small "load it and forget about it" driver for use
+  when resizing or other features are not needed.
+  For more information read "README.txt" in drivers.zip.
+</pre>
+<h2><a name="example"></a>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    An example CONFIG.SYS file using V3.70+ UMBPCI and XMGR is as follows:
+      SHELL=C:\DOS\COMMAND.COM C:\DOS /E:512 /P
+      DEVICE=C:\BIN\UMBPCI.SYS
+      DEVICE=C:\BIN\XMGR.SYS /W
+      DOS=HIGH,UMB
+      DEVICE=C:\BIN\JEMM386.EXE I=B000-B7FF X=C800-EFFF NOEMS   ;Optional
+      DEVICEHIGH=C:\BIN\UIDE.SYS /S500 /D:CDROM1                ;Or UIDEJR
+      DEVICEHIGH=C:\BIN\RDISK.COM /S250                         ;Optional
+          ..
+          ..  Etc.
+          ..
+  An example for AUTOEXEC.BAT:
+      LH C:\BIN\RDISK.COM /S500 /:Q          [Load RDISK, assign drive Q:]
+         ...
+         ...
+         ...
+      MD Q:\DOS                              [Create RAM-disk directories]
+      MD Q:\USERPROG
+      MD Q:\ ...
+      COPY C:DOS\*.* Q:\DOS                  [Copy DOS files to RAM-disk]
+      COPY C:\USERPROG\*.* Q:\USERPROG       [Copy programs to RAM-disk]
+      COPY C:\...\*.* Q:\...                 [Copy other files, as needed]
+         ...
+         ...                                 [Optional:  Verify RAM files]
+         ...
+      PATH Q:\DOS;Q:\USERPROG;Q:\...         [Tell DOS "new directories!"]
+</pre>
+<h2><a name="see"></a>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms (XMS)</a>)
+ (<a href="../base/fdxms286.htm">fdxms286 (XMS)</a>)
+ (<a href="../base/himem.htm">himem (XMS)</a>)
+  <a href="../base/himemx.htm">himemx (XMS)</a>
+  <a href="../base/jemmex.htm">jemmex (EMS)</a>
+  <a href="../cnfigsys/lastdrv.htm">lastdrive</a>
+  <a href="../base/tdsk.htm">tdsk</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2010 Jack Ellis, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

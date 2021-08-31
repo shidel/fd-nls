@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: country</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: country</h1>
+<pre>
+  COUNTRY sets the international behavior of DOS.
+  COUNTRY is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  country=nnn[,[mmm]][,[drive][path]filename]
+          drive     The drive letter, e.g. C:
+          path      The directory, e.g. \example\
+          filename  The filename of a country-information file.
+                    If not specified, the file 'COUNTRY.SYS' 
+                    is used instead.
+</pre>
+<h2>Options:</h2>
+<pre>
+  nnn    The country code, as shown in the table below (001=US).
+  mmm    The code page, as shown in the table below (437 is default, 
+         850 is updated form, 1252 for Windows).
+         If not specified, a code page will be chosen automatically.
+
+  Country Codes
+  In the table:
+
+    * HH means a 24hr-clock hour
+    * hh a 12hr-clock hour.
+    * X means AM and PM are appended 
+
+                                             format for
+       Locale      nnn        mmm        date         time
+===============================================================
+US                 001      437, 850   mm/dd/yyyy  hh:mm:ss.ssX
+Canadian French    002      863, 850   yyyy-mm-dd  HH:mm:ss,ss
+Latin America      003      850, 437   mm/dd/yyyy  hh:mm:ss.ssX
+Russia             007      866, 437   dd.mm.yyyy  HH:mm:ss,ss
+Netherlands        031      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+Belgium            032      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+France             033      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+Spain              034      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+Hungary            036      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Yugoslavia         038      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Italy              039      850, 437   mm/dd/yyyy  HH.mm.ss,ss
+Switzerland        041      850, 437   mm.dd.yyyy  HH,mm,ss.ss
+Czechoslovakia     042      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+UK                 044      850, 437   dd/mm/yyyy  hh:mm:ss.ssX
+Denmark            045      850, 865   dd-mm-yyyy  HH:mm:ss,ss
+Sweden             046      850, 437   yyyy-mm-dd  HH.mm.ss,ss
+Norway             047      850, 865   mm.dd.yyyy  HH:mm:ss,ss
+Poland             048      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Germany            049      850, 437   dd.mm.yyyy  HH:mm:ss,ss
+Argentina          054      850, 437   dd/mm/yyyy  hh:mm:ss.ssX
+Brazil             055      850, 860   dd/mm/yyyy  HH:mm:ss,ss
+International
+    English        061      850, 437   mm/dd/yyyy  HH:mm:ss.ss
+Portugal           351      850, 860   dd-mm-yyyy  HH:mm:ss,ss
+Finland            358      850, 437   dd.mm.yyyy  HH:mm:ss,ss
+</pre>
+<h2>Comments:</h2>
+<pre>
+  COUNTRY enables/sets international features of DOS by selecting a
+  country code and (only with the unstable / devel kernel) optionally
+  also a codepage and country file. The stable kernel only uses the nnn
+  value. For full support, use the unstable / devel kernel. You also
+  need a <a href="../base/cntrysys.htm">COUNTRY.SYS</a> file for the latter, while the former ignores the
+  filename argument and only sets date/time/number formats, using values
+  compiled into the kernel for a few common countries. It does not set
+  sort order and upper/lower case translation tables. <a href="../base/nlsfunc.htm">NLSFUNC</a> can only
+  be used with the unstable kernel.
+  COUNTRY is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\himemx.exe
+    device=c:\fdos\bin\jemm386.exe
+    dos=high,umb
+    country=001,437,c:\fdos\bin\country.sys
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../base/cntrysys.htm">country.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-development</a>
+  <a href="../base/nlsfunc.htm">nlsfunc</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

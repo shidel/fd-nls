@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : printer.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : printer.sys</h1>
+<pre>
+  PRINTER.SYS fournit des capacit‚s de gestion de pages de code … un
+  pilote d'imprimante. PRINTER.SYS doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> /
+  <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS fonctionne d‚j…, vous pouvez charger PRINTER.SYS par
+  la suite avec <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  printer [nomp‚riph][:]=([typemat‚riel],[{n|(n1,[n2,]...)}],[m])
+</pre>
+<h2>Options :</h2>
+<pre>
+  nomp‚riph     Nom du p‚riph‚rique du port d'imprimante qui doit ˆtre
+                ‚tendu, tel que PRN or LPTx. Les deux-points sont
+                optionnels.
+  typemat‚riel  Identificateur du type d'adaptateur mat‚riel d'affichage.
+                Il peut aussi d‚terminer le nombre de sous-polices …
+                utiliser.
+                Il n'existe pas encore de types pris en charge.
+  n, n1, n2,..  Num‚ros pour les num‚ros de page de code des pages de
+                code du  mat‚riel.
+  m             Le nombre de tampons que vous souhaitez sp‚cifier pour
+                pr‚parer les pages de code (la valeur par d‚faut
+                est de 1)
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Ce pilote n'a pas encore de forme binaire, car aucune gestion
+  d'imprimante sp‚cifique n'a encore ‚t‚ ajout‚e (vous pouvez compiler
+  … la fois PRINTER.SYS et DISPLAY.SYS depuis les sources de <a href="../base/display.htm">DISPLAY</a>).
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Lorsque PRINTER.SYS aura un support de mat‚riel, vous pourrez entrer :
+    PRINTER PRN=(IBMPro,437,1)
+  Vous sp‚cifiez que vous avez une imprimante compatible IBM Proprinter,
+  avec une page de code mat‚rielle 437, et demandez seulement 1 tampon
+  dans le but de minimiser l'empreinte m‚moire r‚sidente.
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/print.htm">print</a>
+  <a href="../base/printq.htm">printq</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; Aitor SANTAMARIA MERINO, mis … jour en 2008
+  par W. Spiegl.</b>
+ <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

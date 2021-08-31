@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: sys / sys config</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: sys / sys config</h1>
+<pre>
+  SYS macht eine Diskette oder eine Festplatte oder ein anderes
+  beschreibbares Medium bootfaehig. SYS CONFIG konfiguriert den
+  FreeDOS <a href="../base/kernel.htm">KERNEL</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  SYS [Quelle] Laufwerk: [Bootsect] [{Option}]
+  SYS [/?]
+      Quelle    = A:,B:,C:\KERNEL\BIN\,usw. Die (optional) Lage der 
+                Systemdateien. Wenn nichts angegeben wird, wird das 
+                momentane Verzeichnis vermutet.
+      Laufwerk  = A,B,C usw. Das bootfaehig zu machende Laufwerk.
+      Bootsect  Der Name der Datei, in die das 512 Byte grosse Bootsektor-
+                image geschrieben werden soll. (Der echte Bootsektor des
+                Laufwerks wird nicht beschrieben, ausser es wird die 
+                Option /BOTH verwendet.) 
+
+  SYS CONFIG [Laufwerk][Pfad]kernel.sys [option=Wert...]
+  SYS CONFIG [/help][/?]
+
+  SYS CONFIG
+    Dies zeigt die aktuellen Einstellungen der Datei KERNEL.SYS
+    im aktuellen Verzeichnis an. Es ist nuetzlich zu sehen, wie
+    die aktuellen Einstellungen gesetzt sind, welche Optionen
+    unterstuetzt werden und sollte gueltige Werte zusammen mit
+    den Standardwerten (Standard sind gueltigen Werte mit einem
+    '*' daneben) anzeigen.
+  SYS CONFIG [Laufwerk][Pfad]KERNEL.SYS
+    Diese Version verhaelt sich wie oben, ausser dass sie nur die
+    Einstellungen der von Ihnen gewaehlten Kerneldatei anzeigt.
+    Laufwerksbuchstabe und Pfad sind optional und man kann auch
+    einen '\' verwenden, um das Rootverzeichnis des aktuellen Lauf-
+    werks anzeigen zu lassen. KERNEL.SYS spezifiziert den Dateinamen
+    des Kernels, der nicht unbedingt "KERNEL.SYS" lauten muss, z.B.
+    wenn Sie KERNTEST.SYS testen und veraendern wollen und spaeter
+    diesen zum Booten nach KERNEL.SYS kopieren (oder umbenennen
+    wollen).
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  SYS OPTIONEN:
+  /BOTH        Der neue Bootsektor wird sowohl in die Imagedatei als auch
+               auf den Bootsektor des aktuellen Laufwerks geschrieben.
+  /BOOTONLY    Der Bootsektor (oder das Image) werden neu geschrieben,
+               aber der <a href="../base/kernel.htm">KERNEL</a> (kernel.sys) und <a href="../base/command.htm">COMMAND.COM</a> werden nicht
+               auf das Ziellaufwerk geschrieben.
+  /UPDATE      Kopiert den <a href="../base/kernel.htm">KERNEL</a> und updatet den Bootsektor (kopiert
+               NICHT die Shell).
+  /OEM[:AUTO]  Zeigt den Bootsektor, Dateinamen und das zu verwendende
+               Ladesegment an. /OEM[:AUTO] ist die Standardeinstellung,
+	       es waehlt anhand von vorhandenen Dateien DOS-basiert.
+  /OEM:DE      Verwendet die DEll Real Mode Kernel Einstellungen.
+  /OEM:DR      Verwendet DR DOS 7+ kompatible Einstellungen.
+  /OEM:EDR     Verwendet Enhanced DR DOS 7+ kompatible Einstellungen.
+  /OEM:FD      Verwendet FreeDOS kompatible Einstellungen.
+  /OEM:MS      Verwendet MS-DOS kompatible Einstellungen.
+  /OEM:PC      Verwendet PC-DOS kompatible Einstellungen.
+  /OEM:Rx      Verwendet RxDOS kompatible Einstellungen
+  /OEM:W9x     Verwendet MS Win9x DOS kompatible Einstellungen.
+  /K Name      Der Name der zu kopierenden Kerneldatei. Diese Option ist 
+               nur erforderlich, wenn ein Kernel verwendet werden soll,
+               der nicht "kernel.sys" heisst.
+  /L Segm      Das zu verwendende Ladesegment in Hexadezimal. Standard 
+               ist 60.
+  /B btdrv     hex BIOS # des Bootlaufwerks gesetzt im Bootsektor,
+               0=A:, 80=1st hd,...
+  /FORCE       Ueberschreibt die automatische Auswahl der BIOS-bezogenen
+               Einstellungen.
+  /FORCE:AUTO  Waehlt abhaengig von der BIOS-Verfuegbarkeit LBA oder
+               CHS.
+  /FORCE:BIOSDRV  Verwendet das vom BIOS gemeldete Bootlaufwerk #.
+  /FORCE:BSDRV    Verwendet das im Bootsektor gesetzte Bootlaufwerk #.
+  /FORCE:LBA   Verwendet immer LBA.
+  /FORCE:CHS   Verwendet immer CHS.
+  /NOBAKBS     Uebergeht das Kopieren des Bootsektors in eine Backup-
+               datei, nur bei FAT32 - ansonsten wird es ignoriert.
+  /SKFN Dateiname            Kopiert von Dateiname nach KERNEL.SYS;
+                             gleiche Einstellungen wie bei /OEM:FD.
+  /SCFN Dateiname            Kopiert von Dateiname nach COMMAND.COM.
+  /BACKUPBS [Pfad]Dateiname  Speichert aktuellen Bootsektor bevor er
+                             ihn ueberschreibt.
+  /DUMPBS   [Pfad]Dateiname  Speichert aktuellen Bootsektor und beendet.
+  /RESTORBS [Pfad]Dateiname  Ueberschreibt Bootsektor und beendet.
+  /VERBOSE                   Zeigt ergaenzende (debug) Ausgaben an.
+  /help       Zeigt die Hilfe.	      
+  /?          Zeigt die Hilfe.
+
+  SYS CONFIG OPTIONEN:
+  /help       Zeigt die Hilfe.
+  /?          Zeigt die Hilfe.
+  Aktuelle Optionen sind:
+  DLASORT=0|1
+    Diese Option gibt an, ob die Laufwerkszuweisungen der Art und Weise
+    von MSDOS folgen sollen, die alle primaeren Partitionen ueber die
+    Festplatten hinweg und erst dann die erweiterten Partitionen ver-
+    gibt, oder den logischeren Weg, alle Partitionen (primaer und
+    erweitert) auf dem ersten Laufwerk, dann erst fuer alle folgenden
+    Laufwerke (alle primaeren und erweiterten, dann Suche nach dem
+    naechsten Laufwerk). 0 entspricht der MS Loesung und 1 entspricht
+    der Loesung, zuerst die Laufwerksbuchstaben fuer das erste Laufwerk
+    vollstaendig zu vergeben usw...
+  SHOWDRIVEASSIGNMENT=0|1
+    Bei Auswahl 1 wird die normale Laufwerkszuweisungsinfo beim Booten
+    angezeigt. Bei Auswahl 0 wird diese Information unterdrueckt
+    (nicht angezeigt).
+  SKIPCONFIGSECONDS=# (zwischen -128 und 127)
+    Ein negativer Wert (< 0) deutet an, dass die Ausfuehrung von
+    F5/F8 uebergangen wird (der Kernel wird nicht pruefen ob Sie diese
+    Tasten gedrueckt haben, so dass Sie das Ausfuehren der Konfigura-
+    tionsdatei (CONFIG.SYS) nicht ueberspringen koennen. Der Wert 0
+    bedeutet, dass Sie die Taste exakt dann gedrueckt haben muessen,
+    wenn der Kernel dies prueft - was in der Regel "uebergehen" be-
+    deutet, auch wenn ein exakt positionierter Finger in der Lage ist,
+    es anzuwenden. Und jeder anderer Wert groesser als 0 bedeutet die
+    Anzahl an Sekunden, die der Kernel die Meldung anzeigt und darauf
+    wartet, dass Sie die Taste druecken, bevor er davon ausgeht, dass
+    Sie die Taste nicht gedrueckt haben.
+  FORCELBA=0|1
+    Bei 1 wird der Kernel LBA- (erweiterte INT13) Techniken verwenden,
+    um, wenn moeglich, alle Partitionen zu adressieren, selbst wenn
+    diese einen NICHT-LBA Partitionstyp haben und vollstaendig unter-
+    halb des Zylinders 1023 sind (ueblicherweise die 8 GB Grenze).
+    Das ist standardmaessig aus Kompatibilitaetsgruenden 0. Wenn man
+    dies auf 1 setzt, kann das einige fehlerbehaftete BIOSse umgehen
+    und es gibt eine geringfuegig bessere Performance.
+  GLOBALENABLELBASUPPORT=0|1
+    Wenn 0 gesetzt ist, wird LBA komplett deaktiviert, gleichgueltig,
+    wie die FORCELBA Einstellung gesetzt ist. Sie benoetigen dies,
+    wenn FreeDOS glaubt, dass LBA verfuegbar ist, in Wirklichkeit aber
+    nicht ist. Standardmaessig ist diese Einstellung auf 1 gestellt.
+
+    Weitere Informationen ueber SYS CONFIG finden Sie unter:
+    <b>http://www.fdos.org/kernel/</b> bzw. in der englischen
+    Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  SYS:
+  Der SYS-Befehl erzeugt auf Sektor 0 der Diskette oder der Festplatte 
+  oder eines anderen beschreibbaren Mediums einen Bootsektor. Danach 
+  kopiert es die Dateien <a href="../base/kernel.htm">KERNEL.SYS</a> und <a href="../base/command.htm">COMMAND.COM</a> auf das Medium.
+  Danach kann der Computer von diesem Medium FreeDOS starten.
+  SYS CONFIG:
+  Wenn keine Optionen angegeben werden, werden die aktuellen Werte
+  angezeigt. /help oder /? zeigt die Verwendung (Hilfe) an. 
+  [Laufwerk][Pfad]kernel.sys gibt den zu modifizierenden Kernel an;
+  wenn nicht angegeben, wird <a href="../base/kernel.htm">KERNEL.SYS</a> verwendet.
+  Option=Wert ... spezifiziert eine oder mehrere Optionen und die dabei
+  zu setzenden Werte. Wenn eine Option mehrfach verwendet wird, wird
+  der Wert auf den wahrscheinlichsten gesetzt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  sys c: (von einer Diskette; der sys-Befehl und <a href="../base/command.htm">COMMAND.COM</a> und
+  <a href="../base/kernel.htm">KERNEL.SYS</a> sollten auf der Diskette sein; nach Ausfuehrung des
+  Befehls ist die Festplatte bootfaehig).
+  sys a: (von einer Festplatte oder CD; der sys-Befehl und <a href="../base/command.htm">COMMAND.COM</a>
+         und <a href="../base/kernel.htm">KERNEL.SYS</a> sollten auf dem Quellaufwerk sein; nach Aus-
+         fuehrung des Befehls ist die Diskette bootfaehig).
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/command.htm">command.com</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-devel</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../command/vol.htm">vol</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

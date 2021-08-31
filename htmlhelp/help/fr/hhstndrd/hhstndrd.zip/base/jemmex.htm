@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : jemmex</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : jemmex</h1>
+<pre>
+  JEMMEX est un gestionnaire de m‚moire ‚tendue qui comprend d‚j… un
+  XMM. JEMMEX doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEVICE=[lecteur][chemin][jemmex.exe] [options]
+         lecteur  La lettre du lecteur, par exemple C:
+         chemin   Le r‚pertoire, par exemple \exemple\
+  ou lancez-le depuis la ligne de commande :
+  [lecteur][chemin][jemmex.exe] [options]
+</pre>
+<h2>Options :</h2>
+<pre>
+ +A20/NOA20     Active ou d‚sactive l'‚mulation de la d‚sactivation de
+                A20 (valeur par d‚faut : activ‚e).
+  A20METHOD:m   D‚fini la m‚thode de basculement A20. Les valeurs
+                possibles pour m sont KBC, PS2, BIOS, FAST, PORT92
+                and ALWAYSON.
+  ALTBOOT       Utilise une strat‚gie alternative de red‚marrage.
+  B=####        Sp‚cifie l'adresse de segment le plus bas pour la
+                banque EMS (par d‚faut=4000).
+  D=###         RŠgle la taille du tampon DMA en ko (par d‚faut=64,
+                max 128).
+  EMX           Compatibilit‚ accrue avec l'extenseur DOS EMX.
+  FASTBOOT      Red‚marrage rapide. N‚cessite que Jemm386 soit charg‚
+                dans CONFIG.SYS.
+  FRAME=E000    D‚finit le cadre de page EMS (FRAME=NONE d‚sactive le
+                cadre). Toutes les valeurs entre 8000 et E000 sont
+                accept‚es, mais toutes ne fonctionneront pas.
+  HMAMIN=n      D‚finit la quantit‚ minimale en Ko pour allouer le HMA.
+  I=D000-D7FF   Force l'utilisation d'une r‚gion pour les UMB. Sans cette
+                option la plage C000-EFFF est analys‚e pour trouver des
+                pages inutilis‚es. Peut aussi ˆtre utilis‚e pour ajouter
+                (des parties de) A000-BFFF ou F000-F7FF en tant qu'UMB.
+                N'utilisez pas cette option si vous ne savez pas ce que
+                vous faites !
+  I=TEST        Recherche des pages inutilis‚es dans les ROM, inclut les
+                r‚gions trouv‚es en tant qu'UMB.
+  [MAX=]#####   Limite pour la m‚moire VCPI (et EMS si < 32M) en ko
+                (la valeur par d‚faut est de 120 Mo).
+  MAXEXT=n      Limite l'utilisation de la m‚moire ‚tendue … n ko.
+  MIN=#####     R‚serve jusqu'… ##### ko pour la m‚moire EMS/VCPI sur
+                init (par d‚faut=0).
+  NOCHECK       Interdit l'accŠs … l'espace d'adressage sans RAM (MMIO).
+  NOE801        N'utilise pas Int 15h, E801h pour obtenir la quantit‚ de
+                m‚moire ‚tendue.
+  NOE820        N'utilise pas Int 15h, E820h pour otenir la quantit‚ de
+                m‚moire ‚tendue.
+  NOEMS         D‚sactive la gestion EMS.
+  NODYN         Pas d'allocation dynamique de m‚moire XMS (utilisez
+                MIN= pour d‚finir la quantit‚ fixe).
+  NOHI          Ne d‚place pas la partie r‚sidente dans le premier UMB.
+  NOINVLPG      N'utilise pas l'opcode INVLPG.
+ +PGE/NOPGE     Active ou d‚sactive l'utilisation de la fonctionnalit‚
+                Page Global Enable (par d‚faut : d‚sactiv‚e).
+  S=D000-D7FF   Suppose que la Shadow-RAM est activ‚e par UMBPCI,
+                l'inclus en tant qu'UMB.
+  SB            Mode de compatibilit‚ avec le pilote SoundBlaster.
+  SPLIT         R‚cupŠre les pages EPROM 4ko partiellement utilis‚es
+                pour les UMB.
+ +VCPI/NOVCPI   Support de VCPI activ‚/d‚sactiv‚ (par d‚faut : activ‚).
+  VDS/NOVDS     Services de Virtual DMA activ‚s/d‚sactiv‚s (par d‚faut :
+                activ‚s).
+ +VME/NOVME     Extentions Mode V86 activ‚es/d‚sactiv‚es (par d‚faut :
+                activ‚es).
+  VERBOSE       Affiche des d‚tails suppl‚mentaires pendant le d‚marrage
+                (forme abr‚g‚e : /V).
+  X=D000-D7FF   Interdit … Jemm386 de toucher ou d'utiliser la r‚gion.
+  X=TEST        Analyse de la plage de m‚moire C000-EFFF pour exclure
+                les UMB.
+  X2MAX=n       Valeur max en Ko pour le rapport de m‚moire libre XMS V2
+                (par d‚faut=65535).
+  XMSHANDLES=n  Nombre d'indicateurs XMS disponibles (8<=n<=128,
+                d‚faut=32).
+  /?            Affiche l'aide.
+ '+': cette option peut ˆtre d‚finie de maniŠre dynamique en lan‡ant
+      Jemm386 depuis la ligne de commande.
+  Lorsqu'il est appel‚ depuis la ligne de commande, Jemmex comprendra
+  en outre:
+    LOAD        installe
+    UNLOAD      d‚sinstalle
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  JEMMEX n‚cessite un processeur 80386+. Chargez JEMMEX comme
+  DEVICE=JEMMEX.EXE dans CONFIG.SYS (bien que ce soit un fichier
+  ".exe" !) JEMMEX doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  JEMMEX est probablement un meilleur choix que <a href="../base/himemx.htm">HIMEMX</a> / <a href="../base/jemm386.htm">JEMM386</a> car
+  il aura besoin de moins de m‚moire q'un XMM externe + JEMM386.
+</pre>
+<h2>Exemples:</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\jemmex.exe
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

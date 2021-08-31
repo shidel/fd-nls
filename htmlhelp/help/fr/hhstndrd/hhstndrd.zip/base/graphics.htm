@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : graphics</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : graphics</h1>
+<pre>
+  GRAPHICS permet … la touche Impr cr (Impression d'‚cran) d'imprimer
+  des ‚crans graphiques.
+  GRAPHICS fonctionne en mode de compatibilit‚ avec MS GRAPHICS.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  GRAPHICS type [options]
+</pre>
+<h2>Options :</h2>
+<pre>
+  /B             Active le traitement de la palette de couleurs de
+                 fond 0 CGA.
+  /I             Impression invers‚e (utile s'il y a beaucoup de zones
+                 sombres
+                 sur l'‚cran, pour ‚conomiser de l'encre / du toner :
+                 imprimera
+                 en noir l… o— l'‚cran est blanc, etc.).
+  /LCD           ignor‚e (pas encore prise en charge).
+  /LOW           Ne charge pas haut (pas d'option MS).
+  /PRINTBOX:LCD  ignor‚e (pas encore prise en charge).
+  /PRINTBOX:STD  ignor‚e (pas encore prise en charge).
+                 (essayez d'utiliser /LCD pour afficher une explication).
+                 Ces options vous permettront de d‚finir un rapport
+                 largeur / hauteur d'‚cran diff‚rent de 4: 3, qui est
+                 actuellement toujours suppos‚.
+  /R             Imprime le noir en tant que noir et le blanc en tant
+                 que blanc.
+  Types d'imprimantes prises en charge :
+    HPPCL (PCL), EPSON (ESC/P), POSTSCRIPT (PS)
+  Vous pouvez utiliser les ‚l‚ments suivants pour le type :
+    Compatible HP PCL :
+      HPDEFAULT          (compatible HP PCL)
+      DESKJET            (compatible HP PCL)
+      RUGGEDWRITER       (compatible HP PCL)
+      RUGGEDWRITERWIDE   (compatible HP PCL)
+      THINKJET           (compatible HP PCL)
+    Compatible EPSON :
+      EPSON              De nombreuses imprimantes … impact / … ruban
+                         fonctionnent avec "EPSON"
+    Compatible POSTSCRIPT :
+      LASERJET           (compatible POSTSCRIPT)
+      LASERJET II        (compatible POSTSCRIPT)
+      QUIETJET           (compatible POSTSCRIPT)
+      QUIETJETPLU        (compatible POSTSCRIPT)
+    Certains d'entre eux sont ‚quivalents, tels que POSTSCRIPT et PS.
+  Types d'imprimantes non prises en charge :
+    Imprimante … ruban couleur IBM PC (couleur1, couleur4, couleur8)
+    Imprimante thermique convertible IBM (thermique)
+    Imprimante graphique IBM (graphics[wide])
+    IBM proprinter
+    IBM quietwriter
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  HP (GRAPH-HP - PCL) permet les options suppl‚mentaires suivantes :
+    /1  Utilise LPT1 (valeur par d‚faut)
+    /2  Utilise LPT2
+    /3  Utilise LPT3
+    /C  Pour 300 dpi au lieu de 600 dpi
+    /E  Mode d'‚conomies
+    /R  Pour le tramage al‚atoire au lieu du tramage ordonn‚
+    /?  Affiche l'aide.
+  PS (GRAPH-PS - Postscript) permet les options suppl‚mentaires
+  suivantes :
+    /1  Utilise LPT1 (valeur par d‚faut)
+    /2  Utilise LPT2
+    /3  Utilise LPT3
+    /C  Mode de compatibilit‚ (HP Laserjet)
+    /E  Mode d'‚conomies (seulement  50 % de densit‚)
+    /?  Affiche l'aide.
+  PIN (GRAPHPIN - EPSON) permet les options suppl‚mentaires suivantes :
+    /1  Utilise LPT1 (valeur par d‚faut)
+    /2  Utilise LPT2
+    /3  Utilise LPT3
+    /9  Mode … 9 aiguilles (120x72, 60x72 avec /C)
+    /C  Mode de compatibilit‚ (120x60dpi)
+    /E  Mode d'‚conomies (seulement 50 % de densit‚)
+    /R  Utilise le tramage al‚atoire, pas le tramage ordonn‚
+    /X  Envoie des donn‚es d'impression pour les lignes entiŠres
+        au lieu de les envoyer sous forme de blocs
+    /?  Affiche l'aide.
+  AprŠs avoir charg‚ le pilote vous pouvez imprimer des captures
+  d'‚cran en utilisant 'maj - Imp cr' y compris en mode graphique.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  graphics HPDEFAULT /low /I /E /1
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../base/graphexe.htm">graphics-ps...</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Eric Auer, mis … jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

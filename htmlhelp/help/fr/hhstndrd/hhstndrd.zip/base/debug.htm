@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : debug</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : debug</h1>
+<pre>
+  DEBUG est un clone de la commande DEBUG de MS-DOS. Certaines choses
+  mineures ne sont pas impl‚ment‚es. DEBUG ne supporte pas seulement les
+  registres et les jeux d'instruction 8086/8088 et 8087 mais aussi les
+  registres et jeux d'instruction jusqu'au processeur PentiumPro - sauf
+  les extensions MMX.
+  DEBUG est un outil DOS relativement avanc‚ mais il a de nombreuses
+  utilisations. Par exemple, il peut ˆtre utilis‚ pour :
+    * trouver des bugs dans les programmes,
+    * cr‚er des programmes en partant du code assembleur,
+    * inspecter et ‚diter des fichiers binaires.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEBUG [[lecteur:][chemin]nomdefichier [listearg]]
+        [lecteur:][chemin]nomfich  Sp‚cifie le fichier que vous souhaitez
+                                tester. Il n'est pas n‚cessaire que ce
+                                soit un ex‚cutable - ce pourrait ˆtre un
+                                binaire ou un fichier texte. Comme il
+                                peut s'agit de n'importe quel fichier,
+                                l'extension doit ˆtre sp‚cifi‚e.
+       listearg                 Sp‚cifie les informations de ligne de
+                                commande requises par le fichier que
+                                vous souhaitez tester.
+                                Voyez <a href="#progexec">Ex‚cution de programmes</a> ci-dessous
+                                pour plus d'informations sur le lancement
+                                d'ex‚cutables.
+  Une fois que Debug est lanc‚, l'invite de commandes de Debug
+  s'affiche. Entrez Q pour quitter Debug et ? pour une liste de
+  commandes.
+</pre>
+<h2>Options :</h2>
+<pre>
+  Q                     Quitter
+  ?                     Aide
+
+  <B>Inspection et dition de la m‚moire :</B>
+    COMPARER :
+      C plage d'adresse Compare deux plages de m‚moire et affiche les
+                        diff‚rences. Seule l'adresse de d‚part de la
+                        seconde plage est requise, Debug supposera que
+                        la seconde plage aura la mˆme taille que la
+                        premiŠre.
+                        Par exemple :
+                          C 100,110 200
+                        comparera la plage 100,110 to 200,210.
+    DUMP :
+      D [range]         Affiche le contenu d'une plage de m‚moire. Si
+                        aucune plage n'est sp‚cifi‚e, dump affichera
+                        128 octets, d‚marrant l… o— le dernier dump
+                        s'est termin‚ ou au d‚but du fichier charg‚.
+      DM                Affiche la chaŒne de bloc de contr“le de la
+                        m‚moire DOS (MCB) et le PSP actuel.
+    ENTRER :
+      E adresse [liste] crit sur une partie de la m‚moire, commen‡ant
+                        l'adresse et avec la liste des octets. Pour
+                        entrer une chaŒne de texte, mettez-le entre
+                        des guillemets anglais.
+                        Par exemple :
+                          E 100 "Salut !"
+    REMPLIR :
+      F plage liste     crit sur une plage de la m‚moire avec une liste
+                        r‚p‚titive d'octets. Par exemple, pour mettre une
+                        plage de m‚moire … z‚ro, vous pourriez mettre
+                          E 100,110 0
+                        et pour mettre "brumbrum" sur une plage de
+                        m‚moire :
+                          E 100,107 "brum"
+    DPLACER :
+      M plagesource adressedest
+                        Copie la plage plagesource vers une autre plage
+                        qui d‚marre … adressedest.
+    RECHERCHER :
+      S plage liste     Recherche toutes les occurrences de la liste
+                        d'octets dans la plage sp‚cifi‚e. L'adresse de
+                        d‚marrage de chaque occurrence est affich‚e.
+
+  <B>Calcul de nombres en hexad‚cimal :</B>
+    HEX
+      H valeur1 valeur2 Affiche deux nombres,
+                        le premier ‚tant valeur1+valeur2
+                        le second ‚tant valeur1-valeur2.
+                        H peut g‚rer les valeurs dword.
+
+  <B>Chargement et sauvegarde des fichiers :</B>
+    CHARGEMENT D'UN PROGRAMME OU D'UN FICHIER :
+      L [adresse]       Charge le programme.
+      L adresse lecteur secteur num‚ro
+                        Charge les secteurs.
+    DFINIR LE NOM :
+      N [[lecteur:][chemin]nomprog [listearg]]
+                        D‚finit le nom pour le fichier/programme actuel.
+    CRIRE UN PROGRAMME OU UN FICHIER :
+      W [adresse]       crit le programme/fichier actuel sur le disque.
+                        Utilisez N pour changer le nom si vous ne
+                        souhaitez pas ‚craser le fichier original.
+      W adresse lecteur secteur num‚ro
+                        crit les secteurs.
+
+  <B>Assemblage et d‚sassemblage :</B>
+    ASSEMBLAGE :
+      A [adresse]       Assemble.
+    DSASSEMBLAGE :
+      U [plage]         D‚sassemble.
+    MODE 80x86 :
+      M[r‚glage]        Le processeur actuel (pour les avertissements
+                        d'assembleur et de d‚sassembleur, ci-dessus)
+                        peut ˆtre d‚clar‚ comme ‚tant un autre
+                        processeur avec les commandes suivantes :
+                          m0  D‚clare que le processeur actuel est
+                              un 8088
+                          m1  D‚clare un 80186
+                          m2  D‚clare un 286
+                          m3  D‚clare un 386
+                          m4  D‚clare un 486
+                          m5  D‚clare un Pentium
+                          m6  D‚clare un Pentium Pro
+      MC                D‚clare l'existence d'un coprocesseur
+                        math‚matique.
+      MNC               D‚clare l'absence d'un coprocesseur math‚matique
+      MC2               D‚clare que le coprocesseur math‚matique est
+                        un 287 (valide seulement si le processeur
+                        actuel est un 386)
+      M?                (versions anciennes seulement) : affiche le type
+                        de processeur actuellement d‚clar‚
+      M                 Affiche le type de processeur actuellement
+                        d‚clar‚
+
+  <a name="progexec"></a><B>Ex‚cution d'un programme :</B>
+    ALLER · (GO) :
+      G [=adresse] [points d'arrˆt]
+                        D‚marre l'ex‚cution du programme charg‚ ou du
+                        code machine … l'adresse sp‚cifi‚e. L'ex‚cution
+                        est suspendue aux adresses de point d'arrˆt,
+                        vous permettant d'inspecter la m‚moire, etc.
+    PROCDER :
+      P [=adress] [nombret]
+                        Proc‚de … l'ex‚cution par ‚tapes.
+    REGISTRE :
+      R [registre [valeur]]
+                        Affiche tous les registres du processeur, ou
+                        affiche ou d‚finit un registre particulier.
+                        Accepte les noms de registre 32 bit (pour les
+                         processeurs 80386+).
+      RN                Affiche l'‚tat du registre FPU. DEBUG
+                        n'affichera que les valeurs brutes hexad‚cimales
+                        des registres, alors que DEBUGX affichera les
+                        valeurs au format virgule flottante.
+      RX                Bascule entre l'affichage des registres 8086 et
+                        80386 (pour les processeurs 80386+).
+    TRACE :
+      T [=adresse] [num‚ro]
+                        Trace
+      TM [0|1]          D‚finit le mode de commande de tra‡age,
+                        0=process INTs (valeur par d‚faut),
+                        1=single-step INTs (le mode compatible
+                        avec MS-DOS).
+
+  <B>Port E/S :</B>
+    ENTRE :
+      I port            Entr‚e depuis un port
+      IW port           Entr‚e depuis un port WORD
+      ID port           Entr‚e depuis un port DWORD
+                        Les valeurs DWORD n‚cessitent un processeur
+                        80386+.
+    SORTIE :
+      O port value      Sortie vers un port
+      OW port valeur    Sortie vers port WORD
+      OD port valeur    Sortie vers un port DWORD.
+                        Les valeurs DWORD n‚cessitent un processeur
+                        80386+.
+
+  <B>Commandes de m‚moire ‚tendue (EMS) (seulement si un <a href="../base/jemm386.htm">EMM v4.0</a>
+  est pr‚sent) :</B>
+    XA nombre           Attribue un descripteur EMS 'vide' avec
+                        z‚ro page.
+    XD indicateur       D‚sallouer.
+    XM indicateur page logique page physique
+                        Mappe la m‚moire.
+    XR indicateur nombre  R‚attribue un indicateur EMS handle.
+    XS                  Affiche l'‚tat.
+    X?                  Affiche l'aide sur la commande X.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  DEBUG utilise l'hexad‚cimal (base 16). Les adresses m‚moire sont
+  affich‚es sous la forme segment:offset, par ex. 0D00:0100. Les quatre
+  derniers chiffres hexad‚cimaux qui sp‚cifient l'offset du segment
+  peuvent aller de 0000 … FFFF, soit une plage de 64 Ko.
+  Les ex‚cutables avec l'extension .com ont toutes leurs donn‚es et leur
+  code en un segment. Donc pour les fichiers .com vous pouvez
+  g‚n‚ralement simplement ‚crire l'offset lors de la sp‚cification
+  d'adresses m‚moire avec les commandes DEBUG. DEBUG supposera le
+  segment du programme.
+  C'est aussi vrai pour les fichiers textes/binaires qui font moins
+  de 64K. Pour sp‚cifier une plage m‚moire, s‚parez deux adresses avec
+  une virgule.
+  Le chargement des fichiers .HEX n'est pas impl‚ment‚ dans DEBUG.
+  L'assembleur et le d‚sassembleur supportent toutes les instructions
+  document‚es publiquement pour les puces Intel jusqu'au Pentium Pro
+  (P6), sauf pour les instructions MMX. L'assembleur et le d‚sassembleur
+  vous informent si une instruction est inappropri‚e pour le processeur
+  actuel. Les FPU Opcodes sont pris en charge.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Cr‚ation d'une sauvegarde du secteur d'amor‡age (secteur nø 0 avec
+  512 octets =0x200) du lecteur C: (num‚ro 2) sur le fichier BOOT_C.BIN
+  sur disquette A:
+    A:
+    cd \
+    echo L 100 2 0 1 &gt;BOOT_C.TXT
+    echo RCX         &gt;&gt;BOOT_C.TXT
+    echo 200         &gt;&gt;BOOT_C.TXT
+    N BOOT_C.BIN     &gt;&gt;BOOT_C.TXT
+    W                &gt;&gt;BOOT_C.TXT
+    Q                &gt;&gt;BOOT_C.TXT
+    DEBUG &lt;BOOT_C.TXT
+
+  Recherche avec DEBUG dans la RAM de la carte graphique de certains
+  caractŠres sp‚ciaux tels que l'ann‚e pour identifier la carte :
+    DEBUG
+    S C000:0000,07FF "BIOS"
+    S C000:0,7FF     "(C)"
+    S c000:0,7ff     "199"
+    s c000:0,7ff     "200"
+    D C000:0000,100
+    Q
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis … jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

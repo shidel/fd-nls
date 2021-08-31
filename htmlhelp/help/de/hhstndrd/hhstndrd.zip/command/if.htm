@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: if</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: if</h1>
+<pre>
+  IF bewirkt bedingungsabhaengige Verarbeitung in einem Stapelprogramm.
+  IF ist ein <a href="../batch/index.htm">BATCH-DATEI</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> Befehl.
+  Er kann aber auch in der Kommandozeile verwendet werden.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  IF [NOT] ERRORLEVEL Nummer Befehl
+  IF [NOT] Zeichenkette1==Zeichenkette2 Befehl
+  IF [NOT] EXIST Dateiname Befehl
+     Laufwerk   Der Laufwerksbuchstabe, z.B.: C:
+     Pfad       Der zu waehlende Pfad, z.B.: \Beispiel\
+     Dateiname  Die zu waehlende Datei, z.B.: test.txt
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  NOT                Gibt an, dass der Interpreter den Befehl nur dann
+                     ausfuehren soll, wenn die Bedingung nicht zutrifft.
+                     (Ohne dies wird der Befehl ausgefuehrt, wenn die
+                     Bedingung wahr ist).
+  ERRORLEVEL Nummer  Ergibt eine wahre Bedingung, falls das zuletzt aus-
+                     gefuehrte Programm einen Ausgangscode zurueckgegeben
+                     hat, der gleich oder groesser als die spezifizierte
+                     Nummer ist.
+  Befehl             Spezifiziert den bei zutreffender Bedingung auszu-
+                     fuehrenden Befehl.
+  Zeichenkette1==Zeichenkette2
+                     Ergibt eine wahre Bedingung, falls die spezifizierten
+                     Zeichenketten uebereinstimmen.
+  EXIST Dateiname    Ergibt eine wahre Bedingung, falls die spezifizierte
+                     Datei existiert.
+</pre>
+<h2><a name="comment"></a>Kommentar:</h2>
+<pre>
+  <I>ERRORLEVEL</I> number:      DOS-Programme geben beim Beenden eine Zahl
+                          aus (Errorlevel), der manchmal eine
+                          Information darueber gibt, ob das Programm
+                          erfolgreich oder mit Fehlern lief.
+                          Wenn das zuletzt beendete Programm die
+                          vorgegebene Nummer zurueckgibt, ist die
+                          Bedingung wahr.
+  string1==string2        Wenn die zwei Zeichenketten gleich sind, dann
+                          ist die Bedingung wahr.
+  exist [Laufwerk][Pfad]  Wenn die angegebene Datei existiert, dann ist
+        Dateiname         die Bedingung wahr.
+
+  IF ist ein interner Befehl, d.h. der Befehl ist in der command.com
+  enthalten. Es wird zur Ausfuehrung des Befehls kein zusaetzlicher 
+  Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN EINER .BAT DATEI ODER DER AUTOEXEC.BAT:
+    if exist c:\kernel.sys ECHO Kernel.sys existiert  
+                  (bringt eine Meldung wenn kernel.sys existiert)
+    set A=freedos     
+    set B=freedos 
+    set C=otherdos
+    if %A%==%B% ECHO A und B sind gleicher Wert  
+                  (A und B heissen "freedos", deshalb erscheint 
+                   die Meldung)
+    if %A%==%C% ECHO A und C sind gleicher Wert  
+                  (A ist "freedos", C ist "otherdos", deshalb erscheint 
+                   keine Meldung)
+    if not %A%==%C% ECHO A und C sind NICHT gleicher Wert 
+                  (A ist "freedos", C ist "otherdos", da sie NICHT 
+                   identisch sind, wird die Meldung ausgegeben.) 
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">Batch-Dateien</a>
+  <a href="../batch/choice.htm">choice</a>
+  <a href="../batch/goto.htm">goto</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

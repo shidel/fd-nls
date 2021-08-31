@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: trch</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: trch</h1>
+<pre>
+  TRCH converts all instances of one character to another. This is really
+  useful if you need to convert a text file between UNIX (end of line
+  is "^J") and DOS (end of line is "^M^J" or "\n").
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  trch c1 c2 < file > file
+       < file = input file
+       > file = output file
+</pre>
+<h2>Options:</h2>
+<pre>
+  c1  character1, e.g. 'A'
+  c2  character2, e.g. 'B'
+</pre>
+<h2>Comments:</h2>
+<pre>
+   TRCH supports NLS (national language support).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  trch ^I * < test.txt >test2.txt    Replaces tabs with '*'
+  trch e X < test.txt > test3.txt    Replaces 'e' with 'X'
+  trch \n $ < test.txt > test4.txt   Replaces end of line ('\n') with '$*'
+  trch ^J ^M^J < unix.txt > dos.txt  Replaces Unix to DOS format
+  trch \n ^J < dos.txt > unix.txt    Replaces DOS to Unix format
+</pre>
+<h2>See also:</h2>
+<pre>  - nowhere -</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

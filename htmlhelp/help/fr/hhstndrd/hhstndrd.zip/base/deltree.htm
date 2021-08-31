@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : deltree</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : deltree</h1>
+<pre>
+  DELTREE efface une arborescence entiŠre de dossiers, y compris les
+  sous-r‚pertoires.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DELTREE [/Y] [/V] [/D] [/X] [/Z:SERIOUSLY] filespec [filespec...]
+  DELTREE [/?]
+          lecteur La lettre du lecteur, par exemple C:
+          chemin   Le r‚pertoire, par exemple \exemple
+</pre>
+<h2>Options :</h2>
+<pre>
+  /Y            Effacer les r‚pertoires sp‚cifi‚s sans demander
+                confirmation.
+  /V            Rapporte le nombre de fichiers et sous-r‚pertoires
+                supprim‚s
+                ainsi que leur taille totale.
+  /D            Affiche les informations de d‚bogage.
+  /X            Pour tester, n'efface rien du tout.
+  /Z:SERIOUSLY  Ne demande pas de confirmation quand le r‚pertoire
+                racine est sp‚cifi‚.
+  filespec      L'arborescence de r‚pertoires … effacer, par exemple
+                C:\OLDTREE
+                Notez que plusieurs arborescences de r‚pertoires
+                peuvent ˆtre effac‚s avec une seule commande.
+  /?            Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Pour des raisons de performance, DELTREE ‚crase la premiŠre lettre de
+  chaque nom de fichier/r‚pertoire par un '?'. Il n'efface pas le
+  fichier lui-mˆme mais il d‚salloue l'espace o— le contenu du fichier
+  est ‚crit. FreeDOS, tout comme d'autres DOS, reconnaŒt le fichier/
+  r‚pertoire renomm‚ (monfichier.txt devient ?onfichier.txt; nomchemin
+  devient ?omchemin) comme ‚tant effac‚, ne l'affiche plus et n'en
+  offre plus l'accŠs. Des programmes comme <a href="../base/debug.htm">DEBUG</a> qui ont accŠs
+  aux secteurs sont capables de lire les contenus du fichier/dossier.
+  Tant que vous n'‚crivez pas sur le lecteur, vous aurez une chance de
+  restaurer les fichiers/dossiers avec <a href="../base/undelete.htm">UNDELETE</a>, seul le premier
+  caractŠre du nom de fichier/dossier sera perdu (_onfichier.txt/
+  _omchemin). La seule fa‡on d'effacer les CONTENUS DE MANIÔRE ABSOLUMENT
+  CERTAINE est de remplir le disque complŠtement avec d'autres fichiers
+  ou d'utiliser un outil de nettoyage. La seule fa‡on d'effacer un NOM de
+  fichier/dossier DE MANIÔRE CERTAINE est de <a href="../command/rename.htm">renommer</a> <a href="../command/ren.htm">(REN)</a>d'abord
+  le fichier/dossier (par ex. "a."/"a") et de l'effacer ensuite
+  (seulement vrai pour le 8.3 - pas pour les noms de fichier/dossier
+  longs !)
+  Les commutateurs doivent ˆtre plac‚s avant les filespecs sur la ligne
+  de commande - syntaxe compatible avec MS ! Sinon ils seront ignor‚s.
+  Les filespecs peuvent nommer des fichiers, des sous-dossiers, ou des
+  listes de fichiers comme pour DR DOS.
+  DELTREE est une commande dangereuse ! Utilisez … vos risques et p‚rils.
+  DELTREE a les <a href="../batch/if.htm#comment">CODES DE SORTIE
+  (ERRORLEVEL)</a> suivants :
+    00  SuccŠs
+    01  Quelque chose n'a pu ˆtre effac‚
+    03  Annulation de l'utilisateur (Q, control-C)
+    16  Erreur g‚n‚rale de syntaxe, ou d‚bordement de tampon
+    17  Pas assez de m‚moire
+    18  DOS 3.0 ou mieux requis
+    19  ProblŠme avec le fichier de liste
+    20  D‚bordement de tampon interne
+    21  Erreur lors de la r‚solution du nom de r‚pertoire (dots_fix)
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  deltree /y c:\oldtree
+  deltree c:\test2\   demande pour chaque sous dossier de \test2 si vous
+                      souhaitez vraiment l'effacer
+  deltree c:\test2    efface tous les sous-dossiers de \test2
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/del.htm">del</a>
+  <a href="../command/erase.htm">erase</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/ren.htm">ren</a>
+  <a href="../command/rename.htm">rename</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

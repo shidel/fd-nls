@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: keyb</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: keyb</h1>
+<pre>
+  KEYB ist eine lokalisierende BIOS-Erweiterung fuer DOS.
+  KEYB kann als Tastaturtreiber betrachtet werden, der die Tastaturver-
+  waltungs-BIOS-Routinen abfaengt, um Nicht-US-Tastaturen und einiges
+  anderes an das System anzupassen. 
+  (Anmerkung: KEYB ist kein richtiger Geraetetreiber, er wird auch nicht
+  mit DEVICE= in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> geladen; Sie koennen KEYB stattdessen als
+  residentes Programm laufen lassen).
+  Die erforderlichen Daten werden aus von einer Tastaturlayoutdatendatei,
+  einer KL Datei gelesen.
+  Ein Tastaturlayout wird durch zwei Kennzeichen identifiziert, einem
+  Zeichensatz, der zwingend erforderlich ist (ueblicherweise zwei Buch-
+  staben, wie z.B. GR, FR oder SP) und einem optionalen numerischen 
+  Kennzeichner um verschiedene Varianten zu unterscheiden.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  KEYB  LayoutName[,[CP][,Dateiname]]  [/ID:nnn]  [/E] [/9] [/I] [/Dx]
+                  [/V] [/L=m] [/NOHI] [/B] [/S]
+  KEYB [/U]
+  KEYB /?
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Parameterlos  KEYB zeigt Informationen ueber den aktuell geladenen
+                KEYB Befehl an.
+  LayoutName    String Kennzeichner, i.d.R. Buchstaben.
+  /ID:nnn       Spezifiziert den numerischen Kennzeichner nnn.
+  CP            Codepage, mit der Sie KEYB starten wollen (falls nicht
+                angegeben, werden DISPLAY.SYS und das System daraufhin
+                ueberprueft).
+  Dateiname     Die KL Datei, die die Information ueber das angegebene
+                Layout enthaelt. Falls nicht angegeben, wird KEYBOARD.SYS
+                versucht, andernfalls .KL.
+  /E            Gibt an, dass die Tastatur eine erweiterte AT-Tastatur
+                ist (dieser Schalter ist inkompatibel mit /9)
+  /9            Gibt an, dass Int9h Verwaltungsdienste aktiviert werden
+                muessen (dieser Schalter ist inkompatibel mit /E).
+  /I            Erzwingt die Installation ueber einen bereits existieren-
+                den Tastaturtreiber.
+  /Dx           Setzt das Dezimaltrennzeichen auf x.
+  /U            Entlaedt ein vorher in den Speicher geladenes KEYB.
+  /V            Verbose: Zeigt Zusatzinformationen.
+  /L=m          Erzwingt das Verwenden von 'Submapping' (Unterumleiten)
+                m, vorausgesetzt, dass es mit der aktuellen Codepage
+                kompatibel ist.
+  /NOHI         Verhindert, dass KEYB Daten in den oberen Speicherbereich
+                laedt, indem es KEYB unterhalb von 640 KB laedt.
+  /B            Schaltet aktustische Warnungen aus (piep).
+  /S            Sicherer Modus: erlaubt keine ungeschlossenen Tastatur-
+                layoutsammlungen und blockiert Strings und andere
+                kritische Befehle.
+  /?            Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Sie koennen FreeDOS so programmieren, das KEYB nach den Anweisungen
+  in der autoexec.bat beim Booten geladen wird. Fuegen Sie dazu in der
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> eine entsprechende Kommandozeile ein.
+  Sie koennen mit Hilfe des Compilertools <a href="../base/keyb-kc.htm">KC</a> Ihre eigenen angepassten
+  Layoutdateien erstellen.
+  Alternativ koennen Sie aus dem KL Dateipaket eine vorgefertigte KL
+  Standarddatendatei verwenden (siehe Referenzen unten).
+  KEYB wird mit dem Paket KEYB200 geliefert.
+  FD-KEYB ist kompatibel mit den <a href="../batch/if.htm#comment">Beendigungswerten (EXITCODES/ERRORLEVEL)</a>
+  von MS-KEYB.
+  Da es jedoch eine viel groessere Zahl von moeglichen Fehlern gibt, wird
+  beim nicht erfolgreichen Laden auf dem Bildschirm eine andere
+  Fehlernummer angezeigt.
+
+  ExitCode  KEYB FehlerCode  Fehlerbeschreibung
+  ========================================================================
+    0        0               Erfolgreich ausgefuehrt.
+ 
+                         UNGUELTIGE SPRACHE, CODESEITE ODER FALSCHE SYNTAX
+    1        3               Fehlender Tastaturkennzeichner LayoutName.
+    1       11               Fehlender Modifizierer oder Schalter.
+    1       14               Die angegebene Datei enthaelt keine Infor-
+                             mation fuer dieses Layout/ID.
+    1       21               Das erforderliche 'SUBMAPPING' passt nicht
+                             mit der aktuellen Codepage zusammen: Sie
+                             verwenden /L=m, aber das gewuenschte
+                             'SUBMAPPING' korrespondiert nicht mit der
+                             aktuellen Codepage.
+
+                         DEFEKTE ODER FEHLENDE TASTATURDEFINITIONSDATEI
+    2        4               Die angegebene Datei konnte nicht geoffnet
+                             werden.
+    2       13               Ungueltige Datei oder Datei ist korrupt.
+    2       19               Nicht kompatible Version der Tastatur-
+                             beschreibung (die Kompilationsdatei oder
+                             KL Datei stammen von einer inkompatiblen
+                             Version).
+    2       20               Ungueltige Pruefsumme fuer einen Datenblock:
+                             Die kompilierte Datei ist korrupt.
+    3       10               Die Tastaturtabelle konnte nicht erzeugt
+                             werden.
+    4       16               Fehler bei der Kommunikation mit dem CON
+                             Geraet.
+    5       17               Die Codepage wurde nicht vorbereitet.
+    6       12               Die Codepage wurde in der Tastatur-
+                             definitionsdatei nicht gefunden.
+
+                         INKOMPATIBLE KEYB ODER KEYB-VERSION GEFUNDEN
+    7        1               Verschiedene Versionen von KEYB installiert.
+    7        2               Nicht kompatibler Tastaturtreiber
+                             installiert
+    7       18               Nicht kompatible Version von DR-KEYB
+                             installiert.
+
+  In MS-KEYB nicht vorhanden:
+
+                         DER RESIDENTE TEIL VON KEYB KONNTE NICHT
+                         ENTFERNT WERDEN
+    8        5               Der residente Teil von KEYB konnte nicht
+                             entfernt werden.
+    8        8               KEYB war NICHT installiert.
+
+                         UNERWARTETES PROBLEM: BESUCHEN SIE DIE WEBSEITE
+                         VON KEYB FUER EINE NEUERE VERSION ODER NEHMEN
+                         SIE MIT DEM AUTHOR KONTAKT AUF
+    9        6               Interner Fehler: Gesamter Arbeitsspeicher
+                             ist zu klein.
+    9        7               KEYB braucht (immer noch) einen an AT/286
+                             oder hoeher.
+    9        9               Ueberladen wird (noch immer) nicht
+                             unterstuetzt.
+    9       15               KL Datei ist zu gross ((noch immer) 3 KB
+                             Maximum).
+  ========================================================================
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  KEYB SP,858        Laedt KEYB mit dem Layout fuer die Spanische
+                     Distribution und Codepage 858
+  KEYB GR,,GR.KL /E  Laedt das deutsche Keyboard-Layout fuer KEYB, sagt
+                     dabei KEYB ausdruecklich, dass ein umfangreicheres
+                     Keyboard (Tastatur) verwendet wird.
+                     Verwenden Sie diese Option, wenn KEYB das Vorhanden-
+                     sein der erweiterten Tastatur nicht feststellen
+                     kann.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 Aitor SANTAMARIA MERINO.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

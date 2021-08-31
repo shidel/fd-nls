@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Mise en r‚seau de FreeDOS - NFS</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Mise en r‚seau de FreeDOS - NFS</h1>
+<pre>
+  Ce document d‚crit la mise en place d'un r‚seau NFS sur un systŠme
+  DOS avec une carte <a href="../network/network.htm">r‚seau</a> pour qu'une lettre de lecteur DOS soit
+  mapp‚e … un chemin de r‚pertoire sur un serveur NFS (UNIX).
+</pre>
+<h2><a name="aaa"></a>Mat‚riel</h2>
+<pre>
+  Cela a ‚t‚ test‚ sur un serveur (486dx2-66s) sous Red Hat Linux 5.2
+  (kernel 2.0.36), avec des clients DOS sur des 4.77mhz 8088, certains
+  80286 et diverses machines plus puissantes, avec des clones g‚n‚riques
+  des cartes <a href="../network/network.htm">r‚seau</a> NE2000. Tous fonctionnent bien. Le <a href="../network/network.htm">r‚seau</a> ‚tait un
+  10base2 sur du cƒble coaxial, avec 10-20 systŠmes dessus et un hub
+  10baseT pour les machines plus r‚centes.
+</pre>
+<h2><a name="bbb"></a>Logiciel</h2>
+<pre>
+  Le logiciel ‚tait XFS. Dans le r‚pertoire XFS80286, trouvez un jeu
+  de fichiers FreeDOS qui fonctionnent sur les machines 80286 et plus
+  r‚centes. Dans le r‚pertoire XFS8088, recherchez un jeu de fichiers
+  pour un 8088 qui fonctionnent sur les PC les plus anciens.
+</pre>
+<h2><a name="ccc"></a>Serveur NFS</h2>
+<pre>
+  Sur le serveur GNU/Linux, vous devrez cr‚er (ou modifier) le fichiers
+  d'exports /etc/ pour exporter les chemins de r‚pertoire n‚cessaires.
+  Par exemple pour partager le r‚pertoire /home/dos en lecture et
+  ‚criture pour tous les clients :
+    /home/dos  (rw,insecure)
+  Pour prendre en charge l'impression … distance, vous devrez aussi
+  d‚marrer rpc.pcnfsd. Vous pourriez avoir besoin de modifier le script
+  sur /etc/rc.d/init.d/nfs pour que rpc.pcnfsd d‚marre automatiquement
+  au d‚marrage du systŠme. Notez que pcnfsd est un petit programme
+  C ‚crit par Sun et est librement disponible sur Internet. Si votre
+  serveur n'est pas fourni avec une version de pcnfsd, vous devrez le
+  compiler et l'installer dans le r‚pertoire /usr/sbin (utilisez les
+  mˆme permissions que rpc.nfsd).
+</pre>
+<h2><a name="ddd"></a>Client DOS</h2>
+<pre>
+  <b>80286 et plus r‚cent</b>
+
+  · partir du logiciel XFS, consultez le r‚pertoire xfs80286 pour une
+  prise en charge des systŠmes avec un processeur 80286 et plus r‚cent.
+  Copiez tout ce dossier tel qu'il est dans un r‚pertoire sur votre
+  disque dur. Vous devrez ‚diter HOSTS, XFS.BAT - et peut-ˆtre
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> et <a href="../cnfigsys/index.htm">CONFIG.SYS</a> - pour utiliser le chemin correct vers XFS.
+  Pour d‚marrer votre <a href="../network/network.htm">r‚seau</a>,
+  tapez : XFS
+  Vous verrez un caractŠre dans le coin sup‚rieur droit de votre ‚cran,
+  il vous indiquera ce que XFS est en train d'essayer de faire :
+   <b> A </b> ex‚cution de requˆtes ARP pour obtenir une adresse IP,
+   <b> > </b> envoi de paquets au <a href="../network/network.htm">r‚seau</a>,
+   <b> < </b> r‚ception de paquets depuis le <a href="../network/network.htm">r‚seau</a>
+
+   <b>8088</b>
+
+  · partir du logiciel XFS, consultez le r‚pertoire xfs8088 pour une
+  prise en charge sp‚cifique … 8088 et copiez ces fichiers sur votre
+  disque dur. ditez HOSTS et XFS.BAT pour utiliser les nouveaux
+  chemins.
+  Les plus anciens PC 4.77 MHz 8088 fonctionnent bien. Cependant,
+  un pilote sp‚cial est n‚cessaire sur le 8088, car les pilotes de
+  paquets <a href="../network/crynwr.htm">Crynwr</a> originaux donne
+  trois instructions 80286. J'ai patch‚ ce pilote et l'ai renomm‚
+  ne2000b8.com. Chargez le nouveau pilote. Vous avez aussi besoin des
+  fichiers d'une version sp‚ciale 8088 uniquement du paquet XFS
+  (xt-191.zip).
+  · l'origine, il existait une carte NE1000 pour les 8088. Celles-ci
+  ont pratiquement disparu. Toutes les cartes NE2000 que nous avons
+  test‚ ont bien fonctionn‚ sur le 8088, mˆme lorsque la carte 16 bits
+  fut ins‚r‚e dans une fente ISA 8 bits. Certaines des cartes NE plus
+  r‚centes peuvent avoir besoin d'ˆtre r‚gl‚es dans un 80286 avant
+  d'ˆtre mises dans un 8088.
+  Seulement test‚ avec MS-DOS ; COMMAND.COM de FreeDOS ne prend pas
+  en charge les processeurs 8088. Les versions de MS-DOS 3.20, 5.00,
+  et 6.22 ont toutes bien fonctionn‚.
+</pre>
+<h2><a name="eee"></a>D‚pannage</h2>
+<pre>
+  La plupart des problŠmes que nous avons rencontr‚s ‚taient dus … des
+  cƒbles <a href="../network/network.htm">r‚seau</a> d‚fectueux ou … des problŠmes d'interruptions. Avant de
+  commencer, assurez-vous que votre r‚seau est disponible.(testez ping
+  depuis une machine GNU/Linux vers une autre.)
+  Sur les machines DOS, nous avons r‚gl‚ toutes les cartes NE2000 …
+  l'adresse 0x300 et ensuite choisi une interruption inutilis‚e et
+  r‚gl‚ la ligne de la carte et du pilote pour qu'elle corresponde …
+  l'adresse (veuillez voir la ligne "ne2000" dans XFS.BAT.)
+  Au bout de quelques essais, vous devriez voir premier client DOS
+  utiliser NFS trŠs rapidement.
+  Pour les autres problŠmes, voyez la documentation dans les fichiers
+  XFS191.ZIP et xt-191.zip. La plupart des serveurs GNU/Linux ont une
+  documentation similaire qui peut ˆtre utile … configurer le serveur.
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Allemagne), modifi‚ en 2010
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Pour plus d'informations, <a href="../network/intro.htm#ddd">voyez ici</a>.
+
+  La permission est accord‚e de copier, distribuer et/ou modifier ce
+  document selon les termes de la licence de documentation libre GNU,
+  version 1.2 ou toute version ult‚rieure publi‚e par la Free Software
+  Foundation.
+  Une copie de la licence est incluse dans la section intitul‚e
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

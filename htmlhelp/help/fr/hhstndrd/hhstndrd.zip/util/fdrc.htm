@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : fdrc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : fdrc</h1>
+<pre>
+  FreeDOS Resident Calculator (FDRC) est une calculatrice r‚sidente pour
+  les programmeurs.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  fdrc [options]
+</pre>
+<h2>Options :</h2>
+<pre>
+  FDRC prend en charge les paramŠtres de ligne de commande suivants
+  (vous pouvez utiliser '/' au lieu de '-') :
+  -h         Aide courte.
+  -?         Identique … -h.
+  -H         Aide sur le clavier et l'utilisation des op‚rateurs.
+  -a         Calculer le r‚sultat aprŠs l'appui sur n'importe quelle
+             touche, pas seulement aprŠs l'appui sur 'Entr‚e'.
+             Remarque : la chaŒne actuelle sera stock‚e dans
+             l'historique seulement suite … un appui sur 'Entr‚e',
+             mˆme dans ce mode.
+  -c         Effacer la ligne de saisie lors de l'appui sur une touche
+             alphanum‚rique _imm‚diatement_ aprŠs le popup. L'appui sur
+             'Suppr', 'Retour arriŠre' ou sur une de ces touches
+             n'efface pas la ligne de saisie.
+  -e         Autoriser … charger une seconde, troisiŠme... copie de
+             FDRC dans la m‚moire.
+  -n         Mode non r‚sident.
+  -w         Empˆcher le chargement de FDRC dans l'UMB. Par d‚faut FDRC
+             se charge dans l'UMB si disponible.
+  -u         D‚charger. Si INT 09h et/ou INT 10h est intercept‚ par un
+             autre programme, FDRC affichera un avertissement et
+             quittera.
+  -D         D‚sactive temporairement FDRC.
+  -E         Active FDRC.
+  -q         Mode silencieux. Si vous essayez d'appeler FDRC depuis un
+             programme de mode graphique, FDRC ‚mettra deux bips. Si
+             vous atteignez la premiŠre ou derniŠre entr‚e dans
+             l'historique, FDRC ‚mettra un bip. Le commutateur -q
+             d‚sactive tous ces sons.
+  -l:nombre  Colonnes du c“t‚ gauche de la fenˆtre du FDRC.
+  -t:nombre  Rang‚es du c“t‚ sup‚rieur de la fenˆtre du FDRC.
+             nombre -- nombre d‚cimal >= 0.
+  -k:nombre  Scancode de la touche d'activation (hexad‚cimal).
+             Cf 'rbil_i09.txt' pour les d‚tails. Valeur par d‚faut
+             -- 35h ('/').
+  -s:nombre  Code des touches Maj (shift) (hexad‚cimal).
+               Maj droite :                 01
+               Maj gauche :                 02
+               Ctrl (n'importe lequel) :    04
+               Alt (n'importe lequel) :     08
+               Arrˆt D‚fil :                10
+               Verr Num :                   20
+               Verr Maj :                   40
+               Insertion :                  80
+               Valeur par d‚faut -- 04 (Ctrl). Par exemple :
+               MajDroite+Alt ==== 1 + 8 == 9.
+  -y:nombre  Taille du tampon de l'historique (d‚cimal). Valeur par
+             d‚faut -- 0.
+             La valeur minimale est 200, maximale est 16000 (peut ˆtre
+             modifi‚e dans 'config.inc').
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  FDRC prend en charge les op‚rations suivantes :
+    + -- addition              &amp; -- bit … bit ET
+    - -- soustraction          | -- bit … bit OU
+    * -- multiplication        ^ -- bit … bit XOR
+    / -- division              < -- d‚calage logique vers la gauche
+    % -- reste                 > -- d‚calage logique vers la droite
+    \ -- racine carr‚e         { -- d‚calage arithm‚tique vers la gauche
+    ~ -- bit … bit NON         } -- d‚calage arithm‚tique vers la droite
+    ` -- n‚gation
+
+  Vous pouvez utiliser les touches suivantes :
+  Chiffres et lettres -- entrer des chiffres.
+  " -- si vous entrez un symbole de guillemets anglais doubles, le
+  deuxiŠme de ce symbole sera entr‚ automatiquement.
+  Touches de curseur droite et gauche -- d‚placer le curseur.
+  Touches de curseur haut et bas -- chaŒne pr‚c‚dente / suivante de
+  l'historique Page Up et Page down -- premiŠres et derniŠres chaŒnes
+  de l'historique.
+  Home et Fin -- d‚placer le curseur.
+  Entr‚e -- calculer le r‚sultat et le stocker dans le tampon de
+  l'historique.
+  Insertion -- basculer entre le mode d'insertion et surimpr‚ssion.
+  Retour arriŠre -- effacer le caractŠre avant le curseur.
+  Suppr  -- effacer le caractŠre sous le curseur.
+  Ctrl-Y -- effacer la chaŒne.
+  Ctrl-K -- effacer le texte jusqu'… la fin de la chaŒne.
+  Vous pouvez d‚placer la fenˆtre de FDRC avec les raccourcis de
+  WordStar (valeur par d‚faut) :
+    Ctrl-S -- gauche
+    Ctrl-D -- droite
+    Ctrl-E -- haut
+    Ctrl-X -- bas
+  ou avec les raccourcis Vi (si vous avez d‚fini VI_KEYS constant dans
+  config.inc):
+    Alt-H -- gauche
+    Alt-L -- droite
+    Alt-K -- haut
+    Alt-J -- bas
+  Alt-S -- basculer entre la repr‚sentation d‚cimale sign‚e et non
+  sign‚e du r‚sultat.
+  Alt-D -- mettre la repr‚sentation d‚cimale du r‚sultat dans le
+  tampon du clavier et quitter.
+  Alt-H -- mettre la repr‚sentation hexad‚cimale du r‚sultat dans
+  le tampon du clavier et quitter.
+  Alt-1 .. Alt-4 -- mettre la partie correspondante de la repr‚sentation
+  binaire du r‚sultat dans le tampon du clavier et quitter.
+  chap -- quitter.
+</pre>
+<h2>Exemples :</h2>
+<pre>  - aucun -</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../util/foxcalc.htm">foxcalc</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

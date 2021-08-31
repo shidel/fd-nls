@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: graphics</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: graphics</h1>
+<pre>
+  GRAPHICS allows the Prt-Sc (Print Screen) key to print graphics screens.
+  GRAPHICS runs in MS GRAPHICS compatibility mode.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  GRAPHICS type [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /B             Enable processing of CGA background color 0 palette
+  /I             Print black as white and white as black (useful if lots
+                 of dark areas on screen, to save ink / toner: will print
+                 black where screen is white etc.).
+  /LCD           ignored (not yet supported).
+  /LOW           Do not load high (no MS option)
+  /PRINTBOX:LCD  ignored (not yet supported).
+  /PRINTBOX:STD  ignored (not yet supported).
+                 (try using /LCD to get an explanation displayed).
+                 These will allow you to set a screen width-to-height 
+                 ratio other than 4:3, which is currently always assumed.
+  /R             Print black as black and white as white.
+  Supported printer types:
+    HPPCL (PCL), EPSON (ESC/P), POSTSCRIPT (PS)
+  You can use the following for type:
+    HP PCL compatible: 
+      HPDEFAULT          (HP PCL compatible)
+      DESKJET            (HP PCL compatible)
+      RUGGEDWRITER       (HP PCL compatible)
+      RUGGEDWRITERWIDE   (HP PCL compatible)
+      THINKJET           (HP PCL compatible)
+    EPSON compatible:
+      EPSON              Many impact/ribbon printers work with "EPSON"
+    POSTSCRIPT compatible:
+      LASERJET           (POSTSCRIPT compatible)
+      LASERJET II        (POSTSCRIPT compatible)
+      QUIETJET           (POSTSCRIPT compatible)
+      QUIETJETPLU        (POSTSCRIPT compatible)
+    Some of these are equivelent, such as POSTSCRIPT and PS.
+  Unsupported types:
+    IBM PC color ribbon printer (color1, color4, color8)
+    IBM convertible thermal printer (thermal)
+    IBM graphics printer (graphics[wide])
+    IBM proprinter 
+    IBM quietwriter
+</pre>
+<h2>Comments:</h2>
+<pre>
+  HP (GRAPH-HP - PCL) allows the following extra options:
+    /1  Use LPT1 (default)
+    /2  Use LPT2
+    /3  Use LPT3
+    /C  For 300 dpi instead of 600 dpi
+    /E  Economy mode
+    /R  For random instead of ordered dither
+    /?  Shows the help.
+  PS (GRAPH-PS - Postscript) allows the following extra options:
+    /1  Use LPT1 (default)
+    /2  Use LPT2
+    /3  Use LPT3
+    /C  Compatibility mode (HP Laserjet)
+    /E  Economy mode (only 50 % density)
+    /?  Shows the help.
+  PIN (GRAPHPIN - EPSON) allows the following extra options:
+    /1  Use LPT1 (default)
+    /2  Use LPT2
+    /3  Use LPT3
+    /9  9-pin mode (120x72, with /C 60x72)
+    /C  Compatibility mode (120x60dpi)
+    /E  Economy mode (only 50% density)
+    /R  Use random dither, not ordered one
+    /X  Send print data for whole lines instead of in blocks
+    /?  Shows the help.
+  After loading the driver you can print screenshots using 
+  'shift - PrintScreen' even in graphic modes.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  graphics HPDEFAULT /low /I /E /1
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/graphexe.htm">graphics-ps...</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Eric Auer, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: lbacache</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: lbacache</h1>
+<pre>
+  LBACACHE es un programa de cach‚ de disco duro. Mejora el rendimiento
+  de la unidad. Requiere memoria <a href="../base/himemx.htm">XMS</a> y al menos una computadora 386.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  Para cargar:          LBACACHE  [Tama¤o] [DRV ListaControlador] [FLOP]
+                                  [TUNA] [TUNW] [TUNS]
+  Cuando est  cargado:  LBACACHE  [INFO] [SYNC] [STOP] [STAT] [ZERO]
+  Para obtener ayuda:   LBACACHE  HELP|/HELP|/?
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  size      Especifica el tama¤o del b£fer. Predeterminado: 2048k. Si 
+            1-2 d¡gitos, la unidad es 256k (en XMS), por lo que el valor
+            predeterminado es usar 2MB XMS. Si > 2 d¡gitos, la unidad es
+            simplemente 1 kilobyte. Ejemplo: 'LBACACHE 8192'. Otra 
+            sintaxis posible: "tama¤o BUF" en lugar de "tama¤o".
+  FLOP      Habilite el cach‚ de disquete (A: y B:, autodetectado) Para
+            acelerar el uso del disquete, ­cargue TICKLE tambi‚n! Por
+            favor, informe si FLOP tiene errores. Un error puede p. ej.
+            significa que el cach‚ hace suposiciones err¢neas sobre la
+            geometr¡a del disquete que puede conducir a la corrupci¢n de
+            datos en el disco o en los archivos copiados desde el disco.
+            Si solo usa discos de 1,44 MB en una unidad de 1,44 MB, los
+            errores son extremadamente improbables, aunque ...
+  lista DRV Selecciona qu‚ discos duros se almacenan en cach‚. No se
+            almacenan en cach‚ discos utilizando la palabra clave NULL.
+            ­Se recomienda encarecidamente dejar que LBAcache detecte
+            autom ticamente todos los discos duros almacenables en cach‚
+            en lugar de utilizar esta opci¢n! La lista consta de d¡gitos
+            en 0..7, para unidades BIOS 80h + x. Por ejemplo: 
+            023   almacena en cach‚ unidades de BIOS 80h, 82h, 83h - 
+                  primer, tercer y cuarto disco duro (hda, hdc, hdd en
+                  terminolog¡a de Linux).
+            Importante: El primer disco duro del BIOS significa TODAS las
+            letras de unidad que est n en el primer disco duro f¡sico.
+  TUNA      Cach‚ totalmente asociativo: busque en todo el cach‚ un 
+            sector o espacio libre en el peor de los casos. M s lento
+            para grandes cach‚s, pero puede dar m s visitas al cach‚ que
+            el nuevo valor predeterminado (6/2004) de buscar solo hasta
+            N (configuraci¢n actual: 16) elementos de cach‚ (tama¤o
+            actual de un elemento: 8KB). Las primeras pruebas sugieren:
+            ­un poco m s de cach‚ pero menor velocidad!
+  TUNW      Asignar al escribir: cuando los datos se escriben en el
+            disco, almacene una copia en la memoria cach‚, INCLUSO si eso
+            significa asignar un nuevo espacio en la memoria cach‚, en
+            previsi¢n de leer los datos m s tarde. Era el valor
+            predeterminados hasta el 7/2004. Hace que las escrituras
+            "consuman" m s cach‚, pero es £til para tareas que funcionan
+            mucho con archivos temporales. Si los datos se almacenaron en
+            cach‚ de todos modos, la copia en cach‚ se actualiza
+            independientemente de esta opci¢n.
+  TUNS      Asigne 320 bytes de RAM de DOS baja para pilas (nuevo 
+            7/2004). Use esta opci¢n si desea cargar LBAcache en el UMB
+            de JEMM386 o "UMB no muy amigable con DMA" y tener un sistema
+            SCSI. ­Las BIOS SCSI parecen usar DMA para apilar llamadas de
+            verificaci¢n de geometr¡a! Tenga en cuenta que LBAcache STOP
+            libera *esta* memoria, ya que el protocolo de descarga 
+            tendr¡a que modificarse demasiado para eso.
+Opciones sin carga:
+  INFO      Muestra estad¡sticas de cach‚ y detalles sobre LBAcache
+            residentes. Util para fines de depuraci¢n, pero de alguna
+            manera dif¡cil de entender.
+  STAT      Muestra estad¡sticas de cach‚ m s f ciles de entender
+            solamente.
+  ZERO      Restablezca los contadores de estad¡sticas de cach‚ a cero.
+  SYNC      Sincroniza todos los b£feres LBAcache en ejecuci¢n para
+            todas las unidades. Como LBAcache nunca retrasa las 
+            escrituras, SYNC solo olvida los datos en cach‚. Esto se
+            realiza llamando a int 13.46 (disco BIOS: expulsar) para
+            todas las unidades almacenables en cach‚ (0, 1, 0x80 .. 
+            0x87). Se recomienda hacer LBACACHE ZERO despu‚s de LBACACHE
+            SYNC, para que las estad¡sticas sean m s intuitivas de leer.
+  STOP      Apaga todas las instancias de LBAcache en ejecuci¢n y libera
+            la RAM XMS y DOS que hab¡an asignado (las elimina de la RAM).
+            Si la cadena de interrupci¢n no se puede restaurar, las 
+            instancias de LBAcache se dejan en la RAM de DOS, pero a un
+            tama¤o reducidode <500 bytes. La memoria XMS siempre se
+            libera. Cuando se carga un £nico LBAcache como £ltimo
+            programa residente relacionado con el disco, la descarga
+            completa deber¡a funcionar la mayor parte del tiempo. Al
+            cargar varias instancias de LBAcache, a menudo solo la £ltima
+            instancia se puede descargar completamente.
+  COOL      Pone el cach‚ en modo "cool": los sectores a los que se
+            accede se congelan en el cach‚ (tanto como sea posible; use
+            TUNA para mejorar el efecto). Consulte las explicaciones de
+            BINSEL para averiguar si este modo experimental (9/2004) es
+            £til para usted.
+  WARM      Pone el cach‚ en modo "derretir": los sectores a los que se
+            accede est n descongelados (¨descongelados?:-)) del cach‚.
+            V‚ase m s arriba. (9/2004) Nota: WARM, COOL y TEMP muestran
+            un valor de estado de diagn¢stico para la depuraci¢n, p. ej.
+            el "conteo de elementos bloqueados" actual. Despu‚s de eso,
+            se muestra la salida STAT normal.
+  TEMP      Restaura el cach‚ al modo de "temperatura normal": el estado
+            de congelaci¢n del contenido actual se conserva en la media
+            de lo posible (si el cach‚ se llena realmente, las cosas se
+            derretir n). Ahora ha reservado parte del cach‚ para datos
+            congelados / bloqueados y el resto del espacio del cach‚ en
+            modo cl sico. (9/2004)
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Para m s informaci¢n ver lbacache.txt.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  En CONFIG.SYS / FDCONFIG.SYS:
+    INSTALL=LBACACHE.COM [argumentos]
+  o
+    INSTALLHIGH=LBACACHE.COM [argumentos]
+  o desde la l¡nea de comando o AUTOEXEC.BAT:
+    LBACACHE [argumentos]
+  o
+    LOADHIGH LBACACHE.COM [argumentos]
+
+    LBACACHE              Simplemente ejecutando elcomando sin opciones
+                          leer  en cach‚ todos sus discos duros (si
+                          est n disponibles a trav‚s del BIOS) con el
+                          tama¤o predeterminado del b£fer de cach‚.
+    LBACACHE buf 20 flop  Esto leer  en cach‚ todos los discos duros y
+                          disquetes, con 5 MB de memoria para el b£fer
+                          de cach‚.
+    Info LBACACHE         Muestra informaci¢n sobre sus cach‚s.
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../base/cdrcache.htm">cdrcache.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/tickle.htm">tickle</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, modificado en 2011 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

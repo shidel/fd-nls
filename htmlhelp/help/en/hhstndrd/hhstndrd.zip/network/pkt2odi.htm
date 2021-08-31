@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Networking FreeDOS - PKT2ODI</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Networking FreeDOS - PKT2ODI</h1>
+<pre>
+  As an alternative to the more commonly used <a href="../network/odi_ins.htm#ccc">ODIPKT.COM</a> a few people
+  may also like to try out Calderas PKT2ODI.EXE as packet driver to
+  <a href="../network/odi.htm">ODI</a> converter. But we should be aware, that the license for Novell's
+  WebSpyder (which applies to PKT2ODI.EXE) only allows to use the
+  software for the purpose of evaluating it. For commercial users the
+  evaluation period is restricted to 90 days. For non-commercial users
+  evaluation is allowed for "a reasonable period" of time. (Just how
+  reasonable can it be to evaluate this software in the 21st century?)
+  Anyway, PKT2ODI.EXE will be started in <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> with a command
+  like this: 
+    LH C:\NETWORK\NWCLIENT\PKT2ODI.EXE /B:1 /I:69
+  The "/B" option tells PKT2ODI.EXE which logical board it should use.
+  Like explained above we have to choose the board that uses the <a href="../network/ethernet.htm">ETHERNET</a>
+  II frame. In difference to <a href="../network/odi_ins.htm#ccc">ODIPKT</a>, PKT2ODI starts counting with "1",
+  so if the NET.CFG looks like this example:
+    --- NET.CFG ---
+      Link Driver 3C574
+        FRAME ETHERNET_II
+        FRAME ETHERNET_802.2
+        FRAME ETHERNET_802.3
+        FRAME ETHERNET_SNAP
+  we have to use the parameter
+    PKT2ODI.EXE /B:1
+  to define the use of the first board (the one with ETHERNET_II). Re-
+  member that we have to use the board with Ethernet II, otherwise the
+  converter won't be able to communicate with the driver and complain
+  about not finding the MLID (Multiple Link Interface Driver).
+
+  The second parameter, the "/I" sets the software interrupt (vector)
+  used by the driver. We already found out that this should be 0x60, but
+  unfortunately this won't work with PKT2ODI. The program doesn't accept
+  interrupt vectors 0x60 to 0x68. We may use vector 0x69 with the para-
+  meter:
+    PKT2ODI.EXE /I:69
+  Using an unusual interrupt vector like 0x69 can be a problem for some
+  TCP/IP applications. They must be configured to use this vector. Some
+  programs, like the webserver SIOUX, may not work correctly, if the
+  vector is not 0x60.
+  That's all. After starting the LSL (Link Support Layer), the MLID
+  (Multiple Link Interface Driver) and the converter the packet driver
+  interface should now be up and running.
+    (Picture boot messages PKT2ODI)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), modified 2010
+  by W.Spiegl.</b>
+  For more information <a href="../network/intro.htm#ddd">see here</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

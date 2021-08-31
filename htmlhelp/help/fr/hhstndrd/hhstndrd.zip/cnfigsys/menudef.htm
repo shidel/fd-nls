@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : menudefault</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : menudefault</h1>
+<pre>
+  MENUDEFAULT d‚finit une option par d‚faut temporis‚e pour un menu
+  config.sys / fdconfig.sys.
+  MENUDEFAULT est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  menudefault=optionpard‚faut,d‚lai
+</pre>
+<h2>Options :</h2>
+<pre>
+  d‚lai           dur‚e du d‚lai en secondes
+  optionpard‚faut l'option standard utilis‚e si le d‚lai est ‚coul‚
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  MENUDEFAULT d‚finit une option par d‚faut temporis‚e pour un menu
+  config.sys / fdconfig.sys : si aucune touche n'est enfonc‚e pendant
+  les secondes du 'd‚lai', le choix par d‚faut est activ‚. Enfoncer
+  une touche arrˆte le compte … rebours, le kernel attendra ind‚finiment
+  que l'utilisateur fasse un choix.
+  Notez que certaines machines virtuelles comme Bochs peuvent avoir un
+  chronom‚trage erron‚ (trop rapide).
+  MENUDEFAULT est une commande interne … kernel.sys et ne n‚cessite
+  aucun autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS :
+    menucolor 15,1
+    MENU Choisissez avec sagesse :
+    MENU
+    MENU 0)    pilote normal (himem et emm386)
+    MENU 1)    pilote alternatif (himemx et jemm386)
+    MENUDEFAULT=0,5
+    0?DEVICE=A:\himem.exe
+    1?DEVICE=A:\himemx.exe
+    0?DEVICE=A:\emm386.exe
+    1?DEVICE=A:\jemm386.exe
+  Le menu attendra 5 secondes. Si aucune touche n'est enfonc‚e pendant
+  ce d‚lai, l'option 0 sera automatiquement s‚lectionn‚e. Menucolor
+  15,1 modifie la couleur en du texte blanc sur un arriŠre-plan bleu.
+    0 choisit himem.exe et emm386.exe,
+    1 choisit himem.exe et jemm386.exe
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/menu.htm">menu</a>
+  <a href="../cnfigsys/menucol.htm">menucolor</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

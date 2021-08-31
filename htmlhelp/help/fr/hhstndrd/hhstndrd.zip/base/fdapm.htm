@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : fdapm</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : fdapm</h1>
+<pre>
+  FDAPM est un outil avanc‚ de gestion de l'alimentation.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  fdapm [Options]
+</pre>
+<h2>Options :</h2>
+<pre>
+ (aucune)   Si aucune option n'est donn‚e, la valeur par d‚faut est
+            d'afficher … la fois les sorties INFO et STATS (si le shell
+            est charg‚, sinon lorsqu'il est charg‚ depuis INSTALL, la
+            valeur par d‚faut est APMDOS).
+  APMoff    D‚sactive le mode d'‚conomie d'‚nergie APM du BIOS brut.
+            Alias de compatibilit‚ avec la syntaxe MS POWER : "OFF".
+  OFF       Identique … APMoff, pour la compatibilit‚ avec MS power.
+  APMbios   Active le mode d'‚conomie d'‚nergie APM du BIOS brut. Alias
+            de compatibilit‚ avec la syntaxe MS POWER : "STD".
+  STD       Identique … APMbios, pour la compatibilit‚ avec MS power.
+  APMDOS    Cela devrait vous permettre de r‚aliser des ‚conomies
+            d'‚nergie maximales. C'est le seul mode qui fait que FDAPM
+            reste r‚sident dans la RAM. Pour arrˆter, s‚lectionnez
+            APMbios/APMoff.
+  ADV:MAX   conomies d'‚nergie maximales, pour la compatibilit‚ avec
+            MS power.
+  ADV:MIN   conomies d'‚nergie minimales, pour la compatibilit‚ avec
+            MS power.
+  ADV:REG   conomies d'‚nergies restreintes, pour la compatibilit‚ avec
+            MS power.
+  INFO      Affiche des informations sur l'‚tat APM. Affiche des choses
+            comme le pourcentage de remplissage de la batterie.
+  STATS     Affiche des informations sur l'‚tat APM/ APMDOS. Affiche
+            des choses comme le pourcentage du temps de processeur
+            occup‚, si FDAPM ou POWER sont r‚sidents et charg‚s dans
+            m‚moire.
+  FLUSH     Vide les caches du disque (r‚‚crit les donn‚es sur
+            le disque).
+  SPINUP    R‚veille les disques IDE … nouveau.
+  SPINDOWN  Vide les caches disque et arrˆte les disques IDE sur les
+            2 premiers contr“leurs IDE. Utilisez … vos risques et
+            p‚rils. Les disques vont red‚marrer lorsque vous les
+            utiliserez … nouveau. Les disques ont "l'intelligence"
+            incorpor‚e pour cela. Pour ‚conomiser de l'‚nergie
+            automatiquement, vous pouvez souvent utiliser une option
+            de configuration du BIOS qui indique au disque au d‚marrage
+            qu'il peut s'arrˆter (il possŠde un minuteur incorpor‚ !)
+            dŠs qu'il n'aura pas ‚t‚ utilis‚ pendant un certains temps.
+  ACPIOFF   Comme POWEROFF mais utilise explicitement l'ACPI au lieu
+            de l'APM. Notez que les fonctions classiques utiliseront
+            l'ACPI aussi, si aucun support BIOS de l'APM n'est pr‚sent.
+            Le systŠme est plac‚ en S5 soft-off aprŠs avoir vid‚ les
+            caches et arrˆt‚ les disques.
+            Utile pour comparer la gestion APM / ACPI.
+  STANDBY   Vide les caches disque, entre en mode veille. N‚cessite
+            l'APM ou l'ACPI et une alimentation ATX ou plus r‚cente.
+  SUSPEND   Vide les cache disque, arrˆte (les r‚veillera
+            automatiquement) les disques IDE, et met en veille le
+            systŠme. Utile si vous avez un BIOS avec hibernation des
+            disques, pour ‚viter de les activer juste avant que
+            l'hibernation n'en ait besoin. N‚cessite l'APM ou
+            l'ACPI et une alimentation ATX ou plus r‚cente.
+  PURESUSP  Comme SUSPEND, mais n'arrˆte pas d'abord les disques IDE.
+            N‚cessite l'APM ou l'ACPI et une alimentation ATX ou plus
+            r‚cente.
+  POWEROFF  Vide les caches disque, arrˆte les disques IDE, ‚teint le
+            VGA et le systŠme. N‚cessite l'APM ou l'ACPI et une
+            alimentation ATX ou plus r‚cente.
+  PUREOFF   Comme POWEROFF, mais n'arrˆte pas d'abord les disques IDE.
+            Utile si votre BIOS r‚veillerait autrement les disques juste
+            avant de couper l'alimentation (a‹e). N‚cessite l'APM ou
+            l'ACPI et uen alimentation ATX ou plus r‚cente.
+  VGAoff    teint l'‚cran EGA/VGA DPMS (pas de r‚veil automatique !).
+            Vous devez taper FDAPM VGAon ou red‚marrer pour l'allumer.
+            VGAoff n'est pas un ‚conomiseur d'‚cran. Utilisez idledpms
+            en tant qu'‚conomiseur d'‚cran.
+  VGAon     Allume … nouveau l'‚cran EGA/VGA DPMS. Appuyer simplement
+            sur une touche aprŠs avoir utilis‚ la fonction VGAoff
+            N'activera PAS la vid‚o … nouveau, ce n'est pas un
+            ‚conomiseur d'‚cran. C'est seulement une fa‡on d'allumer
+            et d'‚teindre la vid‚o sans aucune surveillance du systŠme
+            ou de r‚veil automatique.
+  ZapStats  Efface les compteurs STATS.
+  SPEEDn    RŠgle la vitesse du systŠme sur n/8 (n * 12,5%) du maximum
+            (0 arrˆte jusqu'… un appui sur le bouton d'alimentation).
+            Utilisez SPEED9 pour afficher le r‚glage actuel. SPEED9 est
+            la m‚thode recommand‚e de v‚rifier si votre systŠme utilise
+            l'ACPI d'une maniŠre compatible avec FDAPM. N‚cessite l'ACPI.
+  SPEED0    Speed 0 mettra le systŠme en veille S1 (appuyez sur le bouton
+            d'alimentation ATX ou le bouton veille pour continuer) du
+            point de vue du processeur. Aucun autre p‚riph‚rique ne se
+            mettra en veille. Utilisez l'outil PCISLEEP si vous souhaitez
+            faire des exp‚riences avec la gestion de l'alimentation PCI.
+  COLDboot  Effectue un red‚marrage avec les tests BIOS (POST) (aprŠs
+            avoir vid‚ les caches disque) en indiquant au contr“leur de
+            clavier 8042 d'activer les circuits de remise … z‚ro du
+            mat‚riel. TrŠs similaire … un red‚marrage … froid - seuls
+            dans de rares cas, appuyer sur le bouton reset ou de
+            red‚marrer l'ordinateur vous donnera une remise … z‚ro
+            plus "froide".
+  WARMboot  Effectue un red‚marrage sans les tests BIOS (POST).
+            G‚n‚ralement s–r mais peut planter si vous utilisez des
+            logiciels de mode prot‚g‚ incompatibles comme certaines
+            versions d'EMM386. Vide les caches disque avant de
+            red‚marrer.
+  HOTboot   Tente un red‚marrage en utilisant int 19h (plantera
+             souvent !).
+            Avant de tenter le red‚marrage, FDAPM indique aux caches
+            de se vider (‚crire les donn‚es sur le disque) et attend
+            un moment.
+  HELP      Affiche l'aide.
+  /?        Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  FDAPM est un alternatif pour MS-DOS Power.
+  APM: Advanced Power Management (gestion avanc‚e de l'alimentation).
+  ACPI: Advanced Configuration and Power Interface (interface avanc‚e de
+        configuration et gestion de l'alimentation).
+  ATX: Advanced Technology Extended (technologie avanc‚e ‚tendue).
+  DPMS: Display Power Management Signaling (signalisation de gestion de
+        l'alimentation de l'affichage).
+  Veuillez lire fdapm.txt dans le paquet fdapm pour plus d'informations.
+  La casse est sans objet, "-" ou "/" ne sont pas n‚cessaires.
+  Toutes les options d'hibernation/veille/extinction des disques durs
+  ajoutent automatiquement un d‚lai pour donner au disque dur le temps
+  de changer d'‚tat.
+  Toutes ces op‚rations et toutes les options relative au red‚marrage
+  indiquent aux caches d'‚crire les tampons sales sur le disque avant
+  que l'action concrŠte ne commence.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  fdapm apmdos  vous permet de r‚aliser des ‚conomies d'‚nergie
+                maximales
+  fdapm speed2  rŠgle la vitesse sur 2x12,5% = 25 % de la vitesse
+                maximale, par exemple pour d'anciens jeux
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../util/pcisleep.htm">pcisleep</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eric Auer, mis … jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

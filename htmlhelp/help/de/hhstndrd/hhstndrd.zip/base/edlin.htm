@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: edlin</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: edlin</h1>
+<pre>  EDLIN ist ein kleiner Zeileneditor.
+</pre>
+<h2>Syntax:</h2>
+<pre>  edlin [[Laufwerk][Pfad]Datei]
+             Laufwerk  Der Laufwerksbuchstabe, z.B.: C:
+             Pfad      Der zu waehlende Pfad, z.B.: \Beispiel\
+             Datei     Die zu waehlende Datei, z.B.: test.txt. 
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  - keine -
+  Ein Dollarzeichen in der folgenden Liste repraesentiert eine
+  Zeichenfolge. Sie kann entweder von einem einzelnen oder einem doppelten
+  Anfuehrungszeichen umschlossen sein und kann die folgenden Escape-
+  sequenzen enthalten:
+
+  \a              Warnung (Piepston)
+  \b              Zuruecktaste
+  \e              Escape
+  \f              Seitenvorschub
+  \t              Horizontaler Tabulator
+  \v              Vertikaler Tabulator
+  \"              Doppeltes Anfuehrungszeichen
+  \'              Einzelnes Anfuehrungszeichen
+  \.              Punkt
+  \\              Backslash (\)
+  \xXX            wobei X eine Hexzahl ist (0-9, a-f, A-F) - hexadezimale
+                  Konstante
+  \OOO            wobei O eine oktale Zahl ist (0-7) - oktale Konstante
+  \^C             Steuerzeichen
+
+  Bei den folgenden Befehlszeile repraesentieren eckige Klammern [ ] 
+  optionale Moeglichkeiten. Das # Symbol repraesentiert eine Zeilennummer,
+  die aus einer Zahlenkette besteht; ein Punkt repraesentiert die 
+  gegenwaertige Zeile; ein Dollarzeichen ($) repraesentiert die letzte
+  Zeile in der Datei. Es kann auch eine Zeilennummer zu einer anderen
+  addiert bzw. subtrahiert werden, so dass
+    .,.+1p
+  die aktuelle und die folgende Zeile ausdruckt.
+  Edlin hat folgende interne Befehle (werden waehrend des Betriebs
+  von Edlin verwendet):
+
+  #               Eine einzelne Zeile editieren
+  a               Zeile anhaengen
+  [#],[#],#,[#]c  Eine Anzahl Bloecke kopieren
+  [#][,#]d        Eine Anzahl Bloecke loeschen
+  eDateiname      Ende (speichern + verlassen)
+  [#]i            Einfuegemodus
+  [#][,#]l        Zeilen auflisten
+  [#],[#],#m      Block verschieben
+  [#][,#]p        Seite (blaettern)
+  q               Beenden
+  [#][,#][?]r$,$  Zeichenfolge (String) ersetzen
+  [#][,#][?]s$    Suchen nach einer Teilzeichenfolge (Substring)
+  [#]tDateiname   Datei transferieren
+  [#]wDateiname   Datei speichern
+
+  # - EINE EINZELNE ZEILE EDITIEREN:
+  Das Edlin Programm gibt die mit der Nummer angegebene einzelne Zeile
+  aus und die naechste eingegebene Zeile ersetzt in der Datei die
+  ausgegebene Zeile.
+
+  a - ZEILE ANHAENGEN:
+  Dieser Befehl entspricht dem Befehl: $+1i .
+
+  [#],[#],#,[#]c - EINE ANZAHL BLOECKE KOPIEREN:
+  Dieser Befehl kopiert einen Block fortlaufender Zeilen an eine andere
+  Stelle im Puffer. Die Parameter sind:
+    * Die erste Zeile, die Sie kopieren wollen (Standard = aktuelle Zeile)
+    * Die letzte Zeile, die Sie kopieren wollen (Standard = aktuelle
+      Zeile)
+    * Die Zeile, vor der Sie den Zeilenblock einfuegen wollen,
+    * Die Anzahl, wie oft Sie den Block kopieren wollen (Standard = 1)
+  Nachdem Edlin die Zeilen kopiert hat, koennen Sie den l (list)-Befehl
+  verwenden, um die Zeilen auf Richtigkeit zu ueberpruefen.
+
+  [#][,#]d - EINE ANZAHL BLOECKE LOESCHEN:
+  Dieser Befehl loescht einen Block fortlaufender Zeilen. Die Parameter
+  sind die erste und die letzte Zeile des zu loeschenden Blocks.
+  Wenn Sie den zweiten Parameter weglassen, wird nur die im ersten 
+  Parameter angegebene Zeile geloescht. Wenn Sie den ersten Parameter
+  weglassen, wird der Block von der aktuellen Zeile bis zu der im zweiten
+  Parameter angegebenen Zeile geloescht (stellen Sie sicher, dass das 
+  Komma voransteht!). Wenn Sie beide Parameter weglassen, wird die
+  aktuelle Zeile geloescht.
+
+  eDateiname - ENDE (SPEICHERN UND VERLASSEN)
+  Dieser Befehl entspricht den Befehlen:
+    w Dateiname  gefolgt von: q
+
+  [#]i - EINFUEGEMODUS:
+  Mit diesem Befehl geht Edlin in den Einfuegemodus. Der Parameter gibt
+  die Zeilennummer an, vor der Sie Zeilen einfuegen moechten. Waehrend
+  des Einfuegemodus koennen die oben angefuehrten Escape-Sequenzen einge-
+  geben werden. Um aus dem Einfuegemodus herauszukommen, tippen Sie
+  einen Punkt (.) in eine ansonsten leere Zeile (wenn Sie eine Zeile nur
+  mit einem Punkt brauchen, '\.').
+  Nach Beendigung des Einfuegemodus wird die Zeile nach dem eingefuegten
+  Text die aktuelle Zeile, es sei denn, die Einfuegung wurde am Ende des
+  Textes angehaengt; in diesem Fall wird die letzte Zeile des Textes die
+  neue aktuelle Zeile.
+
+  [#][,#]l - ZEILEN AUFLISTEN:
+  Dieser Befehl listet Textzeilen auf dem Bildschirm auf. Wenn Sie den
+  ersten Parameter weglassen, beginnt der Befehl 11 Zeilen vor der
+  aktuellen Zeile mit der Anzeige von Text. Wenn Sie den zweiten Parame-
+  ter weglassen, wird eine Textseite angezeigt, die mit der im ersten
+  Parameter angegebenen Zeile anfaengt. Wenn Sie beide Parameter
+  weglassen, wird eine Textseite angezeigt, die 11 Zeilen vor der
+  aktuellen Zeile anfaengt.
+  In allen Faellen, in denen die Gesamtzeilenzahl groesser als die
+  Zeilenzahl auf einer Seite ist, wird das Programm nach jeder angezeigten
+  Textseite eine Eingabeaufforderung anzeigen.
+  
+  [#],[#],#m - BLOCK VERSCHIEBEN:
+  Dieser Befehl verschiebt einen Textblock an die Zeile vor der im dritten
+  Parameter angegebenen Nummer. Er ist vergleichbar mit dem Kopieren 
+  und dem anschliessenden Loeschen des Originalblocks.
+
+  [#][,#]p - SEITE (BLAETTERN):
+  Dieser Befehl ist vergleichbar mit l mit der Ausnahme, dass die Ausgabe-
+  seite mit der aktuellen Seite beginnt, anstatt 11 Zeilen zuvor.
+
+  q - BEENDEN:
+  Schliesst die editierte Datei, verliert dabei alle Aenderungen und
+  beendet EDLIN.
+
+  [#][,#][?]r$,$ - ZEICHENFOLGE (STRING) ERSETZEN:
+  Dieser Befehl ersetzt zwischen den angegebenen zwei Zeilen alle
+  Vorkommnisse des ersten Strings mit dem zweiten String. Ohne den ersten
+  Parameter startet der Ersetzvorgang eine Zeile nach der aktuellen Zeile;
+  ohne den zweiten Parameter endet der Ersetzvorgang in der letzten Zeile
+  der Datei. Das Fragezeichen gibt vor dem Ersetzen eine Bestaetigungs-
+  meldung aus.
+
+  [#][,#][?]s$ - SUCHEN NACH EINER TEILZEICHENFOLGE (SUBSTRING):
+  Dieser Befehl sucht nach der ersten Zeile, die die angegebene Teil-
+  zeichenfolge enthaelt. Ohne den ersten Parameter wird mit der Suche in 
+  der aktuellen Zeile begonnen; ohne den zweiten Parameter laeuft die
+  Suche bis zum Ende der Datei durch. Das Fragezeichen veranlasst die
+  Suche dazu, eine Bestaetigungsmeldung auszugeben. Wenn Sie bei der
+  Bestaetigung 'no - nein' sagen, wird die Suche fortgesetzt; wenn Sie
+  'yes - ja' sagen, endet die Suche. Die aktuelle Zeile wird auf die
+  Zeile gesetzt, auf der die erfolgreiche Suche endete.
+
+  [#]tDateiname - DATEI TRANSFERIEREN:
+  Dieser Befehl sorgt dafuer, dass der Inhalt der Datei vor der ange-
+  gebenen Zeile (in einer anderen Datei) eingefuegt wird. Wenn die
+  Zeilennummer weggelassen wird, ist die aktuelle Zeile der Standardwert.
+
+  [#]wDateiname - DATEI SPEICHERN:
+  Dieser Befehl sorgt dafuer, dass der Text von der ersten bis zu der vom
+  Parameter angegebenen Zeilennummer in die gewaehlte Datei geschrieben
+  wird. Wenn der Parameter weggelassen wird, werden alle Zeilen im Puffer
+  in die Datei geschrieben.
+</pre>
+<h2>Kommentar:</h2>
+<pre>  EDLIN ist ein kleiner Zeileneditor, der als funktioneller Clone des 
+  alten MS-DOS Programmes EDLIN fuer FreeDOS erstellt wurde. Seine 
+  Hauptaufgabe ist, <a href="../batch/index.htm">BATCH-DATEIEN</a> und kleine Programme zu erstellen. 
+  Sein Unterschied zu MS EDLIN ist erstens, dass er freie Sofware ist, 
+  zweitens, dass die Benutzeroberflaeche bei einigen Punkten geringfuegig
+  abweicht.
+  Der Grund fuer den Unterschied ist, dass der Benutzer keine Steuerungs-
+  zeichen eintippen muss, da diese von EDLIN's Syntax verwaltet werden.
+  EDLIN unterstuetzt NLS (national language support - nationale Sprach-
+  unterstuetzung).
+</pre>
+<h2>Beispiel:</h2>
+<pre>  edlin c:\config.sys  Oeffnet die Datei C:\config.sys zum Editieren.
+  edlin                Wenn keine Datei angegeben wird, startet edlin
+                       ein neues leeres Dokument.
+  Ich moechte die folgenden vier Saetze untereinander schreiben
+  und abspeichern:
+
+  Das ist Satz vier.
+  Das ist Satz drei.
+  Das ist Satz drei.
+  Das ist Satz eins.
+ 
+  (aus Edlin's * prompt, mit einem leeren Puffer...)
+
+  i
+  Das ist Satz vier.
+  Das ist Satz drei.
+  Das ist Satz drei.
+  Das ist Satz eins.
+  .
+
+  Jetzt moechte ich diese vier Saetze unter C:\test.txt abspeichern:
+
+  wc:\test.txt
+
+  Dann merke ich, dass der dritte Satz falsch ist (richtig: Das ist 
+  Satz zwei.) Wie kann ich korrigieren und abspeichern?
+
+  3rdrei,zwei
+  wc:\test1.txt
+
+  Dann moechte ich ganz am Anfang einen fuenften Satz (Das ist Satz
+  fuenf.) einfuegen. Wie macht man das?
+
+  1i
+  Das ist Satz fuenf.
+  .
+  wc:\test2.txt
+
+  Ich moechte sehen, ob alles richtig ist:
+
+  l
+
+  Ich moechte das Programm beenden:
+
+  q
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/index.htm">Batch-Dateien</a>
+  <a href="../base/edit.htm">edit</a>
+  <a href="../util/freemacs.htm">freeemacs</a>
+  <a href="../util/ospedit.htm">ospedit</a>
+</pre>
+<hr>
+<pre>  <b>Copyright © 2003 Gregory Pietsch, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

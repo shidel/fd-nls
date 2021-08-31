@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: touch</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: touch</h1>
+<pre>
+  El programa TOUCH modifica la fecha y/o el tiempo de los archivos de un
+  disco.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  touch [-?] [-C] [-Druta] [-F] [Fecha] [Tiempo] Ruta_espec¡fica [...]
+  touch [/?] [/C] [/Druta] [/F] [Fecha] [Tiempo] Ruta_espec¡fica [...]
+        Ruta_espec¡fica Especifica un archivo o grupo de archivos para ser
+        tocados, y puede contener una unidad inicial espec¡fica, una ruta
+        de directorio espec¡fica, y/o un archivo espec¡fico, y para grupos
+        espec¡ficos de archivos (usando la '?' y '*' caracteres comod¡n) o
+        una £nico archivo (una especificaci¢n ambigua). Ruta_espec¡fica
+        puede repetirse seg£n sea necesario.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  -C          No crea archivos que no existen actualmente.
+  -Druta      Duplica fecha y tiempo de un archivo especificado. Si esta 
+              opci¢n es utilizada, fecha o tiempo puede no estar 
+              especificada.
+  -F          Adjunta la hora al n£mero de versi¢n del archivo.
+  -?          Muestra la ayuda.
+  Fecha       La nueva fecha para ser modificada. Si esta opci¢n es usada,
+              -Druta puede no ser especificada.
+  Tiempo      El nuevo tiempo en el archivo para ser modificada. Si esta 
+              opci¢n se usa, -Druta puede no ser especificada.
+  El formato de fecha es determinado por tu instalaci¢n de <a href="../cnfigsys/country.htm">COUNTRY</a>,
+  ver <a href="../cnfigsys/index.htm">CONFIG.SYS</a>  / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>. 
+  El caracter '/' puede ser usado como el separador de fecha.
+  La A y P (a.m, p.m) son sufijos opcionales del parametro tiempo.
+  Si ninguna fecha o tiempo es suministrado, la fecha y el tiempo de hoy 
+  ser  usado.
+  Archivos inexistentes son creados a menos que -C est‚ dado.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  TOUCH permite la fecha, tiempo, o ambos fecha y tiempo del archivo para
+  ser modificado. TOUCH puede establecer fecha y tiempo de la fecha y 
+  tiempo actual, o alguna fecha y tiempo especificado por el usuario. La 
+  fecha y tiempo pueden tambi‚n ser establecidos a cero, lo que provoca
+  que los valores para ser mostrados como blanco en un listado de
+  directorio bajo alguna versi¢n de DOS.
+  Una fecha debe tener un formato como:
+    nn-nn-nn o nn/nn/nn.
+  El orden con los n£meros de la fecha son interpretados dependiendo del
+  n£mero de pa¡s. Ellos est n en tres ordenes de fecha estandar:
+    mm-dd-yy  (Americana)
+    dd-mm-yy  (Europea)
+    yy.mm.dd  (Japonesa)
+  El parametro tiempo debe tener un formato como:
+    hh:mm[:ss][a|p]
+  El segundo corchete y el valor 'ss' es opcional. Si estos no est n dados,
+  se usar  el valor cero para los segundos. Los sufijos 'a' y 'p'(am y pm)
+  son opcionales, y si no se usa, TOUCH asumir  que el tiempo a sido 
+  especificado en formato 24 horas.
+  LA OPCI¢N -C:
+    TOUCH crear  (por defecto) archivos especificados sin ambigedad (ejem
+    nombrado especificamente, sin comodines) si no existe en ese momento.
+    Esto es aparentemente el complemento del 'touch' de UNIX, aunque no es
+    usual en las implementaciones de DOS. Esta caracter¡stica puede ser
+    anulado por el comando -C en la linea de comandos, cuando llamas a 
+    TOUCH no es creado el archivo especificado si este no existe en ese
+    momento. Yo creo esto es tambi‚n estandar en las implementaciones de
+    UNIX.
+    Por ejemplo, el comando TOUCH NOSUCH.FIL (si NOSUCH.FIL no exsiste
+    en ese momento), se crear  un archivo vacio (cero bytes de tama¤o)
+    llamado NOSUCH.FIL. El comando TOUCH -C NOSUCH.FIL reportar  un error y
+    no crear  el archivo.
+  TOUCH tiene los siguientes <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0    Terminaci¢n normal; sin errores
+    2    Uno o m s errores ocurridos durante el proceso.
+    48   Error durante el proceso de la opci¢n -Druta
+    162  Memoria insuficiente (aproximadamente 64K de memoria requerida)
+    255  Uso de sintaxis incorrecta
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  touch 12-31-2008 06:10p C:\FDOS\BIN\*.*
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Actualizado en 2013 por Lorenzo del Toro Saravia.</b>
+
+  Este archivo de deriva de la FreeDOS Spec Command HOWTO.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copia.
+
+</pre></body></html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: xcopy</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: xcopy (rxcopy)</h1>
+<pre>
+  XCOPY copia archivos y directorios, incluidos subdirectorios.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  XCOPY fuente [destino] [opciones]
+        fuente   Especifica el directorio y/o el nombre de los archivo(s)
+                 a copiar. La fuente debe ser una unidad o una ruta
+                 completa.
+        destino  Especifica la ubicaci¢n y/o el nombre de los nuevos
+                 archivo(s). El destino para copiar. Si no est  presente,
+                 xcopy asume el directorio de trabajo.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /A          Copia solo archivos con el conjunto de atributos de 
+              archivos y no cambia el atributo.
+  /C          Contin£a copiando incluso si se producen errores.
+  /D[:M/D/Y]  Copia solo los archivos que se han cambiado en la fecha
+              especificada o despu‚s. Cuando no se especifica una fecha,
+              solo se copiar n los archivos que sean m s nuevos que los
+              archivos de destino existentes.
+  /E          Copia cualquier subdirectorio, incluso si est  vac¡o.
+  /F          Mostrar el origen completo y el nombre del destino.
+  /H          Copia archivos ocultos y del sistema, as¡ como archivos
+              desprotegidos y del sistema.
+  /I          Si el destino no existe y copia m s de un archivo, suponga
+              que el destino es un directorio.
+  /L          Lista de archivos sin copiarlos. (simula la copia).
+  /M          Solo copia archivos con el atributo de archivo establecido
+              y apaga el atributo de archivo de los archivos de origen
+              despu‚s de copiarlos.
+  /N          Suprime las indicaciones para confirmar que desea
+              sobrescribir un archivo de destino existente y omite estos
+              archivos.
+  /P          Solicita confirmaci¢n antes de crear cada archivo de
+              destino.
+  /Q          Modo silencioso, no muestra nombres de archivos copiados.
+  /R          Sobrescribir archivos de solo lectura, as¡ como archivos
+              sin protecci¢n.
+  /S          Copia directorios y subdirectorios, excepto los vac¡os.
+  /T          Crea un  rbol de directorios sin copiar archivos. Los
+              directorios vac¡os no se copiar n. Para copiarlos agregue
+              el interruptor /E.
+  /V          Verifica cada nuevo archivo.
+  /W          Espera una pulsaci¢n de tecla antes de comenzar.
+  /Y          Suprime las indicaciones para confirmar que desea
+              sobrescribir un archivo de destino existente y sobrescribe
+              estos archivos.
+  /-Y         Provoca que se confirme que desea sobrescribir un archivo
+              de destino existente.
+  /?          Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  El modificador <b>/Y</b> o <b>/N</b> puede preestablecerse en la variable de entorno
+  COPYCMD. Esto puede ser anulado con <b>/-Y</b> en la l¡nea de comandos.
+    p. ej. <a href="../cnfigsys/set.htm">SET</a> COPYCMD=/Y.
+  Para cancelar <b>/Y</b> para un comando XCOPY en particular, use <b>/-Y</b> en la
+  l¡nea de comando. La variable COPYCMD tambi‚n afecta el comando <a href="../command/copy.htm">COPY</a>.
+  Use <b>/Y</b> para cambiar la forma en que se comportan tanto <a href="../command/copy.htm">COPY</a> como
+  XCOPY. Use <b>/N</b>, que ignora <a href="../command/copy.htm">COPY</a>, para cambiar solo la forma en que
+  XCOPY se comporta. XCOPY se puede usar para determinar si una unidad
+  es v lida en un <a href="../batch/index.htm">ARCHIVO POR LOTES</a>.
+    XCOPY %drive%\NUL /L >NUL
+    <a href="../batch/if.htm">IF</a> NOT ERRORLEVEL 5 <a href="../batch/goto.htm">GOTO</a> unidad erronea
+  XCOPY puede usarse para determinar si la unidad de destino est 
+  llena en un <a href="../batch/index.htm">ARCHIVO POR LOTES</a>.
+    XCOPY %drive1%\%dir% %drive1%\%dir% /S
+    <a href="../batch/if.htm">IF</a> ERRORLEVEL 39 <a href="../batch/goto.htm">GOTO</a> destino completo
+
+  XCOPY admite NLS (soporte de idioma nacional).
+  XCOPY tiene los siguientes <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+     0  No hay error. XCOPY copi¢ con ‚xito los archivos.
+     1  Archivo no encontrado. XCOPY no pudo encontrar los archivos de
+        origen.
+     4  Ruta no encontrada. XCOPY no pudo encontrar la ruta de origen o
+        destino. Formato inv lido. El usuario us¢ la sintaxis incorrecta
+        en la l¡nea de comandos.
+     5  Acceso denegado. El usuario no tiene acceso a los archivos de 
+        origen o de destino.
+     8  Memoria insuficiente. No hay suficiente memoria del sistema para
+        ejecutar el comando. (­No implementado porque no es posible
+        manejarlo en un lenguaje de alto nivel como C!)
+    29  Error de escritura. XCOPY no pudo escribir un archivo o
+        directorio del destino.
+    30  Error de lectura. XCOPY no pudo leer un archivo fuente.
+    39  Espacio en disco insuficiente. No hay suficiente espacio en disco
+        en la ruta de destino.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  xcopy a:\test\*.* c:\test /q
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../batch/index.htm">Archivo por Lotes</a>
+  <a href="../command/copy.htm">copy</a>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../batch/goto.htm">goto</a>
+  <a href="../batch/if.htm">if</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../cnfigsys/set.htm">set (comando de config.sys)</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

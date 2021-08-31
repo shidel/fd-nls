@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : assign</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : assign</h1>
+<pre>
+  ASSIGN r‚affecte les op‚rations de disque d'un lecteur … un autre.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  ASSIGN [/SHADOW] [/STATUS] [/?]
+  ASSIGN [/SHADOW] [/M] [/U] [{lecteur1[:]=lecteur2[:]}]
+         lecteur1:  Lettre de lecteur devant ˆtre remplac‚e, par ex. C:
+         lecteur2:  Lettre de lecteur vers laquelle pointer, par ex. D:
+</pre>
+<h2>Options :</h2>
+<pre>
+  /SHADOW  Rend la pr‚sence d'ASSIGN dans la m‚moire difficile …
+           d‚tecter. Les utilisations suivantes d'ASSIGN ‚mettront un
+           avertissement si l'option /shadow n'est pas utilis‚e (mais
+           ex‚cuteront tout de mˆme la commande).
+  /STATUS  Affiche toutes les lettres de lecteur attribu‚es.
+           Si ASSIGN n'est pas d‚j… charg‚, un message vous en informe
+           mais ASSIGN ne sera pas charg‚.
+  /M       Tente d'utiliser la m‚moire haute au lieu de la m‚moire
+           conventionnelle pour stocker ASSIGN.
+  /U       D‚sinstalle un ASSIGN d‚j… install‚.
+  /?       Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Les caractŠres ':' sont optionnels, entre les lettres de lecteur et
+  le  signe '=' aucune espace n'est permise.
+  Si aucun lecteur n'est nomm‚ et que /status ou /u ne sont pas
+  utilis‚s, alors assign est r‚install‚ (effa‡ant toutes les
+  r‚affectations).
+  ASSIGN a les <a href="../batch/if.htm#comment">CODES DE SORTIE (ERRORLEVEL)</a> suivants :
+    0  succŠs / aide
+    3  annul‚ par l'utilisateur (par ex. Ctrl-C)
+    4  erreur de syntaxe
+  N'utilisez pas assign en combinaison avec les commandes suivantes :
+    diskcomp
+    diskcopy
+    format
+    label
+    print
+    restore
+    subst
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  assign B:=A:
+  assign B=A
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../base/join.htm">join</a>
+  <a href="../base/subst.htm">subst</a>
+  <a href="../base/swsubst.htm">swsubst</a>
+  <a href="../command/truename.htm">truename</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

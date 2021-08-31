@@ -1,0 +1,56 @@
+hhstndrd.zip
+============
+
+Este archivo contiene el grueso de los documentos html
+que se utilizan con help.exe (htmlhelp).
+
+NO SE NECESITA QUE SE DESCOMPRIMA - help.exe puede
+leer les archivos que estan en hhstndrd.zip.
+
+(Es posible que desee descomprimir los archivos HTML
+para que se puedan leer con otro navegador, o para 
+editarlos. Los archivos Zip normalmente tienen 
+prioridad sobre los archivos descomprimidos; si usted
+esta seguro de que quiere leer y editar la ayuda,
+descomprima la versi¢n del archivo y reemplace o borre
+la versi¢n original en HHSTNDRD.ZIP)
+
+Traducido por Lorenzo del Toro Saravia en 2018.
+
+
+COMPATIBILIDAD CON LAS CODIFICACIONES:
+
+Los diferentes idiomas de la ayuda requieren diferentes
+codificaciones. Si los caracteres no se muestran
+como esperaba entonces la codificaci¢n es incorrecta.
+
+Ejemplos de FDCONFIG.SYS / CONFIG.SYS sobre c¢mo instalar
+codificaiciones:
+
+country=001,437,c:\fdos\bin\country.sys   (US settings)
+country=033,858,c:\fdos\bin\country.sys   (French settings)
+country=034,858,c:\fdos\bin\country.sys   (Configuraci¢n espa¤ola)
+country=049,858,c:\fdos\bin\country.sys   (German settings)
+
+Puede encontrar el c¢digo de su pa¡s y las codificaciones en
+la secci¢n ®¢rdenes externas - country.sys¯ y en la secci¢n
+®Varios - kpdos¯.
+
+
+Por lo tanto FDAUTO.BAT / AUTOEXEC.BAT deber¡a parecerse a esto:
+
+set LANG=EN
+lh display con=(EGA,437,1)
+mode con cp prep=((437) %DOSDIR%\CPI\EGA.CPX)
+mode con cop sel=437
+mode con cp refresh
+
+Dependiendo de su pa¡s, su idioma ("LANG"uage) debe estar configurado
+en EN / FR / ES / DE, etc.
+Aseg£rese de que exista el archivo ®htmlhelp.en / fr / es / de¯, etc.
+en la carpeta NLS, ­de lo contrario help.exe se bloquear ! Si
+no es as¡, cree el archivo. Por ejemplo copiando el de otro idioma.
+Reemplace ®437¯ por la codificaci¢n correcta, tal como se indica anteriormente.
+En la secci¢n ®Varios - cpidos¯ encontrar  el archivo EGAx.CPX
+que corresponde con su n£mero de codificaic¢n.
+Hay desde EGA.cpx hasta EGA18.cpx.

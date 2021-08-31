@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : buffers</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : buffers</h1>
+<pre>
+  BUFFERS dit … FreeDOS combien de tampons de disque il doit allouer.
+  BUFFERS est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  buffers=nn[,m]
+    nn  est le nombre de tampons de disque primaires, dans
+        la plage 1-99.
+    m   est le nombre de tampons de disque secondaires, dans
+        la plage 1-8.
+</pre>
+<h2>Options :</h2>
+<pre>
+  Utilisation :
+
+  La valeur par d‚faut d‚pend de la quantit‚ de m‚moire conventionnelle
+  que votre systŠme possŠde :
+
+  M‚moire (Ko)              Tampons primaires        Tampons secondaires
+  ----------------------------------------------------------------------
+    < 128                           3                         1
+  128 - 255                         5                         1
+  256 - 511                        10                         1
+  512 - 640                        15                         1
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Augmenter le nombre de TAMPONS peut am‚liorer la vitesse des programmes
+  qui travaillent avec un grand nombre de fichiers, mais cela consomme
+  aussi davantage de ressources m‚moire.
+  L'option de tampon secondaire est disponible pour la compatibilit‚ avec
+  d'autres kernels DOS, mais est ignor‚e par le kernel FreeDOS. Sous MS
+  DOS, un tampon secondaire peut ˆtre utilis‚ pour la lecture anticip‚e
+  des donn‚es.
+  FreeDOS ne fait pas cela. Les tampons sont stock‚s dans la HMA par
+  FreeDOS, sauf si vous choisissez une valeur nn pour allouer plus de
+  tampons que ce que la HMA peut accepter. Si nn est plus petit,
+  l'espace HMA inutilis‚ sera utilis‚ pour d'autres tampons jusqu'… ce
+  que quelque chose d'autre alloue l'espace HMA … quelque chose
+  d'autre. Mˆme dans ce cas, au moins nn tampons seront toujours
+  disponibles. Vous pouvez d‚finir une valeur n‚gative pour nn
+  afin de d‚sactiver l'utilisation de l'espace HMA libre : 
+  BUFFERS=-10 utilise seulement 10 tampons, l'espace HMA restant ne
+  sera simplement pas utilis‚.
+  BUFFERS est une commande interne … kernel.sys et ne n‚cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    buffers=3,1
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/buffersh.htm">buffershigh</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis … jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : if</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : if</h1>
+<pre>
+  IF effectue des traitements conditionnels dans les programmes batch.
+  IF est une commande de <a href="../batch/index.htm">FICHIER BATCH</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+  Elle peut aussi ˆtre utilis‚e sur la ligne de commande.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  IF [NOT] ERRORLEVEL nombre commande
+  IF [NOT] chaŒne1==chaŒne2 commande
+  IF [NOT] EXIST nomfichier commande
+     lecteur     La lettre du lecteur, par exemple C:
+     chemin      Le r‚pertoire, par exemple \exemple\
+     nomfichier  Le fichier, par exemple test.txt
+</pre>
+<h2>Options :</h2>
+<pre>
+  NOT               Sp‚cifie que le shell de commandes ne doit ex‚cuter
+                    la commande que si la condition est fausse.
+                    (Sans cela, la commande sera ex‚cut‚e si la
+                    condition est vraie.)
+  ERRORLEVEL nombre Sp‚cifie une condition vraie si le dernier programme
+                    ex‚cut‚ a retourn‚ un code de sortie ‚gal ou
+                    sup‚rieur au nombre sp‚cifi‚.
+  commande          Sp‚cifie la commande … ex‚cuter si la condition est
+                    remplie.
+  chaŒne1==chaŒne2  Sp‚cifie une condition vraie si les chaŒnes de texte
+                    sp‚cifi‚es correspondent.
+  EXIST nomfichier  Sp‚cifie une condition vraie si le nom de fichier
+                    sp‚cifi‚ existe.
+</pre>
+<h2><a name="comment"></a>Commentaires :</h2>
+<pre>
+  <I>ERRORLEVEL</I> nombre :  Les programmes DOS renvoient un nombre
+                       lorsqu'ils quittent, et ce nombre contient parfois
+                       des informations sur la r‚ussite du programme.
+                       Si le dernier programme qui a quitt‚ a renvoy‚
+                       le nombre donn‚, alors la condition est vraie.
+  string1==string2     Si les deux chaŒnes de caractŠres sont ‚gales,
+                       alors la condition est vraie.
+  exist [lecteur]      Si le fichier donn‚ est l…, alors la
+        [chemin]       condition est vraie
+        nomfichier
+
+  IF est une commande interne … command.com est ne n‚cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS UN FICHIER .BAT / AUTOEXEC.BAT :
+    if exist c:\kernel.sys ECHO Le kernel existe
+                  (affiche un message si le kernel existe)
+    set A=freedos
+    set B=freedos
+    set C=autredos
+    if %A%==%B% ECHO A et B sont la mˆme chaŒne
+                  (A et B sont "freedos", donc le message apparaŒtra)
+    if %A%==%C% ECHO A et C sont la mˆme chaŒne
+                  (A est "freedos", C est "autredos", donc aucun message
+                   n'apparaŒtra)
+    if not %A%==%C% ECHO A et C ne sont pas la mˆme chaŒne
+                  (A est "freedos", C est "autredos", comme ils ne sont
+                  PAS identiques, le message apparaŒtra)
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">fichiers batch</a>
+  <a href="../batch/choice.htm">choice</a>
+  <a href="../batch/goto.htm">goto</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

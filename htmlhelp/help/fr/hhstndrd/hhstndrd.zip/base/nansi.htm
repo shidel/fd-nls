@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : nansi.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : nansi.sys</h1>
+<pre>
+  NANSI.SYS est un pilote d'am‚lioration de la console. FreeDOS utilise
+  NANSI.SYS au lieu d'ANSI.SYS.
+  NANSI.SYS doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS est d‚j… en fonctionnement, vous pouvez charger
+  NANSI.SYS par la suite avec <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEVICE[HIGH]=[lecteur:][chemin]NANSI.SYS [/K] [/C] [/X] [/S] [/Tnn]
+               [/R] [/B|/Q] [/P]
+  DEVLOAD      [lecteur:][chemin]NANSI.SYS [/K] [/C] [/X] [/S] [/Tnn]
+               [/R] [/B|/Q] [/P]
+</pre>
+<h2>Options :</h2>
+<pre>
+  /K    Force le style de clavier … 84 touches.
+  /X    D‚finitions de touches ‚tendues.
+  /S    Mode s–r - pas de red‚finitions de touches.
+  /Tnn  Mode nn est un mode texte.
+  /R    Utilise le BIOS (pour certains lecteurs d'‚cran).
+  /B    Utilise le BIOS pour le bip systŠme.
+  /Q    N'utilise aucun bip du tout (silencieux).
+  /P    Transmet toutes les requˆtes inconnues … CON.
+  /C    Force le style de clavier … 101+ touches.
+  /?    Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Une fois charg‚ (pour plus d'informations veuillez lire nansi.doc) :
+    ESC[#;#H        Position du curseur sp‚cifi‚ par les paramŠtres.
+    ESC[#;#f        Position horizontale et verticale.
+    ESC[#A          Curseur haut.
+    ESC[#B          Curseur bas.
+    ESC[#C          Curseur en avant.
+    ESC[#D          Curseur en arriŠre.
+    ESC[#n          tat du p‚riph‚rique, Rapport ! # doit ˆtre 6. La
+                    s‚quence ESC[6n force le pilote de la console …
+                    g‚n‚rer un Rapport de Position du Curseur.
+    ESC[#;#R        Rapport de position du curseur.
+    ESC[s           Enregistre la position du curseur.
+    ESC[u           Restaure la position du curseur.
+    ESC[#J          Efface sur l'‚cran.# doit ˆtre 2. Efface tout
+                    l'‚cran.
+    ESC[K           Efface sur la ligne. Efface depuis le curseur
+                    jusqu'… la fin de la ligne.
+    ESC[#L          InsŠre des lignes - non pris en charge dans ANSI.SYS.
+    ESC[#M          Efface des lignes - non pris en charge dans ANSI.SYS.
+    ESC[#@          InsŠre des caractŠres - non pris en charge dans
+                    ANSI.SYS.
+    ESC[#P          Efface des caractŠres - non pris en charge dans
+                    ANSI.SYS.
+    ESC["chaŒne"p   R‚attribution des touches du clavier. Cette
+                    fonctionnalit‚ est un risque de s‚curit‚ et peut
+                    ˆtre d‚sactiv‚ avec l'option /s lors du chargement
+                    de NANSI.SYS dans config.sys.
+    ESC[#;#;...#m   D‚finit le rendu graphique :
+            0       Tous les attributs d‚sactiv‚s (blanc normal sur noir)
+            1       Gras
+            4       Soulign‚
+            5       Clignotement
+            7       Vid‚o invers‚e
+            30      noir au premier plan
+            31      rouge au premier plan
+            32      vert au premier plan
+            33      jaune au premier plan
+            34      bleu au premier plan
+            35      magenta au premier plan
+            36      cyan au premier plan
+            37      blanc au premier plan
+            40      fond noir
+            41      fond rouge
+            42      fond vert
+            43      fond jaune
+            44      fond bleu
+            45      fond magenta
+            46      fond cyan
+            47      fond blanc
+    Ces r‚glages fonctionnent aussi sur <a href="../batch/prompt.htm">L'INVITE</a>. Vous devez y taper :
+            invite $e[1;33;44m pour le gras / jaune / bleu.
+    ESC[=nh         D‚finit le mode vid‚o :
+      Code de Mode :    Valeur :
+            0        texte 40x25 Noir et blanc
+            1        texte 40x25 En couleurs
+            2        texte 80x25 Noir et blanc
+            3        texte 80x25 En couleurs
+            4        bitmap 320x200 4 bits/pixel
+            5        bitmap 320x200 1 bit/pixel
+            6        bitmap 640x200 1 bit/pixel
+            13       bitmap 320x200 4 bits/pixel
+            14       bitmap 640x200 4 bits/pixel
+            15       bitmap 640x350 1 bit/pixel
+            16       bitmap 640x350 4 bits/pixel
+            17       bitmap 640x480 1 bit/pixel
+            18       bitmap 640x480 4 bits/pixel
+            19       bitmap 320x200 8 bits/pixel
+    Les modes 0, 1, et 4-19 n‚cessite CGA, EGA or VGA.
+    Les modes 13-16 n‚cessitent EGA ou VGA.
+    Les modes 17-19 n‚cessitent VGA.
+  Pour plus d'informations veuillez lire nansi.doc.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    device=C:\fdos\bin\nansi.sys
+    devicehigh=C:\fdos\bin\nansi.sys
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/device.htm">device</a>
+  <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../batch/prompt.htm">prompt</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 - 2004 Robert Platt, mis … jour en 2008
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

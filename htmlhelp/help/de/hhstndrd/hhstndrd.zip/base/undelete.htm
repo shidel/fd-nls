@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: undelete</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: undelete</h1>
+<pre>
+  UNDELETE versucht die Wiederherstellung von geloeschten Daten.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  undelete [Verzeichnis] [Optionen]
+           Verzeichnis der Ordner, wo Datei wiederhergestellt werden
+                       sollen. Wenn keins angegeben ist, wird das
+                       aktuelle Arbeitsverzeichnis angenommen.
+  Es gibt auch erweiterte undelete Optionen:
+  undelete /Aktion Restaurationsobjekt Ziel [Datengroesse]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+    /ALL         Geloeschte Dateien werden im angegebenen Verzeichnis
+                 wieder hergestellt ohne eine Bestaetigung fuer jede
+                 Datei zu fordern.
+    /LIST        Listet nur alle geloeschten Dateien auf, die ohne eine
+                 Eingabeaufforderung wieder hergestellt werden koennen;
+                 es wird keine Massnahme ergriffen.
+    /E           Exportiert alle wiederhergestellten Dateien auf ein
+                 anderes Medium bzw. einen anderen Pfad. 
+  Moegliche Werte fuer /Aktion :
+    /syssave     Speichert die 1. oder 2. Kopie der FAT, den Bootsektor
+                 oder das Hauptinhaltsverzeichnis, wenn als zusaetz-
+                 liches Argument fat1, fat2, boot oder root benutzt
+                 werden in der angebenen Zieldatei.
+    /follow      Folgt ab dem angebenen Cluster einer (moeglicherweise
+                 geloeschten) Datei und speichert die Daten in dem 
+                 angegebenen Ziel ab. Die Ausgabe von DIRSAVE hilft
+                 bei der Suche nach der richtigen Clusternummer.
+    /dirsave     Wie FOLLOW, aber es sichert ein Verzeichnis in eine 
+                 angegebene Datei. Das Verzeichnis muss entweder mit dem
+                 absoluten Pfad ohne Laufwerksangabe oder durch eine
+                 Clusternummer angeben werden. Es gibt auch eine
+                 technische Verzeichnisliste auf dem Bildschirm aus.
+    Ziel         Muss auf einem anderen Laufwerk als dem aktuellen sein.
+                 Von diesem werden die Daten immer gelesen und
+                 wiederhergestellt.
+    Datengroesse Diese ist nicht erforderlich, aber Sie koennen die
+                 automatische Erkennung uebergehen durch Angabe der
+                 Groesse (in Clustern fuer FOLLOW, in den Sektoren
+                 fuer DIRSAVE).
+</pre>
+<h2><a name="comment"></a>Kommentar:</h2>
+<pre>
+  UNDELETE funktioniert nur auf FAT12 / FAT16 formatierten Laufwerken!
+  Benutzung von UNDELTE:
+    1. Finden von wiederherstellbaren Dateien und Verzeichnissen:
+       Fuehren Sie das Programm im DIRSAVE-Modus aus. Geloeschte
+       Verzeichniseintraege werden besonders gekennzeichnet und ihre
+       Clusternummern werden ausgegeben. Die Ausgabe kann auch in eine
+       Datei umgeleitet werden, zum Beispiel:
+         undelete DIRSAVE \ x:\rescued.dir >y:\logfile
+       Wenn Sie die FreeDOS Werkzeuge auf Ihrem System installiert
+       haben, koennen sie etwa Folgendes verwenden:
+         undelete DIRSAVE \ x:\rescued.dir | <a href="../util/tee.htm">TEE</a> y:\logfile
+         undelete DIRSAVE \ x:\rescued.dir | <a href="../util/tee.htm">TEE</a> y:\logfile | <a href="../base/more.htm">MORE</a>
+       Dies wird die Informationen auf den Bildschirm ausgeben als auch
+       in der Datei logfile speichern.
+    2. Restauration von nicht wiederherstellbaren Dateien:
+       Finden Sie den Startcluster der Datei mittels DIRSAVE, wie oben
+       beschrieben. Nutzen Sie dann FOLLOW fuer diesen Cluster, wie z.B.:
+         undelete FOLLOW 1234 x:rescued.bin
+       Dies wuerde den Inhalt des geloeschten Objektes ab Cluster 1234
+       in der Datei rescued.bin auf Laufwerk X abspeichern.
+  Erweiterte Nutzung:
+    - Wiederherstellen innerhalb von geloeschten Verzeichnissen
+      Fuehren Sie DIRSAVE auf ein bereits existierendes Verzeichnis aus,
+      um dessen Startcluster zu finden. Wenden sie dann DIRSAVE auf diesen
+      Cluster an, um in diesem geloeschte Dateien und Verzeichnisse zu
+      finden. Wiederholen sie diesen Schritt rekursiv bis zur benoetigten
+      Datei.
+    - Wiederherstellen von teilweise ueberschrieben Dateien
+      Wenden sie auf bestehende neue Dateien FOLLOW mit Anzahl der
+      Cluster an (Beim Start von UNDELETE wird diese Groesse mitgeteilt).
+      Wenn Sie also versehentlich eine lange Datei "OLD" mit einer kurzen
+      neuen Datei "NEW" ueberschrieben haben, gehen sie wie folgt vor:
+      * Finden sie den Startcluster von "NEW".
+      * Geben Sie die Groesse von "OLD" bei der Verwendung von FOLLOW an
+      * Die wiedergefundene Datei beginnt wieder mit dem Inhalt der "NEW".
+        und enthaelt aber hoffentlich das noch nicht ueberschrieben Ende
+      von "OLD".
+    - Verwendung von UNDELETE zum "Spiegeln" wichtiger Laufwerksdaten
+      Wenn Ihr Dateisystem vollstaendig beschaedigt ist, koennen Sie ver-
+      suchen, die wichtige Daten zurueck zu schreiben, wobei diese per
+      SYSSAVE auf einem anderen Laufwerk gespeichert wurden. Aehnliches
+      koennen sie auch mit dem Befehl <a href="../base/mirror.htm">MIRROR</a> erreichen.
+      Dieser ist einfacher zu bedienen, speichert aber die gesicherten
+      Informationen das Ende des Laufwerkes.
+      * Fuehren Sie UNDELETE im SYSSAVE-Modus fuer alle 4 Quellen aus:
+        fat1, fat2, boot, root
+      * Bewahren Sie diese Dateien an einem sicheren Ort auf
+    - Wiederherstellen der "Spiegel"-Daten
+      Dies kann erforderlich sein, in einigen Faellen von einer Fest-
+      plattenkatastrophe.
+      WARNUNG: Dies ist nur fuer die Experten, Reparaturleute und sehr
+      verzweifelte Menschen! Falsche oder unnoetige Anwendung kann Dinge
+      noch verschlimmern.
+      * Verketten sie die 4 gesicherten Dateien in der urspruenglichen
+        Reihenfolge, um den Anfang des Dateisystems zu bekommen.
+      * Der W-Befehl von <a href="../base/debug.htm">DEBUG</a> kann fuer die Wiederherstellung dieser
+        Information benutzt werden.
+      * Sie koennen Sie auch vorher gesicherten Daten mit einem
+        Hexadezimal-Editor vereinen und zurueckschreiben.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  - Siehe <a href="#comment">Kommentar</a> -
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/debug.htm">debug</a>
+  <a href="../command/del.htm">del</a>
+  <a href="../base/deltree.htm">deltree</a>
+  <a href="../command/erase.htm">erase</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/more.htm">more</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+  <a href="../util/tee.htm">tee</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Eric Auer, uebersetzt 2009 von J.Jenderek.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

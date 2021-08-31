@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: shsufdrv</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: shsufdrv</h1>
+<pre>
+  SHSUFDRV simulatiert eine Diskette oder Festplatte, indem es eine
+  Imagedatei verwendet.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  SHSUFDRV [/F[:][?]]Image[,Laufwerk]... [/W] [/V] [/U] [/Q[Q]]
+           /F:       Der Pfad zum Image
+           Image     Dateiname des Rawdiskettenimages; 
+                     '?' ignoriert ein ungueltiges Image.
+           Laufwerk  Der zu verwendende Laufwerksbuchstabe (Standard
+                     ist der zuerst erhaeltliche).
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /W   Erlaubt Images, beschrieben zu werden.
+  /V   Zeigt den Speicherverbrauch an (nur bei der Installation).
+  /U   Entladen.
+  /Q   Still - zeigt keine 'Zeichen an' Fahne.
+  /QQ  Wirklich still - zeigt gar nichts an.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Imagedateien koennen mit <a href="../base/diskcopy.htm">DISKCOPY</a> erstellt werden.
+  Es wird kein Laufwerksbuchstabe zugeordnet, der niedriger ist als der
+  erste Laufwerksbuchstabe. Z.B.:
+    img1,E img2,D wird nach E: und F: zuweisen - NICHT nach E: und D:.
+  Nur das Laufwerk (auf der ersten Partition einer Festplatte) wird
+  simuliert, nicht die Festplatte selbst und nur eine 512-Byte 
+  Sektorgroesse. SHSUFDRV / SHSURDRV hat folgende
+  <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    0     Nicht installiert, Hilfe angezeigt
+    1-32  Erstes zugewiesenes Laufwerk (A: = 1) bei erfolgreicher
+          Installation
+    255   Nicht installiert, nicht deinstalliert
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  SHSUFDRV /F:?C:\test\diskimg.img,H /W /V
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

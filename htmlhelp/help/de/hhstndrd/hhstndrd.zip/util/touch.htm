@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: touch</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: touch</h1>
+<pre>
+  Das TOUCH Programm modifiziert das Datum und, oder die Zeit von
+  Dateien auf einem Datentraeger.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  touch [-?] [-C] [-DReferenzdatei] [-F] [Datum] [Zeit] Dateipfade [...]
+  touch [/?] [/C] [-DReferenzdatei] [-F] [Datum] [Zeit] Dateipfade [...]
+        Dateipfade bestimmt eine Datei oder eine Gruppe von Dateien, die
+        geaendert werden sollen, und kann eine erste Laufwerksangabe,
+        einen Verzeichnispfad und, oder einer Dateispezifikation enthalten
+        und eine Gruppe von Dateien (mit dem "?" und "*" Platzhalter-
+        Zeichen) oder eine einzelne Datei (eine eindeutige Spezifikation)
+        enthalten. Dateipfade koennen wiederholt werden.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  -C          Erstellt keine Dateien, die nicht bereits vorhanden sind.
+  -DReferenz  Verwendet Datum und die Uhrzeit der angegebenen Datei als
+              Referenz. Wenn diese Option verwendet wird, kann das Datum
+              oder Zeit nicht angegeben werden.
+  -F          Setzt die Zeit auf die Versionsnummer der Datei.
+  -?          Zeigt die Hilfe.
+  Datum       Das neue Datum fuer die zu aendernden Dateien. Wenn diese
+              Option benutzt wird, darf -D nicht angegeben werden.
+  Zeit        Das neue Datum fuer die zu modifizierenden Dateien. Wenn
+              dies benutzt wird, darf die Option -D nicht angegeben
+              werden.
+  Das Datumsformat haengt von Ihrem Laendereinstellung (<a href="../cnfigsys/country.htm">COUNTRY</a>) ab, siehe
+  <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Der Schraegstrich "/" kann als Datums-Trenner verwendet werden. Die A-
+  und P-Suffixe (fuer vormittags bzw. nachmittags) der Zeitparameter sind
+  optional. Wenn weder Datum noch Zeit gegeben sind, wird das aktuelle
+  Datum mit Uhrzeit verwendet.
+  Nicht existierende Dateien werden erstellt, ausser wenn die Option -C
+  benutzt wird.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  TOUCH kann das Datum, die Uhrzeit, oder auch beide von Dateien
+  aendern. Es kann das Datum und die Uhrzeit auch auf den aktuellen
+  Zeitpunkt oder auf jedes beliebige Datum und Uhrzeit setzen. Das Datum
+  und die Uhrzeit kann auch auf Null gestellt werden, was bewirkt,
+  dass die Werte in der Verzeichnisliste unter einigen Versionen von DOS
+  als leer erscheinen. Ein Datum muss folgendermassen formatiert sein:
+    nn-nn-nn oder nn/nn/nn.
+  Die Reihenfolge in der die Datumszahlen interpretiert werden, haengt
+  von der Laendernummer ab. Es gibt drei Standard-Datumsanordnung:
+    mm-dd-yy  (Amerikanisch)
+    dd-mm-yy  (Europaeisch)
+    yy.mm.dd  (Japanisch)
+  Ein Zeitparameter muss folgendes Format haben:
+    hh:mm[:ss][a|p]
+  Der zweite Doppelpunkt und der 'ss'-Wert sind optional. Wenn sie nicht
+  angegeben sind, wird ein Wert von Null Sekunden verwendet. Das Anhaengen
+  von 'a' und 'p' (fuer vormittags bzw. nachmittags) ist optional. Wenn
+  sie fehlen, geht TOUCH davon aus, dass die Zeit im 24-Stundenformat
+  vorliegt.
+  Die -C Option:
+    Standardmaessig erzeugt TOUCH eindeutig angegebene Dateien (z.B.
+    Namen ohne Platzhalter-Zeichen), wenn sie nicht bereits vorhanden
+    sind. Dies ist das Standardverhalten der Unix-Versionen von 'touch',
+    aber nicht ueblich in DOS-Implementierungen. Dieses Verhalten kann
+    ueber die C-Befehlszeilenoption aufgehoben werden, die TOUCH mitteilt
+    die angegebene Datei nur zu aendern, wenn sie bereits vorhanden ist.
+    Zum Beispiel wird der Befehl TOUCH NOSUCH.FIL eine leere (Null Bytes
+    lange) Datei mit dem Namen NOSUCH.FIL erzeugen (wenn diese noch nicht
+    existiert). Der Befehl TOUCH -C NOSUCH.FIL hingegen wird einen Fehler
+    melden und die Datei nicht erzeugen.
+  TOUCH hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    0    normaler Abschluss, keine Fehler
+    2    Ein oder mehrere Fehler waehrend der Verarbeitung
+    48   Fehler waehrend der Verarbeitung der Option -D
+    162  Nicht genuegend Speicher (ca. 64 KB Speicher erforderlich)
+    255  Falsche Syntax
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  touch 12-31-2008 06:10p C:\FDOS\BIN\*.*
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl, uebersetzt von J. Jenderek.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

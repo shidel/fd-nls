@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: for</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: for</h1>
+<pre>
+  FOR fuehrt einen spezifizierten Befehl fuer jede Datei 
+  eines Dateisatzes aus.
+  FOR ist ein <a href="../batch/index.htm">BATCH-DATEI</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> Befehl.
+  Er kann aber auch in der Kommandozeile verwendet werden.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FOR %Variable IN (Dateisatz) DO Befehl [Bef-Parameter]
+  FOR %%Variable IN (Dateisatz) DO Befehl [Bef-Parameter]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  %Variable      Spezifiziert einen ersetzbaren Parameter.
+  %%Variable     Spezifiziert einen ersetzbaren Parameter.
+  (Dateisatz)    Spezifiziert einen Satz aus einer oder mehreren
+                 Dateien. Wildcards und ? koennen benutzt werden.
+  Befehl         Spezifiziert den auf jede Datei anzuwendenden Befehl.
+  Bef-Parameter  Spezifiziert Parameter oder Switches fuer den
+                 angegebenen Befehl.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Um den FOR-Befehl in einem Stapelprogramm zu benutzen, geben Sie 
+  %%Variable anstelle von %Variable an.
+  FOR ist ein interner Befehl, d.h. der Befehl ist in der command.com
+  enthalten. Es wird zur Ausfuehrung des Befehls kein zusaetzlicher 
+  Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN EINER .BAT DATEI ODER DER AUTOEXEC.BAT:
+    Zeigt nacheinander alle Textdateien im momentanen Verzeichnis an:
+      FOR %f in (*.txt) DO more %f
+    Die folgenden zwei Befehle listen alle Dateien auf, die mit einem "a"
+    beginnen. Die Liste startet mit "---start---", zeigt dann die Dateien
+    und endet mit "---end---". Das "-"-Zeichen am Anfang und am Ende
+    kommt vom Befehl "DO ECHO - %f -".
+      ECHO off
+      FOR %f IN (---start---a*.* ---end---) DO ECHO - %f -
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">Batch-Dateien</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

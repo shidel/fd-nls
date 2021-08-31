@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: assign</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: assign</h1>
+<pre>
+  ASSIGN weist Diskoperationen ein anderes Laufwerk zu.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  ASSIGN [/SHADOW] [/STATUS] [/?]
+  ASSIGN [/SHADOW] [/M] [/U] [{LW1[:]=LW2[:]}]
+         LW1:  Zu ersetztender Laufwerksbuchstabe z.B. C:
+         LW2:  Laufwerksbuchstabe auf den verwiesen wird, z.B. D:
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /SHADOW  Versteckt die Anwesenheit von ASSIGN im Speicher
+           (z.B. vor einer Installationsueberpruefung).
+           Nachtraeglich geladene Anwendungen von ASSIGN werden
+           eine Warnung ausgeben, wenn die /SHADOW Option nicht
+           verwendet (aber der Befehl immer noch ausgefuehrt) 
+           wird.
+  /STATUS  Zeigt alle zugewiesenen Laufwerksbuchstaben an.
+           Wenn ASSIGN noch nicht geladen wurde, zeigt dies eine
+           Meldung an und ASSIGN wird nicht geladen
+  /M       Verschiebe den residenten Teil, wenn moeglich, vom 
+           konventionellen Speicher in den UMB, um die
+           Zuweisungen zu speichern.
+  /U       Deinstalliere ein vorher installiertes ASSIGN.
+  /?       Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Die ":" -Zeichen sind optional; zwischen den Laufwerksbuchstaben und
+  dem Gleichheitszeichen ist kein Leerzeichen erlaubt. 
+  Wenn keine Laufwerke angegeben werden und /STATUS oder /U nicht
+  verwendet wird ASSIGN neu installiert (loescht alle vorherigen
+  Laufwerkszuweisungen).
+  ASSIGN hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    0  Erfolg / Hilfe
+    3  Abbruch durch Benutzer (z.B. Ctrl-C / Strg-C)
+    4  Syntax Error
+  Benutzen Sie ASSIGN NICHT zusammen mit folgenden Befehlen:
+    diskcomp
+    diskcopy
+    format
+    label
+    print
+    restore
+    subst
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  assign B:=A:
+  assign B=A
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/join.htm">join</a>
+  <a href="../base/subst.htm">subst</a>
+  <a href="../base/swsubst.htm">swsubst</a>
+  <a href="../command/truename.htm">truename</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

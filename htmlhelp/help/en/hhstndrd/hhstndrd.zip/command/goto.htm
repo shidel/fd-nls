@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: goto</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: goto</h1>
+<pre>
+  GOTO directs the command shell to a labelled line in a 
+  batch program.
+  GOTO is a <a href="../batch/index.htm">BATCH-FILE</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  GOTO label
+</pre>
+<h2>Options:</h2>
+<pre>
+  label  Specifies a text string used in the batch program as a label.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The batch file will jump to the label and continue running from there.
+  Use GOTO with the <a href="../batch/if.htm">IF</a> command to control the flow of batch files. 
+  You type a label on a line by itself, beginning with a colon, e.g.:
+  :LABEL1
+  The name of the label should be not to long AND self explaining.
+  GOTO is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN A .BAT FILE / AUTOEXEC.BAT:
+    if %config%==1 goto DEFRAG
+    if %config%==2 goto COPY
+    :DEFRAG
+    defrag c:
+    goto END
+    :COPY
+    copy xy.txt c:\test\xy.txt
+    goto END
+    :END
+    cls
+  IN A .BAT FILE / AUTOEXEC.BAT:
+    @ECHO 1 = Do this
+    @ECHO 2 = Do that
+    @ECHO 3 = Do another thing
+    @ECHO 4 = Do nothing
+    @choice /B /C:1234 /N /S What do you want to do?
+    if errorlevel 4 goto DONOTHING
+    if errorlevel 3 goto DOANOTHER
+    if errorlevel 2 goto DOTHAT
+    if errorlevel 1 goto DOTHIS
+    :DOTHIS
+    your commands
+    goto EXIT
+    :DOTHAT
+    your commands
+    goto EXIT
+    :DOANOTHER
+    your commands
+    goto EXIT
+    :DONOTHING
+    your commands
+    goto EXIT
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../batch/choice.htm">choice</a>
+  <a href="../batch/if.htm">if</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

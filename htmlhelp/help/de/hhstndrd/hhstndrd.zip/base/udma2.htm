@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: udma2.sys / udma2s.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: udma2.sys / udma2s.sys</h1>
+<pre>
+  UDMA2.SYS / UDMA2S.SYS sind Festplatten-Caching-Treiber fuer UltraDMA
+  Festplatten.
+  UDMA2.SYS muss in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen werden.
+  Alternativ kann UDMA2.SYS waehrend des Betriebes mit <a href="../util/devload.htm">DEVLOAD</a>
+  nachtraeglich geladen werden.
+  <b>UDMA2.SYS / UDMA2S.SYS sind veraltet. Der Autor gibt KEINEN Support
+  mehr! Sie sollten stattdessen <a href="../base/uide.htm">UIDE.SYS</a> verwenden</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE = [Pfad]UDMA2.SYS [/O] [/L] [/S] [...]
+  DEVICE = [Pfad]UDMA2S.SYS [/L] [/S] [...]
+  DEVICEHIGH = [Pfad]UDMA2.SYS [/O] [/L] [/S] [...]
+  DEVICEHIGH = [Pfad]UDMA2S.SYS [/L] [/S] [...]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /0   Nur bei UDMA2.SYS, ermoeglicht Ausgabeueberlappung. Dies erfordert
+       einen XMS Speicherveralter (<a href="../base/himemx.htm">HIMEMX</a> o. ae.) und 128 KB XMS Speicher.
+       Wenn /B ebenfalls angegeben wird oder wenn XMS nicht verfuegbar
+       ist, wird die Ausgabeueberlappung nicht aktiviert, da UDMA2.SYS
+       dann den "nur DMA" Modus verwenden muss.
+  /L   Begrenzt DMA auf den "unteren Speicher" unter 640 KB. /L ist
+       ERFORDERLICH, um den UMBPCI "oberen Speicher-Treiber" oder einen
+       vergleichbaren Treiber verwenden zu koennen, dessen obere Speicher-
+       bereiche kein DMA unterstuetzen. Wenn /L gewaehlt ist, muss
+       UDMA2.SYS oder UDMA2S.SYS im unteren Speicherbereich geladen sein
+       (da auf ihre Befehlsliste ueber DMA zugegriffen wird), ansonsten
+       wird das Laden des Treibers abgebrochen. /L veranlasst alle
+       I-O Anfragen ueber 640 KB dazu, durch den XMS-Puffer des Treibers
+       zu gehen. Wenn /B zusammen mit /L gewaehlt wird oder wenn XMS-
+       Speicher nicht verfuegbar ist, wird solch ein I-O zur Ausfuehrung
+       an das BIOS "durchgelassen".
+  /S   Fuer UDMA2.SYS, ermoeglicht dem Treiber fuer den "nur DMA" Modus
+       den "lokalen Stapel"(Stack). Bei UDMA2S.SYS ermoeglicht dies den 
+       "lokalen Stapel" in allen Faellen. Bitte beachten Sie, dass die
+       zwei Treiber /S unterschiedlich handhaben! UDMA2S.SYS ermoeglicht
+       normalerweise keinen Stapel (aus Kompatibilitaet mit alten
+       Versionen!) und erfordert /S wann immer ein Stapel (Stack) ge-
+       wuenscht wird. UDMA2.SYS setzt immer einen Stapel (Stack) (und
+       ignoriert /s) bei der normalen Verwendung oder bei Ausgabeueber-
+       lappung, so dass es /S lediglich beim "nur DMA" Modus braucht.
+       /S ist gedacht fuer Systeme mit einem oder mehreren Benutzer-
+       programmen, die "kurze" Laufzeitstapel (Stacks) setzen. /S und
+       /B sind voneinander unabhaengig und koennen miteinander angegeben
+       werden.
+  /B   Veranlasst aus "Abwaertskompatibilitaetsgruenden", dass XMS
+       Speicher ignoriert wird. /B erzwingt, dass UDMA2.SYS oder
+       UDMA2S.SYS den "nur DMA" Modus verwenden. Deshalb streicht /B
+       die Option /O (UDMA2 Ausgabeueberlappung ist deaktiviert),
+       veranlasst, dass die "Initialisierungslesetests" bei UDMA2.SYS
+       weggelassen werden und behandelt auch die Option /L wie oben
+       ausgefuehrt.
+  /Mn  Gibt den MAXIMALEN UltraDMA "Modus" an, der fuer alle Laufwerke
+       gesetzt werden kann, wobei n eine Zahl zwischen 0 und 7 ist,
+       siehe Liste:
+         0 = ATA-16,   16 MB/sec.     4 = ATA-66,   66 MB/sec.
+         1 = ATA-25,   25 MB/sec.     5 = ATA-100, 100 MB/sec.
+         2 = ATA-33,   33 MB/sec.     6 = ATA-133, 133 MB/sec.
+         3 = ATA-44,   44 MB/sec.     7 = ATA-166, 166 MB/sec.
+       Laufwerke, die fuer langsamere "Modi" als den gewaehlten
+       Wert ausgelegt sind, werden auf ihren eigenen hoechsten "Modus" be-
+       grenzt. Momentan ist "Modus 7" ATA-166 noch nicht implementiert,
+       aber jeder Treiber KANN damit umgehen, wenn UltraDMA Laufwerke es
+       jemals verwenden sollten.
+  /X   Nur bei UDMA2.SYS, deaktiviert die Initialisierung der "Lesetests".
+       Dieser Schalter ist der "Notfallplan", um UDMA2.SYS dazu zu
+       zwingen, auf "Problemsystemen" zu laden. Alle von den "Lesetests"
+       angezeigten Fehler sollten, wenn irgendwie moeglich, bereinigt
+       werden.
+  Bei allen Schaltern kann ein "-" den "/" ersetzen und es koennen Gross-
+  oder Kleinbuchstaben verwendet werden.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  UDMA2.SYS ist der Treiber mit den meisten Moeglichkeiten. Er ermoeglicht
+  "Ausgabeueberlappung" die jeden Ausgang puffert und NICHT das Ausgabe-
+  ende abwartet, so dass die Benutzerarbeit die DMA ueberlappen kann!
+  Abhaengig vom System und der Software des Benutzers kann die Ausgabe-
+  ueberlappung eine bemerkenswerte Geschwindigkeitssteigerung ergeben.
+  Bei jedem Ausgabefehler oder wenn ein 400 Millisekunden-Timer ablaeuft,
+  wird eine Fehlermeldung angezeigt. Die Ausgabeueberlappung muss in der
+  CONFIG.SYS in der Zeile, die UDMA2.SYS laedt mit einem /O aktiviert
+  werden (siehe oben unter Optionen).
+  UDMA2S.SYS ist der zu bevorzugende "kleine Treiber" fuer Systeme, die
+  keine Ausgabeueberlappung verwenden. Er laesst das Ueberlappen und die
+  "Initialisierungslesetests" weg, dadurch hat er eine Objektdateigroesse
+  von nur 3.072 Bytes. Alle anderen Faehigkeiten des groesseren UDMA2.SYS
+  (inclusive eines 80386 Tests) sind vorhanden. UDMA2S.SYS verwendet den
+  gleichen 640 Byte grossen residenten "Kern" wie <a href="../base/udma.htm">UDMA.SYS oder
+  UDMAJR.SYS</a>.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  In der CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDDOS\BIN\UDMA2.SYS
+    DEVICEHIGH=C:\FDOS\BIN\UDMA2S.SYS
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/himemx.htm">himemx</a>
+ (<a href="../base/udma.htm">udma.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xdma.htm">xdma.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

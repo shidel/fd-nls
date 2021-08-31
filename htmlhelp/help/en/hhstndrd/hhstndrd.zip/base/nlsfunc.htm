@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: nlsfunc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: nlsfunc</h1>
+<pre>
+  NLSFUNC adds NLS (National Language Support) functionality.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  NLSFUNC [/Y] [drive][path]filename
+  NLSFUNC [/?]
+    drive                   The drive letter, e.g. C:
+    path                    The directory, e.g. \example\
+    filename                The file containing the NLS 
+                            information
+    [drive][path] filename  Drive and path to a valid
+                            COUNTRY.SYS file, which contains
+                            the country-specific information.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /Y                 Loads the optional YES/NO table.
+  /?                 Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  This implementation of NLSFUNC is FreeDOS specific. 
+  It won't work with MS-DOS or any other DOS variant.
+  It also does not work with Kernel 2.036!
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    COUNTRY=34,858,C:\FDOS\COUNTRY.SYS
+  IN AUTOEXEC.BAT:
+    LH DISPLAY CON=(EGA,858,2)
+    MODE CON CP PREP=((850) C:\FDOS\CPI\EGA.CPX)
+    MODE CON CP PREP=((,437) C:\FDOS\CPI\EGA.CPX)
+    LH NLSFUNC /Y
+  Then switch code pages using CHCP
+  If you do not need to change code pages, just 
+  omit the MODE lines.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/mode.htm">mode</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eduardo Casino, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: mode</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: mode</h1>
+<pre>
+  MODE configura y establece el estado de varios dispositivos de 
+  hardware y m s.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  mode [dispositivo][opciones]  o:
+  mode [modo de pantalla]
+       Dispositivos:
+         CON[:]  Consola. Esto controla el controlador de pantalla, que
+                 debe instalarse primero. MODE COM le permite configurar
+                 la "p gina de c¢digos" de su pantalla. Esto es £til
+                 por que cada p gina de c¢digos le permite mostrar
+                 diferentes caracteres. Para obtener m s informaci¢n sobre
+                 la p gina de c¢digos, consulte el <a href="../base/cpidos.htm">PAQUETE DE INFORMACION</a>
+                 DE <a href="../base/cpidos.htm">CODEPAGE</a>.
+         LPT[:]  Puertos Paralelos.
+         COM[:]  Puertos Serie.
+         PARK    No implementado en modo FreeDOS.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  MODE [unidad] [/STA[TUS]]   Muestra el estado de uno o todos los
+                              dispositivos.
+  MODE LPTn[:] columnas[,[lineas][,reintentar]]
+  MODE LPTn[:] [COLS=...] [LINES=...] [RETRY=...]
+                              Cols o cpi, 6/8 lpi, vuelva a intentar p o n
+                              Reintento: p infinito / n ninguno
+  MODE LPTn[:]=[COMn[:]|NUL]  Redirigir los datos de la impresora al
+                              puerto serie o NUL
+  MODE COMn[:] baud,parity,data,stop,retry
+  MODE COMn[:] [BAUD[HARD]=...] [PARITY=...] [DATA=...] [STOP=...]
+               [RETRY=...]    Valores vac¡os permitidos
+                              La velocidad en baudios se puede abreviar a
+                              un prefijo £nico, la paridad puede ser 
+                              o/e/n/s/m, el £nico espacio medio/marca, los
+                              datos pueden ser 5..8, detener 1..2.
+                              ­Reintentar est  IGNORADO!
+                              PLANIFICADO: Vuelva a intentar b/e/r ->
+                              ocupado/error/listo si est  ocupado, p/n
+                              infinito/sin reintento.
+  MODE CON[:] [CP|CODEPAGE] [/STA[TUS]]
+                              Muestra el estado de CON (consola).
+                              FreeDOS DISPLAY debe cargarse antes.
+  MODE CON[:] [CP|CODEPAGE] REF[RESH]
+                              Actualiza la p gina de c¢digos activa al
+                              hardware.
+                              FreeDOS DISPLAY debe cargarse antes.
+  MODE CON[:] [CP|CODEPAGE] PREP[ARE]=((codepage) NomArchivo)
+                              FreeDOS DISPLAY debe cargarse antes.
+                              Utilice PREP=((,cp2,cp3,,cp5)...) para
+                              preparar p ginas de c¢digos en otros
+                              b£feres.
+  MODE CON[:] [CP|CODEPAGE] SEL[ECT]=n£mero
+                              FreeDOS DISPLAY debe cargarse antes.
+  MODE CON[:] [NUMLOCK|CAPSLOCK|SCROLLLOCK|SWITCHAR]=valor
+                              El valor puede ser: + o - para las 
+                              cerraduras o un car cter para switchar.
+  MODE CON[:] [COLS=...] [LINES=...]
+                              Los valores posibles dependen de su 
+                              hardware.
+  MODE CON[:] [RATE=...] [DELAY=...]
+                              Velocidad predeterminada 20, demora
+                              predeterminada 1. La velocidad puede ser
+                              1..32 para 2..30 char/sec, la demora puede
+                              ser 1..4 para 1/4..4/4 seg.
+  MODE [40|80|BW40|BW80|CO40|CO80|MONO][,rows]
+                              Estos son los modos de pantalla de
+                              reparaci¢n. Las filas pueden ser 25, 28,
+                              43 o 50. Use 8, 14 o 16 como valor de
+                              'filas' si solo desea cambiar la fuente.
+  MODE [CO40|CO80|...],[R|L][,T]
+                              Estos son los modos de pantalla flexibles.
+                              Los valores para las columnas son 40, 80,
+                              132, las filas pueden ser 25, 28, 30, 34,
+                              43, 50, 60. Use 8, 14 o 16 como valor de
+                              'filas' si solo desea cambiar la fuente.
+                              Shift CGA izquierda/derecha, T es modo
+                              interactivo.
+  /?                          Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  CON (consola)
+  Esto controla el controlador de pantalla, que debe instalarse primero.
+  MODE CON le permite configurar la "p gina de c¢digos" de su pantalla.
+  Esto es £til porque cada p gina de c¢digo le permite mostrar direrentes
+  caracteres. Para obtener informaci¢n sobre el modo en la p gina de
+  c¢digos, consulte el <a href="../base/cpidos.htm">PAQUETE DE INFORMACION DE CODEPAGE</a>.
+  Uso:
+    MODE CON[:] CODEPAGE /STATUS
+      Muestra la p gina de c¢digos activa y otra informaci¢n sobre el
+      estado actual de DISPLAY y los b£feres de la p gina de c¢digos.
+    MODE CON[:] CODEPAGE REFRESH
+      Actualiza la p gina de c¢digos activa al hardware (en caso de que
+      se haya destruido accidentalmente)
+    MODE CON[:] CODEPAGE PREPARE ((nnn) NomArchivo)
+      Prepara la p gina de c¢digos nnn del archivo especificado. El
+      formato de los archivos es .cpx y generalmente se almacenan en
+      C:\FDOS\CPI.
+      Por ejemplo, la p gina de c¢digos 860 est  en EGA9.CPX. Entonces
+      podr¡as usar:
+        MODE CON: CODEPAGE PREPARE ((860) c:\fdos\cpi\ega9.cpx).
+      Consulte el <a href="../base/cpidos.htm">PAQUETE DE INFORMACION DE CODEPAGE</a> para obtener 
+      informaci¢n sobre las p ginas de c¢digos y los archivos cpi 
+      disponibles.
+    MODE CON[:] CODEPAGE SELECT=nnn
+      Active la p gina de c¢digos nnn, que debe haberse preparado
+      previamente con PREPARE.
+    MODE CON[:] NUMLOCK=valor
+      Cambia el bloqueo num‚rico a ON u OFF. El valor puede ser "+" 
+      o "-".
+    MODE CON [:] CAPSLOCK=valor
+      Cambia el bloqueo de may£sculas a ON u OFF. El valor puede ser
+      "+" o "-".
+    MODE CON [:] SCROLLOCK=valor
+      Cambia el control de desplazamiento a ON u OFF. El valor puede
+      ser "+" o "-".
+    MODE CON [:] SWITCHAR=caracter
+      Cambia el car cter de cambio de opci¢n de l¡nea de comando de DOS
+      (generalmente "/") a otro car cter. No funciona con todos los
+      comandos.
+    MODE CON [:] COLS=valor
+      Cambia las columnas. El valor puede ser 40, 80 o 132.
+    MODE CON [:] LINES=valor
+      Cambia las lineas. El valor puede ser 25, 28, 43 o 50, o tama¤o
+      de fuente 8, 14 o 16. Si tiene VESA, tambi‚n pueden estar 
+      disponibles 30, 34 o 60 l¡neas.
+    MODE CON [:] RATE=valor
+      Cambia la tasa de repetici¢n. El valor puede ser 1 ... 32 (2.0 
+      caracteres / segundo ... 30.0 caracteres / segundo despu‚s de un
+      retraso de 0.50 segundos).
+    MODE CON [:] DELAY=valor
+      Cambia el retraso de repetici¢n. El valor puede ser 1,2,3 o 4 (la
+      unidad es 0.25 segundos).
+  La palabra CODEPAGE se puede abreviar a CP, STATUS a STA, REFRESH a
+  REF, SELECT a SEL y PREPARE a PREP. MODE tiene los siguientes <a href="../batch/if.htm#comment">EXITCODES
+  (ERRORLEVEL)</a>:
+  gen‚rico:
+    100:  ERROR INTERNO: tama¤o para la mesa preparada demasiado peque¤o
+    101:  No se ha cargado el controlador FreeDOS DISPLAY compatible.
+          Ejemplo de sintaxis: ... DISPLAY CON = (VGA,437,1)
+    102:  Archivo no encontrado.
+    103:  Error al especificar la p gina de c¢digos / b£fer.
+    104:  Error: el b£fer seleccionado no est  presente
+    105:  Error de sintaxis.
+  Verifique la p gina de c¢digos:
+    26:   la p gina de c¢digos activa nunca se configur¢
+    27:   Error de p gina de c¢digos de lectura del dispositivo
+  Preparar la p gina de c¢digos:
+    27:   No se encontr¢ la p gina de c¢digos en el archivo CPI
+    29:   No se pudo obtener informaci¢n de la p gina de c¢digos del
+          archivo (o problemas de XMS)
+    31:   El archivo CPI especificado est  da¤ado (o problemas de XMS)
+  Fin preparar la p gina de c¢digos:
+    31:   ERROR INTERNO: Finalizar preparaci¢n sin Comenzar preparaci¢n
+  Seleccione la p gina de c¢digos:
+    26:   No se encontr¢ la p gina de c¢digos especificada en el archivo
+    27:   KEYB no pudo cambiar la p gina de c¢digos
+    29:   La p gina de c¢digos de selecci¢n de dispositivo fall¢ 
+          (o problemas de XMS)
+    31:   error de p gina de c¢digos de selecci¢n de dispositivo
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  mode /status       Muestra el estado
+  mode lpt1 /status  Muestra el estado de lpt1
+  mode com1 /status  Muestra el estado de COM1
+  mode con /status   Muestra el estado de los dispositivos CON
+  mode con codepage  Muestra la p gina de c¢digos activa y otra informaci¢n
+                     sobre el estado actual de DISPLAY y los b£feres de la
+                     p gina de c¢digos.
+  mode con codepage refresh   o:
+  mode con: codepage refresh
+                     Actualiza la p gina de c¢digos activa al hardware
+                     (en caso de que se haya destruido accidentalmente)
+  mode con codepage prepare ((860) C:\FDOS\CPI\ega9.cpx)   o:
+  mode con: codepage prepare ((860) C:\FDOS\CPI\ega9.cpx)
+                     Prepara la p gina de c¢digos 860 del archivo
+                     especificado. El formato de los archivos es .cpx.
+                     Consulte el <a href="../base/cpidos.htm">PAQUETE DE INFORMACION DE CODEPAGE</a> para
+                     obtener informaci¢n sobre las p ginas de c¢digos y
+                     los archivos cpi disponibles.
+  mode con codepage select=860   o:
+  mode con: codepage select=860
+                     Activa la p gina de c¢digos 860 que debe haberse
+                     preparado previamente con PREPARE.
+  Ejemplo para AUTOEXEC.BAT/FDAUTO.BAT:
+    MODE CON CP PREP=((858) C:\FDOS\CPI\EGA.CPX)
+    MODE CON CP SEL=858
+    REM Codepage 858 fue activado
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/graftabl.htm">graftabl</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keyb.htm">keyb</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/listxdef.htm">listxdef</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+ (<a href="../base/modecon.htm">modecon</a>)
+  <a href="../base/nlsfunc.htm">nlsfunc</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 - 2004 Aitor SANTAMARIA MERINO,
+  Henrique PERON, Robert Platt, modificado en 2011 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

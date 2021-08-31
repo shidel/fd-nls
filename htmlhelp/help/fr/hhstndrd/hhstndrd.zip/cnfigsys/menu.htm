@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : menu</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : menu</h1>
+<pre>
+  MENU affiche un menu durant l'ex‚cution de config.sys / fdconfig.sys.
+  MENU est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+   menu [texte]
+</pre>
+<h2>Options :</h2>
+<pre>
+  texte  Le texte que vous souhaitez afficher durant l'ex‚cution de
+  config.sys
+    Utilisation :
+      Utilisez menudefault pour d‚finir une option par d‚faut temporis‚e.
+      Les lignes commen‡ant par 1? ne seront trait‚es que si
+      l'utilisateur appuie sur 1. Les lignes commen‡ant par 23? ne
+      seront charg‚es que si l'utilisateur appuie sur 2 ou 3. Les
+      options diff‚rentes de 0 ne peuvent ˆtre choisies que si au moins
+      une ligne "chiffres?" les utilise, comme montr‚ dans l'exemple
+      ci-dessous.
+    Utilisation avec autoexec.bat:
+      La variable d'environnement CONFIG est d‚finie sur la valeur de
+      l'option du menu. Donc %CONFIG% peut ˆtre utilis‚ dans autoexec.bat
+      en conjonction avec la commande if. Par exemple :
+        Dans config.sys "1" a ‚t‚ choisi :
+      Dans autoexec.bat:
+        IF "%config%"=="1" SHSUCDX /D:FDCD001
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  MENU affiche un menu lors de l'ex‚cution de config.sys / fdconfig.sys.
+  MENU est une commande interne … kernel.sys et ne n‚cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    MENU Veuillez choisir la configuration :
+    MENU
+    MENU Option 0    des choses basiques seulement
+    MENU Option 1    CD-ROM
+    MENU Option 2    TROUSERS
+    MENU Option 3    CD-ROM ET TROUSERS
+    0? ECHO Avertissement : seulement des pilotes standards !
+    13?DEVICE=uide.sys /S125 /D:FDCD001
+    23?DEVICE=TROUSERS.SYS
+  DANS AUTOEXEC.BAT:
+    IF "%config%"=="1" SHSUCDX /D:FDCD001
+    IF "%config%"=="3" SHSUCDX /D:FDCD001
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/menucol.htm">menucolor</a>
+  <a href="../cnfigsys/menudef.htm">menudefault</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de HOWTO FreeDOS Spec Command.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

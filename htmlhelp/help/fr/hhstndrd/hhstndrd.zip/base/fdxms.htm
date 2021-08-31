@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : fdxms.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : fdxms.sys</h1>
+<pre>
+  FDXMS.SYS est un pilote de m‚moire ‚tendue pour FreeDOS.
+  FDXMS.SYS est destin‚ aux ordinateurs 386+. Fdxms286 est destin‚ aux
+            ordinateurs 286.
+  FDXMS.SYS doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  <b>FDXMS.SYS est p‚rim‚. Vous devriez utiliser</b> <a href="../base/himemx.htm">HIMEMX</a> ou <a href="../base/jemmex.htm">JEMMEX</a>
+  <b>… la place</b>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEVICE=[lecteur][chemin]\fdxms.sys [options]
+         lecteur  La lettre du lecteur, par exemple C:
+         chemin   Le r‚pertoire, par exemple \exemple\
+</pre>
+<h2>Options :</h2>
+<pre>
+  NUMHANDLES=  D‚finit le nombre de descripteurs XMS. La valeur par
+               d‚faut est 32. La valeur minimale est deux (XMS n'est pas
+               utile sans aucun handle !), la valeur maximale est
+               actuellement 1024. Chaque descripteur prend 5 octets
+               (FDXMS.SYS) ou 9 (FDXXMS.SYS).
+  BIOS         Fait que FDXMS appelle toujours le BIOS via INT15 au lieu
+               d'utiliser sa propre commutation de mode prot‚g‚.
+  PS           Bascule vers la gestion particuliŠre A20 n‚cessaire sur
+               les machines PS/2.
+  GEODE        Supprime les d‚lais lors du changement de la ligne A20.
+               Il a ‚t‚ signal‚ que cela aide au fonctionnement de FDXMS
+               sur le processeur Geode GX1 de National Semiconductor.
+  DELAY=       Le nombre d'appels … la routine de d‚lai aprŠs avoir
+               charg‚ la ligne A20. Si vous recevez le message d'erreur
+               "Unable to switch A20 address line" c'est-…-dire
+               "Impossible de changer la ligne d'adresse A20", essayez
+               de le r‚gler sur une valeur ‚lev‚e (disons 4000) et voyez
+               si cela aide. Puis faites le r‚glage fin pour une valeur
+               aussi faible que possible pour la vitesse. La valeur par
+               d‚faut est 1. La valeur maximale est 65535 et 0
+               correspond … 65536.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  FDXMS.SYS doit ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS :
+    device=c:\fdos\fdxms.sys
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Martin Stromberg, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

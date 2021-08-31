@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: ctmouse (Cutemouse)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: ctmouse (Cutemouse)</h1>
+<pre>
+  CuteMouse (CTMOUSE) es el controlador de rat¢n de FreeDOS.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  ctmouse [opciones]
+  LH ctmouse [opciones]
+  LOADHIGH ctmouse [opciones]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /3        Forzar el modo de 3 botones (solo para ratones Microsoft
+            y PS/2).
+  /B        Cancela la ejecuci¢n si los servicios del rat¢n ya est n
+            presentes.
+  /L        Intercambiar bot¢n izquierdo y derecho.
+  /M        Probar sistemas de rat¢n *antiguos* / Genius para ratones
+            que no sean PnP.
+  /N        Cargar CuteMouse como nuevo TSR, incluso si CuteMouse ya
+            est  cargado (£til para archivos por lotes que descargan
+            CuteMouse al final).
+  /O        Habilitar la detecci¢n de rueda USB de PS2 y BIOS (podr¡a
+            bloquearse).
+  /P        Forzar el modo de rat¢n PS/2.
+  /R[h[v]]  Resoluci¢n horizontal/vertical: h,v = 1-9, o 0 para auto.
+            (sin valor = uso predeterminado: autom tico para h, o 
+            ®como h¯ para v).
+  /S[c[i]]  Forzar el modo de rat¢n serie en el puerto COM c (c=1-4,
+            el valor predeterminado es IRQ4 para COM 1/3 e IRQ3 para
+            COM 2/4).
+  /U        Desinstalar controlador, eliminar TSR de la memoria.
+  /V        B£squeda inversa: encontrar PS/2 despu‚s del rat¢n serial.
+  /Y        Forzar la b£squeda en serie del rat¢n, pero, a diferencia
+            de la opci¢n /S, no se deshabilita la compatibilidad con PS/2.
+  /W        No se permite que CuteMouse se mueva a UMB.
+  /?        Mostrar la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  CTMOUSE no es compatible con ratones USB.
+  CTMOUSE se puede cargar en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> o en <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>
+  o en la l¡nea de comandos. CTMOUSE2 es una nueva ramificaci¢n de 
+  CuteMouse que admite la rueda del rat¢n. Proporciona una rueda API
+  (interfaz de aplicaciones para el programador), para que los programas
+  de FreeDOS puedan usar la rueda del rat¢n. Visite el sitio web de
+  CuteMouse en <b>http://cutemouse.sourceforge.net</b>
+  CTMOUSE tiene los siguientes <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0  PS/2, rat¢n Microsoft o Logitech encontrados y CTMOUSE instalado;
+       Descarga exitosa; usada opci¢n /?.
+    1  CTMOUSE instalado en modo rat¢n del sistema; La descarga fall¢
+       porque CTMOUSE no se carg¢.
+    2  La parte residente cambi¢ el modo PS/2, Microsoft o Logitech; La
+       descarga fall¢ porque las interrupciones del controlador fueron
+       interceptadas.
+    3  La parte residente cambi¢ el modo rat¢n del sistema.
+    4  Servicios de rat¢n ya presentes (devueltos solo para la opci¢n /B)
+    5  Rat¢n no encontrado; Opci¢n inv lida utilizada.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    devicehigh=C:\fdos\bin\ctmouse  carga ctmouse en la memoria superior
+  EN AUTOEXEC.BAT O EN LINEA DE COMANDOS:
+    lh ctmouse  carga ctmouse en memoria superior
+    ctmouse /u  descarga el controlador del rat¢n
+    ctmouse /?  Muestra la ayuda (opciones)
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/device.htm">controlador</a>
+  <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1997 - 2004 Nagy Daniel, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

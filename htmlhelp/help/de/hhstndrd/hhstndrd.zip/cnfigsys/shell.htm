@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: shell</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: shell</h1>
+<pre>
+  SHELL sagt FreeDOS, welcher Kommandoprozessor laufen soll.
+  SHELL ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  shell=[[Laufwerk][Pfad][Dateiname]] [optionen]
+        Laufwerk   Der Laufwerksbuchstabe, z.B.: C:
+        Pfad       Der zu waehlende Pfad, z.B.: \Beispiel\
+        Dateiname  Der Kommandoprozessor, der laufen soll. 
+                   Z.B.: C:\Beispiel\COMMAND.COM
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Optionen  Diese haengen vom Kommandoprozessor ab.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  SHELL gibt an, welche Shell zu benutzen ist; es wird oft dazu
+  verwendet, das Verhalten der <a href="../base/command.htm">COMMAND.COM</a> zu veraendern. Anmerkung: Es
+  ist die command.com, die die <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ausfuehrt; indem Sie 
+  (in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>) die SHELL-Option verwenden, koennen
+  Sie die command.com dazu bringen, eine andersnamige Datei (wie z.B.
+  fdauto.bat zur Koexistenz mit einem anderen DOS, das andere
+  Konfigurationsoptionen verwendet) auszufuehren oder einen komplett
+  anderen Kommandointerpreter wie z.B. 4DOS oder eine (unix) sh Variante
+  laufen lassen.
+  SHELL ist ein interner Befehl, d.h. der Befehl ist in der 
+  kernel.sys enthalten. Es wird zur Ausfuehrung des Befehls kein 
+  zusaetzlicher Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    shell=C:\4DOS.COM /E:256 /P
+    shell=C:\FDOS\bin\command.com C:\FDOS\bin /E:1024 /P=C:\fdauto.bat
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../base/command.htm">command.com</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/shellh.htm">shellhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

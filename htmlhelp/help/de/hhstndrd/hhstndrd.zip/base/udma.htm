@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: udma.sys / udmajr.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: udma.sys / udmajr.sys</h1>
+<pre>
+  UDMA.SYS / UDMAJR.SYS sind Festplatten-Caching-Treiber fuer UltraDMA
+  Festplatten. UDMA.SYS / UDMAJR.SYS muss in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> /
+  <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen werden.
+  Alternativ kann UDMA.SYS / UDMAJR.SYS waehrend des Betriebes mit
+  <a href="../util/devload.htm">DEVLOAD</a> nachtraeglich geladen werden.
+  <b>UDMA.SYS / UDMAJR.SYS sind veraltet. Der Autor gibt KEINEN Support
+  mehr! Sie sollten stattdessen <a href="../base/uide.htm">UIDE.SYS</a> verwenden</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE[HIGH] = [path]UDMA.SYS [/A] [/Q] [/R] [/Sn] [/U]
+  DEVICE[HIGH] = [path]UDMAJR.SYS [/A] [/Q] [/R] [/Sn] [/U]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  UDMA.SYS / UDMAJR.SYS benoetigt normalerweise keine Schalter. Seine
+  Schaltoptionen sind wie folgt:
+    /A   Befiehlt die Verwendung der alten alternativen EIDE Controller-
+         adressen 01E8h-01EFh auf dem ersten Kanal und 0168h-016Fh auf
+         dem zweiten Kanal. Wenn /A weggelassen wird, verwendet der
+         Treiber die normalen Controlleradressen von 01F0h-01F7h oder
+         0170h-0177h.
+    /Q   Ermoeglicht das Warten auf "Datenersuchen" bevor UltraDMA
+         Datentransfers gestartet werden. /Q MUSS bei SATA-zu-IDE-
+         Adaptern von Sabrent usw. WEGGELASSEN werden, da solche Karten
+         "Datenersuchen" von SATA-Platten nicht emulieren! /Q wird bei
+         neueren Controllern oder IDE-Festplatten nicht benoetigt. Es
+         ist fuer "alte" Systeme gedacht und sollte nur verwendet
+         werden, wenn UDMA einwandfrei laedt, aber nicht in der Lage
+         ist, Daten zu transferieren.
+    /R   Beschraenkt UDMA auf "regulaeren" Arbeitsspeicher und vermeidet
+         die HMA (high memory area) fuer ihre Binaersuchtabelle. /R kann
+         bei DOS Systemen erforderlich sein, die KEINEN Speicher zu-
+         weisen, bis nachdem CONFIG.SYS seine Treiber geladen hat! /R
+         wird bei V. 7.10 MS-DOS, V. 6.22 MS-DOS, V. 7.1 PC-DOS, PTS-
+         DOS oder EDR-DOS nicht benoetigt. /R ist erforderlich, um
+         unter ROM-DOS zu arbeiten. Andere DOS-Varianten sollten zuerst
+         getestet werden.
+    /Sn  Gibt die gewuenschte Cachegroesse wie folgt an:
+           /S0     5-MB Cache,  1280-Byte Tabellengroesse,  8K Bloecke.
+           /S1    10-MB Cache,  2560-Byte Tabellengroesse,  8K Bloecke.
+           /S2    20-MB Cache,  2560-Byte Tabellengroesse, 16K Bloecke.
+           /S3    40-MB Cache,  2560-Byte Tabellengroesse, 32K Bloecke.
+           /S4    80-MB Cache,  2560-Byte Tabellengroesse, 64K Bloecke.
+           /S5   120-MB Cache,  3840-Byte Tabellengroesse, 64K Bloecke.
+           /S6   160-MB Cache,  5120-Byte Tabellengroesse, 64K Bloecke.
+           /S7   200-MB Cache,  6400-Byte Tabellengroesse, 64K Bloecke.
+           /S8   250-MB Cache,  8000-Byte Tabellengroesse, 64K Bloecke.
+           /S9   400-MB Cache, 12800-Byte Tabellengroesse, 64K Bloecke.
+           /SL   750-MB Cache, 24000-Byte Tabellengroesse, 64K Bloecke.
+         Wenn /S weggelassen wird, wird /S4 verwendet. Die Treiberlogik
+         und -stapel nehmen feste 2.544 Byte zusaetzlich zu den oben
+         angegebenen Binaersuchtabellengroessen. UDMA setzt seine Binaer-
+         suchtabelle und 1.088 Byte Logic in die HMA, es sei denn, /R
+         ist gesetzt oder weniger als 3.648 Byte HMA sind frei (2.368
+         Byte bei /S0), in diesem Fall wird regulaerer Speicher verwendet.
+         Wenn nicht genuegend HMA oder regulaerer Speicher fuer ein ange-
+         gebenes /S "frei" ist, wird der groesste Cache, der in den
+         "freien" Speicher passt, verwendet. UDMA laedt mit 4 KB, so
+         dass wenigstens ein 5 MB Cache im regulaeren Arbeitsspeicher
+         immer gesetzt werden kann. Die 400-MB und 750-MB-Caches koennen
+         die HMA nicht verwenden und nehmen deshalb immer 15 KB oder
+         26 KB regulaeren Speicher. Wenn keine UltraDMA Platten vor-
+         handen sind, laesst UDMA seine UltraDMA-Logik waehrend des
+         Initialisierens weg, um 368 Byte HMA zu sparen.
+         Bei einem alten V. 2.0 XMS Manager (ROM-DOS usw.) ist das
+         Maximum /S3 oder 40 MB. /S0 ist fuer alte 8 MB DOS-Systeme
+         gedacht und duerfte beim Cachen der heutigen grossen Dateien
+         seine Effizienz verlieren. Empfohlen wird deshalb mindestens
+         /S1. Fuer die zu setzende Cachegroesse muss genuegend XMS
+         Speicher verfuegbar sein, andernfalls bricht UDMA ab!   
+    /U   Fordert nur den "Stand-alone" UltraDMA-Treiber an (kein Cachen),
+         was beim Laufen eines Festplattendiagnoseprogramms hilfreich
+         sein kann.
+  Bei allen Schaltern kann ein "-" den "/" ersetzen und es koennen Gross-
+  oder Kleinbuchstaben verwendet werden.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  UDMA.SYS ist fuer diejenigen, die mit aelteren Versionen dieses Treibers
+  "kompatibel" bleiben wollen. Es verwendet die gleichen 640 Byte resi-
+  denten "Kern" wie <a href="../base/udma2.htm">UDMA2.SYS</a> oder UDMAJR.SYS. Wie alle vorherigen
+  Versionen ist UDMA.SYS der einzige Treiber im Satz, der die UltraDMA 
+  Controller"namen" und die PCI-BUS-Daten beim Laden anzeigt, interessant
+  fuer diejenigen, die sehen wollen, welcher Chip laeuft. UDMA.SYS bietet
+  wie UDMA2.SYS beim Laden die kompletten Tests.
+  UDMAJR.SYS wird fuer "RAM Disk" oder "Embedded" Systeme angeboten, die
+  absolut minimale UltraDMA Treiber brauchen. Es hat den gleichen 640 Byte
+  residenten "Kern" wie UDMA2S.SYS oder UDMA.SYS mit den gleichen Lauf-
+  zeitfaehigkeiten. UDMAJR.SYS laesst einen 80386 Test, Lesetests und die
+  Controller und Platten"namen" beim Laden weg (die Controller I-O
+  Adresse WIRD gezeigt!), dadurch bekommt es eine Dateigroesse von nur
+  2048 Bytes.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  In der CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\UDMA.SYS
+    DEVICEHIGH=C:\FDOS\BIN\UDMA.SYS
+    DEVICE=C:\FDOS\BIN\UDMAJR.SYS
+    DEVICEHIGH=C:\FDOS\BIN\UDMAJR.SYS
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/udma2.htm">udma2.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xdma.htm">xdma.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: sys / sys config</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: sys / sys config</h1>
+<pre>
+  SYS hace que un disquete o disco duro u otro medio grabable sea de
+  arranque. SYS CONFIG configura el <a href="../base/kernel.htm">N£CLEO</a> de FreeDOS.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  SYS [fuente] unidad: [bootsect] [{opci¢n}]
+  SYS [/?]
+      fuente    = A:,B:,C:\KERNEL\BIN\,etc., La ubicaci¢n (opcional) de
+                los archivos de sistema. Si no se proporciona, se supone
+                el directorio actual.
+      unidad    = A,B,C etc. La unidad para hacer arrancable.
+      bootsect  El nombre de la imagen del archivo del sector de arranque
+                de 512 bytes para la unidad: para escribir en *lugar de*
+                del sector de arranque real.
+
+  SYS CONFIG [unidad][ruta]kernel.sys [opci¢n=valor...]
+  SYS CONFIG [/help][/?]
+
+  SYS CONFIG
+    Esto simplemente mostrar  la configuraci¢n actual del archivo
+    KERNEL.SYS en el directorio actual. Es £til ver en qu‚ est n
+    configuradas actualmente las opciones, qu‚ opciones son compatibles
+    y deber¡an mostrar valores v lidos junto con los valores
+    predeterminados (los valores predeterminados son los valores v lidos
+    con un '*' al lado de ellos).
+
+  SYS CONFIG [unidad][ruta]KERNEL.SYS
+    Este formulario se comporta como anteriormente, excepto que mostrar 
+    la configuraci¢n del archivo del n£cleo que especifique. La unidad y
+    laruta son opcionales, y generalmente solo se usar  una '\' para
+    indicar el directorio ra¡z de la unidad actual. KERNEL.SYS especifica
+    el nombre del archivo del kernel, que puede no ser "KERNEL.SYS", por
+    ejemplo, al probar que desea modificar KERNTEST.SYS y luego copia (o
+    cambiar el nombre) a KERNEL.SYS para el arranque.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  SYS OPTIONS:
+  /BOTH          El nuevo sector de arranque se escribir  en el archivo
+                 de imagen y en el sector de arranque de la unidad real.
+  /BOOTONLY      El sector de arranque (o imagen) se actualizar , pero
+                 <a href="../base/kernel.htm">KERNEL</a> y <a href="../base/command.htm">COMMAND.COM</a> no se copiar n en el destino.
+  /UPDATE        Copie <a href="../base/kernel.htm">KERNEL</a> y actualice el sector de arranque (*no*
+                 copie la l¡nea de comandos).
+  /OEM[:AUTO]    Indica sector de arranque, nombres de archivo y segmento
+                 de carga para usar.
+  /OEM:DE        Use la configuraci¢n del N£cleo en modo real de DEll.
+  /OEM:DR        Use la configuraci¢n compatible con DR DOS 7+.
+  /OEM:EDR       Utilice la configuraci¢n mejorada compatible con 
+                 DR DOS 7+.
+  /OEM:FD        Use configuraciones compatibles con FreeDOS.
+  /OEM:MS        Use configuraciones compatibles con MS-DOS.
+  /OEM:PC        Use configuraciones compatibles con PC-DOS.
+  /OEM:Rx        Use configuraciones compatibles con RxDOS.
+  /OEM:W9x       Use la configuraci¢n compatible con MS Win9x DOS.
+                 El valor predeterminado es /OEM[:AUTO], seleccione DOS
+                 seg£n los archivos existentes.
+  /K nombre      Da el nombre de archivo del archivo del n£cleo que se
+                 copiar . Esta opci¢n solo es necesaria cuando el n£cleo
+                 no se llama "KERNEL.SYS".
+  /L segmento    El segmento de carga, en hexadecimal, para usar. El
+                 valor predeterminado es 60.
+  /B btdrv :     N£mero de BIOS hexagonal de la unidad de arranque
+                 establecida en bs, 0=A:, 80=1st hd,...
+  /FORCE         Anular la selecci¢n autom tica de configuraciones
+                 relacionadas con la BIOS.
+  /FORCE:AUTO    Seleccione LBA o CHS seg£n la disponibilidad de la BIOS.
+  /FORCE:BIOSDRV Utilice el n£mero de unidad de arranque proporcionado por
+                 la BIOS.
+  /FORCE:BSDRV   Use la unidad de arranque # establecida en el sector de
+                 arranque.
+  /FORCE:LBA     Siempre use LBA.
+  /FORCE:CHS     Siempre use CHS.
+  /NOBAKBS       Omite la copia del sector de arranque en la copia de
+                 seguridad bs, FAT32 solo se ignora.
+  /SKFN nombre_archivo            Copiar el nombre del archivo a 
+                                  KERNEL.SYS; ajustes iguales que 
+                                  /OEM: FD.
+  /SCFN nombre_archivo            Copie el nombre del archivo a
+                                  COMMAND.COM.
+  /BACKUPBS [ruta]nombre_archivo  Guardar bs actual antes de sobrescribir.
+  /DUMPBS   [ruta]nombre_archivo  Guardar bs actual y salir.
+  /RESTORBS [ruta]nombre_archivo  Sobrescriba bs y salga.
+  /VERBOSE                        Mostrar salida adicional (depuraci¢n).
+  /help          Muestra la ayuda.
+  /?             Muestra la ayuda.
+  
+  SYS CONFIG OPCIONES:
+  /help          Muestra la ayuda.
+  /?             Muestra la ayuda.
+  Las opciones actuales son:
+  DLASORT=0|1
+    Esta opci¢n es para especificar si la asignaci¢n de letras de unidad
+    debe seguir la forma MSDOS normal de todas las particiones primarias
+    en las unidades y luego las particiones extendidas, o las particiones
+    m s l¢gicas (primarias y extendidas) en la primera unidad, luego
+    repita para todasd las unidades siguientes (todas primario y
+    extendido, luego intente la siguiente unidad). 0 corresponde al modo
+    MS y 1 corresponde al primer disco completamente, luego al 
+    siguiente ...
+  SHOWDRIVEASSIGNMENT=0|1
+    Si es 1, la informaci¢n de adignaci¢n de unidad normal se muestra al
+    arrancar. Si es 0, esta informaci¢n se suprime (no se muestra).
+  SKIPCONFIGSECONDS=# (maybe -128 to 127)
+    Un valor negativo ( < 0 ) indica que se omitir  el procesamiento
+    F5/F8 (el n£cleo no comprobar  si presion¢ estas teclas, por lo que
+    no puede omitir el procesamiento del archivo de configuraci¢n 
+    (CONFIG.SYS). Un 0 significa que debe haber presionado la tecla
+    precisamente para cuando el n£cleo lo comprueba, esencialmente
+    omitiendo, aunque un dedo bien sincronizado a£n podr  usarla. Y
+    cualquier valor mayor que 0 es el n£mero de segundos que el n£cleo
+    mostrar  el mensaje y esperar  a que presione la tecla antes de
+    asumir que no lo hizo.
+  FORCELBA=0|1
+    Si es 1, el n£cleo usar  t‚cnicas LBA (INT13 extendida) para abordar
+    todas las particiones si es posible, incluso si tienen un tipo de
+    partici¢n no LBA y est n completamente por debajo del cilindro 1023
+    (generalmente el l¡mite de 8 GB). Esto es 0 por defecto, por razones
+    de compatibilidad. Establecer esto en 1 puede omitir algunas BIOS
+    defectuosas y ofrece un rendimiento ligeramente mejor.
+  GLOBALENABLELBASUPPORT=0|1
+    Si 0, entonces LBA estar  completamente deshabilitado, 
+    independientemente de la configuraci¢n de FORCELBA. Necesita esto si
+    FreeDOS cree que tiene LBA disponible, pero en realidad no lo tiene.
+    Esta configuraci¢n est  establecida en 1 de forma predeterminada.
+
+    Para obtener m s informaci¢n sobre SYS CONFIG, consulte:
+    <b>http://www.fdos.org/kernel/</b>.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  SYS:
+  El comando SYS crea un sector de arranque en el sector 0 del disquete
+  o disco duro. Luego copia <a href="../base/kernel.htm">KERNEL.SYS</a> y <a href="../base/command.htm">COMMAND.COM</a> al medio. Despu‚s de
+  esto, la computadora puede iniciar FreeDOS desde este medio.
+  SYS CONFIG:
+  Si no se dan opciones, se muestran los valores actuales. /help o /?
+  muestra la informaci¢n de uso. [unidad][ruta]kernel.sys especifica el
+  archivo del kernel que se va a modificar, si no se le da valores
+  predeterminados a <a href="../base/kernel.htm">KERNEL.SYS</a>. Opci¢n=valor ... especifica una o m s
+  opciones y los valores para establecer cada una. Si se da una opci¢n
+  varias veces, el valor establecido ser  el m s a la derecha.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  sys c: (desde un disquete; el comando sys y <a href="../base/command.htm">COMMAND.COM</a> y <a href="../base/kernel.htm">KERNEL.SYS</a>
+         deben estar en el disquete, desp£es de la ejecuci¢n, el HD se
+         iniciar )
+  sys a: (desde un HD o CD; el comando sys y <a href="../base/command.htm">COMMAND.COM</a> y <a href="../base/kernel.htm">KERNEL.SYS</a>
+         debe estar en la unidad fuente, despu‚s de la ejecuci¢n, el
+         disquete se iniciar )
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../base/command.htm">command.com</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-devel</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../command/vol.htm">vol</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, modificado en 2011 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

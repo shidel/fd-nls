@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : xgrep</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : xgrep</h1>
+<pre>
+  XGREP est un programme pour effectuer des recherches dans les fichiers
+  textuels, fond‚ sur l'utilitaire UNIX GREP. Vous pouvez utiliser XGREP
+  pour :
+   - afficher les lignes dans un fichier qui contient un mot, une phrase
+     ou un motif (pattern) particulier ;
+   - compter les lignes dans lesquelles il y a l'occurrence d'un motif
+     particulier ; ou g‚n‚rer une liste de fichiers qui font r‚f‚rence
+     … un sujet donn‚.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  xgrep [-chlnsvyorx] expression [fichiers]
+  xgrep [/chlnsvyorx] expression [fichiers]
+        expression  l'expression … rechercher, peut ‚galement ˆtre
+        des classes.
+</pre>
+<h2>Options :</h2>
+<pre>
+  -c  Nombre de lignes seulement.
+  -h  Aucun nom de fichier.
+  -l  Noms de fichiers seulement.
+  -n  Nombre de lignes.
+  -o  Erreurs vers stdout - les messages d'erreurs seront redirig‚s
+      avec la sortie standard.
+  -r  Effectuer une recherche r‚cursive dans les sous-r‚pertoires -
+      recherche les fichiers non seulement dans le r‚pertoire sp‚cifi‚
+      mais aussi dans tous les sous-r‚pertoires de ce r‚pertoire.
+  -s  Silencieux au sujet des fichiers inaccessibles.
+  -v  Lignes non correspondantes - "inverse" le r‚sultat de toute
+      correspondance.
+  -x  Pas de magie : tous les op‚rateurs ont besoin de '\'. L'option
+      -x fait que les caractŠres ordinairement "sp‚ciaux" :
+      . [ * + ? ^ $ seront analys‚s, par d‚faut, litt‚ralement. Par
+      exemple, les commandes suivantes sont ‚quivalentes :
+        xgrep    "p\[0] \* 3" test.c
+        xgrep -x "p[0] * 3"   test.c
+      Tous les op‚rateurs d'expression r‚guliŠre sont toujours
+      accessibles, mais doivent ˆtre pr‚c‚d‚s par un \ (barre oblique
+      inverse).
+  -y  Correspondance insensible … la casse - la correspondance n'est
+      pas sensible … la casse.
+  Deux autres options sont prises en charge en tant qu'alias pour
+  d'autres options :
+  -d  est un alias pour -r.
+  -i  est un alias pour -y.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Comme GREP, XGREP fonctionne le mieux sur les fichiers textuels bruts :
+  le genre de fichiers qui ne contiennent pas de donn‚es binaires ou des
+  caractŠres de contr“le non ASCII et qui sont divis‚s en lignes se
+  terminant par '\n' (newline, nouvelle ligne).
+  XGREP prend en charge les fichiers textuels … la fois au format
+  UNIX (LF) et MS-DOS (CR, LF).
+  Dans XGREP, le : (deux-points) peut ˆtre utilis‚ pour faire r‚f‚rence
+  … des classes pr‚d‚finies.
+  Les douze classes pr‚d‚finies, ainsi que leurs d‚finitions, sont les
+  suivantes :
+   :a  Alpha  alphab‚tique   [A-Za-z]       =plage ASCII : 65-90,
+                                                           97-122
+   :c  Cntrl  contr“le                      =plage ASCII : 0-31,127
+   :d  Digit  chiffres       [0-9]          =plage ASCII : 48-57
+   :g  Graph  graphiques     [!-~]          =plage ASCII : 33-126
+   :l  Lower  minuscules     [a-z]          =plage ASCII : 97-122
+   :n  Alnum  alphanum‚rique [0-9A-Za-z]    =plage ASCII : 48-57,
+                                                           65-90,97-122
+   :p  Punct  ponctuation    [!-/:-@[-`{-~] =plage ASCII : 33-47, 58-64,
+                                                           91-96,123-126
+   :s  Space  espace                        =plage ASCII : 9-13,32
+   :t  Print  imprimable     [ -~]          =plage ASCII : 32-126
+   :u  Upper  majuscules     [A-Z]          =plage ASCII : 65-90
+   :x  Xdigit chiffres hex   [0-9A-Fa-f]    =plage ASCII : 48-57,65-70,
+                                                           97-102
+   :z  ASCII                                =plage ASCII : 0-127
+
+    Signes pour sp‚cifier le contexte :
+    ^    D‚but de ligne
+    $    Fin de ligne
+    .    Joker
+    []   Classe de caractŠre
+    [^]  Inverser la classe
+    \    Citer le prochain caractŠre
+  R‚p‚ter :
+    *        0 fois ou plus
+    +        1 fois ou plus
+    ?        0 ou 1 fois
+    \{m\}    m fois
+    \{m,\}   m fois ou plus
+    \{m,u\}  de m … u fois
+  Pour plus d'informations sur ":" et "signes pour sp‚cifier le
+  contexte" veuillez lire XGREP.DOC.
+  XGREP a les <a href="../batch/if.htm#comment">CODES DE SORTIE (NIVEAUX D'ERREUR)</a> suivants :
+    0  Au moins une correspondance trouv‚e.
+    1  Aucune correspondance trouv‚e.
+    2  Des erreurs ont eu lieu.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  xgrep "Bonjour le monde" *.c
+  xgrep -c jill group
+  xgrep -l SCSI *.doc
+  xgrep widgets
+  xgrep -n widgets notes.txt
+  xgrep -n -rs widgets \*.txt \*.doc
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../base/find.htm">find</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

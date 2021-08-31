@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: xdma.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: xdma.sys</h1>
+<pre>
+  XDMA.SYS ist ein DOS Treiber fuer UltraDMA Festplatten.
+  XDMA.SYS muss in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen werden.
+  Alternativ kann XDMA.SYS waehrend des Betriebes mit <a href="../util/devload.htm">DEVLOAD</a>
+  nachtraeglich geladen werden.
+  <b>XDMA.SYS ist veraltet. Der Autor gibt KEINEN Support mehr!
+  Sie sollten stattdessen <a href="../base/uide.htm">UIDE.SYS</a> verwenden</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE[HIGH] = [Pfad]XDMA.SYS [/O] [/L] [/Q]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /O   Ermoeglicht Ausgabeueberlappung.
+  /L   Begrenzt DMA auf den niedrigen Speicher unter 640 KB. /L wird
+       gebraucht, um UMBPCI oder vergleichbare Treiber verwenden zu
+       koennen, deren obere Speicherbereiche kein DMA koennen. Wenn /L
+       verwendet wird, muss der Treiber im unteren Speicherbereich sein
+       (I-O Befehllisten verwenden DMA), oder das Laden des Treibers wird
+       abgebrochen! /L laesst den Treiber seinen "local buffer" fuer I-O
+       von Daten unter 640 KB verwenden.
+  /Q   Stiller Modus: Unterdrueckt den "piep" bei Ausgabeueberlappungs-
+       fehlern.
+  Bei allen Schaltern kann ein "-" den "/" ersetzen und es koennen Gross-
+  oder Kleinbuchstaben verwendet werden.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  XDMA.SYS ist ein DOS-Treiber fuer UltraDMA Festplatten. Es unterstuetzt
+  normale "Endverbraucher" PC Mainboards, die einen Intel, VIA, SiS, ALi
+  oder vergleichbaren UltraDMA Controller haben, der vom BIOS in den
+  "Legacy IDE Modus" gesetzt ist. XDMA.SYS unterstuetzt NICHT Serial-ATA,
+  "Native PCI Modus" Server oder Einsteckkarten von Promise, SiiG usw.
+  XDMA.SYS betreibt normale Mainboard IDE Chipsaetze und traegt dazu bei,
+  dass Sie keine Einsteckkarten brauchen!
+  XDMA.SYS kann bis zu 4 UltraDMA Festplatten jeder Groesse verwalten,
+  inclusive neuere Festplatten mit mehr als 128 GB Speicherkapazitaet.
+  Ein XMS Manager, wie <a href="../base/himemx.htm">HIMEMX</a> oder <a href="../base/jemmex.htm">JEMMEX</a> und 128 KB XMS Speicher
+  sind ebenfalls erforderlich, damit XDMA.SYS einen "local buffer" zu-
+  weisen kann. 
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  DEVICE=C:\FDOS\BIN\XDMA.SYS
+  DEVICEHIGH=C:\FDOS\BIN\XDMA.SYS /O
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+ (<a href="../base/udma.htm">udma.sys</a>)
+ (<a href="../base/udma2.htm">udma2.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

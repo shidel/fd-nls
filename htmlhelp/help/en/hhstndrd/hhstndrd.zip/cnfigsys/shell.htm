@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: shell</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: shell</h1>
+<pre>
+  SHELL tells FreeDOS what command shell to run.
+  SHELL is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  shell=[drive][path]filename [options]
+        drive     The drive letter, e.g. C:
+        path      The directory, e.g. \example\
+        filename  The command shell to run. For example, 
+                  C:\example\COMMAND.COM
+</pre>
+<h2>Options:</h2>
+<pre>
+  options  These are passed to the command shell.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  SHELL indicates the shell to use; often used to alter <a href="../base/command.htm">COMMAND.COM</a>'s
+  behavior. Note: it is command.com that processes <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>; by using
+  the SHELL option, you can get command.com to process a differently named
+  file (such as FDAUTO.BAT for coexisting with another DOS using different
+  configuration options) or run a completely different command interpreter
+  such as 4DOS or a (unix) sh variant.
+  SHELL is a command internal to kernel.sys and needs no other file in
+  order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    shell=C:\4DOS.COM /E:256 /P
+    shell=C:\FDOS\bin\command.com C:\FDOS\bin /E:1024 /P=C:\fdauto.bat
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../base/command.htm">command.com</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/shellh.htm">shellhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

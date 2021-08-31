@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: fdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: fdisk</h1>
+<pre>
+  FDISK crea una o varias particiones en un disco duro. Despu‚s de esto,
+  las particiones pueden <a href="../base/format.htm">formatearse</a> y est n listas para funcionar
+  con FreeDOS.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  fdisk [opciones]
+  FDisk puede ser usado de dos maneras:
+    * Sin opciones. FDisk proporciona un men£ interactivo.
+    * Con opciones. 
+    Tenga en cuenta que una excepci¢n es que la opci¢n /MONO se usa con
+    el modo de men£ interactivo.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  Notas generales sobre las opciones:
+    * las particiones, los tipos de partici¢n y las unidades est n
+      especificadas por n£meros.
+    * los tama¤os se especifican en MegaBytes, o como un porcentaje si
+      se siguen, 100. Por ejemplo, 50 ser¡an 50 MB y 50,100 ser¡an 50%.
+
+    (sin opciones)  Se ejecuta en modo interactivo.
+    /REBOOT         Reinicia la computadora.
+    /? [/NOPAUSE]   Muestra esta informaci¢n de ayuda.
+
+  Interruptores de interfaz de usuarios interactivos:
+    /ACTOK          Omite la comprobaci¢n de integridad.
+    /FPRMT          Solicita FAT32/FAT16 en modo interactivo.
+    /MONO           Obliga a la interfaz de usuario a ejecutarse en modo
+                    monocromo.
+    /Q              Evita que el sistema se reinicie despu‚s de salir de
+                    FDisk. (Nota: FDisk no se reiniciar  despu‚s de salir
+                    a menos que el reinicio est‚ habilitado en el archivo
+                    "fdisk.ini").
+    /X              No usa parteciones LBA.
+    /XO             Habilita las opciones extendidas.
+
+  Crea particiones primarias y unidades l¢gicas:
+  Los tama¤os est n en MB o [,100] en porcentaje.
+    /PRI:'tama¤o'[,100] [/SPEC:'tipo#'] [unidad#]
+                    Crea una partici¢n primaria.
+    /PRIO:'tama¤o'[,100] [/SPEC:'tipo#'] [unidad#]
+                    Crea una partici¢n primaria FAT16.
+    /EXT:'tama¤o'[,100] [unidad#]
+                    Crea una partici¢n extendida de DOS.
+    /EXTO:'tama¤o'[,100] [unidad#]
+                    Crea una partici¢n estendida de DOS FAT16.
+    /LOG:'tama¤o'[,100] [/SPEC:'tipo#'] [unidad#]
+                    Crea una partici¢n l¢gica en la partici¢n extendida.
+    /LOGO:'tama¤o'[,100] [/SPEC:'tipo#'] [unidad#]
+                    Crea una partici¢n l¢gica FAT16 en la partici¢n
+                    extendida.
+    /AUTO [unidad#]
+                    Particiona autom ticamente el disco.
+    [/SPEC:'tipo#'] 
+                    Especifica el n£mero de tipo de partici¢n.
+
+  Activaci¢n/Desactivaci¢n de tablas de particiones:
+    /ACTIVATE:'partici¢n#' [unidad#]
+                    Establece 'partici¢n#' activa.
+    /DEACTIVATE [unidad#]
+                    Desactiva todas las particiones en 'unidad#'.
+
+  Eliminar particiones - ­USAR CON PRECAUCION!
+    /CLEAR [unidad#]
+                    Elimina todas las particiones.
+    /CLEARALL [unidad#]
+                    Elimina todas las particiones y el registro de 
+                    arranque maestro.
+    /DELETE {/PRI[:#] | /EXT | /LOG:'partici¢n#'|/NUM:'partici¢n#'}
+            [unidad#]
+                    Elimina una partici¢n (primaria, extendida, l¢gica).
+                    Nota: Las unidades l¢gicas comienzan en /NUM=5.
+
+  Modificaci¢n de MBR (Registro de Arranque Maestro):
+    /AMBR [unidad#]  Escribe el MBR almacenado en el archivo "boot.mbr"
+                     en 'unidad#'.
+    /BMBR [unidad#]  Escribe el MBR BOOTEASY en 'unidad#'.
+    /CMBR [unidad#]  Crea el MBR.
+    /MBR  [unidad#]  Escribe el MBR est ndar en 'unidad#'.
+    /SMBR [unidad#]  Guarda el MBR actual en 'unidad#', en un archivo
+                     llamado "boot.mbr".
+    /RMBR [unidad#]  Elimina el MBR de 'unidad#'.
+
+  Modificaci¢n de la tabla de particiones
+    /MODIFY:'partici¢n#','tipo#' [unidad#]
+                    Cambia el tipo de partici¢n a 'tipo#'. Las unidades
+                    l¢gicas comienzan en "5".
+    /MOVE:'partici¢n_inicial#','partici¢n_destino#' [unidad#]
+                    Mueve la entrada en la tabla de partici¢n primaria,
+                    desde partici¢n_inicial# a partici¢n_destino#.
+    /SWAP:'primera_partici¢n#','segunda_partici¢n#' [unidad#]
+                    intercambia dos entradas de particiones.
+
+  Para manejar banderas en un disco duro:
+    /CLEARFLAG[{:'bandera#'} | /ALL} ] [unidad#]
+                    Restablece 'flag#' o todos en 'unidad#'
+    /SETFLAG:'bandera#'[,'valor_bandera'] [unidad#]
+                    Establece 'bandera#' en 1 o 'valor_bandera'
+    /TESTFLAG:'bandera#'[,'valor_bandera'] [unidad#]
+                    Prueba 'bandera#' para 1 o 'valor_bandera'
+
+  Para obtener informaci¢n sobre los discos duros:
+    /DUMP           Vuelca (lo mostrado) la informaci¢n de partici¢n de
+                    todos los discos duros (para depuraci¢n).
+    /INFO [/TECH]   Muestra informaci¢n de la partici¢n desde 'unidad#'.
+    /STATUS         Muestra el dise¤o actual de la partici¢n.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  A medida que FDISK crea/elimina particiones, debe manejarlo con cuidado.
+  Si desea hacer un Disco Duro de arranque, no olvide configurar el
+  indicador 'Activo'. FreeDOS solo admite una participaci¢n primaria. Si
+  desea crear m s de una partici¢n en un Disco Duro, primero debe crear
+  una partici¢n primaria, luego una partici¢n extendida y, en esta
+  partici¢n extendida, una o m s particiones l¢gicas.
+  FDISK tiene los siguientes <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+     0  Finalizaci¢n normal del programa, sin errores.
+     1  Error de sintaxis.
+     3  Error en el archivo fdisk.ini.
+     4  Error en el archivo part.dat.
+     5  Disco duro no existe.
+     6  Error de asignaci¢n de b£fer.
+     7  El disco duro ya est  particionado. (Esto solo se devuelve si se
+        utiliza la funci¢n "/AUTO" y ya hay particiones distintas de una
+        partici¢n de diagn¢stico de Compaq en el disco duro).
+     8  Error al leer o escribir en el archivo boot.mbr.
+     9  Error miscel neo. Es mejor examinar el resultado impreso en la
+        pantalla desde Free FDISK para determinar la causa exacta del
+        problema.
+    20  La bandera se ha establecido (ver /SETFLAG, /TESTFLAG y 
+        /CLEARFLAG para m s detalles)
+    21  La marca no se ha establecido (ver error nivel 20, arriba)
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  fdisk
+  fdisk /status
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Brian E. Reifsnyder, modificado en 2008 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

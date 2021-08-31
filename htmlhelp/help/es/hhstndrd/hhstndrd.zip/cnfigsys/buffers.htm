@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: buffers</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comandos: buffers</h1>
+<pre>
+  BUFFERS indica a FreeDOS cu ntos b£feres de disco debe asignar.
+  BUFFERS es un comando <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  buffers=nn[,m]
+    nn  es el n£mero de b£feres de disco primario, en el rango 1-99.
+    m   es el n£mero de b£feres de disco secundarios, en el rango 1-8.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  Uso:
+
+  La configuraci¢n predeterminada depende de la cantidad de memoria
+  convencional que su sistema tiene:
+
+  Memoria (KB)             B£feres Primarios         B£feres Secundarios
+  ----------------------------------------------------------------------
+    < 128                           3                         1
+  128 - 255                         5                         1
+  256 - 511                        10                         1
+  512 - 640                        15                         1
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Aumentar el n£mero de BUFFERS puede mejorar la velocidad de los 
+  programas que funcionan con un gran n£mero de archivos, pero tambi‚n
+  utiliza m s recursos de memoria.
+  La opci¢n de b£fer secundario est  disponible para la compatibilidad con
+  otros n£cleos de DOS, pero es ignorado por el kernel de FreeDOS. En
+  MS-DOS, un b£fer secundario se puede utilizar para leer datos
+  anticipados. FreeDOS no hace esto. FreeDOS almacena los b£feres en HMA,
+  a menos que seleccione nn para asignar m s b£feres de los que caben en
+  HMA. Si nn es m s peque¤o, el espacio HMA no utilizado se utilizar  para
+  otros b£feres hasta que otra cosa asigne el espacio HMA para otra cosa.
+  Incluso entonces, al menos nn b£feres siempre estar n disponibles. Usted
+  puede fijar nn a un valor negativo para inhabilitar el uso del espacio
+  HMA no utilizado: BUFFERS-10 utiliza solamente 10 b£feres, m s especio
+  libre en el HMA permanecer  sin usar.
+  BUFFERS es un comando interno a kernel.sys y no necesita ning£n otro
+  archivo para funcionar.
+</pre>
+<h2>Ejemplo:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    buffers=3,1
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../cnfigsys/buffersh.htm">buffershigh</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 2003 <b>Robert Platt</b>, modificado en 2008 <b>W. Spiegl.</b>
+  Traducido en 2019 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+
+</pre></body></html>

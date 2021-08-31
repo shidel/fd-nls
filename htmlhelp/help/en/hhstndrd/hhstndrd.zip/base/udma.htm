@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: udma.sys / udmajr.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: udma.sys / udmajr.sys</h1>
+<pre>
+  UDMA.SYS / UDMAJR.SYS are DOS hard-disk caching driver for UltraDMA
+  hard-disks. UDMA.SYS / UDMAJR.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> /
+  <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  When FreeDOS is already running, you can load UDMA.SYS / UDMAJR.SYS
+  later with <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>UDMA.SYS / UDMAJR.SYS are out of date. There is NO MORE support
+  by the author! You should use <a href="../base/uide.htm">UIDE.SYS</a> instead</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE[HIGH] = [path]UDMA.SYS [/A] [/Q] [/R] [/Sn] [/U]
+  DEVICE[HIGH] = [path]UDMAJR.SYS [/A] [/Q] [/R] [/Sn] [/U]
+</pre>
+<h2>Options:</h2>
+<pre>
+  UDMA.SYS / UDMAJR.SYS normally needs no switches. Its switch options
+  are as follows:
+    /A   Specifies use of the old alternate EIDE controller addresses,
+         01E8h-01EFh on the primary channel, and 0168h-016Fh on the
+         secondary channel. If /A is omitted, the driver will use
+         normal controller addresses of 01F0h-01F7h or 0170h-0177h.
+         /A is only for an "odd" SATA BIOS or other unusual cases.
+    /Q   Enables awaiting "data request" before starting UltraDMA data
+         transfers. /Q must be OMITTED with a SATA-to-IDE adapter
+         by Sabrent etc., as such cards do not emulate data request
+         from SATA disks! /Q is not needed with newer controllers
+         or IDE disks. It is for "old" systems and should be used
+         only if UDMA loads O.K. but seems unable to transfer data.
+    /R   Restricts UDMA to "regular" memory and avoids the HMA for its
+         binary-search table. /R may be required with DOS systems
+         that will NOT allocate memory until after CONFIG.SYS loads
+         drivers! /R is unneeded with V7.10 MS-DOS, V6.22 MS-DOS,
+         V7.1 PC-DOS, PTS-DOS, or EDR-DOS. /R is REQUIRED to work
+         with ROM-DOS! Other DOS variants should be tested first.
+    /Sn  Specifies the desired cache size, as follows:
+           /S0     5-MB cache,  1280-byte table size,  8K blocks.
+           /S1    10-MB cache,  2560-byte table size,  8K blocks.
+           /S2    20-MB cache,  2560-byte table size, 16K blocks.
+           /S3    40-MB cache,  2560-byte table size, 32K blocks.
+           /S4    80-MB cache,  2560-byte table size, 64K blocks.
+           /S5   120-MB cache,  3840-byte table size, 64K blocks.
+           /S6   160-MB cache,  5120-byte table size, 64K blocks.
+           /S7   200-MB cache,  6400-byte table size, 64K blocks.
+           /S8   250-MB cache,  8000-byte table size, 64K blocks.
+           /S9   400-MB cache, 12800-byte table size, 64K blocks.
+           /SL   750-MB cache, 24000-byte table size, 64K blocks.
+         When /S is omitted, /S4 is assumed. The driver logic and
+         stack take a fixed 2544 bytes along with the binary-search
+         table sizes above. UDMA sets its binary-search table and
+         1088 bytes of logic in the HMA unless /R is given or under
+         3648 bytes of HMA are free (2368 bytes with /S0), in which
+         case regular memory will be used. When not enough HMA or
+         regular memory for a given /S is "free", the largest cache
+         that fits in "free" memory is used. UDMA loads in 4K, so
+         at least a 5-MB cache in regular memory can always be set.
+         The 400-MB and 750-MB caches cannot use the HMA and always
+         take 15K or 26K of regular memory. For no UltraDMA disks
+         UDMA dismisses its UltraDMA logic during init, to save 368
+         bytes of HMA. For an old V2.0 XMS manager (ROM-DOS etc.)
+         the maximum is /S3 or 40-MB. /S0 is for ancient 8-MB DOS
+         systems and may lose efficiency caching today's big files.
+         At least /S1 is recommended. Enough free XMS memory must
+         be available for the cache size to be set, or UDMA aborts!
+    /U   Requests the "stand alone" UltraDMA driver only (no caching),
+         which may be of help in running a disk diagnostic program.
+  For each switch, a dash may replace the slash, and lower-case letters
+  may be used.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  UDMA.SYS is offered for those who wish to remain "compatible" with
+  older versions of that driver. It uses the same 640 byte resident
+  "core" as <a href="../base/udma2.htm">UDMA2.SYS</a> or UDMAJR.SYS. As with all prior versions,
+  UDMA.SYS is the only driver in the set which displays the UltraDMA
+  controller "names" and PCI-bus data at load-time, for those desiring
+  to see which chip will be run. UDMA.SYS offers the full set of load-
+  time tests same as UDMA2.SYS.
+  UDMAJR.SYS is offered for "RAM disk" or "embedded" systems which
+  require an absolute minimum-size UltraDMA driver. It has the same
+  640 byte resident "core" as UDMA2S.SYS or UDMA.SYS with the same
+  run-time capability.
+  UDMAJR.SYS omits an 80386 test, "read tests" and the controller and
+  disk "names" at load-time (the controller I/O address IS shown!),
+  thus it achieves an object-file size of 2048 bytes.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  In CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\UDMA.SYS
+    DEVICEHIGH=C:\FDOS\BIN\UDMA.SYS
+    DEVICE=C:\FDOS\BIN\UDMAJR.SYS
+    DEVICEHIGH=C:\FDOS\BIN\UDMAJR.SYS
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/udma2.htm">udma2.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xdma.htm">xdma.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

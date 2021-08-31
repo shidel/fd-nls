@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : tee</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : tee</h1>
+<pre>
+  TEE enregistre une copie de l'entr‚e (STDIN) dans un ou plusieurs
+  fichiers et l'affiche.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  tee [options] [d:][chemin]fichier [[d:][chemin]fichier2] ...
+      [d:][chemin]fichier [[d:][chemin]fichier2]  Sp‚cifie les fichiers
+      de sortie.
+</pre>
+<h2>Options :</h2>
+<pre>
+  /A  Ajouter aux fichiers donn‚s : ajouter aux fichiers de sortie au
+      lieu de les ‚craser.
+  /I  Ignorer les interruptions: ignore les tentatives d'interruption
+      par un utilisateur.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  TEE lit les donn‚es depuis l'entr‚e standard et ‚crit sur la sortie
+  standard ainsi que tous les fichiers sp‚cifi‚s par l'utilisateur..
+  TEE est livr‚ avec deux versions par d‚faut. TEE.EXE est compil‚ avec
+  la prise de charge de kitten. _TEE.EXE est compil‚ sans kitten.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  echo "Bonjour, le monde !" | tee bonjour.txt
+    Affiche "Bonjour, le monde !" sur l'‚cran et l'enregistre dans
+    bonjour.txt.
+  tee log.txt autre_log.txt < input.txt
+    Affiche le contenu d'input.txt et l'enregistre dans log.txt et
+    autre_log.txt.
+  catdoc lettre.doc | tee /I lettre.txt | wc
+    Enregistre le contenu de lettre.doc tel que trait‚ par catdoc dans
+    lettre.txt et le transmet … wc pour compter les mots.
+    N'autorise pas les interruptions par un utilisateur.
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../base/more.htm">more</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: lh (loadhigh)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: lh (loadhigh)</h1>
+<pre>
+  LH carga un programa en el  rea de memoria superior. Como LH carga el
+  programa en la memoria superio,queda m s espacio libre en la memoria
+  baja o convencional para otros programas.
+  LH es un comando de <a href="../batch/index.htm">ARCHIVO POR LOTES</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+  Tambi‚n se puede usar en la l¡nea de comandos.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  LH [unidad][ruta]nombre_archivo [par metros]
+  LH [/L:regi¢n1[,mintama¤o1][;regi¢n2[,mintama¤o2]...] [/S] [/?]]
+     [unidad][ruta]nombre_archivo [par metros]
+     unidad          La letra de unidad, por ejemplo C:
+     ruta            El directorio, \ejemplo\
+     nombre_archivo  El nombre del programa para cargar en el  rea de
+                     memoria superior, por ejemplo edit.exe
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /L:regi¢n1[,mintama¤o1][;regi¢n2[,mintama¤o2]]...
+                Especifica la(s) region(es) de memoria en las que carga
+                el programa. Regi¢n1 especifica el n£mero de la primera
+                regi¢n de la memoria; mintama¤o1 especifica el tama¤o
+                m¡nimo, si lo hay, para regi¢n1. Regi¢n2 y mintama¤o2
+                especifican el n£mero y el tama¤o m¡nimo de la segunda
+                regi¢n, si corresponde. Puede especificar tantas 
+                regiones como desee.
+  /S            Reduce un UMB a su tama¤o m¡nimo mientras se carga el
+                programa.
+  /?            Muestra la ayuda.
+  par metros    Estas son las opciones para el programa que est  cargando.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  LH tambi‚n se puede usar fuera de un archivo por lotes. Para cargar un
+  controlador o un programa en la memoria superior, primero debe cargar
+  un controlador como (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a>, <a href="../base/jemmex.htm">JEMMEX</a>, (<a href="../base/emm386.htm">EMM386</a>) o <a href="../base/jemm386.htm">JEMM386</a> en
+  config.sys. Tambi‚n puede usar <a href="../batch/loadhigh.htm">LOADHIGH</a> en lugar de LH. LH es un comando
+  interno de command.com y no necesita otro archivo para funcionar.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN UN ARCHIVO .BAT / AUTOEXEC.BAT:
+    lh c:\fdos\bin\edit.exe
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">Batch-Dateien</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../cnfigsys/install.htm">install</a>
+  <a href="../cnfigsys/installh.htm">installhigh</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../batch/loadhigh.htm">loadhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, modificado en 2011 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

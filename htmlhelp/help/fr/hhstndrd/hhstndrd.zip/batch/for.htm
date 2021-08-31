@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : for</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : for</h1>
+<pre>
+  FOR ex‚cute une commande sp‚cifi‚e pour chaque fichier dans un jeu de
+  fichiers.
+  FOR est une commande de <a href="../batch/index.htm">FICHIER BATCH</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+  Elle peut aussi ˆtre utilis‚e sur la ligne de commande.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  FOR %variable IN (jeu) DO commande [paramŠtres-cmd]
+  FOR %%variable IN (jeu) DO commande [paramŠtres-cmd]
+</pre>
+<h2>Options:</h2>
+<pre>
+  %variable       Un nom pour le paramŠtre qui sera remplac‚ avec
+                  chaque nom de fichier.
+  %%variable      Un nom pour le paramŠtre qui sera remplac‚ avec
+                  chaque nom de fichier.
+  (jeu)           Sp‚cifie un jeu d'un ou plusieurs fichiers. Les
+                  jokers et ? peuvent ˆtre utilis‚s.
+  commande        Sp‚cifie la commande … ex‚cuter pour chaque fichier.
+  paramŠtres-cmd  Sp‚cifie les paramŠtres ou les commutateurs pour
+                  la commande sp‚cifi‚e.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Pour utiliser la commande FOR dans un programme batch, sp‚cifiez
+  %%variable au lieu de %variable.
+  FOR est une commande interne … command.com et n'a besoin d'aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS UN FICHIER .BAT / AUTOEXEC.BAT :
+    Affiche tous les fichiers textes dans le r‚pertoire courant, l'un
+    aprŠs l'autre :
+      FOR %f in (*.txt) DO more %f
+    Les deux commandes suivantes listent tous les fichiers commen‡ant
+    par un "a". La liste commence avec "---start---" et se termine
+    avec "---end---".
+    Le signe "-" au d‚but et … la fin de chaque ligne provient de
+    "DO ECHO - %f -".
+      ECHO off
+      FOR %f IN (---start--- a*.* ---end---) DO ECHO - %f -
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">fichiers batch</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

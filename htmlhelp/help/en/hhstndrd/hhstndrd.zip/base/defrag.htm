@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: defrag</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: defrag</h1>
+<pre>
+  DEFRAG optimizes file loading times from a disk by moving file 
+  fragments together.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  defrag [/C] [drive] [{/F|/U|/DF|/FF|/FD}] [/Sorder[-]] [/B] [/X] [/A]
+         [/FO] [/?]
+         drive  This is the drive letter of the drive you wish to 
+                defragment. For instance: defrag c:
+</pre>
+<h2>Options:</h2>
+<pre>
+  /C   Use command line version only. Defrag will not use its 
+       menu-driven user interface if you use this option. It will 
+       communicate through the command line instead.
+       You must use the [drive] option, as described above, 
+       when you use the /C switch, e.g. defrag /c c:
+  /F   Fully optimizes specified drive. With this option, defrag will
+       perform a full optimization by making sure that all files are
+       at the beginning of the disk, with no gaps in between.
+  /U   With this option, defrag will unfragment the files, but 
+       gaps may be left between files.
+  /FF  Fully optimized the drive, moving all files first.
+  /DF  Fully optimized the drive, moving all directories first.
+  /FD  Fully optimized the drive, moving all files of the same directory
+       together.
+  /S   Sort files by specified order.
+       order: N  by Name (alphabetic)
+              E  by Extension (alphabetic)
+              D  by Date and time (earliest first) 
+              S  by Size (smallest first)
+              -  suffix to sort in descending order.
+  /B   Reboots the computer after the optimization.
+  /X   Forces defrag to exit as soon as it completes the optimization.
+  /A   For use with the /C option, defrag will give an audible warning 
+       before taking action.
+  /FO  For use with the /C option, this tells defrag to give a more full
+       output of information.
+  /?   Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Type DEFRAG /no-ops for a list of no-ops (/SKIPHIGH, /LCD, /BW, /GO).
+  Type DEFRAG /contrib for a list of contributors.
+  It is recommended to use DEFRAG with the user interface (not: /C).
+  What is disk fragmentation?
+  When files are deleted, or made smaller, this leaves gaps in the data 
+  stored on the disk. If a file is created, or increases in size, it will 
+  go in the gaps, but if this space isn't big enough, the file will be 
+  continued elsewhere on the disk. After many such operations the file
+  data can become very scattered. This fragmentation process slows down
+  file access. Fragmentation is a normal process on DOS disks.
+
+  When should I use defrag?
+  Use defrag occasionally, or after installation of larger programs or
+  after the creation of many (small) files.
+  DEFRAG has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0  success
+    1  internal error
+    2  disk too full to defrag
+    3  aborted by user
+    4  general error
+    5  read error
+    6  write error
+    7  FAT allocation error
+    8  memory error
+    9  out of memory
+</pre>
+<h2>Examples:</h2>
+<pre>
+  defrag c: /F
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/chkdsk.htm">chkdsk</a>
+  <a href="../util/dosfsck.htm">dosfsck</a>
+ (<a href="../base/scandisk.htm">scandisk</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 - 2004 Robert Platt, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

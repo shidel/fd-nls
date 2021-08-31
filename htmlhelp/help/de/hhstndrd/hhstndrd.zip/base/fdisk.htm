@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: fdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: fdisk</h1>
+<pre>
+  FDISK erstellt auf einer Festplatte eine oder mehrere Partitionen, die
+  danach mit <a href="../base/format.htm">FORMAT</a> formatiert werden koennen.
+  Im Anschluss sind die Partitionen zur Verwendung unter FreeDOS bereit.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  fdisk [Optionen]
+        FDisk kann auf zwei Art und Weisen verwendet werden:
+          * Ohne Optionen. FDisk zeigt dann ein interaktives Menue an.
+          * Mit Optionen. 
+        Eine Ausnahme ist die /MONO Option, die ebenfalls das
+        interaktive Menue (im Monochrom-Modus) anzeigt.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Grundsaetzliche Anmerkungen zu den Optionen:
+    * Partitionen, Partitionstypen und Laufwerke werden alle in Zahlen
+      angegeben.
+    * Groessen werden in Megabytes angegeben oder als Prozent, wenn ein
+      ,100 folgt. Zum Beispiel wuerde 50 50 MB und 50,100 50% bedeuten.
+
+  (keine Optionen)  Laeuft im interaktiven Modus.
+    /REBOOT         Startet den Computer neu (reboot).
+    /? [/NOPAUSE]   Zeigt die Hilfe.
+
+  Schalter fuer die interaktive Benutzeroberflaeche (Menue):
+    /ACTOK          Uebergeht die Integritaetspruefung.
+    /FPRMT          Fraegt im interaktiven Modus nach FAT32/FAT16
+    /MONO           Erzwingt den Monochrommodus fuer die Benuter-
+                    oberflaeche.
+    /Q              Haelt das System davon ab, nach dem Beenden von FDisk
+                    neu zu starten (Anmerkung: FDisk wird bei Programm-
+                    ende nicht neu starten, ausser wenn der Neustart in
+                    der fdisk.ini Datei auf 'enabled' gesetzt ist).
+    /X              Verwende keine LBA Partitionen.
+    /XO             Ermoegliche erweiterte Optionen.
+
+  Erzeugen von primaeren Partitionen und logischen Laufwerken:
+  Groessenangaben sind in MB oder [,100] in Prozent.
+    /PRI:'Groesse'[,100] [/SPEC:'Typ#'] [Laufwerk#]
+                    Erzeugt eine primaere Partition.
+    /PRIO:'Groesse'[,100] [/SPEC:'Typ#'] [Laufwerk#]
+                    Erzeugt eine primaere FAT16 Partition.
+    /EXT:'Groesse'[,100] [Laufwerk#]
+                    Erzeugt eine erweiterte DOS Partition.
+    /EXTO:'Groesse'[,100] [Laufwerk#]
+                    Erzeugt eine erweiterte FAT16 DOS Partition.
+    /LOG:'Groesse'[,100] [/SPEC:'Typ#'] [Laufwerk#]
+                    Erzeugt eine logische Partition in der erweiterten
+                    Partition.
+    /LOGO:'Groesse'[,100] [/SPEC:'Typ#'] [Laufwerk#]
+                    Erzeugt eine logische FAT16 Partition in der
+                    erweiterten Partition.
+    /AUTO [Laufwerk#]
+                    Partitioniert die Festplatte automatisch mit FAT16-
+                    Partitionen.
+    [/SPEC:'Typ#'] 
+                    Spezifiziert die Partitionstypnummer.
+
+  Aktivierung/Deaktivierung von Partitionstabellen:
+    /ACTIVATE:'Partition#' [Laufwerk#]
+                    Setzt die Partition 'Partition#' auf aktiv.
+    /DEACTIVATE [Laufwerk#]
+                    Deaktiviert alle Partitionen auf 'Laufwerk#'.
+
+  Partitionen loeschen - VORSICHTIG BENUTZEN!
+    /CLEAR [Laufwerk#]
+                    Loescht alle Partitionen.
+    /CLEARALL [Laufwerk#]
+                    Loescht alle Partitionen und den Master Boot Record.
+    /DELETE {/PRI[:#] | /EXT | /LOG:'Partition#'|/NUM:'Partition#'} 
+            [Laufwerk#]
+                    Loescht eine Partition (primaer, erweitert, logisch)
+                    Achtung: Logische Laufwerk starten bei /NUM=5
+
+  MBR (Master Boot Record) Modifikationen:
+    /AMBR [Laufwerk#]
+                    Schreibt den in der "boot.mbr" Datei gespeicherten
+                    MBR nach 'Laufwerk#'.
+    /BMBR [Laufwerk#]
+                    Schreibt den BOOTEASY MBR nach 'Laufwerk#'.
+    /CMBR [Laufwerk#]
+                    Erzeugt den MBR.
+    /MBR  [Laufwerk#]
+                    Schreibt den Standard MBR nach 'Laufwerk#'.
+    /SMBR [Laufwerk#]
+                    Speichert den aktuellen MBR auf 'Laufwerk#' in
+                    eine Datei namens "boot.mbr".
+    /RMBR [Laufwerk#]
+                    Stellt den MBR von 'Laufwerk#' wieder her.
+
+  Partitionstabellenmodifikationen:
+    /MODIFY:'Partition#','Typ#' [Laufwerk#]
+                    Aendert den Partitionstyp zu Typ 'Typ#'. Logische
+                    Laufwerke beginnen bei "5".
+    /MOVE:'Quell_Partition#','Ziel_Partition#' [Laufwerk#]
+                    Verschiebt die Eintragung in der primaeren Parti-
+                    tionstabelle von Quell_Partition nach Ziel_Partition.
+    /SWAP:'Erste_Partition#','Zweite_Partition#' [Laufwerk#]
+                    Vertauscht zwei Partitionseintraege.
+
+  Behandlung von Flags (Flaggen) auf einer Festplatte:
+    /CLEARFLAG[{:'flag#'} | /ALL} ] [Laufwerk#]
+                    Setzt 'flag#' oder alle auf 'Laufwerk#' zurueck.
+    /SETFLAG:'flag#'[,'flag_value'] [Laufwerk#]
+                    Setzt 'flag#' auf 1 oder Flagwert 'flag_value'.
+    /TESTFLAG:'flag#'[,'flag_value'] [Laufwerk#]
+                    Teste 'flag#' auf 1 oder Flagwert 'flag_value'.
+
+  Hiermit erhalten Sie Informationen ueber die Festplatte(n):
+    /DUMP           Dumps (zeigt) Partitionsinformationen ueber alle
+                    Festplatten (fuer Debugzwecke).
+    /INFO [/TECH]   Zeigt Partitionsinformationen ueber 'Laufwerk#'.
+    /STATUS         Zeigt das aktuelle Partitionslayout.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Da FDISK Partitionen erzeugt / loescht, sollten Sie es mit Vorsicht
+  handhaben. Wenn Sie eine Festplatte bootfaehig machen wollen, vergessen
+  Sie bitte nicht, den 'Aktiv' Flag (Flagge) zu setzen. FreeDOS kann nur
+  EINE primaere Partition setzen. Wenn Sie mehr als eine Partition auf
+  einer Festplatte erstellen wollen, sollten Sie zuerst eine primaere
+  Partition erstellen, dann eine erweiterte Partition und in dieser Par-
+  tition eine oder mehrere logische Partitionen. 
+  FDISK hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+     0  Programm normal ausgefuehrt, keine Fehler
+     1  Syntax Error
+     3  Fehler in der fdisk.ini Datei
+     4  Fehler in der part.dat Datei
+     5  Keine Festplatte vorhanden
+     6  Pufferzuweisungsfehler
+     7  Festplatte ist bereits partitioniert. (Das wird nur bei Verwen-
+        dung der Option /AUTO ausgegeben, wenn andere Partitionen als
+        eine Compaq Diagnosepartition auf der Festplatte sind.)
+     8  Fehler beim Lesen von oder Schreiben auf die boot.mbr Datei.
+     9  Verschiedene Fehler. Am besten ueberpruefen Sie die Bildschirm-
+        ausgabe, um die genaue Ursache des Problems herauszufinden.
+    20  Die Flag (Flagge) wurde gesetzt (vgl. /SETFLAG, /TESTFLAG und
+        /CLEARFLAG fuer Details)
+    21  Die Flag (Flagge) wurde nicht gesetzt (vgl. Errorlevel 20 oben).
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  fdisk
+  fdisk /status
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Brian E. Reifsnyder, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

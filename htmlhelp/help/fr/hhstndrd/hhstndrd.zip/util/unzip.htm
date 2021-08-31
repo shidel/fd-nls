@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : unzip</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : unzip</h1>
+<pre>
+  UNZIP liste, teste ou extrait des fichiers depuis une archive ZIP,
+  trouv‚e couramment sur les systŠmes DOS. Le comportement par d‚faut
+  (sans option) est d'extraire tous les fichiers depuis l'archive ZIP
+  sp‚cifi‚e dans le r‚pertoire courant (et les sous-r‚pertoires en
+  dessous).
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  unzip [-Z] [-options[modificateurs]] fichier[.zip] [fichiers]
+        [-x xlist] [-d exdir]
+          fichier[.zip]  Chemin des archives ZIP. Cela peut ˆtre un
+                         joker.
+          [fichiers]   Une liste facultative des membres d'archive qui
+                       doivent ˆtre trait‚s, s‚par‚s par des espaces.
+          [-d exdir]   Un r‚pertoire facultatif o— les fichiers seront
+                       extraits. Par d‚faut, tous les fichiers et les
+                       sous-r‚pertoires sont recr‚‚s dans le r‚pertoire
+                       courant ; l'option -d permet l'extraction dans
+                       un r‚pertoire arbitraire.
+</pre>
+<h2>Options :</h2>
+<pre>
+    -d   Extraire les fichiers dans exdir (un r‚pertoire optionnel).
+    -f   RafraŒchir les fichiers existants, c'est-…-dire extraire
+         seulement les fichiers qui existent d‚j… sur le disque et
+         qui sont plus r‚cents que les copies du disque.
+    -l   Lister les fichiers (format court). Les noms, tailles des
+         fichiers d‚compress‚es et l'horodatage de modification des
+         fichiers sp‚cifi‚s, sont affich‚s avec les totaux pour tous
+         les fichiers sp‚cifi‚s.
+    -p   Extraire les fichiers vers le pipe (sortie standard), aucun
+         message.
+    -t   Tester les donn‚es de l'archive compress‚e. Cette option
+         extrait chaque fichier sp‚cifi‚ dans la m‚moire et compare
+         la somme de contr“le CRC du fichier d‚compress‚ avec la valeur
+         CRC stock‚e du fichier original.
+    -u   Mettre … jour les fichiers, en cr‚er de nouveaux si n‚cessaire.
+    -x   Exclure les fichiers suivants (dans xlist). Xlist est une liste
+         optionnelle de membres d'archive … exclure du traitement. Comme
+         les caractŠres joker correspondent normalement aux ('/')
+         s‚parateurs de r‚pertoire, cette option peut ˆtre utilis‚e
+         pour exclure tout fichier qui serait dans un sous-r‚pertoire.
+    -z   Afficher le commentaire de l'archive.
+    -Z   Mode ZipInfo. Si la premiŠre option sur la ligne de commande
+         est -Z, les options restantes sont consid‚r‚es comme des
+         options zipinfo(1L).
+  Modificateurs :
+    -$   tiqueter les amovibles (-$$ => disques fixes)
+    -a   Convertir automatiquement tout fichier texte.
+    -aa  Traiter TOUS les fichiers comme des fichiers textuels.
+    -C   -C Correspondance insensible … la casse pour les noms de
+         fichiers.
+    -j   Chemins ind‚sirables. La structure de r‚pertoires de
+         l'archive n'est pas recr‚‚e ; tous les fichiers sont d‚pos‚s
+         dans le r‚pertoire d'extraction.
+    -L   Basculer (certains) noms en minuscules.
+    -n   Ne jamais ‚craser les fichiers existants.
+    -o   craser les fichiers SANS demande de confirmation.
+    -M   Envoyer vers le pipe de pagination "more".
+    -q   Mode silencieux (-qq => encore plus silencieux).
+    -s   Convertir les espaces dans les noms de fichiers en '_'
+    -v   Òtre verbeux ou afficher les informations de diagnostic
+         de version.
+    -V   Conserver les num‚ros de version VMS.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Pour davantage d'informations veuillez lire UNZIP.TXT.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  unzip data1 -x joe    extraire tous les fichiers sauf joe depuis
+                        le fichier zip data1.zip
+  unzip -fo foo ReadMe  remplacer silencieusement le ReadMe existant
+                        si le fichier de l'archive est plus r‚cent
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../util/zip.htm">zip</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

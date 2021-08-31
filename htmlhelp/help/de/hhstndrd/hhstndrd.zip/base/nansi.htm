@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: nansi.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: nansi.sys</h1>
+<pre>
+  NANSI.SYS ist ein verbesserter Konsolentreiber (Bildschirm und
+  Tastatur). FreeDOS verwendet NANSI.SYS statt ANSI.SYS.
+  NANSI.SYS muss in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen.
+  Alternativ kann NANSI.SYS waehrend des Betriebes mit <a href="../util/devload.htm">DEVLOAD</a>
+  nachtraeglich geladen werden.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE[HIGH]=[Laufwerk:][Pfad]NANSI.SYS [/K] [/C] [/X] [/S] [/Tnn] [/R]
+               [/B|/Q] [/P]
+  DEVLOAD      [Laufwerk:][Pfad]NANSI.SYS [/K] [/C] [/X] [/S] [/Tnn] [/R]
+               [/B|/Q] [/P]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /K    Eine Tastatur wie eine mit 84 Tasten behandeln.
+  /X    Erweiterte Tastendefinitionen.
+  /S    Sicherer Modus - umdefinieren von Tasten nicht moeglich.
+  /Tnn  Videomodus nn wird nicht als Grafik- sondern als Textmodus
+        behandelt.
+  /R    Verwendet BIOS (fuer einige Bildschirmleseprogramme).
+  /B    Verwendet BIOS fuer den Signalton.
+  /Q    Verwendet keinen Signalton (quiet).
+  /P    Leitet alle unbekannten Anfragen an den Konsolentreiber weiter.
+  /C    erzwingt den 101er-Tastaturstil.
+  /?    Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Nach Laden des Treiber koennen sie folgende ANSI-Steuersequenzen
+  benutzen (fuer weitere Informationen lesen Sie bitte nansi.doc):
+    ESC[#;#H        Cursor anhand von Parametern positionieren.
+    ESC[#;#f        Horizontal und vertikal positionieren.
+    ESC[#A          Cursor (Schreibmarke) nach oben.
+    ESC[#B          Cursor runter.
+    ESC[#C          Cursor vorwaerts.
+    ESC[#D          Cursor rueckwaerts.
+    ESC[#n          Geraetestatus-Bericht! n muss 6 sein. Die Sequenz
+                    ESC[6n veranlasst den Konsolentreiber die Cursor
+                    Position zu berichten.
+    ESC[#;#R        Cursorposition Berichtsausgabe.
+    ESC[s           Speichert Cursorposition.
+    ESC[u           Cursor an alte Position setzen.
+    ESC[#J          Loescht den gesamten Bildschirm. # muss 2 sein.
+    ESC[K           Loescht eine Zeile. Loescht von der Cursorposition
+                    bis zum Zeilenende.
+    ESC[#L          Zeilen einfuegen; wird von ANSI.SYS nicht
+                    unterstuetzt.
+    ESC[#M          Zeilen loeschen; wird von ANSI.SYS nicht
+                    unterstuetzt.
+    ESC[#@          Zeichen einfuegen; wird von ANSI.SYS nicht
+                    unterstuetzt.
+    ESC[#P          Zeichen loeschen; wird von ANSI.SYS nicht
+                    unterstuetzt.
+    ESC["Code"p     Tasten-Neuzuweisung. Diese Funktion ist ein
+                    Sicherheitsrisiko und kann mittels Option /s beim
+                    Laden von NANSI.SYS deaktiviert werden.
+    ESC[#;#;...#m   Setzt die Zeichenattribute:
+            0       Alle Attribute aus (normal weiss auf schwarz)
+            1       Fett
+            4       Unterstrichen
+            5       Blinkend
+            7       Invertierte Darstellung
+            30      Vordergrund schwarz
+            31      Vordergrund rot
+            32      Vordergrund gruen
+            33      Vordergrund gelb
+            34      Vordergrund blau
+            35      Vordergrund magenta
+            36      Vordergrund zyan (tuerkisblau)
+            37      Vordergrund weiss
+            40      Hintergrund schwarz
+            41      Hintergrund rot
+            42      Hintergrund gruen
+            43      Hintergrund gelb
+            44      Hintergrund blau
+            45      Hintergrund magenta
+            46      Hintergrund zyan (tuerkisblau)
+            47      Hintergrund weiss
+    Diese Einstellungen funktionieren auch mit dem Befehl <a href="../batch/prompt.htm">PROMPT</a>
+    fuer die Eingabeaufforderung. Fuer fette gelbe Schrift auf Blau
+    tippen Sie folgendes ein:
+            prompt $e[1;33;44m
+    ESC[=nh         Setzt den Videomodus n:
+      Zahl:         Bedeutung:
+            0       Textmodus 40x25 Monochrom
+            1       Textmodus 40x25 Farbig
+            2       Textmodus 80x25 Monochrom
+            3       Textmodus 80x25 Farbig
+            4       Grafikmodus 320x200 4 Bits/Pixel
+            5       Grafikmodus 320x200 1 Bit/Pixel
+            6       Grafikmodus 640x200 1 Bit/Pixel
+            13      Grafikmodus 320x200 4 Bits/Pixel
+            14      Grafikmodus 640x200 4 Bits/Pixel
+            15      Grafikmodus 640x350 1 Bit/Pixel
+            16      Grafikmodus 640x350 4 Bits/Pixel
+            17      Grafikmodus 640x480 1 Bit/Pixel
+            18      Grafikmodus 640x480 4 Bits/Pixel
+            19      Grafikmodus 320x200 8 Bits/Pixel
+    Modi 0, 1 und 4-19 benoetigen eine CGA-, EGA- oder VGA-Grafikkarte.
+    Modi 13-16 benoetigen eine EGA- oder VGA-Karte.
+    Modi 17-19 benoetigen eine VGA-Karte.
+  Fuer weitere Informationen lesen Sie bitte nansi.doc.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  Schreiben sie in der DOS Konfigurationsdatei FDCONFIG.SYS etwa
+  Folgendes:
+    device=C:\fdos\bin\nansi.sys
+    devicehigh=C:\fdos\bin\nansi.sys
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/device.htm">device</a>
+  <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../batch/prompt.htm">prompt</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 - 2004 Robert Platt, aktualisiert 2007 von W. Spiegl.</b>
+  <b>Uebersetzt 2008 von J. Jenderek.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

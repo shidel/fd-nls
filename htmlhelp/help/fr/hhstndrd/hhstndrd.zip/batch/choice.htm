@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : choice, _choice</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : choice, _choice</h1>
+<pre>
+  CHOICE / _CHOICE suspend le traitement et attend que l'utilisateur
+  appuie sur une touche valide … partir d'une liste de choix donn‚e.
+  Choice donne un <a href="../batch/if.htm">ERRORLEVEL</a> (niveau d'erreur) qui peut ˆtre utilis‚
+  pour d'autres travaux.
+
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  CHOICE [ /B ] [ /C[:]choix ] [ /N ] [ /S ] [ /T[:]c,nn ] [ texte ]
+         [/?]
+  _CHOICE [ /B ] [ /C[:]choix ] [ /N ] [ /S ] [ /T[:]c,nn ] [ texte ]
+          [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /B         met une alerte (bip) … l'invite.
+  /C[:]      choix  -  Sp‚cifie les touches autoris‚es. La valeur par
+             d‚faut est : yn (si /C n'a pas ‚t‚ utilis‚), cela peut
+             aussi ˆtre  0 - 9 ou A - Z.
+  /N         Ne pas afficher les choix et ? … la fin de l'invite.
+  /S         Traiter les choix comme ‚tant sensibles … la casse.
+  /T[:]c,nn  Choisir automatiquement la touche c au bout de nn secondes
+             c doit ˆtre l'une des touches sp‚cifi‚es avec /C; nn peut
+             avoir une valeur entre 0 et 99.
+  text       Le texte … afficher en tant qu'invite (par d‚faut = aucun).
+  /?         Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  CHOICE  affiche les messages selon le fichier %NLSPATH%\CHOICE.%LANG%,
+          o—
+  LANG    est <a href="../batch/set.htm">DFINIE</a> dans la variable
+          d'environnement dans autoexec.bat et NLSPATH est le chemin
+          vers les fichiers de langue nationale.
+  _CHOICE n'utilise que des textes en anglais.
+  CHOICE  n'est pas une commande interne … command.com et n‚cessite
+          un fichier choice pour fonctionner.
+  CHOICE  prend en charge NLS (national language support).
+  CHOICE  a les <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a> (codes de sortie) suivants :
+    0     en cas d'abandon
+    ...   ERRORLEVEL est r‚gl‚ pour compenser les pressions de
+          l'utilisateur sur les touches du clavier dans les choix.
+    255   toute erreur
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS UN FICHIER BATCH :
+   @ECHO 1 = Faites ceci
+   @ECHO 2 = Faites cela
+   @ECHO 3 = Faites quelque chose d'autre
+   @ECHO 4 = Ne faites rien
+   @choice /B /C:1234 /N /S Que souhaitez-vous faire ?
+   if errorlevel 4 goto DONOTHING
+   if errorlevel 3 goto DOANOTHER
+   if errorlevel 2 goto DOTHAT
+   if errorlevel 1 goto DOTHIS
+   :DOTHIS
+   vos commandes DOTHIS (faites ceci)
+   goto EXIT
+   :DOTHAT
+   vos commandes DOTHAT (faites cela)
+   goto EXIT
+   :DOANOTHER
+   vos commandes DOANOTHER (faites quelque chose d'autre)
+   goto EXIT
+   :DONOTHING
+   vos commandes DONOTHING (ne faites rien)
+   goto EXIT
+   :EXIT
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">fichiers batch</a>
+  <a href="../batch/if.htm">if</a>
+  <a href="../batch/goto.htm">goto</a>
+  <a href="../batch/pause.htm">pause</a>
+  <a href="../batch/set.htm">set</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1994-2003 Jim Hall, mis … jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

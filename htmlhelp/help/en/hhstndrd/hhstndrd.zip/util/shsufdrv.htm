@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: shsufdrv</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: shsufdrv</h1>
+<pre>
+  SHSUFDRV simulates a floppy or hard disk using an image file.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  SHSUFDRV [/F[:][?]]image[,drive]... [/W] [/V] [/U] [/Q[Q]]
+           /F:    The path to the image.
+           image  Filename of raw disk image; '?' will ignore an invalid
+                  image.
+           drive  Drive letter to use (default is first available).
+</pre>
+<h2>Options:</h2>
+<pre>
+  /W      Allow images to be written.
+  /V      Display memory usage (only at install).
+  /U      Unload.
+  /Q      Quiet - don't display sign-on banner.
+  /QQ     Really quiet - don't display anything.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Image files can be created with <a href="../base/diskcopy.htm">DISKCOPY</a>.
+  No drive letter will be assigned lower than the first.
+  Eg: img1,E img2,D will assign to E: and F:, *not* E: and D:.
+  Only the drive (on the first partition of a hard disk) is simulated,
+  not the disk itself, and only a 512-byte sector size.
+  SHSUFDRV / SHSURDRV has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0     Uninstalled, help displayed
+    1-32  First drive letter assigned (A: = 1) on successful install;
+    255   Not installed, not uninstalled
+</pre>
+
+<h2>Examples:</h2>
+<pre>
+  SHSUFDRV /F:?C:\test\diskimg.img,H /W /V
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

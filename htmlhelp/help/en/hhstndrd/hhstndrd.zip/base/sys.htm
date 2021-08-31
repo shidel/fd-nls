@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: sys / sys config</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: sys / sys config</h1>
+<pre>
+  SYS makes a floppy disk or hard disk or another writable medium
+  bootable. SYS CONFIG configures the FreeDOS <a href="../base/kernel.htm">KERNEL</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  SYS [source] drive: [bootsect] [{option}]
+  SYS [/?]
+      source    = A:,B:,C:\KERNEL\BIN\,etc., The (optional) location of
+                the system files. If not given, the current directory
+                is assumed.
+      drive     = A,B,C etc. The drive to make bootable.
+      bootsect  The name of the 512-byte boot sector file image for drive:
+                to write to *instead* of real boot sector.
+
+  SYS CONFIG [drive][path]kernel.sys [option=value...]
+  SYS CONFIG [/help][/?]
+
+  SYS CONFIG
+    This will simply display the current settings for the file
+    KERNEL.SYS in the current directory. It is useful to see what
+    the options are currently set to, what options are supported,
+    and should show valid values along with defaults (defaults are
+    the valid values with a '*' next to them).
+
+  SYS CONFIG [drive][path]KERNEL.SYS
+    This form behaves as above, except will display the settings
+    for the kernel file you specify. Drive and path are optional,
+    and generally just a '\' will be used to indicate root directory
+    of current drive. KERNEL.SYS specifies the filename of the
+    kernel, which may not be "KERNEL.SYS", for example when testing
+    you want to alter KERNTEST.SYS and later copy (or rename) this
+    to KERNEL.SYS for booting.
+</pre>
+<h2>Options:</h2>
+<pre>
+  SYS OPTIONS:
+  /BOTH          The new boot sector will be written to the image file
+                 and to the actual drive boot sector.
+  /BOOTONLY      The boot sector (or image) will be updated, but the
+                 <a href="../base/kernel.htm">KERNEL</a> and <a href="../base/command.htm">COMMAND.COM</a> will not be copied to the
+		 destination.
+  /UPDATE        Copy <a href="../base/kernel.htm">KERNEL</a> and update boot sector (do *not* copy shell).
+  /OEM[:AUTO]    Indicates boot sector, filenames, and load segment
+                 to use.
+  /OEM:DE        Use DEll Real Mode Kernel settings.
+  /OEM:DR        Use DR DOS 7+ compatible settings.
+  /OEM:EDR       Use Enhanced DR DOS 7+ compatible settings.
+  /OEM:FD        Use FreeDOS compatible settings.
+  /OEM:MS        Use MS-DOS compatible settings.
+  /OEM:PC        Use PC-DOS compatible settings.
+  /OEM:Rx        Use RxDOS compatible settings
+  /OEM:W9x       Use MS Win9x DOS compatible settings.
+                 Default is /OEM[:AUTO], select DOS based on existing
+                 files.
+  /K name        Gives the filename of the kernel file to be copied.
+                 This option is only required when the kernel is not
+                 called "kernel.sys"
+  /L segm        The load segment, in hexadecimal, to use. The default
+                 is 60.
+  /B btdrv :     hex BIOS # of boot drive set in bs, 0=A:, 80=1st hd,...
+  /FORCE         Override automatic selection of BIOS related settings.
+  /FORCE:AUTO    Select LBA or CHS depending on BIOS availability.
+  /FORCE:BIOSDRV Use boot drive # provided by BIOS.
+  /FORCE:BSDRV   Use boot drive # set in bootsector.
+  /FORCE:LBA     Always use LBA.
+  /FORCE:CHS     Always use CHS.
+  /NOBAKBS       Skips copying boot sector to backup bs, FAT32 only
+                 else ignored.
+  /SKFN filename            Copy from filename to KERNEL.SYS; settings
+                            same as /OEM:FD.
+  /SCFN filename            Copy from filename to COMMAND.COM.
+  /BACKUPBS [path]filename  Save current bs before overwriting.
+  /DUMPBS   [path]filename  Save current bs and exit.
+  /RESTORBS [path]filename  Overwrite bs and exit.
+  /VERBOSE                  Display additional (debug) output.
+  /help          Shows the help.
+  /?             Shows the help.
+  
+  SYS CONFIG OPTIONS:
+  /help          Shows the help.
+  /?             Shows the help.
+  Current options are:
+  DLASORT=0|1
+    This option is for specifying whether Drive Letter Assignment
+    should follow the normal MSDOS way of all primary partitions
+    across drives and then extended partitions, or the more logical
+    all partitions (primary and extended) on the 1st drive, then
+    repeat for all following drives (all primary and extended, then
+    try next drive). 0 corresponds to MS way and 1 corresponds to
+    first drive completely, then next ...
+  SHOWDRIVEASSIGNMENT=0|1
+    If 1 then the normal drive assignment information is displayed
+    upon booting. If 0 then this information is suppressed (not shown).
+  SKIPCONFIGSECONDS=# (maybe -128 to 127)
+    A negative value ( < 0 ) indicates that F5/F8 processing will
+    be skipped (the kernel won't check if you pressed these keys,
+    so you can't skip config file (CONFIG.SYS) processing).  A 0
+    means you must have pressed the key precisely for when the
+    kernel checks for it - essentially skipping, though a well timed
+    finger will still get to use it.  And any value greater than 0
+    is the number of seconds the kernel will display the prompt and
+    wait for you to press the key before assuming you didn't.
+  FORCELBA=0|1
+    If 1 then the kernel will use LBA (extended INT13) techniques
+    to address all partitions if possible, even if these have a
+    non-LBA partition type and are completely below cylinder 1023
+    (usually the 8GB boundary). This is 0 by default, for compati-
+    bility reasons. Setting this to 1 may bypass some buggy 
+    BIOSes and gives slightly better performance.
+  GLOBALENABLELBASUPPORT=0|1
+    If 0 then LBA will be completely disabled, irrespective of the
+    FORCELBA setting. You need this if FreeDOS thinks you have LBA
+    available, but in reality you do not. This setting is set to
+    1 by default.
+
+    For more information about SYS CONFIG see:
+    <b>http://www.fdos.org/kernel/</b>.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  SYS:
+  The SYS command creates a bootsector on sector 0 of the diskette or
+  harddrive. Then it copies <a href="../base/kernel.htm">KERNEL.SYS</a> and <a href="../base/command.htm">COMMAND.COM</a> to the medium.
+  After this the computer is able to boot FreeDOS from this medium.
+  SYS CONFIG:
+  If no options are given, the current values are shown. /help or /?
+  displays the usage information. [drive][path]kernel.sys specifies the
+  kernel file to modify, if not given defaults to <a href="../base/kernel.htm">KERNEL.SYS</a>.
+  Option=value ... specifies one or more options and the values to
+  set each to. If an option is given multiple times, the value set will
+  be the rightmost one.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  sys c: (from a diskette; the sys command and <a href="../base/command.htm">COMMAND.COM</a> and <a href="../base/kernel.htm">KERNEL.SYS</a>
+         should be on the diskette, after the execution the HD will be
+         bootable)
+  sys a: (from a HD or CD; the sys command and <a href="../base/command.htm">COMMAND.COM</a> and <a href="../base/kernel.htm">KERNEL.SYS</a>
+         should be on the source drive, after the execution the diskette
+         will be bootable)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/command.htm">command.com</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-devel</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../command/vol.htm">vol</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 and 2020 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

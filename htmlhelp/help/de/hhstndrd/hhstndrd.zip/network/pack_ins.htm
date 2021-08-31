@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Netzwerken unter FreeDOS - Pakettreiberinstallation</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Netzwerken unter FreeDOS - Pakettreiberinstallation</h1>
+<h2><a name="zzz"></a>Uebersicht</h2>
+<pre>
+    (Bild des Pakettreibers)
+  Pakettreiber arbeiten als Schnittstelle zwischen der Hardware (der
+  <a href="../network/network.htm">Netzwerk</a>schnittstellenkarte) und dem <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a> (der auch "Protokoll-
+  stapel" genannt wird). Eine Version der <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a> arbeitet als
+  externes Programm, das von verschiedenen <a href="../network/network.htm">Netzwerk</a>anwendungen aufgerufen
+  werden und verwendet werden kann. Andere <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a> sind bereits in
+  die <a href="../network/network.htm">Netzwerk</a>anwendungen eingebaut, z.B. in einem Webbrowser oder einem
+  FTP-Client. Wir werden ueber diese Kernel <a href="../network/ldtcpipk.htm">etwas spaeter</a> in diesem Wiki
+  erfahren.
+  Die meisten von uns werden die Pakettreiber fuer das Netzwerken unter
+  <a href="../network/tcpip.htm">TCP/IP</a> verwenden wollen. Und das wars. Aber Pakettreiber sind Multi-
+  protokolltreiber - deshalb ist <a href="../network/tcpip.htm">TCP/IP</a> nicht der einzige Kernel, der
+  ueber ihnen arbeiten kann. Wie Sie in dem Schaubild weiter oben (in
+  den dunkelgrauen Feldern) sehen koennen, ist es auch moeglich, <a href="../network/novell.htm">Novell</a>
+  Netware oberhalb eines Pakettreibers zu betreiben: Spezielle Treiber
+  wie IPXPD.COM oder PDIPX.COM unterstuetzen IPX ueber der Pakettreiber-
+  schnittstelle. Das <a href="../network/cifs.htm">NetBEUI</a> Protokoll kann allerdings nicht oberhalb der
+  Pakettreiber verwendet werden, weil die Pakettreiberschnittstelle zu
+  sehr von <a href="../network/ndis.htm">NDIS</a> abweicht.
+</pre>
+<h2><a name="aaa"></a>Wo man sie findet</h2>
+<pre>
+  Der erste Ort, an dem Sie nach einem passenden Pakettreiber suchen
+  sollten, ist das Installationsmedium, das mit Ihrer Karte geliefert
+  wurde. Pakettreiber haben oft die Buchstaben "PD" in ihren Namen; so
+  heisst zum Beispiel der Pakettreiber einer <a href="../network/3com.htm">3Com</a> 3C589 PC-Karte
+  "3C589PD.COM" und der Treiber der D-Link DFE-670TXD PC-Karte heisst
+  "DFE670PD.COM". Suchen Sie auf der Diskette oder der CD die mit
+  Ihrer Karte geliefert wurde nach einem Verzeichnis "PKTDRV".
+  Wenn auf Ihrem Installationsmedium kein solcher Treiber ist oder Sie
+  kein Installationsmedium besitzen, versuchen Sie im Internet danach zu
+  suchen. Bei ISA- und PCI <a href="../network/network.htm">Netzwerk</a>karten besteht die Moeglichkeit, dass
+  Sie auf Russel Nelson's <a href="../network/crynwr.htm">Crynwr</a> Seite einen Pakettreiber finden (vgl.:
+  <b>http://www.crynwr.com/project (*01)</b>) - eine Quelle von Pakettreibern,
+  die der Public Domain unterliegen. PCMCIA Treiber scheinen dort jedoch
+  sehr selten zu sein.
+  Georg Potthast bietet eine Sammlung von PCI-Karten Pakettreibern (vgl.:
+  <b>http://www.georgpotthast.de/sioux/packet.htm (*02)</b>) und ein Tool namens
+  NICSCAN.EXE (vgl.: <b>http://www.georgpotthast.de/sioux/pktdrv/nicscan.
+  zip (*03)</b>) an, welches den Chipsatz der PCI <a href="../network/network.htm">Netzwerk</a>karten ermittelt.
+  Er machte die Erfahrung, dass Pakettreiber bei einer Vielzahl von
+  Modellen des gleichen Herstellers identisch sind; deshalb empfiehlt
+  er, erst gar nicht nach einem speziellen Pakettreiber fuer Ihre Modell-
+  nummer zu suchen.
+</pre>
+<h2><a name="bbb"></a>Pakettreiberinstallation</h2>
+<pre>
+  Um einen Pakettreiber zu <a href="../network/install.htm">installieren</a>, fuegen Sie einfach eine Zeile
+  wie die folgende in Ihrer <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ein (Beispiel fuer die 3c589
+  PCMCIA Karte):
+    LH 3C589PD.COM 0x60 5 0x300
+  In diesem Beispiel wird der Treiber unter Verwendung des Befehles "LH"
+  in den oberen Speicher geladen. Die erste Option ("0x60") setzt den
+  vom Treiber verwendeten Softwareinterrupt (Vektor). Die bei Pakettrei-
+  bern normalerweise verwendete Softwareinterruptnummer ist 0x60. Die
+  zweite Option ("5") setzt den IRQ, die dritte Option ("0x300") setzt
+  den I/O Port. Einige Treiber brauchen nur den Vektor und finden dann
+  die restlichen Werte selbstaendig. Die meisten Pakettreiber koennen
+  nach Gebrauch mit der Option "-u" wieder entladen werden.
+</pre>
+<h2><a name="ccc"></a>Neustart (reboot)</h2>
+<pre>
+  Das wars. Sie brauchen keine anderen Treiber (<a href="../network/odi.htm">ODI</a> oder <a href="../network/ndis.htm">NDIS</a>). Nach
+  dem erfolgreichen Installieren eines Pakettreibers koennen Sie jetzt
+  Ihre <a href="../network/tcpip.htm">TCP/IP</a> Anwendungen mit einem internen Kernel (<a href="../network/wattcp.htm">WatTCP</a>) oder einem
+  externen <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a> (<a href="../network/ntcpdrv.htm">NTCPDRV</a>) installieren.
+    (Bild: Bootmeldungen der Pakettreiber)
+
+  <b>(*01) ?</b>
+  <b>(*02) OK</b>
+  <b>(*03) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), 2011 und 2020 an die
+  FreeDOS-Hilfe angepasst von W.Spiegl.</b>
+  Weitergehende Informationen <a href="../network/intro.htm#ddd">finden Sie hier</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

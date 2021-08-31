@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : edlin</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : edlin</h1>
+<pre>  EDLIN est un petit ‚diteur de lignes.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>  edlin [[lecteur][chemin]fichier]
+        lecteur  La lettre du lecteur, par exemple C:
+        chemin   Le r‚pertoire, par exemple \exemple\
+        fichier  Le fichier, par exemple test.txt.
+</pre>
+<h2>Options :</h2>
+<pre>
+  Un signe de dollar sur la liste suivante repr‚sente une chaŒne de
+  caractŠres. Ils peuvent ˆtre soit entre des guillemets anglais,
+  soit entre des apostrophes, et peuvent contenir les s‚quences
+  d'‚chappement suivantes :
+
+  \a              alerte
+  \b              retour arriŠre
+  \e              ‚chappement
+  \f              page entiŠre (formfeed)
+  \t              tabulation horizontale
+  \v              tabulation verticale
+  \"              guillemets anglais
+  \'              apostrophe
+  \.              point
+  \\              barre oblique inverse
+  \xXX            o— X est un chiffre hex (0-9, a-f, A-F) - constante
+                  hexad‚cimal
+  \dddd           o— d est un chiffre d‚cimal (0-9) - constante d‚cimale
+  \OOO            o— O est un chiffre octal (0-7) - constante octale
+  \^C             caractŠre de contr“le
+
+  Sur la liste de commandes suivante, les crochets [ ] repr‚sentent des
+  entit‚s facultatives. Le symbole # repr‚sente un num‚ro de ligne, qui
+  est soit une chaŒne de chiffres, un point (.) repr‚sentant la ligne
+  actuelle, un signe dollar ($) repr‚sentant la derniŠre ligne du
+  fichier, soit un num‚ro de ligne ajout‚ … ou soustrait d'un autre
+  num‚ro de ligne, si bien que
+    .,.+1p
+  affiche la ligne actuelle et la ligne suivante.
+  Edlin possŠde les commandes internes suivantes (utilis‚es lors du
+  fonctionnement d'edlin) :
+
+  #               ‚diter une seule ligne
+  a               ajouter
+  [#],[#],#,[#]c  copier une plage de lignes
+  [#][,#]d        effacer un bloc de lignes
+  enomfichier     sortir (sauvegarder et quitter)
+  [#]i            mode d'insertion
+  [#][,#]l        liste des lignes
+  [#],[#],#m      d‚place le bloc
+  [#][,#]p        page
+  q               quitter
+  [#][,#][?]r$,$  remplacer la chaŒne
+  [#][,#][?]s$    rechercher la sous-chaŒne
+  [#]tnomfichier  transf‚rer le fichier
+  [#]wnomfichier  ‚crire le fichier
+
+  # - DITER UNE SEULE LIGNE
+  Le programme edlin affiche la seule ligne indiqu‚ par le nombre, et la
+  prochaine ligne entr‚e remplace la ligne affich‚e dans le fichier.
+
+  a - AJOUTER
+  Cette commande est ‚quivalente … $+1i .
+
+  [#],[#],#,[#]c - COPIER UNE PLAGE DE LIGNES
+  Cette commande copie un bloc de lignes cons‚cutives vers un autre
+  endroit dans le tampon. Les paramŠtres sont :
+    * La premiŠre ligne … copier (par d‚faut = la ligne actuelle)
+    * La derniŠre ligne … copier (par d‚faut = la ligne actuelle)
+    * La ligne avant laquelle il faut ins‚rer un bloc de lignes
+    * Le nombre de fois o— vous souhaitez copier le bloc (par d‚faut = 1)
+  AprŠs qu'edlin copie les lignes, vous pouvez utiliser la commande l
+ (liste) pour voir les lignes correctement renum‚rot‚es.
+
+  [#][,#]d - EFFACER UN BLOC DE LIGNES
+  Cette commande efface un bloc de lignes cons‚cutives. Les paramŠtres
+  sont la premiŠre et la derniŠre ligne du bloc qui doit ˆtre effac‚.
+  Si vous omettez le second paramŠtre, seule la ligne sp‚cifi‚e dans
+  le premier paramŠtre sera effac‚. Si vous omettez le premier paramŠtre,
+  edlin effacera le bloc depuis la ligne actuelle jusqu'… la ligne
+  sp‚cifi‚e dans le second paramŠtre (n'oubliez pas la virgule). Si
+  vous omettez les deux paramŠtres la ligne actuelle sera effac‚e.
+
+  enomfichier - SAUVEGARDER ET QUITTER
+  Cette commande est ‚quivalente … :
+    w nomfichier  suivi par : q
+
+  [#]i - MODE D'INSERTION
+  Cette commande d‚marre le mode d'insertion. Son paramŠtre est le
+  num‚ro de ligne avant laquelle vous voudrez ins‚rer des lignes. Lors
+  de l'insertion, des s‚quences d'‚chappement comme celles ci-dessus
+  sont l‚gales. Pour sortir du mode d'insertion, tapez un point (.)
+  sur une ligne vierge (si vous avez besoin d'une ligne avec juste
+  un point, utilisez une s‚quence d'‚chappement).
+  AprŠs avoir quitt‚ le mode d'insertion, la ligne aprŠs le texte
+  ins‚r‚ devient la ligne courante sauf si l'insertion a ‚t‚ effectu‚e
+  … la fin du texte, auquel cas la derniŠre ligne devient la ligne
+  courante.
+
+  [#][,#]l - LISTE DES LIGNES
+  Cette commande liste des lignes de texte sur l'‚cran. Si vous omettez
+  le premier paramŠtre, la commande commence … afficher les 11 lignes
+  avant la ligne actuelle (courante). Omettre le second paramŠtre
+  affiche une page de texte d‚butant par la ligne sp‚cifi‚e dans le
+  premier paramŠtre.
+  Les omettre tous les deux affiche une page de texte d‚marrant avec
+  11 lignes avant la ligne courante. Dans tous les cas, si le nombre
+  de lignes est plus grand que le nombre de lignes sur une page, le
+  programme demandera confirmation … la suite de chaque page de lignes.
+
+  [#],[#],#m - DPLACER UN BLOC
+  Cette commande d‚place un bloc de texte … la ligne avant le nombre
+  sp‚cifi‚ dans le troisiŠme paramŠtre. C'est une op‚ration similaire
+  … la copie, puis … l'effacement du bloc original.
+
+  [#][,#]p - PAGE
+  Cette commande est similaire … l sauf que la page par d‚faut d‚marre
+  avec la ligne courante au lieu des 11 lignes pr‚c‚dentes.
+
+  q - QUITTER
+  Ferme le fichier en cours d'‚dition en ignorant toutes les
+  modifications et quitte EDLIN.
+
+  [#][,#][?]r$,$ - REMPLACER UNE CHA×NE
+  Cette commande remplace toutes les occurrences de la premiŠre chaŒne
+  avec la seconde entre les deux lignes sp‚cifi‚es. Un premier
+  paramŠtre omis d‚marre le remplacement … la ligne qui suit la ligne
+  courante ; un second paramŠtre omis arrˆte le remplacement … la
+  derniŠre ligne du fichier.
+  Le point d'interrogation envoie un message de confirmation avant
+  le remplacement.
+
+  [#][,#][?]s$ - RECHERCHE DE SOUS-CHA×NE
+  Cette commande recherche la premiŠre ligne contenant la sous-chaŒne
+  sp‚cifi‚e. Si le premier paramŠtre est omis, la recherche d‚marre
+  sur la ligne courante, si le second est omis, la recherche s'arrˆte
+  … la fin du fichier.
+  Le point d'interrogation fait que la recherche envoie un message
+  de confirmation. R‚pondre non au message de confirmation continuera
+  la recherche, r‚pondre oui l'arrˆtera. La ligne courante sera remise
+  z‚ro … la ligne o— la recherche se sera arrˆt‚e si elle s'est
+  effectu‚e avec succŠs.
+
+  [#]tnomfichier - TRANSFERT DE FICHIER
+  Cette commande entraŒne l'insertion des contenus du fichier avant
+  le num‚ro de ligne sp‚cifi‚e. Si le num‚ro de ligne est omis, la
+  valeur par d‚faut est la ligne courante.
+
+  [#]wnomfichier - CRITURE DU FICHIER
+  Cette commande entraŒne l'‚criture des num‚ros de lignes sp‚cifi‚s
+  par le paramŠtre sur le fichier sp‚cifi‚. Si le paramŠtre est omis,
+  edlin ‚crira toutes les lignes se trouvant dans le tampon sur le
+  fichier.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  EDLIN est un petit ‚diteur de lignes, ‚crit pour FreeDOS en tant que
+  clone fonctionnel du vieux programme MS-DOS EDLIN. Son but principal
+  est de cr‚er <a href="../batch/index.htm">DES FICHIERS BATCH</a> et de petits programmes.
+  Ses diff‚rences avec MS EDLIN sont que d'abord, il s'agit d'un logiciel
+  libre, et qu'ensuite, l'interface utilisateur est l‚gŠrement
+  diff‚rente pour certaines choses. La raison pour cette diff‚rence
+  est que l'utilisateur n'aura pas … taper les caractŠres de contr“le
+  requis par la syntaxe d'EDLIN.
+  EDLIN prend en charge NLS (support des langues nationales).
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  edlin c:\config.sys  Ouvre le fichier config.sys pour ‚dition.
+  edlin                Si aucun fichier n'est sp‚cifi‚, edlin d‚marre
+                       avec un document vierge.
+  Je veux entrer et sauvegarder quatre phrases, l'une en dessous de
+  l'autre.
+
+  Voici la phrase quatre.
+  Voici la phrase trois.
+  Voici la phrase trois.
+  Voici la premiŠre phrase.
+
+  (depuis l'invite d'edlin *, avec un tampon vide...)
+
+  i
+  Voici la phrase quatre.
+  Voici la phrase trois.
+  Voici la phrase trois.
+  Voici la premiŠre phrase.
+  .
+
+  Maintenant je veux sauvegarder ces quatre phrases dans un fichier
+  .txt sur
+  C:\test.txt
+
+  wc:\test.txt
+
+  Puis je m'aper‡ois que la troisiŠme phrase est erron‚e (version
+  correcte :
+  Voici la phrase deux). Comment la corriger et la sauvegarder ?
+
+  3rtrois,deux
+  wc:\test1.txt
+
+  Puis je veux ajouter une cinquiŠme phrase au d‚but (Voici la phrase
+  cinq). Comment l'ajouter ?
+
+  1i
+  Voici la phrase cinq.
+  .
+  wc:\test2.txt
+
+  Je veux voir si tout est correct.
+
+  l
+
+  Je veux quitter.
+
+  q
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../batch/index.htm">ficihers batch</a>
+  <a href="../base/edit.htm">edit</a>
+  <a href="../util/freemacs.htm">freemacs</a>
+  <a href="../util/ospedit.htm">ospedit</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright © 2003 Gregory Pietsch, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

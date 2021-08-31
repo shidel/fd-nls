@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : udma.sys / udmajr.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : udma.sys / udmajr.sys</h1>
+<pre>
+  UDMA.SYS / UDMAJR.SYS sont des pilotes de mise en cache pour les
+  disques durs UltraDMA. UDMA.SYS / UDMAJR.SYS doit ˆtre charg‚ dans
+  <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS fonctionne d‚j…, vous pouvez les charger UDMA.SYS /
+  UDMAJR.SYS par la suite avec <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>UDMA.SYS / UDMAJR.SYS sont p‚rim‚s. Ils ne sont PLUS pris en charge
+  par leur auteur ! Vous devriez utiliser <a href="../base/uide.htm">UIDE.SYS</a> … la place</b>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEVICE[HIGH] = [path]UDMA.SYS [/A] [/Q] [/R] [/Sn] [/U]
+  DEVICE[HIGH] = [path]UDMAJR.SYS [/A] [/Q] [/R] [/Sn] [/U]
+</pre>
+<h2>Options :</h2>
+<pre>
+  UDMA.SYS / UDMAJR.SYS n'a normalement besoin d'aucun commutateur. Ses
+  options se pr‚sentent comme suit :
+    /A   Sp‚cifie l'utilisation des anciennes adresses de contr“leur
+         EIDE alternatives, 01E8h-01EFh sur le canal primaire et
+         0168h-016Fh sur le canal secondaire. Si /A est omis, le pilote
+         utilisera les adresses de contr“leur normales de 01F0h-01F7h
+         ou 0170h-0177h. /A existe seulement pour les BIOS SATA
+         "bizarres" ou d'autres cas inhabituels.
+    /Q   Active l'attente pour des "requˆtes de donn‚es" avant de
+         d‚marrer les transferts de donn‚es UltraDMA. /Q doit ˆtre
+         OMIS avec les adaptateurs SATA-vers-IDE par Sabrent etc., car
+         de telles cartes n'‚mulent pas les requˆtes de donn‚es depuis
+         les disques SATA ! /Q n'est pas n‚cessaire avec de nouveaux
+         contr“leurs ou des disques IDE. Cette option est pour
+         les anciens systŠmes et ne doit ˆtre utilis‚ que si UDMA se
+         charge correctement mais semble incapable de transf‚rer des
+         donn‚es.
+    /R   Restreint UDMA … la m‚moire "r‚guliŠre" et ‚vite la m‚moire
+         haute pour sa table de recherche binaire. /R peut ˆtre
+         n‚cessaire sur les systŠmes DOS qui n'attribueront pas de
+         m‚moire tant que CONFIG.SYS n'aura pas charg‚ les pilotes !
+         /R n'est pas n‚cessaire avec V7.10 MS-DOS, V6.22 MS-DOS,
+         V7.1 PC-DOS, PTS-DOS, ou EDR-DOS. /R est NCESSAIRE pour
+         travailler avec ROM-DOS ! Les autres variantes de DOS devraient
+         d'abord ˆtre test‚s.
+    /Sn  Sp‚cifie la taille de cache d‚sir‚e, comme suit :
+       /S0   cache de 5 Mo,     taille de table de 1280 octets,
+                                blocs de 8 Ko.
+       /S1   cache de 10 Mo,    taille de table de 2560 octets,
+                                blocs de 8 Ko.
+       /S2   cache de 20 Mo,    taille de table de 2560 octets,
+                                blocs de 16 Ko.
+       /S3   cache de 40 Mo,    taille de table de 2560 octets,
+                                blocs de 32 Ko.
+       /S4   cache de 80 Mo,    taille de table de 2560 octets,
+                                blocs de 64 Ko.
+       /S5   cache de 120 Mo,   taille de table de 3840 octets,
+                                blocs de 64 Ko.
+       /S6   cache de 160 Mo,   taille de table de 5120 octets,
+                                blocs de 64 Ko.
+       /S7   cache de 200 Mo,   taille de table de 6400 octets,
+                                blocs de 64 Ko.
+       /S8   cache de 250 Mo,   taille de table de 8000 octets,
+                                blocs de 64 Ko.
+       /S9   cache de 400 Mo,   taille de table de 12800 octets,
+                                blocs de 64 Ko.
+       /SL   cache de 750 Mo,   taille de table de 24000 octets,
+                                blocs de 64 Ko.
+         Si /S est omis, alors /S4 est utilis‚. La logique du pilote et
+         de la pile prennent 2544 octets fixes en plus des tailles des
+         tables de recherche binaire ci-dessus. UDMA place sa table de
+         recherche binaire et 1088 octets de logique dans la m‚moire
+         haute sauf si /R est entr‚e ou si moins de 3648 octets de
+         m‚moire haute (HMA) est libre (2368 octets avec /S0), auquel
+         cas la m‚moire r‚guliŠre sera utilis‚e. case Lorsqu'il n'y a
+         pas assez de m‚moire haute ou conventionnelle pour un /S, le
+         cache le plus grand qui rentre dans la m‚moire "libre" sera
+         utilis‚. UDMA se charge dans 4 Ko, donc un cache de 5 Mo dans
+         la m‚moire r‚guliŠre peut toujours ˆtre d‚fini. Les caches de
+         400 Mo et de 750 Mo ne peuvent utiliser la m‚moire haute et
+         prennent toujours 15 Ko ou 26 Ko de m‚moire r‚guliŠre. S'il
+         n'y a pas de disque UltraDMA, UDMA annule sa logique UltraDMA
+         pendant l'initialisation pour ‚conomiser 368 octets de m‚moire
+         haute. Pour un ancien gestionnaire XMS V2.0 (ROM-DOS etc.) le
+         maximum est /S3 ou 40 Mo. /S0 est pour les systŠmes DOS anciens
+         de 8 Mo et peut perdre de son efficacit‚ pour mettre en cache
+         les fichiers volumineux de nos jours. Au moins /S1 est
+         recommand‚. Assez de m‚moire XMS doit ˆtre disponible pour que
+         la taille du cache puisse ˆtre d‚fini, ou UDMA quittera !
+    /U   Demande uniquement le UltraDMA "autonome" (pas de mise en
+         cache), ce qui peut ˆtre utile pour un programme de diagnostic
+         de disque.
+  Pour chaque commutateur, un tiret peut remplacer la barre oblique et
+  des lettres minuscules peuvent ˆtre utilis‚es.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  UDMA.SYS est distribu‚ pour ceux qui veulent rester "compatibles"
+  avec les versions anciennes de ce pilote. Il utilise le mˆme "coeur"
+  r‚sident de 640 octetes que <a href="../base/udma2.htm">UDMA2.SYS</a> ou UDMAJR.SYS. Comme avec les
+  versions pr‚c‚dentes, UDMA.SYS est le seul pilote dans ce jeu qui
+  affiche les noms des contr“leurs UltraDMA et le temps de chargement
+  ainsi que les donn‚es du bus PCI, pour ceux qui voudraient voir quelle
+  puce sera utilis‚e. UDMA.SYS fournit le jeu complet des tests de
+  chargement, tout comme UDMA2.SYS.
+  UDMAJR.SYS est distribu‚ pour les systŠmes de "disque RAM" ou
+  "enfouis" qui n‚cessite un pilote UltraDMA d'une taille aussi petite
+  que possible. Il a le mˆme "coeur" r‚sident de 640 octets que
+  UDMA2S.SYS ou UDMA.SYS avec les mˆmes capacit‚s d'ex‚cution.
+  UDMAJR.SYS omet un test 80386, des "tests de lecture" et les "noms"
+  de contr“leur et de disque au moment du chargement (l'adresse E/S du
+  contr“leur EST affich‚e !) et atteint ainsi une taille de fichier
+  objet de 2048 octets.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Dans CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\UDMA.SYS
+    DEVICEHIGH=C:\FDOS\BIN\UDMA.SYS
+    DEVICE=C:\FDOS\BIN\UDMAJR.SYS
+    DEVICEHIGH=C:\FDOS\BIN\UDMAJR.SYS
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/udma2.htm">udma2.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xdma.htm">xdma.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

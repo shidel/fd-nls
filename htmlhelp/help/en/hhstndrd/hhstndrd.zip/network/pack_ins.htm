@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Networking FreeDOS - Packet driver installation</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Networking FreeDOS - Packet driver installation</h1>
+<h2><a name="zzz"></a>Overview</h2>
+<pre>
+    (Picture of Packet driver)
+  Packet drivers work as an interface between the hardware (the <a href="../network/network.htm">network</a>
+  interface card) and the <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a> (which is also called "protocol
+  stack"). One sort of <a href="../network/ldtcpipk.htm">TCP/IP Kernels</a> work as an external program that
+  can be called and used by various <a href="../network/network.htm">network</a> applications. Other <a href="../network/ldtcpipk.htm">TCP/IP</a>
+  Kernels are already built into <a href="../network/network.htm">network</a> applications, a web browser for
+  instance or a ftp-client. We will learn more about these kernels
+  <a href="../network/ldtcpipk.htm">a bit further</a> in this wiki.
+  Most of us will use the packet driver for <a href="../network/tcpip.htm">TCP/IP</a> networking. And
+  that's it. But packet drivers are multiprotocol drivers - so <a href="../network/tcpip.htm">TCP/IP</a>
+  isn't the only kernel that can work atop of it. As you can see in the
+  figure above (in the dark grey fields), it is also possible to run
+  <a href="../network/novell.htm">Novell</a> NetWare over of a packet driver: Specialized drivers like
+  IPXPD.COM or PDIPX.COM support IPX over the packet driver interface.
+  The <a href="../network/cifs.htm">NetBEUI</a> protocol can't be used on top of a packet driver though,
+  as the packet driver interface is too different from <a href="../network/ndis.htm">NDIS</a>. 
+</pre>
+<h2><a name="aaa"></a>Where to find them</h2>
+<pre>
+  The first place to look for a packet driver should be the installation
+  medium that came with your card. Packet drivers often have the letters
+  "PD" in their names, so the packet driver of a <a href="../network/3com.htm">3Com</a> 3C589 PC-Card is
+  called "3C589PD.COM" and the driver of the D-Link DFE-670TXD PC-Card
+  is called "DFE670PD.COM". Look for a directory "PKTDRV" on the CD or
+  floppy that came with your card.
+  If there is no such driver on your installation medium or you don't
+  have any, try searching the web. For ISA and PCI <a href="../network/network.htm">network</a> cards there
+  is a chance a packet driver can be found at Russell Nelson's <a href="../network/crynwr.htm">Crynwr</a>
+  website (see: <b>http://www.crynwr.com/project (*01)</b>) - a resource of
+  public domain packet drivers. PCMCIA drivers seem to be rare there,
+  though.
+  Georg Potthast provides a collection of PCI card packet drivers (see:
+  <b>http://www.georgpotthast.de/sioux/packet.htm (*02)</b>) and a tool called
+  NICSCAN.EXE (see: <b>http://www.georgpotthast.de/sioux/pktdrv/nicscan.zip
+  (*03)</b>) to determine the chipset of PCI <a href="../network/network.htm">network</a> cards. He made the
+  experience that packet drivers are often the same for a large number
+  of models by the same manufacturer, so he recommends not to try
+  finding a packet driver specific for your model number. 
+</pre>
+<h2><a name="bbb"></a>Installing a packet driver</h2>
+<pre>
+  To <a href="../network/install.htm">install</a> a packet driver, add a line like this to your <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>
+  (example for the 3c589 PCMCIA card):
+    LH 3C589PD.COM 0x60 5 0x300
+  In the example above the driver is loaded into high memory by using the
+  command "LH". The first option ("0x60") sets the software interrupt
+  (vector) used by the driver. The most frequently used packet driver
+  software interrupt number is 0x60. The second option ("5") sets the
+  IRQ, the third option ("0x300") sets the I/O port. Some drivers only
+  need the vector and find the other values by themselves. Most packet
+  drivers can be unloaded after use with the option "-u".
+</pre>
+<h2><a name="ccc"></a>Reboot</h2>
+<pre>
+  That's all. You don't need any other driver (<a href="../network/odi.htm">ODI</a> or <a href="../network/ndis.htm">NDIS</a>). After
+  successfully installing a packet driver, you can now install your
+  <a href="../network/tcpip.htm">TCP/IP</a> applications with an internal kernel (<a href="../network/wattcp.htm">WatTCP</a>) or install an
+  external <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a> (<a href="../network/ntcpdrv.htm">NTCPDRV</a>).
+    (Picture: Boot messages from the packet driver)
+
+  <b>(*01) ?</b>
+  <b>(*02) OK</b>
+  <b>(*03) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), modified 2011
+  and 2020 by W.Spiegl.</b>
+  For more information <a href="../network/intro.htm#ddd">see here</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: fdapm</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: fdapm</h1>
+<pre>
+  FDAPM ist ein APM Energie-Managementwerkzeug.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  fdapm [Optionen]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+ (keine)    Wenn keine Optionen angegeben sind, werden standardmaessig die
+            Informations- und die Statistik-Ausgabe angezeigt (wenn das
+            Programm von der Kommandozeile geladen wird, ansonsten
+            verhaelt es sich wie mit der Option APMDOS, wenn es per
+            INSTALL ausgefuehrt wird).
+  APMoff    Deaktiviert den einfachen BIOS APM-Energiesparmodus.
+  OFF       Wie APMoff, fuer die Kompatibilitaet mit dem MS POWER
+            Programm.
+  APMbios   Aktiviert den einfachen BIOS APM-Energiesparmodus.
+  STD       Wie APMbios, fuer die Kompatibilitaet mit dem POWER Programm.
+  APMDOS    Dies sollte maximale Energieeinsparungen ergeben. Es ist der
+            einzige Modus, der FDAPM speicherresident laedt.
+            Zum stoppen, waehlen sie APMbios / APMoff.
+  ADV:MAX   Maximale Energieeinsparungen, fuer Kompatibilitaet mit POWER.
+  ADV:MIN   Minimale Energieeinsparungen, fuer Kompatibilitaet mit POWER.
+  ADV:REG   Eingeschraenkte Energieeinsparungen, fuer Kompatibilitaet mit
+            MS POWER.
+  INFO      Zeigt Informationen ueber APM-Status. Zeigt Dinge wie den
+            prozentualen Batterie-Fuellstand.
+  STATS     Zeigt Informationen ueber APM-Status. Zeigt Dinge wie die CPU-
+            Auslastung in Prozenten an, wenn FDAPM oder POWER
+            speicherresident geladen sind.
+  FLUSH     Leert den Zwischenspeicher (schreibt Daten zurueck auf die
+            Festplatte).
+  SPINUP    Weckt die IDE-Festplatten wieder auf.
+  SPINDOWN  Leert den Zwischenspeicher der Festplatten und stoppt die
+            IDE-Festplatten an den ersten 2 IDE-Controllern. Die Benutzung
+            erfolgt auf eigene Gefahr. Die Festplatten werden wieder
+            hochfahren, wenn sie erneut verwendet werden. Die Festplatten
+            haben eingebaute "Intelligenz" fuer so was. Um automatisch
+            Energie zu sparen, kann oft ein per BIOS-Setup-Option
+            eingestellt werden, dass der Festplatte beim Starten des
+            Computers mitgeteilt wird, sich selbst herunterzufahren, wenn
+            nach einer Weile kein Festplattenzugriff mehr erfolgt ist.
+  ACPIOFF   Wirkt wie POWEROFF, verwendet aber ACPI anstelle von APM.
+            Beachten Sie, dass die klassischen Funktionen auch ACPI
+            verwenden, auch wenn keine APM-BIOS Unterstuetzung vorhanden
+            ist. Das System wird in den S5-Auszustand versetzt nach dem
+            Leeren des Zwischenspeichers und dem Runterfahren der
+            Festplatten. Nuetzlich zum Vergleich der APM/ACPI-Handhabung.
+  STANDBY   Leert den Plattenzwischenspeicher und geht in den Standby
+            Modus. Benoetigt APM oder ACPI und eine ATX-Stromversorgung
+            oder neuere.
+  SUSPEND   Leert den Plattenzwischenspeicher, stoppt die IDE-Festplatten
+            und das System. Ein BIOS mit "Suspend to disk" Unterstuetzung
+            ist nuetzlich um ein Anlaufen der Festplatten beim Herunter-
+            fahren zu verhindern. Benoetigt APM oder ACPI und eine ATX-
+            Stromversorgung oder neuere.
+  PURESUSP  Wirkt wie SUSPEND, aber stoppt die IDE-Festplatten nicht
+            zuerst. Benoetigt APM oder ACPI und eine ATX-Stromversorgung
+            oder neuere.
+  POWEROFF  Leert den Plattenzwischenspeicher, stoppt die IDE-Festplatten,
+            schaltet den Monitor und das System aus. Benoetigt APM oder
+            ACPI und eine ATX-Stromversorgung oder neuere.
+  PUREOFF   Wirkt wie POWEROFF, aber stoppt die IDE-Festplatten nicht
+            zuerst. Nuetzlich, wenn Sie ihr BIOS ansonsten die Festplatte
+            anlaufen lassen wuerde vor dem Abschalten des Stromes
+            (autsch).
+            Benoetigt APM oder ACPI und eine ATX-Stromversorgung oder
+            neuere.
+  VGAoff    Schaltet EGA/VGA-DPMS-Bildschirme aus (kein automatisches
+            Aufwachen!). Zum Anschalten muessen sie die Option FDAPM VGAon
+            verwenden oder den Rechner neu starten. VGAoff ist kein
+            Bildschirmschoner. Verwenden Sie z.B. IDLEDPMS dafuer.
+  VGAon     Schaltet den EGA/VGA-DPMS Bildschirm wieder ein. Ein
+            Tastendruck nach der Benutzung der VGAoff Funktion wird die
+            Bildschirmausgabe nicht wieder aktivieren. Es ist kein
+            Bildschirmschoner. Es ist nur ein Weg, um die Videoausgabe
+            ein- und auszuschalten ohne jede Art von Systemueberwachung
+            oder automatischem Aufwachen.
+  ZapStats  Loescht die STATS Zaehler.
+  SPEEDn    Setzt die Geschwindigkeit auf n/8 (n * 12,5%) vom Maximum. (0
+            haelt an bis der Power-Schalter gedrueckt wird). SPEED9 zeigt
+            die aktuelle Einstellung an. SPEED9 ist die empfohlene Methode
+            zum Testen, ob Ihr System ACPI in einer FDAPM kompatiblen
+            Weise benutzt. Benoetigt ACPI.
+  SPEED0    Versetzt das System in den S1-Standby-Modus mit ausgeschal-
+            teter CPU (druecken Sie den ATX Power-Schalter oder Sleep-
+            Taste, um fortzufahren). Keines der anderen Geraeten wird
+            abgeschaltet.
+            Verwenden Sie das PCISLEEP Programm, wenn Sie mit dem PCI
+            Energiemanagement experimentieren wollen.
+  COLDboot  Fuehrt einen Neustart mit BIOS-Tests (POST) durch (Nach dem
+            Leeren des Plattenzwischenspeichers), indem der 8042-Tastatur-
+            Controller einen Impuls an die Hardware-Reset-Schaltungen
+            sendet. Sehr aehnlich wie bei den seltenen Faellen von einem
+            echten kalten Neustart durch Druecken der Reset-Taste oder dem
+            rabiateren Stromabstellen.
+  WARMboot  Fuehrt einen Neustart ohne BIOS-Tests (POST) durch. Dies ist
+            in der Regel sicher, kann aber abstuerzen bei inkompatiblen
+            Protected Mode Software, wie einige Versionen von EMM386.
+            Leert den Plattenzwischenspeicher vor dem Neustart.
+  HOTboot   Versucht einen sofortigen Neustart per Interrupt 19h (wird oft
+            abstuerzen!). Vor dem Neustart versucht FDAPM die Leerung des
+            Zwischenspeichers (zurueckschreiben der Daten auf die
+            Festplatte) zu veranlassen und wartet einen Moment.
+  HELP      Zeigt die Hilfe.
+  /?        Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  FDAPM ist ein Ersatz fuer das MS-DOS Programm POWER.
+  APM: Advanced Power Management.
+  ACPI: Advanced Configuration and Power Interface.
+  ATX: Advanced Technology Extended.
+  DPMS: Display Power Management Signaling.
+  Bitte lesen Sie fdapm.txt in dem fdapm Paket fuer weitere Informationen.
+  Gross-, Kleinschreibung sind irrelevant, die Zeichen "-" oder "/" sind
+  nicht erforderlich.
+  Alle Festplatten Schlaf-, Standby-, OFF-Optionen sind verzoegert um der
+  Festplatte Zeit zu geben den Zustand zu aendern. All diese und alle
+  Neustart-Optionen veranlassen die Leerung den Plattenzwischenspeichers
+  bevor die eigentliche Aktion beginnt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  fdapm apmdos  ergibt eine maximale Energieeinsparung
+  fdapm speed2  setzt die Geschwindigkeit auf 2x12,5% = 25% der maximalen
+                Geschwindigkeit z.B. fuer alte Spiele
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../util/pcisleep.htm">pcisleep</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eric Auer, aktualisiert 2008 von J. Jenderek.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

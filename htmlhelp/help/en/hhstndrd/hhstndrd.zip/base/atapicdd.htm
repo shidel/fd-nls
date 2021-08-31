@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: atapicdd.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: atapicdd.sys</h1>
+<pre>
+  ATAPICDD.SYS is a generic CD-ROM driver for IDE CD-ROM (ATAPI). 
+  It is still under development. Please use <a href="../base/uide.htm">UIDE.SYS</a> instead.
+  ATAPICDD.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  When FreeDOS is already running, you can load ATAPICDD.SYS later
+  with <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>ATAPICDD.SYS is out of date. You should use <a href="../base/uide.htm">UIDE.SYS</a> instead</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+   device=[drive][path]atapicdd.sys [options]
+          drive  the drive letter, e.g. C:
+          path   the directory, e.g. \example\
+</pre>
+<h2>Options:</h2>
+<pre>
+  /D:name  Sets the device name to "name". Default value: FDCD0000.
+           This name must also be mentioned in autoexec.bat when 
+           loading shsucdx / mscdex.
+  /N:x     Sets the number of devices to look for to x. Default value: 1
+</pre>
+<h2>Comments:</h2>
+<pre>
+  ATAPICDD.SYS is loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  The option /D: xxxxyyyy must be the same as in <a href="../base/shsucdx.htm">SHSUCDX</a>
+  (MSCDEX) which is loaded in <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\atapicdd.sys /d: fdc0000 /n:2
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

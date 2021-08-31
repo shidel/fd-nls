@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Mise en r‚seau de FreeDOS - installation d'un pilote de paquets</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Mise en r‚seau de FreeDOS - installation d'un pilote de paquets</h1>
+<h2><a name="zzz"></a>Vue d'ensemble</h2>
+<pre>
+    (Image du pilote de paquets)
+  Les pilotes de paquets fonctionnent comme une interface entre le
+  mat‚riel (la carte d'interface <a href="../network/network.htm">r‚seau</a>) et le <a href="../network/ldtcpipk.htm">noyau TCP/IP</a> (qui est
+  aussi appel‚ la "pile de protocole"). Un type de <a href="../network/ldtcpipk.htm">noyaux TCP/IP</a>
+  fonctionne comme un programme externe qui peut ˆtre appel‚ et utilis‚
+  par diverses applications <a href="../network/network.htm">r‚seau</a>.
+  D'autres noyaux <a href="../network/ldtcpipk.htm">TCP/IP</a> sont d‚j… int‚gr‚s aux applications <a href="../network/network.htm">r‚seau</a>, par
+  exemple un navigateur Internet ou un client ftp. Nous en apprendrons
+  davantage sur ces noyaux <a href="../network/ldtcpipk.htm">un peu plus loin</a> dans ce wiki.
+  La plupart d'entre nous utiliseront un pilote de paquets pour la mise
+  en <a href="../network/tcpip.htm">TCP/IP</a> r‚seau <a href="../network/tcpip.htm">TCP/IP</a>. Et c'est tout. Mais les pilotes de paquets
+  sont des pilotes multiprotocoles - donc le <a href="../network/tcpip.htm">TCP/IP</a> n'est pas le seul
+  noyau qui peut fonctionner par dessus. Comme vous pouvez le voir sur
+  l'image ci-dessus, (dans les champs gris fonc‚) il est ‚galement
+  possible d'ex‚cuter <a href="../network/novell.htm">Novell</a> NetWare au-dessus d'un pilote de paquets :
+  les pilotes sp‚cialis‚s comme IPXPD.COM ou PDIPX.COM prennent en
+  charge IPX sur l'interface su pilote de paquets.
+  Le protocole <a href="../network/cifs.htm">NetBEUI</a> ne peut cependant pas ˆtre utilis‚ au-dessus
+  d'un pilote de paquets car l'interface du pilote de paquets est trop
+  diff‚rente de <a href="../network/ndis.htm">NDIS</a>.
+</pre>
+<h2><a name="aaa"></a>O— les trouver</h2>
+<pre>
+  Le premier endroit o— regarder pour un pilote de paquets devrait ˆtre
+  le support d'installation livr‚e avec votre carte. Les pilotes de
+  paquets ont souvent les lettres "PD" dans leurs noms, ainsi le pilote
+  de paquets d'une <a href="../network/3com.htm">3Com</a> 3C589 PC-Card est appel‚e "3C589PD.COM" et le
+  pilote de la D-Link DFE-670TXD PC-Card est appel‚e "DFE670PD.COM".
+  Recherchez un r‚pertoire nomm‚ "PKTDRV" sur le CD-ROM ou la disquette
+  livr‚e avec votre carte.
+  S'il n'existe pas un tel pilote sur le support d'installation ou si
+  vous n'en avez pas, essayez de rechercher sur Internet. Pour les
+  cartes <a href="../network/network.htm">r‚seau</a> ISA et PCI il existe une chance pour que le pilote de
+  paquets puisse ˆtre trouv‚ sur le site <a href="../network/crynwr.htm">Crynwr</a> de Russell Nelson
+  (cf. <b>http://www.crynwr.com/project (*01)</b>) - une ressource de
+  pilotes de paquets dans le domaine public. Les pilotes PCMCIA
+  semblent ˆtre rares sur ce site, cependant.
+  Georg Potthast fournit une collection de pilote de paquets pour cartes
+  PCI (cf. <b>http://www.georgpotthast.de/sioux/packet.htm (*02)</b>) et un
+  outil appel‚ NICSCAN.EXE (cf. <b>http://www.georgpotthast.de/sioux/
+  pktdrv/nicscan.zip (*03)</b>) pour d‚terminer le chipset des cartes <a href="../network/network.htm">r‚seau</a>
+  PCI. Il a fait l'exp‚rience que les pilotes de paquets sont souvent
+  les mˆmes pour un grand nombre de modŠles du mˆme fabricant, il
+  recommande donc de ne pas essayer de trouver un pilote de paquets
+  sp‚cifique … votre num‚ro de modŠle.
+</pre>
+<h2><a name="bbb"></a>Installer un pilote de paquets</h2>
+<pre>
+  Pour <a href="../network/install.htm">installer</a> un pilote de paquets, ajoutez une ligne comme
+  celle-ci … votre <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>
+  (exemple pour la carte 3c589 PCMCIA) :
+    LH 3C589PD.COM 0x60 5 0x300
+  Sur l'exemple ci-dessus, le pilote est charg‚ en m‚moire haute en
+  utilisant la commande "LH". La premiŠre option ("0x60") d‚finit
+  l'interruption logicielle (vecteur) utilis‚e par le pilote. Le num‚ro
+  d'interruption logicielle pour pilote de paquets est le 0x60. La
+  seconde option ("5") d‚finit l'IRQ, la troisiŠme option ("0x300")
+  d‚finit le port E/S. Certains pilotes ne n‚cessitent que le vecteur
+  et trouvent les autres valeurs eux-mˆmes. La plupart des pilotes de
+  paquets peuvent ˆtre enlev‚s de la m‚moire aprŠs utilisation avec
+  l'option "-u".
+</pre>
+<h2><a name="ccc"></a>Red‚marrage</h2>
+<pre>
+  C'est tout. Vous n'avez besoin d'aucun autre pilote (<a href="../network/odi.htm">ODI</a> ou <a href="../network/ndis.htm">NDIS</a>).
+  AprŠs avoir install‚ avec succŠs un pilote de paquets, vous pouvez
+  installer vos applications <a href="../network/tcpip.htm">TCP/IP</a> avec un noyau interne (<a href="../network/wattcp.htm">WatTCP</a>)
+  ou installer un <a href="../network/ldtcpipk.htm">noyau TCP/IP</a> externe (<a href="../network/ntcpdrv.htm">NTCPDRV</a>).
+    (image : messages de d‚marrage du pilote de paquets)
+
+  <b>(*01) ?</b>
+  <b>(*02) OK</b>
+  <b>(*03) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Allemagne), modifi‚ en 2011
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Pour plus d'informations, <a href="../network/intro.htm#ddd">voyez ici</a>.
+
+  La permission est accord‚e de copier, distribuer et/ou modifier ce
+  document selon les termes de la licence de documentation libre GNU,
+  version 1.2 ou toute version ult‚rieure publi‚e par la Free Software
+  Foundation.
+  Une copie de la licence est incluse dans la section intitul‚e
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

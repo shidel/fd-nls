@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Redes de FreeDOS - Instalaci¢n de Paquetes de Controladores</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Redes de FreeDOS - Instalaci¢n de Paquetes de Controladores</h1>
+<h2><a name="zzz"></a>Resumen</h2>
+<pre>
+    (Imagen de Paquetes de Controladores)
+  Los controladores de paquetes funcionan como una interfaz entre el
+  hardware (la tarjeta de interfaz de <a href="../network/network.htm">red</a>) y el <a href="../network/ldtcpipk.htm">n£cleo TCP/IP</a> (que
+  tambi‚n se llama "pila de protocolos"). Un tipo de  <a href="../network/ldtcpipk.htm">N£cleos TCP/IP</a>
+  funciona como un programa externo que se puede llamar y utilizada por
+  varias aplicaciones de <a href="../network/network.htm">red</a>. Otro n£cleo <a href="../network/ldtcpipk.htm">TCP/IP</a> ya est n integrados en
+  aplicaciones de <a href="../network/network.htm">red</a>, un navegador web, por ejemplo, o un cliente
+  de FTP.
+  Vamos a aprender m s acerca de estos <a href="../network/ldtcpipk.htm">n£cleos</a> un poco m s en este wiki.
+  La mayor¡a de nosotros va a utilizar el controlador de paquetes para
+  redes <a href="../network/tcpip.htm">TCP/IP</a>. Y eso es todo. Pero los controladores de paquetes son
+  controladores multiprotocolo - as¡ <a href="../network/tcpip.htm">TCP/IP</a> no es el £nico n£cleo que
+  puede trabajar en lo alto de la misma. Como se puede ver en la figura
+  anterior (en los campos de color gris oscuro), tambi‚n es posible
+  ejecutar <a href="../network/novell.htm">Novell</a> NetWare m s de un controlador de paquetes:
+  controladores especializados como IPXPD.COM o PDIPX.COM  apoya IPX a
+  lo largo de la interfaz del controlador de paquetes. El protocolo
+  <a href="../network/cifs.htm">NetBEUI</a> no se puede utilizar en la parte superior de un controlador
+  de paquetes, aunque, como la interfaz del controlador paquete es
+  demasiado diferente de <a href="../network/ndis.htm">NDIS</a>.
+</pre>
+<h2><a name="aaa"></a>D¢nde encontrarlos</h2>
+<pre>
+  El primer lugar para buscar un controlador de paquetes debe estar en
+  el medio de instalaci¢n que viene con su tarjeta. Los controladores de
+  paquetes suelen tener las letras "PD" en sus nombres, por lo que el
+  controlador de paquetes de un <a href="../network/3com.htm">3Com</a> 3C589 PC-Card se llama "3C589PD.COM"
+  y el controlador de la D-Link DFE-670TXD PC-Card se llama "DFE670PD.
+  COM". Busque un directorio "PKTDRV" en el CD o disquete que viene con
+  su tarjeta.
+  Si no existe tal controlador en el medio de instalaci¢n o usted no
+  tiene ninguno, intente buscar en la web. Para tarjetas de <a href="../network/network.htm">red</a> ISA y
+  PCI existe la posibilidad de un controlador de paquetes se puede
+  encontrar en la p gina web de Russell Nelson <a href="../network/crynwr.htm">Crynwr</a> (ver: <b>http://www.
+  crynwr.com/project (*01)</b>) un recurso de controladores de paquetes de
+  dominio p£blico. Controladores PCMCIA parecen ser raras ah¡, sin
+  embargo. Georg Potthast ofrece una colecci¢n de controladores de
+  paquetes de tarjetas PCI (ver: <b>http://www.georgpotthast.de/sioux/
+  packet.htm (*02)</b>) y una herramienta llamada NICSCAN.EXE (ver:
+  <b>http://www.georgpotthast.de/sioux/pktdrv/nicscan.zip (*03)</b>)
+  para determinar el conjunto de chips de tarjetas de <a href="../network/network.htm">red</a> PCI. l hizo la
+  experiencia que el paquete controladores suelen ser los mismos para un
+  gran n£mero de modelos por el mismo fabricante, por lo que recomienda
+  que no se trate de encontrar un determinado controlador de paquetes
+  para su n£mero de modelo.
+</pre>
+<h2><a name="bbb"></a>Instalaci¢n de un paquete de controladores</h2>
+<pre>
+  Para <a href="../network/install.htm">instalar</a> un controlador de paquetes, a¤adir una l¡nea como esta
+  en tu <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> (ejemplo para la tarjeta PCMCIA 3c589):
+    LH 3C589PD.COM 0x60 5 0x300
+  En el ejemplo anterior, el controlador se carga en memoria alta
+  mediante el comando "LH". La primera opci¢n ("0x60") establece la
+  interrupci¢n de software (vector) utilizado por el controlador. El
+  n£mero de interrupciones de software de paquete de controladores
+  m s utilizado es 0x60. La segunda opci¢n ("5") establece el IRQ, la
+  tercera opci¢n ("0x300") establece el puerto de E/S. Algunos
+  controladores s¢lo necesitan el vector y encuentran los otros valores
+  por s¡ mismos. La mayor¡a de los controladores de paquetes se pueden
+  descargar despu‚s de su uso con la opci¢n "-u".
+</pre>
+<h2><a name="ccc"></a>Reinicio</h2>
+<pre>
+  Eso es todo. No es necesario ning£n otro controlador (<a href="../network/odi.htm">ODI</a> o <a href="../network/ndis.htm">NDIS</a>).
+  Despu‚s de instalar correctamente un de paquete de controladores,
+  ahora se puede instalar sus aplicaciones <a href="../network/tcpip.htm">TCP/IP</a> con un n£cleo
+  interno (<a href="../network/wattcp.htm">WatTCP</a>) o instalar un <a href="../network/ldtcpipk.htm">n£cleo TCP/IP</a> externo (<a href="../network/ntcpdrv.htm">NTCPDRV</a>).
+    (Imagen: Mensaje de Arranque de paquete de controladores )
+
+  <b>(*01) ?</b>
+  <b>(*02) OK</b>
+  <b>(*03) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Alemania), modificado en 2010
+  por W.Spiegl. Actualizado en 2013 por Lorenzo del Toro Saravia.</b>
+  Para m s informaci¢n <a href="../network/intro.htm#ddd">consulte aqu¡</a>.
+
+  Se concede permiso para copiar, distribuir y/o modificar este documento
+  en los t‚rminos de la Licencia de Documentaci¢n Libre GNU, Versi¢n 1.2
+  o cualquier versi¢n posterior publicada por la Free Software
+  Foundation.
+  Una copia de la licencia est  incluida en la secci¢n titulada
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: keyb</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: keyb</h1>
+<pre>
+  KEYB es una extensi¢n de BIOS de localizaci¢n para DOS.
+  KEYB puede considerarse como un controlador de teclado que intercepta
+  las rutinas de la BIOS de administraci¢n del teclado para adaptar los
+  teclados no estadounidenses al sistema, y proporciona otras 
+  facilidades.
+  (NOTA: KEYB no es un controlador de dispositivo adecuado y no est 
+  cargado con DEVICE=en <a href="../cnfigsys/index.htm">CONFIG.SYS</a>; en su lugar, lo ejecuta como un
+  programa residente).
+  Los datos requeridos se leen desde un archivo de datos de distribuci¢n
+  del teclado, un archivo KL. Una distribuci¢n de teclado se identifica
+  mediante dos etiquetas, Una etiqueta de cadena, que es obligatoria
+  (generalmente una cadena de dos letras, como GR, FR o SP), y un
+  identificador num‚rico opcional para distinguir diferentes variantes.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  KEYB  NombreDise¤ado[,[CP][,NombreArchivo]]  [/ID:nnn]  [/E] [/9] 
+        [/I] [/Dx] [/V] [/L=m] [/NOHI] [/B] [/S]
+  KEYB [/U]
+  KEYB /?
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  SinParametros  KEYB mostrar  informaci¢n sobre el KEYB cargado
+                 actualmente.
+  NombreDise¤ado Identificador de cadena.
+  /ID:nnn        Especifica el identificador num‚rico nnn.
+  CP             P gina de c¢digos en la que desea que se inicie KEYB
+                 (si se omite, DISPLAY.SYS y el sistema est n marcados).
+  NombreArchivo  El archivo KL que contiene la informaci¢n para el dise¤o
+                 dado. Si se omite, se intenta KEYBOARD.SYS, de lo 
+                 contrario NombreDise¤ado.KL
+  /E             Especifica que el teclado es un teclado mejorado AT
+                 (este modificador es incompatible con /9).
+  /9             Especifica que los servicios de administraci¢n int9h
+                 deben estar activados (este modificador es incompatible
+                 con /E).
+  /I             Fuerza la instalaci¢n sobre un controlador de teclado ya
+                 existente.
+  /Dx            Establece el car cter separador decimal en x.
+  /U             Descarga un KEYB previamente cargado en la memoria.
+  /V             Detallado: muestra informaci¢n adicional.
+  /L=m           Fuerza el uso de submapeos m, siempre que sea compatible
+                 con la p gina de c¢digos actual.
+  /NOHI          Evita KEYB para cargar datos en la memoria superior,
+                 carg ndolos por debajo de 640Kb.
+  /B             Desactiva las alertas de sonido (Beep).
+  /S             Safemode: no permite colecciones de distribuci¢n de
+                 teclado no cerradas y bloquea cadenas y otros comandos
+                 cr¡ticos.
+  /?             Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Puede programar FreeDOS para que el teclado se configure en el momento
+  del arranque mediante <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+  Agregue la l¡nea de comando a su AUTOEXEC.BAT para hacer esto. 
+  Puede crear sus propios archivos de dise¤o personalizados utilizando
+  la herramienta de compilaci¢n <a href="../base/keyb-kc.htm">KC</a>.
+  Alternativamente, puede usar un archivo de datos KL est ndar ya hecho
+  del paquete de archivos KL. (Ver referencias a continuaci¢n).
+  KEYB viene con el paquete KEYB200. FD-KEYB es compatible con los 
+  <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a> de MS-KEYB. Sin embargo, como se considera un
+  gran n£mero de posibles causas de error, se muestra una numeraci¢n
+  alternativa de errores en la pantalla en el momento de la carga.
+
+  C¢digoSalida  KEYB     C¢digoError
+                           Descripci¢n Error
+  ========================================================================
+    0           0          Ejecuci¢n Satisfactoria
+                            
+                         IDIOMA NO VALIDO, PAGINA DE CODIGO O SINTAXIS
+                         INCORRECTA.
+    1           3          Falta el identificador de teclado 
+                           NombreDise¤ado.
+    1          11          Modificador o interruptor no v lido.
+    1          14          El archivo especificado no contiene informaci¢n
+                           para este dise¤o/identidad.
+    1          21          El submapeo requerido no coincide con la p gina
+                           de c¢digos actual: est  utilizando /L=m pero el
+                           submapeo solicitado no corresponde con el CP
+                           actual.
+
+                         ARCHIVO DE DEFINICION DE TECLADO MALO O FALTANTE
+    2           4          El archivo especificado no se pudo abrir.
+    2          13          Archivo no v lido o archivo da¤ado.
+    2          19          Versi¢n incompatible del descriptor de teclado
+                           (el archivo de compilaci¢n o el archivo KL son
+                           de una versi¢n incompatible).
+    2          20          Suma de comprobaci¢n no v lida para el bloque
+                           de datos: el archivo de compilaci¢n est 
+                           da¤ado.
+    3          10          No se pudo crear la tabla del teclado.
+    4          16          Error en la comunicaci¢n con el dispositivo
+                           CON.
+    5          17          La p gina de c¢digos no se ha preparado.
+    6          12          P gina de c¢digos no encontrada en el archivo
+                           de definici¢n de teclado.
+
+                         TECLA INCOMPATIBLE O VERSION ENCONTRADA
+    7           1          Versi¢n diferente de KEYB instalada.
+    7           2          Controlador de teclado incompatible instalado.
+    7          18          Versi¢n incompatible de DR-KEYB instalada.
+
+  No presente en MS-KEYB:
+
+                         LA PIEZA RESIDENTE DEL TECLADO NO PODRIA SER
+                         RETIRADA
+    8           5          La parte residente de KEYB no se pudo
+                           eliminar.
+    8           8          KEYB NO fue instalado.
+
+                         PROBLEMA INESPERADO: VISITE EL SITIO KEYB PARA
+                         UNA VERSION MAS NUEVA O CONTACTE CON EL AUTOR.
+    9           6          Fallo interno: espacio de memoria global
+                           demasiado peque¤o.
+    9           7          KEYB (todav¡a) requiere un AT/286 o mejor.
+    9           9          La sobrecarga (todav¡a) no es compatible.
+    9          15          Archivo KL demasiado grande ((todav¡a) 3KB
+                           m ximo).
+  ========================================================================
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  KEYB SP,858        Carga KEYB con el dise¤o para la distribuci¢n
+                     espa¤ola y la p gina de c¢digos 858
+  KEYB GR,,GR.KL /E  Carga el dise¤o del teclado alem n para KEYB,
+                     informando expl¡citamente a KEYB que estamos usando
+                     un teclado mejorado. Use esto si KEYB no puede
+                     identificar la presencia de un teclado mejorado.
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 Aitor SANTAMARIA MERINO.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

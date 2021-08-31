@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: graphics-ps, graphpin, graph-hp</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: graphics-ps, graphpin, graph-hp</h1>
+<pre>
+  Das FreeDOS Grafik Tool.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  GRAPH-PS (Optionen) - nur fuer Laserdrucker (PostScript)
+  GRAPHPIN (Optionen) - fuer Nadeldrucker und andere ESC/P (Epson)
+  GRAPH-HP (Optionen) - fuer HP PCL 3 Drucker
+    Es wird empfohlen, die zu Ihrem Drucker passende Datei aus Verein-
+    fachungsgruenden zu GRAPHICS.COM umzubenennen.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Gemeinsame Optionen:
+    /1  Verwende LPT1 (Standard)
+    /2  Verwende LPT2
+    /3  Verwende LPT3
+    /B  Ermoeglicht das Ausfuehren der CGA Hintergrundfarbpalette 0
+    /I  Drucke schwarz als weiss und weiss als schwarz (nuetzlich
+        wenn der Bildschirmhintergrund schwarz ist, um Tinte
+        zu sparen: druckt schwarz, wo der Bildschirm weiss ist)
+    /E  Economy Modus (nur 50 % Dichte). Kommt dadurch zustande, dass die
+        Entfernung jeder Farbe zu weiss um 50 % des normalen Wertes
+        vergroessert wird.
+    /?  Zeigt die Hilfe
+  Unterschiedliche Optionen:
+  HP (GRAPH-HP - PCL) erlaubt die folgenden Zusatzoptionen:
+    /C  Fuer 300 dpi anstelle von 600 dpi
+    /R  Fuer Zufallsdithering anstelle von geordnetem Dithering
+  PS (GRAPH-PS - Postscript) erlaubt die folgenden Zusatzoptionen:
+    /C  Kompatibilitaetsmodus (HP Laserjet)
+  PIN (GRAPHPIN - EPSON) erlaubt die folgenden Zusatzoptionen:
+    /9  9-pin Modus (120x72, with /C 60x72)
+    /C  Kompatibilitatesmodus (120x60dpi)
+    /R  Fuer Zufallsdithering anstelle von geordnetem Dithering
+    /X  Sendet die Druckdaten von gesamten Zeilen anstatt von Blocks
+  Nach dem Laden des Treibers koennen Sie Screenshots drucken, indem
+  Sie die 'Shift (Hochtaste) - PrintScreen (Drucktaste)' verwenden - 
+  auch in Grafikmodi.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Verwenden Sie das zu Ihrem Drucker passende GRAPH*.COM - es wird im
+  Hintergrund resident bleiben bis Sie neu starten. Sie koennen die 
+  'shift PrtScr' (Hoch- + Druck-) Taste waehrend GRAPH*.COM resident ist
+  verwenden, um Hardcopies (Screenshots) von Bildschirminhalten in allen
+  Standard CGA, EGA und VGA Modi auszudrucken. Es gibt leider keine 
+  Unterstuetzung fuer die Aufloesungsmodi VESA und Hercules. Der Druckauf-
+  trag sollte sowohl auf DIN A4 als auch auf letter Papier passen. Der
+  Bildschirm wird im Landschaftsmodus gedruckt: Der untere Teil ist auf
+  der linken Seite des Papiers.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  graph-ps /1 /e
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/graphics.htm">graphics</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Eric Auer, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

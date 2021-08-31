@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS: idlehalt</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : idlehalt</h1>
+<pre>
+  IDLEHALT active la fonctionnalit‚ d'‚conomie d'‚nergie int‚gr‚e au
+  kernel si n n'est pas ‚gal … 0.
+  IDLEHALT est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  idlehalt=n
+    o— n peut ˆtre ‚gal … -1, 0, 1 ou une valeur plus ‚lev‚e (par
+    d‚faut : 0)
+</pre>
+<h2>Options :</h2>
+<pre>  - aucune -</pre>
+<h2>Commentaires :</h2>
+<pre>
+  IDLEHALT active la fonctionnalit‚ d'‚conomie d'‚nergie int‚gr‚e au
+  noyau si n n'est pas ‚gal … 0. La valeur -1 active tous les hooks,
+  1 active seulement les hooks "s–rs", le microprocesseur est arrˆt‚
+  seulement si le kernel attend l'entr‚e du p‚riph‚rique CON char.
+  D'autres hooks pour n = -1 et n > 0 d‚pendent de la version du
+  noyau : en plus des hooks s–rs, d'autres hooks peuvent ˆtre activ‚s,
+  par exemple un pour int 0x2f, ax=0x1680
+   "release time slice".
+  Remarque : dans de rares cas, l'entr‚e ou la sortie du mode HLT (qui
+  provoque de grands changements de consommation ‚lectrique du
+  microprocesseur) peuvent provoquer des plantages si les blocs
+  d'alimentation ou les cartes mŠres bon march‚ ne peuvent pas filtrer
+  correctement les ‚tats transitoires. Baisser la fr‚quence d'horloge
+  de tout le systŠme peut aider dans ce cas.
+  Linux effectue toujours quelques HLT au moment de l'amor‡age, pour
+  forcer un plantage pr‚coce des systŠmes bogu‚s (d‚marrez avec no-hlt
+  pour d‚sactiver HLT).
+  P90 peut avoir un HLT bogu‚ ? www.tavi.co.uk/ps2pages/ohland/halt.html
+  IDLEHALT est une commande interne … kernel.sys et ne n‚cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    idlehalt=1
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis … jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: devicehigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: devicehigh</h1>
+<pre>
+  DEVICEHIGH laedt einen Treiber in den hohen Speicher, waehrend DEVICE
+  den Treiber in den unteren oder konventionellen Speicher laedt.
+  DEVICEHIGH ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  devicehigh=[[Laufwerk][Pfad][Dateiname]] [Optionen]
+             Laufwerk   Der Laufwerksbuchstabe, z.B: C:
+             Pfad       Der zu waehlende Pfad, z.B.: \Beispiel\
+             Dateiname  Der zu ladende Treiber (Dateiname),
+                        z.B. himemx.exe
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Optionen  Die Optionen sind Optionen des Treiberprogramms,
+            nicht Optionen des 'device'-Befehls.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  DEVICEHIGH laedt den durch Laufwerk:\Pfad\Dateiname ausgewaehlten 
+  Treiber in den oberen [ueber 640 KB] Speicher (falls das fehlschlaegt,
+  wird versucht, in den konventionellen Speicher zu laden). Die Optionen
+  sind fuer den Treiber selbst; vgl. auch die Dokumentation zu den
+  Optionen und ihre Verwendung, die mit dem speziellen Treiber geliefert
+  wurde.
+  Da DEVICEHIGH den Treiber in den hohen Speicher laedt, bleibt im unteren
+  oder konventionellen Speicher mehr freier Platz fuer andere Treiber oder
+  Programme uebrig. Damit ein Treiber in den hohen Speicher geladen werden
+  kann, muss zuerst ein Verwalter fuer den hohen Speicherbereich, wie z.B.
+  (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a> oder <a href="../base/jemmex.htm">JEMMEX</a> geladen werden.
+  DEVICEHIGH ist ein interner Befehl, d.h. der Befehl ist in der
+  kernel.sys enthalten. Es wird zur Ausfuehrung des Befehls kein
+  zusaetzlicher Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  In DER CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    DEVICEHIGH=C:\FDOS\DRIVERS\UIDE.SYS /S125 /D:MYDVD
+  BEI EINEM MENUE:
+    23?DEVICEHIGH=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    23?DEVICEHIGH=C:\FDOS\DRIVERS\UIDE.SYS /S125 /D:MYDVD
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/device.htm">device</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

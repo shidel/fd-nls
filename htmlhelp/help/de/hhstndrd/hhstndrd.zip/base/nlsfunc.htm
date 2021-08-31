@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: nlsfunc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: nlsfunc</h1>
+<pre>
+  NLSFUNC fuegt die NLS (National Language Support) Funktionalitaet
+  hinzu (Unterstuetzung fuer die nationale Sprache).
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  NLSFUNC [/Y] [Laufwerk][Pfad]Dateiname
+  NLSFUNC [/?]
+    Laufwerk                   Der Laufwerksbuchstabe, z.B.: C:
+    Pfad                       Der zu waehlende Pfad, z.B.: \Beispiel\
+    Dateiname                  Die zu waehlende Datei, die NLS Information
+                               enthaelt.
+    [Laufwerk][Pfad]Dateiname  Das Laufwerk und der Pfad zu einer 
+                               gueltigen COUNTRY.SYS Datei, die die 
+                               laenderspezifische Information enthaelt.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /Y  Laedt (optional) die YES/NO Tabelle (YES=JA, NO=NEIN)
+  /?  Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Diese Implementation von NLSFUNC ist FreeDOS-spezifisch.
+  Sie arbeitet nicht unter MS-DOS oder irgendeiner anderen DOS Variante.
+  Sie funktioniert auch nicht mit Kernel 2.036!
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    COUNTRY=34,858,C:\FDOS\COUNTRY.SYS
+  IN DER AUTOEXEC.BAT:
+    LH DISPLAY CON=(EGA,858,2)
+    MODE CON CP PREP=((850) C:\FDOS\CPI\EGA.CPX)
+    MODE CON CP PREP=((,437) C:\FDOS\CPI\EGA.CPX)
+    LH NLSFUNC /Y
+  Schalten Sie dann auf die Codepages um, indem Sie CHCP verwenden.
+  Wenn Sie die Codepages nicht wechseln muessen, lassen Sie einfach
+  die MODE-Zeilen weg.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/mode.htm">mode</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eduardo Casino, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

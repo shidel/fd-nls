@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: xdma.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: xdma.sys</h1>
+<pre>
+  XDMA.SYS is a DOS driver for UltraDMA hard-disks.
+  XDMA.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  When FreeDOS is already running, you can load XDMA.SYS later
+  with <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>XDMA.SYS is out of date. There is NO MORE support by the author!
+  You should use <a href="../base/uide.htm">UIDE.SYS</a> instead</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE[HIGH] = [path]XDMA.SYS [/O] [/L] [/Q]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /O   Enables output overlap.
+  /L   Limits DMA to "low memory" below 640K. /L is REQUIRED to use
+       UMBPCI or similar drivers whose upper-memory areas cannot do
+       DMA. If /L is given, the driver must be in LOW memory (I/O
+       command lists use DMA), or driver loading ABORTS! /L makes
+       the driver use its "local buffer" for I/O of data past 640K.
+  /Q   Suppresses the "beep" on output-overlap errors ("quiet" mode).
+  For each switch, a dash may replace the slash, and lower-case letters
+  may be used.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  XDMA.SYS is a DOS driver for UltraDMA hard-disks. It supports normal 
+  "end user" PC mainboards having an Intel, VIA, SiS, ALi, or similar
+  UltraDMA controller set by the BIOS in "Legacy IDE mode". XDMA.SYS
+  does NOT handle Serial-ATA, "Native PCI mode" servers or "add-on"
+  adapter cards made by Promise, SiiG, etc. XDMA.SYS runs normal main-
+  board IDE chips and AVOIDS a need for an "add-on" card!
+  XDMA.SYS handles up to 4 UltraDMA disks of any size, including newer
+  models over 128 gigabytes of storage. 
+  An XMS manager, <a href="../base/himemx.htm">HIMEMX</a> or <a href="../base/jemmex.htm">JEMMEX</a> or similar, and 128K of XMS
+  memory are also required, so XDMA.SYS can allocate a "local buffer".
+</pre>
+<h2>Examples:</h2>
+<pre>
+  DEVICE=C:\FDOS\BIN\XDMA.SYS
+  DEVICEHIGH=C:\FDOS\BIN\XDMA.SYS /O
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+ (<a href="../base/udma.htm">udma.sys</a>)
+ (<a href="../base/udma2.htm">udma2.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

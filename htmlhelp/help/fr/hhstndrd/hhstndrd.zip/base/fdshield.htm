@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : fdshield</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : fdshield</h1>
+<pre>
+  Le bouclier anti-malware de FreeDOS FDSHIELD surveille les sessions
+  DOS et aide … bloquer les activit‚s dangereuses typiques des chevaux
+  de Troie, virus, malware et des erreurs humaines. Ce n'est pas un
+  analyseur de virus comme Clamcan et ne v‚rifie pas les signatures de
+  virus connus, mais surveille seulement les comportements risqu‚s
+  connus.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  FdShield [/v][/t][/T][/x][/X][/b][/B][/w][/W]
+</pre>
+<h2>Options:</h2>
+<pre>
+      Protection de base si le programme est lanc‚ sans options. Arrˆte
+      le systŠme si un programme tente de d‚sactiver certains autres
+      moniteurs antivirus communs, et bloque les effacements
+      potentiellement dangereux bas‚s sur <a href="../cnfigsys/fcbs.htm">FCB</a> avec des jokers dans les
+      extensions du nom de fichier. Si vous utilisez FdShield dans une
+      machine virtuelle, seule DOS dans cette machine virtuelle est
+      stopp‚e, pas le systŠme dans son ensemble.
+  /v  Mode verbeux. Donne des informations additionnelles sur les
+      raisons d'interdiction des actions, et lorsque FdShield arrˆte
+      le systŠme, il attend 20 secondes avant de red‚marrer
+      automatiquement ou fermer la machine virtuelle.
+  /t  Interdit le TSR. Lorsque cela est s‚lectionn‚, Fdshield affichera
+      un message d'arrˆt du systŠme et red‚marrera ou fermera la session
+      si un programme tente de rester r‚sident. Cela peut aider … arrˆter
+      les chevaux de Troie et certains infecteurs de fichiers r‚sidents
+      et les virus multipartites. Les extenseurs de DOS CWSDPMI et RTM
+      sont explicitement autoris‚s … charger dans ce mode. Notez que les
+      virus tendent … devenir r‚sidents sans utiliser les fonctions de
+      DOS pour cela, ce qui leur permet de contourner Fdshield. Cette
+      option a du sens car de nombreux programmes comme <a href="../util/dosfsck.htm">DOSFSCK</a>, BZIP2,
+      UPX, WGET et d'autres viennent d'UNIX et sont port‚s sous DOS par
+      les outils de compilation comme DJGPP et n‚cessitent CWSDPMI.
+  /T  Interdit le TSR. Lorsque cette option est s‚lectionn‚e, FdShield
+      affichera un message d'arrˆt du systŠme et red‚marrera ou fermera
+      la session si un programme tente de rester r‚sident. Cette option
+      fonctionne de maniŠre similaire … l'option /t. Les extenseurs DOS
+      CWSDPMI et RTM ne sont pas autoris‚s … charger dans ce mode. Dans
+      une session DOS OS/2 ou similaire, CWSDPMI n'est de toute fa‡on
+      pas n‚cessaire. Certains autres extenseurs de DOS ne sont pas TSR
+      et fonctionneront donc sans problŠme avec FdShield /T.
+  /x  ProtŠge en ‚criture les fichiers de programmes avec les extensions
+      com, exe et sys. Lorsque vous s‚lectionnez cette option, FdShield
+      empˆche la plupart des tentatives d'‚criture sur les fichiers
+      systŠme, mais permet de cr‚er de nouveaux fichiers de programmes
+      tant qu'ils ‚vitent explicitement d'‚craser les fichiers existants
+      De nombreux outils comme les compilateurs ou les gestionnaires
+      d'archive utilisent d'autres fa‡ons non s–res de cr‚er des
+      fichiers, et seront donc bloqu‚s par FdShield. Vous devriez
+      d‚marrer sans la protection fdShield /x si vous pr‚voyez de
+      compiler ou d'installer des programmes. Cependant, si vous avez la
+      protection /x activ‚e, de nombreux virus ne seront pas capables
+      d'infecter les fichiers de programme.
+  /X  ProtŠge en ‚criture les fichiers systŠme avec les extensions bat,
+      com, exe, et sys. Cette option ne permet aucune cr‚ation de fichier
+      systŠme.
+      Les fichiers batch ne sont pas une cible commune des virus, mais
+      il existe des situations o— vous ne voudrez pas qu'ils soient
+      modifi‚s de toute fa‡on. Ni la protection /x ni celle /X empˆchent
+      l'accŠs aux fichiers programmes bas‚ sur <a href="../util/doslfn.htm">les noms de fichier longs</a>
+      Cela n'affecte que les versions de DOS prenant en charge les noms
+      de fichiers longs.
+  /b  ProtŠge en ‚criture les zones d'amor‡age (BOOT) des disquettes.
+      Cela peut empˆcher les virus de secteur de boot et les virus
+      multipartites de se se diffuser sous DOS. Cependant, cette
+      protection ne fonctionne pas sous OS/2 et les sessions DOS de
+      Win NT. Comme ces secteurs sont g‚n‚ralement seulement ‚crits par
+      des outils comme <a href="../base/format.htm">FORMAT</a>, <a href="../base/sys.htm">SYS</a> et <a href="../base/fdisk.htm">FDISK</a>, /b et /B ne devraient pas
+      ˆtre utilis‚es lors du fonctionnement de ces outils.
+  /B  ProtŠge en ‚criture les zones d'amor‡age des disques durs. Cela
+      peut empˆcher les virus multipartites de se propager aux partitions
+      de disque dur. Cela peut ne pas fonctionner sous les sessions DOS
+      d'OS/2 et de Win NT, mais ceux-ci disposent de protections contre
+      les modifications du secteur d'amor‡age.
+  /w  ProtŠge en ‚criture les disquettes (/w). Les pipes ne fonctionnent
+      pas si le r‚pertoire temporaire est <a href="../command/set.htm">d‚fini</a> sur un disque en
+      lecture seule (si aucun r‚pertoire n'est d‚fini, le dossier
+      courant sera utilis‚). Cette protection ne fonctionne pas dans
+      les sessions DOS d'OS/2 et NT.
+  /W  ProtŠge en ‚criture les disques durs et les autres lecteurs FAT
+      qui ne sont pas des disquettes, tels que les RAMDISK. Si DOS
+      essaye d'‚crire sur un disque "fixe", il peut rester coinc‚ sur
+      une invite qui ne vous laissera que r‚essayer et non annuler la
+      tentative d'‚criture. Si vous utilisez /w et /W en mˆme temps,
+      FdShield donnera l'impression que tous les fichiers sont en
+      lecture seule, ce qui empˆche g‚n‚ralement DOS d'essayer d'‚crire
+      sur le disque. Le mˆme avertissement au sujet des pipes et des
+      sessions DOS avec la protection /w reste valable pour
+      la protection /W.
+  /?  Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Chargez FdShield aussi t“t que possible (aprŠs les logiciels TSR comme
+  les pilotes de clavier et de lecteur de CD-ROM) pour b‚n‚ficier de
+  sa protection puisque toutes les actions avant le chargement de
+  FdShield peuvent endommager votre systŠme. Pour cette raison vous
+  devriez modifier l'ordre d'amor‡age dans le BIOS pour utiliser C: en
+  premier au lieu de A:. De nombreuses nouvelles machines permettent de
+  changer manuellement l'ordre d'amor‡age lors du d‚marrage de
+  l'ordinateur si vous en avez besoin. Comme FdShield n'offre aucune
+  fonction pour ˆtre d‚charg‚ de la m‚moire, vous devez red‚marrer
+  l'ordinateur si certains programmes sont bloqu‚s par ses
+  fonctionnalit‚s. Pour cette raison il est recommand‚ d'ajouter un
+  menu d'amor‡age … des fins diff‚rentes (cf. l'exemple).
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Dans CONFIG.SYS / FDCONFIG.SYS:
+    MENU 0. SystŠme FreeDOS
+    MENU 1. protection antivirus minimale
+    MENU 2. protection moyenne (1.-TSR + protection d'‚criture
+            du secteur d'amor‡age du disque dur)
+    MENU 3. protection moyenne (recommand‚) (2.+ protection en
+            ‚criture des programmes)
+    MENU 4. protection maximale (3.- tous les TSR + protection en
+            ‚criture totale)
+  et dans AUTOEXEC.BAT:
+    IF "%CONFIG%"=="0" echo Le systŠme n'est pas prot‚g‚ par FdShield
+    IF "%CONFIG%"=="1" LH FdShield /v
+    IF "%CONFIG%"=="2" LH FdShield /v /t /B
+    IF "%CONFIG%"=="3" LH FdShield /v /t /B /x
+    IF "%CONFIG%"=="4" LH FdShield /v /T /B /b /X /w /W
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../util/dosfsck.htm">dosfsck</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../cnfigsys/fcbs.htm">fcbs</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../command/set.htm">set</a>
+  <a href="../base/sys.htm">sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2005 Eric Auer, Walt Gregg, mis … jour en 2008 par
+  W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

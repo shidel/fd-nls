@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: diskcomp</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: diskcomp</h1>
+<pre>
+  DISKCOMP compares the contents of two floppy disks, track by track.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  diskcomp [drive [drive]] [/1] [/8] [/4[0]] [/b] [/?]
+           drive  The drive letter for a floppy disk. If only one 
+           drive letter is given, assume the working drive 
+           (if a floppy drive.)  If no drive letters are given, 
+           assume both are the working drive (if a floppy).
+           If both drives are the same, diskcomp will read one 
+           floppy at a time, and you will need to swap floppies.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /1   Compare only the first sides of the disks, even if 
+       double-sided disks.
+  /8   Compare only the first 8 sectors per track.
+  /40  Compare only the first 40 tracks (shortcut: /4).
+  /b   Forces diskcomp to use the BIOS to access the floppy 
+       disk drive. (The BIOS is slower, but might be required 
+       for compatibility on some machines.)
+  /?   Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  This program compares two disks (max 32 MB each) and shows the
+  md5sum digest of the contents. It tells whether disk contents
+  differ (shows a message and sets the <a href="../batch/if.htm#comment">EXITCODE (ERRORLEVEL)</a>
+  appropriately).
+  If you only give one drive, you have to change disks after the
+  first disk is read. If you give no drive option, two disks in
+  the current drive are compared to each other.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  diskcomp A: A:  compares two disks
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/comp.htm">comp</a>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../base/fc.htm">fc</a>
+  <a href="../util/md5sum.htm">md5sum</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

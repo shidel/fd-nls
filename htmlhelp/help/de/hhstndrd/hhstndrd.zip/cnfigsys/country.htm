@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: country</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: country</h1>
+<pre>
+  COUNTRY stellt das internationale Verhalten von DOS ein.
+  COUNTRY ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  country=nnn[,[mmm]][,[[Laufwerk][Pfad][Dateiname]]]
+          Laufwerk   Der Laufwerksbuchstabe, z.B: C:
+          Pfad       Der zu waehlende Pfad, z.B.: \Beispiel\
+          Dateiname  Der Dateiname der Laenderschluesseldatei.
+                     Wenn keiner angegeben wird, wird stattdessen
+                     "COUNTRY.SYS" verwendet. 
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  nnn       Der Laenderschluessel wie in der Tabelle unten beschrieben
+            (in der Regel die internationale Telefonvorwahl; 001=US).
+  mmm       Die Codepage, wie in der Tabelle unten beschrieben. (437 ist 
+            Standard, 850 ist upgedatete Form, 1252 fuer Windows).
+            Wenn keine angegeben wird, wird automatisch eine Codepage
+            gewaehlt.
+
+  Laenderschluessel:
+  In der Tabelle bedeuten:
+
+    * HH eine 24-Stunden-Stunde
+    * hh eine 12-Stunden-Stunde
+    * X  AM und PM werden angehaengt (AM=morgens, PM=abends) 
+
+                                            Format fuer:
+  Ort:             nnn        mmm        Datum       Zeit
+===============================================================
+US                 001      437, 850   mm/dd/yyyy  hh:mm:ss.ssX
+Canadian French    002      863, 850   yyyy-mm-dd  HH:mm:ss,ss
+Latin America      003      850, 437   mm/dd/yyyy  hh:mm:ss.ssX
+Russia             007      866, 437   dd.mm.yyyy  HH:mm:ss,ss
+Netherlands        031      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+Belgium            032      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+France             033      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+Spain              034      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+Hungary            036      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Yugoslavia         038      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Italy              039      850, 437   mm/dd/yyyy  HH.mm.ss,ss
+Switzerland        041      850, 437   mm.dd.yyyy  HH,mm,ss.ss
+Czechoslovakia     042      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+UK                 044      850, 437   dd/mm/yyyy  hh:mm:ss.ssX
+Denmark            045      850, 865   dd-mm-yyyy  HH:mm:ss,ss
+Sweden             046      850, 437   yyyy-mm-dd  HH.mm.ss,ss
+Norway             047      850, 865   mm.dd.yyyy  HH:mm:ss,ss
+Poland             048      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Germany            049      850, 437   dd.mm.yyyy  HH:mm:ss,ss
+Argentina          054      850, 437   dd/mm/yyyy  hh:mm:ss.ssX
+Brazil             055      850, 860   dd/mm/yyyy  HH:mm:ss,ss
+International
+    English        061      850, 437   mm/dd/yyyy  HH:mm:ss.ss
+Portugal           351      850, 860   dd-mm-yyyy  HH:mm:ss,ss
+Finland            358      850, 437   dd.mm.yyyy  HH:mm:ss,ss
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  COUNTRY ermoeglicht/setzt die internationalen Features von DOS, indem
+  es einen Laendercode auswaehlt und (nur mit dem instabilen / Entwick-
+  lungskernel) optional auch eine Codepage und eine Landes-(COUNTRY-)
+  Datei.
+  Der stabile Kernel hingegen verwendet nur den nnn Wert. Fuer volle
+  Unterstuetzung sollten Sie also den instabilen / Entwicklungskernel
+  verwenden. Sie brauchen fuer letzteren auch eine <a href="../base/cntrysys.htm">COUNTRY.SYS</a> Datei, 
+  waehrend der erstere das Dateinamenargument ignoriert und nur Datum/
+  Uhrzeit/Zahlenformate setzt, indem er Werte verwendet, die fuer einige
+  uebliche Laender in den Kernel hineinkompiliert wurden. Er setzt keine
+  Sortierreihenfolge und Gross-/Kleinbuchstabenuebersetzungstabellen.
+  <a href="../base/nlsfunc.htm">NLSFUNC</a> kann nur mit dem instabilen Kernel verwendet werden.
+  COUNTRY ist ein interner Befehl, d.h. der Befehl ist in der kernel.sys
+  enthalten. Es wird zur Ausfuehrung des Befehls kein zusaetzlicher
+  Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\himemx.exe
+    device=c:\fdos\bin\jemm386.exe
+    dos=high,umb
+    country=001,437,c:\fdos\bin\country.sys
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/cntrysys.htm">country.sys</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-development</a>
+  <a href="../base/nlsfunc.htm">nlsfunc</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

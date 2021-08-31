@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: stackshigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: stackshigh</h1>
+<pre>
+  STACKSHIGH adds stacks to handle hardware interrupts.
+  STACKSHIGH is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  stackshigh=nn,mmm
+</pre>
+<h2>Options:</h2>
+<pre>
+  nn   The number of stacks in the range 8-64 and 0.
+  mmm  The size of each stack, in bytes, in the range 32-512.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  This command is not needed on standard installations.
+  STACKSHIGH changes number and size of hardware interrupt stacks
+  available. nn is number of different stacks and mmm is size in bytes
+  of each one.
+  In some cases you can use "stacks=0,0" to use only standard stacks
+  instead of letting DOS allocate extra stacks for hardware interrupts.
+  STACKSHIGH is like STACKS, except it attempts to load into high 
+  memory first (failing that it should load in conventional memory).
+  Note: The order you load devices may have a large impact on amount
+  of free memory available. In general try to load large (in memory
+  usage) programs into high memory first.
+  Important: You should have a high memory manager such as (<a href="../base/himem.htm">HIMEM</a>),
+  <a href="../base/himemx.htm">HIMEMX</a> or <a href="../base/jemmex.htm">JEMMEX</a> installed (prior device=himem.exe or device=himemx.exe
+  in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>) before using this option.
+  STACKSHIGH is a command internal to kernel.sys and needs no other
+  file in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    stackshigh=16,256
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/stacks.htm">stacks</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

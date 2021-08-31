@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: copy</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: copy</h1>
+<pre>
+  COPY kopiert eine oder mehrere Dateien an einen anderen Ort.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  COPY [LW][Pfad]Dateiname [/A | /B]  
+       + [LW][Pfad]Dateiname [/A | /B]
+       [+ [...]] [LW][Pfad]Dateiname [/A | /B] [/V] [/Y | /-Y] [/?]
+       LW         Laufwerk= der Laufwerksbuchstabe, z.B. C:
+       Pfad       Das Verzeichnis, z.B. \example\
+       Dateiname  Der Dateiname, z.B. test.txt
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Quelle  Spezifiziert die zu kopierende(n) Datei(en).
+          Entspricht den ersten [LW][Pfad]Dateiname.
+  /A      Gibt an, dass es sich um eine ASCII Textdatei handelt.
+  /B      Gibt an, dass es sich um eine Binaerdatei handelt.
+  Ziel    Spezifiziert das Verzeichnis und/oder den Dateinamen fuer die
+          neue(n) Datei(en). Entspricht dem letzten 
+          [LW][Pfad]Dateiname.
+  /V      Verifiziert, dass neue Dateien korrekt geschrieben werden.
+  /Y      Unterdrueckt Bestaetigungsabfragen fuer das ueberschreiben 
+          bereits existierender Zieldateien.
+  /-Y     Bewirkt, dass das ueberschreiben bereits existierender
+          Zieldateien bestaetigt werden muss.
+  /?      Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  COPY kopiert keine Verzeichnisse oder Dateien mit 0 (Byte) Laenge.
+  Um diese zu kopieren, muessen Sie <a href="../base/xcopy.htm">XCOPY</a> benutzen.
+  Die COPYCMD Umgebungsvariable kann gesetzt werden, um /Y zum
+  Standard zu machen:
+    <a href="../command/set.htm">SET</a> COPYCMD=/Y
+  Um /Y fuer einen besonderen Kopierbefehl ausser Kraft zu setzen, 
+  benutzen Sie bitte in der Kommandozeile den Befehl copy /-Y.
+  Die COPYCMD-Variable betrifft auch den <a href="../base/xcopy.htm">XCOPY</a>-Befehl.
+  Um Dateien zusammenzufuegen geben Sie eine einzelne Datei als Ziel und
+  mehrere Dateien als Quelle ein. (Benutzen Sie hierzu Wildcards oder
+  das Format Datei1+Datei2+Datei3).
+  Genauere Erlaeuterung der Optionen:
+    QUELLE  Die Quelle besteht aus "Laufwerk" (LW), "Pfad" und "Datei".
+    LW      Laufwerk= der Laufwerksbuchstabe, z.B. C:
+    Pfad    Das Verzeichnis, z.B. \beispiel\
+    Datei   Der Dateiname, z.B. test.txt . Zusammen: C:\beispiel\test.txt
+    ZIEL    Der Name der Zieldatei(en) oder des Zielverzeichnisses.
+            Wenn der Zielverzeichnisname ein * enthaelt, dann wird 
+            dieser Teil mit dem gleichen Teil des Dateinamens ersetzt, 
+            den der Quellname verwendet hat.
+    /A      Kopiert eine ASCII Datei. Wenn diese Option einem Dateinamen
+            in einer Liste von Dateien vorangeht, dann wird ab dieser 
+            Datei als ASCII-Datei kopiert. 
+            z.B.: copy /A ASCI1.txt+ASCI2.txt+ASCI3.txt /B+BIN1.bin ZIEL
+    /B      Kopiert eine Binaerdatei. Dies ist der Standard. Wenn diese 
+            Option einer Datei in einer Liste von Dateien vorangeht,
+            kopiert copy von dieser Datei an als Binaerdatei.
+            z.B.: copy /B BIN1.bin+BIN2.bin+BIN3.bin /A+ASCI1.txt ZIEL
+    /V      Ueberprueft, ob die Zieldateien richtig geschrieben wurden.
+    /Y      Unterdrueckt die Bestaetigung, dass ueberschrieben werden 
+            soll; existierende Dateien mit dem gleichen Namen im 
+            Zielverzeichnis werden ohne Rueckfrage ueberschrieben.
+
+  COPY ist ein interner Befehl, d.h. der Befehl ist in der command.com
+  enthalten. Es wird zur Ausfuehrung des Befehls kein zusaetzlicher Befehl
+  (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  copy c:\command.com a:
+  copy c:\*.exe c:\beispiel
+  copy c:\fdos\bin\edit.* a:\freedos
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../command/set.htm">set</a>
+  <a href="../command/verify.htm">verify</a>
+  <a href="../base/xcopy.htm">xcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

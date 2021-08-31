@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Mise en r‚seau de FreeDOS - Chargement du kernel TCP/IP (pile)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Mise en r‚seau de FreeDOS - Chargement du kernel TCP/IP (pile)</h1>
+<h2><a name="zzz"></a>Vue d'ensemble</h2>
+<pre>
+  Les systŠmes d'exploitations modernes ont leur propre kernel <a href="../network/tcpip.htm">TCP/IP</a>
+  d‚j… int‚gr‚s : les systŠmes Microsoft sont fournis avec "Winsock"
+  depuis Windows 95. Dans GNU/Linux la pile TCP/IP fait partie du noyau
+  Linux. Cependant DOS est fourni sans kernel. Donc aprŠs avoir install‚
+  notre pilote de paquets, nous devons penser au kernel TCP/IP.
+</pre>
+<h2><a name="aaa"></a>Comment cela fonctionne</h2>
+<pre>
+  Le kernel TCP/IP est aussi appel‚ "pile" ou "pile de protocoles", car
+  il consiste en deux couches : IP et TCP. IP s'ex‚cute au-dessus du
+  pilote du mat‚riel et TCP au-dessus d'IP, fournissant une interface
+  aux applications <a href="../network/network.htm">r‚seau</a>. Pour DOS divers types de kernel TCP/IP sont
+  disponibles.
+    (image repr‚sentant le kernel TCP/IP)
+  Comme nous le voyons sur l'image ci-dessus, ils peuvent fonctionner
+  en tant que programmes externes ou bien ils sont d‚j… int‚gr‚s aux
+  applications.
+    * Un kernel TCP/IP externe est typiquement d‚marr‚ par <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>
+      ou par un fichier batch. Il reste r‚sident en m‚moire, pour
+      pouvoir r‚pondre aux requˆtes ping par exemple.
+    * D'autres applications <a href="../network/network.htm">r‚seau</a> sont fournies avec les fonctionnalit‚s
+      de kernel TCP/IP d‚j… int‚gr‚es et ne n‚cessite pas un kernel
+      externe TSR.
+      Une application avec un kernel TCP int‚gr‚ a l'avantage de ne pas
+      avoir besoin d'un autre pilote qui consommerait de la m‚moire DOS
+      pr‚cieuse. D'un autre c“t‚, les fonctionnalit‚s <a href="../network/tcpip.htm">TCP/IP</a> sont
+      limit‚es … celles de l'application <a href="../network/network.htm">r‚seau</a> et ne sont fournies que
+      pendant son fonctionnement.
+</pre>
+<h2><a name="bbb"></a>Configuration n‚cessaire</h2>
+<pre>
+  Chaque kernel TCP/IP doit ˆtre configur‚ avec des informations
+  g‚n‚rales sur le <a href="../network/network.htm">r‚seau</a>, comme les adresses IP, le masque de
+  sous-r‚seau, les serveurs de noms et la passerelle, ou bien il faut
+  lui dire d'obtenir ces informations via un serveur BOOTP ou DHCP.
+</pre>
+<h2><a name="ccc"></a>Exemples</h2>
+<pre>
+  Les exemples de kernels TCP/IP externes pour DOS sont
+    * le kernel TCP gratuit Trumpet <a href="../network/ntcpdrv.htm">NTCPDRV</a>.EXE,
+    * le kernel TCP/IP de <a href="../network/novell.htm">Novell</a> NetWare TCPIP.EXE,
+    * TCPTSR.EXE de Microsoft <a href="../network/msclient.htm">client MS</a> et
+    * ETHDRV.EXE de FTP Software Inc.
+  Les exemples pour les kernels TCP/IP int‚gr‚s aux applications
+  DOS sont :
+    * <a href="../network/wattcp.htm">WatTCP</a>, qui est par exemple
+      d‚j… int‚gr‚ au navigateur web graphique
+      "<a href="../network/tcpip_ap.htm#ccc">Arachne</a>",
+    * le kernel <a href="../network/mtcp.htm">mTCP</a>, ‚crit en 2009,
+    * le kernel <a href="../network/history.htm#bbf">KA9Q</a> qui fait partie de ce programme,
+    * le kernel NCSA <a href="../network/history.htm#bbg">Telnet</a> qui est int‚gr‚ aux applications incluses
+      dans cette suite,
+    * le kernel <a href="../network/history.htm#bbh">CUTCP</a> et
+    * la pile de l'Universit‚ de Minnesota, qui fait partie de "<a href="../network/history.htm#bbi">MINUET</a>".
+  <b>Plus de la moiti‚ des applications DOS r‚seau disponibles utilisent
+  le kernel <a href="../network/wattcp.htm">WatTCP</a></b> d'aprŠs Jeffrey L. Hayes du site d'ordinosaures
+  <b>http://www.oldskool.org (*01)</b> (voyez : <b>ftp://ftp.oldskool.org/pub/
+  tvdog/internet/readme.txt (*02)</b>).
+  Donc la plupart d'entre nous n'auront pas du tout … installer un noyau
+  TCP/IP. Au lieu de cela, nous devons seulement faire attention au
+  fichier de configuration WATTCP.CFG pour ces applications de r‚seau.
+  Le chapitre suivant examine de plus prŠs <a href="../network/wattcp.htm">WatTCP</a> et son successeur
+  <a href="../network/wattcp.htm">Watt-32</a>. Puis nous examinerons <a href="../network/ntcpdrv.htm">NTCPDRV</a> qui est le seul kernel
+  externe libre de disponible. Par la suite nous examinerons briŠvement
+  d'autres kernels TCP/IP.
+    * [<a href="../network/wattcp.htm">WatTCP/Watt-32</a>]
+    * [<a href="../network/ntcpdrv.htm">TCPDRV</a>]/[<a href="ntcpdrv.htm">NTCPDRV</a>]
+    * [<a href="../network/mtcp.htm">mTCP</a>]
+    * [<a href="../network/ot_tcpip.htm">Autres</a>]
+
+  <b>(*01) OK</b>
+  <b>(*02) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Allemagne), modifi‚ en 2010
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Pour plus d'informations, <a href="../network/intro.htm#ddd">voyez ici</a>.
+
+  La permission est accord‚e de copier, distribuer et/ou modifier ce
+  document selon les termes de la licence de documentation libre GNU,
+  version 1.2 ou toute version ult‚rieure publi‚e par la Free Software
+  Foundation.
+  Une copie de la licence est incluse dans la section intitul‚e
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

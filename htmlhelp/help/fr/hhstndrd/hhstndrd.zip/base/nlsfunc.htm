@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : nlsfunc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : nlsfunc</h1>
+<pre>
+  NLSFUNC ajoute la fonctionnalit‚ NLS (Support des Langues Nationales).
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  NLSFUNC [/Y] [lecteur][chemin]nomfichier
+  NLSFUNC [/?]
+    lecteur                 La lettre du lecteur, par exemple C:
+    chemin                  Le r‚pertoire \exemple\
+    nomfichier              Le fichier contenant les informations NLS
+
+    [lecteur][chemin] nomfichier  Lecteur et chemin vers un
+                            fichier valide COUNTRY.SYS contenant
+                            des informations sp‚cifiques aux pays.
+</pre>
+<h2>Options :</h2>
+<pre>
+  /Y                 Charge la table optionnelle OUI/NON.
+  /?                 Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Cette impl‚mentation de NLSFUNC est sp‚cifique … FreeDOS.
+  Elle ne fonctionnera pas avec MS-DOS ou d'autres variantes de DOS.
+  Elle ne fonctionne pas non plus avec le Kernel 2.036!
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    COUNTRY=34,858,C:\FDOS\COUNTRY.SYS
+  DANS AUTOEXEC.BAT:
+    LH DISPLAY CON=(EGA,858,2)
+    MODE CON CP PREP=((850) C:\FDOS\CPI\EGA.CPX)
+    MODE CON CP PREP=((,437) C:\FDOS\CPI\EGA.CPX)
+    LH NLSFUNC /Y
+  Ensuite basculez les pages de code en utilisant CHCP
+  Si vous ne souhaitez pas changer de pages de code, omettez
+  simplement les lignes MODE.
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/mode.htm">mode</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eduardo Casino, mis … jour 2007 en W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Netzwerken unter FreeDOS - NDIS Treiberinstallation</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Netzwerken unter FreeDOS - NDIS Treiberinstallation</h1>
+<h2><a name="zzz"></a>Uebersicht</h2>
+<pre>
+    (Bild Uebersicht ueber die NDIS Architektur)
+  Treiber, die auf der "<a href="../network/network.htm">Netzwerk</a> Driver Interface Specification" (<a href="../network/ndis.htm">NDIS</a>)
+  basieren, sind der Standard in der Windowswelt. Die aktuellste Version
+  ist <a href="../network/ndis.htm">NDIS</a> 6, welches unter Windows Vista verwendet wird. Windows 98
+  verwendete NDIS 5, Windows 95 wurde mit NDIS 3.1 geliefert. Unter DOS
+  haben Sie den Real-Mode Treiber NDIS 2.
+</pre>
+<h2><a name="aaa"></a>Wo man sie findet</h2>
+<pre>
+  Es ist hoechstwahrscheinlich, dass es fuer Ihre <a href="../network/network.htm">Netzwerk</a>karte einen
+  NDIS Treiber gibt. Schauen Sie auf den Installationsmedien Ihrer Karte
+  nach einem Verzeichnis "NDIS2". Falls Sie keinen Treiber finden koen-
+  nen, schauen Sie doch mal auf diese Seite (vgl.: <b>http://drivesnapshot.
+  de/en/makebootdisk.htm (*01)</b>). Die Dateiendung des Treibernamens lautet
+  auf *.DOS, so heisst zum Beispiel der Treiber der <a href="../network/3com.htm">3Com</a> 3C574 PC-Karte
+  "EL3C574.DOS".
+</pre>
+<h2><a name="bbb"></a>Wie sie arbeiten</h2>
+<pre>
+  In der Sprache der NDIS Architektur werden diese Treiber <b>"Media Access
+  Control" (MAC)</b> Treiber genannt.
+  Wie Sie in dem Bild oben sehen koennen, ist der <b>MAC</b> Treiber nur eine
+  Komponente der NDIS Architektur. Laut NDIS 2.1 Dokumentation (vgl.:
+  <b>http://www.ndis.com/faq/ndis201.txt (*02)</b>) scheint NDIS in etwa wie
+  folgt zu funktionieren:
+    * Befehle in der <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> (FreeDOS) oder der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> (andere
+      DOS) laden den Protokollmanagertreiber PROTMAN.DOS, den <b>MAC</b> Treiber
+      und den Protokolltreiber. Dies kann durch Befehlszeilen fuer jeden
+      dieser Treiber oder durch Starten des "Installable File System
+      Helper" Treibers (=installierbarer Dateisystemhelfer Treiber), der
+      durch den Befehl: "DEVICEHIGH=IFSHLP.SYS" gestartet wird und den
+      Protokollmanager, den <b>MAC</b>- und den Protokolltreiber gemaess Ein-
+      traegen in der PROTOCOL.INI startet.
+    * Der Protokollmanager liest die Konfiguration aus der PROTOCOL.INI
+      und macht sie fuer den <b>MAC</b> Treiber und die Protokolltreiber,
+      die nach ihm laden, verfuegbar.
+    * Der <b>MAC</b> Treiber und der Protokolltreiber laden und konfigu-
+      rieren sich gemaess dieser Information selbst. Sie identifizieren
+      sich selbst beim Protokollmanager.
+    * Bevor der <b>MAC</b> Treiber und der Protokolltreiber miteinander
+      kommunizieren koennen, muessen Sie aneinander gebunden werden,
+      damit sie gegeneinander bei ihren "Eintrittspunkten" (Kommuni-
+      kationsports) Zugang haben. Dieser Verbindungsprozess wird vom
+      Protokollmanager auf Basis der Information in der PROTOCOL.INI
+      kontrolliert.
+    * Die Bindesequenz kann von NET.EXE oder NETBIND.COM angesteuert
+      werden (was in der <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> erledigt werden kann). 
+    * Der Protokollmanager (PROTMAN.DOS) startet dann das speicher-
+      residente Programm (TSR = terminate and Stay Resident = beende
+      und bleibe im Speicher resident) PROTMAN.EXE um den Bindebefehl
+      auszufuehren und den korrekten Aufruf der Treiber zu kontrollieren.
+    * Nachdem die Bindung stattgefunden hat, kommunizieren die <b>MAC</b>-
+      und die Protokolltreiber direkt miteinander. Der Protokollmanger
+      ist an diesem Kommunikationsprozess nicht mehr laenger beteiligt,
+      deshalb befreit NETBIND.COM den groessten Teil des zuvor vom
+      Protokollmanager reservierten Arbeitsspeichers.
+  Die Konfiguration von NDIS unter DOS hat sich im Laufe der Zeit mit
+  den verschiedenen Paketversionen geaendert. Einige Hinweise ueber die
+  Unterschiede koennen Sie hier finden (vgl.: <b>http://www.yale.edu/
+  pclt/WINWORLD/NDIS.HTM (*03)</b>). In diesem Dokument ging ich davon aus,
+  dass wir die mit dem <a href="../network/msclient.htm">MS Client</a> 3.0 gelieferten NDIS Dateien verwenden.
+  Da diese Abteilung nur darueber abhandelt, wie man pakettreiberbasie-
+  rende <a href="../network/tcpip.htm">TCP/IP</a> Anwendungen hoch- und mit DOS zum Laufen bekommt, werden
+  wir hier nicht tiefer in Details ueber den <a href="../network/msclient.htm">MS Client</a> eingehen, dies
+  wird bereits in einer anderen Abteilung behandelt.
+</pre>
+<h2><a name="ccc"></a>Zusaetzliche Dateien erforderlich</h2>
+<pre>
+  Wie koennen wir jetzt den NDIS 2 <b>MAC</b> Treiber, der mit unserer <a href="../network/network.htm">Netzwerk</a>-
+  schnittstellenkarte geliefert wurde, fuer <a href="../network/tcpip.htm">TCP/IP</a> Netzwerken verwenden?
+  Wie wir aus obiger Beschreibung gelernt haben, benoetigen wir einige zu-
+  saetzliche Dateien. Diese sind:
+    * Der Protokollmanager ("PROTMAN.DOS" und "PROTMAN.EXE")
+    * Das Binde-Utility ("NETBIND.COM")
+  Diese Dateien sind Teil des <a href="../network/msclient.htm">MS Client</a> 3.0, der hier heruntergeladen
+  werden kann:  
+    <b>ftp://ftp.microsoft.com/bussys/Clients/MSCLIENT/DSK3-1.EXE (*04)</b>
+    <b>ftp://ftp.microsoft.com/bussys/Clients/MSCLIENT/DSK3-2.EXE (*05)</b>
+  Die drei erwaehnten Teile sind Teil der "DSK3-1.EXE". Verwenden Sie das
+  Utility "EXPAND.EXE", das mit der ersten Diskette mitgeliefert wird, um
+  diese Dateien zu entpacken.
+    * Kopieren Sie DSK3-1.EXE in ein Verzeichnis wie z.B.: C:\MSCLIENT1.
+      Vermeiden Sie lange Pfade, wie Sie sie vielleicht unter Windows ver-
+      wenden. 16 Bit Software laesst sich nicht ausfuehren, wenn der Pfad
+      zu lang ist.
+    * Tippen Sie DSK3-1.EXE, um ihren Inhalt zu entpacken.
+    * Entkomprimieren Sie PROTMAN.DO_ und PROTMAN.EX_ wie folgt:
+        expand -r protman.do_
+        expand -r protman.ex_
+    * NETBIND.COM ist bereits entpackt. Sie koennen jetzt diese drei
+      Dateien nehmen und verwenden.
+  Lesen Sie die LICENSE.TXT Datei, bevor Sie damit beginnen, die Dateien
+  zu verwenden. Die Software ist fuer eigene Zwecke frei. Weder Vertrieb
+  noch eine Modifikation sind erlaubt.
+</pre>
+<h2><a name="ddd"></a>Der Konverter/Shim</h2>
+<pre>
+  Das letzte Stueck, das wir noch brauchen, ist der <b>"Packet Driver to
+  NDIS Konverter"</b>. Besorgen Sie sich den oft verwendeten "DIS_PKT9.DOS"
+  (Version 9, vgl.: <b>ftp://ftp.cc.umanitoba.ca/software/pc_network/
+  dis_pkt9.zip (*06)</b>) oder alternativ den etwas neueren (Version 11)
+  "DIS_PKT.DOS"(vgl.: <b>http://danlan.com/pdr_shim/odipkt/odipkt.zip
+  (*07)</b>). Im Gebrauch und der Bedienung bestehen keine Unterschiede.
+  Beide wurden von Prof. Joe R. Doupnik (Utah State University) und Dan
+  Lanciani (Harvard University) geschrieben. Das Urheberrecht wird von der
+  nunmehr historischen FTP Software, Inc. gehalten, die gluecklicherweise
+  diesen Treiber als Public Domain, frei fuer den Gebrauch, den Vertrieb,
+  Modifikation und mit Quellcode veroeffentlicht hat.
+</pre>
+<h2><a name="eee"></a>Konfiguration der NDIS Treiber</h2>
+<pre>
+  Wie ich bereits erwaehnte, ist dies nur eine minimale <a href="../network/install.htm">Installation</a> des
+  <a href="../network/msclient.htm">MS Client</a> 3.0. Der einzige Grund dafuer ist, pakettreiberbasierende
+  <a href="../network/tcpip.htm">TCP/IP</a> Anwendungen zu verwenden. Dazu kopieren Sie die vier Dateien:
+      PROTMAN.DOS
+      PROTMAN.EXE
+      NETBIND.COM
+      DIS_PKT.DOS
+  in ein Verzeichnis, zum Beispiel:
+    C:\NET
+  Kopieren Sie auch den <b>MAC Treiber</b> Ihrer <a href="../network/network.htm">Netzwerk</a>schnittstellenkarte,
+  z.B.:
+      EL3C574.DOS
+  in dieses Verzeichnis.
+  Jetzt muessen wir die Konfigurationsdatei erstellen, die fuer die NDIS
+  Architektur benoetigt wird. Erzeugen Sie eine Datei mit dem Namen
+  PROTOCOL.INI innerhalb des C:\NET Verzeichnisses. Fuer unsere minimale
+  Konfiguration benoetigen wir nur folgende Zeilen:
+      --- PROTOCOL.INI ---
+      [protman]
+      DriverName=PROTMAN$
+      [EL3C574]
+      DriverName=EL3C574$
+      [PKTDRV]
+      drivername=PKTDRV$
+      bindings=EL3C574
+      intvec=0x60
+      chainvec=0x68
+  <b>Erklaerung der Parameter:</b>
+  Wie andere *.ini Dateien ist die PROTOCOL.INI in Sektionsnamen, die in
+  eckigen Klammern stehen, und in Beschreibungsnamen mit zugeordneten
+  Werten aufgeteilt.
+      [protman]
+      DriverName=PROTMAN$
+  Dieser Abschnitt [protman] definiert den Protokollmanager. Wie oben
+  beschrieben, wird der Protokollmanager als Treiber PROTMAN.DOS geladen,
+  der hier "PROTMAN$" genannt wird. Der Abschnitt und die dazugehoerige
+  Zeile sind zwingend vorgeschrieben.
+    [EL3C574]
+    DriverName=EL3C574$
+  Der Abschnitt [EL3C574]definiert die <a href="../network/network.htm">Netzwerk</a>schnittstellenkarte. Ueb-
+  licherweise wird dieser Abschnitt nach der Karte selbst benannt - das
+  ist praktisch, wenn Sie mehr als eine <a href="../network/network.htm">Netzwerk</a>karte eingebaut haben
+  und verschiedene Abschnitte fuer verschiedene Karten verwenden.
+  Deshalb ist der Abschnittsname hier der erste zu veraendernde Wert. Es
+  ist keine schlechte Idee, ihn nach Ihrer eigenen <a href="../network/network.htm">Netzwerk</a>karte zu be-
+  nennen. Aber Sie koennen ihn natuerlich genausogut "Netzwerkkarte",
+  "NIC" oder auch "baked_beans" benennen, solange Sie auch alle Zeilen in
+  der PROTOCOL.INI, die sich auf diesen Abschnitt beziehen, entsprechend
+  umbenennen.
+  Die naechste Zeile dieses Abschnitts ist "DriverName=EL3C574$". Sie
+  definiert den Treiber fuer die <a href="../network/network.htm">Netzwerk</a>schnittstellenkarte. In unserem
+  Beispiel ist das EL3C574.DOS, der hier "EL3C574$" genannt wird. In der
+  Regel werden Sie eine andere NIC als die im Beispiel erwaehnte Karte
+  verwenden. Sie werden deshalb diese Zeile aendern muessen. Sie sollten
+  den richtigen Namen des Treibers in einer Textdatei namens "PROTOCOL.
+  INI" finden, die als Teil der NDIS-Treiber Dateien mit Ihrer Karte mit-
+  geliefert wird.
+  Sie koennen in diesem Abschnitt mehrere Zeilen einfuegen, dadurch
+  koennen Sie spezielle Einstellungen Ihrer <a href="../network/network.htm">Netzwerk</a>karte definieren.
+  Weitere Informationen finden Sie dazu in der "PROTOCOL.INI", die mit
+  Ihren NDIS-Treibern geliefert wurden. Aber in vielen Faellen sollte die
+  Zeile mit dem Treibernamen ausreichen.
+    [PKTDRV]
+    drivername=PKTDRV$
+    bindings=EL3C574
+    intvec=0x60
+    chainvec=0x68
+  Der naechste Abschnitt [PKTDRV] definiert unseren Pakettreiber-zu-NDIS-
+  Konverter, der "DIS_PKT.DOS" oder "DIS_PKT9.DOS" heisst. Beide werden
+  ueber den Namen "PKTDRV$" aufgerufen.
+  Es ist wichtig, dass der Konverter sich an den Treiber der <a href="../network/network.htm">Netzwerk</a>karte
+  bindet. Das geschieht durch die naechste Zeile "bindings=EL3C574". Bitte
+  beachten Sie, dass dieser Name <b>kein</b> "$" Zeichen beinhaltet - er
+  bezieht sich auf den <b>Abschnittsnamen</b>, der den Treiber definiert, nicht
+  auf den Treiber selbst. Wenn Sie also diesen Abschnitt "[baked_beans]"
+  wie oben vorgeschlagen haben, muessten Sie hier
+  "bindings=baked_beans" schreiben ;-).
+  Die Zeile "intvec" benennt den Softwareinterrupteinsprung, der von der
+  Pakettreiberschnittstelle verwendet wird. Wie bereits erwaehnt, sollte
+  dies ueblicherweise der Hexadezimalwert 0x60 sein.
+  Die Zeile "chainvec" definiert ebenfalls einen verfuegbaren Software-
+  interrupt. Ihre Funktion ist fuer mich immer noch mysterioes. Lt.
+  dem Erfinder der Pakettreiber (vgl.: <b>http://groups.google.de/group/
+  comp.protocols.tcp-ip.ibmpc/msg/17b6041f7a3cde7c?dmode=source (*08)</b>),
+  FTP, kann ein "chain vector interrupt" die Ausfuehrgeschwindigkeit und
+  Zuverlaessigkeit verbessern. Benutzer meldeten "eine 10fache Steigerung
+  der Geschwindigkeit" (vgl.: <b>http://groups.google.de/group/comp.
+  protocols.nfs/msg/9b0c2e0d6aa47b32?dmode=source (*09)</b>).
+  Um EMM386-Fehler zu vermeiden empfehlen einige, einen Interrupt zu
+  setzen, der den Vektor um Dezimal 8 erhoeht. (vgl.: <b>http://groups.
+  google.de/group/bit.listserv.banyan-l/msg/aa961def5901f506?dmode=source
+  (*10)</b>). Wenn also der <b>intvec</b> 0x60 (was dezimal 96 bedeutet)
+  ist, sollte der <b>chainvec</b> dezimal 104 (96+8) sein, was hexadezimal
+  0x68 ist. Das wird auch von einem der Autoren von DIS_PKT.DOS, Dan
+  Lanciani, so beschrieben. (vgl.: <b>http://groups.google.de/group/comp.
+  protocols.tcp-ip.ibmpc/msg/64f2b6060ff2b438?dmode=source (*11)</b>).
+  Bitte informieren Sie mich, wenn Sie mehr darueber wissen.
+  Das sind alle Einstellungen in der PROTOCOL.INI, die wir fuer unsere
+  Zwecke benoetigen. Ein letzter Hinweis: Wenn Sie beabsichtigen, einige
+  dieser Werte bei jedem Neustart, wie zum Beispiel ueber ein DOS Boot-
+  menue, zu veraendern, koennte Horst Schaeffer's Freeware "Inifile" fuer
+  Sie nuetzlich sein (vgl.: <b>http://www.horstmuc.de/wbat32.htm (*12)</b>).
+</pre>
+<h2><a name="fff"></a>Installation</h2>
+<pre>
+  Die letzte Sache, die jetzt noch zu erledigen ist, ist die Treiber
+  beim Booten zu laden. Aendern Sie deshalb Ihre Systemdateien, damit
+  sie folgende Zeilen enthalten:
+    --- <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> (FreeDOS) ---
+    --- or <a href="../cnfigsys/index.htm">CONFIG.SYS</a> (MS DOS/anderes DOS) ---
+    DEVICEHIGH=C:\NET\PROTMAN.DOS /I:C:\NET
+    DEVICEHIGH=C:\NET\EL3C574.DOS
+    DEVICEHIGH=C:\NET\DIS_PKT.DOS
+  Der "/I" Parameter teilt dem Protokollmanager die Lage der PROTOCOL.INI
+  mit. Das ist nicht notwendig, wenn beide im gleichen Verzeichnis liegen.
+    --- <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ---
+    C:\NET\NETBIND.COM
+  Bitte beachten Sie, dass NETBIND.COM nicht hochgeladen werden kann und
+  direkt von der <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> aus aufgerufen werden sollte. Wenn Sie ver-
+  suchen, ihn wie einen Treiber zu laden, wird er mit der Meldung "run-
+  time error R6009 - not enough space for environment" abbrechen.
+</pre>
+<h2><a name="ggg"></a>Neustart (reboot)</h2>
+<pre>
+  So, das wars.
+  Das Beste was Sie jetzt tun koennen, ist, das System neu zu starten und
+  eine einfache <a href="../network/tcpip.htm">TCP/IP</a> Anwendung wie ping zu verwenden, um zu testen, ob
+  alles funktioniert.
+    (Bild: Bootmeldungen von NDIS)
+
+  <b>(*01) OK</b>
+  <b>(*02) https://web.archive.org/web/20030327055531/http://
+        www.ndis.com/faq/</b>
+  <b>(*03) https://web.archive.org/web/20100901143311/http://www.yale.
+        edu/pclt/WINWORLD/NDIS.HTM</b>
+  <b>(*04) https://www.virtualbox.org/wiki/Sharing_files_with_DOS
+        und: https://archive.org/download/ftp.microsoft.com/ftp.microsoft.
+        com.zip/ftp.microsoft.com%2Fbussys%2FClients%2FMSCLIENT%2FDSK3-1.
+        EXE</b>
+  <b>(*05) https://www.virtualbox.org/wiki/Sharing_files_with_DOS
+        und: https://archive.org/download/ftp.microsoft.com/ftp.microsoft.
+        com.zip/ftp.microsoft.com%2Fbussys%2FClients%2FMSCLIENT%2FDSK3-2.
+        EXE
+        und: http://download.amd.com/techdownloads/wfw31.zip
+        und: https://archive.org/download/ftp.microsoft.com/ftp.microsoft.
+        com.zip/ftp.microsoft.com%2FSoftlib%2FMSLFILES%2FWG1049.EXE
+        und: https://archive.org/download/ftp.microsoft.com/ftp.microsoft.
+        com.zip/ftp.microsoft.com%2FSoftlib%2FMSLFILES%2FNETSHAR.EXE
+        und: https://jeffpar.github.io/kbarchive/kb/121/Q121086/
+        und: https://jeffpar.github.io/kbarchive/kb/128/Q128800/</b>
+  <b>(*06) OK</b>
+  <b>(*07) https://web.archive.org/web/20110722171549/http://
+        www.danlan.com/</b>
+  <b>(*08) https://groups.google.com/forum/#!topic/comp.os.ms-windows.
+        networking.tcp-ip/Ekxg5Y5pP0g</b>
+  <b>(*09) https://groups.google.com/forum/#!original/comp.protocols.
+        nfs/Xe1WnbPu0og/Mnukag0uDJsJ</b>
+  <b>(*10) https://groups.google.com/forum/#!original/bit.listserv.
+        banyan-l/v6HiU41jovQ/BvUBWe8dlqoJ</b>
+  <b>(*11) https://groups.google.com/forum/#!original/comp.protocols
+        .tcp-ip.ibmpc/-/OLTyDwa28mQJ</b>
+  <b>(*12) https://www.horstmuc.de/div.htm#inifile</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), 2011 und 2020
+  an die FreeDOS-Hilfe angepasst von W.Spiegl.</b>
+  Weitergehende Informationen <a href="../network/intro.htm#ddd">finden Sie hier</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

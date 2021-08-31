@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: modecon</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: modecon</h1>
+<pre>
+  MODECON (Befehl: MODE) konfiguriert und stellt den Zustand fuer
+  verschiedene Hardwaregeraete ein und vieles mehr. <b>MODECON ist nicht
+  mehr in Verwendung. Bitte verwenden Sie stattdessen <a href="../base/mode.htm">MODE</a></b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  mode [Geraet][Optionen]
+    oder
+  mode [Bildschirm-Modus]
+         CON[:]  Konsole. Dies steuert den Display-Treiber, der vorher
+                 installiert werden muss. Damit koennen Sie die Codeseite
+                 des Bildschirmes einstellen. Dies ist hilfreich, weil
+                 jede Codeseite verschiedene Zeichen anzeigen kann. Fuer
+                 weitere Informationen ueber Codeseiten sehen sie im 
+                 <a href="../base/cpidos.htm">CODEPAGE-INFORMATIONSPAKET</a>.
+         LPT[:]  Parallele Anschluesse
+         COM[:]  Serielle Anschluesse
+         PARK    Nicht implementiert in der FreeDOS Version.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  MODE [Geraet]  [/STA[TUS]]   Zeigt den Status eines oder aller Geraete.
+  MODE LPTn[:] Spalten[,[Zeilen][,Wiederholung]]
+  MODE LPTn[:] [COLS=...] [LINES=...] [RETRY=...]
+                              Spalten (cpi), 6 oder 8 Zeilen pro Zoll
+                              (lpi) p fuer unendliche oder n fuer keine
+                              Wiederholung.
+  MODE LPTn[:]=[COMn[:]|NUL]  Druckerumleitung an serielle Schnittstelle
+                              oder NUL Geraet.
+  MODE COMn[:] Baud,Paritaet,Daten-,Stop-Bits,Wiederholung
+  MODE COMn[:] [BAUD[HARD]=...] [PARITY=...] [DATA=...] [STOP=...]
+               [RETRY=...]    Leere Werte sind erlaubt.
+                              BAUD kann bis auf das B gekuerzt werden.
+                              Paritaet kann ein Anfangsbuchstabe der
+                              Woerter (odd, even, none, space, mark) sein
+                              fuer ungerade, gerade, kein, logisch 0 oder
+                              logisch 1.
+                              Daten-Bits und Stop-Bits liegen im Bereich
+                              5 bis 8 bzw. 1 bis 2.
+                              RETRY Option wird zur Zeit ignoriert!
+                              Geplant: Retry b/e/r -> busy/error/ready
+                              wenn beschaeftigt, p/n unendlich/nicht
+                              wiederholen.
+  MODE CON[:] [CP|CODEPAGE] [/STA[TUS]]
+                              Zeigt den Status von CON (Konsole)
+                              FreeDOS DISPLAY muss vorher geladen werden.
+  MODE CON[:] [CP|CODEPAGE] REF[RESH]
+                              Aktualisiert den aktiven Zeichensatz.
+                              FreeDOS DISPLAY muss geladen sein.
+  MODE CON[:] [CP|CODEPAGE] PREP[ARE]=((Zeichensatzzahl) Codeseiten-Datei)
+                              FreeDOS DISPLAY muss geladen sein. Verwenden
+                              Sie PREP=((,cp2,cp3,cp5)...) zur
+                              Vorbereitung von Zeichensaetzen in anderen
+                              Puffern.
+  MODE CON[:] [CP|CODEPAGE] SEL[ECT]=Zeichensatzzahl
+                              FreeDOS DISPLAY muss geladen sein.
+  MODE CON[:] [NUMLOCK|CAPSLOCK|SCROLLLOCK|SWITCHAR]=Wert
+                              Wert kann + oder - sein fuer Feststelltasten
+                              beziehungsweise ein Zeichen fuer SWITCHAR.
+  MODE CON[:] [COLS=...] [LINES=...]
+                              Moegliche Werte sind abhaengig von der
+                              Hardware.
+  MODE CON[:] [RATE=...] [DELAY=...]
+                              Standardmaessig betraegt die Wiederholungs-
+                              rate 20 und der Verzoegerungswert der
+                              Tastatur 1. Die Rate im Bereich von 1 bis 32
+                              entspricht ungefaehr 2 bis 30 Zeichen pro
+                              Sekunde. Die Verzoegerungsangabe im Bereich
+                              von 1 bis 4 erfolgt in Viertelsekunden-
+                              Einheiten.
+   MODE [40|80|BW40|BW80|CO40|CO80|MONO][,Zahl]
+                              Feste Anzeigemodi des Bildschirmes. Zahlen
+                              koennen 25, 28, 43 oder 50 sein. Werte von
+                              8, 14 oder 16 werden nicht als Zeilenzahl
+                              sondern als Schriftgroesse interpretiert.
+  MODE [CO40|CO80|...],[R|L][,T]
+                              Dies sind die flexiblen Bildschirm-Modi.
+                              Die Werte fuer die Spalten sind 40, 80, 132
+                              und 25, 28, 30, 34, 43, 50, 60 fuer Zeilen.
+                              Verwenden Sie 8, 14 oder 16 als Zeilenwert,
+                              wenn Sie nur die Schriftart aendern wollen.
+                              Die Anzeige auf CGA-Schirmen links/rechts
+                              verschieben, T interaktiv.
+  /?                          Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  MODECON ist nicht mehr in Verwendung. 
+  Bitte verwenden Sie stattdessen <a href="../base/mode.htm">MODE</a>.
+</pre>
+<h2>Beispiel:</h2>
+<pre>  - keines -</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/graftabl.htm">graftabl</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keyb.htm">keyb</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/listxdef.htm">listxdef</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/nlsfunc.htm">nlsfunc</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-2004 Aitor SANTAMARIA MERINO, Henrique PERON,
+  aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

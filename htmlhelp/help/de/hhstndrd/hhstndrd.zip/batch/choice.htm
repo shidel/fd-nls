@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: choice, _choice</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: choice, _choice</h1>
+<pre>
+  CHOICE / _CHOICE unterbricht die Arbeit und wartet, bis der Benutzer
+  eine von mehreren vorgegebenen gueltigen Optionen (Auswahlmoeglich-
+  keiten) ausgewaehlt hat. Es gibt einen Errorlevel abhaengig von der
+  Auswahl ab, der mit <a href="../batch/if.htm">"IF ERRORLEVEL"</a> abgefragt werden kann.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  CHOICE [ /B ] [ /C[:]choices ] [ /N ] [ /S ] [ /T[:]c,nn ] [ Text ]
+         [/?]
+  _CHOICE [ /B ] [ /C[:]choices ] [ /N ] [ /S ] [ /T[:]c,nn ] [ Text ]
+          [/?]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /B         Akustische Warnung bei Eingabeaufforderung
+  /C[:]      Auswahlmoeglichkeiten: Legt zulaessige Tasten fest.
+             Standardwert: yn (yes/no), bzw. jn (ja/nein) in der deutschen
+             Version, falls /C nicht angegeben wurde; es kann aber auch
+             0 - 9 oder A - Z verwendet werden.
+  /N         Auswahlmoeglichkeiten und ? am Ende nicht anzeigen
+  /S         Gross- und Kleinschreibung beruecksichtigen.
+  /T[:]c,nn  Automatisch Taste c nach nn Sekunden auswaehlen.
+             c muss zu den mit der Option /C angegebenen Tasten gehoeren;
+             Der Wert fuer nn liegt zwischen 0 und 99. Bei 0 ist die
+             Wartezeit beliebig lang.
+  Text       Text, der als Eingabeaufforderung angezeigt wird
+             (Standard=nichts).
+  /?         Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  CHOICE zeigt Meldungen gemaess der Datei %NLSPATH%\CHOICE.%LANG% an,
+  wobei die Umgebungsvariable LANG (gesetzt mit <a href="../batch/set.htm">SET</a> in der
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>) das Kuerzel der
+  Sprache enthaelt und NLSPATH den Pfad zu den nationalen Sprachdateien
+  enthaelt.
+  _CHOICE enthaelt fest einkompilierte, englischsprachige Texte.
+  CHOICE ist kein interner Befehl, d.h. es wird zur Ausfuehrung eine
+  Datei choice benoetigt.
+  CHOICE unterstuetzt NLS (national language support - nationale Sprach-
+  unterstuetzung).
+  CHOICE hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    0    Abbruch
+    ...  Der ERRORLEVEL ist auf den Offset gesetzt, den der
+         Tastaturbenutzer bei choices drueckt.
+    255  irgendein Fehler
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN EINER BATCH-DATEI:
+   @ECHO 1 = Tue dies
+   @ECHO 2 = Tue das
+   @ECHO 3 = Tue jenes
+   @ECHO 4 = Tue nichts
+   @choice /B /C:1234 /N /S Was wollen Sie tun?
+   if errorlevel 4 goto TUENICHTS
+   if errorlevel 3 goto TUEJENES
+   if errorlevel 2 goto TUEDAS
+   if errorlevel 1 goto TUEDIES
+   :TUEDIES
+   deine TUEDIES-Befehle
+   goto EXIT
+   :TUEDAS
+   deine TUEDAS-Befehle
+   goto EXIT
+   :TUEJENES
+   deine TUEJENES-Befehle
+   goto EXIT
+   :TUENICHTS
+   deine TUENICHTS-Befehle
+   goto EXIT
+   :EXIT
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">Batch-Dateien</a>
+  <a href="../batch/if.htm">if</a>
+  <a href="../batch/goto.htm">goto</a>
+  <a href="../batch/pause.htm">pause</a>
+  <a href="../batch/set.htm">set</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1994-2003 Jim Hall, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

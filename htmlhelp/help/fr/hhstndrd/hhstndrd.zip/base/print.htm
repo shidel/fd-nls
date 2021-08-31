@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : print</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : print</h1>
+<pre>
+  PRINT imprime un fichier en arriŠre-plan alors que vous ex‚cutez
+  d'autres commandes DOS.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+   print [options] [[lecteur:][chemin]fichier]
+         [[lecteur:][chemin]fichier] [...]
+           lecteur:chemin\fichier  Le fichier que vous voulez imprimer.
+</pre>
+<h2>Options :</h2>
+<pre>
+  /D:p‚riph  Sp‚cifie le nom du p‚riph‚rique sur laquelle l'impression
+             aura lieu. Si l'option est omise, Print utilisera le
+             p‚riph‚rique LPT: par d‚faut.
+  /B:taille  D‚finit la taille du tampon, en octets, entre 512 et 16384.
+             La valeur par d‚faut est 512.
+  /U:ticks   Le nombre de ticks d'horloge, entre 1 et 255, que Print doit
+             attendre pour que l'imprimante devienne disponible avant
+             d'imprimer le travail.
+  /M:ticks   Le nombre maximal de ticks pour envoyer un seul caractŠre …
+             l'imprimante, compris entre 1 et 255.
+  /S:ticks   Le nombre de ticks d'horloge, compris entre 1 et 255, pour
+             le processus de spouleur d'arriŠre-plan. La valeur par
+             d‚faut est 2.
+             De grands nombres vont acc‚l‚rer l'impression mais
+             ralentiront les autres programmes DOS.
+  /Q:nn      Le nombre de fichiers qui seront autoris‚s dans la file
+             d'attente d'impression, entre 1 et 32. La valeur par
+             d‚faut est 10.
+  /T         EnlŠve tous les fichiers dans la file d'attente
+             d'impression. Arrˆte le travail d'impression en cours.
+  /C         Annule des travaux dans la file d'attente d'impression.
+             Si cette option est utilis‚e avec une liste de noms de
+             fichier, seuls ces fichiers sont enlev‚s de la file
+             d'attente. Si l'option est utilis‚e seule, tous les travaux
+             sont annul‚s (mais le travail en cours n'est pas annul‚.)
+  /P         Ajoute un fichier … la file d'attente d'impression. Si
+             cette option pr‚cŠde une liste de fichiers, seuls ces
+             fichiers seront imprim‚s. Vous pouvez utiliser /P et /C
+             sur la mˆme ligne de commande.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Si aucune option n'est donn‚e … PRINT mais seulement des fichiers, /P
+  est suppos‚. Si aucune option ni fichier n'est donn‚, print affichera
+  le contenu de la file d'attente d'impression.
+  Ce PRINT ici prend seulement /1 /2 /3 en tant qu'options ‚quivalentes …
+  "D:lpt1" etc. ou un nom de fichier pour imprimer un fichier. Veuillez
+  utiliser l'outil libre  <a href="../base/printq.htm">PRINTQ</a> pour "print fichier", "print /t"
+  (effacer la file d'attente y compris le travail actuel), "print /c"
+  (nettoyer la file d'attente) et "print /p fichier" (ajouter le fichier
+  … la file d'attente).
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  print c:\foo.txt c:\test.txt
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/printer.htm">printer.sys</a>
+  <a href="../base/printq.htm">printq</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998-2003 Jim Hall, mis … jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

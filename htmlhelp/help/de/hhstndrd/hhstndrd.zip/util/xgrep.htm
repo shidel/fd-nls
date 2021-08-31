@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: xgrep</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: xgrep</h1>
+<pre>
+  XGREP ist ein Programm fuer die Textsuche in Dateien aehnlich wie das
+  UNIX-Dienstprogramm GREP. Sie koennen mit XGREP folgendes tun:
+    - Anzeige der Zeilen in einer Datei, die eine bestimmtes Wort, Satz
+      oder Muster enthalten;
+    - zaehlen der Zeilen, in denen ein bestimmtes Muster auftritt, oder
+      erzeugen einer Liste der Dateien zu einem bestimmten Thema.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  xgrep [-chlnsvyorx] Ausdruck [Dateien]
+  xgrep [/chlnsvyorx] Ausdruck [Dateien]
+        Ausdruck    ist das zu suchende Muster, das auch Klassen
+                    enthalten kann.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  -c  Nur Zahl der gefunden Zeilen ausgeben.
+  -h  Keine Dateinamen.
+  -l  Nur Dateinamen .
+  -n  Zeilenzahl mit ausgeben.
+  -o  Fehler auf Standardausgabe; Fehlermeldungen werden auf der
+      Standardausgabe angezeigt.
+  -r  Rekursive Suche in Unterverzeichnisse - sucht nach Dateien, nicht
+      nur im angegebenen Verzeichnis, sondern auch in allen
+      Unterverzeichnissen.
+  -s  Keine Fehlermeldung ueber unzugaenglichen Dateien.
+  -v  Nicht-uebereinstimmenden Zeilen anzeigen - "invertiert" das Ergebnis
+      der Suche.
+  -x  Keine Magie: alle Operatoren benoetigen die Maskierung mit '\'. Die
+      Option -x bewirkt, dass die gewoehnlichen Sonderzeichen:
+        . [ * + ? ^ $
+      buchstabengetreu analysiert werden. Zum Beispiel sind die folgenden
+      Befehle aequivalent:
+        xgrep    "p\[0] \* 3" test.c
+        xgrep -x "p[0] * 3"   test.c
+      Alle regulaeren Ausdruck sind noch zugaenglich, aber davor muss ein
+      ' \' (zurueckgelehnter Schraegstrich) stehen.
+  -y  Suche ist nicht von Gross-, Kleinschreibung abhaengig.
+  Zwei weitere Optionen stehen als Alternative fuer Aliasse zur
+  Verfuegung:
+  -d  Ist ein Alias fuer -r.
+  -i  Ist ein Alias fuer -y.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Wie GREP funktioniert XGREP am besten bei reinen Textdateien: die Art
+  von Dateien, die keine Binaerdaten oder ASCII-Steuerzeichen enthalten
+  und die sich in Zeilen oder Abschnitte teilen lassen mit einem '\n'
+  (newline).
+  XGREP unterstuetzt Textdateien im UNIX (LF) und DOS (CR, LF) Format.
+  In XGREP kann : (Doppelpunkt) fuer vordefinierte Klassen verwendet
+  werden. Dies sind die folgenden zwoelf vordefinierte Klassen zusammen
+  mit ihren Definitionen:
+    :a  Alpha  alphabetisch       [A-Za-z]       =Bereich: 65-90,97-122
+    :c  Cntrl  Steuerungs-Zeichen                =Bereich: 0-31127
+    :a  Alpha  Alphabetisch       [A-Za-z]       =Bereich: 65-90,97-122
+    :d  Digit  Ziffern            [0-9]          =Bereich: 48-57
+    :g  Graph  Grafikzeichen      [!-~]          =Bereich: 33-126
+    :l  Lower  Kleinbuchstaben    [a-z]          =Bereich: 97-122
+    :n  Alnum  Alphanumerisch     [0-9A-Za-z]    =Bereich: 48-57,65-90,
+                                                           97-122
+    :p  Punct  Satzzeichen        [!-/:-@[-`{-~] =Bereich: 33-47,58-64,
+                                                           91-96,123-126
+    :s  Space  Leerzeichen                       =Bereich: 9-13,32
+    :t  Print  Druckbare Zeichen  [ -~]          =Bereich: 32-126
+    :u  Upper  Grossbuchstaben    [A-Z]          =Bereich: 65-90
+    :x  Xdigit Hexadezimalziffern [0-9A-Fa-f]    =Bereich: 48-57,65-70,
+    :x  Xdigit Hexziffern         [0-9A-Fa-f]    =Bereich: 48-57,65-70,
+                                                           97-102
+    :z  ASCII                                    =Bereich: 0-127
+
+  Zeichen um den Kontext anzugeben:
+    ^    Zeilenanfang
+    $    Zeilenende
+    .    Ein Zeichen
+    []   Zeichenklasse
+    [^]  umgekehrte Zeichenklasse
+    \    Maskieren des naechsten Zeichens
+  Wiederholungen:
+    *        0 oder mehrmals
+    +        1 oder mehrmals
+    ?        0 oder einmal
+    \{m\}    m-mal
+    \{m,\}   m-mal oder mehr
+    \{m,u\}  m bis u-mal
+  Fuer weitere Informationen ueber ":" und "Zeichen zur Angabe des
+  Kontextes" lesen Sie sich bitte XGREP.DOC.
+  XGREP hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    0  Mindestens einen Treffer gefunden.
+    1  Keine Eintraege gefunden.
+    2  Fehler aufgetreten.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  xgrep "Hallo Welt" *.c
+  xgrep -c jill group
+  xgrep -l SCSI *.doc
+  xgrep widgets
+  xgrep -n widgets notes.txt
+  xgrep -n -rs widgets \*.txt \*.doc
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/find.htm">find</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl, uebersetzt von J.Jenderek.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

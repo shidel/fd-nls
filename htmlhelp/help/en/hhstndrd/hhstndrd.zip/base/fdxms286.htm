@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: fdxms286.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: fdxms286.sys</h1>
+<pre>
+  FDXMS286.SYS is an extended memory driver for FreeDOS.
+  FDXMS286.SYS is for 286 computers. FDXMS is for 386+ computers.
+  FDXMS286.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  <b>FDXMS286.SYS is out of date. You should use <a href="../base/himemx.htm">HIMEMX</a> or <a href="../base/jemmex.htm">JEMMEX</a>
+  instead</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE=[drive][path]\fdxms286.sys [options]
+         drive  The drive letter, e.g. C:
+         path   The directory, e.g. \example\
+</pre>
+<h2>Options:</h2>
+<pre>
+ NUMHANDLES=  Sets the number of XMS handles. Default is 32. Minimum
+              is two (not much use of XMS without any handles!) and
+              maximum is currently 1024. Each handle takes 5 bytes
+              (FDXMS.SYS) or 9 bytes (FDXXMS.SYS).
+  BIOS        Makes FDXMS286 always call the BIOS through INT15
+              instead of using its own protected mode switching.
+  PS          Changes to the particular A20 handling necessary on
+              PS/2 machines.
+  GEODE       Removes delays while changing the A20 line. Reported
+              to help FDXMS286 to work on National Semiconductor's
+              Geode GX1 processor.
+  DELAY=      Number of calls to the delay routine after changing
+              the A20 line. If you receive the error message "Unable
+              to switch A20 address line", try setting it to a big
+              value (say 4000) and see if it helps. Then fine tune
+              it as you want as low a value as possible for speed.
+              Default is 1. Maximum is 65535 and 0 maps to 65536.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  FDXMS286.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\fdxms286.sys 
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Martin Stromberg, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

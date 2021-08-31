@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: ctmouse (Cutemouse)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: ctmouse (Cutemouse)</h1>
+<pre>
+  CuteMouse (CTMOUSE) is the FreeDOS mouse driver.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  ctmouse [options]
+  LH ctmouse [options]
+  LOADHIGH ctmouse [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /3        force 3-button mode (for Microsoft and PS/2 mice only).
+  /B        Cancel run if mouse services are already present.
+  /L        Swap left and right button.
+  /M        Try *old* Mouse Systems / Genius for non-PnP mice.
+  /N        Load CuteMouse as new TSR, even if CuteMouse is already
+            loaded (useful for batch files which unload CuteMouse
+            at end).
+  /O        Enable PS2 and BIOS USB wheel detection (might hang).
+  /P        Force PS/2 mouse mode.
+  /R[h[v]]  Horizontal / vertical resolution: h,v = 1-9, or 0 for auto.
+            (no value = use default: auto for h, or "as h" for v).
+  /S[c[i]]  Force serial mouse mode at COM port c (c=1-4, default is
+            COM1) with IRQ line i (i=2-7, default is IRQ4 for COM 1/3
+            and IRQ3 for COM 2/4).
+  /U        Uninstall driver, remove TSR from memory.
+  /V        Reverse search: find PS/2 after serial mouse.
+  /Y        Forces serial mouse search, but, unlike option /S, doesn't
+            disable PS/2 support.
+  /W        Do not allow CuteMouse to move itself into UMB.
+  /?        Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  CTMOUSE does not support USB mice.
+  CTMOUSE can be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> or in
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> or in the command line.
+  CTMOUSE2 is a new branching of CuteMouse which supports the mouse
+  wheel. It provides a wheel API (application programmer's interface),
+  so that FreeDOS programs can use the mouse wheel.
+  Visit the CuteMouse website at <b>http://cutemouse.sourceforge.net</b>
+  CTMOUSE has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0  PS/2, Microsoft or Logitech mouse found and CTMOUSE installed;
+       Unload successful; /? option used.
+    1  CTMOUSE installed in Mouse Systems mode;
+       Unload failed because CTMOUSE was not loaded.
+    2  Resident part switched to PS/2, Microsoft or Logitech mode;
+       Unload failed because driver interrupts were intercepted.
+    3  Resident part switched to Mouse Systems mode.
+    4  Mouse services already present (returned for option /B only).
+    5  Mouse not found; Invalid option used.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    devicehigh=C:\fdos\bin\ctmouse  loads ctmouse into high memory
+  IN AUTOEXEC.BAT OR IN COMMAND LINE:
+    lh ctmouse  loads ctmouse into high memory
+    ctmouse /u  unloads the mouse driver
+    ctmouse /?  Shows the help (options)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/device.htm">device</a>
+  <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1997 - 2004 Nagy Daniel, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

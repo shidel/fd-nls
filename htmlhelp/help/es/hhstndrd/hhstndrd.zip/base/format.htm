@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: format</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: format</h1>
+<pre>
+  FORMAT formatea un disco duro o disquete. Esto prepara el medio para
+  el uso con FreeDOS.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  FORMAT unidad [/V[:etiqueta]] [/Q] [/U] [/F:tama¤o] [/S] [/D]
+  FORMAT unidad [/V[:etiqueta]] [/Q] [/U] [/T:pistas /N:sectores][/S][/D]
+  FORMAT unidad [/V[:etiqueta]] [/Q] [/U] [/4] [/S] [/D]
+  FORMAT [/?]
+         unidad  La letra de unidad, p. ej. C:
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /1            Formatea un disco de una cara (160k/180k).
+  /4            Formatee un disquete de 160k/360k en una unidad de
+                disquete de 1.2 MB.
+  /8            Formatee un disco de 5-1/4 pulgadas con 8 sectores por
+                pista (160k/320k, DOS 1.x).
+  /A            Fuerza la alineaci¢n 4k para el formato FAT32.
+  /B            Reserve espacio para hacer un disco de arranque (es
+                ficticio y no se puede combinar con /s (sys).
+  /D            Sea muy detallado y muestre resultados de depuraci¢n.
+                Para informes de errores.
+  /F:tama¤o     Especifica el tama¤o del disquete a formatear. Los
+                tama¤os normales son: 360, 720, 1200, 1440 o 2880 
+                (unidad: kiloBytes). 160,180,320 tambi‚n deber¡an
+                funcionar. /F:0 muestra una lista de tama¤os permitidos.
+  /N:sectores   Especifica el n£mero de sectores por pista en un disquete.
+  /Q            Formatos r pidos del disco. Si no se combina con /U, se
+                puede <a href="../base/unformat.htm">UNFORMAT</a> y conserva las marcas de cl£ster 
+                incorrectas (/Q /U no estan).
+  /S            Llama a <a href="../base/sys.htm">SYS</a> para que el disco sea de arranque y para
+                agregar archivos del sistema.
+  /T:pistas     Especifica el n£mero de pistas en un disquete.
+  /U            Formatea incondicionalmente el disco. Formato de bajo
+                nivel si disquete.
+                NOTA: ­Esta opci¢n puede durar MUCHO MUCHO tiempo!
+                Presione ESC y espere para salir /U.
+  /V:etiqueta   Especifica una <a href="../base/label.htm">etiqueta</a> de volumen para el disco,
+                almacena la fecha y la hora del mismo (no es para discos
+                de 160k/320k).
+  /Y            Omitir solicitud de confirmaci¢n.
+  /Z:ayuda_larga:
+                Proporciona informaci¢n detallada sobre el uso t‚cnico.
+  /Z:espejo     Guarda los "datos de <a href="../base/mirror.htm">MIRROR</a>" <a href="../base/unformat.htm">UNFORMAT</a>, sin formatear el
+                disco.
+  /Z:en_serio   Suprime la solicitud de confirmaci¢n cuando usa el
+                formato con un disco duro.
+  /Z:sin_formato
+                Desformatea el disco, si los datos del <a href="../base/mirror.htm">MIRROR</a> est n
+                actualizados.
+  /?            Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Advertencia: si bien el formato es compatible con FAT32, ejecutar bajo
+  Win9x para crear FAT32 no funciona bien.
+  Los modos para DISQUETE son: intenta utilizar el formato r pido y seguro.
+  Use el formato de bajo nivel solo cuando sea necesario. El formato
+  r pido y seguro guarda los datos mirror para <a href="../base/unformat.htm">UNFORMAT</a>. Los modos para
+  HARDDISK son: Intenta utilizar un formato r pido y seguro. Utilice el
+  formato completo r pido solo restablece el sistema de archivos. Si desea
+  forzar el formato de bajo nivel (disquete) o desea escanear toda la
+  superficie del disco y borrar todo el contenido (disco duro), use /U.
+  FORMAT /Q /U es un formato completo r pido (­sin formato / escaneo /
+  borrado de bajo nivel!)
+  FORMAT /Q es un formato de guardado r pido (guarde los datos mirror si
+  es posible) ­Los datos mirror siempre sobrescribir n el final del  rea
+  de datos! FORMAT selecciona autom ticamente un modo (ver arriba) si no
+  selecciona /Q ni /U.
+
+  Los tipos de FAT admitidos son: FAT12, FAT16, FAT32, todos con mirror
+  / unformat. Los tama¤os de disquete admitidos son: 160k, 180k, 320k
+  y 1200k para 5,25 pulgadas y 720k y 1440k (2880k nunca probados hasta
+  ahora) para unidades de 3,5 pulgadas. Los sobreformados admiticos son
+  400k, 800k, 1680k (y 3660k) con m s sectores y 1494k (en lugar de 
+  1200k) y 1743k (y 3486k) con m s pistas tambi‚n. M s pistas no
+  funcionar n en todas las unidades, util¡celas bajo su propio riesgo.
+
+  Advertencia: las versiones anteriores de DOS solo pueden usar
+  sobreformatos con un controlador. 720k en 1440k necesita 720k de 
+  medios. Use una unidad de 360k para formatear 360k. Para el formato
+  FAT32, puede usar el modificador /A para forzar la alineaci¢n 4k.
+  FORMAT tiene los siguientes <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0        Bien
+    1        Sectores defectuosos detectados (solo si /d o /y o /z:
+             opci¢n seriamente activa)
+    2        Pantalla de ayuda mostrada o error de sintaxis
+    3        Abortado por Usuario
+    4        Error de formateo
+    5        El usuario no confirm¢
+  Los niveles de error 1 y 2 son extensiones m s all  del estilo MS 
+  FORMAT.
+  Si usa el indicador /D, los niveles de error ser n diferentes.
+  Ser n espec¡ficos para la versi¢n de estilo de FORMAT.
+
+  En 0.91t, por ejemplo:
+    0        Bien
+    1        Sectores defectuosos detectados
+    2        Ayuda mostrada o error de sintaxis
+    10..13   Error de usuario (no confirmado / error de sintaxis)
+    20..22   Error de Createfs (creaci¢n del sistema de archivos)
+    25..29   dDrive I/O error,
+    30..31   Error de grabadoBC (an lisis de sistema de archivos
+             existente)
+    35..36   Error de formato (formato incondicional)
+    38..39   Error de Savefs (SafeFormat/Espejo)
+    40..52   Error de disquete
+    55..59   Error de Disco Duro
+    60..62   Error Principal: tipo de unidad inadecuado, p. ej. CD-ROM
+   128..255  Error cr¡tico (int de usuario: (c¢digo de error de DOS o 
+             BIOS) | 128)
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  format a: /f:1440   formatea un disquete de 1,4 MB
+  format c: /v:my_hd  formatea un disco duro, etiqueta: my_hd
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/label.htm">etiqueta</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/sys.htm">sys</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, modificado en 2008 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

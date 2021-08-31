@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: tickle</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: tickle</h1>
+<pre>
+  TICKLE ist ein Vorausleser fuer <a href="../base/lbacache.htm">LBACACHE</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  tickle [/CHS] [/LBA] [/?]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /CHS  Das Vorauslesen bei alten Festplatten ist eingeschaltet 
+        (CHS Modus - Cylinder/Head/Sector = Zylinder/Koepfe/Sektoren).
+  /LBA  Das Vorauslesen bei neuen Festplatten ist eingeschaltet 
+        (LBA Modus - Logical Block Adressing = Logische Block-
+        adressierung).
+  /?    Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  TICKLE liest die gesamte Diskettenspur auf einmal,
+  wenn Sie zum erstenmal etwas in einer Spur lesen -
+  das ist schneller, weil die Diskette sich viel seltener
+  drehen muss.
+  Bei Disketten ist das Vorauslesen immer eingeschaltet.
+  Laden Sie vor diesem Treiber zuerst den Befehl <a href="../base/lbacache.htm">LBACACHE</a> 
+  mit der Option FLOP eingeschaltet!
+  Laden Sie TICKLE nicht mit <a href="../command/loadhigh.htm">LOADHIGH</a> in den hohen Speicher; 
+  es besteht ansonsten die Gefahr von Datenverlust / DMA-Problemen!
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  lbacache FLOP
+  tickle /lba
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/cdrcache.htm">cdrcache.sys</a>
+  <a href="../base/lbacache.htm">lbacache</a>
+  <a href="../command/loadhigh.htm">loadhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

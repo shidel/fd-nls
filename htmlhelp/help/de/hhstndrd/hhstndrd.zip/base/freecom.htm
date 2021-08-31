@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: FreeCom (command.com)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: FreeCom (command.com)</h1>
+<pre>
+  FREECOM (command.com) startet eine neue Kopie der 
+  FreeDOS Command Shell.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  COMMAND [[Laufwerk]Pfad] [Geraet] [/E:nnnnn] [/L:nnnn] [/U:nnn] [/P] 
+          [/MSG] [/LOW] [/Y [/[C|K] Befehl]]
+  COMMAND [/?]
+          [Laufwerk]Pfad   Spezifiziert das Verzeichnis, das die 
+                           COMMAND.COM enthaelt, z.B. C:\Beispiel\
+          Laufwerk         Der Laufwerksbuchstabe, z.B.: C:
+          Pfad             Der zu waehlende Pfad, z.B.: \Beispiel\
+          Geraet           Spezifiziert das fuer die Befehlsein- und 
+                           -ausgabe zu benutzende Geraet.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /E:nnnnn   Setzt die anfaengliche Umgebungsgroesse auf nnnnn Bytes.
+             (nnnnn sollte eine Zahl zwischen 256 und 32.768 sein).
+  /L:nnnn    Spezifiziert die Groesse der internen Puffer (erfordert 
+             ebenfalls /P). (nnnn sollte eine Zahl zwischen 128 und 1.024
+             sein).
+  /U:nnn     Spezifiziert die Eingabepuffergroesse (erfordert auch /P).
+             (nnn sollte eine Zahl zwischen 128 und 255 sein).
+  /P         Richtet die neue Command Shell Instanz dauerhaft ein (kann 
+             nicht beendet werden).
+  /MSG       Speichert alle Fehlermeldungen im Speicher (erfordert 
+             auch /P).
+  /LOW       Zwingt die Command Shell, bleibende Daten im LowMem zu 
+             speichern.
+  /Y         Arbeitet schrittweise die durch /C oder durch /K 
+             spezifizierten Stapelverarbeitungsdaten ab.
+  /C Befehl  Fuehrt den spezifizierten Befehl aus und kehrt zurueck.
+  /K Befehl  Fuehrt den spezifizierten Befehl aus und laeuft weiter.
+  /?         Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  [Laufwerk]Pfad  Das Laufwerk und der Pfad, an dem die Shell nach dem 
+                  voruebergehend anzuwendenden Teil des Programms schauen
+                  soll. Dies wird normalerweise nur benoetigt, um COMSPEC
+                  zu setzen.
+  Geraet          Ein alternatives Geraet fuer alle I/O
+  /e:nnnnn        Die Umgebungsgroesse in Bytes im Bereich von 160 - 
+                  32.768 Bytes.
+                  Die Zahl wird auf die naechsten 16 Bytes gerundet. 
+                  Standardwert ist 256 Byte.
+  /p              Macht die Shell permanent, so dass der EXIT-Befehl die
+                  Shell nicht beenden kann.
+  /c {string}     Fuehrt den in {string} angegebenen Befehl aus, sobald 
+                  command geladen ist. Nach der Verarbeitung des 
+                  angegebenen Befehls wird command wieder beendet.
+  /msg            Laedt jede Fehlermeldung, die auf Diskette gespeichert
+                  werden koennten in den Arbeitsspeicher. 
+  Der Befehl command (command.com) wird auch FreeCom genannt. Er enthaelt
+  eine Menge von internen Befehlen, die keine eigene Datei benoetigen, um
+  ausgefuehrt zu werden. Sie finden die Liste der internen Befehle <a href="../../index.htm#command">hier</a>.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  C:\command /E:1024 /L:1024 /U:128 /P
+  command /?
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/exit.htm">exit</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../cnfigsys/shell.htm">shell</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

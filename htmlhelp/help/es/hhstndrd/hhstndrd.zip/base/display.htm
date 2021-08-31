@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: display</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: display</h1>
+<pre>
+  DISPLAY carga la administraci¢n de la codificaci¢n de la consola.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+DISPLAY nombre_dispositivo[:]=(Tipo_hardware,[n|(n1[,n2]...)],[m|(m,p)])
+        [/V] [/C] [/NOHI]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  nombre_dispositivo  Un nombre de dispositivo v lido (que se ignora en
+                      esta versi¢n).
+                      Use cualquiera (por ejemplo CON).
+  Tipo_hardware       Una etiqueta compatible de tipo de hardware (como
+                      EGA o VGA)
+  n                   Codificaci¢n de hardware predeterminada (para
+                      una p gina de c¢digos de hardware).
+                      Normalmente ser  437.
+  n1, n2, ...         Codificaciones de hardware, si hay m s de una
+                      (generalmente tendr  que usar controladores 
+                      ARABICOS/HEBREOS de terceros).
+  m                   N£mero de b£fer para codificaciones preparadas
+                      (1 por defecto).
+  p                   Par metros espec¡fico de hardware adicional.
+  /C                  No se carga si DISPLAY ya est  presente.
+  /NOHI               Desactiva el uso de la memoria XMS para las p ginas
+                      de c¢digos preparadas.
+  /V                  Informaci¢n extendida.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+Hardware soportado:
+  VGA     Adaptadores VGA. Se utilizar n 3 fuentes secundarias si hay
+          adaptadores EGA.
+  EGA     Se determinan autom ticamente el n£mero de fuentes secundarias que se
+          utilizar n.
+  EGA 14  Obligar a usar dos fuentes secundarias (8x8 y 8x14).
+  EGA 8   Obligar a usar solo una fuente secundaria (8x8).
+  LCD     Adaptadores LCD (igual que EGA 8).
+  
+          Para todos los adaptadores anteriores, el par metro p intentar 
+          forzar el n£mero de fuentes secundarias a utilizar (1=8x8, 3=8x8,
+          8x14, 3=8x8, 8x14, 8x16) siempre que el hardware lo permita.
+  CGA     Adaptador CGA (FreeDOS GRAFTABL). El par metro p se ignora.
+  DISPLAY no produce <a href="../batch/if.htm#comment">EXITCODES</a>, pero proporciona un conjunto de errores a
+  trav‚s de la funci¢n int2Fh/AD03h para cada funci¢n. Deber  verificarlos
+  despu‚s de cada operaci¢n fallida.
+
+  C¢digo de Error   Operaci¢n     Significado
+  -------------------------------------------------------------------
+  1                 Todas         Funci¢n desconocida
+  26                Seleccionar   La codificaci¢n no estaba
+                                  preparada
+  26                Consultar     No se seleccion¢ ninguna codificaci¢n
+  27                Seleccionar   KEYB no pudo cambiar la codificaci¢n
+  27                Consultar     Error del dispositivo
+  27                Preparar      No se encontr¢ la codificaci¢n
+                                  en el archivo
+  29                Seleccionar   Error del dispositivo
+  29                Preparar      Error del dispositivo o error de XMS
+  31                Preparar      Archivo fuente da¤ado o error de XMS
+  31                Fin preparar  No se encontr¢ ®Inicio preparar¯.
+  -------------------------------------------------------------------
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  DISPLAY CON=(VGA,437,1)
+    adaptador VGA, cuya codificaci¢n normalizada de BIOS es 437. Se
+    utiliza 1 b£fer para la codificaci¢n de programas. Esto es normativo
+    para la mayor¡a de los usuarios.
+                 
+  DISPLAY CON=(EGA,,2)
+    El adaptador de gr ficos es EGA o mejor, pero se desconoce. La
+    codificaci¢n predeterminada del BIOS tambi‚n es desconocida.
+    Se requieren dos b£feres.
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/graftabl.htm">graftabl</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keyb.htm">keyb</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/printer.htm">printer.sys</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 AITOR SANTAMARIA MERINO,modificado en 2008
+  por W. Spiegl.</b> Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

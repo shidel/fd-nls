@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: tdsk</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: tdsk</h1>
+<pre>
+  TDSK crea un disco RAM. Parte de la memoria se reserva para actuar como
+  una unidad de disco. Debido a que la memoria es mucho m s r pida que
+  una unidad de disco real, los discos RAM son muy r pidos, pero 
+  cualquier cosa almacenada en ellos se perder  cuando se reinicie o
+  apague la m quina. TDSK es compatible con <a href="../base/himemx.htm">XMS</a>, <a href="../base/jemm386.htm">EMS</a> y memoria
+  convencional.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  device=tdsk.exe tama¤o [[s_sector [archivos [s_cluster]]]] [/E] 
+                         [/A|X] [/C] [/M]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  tama¤o  El tama¤o del disco RAM, de 8 a 65534 (en kilobytes).
+  [[s_sector [archivos [s_cluster]]]]
+          Avanzado. El tama¤o de los sectores, ra¡z y cl£steres en el
+          disco.
+          Los valores v lidos para el sector son 32,64,128,256,512,1024,
+          2048.
+          Los archivos (en el directorio ra¡z) pueden ser de 1 a 65534.
+          Los grupos pueden variar de 1 a 255 (algunos sistemas est n
+          restringidos a 1,2,4,8,16,32,64,128)
+  /E      Fuerza el uso de la memoria <a href="../base/himemx.htm">XMS</a>.
+  /A      Especifica el uso de la memoria <a href="../base/jemm386.htm">EMS</a>.
+  /X      Especifica el uso de la memoria <a href="../base/jemm386.htm">EMS</a>.
+  /C      Fuerza el uso de la memoria convencional (no es ideal, por lo
+          que generalmente solo se recomienda para sistemas sin <a href="../base/himemx.htm">XMS</a> / <a href="../base/jemm386.htm">EMS</a>
+          o si tiene problemas con la memoria <a href="../base/himemx.htm">XMS</a>/<a href="../base/jemm386.htm">EMS</a>).
+  /I:nnn  nnn=c¢digo de pa¡s. Esto mostrar  la ayuda en otro idioma.
+  /M      Cambia la salida de la pantalla de color a monocromo 
+          (redirigible) mientras que en CONFIG.SYS se usar  monocromo por
+          defecto.
+  /B      Evita cargar TURBODSK si hay al menos un disco duro disponible
+          en el sistema.
+  /F      Selecciona el n£mero de copias FAT (1 por defectos) hasta un
+          m ximo de 2.
+  /H      Muestra la ayuda.
+  /?      Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  El tama¤o debe estar en el rango de 8 - 65534 KB; los sectores v lidos
+  son de 32 a 2048 Bytes (en potencias f 2), aunque algunas versiones de
+  DOS solo admiten 128, 256 y 512 Bytes. Los archivos ra¡s pueden ser de
+  1 a 65534 y los sectores por cl£ster pueden variar de 1 a 255 (algunos
+  sistemas necesitan una potencia de 2). Solo el tama¤o es necesario.
+  Turbodsk por defecto en <a href="../base/himemx.htm">XMS</a> o <a href="../base/jemm386.htm">EMS</a>. Despu‚s de instalar TURBODSK en
+  <a href="../cnfigsys/index.htm">CONFIG.SYS</a>, se puede ejecutar desde <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> o la solicitud para
+  variar el tama¤o de la unidad (cantidad de memoria utilizada); Esto
+  tambi‚n borra el contenido de la unidad. Se puede usar un tama¤o 0 para
+  liberar completamente la memoria ocupada por la unidad: cuando se usa
+  memoria convencional, es £til cancelar una unidad ANTES de cambiar el
+  tama¤o. Cuando se instala m s de un TURBODSK, se pueden identificar con
+  la letra de la unidad. Por defecto, tdsk intenta usar <a href="../base/himemx.htm">XMS</a> o <a href="../base/jemm386.htm">EMS</a>, antes
+  de intentar usar la memoria convencional. La mayor¡a de las computadoras
+  modernas tienen <a href="../base/himemx.htm">XMS</a>. ¨Por qu‚ usar un disco RAM?
+  Muchos programas crean archivos temporales, que se almacenar n en un
+  directorio temporal especificado por una variable de entorno:
+    set temp=c:\temp
+  Los archivos temporales se eliminan cuando un programa sale de todos
+  modos. Entonces, uno de los principales usos de los discos RAM es
+  mantener este directorio temporal. Esto aumenta el rendimiento de tales
+  programas. TDSK tiene los siguientes <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+      0: Disco no definido
+    255: Controlador no instalado desde <a href="../cnfigsys/index.htm">CONFIG.SYS</a>
+    254: letra de unidad incorrecta especificada
+    253: Intente definir una unidad desde un entorno multitarea como
+         Windows, DOSSHELL, TASKMAX / TASKMGR, etc.
+    252: Error de sintaxis
+  Otros valores por debajo de 128 est n relacionados con el controlador
+  utilizado en la memoria extendida o expandida.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS/FDCONFIG.SYS:
+    device(high)=c:\fdos\bin\tdsk.exe 8096 
+                   (crea un disco REM de 8096 KB)
+    tdsk.exe 0     cambia el tama¤o del ramdisk a 0 Byte (elimina todos
+                   los archivos)
+    tdsk.exe 2048  cambia el tama¤o del ramdisk a 2048 KB (elimina todos
+                   los archivos)
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+ (<a href="../base/emm386.htm">emm386 (EMS)</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms (XMS)</a>)
+ (<a href="../base/fdxms286.htm">fdxms286 (XMS)</a>)
+ (<a href="../base/himem.htm">himem (XMS)</a>)
+  <a href="../base/himemx.htm">himemx (XMS)</a>
+  <a href="../base/jemm386.htm">jemm386 (EMS)</a>
+  <a href="../base/jemmex.htm">jemmex (EMS)</a>
+  <a href="../util/rdisk.htm">rdisk</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, modificado en 2011 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

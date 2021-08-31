@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : tdsk</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : tdsk</h1>
+<pre>
+  TDSK cr‚e un disque RAM. Une partie de la m‚moire est r‚serv‚e pour se
+  comporter comme un lecteur de disque. Comme la m‚moire est bien plus
+  rapide qu'un lecteur de disque, les disques RAM sont trŠs rapides,
+  mais ce qu'ils stockent sera perdu lorsque la machine est red‚marr‚e
+  ou ‚teinte. TDSK prend en charge <a href="../base/himemx.htm">XMS</a>, <a href="../base/jemm386.htm">EMS</a> et la m‚moire
+  conventionnelle.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  device=tdsk.exe taille [[s_secteur [fichiers [s_cluster]]]] [/E]
+                         [/A|X] [/C] [/M]
+</pre>
+<h2>Options :</h2>
+<pre>
+  taille  La taille du disque RAM, de 8 … 65534 (en Kilooctets).
+  [[s_secteur [fichiers [s_cluster]]]]
+          Avanc‚. La taille des secteurs, de la racine et des clusters
+          sur le disque.
+          Les valeurs valides pour les secteurs sont 32, 64, 128, 256,
+          512, 1024, 2048.
+          Il peut y avoir de 1 … 65534 fichiers (dans le r‚pertoire
+          racine).
+          Les clusters peuvent varier de 1 … 255 (certains systŠmes
+          sont limit‚s … 1, 2, 4, 8, 16, 32, 64, 128)
+  /E      Force l'utilisation de la m‚moire <a href="../base/himemx.htm">XMS</a>.
+  /A      Sp‚cifie l'utilisation de la m‚moire <a href="../base/jemm386.htm">EMS</a>.
+  /X      Sp‚cifie l'utilisation de la m‚moire <a href="../base/jemm386.htm">EMS</a>.
+  /C      Force l'utilisation de la m‚moire conventionnelle (pas id‚al,
+          donc ce n'est g‚n‚ralement recommand‚ que pour les systŠmes
+          sans <a href="../base/himemx.htm">XMS</a>/<a href="../base/jemm386.htm">EMS</a> ou si vous avez des problŠmes avec la m‚moire
+          <a href="../base/himemx.htm">XMS</a>/<a href="../base/jemm386.htm">EMS</a>.)
+  /I:nnn  nnn=code de pays. Cela affichera l'aide dans une autre langue.
+  /M      Bascule la sortie de l'‚cran d'une sortie couleurs … une
+          sortie monochrome (redirigeable) tandis que dans CONFIG.SYS
+          la sortie monochrome sera utilis‚e par d‚faut.
+  /B      vite le chargement de TURBODSK s'il existe au moins un disque
+          dur disponible sur le systŠme.
+  /F      S‚lectionne le nombre de copies FAT (1 par d‚faut) jusqu'… un
+          maximum de 2.
+  /H      Affiche l'aide.
+  /?      Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  La taille doit ˆtre entre 8 et 65534 Ko ; les secteurs valides sont
+  entre 32 et 2048 octets (en puissances de f 2), mˆme si certaines
+  versions de DOS ne prennent en charge que 128, 256 et 512 octets).
+  Les fichiers du r‚pertoire racine peuvent ˆtre entre 1 et 65534 et
+  les secteurs par cluster varient entre 1 et 255 (certains systŠmes
+  n‚cessitent une puissance de 2). Seule la taille est n‚cessaire.
+  Turbodsk utilise par d‚faut <a href="../base/himemx.htm">XMS</a> ou <a href="../base/jemm386.htm">EMS</a>.
+  AprŠs avoir install‚ TURBODSK dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> il peut ˆtre lanc‚
+  depuis <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ou l'invite pour modifier la
+  taille du disque (la quantit‚ de m‚moire utilis‚e) ; cela efface
+  ‚galement le contenu du disque. Une taille de 0 peut ˆtre utilis‚e
+  pour lib‚rer entiŠrement la m‚moire occup‚e par le disque : lors de
+  l'utilisation de la m‚moire conventionnelle, il est utile d'annuler
+  un lecteur AVANT de redimensionner. Lorsque plus d'un TURBODSK sont
+  install‚s, ils peuvent ˆtre identifi‚s en entrant en plus la lettre
+  du lecteur. Par d‚faut, tdsk essaye d'utiliser <a href="../base/himemx.htm">XMS</a> ou <a href="../base/jemm386.htm">EMS</a> avant
+  d'utiliser la m‚moire conventionnelle. La plupart des ordinateurs
+  modernes ont <a href="../base/himemx.htm">XMS</a>. Pourquoi utiliser un disque RAM ?
+  De nombreux programmes cr‚ent des fichiers temporaires qui seront
+  stock‚s dans un r‚pertoire temporaire sp‚cifi‚ dans une variable
+  d'environnement :
+   set temp=c:\temp
+  Les fichiers temporaires sont de toute fa‡on effac‚s lorsque le
+  programme quitte. Donc l'une des principales utilisations des disques
+  RAM est de contenir ce r‚pertoire temporaire. Cela augmente les
+  performances de ces  programmes.
+  TDSK a les <a href="../batch/if.htm#comment">CODES DE SORTIE (ERRORLEVEL)</a> suivants :
+      0: Disque non d‚fini
+    255: Pilote non install‚ depuis <a href="../cnfigsys/index.htm">CONFIG.SYS</a>
+    254: Lettre incorrecte de lecteur sp‚cifi‚e
+    253: Tentative de d‚finition d'un lecteur depuis un environnement
+         multitƒche tel que Windows, DOSSHELL, TASKMAX/TASKMGR, etc.
+    252: Erreur de syntaxe
+  Les autres valeurs sous 128 sont li‚es … l'indicateur utilis‚ … la
+  fois dans la m‚moire ‚tendue ou "expanded".
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Dans CONFIG.SYS/FDCONFIG.SYS:
+    device(high)=c:\fdos\bin\tdsk.exe 8096
+                   (cr‚e un disque RAM de 8096 Ko)
+    tdsk.exe 0     redimensionne le disque RAM … une taille de 0
+                   octet (efface tous les fichiers)
+    tdsk.exe 2048  redimensionne le disque RAM … une taille de
+                   2048 Ko (efface tous les fichiers)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+ (<a href="../base/emm386.htm">emm386 (EMS)</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms (XMS)</a>)
+ (<a href="../base/fdxms286.htm">fdxms286 (XMS)</a>)
+ (<a href="../base/himem.htm">himem (XMS)</a>)
+  <a href="../base/himemx.htm">himemx (XMS)</a>
+  <a href="../base/jemm386.htm">jemm386 (EMS)</a>
+  <a href="../base/jemmex.htm">jemmex (EMS)</a>
+  <a href="../util/rdisk.htm">rdisk</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

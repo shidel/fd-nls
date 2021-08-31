@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: modecon</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: modecon</h1>
+<pre>
+  MODECON (comando: MODE) configura y establece el estado de varios
+  dispositivos de hardware y m s. <b>MODECON ya no est  en uso. Use <a href="../base/mode.htm">MODE</a>
+  en su lugar</b>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  mode [unidad][opciones]  o:
+  mode [modo de pantalla]
+       Dispositivos:
+         CON[:]  Consola. Esto controla el controlador de pantalla, que
+                 debe instalarse primero. MODE CON le permite configurar
+                 la "p gina de c¢digos" de su pantalla. Esto es £til
+                 porque cada p gina de c¢digos le permite mostrar
+                 diferentes caracteres. Para obtener m s informaci¢n
+                 sobre la p gina de c¢digos, consulte el <a href="../base/cpidos.htm">PAQUETE DE
+                 INFORMACION</a> DE <a href="../base/cpidos.htm">CODEPAGE</a>.
+         LPT[:]  Puertos paralelos
+         COM[:]  Puertos seriales
+         PARK    No implementedo en modo FreeDOS.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  MODE [dispositivo] [/STA[TUS]]   
+                              Muestra el estado de uno o todos los 
+                              dispositivos.
+  MODE LPTn[:] cols[,[lines][,retry]]
+  MODE LPTn[:] [COLS=...] [LINES=...] [RETRY=...]
+                              Cols o cpi, 6/8 lpi, vuelva a intentar 
+                              p o n
+                              Reintento: p infinito / n ninguno
+  MODE LPTn[:]=[COMn[:]|NUL]  Redirigir los datos de la impresora al
+                              puerto serie o NUL
+  MODE COMn[:] baud,parity,data,stop,retry
+  MODE COMn[:] [BAUD[HARD]=...] [PARITY=...] [DATA=...] [STOP=...]
+               [RETRY=...]    Valores vac¡os permitidos
+                              La velocidad en baudios se puede abreviar
+                              a un prefijo £nico, la paridad puede ser
+                              o/e/n/s/m, el £ltimo espacio medio/marca,
+                              los datos pueden ser 5..8, detener 1..2.
+                              ­Reintentar est  IGNORADO!
+                              PLANIFICADO: Vuelva a intentar b/e/r ->
+                              ocupado/error/listo si est  ocupado, p/n
+                              infinito/sin reintento.
+  MODE CON[:] [CP|CODEPAGE] [/STA[TUS]]
+                              Muestra el estado de CON (consola).
+                              FreeDOS DISPLAY debe cargarse antes.
+  MODE CON[:] [CP|CODEPAGE] REF[RESH]
+                              Actualiza la p gina de c¢digos activa al 
+                              hardware.
+                              FreeDOS DISPLAY debe estar cargado.
+  MODE CON[:] [CP|CODEPAGE] PREP[ARE]=((codepage) Nom_Archivo)
+                              FreeDOS DISPLAY debe cargarse antes.
+                              Use PREP=((,cp2,cp3,,cp5)...) para preparar
+                              p ginas de c¢digos en otros b£feres.
+  MODE CON[:] [CP|CODEPAGE] SEL[ECT]=n£mero
+                              FreeDOS DISPLAY debe cargarse antes.
+  MODE CON[:] [NUMLOCK|CAPSLOCK|SCROLLLOCK|SWITCHAR]=valor
+                              El valor puede ser: + o - para las 
+                              cerraduras o un car cter para switchar.
+  MODE CON[:] [COLS=...] [LINES=...]
+                              Los valores posibles dependen de su 
+                              hardware.
+  MODE CON[:] [RATE=...] [DELAY=...]
+                              Velocidad predeterminada 20, demora
+                              predeterminada 1. La velocidad puede ser
+                              1..32 para 2..30 char/seg, la demora puede
+                              ser 1..4 para 1/4..4/4 seg.
+  MODE [40|80|BW40|BW80|CO40|CO80|MONO][,rows]
+                              Estos son los modos de pantalla de 
+                              reparaci¢n. Las filas pueden ser 25, 28,
+                              43 o 50. Use 8, 14 o 16 como valor de 
+                              'filas' si solo desea cambiar la fuente.
+  MODE [CO40|CO80|...],[R|L][,T]
+                              Estos son los modos de pantalla flexibles.
+                              los valores para las columnas son 40, 80,
+                              132, las filas pueden ser 25, 28, 30, 34,
+                              43, 50, 60. Use 8, 14 o 16 como valor de 
+                              'filas' si solo desea cambiar la fuente.
+                              Shift CGA izquierda/derecha, T es modo
+                              interactivo.
+  /?                          Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  MODECON ya no est  en uso. Use <a href="../base/mode.htm">MODE</a> en su lugar.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>  - ninguno -</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/graftabl.htm">graftabl</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keyb.htm">keyb</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/listxdef.htm">listxdef</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/nlsfunc.htm">nlsfunc</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-2004 Aitor SANTAMARIA MERINO, Henrique PERON,
+  modificado de 2011 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

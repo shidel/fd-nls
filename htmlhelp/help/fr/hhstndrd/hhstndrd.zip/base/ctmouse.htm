@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : ctmouse (Cutemouse)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : ctmouse (Cutemouse)</h1>
+<pre>
+  CuteMouse (CTMOUSE) est le pilote de souris de FreeDOS.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  ctmouse [options]
+  LH ctmouse [options]
+  LOADHIGH ctmouse [options]
+</pre>
+<h2>Options :</h2>
+<pre>
+  /3        force le mode 3 boutons (pour les souris Microsoft et PS/2).
+  /B        Annule le lancement si les services de souris sont d‚j…
+            pr‚sents.
+  /L        Intervertit les boutons gauche et droit.
+  /M        Essaye les systŠmes de souris *anciens* / Genius pour les
+            souris non-PnP.
+  /N        Charge CuteMouse en tant que nouveau TSR, mˆme si CuteMouse
+            est d‚j… charg‚ (utile pour les fichiers batch qui d‚chargent
+            CuteMouse de la m‚moire … la fin).
+  /O        Active la d‚tection PS2 et BIOS de la molette (peut planter).
+  /P        Force le mode de souris PS/2.
+  /R[h[v]]  R‚solution horizontale/verticale : h,v = 1-9, ou 0 pour auto.
+            (aucune valeur = utilise la valeur par d‚faut : automatique
+            pour h, ou "comme h" pour v).
+  /S[c[i]]  Force le mode souris s‚rie sur le port COM c (c=1-4, la
+            valeur par d‚faut est COM1) avec la ligne IRQ i (i=2-7,
+            la valeur par d‚faut est IRQ4 pour COM 1/3 et IRQ3 pour
+            COM 2/4).
+  /U        D‚sinstalle le pilote, enlŠve le TSR de la m‚moire.
+  /V        Recherche invers‚e : trouve la souris PS/2 aprŠs la souris
+            s‚rie.
+  /Y        Force la recherche de souris s‚rie mais contrairement … 
+            l'option /S, ne d‚sactive pas le support disable PS/2.
+  /W        N'autorise pas CuteMouse … se d‚placer dans l'UMB.
+  /?        Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  CTMOUSE ne prend pas en charge les souris USB.
+  CTMOUSE peut ˆtre charg‚ dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> ou dans
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ou … la ligne de commande.
+  CTMOUSE2 est une nouvelle branche de CuteMouse qui supporte la molette.
+  Il fournit une API pour la molette afin que les programmes FreeDOS
+  puissent utiliser la molette de la souris.
+  Visitez le site de CuteMouse sur <b>http://cutemouse.sourceforge.net</b>
+  CTMOUSE a les <a href="../batch/if.htm#comment">CODES DE SORTIE (ERRORLEVEL)</a> suivants :
+    0  Souris PS/2, Microsoft ou Logitech trouv‚ et CTMOUSE install‚ ;
+       d‚charg‚ avec succŠs ; option /? utilis‚e.
+    1  CTMOUSE install‚ en mode SystŠmes de Souris ;
+       ‚chec du d‚chargement car CTMOUSE n'‚tait pas charg‚.
+    2  La partie r‚sidente a bascul‚ en mode PS/2, Microsoft ou Logitech;
+       ‚chec du d‚chargement car les interruptions du pilote ont ‚t‚
+       intercept‚es.
+    3  La partie r‚sidente a bascul‚ en mode SystŠmes de Souris.
+    4  Les services de souris sont d‚j… pr‚sents (retourn‚ pour
+       l'option /B).
+    5  Souris non trouv‚e ; utilisation d'une option invalide.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    devicehigh=C:\fdos\bin\ctmouse  charge ctmouse en m‚moire haute
+  DANS AUTOEXEC.BAT OU SUR LA LIGNE DE COMMANDE :
+    lh ctmouse  charge ctmouse en m‚moire haute
+    ctmouse /u  d‚charge le pilote de souris de la m‚moire
+    ctmouse /?  Affiche l'aide (les options)
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/device.htm">device</a>
+  <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1997 - 2004 Nagy Daniel, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : shellhigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : shellhigh</h1>
+<pre>
+  SHELLHIGH indique … FreeDOS quel shell de commande il doit ex‚cuter.
+  SHELLHIGH est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  shellhigh=[lecteur][chemin]nomfichier [options]
+            lecteur     La lettre du lecteur, par exemple C:
+            chemin      Le r‚pertoire, par exemple \exemple\
+            nomfichier  Le shell de commande … ex‚cuter. Par exemple,
+                        C:\exemple\COMMAND.COM
+</pre>
+<h2>Options :</h2>
+<pre>
+  options  Celles-ci sont transmises au shell de commande.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  SHELLHIGH indique le shell … utiliser ; souvent pour modifier le
+  comportement de <a href="../base/command.htm">COMMAND.COM</a>. Note : c'est command.com qui
+  traite <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ; avec l'option SHELL vous pouvez faire
+  en sorte que command.com traite un fichier nomm‚ file diff‚remment
+  (tel que FDAUTO.BAT afin de coexister avec un autre DOS qui
+  utiliserait d'autres options de configuration) ou pour ex‚cuter
+  un interpr‚teur de commandes entiŠrement diff‚rent tel que 4DOS ou
+  une variante de sh (UNIX).
+  SHELLHIGH ressemble … SHELL, sauf qu'il tente de charge le SHELL de
+  commande (COMMAND.COM) d'abord dans la m‚moire haute (en cas d'‚chec
+  il devrait le charger dans la m‚moire conventionnelle).
+  Remarque : L'ordre avec lequel vous chargez les p‚riph‚riques peut
+  avoir un grand impact sur la quantit‚ de m‚moire libre disponible.
+  En g‚n‚ral essayez de charger les gros (en termes d'utilisation de
+  m‚moire) programmes d'abord dans la m‚moire haute.
+  Important : vous devriez avoir un gestionnaire de m‚moire tel que
+  (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a> ou <a href="../base/jemmex.htm">JEMMEX</a> d'install‚ (device=himem.exe ou
+  device=himemx.exe avant dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>) avant
+  d'utiliser cette option.
+  SHELLHIGH est une commande interne … kernel.sys et ne n‚cessite
+  aucun autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+   shellhigh=C:\4DOS.COM /E:256 /P
+   shellhigh=C:\FDOS\bin\command.com C:\FDOS\bin /E:1024 /P=C:\fdauto.bat
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../base/command.htm">command.com</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/shell.htm">shell</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis … jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

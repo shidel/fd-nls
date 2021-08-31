@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: subst</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: subst</h1>
+<pre>
+  FreeDOS verwendet SWSUBST anstelle von SUBST und JOIN.
+  SWSUBST kombiniert SUBST mit JOIN mit erweiterten Optionen.
+  SWSUBST ersetzt einen Pfad mit einem Laufwerksbuchstaben, so dass auf
+  einen Pfad auch ueber einen Laufwerksbuchstaben zugegriffen werden
+  kann.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  SWSUBST [Option] [Befehl]
+  SUBST [LW1: [LW2:]Pfad]
+  SUBST LW1: /D
+        LW1:        Laufwerkbezeichnung, die dem Pfad zugewiesen
+                    werden soll.
+        [LW2:]Pfad  Laufwerk und Pfad, die durch Laufwerk1:
+                    angesprochen werden sollen.
+   JOIN [LW1: [LW2:]Pfad]
+   JOIN LW1: /D
+        LW1:        Laufwerk, welches als Verzeichnis auf dem
+                    Laufwerk2 erscheint.
+        [LW2:]Pfad  Laufwerk und Pfad, in welche Laufwerk1 eingefuegt
+                    werden soll.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /#                     In CDS-Uebersicht die Statistik der JOIN-
+                         Laufwerke auffuehren.
+  /!                     Wie /#; Flag korrigieren, falls abweichend.
+  /f                     Nicht druckbare Zeichen in Namen hexadezimal
+                         anzeigen.
+  /a                     Nach Kommando CDS-Uebersicht ausgeben.
+  /k                     Im Kommando enthaltene Pfade anlegen.
+  /t                     Wie /k, bei SUBST nur testen, ob der Pfad
+                         existiert.
+  /_                     In der CDS-Uebersicht alle Attribute ausgeben.
+  /o=#                   Setzt explizit den Backslashoffset.
+  /x=??                  Liste mit bei einer ::label:-Suche zu
+                         ignorierenden Laufwerken.
+  /?                     Zeigt die Hilfe
+  SWSUBST ohne Befehl    Ausgabe der CDS-Uebersicht
+  SWSUBST mit Befehl:
+  -                      alle SUBST und JOIN Referenzen aufloesen.
+  --                     auf alle Nicht-Netz-Laufwerke Befehl ? -
+                         anwenden.
+  LW [-]path             Analog %s LW [-]path.
+  /u LW [-]path          Laufwerk mit Pfad substituieren (ersetzen)
+                         (SUBST).
+  /j LW [-]path          Laufwerk in Pfad einfuegen (JOIN).
+  /d LW | LW /d | LW -   SUBST/JOIN aufloesen.
+  /s LW1 LW2             Laufwerk1 und Laufwerk2 austauschen.
+  /n [LW1 LW2]           Einheiten desselben Geraetetreibers austauschen
+                         (Std.: Floppies).
+  /w LW                  Setzt <a href="../batch/if.htm#comment">ERRORLEVEL</a> auf die Nummer des Laufwerks-
+                         buchstabens von Laufwerk.
+  /m [-]path             Pfad anlegen, einschliesslich aller Ueberver-
+                         zeichnisse.
+  /c [-]path             Wie /m, anschliessend hineinwechseln.
+  LW:[+-=]{off,on,phys,net,join,subst,hidden}  
+                         Laufwerksflags direkt setzen.
+  /q LW:[+-]{phys,net,join,subst,hidden}
+                         Laufwerksflags abfragen.
+  SUBST ohne Parameter   Zeigt die mit SUBST erzeugten, virtuellen Lauf-
+                         werke an.
+  SUBST LW1 /D           Hebt die Zuordnung fuer das (virtuelle) Laufwerk
+                         wieder auf.
+  JOIN ohne Parameter    Zeigt die mit JOIN eingefuegten Laufwerke an.
+  JOIN LW1 /D            Hebt die Zuordnung fuer das eingefuegte Laufwerk
+                         wieder auf.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Die DOS Standard Emulationen von SWSUBST, SUBST und JOIN haben die
+  gleichen Kommandozeilenoptionen wie die von DOS. Sie unterscheiden
+  sich allerdings in folgenden Punkten:
+    - Der angegebene Pfad wird inklusive dem vollen Pfad bis dorthin
+      erstellt erstellt werden, d.h. "SUBST a: c:/blah/humpf" erzeugt
+      den Pfad "c:\blah\humpf" unabhaengig davon, ob c:\blah bereits
+      besteht.
+    - Sie duerfen im laufenden Betrieb Verknuepfungen abbrechen, das
+      bedeutet: ein bereits mit SUBST oder JOIN gesetzter Laufwerks-
+      buchstabe kann mit SUBST oder JOIN ohne weitere Anmerkung/Warnung
+      wieder gesetzt werden.
+    - Sie duerfen ein Laufwerk mit sich selbst verknuepfen, z.B.:
+      "JOIN a: a:\blah".
+    - Die Tabellenausgabe ist unterschiedlich; swsubst gibt aus:
+      "X: => Y:\Pfad" anstelle von "X ist verknuepft mit Y:\Pfad".
+    - Sie koennen die ausfuehrbaren Dateien SUBST und JOIN nicht
+      umbenennen.
+    - Die DOS Version wird nicht getestet, es sei denn, es ist notwendig,
+      um unterschiedliche Datenstrukturgroessen einzustellen.
+  Wenn Sie SUBST oder JOIN benoetigen sollten, fuehren Sie einfach
+  folgenden Befehl aus:
+    copy SWSUBST.EXE JOIN.EXE oder
+    copy SWSUBST.EXE SUBST.EXE
+  Ein <a href="../batch/if.htm#comment">ERRORLEVEL</a> zwischen 65 (ASCII 'A') und 90 (ASCII 'Z') bezeichnet 
+  den Laufwerksbuchstaben, eine Null, dass das Laufwerk nicht existiert,
+  und jeder andere Wert einen Fehler.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  swsubst b: c:\blah\humpf
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/assign.htm">assign</a>
+  <a href="../base/join.htm">join</a>
+  <a href="../base/swsubst.htm">swsubst</a>
+  <a href="../command/truename.htm">truename</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1995 Steffen Kaiser, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

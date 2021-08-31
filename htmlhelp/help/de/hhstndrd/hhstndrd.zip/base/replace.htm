@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: replace</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: replace</h1>
+<pre>
+  REPLACE ersetzt Dateien im Zielverzeichnis mit Dateien des
+  Quellverzeichnisses die den gleichen Namen haben. 
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  REPLACE [Laufwerk1:][Pfad1]Dateiname [Laufwerk2:][Pfad2] [Optionen]
+          [Laufwerk1:][Pfad1]Dateiname  Spezifiziert die Quelldatei(en).
+          [Laufwerk2:][Pfad2]           Spezifiziert das Zielverzeichnis
+                                        wo Dateien ersetzt werden sollen.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /A  Fuegt dem Zielverzeichnis neue Dateien hinzu. Kann nicht zusammen
+      mit den /S oder / U Schaltern verwendet werden.
+  /H  Fuegt versteckte und Systemdateien genauso wie ungeschuetzte
+      Dateien hinzu bzw. ersetzt sie.
+  /N  Vorschaumodus - fuegt keine Dateien hinzu bzw. ersetzt keine
+      Dateien.
+  /P  Fragt nach einer Bestaetigung bevor es eine Datei ersetzt oder
+      eine Quelldatei hinzufuegt.
+  /R  Ersetzt "nur Lesen" Dateien genauso wie ungeschuetzte Dateien.
+  /S  Ersetzt auch Dateien in allen Unterverzeichnissen des Zielverzeich-
+      nisses. Kann nicht zusammen mit dem /A Schalter verwendet werden.
+  /W  Wartet darauf, dass Sie vor dem Start eine Diskette einlegen.
+  /U  Ersetzt (aktualisiert) nur Dateien, die aelter als die Quelldateien
+      sind. Kann nicht zusammen mit dem /A Schalter verwendet werden.
+  /?  Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  REPLACE hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    0   Kein Fehler. REPLACE hat erfolgreich die Dateien ersetzt bzw.
+        hinzugefuegt.
+    1   Funktionsnummer ungueltig. Der Computer verwendet eine Version
+        von DOS die mit REPLACE inkompatibel ist (momentan nicht imple-
+        mentiert).
+    2   Datei nicht gefunden. REPLACE konnte die Quelldateien
+        nicht finden.
+    3   Pfad nicht gefunden. REPLACE konnte den Quell- oder Zielpfad
+        nicht finden.
+    5   Zugriff abgelehnt. Der Benutzer hat keinen Zugriff auf die Quell-
+        oder Zieldateien.
+    8   Nicht genuegend Speicher. Es ist nicht genuegend Systemspeicher
+        vorhanden, um den Befehl auszufuehren. (nicht implementiert, weil
+        es in einer Hochsprache wie C nicht gehandhabt werden kann!)
+    11  Ungueltiges Format. Der Benutzer verwendete in der Kommandozeile
+        die falsche Syntax.
+    29  Schreibfehler. REPLACE konnte die Zieldateien nicht schreiben.
+    30  Lesefehler. REPLACE konnte die Quelldateien nicht lesen.
+    39  Nicht genuegend Speicherplatz. Im Zielverzeichnis ist nicht
+       genuegend freier Speicherplatz vorhanden.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  replace c:\newfiles\*.* c:\fdos\bin /P /U
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/copy.htm">copy</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../base/xcopy.htm">xcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2001 Rene Ableidinger, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

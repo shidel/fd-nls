@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: buffers</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: buffers</h1>
+<pre>
+  BUFFERS teilt FreeDOS mit, wieviele Festplattenpuffer (die fuer 
+  Lese- und Schreiboperationen gebraucht werden) reserviert werden
+  sollen.
+  BUFFERS ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  buffers=nn[,m]
+    nn  ist die Zahl der primaeren Festplattenpuffer (Bereich 1-99).
+    m   ist die Zahl der sekundaeren Festplattenpuffer (Bereich 1-8).
+</pre>
+<h2>Optionen:</h2>
+<pre>
+Gebrauch:
+  Die Standardeinstellung haengt davon ab, wieviel konventionellen 
+  Speicher Ihr System hat:
+
+Speicher (KB)                Primaere Puffer         Sekundaere Puffer
+----------------------------------------------------------------------
+    < 128                           3                         1
+  128 - 255                         5                         1
+  256 - 511                        10                         1
+  512 - 640                        15                         1
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Eine Erhoehung der Zahl der BUFFERS kann die Geschwindigkeit von
+  Programmen, die mit vielen Dateien arbeiten, erhoehen, braucht aber
+  auch mehr Speicherresourcen.
+  Die sekundaeren Puffer gibt es aus Kompatibilitaetsgruenden mit anderen
+  DOS Kernel, sie werden aber vom FreeDOS Kernel ignoriert. Unter MS DOS
+  kann ein sekundaerer Buffer dazu verwendet werden, Daten vorauszulesen.
+  FreeDOS macht das nicht. Buffers werden von FreeDOS im HMA gespeichert,
+  ausser Sie waehlen nn um mehr Buffers zuzuweisen, als in den HMA passen.
+  Wenn nn kleiner ist, wird unbenutzter HMA Platz fuer weitere Buffers
+  verwendet werden, bis etwas anderes den HMA Platz fuer etwas anderes
+  zuweist. Sogar dann werden wenigstens nn Buffers immer erhaeltlich sein.
+  Sie koennen nn auch einen negativen Wert zuweisen um die Benutzung von
+  unbenutztem HMA Speicher zu unterbinden: BUFFERS=-10 verwendet nur 10
+  Buffers; weiterer freier Speicher im HMA wird dann unbenutzt bleiben.
+  BUFFERS ist ein interner Befehl, d.h. der Befehl ist in der 
+  kernel.sys enthalten. Es wird zur Ausfuehrung des Befehls kein 
+  zusaetzlicher Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    buffers=3,1
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/buffersh.htm">buffershigh</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

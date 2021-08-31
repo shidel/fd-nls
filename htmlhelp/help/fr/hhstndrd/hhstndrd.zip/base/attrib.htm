@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : attrib</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Commande : attrib</h1>
+<pre>
+  ATTRIB affiche ou modifie les attributs de fichiers.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  ATTRIB { options | [lecteur][chemin]nomdefichier | /@[list] }
+         lecteur     La lettre du lecteur, par ex. C:
+         chemin      Le r‚pertoire, par ex. \exemple\
+         nomdefich   Le fichier, par ex. test.exe
+</pre>
+<h2>Options :</h2>
+<pre>
+  +A  D‚finit l'attribut Archive.
+  -A  Efface l'attribut Archive.
+  +H  D‚finit l'attribut Cach‚.
+  -H  Efface l'attribut Cach‚.
+  +R  D‚finit l'attribut Lecture-seule.
+  -R  Efface l'attribut Lecture-seule.
+  +S  D‚finit l'attribut SystŠme.
+  -S  Efface l'attribut SystŠme.
+  /@  Traite les fichiers list‚s dans le fichier sp‚cifi‚ [ou dans
+      stdin].
+  /D  Traite les noms de dossiers par rapport aux arguments avec des
+      jokers.
+  /S  Traite les fichiers dans tous les dossiers dans les chemins
+      sp‚cifi‚s.
+  /?  Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Si aucun fichier n'est sp‚cifi‚, alors les attributs de tous les
+  fichiers dans le dossier courant seront chang‚s (ou simplement
+  affich‚s si aucun des sp‚cificateurs ci-dessus n'est utilis‚.)
+  L'attribut archive (+A) est d‚fini lorsqu'un fichier est modifi‚. Les
+  utilitaires de sauvegarde peuvent effacer l'attribut pour indiquer que
+  le fichier a ‚t‚ sauvegard‚.
+  Si un fichier a l'attribut cach‚ (+H) il n'est pas montr‚ quand vous
+  tapez dir.
+  Si un fichier a l'attribut lecture seule (+R) il ne peut ˆtre que lu.
+  Si un fichier a l'attribut systŠme (+S), il est sp‚cialement prot‚g‚,
+  par ex. il ne peut ˆtre effac‚ ou ‚cras‚.
+  ATTRIB a les <a href="../batch/if.htm#comment">CODES DE SORTIE EXITCODES (ERRORLEVEL) suivants </a>:
+    0  achŠvement r‚ussi ; option /? utilis‚e.
+    1  erreur de modification des attributs des fichiers.
+    2  aucun fichier correspondant trouv‚ par rapport aux cibles.
+    3  erreur d'ouverture des fichiers indiqu‚s dans l'option /@.
+    4  erreur sur la ligne de commande.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  attrib file -rhs
+  attrib +a -r dir1 dir2*.dat /s
+  attrib -hs/sd /@list.txt *.*
+</pre>
+<h2>Voir ‚galement :</h2>
+<pre>  - nowhere -</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis … jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Ce fichier est d‚riv‚ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

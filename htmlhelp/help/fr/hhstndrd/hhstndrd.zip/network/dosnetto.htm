@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Mise en r‚seau de FreeDOS - Mise en r‚seau DOS aujourd'hui</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Mise en r‚seau de FreeDOS - Mise en r‚seau DOS aujourd'hui</h1>
+<h2><a name="zzz"></a>Vue d'ensemble</h2>
+<pre>
+  Dans ce chapitre nous apprendrons davantage sur les pilotes <a href="../network/network.htm">r‚seau</a>,
+  les protocoles et les logiciels de <a href="../network/network.htm">mise en r‚seau</a> qui peuvent ˆtre
+  utilis‚s avec un PC FreeDOS au XXIe siŠcle. Pour plus d'informations
+  sur la <a href="../network/network.htm">mise en r‚seau</a>, essayez <b>"Introduction to Data Communications"</b>
+  d'Eugene Blanchard
+  (voyez : <b>http://www.techbooksforfree.com/intro_to_data_com/ (*01)</b>),
+  GNU GPL, une version plus r‚cente mais non libre <b>peut ˆtre trouv‚e
+  ici</b> (voyez : <b>http://learnat.sait.ab.ca/ict/txt_information/
+  Intro2dcRev2/index.html (*02)</b>).
+</pre>
+<h2><a name="aaa"></a>Les pilotes</h2>
+<pre>
+  <a href="../network/ethernet.htm">Ethernet</a> est la technologie mat‚rielle dominante des <a href="../network/network.htm">r‚seaux</a>
+  d'aujourd'hui. Pour ce type d'adaptateurs <a href="../network/network.htm">r‚seau</a> g‚n‚ralement trois
+  types de pilotes peuvent ˆtre utilis‚s sous DOS (et vous devriez
+  pouvoir trouver au moins l'un d'entre eux pour votre carte) :
+    * <a href="../network/install.htm">Les pilotes de paquets</a>, invent‚s par FTP Software Inc. Beaucoup
+      d'entre eux ont ‚t‚ ‚crits et distribu‚s par <a href="../network/crynwr.htm">Crynwr</a>.
+    * Les pilotes Open Datalink Interface (<a href="../network/odi.htm">ODI</a>), d‚velopp‚s par <a href="../network/novell.htm">Novell</a>
+      et Apple et les
+    * pilotes <a href="../network/network.htm">Network</a> Driver Interface Specification (<a href="../network/ndis.htm">NDIS</a>), d‚velopp‚s
+      par Microsoft et <a href="../network/3com.htm">3Com</a>.
+  Tous les trois sont des pilotes <a href="../network/network.htm">r‚seau</a> <b>multiprotocoles</b>, ce qui
+  signifie qu'ils sont capables de g‚rer de multiples protocoles sur la
+  mˆme carte. Les pilotes ant‚rieurs ne prenaient en charge qu'un seul
+  protocole. Les pilotes multiprocoles communiquent directement avec la
+  carte d'interface <a href="../network/network.htm">r‚seau</a> et fournissent une sp‚cification d'interface
+  publi‚e, pour laquelle des applications peuvent ˆtre ‚crites.
+  Pour une bonne introduction g‚n‚rale … ce sujet, voyez <b>"Implementing
+  Multi-Protocol <a href="../network/network.htm">Network</a> Drivers in a DOS Environment"</b> par l'Universit‚
+  de Georgia, AthŠnes, G‚orgie (-U) (voyez : <b>http://www.eits.uga.edu/
+  ~ucns/lans/docs/netdrive.html (*03)</b>).
+</pre>
+<h2><a name="bbb"></a>Les protocoles</h2>
+<pre>
+  Les protocoles suivants sont pris en charge par ces trois pilotes :
+    * Protocole de contr“le de transmissions/Protocole Internet (<a href="../network/tcpip.htm">TCP/IP</a>)
+      utilis‚ par exemple par UNIX, GNU/Linux, Windows Vista, OS X
+      et Internet,
+    * Les protocoles Internetwork Packet Exchange/Sequenced Packet
+      Exchange (<a href="../network/ipxspx.htm">IPX/SPX</a>), utilis‚s par exemple par <a href="../network/novell.htm">Novell Netware</a>,
+    * Le protocole <a href="../network/network.htm">Network</a> Basic Input Output System (<a href="../network/history.htm#aaa">NetBIOS</a>)
+      Extended User Interface (NetBEUI alias <a href="../network/cifs.htm">CIFS</a>) utilis‚ par exemple
+      par OS/2, Windows 9x, ME et 2000.
+  <a href="../network/tcpip.htm">TCP/IP</a> est la norme pour les services Internet de base comme http,
+  smtp ou ftp et il est ‚galement devenu le protocole par d‚faut pour
+  connecter les <a href="../network/network.htm">r‚seaux</a> locaux (LAN). <a href="../network/cifs.htm">NetBEUI</a> ‚tait le protocole par
+  d‚faut pour les LAN des systŠmes Microsoft jusqu'… Windows 2000. Il a
+  ‚t‚ remplac‚ par <a href="../network/history.htm#aaa">NetBIOS</a> sur <a href="../network/tcpip.htm">TCP/IP</a> (NBT) et ensuite par <a href="../network/tcpip.htm">TCP/IP</a>. Le
+  protocole <a href="../network/network.htm">r‚seau</a> au niveau des applications <a href="../network/history.htm#aab">SMB</a> <b>peut</b>, par exemple,
+  <b>fonctionner</b> (voyez : <b>http://support.microsoft.com/default.aspx?
+  scid=kb;en-us;Q204279 (*04)</b>) directement sur TCP depuis Windows XP.
+  <a href="../network/ipxspx.htm">IPX</a> de <a href="../network/novell.htm">Novell</a> ‚tait utilis‚ avec <a href="../network/novell.htm">Novell Netware</a>, qui a ‚t‚ la solution
+  de mise en r‚seau par d‚faut pour ordinateurs personnels ex‚cutant DOS
+  ou Windows 3.x.
+  Depuis 1998 NetWare est capable de fonctionner sur <a href="../network/tcpip.htm">TCP/IP</a>, les
+  versions plus r‚centes l'utilisent par d‚faut.
+  Conclusion : <a href="../network/tcpip.htm">TCP/IP</a> est la "lingua franca" des <a href="../network/network.htm">r‚seaux</a> modernes. Il
+  est toujours possible d'utiliser d'autres protocoles, mais leur prise
+  en charge peut s'arrˆter.
+</pre>
+<h2><a name="ccc"></a>Logiciels de mise en r‚seau</h2>
+<pre>
+  En g‚n‚ral nous pouvons distinguer trois fa‡ons de mise en r‚seau qui
+  peuvent encore ˆtre utilis‚es avec DOS. Apprenez-en plus … leur sujet
+  dans les chapitres suivants :
+    * <a href="../network/novell.htm">Novell Netware</a> - programmes <b>Novell NetWare</b> fond‚s sur les pilotes
+      <a href="../network/odi.htm">ODI</a> pour acc‚der … un <a href="../network/network.htm">r‚seau</a> NetWare et utiliser les services
+      <a href="../network/tcpip.htm">TCP/IP</a>.
+    * <a href="../network/msclient.htm">Client MS</a> - <b>"Client <a href="../network/history.htm#aab">gestionnaire LAN</a>" Microsoft</b> ou <b>"Client MS 3.0"</b>
+      fond‚ sur le pilote <a href="../network/ndis.htm">NDIS</a> pour int‚grer les machines DOS dans un
+      groupe de travail Windows/<a href="../network/history.htm#aab">SMB</a>.
+    * <a href="../network/tcpip.htm">Applications TCP/IP</a> - <b>Applications TCP/IP</b> "de type UNIX"
+      fond‚es sur les pilotes de paquets pour acc‚der … ou fournir des
+      services <a href="../network/network.htm">r‚seau</a> comme http, smtp, ftp, SSH (voyez : <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a>)
+      ou <a href="../network/nfs.htm">NFS</a>.
+    * <a href="../network/others.htm">Autres</a>
+
+  <b>(*01) OK</b>
+  <b>(*02) http://www.telecomworld101.com/Intro2dcRev2/index.html</b>
+  <b>(*03) https://web.archive.org/web/20090112073628/http://www.
+        eits.uga.edu/~ucns/lans/docs/netdrive.html</b>
+  <b>(*04) https://web.archive.org/web/20060315052325/http://support.
+        microsoft.com/default.aspx?scid=kb;en-us;Q204279</b>
+
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Allemagne), modifi‚ en 2010
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenign.</b>
+
+  Pour plus d'informations, <a href="../network/intro.htm#ddd">voyez ici</a>.
+
+  La permission est accord‚e de copier, distribuer et/ou modifier ce
+  document selon les termes de la licence de documentation libre GNU,
+  version 1.2 ou toute version ult‚rieure publi‚e par la Free Software
+  Foundation.
+  Une copie de la licence est incluse dans la section intitul‚e
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

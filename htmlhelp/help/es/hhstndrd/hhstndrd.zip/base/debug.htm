@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: debug</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Comando: debug</h1>
+<pre>
+  DEBUG es un clon del comando DEBUG de MS-DOS. Algunas cosas menores no
+  se implementaron. DEBUG no solo admite los registros 8086/8088 y 8087 y
+  los conjuntos de instrucciones, sino tambi‚n el registro de 32 bits y
+  los conjuntos de instrucciones hasta la CPU PentiumPro; excepto las
+  extensiones MMX. DEBUG es una herramienta DOS relativamente avanzada
+  pero tiene muchos usos. Por ejemplo, se puede usar para:
+    * encontrar errores en los programas,
+    * crear programas a partir del c¢digo de ensamblador,
+    * inspeccionar y editar archivos binarios.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  DEBUG [[unidad:][ruta]nom_archivo [lista_arg]]
+        [unidad:][ruta]nom_archivo  Especifica el archivo que desea 
+                                    probar. No tiene que ser un
+                                    ejecutable, podr¡a ser un archivo
+                                    binario o de texto. Como puede ser
+                                    cualquier archivo, se debe especificar
+                                    la extensi¢n del archivo.
+        lista_arg   Especifica la informaci¢n de l¡nea de comandos
+                    requerida por el archivo que desea probar. Consulte
+                    <a href="#progexec">ejecuci¢n del programa</a> a continuaci¢n para obtener m s
+                    informaci¢n sobre la ejecuci¢n de programas ejecutables.
+  Una vez que se inicia la depuraci¢n, se muestra el s¡mbolo del sistema
+  de depuraci¢n. Ingrese Q para salir de Debug y ? para mostrar la lista
+  de comandos de depuraci¢n.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  Q                     Salir
+  ?                     Ayuda
+
+  <B>Inspecci¢n y edici¢n de memoria:</B>
+    COMPARAR:
+      C rango direcci¢n   Compare dos rangos de memoria, mostrando las
+                          diferencias. Solo se requiere la direcci¢n
+                          inicial del segundo rango, Debug asumir  que el
+                          segundo rango tendr  el mismo tama¤o que el
+                          primero.
+                          Por ejemplo:
+                            C 100,110 200
+                          comparar  el rango de 100,110 a 200,210.
+    VACIAR A:
+      D [rango]           Mostrar el contenido de un rango de memoria. Si
+                          no se especifica ning£n rango, el volcado
+                          mostrar  128 octetos, comenzando donde termin¢ el
+                          £ltimo volcado o al comienzo del archivo
+                          cargado.
+      DM                  Muestra la cadena del bloque de control de
+                          memoria DOS (MCB) y la PSP actual.
+    ENTRAR:
+      E direcci¢n [lista] Escribir sobre parte de la memoria, comenzando
+                          en ®direcci¢n¯, la lista de octetos indicada. Para
+                          ingresar una cadena de caracteres de texto,
+                          encierre el texto entre comillas dobles.
+                          Por ejemplo:
+                            E 100 "­Hola!"
+    LLENAR:
+      F rango lista       Escriba sobre un rango de memoria con una lista
+                          repetida de octetos. Por ejemplo, para establecer
+                          un rango de memoria en cero, podr¡a poner
+                            E 100,110 0
+                          y para establecer en un rango de memoria
+                          ®brumbrum¯
+                            E 100,107 "brum"
+    MOVER:
+      M rango_fuente dest_direcci¢n
+                          Copia el rango de origen rango_fuente en otro
+                          rango que comienza en la direcci¢n dest_direcci¢n.
+    BUSCAR:
+      S rango lista       Busca todas las ocurrencias de la lista de
+                          octetos en el rango especificado. Se muestra la
+                          direcci¢n de inicio de cada ocurencia.
+
+  <B>C lculo de n£meros en hexadecimal:</B>
+    HEX
+      H valor1 valor2   Muestra dos n£meros, el primero es valor1 + 
+                        valor2, el segundo es valor1 - valor2. H puede
+                        manejar valores dword.
+
+  <B>Carga y guardado de archivos:</B>
+    CARGAR PROGRAMA O ARCHIVO:
+      L [direcci¢n]     Cargar programa.
+      L direcci¢n unidad sector recuento
+                        Cargar sectores.
+    ESCOGER UN NOMBRE:
+      N [[unidad:][ruta]mon_programa [lista_arg]]
+                        Establecer el nombre para el 
+                        archivo / programa actual.
+    ESCRIBIR PROGRAMA O ARCHIVO:
+      W [direcci¢n]     Escribir el programa / archivo actual en el disco.
+                        Use N para cambiar el nombre si no desea 
+                        sobrescribir el archivo original.
+      W direcci¢n unidad sector recuento
+                        Escribir sectores.
+
+  <B>Montaje y desmontaje:</B>
+    MONTAR:
+      A [direcci¢n]     Ensamblador.
+    DESMONTAR:
+      U [rango]         Desensamblador.
+    MODO 80x86:
+      M[configuraci¢n]  El procesador actual puede
+                        declararse como otro diferente a trav‚s de los
+                        siguientes comandos:
+                          m0  Declara que el procesador actual es un
+                              8088
+                          m1  Declara 80186
+                          m2  Declara 286
+                          m3  Declara 386
+                          m4  Declara 486
+                          m5  Declara Pentium
+                          m6  Declara Pentium Pro
+      MC                Declarar la existencia de un coprocesador
+                        matem tico.
+      MNC               Declarar la ausencia de un coprocesador matem tico.
+      MC2               Declarar que el coprocesador matem tico es un 287
+                        (solo v lido si el procesador actual es un 386)
+      M?                (Solo versiones anteriores): Imprime el tipo de
+                        procesador actualmente declarado.
+      M                 Imprimir el tipo de procesador declarado
+                        actualmente.
+
+  <a name="progexec"></a><B>Ejecuci¢n del programa:</B>
+    IR A:
+      G [=direcci¢n] [puntos_interrupci¢n]
+                        Comenzar la ejecuci¢n del programa cargado o el
+                        c¢digo de m quina en la direcci¢n especificada. La
+                        ejecuci¢n se suspende en las direcciones de parada,
+                        lo que le permite inspeccionar la memoria, etc.
+    CONTINUAR:
+      P [=direcci¢n] [recuento]
+                        Proceder con la ejecuci¢n paso a paso.
+    REGISTRAR:
+      R [registro [valor]]
+                        Mostrar todos los registros de la CPU, o mostrar/
+                        establecer un registro particular. Acepta nombres
+                        de registro de 32 bits (para CPU 80386+).
+      RN                Mostrar el estado del registro de FPU. DEBUG 
+                        mostrar  solo los valores hexadecimales sin
+                        formato de los registros, mientras que DEBUGX
+                        mostrar  los valores en formato de punto
+                        flotante.
+      RX                Cambiar entre la pantalla de registro 8086 y 80386
+                        (para CPU 80386+).
+    RASTREAR:
+      T [=direcci¢n] [recuento]
+                        Rastrear
+      TM [0|1]          Establecer el modo de rastreo, 0=INT del proceso
+                        (predeterminado), 1=INT de un solo paso (el modo
+                        compatible con la depuraci¢n de MS-DOS).
+
+  <B>Puerto E/S:</B>
+    ENTRADA:
+      I Puerto          Entrada desde un puerto
+      IW Puerto         Entrada desde un puerto WORD
+      ID Puerto         Entrada desde un puerto DWORD
+                        Los valores DWORD requieren una CPU 80386+.
+    SALIDA:
+      O Puerto Valor    Salida a un puerto.
+      OW Puerto Valor   Salida a un puerto WORD.
+      OD Puerto Valor   Salida a un puerto DWORD.
+                        Los valores DWORD requieren una CPU 80386+.
+
+  <B>Comandos de memoria expandida (EMS) 
+  (solo si est  presente <a href="../base/jemm386.htm">EMM v4.0</a>):</B>
+    XA recuento         Asigne un identificador EMS ®vac¡o¯ con cero
+                        p ginas.
+    XD identificador    Desasignar.
+    XM p gina_l¢gica p gina_f¡sica identificador
+                        Investigar memoria.
+    XR identificador recuento
+                        Reasignar un identificador EMS.
+    XS                  Mostrar estado.
+    X?                  Mostrar ayuda sobre los comandos X.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  DEBUG usa hexadecimal (base 16). Las direcciones de memoria se muestran
+  en la forma segmento:desplazamiento, por ejemplo 0D00:0100. Los £ltimos cuatro
+  digitos hexadecimales, que especifican el desplazamiento del segmento, pueden
+  ir de 0000 a FFFF, un rango de 64 kilobytes. Los ejecutables con la
+  extensi¢n .com tienen todos sus datos y c¢digos en un segmento. Por lo
+  tanto para los archivos .com generalmente solo puede escribir el
+  desplazamiento al especificar direcciones de memoria en los comandos
+  DEBUG. DEBUG asumir  el segmento del programa. Lo mismo tambi‚n es
+  cierto para los archivos de texto / binarios que son <64K de largo.
+  Para especificar un rango de memoria, separe dos direcciones con una
+  coma. La carga de archivos .HEX no est  implementado en DEBUG. El
+  ensamblador y desensamblador admite todas las instrucciones
+  documentadas p£blicamente para los chip Intel en el Pentium Pro
+  (P6), excepto las instrucciones MMX. El ensamblador y desensamblador
+  le informar  si alguna instrucci¢n es inapropiada para el procesador
+  actual. Se admiten c¢digos de operaci¢n FPU.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  Crear una copia de seguridad del sector de arranque (sector n£mero 0
+  con 512 bytes = 0x200) de la unidad C: (n£mero 2) en el archivo
+  BOOT_C.BIN en el disquete A:
+    A:
+    cd \
+    echo L 100 2 0 1 &gt;BOOT_C.TXT
+    echo RCX         &gt;&gt;BOOT_C.TXT
+    echo 200         &gt;&gt;BOOT_C.TXT
+    N BOOT_C.BIN     &gt;&gt;BOOT_C.TXT
+    W                &gt;&gt;BOOT_C.TXT
+    Q                &gt;&gt;BOOT_C.TXT
+    DEBUG &lt;BOOT_C.TXT
+
+  Mirando con DEBUG en la RAM de la tarjeta gr fica para encontrar
+  algunos caracteres especiales, como el a¤o, para identificar la tarjeta:
+    DEBUG
+    S C000:0000,07FF "BIOS"
+    S C000:0,7FF     "(C)"
+    S c000:0,7ff     "199"
+    s c000:0,7ff     "200"
+    D C000:0000,100
+    Q
+</pre>
+<h2>Ver tambi‚n:</h2>
+<pre>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, modificado en 2008 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

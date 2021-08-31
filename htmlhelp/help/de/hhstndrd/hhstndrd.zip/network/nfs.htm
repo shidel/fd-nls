@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Netzwerken unter FreeDOS - NFS</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Netzwerken unter FreeDOS - NFS</h1>
+<pre>
+  Dieses Dokument beschreibt, wie man ein NFS Netzwerk auf einem DOS-
+  System mit einer <a href="../network/network.htm">Netzwerk</a>karte aufsetzen muss, so dass der DOS Lauf-
+  werksbuchstabe auf einen Verzeichnispfad auf einem NFS Server (UNIX)
+  gemappt wird.
+</pre>
+<h2><a name="aaa"></a>Hardware</h2>
+<pre>
+  Das Ganze wurde getestet auf einem 486DX2-66s Server, der unter Red
+  Hat Linux (Kernel 2.0.36) lief, unter Verwendung von DOS Clients auf
+  4,7 MHz 8088ern, einigen 80286ern und und unterschiedlichen leistungs-
+  staerkeren Maschinen, mit gewoehnlichen Klonen von NE2000 <a href="../network/network.htm">Netzwerk</a>-
+  karten. Sie funktionieren alle einwandfrei. Das <a href="../network/network.htm">Netzwerk</a> war ein
+  10base2 ueber ein Koaxialkabel mit 10-20 Systemen daran und ein
+  10baseT Hub fuer modernere Maschinen.
+</pre>
+<h2><a name="bbb"></a>Software</h2>
+<pre>
+  Die Software war XFS. Im XFS80286 Verzeichnis befanden sich eine
+  Anzahl FreeDOS Dateien, die auf einem 80286er und moderneren Maschinen
+  laufen. Im XFS8088 Verzeichnis lagen mehrere Dateien, die auch auf
+  den aeltesten PCs laufen.
+</pre>
+<h2><a name="ccc"></a>NFS Server</h2>
+<pre>
+  Auf dem Linux Server werden Sie die /etc/exports Datei erzeugen (oder
+  modifizieren) muessen, um die notwendigen Verzeichnispfade zu expor-
+  tieren. Um zum Beispiel das Verzeichnis /home/dos read/write (lesend/
+  schreibend) mit allen Clients teilen zu koennen:
+    /home/dos  (rw,insecure)
+  Um das Drucken ueber das Netz zu unterstuetzen, werden Sie auch
+  rpc.pcnfsd starten muessen. Es kann sein, dass Sie das
+  /etc/rc.d/init.d/nfs Skript modifizieren muessen, damit rpc.pcnfsd
+  beim Systemstart (Booten) automatisch startet.
+  Bitte beachten Sie, dass pcnfsd ein kleines C Programm von der Fa. Sun
+  ist, das im Internet frei erhaeltlich ist. Wenn der Server nicht mit
+  einer Version von pcnfsd geliefert wird, muessen Sie es kompilieren
+  und in das Verzeichnis /usr/sbin installieren (verwenden Sie die
+  gleichen Berechtigungen wie rpc.nfsd).
+</pre>
+<h2><a name="ddd"></a>DOS Client</h2>
+<pre>
+  <b>80286 und hoeher</b>
+  
+  Von der XFS Software aus schauen Sie in das xfs80286 Verzeichnis, um
+  Systeme mit einer 80286 CPU oder hoeher zu unterstuetzen. Kopieren Sie
+  dieses komplette Verzeichnis - wie es ist - in ein Verzeichnis auf
+  Ihrer Festplatte. Sie werden HOSTS, XFS.BAT - und vielleicht <a href="../batch/autoexec.htm">AUTOEXEC.</a>
+  <a href="../batch/autoexec.htm">BAT</a> und <a href="../cnfigsys/index.htm">CONFIG.SYS</a> - editieren muessen, um den korrekten Pfad zu XFS
+  verwenden zu koennen.
+  Um Ihr <a href="../network/network.htm">Netzwerk</a> zu starten, tippen Sie:
+    XFS
+  Sie werden ein Zeichen in der rechten oberen Ecke auf Ihrem Bildschirm
+  sehen, das anzeigt, was XFS versucht, zu tun:
+   <b> A </b> eine ARP Anfrage zu laufen, um eine IP Adresse zu bekommen,
+   <b> > </b> Pakete an das <a href="../network/network.htm">Netzwerk</a> zu senden,
+   <b> < </b> Pakete vom <a href="../network/network.htm">Netzwerk</a> zu erhalten.
+	
+  <b>8088</b>
+  
+  Von der XFS Software aus schauen Sie nach dem xfs8088 Verzeichnis fuer
+  den 8088-spezifischen Support und kopieren Sie diese Dateien auf Ihre
+  Festplatte. Editieren Sie HOSTS und XFS.BAT um die neuen Pfade verwen-
+  den zu koennen.
+  Die aeltesten 4,77 MHz 8088 PCs arbeiten einwandfrei. Jedoch wird ein
+  spezieller Treiber auf dem 8088 benoetigt, weil der originale <a href="../network/crynwr.htm">Crynwr</a>
+  Pakettreiber drei 80286-Anweisungen gibt.) Ich habe diesen Treiber
+  gepatcht und in ne200b8.com umbenannt. Laden Sie den neuen Treiber.
+  Sie brauchen auch Dateien von einer speziellen nur-8088-Version des
+  XFS Pakets (xt-191.zip).
+  Urspruenglich gab es fuer 8088er eine NE1000 Karte. Diese sind so gut
+  wie verschwunden. Alle Karten, die wir getestet haben, arbeiteten auf
+  dem 8088 einwandfrei, selbst wenn die 16-Bit Karte in einen 8-Bit ISA
+  Slot hineingesteckt wurde. Einige der neueren NE Karten sollten in
+  einem 80286 oder hoeher eingerichtet werden, bevor Sie in einen 8088er
+  hineingesteckt werden.
+  Das Ganze wurde mit MS-DOS getestet; FreeDOS COMMAND.COM unterstuetzt
+  keine 8088er CPUs. Es wurden die MS-DOS Versionen 3.20, 5.00 und 6.22
+  getestet und funktionierte bei allen.
+</pre>
+<h2><a name="eee"></a>Problemsuche</h2>
+<pre>
+  Die meisten Probleme, die wir erleben durften, waren auf schlechte
+  <a href="../network/network.htm">Netzwerk</a>kabel oder auf Interruptprobleme zurueckzufuehren. Bevor Sie
+  starten, versichern Sie sich, ob das Netzwerk erreichbar ist (testen
+  Sie das, indem Sie "ping" von einer Linux-Kiste zur anderen aus-
+  fuehren). Auf den DOS-Kaesten setzten wir alle NE2000 Karten auf die
+  Adresse 0x300, suchten uns einen freien Interrupt heraus und setzten
+  die Karte und die Treiberzeile zueinanderpassend (bitte schauen Sie
+  nach der "ne2000" Zeile in der XFS.BAT).
+  Mit ein bischen Herumspielen sollten Sie Ihren ersten DOS Client, der
+  NFS verwendet, sehr schnell gefunden haben.
+  Falls Sie weitere Probleme haben, lesen Sie bitte in den Dokumenta-
+  tionen in der XFS191.ZIP und den xt-191.zip-Dateien nach. Die meisten
+  Linuxserver haben eine aehnliche Dokumentation ueber NFS, die helfen
+  duerfte, den Server aufzusetzen.
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), 2011 an die
+  FreeDOS-Hilfe angepasst von W.Spiegl.</b>
+  Weitergehende Informationen <a href="../network/intro.htm#ddd">finden Sie hier</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

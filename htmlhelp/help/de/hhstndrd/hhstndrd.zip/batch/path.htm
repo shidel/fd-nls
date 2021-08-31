@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: path</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: path</h1>
+<pre>
+  PATH zeigt oder setzt einen Suchpfad fuer ausfuehrbare Dateien.
+  PATH ist ein <a href="../batch/index.htm">BATCH-DATEI</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> Befehl.
+  Er kann aber auch in der Kommandozeile verwendet werden.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  PATH [[Laufwerk]Pfad[;...]]
+  PATH [Pfadliste]
+  PATH ;
+  PATH [/?]
+  Laufwerk   Der Laufwerksbuchstabe, z.B: C:
+  Pfad       Der zu waehlende Pfad, z.B.: \Beispiel\
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Pfadliste  Geben Sie hier eine Liste der Pfade ein. Trennen Sie
+             die verschiedenen Pfade durch einen Strichpunkt (;).
+  ;          Loescht alle Suchpfadeinstellungen und laesst die Command 
+             Shell lediglich im jeweils aktuellen Verzeichnis suchen.
+  /?         Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Geben Sie "PATH ;" ein, um alle Suchpfadeinstellungen zu loeschen und
+  die Command Shell lediglich im jeweils aktuellen Verzeichnis suchen zu
+  lassen.
+  Geben Sie "PATH" ohne Parameter ein, um die aktuelle Suchpfadeinstellung
+  anzuzeigen.
+  Wie unten erwaehnt sind einige Befehle interne Befehle. Jedoch sind die
+  meisten im Verzeichnis \bin oder \freedos\bin. Es ist deshalb sinnvoll,
+  auf dieses Verzeichnis standardmaessig durch den PATH-Befehl zu
+  verweisen (siehe Beispiel unten).
+  Die Pfade zu allen haeufig genutzen Programmen sollten zur Arbeitser-
+  leichterung in der Pfadliste eingetragen werden.
+  Wenn ein Programm oder ein externer Befehl an der Kommandozeile
+  eingegeben wird, sucht FreeDOS diesen zuerst im derzeitigen Verzeichnis
+  und danach in den durch den Pfadbefehl angegebenen Verzeichnissen. Bei
+  mehreren gleichlautenden Programmnamen wird der Programmname aus dem
+  Pfadverzeichnis aufgerufen, das in der Pfadliste zuerst angegeben ist.
+  PATH kann auch ausserhalb einer Batch-Datei verwendet werden.
+  PATH ist ein interner Befehl, d.h. der Befehl ist in der command.com
+  enthalten. Es wird zur Ausfuehrung des Befehls kein zusaetzlicher
+  Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN EINER .BAT DATEI ODER DER AUTOEXEC.BAT:
+    path c:\fdos\bin;c:\util
+    path %path%;c:\games
+    Das zweite Beispiel fuegt c:\games zu der existierenden Liste hinzu,
+    erhaelt aber die vorher gesetzten Pfade.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../base/append.htm">append</a>
+  <a href="../batch/index.htm">Batch-Dateien</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: gcdrom.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Command: gcdrom.sys</h1>
+<pre>
+  GCDROM.SYS is a SATA native IDE CD/DVD-ROM driver for DOS
+  (aka "ODD DOS driver"). GCDROM.SYS supports all SATA Native IDE
+  controller, such as Intel ICH6/ICH7/ICH8, Jmicron 363/368,
+  NVidia CK804/MCP55/MCP51 etc.
+  GCDROM.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  When FreeDOS is already running, you can load GCDROM.SYS later
+  with <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>GCDROM.SYS is out of date. You should use <a href="../base/uide.htm">UIDE.SYS</a> instead</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  device=gcdrom.sys [options]
+  devicehigh=gcdrom.sys [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /AX  Excludes ALL audio functions. This makes the driver report on a
+       Device-Status request that it reads DATA tracks only! /AX reduces
+       the resident driver by 448 bytes. UltraDMA, multi-drives, and
+       other driver features are NOT affected!
+  /Cx  Determines number to detect 1st/2nd/3th SATA native IDE controller.
+       Default = 0.
+  /D:  Specifies the desired "device name" which <a href="../base/shsucdx.htm">SHSUCDX</a> or <a href="../base/mscdex.htm">MSCDEX</a>
+       will use during their initialization to address the CD-ROM drives.
+       Examples are: /D:CDROM1 /D:MYCDROM etc.
+       The device name must be from 1 to 8 bytes valid for use in DOS
+       filenames. If /D: is omitted, or the "device name" after
+       a /D: is missing or invalid, "XCDROM" will be the default.
+  /L   Limits UltraDMA to "low memory" below 640K. /L is REQUIRED to use
+       UMBPCI or a similar driver whose upper-memory areas cannot do
+       UltraDMA. If /L is given, the driver must load in LOW memory so
+       its DMA command-lists can fetch properly, or driver loading will
+       ABORT! /L causes any I/O requests above 640K to use "PIO mode"
+       input. Note that /L will be IGNORED if /UX is also given.
+  /Mn  Specifies the MAXIMUM UltraDMA "mode" to be set for a CD-ROM
+       drive, where n is a number between 0 and 6, as follows:
+       0 = ATA-16, 16 MB/sec.    4 = ATA-66,   66 MB/sec.
+       1 = ATA-25, 25 MB/sec.    5 = ATA-100, 100 MB/sec.
+       2 = ATA-33, 33 MB/sec.    6 = ATA-133, 133 MB/sec.
+       3 = ATA-44, 44 MB/sec.
+       A CD-ROM drive designed to use "modes" LESS than the given value
+       will be limited to its own highest "mode". /M will be IGNORED for
+       CD-ROM drives which cannot do UltraDMA, and it will be ignored
+       for ALL drives if /UX is also given.
+  /PM  Requests the driver to check the IDE primary-master unit for a 
+       CD-ROM drive during driver init. If a CD-ROM drive is NOT found
+       as primary-master, driver loading will ABORT!
+  /PS  Same as /PM but tests the primary-slave unit only.
+  /SM  Same as /PM but tests the secondary-master unit only.
+  /SS  Same as /PM but tests the secondary-slave unit only.
+       --- NOTE ---
+       Using multiple drives, multiple /PM /PS /SM /SS switches can be
+       given. The first-specified drive is addressed as "unit 0", the
+       second as "unit 1", etc. If fewer switches than drives are given,
+       the unreferenced drives will NOT be used. If NO such switches are
+       given, the driver "scans" for CD-ROM drives, from primary-master
+       to secondary-slave. The first drive found will be "unit 0", the
+       second will be "unit 1", etc.
+  /UF  Enables "Fast UltraDMA". Data input requests that cross an
+       UltraDMA "64K boundary" are executed using a 2-element DMA
+       command list, one for data up to the boundary, and one for
+       data beyond it. CD-ROM speed is increased significantly. "PIO
+       mode" input is still needed for user buffers that are misaligned
+       (not at an even 4-byte address). /UF will be IGNORED for CD-ROM
+       drives which cannot do UltraDMA.
+       --- NOTE ---
+       Despite any UltraDMA specs, NOT ALL chipsets or mainboards can
+       run multi-element DMA commands properly! Although it is valuable,
+       /UF must be TESTED on every system, and "Fast UltraDMA" should
+       be enabled with CARE!!
+  /UX  Disables ALL UltraDMA, even for CD-ROM drives capable of it. The
+       driver then uses "PIO mode" for all data input. /UX should be
+       needed only for tests and diagnostic work.
+  For each switch, a dash may replace the slash, and lower-case letters
+  may be used.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  GCDROM.SYS supports NLS (national language support), see "xcdmsgs.eng".
+  It only has to be compiled in the corresponding language.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+  determine number to detect 1st/2nd/3th SATA native IDE controller:
+    DEVICE=c:\fdos\bin\GCDROM.SYS /D:CDROM000 /C0
+    DEVICE=c:\fdos\bin\GCDROM.SYS /D:CDROM001 /C1
+    DEVICE=c:\fdos\bin\GCDROM.SYS /D:CDROM002 /C2
+  IN AUTOEXEC.BAT:
+    c:\fdos\bin\SHSUCDX /D:CDROM000 /D:CDROM001 /D:CDROM002
+</pre>
+<h2>See also:</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: dir</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: dir</h1>
+<pre>
+  DIR zeigt eine Liste von Dateien und Unterverzeichnissen in einem 
+  Verzeichnis an.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DIR [Laufwerk][Pfad][Dateiname] [/P] [/W] [/A[[:]Attribute]]
+      [/O[[:]Sortierorder]] [/S] [/B] [/L] [/Y] [/?]
+      Laufwerk   Der Laufwerksbuchstabe, z.B.: C:
+      Pfad       Der zu waehlende Pfad, z.B.: \Beispiel\
+      Dateiname  Die anzuzeigende Datei, z.B.: test.txt
+                 [Laufwerk][Pfad][Dateiname]
+                 Spezifiziert Laufwerk, Verzeichnis, und/oder 
+                 aufzulistende Dateien. (Koennen sowohl erweiterte 
+                 als auch mehrere Dateispezifikationen sein.)
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /P  Zeigt hintereinander jeweils eine Bildschirmseite der Liste 
+  /W  Zeigt die Liste im Breitformat
+  /A:Attribute
+      Zeigt nur die Datien und Verzeichnissen mit den 
+      gewaehlten Attributen. Standard ist /a:hsdar.
+      Sie koennen die folgenden Attribute verwenden:
+        h | -h  Versteckte Dateien      -h nicht versteckte Dateien
+        s | -s  System Dateien          -s Nicht Systemdateien
+        d | -d  Verzeichnisse           -d Dateien
+        a | -a  Dateien mit Archiv-Bit  -a Dateien ohne Archivbit
+        r | -r  Read-only Dateien       -r Dateien, die nicht 
+                                           read-only sind           
+  /O:Sortierorder
+      Zeigt die Liste in der gewaehlten Reihenfolge. Standard ist /O:g.
+      Sie koennen wie folgt sortieren:
+        a | -a  Alphabetisch (A-Z)      -a Alphabetisch (Z-A)
+        e | -e  Nach Dateiendung (A-Z)  -e Dateiendung (Z-A)
+        d | -d  Nach Datum und Uhrzeit  -d Datum/Uhrzeit
+                (aufsteigend)              (absteigend)
+        s | -s  Nach Groesse            -s Groesse 
+                (Klein-Gross)              (Gross-Klein)
+        g | -g  Verzeichnisse zuerst    -g Verzeichnisse zuletzt
+                anzeigen                   anzeigen
+  /S  Zeigt die Dateien im spezifizierten Verzeichnis und allen
+      Unterverzeichnissen an.
+  /B  Benutzt das knappe Format (ohne Ueberschrift und Zusammenfasung).
+  /L  Benutzt Kleinbuchstaben.
+  /Y or /4
+      Zeigt vierstellige Jahreszahlen an.
+  /?  Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Um das Standardverhalten von dir anzupassen, koennen Sie die 
+  DIRCMD-Umgebungsvariable verwenden. Zum Beispiel:
+    <a href="../command/set.htm">SET</a> DIRCMD=/w/p
+  Um Einstellungen in DIRCMD ausser Kraft zu setzen, koennen Sie in der
+  Kommandozeile vor diesem Schalter einen Bindestrich ("-") verwenden
+  (z.B. /-w).
+  DIR ist ein interner Befehl, d.h. der Befehl ist in der command.com
+  enthalten. Es wird zur Ausfuehrung des Befehls kein zusaetzlicher
+  Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  dir c:\beispiel /p
+  dir c:\beispiel /w
+  dir c:\beispiel /O: a
+  dir c:\fdos | more
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/set.htm">set</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

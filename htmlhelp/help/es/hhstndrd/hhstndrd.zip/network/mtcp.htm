@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Redes de FreeDOS - mTCP</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Redes de FreeDOS - mTCP</h1>
+<h2><a name="zzz"></a>mTCP:</h2>
+<pre>
+  En 2009 <b>Michael B. Brutman</b> (ver: <b>http://www.brutman.com/ (*01)</b>), un
+  programador y un entusiasta de DOS, escribi¢ un nuevo <a href="../network/ldtcpipk.htm">n£cleo TCP/IP</a>
+  para DOS llamado "PCTM" (<b>ver: http://www.brutman .com/PCTM/ (*02)</b>).
+  Prob¢ este n£cleo en un <b>PCjr</b> (ver: <b>http://en.wikipedia.org/wiki/
+  IBM_PCjr (*03)</b>) a partir de 1983. Seg£n su sitio web, que quiere
+  crear un n£cleo <a href="../network/ldtcpipk.htm">TCP/IP</a> moderno que tiene un tama¤o peque¤o y alto
+  rendimiento. El programa ya est  funcionando muy bien, que se
+  actualiza con frecuencia.
+</pre>
+<h2><a name="aaa"></a>Licencia:</h2>
+<pre>
+  mTCP es un Software Libre. El 27 de mayo 2011 Michael Brutmann lo
+  liber¢ bajo los t‚rminos de la GPL v3. El c¢digo fuente est disponible
+  en <b>http://code.google.com/p/mtcp/ (*04)</b>.
+</pre>
+<h2><a name="bbb"></a>Aplicaciones:</h2>
+<pre>
+  Como <a href="../network/wattcp.htm">WatTCP</a>, mTCP es una biblioteca que est  vinculado con el c¢digo de
+  la aplicaci¢n, es decir, que est  integrado en las aplicaciones. En el
+  verano de 2010 las siguientes aplicaciones estaban disponibles en su
+  sitio web:
+    * dhcp.exe    -- un cliente DHCP
+    * ftpsrv.exe  -- un servidor FTP
+    * dnstest.exe -- un resolutor DNS
+    * ftp.exe     -- un cliente FTP
+    * ircjr.exe   -- un cliente IRC
+    * nc.exe      -- una utilidad netcat
+    * telnet.exe  -- Telnet
+    * sntp.exe    -- un cliente NTP (Network Time Protocol)
+    * ping.exe    -- utilidad de Ping 
+</pre>
+<h2><a name="ccc"></a>Configuraci¢n:</h2>
+<pre>
+  mTCP utiliza controladores de paquetes. Requiere un archivo de
+  configuraci¢n en un lugar especificado por una variable de entorno, por
+  ejemplo:
+    set MTCPCFG=c:\mtcp\tcp.cfg
+  El archivo de configuraci¢n es el siguiente:
+    --- TCP.CFG ---
+    PACKETINT 0x60
+    IPADDR 192.168.1.50
+    NETMASK 255.255.255.0
+    GATEWAY 192.168.1.1
+    NAMESERVER 192.168.1.1
+    MTU 1500
+  Si dispone de un servidor DHCP corriendo en tu red, no es necesario que
+  escriba las direcciones est ticas. En su lugar, s¢lo tiene que definir
+  el vector del conductor del paquete y el nombre de la m quina en
+  TCP.CFG:
+    --- TCP.CFG ---
+    PACKETINT 0x60
+    HOSTNAME  PCjr
+  Posteriormente ejecutar DHCP.EXE. El programa actualizar  el archivo
+  de configuraci¢n con toda la informaci¢n que obtiene del servidor.
+</pre>
+<h2><a name="ddd"></a>Rendimiento:</h2>
+<pre>
+  En una primera prueba de la aplicaci¢n FTP de mTCP era m s r pido que
+  todos los otros programas de prueba. De hecho, se descarga un archivo
+  binario de siete veces m s r pido que Arachne y diez veces m s r pido
+  que la NCSA Telnet!
+  El equipo utilizado para la prueba fue un Compaq Contura Aero 486SL
+  con 33 Mhz y 20 MB de RAM. El SO fue FreeDOS 1.0. El archivo
+  descargado es un mp3 con un tama¤o de archivo de 4 MB.
+  Resultados:
+    <a href="../network/mtcp.htm">mTCP</a> FTP                      15 sec.
+    curl                          23 sec.
+    <a href="../network/wattcp.htm">WatTCP</a> FTP                    51 sec.
+    <a href="../network/wattcp.htm">Watt-32</a> FTP32                 51 sec.
+    Datalight Sockets FTP client  69 sec.
+    <a href="../network/tcpip_ap.htm#ccc">Arachne</a> 1.93                 104 sec.
+    NCSA <a href="../network/history.htm#bbg">Telnet</a> FTP              149 sec.
+    <a href="../network/history.htm#bbh">CUTCP</a> FTP v. 2.2             155 sec.
+    <a href="../network/tcpip_ap.htm#ddd">EZ-NOS2</a>                      231 sec.
+  Por supuesto, los resultados dependen del hardware utilizado para la
+  prueba. A modo de comparaci¢n: en un ordenador port til m s moderno
+  (X60T de IBM, 3 GB de RAM, el sistema operativo: Ubuntu 8.04) el mismo
+  archivo se descarg¢ por Filezilla en cinco segundos.
+</pre>
+<h2><a name="eee"></a>Conclusi¢n:</h2>
+<pre>
+  mTCP parece funcionar bien. Su rendimiento se ve muy prometedor. Fue
+  liberado como software libre en 2011 es un gran paso adelante para
+  FreeDOS. El desarrollo de mTCP se debe supervisar de cerca por todos
+  los interesados en DOS y redes FreeDOS.
+
+  <b>(*01) OK</b>
+  <b>(*02) OK</b>
+  <b>(*03) OK</b>
+  <b>(*04) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Alemania), modificado en 2010
+  por W.Spiegl. Actualizado en 2014 por Lorenzo del Toro Saravia.</b>
+  Para mas informaci¢n <a href="../network/intro.htm#ddd">Consulte aqu¡</a>.
+
+  Se concede permiso para copiar, distribuir y/o modificar este documento
+  en los t‚rminos de la licencia de documentaci¢n libre GNU, versi¢n 1.2
+  o cualquier versi¢n posterior publicada por la Free Software
+  Foundation.
+  Una copia de la licencia est  incluida en la secci¢n titulada
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

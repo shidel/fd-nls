@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: lastdrivehigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1>Befehl: lastdrivehigh</h1>
+<pre>
+  LASTDRIVEHIGH vergibt den letzten Laufwerksbuchstaben, der einem
+  Laufwerk zugeordnet werden kann.
+  LASTDRIVEHIGH ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  lastdrivehigh=x
+    wobei x der letzte verfuegbare Buchstabe ist.
+</pre>
+<h2>Optionen:</h2>
+<pre>  - keine -</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Standardmaessig setzt FreeDOS x hoch genug, dass fuer alle Disketten-
+  laufwerke und alle angezeigten Festplattenpartitionen sowie fuer ein
+  CD-ROM-Laufwerk oder ein anderes Laufwerk Buchstaben vorhanden sind.
+  Sie koennen x hoeher einstellen, wenn Sie mehr als ein Laufwerk
+  verwenden wollen, das FreeDOS nicht automatisch erkennt (CD Laufwerke,
+  ZIP-Laufwerke usw.).
+  Wenn Sie x hoeher als notwendig stellen (z.B. lastdrivehigh=Z) 
+  verschwendet dies ein wenig Speicher.
+  Der Befehl LASTDRIVEHIGH versucht im Gegensatz zu LASTDRIVE zuerst in
+  den hohen Speicher zu laden. Wenn das nicht funktioniert, versucht er
+  in den konventionellen Speicher zu laden.
+  Bitte beachten: Die Art und Weise, wie Sie Geraetetreiber laden, hat
+  eine grosse Auswirkung auf die spaeter frei verfuegbare Speichermenge
+  (insbesondere konventioneller Speicher). Versuchen Sie deshalb,
+  (im Speicherverbrauch) grosse Programme (insbesondere Treiber) zuerst
+  in den hohen Speicherbereich zu laden.
+  Wichtig: Es muss zuvor ein Manager fuer den hohen Speicherbereich
+  wie z.B. (<a href="../base/himem.htm">HIMEM</a>) <a href="../base/himem.htm">HIMEMX</a> oder <a href="../base/jemmex.htm">JEMMEX</a> geladen werden, um diesen Befehl
+  ausfuehren zu koennen.
+  LASTDRIVEHIGH ist ein interner Befehl, d.h. der Befehl ist in der 
+  kernel.sys enthalten. Es wird zur Ausfuehrung des Befehls kein 
+  zusaetzlicher Befehl (Datei) benoetigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    lastdrivehigh=z  ermoeglicht Laufwerksbuchstaben von A - Z.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/lastdrv.htm">lastdrive</a>
+  <a href="../base/shsucdx.htm">shsucdx</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bezueglich der Kopierbedingungen.
+
+</pre></body></html>

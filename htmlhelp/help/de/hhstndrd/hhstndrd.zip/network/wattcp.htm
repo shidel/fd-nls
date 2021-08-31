@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Netzwerken unter FreeDOS - WatTCP/Watt-32</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Netzwerken unter FreeDOS - WatTCP/Watt-32</h1>
+<h2><a name="zzz"></a>Uebersicht:</h2>
+<pre>
+  Waterloo TCP (WatTCP) wurde 1990 - 1992 an der Universitaet von Waterloo
+  in Ontario (Kanada) geschrieben. Der Autor ist Erick Engelke, der
+  danach ein Entwickler an der Fakultaet fuer Ingenieurwissenschaften war
+  und heute an der Universitaet der <b>"Director des Engineering Computing"</b>
+  ist. (siehe: <b>http://www.eng.uwaterloo.ca/~erick/ (*01)</b>).
+  Der Kern der TCP Engine von WatTCP basierte auf Geoffrey H. Cooper's
+  TinyTCP.
+  WatTCP wurde urspruenglich unter einer selbstgestrickten Public Domain
+  Lizenz veroeffentlicht - die Binaerdateien und der Quellcode konnten
+  frei verwendet werden, der Vertrieb war nur fuer nichtkommerzielle
+  Zwecke zugelassen. Im Jahr 2004 stellte Erick Engelke es unter die
+  Bedingungen der GNU LGPL.
+  WatTCP findet man auf Erick Engelke's <b>Homepage</b> (siehe: <b>http://
+  www.erickengelke.com/wattcp/index.shtml (*02)</b>). Waehrend die Software
+  selbst frei ist, wird die WatTCP Programmierreferenz <b>als PDF fuer 50 $
+  verkauft</b> (siehe: <b>http://www.erickengelke.com/wattcp/docs.shtml (*03)</b>).
+  WatTCP wurde im Jahr 1999 von Gisle Vanem in Bergen, Norwegen auf 32-Bit
+  portiert. Die Portierung wird <b>Watt-32</b> genannt (siehe: <b>http://
+  home.broadpark.no/~gvanem/ (*04)</b>). Sie unterstuetzt sowohl den 32-Bit-
+  Protected-Modus als auch den 16-Bit-Echtzeitmodus.
+  Auf der Webseite finden sich Binaerdateien, Quellcode und die Doku-
+  mentation zum Herunterladen. Weitere Binaerdateien, die den Watt-32
+  Stack verwenden, koennen <b>hier heruntergeladen</b> werden (siehe:
+  <b>http://www.filegate.net/utiln/utilnet/wt32apps.zip (*05)</b>).
+  Es gibt auch ein <b>Entwicklerforum</b> (siehe: <b>http://tech.groups.
+  yahoo.com/group/watt-32/messages/2617?viscount=-30&amp;l=1 (*06)</b>),
+  das noch immer aktiv ist.
+  WatTCP und Watt-32 sind keine externen <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a>. Beide sind nur
+  <b>Bibliotheken</b>, die den Programmierern zugaenglich sind - sie koennen
+  diese Bibliotheken verwenden, um <a href="../network/tcpip.htm">TCP/IP</a> Funktionen in ihre Anwendungen
+  zu implementieren.
+  Die WatTCP Pakete beinhalten solche Anwendungen mit eingebautem WatTCP
+  Kernel wie "ping", "finger", "whois" oder "lpr".
+  Viele wichtige DOS <a href="../network/network.htm">Netzwerk</a>anwendungen wie <a href="../network/tcpip_ap.htm#ccc">Arachne</a> oder <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a> verwen-
+  den die WatTCP Bibliotheken. Eine Liste dieser Anwendungen gibt es
+  unter <b>"DOS-Loesungen"</b> (siehe:
+  <b>http://www.dossolutions.pwp.blueyonder.co.uk/wattcp.htm (*07)</b>).
+</pre>
+<h2><a name="aaa"></a>Installation und Konfiguration:</h2>
+<pre>
+  Sie brauchen also nichts zusaetzlich herunterzuladen, um den WatTCP/
+  Watt-32 Kernel zu verwenden. Er ist bereits in die Anwendungen einge-
+  baut. Das Einzige, was noch benoetigt wird, ist eine Konfigurations-
+  datei, die den Namen "WATTCP.CFG" hat und bei beiden Versionen vom
+  Grundsatz her gleich ist. Sie wird standardmaessig im Anwendungs-
+  verzeichnis abgelegt. Die Einstellungen, wenn Sie mit festen IP's
+  arbeiten:
+    --- WATTCP.CFG ---
+    # Das sind Beispielswerte:
+    my_ip = 192.168.1.10
+    netmask = 255.255.255.0
+    nameserver = 192.168.1.1
+    nameserver = 129.97.128.196
+    nameserver = 129.97.128.1
+    gateway = 192.168.1.1
+    # Auskommentieren, wenn Sie Ihre Konfiguration ueber DHCP erhalten:
+    # my_ip = dhcp
+  Wenn Sie Ihre Einstellungen ueber einen DHCP-Server/Router erhalten:
+    --- WATTCP.CFG ---
+    my_ip = dhcp
+    netmask = 255.255.255.0
+    gateway = 0.0.0.0
+    domain_list = your.domain.com
+    # domain, gateway, ip, Der Nameserver wird ueber DHCP gesetzt
+  Wenn die Anwendung nicht im gleichen Verzeichnis wie WATTCP.CFG ist,
+  setzen Sie bitte (in der <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>)
+    WATTCP.CFG=\Pfad\zur\Datei
+  um dort hinzuverweisen.
+  Weitere Einstellungen koennen durch die verwendeten Anwendungen er-
+  forderlich sein. Eine weitergehende Einfuehrung in den Gebrauch von
+  WatTCP Programmen koennen Sie hier finden, (siehe: <b>http://www.web.
+  archive.org/web/20080329105946/http://www.smashco.com/wattcp.asp (*08)</b>).
+
+  <b>(*01) OK</b>
+  <b>(*02) https://web.archive.org/web/20100414105959/http://
+        www.erickengelke.com/wattcp
+        und: http://www.erickengelke.com/history.html</b>
+  <b>(*03) ?</b>
+  <b>(*04) http://www.watt-32.net/</b>
+  <b>(*05) OK</b>
+  <b>(*06) https://groups.io/g/watt-32/message/1</b>
+  <b>(*07) https://web.archive.org/web/20090509205846/http://
+        www.dossolutions.pwp.blueyonder.co.uk/wattcp.htm</b>
+  <b>(*08) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), 2011 und 2020
+  an die FreeDOS-Hilfe angepasst von W.Spiegl.</b>
+  Weitergehende Informationen <a href="../network/intro.htm#ddd">finden Sie hier</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

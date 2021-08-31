@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Redes de FreeDOS - Redes de DOS hoy</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h1><a name="top"></a>Redes de FreeDOS - Redes de DOS hoy</h1>
+<h2><a name="zzz"></a>Visi¢n de conjunto</h2>
+<pre>
+  En este cap¡tulo vamos a aprender m s acerca de los controladores de
+  <a href="../network/network.htm">red</a>, protocolos y software de <a href="../network/network.htm">red</a> que se pueden utilizar con un PC
+  FreeDOS en el siglo 21. Para obtener informaci¢n m s profunda acerca
+  de la creaci¢n de <a href="../network/network.htm">redes</a> tratar de Eugene Blanchard <b>"Introducci¢n a la
+  Comunicaci¢n de datos"</b> (ver: <b>http://www.techbooksforfree.com/
+  intro_to_data_com/ (*01)</b>, GNU GPL, una versi¢n m s reciente pero
+  no gratuita <b>se puede encontrar aqu¡</b> (v‚ase : <b>http://learnat.
+  sait.ab.ca/ict/txt_information/Intro2dcRev2/index.html (*02)</b>).
+</pre>
+<h2><a name="aaa"></a>Controladores</h2>
+<pre>
+  <a href="../network/ethernet.htm">Ethernet</a> es la tecnolog¡a dominante de hardware de <a href="../network/network.htm">red</a> de hoy en d¡a.
+  Para este tipo de adaptadores de <a href="../network/network.htm">red</a> en general tres tipos de
+  controladores pueden ser usados bajo DOS (y usted deber¡a ser capaz de
+  encontrar al menos uno de ellos para su tarjeta):
+    * <a href="../network/install.htm">Paquetes de controladores</a>, inventados por FTP Software Inc. Muchos
+      de ellos fueron escritos y distribuidos por <a href="../network/crynwr.htm">Crynwr</a>.
+    * Controladores Open Datalink Interface (<a href="../network/odi.htm">ODI</a>), desarrollado por
+      <a href="../network/novell.htm">Novell</a> y Apple
+    * Los controladores <a href="../network/network.htm">Network</a> Driver Interface Specification (<a href="../network/ndis.htm">NDIS</a>),
+      desarrollado por Microsoft y <a href="../network/3com.htm">3Com</a>.
+  Los tres son controladores de <a href="../network/network.htm">red</a> <b>multiprotocolo</b>, lo que significa que
+  son capaces de soportar m£ltiples protocolos sobre la misma tarjeta.
+  Drivers anteriores hicieron que s¢lo se admitieran un £nico protocolo.
+  Conductores Multiprotocol comunican directamente con la tarjeta de
+  interfaz de <a href="../network/network.htm">red</a> y proporcionan una especificaci¢n de interfaz de
+  publicaci¢n obligatoria, en el que las aplicaciones se pueden escribir.
+  Para una buena introducci¢n general a este tema consulte <b>"Controladores
+  de aplicaci¢n multiprotocolo de</b> <a href="../network/network.htm">red</a> <b>en un entorno DOS"</b> por la
+  Universidad de Georgia, Athens, Georgia (EE.UU.)
+  (v‚ase: <b>http://www.eits.uga.edu/ucns/lans/docs/netdrive.html (*03)</b>).
+</pre>
+<h2><a name="bbb"></a>Protocolos</h2>
+<pre>
+  Los siguientes protocolos son compatibles con estos tres controladores:
+    * Transmission Control Protocol/Internet Protocol (<a href="../network/tcpip.htm">TCP/IP</a>) que se
+      utiliza por ejemplo en UNIX, GNU/Linux, Windows Vista, OS X y la
+      Internet.
+    * Protocolos Internetwork Packet Exchange/Sequenced Packet Exchange
+      (<a href="../network/ipxspx.htm">IPX/SPX</a>), utilizados por ejemplo por <a href="../network/novell.htm">Novell Netware</a>.
+    * <a href="../network/network.htm">Network</a> Basic Input Output System (<a href="../network/history.htm#aaa">NetBIOS</a>) interfaz de usuario
+      ampliada (NetBEUI tambi‚n conocido como <a href="../network/cifs.htm">CIFS</a>) que se utiliza,
+      por ejemplo, por el OS/2, Windows 9x, ME y 2000.
+  <a href="../network/tcpip.htm">TCP/IP</a> es el est ndar para los servicios b sicos de Internet como
+  HTTP, SMTP o FTP y tambi‚n se convirti¢ en el protocolo predeterminado
+  para la conexi¢n de <a href="../network/network.htm">redes</a> de  rea local (LAN).
+  <a href="../network/cifs.htm">NetBEUI</a> es el protocolo predeterminado para redes de  rea local en los
+  sistemas de Microsoft, hasta Windows 2000. Fue reemplazado por <a href="../network/history.htm#aaa">NetBIOS</a>
+  sobre <a href="../network/tcpip.htm">TCP/IP</a> (NBT) y luego por <a href="../network/tcpip.htm">TCP/IP</a>. El protocolo <a href="../network/history.htm#aab">SMB</a> de la <a href="../network/network.htm">red</a> a
+  nivel de aplicaci¢n, por ejemplo, <b>puede ejecutar</b> (consulte:
+  <b>http://support.microsoft.com/default.aspx?scid=kb;en-us;Q204279 (*04)</b>)
+  directamente sobre TCP desde Windows XP.
+  <a href="../network/ipxspx.htm">IPX</a> de <a href="../network/novell.htm">Novell</a> se utiliz¢ en <a href="../network/novell.htm">Novell Netware</a>, que ha sido la soluci¢n de
+  red por defecto para ordenadores personales con DOS o Windows 3.x.
+  Desde 1998 NetWare es capaz de funcionar con <a href="../network/tcpip.htm">TCP/IP</a>, las versiones
+  m s recientes utilizan por defecto.
+  Conclusi¢n: <a href="../network/tcpip.htm">TCP/IP</a> es la "lengua franca" de las <a href="../network/network.htm">redes</a> modernas.
+  Todav¡a es posible utilizar otros protocolos, pero el soporte puede
+  llegar a su fin.
+</pre>
+<h2><a name="ccc"></a>Software de red</h2>
+<pre>
+  En general, podemos distinguir los siguientes tres formas de trabajo
+  en red que todav¡a se pueden utilizar con DOS. Aprenda m s acerca de
+  ellos en los siguientes cap¡tulos:
+    * <a href="../network/novell.htm">Novell Netware</a> - programas de <b>Novell NetWare</b> basada
+      en controladores
+      <a href="../network/odi.htm">ODI</a> para acceder a una <a href="../network/network.htm">red</a> NetWare y el uso de los servicios
+      <a href="../network/tcpip.htm">TCP/IP</a>.
+    * <a href="../network/msclient.htm">Cliente MS</a> - controladores <a href="../network/ndis.htm">NDIS</a> basados en <b>Microsoft "cliente de
+      <a href="../network/history.htm#aab">LAN manager</a>" o "MS Client 3.0"</b> integrar m quinas DOS en un grupo
+      de trabajo Windows/<a href="../network/history.htm#aab">SMB</a>.
+    * Las <a href="../network/tcpip.htm">aplicaciones TCP/IP</a> - controlador de paquetes basadas en
+      "UNIX-like" <b>aplicaciones TCP/IP</b> para acceder o proporcionar
+      servicios de <a href="../network/network.htm">red</a> como http, smtp, ftp, ssh (ver : <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a>) o <a href="../network/nfs.htm">NFS</a>.
+    * <a href="../network/others.htm">Otros</a>.
+
+  <b>(*01) OK</b>
+  <b>(*02) http://www.telecomworld101.com/Intro2dcRev2/index.html</b>
+  <b>(*03) https://web.archive.org/web/20090112073628/http://www.
+        eits.uga.edu/~ucns/lans/docs/netdrive.html</b>
+  <b>(*04) https://web.archive.org/web/20060315052325/http://support.
+        microsoft.com/default.aspx?scid=kb;en-us;Q204279</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Alemania), modificado en 2010
+  por W.Spiegl. Actualizado en 2013 por Lorenzo del Toro Saravia.</b>
+  Para m s informaci¢n <a href="../network/intro.htm#ddd">consulte aqu¡</a>.
+
+  Se concede permiso para copiar, distribuir y/o modificar este documento
+  en los t‚rminos de la Licencia de Documentaci¢n Libre GNU, Versi¢n 1.2
+  o cualquier versi¢n posterior publicada por la Free Software
+  Foundation.
+  Una copia de la licencia est  incluida en la secci¢n titulada
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>
