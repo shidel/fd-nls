@@ -1,0 +1,459 @@
+### Sonsuzluk Program Yîneticisi El Kitabç. (Biraz daha az mÅsvedde)
+
+Hakkçnda:
+
+    òlk bakçüta PGME oldukáa sade gîrÅnÅr. Selefi PGM7.2 hiá de karmaüçk
+    deßildi. Fakat PGME hakikaten bir karmaüçklçk canavarçdçr. Äoklu dilleri
+    destekler, tamamç temalanabilir, etkinliklerle yîn verilen bir canavardçr o
+    ve tÅmÅnÅ kendim oluüturdußum nispeten kapsamlç bir nesne yînelimli
+    uygulama áeráevesinin Åzerine inüa edilmiütir. GîrdÅßÅnÅz her üey atasçndan
+    kod almçü ve ona "sahip" bir ebeveyni olan bir áeüit "kontroldÅr".
+    Baßlama duyarlç, kendisini toplayan dinamik bir yardçm sistemi bile vardçr.
+    Aynç üekilde, programlar iáin baülatma menÅleri bile bir áeüit kendisini
+    derleyen verileri tampona alma sisteminden geáer.
+
+    BÅtÅn bu anlatçm bu programa hakkettißini vermez ve bu canavarçn iáinde
+    geáen üeyler mevzusunda sadece yÅzeyi kazçmaktan ibaret kalçr.
+
+    òyi de bu program ne yapar? Eßer bu dosyayç okuyorsançz, muhtemelen bu
+    sorunun cevabçnç zaten biliyorsunuzdur. Ama bu metnin programdan bir
+    üekilde ayrçldçßç ihtimaline karüç... DOS iáin menÅlere dayalç program
+    baülatçcçsçnçn en uá üeklidir. Bu tÅr program baülatçcçlarç iáin nihai
+    sîz olmasç amaálanmçütçr.
+
+    Mesela, PGME iáinde temalar bir iki renk deßiütiren üurada ve burada bir
+    iki paráadan áok daha fazlasçdçr. Kullançcç arayÅzÅnÅn gîrÅnÅmÅ ve
+    iüleyiüini tamamen deßiütirebilirler. Varsayçlan gîmÅlÅ temada PGME'nin
+    neredeyse tÅm iülevleri îyle veya bîyle gîsterilmiütir. Fakat KòOSK
+    gîstermesini áalçütçrçrsançz, PGME temalarçn arasçnda geáiü yapmak ve bazç
+    ayarlarç deßiütirmek iáin QCNFTOOL programçnç kullançr. KòOSK temasçnda
+    ekrançn ortasçnda sadece tek bir menÅ gîrÅntÅlenir ve artçk DOS'a
+    áçkamazsçnçz. Neyse ki KòOSK gîsterim menÅ unsuru yerine KòOSK kipinden
+    áçkmak iáin bir unsur konmuütur. :-)
+
+Sistem Gereksinimleri:
+
+    FreeDOS v1.1 ile uyumlu bir iületim sistemi
+    1024K boü disk alanç.
+    640K bellek (400K boü, 500K boü, geráekten, hakikaten tavsiye edilir).
+    VGA ile uyumlu video kartç.
+    286 veya daha iyi bir yonga.
+    Klavye.
+    (Fare hararetle tavsiye edilir ve varsayçlan temayla tuü haritasç ayarlarç
+    kullançlçrken gereklidir).
+    (Renkli bir monitîr tavsiye edilir).
+
+Bilinen sorunlar (hakkçnda bir üey yapamayacaßçm veya yapmayacaßçm üeyler):
+
+    QFNT2TSR ile TSR (kalçcç) hale getirilmiü yazçtipleri DOSBox ile áalçümaz.
+    Bu, oluüturulan TSR ile ilgili bir sorun deßildir.
+
+    Sesler VirtualBox, VMware ve dißer sanal makinelerde duyulmaz. Bu ÅzÅcÅdÅr.
+    Ancak maalesef sanal makine yazçlçmlarçnçn ekseriyeti (DOSBox haricinde)
+    basit PC hoparlîrÅ seslerini desteklemezler.
+
+    QScroll akçcç kaydçrmasç sanal makinemde áalçümamaktadçr. Gene sanal
+    makinelerin áoßunlußu, metin kipinde akçcç kaydçrma yapmayç saßlayan VGA'ye
+    îzel donançm desteßini saßlamamaktadçr. Bazç ender durumlarda, bazç
+    donançmlar bile bunu desteklemez. Varsayçlan olarak akçcç kaydçrma DOSBox
+    ile hakiki donançmda ektinleütirilmiütir. VirtualBox, VMware ve QEMU gibi
+    sanal makinelerde devre dçüç bçrakçlmçütçr.
+
+Yapçlacaklar (er ya da geá, belki):
+
+    Disk koymalarç iáin menÅ yolu sÅrÅcÅ taramalarç.
+    PGMVars iáin kullançcç arayÅzÅ desteßi.
+    Baülatmadan evvel seáenek ayarlamalarç ve seáenek istemi.
+    Bazç baüka yardçmcç programlar, temalar, yazçtipleri, vs.
+
+PGME'yi kaynak koddan derlemek iáin üunlara ihtiyaá vardçr:
+
+    http://pgme.sourceforce.net adresinden PGME kaynak kÅtÅßÅ
+    DOS ile uyumlu bir òS. FreeDOS veya DOSBox olabilir.
+    Borland Turbo Pascal 7.0.
+    DOS iáin V8Power Tools.
+    BUILD.BAT dosyasçnç áalçütçrmak
+
+Varsayçlan olarak, QuickCRT'ye dayalç programlar:
+(Bunlar îzel bir KMP dosyasçnda deßiütirilebilir)
+
+    Alt-W pencere kapatçr ve pencere programçn ana penceresi ise áçkar.
+    Alt-Q programdan áçkar.
+    Alt-H bir yardçm ekranç gîrÅntÅler.
+    Alt-H, ardçndan Alt-H programçn ana yardçm ekrançnç gîsterir.
+
+** MUTLAK ûEKòLDE GEREKLò DOSYALAR **
+
+    PGME.EXE        Sonsuzluk Program Yîneticisi baülatçcçsç.
+    ETERNITY.BIN    PGME'nin program kodunun áoßunu iáeren ikili veri.
+
+** GERÄEKTEN BULUNMASI òYò OLAN DOSYALAR **
+
+    PGM.BAT         Bu, PGME'yi baülatmak iáin hakikaten kullanmançz gereken
+                    dosyadçr. Äoklu adçmlç ve pek karmaüçk program baülatmalarç
+                    yapmasçna imkÉn saßlar. Ayrçca PGME'nin ek 10K'yç
+                    boüalmasç istendißinde kendisini bellekten tamamen
+                    kaldçrmasçna izin verir. Yani PGME'yi tamamen salt okunur
+                    bir dosya sisteminde kullanmçyorsançz bu dosya %PATH% ortam
+                    deßiükeninizde bulunan bir dizinde mevcut olmasç gerekir.
+                    Kurulum programçyla kurduysançz, onu nereye koyacaßçnçz
+                    sorulmuütu. ûayet FDNPKG gibi bir FreeDOS paket kurucusuyla
+                    kurduysançz, %DOSDIR%\BIN dizininizde bulunacaktçr.
+
+                    Hey, PGME'ye komut satçrçndan arama terimleri
+                    aktarabileceßinizi biliyor muydunuz? Evet, PGME'yi
+                    baülatçrken "pgm static" yazçn, o da menÅlerle programlarç
+                    ilk denkleümeyi vurgulamak iáin arayacaktçr.
+
+** òLAVE DOSYALAR ***
+
+    Temel olarak yukarçdaki 2 veya 3 dosya PGME'yi áalçütçrmaya yeter. PGME
+    menÅleri, yapçlandçrma dosyalarçnç vs. gerektißi gibi oluüturacaktçr.
+    Aüaßçda dîkÅmÅ bulunan dosyalar sadece "pastançn áikolatasçdçr". :-)
+
+
+** DESTEK DOSYALARI **
+
+    ETERNITY.CFG    PGME'nin yapçlandçrma dosyasç.
+    EFNTDSGN.EXE    QuickCRT Yazçtipi Tasarçmcçsç.
+    EFNTDSGN.CFG    QuickCRT Yazçtipi Tasarçmcçsç yapçlandçrma dosyasç.
+    BLANKER.SCR     PGME iáin boü ekran ekran koruyucusu.
+    ATOM.SCR        PGME iáin "Atom" ekran koruyucusu.
+    CONWAY.SCR      "Conway'in Hayat Oyunu" temalç bir ekran koruyucusu.
+    STATIC.SCR      Eski televizyonlarçn parazitinden esinlenilmiütir. Sesi de
+                    olmalç mçydç acaba? Onsuz biraz eksik duruyor. Ah, sesle
+                    muhtemelen daha da sçkçcç olur.
+    TIME.SCR        BÅyÅk 24 saatli yer ve renk deßiütiren LCD tarzçnda saat.
+
+** EKSTRA YARDIMCI PROGRAMLAR **
+
+    QFNTLOAD.EXE    QuickCrt Geáici Yazçtipi YÅkleyici. Sonraki video kipi
+                    sçfçrlanmasçna dek her tÅrlÅ îzel yazçtipini yÅkleyip
+                    kullançn.
+    QFNT2RAW.EXE    QuickCRT yazçtiplerini, yazçtipinden sadece karakter
+                    verilerini iáeren dÅz ham ikili gîrÅntÅye dînÅütÅr.
+                    QuickCRT yazçtipi dosyalarçnçn bulundurdußu tÅm Åstverileri
+                    ve gÅvenlik denetlemelerini kaybedersiniz.
+    RAW2QFNT.EXE    DÅz ham bir ikiliyi QuickCRT yazçtipi dosyasçna dînÅütÅr.
+    QFNT2TSR.EXE    QuickCRT yazçtipi dosyalarçnç áalçütçrçlabilir TSR bir COM
+                    dosyasçna dînÅütÅr, ki bu program bilgisayar tekrar
+                    baülatçlana dek kalçr. Bunu, kendi yazçtiplerinizi DOS
+                    komut istemi ile metin kipi programlarçn áoßunlußunda
+                    kullanmak iáin áalçütçrabilirsiniz. Unutmayçn ki bu, tÅm
+                    FNT yazçtiplerini bir TSR'a dînÅütÅrmenize imkÉn saßlar.
+                    Ancak, bu teknikle 8x16 olmayan bir yazçtipini kullanan bir
+                    VGA sistemini hiá gîrmedim. Fakat ne olur ne olmaz diye
+                    ikazda bulunup yine de yazçtipini oluüturacaktçr.
+    QDETUNE.EXE     (HenÅz baülanmamçü) Program ses dizileri oluüturmaya
+                    yardçmcç olan program.
+    QKEYS.EXE       (HenÅz baülanmamçü) KMP dosyalarçnda klavye ve komut
+                    eüleütirmelerini deßiütirmeye yardçm eden program.
+    QSCROLL.EXE     Akçcç kaymalç metin dosya gîrÅntÅleyici. Äeüitli karakter
+                    yÅksekliklerini ve DOS/UNIX satçr sonlarçnç destekler.
+                    Yukarç, Aüaßç, PageUp veya PageDown dçüç herhangi bir tuüa
+                    basçü programdan áçkar. Ayrçca akçcç kaymayç S tuüuyla aáçp
+                    kapatabilirsiniz.
+    QCNFTOOL.EXE    PGME'nin metne dayalç veri dosyalarçnç iülemek iáin komut
+                    satçrç yardçmcç programç. MNU, CFG, THM, LNG, KMP ve PMI
+                    dosyalarç gibi. Bu dosyalar Windows INI dosyalarçna benzer
+                    ancak ondan áok farklçdçrlar ve bu araá Windows INI
+                    dosyalarçnda kullançlmamalçdçr. QCNFTOOL'un temel kullançmç
+                    iáin aüaßçya bakçn.
+
+** YAZITòPò DOSYALARI **
+
+    *.FNT           *.FNT uzantçsç ile biten tÅm dosyalar QuickCRT yazçtipi
+                    dosyalarçdçr.
+
+** QCNFTOOL.EXE **
+                    QCNFTOOL'un temel kullançmç. Evvela /W veya /X (/WRITE
+                    veya /EXPORT) komutu kullanmadçßçnçz sÅrece hiábir
+                    deßiüiklik veya dosyançn diske yazçlmayacaßçnç unutmayçn.
+
+                    Äçktç dosyasç. Bu yardçmcç program baüladçßçda, áçktç dosya
+                    ismi atanmamçütçr ve bir /W veya /X komutu kullançldçysa
+                    "NONAME.CFG" dosya adç kullançlacaktçr. Ancak /READ ile
+                    okudußunuz ilk dosya áçktç ismini okunan dosyançn ismi
+                    olarak ayarlayacaktçr. Äçktç dosya ismine yapçlacak tÅm
+                    sonraki deßiüiklikler /OUTPUT seáeneßini kullançlarak
+                    ayarlama gerektirecektir.
+
+                    Ayrçca biráok veya áok uzun komutlar kullanmak iáin /FILE
+                    seáeneßini kullançn. Dosya, tek bir komut kÅmesi olarak
+                    iülenecektir. ôrnek olarak KIOSK.OFF ve KIOSK.ON
+                    dosyalarçna bakçn.
+
+
+** MENö, ûABLON, VARSAYILAN ve YAPILANDIRMA dosyalarç***
+
+    DEFAULTS\*.*    òsimleri veya uzantçlarç ne olursa olsun, tÅm dosyalar
+                    DEFAULTS dizininde baülar.
+
+                    Bunlar derleme esnasçnda programlarçnda bulunan
+                    varsayçlanlara dayançlarak otomatik olarak oluüturulurlar.
+                    *.THM (Tema) ve *.LNG (Lisan) dosyalarç iáin ezmek
+                    istemedißiniz tÅm unsurlarç kaldçrmançz înerilir. Bu,
+                    program baüladçßçnda performansç hçzlandçrabilir. *.KMP
+                    (Keyboard Mapping) dosyalarç biraz farklçdçr. ûayet
+                    mevcutsa, ASSIMILATE ve COMMAND bîlÅmlerinde áalçümak
+                    istedißiniz tÅm unsurlarçn mevcut olmalarç gerekir. KMP
+                    dosyalarçndaki dißer bîlÅmler kaldçrçlabilir.
+
+                    Ayrçca  * bîlÅmÅnÅn mevcut olmasç gerekir. Ancak gÅncel
+                    olarak buna ihtiyaá yoktur.
+
+                    # bîlÅmÅ gîrmezden gelinir.
+
+                    Deßer unsurlarç tek bir satçrdan oluüur ve = simgesinden
+                    sonraki her üey (boüluklar dahil) deßerin bir paráasçdçr.
+                    Ancak bazç áoklu satçrlç unsurlar vardçr. Basitáe anlatmak
+                    gerekirse, bir += înceki deßere bir satçr ekler. Sadece
+                    áoklu satçrlç deßerleri destekleyen unsurlar ek satçrlarç
+                    kullançr.
+
+                    Bu dosyalar hakkçnda bir genel not daha. * bîlÅmÅnde bir
+                    MERGE unsuru bulunur. Eßer bir deßeri varsa, o zaman bu
+                    dosya gÅncel dosyayla birleütirilir ve yeni dosyadaki
+                    deßerler înceki deßerlerin yerine geáer. Birleütirme
+                    sayçsçnçn sçnçrç yoktur. Bir iki birleütirmeden fazlasçnçn
+                    yapçlmasçnç tavsiye etmem. Ne olursa olsun, son birleütirme
+                    hakiki yapçlandçrma dosyasç sayçlacak ve kaydedilirse tÅm
+                    ayarlar sadece ona yazçlacaktçr. Teoride tÅm geráek
+                    yapçlandçrma dosyalarç salt okunur bir dosya sisteminde
+                    bulunabilir ve kullançcç deßiüiklikleri baüka bir sisteme
+                    yazçlabilir.
+
+
+                    Oh, bir üey daha. Girintiler ve boü satçrlarçn bir înemi
+                    yoktur ve anlaüçlmayan tÅm anahtar veya bîlÅmler yok
+                    sayçlçr.
+
+** Bir KMP klavye eüleüme dosyasç **
+
+    ASSIMILATE BîlÅmÅ ( Bu bîlÅmÅ bu dosyadan baüka bir yere taüçyabilirim )
+
+        Bu bîlÅm áok dÅüÅk seviye klavye tarama kodu eüleüme tablosu iáerir.
+        Garip bir klavyeniz yoksa muhtemelen buraya dokunmamalçsçnçz. Ne olursa
+        olsun, tÅm tuülarçn kendi temel deßerleriyle eüleümesi gerekir. Mesela
+        tarama kodu $0061 olan a harfini ele alalçm. Shift, Control ve Alt
+        tuülarçnçn tÅm mÅmkÅn birleüimlerinin $0061 ile eüleümesi/haritalanmasç
+        gerekir. Dolayçsçyla $0061=$0041:A,$0001:C+$0104,$1E00:A satçrç tam da
+        bunu yapar. ûu üekilde:
+
+            target=original:mode+shiftcode,....
+
+            Target istenen koddur.
+            Original gelen orijinal koddur.
+            Mode kullançlan eüleüme algoritmasçdçr.
+                (A, M, veya C, Any (Herhangi biri), Match (Eüleüme) veya
+                Contains (òáerir) unsurlarçna denk gelir)
+            Shift, eüleüilecek orijinal shift kodudur.
+
+        Any shift kodu ne olursa olsun bir eüleüme sonucu verir.
+        Match sadece tam aynç shift kodu iseyse eüleüme sonucu verir.
+        Contains shift koddaki bitlerin herhangi birini iáeriyorsa
+        eüleüecektir.
+
+        Shift kodu deßerleri, onaltçlçk bir deßere beraber mantçksal
+        OR'lanmalçdçr.
+
+        Bu deßerler üunlardçr:
+
+            kbRightShift  = $0001;
+            kbLeftShift   = $0002;
+            kbEitherShift = kbRightShift veya kbLeftShift;
+            kbEitherCtrl  = $0004;
+            kbEitherAlt   = $0008;
+            kbScrollLock  = $0010;
+            kbNumsLock    = $0020;
+            kbCapsLock    = $0040;
+            kbInsertLock  = $0080;
+            kbLeftCtrl    = $0100;
+            kbLeftAlt     = $0200;
+            kbSysDown     = $0400;
+            kbPauseFlag   = $0800;
+            kbScrollDown  = $1000;
+            kbNumsDown    = $2000;
+            kbCapsDown    = $4000;
+            kbInsertDown  = $8000;
+
+    COMMANDS BîlÅmÅ
+
+            Bu bîlÅm, programçn varsayçlan bazç iüleyiülerini deßiütirmek iáin
+            kullançlabilir ve bazç tuü basçm birleüimlerinin dÅüÅk seviye
+            eüleümelerinin doßrudan komutlara atamalarçnç geráekleütirir.
+            Assimilate bîlÅmÅndeki tuü eüleümesi gibi iüler. Fakat doßrudan
+            tuülarçn komutlara atanmasç iáindir. Mesela bu bîlÅmÅ Äçkçü
+            komutunu Alt+Q birleüiminden Alt+X üeklinde deßiütirmek iáin
+            kullanabilirsiniz. En iyi neticeler tam eüleüme iáin +M
+            kullançlarak elde edilir.
+
+    EVENTS BîlÅmÅ
+
+            Programdaki bir nesne tçklandçßçnda ve tetiklendißinde bu komutlarç
+            oluüturacaktçr.
+
+    KEYSTROKES BîlÅmÅ
+
+            Nesne burada listelenen tuü basçmlarçna cevap verecektir.
+
+** LNG Dil Dosyalarç **
+
+    Artçk bunun áok aáçk oldußunu varsayabiliriz. Biáimlendirme deßerleri
+    haricinde.
+
+            FileDate
+                0 : 4-sayçlç sene
+                1 : Ay
+                2 : GÅn
+            FileTime:
+                0 : 24-saatlik saat
+                1 : 12-saatlik saat
+                2 : Dakika
+                3 : Saniye
+                4 : 0/1 (Yanlçü/Doßru) AM veya PM
+
+    Biáimlendirilmiü dizeler biáimlendirilmiü veri; ardçndan da gîrÅntÅlenecek
+    metindir.
+
+    ôrnek '0[Z2.1,C10]{One,Two,Three},1[U,C10,X1-10,T],0[L5,Z3];Merhaba %2%1%0!'
+
+        0-9 Kullançlacak deßer
+        [] Biáimlendirme seáenekleri
+        {} Dize seti, üayet deßer ayarlanmamçüsa  kullançlçr
+            {bool ve tamsayç}
+        Z ZeroPad (sçfçr doldurma) ondalçk noktadan înce.sonra
+           { tamsayç & geráek sayç }
+        T Dizeden boüluklarç kaldçr (doldurmadan veya kesmeden înce)
+        C, L veya R orta, sol ve saßda boüluklarla doldurma
+        X Dizeyi kçrp, belirtilen uzunlußu aümamak iáin.{eßer n.c ise n
+            baülangçá c sayçdçr}
+        U, D veya W BÅyÅk, kÅáÅk harf kullan veya kelimeleri temel al
+
+        ; biáim aáçklamalarçnç sonlandçrçr ve biáimlendirilecek dizeyi baülatçr
+        %0-9 Eklenecek biáim tançmlamalarç.
+
+
+** THM Tema Dosyalarç **
+
+    ALIGN Baülçk Metin Hizalamasç.
+        YÅksek bayt yatay hizalama, dÅüÅk bayt dikey hizalamadçr.
+            öst     $0000
+            Orta    $0001
+            Alt     $0002
+            Sol     $0000
+            Merkez  $0100
+            Saß     $0200
+
+    ANCHORS Äçpalama (sabitleme) ve hizalamayç kontrol et.
+
+        Aynç deßerin iáinde áçpalama ve hizalama kullandçßçnçzda dikkatli olun.
+
+            Äçpalama:
+            abNone   = $0000;
+            abLeft   = $0001;
+            abRight  = $0002;
+            abTop    = $0004;
+            abBottom = $0008;
+            abAll    = abLeft veya abRight ya da abTop veya abBottom;
+
+            Hizalama:
+            alNone   = abNone;
+            alLeft   = $0100;
+            alRight  = $0200;
+            alTop    = $0400;
+            alBottom = $0800;
+            alClient = alLeft veya alRight ya da alTop veya alBottom;
+
+    DISPLAY Genelde bir nesne tarafçndan gîrÅntÅlenmesi iáin kullançlan
+            onaltçlçk bir dize.
+
+    COLORS Bir nesnenin esas renkleri.
+
+        Not: DÅßmeler ve áeüitli baüka nesneler normal ve Åzerinden geáiü
+        renkleri aynç ise iülemezler.
+
+        VirgÅllerle üu sçrada ayrçlçrlar. Normal, Disabled, Hover, Click,
+        and Focused yani Normal, Devre dçüç, özerinden geáiü, Tçklama,
+        Odaklanmçü.
+
+    BOUNDS Äocuk nesnenin ebeveynininki temel alçnmçü konumu.
+
+    OUTSIDE Doßru oldußunda, nesne ebeveyninin dçüçnda áizilebilir. Aksi
+        takdirde bu olmaz. Sçnçrlar daima ebeveyninkine gîrelidir.
+
+    MARGINS Äocuk nesnenin ne kadar girintileneceßi.
+
+** CFG Yapçlandçrma Dosyalarç **
+
+    Programs BîlÅmÅ:
+
+        CLEAR,  Programçn áizilmesinden înce ekranç temizle.
+
+        USE_DAC, VGA DAC paletini kullan. (Uyumluluk sorunlarç olabilir)
+
+        USE_FADER, USE_DAC de doßru oldußunda, renk paleti programçn
+        baülamasçnda ve kapatçlmasçnda sîner ve parlar.
+
+        USE_SOUND, PC hoparlîrÅ sesleri oluüturulmasçna izin verir.
+
+** ETERNITY.CFG Dosyasç, ôzel Seáenekler **
+
+    CANQUIT, KòOSK olarak kurulmadçysa, doßru olarak bçrakçn (True). Eßer
+        yanlçü ise (false), sadece baüka programlarç baülatabilir ve PGME'ye
+        geri dînebilirsiniz. Komut istemine áçkçü yapamazsçnçz.
+
+    READONLY, Bu seáenek muhtemelen sadece bir KòOSK iáin kullançülçdçr. ûayet
+        PGME salt okunur kipte áalçüçyorsa, menÅler deßiütirilemez.
+
+    PATH.MENU, DOS PATH ortam deßiükeni gibi, bu, PGME'nin menÅleri arayçp
+        ekleyeceßi konumlardçr. Boü bçrakçlçrsa sadece PGME programçnçn yolu
+        aranacaktçr. Eßer ayarlandçysa, sadece belirtilen sabit disk konumlarç
+        dahil edilecektir. PGME salt okunur bir dosya sisteminde kurulu ve
+        áalçümakta deßilse muhtemelen faydalç deßildir.
+
+    Kullançcçnçn  lisan, tema, yazçtipi, ekran koruyucu vs. ayarlamasçndan înce
+    PGME, %LANG% ortam deßiükenini dile îzel bîlÅmlerden birinden bir dizi
+    uygun seáenek seámek iáin kullanacaktçr. Eßer deßiüken ayarlanmamçüsa
+    [LANG.NULL] ayarlarçnç kullançr.
+
+** *.MNU MenÅ Dosyalarç **
+
+    Äoßunlukla bunlardan uzak durmalçsçnçz. :-) Ama eßer bunlardan birini
+    kurcalayçp elle deßiütirmek istiyorsançz, iüte size bir iki not.
+
+    ôncelikle, bazç DESCRIPTION.* ve TITLE.* seáenekleri gîreceksiniz. Bunlar,
+    ilgili dil tercÅme dosyalarç temel alan dile îzel sÅrÅmlerdir. Eßer belli
+    bir dil iáin bunlar mevcut deßilse, .* kçsmç olmayan sÅrÅm kullançlçr.
+    Metnin bu sÅrÅmÅ sadece bir unsur ilk oluüturuldußunda deßiütirilir.
+
+    Genel [*] bîlÅmÅnde, kayda deßer 3 seáenek bulunur.
+
+        WRITABLE        Kullançcç bu menÅde deßiüiklik yapabilir mi... (yes/no)
+        HIDE            MenÅnÅn saklançp saklanmayacaßç ve ne zaman
+                        gîrÅntÅleneceßi. Off=daima gîrÅntÅler, On=Bu menÅyÅ
+                        saklar/devre dçüç bçrakçr. Auto=GîrÅntÅleyeceßi bir üey
+                        varsa gîrÅntÅlenir.
+        PAUSE           PGME'ye dîndÅkten sonra menÅnÅn gîrÅntÅlenmesinden înce
+                        bekle ki, programçn áçktç mesajlarç okunabilsin.
+                        Off=Bekleme, On=Sonsuza dek veya bir tuüa basçlana
+                        veya fare tçklamasçna dek bekle, veya NUMBER=saniye
+                        olarak sÅre boyunca bekle.
+
+    Bununla beraber, her bir menÅ unsuru aynç zamanda programa îzel HIDE ve
+    PAUSE ayarlarçnç da destekler.
+
+    MenÅ dosyalarç dÅz metin gibi gîrÅnÅr. Ancak dikkat edin, PGME ile birlikte.
+    sunulan varsayçlan sÅrÅmler, áoklu kod sayfasç dizeleri iáerir. Modern
+    metin dÅzenleyicilerin áoßu bu dizeleri bozar.
+
+** TercÅme ve dißer katkçlar **
+
+    PGME'nin esas dili Amerika òngilizce'sidir. Ancak, iáerdißi tercÅmeler
+    hakkçnda bazç notlar aüaßçdadçr.
+
+    òspanyolca:
+        Google Translate, German Ivani, AndrÇs Miguel Pitcovsky
+
+    Fransçzca ve TÅrkáe tercÅme:
+        Berki YenigÅn'e "CardPuncher" teüekkÅrler :-)
