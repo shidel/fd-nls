@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : pcisleep</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : pcisleep</h1>
+<pre>
+  PCISLEEP affiche des informations sur vos appareils PCI/AGP, recherche
+  des p&eacute;riph&eacute;riques d'une classe donn&eacute;e et active les modes d'&eacute;conomie
+  d'&eacute;nergie, y compris la suspension VGA, pour les p&eacute;riph&eacute;riques.
+  Combinez-le avec FDAPM.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  PCISLEEP L(ist), S(leep), V(ga-sleep), Qnnnn
+</pre>
+<h2>Options:</h2>
+<pre>
+  L(ist)   Affiche une liste verbeuse des p&eacute;riph&eacute;riques PCI/AGP.
+           Recherchez les num&eacute;ros de fournisseur/p&eacute;riph&eacute;rique sur
+           Internet.
+           Exemple : https://pci-ids.ucw.cz/
+  Qnnnn    Affiche une liste num&eacute;rique de tous les p&eacute;riph&eacute;riques de
+           classe n. N doit avoir 2 ou 4 chiffres : Qff et Qffff
+           affichent une liste des classes. Exemple : Q02 liste vos
+           cartes r&eacute;seau.
+           <a href="../batch/if.htm#comment">Le niveau d'erreur (ERRORLEVEL)</a> est le nombre de p&eacute;riph&eacute;riques
+           trouv&eacute;s.
+  S(leep)  Arr&ecirc;te le processeur et met (seulement) les p&eacute;riph&eacute;riques
+           capables de suspension D1/D2 (cf. sortie de LIST) dans
+           l'&eacute;tat d'&eacute;conomie d'&eacute;nergie D1/D2. V(ga-sleep) met en
+           S(ommeil) et suspend les cartes VGA compatibles D3. Le
+           moniteur est &eacute;galement mis en veille (DPMS).
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Appuyez sur une touche pour mettre fin &agrave; la mise en veille V ou S.
+  Un BIOS PCI est requis.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  pcisleep L
+  pcisleep Q02
+  pcisleep S
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../base/fdapm.htm">fdapm</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

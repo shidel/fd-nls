@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : xcdrom.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : xcdrom.sys</h1>
+<pre>
+  XCDROM.SYS est un pilote de CD-ROM UDMA et non UDMA pour DOS.
+  XCDROM.SYS doit &ecirc;tre charg&eacute; dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS fonctionne d&eacute;j&agrave;, vous pouvez charger XCDROM.SYS
+  par la suite avec <a href="../util/devload.htm">DEVLOAD</a>. <b>XCDROM.SYS est obsol&egrave;te. Son auteur
+  NE le prend PLUS en charge ! Vous devriez utiliser <a href="../base/uide.htm">UIDE.SYS</a>
+  &agrave; la place</b>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  device=xcdrom.sys [options]
+  devicehigh=xcdrom.sys [options]
+</pre>
+<h2>Options :</h2>
+<pre>
+  /AX  Exclut TOUTES les fonctions audio. Cela fait que le pilote r&eacute;pond
+       &agrave; une requ&ecirc;te Device-Status qu'il lit les pistes de DONN&Eacute;ES
+       seulement ! /AX r&eacute;duit le pilote r&eacute;sident de 448 octets.
+       UltraDMA, les lecteurs multiples et les autres fonctionnalit&eacute;s
+       de p&eacute;riph&eacute;rique ne sont PAS concern&eacute;s !
+  /D:  Sp&eacute;cifie le "nom de p&eacute;riph&eacute;rique" voulu que <a href="../base/shsucdx.htm">SHSUCDX</a> ou <a href="../base/mscdex.htm">MSCDEX</a>
+       utiliseront lors de leur initialisation pour s'adresser aux
+       lecteurs de CD-ROM.
+       On peut citer /D:CDROM1 /D:MONCDROM etc. en exemple.
+       Le nom du p&eacute;riph&eacute;rique doit &ecirc;tre de 1 &agrave; 8 octets valides pour
+       utilisation dans les noms de fichier DOS. Si /D: est omis, ou le
+       "nom du p&eacute;riph&eacute;rique" apr&egrave;s un /D: est omis ou invalide, "XCDROM"
+       sera valeur par d&eacute;faut.
+  /L   Limite l'UltraDMA &agrave; la "m&eacute;moire basse" sous 640K. /L est
+       N&Eacute;CESSAIRE pour utiliser un pilote UMBPCI ou similaire dont les
+       zones de m&eacute;moire sup&eacute;rieures qui ne peuvent pas ex&eacute;cuter
+       l'UltraDMA. Si /L est entr&eacute;, le pilote doit &ecirc;tre charg&eacute; dans la
+       m&eacute;moire BASSE pour que ses listes de commandes DMA puissent
+       r&eacute;cup&eacute;rer correctement, sinon le chargement du pilote sera
+       ANNUL&Eacute; ! /L fait que toutes les requ&ecirc;tes E/S au-dessus de
+       640 Ko utiliseront l'entr&eacute;e en "mode PIO". Veuillez noter que
+       /L sera IGNOR&Eacute; si /UX est aussi entr&eacute;.
+  /Mn  Sp&eacute;cifie le "mode" UltraDMA MAXIMAL &agrave; d&eacute;finir pour un lecteur
+       de CD-ROM, o&ugrave; n est un nombre entre 0 et 6, comme ci-dessous :
+         0 = ATA-16,   16 Mo/sec.     4 = ATA-66,   66 Mo/sec.
+         1 = ATA-25,   25 Mo/sec.     5 = ATA-100, 100 Mo/sec.
+         2 = ATA-33,   33 Mo/sec.     6 = ATA-133, 133 Mo/sec.
+         3 = ATA-44,   44 Mo/sec.
+       Un lecteur de CD-ROM con&ccedil;u pour utiliser des "modes" INF&Eacute;RIEURS
+       &agrave; la la valeur donn&eacute;e sera limit&eacute;e &agrave; son "mode" le plus &eacute;lev&eacute;.
+       /M sera IGNOR&Eacute; pour les lecteurs de CD-ROM qui ne g&egrave;rent pas
+       l'UltraDMA, et il sera ignor&eacute; pour tous les lecteurs si /UX est
+       &eacute;galement entr&eacute;.
+  /PM  Demande au pilote de v&eacute;rifier l'unit&eacute; ma&icirc;tresse primaire IDE pour
+       un lecteur de CD-ROM lors de l'initialisation du pilote. Si un
+       lecteur de CD-ROM n'est pas trouv&eacute; en tant que ma&icirc;tre primaire,
+       le chargement du pilote sera ANNUL&Eacute; !
+  /PS  Identique &agrave; /PM mais teste l'unit&eacute; primaire esclave seulement.
+  /SM  Identique &agrave; /PM mais teste l'unit&eacute; secondaire ma&icirc;tresse seulement.
+  /SS  Identique &agrave; /PM mais teste l'unit&eacute; secondaire esclave seulement.
+       --- NOTE ---
+       Avec de multiples lecteurs, des options multiples /PM /PS /SM /SS
+       peuvent &ecirc;tre entr&eacute;es. Le premier lecteur sp&eacute;cifi&eacute; sera adress&eacute; en
+       tant qu'unit&eacute; 0, le second en tant qu'unit&eacute; 1, etc. Si moins de
+       commutateurs que de lecteurs sont entr&eacute;s, les lecteurs non
+       r&eacute;f&eacute;renc&eacute;s ne seront pas utilis&eacute;s. Si AUCUNE telle option n'est
+       entr&eacute;e, le pilote "recherche" les lecteurs de CD-ROM, de ma&icirc;tre
+       primaire &agrave; esclave secondaire. Le premier lecteur trouv&eacute; sera
+       "l'unit&eacute; 0", le second "l'unit&eacute; 1", etc.
+  /UF  Active "l'UltraDMA rapide". Les requ&ecirc;tes de donn&eacute;es qui traversent
+       une "limite 64Ko" UltraDMA sont ex&eacute;cut&eacute;es en utilisant une liste
+       de commandes DMA de 2 &eacute;l&eacute;ments, l'un pour les donn&eacute;es jusqu'&agrave; la
+       limite, l'autre pour les donn&eacute;es au-del&agrave;. La vitesse du CD-ROM
+       est augment&eacute;e de fa&ccedil;on sensible. L'entr&eacute;e en "mode PIO" est
+       toujours n&eacute;cessaire pour les tampons utilisateurs qui ne sont
+       pas align&eacute;s (pas &agrave; une adresse paire 4 octets). /UF sera IGNOR&Eacute;
+       pour les lecteurs de CD-ROM qui ne prennent pas en charge
+       l'UltraDMA.
+       --- NOTE ---
+       Malgr&eacute; les sp&eacute;cifications UltraDMA, certains chipsets ou cartes
+       m&egrave;res peuvent NE PAS ex&eacute;cuter correctement les commandes DMA &agrave;
+       plusieurs &eacute;l&eacute;ments ! Bien qu'il soit utile, /UF doit &ecirc;tre TEST&Eacute;
+       sur chaque syst&egrave;me, et "l'UltraDMA rapide" devrait &ecirc;tre activ&eacute;
+       avec ATTENTION ! !
+  /UX  D&eacute;sactive TOUT l'UltraDMA, y compris pour les lecteurs de CD-ROM
+       qui peuvent le prendre en charge. Le pilote utilise alors le
+       "mode PIO" pour toutes les entr&eacute;es de donn&eacute;es. /UX devrait &ecirc;tre
+       n&eacute;cessaire seulement pour des travaux de test et de diagnostic.
+  Pour chaque option, un tiret d'union peut remplacer la barre oblique,
+  et des lettres minuscules peuvent &ecirc;tre utilis&eacute;es.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Le pilote de CD-ROM &eacute;tait appel&eacute; XCDROM.SYS jusqu'&agrave; la version 2.2.
+  Par la suite il a &eacute;t&eacute; appel&eacute; <a href="../base/udvd.htm">UDVD.SYS</a> et &agrave; la fin <a href="../base/uide.htm">UIDE.SYS</a>.
+  XCDROM.SYS prend en charge NLS (national language support), voyez
+  xcdmsgs.eng. Il suffit de le compiler dans la langue correspondante.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=c:\fdos\bin\XCDROM.SYS
+    DEVICEHIGH=c:\fdos\bin\XCDROM.SYS /D:CDROM001 /SM /SS
+  DANS AUTOEXEC.BAT:
+    c:\fdos\bin\SHSUCDX /D:CDROM001
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2006 Jack Ellis, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: locate</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: locate</h1>
+<pre>
+  LOCATE es un buscador de archivos de DOS.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  LOCATE [especificaci&oacute;n_archivo] [opciones]
+         La especificaci&oacute;n_archivo puede contener una letra de unidad, o
+         nombre de directiro o ambos. Si se especifica una letra de 
+         unidad, solo buscar&aacute; en la unidad. Si no especifica ninguna
+         unidad, LOCATE decidir&aacute; por si mismo donde buscar.
+         Se supone que todo antes de la &uacute;ltima barra invertida en la 
+         especificaci&oacute;n de archivo a de ser el nombre de un directorio
+         para buscar; LOCATE buscar&aacute; en el directorio y los subdirectorios
+         que contiene. Si un nombre de directirio est&aacute; especificado, pero
+         ninguna letra de unidad, el directorio se supone que sea en la 
+         unidad actual, s&oacute;lo se buscar&aacute; en la unidad altual.
+         Los caracteres comod&iacute;n no est&aacute;n permitidos en el nombre del
+         directirio.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  Lo que hay que buscar:
+    /D              Ambos archivos y subdirectorios (por defecto normal).
+    /D-             S&oacute;lo archivos, no subdirectorios (por defecto con
+                    /B /K /X /S: /0).
+    /D+             Subdirectorios only, no archivos.
+    /H              S&oacute;lo archivos ocultos o del sistema.
+    /X              S&oacute;lo archivos ejecutables (.COM .EXE .BAT).
+    /0              S&oacute;lo archivos vacios (0-byte).
+    /S:[min][,max]  Archivos con un rango de tama&ntilde;o.
+    /D:[min][,max]  Archivos con un rango de fecha.
+    /D:d&iacute;a          Archivos de d&iacute;as especificos de la semana.
+    /T:[min][,max]  Archivos con un rango de tiempo.
+    /A:[a+][a-]     Busca por atributos.
+  D&oacute;nde buscar:
+    /T              Directorio actual y la ruta de b&uacute;squeda solamente.
+    /NR             No buscar recursivamente los subdirectorios.
+    /R              Busqueda s&oacute;lo en el discos fijos.
+    /M              Incluye duplicado del controlador de red asignado.
+    /E:var          Lista directorios en una variable de entorno.
+  Como mostrar los elementos encontrados:
+    /P              Pantalla Estilo-Peter, con fechas, tiempo, atributos,
+                    y tama&ntilde;o.
+    /I              Con n&uacute;meros de &iacute;ndice, fecha, tiempo, atributos, 
+                    tama&ntilde;o.
+    /W              Pantalla amplia.
+    /N              Pantalla desnuda (lista de archivos).
+    /B:"comando"    Como un archivo por lotes.
+    /L              Usa nombres de archivo largos de windows 95.
+    /O:"cadena"     Formato de salida utilizando macros.
+    /S              S&oacute;lo informaci&oacute;n resumida.
+    /US             Usa el formato de tiempo y fecha de Estados Unidos
+                    (Mar May 31 1994).
+    /UK             Usa el formato de tiempo y fecha de Reino Unido
+                    (Mar 31 May 1994).
+    /UJ             Usa el formato de tiempo y fecha de Jap&oacute;n (ISO)
+                    (Mar 1994-05-31).
+    /12             Formato de tiempo de 12-horas.
+    /24             Formato de tiempo de 24-horas.
+    /NP             Sin paginaci&oacute;n.
+  Que hacer con los objeros que encuentres:
+    /G              Ir al directorio.
+    /K              Mata (borrar) archivos encontrados.
+    /C:"cadena"     Ejecuta comandos, usando las mismas macros que /O.
+    /F:n            Para despu&eacute;s de n elementos.
+  Otras opciones:
+    /Y              Si -- no preguntar por la /K o /C.
+    /NV             No hay llamadas de Video BIOS.
+    /V              Espacio de intercambio y la tecla Enter cuando p&aacute;ginas
+    /NA             No hacer letras romanicas para la comparaci&oacute;n.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Por favor lea locate.txt para m&aacute;s informaci&oacute;n.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  locate           Encuentra todos los archivos y directorios ("objetos")
+  locate *.SYS     Encuentra todos los los archivos con la extensi&oacute;n .SYS
+  locate /H        Encuentra todos los objetos ocultos o del sistema
+  locate *.SYS /H  Encuentra objetos ocultos o del sistema con extensi&oacute;n
+                   .SYS
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>  - nada -</pre>
+<hr>
+<pre>
+  <b>Copyright &copy;2008 W. Spiegl.</b>
+  <b>Actualizado en 2013 por Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva de la FreeDOS Spec Command HOWTO.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copia.
+
+</pre></body></html>

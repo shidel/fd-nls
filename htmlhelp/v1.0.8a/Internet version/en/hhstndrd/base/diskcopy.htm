@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: diskcopy</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: diskcopy</h1>
+<pre>
+  DISKCOPY copies the contents of a floppy disk to a second floppy. 
+  Also creates, copies and restores floppy disk image files.
+  The images can be used by <a href="../util/shsufdrv.htm">SHSUFDRV</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  Diskcopy [source][destination][/a][/v][/m][/i][/o][/1][/x][/d][/r]
+           [/f][/t]
+  Diskcopy [/?]
+           source:      drive or image file to copy from.
+           destination: drive or image file to copy to.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /a  give an audible warning for user action.
+  /v  verify reads and writes.
+  /m  only use memory for disk copy.
+  /i  show memory usage (informative).
+  /o  overwrite destination, if it already exists (in case of an image
+      file).
+  /x  always automaticaly exit.
+  /d  assume disk already in drive.
+  /r  go into disk error recovery mode.
+  /f  perform fast diskcopy (only copy filled sectors).
+  /t  don't ask target disk if copying image file to same disk.
+  /1  no-op included for MS-DOS compatibility.
+      In other versions of DOS, this copied the first side only.
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  A minus sign after an option disables the option.
+  If the source and/or destination is a drive, for example 
+  "a:" then it is treated as a floppy disk, otherwise it is 
+  treated as an image file.
+  The source and destination can be the same drive; DISKCOPY will 
+  first copy from the source, and then prompt you to swap floppy 
+  disks. Then it will write to the destination.
+  DISKCOPY uses the Linux rawrite format for its image files. 
+  Therefore the image files from DISKCOPY can be used by 
+  Rawrite and vice versa.
+  DISKCOPY cannot read from or overwrite Linux floppy disks. 
+  It can, however, write a Linux floppy image to a DOS disk.
+  DISKCOPY supports NLS (national language support).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  diskcopy a: a:            Copies from one diskette to another
+  diskcopy a: c:\image.img  Copies the diskette to an image on
+                            C:\image.img
+  diskcopy c:\image.img a:  Copies the image to a diskette
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/copy.htm">copy</a>
+  <a href="../base/diskcomp.htm">diskcomp</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../util/shsufdrv.htm">shsufdrv</a>
+  <a href="../base/xcopy.htm">xcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

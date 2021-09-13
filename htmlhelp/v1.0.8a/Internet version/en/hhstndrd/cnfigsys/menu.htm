@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: menu</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: menu</h1>
+<pre>
+  MENU displays a menu while running config.sys / fdconfig.sys.
+  MENU is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+   menu [text]
+</pre>
+<h2>Options:</h2>
+<pre>
+  text  The text you want to be shown while running config.sys
+    Usage:
+      Use menudefault to set a time delayed default option. Lines that
+      begin with 1? will only be processed if the user presses 1.
+      Lines beginning with 23? will be loaded if the user presses either
+      2 or 3. Options other than 0 can only be selected if at least one 
+      "numbers?" line actually uses them, as shown in the example below.
+    Using with autoexec.bat:
+      The environment variable CONFIG is set to the menu option value.
+      Therefore %CONFIG% can be used in the autoexec.bat in conjunction
+      with the if command. For instance:
+        In config.sys "1" was chosen:
+      In autoexec.bat:
+        IF "%config%"=="1" SHSUCDX /D:FDCD001
+</pre>
+<h2>Comments:</h2>
+<pre>
+  MENU displays a menu while running config.sys / fdconfig.sys.
+  MENU is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    MENU Please Select Configuration:
+    MENU
+    MENU Option 0    basic stuff only
+    MENU Option 1    CD-ROM
+    MENU Option 2    TROUSERS
+    MENU Option 3    CD-ROM and TROUSERS
+    0? ECHO Warning: Only standard drivers !
+    13?DEVICE=uide.sys /S125 /D:FDCD001
+    23?DEVICE=TROUSERS.SYS
+  IN AUTOEXEC.BAT:
+    IF "%config%"=="1" SHSUCDX /D:FDCD001
+    IF "%config%"=="3" SHSUCDX /D:FDCD001
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/menucol.htm">menucolor</a>
+  <a href="../cnfigsys/menudef.htm">menudefault</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

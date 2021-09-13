@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: printer.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: printer.sys</h1>
+<pre>
+  PRINTER.SYS provides codepage management capabilities for a printer
+  driver. PRINTER.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  When FreeDOS is already running, you can load PRINTER.SYS later
+  with <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  printer [devname][:]=([hardwaretype],[{n|(n1,[n2,]...)}],[m])
+</pre>
+<h2>Options:</h2>
+<pre>
+  devname       Name of the printer port device which is going to be 
+                expanded, such as PRN or LPTx. The colon is optional.
+  hardwaretype  The identifier of the hardware display adapter type.
+                It may also determine the number of subfonts to use. 
+                There are not supported types yet.
+  n, n1, n2,..  Numbers for the codepage numbers of the hardware
+                codepages.
+  m             Number of buffers that you want to specify to prepare
+                codepages (default is 1)
+</pre>
+<h2>Comments:</h2>
+<pre>
+  This driver has not yet a binary form, because no specific printer
+  hardware management has been yet added (you can compile both
+  PRINTER.SYS or DISPLAY.SYS from the sources of <a href="../base/display.htm">DISPLAY</a>).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  When PRINTER.SYS has some hardware support, you'll be able to do:
+    PRINTER PRN=(IBMPro,437,1)
+  You specify that you have an IBM Proprinter compatible printer, with 
+  hardware codepage 437, and request only 1 buffer, in order to minimise 
+  resident memory footprint.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/print.htm">print</a>
+  <a href="../base/printq.htm">printq</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; Aitor SANTAMARIA MERINO, updated 2008
+  by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

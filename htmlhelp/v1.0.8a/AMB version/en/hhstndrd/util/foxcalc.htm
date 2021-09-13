@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: foxcalc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: foxcalc</h1>
+<pre>
+  FOXCALC is a simple calculator for DOS with a text user 
+  interface. The program has a mouse suport, so take care to run
+  your mouse driver before launching FOXCALC; it will be much
+  easier to use it.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Options:</h2>
+<pre>
+  If you really can't use a mouse, you will find below the list of
+  shortcut keys. That list should automatically appear anyway if 
+  FoxCalc can't find a mouse driver.
+  Key            Function                
+
+  0-9            0-9 (numbers)            
+  "+"            +   (addition)           
+  "-"            -   (subtraction)        
+  "=" or ENTER   =   (return)             
+  "."            .   (comma)              
+  "*"            *   (multiplication)     
+  "/"            /   (division)           
+  "%"            %   (percent)            
+  "]"                (square root)        
+  "["                (square)             
+  "^"                (exponentiation)     
+  "!"            x!  (factorisation)      
+  ":"            MOD (modulo)             
+  "m"            M+  (memory addition)    
+  "M"            M-  (memory subtraction) 
+  "r"            MR  (memory Recall)      
+  "c"            MC  (memory Clear)       
+  "\"            +/- (change signum)      
+  ESC            OFF (exit)               
+  DEL            AC  (clear all)          
+  BackSpace      C   (clear)              
+  "s"            snd (sound on/off)       
+  "?"            ?   (about the program)  
+</pre>
+<h2>Comments:</h2>
+<pre>
+  CALCULATION
+  FoxCalc makes use of the GMP (Gnu Multi-Precision) library and
+  the MPFR library for all calculations. This makes it an accurate
+  and very reliable tool. All operations are performed with a
+  precision of 60 digits. Floating point numbers which don't fit
+  into the window are truncated without any rounding.
+  When using the MOD function in FoxCalc, you can get different results
+  than in other computer calculators or programming languages. That's
+  not a bug. The modulo operation on negative numbers can be done
+  using several methods.
+  Usually, computers process an "X MOD Y" operation using absolute
+  values of X and Y, and change the result's sign to the X's sign.
+  That's the easiest way, and that's how Intel processors work. FoxCalc
+  behaves differently. Therefore, the "7 mod -3" operation may be
+  computed as "1" on other calculators, while FoxCalc will report "-2"
+  Both results are correct.
+  <a href="../other/cpidos.htm">CODEPAGE</a> &amp; LOCALES:
+  As there are some buttons which are described with ASCII characters
+  greater than ASCII #127, FoxCalc detects the system's codepage and
+  changes the buttons descriptions if the codepage can't display them
+  correctly. For example, the square button is "&sup1;" on CP437, and "SQR"
+  on CP850. The separators (decimal separator and thousands separator)
+  are copied from the system's settings. If you would like to
+  change them, just change your system's settings (usually using 
+  <a href="../base/cntrysys.htm">COUNTRY.SYS</a>).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  foxcalc
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../other/cpidos.htm">codepage</a>
+  <a href="../base/cntrysys.htm">country.sys</a>
+  <a href="../util/fdrc.htm">fdrc</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Mateusz Viste "Fox", updated in 2020
+  by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

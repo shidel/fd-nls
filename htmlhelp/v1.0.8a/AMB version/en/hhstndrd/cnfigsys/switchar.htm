@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: switchar</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: switchar</h1>
+<pre>
+  SWITCHAR sets a switch character.
+  SWITCHAR is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  switchar=c
+    Sets the default switchar to character c.
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -  
+</pre>
+<h2>Comments:</h2>
+<pre>
+  SWITCHAR sets the default switchar to the given character c, e.g. "-".
+  Where c is a single character that is used to indicate a command line
+  parameter in an option switch. The default is a forward slash (/). 
+  Note: This simply sets the value returned by a get switchar query, it
+  will not effect programs that use hardcoded switch characters.
+  The switch character is the sign before an option so that DOS knows, 
+  that the following text is an option, e.g. the "/" in dir /w.
+  Typical switch characters are e.g. "-", "/".
+  SWITCHAR is used by command.com and some but by far not all external
+  commands and drivers.
+  SWITCHAR is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    switchar=-
+  Instead of
+    dir /p you then would have to enter
+    dir -p . 
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

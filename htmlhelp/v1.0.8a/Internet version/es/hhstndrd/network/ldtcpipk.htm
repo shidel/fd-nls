@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Redes de FreeDOS - Cargando el n&uacute;cleo TCP/IP (Pila)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top"></a>Redes de FreeDOS - Cargando el n&uacute;cleo TCP/IP (Pila)</h1>
+<h2><a name="zzz"></a>Visi&oacute;n de conjunto</h2>
+<pre>
+  Los sistemas operativos modernos tienen su propio n&uacute;cleo <a href="../network/tcpip.htm">TCP/IP</a> ya
+  incorporado: Los sistemas de Microsoft cuentan con "Winsock" desde
+  Windows 95. En GNU/Linux la pila PCI/IP es parte del n&uacute;cleo de linux.
+  DOS sin enbargo viene con n&uacute;cleo. As&iacute; que despu&eacute;s de haber instalado
+  el controlador de paquetes, lo que tenemos que dar a la TCP/IP del
+  n&uacute;cleo un pensamiento.
+</pre>
+<h2><a name="aaa"></a>&iquest;C&oacute;mo funciona?</h2>
+<pre>
+  El n&uacute;cleo TCP/IP tambi&eacute;n se llama "pila" o "pila de protocolos", ya
+  que consta de dos capas: IP y TCP. IP se ejecuta en la parte superior
+  del controlador de hardware y TCP en la parte superior de IP, que
+  proporciona una interfaz de aplicaciones de <a href="../network/network.htm">red</a>. para DOS los
+  diferentes tipos de n&uacute;cleos TCP/IP est&aacute;n disponibles.
+    (imagen del n&uacute;cleo TCP/IP)
+  Como vemos en la figura de arriba, pueden o bien trabajar como
+  programas externos o que ya est&aacute;n incorporados en las aplicaciones.
+    * Un n&uacute;cleo TCP/IP externo es normalmente iniciado por <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>
+      o por un archivo por lotes. se queda residente en memoria, por
+      lo que puede responder a los ping requeridos por la interfaz.
+    * Otras aplicaciones de <a href="../network/network.htm">red</a> vienen con las funciones del n&uacute;cleo
+      TCP/IP ya integrado y no es necesario un n&uacute;cleo TSR externo. Una
+      aplicaci&oacute;n con el n&uacute;cleo TCP incorporado tiene la ventaja de que
+      no necesita otro controlador que consuma preciosa memoria DOS.
+      Por otro lado las funciones <a href="../network/tcpip.htm">TCP/IP</a> se limitan a las aplicaciones
+      de <a href="../network/network.htm">red</a> y s&oacute;lo se proporcionan siempre y cuando se ejecuten.
+</pre>
+<h2><a name="bbb"></a>Configuraci&oacute;n necesaria</h2>
+<pre>
+  Cada n&uacute;cleo TCP/IP debe estar configurado con informaci&oacute;n general
+  sobre la <a href="../network/network.htm">red</a>, como la direcci&oacute;n IP, m&aacute;scara de red, servidores DNS
+  y la puerta de enlace, o que debe ser llamada para obtener esta
+  informaci&oacute;n a trav&eacute;s de un servidor BOOTP o DHCP.
+</pre>
+<h2><a name="ccc"></a>Ejemplos</h2>
+<pre>
+  Ejemplos de n&uacute;cleos externos TCP/IP para DOS son
+    * El n&uacute;cleo TCP libre de trompeta <a href="../network/ntcpdrv.htm">NTCPDRV</a>.EXE,
+    * El n&uacute;cleo TCP/IP de <a href="../network/novell.htm">Novell</a> NetWare TCPIP.EXE,
+    * Microsoft <a href="../network/msclient.htm">cliente MS</a> TCPTSR.EXE y
+    * FTP Software Inc. ETHDRV.EXE. 
+  Ejemplos de n&uacute;cleos TCP/IP integrados en aplicaciones de DOS son
+    * <a href="../network/wattcp.htm">WatTCP</a>, que es f.i. ya incorporado en el navegador gr&aacute;fico
+      "<a href="../network/tcpip_ap.htm#ccc">Arachne</a>".
+    * El n&uacute;cleo <a href="../network/mtcp.htm">mTCP</a>, escrito en 2009.
+    * El n&uacute;cleo <a href="../network/history.htm#bbf">KA9Q</a> que es parte de ese programa.
+    * El n&uacute;cleo NCSA <a href="../network/history.htm#bbg">Telnet</a> que se contruye en las aplicaciones
+      incluidas en este sequito.
+    * El n&uacute;cleo <a href="../network/history.htm#bbh">CUTCP</a>.
+    * La pila de la Universidad de Minesota, que es parte de "<a href="../network/history.htm#bbi">MINUET</a>". 
+  <b>Mas de la mitad de las aplicaciones de red DOS disponibles, utilizan el
+  n&uacute;cleo <a href="../network/wattcp.htm">WatTCP</a></b> dice Jeffrey L. Hayes desde el sitio web retrocomputaci&oacute;n
+  <b>http://www.oldskool.org (*01)</b> (Ver: <b>ftp://ftp.oldskool.org/pub/tvdog/
+  internet/readme.txt (*02)</b>).
+  As&iacute; que la mayor&iacute;a de nosotros no tiene que instalar un n&uacute;cleo TCP/IP
+  en absoluto. En su lugar no tenemos m&aacute;s que preocumarnos por el
+  archivo de configuraci&oacute;n WATTCP.CFG para aquellas aplicaciones de
+  redes.
+  El siguiente cap&iacute;tulo da una mirada m&aacute;s de cerca a <a href="../network/wattcp.htm">WatTCP</a> y su sucesor
+  <a href="../network/wattcp.htm">Watt-32</a>. A continuaci&oacute;n examinaremos <a href="../network/ntcpdrv.htm">NTCPDRV</a> que es la &uacute;nica conexi&oacute;n
+  externa disponible en el n&uacute;cleo TCP/IP. Despu&eacute;s miramos brevemente en
+  otros n&uacute;cleos externos TCP/IP.
+    * [<a href="../network/wattcp.htm">WatTCP/Watt-32</a>]
+    * [<a href="../network/ntcpdrv.htm">TCPDRV</a>]/[<a href="ntcpdrv.htm">NTCPDRV</a>]
+    * [<a href="../network/mtcp.htm">mTCP</a>]
+    * [<a href="../network/ot_tcpip.htm">Others</a>]
+
+  <b>(*01) OK</b>
+  <b>(*02) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Alemania), modificado en 2010
+  por W.Spiegl. Actualizado en 2013 por Lorenzo del Toro Saravia.</b>
+  Para mas informaci&oacute;n <a href="../network/intro.htm#ddd">Consulte aqu&iacute;</a>.
+
+  Se concede permiso para copiar, distribuir y/o modificar este documento
+  en los t&eacute;rminos de la licencia de documentaci&oacute;n libre GNU, versi&oacute;n 1.2
+  o cualquier versi&oacute;n posterior publicada por la Free Software
+  Foundation.
+  Una copia de la licencia est&aacute; incluida en la secci&oacute;n titulada
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

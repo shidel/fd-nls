@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: chkdsk</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: chkdsk</h1>
+<pre>
+  CHKDSK pr&uuml;ft ein Laufwerk auf Fehler und versucht ggfs. sie zu
+  reparieren. Es wird auch ein detaillierter Bericht &uuml;ber die
+  Festplattengr&ouml;&szlig;e und Festplattenstruktur ausgegeben.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  Chkdsk [Laufwerk] [/f] [/d Datei] [/r] [/s] [/v] [/?]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /f  versucht, alle gefundenen Fehler zu bereinigen (fixieren).
+  /d  gibt die besch&auml;digten Dateien an und zeigt den Fragmentations-
+      faktor.
+  /r  Pr&uuml;ft die Datenoberfl&auml;che und versucht unlesbare Daten
+      wiederherzustellen.
+  /s  Zeigt nur das Laufwerksergebnis.
+  /v  Zeigt bei der Pr&uuml;fung den Dateinamen.
+  /?  Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Laufwerk  Die Diskette, das Laufwerk oder die Partition, die 
+            Sie pr&uuml;fen wollen, z.B.: chkdsk a: w&uuml;rde das A-Laufwerk
+            pr&uuml;fen. Wenn der Laufwerksbuchstabe nicht angegeben wird,
+            wird das aktuelle Laufwerk angenommen (gepr&uuml;ft).
+  /f        Sagt chkdsk, da&szlig; es versuchen soll, alle Fehler zu 
+            reparieren.
+  /d Datei  Dies zeigt den Grad der Fragmentierung jeder Datei an. 
+            Wenn viele Dateien fragmentiert sind, kann die Ausf&uuml;hrung 
+            des Befehls sehr lange dauern. Sie k&ouml;nnen Ihre Festplatte 
+            auch mit "defrag" defragmentieren.
+            Diese Option listet auch f&uuml;r jede Datei die Dateiattribute 
+            auf, siehe auch unter "attrib".
+  /r        Sucht nach Daten und versucht, Daten wiederherzustellen. Dies
+            kann sehr lange dauern!
+  /s        Sagt chkdsk, da&szlig; es nicht das Laufwerk pr&uuml;fen soll sondern 
+            nur die Laufwerksanalyse anzeigen soll.
+  /v        Diese Option listet die Dateinamen in der Reihenfolge auf, 
+            in der sie &uuml;berpr&uuml;ft werden. Das kann die &Uuml;berpr&uuml;fung 
+            erheblich abbremsen, insbesondere, wenn es sich um viele 
+            Dateien handelt.
+  CHKDSK hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    0    Laufwerk in Ordnung
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  chkdsk c: /f
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../util/bootfix.htm">bootfix</a>
+  <a href="../util/dosfsck.htm">dosfsck</a>
+ (<a href="../base/scandisk.htm">scandisk</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-2004 Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

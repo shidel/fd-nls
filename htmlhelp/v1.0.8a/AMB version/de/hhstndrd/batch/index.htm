@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: Batch-Dateien</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: Batch-Dateien</h1>
+<pre>
+  BATCH-DATEIEN enthalten eine Sequenz von DOS-Befehlen. Indem man die
+  BATCH-DATEI startet, wird die Sequenz durchlaufen und abgearbeitet. Das
+  kann dazu verwendet werden, um Zeit zu sparen, weil die ganzen Befehle
+  nicht jedesmal von vorne komplett eingetippt werden m&uuml;ssen.
+  BATCH-DATEIEN sind Textdateien - aber mit der .bat Dateiendung. Sie
+  k&ouml;nnen mit einem Texteditor wie z.B. <a href="../base/edit.htm">EDIT</a> oder <a href="../base/edlin.htm">EDLIN</a> erstellt oder
+  bearbeitet werden. 
+  Um eine BATCH-DATEI zu starten, tippen Sie einfach ihren Namen bei der
+  DOS Eingabeaufforderung (mit oder ohne .bat Dateiendung) ein.
+  Eine sehr wichtige Datei, die <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> wird automatisch
+  gestartet, wenn FreeDOS hochf&auml;hrt. Sie k&ouml;nnen mit dieser Datei not-
+  wendige Treiber automatisch laden, w&auml;hrend Sie das System hochfahren.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  - keine -
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  - keine -
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Einige Befehle sind speziell f&uuml;r die Programmierung von Batch-Dateien 
+  gemacht.
+  <a href="../batch/autoexec.htm">autoexec.bat</a>  Die automatisch startende Batch Datei,
+  <a href="../batch/beep.htm">beep</a>          Gibt einen Pfeifton aus,
+  <a href="../batch/call.htm">call</a>          Startet eine andere Batch-Datei,
+  <a href="../batch/choice.htm">choice</a>        Fordert den Benutzer auf, eine Auswahl zu treffen,
+  <a href="../batch/cls.htm">cls</a>           Putzt den Bildschirm,
+  <a href="../batch/echo.htm">echo</a>          Gibt eine Meldung aus, schaltet Batch-Anzeige an/aus,
+  <a href="../batch/for.htm">for</a>           For Schleife (wiederholt Befehle),
+  <a href="../batch/goto.htm">goto</a>          Springt zu einem anderen Punkt in der Batch-Datei,
+  <a href="../batch/if.htm">if</a>            If Bedingung (w&auml;hlt zwischen verschiedenen Befehlen),
+  <a href="../batch/lh.htm">lh</a>            L&auml;dt ein Programm in den h&ouml;heren Speicher,
+  <a href="../batch/loadhigh.htm">loadhigh</a>      L&auml;dt ein Programm in den h&ouml;heren Speicher,
+  <a href="../batch/path.htm">path</a>          Zeigt oder setzt einen Suchpfad f&uuml;r ausf&uuml;hrbare Dateien,
+  <a href="../batch/pause.htm">pause</a>         Wartet, bis der Benutzer eine Taste dr&uuml;ckt,
+  <a href="../batch/prompt.htm">prompt</a>        &Auml;ndert Das Erscheinungsbild des Anzeigeprompts,
+  <a href="../batch/rem.htm">rem</a>           Erm&ouml;glicht es dem Programmierer, Anmerkungen zu machen,
+  <a href="../batch/set.htm">set</a>           Zeigt, setzt oder entfernt Umgebungsvariablen,
+  <a href="../batch/shift.htm">shift</a>         &Auml;ndert die Position ersetzbarer Parameter einer 
+                Stapeldatei.
+
+  Die Befehle beep, cls, echo, lh, loadhigh, path, prompt und set
+  k&ouml;nnen auch au&szlig;erhalb einer Batch-Datei sinnvoll verwendet
+  werden.
+  BATCH-Befehle sind interne Befehle, d.h. der Befehl ist in der 
+  command.com enthalten. Es wird zur Ausf&uuml;hrung des Befehls kein 
+  zus&auml;tzlicher Befehl (Datei) ben&ouml;tigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN EINER .BAT DATEI ODER DER AUTOEXEC.BAT:
+    Beispiel zum Erzeugen einer Batch-Datei:
+      Tippen Sie: edit foo.bat
+    Danach sollte sich der Editor oeffenen und Sie k&ouml;nnen das folgende
+    Beispiel eintippen:
+      C:\fdos\bin\chkdsk c:
+      C:\fdos\bin\defrag c:
+      C:\fdos\bin\dosfsck c:
+    Dann gehen Sie im Editor zu "file/Datei" - "save/sichern" und
+    schlie&szlig;en den Editor (edit).
+    Wenn Sie "foo.bat" eintippen, werden die oben genannten Befehle
+    ausgef&uuml;hrt.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>  <a href="../batch/beep.htm">beep</a>          <a href="../batch/call.htm">call</a>          <a href="../batch/choice.htm">choice</a>        <a href="../batch/cls.htm">cls</a>
+  <a href="../batch/echo.htm">echo</a>          <a href="../base/edit.htm">edit</a>          <a href="../base/edlin.htm">edlin</a>         <a href="../batch/for.htm">for</a>           <a href="../batch/goto.htm">goto</a>
+  <a href="../batch/if.htm">if</a>            <a href="../batch/lh.htm">lh</a>            <a href="../batch/loadhigh.htm">loadhigh</a>      <a href="../batch/path.htm">path</a>          <a href="../batch/pause.htm">pause</a>
+  <a href="../batch/prompt.htm">prompt</a>        <a href="../batch/rem.htm">rem</a>           <a href="../batch/set.htm">set</a>           <a href="../batch/shift.htm">shift</a> 
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

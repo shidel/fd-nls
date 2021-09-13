@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: installhigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: installhigh</h1>
+<pre>
+  INSTALLHIGH startet ein TSR-Programm (ein Programm, da&szlig; im Speicher
+  bleibt) ohne eine Umgebung, anstelle von Befehlen wie LH oder LOADHIGH. 
+  INSTALLHIGH l&auml;dt ein TSR-Programm in den hohen Speicher, w&auml;hrend
+  INSTALL ein TSR-Programm in den unteren oder konventionellen Speicher
+  l&auml;dt. 
+  INSTALLHIGH ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  installhigh=[[Laufwerk][Pfad][Dateiname]] [Optionen]
+              Laufwerk   Der Laufwerksbuchstabe, z.B.: C:
+              Pfad       Der zu w&auml;hlende Pfad, z.B.: \Beispiel\
+              Dateiname  Die zu startende TSR-Datei, z.B.: test.sys
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Optionen  Das sind die Optionen des zu startenden TSR-Programms. Es
+            handelt sich nicht um Optionen des "installhigh"-Befehls.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  INSTALLHIGH l&auml;dt das durch Laufwerk:\Pfad\Dateiname spezifizierte
+  Programm.
+  Es wird normalerweise dazu benutzt, TSR Programme (TSR = beende und
+  bleibe resident im Speicher) mit einem minimalen Umgebungsblock zu
+  laden. Die Optionen sind f&uuml;r den Treiber selbst; vgl. auch die
+  Dokumentation zu den Optionen und ihre Verwendung, die mit dem
+  speziellen Treiber geliefert wurde.
+  Da INSTALLHIGH den Treiber in den hohen Speicher l&auml;dt, bleibt im 
+  unteren oder konventionellen Speicher mehr freier Platz f&uuml;r andere
+  Treiber oder Programme &uuml;brig.
+  Damit ein Treiber oder ein Programm in den hohen Speicher geladen werden
+  kann, mu&szlig; zuvor ein Verwalter f&uuml;r den hohen Speicherbereich wie z.B.
+  (<a href="../base/himem.htm">HIMEM</a>) oder <a href="../base/himemx.htm">HIMEMX</a> oder <a href="../base/jemmex.htm">JEMMEX</a> geladen werden.
+  INSTALLHIGH ist ein interner Befehl, d.h. der Befehl ist in der 
+  kernel.sys enthalten. Es wird zur Ausf&uuml;hrung des Befehls kein 
+  zus&auml;tzlicher Befehl (Datei) ben&ouml;tigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    installhigh=C:\fdos\bin\ctmouse.exe
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../cnfigsys/install.htm">install</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../batch/lh.htm">lh</a>
+  <a href="../batch/loadhigh.htm">loadhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

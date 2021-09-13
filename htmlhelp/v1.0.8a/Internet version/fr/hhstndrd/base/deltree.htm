@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : deltree</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : deltree</h1>
+<pre>
+  DELTREE efface une arborescence enti&egrave;re de dossiers, y compris les
+  sous-r&eacute;pertoires.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DELTREE [/Y] [/V] [/D] [/X] [/Z:SERIOUSLY] filespec [filespec...]
+  DELTREE [/?]
+          lecteur La lettre du lecteur, par exemple C:
+          chemin   Le r&eacute;pertoire, par exemple \exemple
+</pre>
+<h2>Options :</h2>
+<pre>
+  /Y            Effacer les r&eacute;pertoires sp&eacute;cifi&eacute;s sans demander
+                confirmation.
+  /V            Rapporte le nombre de fichiers et sous-r&eacute;pertoires
+                supprim&eacute;s
+                ainsi que leur taille totale.
+  /D            Affiche les informations de d&eacute;bogage.
+  /X            Pour tester, n'efface rien du tout.
+  /Z:SERIOUSLY  Ne demande pas de confirmation quand le r&eacute;pertoire
+                racine est sp&eacute;cifi&eacute;.
+  filespec      L'arborescence de r&eacute;pertoires &agrave; effacer, par exemple
+                C:\OLDTREE
+                Notez que plusieurs arborescences de r&eacute;pertoires
+                peuvent &ecirc;tre effac&eacute;s avec une seule commande.
+  /?            Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Pour des raisons de performance, DELTREE &eacute;crase la premi&egrave;re lettre de
+  chaque nom de fichier/r&eacute;pertoire par un '?'. Il n'efface pas le
+  fichier lui-m&ecirc;me mais il d&eacute;salloue l'espace o&ugrave; le contenu du fichier
+  est &eacute;crit. FreeDOS, tout comme d'autres DOS, reconna&icirc;t le fichier/
+  r&eacute;pertoire renomm&eacute; (monfichier.txt devient ?onfichier.txt; nomchemin
+  devient ?omchemin) comme &eacute;tant effac&eacute;, ne l'affiche plus et n'en
+  offre plus l'acc&egrave;s. Des programmes comme <a href="../base/debug.htm">DEBUG</a> qui ont acc&egrave;s
+  aux secteurs sont capables de lire les contenus du fichier/dossier.
+  Tant que vous n'&eacute;crivez pas sur le lecteur, vous aurez une chance de
+  restaurer les fichiers/dossiers avec <a href="../base/undelete.htm">UNDELETE</a>, seul le premier
+  caract&egrave;re du nom de fichier/dossier sera perdu (_onfichier.txt/
+  _omchemin). La seule fa&ccedil;on d'effacer les CONTENUS DE MANI&Egrave;RE ABSOLUMENT
+  CERTAINE est de remplir le disque compl&egrave;tement avec d'autres fichiers
+  ou d'utiliser un outil de nettoyage. La seule fa&ccedil;on d'effacer un NOM de
+  fichier/dossier DE MANI&Egrave;RE CERTAINE est de <a href="../command/rename.htm">renommer</a> <a href="../command/ren.htm">(REN)</a>d'abord
+  le fichier/dossier (par ex. "a."/"a") et de l'effacer ensuite
+  (seulement vrai pour le 8.3 - pas pour les noms de fichier/dossier
+  longs !)
+  Les commutateurs doivent &ecirc;tre plac&eacute;s avant les filespecs sur la ligne
+  de commande - syntaxe compatible avec MS ! Sinon ils seront ignor&eacute;s.
+  Les filespecs peuvent nommer des fichiers, des sous-dossiers, ou des
+  listes de fichiers comme pour DR DOS.
+  DELTREE est une commande dangereuse ! Utilisez &agrave; vos risques et p&eacute;rils.
+  DELTREE a les <a href="../batch/if.htm#comment">CODES DE SORTIE
+  (ERRORLEVEL)</a> suivants :
+    00  Succ&egrave;s
+    01  Quelque chose n'a pu &ecirc;tre effac&eacute;
+    03  Annulation de l'utilisateur (Q, control-C)
+    16  Erreur g&eacute;n&eacute;rale de syntaxe, ou d&eacute;bordement de tampon
+    17  Pas assez de m&eacute;moire
+    18  DOS 3.0 ou mieux requis
+    19  Probl&egrave;me avec le fichier de liste
+    20  D&eacute;bordement de tampon interne
+    21  Erreur lors de la r&eacute;solution du nom de r&eacute;pertoire (dots_fix)
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  deltree /y c:\oldtree
+  deltree c:\test2\   demande pour chaque sous dossier de \test2 si vous
+                      souhaitez vraiment l'effacer
+  deltree c:\test2    efface tous les sous-dossiers de \test2
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/del.htm">del</a>
+  <a href="../command/erase.htm">erase</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/ren.htm">ren</a>
+  <a href="../command/rename.htm">rename</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis &agrave; jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : emm386</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : emm386</h1>
+<pre>
+  EMM386 est le gestionnaire de m&eacute;moire &eacute;tendue.
+  EMM386 doit &ecirc;tre charg&eacute; dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  <b>EMM386 est p&eacute;rim&eacute;. Vous devriez utiliser <a href="../base/himemx.htm">HIMEMX</a> / <a href="../base/jemm386.htm">JEMM386</a>
+  ou <a href="../base/jemmex.htm">JEMMEX</a> &agrave; la place</b>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEVICE=[lecteur][chemin][EMM386.EXE] [options]
+         lecteur  La lettre du lecteur, par exemple C:
+         chemin   Le r&eacute;pertoire, par exemple \exemple\
+  ou lancez-le depuis la ligne de commande :
+  [lecteur][chemin][emm386.exe] [options]
+</pre>
+<h2>Options :</h2>
+<pre>
+  ALTBOOT       Accrocher l'interruption clavier pour le traitement du
+                red&eacute;marrage.
+  EMM=#####     R&eacute;server jusqu'&agrave; #####Ko pour la m&eacute;moire EMS/VCPI
+                seulement.
+  FRAME=E000    S&eacute;lectionner le pageframe voulu pour EMS.
+  I=hhhh:hhhh   Utiliser la m&eacute;moire qui r&eacute;serv&eacute;e pour certains
+                p&eacute;riph&eacute;riques. Par exemple :
+                  I=A000-AFFF (graphiques VGA)
+                  I=B000-B7FF (graphiques Hercules)
+                Utiliser I=hhhh:hhhh pour forcer UMB sur d'autres
+                endroits.
+  I=TEST        Tester les localisations ROM pour l'inclusion UMB.
+  MAX=#####     M&eacute;moire maximale disponible pour VCPI en Ko ; &eacute;galement
+                EMS si inf&eacute;rieur &agrave; 32 Mo.
+  MEMCHECK      Acc&eacute;der &agrave; l'espace d'adressage complet de 4Go sans RAM
+                (MMIO).
+  NOALTBOOT     Ne pas accrocher l'interruption clavier pour le
+                traitement du red&eacute;marrage (valeur par d&eacute;faut).
+  NOCHECK       Interdit l'acc&egrave;s &agrave; l'espace d'adressage sans RAM (MMIO).
+  NODISABLEA20  Ne pas autoriser EMM386 &agrave; d&eacute;sactiver A20.
+  NOEMS         Ne pas activer la m&eacute;moire &eacute;tendue. Utiliser NOEMS pour
+                obtenir plus d'UMB libres si vous n'avez pas besoin
+                d'EMS.
+  NOVCPI        Ne pas utiliser VCPI (doit &ecirc;tre utilis&eacute; avec NOEMS).
+  NOVDS         D&eacute;sactiver les services virtuels DMA.
+  SB            Mode de compatibilit&eacute; avec le pilote SoundBlaster.
+  VDS           Active les services virtuels DMA (valeur par d&eacute;faut).
+  /VERBOSE      Afficher une sortie d&eacute;taill&eacute;e lorsque emm386 est charg&eacute;.
+  X=hhhh:hhhh   D&eacute;finir une plage de m&eacute;moire pour les p&eacute;riph&eacute;riques
+                mapp&eacute;s en m&eacute;moire.
+                Par exemple X=D000-D800 X=hhhh:hhhh peut &ecirc;tre n&eacute;cessaire
+                par exemple pour certains r&eacute;seaux.
+  X=TEST        Tester les emplacements de la ROM pour d&eacute;terminer s'ils
+                sont exclus de l'UMB.
+  /?            Afficher l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  EMM386 n&eacute;cessite un processeur 80386+. HIMEM devrait &ecirc;tre charg&eacute; avant.
+  Chargez EMM386 comme DEVICE=EMM386.EXE dans CONFIG.SYS (bien que ce
+  soit un fichier ".exe" !)
+  EMM386 doit &ecirc;tre charg&eacute; dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\himem.exe
+    device=c:\fdos\bin\emm386.exe
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-2004 Robert Platt, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; du FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

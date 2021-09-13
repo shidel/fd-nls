@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: unzip</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: unzip</h1>
+<pre>
+  UNZIP listet, testet oder extrahiert Dateien aus einem ZIP-Archiv, die
+  gew&ouml;hnlich auf DOS-Systemen gefunden werden. Das Standard-Verhalten
+  (ohne Optionen) ist Extrahieren aller Dateien (und Unterverzeichnisse)
+  aus dem angegebenen ZIP-Archiv in das aktuelle Verzeichnis.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  unzip [-Z] [-Optionen[Modifikatoren]] Datei[.zip] [Datei(en)] [-x Liste]
+        [-d Ordner]
+          Datei[.zip] Pfad des ZIP-Archivs. Kann ein Platzhalter sein.
+          [Datei(en)] Eine optionale Liste von Archivmitglieder, durch
+                      Leerzeichen getrennt.
+          [-d Ordner] Ein optionales Verzeichnis, in das die Dateien
+                      entpackt werden. Standardm&auml;&szlig;ig wird in das
+                      aktuelle Verzeichnis ausgepackt.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+    -d   Entpacken ins gegebene Verzeichnis (directory).
+    -f   Erfrischen der vorhandenen Dateien, das hei&szlig;t, extrahieren nur
+         der Dateien, die bereits vorhanden und neuer sind.
+    -l   Listet die Dateien (im kurzen Format). Die Namen der
+         unkomprimierten Dateien mit deren &Auml;nderungs-Datum und -Uhrzeit
+         und deren Gesamtzahl werden ausgegeben.
+    -p   Entpacken der Dateien in die Standardausgabe ohne Meldungen.
+    -t   Testet die Archivdaten. Diese Option extrahiert jede angegebene
+         Datei im Speicher, und vergleicht die CRC-Pr&uuml;fsumme der ent-
+         packten Datei mit dem gespeicherten CRC-Wert der Originaldatei.
+    -u   Aktualisiert (update) Dateien, wenn n&ouml;tig.
+    -x   Explizit die per Liste gegebenen Dateien von der Verarbeitung
+         ausschlie&szlig;en. Da Platzhalter normalerweise Verzeichnistrenner
+         '/' nicht umfassen, kann diese Option verwendet werden, um alle
+         Dateien in einem Unterverzeichnis ausschlie&szlig;en.
+    -z   ZIP-Archivkommentar anzeigen.
+    -Z   ZipInfo Modus. Wenn -Z die erste Option auf der Befehlszeile ist,
+         werden die verbleibenden Optionen als zipinfo (1L) Optionen
+         genommen.
+  Modifikatoren:
+    -$   Wiederherstellung der Datentr&auml;gerbezeichnung auf Wechselmedien
+         (-$$ auch auf Festplatten)
+    -a   Automatische Konvertierung jeder Textdateien.
+    -aa  Behandeln aller Dateien als Textdateien.
+    -C   Gross-/Kleinschreibung nicht unterscheiden.
+    -j   Pfade verwerfen (junk). Die Verzeichnisstruktur des Archivs wird
+         nicht wieder hergestellt. Alle Dateien werden in einem
+         Verzeichnis deponiert.
+    -L   (Einige) Namen in Kleinbuchstaben konvertieren.
+    -n   Nie vorhandenen Dateien &uuml;berschreiben.
+    -o   &Uuml;berschreibt (overwrite) Dateien ohne Nachfrage.
+    -M   Ausgabe durch den "more" Betrachter leiten.
+    -q   Stiller (quiet) Modus (-qq ist noch leiser).
+    -s   Konvertieren von Leerzeichen in Dateinamen zu Unterstrichen
+         ("_").
+    -v   Ausf&uuml;hrlicher (verbose) Modus oder Versions-Informationen
+         ausgeben.
+    -V   Beibehalten von VMS Versionsnummern.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Lesen Sie bitte UNZIP.TXT, um weitere Informationen zu erhalten.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  unzip data1 -x joe    extrahiert alle Dateien aus dem ZIP-Archiv
+                        data1.zip mit Ausnahme von joe
+  unzip -fo foo ReadMe  ersetzt ruhig vorhandene Datei ReadMe, wenn die
+                        Datei im Archiv foo neuer ist.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../util/zip.htm">zip</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl, &uuml;bersetzt von J. Jenderek.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

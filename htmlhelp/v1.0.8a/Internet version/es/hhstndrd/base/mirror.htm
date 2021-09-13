@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: mirror</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: mirror</h1>
+<pre>
+  MIRROR registra informaci&oacute;n sobre el disco, como el sector de
+  arranque, la tabla de asignaci&oacute;n de archivos y el directorio ra&iacute;z para
+  una posible recuperaci&oacute;n de datos.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  MIRROR [unidad]
+  MIRROR [/PARTN]
+  MIRROR [/?]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  unidad  Guarda informaci&oacute;n <a href="../base/unformat.htm">UNFORMAT</a> en una letra de unidad, p. ej. X:
+  /PARTN  Guarda las tablas de partici&oacute;n a:\partnsav.fil para su 
+          recuperaci&oacute;n futura a trav&eacute;s de <a href="../base/unformat.htm">UNFORMAT</a> / PARTN.
+  /?      Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  MIRROR almacena una copia del sector de arranque, las tablas FAT y el
+  directorio ra&iacute;z en una "ubicaci&oacute;n de almacenamiento" cerca del final
+  del disco. Al usar el modificador /partn con el comando mirror, puede
+  guardar una copia de seguridad de las tablas de partici&oacute;n en
+  partnsav.fil en la unidad a:.
+  Nota: La imagen espejo creada por este programa solo se puede recuperar
+  utilizando el programa <a href="../base/unformat.htm">UNFORMAT</a> para FreeDOS.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  mirror d:
+  mirror /partn
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

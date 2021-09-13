@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : installhigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : installhigh</h1>
+<pre>
+  INSTALLHIGH ex&eacute;cute un programme TSR (un programme qui reste dans la
+  m&eacute;moire), ans environnement, au lieu d'utiliser quelque chose comme
+  lh ou loadhigh.
+  INSTALLHIGH charge un programme TSR en m&eacute;moire haute, tandis que
+  INSTALL charge le programme TSR dans la m&eacute;moire basse ou
+  conventionnelle.
+  INSTALLHIGH est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  installhigh=[lecteur][chemin]nomfichier [options]
+          lecteur     La lettre du lecteur, par exemple C:
+          chemin      Le r&eacute;pertoire, par exemple \exemple\
+          nomfichier  Le nom du fichier du tsr &agrave; ex&eacute;cuter, par exemple
+                      test.sys
+</pre>
+<h2>Options :</h2>
+<pre>
+  options  Il s'agit l&agrave; d'option qui seront pass&eacute;es au TSR. Il ne
+           s'agit pas d'options pour la commande 'installhigh'.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  INSTALLHIGH charge le programme sp&eacute;cifi&eacute; par lecteur:
+  \chemin\nomfichier.
+  Il est g&eacute;n&eacute;ralement utilis&eacute; pour charger des programmes TSR (terminate
+  and stay resident) avec un bloc d'environnement minimal. Les options
+  sont pour le programme ; veuillez vous r&eacute;f&eacute;rer &agrave; la documentation de
+  votre logiciel pour les options prises en charge et leur utilisation.
+  Comme INSTALLHIGH charge le pilote dans la m&eacute;moire haute, il reste
+  davantage d'espace libre dans la m&eacute;moire basse ou conventionnelle
+  pour d'autres pilotes ou programmes. Pour charger un pilote ou un
+  programme en m&eacute;moire haute vous devez d'abord charger un pilote tel
+  que (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a> or <a href="../base/jemmex.htm">JEMMEX</a> dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> /  <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  INSTALLHIGH est une commande interne &agrave; kernel.sys et ne n&eacute;cessite
+  aucun autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    installhigh=C:\fdos\bin\ctmouse.exe
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../cnfigsys/install.htm">install</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../batch/lh.htm">lh</a>
+  <a href="../batch/loadhigh.htm">loadhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mise &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

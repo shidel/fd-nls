@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: cdrcache.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: cdrcache.sys</h1>
+<pre>
+  CDRCACHE.SYS is a CD drive cache program. It improves the drive
+  performance. Requires XMS memory, and at least a 386 computer.
+  CDRCACHE.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  When FreeDOS is already running, you can load CDRCACHE.SYS later
+  with <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  In config.sys, either:
+    device=cdrcache.sys device name cachesize
+  or:
+    devicehigh=cdrcache.sys device name cachesize
+</pre>
+<h2>Options:</h2>
+<pre>
+  device     The same name of the device that you previously loaded 
+             with your CD-ROM device driver.
+  name       A new name which you will pass to shsucdx in the
+             autoexec.bat
+  cachesize  Specifies the cache buffer size in kilobytes. The cache is 
+             stored in XMS memory.
+             Minimum value is 128
+             Maximum value is 65280
+             Values below 100 are valid for compatibility with previous 
+             versions of CDRCACHE.SYS. Below 100, sizes are interpreted
+             as multiples of 0.25MB.
+  Controlling the driver after loading:
+    Use:
+  echo command &gt; name
+  Command:
+    F     Flush the cache.
+    S     Show Statistics.
+    I     Show statistics with extra technical Information.
+    C     Clear statistics.
+    Q     Quiet mode.
+    N     Normal verbosity.
+    V     Verbose/trace mode.
+    0     Stop caching.
+    1     Continue caching (after stop for instance).
+    ?     Shows the help.
+    name  Is the parameter passed to CDRCACHE.SYS (see example).
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Load CDRCACHE.SYS after loading your CD-ROM device driver (usually 
+  uide.sys).
+  As CDRCACHE.SYS (2003) is based on <a href="../base/lbacache.htm">LBACACHE.SYS</a>, please read the
+  LBAcache documentation for some additional technical/programming
+  details.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  In config.sys / fdconfig.sys:
+    DEVICE=c:\fdos\bin\xcdrom.sys /D:FDCD0000
+    DEVICE=c:\fdos\bin\CDRCACHE.SYS FDCD0000 CDRCACH$ 2048
+  then in autoexec.bat:
+    c:\fdos\bin\shsucdx /D:CDRCACH$
+  This allocates a 2048KB (2MB) cache buffer for a single IDE CD drive.
+    echo F &gt; cdrcach$    (flush cache)
+    echo SCF &gt; cdrcach$  (show statistics, then clear statistics and
+                         flush cache)
+    echo S &gt; cdrcach$    (only show statistics)
+</pre>
+<h2>See also:</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+  <a href="../base/lbacache.htm">lbacache</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+  <a href="../base/tickle.htm">tickle</a>
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

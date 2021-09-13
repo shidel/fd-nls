@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: mode</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: mode</h1>
+<pre>
+  MODE konfiguriert und stellt den Zustand f&uuml;r verschiedene Hardware-
+  Ger&auml;te ein und vieles mehr.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  mode [Ger&auml;t][Optionen]
+    oder
+  mode [Bildschirm-Modus]
+         CON[:]  Konsole. Dies steuert den Display-Treiber, der vorher
+                 installiert werden mu&szlig;. Damit k&ouml;nnen Sie die Codeseite
+                 des Bildschirmes einstellen. Dies ist hilfreich, weil
+                 jede Codeseite verschiedene Zeichen anzeigen kann. F&uuml;r
+                 weitere Informationen &uuml;ber Codeseiten sehen sie im 
+                 <a href="../base/cpidos.htm">CODEPAGE-INFORMATIONSPAKET</a>.
+         LPT[:]  Parallele Anschl&uuml;sse
+         COM[:]  Serielle Anschl&uuml;sse
+         PARK    Nicht implementiert in der FreeDOS Version.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  MODE [Ger&auml;t]  [/STA[TUS]]   Zeigt den Status eines oder aller Ger&auml;te.
+  MODE LPTn[:] Spalten[,[Zeilen][,Wiederholung]]
+  MODE LPTn[:] [COLS=...] [LINES=...] [RETRY=...]
+                              Spalten (cpi), 6 oder 8 Zeilen pro Zoll
+                              (lpi) p f&uuml;r unendliche oder n f&uuml;r keine
+                              Wiederholung.
+  MODE LPTn[:]=[COMn[:]|NUL]  Druckerumleitung an serielle Schnittstelle
+                              oder NUL Ger&auml;t.
+  MODE COMn[:] Baud,Parit&auml;t,Daten-,Stop-Bits,Wiederholung
+  MODE COMn[:] [BAUD[HARD]=...] [PARITY=...] [DATA=...] [STOP=...]
+               [RETRY=...]    Leere Werte sind erlaubt.
+                              BAUD kann bis auf das B gek&uuml;rzt werden.
+                              Parit&auml;t kann ein Anfangsbuchstabe der
+                              Woerter (odd, even, none, space, mark) sein
+                              f&uuml;r ungerade, gerade, kein, logisch 0 oder
+                              logisch 1.
+                              Daten-Bits und Stop-Bits liegen im Bereich
+                              5 bis 8 bzw. 1 bis 2.
+                              RETRY Option wird zur Zeit ignoriert!
+                              Geplant: Retry b/e/r -&gt; busy/error/ready
+                              wenn besch&auml;ftigt, p/n unendlich/nicht
+                              wiederholen.
+  MODE CON[:] [CP|CODEPAGE] [/STA[TUS]]
+                              Zeigt den Status von CON (Konsole)
+                              FreeDOS DISPLAY mu&szlig; vorher geladen werden.
+  MODE CON[:] [CP|CODEPAGE] REF[RESH]
+                              Aktualisiert den aktiven Zeichensatz.
+                              FreeDOS DISPLAY mu&szlig; geladen sein.
+  MODE CON[:] [CP|CODEPAGE] PREP[ARE]=((Zeichensatzzahl) Codeseiten-Datei)
+                              FreeDOS DISPLAY mu&szlig; geladen sein. Verwen-
+                              den Sie PREP=((,cp2,cp3,cp5)...) zur
+                              Vorbereitung von Zeichens&auml;tzen in anderen
+                              Puffern.
+  MODE CON[:] [CP|CODEPAGE] SEL[ECT]=Zeichensatzzahl
+                              FreeDOS DISPLAY mu&szlig; geladen sein.
+  MODE CON[:] [NUMLOCK|CAPSLOCK|SCROLLLOCK|SWITCHAR]=Wert
+                              Wert kann + oder - sein f&uuml;r Feststelltasten
+                              beziehungsweise ein Zeichen f&uuml;r SWITCHAR.
+  MODE CON[:] [COLS=...] [LINES=...]
+                              M&ouml;gliche Werte sind abh&auml;ngig von der
+                              Hardware.
+  MODE CON[:] [RATE=...] [DELAY=...]
+                              Standardm&auml;&szlig;ig betr&auml;gt die Wiederholungs-
+                              rate 20 und der Verz&ouml;gerungswert der
+                              Tastatur 1. Die Rate im Bereich von 1 bis 32
+                              entspricht ungef&auml;hr 2 bis 30 Zeichen pro
+                              Sekunde. Die Verz&ouml;gerungsangabe im Bereich
+                              von 1 bis 4 erfolgt in Viertelsekunden-
+                              Einheiten.
+   MODE [40|80|BW40|BW80|CO40|CO80|MONO][,Zahl]
+                              Feste Anzeigemodi des Bildschirmes. Zahlen
+                              k&ouml;nnen 25, 28, 43 oder 50 sein. Werte von
+                              8, 14 oder 16 werden nicht als Zeilenzahl
+                              sondern als Schriftgr&ouml;&szlig;e interpretiert.
+  MODE [CO40|CO80|...],[R|L][,T]
+                              Dies sind die flexiblen Bildschirm-Modi.
+                              Die Werte f&uuml;r die Spalten sind 40, 80, 132
+                              und 25, 28, 30, 34, 43, 50, 60 f&uuml;r Zeilen.
+                              Verwenden Sie 8, 14 oder 16 als Zeilenwert,
+                              wenn Sie nur die Schriftart &auml;ndern wollen.
+                              Die Anzeige auf CGA-Schirmen links/rechts
+                              verschieben, T interaktiv.
+  /?                          Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  CON (Konsole)
+  Dies steuert den Display-Treiber, der vorher installiert werden mu&szlig;.
+  Damit k&ouml;nnen Sie die Codeseite des Bildschirmes einstellen. Dies ist
+  hilfreich, weil jede Codeseite verschiedene Zeichen anzeigen kann. F&uuml;r
+  weitere Informationen &uuml;ber Codeseiten sehen sie im <a href="../base/cpidos.htm">CODEPAGE</a>
+  <a href="../base/cpidos.htm">INFORMATIONSPAKET</a>.
+  Verwendung:
+    MODE CON[:] CODEPAGE /STATUS
+      Zeigt den aktiven Zeichensatz und andere Informationen &uuml;ber den
+      aktuellen Status der Anzeige und die Codeseiten-Puffer.
+    MODE CON[:] CODEPAGE REFRESH
+      Aktualisiert den aktiven Zeichensatz (f&uuml;r den Fall, da&szlig; er
+      versehentlich gest&ouml;rt wurde).
+    MODE CON[:] CODEPAGE PREPARE ((nnn) Datei)
+      Bereitet Zeichens&auml;tze f&uuml;r den Bildschirm vor.
+      Das Format der Dateien ist .cpx und diese sind in der Regel
+      gespeichert in C:\FDOS\CPI.
+      Um zum Beispiel Zeichensatz 860 aus EGA9.CPX zu laden,
+      schreiben Sie:
+          MODE CON: CODEPAGE PREPARE ((860) c:\fdos\cpi\ega9.cpx).
+      Siehe <a href="../base/cpidos.htm">CODEPAGE-INFORMATIONSPAKET</a> f&uuml;r Informationen
+      &uuml;ber verf&uuml;gbare Zeichens&auml;tze und CPI-Dateien.
+    MODE CON[:] CODEPAGE SELECT=nnn
+      Aktiviert Zeichensatz nnn, der zuvor mit PREPARE vorbereitet wurde.
+    MODE CON[:] NUMLOCK=Wert
+      Schaltet den numerischen Tastenblock ein oder aus. Wert kann "+"
+      oder "-" sein.
+    MODE CON[:] CAPSLOCK=Wert
+      Schaltet die Gro&szlig;buchstaben-Taste ein oder aus. Wert kann "+"
+      oder "-" sein.
+    MODE CON[:] SCROLLOCK=Wert
+      Schaltet die Rollen-Taste ein oder aus. Wert kann "+" oder "-"
+      sein.
+    MODE CON[:] SWITCHAR=Zeichen
+      &Auml;ndert das DOS-Befehlszeilen-Options-Zeichen (in der Regel "/")
+      in ein anderes. Funktioniert nicht mit allen Befehlen.
+    MODE CON[:] COLS=Wert
+      &Auml;ndert die Spalten. Wert kann 40, 80 oder 132 sein.
+    MODE CON [:] LINES=Wert
+      &Auml;ndert die Zeilen. Wert kann 25, 28, 43 oder 50 f&uuml;r Zeilen oder
+      8, 14 oder 16 f&uuml;r die Schriftgr&ouml;&szlig;e sein. Wenn Sie eine VESA-
+      Anzeige haben, stehen auch 30, 34 oder 60 Zeilen zur Verf&uuml;gung.
+    MODE CON [:] RATE=Wert
+      &Auml;ndert die Wiederholrate. Wert ist 1 ... 32 (2 ... 30
+      Zeichen/Sekunden nach 0,5 Sek. Verz&ouml;gerung).
+    MODE CON [:] DELAY=Wert
+      &Auml;ndert die Verz&ouml;gerungszeit. Wert kann 1,2,3 oder 4 sein (Einheit
+      betr&auml;gt 0,25 Sekunden).
+  Das Wort CODEPAGE kann als CP, Status als STA, REFRESH als REF, SELECT
+  als SEL und PREPARE als PREP abgek&uuml;rzt werden.
+  MODE hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+  Allgemein:
+    100:  Interner Fehler: Gr&ouml;&szlig;e f&uuml;r die Tabelle zu klein.
+    101:  Keinen FreeDOS DISPLAY kompatiblen Treiber geladen.
+          Syntax Beispiel: ... DISPLAY CON=(VGA,437,1)
+    102:  Datei nicht gefunden
+    103:  Fehler bei Angabe Codeseite / Puffer
+    104:  Fehler: ausgew&auml;hlte Puffer nicht anwesend
+    105:  Syntax-Fehler
+  Pr&uuml;fen der Codeseite:
+    26:  Aktive Codeseite wurde nie gesetzt
+    27:  Codeseiten-Fehler beim Ger&auml;te lesen
+  Pr&auml;paration der Codeseite:
+    27:  Codeseite wurde nicht gefunden in CPI-Datei
+    29:  keine Codeseiten Informationen in der Datei (oder XMS-Probleme)
+    31:  angegebene CPI-Datei ist besch&auml;digt (oder XMS-Probleme)
+  Pr&auml;parationsende der Codeseite:
+    31:  Interner Fehler: Beende PREPARE ohne Beginn derselben.
+  Auswahl der Codeseite:
+    26:  Angegebene Codeseite wurde nicht gefunden in der Datei
+    27:  KEYB scheiterte beim &auml;ndern der Codeseite
+    29:  Wahl der Codeseite f&uuml;r das Ger&auml;t ist fehlgeschlagen
+         (oder XMS-Probleme)
+    31:  Fehler bei der Wahl der Codeseite
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  mode /status       Zeigt den Status
+  mode lpt1 /status  Zeigt den Status der parallelen Schnittstelle LPT1
+  mode com1 /status  Zeigt den Status der seriellen Schnittstelle COM1
+  mode con /status   Zeigt den Status der Konsole
+  mode con codepage  Zeigt den aktiven Zeichensatz und andere Infor-
+                     mationen &uuml;ber den aktuellen Status der Anzeige und
+                     die Codeseiten-Puffer.
+  mode con codepage refresh   oder:
+  mode con: codepage refresh
+                     Aktualisiert den aktiven Zeichensatz
+                     (f&uuml;r den Fall, da&szlig; er versehentlich gest&ouml;rt
+                     wurde).
+  mode con codepage prepare ((860) C:\FDOS\CPI\ega9.cpx)   oder:
+  mode con: codepage prepare ((860) C:\FDOS\CPI\ega9.cpx)
+                     Bereitet Zeichensatz 860 aus der angegebenen Datei
+                     vor. Das Format der Dateien ist .cpx
+                     Siehe <a href="../base/cpidos.htm">CODEPAGE-INFORMATIONSPAKET</a> f&uuml;r Informationen
+                     &uuml;ber verf&uuml;gbare Zeichens&auml;tze und CPI-Dateien.
+  mode con codepage select=860   oder:
+  mode con: codepage select=860
+                     Aktiviert Zeichensatz 860, der zuvor mit PREPARE
+                     vorbereitet wurde.
+  Beispiel f&uuml;r AUTOEXEC.BAT/FDAUTO.BAT:
+    MODE CON CP PREP=((858) C:\FDOS\CPI\EGA.CPX)
+    MODE CON CP SEL=858
+    REM Zeichensatz 858 wurden aktiviert
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/graftabl.htm">graftabl</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keyb.htm">keyb</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/listxdef.htm">listxdef</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+ (<a href="../base/modecon.htm">modecon</a>)
+  <a href="../base/nlsfunc.htm">nlsfunc</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 - 2004 Aitor SANTAMARIA MERINO,
+  Henrique PERON, Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

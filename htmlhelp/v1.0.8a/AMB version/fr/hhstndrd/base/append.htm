@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : append</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : append</h1>
+<pre>
+  APPEND permet aux programmes d'ouvrir des fichiers de donn&eacute;es dans les
+  dossiers sp&eacute;cifi&eacute;s comme s'ils &eacute;taient dans le r&eacute;pertoire courant.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  APPEND [[lecteur]chemin[;...]] [/X[:ON|:OFF]] [/chemin:ON|/chemin:OFF]
+         [/E]
+  APPEND ;
+  APPEND [/?]
+         lecteur  Lettre de lecteur, par ex. C:
+         chemin   R&eacute;pertoire &agrave; ajouter, par ex. \exemple
+</pre>
+<h2>Options :</h2>
+<pre>
+  /X[:ON]    &Eacute;tendre APPEND aux recherches et ex&eacute;cutions de commandes.
+  /X:OFF     Applique APPEND seulement aux requ&ecirc;tes d'ouverture de
+             fichiers. /X:OFF est la valeur par d&eacute;faut.
+  /PATH:ON   Rechercher dans les dossiers ajout&eacute;s pour les requ&ecirc;tes
+             de fichiers qui comprennent d&eacute;j&agrave; un chemin. C'est la
+             valeur par d&eacute;faut.
+  /PATH:OFF  D&eacute;sactive /PATH:ON.
+  /E         Stocke le dossier ajout&eacute; dans l'environnement.
+             /E ne peut &ecirc;tre utilis&eacute; que dans la premi&egrave;re invocation
+             d'APPEND. Vous ne pouvez pas inclure des chemins sur
+             la m&ecirc;me commande que /E.
+  APPEND ;   nettoie la liste des r&eacute;pertoires ajout&eacute;s.
+  APPEND     sans param&egrave;tres affiche la liste des r&eacute;pertoires ajout&eacute;s.
+  /?         Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  N'utilisez pas APPEND avec Windows ou les extenseurs 32 bits.
+  APPEND s'installe lui-m&ecirc;me comme une commande interne apr&egrave;s sa premi&egrave;re
+  ex&eacute;cution. Les invocations suivantes DOIVENT exclure le chemin de
+  fichier et l'extension de la commande APPEND.
+  APPEND prend en charge le NLS (support des langues nationales).
+</pre>
+<h2>Exemples :</h2>
+<pre>
+    Premi&egrave;re utilisation :
+  C:\command\append.exe D:\Data\df1.dat
+    Utilisation parfaitement l&eacute;gitime de la commande Append pour la
+    premi&egrave;re invocation.
+    Seconde utilisation erron&eacute;e :
+  C:\command\append.exe D:\Data\df2.dat
+    Seconde utilisation invalide. Le r&eacute;sultat est que le nouvel append
+    charg&eacute; par command.com se voit dans la m&eacute;moire et quitte avec une
+    erreur. 
+    Seconde utilisation valide :
+  append D:\Data\df2.dat
+    Seconde utilisation valide. Command.com regarde sa liste de commandes
+    internes, voit append et l'ex&eacute;cute en lui transmettant le restant de
+    la ligne de commande.
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../command/path.htm">path</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eduardo Casino, mis &agrave; jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

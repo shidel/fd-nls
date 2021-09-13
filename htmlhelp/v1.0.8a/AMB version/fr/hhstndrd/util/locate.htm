@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : locate</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : locate</h1>
+<pre>
+  LOCATE est un outil pour rechercher des fichiers sous DOS.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  LOCATE [filespec] [options]
+         Filespec peut contenir une lettre de lecteur, un nom de
+         r&eacute;pertoire ou les deux &agrave; la fois. Si une lettre de lecteur
+         est sp&eacute;cifi&eacute;e, la recherche ne sera effectu&eacute;e que sur ce
+         lecteur. Si aucun lecteur n'est sp&eacute;cifi&eacute;, Locate d&eacute;cidera
+         seul les lecteurs sur lesquels la recherche sera effectu&eacute;e.
+         Tout ce qui pr&eacute;c&egrave;de la derni&egrave;re barre oblique inverse dans la
+         sp&eacute;cification de fichier est suppos&eacute; &ecirc;tre le nom d'un
+         r&eacute;pertoire dans lequel la recherche sera effectu&eacute;e ; Locate
+         recherchera dans ce r&eacute;pertoire et les sous-r&eacute;pertoires qu'il
+         contient. Si un nom de r&eacute;pertoire est sp&eacute;cifi&eacute; sans lettre de
+         lecteur, le r&eacute;pertoire sera suppos&eacute; &ecirc;tre sur le lecteur actuel,
+         la recherche ne sera effectu&eacute;e que sur le lecteur actuel.
+         Les jokers ne sont pas autoris&eacute;s dans le nom de r&eacute;pertoire.
+</pre>
+<h2>Options :</h2>
+<pre>
+  Que rechercher :
+    /D              &Agrave; la fois les fichiers et les sous-r&eacute;pertoires (la
+                    valeur  par d&eacute;faut).
+    /D-             Seulement les fichiers, pas les sous-r&eacute;pertoires
+                    (valeur par d&eacute;faut avec /B /K /X /S: /0).
+    /D+             Les sous-r&eacute;pertoires seulement, pas les fichiers.
+    /H              Les &eacute;l&eacute;ments cach&eacute;s ou syst&egrave;me seulement.
+    /X              Les fichiers ex&eacute;cutables seulement (.COM .EXE .BAT).
+    /0              Les fichiers vides (0 octet) seulement.
+    /S:[min][,max]  Les fichiers dans une plage de taille.
+    /D:[min][,max]  Les &eacute;l&eacute;ments dans une plage de dates.
+    /D:dowlist      Les &eacute;l&eacute;ments dat&eacute;s de jours sp&eacute;cifiques de la
+                    semaine.
+    /T:[min][,max]  Les &eacute;l&eacute;ments dans une plage de temps.
+    /A:[a+][a-]     Masquer selon les attributs.
+  O&ugrave; rechercher :
+    /T              R&eacute;pertoire courant et chemin de recherche seulement.
+    /NR             Ne pas rechercher r&eacute;cursivement dans les
+                    sous-r&eacute;pertoires.
+    /R              Les disques fixes locaux seulement.
+    /M              Inclure les mappages de lecteurs r&eacute;seau en double.
+    /E:var          Les r&eacute;pertoires list&eacute;s dans une variable
+                    d'environnement.
+  Comment afficher les &eacute;l&eacute;ments trouv&eacute;s :
+    /P              Affichage de style Peter, avec les dates, horaires,
+                    attributs et tailles.
+    /I              Avec les num&eacute;ros d'index, dates, heures, attributs,
+                    tailles.
+    /W              Affichage large.
+    /N              Affichage brut (liste de fichiers).
+    /B:"commande"   En tant que fichier batch.
+    /L              En utilisant les noms de fichiers longs de
+                    Windows 95.
+    /O:"cha&icirc;ne"     Sortie format&eacute;e &agrave; l'aide de macros.
+    /S              Informations de r&eacute;sum&eacute; seulement.
+    /US             Utiliser le format de date et d'horaire des
+                    &Eacute;tats-Unis (Tue May 31 1994).
+    /UK             Utiliser le format de date et d'horaire du
+                    Royaume-Uni (Tue 31 May 1994).
+    /UJ             Utiliser le format de date et d'horaire nippon
+                    (ISO) (Tue 1994-05-31).
+    /12             Format d'heure de 12 heures.
+    /24             Format d'heure de 24 heures.
+    /NP             Pas de pagination.
+  Quoi faire avec les &eacute;l&eacute;ments trouv&eacute;s :
+    /G              Aller au r&eacute;pertoire.
+    /K              Tuer (kill, effacer) les &eacute;l&eacute;ments trouv&eacute;s.
+    /C:"cha&icirc;ne"     Ex&eacute;cuter des commandes, en utilisant les m&ecirc;mes
+                    macros que /O.
+    /F:n            S'arr&ecirc;ter apr&egrave;s les premiers n &eacute;l&eacute;ments.
+  Other options:
+    /Y              Yes, Oui -- ne pas demander confirmation pour
+                    /K ou /C.
+    /NV             Pas d'appels vid&eacute;o BIOS.
+    /V              &Eacute;changer la barre d'espace et la touche Entr&eacute;e
+                    lors de la pagination.
+    /NA             Ne pas romaniser les lettres &agrave; des fins de
+                    comparaison.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Veuillez lire locate.txt pour davantage d'informations.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  locate           trouver tous les fichiers et r&eacute;pertoires ("&eacute;l&eacute;ments")
+  locate *.SYS     trouver tous les &eacute;l&eacute;ments avec une extension .SYS
+  locate /H        trouver tous les &eacute;l&eacute;ments cach&eacute;s ou syst&egrave;me
+  locate *.SYS /H  trouver les &eacute;l&eacute;ments cach&eacute;s/syst&egrave;me avec
+                   l'extension .SYS
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>  - vide -</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

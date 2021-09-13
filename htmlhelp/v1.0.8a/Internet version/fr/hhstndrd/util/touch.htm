@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : touch</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : touch</h1>
+<pre>
+  Le programme TOUCH modifie la date et/ou le temps des fichiers sur
+  un disque.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  touch [-?] [-C] [-Dnomchemin] [-F] [Date] [Temps] Pathspec [...]
+  touch [/?] [/C] [/Dnomchemin] [/F] [Date] [Temps] Pathspec [...]
+        Pathspec sp&eacute;cifie un fichier ou groupe de fichiers que Touch
+        traitera, et peut contenir une sp&eacute;cification de lecteur initial,
+        une sp&eacute;cification de chemin de r&eacute;pertoires et/ou une
+        sp&eacute;cification de fichier, et peut sp&eacute;cifier un groupe de
+        fichiers (en utilisant les jokers '?' et '*') ou un fichier
+        seul (une sp&eacute;cification sans ambigu&iuml;t&eacute;). Pathspec peut &ecirc;tre
+        r&eacute;p&eacute;t&eacute; autant de fois que n&eacute;cessaire.
+</pre>
+<h2>Options :</h2>
+<pre>
+  -C          Ne pas cr&eacute;er les fichiers qui n'existent pas d&eacute;j&agrave;.
+  -Dnomchemin Dupliquer l'horodatage depuis le fichier sp&eacute;cifi&eacute;. Si
+              cette option est utilis&eacute;e, la date ou le temps ne
+              peuvent &ecirc;tre sp&eacute;cifi&eacute;s.
+  -F          R&eacute;gler le temps sur le num&eacute;ro de version du fichier.
+  -?          Affiche l'aide.
+  Date        La nouvelle date des fichiers qui doivent &ecirc;tre modifi&eacute;s.
+              Si cette option est utilis&eacute;e, -Dnomchemin ne peut &ecirc;tre
+              sp&eacute;cifi&eacute;.
+  Time        Le nouveau temps des fichiers qui doivent &ecirc;tre modifi&eacute;s.
+              Si cette option est utilis&eacute;e, -Dnomchemin ne peut &ecirc;tre
+              sp&eacute;cifi&eacute;.
+  Le format de la date est d&eacute;termin&eacute; par votre r&eacute;glage de <a href="../cnfigsys/country.htm">COUNTRY</a>,
+  voyez <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Le caract&egrave;re '/' peut &ecirc;tre utilis&eacute; en tant que s&eacute;parateur de date.
+  Les suffixes A et P (a.m, p.m) sur le param&egrave;tre de temps sont
+  optionnels.
+  Si aucune date ni temps ne sont fournis, la date et l'heure actuelles
+  seront utilis&eacute;es.
+  Les fichiers inexistants seront cr&eacute;&eacute;s sauf si -C est utilis&eacute;.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  TOUCH permet de modifier la date, le temps, ou &agrave; la fois la date et
+  le temps d'un fichier. TOUCH peut r&eacute;gler la date et le temps sur la
+  date et le temps actuels, ou sur n'importe quelle date et temps
+  sp&eacute;cifi&eacute; par l'utilisateur. La date et le temps peuvent aussi &ecirc;tre
+  r&eacute;gl&eacute;s sur z&eacute;ro, ce qui fera que les valeurs ne seront pas affich&eacute;es
+  dans certaines versions de DOS.
+  La date doit &ecirc;tre format&eacute;e ainsi :
+    nn-nn-nn or nn/nn/nn.
+  L'ordre dans lequel les chiffres de la date sont interpr&eacute;t&eacute;s d&eacute;pend
+  du num&eacute;ro de pays. Il existe trois ordres standard de date :
+    mm-jj-aa  (Am&eacute;ricain)
+    jj-mm-aa  (Europ&eacute;en)
+    aa.mm.jj  (Japonais)
+  Un param&egrave;tre de temps doit &ecirc;tre format&eacute; ainsi :
+    hh:mm[:ss][a|p]
+  Le deuxi&egrave;me deux-points et la valeur 'ss' sont facultatifs. S'ils
+  ne sont pas fournis, une valeur de z&eacute;ro sera utilis&eacute;e pour les
+  secondes. Les suffixes 'a' et 'p' (a.m et p.m) sont facultatifs, et
+  si aucun n'est utilis&eacute;, TOUCH supposera que le temps sp&eacute;cifi&eacute; est
+  au format 24 heures.
+  L'OPTION -C :
+    TOUCH cr&eacute;era (par d&eacute;faut) les fichiers sp&eacute;cifi&eacute;s sans ambigu&iuml;t&eacute;
+     (c'est-&agrave;-dire nomm&eacute;s explicitement, sans jokers) s'ils n'existent
+    pas d&eacute;j&agrave;.
+    Cela est apparemment le comportement de 'touch' d'UNIX, bien que
+    ce ne soit pas habituel dans les impl&eacute;mentations DOS. Cette
+    fonctionnalit&eacute; peut &ecirc;tre emp&ecirc;ch&eacute;e avec le commutateur de ligne de
+    commande -C, qui indique &agrave; TOUCH de ne pas cr&eacute;er le fichier sp&eacute;cifi&eacute;
+    s'il n'existe pas d&eacute;j&agrave;. Je crois que cela est &eacute;galement le standard
+    dans les impl&eacute;mentations UNIX.
+    Par exemple, la commande TOUCH NOSUCH.FIL (si NOSUCH.FIL n'existe
+    pas d&eacute;j&agrave;), cr&eacute;era un fichier vide (d'une taille de z&eacute;ro octet)
+    appel&eacute; NOSUCH.FIL. La commande TOUCH -C NOSUCH.FIL signalera une
+    erreur et ne cr&eacute;era pas le fichier.
+  TOUCH a les <a href="../batch/if.htm#comment">CODES DE SORTIE (NIVEAUX D'ERREUR)</a> suivants :
+    0    Ach&egrave;vement normal; aucune erreur
+    2    Une ou plusieurs erreurs se sont produites lors du traitement
+    48   Erreur lors du traitement de l'option -Dnomchemin
+    162  M&eacute;moire insuffisante (environ 64 Ko de m&eacute;moire sont n&eacute;cessaires)
+    255  Syntaxe d'utilisation incorrecte
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  touch 12-31-2008 06:10p C:\FDOS\BIN\*.*
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

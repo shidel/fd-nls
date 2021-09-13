@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : shsufdrv</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : shsufdrv</h1>
+<pre>
+  SHSUFDRV simule une disquette ou un disque dur en utilisant un fichier
+  d'image.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  SHSUFDRV [/F[:][?]]image[,lecteur]... [/W] [/V] [/U] [/Q[Q]]
+           /F:    Le chemin vers l'image.
+           image    Nom de fichier de l'image disque brut ; '?'
+                    ignorera une image invalide.
+           lecteur  La lettre de lecteur &agrave; utiliser (la valeur par
+                    d&eacute;faut est la premi&egrave;re disponible).
+</pre>
+<h2>Options :</h2>
+<pre>
+  /W      Autoriser les images &agrave; &ecirc;tre &eacute;crites.
+  /V      Afficher l'utilisation de la m&eacute;moire (seulement lors de
+          l'installation).
+  /U      D&eacute;charger.
+  /Q      Silencieux - ne pas afficher la banni&egrave;re d'identification.
+  /QQ     Vraiment silencieux - ne rien afficher.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Les fichiers d'image peuvent &ecirc;tre cr&eacute;&eacute;s avec <a href="../base/diskcopy.htm">DISKCOPY</a>.
+  Aucune lettre de lecteur ne sera affect&eacute;e plus bas que la premi&egrave;re.
+  Par exemple : img1,E img2,D affectera &agrave; E: et F:, *pas* E: et D:.
+  Seul le lecteur (sur la premi&egrave;re partition d'un disque dur) est
+  simul&eacute;, pas le disque lui-m&ecirc;me et seulement une taille de secteur
+  de 512 octets.
+  SHSUFDRV / SHSURDRV a les  <a href="../batch/if.htm#comment">CODES DE SORTIE (NIVEAUX D'ERREUR)</a>
+  suivants :
+    0     D&eacute;sinstall&eacute;, l'aide affich&eacute;e
+    1-32  Premi&egrave;re lettre de lecteur attribu&eacute; (A: = 1) lors d'une
+          installation r&eacute;ussie ;
+    255   Pas install&eacute;, pas d&eacute;sinstall&eacute;
+</pre>
+
+<h2>Exemples :</h2>
+<pre>
+  SHSUFDRV /F:?C:\test\diskimg.img,H /W /V
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

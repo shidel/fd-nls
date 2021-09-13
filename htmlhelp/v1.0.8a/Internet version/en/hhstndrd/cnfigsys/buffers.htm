@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: buffers</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: buffers</h1>
+<pre>
+  BUFFERS tells FreeDOS how many disk buffers it should allocate.
+  BUFFERS is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command. 
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  buffers=nn[,m]
+    nn  is the number of primary disk buffers, in the range 1-99.
+    m   is the number of secondary disk buffers, in the range 1-8.
+</pre>
+<h2>Options:</h2>
+<pre>
+  Usage:
+
+  The default setting depends on the amount of conventional memory 
+  your system has:
+
+  Memory (KB)                Primary Buffers           Secondary Buffers
+  ----------------------------------------------------------------------
+    &lt; 128                           3                         1
+  128 - 255                         5                         1
+  256 - 511                        10                         1
+  512 - 640                        15                         1
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Increasing the number of BUFFERS can improve the speed of programs 
+  that work with a large number of files, but also uses up more 
+  memory resources.
+  The secondary buffer option is available for compatibility with
+  other DOS kernels, but is ignored by the FreeDOS kernel. In MS DOS,
+  a secondary buffer can used to read-ahead data. FreeDOS does not do
+  this. Buffers are stored in HMA by FreeDOS, unless you select nn to
+  allocate more buffers than fit in HMA. If nn is smaller, unused HMA
+  space will be used for further buffers until something else allocates
+  the HMA space for something else. Even then, at least nn buffers will
+  always be available. You can set nn to a negative value to disable
+  the use of unused HMA space: BUFFERS=-10 only uses 10 buffers, further
+  free space in the HMA will just stay unused.
+  BUFFERS is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    buffers=3,1
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/buffersh.htm">buffershigh</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

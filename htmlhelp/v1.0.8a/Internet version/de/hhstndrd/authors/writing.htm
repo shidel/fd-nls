@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Anleitung zum Selberschreiben der HTML-Hilfe:</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Anleitung zum Selberschreiben der HTML-Hilfe:</h1>
+<pre>
+  Beitr&auml;ge sind sehr willkommen. Wenn Sie einen Beitrag f&uuml;r die
+  HTML-Hilfe selbst erstellen wollen, kontaktieren Sie bitte den
+  Hauptersteller:
+    fritzdotmuelleratmaildotcom
+</pre>
+<h2>Die Struktur des \help Verzeichnisses:</h2>
+<pre>
+  <b>\help\index.htm</b>
+    Listet die auf dem System installierten Hilfedateien auf.
+    Wird automatisch geladen, wenn 'LANG' nicht auf eine verf&uuml;gbare
+    Sprache gesetzt ist und Englisch (EN) nicht installiert ist.
+  <b>\help\%LANG%\index.htm</b>
+    HELP wird diese Datei standardm&auml;&szlig;ig laden.
+    %LANG% ist die durch Setzen der 'LANG' Umgebung gew&auml;hlte Sprache.
+    Wenn 'LANG' nicht gesetzt ist, wird EN vermutet (verwendet).
+  <b>\help\%LANG%\help.htm</b>
+    HELP wird diese Datei laden, wenn der Benutzer F1 dr&uuml;ckt oder
+    auf "Hilfe &uuml;ber die Hilfe" klickt.
+  <b>\help\docinfo\bi\nls\%LANG%.bi</b>
+    Speichert Sprachlisten, zur Verwendung mit Aitor's Tool
+    "bookshlf", um den den Sprachenindex (\help\index.htm) zu erstellen.
+</pre>
+<h2>Erzeugen von komprimierten Hilfeateien:</h2>
+<pre>
+  Sie sollten f&uuml;r Ihren komprimierten Dateisatz einen Namen wie z.B.
+    <b>\help\...\[name]\[name].zip</b>
+  verwenden.
+  Wenn Sie Ihre Hilfedateien komprimieren wollen, sollten sie im Zip-
+  Format sein. Sie sollten den gleichen Dateinamen wie das Verzeichnis,
+  in dem sie  gespeichert sind und die Zip-Dateiendung haben.
+  Zum Beispiel:
+    <b>\help\en\myhelp\myhelp.zip</b>
+  Die index.htm kann innerhalb der Zip-Datei sein, aber help und 
+  bookshlf funktionieren besser, wenn sie au&szlig;erhalb sind.
+  Verzeichnisstrukturen sind innerhalb der Zip-Datei zul&auml;ssig. Jedoch
+  sollte auf Verschl&uuml;sselung und auf andere Komprimierungsformate
+  verzichtet werden, da sie nicht unterst&uuml;tzt werden.
+</pre>
+<h2>Modifizierte Versionen der Hilfedateien erzeugen:</h2>
+<pre>
+  Verwenden Sie bei allen modifizierten Versionen einen eindeutigen Titel
+  auf der Titelseite (oft index.htm). Dies vermeidet Verwirrung oder
+  Konflikte, und, am allerwichtigsten, ist laut Teil 4A der 
+  <a href="../other/fdl11.htm">GNU Free Documentation Lizenz 1.1</a> auch erforderlich.
+  Neben dem &Auml;ndern des Titels aktualisieren Sie bitte auch die History,
+  Liste der Autoren usw. entsprechend der Sektion 4 der
+  <a href="../other/fdl11.htm">GNU Free Documentation Lizenz 1.1</a>.
+  Wenn der Datensatz ein neues oder modifiziertes Paket beschreiben soll
+  oder der Datensatz einer grundlegenden &Auml;nderung (z.B. einer &Uuml;ber-
+  setzung) unterlegen soll, ist es am besten, einen abweichenden Unter-
+  verzeichnisnamen zu verwenden, wie es oben unter "Die Struktur des
+  \help Verzeichnisses" erkl&auml;rt wurde.
+  Dies ist einfach durch ein "Suchen und Ersetzen" in der index.htm des 
+  Unterverzeichnisnamens zu erledigen, und es ist es wert.
+  Zum Beispiel k&ouml;nnte eine abgespeckte Version des "hhstndrd" Daten-
+  satzes "hhmicro" genannt werden. Das w&auml;re dann auch der Name des
+  Unterverzeichnisses und der Titel in der index.htm k&ouml;nnte sein:
+    FreeDOS Hilfe (hhmicro 1.0)
+  Es ist akzeptabel, nur die Versionsnummer (anstelle des Namens und des
+  Verzeichnisses "hhmicro") zu ver&auml;ndern, wenn Updates herausgebracht
+  werden.
+</pre>
+<h2>Neue Dateien erzeugen oder hinzuf&uuml;gen:</h2>
+<pre>
+  Es wird empfohlen, da&szlig; die folgende Lizenzinfo an das Ende jeder neuen
+  Hilfedatei geschrieben wird (au&szlig;er es handelt sich um eine allein-
+  stehende Datei, die nicht in einer Hilfedokumentation enthalten ist):
+    ...
+    &lt;hr&gt;
+    &lt;address&gt;
+
+    &lt;b&gt;Copyright &amp;copy; 2008
+    &lt;a href="mailto:<b>meineemail@adresse.com</b>"&gt;<b>Mein Name</b>&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
+    Diese Datei bildet einen Teil der FreeDOS HTML Hilfedokumentation
+    und ist gedeckt durch ihre Bedingungen, siehe auch:
+    &lt;a href="../index.htm"&gt;index.htm&lt;/a&gt;
+
+    &lt;/address&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+
+  Das Mitliefern einer Email-Adresse ist freiwillig; wenn Sie Ihre
+  Hilfedateien auf eine Webseite laden, k&ouml;nnen Email-Adressen zu
+  Spamzwecken verwendet werden.
+  Die Bedingungen sind die <a href="../other/fdl11.htm">GNU Free Documentation Lizenz 1.1</a>.
+</pre>
+<h2>Dateien aus einer .zip-Datei bearbeiten:</h2>
+<pre>
+  Vielleicht wollen Sie die html-Dateien entpacken, damit sie mit einem
+  anderen Browser gelesen oder mit einem Editor bearbeitet werden k&ouml;nnen.
+  Beachten Sie in diesem Fall bitte, da&szlig; die Zip-Dateien in der Rangliste
+  vor den unkomprimierten Dateien stehen; wenn Sie sichergehen wollen,
+  da&szlig; Help eine bearbeitete, unkomprimierte Version einer Datei liest,
+  sollten Sie die Originalversion dieser Datei innerhalb der Zip-Datei
+  ersetzen oder l&ouml;schen.
+</pre>
+<h2>Hilfedateien testen:</h2>
+<pre>
+  Die Refernzbrowser um Hilfedateien zu testen sind:
+    * der FreeDOS HTML Hilfe-Betrachter (help.exe),
+    * ein Chromium Derivat.
+</pre>
+<h2>Tables erzeugen:</h2>
+<pre>
+  Ungl&uuml;cklicherweise unterst&uuml;tzt Help keine Tabellentags.
+  Verwenden Sie f&uuml;r Informationstabellen die vorformatierenden
+  Tags &lt;pre&gt; &lt;/pre&gt;
+</pre>
+<h2>Generelle Tipps:</h2>
+<pre>
+  Dr&uuml;cken Sie F5 oder Strg+R um die von der Hilfe angezeigte Datei zu
+  aktualisieren. Die Auswirkungen von &Auml;nderungen an der Datei werden
+  sofort angezeigt. Dies ist n&uuml;tzlich, wenn Hilfedateien in einer
+  windowsartigen Umgebung editiert werden.
+  Um den HTML Hilfeviewer bei Dateien zu verwenden, die noch nicht in
+  die Hilfedateien integriert sind, kann der Schalter zum Umgehen des
+  Hilfepfads verwendet werden:
+    help /O[Laufwerk:][Pfad]Dateiname[.htm]
+  oder, wenn relativ zum /HELP Verzeichnis:
+    help /L[Unterverzeichnis]Dateiname[.htm]
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="tags.htm">Von der HTML Hilfe unterst&uuml;tzte Tags</a>
+  <a href="index.htm">Quellen des Autors</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-4 Robert Platt, aktualisiert 2008 und 2020
+  von W. Spiegl</b>
+
+  Diese Datei bildet einen Teil der FreeDOS HTML Hilfedokumentation
+  und ist gedeckt durch ihre Bedingungen, siehe auch: <a href="../../index.htm">index.htm</a>
+
+</pre></body></html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: debug</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: debug</h1>
+<pre>
+  DEBUG is a clone of the MS-DOS DEBUG command. Some minor things aren't
+  implemented. DEBUG does not only support the 8086/8088 and 8087
+  registers and instruction sets but also the 32bit register and the
+  instruction sets till PentiumPro CPU - except the MMX extensions.
+  DEBUG is a relatively advanced DOS tool but has many uses. For
+  instance, it can be used to:
+    * find bugs in programs,
+    * create programs from assembly code,
+    * inspect and edit binary files. 
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEBUG [[drive:][path]filename [arglist]]
+        [drive:][path]filename  Specifies the file you want to test. It
+                                doesn't have to be an executable - it
+                                could be a binary or text file.
+                                Since it can be any file, the file
+                                extension has to be specified.
+        arglist                 Specifies command-line information
+                                required by the file you want to test.
+                                See <a href="#progexec">Program Execution</a> below for more
+                                information on running executables.
+  Once Debug is started, the Debug command prompt is displayed. Enter
+  Q to quit Debug, and ? to display the list of Debug commands.
+</pre>
+<h2>Options:</h2>
+<pre>
+  Q                     Quit
+  ?                     Help
+
+  <b>Inspecting and Editing Memory:</b>
+    COMPARE:
+      C range address   Compare two memory ranges, displaying the
+                        differences. Only the starting address of the
+                        second range is required, Debug will assume the
+                        second range will be the same size as the first.
+                        For instance:
+                          C 100,110 200
+                        will compare the range 100,110 to 200,210.
+    DUMP:
+      D [range]         Display the contents of a memory range. If no
+                        range is specified, dump will display 128 bytes,
+                        starting where the last dump finished or at the
+                        beginning of the loaded file.
+      DM                Display the DOS memory control block (MCB) chain
+                        and the current PSP.
+    ENTER:
+      E address [list]  Write over part of memory, beginning at address,
+                        with the list of bytes. To enter a string of text
+                        characters, enclose the text in double quotes.
+                        For instance:
+                          E 100 "Hello!"
+    FILL:
+      F range list      Write over a memory range with a repeating list
+                        of bytes. For instance, to set a memory range to
+                        zero, you might put
+                          E 100,110 0
+                        and to set a memory range to "brumbrum":
+                          E 100,107 "brum"
+    MOVE:
+      M sourcerange destaddress
+                        Copies the range sourcerange into another range
+                        that begins at destaddress.
+    SEARCH:
+      S range list      Searches for all occurences of the list of bytes
+                        in the specified range. The starting address of
+                        each occurence is displayed.
+
+  <b>Calculating Numbers in Hexadecimal:</b>
+    HEX
+      H value1 value2   Displays two numbers, the first being
+                        value1+value2, the second being value1-value2.
+                        H can handle dword values.
+
+  <b>Loading and Saving Files:</b>
+    LOAD PROGRAM OR FILE:
+      L [address]       Load program.
+      L address drive sector count
+                        Load sectors.
+    SET NAME:
+      N [[drive:][path]progname [arglist]]
+                        Set the name for the current file/program.
+    WRITE PROGRAM OR FILE:
+      W [address]       Write the current program/file to disk. Use N to
+                        change the name if you do not wish to overwrite
+                        the original file.
+      W address drive sector count
+                        Write sectors.
+
+  <b>Assembling and Disassembling:</b>
+    ASSEMBLE:
+      A [address]       Assemble.
+    UNASSEMBLE:
+      U [range]         Unassemble.
+    80x86 MODE:
+      M[setting]        The current processor (for the purposes of
+                        assembler and disassembler warnings, above) can
+                        be declared to be something else via the
+                        following commands:
+                          m0  Declare current processor to be an 8088
+                          m1  Declare 80186
+                          m2  Declare 286
+                          m3  Declare 386
+                          m4  Declare 486
+                          m5  Declare Pentium
+                          m6  Declare Pentium Pro
+      MC                Declare the existence of a math coprocessor.
+      MNC               Declare the absence of a math coprocessor.
+      MC2               Declare that the math coprocessor is a 287
+                        (only valid if the current processor is a 386)
+      M?                (older versions only): Print currently declared
+                        processor type
+      M                 Print currently declared processor type
+
+  <a name="progexec"></a><b>Program Execution:</b>
+    GO:
+      G [=address] [breakpoints]
+                        Begin execution of the loaded program or the
+                        machine code at the specified address.
+                        Execution is suspended at the breakpoint
+                        addresses, allowing you to inspect memory etc.
+    PROCEED:
+      P [=address] [count]
+                        Proceed with execution in steps.
+    REGISTER:
+      R [register [value]]
+                        Display all CPU registers, or display/set a
+                        particular register. Accepts 32-bit register
+                        names (for cpu 80386+).
+      RN                Displays FPU register status. DEBUG will display
+                        just the raw hex values of the registers, while
+                        DEBUGX will display the values in floating-point
+                        format. 
+      RX                Switches among 8086 and 80386 register display
+                        (for cpu 80386+).
+    TRACE:
+      T [=address] [count]
+                        Trace
+      TM [0|1]          Set trace command mode, 0=process INTs (default),
+                        1=single-step INTs (the MS-DOS Debug compatible
+                        mode).
+
+  <b>Port I/O:</b>
+    INPUT:
+      I port            Input from a port
+      IW port           Input from a WORD port
+      ID port           Input from a DWORD port
+                        DWORD values require a 80386+ cpu.
+    OUTPUT:
+      O port value      Output to a port
+      OW port value     Output to a WORD port
+      OD port value     Output to a DWORD port.
+                        DWORD values require a 80386+ cpu.
+
+  <b>Expanded memory (EMS) commands (only if an <a href="../base/jemm386.htm">EMM v4.0</a> is present):</b>
+    XA count            Allocate an 'empty' EMS handle with zero pages.
+    XD handle           Deallocate.
+    XM logical-page physical-page handle
+                        Map memory.
+    XR handle count     Reallocate an EMS handle.
+    XS                  Show status.
+    X?                  Show help about X commands.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  DEBUG uses hexadecimal (base 16). Memory addresses are displayed in
+  segment:offset form, e.g. 0D00:0100. The last four hexadecimal digits,
+  which specify the offset from the segment, can go from 0000 to FFFF,
+  a range of 64 Kilobytes.
+  Executables with the .com extenstion have all their data and code in
+  one segment. Hence for .com files, you can usually just write the
+  offset when specifying memory addresses in DEBUG commands. DEBUG will
+  assume the program segment. The same is also true of text/binary files
+  that are &lt; 64K long.
+  To specify a memory range, seperate two addresses with a comma.
+  Loading of .HEX files is not implemented in DEBUG.
+  The assembler and disassembler support all publicly documented
+  instructions for Intel chips through the Pentium Pro (P6), except for
+  the MMX instructions. The assembler and disassembler inform you if
+  any instruction is inappropriate for the current processor.
+  FPU Opcodes are supported.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Creating a backup of the bootsector (sector number 0 with 512 bytes
+  =0x200) of drive C: (number 2) to the file BOOT_C.BIN on diskette A:
+    A:
+    cd \
+    echo L 100 2 0 1 &gt; BOOT_C.TXT
+    echo RCX &gt;&gt; BOOT_C.TXT
+    echo 200 &gt;&gt; BOOT_C.TXT
+    N BOOT_C.BIN &gt;&gt; BOOT_C.TXT
+    W &gt;&gt; BOOT_C.TXT
+    Q &gt;&gt; BOOT_C.TXT
+    DEBUG &lt; BOOT_C.TXT
+
+  Looking with DEBUG into the RAM of the graphics card to find some
+  special characters such as year to identify the card:
+    DEBUG
+    S C000:0000,07FF "BIOS"
+    S C000:0,7FF     "(C)"
+    S c000:0,7ff     "199"
+    s c000:0,7ff     "200"
+    D C000:0000,100
+    Q
+</pre>
+<h2>See also:</h2>
+<pre>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

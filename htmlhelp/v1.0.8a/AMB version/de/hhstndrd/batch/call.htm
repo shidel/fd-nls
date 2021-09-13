@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: call</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: call</h1>
+<pre>
+  CALL ruft ein Stapelverarbeitungsprogramm von einem anderen aus auf.
+  CALL ist ein <a href="../batch/index.htm">BATCH-DATEI</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  CALL [/S | /N] [/Y] [[Laufwerk][Pfad][Dateiname]] [Stapeldatei-
+       Parameter]
+       Laufwerk   Der Laufwerksbuchstabe, z.B: C:
+       Pfad       Der zu w&auml;hlende Pfad, z.B.: \Beispiel\
+       Dateiname  Die aufzurufende Batch-Datei z.B. test.bat
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Stapeldatei-Parameter  Spezifiziert jede Kommandozeileninformation
+                         die vom Batch-Programm ben&ouml;tigt wird
+  /S                     Erzwingt das Swappen von FreeCOM
+  /N                     Verhindert das Swappen von FreeCOM.
+  /Y                     Aktiviert den Einzelschritt-Modus w&auml;hrend
+                         der Ausf&uuml;hrung des Befehls.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Wenn die aufgerufene Batch-Datei abgearbeitet ist, wird die
+  Ausf&uuml;hrung der ersten Batch-Datei fortgesetzt.
+  Batch-Dateien k&ouml;nnen auch direkt von einer anderen Batch-Datei ohne
+  den call-Befehl gestartet werden, aber dann wird nach dem Abarbeiten
+  der zweiten zweiten Batch-Datei NICHT die Ausf&uuml;hrung der ersten Batch-
+  Datei fortgesetzt.
+  CALL ist ein interner Befehl, d.h. der Befehl ist in der command.com
+  enthalten. Es wird zur Ausf&uuml;hrung des Befehls kein zus&auml;tzlicher
+  Befehl (Datei) ben&ouml;tigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN EINER .BAT DATEI ODER DER AUTOEXEC.BAT:
+    call c:\fdos\bin\defrag.exe
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">Batch-Dateien</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

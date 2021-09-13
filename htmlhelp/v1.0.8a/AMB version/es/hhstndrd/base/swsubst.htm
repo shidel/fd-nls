@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: swsubst</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: swsubst</h1>
+<pre>
+  SWSUBST combina subst con join con opciones mejoradas.
+  SWSUBST reemplaza una ruta por una letra de unidad para que tenga
+  acceso a una ruta a trav&eacute;s de una letra de unidad.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  swsubst [opcion] [comando]
+  Si se usa swsubst sin especificar un comando, se muestra la tabla CDS.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /#     Ver la estad&iacute;stica de las unidades unidas en la tabla CDS.
+  /!     Como /#; inicialice la bandera JOIN, si didiere.
+  /f     Ver caracteres no imprimibles hexadecimales.
+  /a     Ver la tabla de CDS despu&eacute;s del comando.
+  /k     Crea los parches mencionados dentro del comando.
+  /t     Como /k, solo en SUBST verifica, si la ruta existe.
+  /_     Volcar todos los atributos dentro de la tabla CDS.
+  /o=#   Utilice este desplazamiento de barra invertida, no se calcule
+         a s&iacute; mismo.
+  /x=??  Lista de letras de unidad que se ignorar&aacute;n mientras que una
+         ::ETIQUETA:: es buscada.
+
+  Comandos:
+  -                      Inicialice todas las unidades SUBST y JOIND.
+  --                     Inicialice todas las unidades no conectadas
+                         en red.
+  dr [-]ruta             Como %s dr [-]ruta.
+  /u dr [-]ruta          Sustituya dr para apuntar a la ruta.
+  /j dr [-]ruta          Unir dr en ruta.
+  /d dr | dr /d | dr -   Inicialice unidad dr (y rompa SUBST / JOIN).
+  /s dr1 dr2             Intercambie dr1 y dr2.
+  /n [dr1 dr2]           Intercambie los n&uacute;meros de unidad del mismo
+                         controlador de dispositivo (est&aacute;ndar: disquetes).
+  /w dr                  Establezca ERRORLEVEL en la letra de unidad de la
+                         unidad.
+  /m [-]ruta             Crear ruta incluyendo todos los directorios
+                         principales.
+  /c [-]ruta             Como /m, luego chdir en &eacute;l.
+  dr:[+-=]{off,on,phys,net,join,subst,hidden}  Establecer banderas de
+                                               unidad directamente.
+  /q dr:[+-]{phys,net,join,subst,hidden}       Consulta las banderas de
+                                               la unidad.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Las entidades de emulaci&oacute;n est&aacute;ndar de DOS de SWSUBST, SUBST y JOIN,
+  tienen la misma l&iacute;nea de comandos que las de DOS. Pero difieren en los
+  siguientes puntos:
+    - Se crear&aacute; la ruta especificada, incluida la ruta completa, p. ej.
+      "SUBST c: d:/blah/humpf" crea la ruta "d:\blah\humpf", 
+      independientemente de si d:\blah existe.
+    - Se le permite romper las relaciones sobre la marcha, eso significa:
+      un SUBST puede ser re-SUBST o re-JOIN sin m&aacute;s nota/advertencia.
+    - Se le permite procesar un disco consigo mismo, por ejemplo:
+      "JOIN a: a:\blah"
+    - El volcado de la tabla es diferente, swsubst imprime "X: => Y:\PATH"
+      en lugar de "X: se une a Y:\PATH".
+    - No puede cambiar el nombre de los ejecutables SUBST y JOIN.
+    - No probar&aacute; la versi&oacute;n de DOS, a menos que sea necesario para
+      ajustar diferentes tama&ntilde;os de estructura de datos.
+  Si necesita SUBST o JOIN simplemente ejecute: "copy SWSUBST.EXE 
+  SUBST.EXE". Un <a href="../batch/if.htm#comment">ERRORLEVEL</a> entre 65 (ASCII 'A') y 90 (ASCII 'Z') indica
+  OK y la letra de la unidad; Considerando que un <a href="../batch/if.htm#comment">ERRORLEVEL</a> de cero
+  indica que no existe tal unidad; y otros <a href="../batch/if.htm#comment">ERRORLEVELS</a> indican un error.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  swsubst b: c:\blah\humpf 
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../base/assign.htm">assign</a>
+  <a href="../base/join.htm">join</a>
+  <a href="../base/subst.htm">subst</a>
+  <a href="../command/truename.htm">truename</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1995 Steffen Kaiser, modificado en 2008 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

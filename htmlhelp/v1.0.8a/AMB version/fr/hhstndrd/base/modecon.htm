@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : modecon</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : modecon</h1>
+<pre>
+  MODECON (commande : MODE) configure et d&eacute;finit l'&eacute;tat de divers
+  p&eacute;riph&eacute;riques mat&eacute;riels et plus encore. <b>MODECON n'est plus utilis&eacute;.
+  Utilisez <a href="../base/mode.htm">MODE</a> &agrave; la place</b>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  mode [device][options]  ou :
+  mode [mode &eacute;cran]
+       Devices (p&eacute;riph&eacute;riques) :
+         CON[:]  Console. Cela contr&ocirc;le le pilote d'&eacute;cran qui doit &ecirc;tre
+                 install&eacute; en premier. MODE CON vous permet de d&eacute;finir
+                 la "page de code" de votre &eacute;cran. C'est utile car
+                 chaque page de code vous permet d'afficher diff&eacute;rents
+                 caract&egrave;res. Pour plus d'informations sur les pages de
+                 code, voyez le <a href="../base/cpidos.htm">PACK D'INFORMATIONS</a> au sujet des
+                 <a href="../base/cpidos.htm">PAGES DE CODE</a>.
+         LPT[:]  Ports parall&egrave;les
+         COM[:]  Ports s&eacute;rie
+         PARK    Pas impl&eacute;ment&eacute; en mode FreeDOS.
+</pre>
+<h2>Options :</h2>
+<pre>
+  MODE [device] [/STA[TUS]]   Affiche l'&eacute;tat d'un ou de tous les
+  p&eacute;riph&eacute;riques.
+  MODE LPTn[:] cols[,[lines][,retry]]
+  MODE LPTn[:] [COLS=...] [LINES=...] [RETRY=...]
+                              Cols ou cpi, 6/8 lpi, retry p ou n
+                              Retry: p infini / n aucun
+  MODE LPTn[:]=[COMn[:]|NUL]  Redirige les donn&eacute;es de l'imprimante sur
+                              le port s&eacute;rie ou NUL
+  MODE COMn[:] baud,parity,data,stop,retry
+  MODE COMn[:] [BAUD[HARD]=...] [PARITY=...] [DATA=...] [STOP=...]
+               [RETRY=...]    La valeurs vides sont autoris&eacute;es
+                              Baud peut &ecirc;tre abr&eacute;g&eacute; en un pr&eacute;fixe unique,
+                              la parit&eacute; peut &ecirc;tre o/e/n/s/m, les 2
+                              derniers signifient espace/marque, les
+                              donn&eacute;es peuvent &ecirc;tre 5..8, stop 1..2.
+                              Retry est IGNOR&Eacute; ! PR&Eacute;VU : Retry
+                              b/e/r -> occup&eacute;/erreur/pr&ecirc;t si
+                              occup&eacute;, p/n infini/pas de r&eacute;-essai.
+  MODE CON[:] [CP|CODEPAGE] [/STA[TUS]]
+                              Affiche l'&eacute;tat de la CON (console).
+                              FreeDOS DISPLAY doit &ecirc;tre charg&eacute; avant.
+  MODE CON[:] [CP|CODEPAGE] REF[RESH]
+                              Actualise la page de code active au
+                              mat&eacute;riel. FreeDOS DISPLAY doit &ecirc;tre charg&eacute;.
+  MODE CON[:] [CP|CODEPAGE] PREP[ARE]=((pagedecode) nomfichier)
+                              FreeDOS DISPLAY doit &ecirc;tre charg&eacute; avant.
+                              Utilisez PREP=((,cp2,cp3,,cp5)...) pour
+                              pr&eacute;parer les pages de code dans d'autres
+                              tampons.
+  MODE CON[:] [CP|CODEPAGE] SEL[ECT]=nombre
+                              FreeDOS DISPLAY doit &ecirc;tre charg&eacute; avant.
+  MODE CON[:] [NUMLOCK|CAPSLOCK|SCROLLLOCK|SWITCHAR]=valeur
+                              La valeur peut &ecirc;tre : + or - pour les
+                              touches verrouillables ou un caract&egrave;re
+                              pour switchar.
+  MODE CON[:] [COLS=...] [LINES=...]
+                              Les valeurs possibles d&eacute;pendent de votre
+                              mat&eacute;riel.
+  MODE CON[:] [RATE=...] [DELAY=...]
+                              Taux par d&eacute;faut 20, d&eacute;lai par d&eacute;faut 1.
+                              Le taux peut &ecirc;tre 1..32 pour 2..30 car/sec,
+                              le d&eacute;lai peut &ecirc;tre 1..4 pour 1/4..4/4 sec.
+  MODE [40|80|BW40|BW80|CO40|CO80|MONO][,rows]
+                              Ce sont les modes d'&eacute;cran fixes.
+                              Les lignent (rows) peuvent &ecirc;tre 25, 28, 43
+                              ou 50.
+                              Utilisez 8, 14 ou 16 comme valeur si vous
+                              souhaitez seulement changer la police.
+  MODE [CO40|CO80|...],[R|L][,T]
+                              Ce sont les modes d'&eacute;cran flexibles.
+                              Les valeurs pour les colonnes sont 40, 80,
+                              132, les lignes peuvent &ecirc;tre 25, 28, 30,
+                              34, 43, 50, 60. Utilisez 8, 14 ou 16 comme
+                              valeur de  'rows' si vous voulez seulement
+                              changer la police.
+                              Maj CGA gauche/droite, T est le mode
+                              interactif.
+  /?                          Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  MODECON n'est plus utilis&eacute;. Utilisez <a href="../base/mode.htm">MODE</a> &agrave; la place.
+</pre>
+<h2>Exemples :</h2>
+<pre>  - aucun -</pre><h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/graftabl.htm">graftabl</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keyb.htm">keyb</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/listxdef.htm">listxdef</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/nlsfunc.htm">nlsfunc</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-2004 Aitor SANTAMARIA MERINO, Henrique PERON,
+  mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

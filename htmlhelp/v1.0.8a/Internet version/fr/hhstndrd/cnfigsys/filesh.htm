@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : fileshigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : fileshigh</h1>
+<pre>
+  FILESHIGH indique &agrave; FreeDOS combien de fichiers il devrait pouvoir
+  ouvrir simultan&eacute;ment.
+  FILESHIGH est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  fileshigh=n
+   o&ugrave; n est un nombre de fichiers dans la plage 8-255. La valeur par
+   d&eacute;faut est 8, mais un nombre correct pour la plupart des syst&egrave;mes
+   modernes est 20 - 40. Certains programmes peuvent avoir besoin d'un
+   r&eacute;glage plus &eacute;lev&eacute; pour fonctionner correctement ; de tels programmes
+   indiqueront g&eacute;n&eacute;ralement la valeur n&eacute;cessaire dans leur documentation.
+</pre>
+<h2>Options:</h2>
+<pre>  - aucune -</pre>
+<h2>Commentaires :</h2>
+<pre>
+  FILESHIGH sp&eacute;cifie le nombre de fichiers qui seront autoris&eacute;s &agrave; &ecirc;tre
+  ouverts en m&ecirc;me temps (r&eacute;serve la m&eacute;moire n&eacute;cessaire pour prendre en
+  charge l'ouverture de ce nombre de fichiers).
+  Remarque : il existe d'autres restrictions, donc un programme donn&eacute;
+  peut ne pas &ecirc;tre capable d'ouvrir ce nombre de fichiers. Un nombre
+  correct est 20,  m&ecirc;me si certains programmes sugg&egrave;rent/n&eacute;cessitent 30,
+  40, ou m&ecirc;me 255.
+  FILESHIGH est similaire &agrave; FILES, sauf qu'il tente de se charger
+  d'abord dans la m&eacute;moire haute (si cela ne marche pas, il devrait
+  se charger dans la m&eacute;moire conventionnelle).
+  Remarque : l'ordre avec lequel vous chargez les p&eacute;riph&eacute;riques peut
+  avoir un grand impact sur la quantit&eacute; de m&eacute;moire libre disponible.
+  En g&eacute;n&eacute;ral essayez de charger les gros (en termes d'utilisation
+  m&eacute;moire) programmes d'abord dans la m&eacute;moire haute.
+  Important : vous devriez avoir un gestionnaire de m&eacute;moire haute tel
+  que (<a href="../base/himem.htm">HIMEM</a>) ou <a href="../base/himemx.htm">HIMEMX</a> ou bien <a href="../base/jemmex.htm">JEMMEX</a> d'install&eacute; (device=himem.exe
+  ou device=himemx.exe avant dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>) avant
+  d'utiliser cette option.
+  FILESHIGH est une commande interne &agrave; kernel.sys et ne n&eacute;cessite
+  aucun autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    fileshigh=20
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fcbs.htm">fcbs</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+  <a href="../cnfigsys/files.htm">files</a>
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

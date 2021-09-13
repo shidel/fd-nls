@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : tree / pdtree</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : tree / pdtree</h1>
+<pre>
+  TREE / PDTREE affiche graphiquement la structure du r&eacute;pertoire
+  [dossier] d'un lecteur ou chemin donn&eacute;. Il inclut &eacute;ventuellement
+  une liste de fichiers &agrave; l'&eacute;cran.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  TREE [d:][chemin] [/F] [/A] [/?]
+  PDTREE [d:][chemin] [/F] [/A] [/V] [/S][/P] [/?]
+       d:chemin  Le lecteur et le chemin &agrave; partir duquel d&eacute;marrer. Si
+       aucun chemin n'est entr&eacute;, tree/pdtree d&eacute;marrera &agrave; partir du
+       r&eacute;pertoire courant.
+</pre>
+<h2>Options :</h2>
+<pre>
+   /F  Afficher les noms des fichiers dans chaque r&eacute;pertoire.
+   /A  Utiliser les caract&egrave;res ASCII pour repr&eacute;senter visuellement
+       la structure des r&eacute;pertoires.
+   /?  Afficher l'aide et quitter.
+
+ Options suppl&eacute;mentaires de pdTree de FreeDOS : (indisponibles dans le
+ Tree standard.)
+   /V  Afficher les informations de version et quitter.
+   /S  Noms courts uniquement (utilise un nom de fichier court,
+       c'est-&agrave;-dire alternatif, lorsqu'il existe).
+       Version DOS seulement, d&eacute;sactive l'utilisation de l'API <a href="../util/doslfn.htm">LFN</a>
+       pour trouver le premier/le suivant.
+   /P  Effectuer une pause apr&egrave;s chaque page. (Remarque : utilise
+       actuellement un &eacute;cran 80x25 par d&eacute;faut).
+       Pour la version Win32 seulement, ignore l'option pause si la
+       sortie est redirig&eacute;e vers un fichier ou envoy&eacute; vers un autre
+       programme (pipe), avec par exemple tree | more ; tente
+       &eacute;galement d'utiliser la taille actuelle de la console (TODO
+       (&agrave; faire) pour la version DOS).
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  PDTREE prend en charge NLS (national language support, prise en
+  charge des langues nationales).
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Pour afficher la structure hi&eacute;rarchique compl&egrave;te des r&eacute;pertoires du
+  lecteur C effectuer une pause apr&egrave;s chaque &eacute;cran, lancez tree en
+  sp&eacute;cifiant C: en tant que chemin de d&eacute;part et transmettez sa sortie
+  &agrave; la commande MORE :
+  tree C:\ | more
+  Lors de l'utilisation de pdTree, l'exemple ci-dessus peut &ecirc;tre obtenu
+  en utilisant :
+  pdtree C:\ /p
+  Pour afficher la hi&eacute;rarchie d'un sous-r&eacute;pertoire et obtenir la sortie
+  uniquement avec des caract&egrave;res standards ASCII (par exemple pour
+  imprimer ou l'envoyer &agrave; quelqu'un qui pourrait le visionner sans la
+  prise en charge des caract&egrave;res de DOS pour dessiner des lignes et des
+  bo&icirc;tes, sp&eacute;cifiez le sous-r&eacute;pertoire avec le commutateur /A :
+    tree ASUBDIR /a
+  Pour afficher la structure d'un r&eacute;pertoire et les fichiers dans chaque
+  r&eacute;pertoire, ajoutez le commutateur /F :
+    tree ASUBDIR /f | more
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../command/dir.htm">dir</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../base/more.htm">more</a>
+  <a href="../base/tree.htm">tree</a>
+</pre>
+<hr>
+<pre>
+  Copyright : ce document est dans le domaine public, seules des
+  additions du domaine public seront accept&eacute;es. Ce document peut donc
+  &ecirc;tre librement copi&eacute;, etc. mais aucune garantie, promesse d'exactitude
+  ni d'aptitude &agrave; quelque fin que ce soit n'est donn&eacute;e.
+  KJD 2003,2004. mis &agrave; jour en 2008 par W. Spiegl.
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+</pre></body></html>

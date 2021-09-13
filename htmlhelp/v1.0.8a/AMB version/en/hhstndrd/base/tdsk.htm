@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: tdsk</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: tdsk</h1>
+<pre>
+  TDSK creates a RAM disk. Part of memory is set aside to act like a
+  disk drive. Because memory is much faster than a real disk drive,
+  RAM disks are very fast, but anything stored on them will be lost when
+  the machine is restarted or switched off. TDSK supports <a href="../base/himemx.htm">XMS</a>, <a href="../base/jemm386.htm">EMS</a> and
+  conventional memory.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  device=tdsk.exe size [[s_sector [files [s_cluster]]]] [/E] [/A|X] [/C]
+                       [/M]
+</pre>
+<h2>Options:</h2>
+<pre>
+  size    the size of the RAM disk, from 8 to 65534 (in Kilobytes).
+  [[s_sector [files [s_cluster]]]]
+          Advanced. The size of the sectors, root and clusters
+          on the disk.
+          Valid values for sector are 32,64,128,256,512,1024,2048.
+          Files (in the root direcotry) can be from 1 to 65534.
+          Clusters can vary from 1 to 255 (some systems are restricted
+          to 1,2,4,8,16,32,64,128)
+  /E      Forces the use of <a href="../base/himemx.htm">XMS</a> memory.
+  /A      Specifies the use of <a href="../base/jemm386.htm">EMS</a> memory.
+  /X      Specifies the use of <a href="../base/jemm386.htm">EMS</a> memory.
+  /C      Forces use of conventional memory (not ideal, so it is
+          generally only recommended for systems without <a href="../base/himemx.htm">XMS</a>/<a href="../base/jemm386.htm">EMS</a> or if
+          you are having problems with <a href="../base/himemx.htm">XMS</a>/<a href="../base/jemm386.htm">EMS</a> memory.)
+  /I:nnn  nnn=country code. This will show the help in another language.
+  /M      Switches the screen output from color to monochrome(redirect-
+          able) while in CONFIG.SYS monochrome will be used by default.
+  /B      avoids to load TURBODSK if there is at least one hard disk
+          available on the system.
+  /F      selects the number of FAT copies (1 by default) up to a maxi-
+          mum of 2.
+  /H      Shows the help.
+  /?      Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Size must be in the range 8 - 65534 KB; valid sectors are from 32 to
+  2048 Bytes (in powers f 2), though some DOS versions support 128, 256
+  and 512 Bytes only. Files of root may be 1 to 65534 and sectors by
+  cluster can vary from 1 to 255 (some systems need a power of 2). Only
+  the size is necessary.
+  Turbodsk defaults to <a href="../base/himemx.htm">XMS</a> or <a href="../base/jemm386.htm">EMS</a>. 
+  After installing TURBODSK in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> it can be run from <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>
+  or the prompt in order to vary the drive size (amount of memory used); 
+  this also erases the drive's contents. A size 0 can be used to
+  completely free the memory occupied by the drive: When using
+  conventional memory it is useful to cancel a drive BEFORE resizing.
+  When more than one TURBODSK is installed, they can be identified by
+  additionally giving the drive letter.
+  By default, tdsk tries to use <a href="../base/himemx.htm">XMS</a> or <a href="../base/jemm386.htm">EMS</a>, before trying to use 
+  conventional memory. Most modern computers have <a href="../base/himemx.htm">XMS</a>.
+  Why use a RAM disk?
+  Many programs create temporary files, which will be stored in a
+  temporary directory specified by an environment variable:
+   set temp=c:\temp
+  Temporary files are deleted when a program exits anyway. So one of the 
+  main uses of RAM disks is to hold this temporary directory. This 
+  increases such programs' performance.
+  TDSK has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+      0: Disk not defined
+    255: Driver not installed from <a href="../cnfigsys/index.htm">CONFIG.SYS</a>
+    254: Incorrect drive letter specified
+    253: Attempt to define a drive from within a multitasking
+         environment such Windows, DOSSHELL, TASKMAX/TASKMGR, etc.
+    252: Syntax error
+  Other values below  128 are related to  the  handle  used  in  both
+  the Extended or the Expanded memory.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS/FDCONFIG.SYS:
+    device(high)=c:\fdos\bin\tdsk.exe 8096 
+                   (creates 8096 KB RAM disk)
+    tdsk.exe 0     resizes the ramdisk to 0 Byte size
+                   (deletes all files)
+    tdsk.exe 2048  resizes the ramdisk to 2048 KB size
+                   (deletes all files)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+ (<a href="../base/emm386.htm">emm386 (EMS)</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms (XMS)</a>)
+ (<a href="../base/fdxms286.htm">fdxms286 (XMS)</a>)
+ (<a href="../base/himem.htm">himem (XMS)</a>)
+  <a href="../base/himemx.htm">himemx (XMS)</a>
+  <a href="../base/jemm386.htm">jemm386 (EMS)</a>
+  <a href="../base/jemmex.htm">jemmex (EMS)</a>
+  <a href="../util/rdisk.htm">rdisk</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

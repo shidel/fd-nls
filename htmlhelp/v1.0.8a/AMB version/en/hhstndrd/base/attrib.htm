@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: attrib</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: attrib</h1>
+<pre>
+  ATTRIB displays or changes file attributes.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  ATTRIB { options | [drive][path]filename | /@[list] }
+         drive     The drive letter, e.g. C:
+         path      The directory, e.g. \example\
+         filename  The file, e.g. test.exe
+</pre>
+<h2>Options:</h2>
+<pre>
+  +A  Sets the Archive attribute.
+  -A  Clears the Archive attribute.
+  +H  Sets the Hidden attribute.
+  -H  Clears the Hidden attribute.
+  +R  Sets the Read-only attribute.
+  -R  Clears the Read-only attribute.
+  +S  Sets the System attribute.
+  -S  Clears the System attribute.
+  /@  Process files, listed in the specified file [or in stdin].
+  /D  Process directory names for arguments with wildcards.
+  /S  Process files in all directories in the specified path(es).
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  If no file is specified, then the attributes for all files in the 
+  current directory are changed (or simply displayed if none of 
+  the above specifiers are used.)
+  The archive attribute (+A) is set when a file is modified. Backup 
+  utilities can clear the attribute to indicate that the file 
+  has been backed up.
+  If a file has the hidden (+H) flag, it is not shown if you type "dir".
+  If a file has the read only (+R) flag, it can be read but not changed.
+  If a file has the system (+S) flag, it is specially protected, e.g.
+  it cannot be deleted or overwritten.
+  ATTRIB has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0  completion successful; /? option used.
+    1  error to change attribute(s) of file(s).
+    2  no matching file(s) found for target(s).
+    3  error open file(s), pointed in /@ option(s).
+    4  error(s) in command line.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  attrib file -rhs
+  attrib +a -r dir1 dir2*.dat /s
+  attrib -hs/sd /@list.txt *.*
+</pre>
+<h2>See also:</h2>
+<pre>
+  - nowhere -
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

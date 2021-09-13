@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: stackshigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: stackshigh</h1>
+<pre>
+  STACKSHIGH f&uuml;gt Stack Frames hinzu um Hardware Interrupts spezifizieren
+  zu k&ouml;nnen.
+  STACKSHIGH ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  stackshigh=nn,mmm
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  nn   Die Anzahl der Stacks im Bereich 8-64 und 0.
+  mmm  Die Gr&ouml;&szlig;e jedes Stacks in Bytes, im Bereich 32-512.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Der Befehl STACKSHIGH wird normalerweise nicht ben&ouml;tigt.
+  STACKSHIGH ver&auml;ndert die Anzahl und Gr&ouml;&szlig;e der verf&uuml;gbaren Hardware
+  Interrupt Stacks.
+  nn ist die Zahl der unterschiedlichen Stacks und mmm ist die Gr&ouml;&szlig;e
+  jedes einzelnen in Bytes.
+  In einigen F&auml;llen k&ouml;nnen Sie 'stacks=0,0' verwenden, um nur Standard
+  Stacks zu verwenden, anstelle DOS extra Stacks f&uuml;r Hardware Interrupts
+  zuweisen zu lassen.
+  Der Befehl STACKSHIGH versucht im Gegensatz zu STACKS zuerst, 
+  in den hohen Speicher zu laden. Wenn das nicht funktioniert, versucht
+  er in den konventionellen Speicher zu laden.
+  Bitte beachten: Die Art und Weise, wie Sie Ger&auml;tetreiber laden,
+  hat eine gro&szlig;e Auswirkung auf die sp&auml;ter frei verf&uuml;gbare 
+  Speichermenge (insbesondere konventioneller Speicher). Versuchen
+  Sie deshalb, (im Speicherverbrauch) gro&szlig;e Programme (insbesondere
+  Treiber) zuerst in den hohen Speicherbereich zu laden.
+  Wichtig: Es mu&szlig; zuvor ein Manager f&uuml;r den hohen Speicherbereich
+  wie z.B. (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a> oder <a href="../base/jemmex.htm">JEMMEX</a> geladen werden, um diesen Befehl
+  ausf&uuml;hren zu k&ouml;nnen.
+  STACKSHIGH ist ein interner Befehl, d.h. der Befehl ist in der 
+  kernel.sys enthalten. Es wird zur Ausf&uuml;hrung des Befehls kein 
+  zus&auml;tzlicher Befehl (Datei) ben&ouml;tigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    stackshigh=16,256
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/stacks.htm">stacks</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

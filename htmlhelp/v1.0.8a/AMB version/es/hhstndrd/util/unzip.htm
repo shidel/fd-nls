@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: unzip</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: unzip</h1>
+<pre>
+  UNZIP lista, testea, o extrae archivos de un archivo ZIP, que se
+  encuentran comunmente en los sistemas DOS. El comportamiento por defecto
+  (sin opciones) es extraer todos los archivos ZIP especificado en un
+  directorio atcual (y subdirectorios por debajo del mismo). 
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  unzip [-Z] [-opciones[modificadores]] archivo[.zip] [archivos] [-x xlist]
+        [-d exdir]
+          Archivo[.zip] Ruta de los archivos ZIP. Pueden usarse comod&iacute;nes.
+          [archivos]    Una lista ocional de nombres de archivos para ser
+                        procesados, separados por espacios.
+          [-d exdir]    Un derectorio opcional en el que se extraen los
+                        archivos. Por defecto, todos los archivos y
+                        subdirectorios se recrean el el directorio actual,
+                        la opci&oacute;n -d permite la extracci&oacute;n en un directorio
+                        alvitrario.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+    -d   Estraer archivos dentro de exdir (un directorio opcional).
+    -f   Refrescar los archivos existentes, es decir, extraer s&oacute;lo aquellos
+         archivos que existen en ese momento en el disco y que son m&aacute;s
+         recientes que las copias del disco.
+    -l   Listar archivos (formato breve). Los nombres, tama&ntilde;o del archivo
+         sin comprimir y fecha de modificaci&oacute;n y tiempo de archivos
+         especificados se imprimen, junto con el total de los archivos
+         especificados.
+    -p   Extrae los archivos al conducto (salida estandar), sin mensajes.
+    -t   Comprueba datos de archivos comprimidos. Esta opci&oacute;n extrae cada
+         archivo especifico en memoria y compara la suma de comprobaci&oacute;n
+         CRC del archivo expandido con el archivo original que esta
+         almacenado en el valor CRC.
+    -u   Actualizar el archivo, crea otros nuevos si es necesario.
+    -x   Excluye ficheros que siguen (en xlist). Xlist es una lista
+         opcional de nombres de archivos para ser excluidos en el proceso.
+         Desde caracteres comod&iacute;n normalmente coicide con ('/') separados
+         de directorio esta opci&oacute;n puede ser usada para excluir algunos
+         archivos que est&aacute;n en subdirectorios.
+    -z   Muestra comentrarios de archivos.
+    -Z   Modo informaci&oacute;n Zip. Si la primera opci&oacute;n de la linea de comandos
+         es -Z, se toman el resto de opciones como opciones de 
+         informaci&oacute;n ZIP (1L).
+  Modificadores:
+    -$   Nivel renovable (-$$ => discos fijos)
+    -a   Auto-conversi&oacute;n cualquier archivo de texto.
+    -aa  Trata a todos los archivos como archivos de texto.
+    -C   Coincidir nombre de archivos con mayusculas y minusculas.
+    -j   Rutas basura. La estructura de directorios de los archivos no se
+         recrea; todos los archivos son depositados en el directorio de
+         extracci&oacute;n.
+    -L   Marca (algunos) nombres en min&uacute;sculas.
+    -n   No sobrescribe archivos existentes.
+    -o   Sobrescribe archivos SIN preguntar.
+    -M   Conducto por "mas" p&aacute;ginas.
+    -q   Modo silencioso (-qq => m&aacute;s tranquilo).
+    -s   Convertir espacios de los nombres de los archivos en '_'
+    -v   S&eacute; detallada o imprimir informaci&oacute;n de la versi&oacute;n.
+    -V   Conserva los n&uacute;meros de versi&oacute;n VMS.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Para m&aacute;s informaci&oacute;n por favor lea UNZIP.TXT.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  unzip data1 -x joe    Extrae todos los archivos exepto joe del archivo
+                        ZIP data1.zip
+  unzip -fo foo ReadMe  Tranquilamente sustituir ReadMe existente si el
+                        archivo del archivo es mas nuevo
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../util/zip.htm">zip</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Actualizado en 2013 por Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva de la FreeDOS Spec Command HOWTO.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copia.
+
+</pre></body></html>

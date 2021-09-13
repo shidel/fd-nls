@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: shsucdx</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: shsucdx</h1>
+<pre>
+  SHSUCDX is an unloadable CD-ROM redirector substitute for MSCDEX.
+  It supports up to 10 drives. Each drive is single-sector buffered and
+  the last 10 directory entries are cached. Each unit from each driver
+  can be assigned a specific drive letter.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  shsucdx /D[:][?|*]driver[,[letter][,[unit][,[max]]]] [switches]
+        DRIVER is the name of the device driver installed to control
+          the CD-ROM drive. Prefixing the driver with '?' will
+          silently ignore it if it does not exist (or is not actually a
+          CD-ROM); prefixing with '*' will also ignore it, but a
+          drive will be reserved (see below).
+        LETTER is the first drive letter to assign to the units on
+          this driver. The  default is the first available letter.
+          Note: the drive letters assigned to subsequent units will
+          always be higher than those assigned to previous units.
+        UNIT is the first unit on this driver to be assigned a drive.
+          Unit 0 is the default.
+        MAX is the maximum number of units on this driver to be assigned
+          drives. The default is all units (or all remaining units, if
+          UNIT is given).
+</pre>
+<h2>Options:</h2>
+<pre>
+  /D  Driver: This option is used to specify the name of the device
+      driver. It can also indicate which unit(s) should be assigned and
+      to what letter.
+      Drive manipulation: At install time, /D can also be used to
+      reserve space for additional drives. Use a single digit to indicate
+      how many drives should be reserved (eg: /D1). (If you should happen
+      to have a device driver name with a single digit, use the '?'
+      prefix.) After installation, the same option will remove the
+      drive(s) that were last assigned. It is possible to specify both
+      forms of /D, in which case the current drive(s) will be removed,
+      then the new drive(s) added. You can only use a drive letter which
+      is smaller or even with the letter in <a href="../cnfigsys/lastdrv.htm">LASTDRIVE</a> / <a href="../cnfigsys/lastdrvh.htm">LASTDRIVEHIGH</a>.
+  /L  Letter: This option is an alternative to the LETTER component of
+      /D, which it must follow (ie: /D:driver /L:letter). It can also be
+      used to return the number of drives installed (/L:0, will return
+      255 if not installed) and the letter of each assigned drive 
+      (/L:1, /L:2, etc., with A: = 1 and 255 if the drive is not
+      assigned). You can only use a drive letter which is smaller or
+      even with the letter in <a href="../cnfigsys/lastdrv.htm">LASTDRIVE</a> / <a href="../cnfigsys/lastdrvh.htm">LASTDRIVEHIGH</a>.
+  /C  Uses conventional instead of high memory.
+  /V  Memory statistics: When this option is used at installation, a
+      summary of memory usage will be displayed. This summary includes:
+        Static   Code and variables
+        Dynamic  Data for each drive and paragraph rounding
+        Total    Overall memory usage
+      Information: When used with /?, or after installation, this
+      option displays the compile- and run-time options of SHSUCDX. This
+      information includes:
+        8086/386      The minimum processor required
+        CD root form  TRUENAME will return \\D.\A.\ instead of D:\
+        High Sierra   The original format for the CD file system
+        Joliet        The Windows format for long names
+        Image on CD   Enables access to an image which is itself on a CD
+  /&tilde;    Tilde usage: The ISO standard allows for CDs to have names up to
+        31 characters and Joliet can have names up to 64 characters. When
+        this is reduced to 8.3 for DOS it may lead to duplicated entries.
+        This option will remove the duplication by appending a tilded
+        number after the name (similar to what Windows does). By default,
+        tildes are off.
+        This option is also available after installation. By itself it
+        will toggle the status (ie. if tildes are currently on, /&tilde; will
+        turn them off and vice versa). Tildes can be explicitly turned
+        on or off by adding a '+' or '-' sign (ie: /~+ will turn tildes
+        on, irrespective of the current state). You do not have these
+        problems when using the program <a href="../util/doslfn.htm">DOSLFN</a>.
+  /R  Removes Read-only attribute.
+  /I  Install anyway even if another redirector is present.
+  /U  Unloads the shsucdx driver from memory.
+  /Q  Quiet. Prevents display of the sign-on banner (copyright notice).
+</pre>
+<h2>Comments:</h2>
+<pre>
+  SHSUCDX has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+       0  Uninstalled, help, option set
+    1-32  Drive number of first installed drive (A=1)
+     246  Invalid or unknown option
+     247  Unable to uninstall
+     248  Not enough memory
+     249  No drives assigned (ie. not installed)
+     250  No drive letters available
+     251  Unit on driver does not exist
+     252  Invalid or non-existant driver
+     253  Already installed
+     254  Unsupported version of DOS
+     255  386 required
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=XCDROM.SYS /D:SHSU001
+  IN AUTOEXEC.BAT:
+    SHSUCDX /D:SHSU001
+
+  Example with several CD-ROM drives:
+  In CONFIG.SYS /FDCONFIG.SYS:
+
+    MENU 1.    FreeDOS
+    MENU 2.    FreeDOS  + IDE CD-ROM (XDROM)
+    MENU 3.    FreeDOS  + USB CD-ROM (NOVAC)
+    MENU 4.    FreeDOS  + ASPI CD-ROM  (SCSI AIC-75XX 78XX)
+    MENU 5.    FreeDOS  + IDE CD-ROM + USB CD-ROM + ASPI CD-ROM
+    lastdrivehigh=U
+    25?DEVICEHIGH=\fdos\bin\xcdrom.sys /D:IDE-CD
+    35?DEVICEHIGH=\fdos\drivers\usb\usbaspi.sys
+    35?DEVICEHIGH=\fdos\drivers\usb\usbcd.sys /D:USB-CD
+    45?DEVICEHIGH=\fdos\drivers\aspi\aspi8dos.sys
+    45?DEVICEHIGH=\drivers\scsi\aspicd.sys /D:ASPICD
+
+  In AUTOEXEC.BAT:
+    SHSUCDX /D:IDE-CD,R /D:*ASPICD,S /D:?USB-CD,U /L:0
+</pre>
+<h2>See also:</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+  <a href="../cnfigsys/lastdrv.htm">lastdrive</a>
+  <a href="../cnfigsys/lastdrvh.htm">lastdrivehigh</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-2004 Robert Platt, updated 2011 and 2020 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

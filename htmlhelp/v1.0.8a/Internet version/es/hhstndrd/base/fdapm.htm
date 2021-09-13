@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: fdapm</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: fdapm</h1>
+<pre>
+  FDAPM es una herramienta avanzada de administraci&oacute;n de energ&iacute;a.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  fdapm [Opciones]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+ (ninguna)  Si no se dan opciones, el valor predeterminado es mostrar la
+            salida INFO y STATS (si se carga el shell, de lo contrario,
+            cuando se carga a trav&eacute;s de INSTALL, el valor predeterminado
+            es hacer APMDOS).
+  APMoff    Deshabilite el modo de ahorro de energ&iacute;a BIOS APM simple. 
+            Alias de compatibilidad de sintaxis de MS POWER: "OFF".
+  OFF       Igual que APMoff, para compatibilidad con MS power.
+  APMbios   Habilite el modo de ahorro de energ&iacute;a BIOS APM simple. Alias
+            de compatibilidad de sintaxis de MS POWER: "STD".
+  STD       Igual que APMbios, para compatibilidad con MS power.
+  APMDOS    Esto deber&iacute;a brindarle el m&aacute;ximo ahorro de energ&iacute;a. Es el
+            &uacute;nico modo que hace que FDAPM permanezca residente en la RAM.
+            Para detener, seleccione APMbios / APMoff.
+  ADV:MAX   M&aacute;ximo ahorro de energ&iacute;a, para compatibilidad con MS power.
+  ADV:MIN   M&iacute;nimo ahorro de energ&iacute;a, para compatibilidad con MS power.
+  ADV:REG   Ahorro de energ&iacute;a restringido, para compatibilidad con MS 
+            power.
+  INFO      Mostrar informaci&oacute;n sobre el estado de APM. Muestra cosas como
+            el porcentaje de carga de la bater&iacute;a.
+  STATS     Muestra informaci&oacute;n sobre el estado APM / APMDOS. Muestra
+            elementos como el porcentaje de tiempo ocupado de la CPU, si
+            FDAPM o POWER residentes est&aacute;n cargados en la memoria.
+  FLUSH     Vac&iacute;a los cach&eacute;s de disco (vuelve a escribir los datos en el
+            disco).
+  SPINUP    Despierta discos IDE de nuevo.
+  SPINDOWN  Vac&iacute;a los cach&eacute;s de disco y detiene los discos IDE en los 2
+            primeros controladores IDE. Uselo bajo su propio riesgo. Los
+            discos girar&aacute;n nuevamente cuando los use nuevamente. Los
+            discos tienen "inteligencia" incorporada para eso. Para
+            ahorrar energ&iacute;a autom&aacute;ticamente, a menudo puede usar una
+            opci&oacute;n de configuraci&oacute;n del BIOS que le dice al disco en el
+            momento del arranque que puede girar por s&iacute; mismo (&iexcl;tiene un
+            temporizador incorporado!) Siempre que no se haya accedido
+            durante un tiempo.
+  ACPIOFF   Como POWEROFF pero expl&iacute;citamente usa ACPI en lugar de APM.
+            Tenga en cuenta que las funciones cl&aacute;sicas tambi&eacute;n utilizar&aacute;n
+            ACPI, si no hay compatibilidad con APM BIOS. El sistema se
+            coloca en S5 soft-off despu&eacute;s de enjuagar cach&eacute;s y girar
+            discos. Util para comparar el manejo de APM / ACPI.
+  STANDBY   Vac&iacute;a el cach&eacute; del disco, ingrese el modo de espera. Requiere
+            APM o ACPI y una fuente de alimentaci&oacute;n ATX o m&aacute;s nueva.
+  SUSPEND   Vac&iacute;a el cach&eacute; del disco, detiene (se activar&aacute;
+            autom&aacute;ticamente) los discos IDE y suspende el sistema. Es &uacute;til
+            si tiene un BIOS con suspensi&oacute;n al disco, para evitar girar
+            los discos justo antes de que la suspensi&oacute;n los necesite.
+            Requiere APM o ACPI y una fuente de alimentaci&oacute;n ATX o m&aacute;s
+            nueva.
+  PURESUSP  Como SUSPEND, pero no detiene primero los discos IDE. 
+            Requiere APM o ACPI y una fuente de alimentaci&oacute;n ATX o m&aacute;s
+            nueva.
+  POWEROFF  Vac&iacute;a los cach&eacute;s de disco, detiene los discos IDE, apaga VGA
+            y el sistema. Requiere APM o ACPI y una fuente de 
+            alimentaci&oacute;n ATX o m&aacute;s nueva.
+  PUREOFF   Como POWEROFF, pero no detiene primero los discos IDE. Es &uacute;til
+            si su BIOS de otra manera despertar&iacute;a el disco justo antes de
+            cortar la energ&iacute;a (ouch). Requiere APM o ACPI y una fuente de
+            alimentaci&oacute;n ATX o m&aacute;s nueva.
+  VGAoff    Apaga la pantalla EGA/VGA DPMS (&iexcl;sin activaci&oacute;n autom&aacute;tica!).
+            Debe escribir FDAPM VGAon o reiniciar para encender. VGAoff no
+            es un protector de pantalla. Utilice idledpms como protector
+            de pantalla en su lugar.
+  VGAon     Enciende la pantalla EGA/VGA DPMS nuevamente. Simplemente
+            presionando una tecla despu&eacute;s de usar la funci&oacute;n VGAoff NO
+            habilitar&aacute; el video nuevamente, esto no es un protector de
+            pantalla. Es solo una forma de encender y apagar el video sin
+            ning&uacute;n tipo de monitoreo del sistema o activaci&oacute;n autom&aacute;tica.
+  ZapStats  Borrar contadores STATS.
+  SPEEDn    Ajuste la velocidad del sistema a n/8 (n*12,5%) de m&aacute;x. (o se
+            detiene hasta que se presiona 'power'). Use SPEED9 para
+            mostrar la configuraci&oacute;n actual. SPEED9 es la forma 
+            recomendada de probar si su sistema usa ACPI de una manera
+            compatible con FDAPM. Requiere ACPI.
+  SPEED0    La velocidad 0 pondr&aacute; el sistema en modo de espera S1
+            (presione el bot&oacute;n de encendido ATX o de reposo para
+            continuar) en cuanto a la CPU. Ninguno de los otros
+            dispositivos dormir&aacute;. Use la herramienta PCISLEEP si desea
+            hacer experimentos con PCI Power management.
+  COLDboot  Realice un reinicio con las pruebas de BIOS (POST) (despu&eacute;s
+            de enjuagar los cach&eacute;s de disco) dici&eacute;ndole al controlador de
+            teclado 8042 que pulse los circuitos de reinicio de hardware.
+            Muy similar a un reinicio en fr&iacute;o real: solo en casos
+            excepcionales, presionar el bot&oacute;n de reinicio o apagar y
+            encender la computadora le dar&aacute; un reinicio "m&aacute;s fr&iacute;o".
+  WARMboot  Reinicie sin pruebas de BIOS (POST). Por lo general, es
+            seguro, pero puede bloquearse si utiliza un software de modo
+            protegido incompatible, como algunas versiones de EMM386.
+            Vac&iacute;a el cach&eacute; del disco antes de reiniciar.
+  HOTboot   Intente reiniciar de inmediato usando int 19h (&iexcl;a menudo se
+            bloquea!). Antes de intentar el reinicio, FDAPM le dice a los
+            cach&eacute;s que se vac&iacute;en (vuelvan a escribir los datos en el
+            disco) y espera un momento.
+  HELP      Muestra la ayuda.
+  /?        Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  FDAPM es un reemplazo para MS-DOS Power.
+  APM: Administraci&oacute;n avanzada de energ&iacute;a.
+  ACPI: Configuraci&oacute;n avanzada e interfaz de energ&iacute;a.
+  ATX: Tecnolog&iacute;a avanzada extendida.
+  DPMS: Se&ntilde;alizaci&oacute;n de administraci&oacute;n de energ&iacute;a de pantalla.
+  Lea fdapm.txt en el paquete fdapm para obtener m&aacute;s informaci&oacute;n.
+  El caso es irrelevante, "-" o "/" no son necesarios.
+  Todas las opciones relacionadas con el modo de suspeci&oacute;n/espera/apagado
+  del disco duro agregan autom&aacute;ticamente un retraso para darle tiempo al
+  disco duro para cambiar de estado. Todas esas y todas las opciones
+  relacionadas con el reinicio le dicen a los cach&eacute;s que escriban b&uacute;feres
+  sucios en el disco antes de que comience la acci&oacute;n real.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  fdapm apmdos  le brinda el m&aacute;ximo ahorro de energ&iacute;a
+  fdapm speed2  establece la velocidad en 2x12,5% = 25% de la velocidad
+                m&aacute;xima, p. ej. para juegos antiguos
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../util/pcisleep.htm">pcisleep</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eric Auer, modificado en 2008 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

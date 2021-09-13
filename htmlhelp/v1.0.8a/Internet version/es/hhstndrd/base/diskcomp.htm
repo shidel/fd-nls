@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: diskcomp</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: diskcomp</h1>
+<pre>
+  DISKCOMP compara el contenido de dos disquetes, pista por pista.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  diskcomp [unidad [unidad]] [/1] [/8] [/4[0]] [/b] [/?]
+           unidad  La letra de unidad para un disquete. Si solo se
+                   proporciona una letra de unidad, asuma la unidad de
+                   trabajo (si es una unidad de disquete). Si no se
+                   proporcionan letras de unidad, suponga que ambas son
+                   la unidad de trabajo (si es un disquete). Si ambas
+                   unidades son iguales, diskcomp leer&aacute; un disquete a la
+                   vez y deber&aacute; intercambiar disquetes.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /1   Compare solo los primeros lados de los discos, incluso si son 
+       discos de doble cara.
+  /8   Compara solo los primeros 8 sectores por pista.
+  /40  Compara solo las primeras 40 pistas (atajo: /4).
+  /b   Obliga a diskcomp a usar el BIOS para acceder a la unidad de 
+       disquete. (La BIOS es m&aacute;s lento, pero puede ser necesario para
+       la compatibilidad en algunas m&aacute;quinas).
+  /?   Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Este programa compara dos discos (m&aacute;ximo 32 MB cada uno) y muestra el
+  resumen md5sum de los contenidos. Indica si el contenido del disco
+  difiere (muestra un mensaje y establece el <a href="../batch/if.htm#comment">EXITCODE (ERRORLEVEL)</a>
+  adecuadamente).
+  Si solo le da una unidad, debe cambiar los discos despu&eacute;s de leer el
+  primer disco. Si no ofrece ninguna opci&oacute;n de unidad, se comparan dos
+  discos en la unidad actual.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  diskcomp A: A:  compara dos discos
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../base/comp.htm">comp</a>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../base/fc.htm">fc</a>
+  <a href="../util/md5sum.htm">md5sum</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

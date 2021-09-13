@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Mise en r&eacute;seau de FreeDOS - NFS</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top"></a>Mise en r&eacute;seau de FreeDOS - NFS</h1>
+<pre>
+  Ce document d&eacute;crit la mise en place d'un r&eacute;seau NFS sur un syst&egrave;me
+  DOS avec une carte <a href="../network/network.htm">r&eacute;seau</a> pour qu'une lettre de lecteur DOS soit
+  mapp&eacute;e &agrave; un chemin de r&eacute;pertoire sur un serveur NFS (UNIX).
+</pre>
+<h2><a name="aaa"></a>Mat&eacute;riel</h2>
+<pre>
+  Cela a &eacute;t&eacute; test&eacute; sur un serveur (486dx2-66s) sous Red Hat Linux 5.2
+  (kernel 2.0.36), avec des clients DOS sur des 4.77mhz 8088, certains
+  80286 et diverses machines plus puissantes, avec des clones g&eacute;n&eacute;riques
+  des cartes <a href="../network/network.htm">r&eacute;seau</a> NE2000. Tous fonctionnent bien. Le <a href="../network/network.htm">r&eacute;seau</a> &eacute;tait un
+  10base2 sur du c&acirc;ble coaxial, avec 10-20 syst&egrave;mes dessus et un hub
+  10baseT pour les machines plus r&eacute;centes.
+</pre>
+<h2><a name="bbb"></a>Logiciel</h2>
+<pre>
+  Le logiciel &eacute;tait XFS. Dans le r&eacute;pertoire XFS80286, trouvez un jeu
+  de fichiers FreeDOS qui fonctionnent sur les machines 80286 et plus
+  r&eacute;centes. Dans le r&eacute;pertoire XFS8088, recherchez un jeu de fichiers
+  pour un 8088 qui fonctionnent sur les PC les plus anciens.
+</pre>
+<h2><a name="ccc"></a>Serveur NFS</h2>
+<pre>
+  Sur le serveur GNU/Linux, vous devrez cr&eacute;er (ou modifier) le fichiers
+  d'exports /etc/ pour exporter les chemins de r&eacute;pertoire n&eacute;cessaires.
+  Par exemple pour partager le r&eacute;pertoire /home/dos en lecture et
+  &eacute;criture pour tous les clients :
+    /home/dos  (rw,insecure)
+  Pour prendre en charge l'impression &agrave; distance, vous devrez aussi
+  d&eacute;marrer rpc.pcnfsd. Vous pourriez avoir besoin de modifier le script
+  sur /etc/rc.d/init.d/nfs pour que rpc.pcnfsd d&eacute;marre automatiquement
+  au d&eacute;marrage du syst&egrave;me. Notez que pcnfsd est un petit programme
+  C &eacute;crit par Sun et est librement disponible sur Internet. Si votre
+  serveur n'est pas fourni avec une version de pcnfsd, vous devrez le
+  compiler et l'installer dans le r&eacute;pertoire /usr/sbin (utilisez les
+  m&ecirc;me permissions que rpc.nfsd).
+</pre>
+<h2><a name="ddd"></a>Client DOS</h2>
+<pre>
+  <b>80286 et plus r&eacute;cent</b>
+
+  &Agrave; partir du logiciel XFS, consultez le r&eacute;pertoire xfs80286 pour une
+  prise en charge des syst&egrave;mes avec un processeur 80286 et plus r&eacute;cent.
+  Copiez tout ce dossier tel qu'il est dans un r&eacute;pertoire sur votre
+  disque dur. Vous devrez &eacute;diter HOSTS, XFS.BAT - et peut-&ecirc;tre
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> et <a href="../cnfigsys/index.htm">CONFIG.SYS</a> - pour utiliser le chemin correct vers XFS.
+  Pour d&eacute;marrer votre <a href="../network/network.htm">r&eacute;seau</a>,
+  tapez : XFS
+  Vous verrez un caract&egrave;re dans le coin sup&eacute;rieur droit de votre &eacute;cran,
+  il vous indiquera ce que XFS est en train d'essayer de faire :
+   <b> A </b> ex&eacute;cution de requ&ecirc;tes ARP pour obtenir une adresse IP,
+   <b> &gt; </b> envoi de paquets au <a href="../network/network.htm">r&eacute;seau</a>,
+   <b> &lt; </b> r&eacute;ception de paquets depuis le <a href="../network/network.htm">r&eacute;seau</a>
+
+   <b>8088</b>
+
+  &Agrave; partir du logiciel XFS, consultez le r&eacute;pertoire xfs8088 pour une
+  prise en charge sp&eacute;cifique &agrave; 8088 et copiez ces fichiers sur votre
+  disque dur. &Eacute;ditez HOSTS et XFS.BAT pour utiliser les nouveaux
+  chemins.
+  Les plus anciens PC 4.77 MHz 8088 fonctionnent bien. Cependant,
+  un pilote sp&eacute;cial est n&eacute;cessaire sur le 8088, car les pilotes de
+  paquets <a href="../network/crynwr.htm">Crynwr</a> originaux donne
+  trois instructions 80286. J'ai patch&eacute; ce pilote et l'ai renomm&eacute;
+  ne2000b8.com. Chargez le nouveau pilote. Vous avez aussi besoin des
+  fichiers d'une version sp&eacute;ciale 8088 uniquement du paquet XFS
+  (xt-191.zip).
+  &Agrave; l'origine, il existait une carte NE1000 pour les 8088. Celles-ci
+  ont pratiquement disparu. Toutes les cartes NE2000 que nous avons
+  test&eacute; ont bien fonctionn&eacute; sur le 8088, m&ecirc;me lorsque la carte 16 bits
+  fut ins&eacute;r&eacute;e dans une fente ISA 8 bits. Certaines des cartes NE plus
+  r&eacute;centes peuvent avoir besoin d'&ecirc;tre r&eacute;gl&eacute;es dans un 80286 avant
+  d'&ecirc;tre mises dans un 8088.
+  Seulement test&eacute; avec MS-DOS ; COMMAND.COM de FreeDOS ne prend pas
+  en charge les processeurs 8088. Les versions de MS-DOS 3.20, 5.00,
+  et 6.22 ont toutes bien fonctionn&eacute;.
+</pre>
+<h2><a name="eee"></a>D&eacute;pannage</h2>
+<pre>
+  La plupart des probl&egrave;mes que nous avons rencontr&eacute;s &eacute;taient dus &agrave; des
+  c&acirc;bles <a href="../network/network.htm">r&eacute;seau</a> d&eacute;fectueux ou &agrave; des probl&egrave;mes d'interruptions. Avant de
+  commencer, assurez-vous que votre r&eacute;seau est disponible.(testez ping
+  depuis une machine GNU/Linux vers une autre.)
+  Sur les machines DOS, nous avons r&eacute;gl&eacute; toutes les cartes NE2000 &agrave;
+  l'adresse 0x300 et ensuite choisi une interruption inutilis&eacute;e et
+  r&eacute;gl&eacute; la ligne de la carte et du pilote pour qu'elle corresponde &agrave;
+  l'adresse (veuillez voir la ligne "ne2000" dans XFS.BAT.)
+  Au bout de quelques essais, vous devriez voir premier client DOS
+  utiliser NFS tr&egrave;s rapidement.
+  Pour les autres probl&egrave;mes, voyez la documentation dans les fichiers
+  XFS191.ZIP et xt-191.zip. La plupart des serveurs GNU/Linux ont une
+  documentation similaire qui peut &ecirc;tre utile &agrave; configurer le serveur.
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Allemagne), modifi&eacute; en 2010
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Pour plus d'informations, <a href="../network/intro.htm#ddd">voyez ici</a>.
+
+  La permission est accord&eacute;e de copier, distribuer et/ou modifier ce
+  document selon les termes de la licence de documentation libre GNU,
+  version 1.2 ou toute version ult&eacute;rieure publi&eacute;e par la Free Software
+  Foundation.
+  Une copie de la licence est incluse dans la section intitul&eacute;e
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

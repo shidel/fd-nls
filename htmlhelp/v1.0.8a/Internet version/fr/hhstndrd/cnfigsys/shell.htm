@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : shell</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : shell</h1>
+<pre>
+  SHELL indique &agrave; FreeDOS quel shell de commande il doit ex&eacute;cuter.
+  SHELL est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  shell=[lecteur][chemin]nomfichier [options]
+        lecteur     La lettre du lecteur, par exemple C:
+        chemin      Le r&eacute;pertoire, par exemple \exemple\
+        nomfichier  Le shell de commande &agrave; ex&eacute;cuter. Par exemple,
+                    C:\exemple\COMMAND.COM
+</pre>
+<h2>Options :</h2>
+<pre>
+  options  Celles-ci sont transmises au shell de commande.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  SHELL indique le shell &agrave; utiliser ; souvent pour modifier le
+  comportement de <a href="../base/command.htm">COMMAND.COM</a>. Note : c'est command.com qui
+  traite <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ; avec l'option SHELL vous pouvez faire
+  en sorte que command.com traite un fichier nomm&eacute; file diff&eacute;remment
+  (tel que FDAUTO.BAT afin de coexister avec un autre DOS qui
+  utiliserait d'autres options de configuration) ou pour ex&eacute;cuter
+  un interpr&eacute;teur de commandes enti&egrave;rement diff&eacute;rent tel que 4DOS ou
+  une variante de sh (UNIX).
+  SHELL est une commande interne &agrave; kernel.sys et ne n&eacute;cessite
+  aucun autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS :
+    shell=C:\4DOS.COM /E:256 /P
+    shell=C:\FDOS\bin\command.com C:\FDOS\bin /E:1024 /P=C:\fdauto.bat
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../base/command.htm">command.com</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/shellh.htm">shellhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

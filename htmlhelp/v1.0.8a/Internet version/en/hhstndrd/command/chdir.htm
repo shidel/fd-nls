@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: chdir</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: chdir</h1>
+<pre>
+  CHDIR displays the name of or changes the current directory.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  CHDIR [drive] [path]
+  CHDIR [..] [-] [\] [/?]
+        drive  The drive letter, e.g. C:
+        path   The directory, e.g. \example\
+</pre>
+<h2>Options:</h2>
+<pre>
+  ..      Specifies that you want to change to the parent directory.
+  -       If "last directory" feature is enabled, change to last
+          directory.
+  \       Changes to root.
+  /?      Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Type CHDIR drive: to display the current directory in the specified 
+  drive.
+  Type CHDIR without parameters to display the current drive and 
+  directory.
+  If no drive is specified, then the current drive is assumed. 
+  If no path is specified, the current directory is displayed.
+  You can also use <a href="../command/cd.htm">CD</a> instead of CHDIR.
+  CHDIR is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+    chdir c:\fdos     changes to the directory c:\fdos
+    chdir ..          changes back from c:\fdos to c:\
+    chdir \           changes back from c:\anydirectory\anysubdirectory
+                      to c:\
+  if you are at c:\ :
+    chdir fdos        changes to the directory c:\fdos
+    chdir bin         changes to the directory c:\fdos\bin
+    chdir d:\example  changes the directory on d: to d:\example, 
+                      but does NOT change to drive d:
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/cd.htm">cd</a>
+  <a href="../command/cdd.htm">cdd</a>
+  <a href="../command/md.htm">md</a>
+  <a href="../command/mkdir.htm">mkdir</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

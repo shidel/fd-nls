@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: country</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: country</h1>
+<pre>
+  COUNTRY establece el comportamiento internacional de DOS.
+  COUNTRY es un comando de <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  country=nnn[,[mmm]][,[unidad][ruta]nombre_archivo]
+          unidad          La letra de la unidad, por ejemplo C:
+          ruta            El directorio, por ejemplo \ejemplo\
+          nombre_archivo  El nombre de archivo de un archivo de 
+                          informaci&oacute;n del pa&iacute;s. Si no se especifica, el
+                          archivo 'COUNTRY.SYS' es el que se utilizar&aacute;.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  nnn    El c&oacute;digo de pa&iacute;s, como se muestra en la tabla siguiente 
+         (001-EE.UU.).
+  mmm    La p&aacute;gina de c&oacute;digos, como e muestra en la tabla siguiente (437
+         es por defecto, 850 se actualiza el formulario, 1252 para 
+         Windows). Si no se especifica, se elegir&aacute; autom&aacute;ticamente una
+         p&aacute;gina de c&oacute;digos.
+
+  C&oacute;digos de pa&iacute;s
+  En la tabla:
+
+    * HH significa una hora de 24 horas
+    * hh una hora de 12 horas.
+    * X significa que AM y PM se a&ntilde;aden 
+
+                                             formato para
+  Localizaci&oacute;n       nnn        mmm        fecha        hora
+=================================================================
+EE.UU.               001      437, 850   mm/dd/yyyy  hh:mm:ss.ssX
+Canad&aacute; francesa      002      863, 850   yyyy-mm-dd  HH:mm:ss,ss
+Latino Am&eacute;rica       003      850, 437   mm/dd/yyyy  hh:mm:ss.ssX
+Rusia                007      866, 437   dd.mm.yyyy  HH:mm:ss,ss
+Paises Bajos         031      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+B&eacute;lgica              032      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+Francia              033      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+Espa&ntilde;a               034      850, 437   dd-mm-yyyy  HH:mm:ss,ss
+Hungr&iacute;a              036      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Yugoslavia           038      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Italia               039      850, 437   mm/dd/yyyy  HH.mm.ss,ss
+Suiza                041      850, 437   mm.dd.yyyy  HH,mm,ss.ss
+Checoslovaquia       042      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Reino Unido          044      850, 437   dd/mm/yyyy  hh:mm:ss.ssX
+Dinamarca            045      850, 865   dd-mm-yyyy  HH:mm:ss,ss
+Suecia               046      850, 437   yyyy-mm-dd  HH.mm.ss,ss
+Noruega              047      850, 865   mm.dd.yyyy  HH:mm:ss,ss
+Polonia              048      850, 852   yyyy-mm-dd  HH:mm:ss,ss
+Alemania             049      850, 437   dd.mm.yyyy  HH:mm:ss,ss
+Argentina            054      850, 437   dd/mm/yyyy  hh:mm:ss.ssX
+Brasil               055      850, 860   dd/mm/yyyy  HH:mm:ss,ss
+Ingl&eacute;s Internacional 061      850, 437   mm/dd/yyyy  HH:mm:ss.ss
+Portugal             351      850, 860   dd-mm-yyyy  HH:mm:ss,ss
+Finlandia            358      850, 437   dd.mm.yyyy  HH:mm:ss,ss
+</pre>
+<h2>Comentatios:</h2>
+<pre>
+  COUNTRY habilita/establece las caracter&iacute;sticas internacionales de DOS
+  seleccionando un c&oacute;digo de pa&iacute;s y (s&oacute;lo con el n&uacute;cleo inestable) 
+  opcionalmente tambi&eacute;n una p&aacute;gina de c&oacute;digos y un archivo de pa&iacute;s. El
+  n&uacute;cleo estable s&oacute;lo utiliza el valor nnn. Para obtener soporte completo,
+  utilice el kernel inestable/en desarrollo. Usted tambi&eacute;n necesita un 
+  <a href="../base/cntrysys.htm">COUNTRY.SYS</a> para el segundo, mientras que el primero ignora el nombre de
+  archivo y s&oacute;lo establece formatos de fecha/hora/n&uacute;mero, utilizando 
+  valores compilados en el n&uacute;cleo para algunos pa&iacute;ses comunes. No 
+  establece orden y las tablas de traducci&oacute;n en may&uacute;sculas y min&uacute;sculas.
+  <a href="../base/nlsfunc.htm">NLSFUNC</a> s&oacute;lo puede utilizarse con el n&uacute;cleo inestable.
+  COUNTRY es un comando interno del kernel.sys y no necesita otro archivo
+  para poder ejecutarse.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\himemx.exe
+    device=c:\fdos\bin\jemm386.exe
+    dos=high,umb
+    country=001,437,c:\fdos\bin\country.sys
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../base/cntrysys.htm">country.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-development</a>
+  <a href="../base/nlsfunc.htm">nlsfunc</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 1998 <b>Jim Hall</b>, modificado en 2008 <b>W. Spiegl.</b>
+  Traducido en 2019 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+
+</pre></body></html>

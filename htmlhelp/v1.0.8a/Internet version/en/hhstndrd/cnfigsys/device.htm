@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: device</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: device</h1>
+<pre>
+  DEVICE loads a driver into low or conventional memory, whereas
+  DEVICEHIGH loads the driver into high memory.
+  DEVICE is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  device=[drive][path]filename [options]
+         drive     The drive letter, e.g. C:
+         path      The directory, e.g. \example\
+         filename  The driver (file) to load, e.g. himemx.exe
+</pre>
+<h2>Options:</h2>
+<pre>
+  options  These are options to the driver 
+           program, not to the 'device' command.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  DEVICE loads the device driver specified by drive:\path\filename into
+  conventional [low 640KB] memory. The options are for the driver itself;
+  refer to documentation that came with your particular device for
+  supported options and their usage.
+  As DEVICE loads the driver into low or conventional memory this leaves
+  less free space for other drivers or programs in low or conventional
+  memory. This may cause problems when executing programs or loading
+  other drivers. 
+  DEVICE is a command internal to kernel.sys and needs no other file in
+  order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    DEVICE=C:\FDOS\DRIVERS\UIDE.SYS /S125 /D:MYDVD
+  WITHIN A MENU:
+    23?DEVICE=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    23?DEVICE=C:\FDOS\DRIVERS\UIDE.SYS /S125 /D:MYDVD
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: unzip</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: unzip</h1>
+<pre>
+  UNZIP lists, tests, or extracts files from a ZIP archive, commonly found
+  on DOS systems. The default behavior (with no options) is to extract
+  all files from the specified ZIP archive into the current directory
+  (and subdirectories below it). 
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  unzip [-Z] [-options[modifiers]] file[.zip] [file(s)] [-x xlist]
+        [-d exdir]
+          file[.zip]  Path of the ZIP archive(s). This may be a wildcard.
+          [file(s)]   An optional list of archive members to be processed,
+                      separated by spaces.
+          [-d exdir]  An optional directory to which to extract files.
+                      By default, all files and subdirectories are recre-
+                      ated in the current directory; the -d option allows
+                      extraction in an arbitrary directory.
+</pre>
+<h2>Options:</h2>
+<pre>
+    -d   Extract files into exdir (an optional directory).
+    -f   Freshen existing files, i.e., extract only those files that
+         already exist on disk and that are newer than the disk copies.
+    -l   List files (short format). The names, uncompressed file sizes and
+         modification dates and times of the specified files are printed,
+         along with totals for all files specified.
+    -p   Extract files to pipe (standard output), no messages.
+    -t   Test compressed archive data. This option extracts each specified
+         file in memory and compares the CRC checksum of the expanded file
+         with the original file's stored CRC value.
+    -u   Update files, create new ones if necessary.
+    -x   Exclude files that follow (in xlist). Xlist is an optional list
+         of archive members to be excluded from processing. Since
+         wildcard characters normally match ('/') directory separators
+         this option may be used to exclude any files that are in
+         subdirectories.
+    -z   Display archive comment.
+    -Z   ZipInfo mode. If the first option on the command line is -Z, the
+         remaining options are taken to be zipinfo(1L) options.
+  Modifiers:
+    -$   Label removables (-$$ =&gt; fixed disks)
+    -a   Auto-convert any text files.
+    -aa  Treat ALL files as text files.
+    -C   Match filenames case-insensitively.
+    -j   Junk paths. The archive's directory structure is not recreated;
+         all files are deposited in the extraction directory.
+    -L   Make (some) names lowercase.
+    -n   Never overwrite existing files.
+    -o   Overwrite files WITHOUT prompting.
+    -M   Pipe through "more" pager.
+    -q   Quiet mode (-qq =&gt; quieter).
+    -s   Convert spaces in filenames to '_'
+    -v   Be verbose or print diagnostic version info.
+    -V   Retain VMS version numbers.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  For more information please read UNZIP.TXT.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  unzip data1 -x joe    extract all files except joe from zipfile
+                        data1.zip
+  unzip -fo foo ReadMe  quietly replace existing ReadMe if archive file
+                        newer
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/zip.htm">zip</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

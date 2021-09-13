@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: tee</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: tee</h1>
+<pre>
+  TEE saves a copy of the input (STDIN) to one or more files and
+  prints it.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  tee [options] [d:][path]file [[d:][path]file2] ...
+      [d:][path]file [[d:][path]file2]  Specifies the output file(s).
+</pre>
+<h2>Options:</h2>
+<pre>
+  /A  Append to given file(s): Append to the output file(s) instead of
+      overwriting.
+  /I  Ignore interruptions: ignores interruption attempts by a user.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  TEE reads data from standard input and writes to standard output as
+  well as any files specified by the user.
+  TEE comes with two default builds. TEE.EXE is the TEE build with
+  kitten support. _TEE.EXE is the build without kitten.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  echo "Hello, World!" | tee hello.txt
+    Displays "Hello, World!" on the screen and saves it to hello.txt.
+  tee log.txt another_log.txt &lt; input.txt
+    Displays the contents of input.txt and saves them to log.txt and
+    another_log.txt.
+  catdoc letter.doc | tee /I letter.txt | wc
+    Saves the contents of letter.doc as processed by catdoc to
+    letter.txt and passes them to wc to count the words.
+    Doesn't allow interruptions by a user.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/more.htm">more</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl, updated in 2020.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

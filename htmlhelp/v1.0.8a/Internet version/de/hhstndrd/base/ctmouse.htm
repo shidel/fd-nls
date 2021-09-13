@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: ctmouse</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: ctmouse</h1>
+<pre>
+  CuteMouse (CTMOUSE) ist der FreeDOS Maustreiber.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  ctmouse [Optionen]
+  LH ctmouse [Optionen]
+  LOADHIGH ctmouse [Optionen]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /3        3-Tasten-Modus erzwingen (nur f&uuml;r Microsoft- und
+            PS/2-M&auml;use).
+  /B        Programm abbrechen, wenn Mausfunktionen bereits aktiv sind.
+  /L        Linksh&auml;ndermodus (Vorgabe ist Rechtsh&auml;ndermodus).
+  /M        Probiere *alten* Mouse Systems / Genius Modus falls keine PnP
+            Maus.
+  /N        CuteMouse als neues residentes Programm (TSR) laden, selbst
+            dann, wenn CTMOUSE bereits resident ist (sinnvoll f&uuml;r
+            Batchdateien, die Cutemouse am Ende wieder entladen).
+  /O        Verwende PS/2 / USB BIOS Mausrad Erkennung (experimentell).
+  /P        PS/2-Mausmodus erzwingen.
+  /R[h[v]]  Horizontale/vertikale Aufl&ouml;sung (h,v=0-9; Wenn keine Option
+            angegeben wird, das Argument hinter /R 0 ist oder hinter /R
+            keine Werte angegeben werden, wird wird die Standardaufl&ouml;sung
+            verwendet. Wenn das zweite Argument fehlt, wird das erste
+            Argument auch als zweites Argument verwendet.
+  /S[c[i]]  Seriellen Mausmodus erzwingen an COM c (c=1-4, Standard ist
+            COM1) mit IRQ i (i=1-7, Standard ist IRQ 4 f&uuml;r COM 1/3 und
+            IRQ3 f&uuml;r COM 2/4).
+  /U        CuteMouse Treiber deinstallieren.
+  /V        Suche umkehren: PS/2 nach serieller Maus finden.
+  /Y        Erzwingt die Suche nach einer seriellen Maus, schaltet aber
+            anders als /S die PS/2  Unterst&uuml;tzung nicht aus.
+  /W        TSR nicht automatisch in den UMB laden.
+  /?        Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  CTMOUSE unterst&uuml;tzt keine USB-M&auml;use.
+  CTMOUSE Kann sowohl in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> als auch
+  in der <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> oder in der Kommandozeile geladen werden.
+  CTMOUSE2 ist eine neue Version von CuteMouse die das Scrollrad
+  unterst&uuml;tzt. Es hat eine Scrollrad API (Anwendungsprogrammierer-
+  schnittstelle) so da&szlig; die FreeDOS Programme das Scrollrad verwenden
+  k&ouml;nnen. Besuchen Sie die CuteMouse Webseite unter: 
+  <b>http://cutemouse.sourceforge.net</b>
+  CTMOUSE hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    0  PS/2, Microsoft oder Logitech Maus gefunden und CTMOUSE
+       installiert; Entladen erfolgreich; /? Option verwendet.
+    1  CTMOUSE im Mouse Systems Modus installiert; Entladen
+       funktionierte nicht, weil CTMOUSE nicht geladen war.
+    2  Der residente Teil schaltete in den PS/2, Microsoft
+       oder Logitech Modus; das Entladen funktionierte nicht,
+       weil die Treiberinterrupts abgefangen wurden.
+    3  Der residente Teile schaltete in den Mouse Systems Modus.
+    4  Maustreiber bereits geladen (wird nur bei Option /B ausgegeben).
+    5  Maus nicht gefunden; ung&uuml;ltige Option verwendet.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    devicehigh=C:\fdos\bin\ctmouse  l&auml;dt ctmouse in den hohen Speicher
+  IN DER AUTOEXEC.BAT ODER IN DER KOMMANDOZEILE
+    lh ctmouse  l&auml;dt ctmouse in den hohen Speicher
+    ctmouse /u  entl&auml;dt den Maustreiber
+    ctmouse /?  Zeigt die Hilfe (Optionen)
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/device.htm">device</a>
+  <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1997 - 2004 Nagy Daniel, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

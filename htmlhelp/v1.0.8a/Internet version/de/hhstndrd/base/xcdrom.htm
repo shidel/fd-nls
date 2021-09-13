@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: xcdrom.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: xcdrom.sys</h1>
+<pre>
+  XCDROM.SYS ist ein UDMA und NICHT-UDMA CD-ROM Treiber f&uuml;r DOS.
+  XCDROM.SYS mu&szlig; in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen werden.
+  Alternativ kann XCDROM.SYS w&auml;hrend des Betriebes mit <a href="../util/devload.htm">DEVLOAD</a>
+  nachtr&auml;glich geladen werden.
+  <b>XCDROM.SYS ist veraltet. Der Autor gibt KEINEN Support mehr!
+  Sie sollten stattdessen <a href="../base/uide.htm">UIDE.SYS</a> verwenden</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  device=xcdrom.sys [Optionen]
+  devicehigh=xcdrom.sys [Optionen]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /AX  L&auml;&szlig;t KEINE Audiofunktionen zu. Dies bringt den Treiber dazu, nur
+       Datenspuren zu lesen! /AX reduziert den residenten Treiber um 448
+       Bytes. UltraDMA, Mehrfachlaufwerke und andere Treiberfeatures
+       sind davon NICHT betroffen!
+  /D:  Spezifiziert den gew&uuml;nschten "Ger&auml;tenamen", den <a href="../base/shsucdx.htm">SHSUCDX</a> oder
+       <a href="../base/mscdex.htm">MSCDEX</a> w&auml;hrend ihrer Initialisierung verwenden werden, um die
+       CD-ROM Laufwerke zu adressieren. Beispiele sind:
+         /D:CDROM1 oder /D:MYCDROM usw.
+       Der Ger&auml;tename darf zwischen 1 und 8 Bytes lang sein; die Zeichen
+       m&uuml;ssen in DOS Dateinamen verwendet werden d&uuml;rfen. Wenn /D
+       weggelassen wird oder der "Ger&auml;tename" nach /D fehlt oder
+       ung&uuml;ltig ist, wird standardm&auml;&szlig;ig "XCDROM" verwendet.
+  /L   Begrenzt UltraDMA auf "unteren Speicher" unter 640 KB. /L ist
+       ERFORDERLICH, um UMBPCI oder einen vergleichbaren Treiber ver-
+       wenden zu k&ouml;nnen, dessen obere Speicherbereiche keine UltraDMA
+       unterst&uuml;tzen. Wenn /L gew&auml;hlt ist, mu&szlig; der Treiber im unteren
+       Speicherbereich laden, so da&szlig; seine DMA Befehlslisten richtig
+       abgeholt werden k&ouml;nnen, ansonsten wird das Laden des Treibers
+       abgebrochen. /L veranlasst alle I-O Anfragen &uuml;ber 640 KB, 
+       "PIO-Mode" Eingang zu verwenden. Bitte beachten Sie, da&szlig; /L 
+       ignoriert wird, wenn /UX ebenfalls angegeben ist.
+  /Mn  Gibt den MAXIMALEN UltraDMA "Modus" an, der f&uuml;r ein CD-ROM-Lauf-
+       werk gesetzt werden kann, wobei n eine Zahl zwischen 0 und 6 ist,
+       siehe Liste:
+         0 = ATA-16,   16 MB/sec.     4 = ATA-66,   66 MB/sec.
+         1 = ATA-25,   25 MB/sec.     5 = ATA-100, 100 MB/sec.
+         2 = ATA-33,   33 MB/sec.     6 = ATA-133, 133 MB/sec.
+         3 = ATA-44,   44 MB/sec.
+       Ein CD-ROM-Laufwerk, das f&uuml;r langsamere "Modi" als den gew&auml;hlten
+       Wert ausgelegt ist, wird auf seinen eigenen h&ouml;chsten "Modus" be-
+       grenzt. /M wird bei CD-ROM-Laufwerken, die kein UltraDMA unter-
+       st&uuml;tzen, ignoriert und wird bei ALLEN Laufwerken ignoriert,
+       wenn /UX ebenfalls gew&auml;hlt wird.
+  /PM  Veranlasst den Treiber, w&auml;hrend der Treiberinitialisierung am
+       Master des ersten IDE Strangs nach einem CD-ROM Laufwerk zu
+       suchen. Wenn am Master des ersten IDE-Strangs kein CD-ROM Laufwerk
+       gefunden wird, wird das Laden des Treibers abgebrochen.
+  /PS  Wie /PM, testet aber den Slave am ersten IDE-Strang.
+  /SM  Wie /PM, testet aber den Master am zweiten IDE-Strang.
+  /SS  Wie /PM, testet aber den Slave am zweiten IDE-Strang.
+       --- ANMERKUNG ---
+       Bei Verwendung von mehreren Laufwerken k&ouml;nnen mehrere /PM /PS
+       /SM /SS Schalter vergeben werden. Das zuerst spezifizierte Lauf-
+       werk wird als "unit 0" adressiert, das zweite als "unit 1" usw.
+       Wenn weniger Schalter als vorhandene Laufwerke angegeben werden,
+       werden die nicht aufgelisteten Laufwerke NICHT verwendet. Wenn
+       keine Schalter verwendet werden, "scannt" der Treiber nach CD-ROM-
+       Laufwerken, vom Master am ersten IDE-Strang bis zum Slave am
+       zweiten IDE-Strang. Das erste gefundene Laufwerk wird "unit 0";
+       das zweite wird "unit 1" usw.
+  /UF  Erm&ouml;glicht "Schnelles UltraDMA". Dateneinganganforderungen, die
+       eine UltraDMA "64KB Grenze" kreuzen, werden ausgef&uuml;hrt, indem sie
+       eine 2-Element DMA Befehlsliste verwenden, eine f&uuml;r Daten &uuml;ber
+       der Grenze und eine f&uuml;r Daten unter ihr. Die CD-ROM Geschwindig-
+       keit nimmt dadurch erheblich zu.
+       Die "PIO Modus" Eingabe wird immer noch gebraucht f&uuml;r Benutzer-
+       puffer die falsch abgeglichen sind (nicht an eine gerade 4-Byte
+       Adresse).
+       /UF wird bei CD-ROM-Laufwerken die kein UltraDMA k&ouml;nnen ignoriert.
+       --- ANMERKUNG ---
+       Trotz aller UltraDMA Spezifikationen k&ouml;nnen NICHT ALLE Chips&auml;tze
+       Multi-Element DMA Befehle sauber ausf&uuml;hren! Obwohl es praktisch
+       ist, mu&szlig; /UF auf jedem System zuerst GETESTET werden und 
+       "Schnelles UltraDMA" sollte mit Vorsicht aktiviert werden!!
+  /UX  Deaktiviert JEDES UltraDMA, auch f&uuml;r CD-ROM Laufwerke, die dieses
+       beherrschen. Der Treiber verwendet dann f&uuml;r alle gelieferten
+       Daten den "PIO Modus". /UX sollte nur f&uuml;r Tests und Diagnose-
+       zwecke verwendet werden.
+  Bei allen Schaltern kann ein "-" den "/" ersetzen und es k&ouml;nnen Gross-
+  oder Kleinbuchstaben verwendet werden.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Der CD-ROM Treiber hatte bis zur Version 2.2 den Namen XCDROM.SYS.
+  Danach hiess er <a href="../base/udvd.htm">UDVD.SYS</a> und jetzt <a href="../base/uide.htm">UIDE.SYS</a>
+  XCDROM.SYS unterst&uuml;tzt NLS (national language support - nationale
+  Sprachunterst&uuml;tzung) vgl. "xcdmsgs.eng". Es mu&szlig; dazu nur mit der
+  richtigen Sprache kompiliert werden.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  In der CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=c:\fdos\bin\XCDROM.SYS /D:SHSU001
+  In der AUTOEXEC.BAT:
+    c:\fdos\bin\SHSUCDX /D:SHSU001
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2006 Jack Ellis, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

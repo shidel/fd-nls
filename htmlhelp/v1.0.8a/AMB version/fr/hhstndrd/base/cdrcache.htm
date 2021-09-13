@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : cdrcache.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : cdrcache.sys</h1>
+<pre>
+  CDRCACHE.SYS est un programme de cache de lecteur CD. Il am&eacute;liore les
+  performances du lecteur. N&eacute;cessite la m&eacute;moire XMS, et au moins un
+  ordinateur 386. CDRCACHE.SYS doit &ecirc;tre charg&eacute; dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> /
+  <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS fonctionne d&eacute;j&agrave;, vous pouvez charger CDRCACHE.SYS plus
+  tard avec <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  In config.sys, soit :
+    p&eacute;riph&eacute;rique=cdrcache.sys nom du p&eacute;riph&eacute;rique taille du cache
+  soit :
+    devicehigh=cdrcache.sys nom du p&eacute;riph&eacute;rique taille du cache
+</pre>
+<h2>Options:</h2>
+<pre>
+  p&eacute;riph&eacute;r   Le m&ecirc;me nom que le p&eacute;riph&eacute;rique que vous avez d&eacute;j&agrave; charg&eacute;
+             avec votre pilote de lecteur de CD-ROM.
+  nom        Un nouveau nom que vous transmettrez &agrave; shsucdx dans
+             autoexec.bat
+  cachesize  Sp&eacute;cifie la taille du cache tampon en Ko. Le cache est
+             stock&eacute; dans la m&eacute;moire XMS.
+             La valeur minimale est 128
+             La valeur maximale est 65280
+             Les valeurs sous 100 sont valides pour la compatibilit&eacute;
+             avec les versions pr&eacute;c&eacute;dentes de CDRCACHE.SYS. Sous 100,
+             les tailles sont interpr&eacute;t&eacute;es comme &eacute;tant des multiples
+             de 0.25 Mo.
+  Contr&ocirc;le du pilote apr&egrave;s le chargement :
+    Utilisation :
+  echo commande &gt; nom
+  Commande :
+    F     Vide le cache.
+    S     Affiche les statistiques.
+    I     Affiche les statistiques avec des informations techniques.
+    C     Efface les statistiques.
+    Q     Mode silencieux.
+    N     Verbosit&eacute; normale.
+    V     Mode verbeux/ de tra&ccedil;age.
+    0     Arr&ecirc;te la mise en cache.
+    1     Continue la mise en cache (apr&egrave;s un arr&ecirc;t par exemple).
+    ?     Affiche l'aide.
+    nom   Est le param&egrave;tre transmis &agrave; CDRCACHE.SYS (cf. l'exemple).
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Chargez CDRCACHE.SYS apr&egrave;s le chargement de votre pilote de CD-ROM
+  device (g&eacute;n&eacute;ralement uide.sys).
+  Comme CDRCACHE.SYS (2003) est bas&eacute; sur <a href="../base/lbacache.htm">LBACACHE.SYS</a>, veuillez lire
+  la documentation LBAcache pour des d&eacute;tails techniques et de
+  programmation additionnels.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Dans config.sys / fdconfig.sys:
+    DEVICE=c:\fdos\bin\xcdrom.sys /D:FDCD0000
+    DEVICE=c:\fdos\bin\CDRCACHE.SYS FDCD0000 CDRCACH$ 2048
+  puis dans autoexec.bat:
+    c:\fdos\bin\shsucdx /D:CDRCACH$
+  Cela alloue un cache tampon de 2048KB (2MB) pour un seul lecteur
+  CD IDE CD.
+    echo F &gt; cdrcach$    (vider le cache)
+    echo SCF &gt; cdrcach$  (afficher les statistiques, puis les effacer
+                         et vider le cache)
+    echo S &gt; cdrcach$    (afficher seulement les statistiques)
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+  <a href="../base/lbacache.htm">lbacache</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+  <a href="../base/tickle.htm">tickle</a>
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

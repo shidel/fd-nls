@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Netzwerken unter FreeDOS - Netzwerken unter DOS
+heute</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top"></a>Netzwerken unter FreeDOS - Netzwerken unter DOS heute</h1>
+<h2><a name="zzz"></a>&Uuml;bersicht</h2>
+<pre>
+  In diesem Kapitel erfahren wir mehr &uuml;ber die <a href="../network/network.htm">Netzwerk</a>treiber,
+  Protokolle und <a href="../network/network.htm">Netzwerk</a>software, die mit einem FreeDOS PC im
+  21sten Jahrhundert verwendet werden k&ouml;nnen. Wenn Sie mehr &uuml;ber
+  das <a href="../network/network.htm">Netzwerken</a> wissen wollen, lesen Sie doch Eugene Blanchard's
+  <b>"Introduction to Data Communications"</b> (vgl.: <b>http://www.tech
+  booksforfree.com/intro_to_data_com/ (*01)</b>, unter der GNU GPL, eine
+  aktuellere aber nicht freie Version <b>finden Sie hier:</b> (<b>http://learnat.
+  sait.ab.ca/ict/txt_information/Intro2dcRev2/index.html (*02)</b>).
+</pre>
+<h2><a name="aaa"></a>Treiber</h2>
+<pre>
+  <a href="../network/ethernet.htm">Ethernet</a> ist die dominante <a href="../network/network.htm">Netzwerk</a>-Hardwaretechnologie von heute.
+  F&uuml;r diesen Typ von <a href="../network/network.htm">Netzwerk</a>adaptern k&ouml;nnen unter DOS grunds&auml;tzlich
+  drei Arten von Treibern verwendet werden (und Sie sollten wenigstens
+  einen dieser Treiber f&uuml;r Ihre Karte finden k&ouml;nnen):
+    * <a href="../network/install.htm">Pakettreiber</a>, erfunden von FTP Software Inc. Viele von Ihnen wurden
+      von <a href="../network/crynwr.htm">Crynwr</a> geschrieben und vertrieben.
+    * Open Datalink Interface (<a href="../network/odi.htm">ODI</a>) Treiber, entwickelt von <a href="../network/novell.htm">Novell</a> und
+      Apple und die
+    * <a href="../network/network.htm">Netzwerk</a> Driver Interface Specification (<a href="../network/ndis.htm">NDIS</a>)-Treiber, die von
+      Microsoft und <a href="../network/3com.htm">3Com</a> entwickelt wurden.
+  Alle drei sind <b>Multiprotokoll</b> <a href="../network/network.htm">Netzwerk</a>-Treiber, was bedeutet, da&szlig;
+  sie in der Lage sind, unterschiedliche Protokolle mit der gleichen
+  Karte zu unterst&uuml;tzen. &Auml;ltere Treiber unterst&uuml;tzten nur ein einziges
+  Protokoll. Multiprokolltreiber kommunizieren direkt mit der <a href="../network/network.htm">Netzwerk</a>-
+  kartenschnittstelle und unterst&uuml;tzen eine offizielle Schnittstellen-
+  spezifikation, f&uuml;r die Anwendungen geschrieben werden k&ouml;nnen.
+  Wenn Sie eine gute generelle Einf&uuml;hrung zu diesem Thema haben m&ouml;ch-
+  ten, dann lesen Sie bitte <b>"Implementing Multi-Protocol <a href="../network/network.htm">Network</a> Drivers
+  in a DOS Environment"</b> von der University of Georgia, Athens, Georgia
+  (U.S.) (vgl.: <b>http://www.eits.uga.edu/~ucns/lans/docs/netdrive.html
+  (*03)</b>). 
+</pre>
+<h2><a name="bbb"></a>Protokolle</h2>
+<pre>
+  Die folgenden Protokolle werden von diesen drei Treibern unterst&uuml;tzt:
+    * Transmission Control Protocol/Internet Protocol (<a href="../network/tcpip.htm">TCP/IP</a>), das
+      z.B. von UNIX, GNU/Linux, Windows Vista, OS X und dem Internet
+      verwendet wird,
+    * Internetwork Packet Exchange/Sequenced Packet Exchange (<a href="../network/ipxspx.htm">IPX/SPX</a>)
+      Protokoll, das z.B. von <a href="../network/novell.htm">Novell Netware</a> verwendet wird,
+    * <a href="../network/network.htm">Network</a> Basic Input Output System (<a href="../network/history.htm#aaa">NetBIOS</a>) Extended User Interface
+      (<b>NetBEUI</b>, auch bekannt als <a href="../network/cifs.htm">CIFS</a>) Protokoll, das z.B. von OS/2,
+      Windows 9x, ME und 2000 verwendet wird. 
+  <a href="../network/tcpip.htm">TCP/IP</a> ist der Standard f&uuml;r grundlegende Internetdienste wie z.B.
+  http, smtp oder ftp und wurde auch das Standardprotokoll zum Verbinden
+  lokaler <a href="../network/network.htm">Netzwerke</a> (LAN).
+  <a href="../network/cifs.htm">NetBEUI</a> war in Microsoft-Systemen bis einschlie&szlig;lich Windows 2000
+  das Standardprotokoll f&uuml;r LANs (lokale Netzwerke). Es wurde durch
+  <a href="../network/history.htm#aaa">NetBIOS</a> &uuml;ber <a href="../network/tcpip.htm">TCP/IP</a> (NBT) und danach durch <a href="../network/tcpip.htm">TCP/IP</a> ersetzt. Die
+  Anwendungsschicht des <a href="../network/network.htm">Netzwerk</a>protokolls <a href="../network/history.htm#aab">SMB</a> kann z.B. seit Windows XP
+  <b>direkt oberhalb von TCP laufen</b> (vgl.: <b>http://support.microsoft.com/
+  default.aspx?scid=kb;en-us;Q204279 (*04)</b>).
+  <a href="../network/novell.htm">Novell's</a> <a href="../network/ipxspx.htm">IPX</a> wurde unter <a href="../network/novell.htm">Novell Netware</a> verwendet, das die Standard-
+  netzwerkl&ouml;sung f&uuml;r PCs unter DOS oder Windows 3.x war. Seit 1998
+  kann NetWare unter <a href="../network/tcpip.htm">TCP/IP</a> laufen, aktuellere Versionen nutzen es
+  grunds&auml;tzlich.
+  Zusammenfassung: <a href="../network/tcpip.htm">TCP/IP</a> ist die "Umgangssprache" moderner <a href="../network/network.htm">Netzwerke</a>.
+  Es ist zwar m&ouml;glich, andere Protokolle zu verwenden, aber die Unter-
+  st&uuml;tzung daf&uuml;r wird irgendwann beendet werden.
+</pre>
+<h2><a name="ccc"></a>Netzwerksoftware</h2>
+<pre>
+  grunds&auml;tzlich k&ouml;nnen wir die drei folgenden Arten des Netzwerkens
+  unterschieden, die man immer noch unter DOS verwenden kann.
+  In den n&auml;chsten Kapiteln erfahren Sie mehr &uuml;ber:
+    * <a href="../network/novell.htm">Novell Netware</a> - auf <a href="../network/odi.htm">ODI</a>-Treiber basierende <b>Novell NetWare</b> Pro-
+      gramme, um auf ein NetWare <a href="../network/network.htm">Netzwerk</a> zuzugreifen und <a href="../network/tcpip.htm">TCP/IP</a>-Dienste
+      nutzen zu k&ouml;nnen.
+    * <a href="../network/msclient.htm">MS Client</a> - <a href="../network/ndis.htm">NDIS</a>-Treiber basierender <b>Microsoft "<a href="../network/history.htm#aab">LAN manager</a> Client"
+      oder "MS Client 3.0"</b>, um DOS Maschinen in eine Windows/<a href="../network/history.htm#aab">SMB</a>
+      Workgroup (Arbeitsgruppe) zu integrieren.
+    * <a href="../network/tcpip.htm">TCP/IP Anwendungen</a> - pakettreiberbasierende "UNIX-&auml;hnliche"
+      <b>TCP/IP Anwendungen</b>, um auf <a href="../network/network.htm">Netzwerk</a>dienste wie http, smpt, ftp,
+      SSH (siehe: <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a>) oder <a href="../network/nfs.htm">NFS</a> zugreifen oder sie liefern zu k&ouml;nnen.
+    * <a href="../network/others.htm">Andere</a>
+
+  <b>(*01) OK</b>
+  <b>(*02) http://www.telecomworld101.com/Intro2dcRev2/index.html</b>
+  <b>(*03) https://web.archive.org/web/20090112073628/http://www.
+        eits.uga.edu/~ucns/lans/docs/netdrive.html</b>
+  <b>(*04) https://web.archive.org/web/20060315052325/http://support.
+        microsoft.com/default.aspx?scid=kb;en-us;Q204279</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), 2011 und 2020
+  an die FreeDOS-Hilfe angepasst von W.Spiegl.</b>
+  Weitergehende Informationen <a href="../network/intro.htm#ddd">finden Sie hier</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: buffershigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: buffershigh</h1>
+<pre>
+  BUFFERSHIGH teilt FreeDOS mit, wieviele Festplattenpuffer (die f&uuml;r
+  Lese- und Schreiboperationen gebraucht werden) reserviert werden sollen.
+  BUFFERSHIGH ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  buffershigh=nn[,m]
+    nn  ist die Zahl der prim&auml;ren Festplattenpuffer (Bereich 1-99).
+    m   ist die Zahl der sekund&auml;ren Festplattenpuffer (Bereich 1-8).
+</pre>
+<h2>Optionen:</h2>
+<pre>
+Gebrauch:
+  Die Standardeinstellung h&auml;ngt davon ab, wieviel konventionellen
+  Speicher Ihr System hat:
+
+Speicher (KB)                Prim&auml;re Puffer         Sekund&auml;re Puffer
+----------------------------------------------------------------------
+    &lt; 128                           3                         1
+  128 - 255                         5                         1
+  256 - 511                        10                         1
+  512 - 640                        15                         1
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Eine Erh&ouml;hung der Zahl der Buffer kann die Geschwindigkeit von
+  Programmen, die mit vielen Dateien arbeiten, erh&ouml;hen, braucht aber
+  auch mehr Speicherresourcen.
+  Die sekund&auml;ren Puffer gibt es aus Kompatibilit&auml;tsgr&uuml;nden mit anderen
+  DOS Kernel, sie werden aber vom FreeDOS Kernel ignoriert. Unter MS DOS
+  kann ein sekund&auml;rer Buffer dazu verwendet werden, Daten vorauszulesen.
+  FreeDOS macht das nicht. Buffers werden von FreeDOS im HMA gespeichert,
+  au&szlig;er Sie w&auml;hlen nn um mehr Buffers zuzuweisen, als in den HMA passen.
+  Wenn nn kleiner ist, wird unbenutzter HMA Platz f&uuml;r weitere Buffers
+  verwendet werden, bis etwas anderes den HMA Platz f&uuml;r etwas anderes
+  zuweist. Sogar dann werden wenigstens nn Buffers immer erh&auml;ltlich sein.
+  Sie k&ouml;nnen nn auch einen negativen Wert zuweisen um die Benutzung von
+  unbenutztem HMA Speicher zu unterbinden: BUFFERS=-10 verwendet nur 10
+  Buffers; weiterer freier Speicher im HMA wird dann unbenutzt bleiben.
+  Der Befehl BUFFERSHIGH versucht im Gegensatz zu BUFFERS zuerst in
+  den hohen Speicher zu laden. Wenn das nicht funktioniert, versucht
+  er in den konventionellen Speicher zu laden.
+  Bitte beachten: Die Art und Weise, wie Sie Ger&auml;tetreiber laden,
+  hat eine gro&szlig;e Auswirkung auf die sp&auml;ter frei verf&uuml;gbare 
+  Speichermenge (insbesondere konventioneller Speicher). Versuchen Sie
+  deshalb, (im Speicherverbrauch) gro&szlig;e Programme (insbesondere Treiber)
+  zuerst in den hohen Speicherbereich zu laden.
+  Wichtig: Es mu&szlig; zuvor ein Manager f&uuml;r den hohen Speicherbereich
+  wie z.B. (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a> oder <a href="../base/jemmex.htm">JEMMEX</a> geladen werden, um diesen Befehl
+  ausf&uuml;hren zu k&ouml;nnen.
+  BUFFERSHIGH ist ein interner Befehl, d.h. der Befehl ist in der
+  kernel.sys enthalten. Es wird zur Ausf&uuml;hrung des Befehls kein
+  zus&auml;tzlicher Befehl (Datei) ben&ouml;tigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    buffershigh=3,1
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/buffers.htm">buffers</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

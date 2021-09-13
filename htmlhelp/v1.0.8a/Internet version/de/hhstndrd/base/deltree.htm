@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: deltree</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: deltree</h1>
+<pre>
+  DELTREE l&ouml;scht einen ganzen Verzeichnisbaum inclusive 
+  Unterverzeichnissen.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DELTREE [/Y] [/V] [/D] [/X] [/Z:SERIOUSLY] filespec [filespec...]
+  DELTREE [/?]
+          Laufwerk  Der Laufwerksbuchstabe, z.B.: C:
+          Pfad      Der zu w&auml;hlende Pfad, z.B.: \Beispiel
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /Y            Loescht die angegebenen Verzeichnisse ohne nach einer
+                Best&auml;tigung zu fragen.
+  /V            Meldet am Ende die Anzahl der gel&ouml;schten Dateien und 
+                Unterverzeichnisse und ihrer Gesamtgr&ouml;&szlig;e.
+  /D            Zeigt die Debug Information an.
+  /X            F&uuml;r Testzwecke; l&ouml;scht momentan nichts.
+  /Z:SERIOUSLY  Fr&auml;gt nicht nach, wenn das Rootverzeichnis gew&auml;hlt wird.
+  filespec      Der zu l&ouml;schende Verzeichnisbaum, z.B.: C:\OLDTREE.
+                Bitte beachten Sie, da&szlig; mit einem Befehl mehrere 
+                Verzeichnisb&auml;ume gel&ouml;scht werden k&ouml;nnen.
+  /?            Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Aus Performancegr&uuml;nden &uuml;berschreibt DELTREE nur den ersten Buchstaben
+  des Pfad-/Dateinamens mit einem '?'. Es l&ouml;scht nicht die Datei/den Pfad
+  selbst, sondern gibt den Platz frei, auf dem der Dateiinhalt steht.
+  FreeDOS und andere DOSse erkennen daran, da&szlig; die Datei/der Pfad
+  (myfile.txt hei&szlig;t dann ?yfile.txt; pathname hei&szlig;t dann ?athname)
+  gel&ouml;scht ist und zeigen sie dann auch nicht mehr an und lassen auch
+  keinen Zugriff darauf mehr zu. Programme wie <a href="../base/debug.htm">DEBUG</a>, die einen
+  Sektorzugriff haben, k&ouml;nnen den Inhalt der Datei/des Pfades aber noch
+  lesen. Solange Sie nicht auf das Laufwerk schreiben, haben Sie eine
+  Chance, die Dateien/den Pfad mit <a href="../base/undelete.htm">UNDELETE</a> wiederherzustellen; nur das
+  erste Zeichen des Dateinamens/Pfadnamens geht verloren (_yfile.txt/
+  _athname). Der einzige Weg, um einen DATEIINHALT ABSOLUT SICHER zu
+  l&ouml;schen, ist, das Medium mit anderen Dateien komplett zu beschreiben
+  oder ein Wipeouttool zu verwenden. Der einzige Weg, um einen DATEINAMEN/
+  PFADNAMEN ABSOLUT SICHER zu l&ouml;schen, ist, ihn zuerst mit <a href="../command/rename.htm">RENAME</a> <a href="../command/ren.htm">(REN)</a>
+  umzubenennen (z.B.: "a."/"a") und ihn erst danach zu l&ouml;schen (gilt
+  nur f&uuml;r 8.3 - nicht f&uuml;r lange Dateinamen!). 
+  Die Optionen m&uuml;ssen aus Kompatibilit&auml;tsgr&uuml;nden zu MS vor den 
+  Filespecs (zu l&ouml;schenden Dateien bzw. Verzeichnissen) genannt werden.
+  Filespecs k&ouml;nnen Dateien, Unterverzeichnisse oder DR DOS-Style 
+  Dateilisten sein.
+  DELTREE ist ein sehr gef&auml;hrlicher Befehl! Benutzen Sie ihn auf Ihre
+  eigene Verantwortung! Gel&ouml;scht ist gel&ouml;scht!
+  DELTREE hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    00  Erfolg
+    01  Etwas konnte nicht gel&ouml;scht werden
+    03  Abbruch durch Benutzer (Q, Control-C, Strg-C)
+    16  Genereller Syntax Error, oder Speicher&uuml;berlauf
+    17  Nicht gen&uuml;gend Speicher
+    18  DOS 3.0 oder h&ouml;her erforderlich
+    19  Problem mit der Listendatei
+    20  Interner Speicher&uuml;berlauf
+    21  Fehler beim Aufl&ouml;sen des Verzeichnisnamens (dots_fix)
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  deltree /y c:\oldtree
+  deltree c:\test2\   fragt bei jedem Unterverzeichnis von \test2 nach,
+                      ob es wirklich gel&ouml;scht werden soll
+  deltree c:\test2    l&ouml;scht alle Unterverzeichnisse von \test2
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/debug.htm">debug</a>
+  <a href="../command/del.htm">del</a>
+  <a href="../command/erase.htm">erase</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/ren.htm">ren</a>
+  <a href="../command/rename.htm">rename</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: jemmex</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: jemmex</h1>
+<pre>
+  JEMMEX is an Expanded Memory Manager which has an XMM already included.
+  JEMMEX has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE=[drive][path][jemmex.exe] [options]
+         drive  The drive letter, e.g. C:
+         path   The directory, e.g. \example\
+  or run it from the command line:
+  [drive][path][jemmex.exe] [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+ +A20/NOA20     A20-disable emulation on/off (default on).
+  A20METHOD:m   Set A20 switch method. Possible values for m are
+                KBC, PS2, BIOS, FAST, PORT92 and ALWAYSON.
+  ALTBOOT       Use alternate reboot strategy.
+  B=####        Specify lowest segment address for EMS banking
+                (default=4000).
+  D=###         Set DMA buffer size in kB (default=64, max is 128).
+  EMX           Increased EMX DOS extender compatibility.
+  FASTBOOT      Fast reboot. Requires JemmEx to be loaded in CONFIG.SYS.
+  FRAME=E000    Set EMS page frame (FRAME=NONE disables frame). Any value
+                between 8000 and E000 is accepted, but not all will work.
+  HMAMIN=n      Set minimum amount in Kb to allocate the HMA.
+  I=D000-D7FF   Force a region to be used for UMBs. Without this option
+                range C000-EFFF is scanned for unused pages. May also
+                be used to add (parts of) regions A000-BFFF or F000-F7FF
+                as UMBs. Don't use this option if you don't know what you
+                are doing!
+  I=TEST        Scan ROMs for unused pages, include found regions as UMBs.
+  [MAX=]#####   Limit for VCPI (and EMS if &lt; 32M) memory in kB
+                (default 120 MB).
+  MAXEXT=n      Limit extended memory usage to n kB.
+  MIN=#####     Reserve up to ##### kB for EMS/VCPI memory on init
+                (default=0).
+  NOCHECK       Disallow access to address space without RAM (MMIO).
+  NOE801        Don't use Int 15h, E801h to get amount of ext. memory.
+  NOE820        Don't use Int 15h, E820h to get amount of ext. memory.
+  NOEMS         Disable EMS handling.
+  NODYN         No dynamic XMS memory allocation (use MIN= to set fix
+                amount).
+  NOHI          Don't move resident part into first UMB.
+  NOINVLPG      Don't use INVLPG opcode.
+ +PGE/NOPGE     Page Global Enable feature usage on/off (default off).
+  RAM/NORAM     Try to supply UMBs on/off (default on).
+  S=D000-D7FF   Assume Shadow-RAM activated by UMBPCI, include it as UMB
+  SB            SoundBlaster driver compatibility mode
+  SPLIT         Regain partially used EPROM 4k pages for UMBs.
+ +VCPI/NOVCPI   VCPI Support on/off (default on).
+  VDS/NOVDS     Virtual DMA Services on/off (default on).
+ +VME/NOVME     V86-Mode Extensions on/off (default on).
+  VERBOSE       Display additional details during start (abbr: /V).
+  X=D000-D7FF   Exclude region from being touched or used by JemmEx.
+  X=TEST        Scan memory region C000-EFFF for UMB exclusion.
+  X2MAX=n       Max. value in Kb for XMS V2 free memory report
+                (default=65535).
+  XMSHANDLES=n  Number of available XMS handles (8&lt;=n&lt;=128, default=32).
+  /?            Shows the help.
+ '+': option can be set dynamically by running JemmEx from the command
+      line.
+  When invoked from the command line JemmEx additionally will understand:
+  LOAD          install
+  UNLOAD        uninstall
+</pre>
+<h2>Comments:</h2>
+<pre>
+  JEMMEX requires a 80386+ CPU. Load JEMMEX as DEVICE=JEMMEX.EXE in
+  CONFIG.SYS (although it is an ".exe"-file!
+  JEMMEX has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  JEMMEX most likely is the better choice than <a href="../base/himemx.htm">HIMEMX</a> / <a href="../base/jemm386.htm">JEMM386</a> because
+  it will need less DOS memory than an external XMM + JEMM386.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\jemmex.exe
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

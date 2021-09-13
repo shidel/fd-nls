@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: append</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: append</h1>
+<pre>
+  APPEND erm&ouml;glicht es Programmen, Datendateien in angegebenen
+  Verzeichnissen so zu &ouml;ffnen, als wenn die Dateien im momentanen
+  Verzeichnis w&auml;ren.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  APPEND [[Laufwerk]Pfad[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+  APPEND ;
+  APPEND [/?]
+         Laufwerk  Der Laufwerksbuchstabe, z.B.: C:
+         Pfad      Der zu w&auml;hlende Pfad, z.B.: \Beispiel\
+                   [Laufwerk][Pfad] sind das Laufwerk und Verzeichnis,
+                   in dem nach Dateien gesucht werden soll, 
+                   z.B.: C:\Beispiel
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /X[:ON]    Erweitert APPEND zu einem Suchpfad f&uuml;r ausf&uuml;hrbare Dateien
+             und l&auml;&szlig;t diese auch ausf&uuml;hren.
+  /X:OFF     APPEND kann nur verwendet werden, um Dateien zu &ouml;ffnen. 
+             Standard ist /X:OFF
+  /PATH:ON   Durchsucht auch dann die mit APPEND definierten Verzeich-
+             nisse, wenn ein konkreter Pfad zur Datei mit angegeben wird.
+             Dies ist die Standardeinstellung.
+  /PATH:OFF  Durchsucht nur dann die mit APPEND definierten Verzeich-
+             nisse, wenn KEIN konkreter Pfad zur Datei mit angegeben
+             wird.
+  /E         Speichert den APPEND-Suchpfad im Umgebungsspeicher
+             /E kann nur beim ersten Aufruf von APPEND verwendet werden.
+             Sie k&ouml;nnen in der gleichen Kommandozeile wie APPEND /E
+             keine  Pfade angeben.
+  APPEND ;   l&ouml;scht die Liste der zus&auml;tzlich angegebenen Suchpfade.
+  APPEND     Ohne Parameter zeigt APPEND die Liste der zus&auml;tzlich
+             angegebenen Suchpfade an.
+  /?         Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Benutzen Sie APPEND nicht zusammen mit Windows oder 32 Bit 
+  Erweiterungen.
+  APPEND installiert sich nach seinem ersten Aufruf als interner Befehl.
+  Ein zweiter und weitere Aufrufe D&uuml;RFEN NICHT den Dateipfad und die 
+  Dateiendung des APPEND-Befehles beinhalten.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+    Erste Verwendung:
+  C:\command\append.exe D:\Data\df1.dat
+    Falsche zweite Verwendung:
+  C:\command\append.exe D:\Data\df2.dat
+    Diese falsche Verwendung resultiert daraus, da&szlig; APPEND ein zweites
+    Mal durch die command.com geladen werden soll, obwohl es schon 
+    geladen ist. Dies erzeugt eine Fehlermeldung.
+    Richtige zweite Verwendung:
+  append D:\Data\df2.dat
+    Command.com sieht in der Liste der internen Befehle nach, findet 
+    dort das bereits gelandene APPEND und f&uuml;hrt es aus.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/path.htm">path</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eduardo Casino, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: himem</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: himem</h1>
+<pre>
+  HIMEM ist ein Verwalter f&uuml;r den hohen Speicherbereich.
+  HIMEM mu&szlig; in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen werden.
+  <b>HIMEM ist veraltet. Sie sollten stattdessen <a href="../base/himemx.htm">HIMEMX</a> oder
+  <a href="../base/jemmex.htm">JEMMEX</a> verwenden</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  HIMEM [/MAX=####] [/METHOD:xxx] [/HMAMIN=n] [/NUMHANDLES=m]
+        [/TESTMEM:ON|OFF] [/VERBOSE] [/NOABOVE16] [/X] [/LOG]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /MAX=#####      Begrenzt den von HIMEM kontrollierten Speicher 
+                  auf ##### KB.
+  /METHOD:xxx     Spezifiziert die Methode, die f&uuml;r das A20 "Handling"
+                  verwendet wird.
+                  M&ouml;gliche Werte f&uuml;r xxx:
+                  ALWAYSON    Nimmt an, da&szlig; die A20 Leitung 
+                              dauernd AN ist.
+                  BIOS        Verwendet das BIOS um die A20 
+                              Leitung zu steuern.
+                  FAST        Verwendet Port 92h, umgeht 
+                              den INT 15h Test.
+                  PS2         Verwendet Port 92h, umgeht
+                              den PS/2 Test.
+                  KBC         Verwendet den Tastaturcontroller.
+                  PORT92      Verwendet IMMER Port 92h.
+  /HMAMIN=n       Spezifiziert die Mindestgr&ouml;&szlig;e an HMA in KB, die
+                  ein Programm anfordern mu&szlig;, um Zugang zum HMA zu
+                  bekommen (Standard: 0 KB).
+  /NOX2MAX32      Keine Begrenzung des Speicherbereichs f&uuml;r XMS 2
+                  (Standard).
+  /NUMHANDLES=m   Setzt die maximale Anzahl der "Handles", die f&uuml;r
+                  Programme erh&auml;ltlich sind. Standard ist 72, Minimum
+                  ist 8, Maximum ist 128.
+  /TESTMEM:ON|OFF F&uuml;hrt einen umfangreichen Speichertest aus (ON) oder
+                  &uuml;bergeht ihn (OFF). Standard ist OFF.
+  /VERBOSE        Gibt w&auml;hrend der Installation Zusatzinformationen
+                  aus. Hilfreich f&uuml;r Fehlerberichte.
+  /NOABOVE16      Verwendet nicht die INT 15h Funktion E801h um Speicher
+                  &gt; 64 MB anzuzeigen, d.h. es werden nur die unteren
+                  64 MB verwendet.
+  /X              Verwendet nicht die INT 15 Funktion E820h um Speicher
+                  &gt; 64 MB anzuzeigen.
+  /X2MAX32        Begrenzt den XMS 2.0 frei/erh&auml;ltlich Speicherbericht
+                  auf 32 MB - 1 KB. (Standard).
+  /LOG            Gibt die Treiberaktivit&auml;t in einer log-Datei aus.
+  /?              Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  HIMEM erfordert eine 80386+ CPU. <a href="../base/emm386.htm">EMM386</a> kann erst nach diesem
+  Treiber geladen werden. Laden Sie HIMEM mit DEVICE=HIMEM.EXE in
+  der CONFIG.SYS (obwohl es eine ".exe"-Datei ist)!
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\himem.exe
+    device=c:\fdos\bin\emm386.exe
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

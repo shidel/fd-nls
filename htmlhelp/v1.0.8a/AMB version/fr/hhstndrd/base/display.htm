@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : display</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : display</h1>
+<pre>
+  DISPLAY charge les capacit&eacute;s de gestion de page de code de la console.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+DISPLAY nomp&eacute;riph[:]=(TypeMat&eacute;riel,[n|(n1[,n2]...)],[m|(m,p)])
+        [/V] [/C] [/NOHI]
+</pre>
+<h2>Options:</h2>
+<pre>
+  nomp&eacute;riph     Un nom de p&eacute;riph&eacute;rique valide (ignor&eacute; dans cette
+                version). Utilisez ce que vous souhaitez (tel que CON).
+  TypeMat&eacute;riel  Une &eacute;tiquette de type de mat&eacute;riel support&eacute; (tel que EGA
+                ou VGA)
+  n             page de code mat&eacute;riel par d&eacute;faut (pour une page de code
+                mat&eacute;rielle). Ce sera normalement 437.
+  n1, n2,...    Pages de code mat&eacute;rielles, si plus d'une est utilis&eacute;e
+                (g&eacute;n&eacute;ralement vous devrez utiliser des pilotes tiers
+                pour l'arabe/l'h&eacute;breu)
+  m             Nombre de tampons pour les pages de code pr&eacute;par&eacute;es
+                (1 par d&eacute;f).
+  p             Param&egrave;tre additionnel sp&eacute;cifique au mat&eacute;riel.
+  /C            ExClusif : ne charge pas si DISPLAY est d&eacute;j&agrave; pr&eacute;sent.
+  /NOHI         D&eacute;sactive l'utilisation de la m&eacute;moire XML pour les
+                pages de code pr&eacute;par&eacute;es.
+  /V            Verbeux : informations &eacute;tendues.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+Mat&eacute;riel pris en charge :
+  VGA     Adaptateurs VGA. 3 sous polices seront utilis&eacute;es dans tous
+          les cas.
+  EGA     D&eacute;termine automatiquement le nombre de sous polices &agrave; utiliser.
+  EGA 14  Force l'utilisation de deux sous polices (8x8 et 8x14).
+  EGA 8   Force l'utilisation de seulement une sous police (8x8).
+  LCD     Adaptateurs LCD (identique &agrave; EGA 8).
+
+          Pour tous les adaptateurs ci-dessus, le param&egrave;tre p tentera de
+          forcer le nombre de sous polices &agrave; utiliser (1=8x8, 2=8x8,
+          8x14, 3=8x8, 8x14, 8x16) d&egrave;s que le mat&eacute;riel l'autorise.
+  CGA     Adaptateur CGA (FreeDOS GRAFTABL). Le param&egrave;tre p est ignor&eacute;.
+
+  DISPLAY ne produit aucun <a href="../batch/if.htm#comment">CODE DE SORTIE</a>, mais offre un jeu d'erreurs
+  via la fonction int2Fh/AD03h pour chaque fonction. Vous devriez le
+  v&eacute;rifier &agrave; la suite de chaque op&eacute;ration non couronn&eacute;e de succ&egrave;s.
+
+  Code d'erreur Op&eacute;ration    Signification
+  --------------------------------------------------------------
+  1            All           Fonction inconnue
+  26           Select        La page de code n'&eacute;tait pas pr&eacute;par&eacute;e
+  26           Query         Aucune page de code n'&eacute;tait d&eacute;j&agrave;
+                             s&eacute;lectionn&eacute;e
+  27           Select        KEYB a &eacute;chou&eacute; &agrave; changer la page de code
+  27           Query         Erreur du p&eacute;riph&eacute;rique
+  27           Prepare       La page de code n'a pas &eacute;t&eacute; trouv&eacute;e dans
+                             le fichier
+  29           Select        Erreur du p&eacute;riph&eacute;rique
+  29           Prepare       Erreur du p&eacute;riph&eacute;rique ou erreur XMS
+  31           Prepare       Fichier source endommag&eacute; ou erreur XMS
+  31           End Prepare   Aucun Start prepare trouv&eacute;
+  --------------------------------------------------------------
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DISPLAY CON=(VGA,437,1)
+    Adaptateur VGA dont la page de code BIOS est 437. 1 tampon pour la
+    page de code logiciel est utilis&eacute;. C'est le standard pour la
+    plupart des cas.
+
+  DISPLAY CON=(EGA,,2)
+    L'adaptateur graphique est EGA ou mieux, mais n'est pas connu. La
+    page de code par d&eacute;faut du BIOS est aussi inconnue. Deux tampons
+    sont n&eacute;cessaires.
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/graftabl.htm">graftabl</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keyb.htm">keyb</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/printer.htm">printer.sys</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Aitor SANTAMARIA MERINO, mis &agrave; jour en 2008
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

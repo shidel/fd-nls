@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Mise en r&eacute;seau de FreeDOS - NTCPDRV</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top"></a>Mise en r&eacute;seau de FreeDOS - NTCPDRV</h1>
+<h2><a name="zzz"></a>Vue d'ensemble :</h2>
+<pre>
+  Le pilote Trumpet TCP est un <a href="../network/ldtcpipk.htm">noyau TCP/IP</a> externe. Il fonctionne
+  en tant que programme TSR (=terminate and stay resident) qui s'ex&eacute;cute
+  par-dessus un pilote de paquets. TCPDRV fut cr&eacute;&eacute; en 1992 par Peter
+  Tattam, programmeur au d&eacute;partement de psychologie de l'Universit&eacute; de
+  Tasmanie &agrave; Hobart, en Australie. Selon une biographie sur son site
+  Internet (voyez : <b>http://www.tattsoft.com/aboutUs.htm (*01)</b>), il a
+  d&eacute;velopp&eacute; le shareware "Trumpet Newsreader" peut de temps auparavant
+  et a &eacute;crit le pilote TCP car rien d'autre n'&eacute;tait ouvertement
+  disponible pour Turbo Pascal. Le d&eacute;veloppement a par la suite men&eacute; au
+  logiciel Windows populaire "Trumpet Winsock", que Tattam a vendu
+  via son entreprise "Trumpet International of Australia", fond&eacute;e en
+  1994 (voyez : <b>http://www.trumpet.com.au/ (*02)</b>).
+  TCPDRV 2.01 a &eacute;t&eacute; publi&eacute; en tant que "version exp&eacute;rimentale". En
+  1993 une version a suivi, qui fut appel&eacute; NTCPDRV. Les am&eacute;liorations
+  comprenaient une utilisation m&eacute;moire plus efficace et des corrections
+  de bogues (voyez : <b>http://alumnus.caltech.edu/~dank/trumpet/ (*03)</b>).
+  Les deux versions et le fichier textuel TCP201.SPE (voyez : <b>http://
+  wiretap.area.com/Gopher/pub/tsoft/trumpet-abi/tcp201.specification
+  (*04)</b>) - la sp&eacute;cification pour les programmeurs - ont &eacute;t&eacute; rendus
+  disponibles au public depuis le site de Trumpet (voyez : <b>http://
+  www.trumpet.com.au/dosapps/ (*05)</b>).
+  Les questions de licence sur ce site sont courtes et simples : "Ces
+  applications DOS sont fournies gratuitement sans prise en charge."
+  Gr&acirc;ce &agrave; la popularit&eacute; des logiciels trumpet, il peut &ecirc;tre t&eacute;l&eacute;charg&eacute;
+  depuis divers miroirs (cf. <b>http://wiretap.area.com/Gopher/pub/tsoft/
+  trumpet-abi/ (*06)</b>). Une version commerciale du pilote TCP est
+  disponible aupr&egrave;s de la nouvelle soci&eacute;t&eacute; de Peter Tattam, c'est-&agrave;-dire
+  "Tattam Software Enterprises" (cf. <b>http://www.tattsoft.com/
+  index.php/products/tcpip-driver.html (*07)</b>).
+</pre>
+<h2><a name="aaa"></a>Installation et configuration:</h2>
+<pre>
+  T&eacute;l&eacute;chargez NTCPDRV.ZIP (voyez : <b>http://wiretap.area.com/Gopher/
+  pub/tsoft/trumpet-abi/ntcpdrv.zip (*08)</b>) et veuillez l'extraire.
+  Si vous avez besoin d'une documentation, t&eacute;l&eacute;chargez &eacute;galement
+  l'ancienne version TCP201.ZIP (cf. <b>http://wiretap.area.com/Gopher/
+  pub/tsoft/trumpet-abi/tcp201.zip (*09)</b>), qui comprend &eacute;galement
+  plusieurs applications.
+  Le <a href="../network/ldtcpipk.htm">kernel TCP/IP</a> doit &ecirc;tre configur&eacute; avec les r&eacute;glages de votre
+  <a href="../network/network.htm">r&eacute;seau</a>. Cela est effectu&eacute; soit par les param&egrave;tres de la ligne de
+  commande, soit, en d&eacute;finissant des variables d'environnement DOS.
+  Donc d&eacute;marrez NTCPDRV.EXE avec une commande comme celle-ci (en une
+  ligne) :
+      NTCPDRV -ip=192.168.1.80 -netmask=255.255.255.0
+      -gateway=192.168.1.1 -dns-host=192.168.1.1
+  ou configurez-le d'abord en d&eacute;finissant des variables d'environnement:
+  Ajoutez ces lignes &agrave; <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>
+  ou &agrave; un fichier batch qui sera lanc&eacute; avant NTCPDRV.EXE.
+      --- <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ---
+      set ip=192.168.1.80
+      set netmask=255.255.255.0
+      set gateway=192.168.1.1
+      set dns=192.168.1.1
+  Comme indiqu&eacute; sur l'image ci-dessous, le noyau cherche automatiquement
+  un vecteur d'interruption utilisable, apr&egrave;s qu'il eut &eacute;t&eacute; d&eacute;marr&eacute;.
+  Vous pouvez aussi utiliser le param&egrave;tre "-vec=61" pour sp&eacute;cifier par
+  exemple le vecteur 0x61 qui est fourni par le pilote de paquets pour
+  les applications. Voyez la documentation pour davantage de
+  possibilit&eacute;s.
+    (Image : messages de d&eacute;marrage de NTCPDRV)
+  Apr&egrave;s que le <a href="../network/ldtcpipk.htm">noyau TCP/IP</a> de Trumpet ait &eacute;t&eacute; d&eacute;marr&eacute;, vous serez
+  en mesure de lancer plusieurs applications <a href="../network/tcpip.htm">TCP/IP</a> qui n&eacute;cessitent
+  un <a href="../network/ldtcpipk.htm"> noyau TCP/IP</a> (par exemple Trumpet Newsreader, les serveurs web
+  DOS Sioux ou Webserv). Votre machine sera aussi accessible depuis le
+  <a href="../network/network.htm">r&eacute;seau</a>, essayez simplement une requ&ecirc;te ping.
+    (Image : Ping depuis une machine Windows)
+  Sur l'image ci-dessus, nous envoyons un ping &agrave; la machine sous
+  FreeDOS et au NTCPDRV TSR actif depuis un autre ordinateur sous
+  Windows XP. Ce n'est pas la performance la plus rapide et le premier
+  paquet et perdu.
+
+  Puis nous envoyons un ping depuis une machine Debian GNU/Linux :
+    (Image : ping depuis une machine GNU/Linux)
+  Le premier paquet n&eacute;cessite &agrave; nouveau plus de temps, le troisi&egrave;me
+  est re&ccedil;u dans un d&eacute;lai raisonnable. Au moins nous voyons ceci : le
+  <a href="../network/network.htm">r&eacute;seau</a> est en place et le pilote TCP Trumpet r&eacute;pond &agrave; nos appels.
+
+  <b>(*01) http://www.tattsoft.com/index.php/about-us.html</b>
+  <b>(*02) OK</b>
+  <b>(*03) https://web.archive.org/web/20100127193745/http://alumnus.
+        caltech.edu/~dank/trumpet/</b>
+  <b>(*04) ftp://ftp.tsoft.net/pub/tsoft/trumpet-abi/</b>
+  <b>(*05) http://www.trumpet.com.au/ ?</b>
+  <b>(*06) http://ftp.gnome.org/mirror/archive/ftp.sunet.se/pub/
+        simtelnet/trumpet/tcp-abi/</b>
+  <b>(*07) OK</b>
+  <b>(*08) ftp://ftp.oldskool.org/pub/tvdog/internet/ntcpdrv.zip</b>
+  <b>(*09) ftp://ftp.oldskool.org/pub/tvdog/internet/tcp201.zip
+        ftp://ftp.oldskool.org/pub/tvdog/internet/tcp201.txt</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Allemagne), modifi&eacute; en 2010
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Pour plus d'informations, <a href="../network/intro.htm#ddd">voyez ici</a>.
+
+  La permission est accord&eacute;e de copier, distribuer et/ou modifier ce
+  document selon les termes de la licence de documentation libre GNU,
+  version 1.2 ou toute version ult&eacute;rieure publi&eacute;e par la Free Software
+  Foundation.
+  Une copie de la licence est incluse dans la section intitul&eacute;e
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

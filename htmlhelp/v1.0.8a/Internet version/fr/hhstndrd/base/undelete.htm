@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : undelete</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : undelete</h1>
+<pre>
+  UNDELETE tente la r&eacute;cup&eacute;ration de fichiers effac&eacute;s.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  undelete [r&eacute;pertoire] [options]
+           r&eacute;pertoire  L'emplacement o&ugrave; se trouve le fichier &agrave; r&eacute;cup&eacute;rer.
+                       Si aucun r&eacute;pertoire n'est entr&eacute;, le r&eacute;pertoire
+                       courant actuel est suppos&eacute;.
+  Il existe &eacute;galement des options plus avanc&eacute;es pour undelete :
+  undelete /action quoi destination [taille]
+</pre>
+<h2>Options :</h2>
+<pre>
+    /ALL         R&eacute;cup&egrave;re TOUS les fichiers dans un r&eacute;pertoire donn&eacute;
+                 sans demander confirmation pour chaque fichier.
+    /LIST        Liste les fichiers qui peuvent &ecirc;tre r&eacute;cup&eacute;r&eacute;s sans
+                 demander &agrave; r&eacute;cup&eacute;rer, aucune action n'est effectu&eacute;e.
+    /E           Exporte tout fichier r&eacute;cup&eacute;r&eacute; vers un disque et
+                 r&eacute;pertoire externes. Avec cette option le disque
+                 source n'est pas modifi&eacute;.
+  [action]s possibles :
+    /syssave     Sauvegarde la 1re ou 2de copie du FAT, du secteur
+                 d'amor&ccedil;age ou du r&eacute;pertoire racine. S&eacute;lectionnez fat1,
+                 fat2, boot, ou root dans [quoi].
+    /follow      Recherche un fichier (&eacute;ventuellement effac&eacute;) en
+                 commen&ccedil;ant &agrave; la grappe [quoi] et enregistre les
+                 donn&eacute;es dans un fichier sp&eacute;cifi&eacute; en tant que
+                 [destination]. La sortie de DIRSAVE vous
+                 aide &agrave; trouver le bon num&eacute;ro de cluster.
+    /dirsave     Comme FOLLOW, mais sauvegarde un r&eacute;pertoire dans un
+                 fichier. Le r&eacute;pertoire [quoi] doit &ecirc;tre indiqu&eacute; avec
+                 un chemin absolu commen&ccedil;ant par \ OU par un num&eacute;ro
+                 de cluster. Affiche aussi la liste technique du
+                 r&eacute;pertoire sur l'&eacute;cran.
+    destination  doit se trouver sur un lecteur autre que le lecteur
+                 courant. Les donn&eacute;es sont toujours lues/r&eacute;cup&eacute;r&eacute;s
+                 depuis le lecteur depuis lequel undelete est lanc&eacute;.
+    taille       Sp&eacute;cifier une taille n'est pas n&eacute;cessaire, mais vous
+                 pouvez passer outre l'auto-d&eacute;tection en sp&eacute;cifiant une
+                 taille en y sp&eacute;cifiant une taille (en clusters pour
+                 FOLLOW, en secteurs pour DIRSAVE).
+</pre>
+<h2><a name="comment"></a>Commentaires :</h2>
+<pre>
+  UNDELETE ne fonctionne que sur les disques FAT12 / FAT16 !
+  Utilisation d'UNDELETE :
+    1. Trouver des r&eacute;pertoires et fichiers r&eacute;cup&eacute;rables :
+       Ex&eacute;cutez undelete en mode DIRSAVE. Vous verrez les entr&eacute;es
+       effac&eacute;es de r&eacute;pertoires indiqu&eacute;es de fa&ccedil;on sp&eacute;ciale, et vous
+       verrez leur nombre de cluster sur l'&eacute;cran. Vous pouvez rediriger
+       la sortie vers un fichier, par exemple :
+         undelete /DIRSAVE \ x:\rescued.dir &gt; y:\logfile
+       O&ugrave; logfile contiendra la sortie de l'&eacute;cran.
+       Si vous avez les utilitaires FreeDOS install&eacute;s sur votre syst&egrave;me,
+       vous pourriez utiliser quelque chose comme ci-dessous &agrave; la place:
+         undelete /DIRSAVE \ x:\rescued.dir | <a href="../util/tee.htm">TEE</a> y:\logfile
+         undelete /DIRSAVE \ x:\rescued.dir | <a href="../util/tee.htm">TEE</a> y:\logfile | <a href="../base/more.htm">MORE</a>
+       Ces commandes afficheront les informations sur l'&eacute;cran en plus
+       de les sauvegarder dans le fichier logfile.
+    2. R&eacute;cup&eacute;ration d'un fichier qu'undelete peut traiter :
+      Trouvez le cluster de d&eacute;marrage du fichier avec DIRSAVE comme
+      expliqu&eacute; ci-dessus. Utilisez alors FOLLOW sur ce cluster, par
+      exemple :
+        undelete FOLLOW 1234 x:\rescued.bin
+      enregistrerait les contenus du fichier effac&eacute; d&eacute;marrant sur le
+      cluster 1234 dans le fichier rescued.bin sur le lecteur x.
+  Utilisations avanc&eacute;es
+    - R&eacute;cup&eacute;ration depuis l'int&eacute;rieur des r&eacute;pertoires effac&eacute;s
+      Ex&eacute;cutez DIRSAVE sur un r&eacute;pertoire existant pour trouver le
+      cluster de d&eacute;marrage du r&eacute;pertoire effac&eacute;. Ex&eacute;cutez alors DIRSAVE
+      sur ce cluster pour trouver les fichiers et r&eacute;pertoires effac&eacute;s
+      &agrave; l'int&eacute;rieur du dossier effac&eacute;... et ainsi de suite avec les
+      num&eacute;ros de clusters successifs n&eacute;cessaires.
+    - R&eacute;cup&eacute;ration de fichiers partiellement &eacute;cras&eacute;s
+      Utilisez FOLLOW sur les fichiers nouveaux existants et passez
+      outre la valeur de taille (en clusters, undelete indique la taille
+      du cluster actuel sur le lecteur lorsque vous commencez undelete).
+      Donc, si vous avez &eacute;cras&eacute; un ancien grand fichier "ANCIEN" avec
+      un nouveau petit fichier "NOUVEAU" :
+      * trouvez le num&eacute;ro de cluster de "NOUVEAU"
+      * indiquez la taille du fichier "ANCIEN" en utilisant FOLLOW
+      * La sortie r&eacute;cup&eacute;r&eacute;e commencera avec les contenus de "NOUVEAU"
+        mais devrait contenir les parties non &eacute;cras&eacute;es du fichier
+        "ANCIEN" aussi, avec un peu de chance.
+    - Utilisation d'undelete pour sauvegarder en "miroir" les donn&eacute;es
+      importantes d'un lecteur
+      Si votre syst&egrave;me de fichiers est totalement endommag&eacute;, vous pouvez
+      essayer de r&eacute;&eacute;crire les donn&eacute;es importantes sauvegard&eacute;es par
+      SYSSAVE. Les informations importantes doivent &ecirc;tre stock&eacute;es sur
+      un autre disque. Vous pouvez aussi vouloir utiliser la commande
+      <a href="../base/mirror.htm">MIRROR</a>, qui est plus simple &agrave; utiliser mais qui stocke les
+      informations sauvegard&eacute;es &agrave; la fin du disque.
+      * Ex&eacute;cutez undelete en mode SYSSAVE pour les 4 sources : fat1,
+        fat2, boot, root
+      * Gardez les fichiers en un endroit s&ucirc;r
+    - Restauration des donn&eacute;es sauvegard&eacute;es en "miroir"
+      Cela peut &ecirc;tre n&eacute;cessaire dans certains cas de plantage de disque.
+      AVERTISSEMENT : Cela est pour les experts, les r&eacute;parateurs et les
+      gens vraiment d&eacute;sesp&eacute;r&eacute;s seulement ! Effectuer cette op&eacute;ration de
+      mani&egrave;re incorrecte ou non n&eacute;cessaire pourrait aggraver les choses!
+      * Collez les 4 sources ensemble dans l'ordre "boot fat1 fat2 root"
+        pour reconstruire la premi&egrave;re partie de votre partition, en
+        commen&ccedil;ant par le premier secteur.
+      * vous pourriez utiliser <a href="../base/debug.htm">DEBUG</a> (commande w) pour restaurer ces
+        informations
+      * Vous pouvez aussi rassembler les donn&eacute;es sauvegard&eacute;es et
+        existantes avec un &eacute;diteur hexad&eacute;cimal.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  - voir les <a href="#comment">commentaires</a> -
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../base/debug.htm">debug</a>
+  <a href="../command/del.htm">del</a>
+  <a href="../base/deltree.htm">deltree</a>
+  <a href="../command/erase.htm">erase</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/more.htm">more</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+  <a href="../util/tee.htm">tee</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Eric Auer, mis &agrave; jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

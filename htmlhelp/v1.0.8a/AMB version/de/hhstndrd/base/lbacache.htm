@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: lbacache</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: lbacache</h1>
+<pre>
+  Lbacache ist ein Zwischenspeicher-Programm (Cache) zur Verbesserung der
+  Leistung bei Zugriffen auf die Festplatte. Es erfordert <a href="../base/himemx.htm">XMS-Speicher</a>
+  und mindestens einen 386-Computer.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  Zum Laden:    LBACACHE  [Gr&ouml;&szlig;e] [DRV Plattenliste] [FLOP] [TUNA]
+                          [TUNW] [TUNS]
+  Wenn geladen: LBACACHE  [INFO] [SYNC] [STOP] [STAT] [ZERO]
+  F&uuml;r Hilfe:   LBACACHE  HELP|/HELP|/?
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Gr&ouml;&szlig;e   Gibt die Puffergr&ouml;&szlig;e an. Standard: 2048K. Bei 1 bis 2
+            Ziffern ist die Puffereinheit (im XMS) 256 Kilobyte, andern-
+            falls 1 wie z.B.: 'LBACACHE 8192'. Vor die Gr&ouml;&szlig;enangabe
+            kann auch noch das Schl&uuml;sselwort "BUF" gesetzt werden.
+  FLOP      Zwischenspeicherung bei Diskettenzugriffen (automatisch A:
+            und B:). Laden Sie zus&auml;tzlich das Programm TICKLE, um den
+            Diskettenzugriff zu beschleunigen. Bitte melden Sie Fehler.
+            Zum Beispiel k&ouml;nnten falsche Annahmen &uuml;ber die
+            Diskettengeometrie dazu f&uuml;hren, da&szlig; Daten bei Kopieraktionen
+            mit den Disketten besch&auml;digt werden. Wenn Sie nur 1,44 MB
+            Disketten in einem entsprechenden Laufwerk verwenden, sind
+            Fehler sehr unwahrscheinlich, aber nicht ausgeschlossen.
+  DRV Liste Auswahl von Festplatten, die zwischengespeichert werden
+            sollen. NULL bedeutet keine. Anstatt diese Option zu verwenden
+            wird dringend empfohlen LBAcache automatisch alle cachebaren
+            Festplatte entdecken zu lassen!
+            Die Liste kann  Ziffern von 0 bis 7 enthalten, f&uuml;r die BIOS-
+            Laufwerke 80h + x. z.B.:
+            023   BIOS Laufwerke 80h, 82h, 83h - erste, dritte und vierte
+                  Festplatte (hda, hdc, hdd in der Linux-Terminologie).
+            Wichtig: Erste BIOS-Festplatte bedeutet alle Laufwerks-
+            Buchstaben, die sich auf der ersten physischen Festplatte
+            befinden.
+  TUNA      voll assoziative Zwischenspeicherung: Durchsucht im schlimm-
+            sten Fall den ganzen Cache nach einem Sektor oder nach freien
+            Platz. Ist bei gro&szlig;en Caches langsamer, kann aber 
+            mehr Cachetreffer ergeben als bei der neuen (seit Juni 2004)
+            Standardsuche mit bis zu N (aktuelle Einstellung: 16)
+            Cache-Elementen (aktuelle Gr&ouml;&szlig;e eines Elements: 8kB).
+  TUNW      Zwischenspeicherung auch beim Schreiben: Wenn Daten auf die
+            Festplatte geschrieben werden, wird eine Kopie im Cache
+            gespeichert, selbst wenn dies auch bedeutet, in Erwartung des
+            sp&auml;teren Wiedereinlesens neuen Platz f&uuml;r die Daten zu reser-
+            vieren. Dies war der Standard bis Juli 2004. Schreibzugriffe
+            brauchen mehr Cache, aber dies ist n&uuml;tzlich f&uuml;r Aufgaben mit
+            einer Menge von tempor&auml;ren Dateien. Wenn Daten schon im Cache
+            gespeichert sind, werden diese aktualisiert unabh&auml;ngig von
+            dieser Option.
+  TUNS      belegt 320 Bytes RAM niedrigen Arbeitsspeicher f&uuml;r Stacks
+            (neu seit Juli 2004). Verwenden sie diese Option, wenn Sie
+            LBAcache in den oberen Speicher von JEMM386 oder einem
+            sonstigen DMA-problematischen UMB-Treiber laden m&ouml;chten und
+            ein SCSI-System haben, denn diese nutzen DMA f&uuml;r Geometrie-
+            Check-Aufrufe.
+            Beachten Sie, da&szlig; dieser Speicher per LBAcache STOP nicht 
+            freigegeben wird, da das Entlade-Protokoll daf&uuml;r zu viel
+            ge&auml;ndert werden m&uuml;sste.
+Nichtlade-Optionen:
+  INFO      Zeigt Cache-Statistiken und Informationen &uuml;ber LBAcache.
+            N&uuml;tzlich f&uuml;r Debugging-Zwecke, aber eher schwer zu
+            verstehen.
+  STAT      Zeigt nur eine leichter zu verstehende Cache-Statistik.
+  ZERO      Setzt die Cache-Statistiken Z&auml;hler auf Null.
+  SYNC      Synchronisiert alle laufenden LBAcache Puffer f&uuml;r alle
+            Laufwerke. Da LBAcache nie verz&ouml;gert schreibt, werden
+            dadurch alle zwischengespeicherten Daten vergessen.
+            Dies geschieht durch den Aufruf von int 13.46 (BIOS
+            Festplatte: eject) f&uuml;r alle cache-f&auml;higen Laufwerke
+            (0, 1, 0x80..0x87).
+            Es wird empfohlen danach LBACACHE ZERO anzuwenden, um die
+            Statistiken intuitiver lesen zu k&ouml;nnen.
+  STOP      Beendet und entfernt alle laufenden Instanzen von LBAcache und
+            gibt den XMS- und DOS-Speicher, den sie belegten, frei. Wenn
+            die Interrupt-Kette nicht wiederhergestellt werden kann,
+            verbleibt LBAcache im Speicher, aber mit einer reduzierten
+            Gr&ouml;&szlig;e von &lt; 500 Bytes. Der XMS-Speicher wird immer
+            freigegeben. Wenn LBAcache als letztes speicherresidentes
+            Festplattenprogramm geladen wurde, sollte es sich meistens
+            entladen lassen. Beim mehrmaligem Laden von LBAcache kann oft
+            nur die letzte Instanz vollst&auml;ndig entladen werden.
+  COOL      versetzt den Cache in den "cool"-Modus: Zugriff auf Sektoren
+            im Cache ist eingefroren (so weit wie m&ouml;glich - verwenden Sie
+            TUNA um den Effekt zu verbessern). Siehe die Erl&auml;uterungen
+            zu BINSEL, um herauszufinden, ob dieser experimentelle
+            (9/2004) Modus f&uuml;r Sie n&uuml;tzlich ist.
+  WARM      Versetzt den Cache in den "melt"-Modus: Sektoren, auf die
+            zugegriffen wurde, werden aufgetaut (geschmolzen? :-)). Siehe
+            oben.
+            Hinweis: WARM, COOL und TEMP zeigen alle Diagnose-Status Werte
+            f&uuml;r die Fehlersuche, zum Beispiel den aktuellen "locked
+            element count". Danach wird die normale Ausgabe von STAT
+            angezeigt.
+  TEMP      Stellt die "normale Temperatur" des Caches wieder her: Der
+            eingefrorene Zustand des aktuellen Inhaltes wird so weit wie
+            m&ouml;glich erhalten (wenn der Cache wirklich voll ist, werden
+            Dinge geschmolzen).
+            Jetzt haben Sie reservierte Teile des Caches f&uuml;r gefrorene /
+            gesperrte Daten und den Rest des Cache im klassischen Modus.
+            (9/2004)
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  F&uuml;r weitere Informationen siehe lbacache.txt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  In der CONFIG.SYS / FDCONFIG.SYS:
+    INSTALL=LBACACHE.COM [Argumente]
+  oder
+    INSTALLHIGH=LBACACHE.COM [Argumente]
+  oder auf der Kommandozeile oder in AUTOEXEC.BAT:
+    LBACACHE [Argumente]
+  oder
+    LOADHIGH LBACACHE.COM [Argumente]
+
+    LBACACHE              Aufruf des Kommandos ohne Optionen benutzt bei
+                          Zugriffen auf Festplatten (falls durch das BIOS
+                          ansprechbar) einen Cache mit der Standard-Puffer
+                          Gr&ouml;&szlig;e.
+    LBACACHE buf 20 flop  verwendet einen 5MB gro&szlig;en Cache beim Lesen
+                          von Festplatten und Disketten.
+    LBACACHE info         zeigt Informationen &uuml;ber den Zwischenspeicher.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/cdrcache.htm">cdrcache.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/tickle.htm">tickle</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, &uuml;bersetzt 2011 von J. Jenderek.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

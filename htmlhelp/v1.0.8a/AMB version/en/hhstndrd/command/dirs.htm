@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: dirs</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: dirs</h1>
+<pre>
+  DIRS displays the contents of the directory stack.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DIRS [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  DIRS displays the content of the directory stack which is filled up
+  by <a href="../command/pushd.htm">PUSHD</a> and emptied by <a href="../command/popd.htm">POPD</a>.
+  DIRS is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+this command            changes the current directory to / shows:
+============            =========================================cd c:\fdos\bin          c:\fdos\bin
+pushd c:\games          c:\games      (and stores c:\fdos\bin)
+pushd c:\utils          c:\utils      (and stores c:\games)
+pushd c:\packages       c:\packages   (and stores c:\utils)
+dirs                    shows the directories stored by pushd:
+                          0001=c:\fdos\bin
+                          0002=c:\games
+                          0003=c:\utils
+popd                    c:\utils      (and removes c:\utils (0003)
+                                      from directory stack)
+popd                    c:\games      (and removes c:\games (0002)
+                                      from directory stack)
+popd                    c:\fdos\bin   (and removes c:\fdos\bin (0001)
+                                      from directory stack)
+popd                    shows the message: 
+                          'Directory stack empty'
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/cd.htm">cd</a>
+  <a href="../command/chdir.htm">chdir</a>
+  <a href="../command/pushd.htm">pushd</a>
+  <a href="../command/popd.htm">popd</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : device</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : device</h1>
+<pre>
+  DEVICE charge un pilote dans la m&eacute;moire basse ou conventionnelle,
+  tandis que
+  DEVICEHIGH charge le pilote dans la m&eacute;moire haute.
+  DEVICE est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  device=[lecteur][chemin]nomfichier [options]
+         lecteur    La lettre du lecteur, par exemple C:
+         chemin     Le r&eacute;pertoire, par exemple \exemple\
+         nomfichier Le (fichier de) pilote &agrave; charger, par exemple
+                    himemx.exe
+</pre>
+<h2>Options :</h2>
+<pre>
+  options  Il s'agit l&agrave; d'options pour le programme du
+           pilote, pas pour la commande 'device'.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  DEVICE charge le pilote de p&eacute;riph&eacute;rique sp&eacute;cifi&eacute; par
+  lecteur:\chemin\nomfichier dans la m&eacute;moire conventionnelle [640 Ko].
+  Les options sont pour le pilote ; veuillez vous r&eacute;f&eacute;rer &agrave; la
+  documentation de votre p&eacute;riph&eacute;rique pour les options prises en charge
+  et leur utilisation.
+  Comme DEVICE charge le pilote dans la m&eacute;moire basse ou conventionnelle,
+  cela laisse moins d'espace m&eacute;moire pour les autres pilotes ou
+  programmes dans la m&eacute;moire basse ou conventionnelle. Cela peut
+  provoquer des probl&egrave;mes lors de l'ex&eacute;cution des programmes ou le
+  chargement d'autres pilotes.
+  DEVICE est une commande interne &agrave; kernel.sys et ne n&eacute;cessite
+  aucun autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    DEVICE=C:\FDOS\DRIVERS\UIDE.SYS /S125 /D:MYDVD
+  DANS UN MENU :
+    23?DEVICE=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    23?DEVICE=C:\FDOS\DRIVERS\UIDE.SYS /S125 /D:MYDVD
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: loadhigh (lh)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: loadhigh (lh)</h1>
+<pre>
+  LOADHIGH loads a program into the upper memory area.
+  Since LOADHIGH loads the program into high memory there 
+  remains more free space in low or conventional memory 
+  for other programs.
+  LOADHIGH is a <a href="../batch/index.htm">BATCH-FILE</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> command.
+  It can also be used in command line.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  LOADHIGH [drive][path]filename [parameters]
+  LOADHIGH [/L:region1[,minsize1][;region2[,minsize2]...] [/S] [/?]]
+           [drive][path]filename [parameters]
+           drive     The drive letter, e.g. C:
+           path      The directory, e.g. \example\
+           filename  The name of the program to load into the upper 
+                     memory area, e.g. edit.exe
+</pre>
+<h2>Options:</h2>
+<pre>
+  /L:region1[,minsize1][;region2[,minsize2]]...
+                Specifies the region(s) of memory into which to load 
+                the program. Region1 specifies the number of the first 
+                memory region; minsize1 specifies the minimum size, if 
+                any, for region1. Region2 and minsize2 specify the 
+                number and minimum size of the second region, if any. 
+                You can specify as many regions as you want.
+  /S            Shrinks a UMB to its minimum size while the program is
+                loading.
+  /?            Shows the help
+  parameters    These are the options to the program that you are loading.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  LOADHIGH can also be used outside a batch file.
+  To load up a driver or a program into high memory you first
+  have to load a driver like (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a>, <a href="../base/jemmex.htm">JEMMEX</a>, (<a href="../base/emm386.htm">EMM386</a>)
+  or <a href="../base/jemm386.htm">JEMM386</a> in config.sys. You can also use <a href="../batch/lh.htm">LH</a> instead of LOADHIGH.
+  LOADHIGH is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN A .BAT FILE / AUTOEXEC.BAT:
+    loadhigh c:\fdos\bin\edit.exe
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../cnfigsys/install.htm">install</a>
+  <a href="../cnfigsys/installh.htm">installhigh</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../batch/lh.htm">lh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2011 and 2020 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

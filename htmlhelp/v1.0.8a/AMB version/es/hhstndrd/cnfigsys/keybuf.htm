@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: keybuf</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: keybuf</h1>
+<pre>
+  KEYBUF reubica el b&uacute;fer del teclado de la ubicaci&oacute;n predeterminada en 
+  0x40:0x1e-0x3e en 0x40:n-m.
+  KEYBUF es un comando de <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  keybuf=n[,m]
+    Donde n esta en 0xac-0xde o 0x106-0x1de de rango y m es <= 0x200
+</pre>
+<h2>Opciones:</h2>
+<pre>  - ninguno -</pre>
+<h2>Comentarios:</h2>
+<pre>
+  KEYBUF reubica el b&uacute;fer del teclado de la ubicaci&oacute;n predeterminada en
+  0x40:0x1e-0x3e a 0x40:n-m. El b&uacute;fer debe tener m&aacute;s de 32 bytes y no debe
+  tocar los desplazamientos 0x100-0x105. El valor predeterminado para m es
+  "siguiente m&uacute;ltiplo de 0x100 despu&eacute;s de n".
+  Nota: Algunas BIOS almacenan datos en el &aacute;rea 0xac-0xff. BASICA utiliza
+  el &aacute;rea 0x106-0x120. Otros hardware, controladores o aplicaciones tambi&eacute;n
+  pueden colisionar con KEYBUF, as&iacute; que &uacute;selo bajo su propio riesgo. Una
+  opci&oacute;n razonablemente segura debe ser "keybuf-0x140,0x1c0".
+  KEYBUF es un comando interno a kernel.sys y no necesita ning&uacute;n otro
+  archivo para funcionar.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    keybuf=0x140,0x1c0
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 2003 <b>Robert Platt</b>, modificado en 2008 <b>W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+
+</pre></body></html>

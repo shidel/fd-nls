@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : format</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command : format</h1>
+<pre>
+  FORMAT formate un disque dur ou une disquette. Cela pr&eacute;pare le m&eacute;dia
+  &agrave; &ecirc;tre utilis&eacute; avec FreeDOS.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  FORMAT lecteur [/V[:label]] [/Q] [/U] [/F:taille] [/S] [/D]
+  FORMAT lecteur [/V[:label]] [/Q] [/U] [/T:pistes /N:secteurs] [/S] [/D]
+  FORMAT lecteur [/V[:label]] [/Q] [/U] [/4] [/S] [/D]
+  FORMAT [/?]
+         lecteur  La lettre du lecteur, par exemple C:
+</pre>
+<h2>Options :</h2>
+<pre>
+  /1            Formate un disque simple face (160 ko/180 ko).
+  /4            Formate une disquette 160 ko/360 ko dans un lecteur de
+                disquettes &agrave; 1,2 Mo.
+  /8            Formate un disque 5-1/4 pouces avec 8 secteurs par piste
+                (160 ko/320 ko, DOS 1.x).
+  /A            Force l'alignement 4 ko pour le formatage FAT32.
+  /B            R&eacute;serve de l'espace pour cr&eacute;er un disque amor&ccedil;able (c'est
+                factice et ne peut &ecirc;tre combin&eacute; avec /s (sys).
+  /D            Utilise le mode tr&egrave;s verbeux et affiche la sortie de
+                d&eacute;bogage. Pour les rapports de bugs.
+  /F:taille     Sp&eacute;cifie la taille de la disquette &agrave; formater. Les
+                tailles normales sont: 360, 720, 1200, 1440, or 2880
+                (unit&eacute;: kilooctets). 160, 180, 320 devrait aussi
+                fonctionner. /F:0
+                affiche la liste des tailles autoris&eacute;es.
+  /N:secteurs   Sp&eacute;cifie le nombre de secteurs par piste sur une
+                disquette.
+  /Q            Effectue un formatage rapide du disque. S'il n'est pas
+                combin&eacute; avec /U, peut &ecirc;tre <a href="../base/unformat.htm">UNFORMAT</a>&eacute; et pr&eacute;serve les
+                marques de clusters d&eacute;fectueux (/Q /U ne le fait pas)
+  /S            Appelle <a href="../base/sys.htm"> SYS </a> pour rendre le disque amor&ccedil;able et pour
+                ajouter des fichiers syst&egrave;me
+  /T:pistes     Sp&eacute;cifie le nombre de pistes sur la disquette.
+  /U            Formate inconditionnellement le disque. Effectue un
+                formatage de bas niveau s'il s'agit d'une disquette.
+                NOTE : Cette option peut durer TR&Egrave;S TR&Egrave;S longtemps !
+                Appuyez sur &eacute;chap et attendez pour quitter /U.
+  /V:label      Sp&eacute;cifie un <a href="../base/label.htm">LABEL</a> de volume pour le disque, stocke
+                son horodatage (ne convient pas aux disques 160 ko/
+                320 ko).
+  /Y            Ignore la demande de confirmation.
+  /Z:longhelp:  Donne des informations d&eacute;taill&eacute;es techniques sur
+                l'utilisation.
+  /Z:miroir     Sauvegarde les "donn&eacute;es <a href="../base/mirror.htm">MIROIR</a> pour <a href="../base/unformat.htm">UNFORMAT</a>", sans
+                formater le disque.
+  /Z:seriously  Supprime la demande de confirmation lorsque vous utilisez
+                format avec un disque dur.
+  /Z:unformat   Annule le formatage du disque si les donn&eacute;es <a href="../base/mirror.htm">MIROIR</a> sont
+                r&eacute;centes.
+  /?            Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Avertissement : bien que format supporte FAT32, le lancer sous Win9x
+  pour cr&eacute;er des disques FAT32 ne fonctionne pas bien.
+  Les modes pour les DISQUETTES sont : tente d'utiliser le formatage
+  s&ucirc;r rapide. Utilisez le formatage de bas niveau seulement quand c'est
+  n&eacute;cessaire. Le formatage rapide s&ucirc;r sauvegarde les donn&eacute;es miroir
+  pour <a href="../base/unformat.htm">UNFORMAT</a>.
+  Les modes pour les DISQUES DURS sont : tente d'utiliser le formatage
+  rapide s&ucirc;r. Utilisez le formatage rapide complet que si c'est
+  n&eacute;cessaire. Le formatage rapide complet ne fait que remettre &agrave; z&eacute;ro
+  le syst&egrave;me de fichiers. Si vous souhaitez forcer un formatage de bas
+  niveau (disquettes) ou souhaitez analyser toute la surface et effacer
+  toutes les donn&eacute;es (disques durs), utilisez /U.
+  FORMAT /Q /U effectue un formatage rapide complet (pas de formatage bas
+  niveau / analyse / effacement !)
+  FORMAT /Q effectue un formatage rapide (sauvegarde les donn&eacute;es de
+  miroir si possible)
+  Les donn&eacute;es de miroir &eacute;craseront toujours la fin de l'espace de
+  donn&eacute;es !
+  FORMAT s&eacute;lectionne automatiquement un mode (cf. ci-dessus) si vous ne
+  choisissez ni /Q ni /U.
+
+  Les types de FAT pris en charge sont : FAT12, FAT16, FAT32, tous avec
+  les donn&eacute;es miroirs / UNFORMAT.
+  Les tailles de disquette prises en charge sont : 160 ko, 180 ko,
+  320 ko, 360k 360 ko et 1200 ko pour les 5,25 pouces et 720 ko et
+  1440 ko (2880 ko jamais test&eacute;e jusqu'&agrave; pr&eacute;sent) pour les lecteurs 3,5
+  pouces. Les surformats pris en charge sont 400 ko, 800 ko, 1680 ko
+  (et 3660 ko) avec plus de secteurs et 1494 ko (au lieu de 1200 ko)
+  et 1743 (et 3486 ko) avec plus de pistes, aussi.
+  Plus de pistes ne fonctionneront pas dans tous les lecteurs, utilisez
+  &agrave; vos risques et p&eacute;rils.
+  Avertissement : les versions anciennes de DOS ne peuvent utiliser les
+  surformats qu'avec un pilote.
+  720 ko dans 1440 ko n&eacute;cessite un m&eacute;dia de 720 ko. Utilisez un lecteur
+  360 ko pour formater du 360 ko. Pour le formatage FAT32, vous pouvez
+  utiliser le commutateur /A pour forcer l'alignement 4 Ko.
+  FORMAT a les <a href="../batch/if.htm#comment">CODES DE SORTIE (ERRORLEVEL)</a> suivants :
+    0        OK,
+    1        Secteurs d&eacute;fectueux d&eacute;tect&eacute;s (seulement si les options /d
+             ou /y ou /z:seriously sont actives)
+    2        &Eacute;cran d'aide affich&eacute; ou erreur de syntaxe,
+    3        Annulation par l'utilisateur,
+    4        Erreur de formatage,
+    5        L'utilisateur n'a pas confirm&eacute;.
+  Les niveaux d'erreur 1 et 2 sont des extensions d&eacute;passant le style
+  MS FORMAT. Si vous utilisez l'indicateur /D, les niveaux d'erreur
+  seront diff&eacute;rents. Ils seront sp&eacute;cifiques &agrave; la version particuli&egrave;re
+  de FORMAT.
+
+  Pour 0.91t, par exemple :
+    0        OK,
+    1        Secteurs d&eacute;fectueux d&eacute;tect&eacute;s,
+    2        Aide affich&eacute; ou erreur de syntaxe,
+    10..13   Erreur interaction utilisateur (pas de confirmation,
+             erreur de syntaxe)
+    20..22   Erreur Createfs  (cr&eacute;ation de syst&egrave;me de fichiers),
+    25..29   Erreur E/S du lecteur de disques,
+    30..31   Erreur Recordbc (analyse du syst&egrave;me de fichier existant),
+    35..36   Erreur Uformat (formatage inconditionnel),
+    38..39   Erreur Savefs (SafeFormat / Miroir)
+    40..52   Erreur de disquette,
+    55..59   Erreur de disque dur,
+    60..62   Erreur principale : type de lecteur inadapt&eacute;, par
+             exemple CD-ROM,
+   128..255  Erreur critique (userint: (code d'erreur DOS ou BIOS) | 128)
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  format a: /f:1440   formate une disquette de 1,4 Mo
+  format c: /v:mon_dd formate un disque dur, label: mon_dd
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/sys.htm">sys</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis &agrave; jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

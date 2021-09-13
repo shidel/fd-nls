@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : mode</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : mode</h1>
+<pre>
+  MODE configure et d&eacute;finit l'&eacute;tat pour divers p&eacute;riph&eacute;riques mat&eacute;riels
+  et plus encore.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  mode [device][options]  ou :
+  mode [mode d'&eacute;cran]
+       Devices :
+         CON[:]  Console. Ceci contr&ocirc;le le pilote d'affichage, qui
+                 doit &ecirc;tre install&eacute; en premier. MODE CON vous permet
+                 de d&eacute;finir la "page de code" de l'&eacute;cran. C'est utile
+                 car chaque page de code vous permet d'afficher des
+                 caract&egrave;res diff&eacute;rents. Pour plus d'informations sur
+                 les pages de code, voyez le <a href="../base/cpidos.htm">PACK D'INFORMATIONS</a>
+                 au sujet des <a href="../base/cpidos.htm">PAGES DE CODE</a>.
+         LPT[:]  Ports parall&egrave;les
+         COM[:]  Ports s&eacute;rie
+         PARK    N'est pas impl&eacute;ment&eacute; en mode FreeDOS.
+</pre>
+<h2>Options :</h2>
+<pre>
+  MODE [device] [/STA[TUS]]   Affiche l'&eacute;tat d'un ou de tous les
+                              p&eacute;riph&eacute;riques.
+  MODE LPTn[:] cols[,[lines][,retry]]
+  MODE LPTn[:] [COLS=...] [LINES=...] [RETRY=...]
+                              Cols ou cpi, 6/8 lpi, retry p ou n
+                              Retry: p infini / n aucun
+  MODE LPTn[:]=[COMn[:]|NUL]  Redirige les donn&eacute;es de l'imprimante sur
+                              le port s&eacute;rie ou NUL
+  MODE COMn[:] baud,parity,data,stop,retry
+  MODE COMn[:] [BAUD[HARD]=...] [PARITY=...] [DATA=...] [STOP=...]
+               [RETRY=...]    La valeurs vides sont autoris&eacute;es
+                              Baud peut &ecirc;tre abr&eacute;g&eacute; en un pr&eacute;fixe unique,
+                              la parit&eacute; peut &ecirc;tre o/e/n/s/m, les 2
+                              derniers signifient espace/marque, les
+                              donn&eacute;es peuvent &ecirc;tre 5..8, stop 1..2.
+                              Retry est IGNOR&Eacute; !
+                              PR&Eacute;VU : Retry b/e/r -> occup&eacute;/erreur/pr&ecirc;t
+                              si  occup&eacute;, p/n infini/pas de r&eacute;-essai.
+  MODE CON[:] [CP|CODEPAGE] [/STA[TUS]]
+                              Affiche l'&eacute;tat de la CON (console).
+                              FreeDOS DISPLAY doit &ecirc;tre charg&eacute; avant.
+  MODE CON[:] [CP|CODEPAGE] REF[RESH]
+                              Actualise la page de code active au
+                              mat&eacute;riel. FreeDOS DISPLAY doit &ecirc;tre charg&eacute;.
+  MODE CON[:] [CP|CODEPAGE] PREP[ARE]=((pagedecode) nomfichier)
+                              FreeDOS DISPLAY doit &ecirc;tre charg&eacute; avant.
+                              Utilisez PREP=((,cp2,cp3,,cp5)...) pour
+                              pr&eacute;parer les pages de code dans d'autres
+                              tampons.
+  MODE CON[:] [CP|CODEPAGE] SEL[ECT]=nombre
+                              FreeDOS DISPLAY doit &ecirc;tre charg&eacute; avant.
+  MODE CON[:] [NUMLOCK|CAPSLOCK|SCROLLLOCK|SWITCHAR]=valeur
+                              La valeur peut &ecirc;tre : + or - pour les
+                              touches verrouillables ou un caract&egrave;re
+                              pour switchar.
+  MODE CON[:] [COLS=...] [LINES=...]
+                              Les valeurs possibles d&eacute;pendent de votre
+                              mat&eacute;riel.
+  MODE CON[:] [RATE=...] [DELAY=...]
+                              Taux par d&eacute;faut 20, d&eacute;lai par d&eacute;faut 1.
+                              Le taux peut &ecirc;tre 1..32 pour 2..30 car/sec,
+                              le d&eacute;lai peut &ecirc;tre 1..4 pour 1/4..4/4 sec.
+  MODE [40|80|BW40|BW80|CO40|CO80|MONO][,rows]
+                              Ce sont les modes d'&eacute;cran fixes.
+                              Les lignent (rows) peuvent &ecirc;tre 25, 28, 43
+                              ou 50.
+                              Utilisez 8, 14 ou 16 comme valeur si vous
+                              souhaitez seulement changer la police.
+  MODE [CO40|CO80|...],[R|L][,T]
+                              Ce sont les modes d'&eacute;cran flexibles.
+                              Les valeurs pour les colonnes sont 40, 80,
+                              132, les lignes peuvent &ecirc;tre 25, 28, 30,
+                              34, 43, 50, 60. Utilisez 8, 14 ou 16 comme
+                              valeur de  'rows' si vous voulez seulement
+                              changer la police. Maj CGA gauche/droite,
+                              T est le mode interactif.
+  /?                          Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  CON (Console)
+  Cela contr&ocirc;le le pilote d'affichage, qui doit &ecirc;tre install&eacute; en
+  premier.
+  MODE CON vous permet de d&eacute;finir la "page de code" de votre &eacute;cran.
+  C'est utile car chaque page de code vous permet d'afficher diff&eacute;rents
+  caract&egrave;res. Pour des informations de mode sur les pages de code, voyez
+  <a href="../base/cpidos.htm">LE PACK D'INFORMATIONS SUR LES PAGES DE CODE</a>.
+  Utilisation :
+    MODE CON[:] CODEPAGE /STATUS
+      Affiche le page de code active et d'autres informations sur l'&eacute;tat
+      actuel de DISPLAY et des tampons de page de code.
+    MODE CON[:] CODEPAGE REFRESH
+      Actualise la page de code active au mat&eacute;riel (au cas o&ugrave; elle
+      aurait &eacute;t&eacute; d&eacute;truite accidentellement)
+    MODE CON[:] CODEPAGE PREPARE ((nnn) nomfichier)
+      Pr&eacute;pare la page de code nnn depuis le fichier sp&eacute;cifi&eacute;.
+      Le format des ficihers sont .cpx et ils sont g&eacute;n&eacute;ralement stock&eacute;s
+      dans C:\FDOS\CPI.
+      Par exemple, la page de code 860 est dans EGA9.CPX. Donc vous
+      pourriez utiliser :
+      MODE CON: CODEPAGE PREPARE ((860) c:\fdos\cpi\ega9.cpx).
+      Voyez le <a href="../base/cpidos.htm">PACK D'INFORMATIONS SUR LES PAGES DE CODE</a> pour des
+      informations sur les pages de code et fichiers cpi disponibles.
+    MODE CON[:] CODEPAGE SELECT=nnn
+      Active la page de code nnn, qui doit avoir &eacute;t&eacute; pr&eacute;par&eacute; avec
+      PREPARE.
+    MODE CON[:] NUMLOCK=valeur
+      Bascule verr num sur ALLUM&Eacute; ou &Eacute;TEINT. La valeur peut &ecirc;tre "+"
+      ou "-".
+    MODE CON [:] CAPSLOCK=valeur
+      Bascule verr maj sur ALLUM&Eacute; ou &Eacute;TEINT. La valeur peut &ecirc;tre "+"
+      ou "-".
+    MODE CON [:] SCROLLOCK=valeur
+      Bascule arr&ecirc;t d&eacute;fil sur ALLUM&Eacute; ou &Eacute;TEINT. La valeur peut &ecirc;tre
+      "+" ou "-".
+    MODE CON [:] SWITCHAR=caract&egrave;re
+      Modifie le caract&egrave;re de commutation sur la ligne de commande de
+      DOS (g&eacute;n&eacute;ralement "/")  en un autre caract&egrave;re. Ne fonctionne pas
+      avec toutes les commandes.
+    MODE CON [:] COLS=valeur
+      Modifie les colonnes. La valeur peut &ecirc;tre 40, 80 ou 132.
+    MODE CON [:] LINES=valeur
+      Modifie les lignes. La valeur peut &ecirc;tre 25, 28, 43 ou 50, ou bien
+      la taille de police 8, 14 ou 16.
+      Si vous avez VESA, 30, 34 ou 60 lignes peuvent aussi &ecirc;tre
+      disponibles.
+    MODE CON [:] RATE=valeur
+      Modifie le taux de r&eacute;p&eacute;tition. La valeur peut &ecirc;tre 1 ... 32
+      (2.0 car/sec ... 30.0 cars/sec apr&egrave;s un d&eacute;lai de 0.50 secondes).
+    MODE CON [:] DELAY=valeur
+      Modifie le d&eacute;lai de r&eacute;p&eacute;tition. La valeur peut &ecirc;tre 1,2,3 u 4
+      (l'unit&eacute; est de 0,25 secondes).
+  Le mot CODEPAGE peut &ecirc;tre abr&eacute;g&eacute; en CP, STATUS en STA, REFRESH en
+  REF, SELECT en SEL et PREPARE en PREP.
+  MODE a les <a href="../batch/if.htm#comment">CODES DE SORTIE (ERRORLEVEL)</a> suivants :
+  g&eacute;n&eacute;rique :
+    100 :  ERREUR INTERNE : la taille pour la table pr&eacute;par&eacute;e est trop
+           petite
+    101 :  Aucun pilote compatible avec FreeDOS DISPLAY n'est charg&eacute;.
+           Exemple de syntaxe : ... DISPLAY CON=(VGA,437,1)
+    102 :  Fichier non trouv&eacute;
+    103 :  Erreur lors de la sp&eacute;cification de la page de code / du
+           tampon
+    104 :  Erreur : le tampon s&eacute;lectionn&eacute; n'est pas pr&eacute;sent
+    105 :  Erreur de syntaxe
+  v&eacute;rification de la page de code :
+    26 :  La page de code active n'a jamais &eacute;t&eacute; d&eacute;finie
+    27 :  Erreur lors de la lecture de la page de code par le
+          p&eacute;riph&eacute;rique
+  pr&eacute;paration de la page de code :
+    27 :  La page de code n'a pas &eacute;t&eacute; trouv&eacute;e dans le fichier CPI
+    29 :  Impossible d'obtenir les informations de page de code &agrave;
+          partir du fichier (ou probl&egrave;mes XMS)
+    31 :  Le fichier CPI sp&eacute;cifi&eacute; est endommag&eacute; (ou probl&egrave;mes XMS)
+  fin de la pr&eacute;paration de la page de code :
+    31 :  ERREUR INTERNE : fin de la pr&eacute;paration (End prepare) sans
+          le d&eacute;but de la pr&eacute;paration (Begin prepare)
+  s&eacute;lection de la page de code :
+    26 :  La page de code sp&eacute;cifi&eacute;e n'a pas &eacute;t&eacute; trouv&eacute;e dans le fichier
+    27 :  KEYB a &eacute;chou&eacute; &agrave; modifier la page de code
+    29 :  &Eacute;chec de la s&eacute;lection de la page de code par le p&eacute;riph&eacute;rique
+          (ou probl&egrave;mes XMS)
+    31 :  Erreur de la s&eacute;lection de la page de code par le p&eacute;riph&eacute;rique
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  mode /status       Affiche l'&eacute;tat
+  mode lpt1 /status  Affiche l'&eacute;tat de lpt1
+  mode com1 /status  Affiche l'&eacute;tat de COM1
+  mode con /status   Affiche l'&eacute;tat des p&eacute;riph&eacute;riques con
+  mode con codepage  Affiche la page de code active et d'autres
+                     informations sur l'&eacute;tat actuel de DISPLAY et des
+                     tampons de page de code.
+  mode con codepage refresh   ou :
+  mode con: codepage refresh
+                     Actualise la page de code active au mat&eacute;riel (au
+                     cas o&ugrave; elle aurait &eacute;t&eacute; d&eacute;truite accidentellement)
+  mode con codepage prepare ((860) C:\FDOS\CPI\ega9.cpx)   ou :
+  mode con: codepage prepare ((860) C:\FDOS\CPI\ega9.cpx)
+                     Pr&eacute;pare la page de code 860 depuis le fichier
+                     sp&eacute;cifi&eacute;. Le format des fichiers sont .cpx.
+                     Voyez le <a href="../base/cpidos.htm">PACK D'INFORMATIONS SUR LES PAGES DE CODE</a>
+                     pour des informations au sujet des pages de code
+                     et fichiers cpi disponibles.
+  mode con codepage select=860   ou :
+  mode con: codepage select=860
+                     Active la page de code 860 qui doit avoir &eacute;t&eacute;
+                     pr&eacute;par&eacute; auparavant avec PREPARE.
+  Exemple pour AUTOEXEC.BAT/FDAUTO.BAT:
+    MODE CON CP PREP=((858) C:\FDOS\CPI\EGA.CPX)
+    MODE CON CP SEL=858
+    REM La page de code 858 a &eacute;t&eacute; activ&eacute;e
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/graftabl.htm">graftabl</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keyb.htm">keyb</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/listxdef.htm">listxdef</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+ (<a href="../base/modecon.htm">modecon</a>)
+  <a href="../base/nlsfunc.htm">nlsfunc</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 - 2004 Aitor SANTAMARIA MERINO,
+  Henrique PERON, Robert Platt, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

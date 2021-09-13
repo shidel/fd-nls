@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: lbacache</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: lbacache</h1>
+<pre>
+  LBACACHE is a hard disk cache program. Improves drive performance.
+  It requires <a href="../base/himemx.htm">XMS</a> memory, and at least a 386 computer.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  To load:      LBACACHE  [size] [DRV drivelist] [FLOP] [TUNA] [TUNW]
+                          [TUNS]
+  When loaded:  LBACACHE  [INFO] [SYNC] [STOP] [STAT] [ZERO]
+  To get help:  LBACACHE  HELP|/HELP|/?
+</pre>
+<h2>Options:</h2>
+<pre>
+  size      Specifies the buffer size. Default: 2048k. If 1-2 digits,
+            unit is 256k (in XMS), so default is to use 2 MB XMS.
+            If &gt; 2 digits, unit is simply 1 kilobyte. Example:
+            'LBACACHE 8192'. Other possible syntax: "BUF size" instead
+            of "size".
+  FLOP      Enable the floppy cache (A: and B:, autodetected). To speed
+            up floppy use, load TICKLE, too! Please report if FLOP has
+            bugs. A bug can e.g. mean that the cache makes wrong
+            assumptions on floppy geometry which can lead to data
+            corruption on the disk or in files copied from disk. If you
+            only use 1.44 MB disks in an 1.44 MB drive, bugs are
+            extremely unlikely, though...
+  DRV list  Selects which harddisks are cached. No discs are cached by
+            using the keyword NULL.
+            It is strongly recommended to let LBAcache autodetect all
+            cacheable harddisks instead of using this option!
+            List consists of digits in 0..7, for BIOS drives 80h+x.
+            E.g.:
+            023   caches BIOS drives 80h, 82h, 83h - first, third and
+                  fourth harddisk (hda, hdc, hdd in Linux terminology).
+            Important: First BIOS harddisk means ALL drive letters which
+            are on the first physical harddisk.
+  TUNA      Fully associative cache: Search whole cache for a sector or
+            for free space in worst case. Slower for big caches but can
+            give more cache hits than the new (6/2004) default of
+            searching only up to N (current setting: 16) cache elements
+            (current size of an element: 8kB). First tests suggest:
+            slightly more cache hits but lower speed!
+  TUNW      Allocate on write: When data is written to disk, store a copy
+            in cache, EVEN if that means allocating new space in cache,
+            in anticipation of reading the data back later. Was the
+            default until 7/2004. Makes writes "consume" more cache, but
+            is useful for tasks which work with temp files a lot. If
+            data was cached anyway, the copy in cache is updated
+            regardless of this option.
+  TUNS      Allocate 320 bytes of low DOS RAM for stacks (new 7/2004).
+            Use this option if you want to load LBAcache into JEMM386's
+            UMB or otherwise "not very DMA friendly UMB" and have a SCSI
+            system. SCSI BIOSes seem to use DMA to stack for geometry
+            check calls! Note that this memory is *not* freed by LBAcache
+            STOP, as the unloading protocol would have to be changed too
+            much for that.
+NON-LOAD options:
+  INFO      Shows cache statistics and details about resident LBAcaches.
+            Useful for debugging purposes, but somehow hard to
+            understand.
+  STAT      Shows easier to understand cache statistics only.
+  ZERO      Reset the cache statistics counters to zero.
+  SYNC      Synchronizes all running LBAcache buffers for all drives.
+            As LBAcache never delays writes, SYNC is just forget cached
+            data. This is done by calling int 13.46 (BIOS disk: eject)
+            for all cacheable drives (0, 1, 0x80 .. 0x87). It is
+            recommeded to do LBACACHE ZERO after LBACACHE SYNC, will
+            make the statistics more intuitive to read.
+  STOP      Shuts down all running LBAcache instances and frees the XMS
+            and DOS RAM which they had allocated (removes them from RAM).
+            If the interrupt chain cannot be restored, LBAcache instances
+            are left in DOS RAM, but at a reduced size of &lt; 500 bytes.
+            The XMS memory is always freed. When a single LBAcache is
+            loaded as last disk related resident program, complete unload
+            should work most of the time. When loading several LBAcache
+            instances, often only the last instance can be fully
+            unloaded.
+  COOL      Puts the cache into "cool" mode: accessed sectors are frozen
+            into the cache (as much as possible - use TUNA to enhance the
+            effect). See the BINSEL explanations to find out whether this
+            experimental (9/2004) mode is useful for you.
+  WARM      Puts the cache into "melt" mode: accessed sectors are
+            unfrozen (defrosted? :-)) from the cache. See above. (9/2004)
+            Note: WARM, COOL and TEMP all display a diagnostic status
+            value for debugging, e.g. the current "locked element
+            count". After that, the normal STAT output is shown.
+  TEMP      Restores the cache to "normal temperature" mode: The frozen-
+            ness state of the current contents is preserved as far as
+            possible (if the cache gets really full, things will melt).
+            Now you have reserved part of the cache for frozen / locked
+            data and the rest of the cache space in classic mode.
+            (9/2004)
+</pre>
+<h2>Comments:</h2>
+<pre>
+  For further information see lbacache.txt.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  In CONFIG.SYS / FDCONFIG.SYS:
+    INSTALL=LBACACHE.COM [arguments]
+  or
+    INSTALLHIGH=LBACACHE.COM [arguments]
+  or from command line or AUTOEXEC.BAT:
+    LBACACHE [arguments]
+  or
+    LOADHIGH LBACACHE.COM [arguments]
+
+    LBACACHE              Just running the command without options will
+                          read cache all your hard disks (if available
+                          through the BIOS) with the default cache
+                          buffer size. 
+    LBACACHE buf 20 flop  This will read cache all hard disks and
+                          floppy disks, with 5MB of memory for the
+                          cache buffer. 
+    LBACACHE info         Shows information about your caches. 
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/cdrcache.htm">cdrcache.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/tickle.htm">tickle</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

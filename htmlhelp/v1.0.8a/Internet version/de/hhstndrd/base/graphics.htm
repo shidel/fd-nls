@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: graphics</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: graphics</h1>
+<pre>
+  GRAPHICS erlaubt es der Shift - PrtScr (Hoch- + Druck) Taste,
+  Bildschirmfotos zu drucken. GRAPHICS l&auml;uft im MS GRAPHICS
+  Kompabilit&auml;tsmodus.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  GRAPHICS Druckertyp [optionen]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /B             Erm&ouml;glicht das Ausf&uuml;hren der CGA Hintergrund-
+                 farbpalette 0
+  /I             Drucke schwarz als wei&szlig; und wei&szlig; als schwarz (n&uuml;tzlich
+                 wenn der Bildschirmhintergrund schwarz ist, um Tinte
+                 zu sparen: druckt schwarz, wo der Bildschirm wei&szlig; ist)
+  /LCD           Wird ignoriert (noch nicht unterst&uuml;tzt)
+  /LOW           Lade nicht hoch (lh) (keine MS Option)
+  /PRINTBOX:LCD  Wird ignoriert (noch nicht unterst&uuml;tzt)
+  /PRINTBOX:STD  Wird ignoriert (noch nicht unterst&uuml;tzt)
+                 (versuchen Sie /LCD um eine Erkl&auml;rung angezeigt zu
+                 bekommen). Diese Optionen erlauben Ihnen, ein anderes 
+                 Bildschirmverh&auml;ltnis als 4:3 (Breite zu Hoehe) zu 
+                 setzen, von dem normalerweise ausgegangen wird.
+  /R             Drucke schwarz mit schwarz und wei&szlig; mit wei&szlig;
+  Unterst&uuml;tzte Druckertypen:
+    HPPCL (PCL), EPSON (ESC/P), POSTSCRIPT (PS)
+  Sie k&ouml;nnen folgende Typen als Druckertypen verwenden:
+    HP PCL kompatible Drucker: 
+      HPDEFAULT          (HP PCL kompatibel)
+      DESKJET            (HP PCL kompatibel)
+      RUGGEDWRITER       (HP PCL kompatibel)
+      RUGGEDWRITERWIDE   (HP PCL kompatibel)
+      THINKJET           (HP PCL kompatibel)
+    EPSON kompatible Drucker:
+      EPSON              Many impact/ribbon printers work with "EPSON"
+    POSTSCRIPT kompatible Drucker:
+      LASERJET           (POSTSCRIPT kompatibel)
+      LASERJET II        (POSTSCRIPT kompatibel)
+      QUIETJET           (POSTSCRIPT kompatibel)
+      QUIETJETPLU        (POSTSCRIPT kompatibel)
+    Einige davon sind gleich, wie z.B. POSTSCRIPT und PS.
+  Nicht unterst&uuml;tzte Druckertypen:
+    IBM PC color ribbon printer (color1, color4, color8)
+    IBM convertible thermal printer (thermal)
+    IBM graphics printer (graphics[wide])
+    IBM proprinter 
+    IBM quietwriter
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  HP (GRAPH-HP - PCL) erlaubt die folgenden Zusatzoptionen:
+    /1  Verwende LPT1 (Standard)
+    /2  Verwende LPT2
+    /3  Verwende LPT3
+    /C  F&uuml;r 300 dpi anstelle von 600 dpi
+    /E  Economy Modus (nur 50 % Dichte)
+    /R  F&uuml;r Zufallsdithering anstelle von geordnetem Dithering
+    /?  Zeigt die Hilfe
+  PS (GRAPH-PS - Postscript) erlaubt die folgenden Zusatzoptionen:
+    /1  Verwende LPT1 (Standard)
+    /2  Verwende LPT2
+    /3  Verwende LPT3
+    /C  Kompatibilit&auml;tsmodus (HP Laserjet)
+    /E  Economy Modus (nur 50 % Dichte)
+    /?  Zeigt die Hilfe
+  PIN (GRAPHPIN - EPSON) erlaubt die folgenden Zusatzoptionen:
+    /1  Verwende LPT1 (Standard)
+    /2  Verwende LPT2
+    /3  Verwende LPT3
+    /9  9-pin Modus (120x72, with /C 60x72)
+    /C  Kompatibilit&auml;tsmodus (120x60dpi)
+    /E  Economy Modus (nur 50 % Dichte)
+    /R  F&uuml;r Zufallsdithering anstelle von geordnetem Dithering
+    /X  Sendet die Druckdaten von gesamten Zeilen anstatt von Blocks
+    /?  Zeigt die Hilfe
+  Nach dem Laden des Treibers k&ouml;nnen Sie Screenshots drucken, indem
+  Sie die 'Shift (Hochtaste) - PrintScreen (Drucktaste)' verwenden - 
+  auch in Grafikmodi.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  graphics HPDEFAULT /low /I /E /1
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/graphexe.htm">graphics-ps...</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Eric Auer, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

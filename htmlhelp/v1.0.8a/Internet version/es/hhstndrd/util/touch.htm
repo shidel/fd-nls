@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: touch</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: touch</h1>
+<pre>
+  El programa TOUCH modifica la fecha y/o el tiempo de los archivos de un
+  disco.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  touch [-?] [-C] [-Druta] [-F] [Fecha] [Tiempo] Ruta_espec&iacute;fica [...]
+  touch [/?] [/C] [/Druta] [/F] [Fecha] [Tiempo] Ruta_espec&iacute;fica [...]
+        Ruta_espec&iacute;fica Especifica un archivo o grupo de archivos para ser
+        tocados, y puede contener una unidad inicial espec&iacute;fica, una ruta
+        de directorio espec&iacute;fica, y/o un archivo espec&iacute;fico, y para grupos
+        espec&iacute;ficos de archivos (usando la '?' y '*' caracteres comod&iacute;n) o
+        una &uacute;nico archivo (una especificaci&oacute;n ambigua). Ruta_espec&iacute;fica
+        puede repetirse seg&uacute;n sea necesario.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  -C          No crea archivos que no existen actualmente.
+  -Druta      Duplica fecha y tiempo de un archivo especificado. Si esta 
+              opci&oacute;n es utilizada, fecha o tiempo puede no estar 
+              especificada.
+  -F          Adjunta la hora al n&uacute;mero de versi&oacute;n del archivo.
+  -?          Muestra la ayuda.
+  Fecha       La nueva fecha para ser modificada. Si esta opci&oacute;n es usada,
+              -Druta puede no ser especificada.
+  Tiempo      El nuevo tiempo en el archivo para ser modificada. Si esta 
+              opci&oacute;n se usa, -Druta puede no ser especificada.
+  El formato de fecha es determinado por tu instalaci&oacute;n de <a href="../cnfigsys/country.htm">COUNTRY</a>,
+  ver <a href="../cnfigsys/index.htm">CONFIG.SYS</a>  / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>. 
+  El caracter '/' puede ser usado como el separador de fecha.
+  La A y P (a.m, p.m) son sufijos opcionales del par&aacute;metro tiempo.
+  Si ninguna fecha o tiempo es suministrado, la fecha y el tiempo de hoy 
+  ser&aacute; usado.
+  Archivos inexistentes son creados a menos que -C est&eacute; dado.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  TOUCH permite la fecha, tiempo, o ambos fecha y tiempo del archivo para
+  ser modificado. TOUCH puede establecer fecha y tiempo de la fecha y 
+  tiempo actual, o alguna fecha y tiempo especificado por el usuario. La 
+  fecha y tiempo pueden tambi&eacute;n ser establecidos a cero, lo que provoca
+  que los valores para ser mostrados como blanco en un listado de
+  directorio bajo alguna versi&oacute;n de DOS.
+  Una fecha debe tener un formato como:
+    nn-nn-nn o nn/nn/nn.
+  El orden con los n&uacute;meros de la fecha son interpretados dependiendo del
+  n&uacute;mero de pa&iacute;s. Ellos est&aacute;n en tres ordenes de fecha estandar:
+    mm-dd-yy  (Americana)
+    dd-mm-yy  (Europea)
+    yy.mm.dd  (Japonesa)
+  El par&aacute;metro tiempo debe tener un formato como:
+    hh:mm[:ss][a|p]
+  El segundo corchete y el valor 'ss' es opcional. Si estos no est&aacute;n dados,
+  se usar&aacute; el valor cero para los segundos. Los sufijos 'a' y 'p'(am y pm)
+  son opcionales, y si no se usa, TOUCH asumir&aacute; que el tiempo a sido 
+  especificado en formato 24 horas.
+  LA OPCI&oacute;N -C:
+    TOUCH crear&aacute; (por defecto) archivos especificados sin ambig&uuml;edad (ejem
+    nombrado especificamente, sin comodines) si no existe en ese momento.
+    Esto es aparentemente el complemento del 'touch' de UNIX, aunque no es
+    usual en las implementaciones de DOS. Esta caracter&iacute;stica puede ser
+    anulado por el comando -C en la linea de comandos, cuando llamas a 
+    TOUCH no es creado el archivo especificado si este no existe en ese
+    momento. Yo creo esto es tambi&eacute;n estandar en las implementaciones de
+    UNIX.
+    Por ejemplo, el comando TOUCH NOSUCH.FIL (si NOSUCH.FIL no exsiste
+    en ese momento), se crear&aacute; un archivo vacio (cero bytes de tama&ntilde;o)
+    llamado NOSUCH.FIL. El comando TOUCH -C NOSUCH.FIL reportar&aacute; un error y
+    no crear&aacute; el archivo.
+  TOUCH tiene los siguientes <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0    Terminaci&oacute;n normal; sin errores
+    2    Uno o m&aacute;s errores ocurridos durante el proceso.
+    48   Error durante el proceso de la opci&oacute;n -Druta
+    162  Memoria insuficiente (aproximadamente 64K de memoria requerida)
+    255  Uso de sintaxis incorrecta
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  touch 12-31-2008 06:10p C:\FDOS\BIN\*.*
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Actualizado en 2013 por Lorenzo del Toro Saravia.</b>
+
+  Este archivo de deriva de la FreeDOS Spec Command HOWTO.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copia.
+
+</pre></body></html>

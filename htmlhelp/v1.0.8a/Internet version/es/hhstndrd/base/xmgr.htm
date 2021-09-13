@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: xmgr.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: xmgr.sys</h1>
+<pre>
+  XMGR.SYS es un controlador de DOS que funciona como un administrador de
+  memoria XMS.
+  XMGR.SYS tiene que cargarse en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  DEVICE [HIGH] = [ruta] XMGR.SYS [/B] [/Mn] [/Nnn] [/PA] [/Tn] [/W] [/Z]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  XMGR.SYS generalmente solo necesita su modificador /B si se "inicia"
+  con <a href="../base/jemm386.htm">JEMM386</a>. Las opciones del conmutador XMGR.SYS son las siguientes:
+  /B    Especifica el modo de "arranque". XMGR.SYS se carga en la memoria
+        temporal hasta que EMM386 habilita la memoria superior. Sin /B,
+        XMGR.SYS se cargar&aacute; de forma independiente en memoria baja o
+        derectamente en la memoria superior con UMBPCI.
+  /Mn   Especifica el &aacute;rea temporal utilizada para cargar XMGR.SYS en
+        modo de "inicio" y utilizada par E/S de memoria superior UMBPCI
+        antes de que DOS pueda publicar un b&uacute;fer de "espacio de trabajo".
+        Los valores son:
+          /M1 = 64K.    /M3 = 192K.   /M5 = 320K.   /M7 = 448K.
+          /M2 = 128K.   /M4 = 256K.   /M6 = 384K.   /M8 = 512K.
+        Sin /M, se supono /M5 y se utilizar&aacute; el &aacute;rea de 320K.
+        NOTA: &iexcl;Un sistema DOS a menudo NO se puede cargar en la direcci&oacute;n
+        0 y puede dejar datos temporales en cualquier lugar de la 
+        memoria! /Mn cambia el &aacute;rea temporal para encontrar un lugar
+        "seguro" para que XMGR.SYS lo use. /M se ignora si XMGR.SYS se
+        carga de forma independiente.
+  /Nnn  Especifica cu&aacute;ntos "controladores" XMS pueden usar los programas
+        DOS. El valor nn puede ser 48, 80 o 128. Si se omite /N, se usan
+        48 "Manijas" y funcionan bien para la mayor&iacute;a de los sistemas.
+        Un sistema grande que hace mucho trabajo XMS puede necesitar 80
+        o 128 "Manijas".
+  /PA   Especifica el uso o no uso de la l&oacute;gica PS/2 puesto 92h para
+  /PN   manejar la l&iacute;nea "A20" del sistema. /PA indica "Siempre" usar la
+        l&oacute;gica del puerto 92h. /PN indica "Nunca" usarlo y manejar "A20"
+        a trav&eacute;s de la l&oacute;gica normal del puerto del teclado. Si se omite
+        /P, XMGR "pregunta al BIOS" si el sistema tiene l&oacute;gica de puerto
+        92h. Si no, XMGR utilizar&aacute; la l&oacute;gica normal "A20". NOTA: Si DOS
+        habilit&oacute; "A20" antes de que se cargara XMGR, &iexcl;XMGR no lo maneja
+        en absoluto!
+  /Tn   Especifica las solicitudes de BIOS a utilizar para obtener
+        memoria extendida de la siguiente manera:
+          /T0  Ni las solicitudes "E820h" ni "E801h".
+          /T1  Solo solicitudes de lista de memoria (int 15h, AX=E820h).
+          /T2  Una solicitud de &aacute;rea dual solamente (int 15h, AX=E801h).
+          /T3  "E820h" solicita primero, luego una solicitud "E801h".
+          /T   Generalmente se puede omitir, lo que hace que se 
+               asuma /T3.
+        Adem&aacute;s, XMGR.SYS siempre utiliza una solicitud anterior de 64MB,
+        para obtener memoria extendida para /T0, o si las solicitudes
+        espedificadas con /T1 a /T3 no tienen &eacute;xito. Los usuarios pueden
+        necesitar probar /T1 y /T2 por separado, para ver si su BIOS los
+        acepta. Una BIOS anterior a 1994 puede no "ignorar" /T1 a /T3
+        correctamente y puede requerir que se use /T0. Para 
+        compatibilidad con controladores QHIMEM anteriores, se puede
+        usar /T4 a /T7 y funcionar igual que /T0 a /T3.
+  /W    Especifica el uso del b&uacute;fer de "espacio de trabajo" de DOS para
+        E/S de memoria superior si se carga con UMBPCI. Si se omite /W,
+        o si el sistema DOS no tiene la l&oacute;gica de espacio de trabajo
+        adecuada, XMGR.SYS establecer&aacute; su propio b&uacute;fer en poca memoria.
+        &iexcl;Un sistema EDR-DOS debe OMITIR este interruptor! Sin UMBPCI,
+        /W ser&aacute; ignorado.
+  /Z    Solo para XMGR o UIDE, limita sus movimientos XMS a un m&aacute;ximo
+        de 2K bytes en modo protegido, no 64K. /Z es ignorado por los
+        sistemas en modo real (UMBPCI, etc.) y no es necesario si
+        JEMM386 o EMM386 manejan el modo protegido. Los sistemas que
+        usan otros controladores VCPI/DPMI/EMM deben PROBARSE, para
+        ver si XMGR o UIDE necesitan /Z -- &iexcl;A&uacute;n pueden existir esquemas
+        MALOS que no permiten suficientes interrupciones en un
+        movimiento XMS! El antiguo modificador /N4 de UIDE es el mismo
+        que /Z y a&uacute;n se puede administrar. UIDEJR ignora /Z o /N4 y
+        siempre emite llamadas XMS est&aacute;ndar.
+  Para cada interruptor, un gui&oacute;n puede reemplazar la barra oblicua y
+  se pueden usar letras min&uacute;sculas.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  XMGR.SYS es un controlador de DOS que funciona como un administrador
+  de memoria XMS. Es compatible con V3.70 + UMBPCI de Uwe Sieber.
+  Despu&eacute;s de que UMBPCI habilita la memoria superior, XMGR.SYS puede
+  cargar all&iacute; directamente y proporcionar memoria superior y XMS para
+  un sistema DOS. XMGR.SYS utiliza un "receptor de E/S" con UMBPCI, para
+  interceptar disquetes o E/S de disco duro por encima de 640K. Dicha
+  E/S se realiza a trav&eacute;s de un &aacute;rea de memoria baja, para evitar
+  problemas de DMA en UMBPCI "Shadow RAM". XMGR.SYS tambi&eacute;n es
+  compatible con V4.49 y V4.95 EMM386 (MS-DOS V6.22 o V7.10). Con
+  <a href="../base/jemm386.htm">JEMM386</a>, XMGR.SYS utilizando su modificador /B puede primero 
+  "arrancar" en un espacio temporal. Despu&eacute;s de que <a href="../base/jemm386.htm">JEMM386</a> habilita la
+  memoria superior, XMGR.SYS se carga all&iacute; sin un interruptor /B, copia
+  todos sus datos de "arranque" y se hace cargo del trabajo de XMS.
+  Solo su tabla XMS "Handles" permanece en memoria baja, por lo que
+  EMM386 siempre puede encontrarlos en direcciones fijas. Para un 
+  sistema peque&ntilde;o solo XMS, XMGR.SYS tambi&eacute;n puede cargarse completamente
+  en memoria baja. Para obtener m&aacute;s informaci&oacute;n, lea "README.TXT" en
+  drivers.zip.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    SHELL=C:\DOS\COMMAND.COM C:\DOS /E:512 /P
+    DEVICE=C:\BIN\UMBPCI.SYS
+    DEVICE=C:\BIN\XMGR.SYS /W
+    DOS=HIGH,UMB
+    DEVICE=C:\BIN\JEMM386.EXE I=B000-B7FF X=C800-EFFF NOEMS  ;Opcional
+    DEVICEHIGH=C:\BIN\UIDE.SYS /S500 /D:CDROM1               ;O UIDEJR
+    DEVICEHIGH=C:\BIN\RDISK.COM /S250                        ;Opcional
+        ..
+        ..  Etc.
+        ..
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, modificado en 2011 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

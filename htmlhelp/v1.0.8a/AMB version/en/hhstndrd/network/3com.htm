@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Networking FreeDOS - 3Com</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top"></a>Networking FreeDOS - 3Com</h1>
+<pre>
+  If your 3Com NIC is not supported by the <a href="../network/crynwr.htm">Crynwr</a> packet drivers, you
+  can find a driver here:
+  <b>ftp://ftp.3com.com/pub/nic/3c90x/3c90x2.exe (*01)</b>
+  This is EtherCD v5.4, disk 2 of 2 for the <b>3C90x</b> adapter family. Disk 2
+  contains DOS <a href="../network/odi.htm">ODI</a> and <a href="../network/ndis.htm">NDIS</a> drivers, packet driver, help files, and DOS
+  diagnostics.  This is a self-extracting DOS executable. After executing
+  it, go into the PKTDVR subdirectory, and run 3C90XPD.COM. This should
+  auto-detect your NIC, which may take a while, and install the packet
+  driver in the first available interrupt vector, starting with 0x60.
+  The interrupt vector can also specified with /I; see /? for details.
+  You will want to add this to your <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+  Afterwards, you can configure and use any <a href="../network/wattcp.htm">WatTCP</a> application, such as
+  SSH (see: <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a>) and <a href="../network/tcpip_ap.htm#ccc">Arachne</a>. Use this in your WATTCP.CFG to
+  specify the interrupt vector:
+    pkt.vector = 0x60
+
+  <b>(*01) internet: "3c90x2.exe"</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), modified 2010
+  and 2020 by W.Spiegl.</b>
+  For more information <a href="../network/intro.htm#ddd">see here</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

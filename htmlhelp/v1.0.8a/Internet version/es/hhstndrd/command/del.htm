@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: del</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: del</h1>
+<pre>
+  DEL Borra uno o m&aacute;s archivos.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  DEL [unidad][ruta]nombre_archivo [/P] [/V] [/?]
+      unidad          Especifica la letra de la unidad donde se encuentra
+                      el archivo, por ejemplo, C:
+      ruta            Especifica la ruta donde se encuentra el archivo,
+                      por ejemplo, \ejemplo\
+      nombre_archivo  Especifica los archivos para eliminar. Especifique
+                      m&uacute;ltiples archivos mediante el uso de comodines 
+                      (*,?).
+                      Puede utilizarse un periodo para especificar todos
+                      los archivos en el directorio actual, y es lo mismo
+                      que *.*
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /P  Solicita confirmaci&oacute;n antes de eliminar cada archivo.
+  /V  Muestra todos los archivos borrados.
+  /?  Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Por razones de rendimiento, DEL sobrescribe la primera letra del nombre
+  del archivo por un '?'. No elimina el archivo en si, pero desasigna el
+  espacio donde se escribe el contenido del archivo. FreeDOS, como otras
+  DOS, reconoce el archivo renombrado (myfile.txt se convierte en 
+  ?yfile.txt) como eliminado, ya no lo muestra y no ofrece acceso a &eacute;l.
+  Programas como <a href="../base/debug.htm">DEBUG</a> que tienen acceso sectorial son capaces de leer el
+  contenido del archivo. Mientras no escriba en el disco, tiene la 
+  oportunidad de recuperar el archivo nuevamente con <a href="../base/undelete.htm">UNDELETE</a>, solo el
+  primer car&aacute;cter del nombre del archivo se perder&aacute; (_yfile.txt). Las
+  &uacute;nicas formas de eliminar ABSOLUTAMENTE EL CONTENIDO DEL ARCHIVO es 
+  llenar el disco completamente con otros archivos o usando una 
+  herramenta wipeout. La &uacute;nica forma de eliminar ABSOLUTAMENTE EL NOMBRE 
+  DE UN ARCHIVO es <a href="../command/rename.htm">RENAME</a> <a href="../command/ren.htm">(REN)</a> el primer archivo (p. ej. "a.") y 
+  eliminarlo m&aacute;s tarde (solo correcto en 8.3, no en nombres de archivos
+  largos). Tambi&eacute;n puede usarse <a href="../command/erase.htm">ERASE</a> en lugar de DEL.
+  DEL es un comando interno de command.com y no necesita otro archivo para
+  que funcione.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  del C:\PROGRAM\test.txt
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../base/debug.htm">debug</a>
+  <a href="../base/deltree.htm">deltree</a>
+  <a href="../command/erase.htm">erase</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/ren.htm">ren</a>
+  <a href="../command/rename.htm">rename</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 1998 <b>Jim Hall</b>, Modificado en 2007 por <b>W. Spiegl.</b>
+  Traducido en 2018 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+</pre></body></html>

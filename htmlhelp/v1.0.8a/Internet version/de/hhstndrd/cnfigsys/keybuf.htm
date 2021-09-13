@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: keybuf</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: keybuf</h1>
+<pre>
+  KEYBUF lagert den Keyboardpuffer vom Standortplatz bei 0x40:0x1e-0x3e
+  nach 0x40:n-m um.
+  KEYBUF ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  keybuf=n[,m]
+    wobei n im Bereich von 0xac-0xde oder 0x106-0x1de ist und 
+    m ist &lt;= 0x200
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  - keine -
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Keybuf lagert den Keyboardpuffer vom Standortplatz bei 0x40:0x1e-0x3e
+  nach 0x40:n-m um. Der Puffer mu&szlig; gr&ouml;&szlig;er als 32 Bytes sein und darf
+  die Offsets 0x100-0x105 nicht ber&uuml;hren.
+  Der Standard f&uuml;r m ist "das n&auml;chste Vielfache von 0x100 nach n".
+  Anmerkung: Einige BIOSse speichern im Bereich 0xac-0xff Daten. BASICA
+  wird den Bereich 0x106-0x120 verwenden. Andere Hardware, Treiber oder
+  Andwendungen k&ouml;nnen auch mit KEYBUF kollidieren, benutzen sie ihn 
+  deshalb auf eigenes Risiko.
+  Eine annehmbar sichere Wahl sollte sein: "keybuf=0x140,0x1c0". 
+  KEYBUF ist ein interner Befehl, d.h. der Befehl ist in der kernel.sys
+  enthalten. Es wird zur Ausf&uuml;hrung des Befehls kein zus&auml;tzlicher
+  Befehl (Datei) ben&ouml;tigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    keybuf=0x140,0x1c0
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

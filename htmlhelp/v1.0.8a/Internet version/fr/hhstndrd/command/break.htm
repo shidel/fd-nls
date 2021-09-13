@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : break</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : break</h1>
+<pre>
+  BREAK active (valeur par d&eacute;faut) ou d&eacute;sactive la v&eacute;rification &eacute;tendue
+  de CTRL+C / Control-Break. Lorsqu'elle est activ&eacute;e, le kernel
+  effectuera la v&eacute;rification (et invoquera le gestionnaire actuel si
+  enfonc&eacute;e) avant la plupart des appels int 21h. Lorsqu'elle est
+  d&eacute;sactiv&eacute;e, le kernel effectue la v&eacute;rification lors des appels E/S
+  en utilisant les flux standards.
+  BREAK peut &ecirc;tre utilis&eacute; dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> <a href="../cnfigsys/break.htm">(cf. aussi ici)</a>
+  et lors du fonctionnement de FreeDOS.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  BREAK [ON | OFF] [/?]
+</pre>
+<h2>Options :</h2>
+<pre>
+  ON   CTRL+C          est m&ecirc;me test&eacute; lors d'un acc&egrave;s &agrave; une disquette
+                       ou DD
+  OFF  CTRL+C          est seulement test&eacute; s'il y a une sortie sur
+                       l'&eacute;cran. La valeur par d&eacute;faut est OFF
+  /?   Affiche l'aide
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Tapez "BREAK" sans param&egrave;tre pour afficher le r&eacute;glage actuel de BREAK.
+  Si BREAK est ACTIV&Eacute;, les programmes et les commandes peuvent toujours
+  &ecirc;tre interrompus en appuyant sur CTRL+C.
+  Si BREAK est sur OFF, les programmes et les commandes ne peuvent &ecirc;tre
+  interrompus que s'il y a une sortie sur l'&eacute;cran.
+  BREAK peut &ecirc;tre utilis&eacute; dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> <a href="../cnfigsys/break.htm">(cf. aussi ici)</a>
+  et lors du fonctionnement de FreeDOS.
+  BREAK est une commande interne &agrave; kernel.sys et ne n&eacute;cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS / SUR LA LIGNE DE COMMANDE :
+    break on   les programmes peuvent &ecirc;tre interrompus par CTRL+C
+    break off  les programmes ne peuvent pas &ecirc;tre interrompus par
+               CTRL+C
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/break.htm">break config.sys</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

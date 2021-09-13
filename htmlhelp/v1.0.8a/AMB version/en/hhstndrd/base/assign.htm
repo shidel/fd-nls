@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: assign</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: assign</h1>
+<pre>
+  ASSIGN reassigns disk operations from one drive to another.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  ASSIGN [/SHADOW] [/STATUS] [/?]
+  ASSIGN [/SHADOW] [/M] [/U] [{drive1[:]=drive2[:]}]
+         drive1:  Drive letter to be replaced, e.g. C:
+         drive2:  Drive letter to point to, e.g. D:
+</pre>
+<h2>Options:</h2>
+<pre>
+  /SHADOW  Makes ASSIGN's presence in memory difficult to detect.
+           Subsequent uses of ASSIGN will issue a warning if 
+           the /shadow option isn't used (but still 
+           performs the command).
+  /STATUS  Display all assigned drive letters.
+           If ASSIGN is not already loaded, a message reflects that,
+           but ASSIGN is not loaded.
+  /M       Attempts to use Upper Memory, instead of conventional 
+           memory, to store the ASSIGN.
+  /U       Uninstall a previous installed ASSIGN.
+  /?       Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The ':' characters are optional, between the drive letters and the 
+  equal sign '=' no whitespaces are allowed.
+  If no drives are named, and /status or /u are not used, 
+  then assign is reinstalled (clearing all previous drive assignments).
+  ASSIGN has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0  success / help
+    3  aborted by user (e.g. Ctrl-C)
+    4  syntax error
+  Do not use assign in combination with the following commands:
+    diskcomp
+    diskcopy
+    format
+    label
+    print
+    restore
+    subst
+</pre>
+<h2>Examples:</h2>
+<pre>
+  assign B:=A:
+  assign B=A
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/join.htm">join</a>
+  <a href="../base/subst.htm">subst</a>
+  <a href="../base/swsubst.htm">swsubst</a>
+  <a href="../command/truename.htm">truename</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : switches</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : switches</h1>
+<pre>
+  SWITCHES ajuste le traitement durant l'amor&ccedil;age.
+  SWITCHES est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  switches=/E[:xxx] /F /K /N /W
+</pre>
+<h2>Options :</h2>
+<pre>
+  /F   ignore la v&eacute;rification de d&eacute;lai pour les touches F5/F8 avant de
+       traiter config.sys [&eacute;quivalent &agrave; SYS CONFIG skipconfigseconds=0]
+       F5 et F8 sont trait&eacute;es seulement si elles sont enfonc&eacute;es avant
+       l'amor&ccedil;age de DOS mais apr&egrave;s la configuration du clavier - le
+       bon moment est facile &agrave; manquer.
+  /N   d&eacute;sactive la prise en charge de F5/F8 [&eacute;quivalent &agrave; kernel
+       config (SYS CONFIG, ex&eacute;cutez SYS CONFIG /? pour les d&eacute;tails)
+       skipconfigseconds=-1]
+       F5 (sauter la config) et F8 (config.sys en une seule &eacute;tape)
+       sont ignor&eacute;s.
+  /K   force le traitement du clavier comme un clavier &agrave; 86 touches,
+       pas &agrave; 102/105 touches. Peut &ecirc;tre utile pour les BIOS ou pilotes
+       qui g&egrave;rent mal ou pas du tout les claviers &agrave; 102/105 touches.
+  /E   active le d&eacute;placement de l'EBDA (Extended BIOS Data Area), une
+       taille en kilooctets peut optionnellement &ecirc;tre sp&eacute;cifi&eacute;e
+       [xxx, dans la plage 48-1024]
+  /W   n'est PAS pris en charge par FreeDOS. Cette option dans MS DOS
+       d&eacute;finit un indicateur pour Windows 3.0 afin que ce dernier ignore
+       le chargement de wina20.386 depuis le r&eacute;pertoire racine.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  SWITCHES est une commande interne &agrave; kernel.sys et ne n&eacute;cessite
+  aucun autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS :
+    switches=/E[:48] /F /K /N /W
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

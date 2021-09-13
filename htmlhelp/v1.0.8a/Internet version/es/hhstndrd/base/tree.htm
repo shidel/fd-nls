@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: tree / pdtree</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: tree / pdtree</h1>
+<pre>
+  TREE / PDTREE muestra gr&aacute;ficamente la estructura del directorio 
+  [carpeta] de una unidad o ruta determinada. Opcionalmente incluye una
+  lista de archivos en la pantalla.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  TREE [d:][ruta] [/F] [/A] [/?]
+  PDTREE [d:][ruta] [/F] [/A] [/V] [/S][/P] [/?]
+       d:ruta  El camino y la ruta donde comenzar. Si no se proporciona
+               ninguna ruta, tree/pdtree se iniciar&aacute; desde el directorio
+               actual.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+   /F  Muestra los nombres de los archivos en cada directorio.
+   /A  Utilice caracteres ASCII para representar visualmente la 
+       estructura del directorio.
+   /?  Muestra ayuda y salir.
+
+ Opciones adicionales en FreeDOS pdTree: (No disponible en el &aacute;rbol
+ est&aacute;ndar).
+   /V  Muestra informaci&oacute;n de versi&oacute;n y salir.
+   /S  Solo nombres cortos (usa nombres cortos, es decir alternativos,
+       cuando existe nombre de archivo). Solo la versi&oacute;n de DOS,
+       deshabilita el uso de API de <a href="../util/doslfn.htm">LFN</a> para encontrar primero/siguiente.
+   /P  Pausa despu&eacute;s de cada p&aacute;gina. (Nota: actualmente est&aacute;
+       predeterminado en la pantalla 80x25) Solo versi&oacute;n Win32, ignora la
+       opci&oacute;n de pausa sin la salida se redirige a un archivo o se
+       canaliza a otro programa, como tree | more; tambi&eacute;n intenta usar el
+       tama&ntilde;o actual de la consola (Todo para la versi&oacute;n DOS).
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  TREE es compatible con NLS (soporte de idioma nacional).
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  Para mostrar la jerarqu&iacute;a completa de directorios de la unidad C y
+  pausar despu&eacute;s de cada pantalla completa, ejecute el &aacute;rbol que
+  especifica C: como la ruta de inicio y canalice su salida al comando
+  <a href="../base/more.htm">MORE</a>:
+    tree C:\ | more
+  Cuando se usa pdTree, el ejemplo anterior tambi&eacute;n se puede lograr
+  usando:
+    pdtree C:\ /p
+  Para mostrar la jerarqu&iacute;a de directorios de un subdirectorio y hacer
+  que la salida solo use caracteres ASCII est&aacute;ndar (como para imprimir o
+  enviar a alguien que pueda verlo sin compatibilidad con caracteres de
+  dibujo de l&iacute;nea/box de DOS), especifique el subdirectorio y el
+  modificador /A:
+    tree ASUBDIR /a
+  Para mostrar la estructura de un &aacute;rbol de directorios y los archivos
+  dentro de cada directorio, agregue el modificador /F:
+    tree ASUBDIR /F | more
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../command/dir.htm">dir</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../base/more.htm">more</a>
+  <a href="../util/pdtree.htm">pdtree</a>
+</pre>
+<hr>
+<pre>
+  Copyright: Este documento es de dominio p&uacute;blico, solo se aceptar&aacute;n
+  adiciones de dominio p&uacute;blico. Por lo tanto, este documento puede
+  copiarse libremente, etc., pero no se ofrece garant&iacute;a, reclamo de
+  correcci&oacute;n ni adecuaci&oacute;n para ning&uacute;n prop&oacute;sito. KJD 2003, 2004.
+  Actualizado 2008 por W. Spiegl.
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+</pre></body></html>

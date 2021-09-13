@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: fc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: fc</h1>
+<pre>
+  FC compara dos archivos o conjuntos de archivos, en modo texto o 
+  binario, y muestra las diferencias entre ellos.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  FC [conmutadores] [unidad1:][ruta1]nom_arch1 [unidad2][ruta2]nom_arch2
+     [conmutadores]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /A    Muestra solo las primeras y &uacute;ltimas l&iacute;neas para cada conjunto de
+        diferencias.
+  /B    Realizar una comparaci&oacute;n binaria.
+  /C    No tenga en cuenta el caso de las letras.
+  /L    Comparar archivos como texto ASCII.
+  /LBn  Establece el n&uacute;mero m&aacute;ximo de l&iacute;neas ASCII consecutivas
+        diferentes en n.
+  /Mn   Establece las diferencias m&aacute;ximas en comparaci&oacute;n binaria en n 
+        bytes (predeterminado = 20, 0 = ilimitado, /M = /M0).
+  /N    Muestra los n&uacute;meros de l&iacute;nea en una comparaci&oacute;n de texto.
+  /Q    No muestra la lista de diferencias.
+  /R    Muestra un breve informe final (siempre activo cuando se usa /S).
+  /S    Extiende el escaneo a los archivos en subdirectorios.
+  /T    No expanda pesta&ntilde;as a espacios.
+  /U    Muestra los nombres de los archivos sin un corresponsal.
+  /W    Paquete de espacios en blanco (pesta&ntilde;a y espacios) para la
+        comparaci&oacute;n de texto.
+  /X    No muestra l&iacute;neas de contexto en la comparaci&oacute;n de texto.
+  /nnn  Establece el n&uacute;mero m&iacute;nimo de l&iacute;neas coincidentes consecutivas en
+        nnn. para la resincronizaci&oacute;n de comparaci&oacute;n.
+  /?    Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  FC tiene conocimiento de <a href="../util/doslfn.htm">LFN</a> y los usa autom&aacute;ticamente si el sistema
+  operativo admite los nombres largos de archivo.
+  El valor predeterminado de FC es el modo binario para los archivos .EXE,
+  .COM, .SYS, .OBJ, .BIN, .DLL y .LIB.
+  En modo binario, FC muestra el desplazamiento en el archivo de los
+  diferentes bytes, su valor en hexadecimal y, si son caracteres 
+  imprimibles ASCII, su car&aacute;cter ASCII.
+  Por defecto, la comparaci&oacute;n binaria se detiene despu&eacute;s de 20
+  diferencias, pero ese valor se puede modificar a trav&eacute;s del modificador
+  /M. /M0 significa "diferencias ilimitadas".
+  /M se interpreta como /M0.
+  Una limitaci&oacute;n de dise&ntilde;o de este programa es que, en la comparaci&oacute;n de
+  archivos en modo texto, solo se comparan las primeras 32765 l&iacute;neas; Las
+  l&iacute;neas restantes se ignoran. La longitud de la l&iacute;nea es pr&aacute;cticamente
+  ilimitada.
+  FC admite NLS (soporte de idioma nacional).
+  FC tiene los siguientes <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0  Todos los archivos coinciden
+    1  Al menos un par de archivos difiere
+    2  Par&aacute;metro inv&aacute;lido en la l&iacute;nea de comando
+    3  Archivo no encontrado
+    4  Error al abrir archivo(s)
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  FC /L /M0 C:\ foo.txt D:\foo.txt
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../base/comp.htm">comp</a>
+  <a href="../base/diskcomp.htm">diskcomp</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../util/md5sum.htm">md5sum</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1999 Maurizio Spagni, modificado en 2008 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: deltree</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: deltree</h1>
+<pre>
+  DELTREE elimina un &aacute;rbol de directorios completo, incluidos los
+  subdirectorios.
+</pre>
+<h2>sintaxis:</h2>
+<pre>
+  DELTREE [/Y] [/V] [/D] [/X] [/Z:EN_SERIO] arbol_dir [arbol_dir...]
+  DELTREE [/?]
+          unidad  La letra de unidad, por ejemplo C:
+          ruta    El directorio, p. \ejemplo
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /Y            Elimina los directorios especificados sin pedir
+                confirmaci&oacute;n.
+  /V            Informa el n&uacute;mero de archivos y subdirectorios 
+                eliminados, y su tama&ntilde;o total.
+  /D            Muestra la informaci&oacute;n de depuraci&oacute;n.
+  /X            para pruebas; en realidad no borres nada.
+  /Z:SERIOUSLY  No preguntar cuando se especifica el directorio ra&iacute;z.
+  arbol_dir     El&aacute;rbol de directorios que se eliminar&aacute;, p. C:\OLDTREE
+                Tenga en cuenta que se pueden eliminar varios &aacute;rboles
+                de directorios con un solo comando.
+  /?            Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Por razones de rendimiento DELTREE sobrescribe la primera letra de cada
+  nombre de archivo / nombre de directorio con un '?'. No elimina el
+  archivo en s&iacute;, pero desasigna el espacio donde se escribe el contenido
+  del archivo. FreeDOS, como otros DOS, reconoce el archivo / directorio
+  renombrado (myfile.txt se convierte en ?yfile.txt; nom_ruta se 
+  convierte en ?om_ruta) como eliminado, ya no lo muestra y no ofrece
+  acceso a &eacute;l. Los programas como DEBUG que tienen acceso de sector
+  pueden leer el contenido del archivo / directorio. Mientras no escriba
+  en la unidad, tiene la oportunidad de restaurar los archivos / 
+  directorios nuevamente con <a href="../base/undelete.htm">UNDELETE</a>, solo se perder&aacute; el primer car&aacute;cter
+  del nombre del archivo / directorio (_yfile.txt / _athname). Las &uacute;nicas
+  formas de eliminar el archivo CONTENIDO PARA CIERTOS ABSOLUTAMENTE es
+  <a href="../command/rename.htm">RENAME</a> <a href="../command/ren.htm">(REN)</a> el archivo / directorio primero (por ejemplo, "a." / 
+  "A") y eliminarlo m&aacute;s tarde (solo correcto en 8.3 - no con nombres 
+  largos de archivo / nombres de directorios!)
+  Los interruptores deben estar antes de arbol_dir en la l&iacute;nea de
+  comandos: sintaxis compatible con MS. De lo contrario, ser&aacute;n ignorados.
+  Las especificaciones de archivos pueden nombrar archivos, subdirectorios
+  o listas de archivos de estilo DR DOS. &iexcl;DELTREE es un comando peligroso!
+  &uacute;selo bajo su propio riesgo. DELTREE tiene los siguientes <a href="../batch/if.htm#comment">EXITCODES 
+  (ERRORLEVEL)</a>:
+    00 Exito
+    01 Algo no pudo ser eliminado
+    03 Usuario abortar (Q,control-C)
+    16 Error de sintaxis general o desbordamiento del b&uacute;fer.
+    17 No hay suficiente memoria
+    18 Se requiere DOS 3.0 o superior
+    19 Problema con el archivo de lista
+    20 Desbordamiento interno del b&uacute;fer
+    21 Error al resolver el nombre del directorio (dots_fix)
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  deltree /y c:\oldtree
+  deltree c:\test2\   solicita cada subdirectorio de \test2 si realmente
+                      desea eliminarlo
+  deltree c:\test2    elimina todo el sobdirectorio de \test2
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../command/del.htm">del</a>
+  <a href="../command/erase.htm">erase</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/ren.htm">ren</a>
+  <a href="../command/rename.htm">rename</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

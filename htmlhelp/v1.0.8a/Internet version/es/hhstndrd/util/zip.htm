@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: zip</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: zip</h1>
+<pre>
+  ZIP es un compresor y empaquetador de archivos, como PKZIP.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  zip [-AcdDefFghjJklLmoqrRSTuvXz019@$] [-b ruta] [-n sufijos]
+      [-t mmddyyyy] [-tt mmddyyyy] [ archivozip [ archivo1 archivo2 ...]]
+      [-xi lista]
+  La acci&oacute;n por defecto es a&ntilde;adir o sustituir entradas de archivos ZIP
+  de la lista, que puede incluir el nombre especial - para comprimir la
+  entrada estandar si se omite el archivo ZIP y la lista, ZIP comprime la
+  entrada estandar a la salida estandar.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  -A   Ajusta archivo ejecutalble autoextra&iacute;ble.
+  -c   A&ntilde;ade una linea de comentario para cada archivo.
+  -d   Elimina (borrar) las entradas de un archivo zip. Por ejemplo:
+          zip -d foo foo/tom/junk foo/harry/\* \*.o
+       Eliminar&aacute; la entrada foo/tom/junk, todos los archivos que comiencen
+       con foo/harry/, y todos los archivos que terminan con .o (en
+       cualquier ruta).
+  -D   No cree entradas en el archivo Zip para los directorios.
+  -e   Encripta el contenido del archivo Zip utilizando una contrase&ntilde;a que
+       se introduce en el terminal en respuesta a un indicador (si este no
+       se hace eco, y si el error est&aacute;ndar no es un tty, zip que terminar&aacute;
+       con un error). La solicitud de contrase&ntilde;a se repite para evitar que
+       los errores de escritura del usuario. Tenga en cuenta que esta cifra
+       con el cifrado PKZIP est&aacute;ndar que se considera d&eacute;bil.
+  -f   Vuelva a colocar (refrescar) una entrada existente en el archivo zip
+       s&oacute;lo si se ha modificado m&aacute;s recientemente que la versi&oacute;n que ya
+       est&aacute; en el archivo.
+  -F   Fijar el archivo zip. (-FF esforzarse m&aacute;s)
+       -D  No a&ntilde;adir entradas de directorios
+       -A  ajustar archivo ejecutable autoextra&iacute;ble
+  -g   Crecer (anexar) el archivo zip especificado, en lugar de crear uno
+       nuevo.
+  -h   Muestra la informaci&oacute;n de ayuda ZIP (esto tambi&eacute;n aparece si zip
+       se ejecuta sin argumentos).
+  -j   Guarde s&oacute;lo el nombre de un archivo guardado (ruta basura), y no
+       guarde los nombres de directorio. De forma predeterminada, zip
+       almacenar&aacute; la ruta completa.
+  -J   Despojar los datos adicionados al inicio (por ejemplo, un trozo SFX)
+       del archivo.
+  -k   Intentar convertir los nombres y las rutas para conformarlos con
+       MSDOS, almacenar s&oacute;lo el atributo MSDOS (justo al usuario escribir
+       atributos de UNIX), y marcar la entrada como hecha bajo MSDOS (a
+       pesar de que no lo era), para la compatibilidad con PKUNZIP bajo
+       MSDOS que no puede manejar ciertos nombres tales como aquellos con
+       dos puntos.
+  -l   Traducir el car&aacute;cter Unix de fin de l&iacute;nea LF en el MSDOS convenci&oacute;n
+       CR LF.
+  -ll  Traducir el MS-DOS de fin de l&iacute;nea CR LF en Unix LF.
+  -L   Muestra la licencia ZIP.
+  -m   Mueva los archivos especificados en el archivo zip, en realidad,
+       esto elimina los directorios / archivos de destino despu&eacute;s de hacer
+       el archivo zip especificado.
+  -MM  Todos los patrones de entrada deben coincidir al menos un archivo y
+       todos los archivos de entrada encontradas deben ser legibles.
+  -o   Establecer la "&uacute;ltima modificaci&oacute;n" tiempo del archivo zip a la
+       &uacute;ltima vez (el m&aacute;s antiguo) "&uacute;ltima modificaci&oacute;n" que se encuentra
+       entre las entradas en el archivo zip.
+  -q   Modo silencioso; eliminar mensajes informativos y comentario
+       indicaciones. (&Uacute;til, por ejemplo, en los scripts de shell y tareas
+       en segundo plano).
+  -r   Viaja la estructura de directorios de forma recursiva.
+  -R   Viaja la estructura de directorios de forma recursiva comenzando en
+       el directorio actual.
+  -S   Incluir archivos de sistema y ocultos.
+  -T   Probar la integridad del nuevo archivo zip. Si la comprobaci&oacute;n
+       falla, el archivo zip viejo no se ha modificado y (con la opci&oacute;n
+       -m) no se eliminan los archivos de entrada.
+  -u   Reemplazar (update) una entrada existente en el archivo zip s&oacute;lo
+       si se ha modificado m&aacute;s recientemente que la versi&oacute;n que ya est&aacute;n
+       en el archivo zip.
+  -v   Modo detallado o imprimir informaci&oacute;n de la versi&oacute;n de diagn&oacute;stico.
+  -z   Solicitar un comentario de varias l&iacute;neas para todo el archivo zip.
+  -X   No guardar atributos de archivo adicionales.
+  -0   Indica que no hay compresi&oacute;n (almacenar todos los archivos).
+  -1   Indica el m&eacute;todo de compresi&oacute;n m&aacute;s r&aacute;pida (menos de compresi&oacute;n).
+  -9   Indica el m&eacute;todo de compresi&oacute;n m&aacute;s lento (compresi&oacute;n &oacute;ptima, hace
+       caso omiso de la lista de sufijos). El nivel de compresi&oacute;n
+       predeterminado es -6.
+  -@   Tome la lista de archivos de entrada de la entrada est&aacute;ndar. S&oacute;lo
+       un nombre de archivo por l&iacute;nea.
+  -$   Incluya la etiqueta de volumen de la unidad que contiene el primer
+       archivo a comprimir.
+  -b ruta       Utilice la ruta especificada para el archivo zip temporal.
+                Por ejemplo: zip-b / tmp cosas * pondr&aacute; el archivo zip
+                temporal en el directorio / tmp, copiando stuff.zip al
+                directorio actual cuando se hace.
+  -i Archivos   Incluya s&oacute;lo los archivos especificados, como en: zip-r foo.
+                -i \ *. c que incluir&aacute; s&oacute;lo los archivos que terminan en .c
+                en el directorio actual y sus subdirectorios.
+                -F fix archivo zip (FF-esforzarse m&aacute;s)
+                -D no a&ntilde;adir entradas de directorio
+                -A exe autoextra&iacute;ble ajuste
+  -n sufijos    No intente comprimir archivos cuyo nombre los sufijos dados.
+  -P Contrase&ntilde;a Utilice contrase&ntilde;as para cifrar las entradas archivo zip (si
+                los hay). ESTO ES INSEGURO!
+  -t mmddaaaa   No funciona en los archivos modificados antes de la fecha
+                indicada, donde mm es el mes (0-12), DD es el d&iacute;a del mes
+                (1-31) y aaaa es el a&ntilde;o. El formato de fecha ISO 8601
+                aaaa-mm-dd tambi&eacute;n se acepta.
+  -tt mmddaaaa  No funciona en los archivos modificados despu&eacute;s o en la
+                fecha especificada, donde mm es el mes (0-12), DD es el
+                d&iacute;a del mes (1-31) y aaaa es el a&ntilde;o. El formato de fecha
+                ISO 8601 aaaa-mm-dd tambi&eacute;n se acepta.
+  -x archivos   expl&iacute;citamente excluyen los archivos especificados.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Para obtener m&aacute;s informaci&oacute;n, por favor lea el manual.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  El ejemplo m&aacute;s sencillo:
+    zip cosas *
+  crea el archivo stuff.zip (asumiendo que no existe), y pone
+  todos los archivos del directorio actual en el que, en forma comprimida.
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../util/unzip.htm">unzip</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Actualizado en 2013 por Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva de la FreeDOS Spec Command HOWTO.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copia.
+
+</pre></body></html>

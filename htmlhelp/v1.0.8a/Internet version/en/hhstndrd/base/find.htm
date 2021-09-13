@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: find</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: find</h1>
+<pre>
+  FIND displays lines in one or more text files that contain a string.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FIND [ /C ] [ /I ] [ /N ] [ /V ] "string" [[drive][path]file1]
+  FIND [/?]
+       drive  the drive letter, e.g. C:
+       path   the directory, e.g. \example\
+       file1  the file(s) you wish to search, e.g. test.exe 
+       Note:  If you do not specify a file, find will take 
+              input from the console. Type Ctrl-Z to finish.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /C        Only displays a count of the matching lines.
+  /I        Ignore case during the comparison.
+  /N        Number the displayed lines, starting at 1.
+  /V        Inverts the search: displays lines that do NOT 
+            contain the string.
+  "string"  The string of signs you want to find, e.g. "water" or
+            "0123". The string must be marked by quotation marks.
+  /?        Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  FIND supports NLS (national language support).
+  FIND has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0  found
+    1  none found
+    2  search not completed 
+</pre>
+<h2>Examples:</h2>
+<pre>
+  find /c loadhigh c:\autoexec.bat
+  find /c devicehigh c:\config.sys
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/xgrep.htm">xgrep</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

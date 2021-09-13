@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : fdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : fdisk</h1>
+<pre>
+  FDISK cr&eacute;&eacute; une ou plusieurs partitions sur un disque dur. Apr&egrave;s cela,
+  les partitions peuvent &ecirc;tre <a href="../base/format.htm">format</a>&eacute;es et seront pr&ecirc;tes &agrave; fonctionner
+  avec FreeDOS.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  fdisk [options]
+  FDisk peut &ecirc;tre utilis&eacute; de deux fa&ccedil;ons :
+    * Sans options. FDisk fournit un menu interactif.
+    * Avec des options.
+    Notez qu'une exception est que l'option /MONO est utilis&eacute;e avec
+    le mode de menus interactifs.
+</pre>
+<h2>Options :</h2>
+<pre>
+  Notes g&eacute;n&eacute;rales sur les options :
+    * les partitions, les types de partition et les lecteurs sont tous
+      sp&eacute;cifi&eacute;s par des nombres.
+    * les tailles sont sp&eacute;cifi&eacute;es en m&eacute;ga octets, ou en tant que
+      pourcentage si elles sont suivies de ,100. Par exemple 50
+      signifiera 50 Mo et 50,100 signifiera 50 %.
+
+    (acune option)  Fonctionne en mode interactif.
+    /REBOOT         Red&eacute;marre l'ordinateur
+    /? [/NOPAUSE]   Affiche ces informations d'aide.
+
+  Commutateurs de l'interface utilisateur interactif :
+    /ACTOK          Saute la v&eacute;rification d'int&eacute;grit&eacute;.
+    /FPRMT          Invite pour FAT32/FAT16 en mode interactif.
+    /MONO           Force l'interface utilisateur &agrave; fonctionner en mode
+                    monochrome.
+    /Q              Emp&ecirc;che le syst&egrave;me de red&eacute;marrer apr&egrave;s que vous
+                    aurez quitt&eacute; FDisk. (Note :  FDisk ne red&eacute;marrera
+                    pas apr&egrave;s que vous aurez quitt&eacute; sauf si le
+                    red&eacute;marrage est activ&eacute; dans le fichier "fdisk.ini".)
+    /X              N'utilise pas les partitions LBA.
+    /XO             Active les options &eacute;tendues.
+
+  Cr&eacute;ation de partition primaires sur des lecteurs logiques :
+  Les tailles sont en Mo ou [,100] en pourcentage.
+    /PRI:'taille'[,100] [/SPEC:'type#'] [lecteur#]
+                    Cr&eacute;e une partition primaire.
+    /PRIO:'taille'[,100] [/SPEC:'type#'] [lecteur#]
+                    Cr&eacute;e une partition primaire FAT16.
+    /EXT:'taille'[,100] [lecteur#]
+                    Cr&eacute;e une partition DOS &eacute;tendue.
+    /EXTO:'taille'[,100] [lecteur#]
+                    Cr&eacute;e une partition FAT16 DOS &eacute;tendue.
+    /LOG:'taille'[,100] [/SPEC:'type#'] [lecteur#]
+                    Cr&eacute;e une partition logique dans la partition &eacute;tendue.
+    /LOGO:'taille'[,100] [/SPEC:'type#'] [lecteur#]
+                    Cr&eacute;e une partition logique FAT16 dans la
+                    partition &eacute;tendue.
+    /AUTO [lecteur#]
+                    Partitionne automatiquement le disque.
+    [/SPEC:'type#']
+                    Sp&eacute;cifie le num&eacute;ro de type de partition.
+
+  Activation/D&eacute;sactivation des tableaux de partition :
+    /ACTIVATE:'partition#' [lecteur#]
+                    R&egrave;gle la 'partition#' en tant qu'active.
+    /DEACTIVATE [lecteur#]
+                    D&eacute;sactive toutes les partitions sur le 'lecteur#'.
+
+  Effacement des partitions - &Agrave; UTILISER AVEC PR&Eacute;CAUTION !
+    /CLEAR [lecteur#]
+                    Efface toutes les partitions.
+    /CLEARALL [lecteur#]
+                    Efface toutes les partitions et le Master
+                    Boot Record.
+    /DELETE {/PRI[:#] | /EXT | /LOG:'partition#'|/NUM:'partition#'}
+            [lecteur#]
+                    Efface une partition (primaire, &eacute;tendue, logique).
+                    Note : les lecteurs logiques d&eacute;marrent &agrave; /NUM=5.
+
+  Modification du MBR (Master Boot Record) :
+    /AMBR [lecteur#]  &Eacute;crit le MBR stock&eacute; dans le fichier "boot.mbr" sur
+                    'lecteur#'.
+    /BMBR [lecteur#]  &Eacute;crit le MBR BOOTEASY sur 'lecteur#'.
+    /CMBR [lecteur#]  Cr&eacute;e le MBR.
+    /MBR  [lecteur#]  &Eacute;crit le MBR standard sur 'lecteur#'.
+    /SMBR [lecteur#]  Sauvegarde le MBR courant sur 'lecteur#', dans
+                      un fichier appel&eacute; 'boot.mbr'.
+    /RMBR [lecteur#]  Enl&egrave;ve le MBR du 'lecteur#'.
+
+  Moficiation des tableaux de partition
+    /MODIFY:'partition#','type#' [lecteur#]
+                    Modifie le type de partition en 'type#'. Les
+                    lecteurs logiques d&eacute;marrent &agrave; "5".
+    /MOVE:'partition_source#','partition_dest#' [lecteur#]
+                    D&eacute;place l'entr&eacute;e dans la table de partition
+                    primaire, de partition_source vers
+                    partition_destination.
+    /SWAP:'premi&egrave;re_partition#','seconde_partition#' [lecteur#]
+                    &Eacute;change deux entr&eacute;es de partition.
+
+  Pour g&eacute;rer les indicateurs sur un disque dur :
+    /CLEARFLAG[{:'indicateur#'} | /ALL} ] [lecteur#]
+                    Remet &agrave; z&eacute;ro 'indicateur#' ou tout sur 'lecteur#'
+    /SETFLAG:'indicateur#'[,'valeur_indicateur'] [lecteur#]
+                    R&egrave;gle 'indicateur#' &agrave; 1 ou &agrave; 'valeur_indicateur'
+    /TESTFLAG:'indicateur#'[,'valeur_indicateur'] [lecteur#]
+                    Teste 'indicateur#' pour 1 ou 'valeur_indicateur'
+
+  Pour obtenir des informations au sujet des disques durs :
+    /DUMP           Verse (affiche) les informations de partitions
+                    de tous les disques durs (pour le d&eacute;bogage).
+    /INFO [/TECH]   Affiche les informations de partition du disque
+                    'lecteur#'.
+    /STATUS         Affiche la disposition actuelle de partition.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Comme FDISK cr&eacute;e / efface des partitions vous devriez l'utiliser avec.
+  pr&eacute;caution. Si vous souhaitez rendre un disque dur amor&ccedil;able, n'oubliez
+  pas de r&eacute;gler l'indicateur 'Active'. FreeDOS ne prend en charge que la
+  partition primaire. Si vous souhaitez cr&eacute;er plus d'une partition sur un
+  disque dur vous devriez d'abord cr&eacute;er une partition primaire, puis une
+  partition &eacute;tendue et dans cette partition &eacute;tendue une ou davantage de
+  partitions logiques.
+  FDISK a les <a href="../batch/if.htm#comment">CODE DE SORTIE (ERRORLEVEL)</a> suivants :
+     0  Ach&egrave;vement normal du programme, aucune erreur
+     1  Erreur de syntaxe
+     3  Erreur dans le fichier fdisk.ini
+     4  Erreur dans le fichier part.dat
+     5  Disque dur inexistant
+     6  &Eacute;chec d'allocation de tampon
+     7  Le disque dur est d&eacute;j&agrave; partitionn&eacute;. (Cela n'est retourn&eacute; que
+        si la fonction "/AUTO" est utilis&eacute;e et s'il y a d&eacute;j&agrave; des
+        partitions autres qu'une partition de diagnostic Compaq
+        sur le disque dur.)
+     8  Erreur de lecture ou d'&eacute;criture du fichier boot.mbr.
+     9  Erreur diverse. Il est pr&eacute;f&eacute;rable d'examiner la
+        sortie affich&eacute;e sur l'&eacute;cran depuis FDISK libre pour
+        d&eacute;terminer la cause exacte du probl&egrave;me.
+    20  L'indicateur a &eacute;t&eacute; r&eacute;gl&eacute; (cf. /SETFLAG, /TESTFLAG, et
+        /CLEARFLAG pour les d&eacute;tails)
+    21  L'indicateur n'a pas &eacute;t&eacute; d&eacute;fini (cf. niveau d'erreur 20,
+        ci-dessus)
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  fdisk
+  fdisk /status
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Brian E. Reifsnyder, mis &agrave; jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

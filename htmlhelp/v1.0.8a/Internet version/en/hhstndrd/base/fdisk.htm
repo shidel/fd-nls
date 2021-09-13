@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: fdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: fdisk</h1>
+<pre>
+  FDISK creates one or several partitions on a hard disk. After this,
+  the partitions can be <a href="../base/format.htm">format</a>ted and are ready to work with FreeDOS.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  fdisk [options]
+  FDisk can be used in two ways:
+    * Without options. FDisk provides an interactive menu.
+    * With options. 
+    Note that an exception is that the /MONO option is used 
+    with the interactive menu mode.
+</pre>
+<h2>Options:</h2>
+<pre>
+  General Notes on the Options:
+    * partitions, partition types and drives are all specified by
+      numbers.
+    * sizes are specified in Mega Bytes, or as a percentage if followed
+      by ,100. For example 50 would be 50MB and 50,100 would be 50%. 
+
+    (no options)    Runs in interactive mode.
+    /REBOOT         Reboots the Computer
+    /? [/NOPAUSE]   Displays this help information.
+
+  Interactive user interface switches:
+    /ACTOK          Skips integrity checking.
+    /FPRMT          Prompts for FAT32/FAT16 in interactive mode.
+    /MONO           Forces the user interface to run in monochrome mode.
+    /Q              Keeps the system from rebooting after you exit FDisk.
+                    (Note:  FDisk will not reboot after you exit unless
+                    rebooting is enabled in the "fdisk.ini" file.)
+    /X              Do not use LBA partitions.
+    /XO             Enables extended options.
+
+  Creating primary partitions and logical drives: 
+  Sizes are in MB or [,100] in percent.
+    /PRI:'size'[,100] [/SPEC:'type#'] [drive#]
+                    Creates a primary partition.
+    /PRIO:'size'[,100] [/SPEC:'type#'] [drive#]
+                    Creates a primary FAT16 partition.
+    /EXT:'size'[,100] [drive#]
+                    Creates an extended DOS partition.
+    /EXTO:'size'[,100] [drive#]
+                    Creates an extended DOS FAT16 partition.
+    /LOG:'size'[,100] [/SPEC:'type#'] [drive#]
+                    Creates a logical partition in the extended
+                    partition.
+    /LOGO:'size'[,100] [/SPEC:'type#'] [drive#]
+                    Creates a logical FAT16 partition in the extended
+                    partition.
+    /AUTO [drive#]
+                    Automatically partitions the disk.
+    [/SPEC:'type#'] 
+                    Specifies the partition type number.
+
+  Activating/Deactivating partition tables:
+    /ACTIVATE:'partition#' [drive#]
+                    Sets 'partition#' active.
+    /DEACTIVATE [drive#]
+                    Deactivates all partitions on 'drive#'.
+
+  Deleting partitions - USE WITH CAUTION!
+    /CLEAR [drive#]
+                    Deletes all Partitions.
+    /CLEARALL [drive#]
+                    Deletes all Partitions and the Master Boot Record.
+    /DELETE {/PRI[:#] | /EXT | /LOG:'partition#'|/NUM:'partition#'}
+            [drive#]
+                    Deletes a partition (primary, extended, logical).
+                    Note: Logical drives start at /NUM=5.
+
+  MBR (Master Boot Record) modification:
+    /AMBR [drive#]  Writes the MBR stored in the "boot.mbr" file to
+                    'drive#'.
+    /BMBR [drive#]  Writes the BOOTEASY MBR to 'drive#'.
+    /CMBR [drive#]  Creates the MBR.
+    /MBR  [drive#]  Writes the standard MBR to 'drive#'.
+    /SMBR [drive#]  Saves the current MBR on 'drive#', into a file
+                    called 'boot.mbr'.
+    /RMBR [drive#]  Removes the MBR from 'drive#'.
+
+  Partition table modification
+    /MODIFY:'partition#','type#' [drive#]
+                    Changes partition type to 'type#'. Logical drives
+                    start at "5".
+    /MOVE:'source_partition#','dest_partition#' [drive#]
+                    Moves the entry in the primary partition table,
+                    from source_partition to destination_partition.
+    /SWAP:'first_partition#','second_partition#' [drive#]
+                    Swaps two partition entries.
+
+  For handling flags on a hard disk:
+    /CLEARFLAG[{:'flag#'} | /ALL} ] [drive#]
+                    Resets 'flag#' or all on 'drive#'
+    /SETFLAG:'flag#'[,'flag_value'] [drive#]
+                    Sets 'flag#' to 1 or 'flag_value'
+    /TESTFLAG:'flag#'[,'flag_value'] [drive#]
+                    Tests 'flag#' for 1 or 'flag_value'
+
+  For obtaining information about the hard disk(s):
+    /DUMP           Dumps (displays) partition information from all
+                    hard disks (for debugging).
+    /INFO [/TECH]   Displays partition information from 'drive#'.
+    /STATUS         Displays the current partition layout.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  As FDISK creates / deletes partitions you should handle it carefully.
+  If you want to make a HD bootable, don't forget to set the 'Active'
+  flag. FreeDOS supports only one primary partition. If you want to
+  create more than one partition on a HD you should first create a
+  primary partition, then an extended partition and in this extended
+  partition one or more logical partitions. 
+  FDISK has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+     0  Normal program completion, no errors
+     1  Syntax error
+     3  Error in the fdisk.ini file
+     4  Error in the part.dat file
+     5  Non-existant hard disk
+     6  Buffer allocation failure
+     7  Hard disk is already partitioned. (This is only
+        returned if the "/AUTO" function is used and there are
+        already partitions other than a Compaq Diagnostic
+        Partition on the hard disk.)
+     8  Error reading from or writing to the boot.mbr file.
+     9  Miscellaneous error. It is best to examine
+        the output printed to the screen from Free FDISK to
+        determine the exact cause of the problem.
+    20  Flag has been set (see /SETFLAG, /TESTFLAG, and
+        /CLEARFLAG for details)
+    21  Flag has not been set (see errorlevel 20, above)
+</pre>
+<h2>Examples:</h2>
+<pre>
+  fdisk
+  fdisk /status
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Brian E. Reifsnyder, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

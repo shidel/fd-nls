@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Netzwerken unter FreeDOS - NTCPDRV</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top"></a>Netzwerken unter FreeDOS - NTCPDRV</h1>
+<h2><a name="zzz"></a>&Uuml;bersicht:</h2>
+<pre>
+  Der Trumpet TCP Treiber ist ein externer <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a>. Er arbeitet
+  als TSR (=terminate and stay resident=beende und bleibe resident im
+  Speicher) Programm, das oberhalb eines Pakettreibers l&auml;uft.
+  TCPDRV wurde 1992 von Peter Tattam, einem Programmierer an dem "Psycho-
+  logy department of the University of Tasmania" in Hobart, Australien,
+  geschaffen. Laut einer Biographie auf seiner Webseite (vgl.: <b>http://
+  www.tattsoft.com/aboutUs.htm (*01)</b>) entwickelte er die Shareware
+  "Trumpet Newsreader" kurze Zeit zuvor und schrieb den TCP Treiber nur
+  deshalb, weil nichts anderes f&uuml;r Turbo Pascal frei erh&auml;ltlich war.
+  Die Entwicklung f&uuml;hrte letztendlich zu der beliebten Windowssoftware
+  "Trumpet Winsock", die Tattam &uuml;ber seine eigene Gesellschaft "Trumpet
+  International of Australia", gegr&uuml;ndet 1994, vertrieb (vgl.: <b>http:
+  //www.trumpet.com.au/ (*02)</b>).
+  TCPDRV 2.01 wurde als "experimentelle Version" ver&ouml;ffentlicht. Im Jahr
+  1993 folgte eine Version 3.01, die sich NTCPDRV nannte. Die Verbesse-
+  rungen enthielten eine effizientere Speicherverwaltung und Bugfixes
+  (=Fehlerbeseitigungen vgl.: <b>http://alumnus.caltech.edu/~dank/trumpet/
+  (*03)</b>).
+  Beide Versionen und die Textdatei TCP201.SPE (vgl.: <b>http://wiretap.
+  area.com/Gopher/pub/tsoft/trumpet-abi/tcp201.specification (*04)</b>) - die
+  Spezifikation f&uuml;r Programmierer - wurden ver&ouml;ffentlicht und sind von
+  der Trumpet Webseite herunterladbar (vgl.: <b>http://www.trumpet.com.au/
+  dosapps/ (*05)</b>).
+  Die Lizenzbedingungen auf dieser Seite sind kurz und einfach gehalten:
+  "Diese DOS Anwendungen sind frei und ohne Support verf&uuml;gbar." Dank der
+  Beliebtheit der Trumpet Software kann sie von verschiedenen Mirrors
+  heruntergeladen werden (vgl.: <b>http://wiretap.area.com/Gopher/pub/
+  tsoft/trumpet-abi/ (*06)</b>). Eine kommerzielle Version des TCP Treibers
+  ist von Peter Tattams neuer Firma "Tattam Software Enterprises"
+  erh&auml;ltlich (vgl.: <b>http://www.tattsoft.com/index.php/products/
+  tcpip-driver.html (*07)</b>). 
+</pre>
+<h2><a name="aaa"></a>Installation und Konfiguration:</h2>
+<pre>
+  Laden Sie die NTCPDRV.ZIP (vgl.: <b>http://wiretap.area.com/Gopher/pub/
+  tsoft/trumpet-abi/ntcpdrv.zip (*08)</b>) herunter und entpacken sie. Wenn
+  Sie eine Dokumentation brauchen, laden Sie die &auml;tere Version
+  TCP201.ZIP (vgl.: <b>http://wiretap.area.com/Gopher/pub/tsoft/trumpet
+  -abi/tcp201.zip (*09)</b>) zus&auml;tzlich herunter, die noch einige zus&auml;tz-
+  liche Anwendungen ent&auml;lt. Der <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a> mu&szlig; mit Ihren <a href="../network/network.htm">Netzwerk</a>-
+  einstellungen konfiguriert werden. Das kann entweder &uuml;ber Kommando-
+  zeilenparameter oder &uuml;ber Einstellungen in den DOS Umgebungsvariablen
+  geschehen.
+  Starten Sie also NTCPDRV.EXE mit einem Befehl wie diesem (EINE Zeile!):
+      NTCPDRV -ip=192.168.1.80 -netmask=255.255.255.0
+      -gateway=192.168.1.1 -dns-host=192.168.1.1
+  oder konfigurieren Sie es zuerst, indem Sie Umgebungsvariablen setzen:
+  Fuegen Sie folgende Zeilen in der <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> oder einer Batchdatei
+  hinzu, die vor NTCPDRV.EXE gestartet wird:
+      --- <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ---
+      set ip=192.168.1.80
+      set netmask=255.255.255.0
+      set gateway=192.168.1.1
+      set dns=192.168.1.1
+  Wie in dem Bild unten gezeigt, sucht der Kernel, nachdem er gestartet
+  ist, automatisch nach einem verwendbaren Interrupt Vektor. Sie k&ouml;nnen
+  auch den Parameter "-vec=61" verwenden, um zum Beispiel den Vektor 0x61
+  zu spezifizieren, der f&uuml;r den Pakettreiber f&uuml;r Anwendungen bereitge-
+  stellt wird. Mehr M&ouml;glichkeiten finden Sie in der Dokumentation.
+    (Bild: Startmeldungen von NTCPDRV)
+  Nachdem der Trumpet <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a> gestartet wurde, k&ouml;nnen Sie mehrere
+  <a href="../network/tcpip.htm">TCP/IP</a> Anwendungen, die einen <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a> ben&ouml;tigen, laufen lassen
+  (zum Beispiel den Trumpet Newsreader, die DOS Webserver Sioux oder
+  Webserv). Ihre Maschine ist dann auch von einem <a href="../network/network.htm">Netzwerk</a> aus erreich-
+  bar, versuchen Sie einfach mal einen "Ping".
+    (Bild: Ping von einer Windowsmaschine")
+  In obigem Bild "pingen" wir die Maschine mit FreeDOS und dem laufenden
+  NTCPDRV TSR von einem anderen Computer mit Windows XP aus an. Es hat
+  nicht den schnellsten Durchsatz und das erste Paket ging verloren.
+  Dann pingen wir ihn von einer Debian GNU/Linux Maschine aus an:
+    (Bild: Ping von einer GNU/Linux Box)
+  Das erste Paket ben&ouml;tigt wieder mehr Zeit, das dritte wird in akzeptab-
+  ler Zeit empfangen. Wenigstens sehen wir: Das <a href="../network/network.htm">Netzwerk</a> funktioniert und
+  der Trumpet TCP Treiber antwortet auf unsere Ping-Anfragen.
+
+  <b>(*01) http://www.tattsoft.com/index.php/about-us.html</b>
+  <b>(*02) OK</b>
+  <b>(*03) https://web.archive.org/web/20100127193745/http://alumnus.
+        caltech.edu/~dank/trumpet/</b>
+  <b>(*04) ftp://ftp.tsoft.net/pub/tsoft/trumpet-abi/</b>
+  <b>(*05) http://www.trumpet.com.au/ ?</b>
+  <b>(*06) http://ftp.gnome.org/mirror/archive/ftp.sunet.se/pub/
+        simtelnet/trumpet/tcp-abi/</b>
+  <b>(*07) OK</b>
+  <b>(*08) ftp://ftp.oldskool.org/pub/tvdog/internet/ntcpdrv.zip</b>
+  <b>(*09) ftp://ftp.oldskool.org/pub/tvdog/internet/tcp201.zip
+        ftp://ftp.oldskool.org/pub/tvdog/internet/tcp201.txt</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), 2011 und 2020
+  an die FreeDOS-Hilfe angepasst von W.Spiegl.</b>
+  Weitergehende Informationen <a href="../network/intro.htm#ddd">finden Sie hier</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

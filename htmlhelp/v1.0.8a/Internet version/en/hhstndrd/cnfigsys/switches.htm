@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: switches</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: switches</h1>
+<pre>
+  SWITCHES adjusts boot time processing behaviour.
+  SWITCHES is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  switches=/E[:xxx] /F /K /N /W
+</pre>
+<h2>Options:</h2>
+<pre>
+  /F   skips the delay checking for F5/F8 keystroke before processing
+       config.sys [equivalent to SYS CONFIG skipconfigseconds=0]
+       F5 and F8 are only processed if pressed before DOS boots but
+       after the keyboard is set up - right moment is easy to miss.
+  /N   disables F5/F8 support [equivalent to kernel config (SYS CONFIG,
+       run SYS CONFIG /? for explanations) skipconfigseconds=-1]
+       F5 (skip config) and F8 (single step config.sys) are ignored.
+  /K   forces treating of keyboard as 86 key keyboard, not 102/105 key.
+       Might be useful with BIOSes or drivers which have no or broken
+       handling for 102/105 key keyboards.
+  /E   enables moving of EBDA (Extended BIOS Data Area), optionally a
+       size in kilobytes may be specified [xxx, in range of 48-1024]
+  /W   is NOT supported in FreeDOS. This option in MS DOS would set a flag
+       for Windows 3.0 to skip loading wina20.386 from the root directory.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  SWITCHES is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    switches=/E[:48] /F /K /N /W
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: tickle</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: tickle</h1>
+<pre>
+  TICKLE is a read-ahead for <a href="../base/lbacache.htm">LBACACHE</a>. This gives extra speed to
+  floppy disk drives.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  tickle [/CHS] [/LBA] [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /CHS  Old harddisk read-ahead on (CHS mode - Cylinder/Head/Sector).
+  /LBA  New harddisk read-ahead on (LBA mode - Logical Block Adressing).
+  /?    Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  TICKLE reads the whole floppy track at once when you
+  first read anything in a track - this is faster because
+  the floppy has to revolve less often.
+  Floppy read-ahead is always on.
+  Load <a href="../base/lbacache.htm">LBACACHE</a> with FLOP option enabled first!
+  Do not <a href="../command/loadhigh.htm">LOADHIGH</a> TICKLE, risk of data loss / DMA problems!
+</pre>
+<h2>Examples:</h2>
+<pre>
+  lbacache FLOP
+  tickle /lba
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/cdrcache.htm">cdrcache.sys</a>
+  <a href="../base/lbacache.htm">lbacache</a>
+  <a href="../command/loadhigh.htm">loadhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

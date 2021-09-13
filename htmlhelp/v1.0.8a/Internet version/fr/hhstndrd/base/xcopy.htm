@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : xcopy</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : xcopy (rxcopy)</h1>
+<pre>
+  XCOPY copie des fichiers et des dossiers, y compris les
+  sous-r&eacute;pertoires.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  XCOPY source [destination] [options]
+        source       Sp&eacute;cifie le dossier et/ou le nom des fichiers &agrave;
+                     copier. La source doit &ecirc;tre soit un lecteur, soit
+                     un chemin entier.
+        destination  Sp&eacute;cifie la localisation et/ou le nom des nouveaux
+                     fichiers. La destination de la copie. Si elle n'est
+                     pas pr&eacute;sente, xcopy supposera le r&eacute;pertoire courant.
+</pre>
+<h2>Options :</h2>
+<pre>
+  /A          Copie seulement les fichiers qui ont l'attribut archive
+              et ne modifie pas l'attribut.
+  /C          Continue la copie m&ecirc;me si une erreur survient.
+  /D[:M/D/Y]  Copie seulement les fichiers qui ont &eacute;t&eacute; modifi&eacute;s &agrave; la
+              date sp&eacute;cifi&eacute;e ou plus tard. Lorsqu'aucune date n'est
+              sp&eacute;cifi&eacute;e, seuls les fichiers plus r&eacute;cents que les
+              fichiers de destination existants seront copi&eacute;s.
+  /E          Copie tous les sous-dossiers, m&ecirc;me s'ils sont vides.
+  /F          Affiche le nom complet de la source et de la destination.
+  /H          Copie les fichiers cach&eacute;s et les fichiers syst&egrave;me, ainsi
+              que les fichiers non prot&eacute;g&eacute;s et les fichiers syst&egrave;me.
+  /I          Si la destination n'existe pas et l'op&eacute;ration en cours
+              copie plus d'un fichier, suppose que la destination est
+              un r&eacute;pertoire.
+  /L          Liste les fichiers sans les copier (simule la copie).
+  /M          Copie seulement les fichiers qui ont l'attribut archive
+              et d&eacute;sactive l'attribut archive des fichiers source apr&egrave;s
+              les avoir copi&eacute;s.
+  /N          Supprime l'invite pour confirmer que vous souhaitez effacer
+              un fichier de destination existant et ignore ces fichiers.
+  /P          Invite &agrave; confirmer avant de cr&eacute;er chaque fichier de
+              destination.
+  /Q          Mode silencieux, n'affiche pas les noms des fichiers
+              copi&eacute;s.
+  /R          &Eacute;crase les fichiers en lecture seule ainsi que les
+              fichiers non prot&eacute;g&eacute;s.
+  /S          Copie les dossiers et les sous-dossiers sauf ceux qui
+              sont vides.
+  /T          Cr&eacute;e l'arborescence des r&eacute;pertoires sans copier les
+              fichiers. Les dossiers vides ne seront pas copi&eacute;s. Pour
+              les copier ajoutez l'option /E.
+  /V          V&eacute;rifie chaque nouveau fichier.
+  /W          Attend l'appui sur une touche avant de commencer.
+  /Y          Supprime la confirmation avant d'&eacute;craser un fichier de
+              destination et &eacute;crase ces fichiers.
+  /-Y         Provoque une demande de confirmation avant d'&eacute;craser
+              un fichier de destination existant.
+  /?          Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  L'option <b>/Y</b> ou <b>/N</b> peut &ecirc;tre pr&eacute;d&eacute;finie dans la variable d'environnement
+  COPYCMD. Ceci peut &ecirc;tre annul&eacute; avec <b>/-Y</b> sur la ligne de commande.
+    Par exemple : <a href="../cnfigsys/set.htm">SET</a> COPYCMD=/Y.
+  Pour annuler <b>/Y</b> pour une commande XCOPY donn&eacute;e, utilisez <b>/-Y</b> sur la
+  ligne de commande.
+  La variable COPYCMD affecte &eacute;galement la commande <a href="../command/copy.htm">COPY</a>. Utilisez <b>/Y</b>
+  pour modifier le comportement de <a href="../command/copy.htm">COPY</a> et XCOPY &agrave; la fois. Utilisez <b>/N</b>,
+  qui ignore <a href="../command/copy.htm">COPY</a>, pour modifier le comportement de XCOPY seulement.
+  XCOPY peut &ecirc;tre utilis&eacute; pour d&eacute;terminer si un lecteur est valide dans
+  un fichier <a href="../batch/index.htm">BATCH</a>.
+    XCOPY %drive%\NUL /L &gt; NUL
+    <a href="../batch/if.htm">IF</a> NOT ERRORLEVEL 5 <a href="../batch/goto.htm">GOTO</a> invaliddrive
+  XCOPY peut &ecirc;tre utilis&eacute; pour d&eacute;terminer si un lecteur de destination
+  est plein dans un fichier <a href="../batch/index.htm">BATCH</a>.
+    XCOPY %drive1%\%dir% %drive1%\%dir% /S
+    <a href="../batch/if.htm">IF</a> ERRORLEVEL 39 <a href="../batch/goto.htm">GOTO</a> destinationfull
+
+  XCOPY prend en charge le NLS (support des langues nationales, national
+  language support).
+  XCOPY a les <a href="../batch/if.htm#comment">CODES DE SORTIE (ERRORLEVEL)</a> suivants :
+     0  Acune erreur. XCOPY a copi&eacute; avec succ&egrave;s les fichiers.
+     1  Fichier introuvable. XCOPY n'a pas pu trouver les fichiers
+        source.
+     4  Chemin introuvable. XCOPY n'a pas pu trouver le chemin source
+        ou de destination. Format invalide.
+        L'utilisateur a entr&eacute; une syntaxe erron&eacute;e sur la ligne de
+        commande.
+     5  Acc&egrave;s refus&eacute;. L'utilisateur n'a pas acc&egrave;s aux fichiers source
+        ou de destination.
+     8  M&eacute;moire insuffisante. Il n'y a pas assez de m&eacute;moire pour ex&eacute;cuter
+        la commande. (Non impl&eacute;ment&eacute; car impossible &agrave; g&eacute;rer dans un
+        langage de haut niveau tel que C !)
+    29  Erreur d'&eacute;criture. XCOPY n'a pas pu &eacute;crire un fichier ou dossier
+        de destination.
+    30  Erreur de lecture. XCOPY n'a pas pu lire un fichier source.
+    39  Espace disque insuffisant. Il n'y a pas assez d'espace disque
+        sur le chemin de destination.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  xcopy a:\test\*.* c:\test /q
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../batch/index.htm">Fichier Batch</a>
+  <a href="../command/copy.htm">copy</a>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../batch/goto.htm">goto</a>
+  <a href="../batch/if.htm">if</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../cnfigsys/set.htm">set (commande config.sys)</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis &agrave; jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

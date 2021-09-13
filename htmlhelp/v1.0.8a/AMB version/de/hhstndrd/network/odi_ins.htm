@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Netzwerken unter FreeDOS - ODI Treiberinstallation</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top" id="top"></a>Netzwerken unter FreeDOS - ODI Treiberinstallation</h1>
+<h2><a name="zzz" id="zzz"></a>&Uuml;bersicht</h2>
+<pre>
+    (Bild des ODI Modells)
+  "Open Datalink Interface" (<a href="../network/odi.htm">ODI</a>) Treiber wurden urspr&uuml;nglich f&uuml;r
+  <a href="../network/novell.htm">Novell</a> Netware ben&ouml;tigt. Aber das bedeutet nicht, da&szlig; sie nicht auch
+  f&uuml;r pakettreiberbasierte <a href="../network/tcpip.htm">TCP/IP</a> Anwendungen verwendet werden k&ouml;nnen.
+  In  Wahrheit wurden sie daf&uuml;r verwendet, seitdem sie erfunden wurden.
+  Ein <a href="../network/odi.htm">ODI</a> Treiber ist eine gute Wahl, wenn Sie f&uuml;r Ihre Netzwerkkarte
+  keinen Pakettreiber bekommen k&ouml;nnen. Da NetWare w&auml;hrend der 80er und
+  90er Jahre des vorigen Jahrhunderts ein beliebtes System war, besteht
+  eine ganz gute Chance, da&szlig; der Hersteller Ihrer <a href="../network/network.htm">Netzwerk</a>karte solch
+  einen ODI Treiber mitgeliefert hat.
+</pre>
+<h2><a name="aaa" id="aaa"></a>Wo man sie findet</h2>
+<pre>
+  Suchen Sie auf der Installationsdiskette oder CD-ROM Ihrer Karte nach
+  einem Verzeichnis mit folgenden Namen: "netware", "nwclient", "ODI"
+  oder "VLM". Die Treiber sind ausf&uuml;hrbar, die Namen sehen in etwa
+  wie folgt aus: "3C574.COM" oder "DFE670.COM". 
+</pre>
+<h2><a name="bbb" id="bbb"></a>Wie sie arbeiten</h2>
+<pre>
+  In der Sprache der ODI Spezifikation (vgl.: <b>http://developer.novell.
+  com/ndk/doc/lancomp/dos_psta/dos_pstack.pdf (*01)</b>)werden diese Netzwerk-
+  kartentreiber <b>"Multiple Link Interface Driver" (MLID)</b> genannt.
+  Wie Sie aus dem obigen Schaubild entnehmen k&ouml;nnen, kommuniziert
+  die <b>MLID</b> direkt mit der Hardware der <a href="../network/network.htm">Netzwerk</a>schnittstellenkarte.
+  Die <b>MLID</b> erh&auml;lt Pakete f&uuml;r unterschiedliche Protokollstapel
+  (Kernel) im System und reicht diese Pakete an ein zweites St&uuml;ck
+  Software, den <b>"Link Support Layer" (LSL)</b> weiter. Der <b>LSL</b> bestimmt
+  dann, welcher Protokollstapel das Paket empfangen soll. <b>MLID</b> und
+  <b>LSL</b> zusammen formen die ODI Architektur. Wir ben&ouml;tigen also eine
+  zus&auml;tzliche Datei, um ODI zum Arbeiten zu bringen:
+  Die <b>LSL</b>, eine Datei mit Namen "LSL.COM". Diese Datei ist Teil des
+  "DOS Netware Clients", der von der <a href="../network/novell.htm">Novell</a> Webseite heruntergeladen
+  werden kann (vgl.: <b>http://www.novell.com/coolsolutions/tools/
+  downloads/dw271e.zip (*02)</b>). Die Downloadseite von <a href="../network/novell.htm">Novell</a>
+  (vgl.: <b>http://www.novell.com/coolsolutions/tools/13555.html (*03)</b>)
+  merkt f&uuml;r sie aus-dr&uuml;cklich "LIZENZ: FREI" an. Nach dem Herunterladen
+  und Entpacken finden Sie die Datei "LSL.COM" im Ordner "NIOS".
+</pre>
+<h2><a name="ccc" id="ccc"></a>Der Konverter/Shim</h2>
+<pre>
+    (Bild von Webspyder)
+  Da wir ODI mit pakettreiberbasierenden <a href="../network/tcpip.htm">TCP/IP</a> Anwendungen verwenden
+  wollen, m&uuml;ssen wir noch ein weiteres St&uuml;ck Software, den "<b>Packet
+  Driver to ODI Konverter</b>" herunterladen. Konverter werden auch
+  "Wrapper" ("Huelle") oder eine "Shim" ("Beilagscheibe") genannt. Wir
+  haben drei M&ouml;glichkeiten:
+    * <a href="../network/history.htm#bbe">ODIPKT.COM</a> v3.1 von Dan Lanciani (vgl.: <b>http://www.danlan.com
+      (*04)</b>)an der Harvard University. Die Software ist Public Domain;
+      ihre Lizenz erlaubt den freien Weitervertrieb des Bin&auml;r- und
+      Quellcodes und die Ver&auml;nderung des Quellcodes (Assembler). <b>Diese
+      Software d&uuml;rften die meisten Anwender w&auml;hlen</b>.
+    * <a href="../network/pkt2odi.htm">PKT2ODI</a>.EXE von Caldera. Diese Datei ist Teil der DR "WebSpyder"
+      Software, einem grafischen DOS Browser, den Caldera im Jahr 1998
+      herausbrachte. WebSpyder war von xChaos/<a href="../network/tcpip_ap.htm#ccc">Arachne</a> lizensiert. Die
+      Software kann hier heruntergeladen werden (vgl.: <b>http://
+      lazybrowndog.net/webspyder (*05)</b>). Ihre Lizenz erlaubt es, auspro-
+      biert und f&uuml;r nichtkommerzielle Zwecke frei weiterverteilt zu
+      werden.
+    * Wenn Sie bereits das volle NetWare am Laufen haben, k&ouml;nnen Sie
+      IPXPKT.COM verwenden, um einen Pakettreiber &uuml;ber IPX.COM laufen
+      zu lassen. IPXPKT.COM ist freie Software von <a href="../network/crynwr.htm">Crynwr</a> und ein Teil
+      ihrer Pakettreibersammlung PKTD11.ZIP (vgl.: <b>http://www.crynwr.
+      com/drivers/pktd11.zip (*06)</b>). Dies ist aber ein spezieller Fall
+      und wird in diesem Dokument nicht weiter untersucht werden.
+  Mit der <b>MLID</b>, der <b>LSL</b> und dem Konverter haben wir jetzt fast alle be-
+  n&ouml;tigten Dateien. Die einzige noch fehlende ist die Konfigurationsda-
+  tei "NET.CFG". Eine Beispielsdatei mit den vermutlichen Einstellungen
+  Ihrer Karte d&uuml;rften Sie auf der CD oder Diskette finden, die mitge-
+  liefert wurde und sollte im gleichen Verzeichnis wie die ODI Treiber
+  sein. Vgl. auch weiter unten.
+</pre>
+<h2><a name="ddd" id="ddd"></a>Konfiguration der NET.CFG</h2>
+<pre>
+  Okay, dann editieren wir unsere Hauptkonfigurationsdatei NET.CFG.
+  Falls sie nicht existiert, erzeugen Sie sie. Sie m&uuml;ssen ein Verzeich-
+  nis w&auml;hlen - die Standardverzeichnisse von NET.CFG scheinen
+    C:\NWCLIENT oder C:\NET
+  zu sein. Egal wo, die Datei sollte im gleichen Verzeichnis wie die
+  LSL.COM und die Treiber sein.
+  Eine Muster NET.CFG, die mit der <a href="../network/3com.htm">3Com</a> 3C574 PC Karte geliefert wurde,
+  zeigt eine Vielzahl von Konfigurationseinstellungen, die f&uuml;r <a href="../network/novell.htm">Novell</a>
+  Netware und andere Software ben&ouml;tigt werden. Bei der Verwendung von
+  pakettreiberbasierenden <a href="../network/tcpip.htm">TCP/IP</a> Anwendungen reichen die folgenden vier
+  Zeilen in der NET.CFG aus:
+      --- NET.CFG ---
+      Link Support
+        buffers 8 1600
+      Link Driver 3C574
+        Frame Ethernet_II
+  <b>Erkl&auml;rung der Parameter:</b>
+      link support
+  Die Zeile "Link Support" konfiguriert die <b>LSL</b>. Optionen sind:
+    "buffers", "max boards", "max stacks" und "mempool".
+  Wir m&uuml;ssen nur setzen:
+      buffers 8 1600
+  Das bestimmt die Anzahl und die Gr&ouml;&szlig;e der Empfangspuffer der <b>LSL</b>.
+  Die Standard&uuml;bertragungszahl f&uuml;r <a href="../network/tcpip.htm">TCP/IP</a> ist 8. Der Autor von <a href="../network/history.htm#bbe">ODIPKT</a>,
+  Dan Lanciani empfiehlt die Verwendung einer Puffergr&ouml;&szlig;e von 1600
+  Byte f&uuml;r ODIPKT (vgl.: <b>http://groups.google.de/group/comp.protocols.
+  tcp-ip/msg/b8ba79ab39cacc4f/ (*07)</b>).
+      Link Driver 3C574
+  Die Zeile "Link Driver" konfiguriert die <b>MLID</b> (den Treiber Ihrer
+  <a href="../network/network.htm">Netzwerk</a>karte). Als erstes wird der Name des Treibers angegeben.
+  Oben sehen Sie das Beispiel einer <a href="../network/3com.htm">3Com</a> 3C574 PC Karte. &Auml;ndern Sie
+  dies auf den Namen Ihrer eigenen Netzwerkkarte ab.
+  Dann konfigurieren wir den "Frame" (Rahmen) oder "envelope type" (Typ
+  des Briefumschlags - es gibt beide Formulierungen - und sie meinen
+  das gleiche), der von folgendem Treiber verwendet wird:
+      Frame Ethernet_II
+  Es ist m&ouml;glich, hier mehr als einen Frametyp zu definieren. Wir haben
+  bereits geh&ouml;rt, da&szlig; ODI ein Multiprotokolltreiber ist; deshalb ist
+  die <b>MLID</b> in der Lage, mehr als einen Frame und ein Protokoll mit der
+  gleichen hardwarem&auml;&szlig;igen Netzwerkkarte (Board) zu verwenden.
+  M&ouml;gliche Frames sind zum Beispiel "<a href="../network/ethernet.htm">ETHERNET</a>_II" (IP Protokoll),
+  "ETHERNET_802.2" oder "ETHERNET_802.3" (beide f&uuml;r das (<a href="../network/ipxspx.htm">IPX/SPX</a>
+  Protokoll). F&uuml;r den Pakettreiberkonverter, den wir sp&auml;ter starten
+  wollen, ist es zwingend vorgeschrieben, hier wenigstens den <a href="../network/ethernet.htm">Ethernet</a> II
+  Frame zu definieren. Sie m&uuml;ssen auch ODIPKT mit einem Kommandozei-
+  lenparameter dar&uuml;ber informieren, da&szlig; er die Karte mit einem
+  ETHERNET_II Frame verwenden soll (siehe weiter unten).
+  Eine vollst&auml;ndige Dokumentation der Parameter in der NET.CFG finden
+  Sie in der "NetWare Client for DOS and MS Windows Technical Reference"
+  (vgl.: <b>http://www.docs.hp.com/en/J2771-90016/index.html (*08)</b>).
+</pre>
+<h2><a name="eee" id="eee"></a>Installation</h2>
+<pre>
+  Nachdem wir die NET.CFG konfiguriert haben, k&ouml;nnen wir die ODI Treiber
+  beim Booten durch die <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> starten.
+  Das Erste, das wir starten m&uuml;ssen, ist der Link Support layer (<b>LSL</b>):
+      LH C:\NETWORK\NWCLIENT\LSL.COM /C C:\NETWORK\NET\NET.CFG
+  Bitte passen Sie die obigen Pfade den in Ihrem System verwendeten
+  Pfaden an.
+  Die Option "/c" sagt der <b>LSL</b>, wo sie die die NET.CFG findet. Diese
+  Option ist nur erforderlich, wenn sich die NET.CFG nicht im gleichen
+  Verzeichnis wie die LSL.COM befindet.
+  Jetzt starten wir die <b>MLID</b>:
+      LH C:\NETWORK\PCMCIA\3C574\ODI\3C574.COM
+  Als letzten Schritt m&uuml;ssen wir den Pakettreiber-zu-ODI-Konverter zu
+  installieren. Hier k&ouml;nnen wir w&auml;hlen zwischen <a href="../network/history.htm#bbe">ODIPKT</a> oder dem
+  exotischeren <a href="../network/pkt2odi.htm">PKT2ODI</a>.
+  Die meisten Leute werden den freien Konverter <a href="../network/history.htm#bbe">ODIPKT.COM</a> von Dan
+  Lanciani verwenden, der hier heruntergeladen werden kann: <b>http://
+  danlan.com/pdr_shim/odipkt/odipkt.zip (*09)</b>. Entpacken Sie die
+  zip-Datei und laden Sie ODIPKT.COM mit einem Befehl wie diesem in der
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>:
+    LH C:\NETWORK\NWCLIENT\ODIPKT.COM 0 96
+  Die erste Zahl der oben genannten Parameter ("0") legt das Board
+  (die Karte) fest, die den ETHERNET_II Frame verwendet. Das folgende
+  Beispiel geht davon aus, da&szlig; Sie verschiedene Frames (auch als
+  "envelope types"=Typ des Briefumschlags bekannt) in der NET.CFG
+  definiert haben. 
+      --- NET.CFG ---
+      Link Driver 3C574
+        FRAME ETHERNET_II
+        FRAME ETHERNET_802.2
+        FRAME ETHERNET_802.3
+        FRAME ETHERNET_SNAP
+  Dann m&uuml;ssen Sie ODIPKT die Indexnummer des logischen Boards (Karte)
+  sagen, die den Ethernet II Frame unterst&uuml;tzt. Z&auml;hlen Sie einfach
+  die Frames in der NET.CFG: <a href="../network/ethernet.htm">Ethernet</a> II ist der erste, der Frame 802.2
+  ist der zweite, der Frame 802.3 ist der dritte, snap ist der vierte.
+  Um das Ganze etwas komplizierter zu machen, startet ODIPKT das Z&auml;hlen
+  mit "0" (so wie es die Programmierer tun). Das bedeutet analog zum
+  obigen Beispiel:
+      ODIPKT.COM 0 | Board mit ETHERNET_II
+      ODIPKT.COM 1 | ETHERNET_802.2 (wird nicht arbeiten)
+      ODIPKT.COM 2 | ETHERNET_802.3 (wird nicht arbeiten)
+      ODIPKT.COM 3 | ETHERNET_SNAP (wird nicht arbeiten)
+  Die einzige Option, die f&uuml;r ODIPKT arbeitet, ist die Nummer, die das
+  logische Board (Karte) mit dem Frame <a href="../network/ethernet.htm">Ethernet</a> II definiert, welche in
+  unserem Beispiel die "0" ist. Nun sehen wir uns den zweiten Parameter
+  ("96") an, den wir zum Starten von ODIPKT verwenden. Dieser Parameter
+  definiert den Softwareinterrupt (Vektor), der von dem Treiber verwen-
+  det wird. Wie bereits geh&ouml;rt haben, als wir einen Pakettreiber konfi-
+  guriert haben, ist die am meisten verwendete Pakettreiber-Software-
+  interruptnummer 0x60, welche der hexadezimale Wert 60 (das "0x" teilt
+  uns nur mit, da&szlig; es im Hex-Format ist) ist. Dummerweise versteht
+  ODIPKT keine Hex-Werte, deshalb m&uuml;ssen wir diesen Parameter in eine
+  dezimale Zahl umwandeln - welche 96 ist.
+  Wenn Sie andere Werte verwenden wollen und nicht an Hex-Werte gewohnt
+  sind, k&ouml;nnen Sie einen Hex-Dezimal-Taschenrechner ausprobieren
+  (vgl.: <b>http://www.langeneggers.ch/N&uuml;tzliches/Hex_Dez.htm (*10)</b>) oder
+  die folgende Liste verwenden:
+        0x60 = 96
+        0x61 = 97
+        0x62 = 98
+         ...
+        0x69 = 105
+        0x6A = 106
+         ...
+        0x7D = 125
+        0x7E = 126
+
+  <b>Beispiel f&uuml;r eine NET.CFG</b>
+    ; version 2.0
+    ; max tasks = 60
+    ; show dots = on
+    link support
+    buffers 8 1514
+    ; mempool 4096
+    ; DIESER BEREICH IST F&Uuml;R DIE KONFIGURATION VON DURCH LINKWATCH
+    ; VERWALTBARE END NODES.
+    ;
+    Protocol DME
+    BIND #1
+    ; ersetzen Sie dies mit Ihren spezifischen Informationen f&uuml;r
+    ; LinkWatch
+    USER_NAME "Ihr Name"
+    NODE_NAME "Ihr Node Name"
+    NODE_LOCATION "Der Ort Ihrer Node"
+    ; Setzen Sie das Passwort gem&auml;&szlig; deb Anweisungen Ihres Netzadmins
+    ; NODE_PASSWORD "ABCDEFGH"
+    PHONE_NUMBER "Ihre Telefonnummer"
+    NOTES "Verschiedener Text"
+    NOTES "und weiterer Text"
+    LINK DRIVER 3C574
+    INT 10
+    ; PORT 300
+    NO_AMP
+    FRAME ETHERNET_802.2
+    FRAME ETHERNET_802.3
+    ; PROTOCOL IPX 0 ETHERNET_802.3
+    FRAME ETHERNET_II
+    FRAME ETHERNET_SNAP
+    Netware DOS Requester
+    FIRST NETWORK DRIVE = F
+    NETWARE PROTOCOL = NDS BIND
+</pre>
+<h2><a name="fff" id="fff"></a>Neustart (reboot)</h2>
+<pre>
+  Nach einem Neustart ist der Pakettreiber <a href="../network/install.htm">installiert</a> und bereit. Sie
+  k&ouml;nnen eine Anwendung, wie zum Beispiel "ping" aus dem WATTCP Paket
+  verwenden, um zu testen, ob es funktioniert.
+  Viel Gl&uuml;ck!
+    (Bild: "Bootmeldungen")
+
+  <b>(*01) OK</b>
+  <b>(*02) OK</b>
+  <b>(*03) OK</b>
+  <b>(*04) https://web.archive.org/web/20110722171549/http:
+        //www.danlan.com/</b>
+  <b>(*05) OK</b>
+  <b>(*06) http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/
+        repositories/latest/net/crynwr.zip</b>
+  <b>(*07) OK</b>
+  <b>(*08) https://support.hpe.com/hpesc/public/docDisplay?docId=
+        c02037554&docLocale=en_US</b>
+  <b>(*09) https://web.archive.org/web/20110722171549/http://
+        www.danlan.com/</b>
+  <b>(*10) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), 2011 und 2020
+  an die FreeDOS-Hilfe angepasst von W.Spiegl.</b>
+  Weitergehende Informationen <a href="../network/intro.htm#ddd">finden Sie hier</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

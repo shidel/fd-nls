@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: jemmex</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: jemmex</h1>
+<pre>
+  JEMMEX ist ein Expanded Memory Manager, der XMM bereits integriert hat.
+  JEMMEX mu&szlig; in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen werden.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+ DEVICE=[Laufwerk][Pfad][jemmex.exe] [Optionen]
+         Laufwerk  Der Laufwerksbuchstabe, z.B.: C:
+         Pfad      Der zu w&auml;hlende Pfad, z.B.: \Beispiel\
+  oder f&uuml;hren Sie es von der Kommandozeile aus:
+  [Laufwerk][Pfad][jemmex.exe] [Optionen]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+ +A20/NOA20     Setzt die A20-Deaktivieremulation auf ein/aus
+                (Standard: ein).
+  A20METHOD:m   Setzt die A20 Schaltmethode. M&ouml;gliche Werte f&uuml;r m sind:
+                KBC, PS2, BIOS, FAST, PORT92 und ALWAYSON.
+  ALTBOOT       Verwendet eine alternative Neustartstrategie.
+  B=####        Gibt die niedrigste Segmentadresse f&uuml;r EMS Banking an
+                (Standard=4000).
+  D=###         Setzt DMA Puffergr&ouml;&szlig;e in KB (Standard=64, max.=128).
+  EMX           Erweiterte EMX DOS Extender Kompatibilit&auml;t.
+  FASTBOOT      Schneller Neustart. Setzt voraus, da&szlig; JemmEx in der
+                CONFIG.SYS geladen wurde.
+  FRAME=E000    Setzt den EMS Seitenrahmen (FRAME=NONE deaktiviert
+                Rahmen). Jeder Wert zwischen 8000 und E000 wird
+                akzeptiert, aber nicht alle werden funktionieren.
+  HMAMIN=n      Setzt Minimalbetrag in KB um die HMA zuzuweisen.
+  I=D000-D7FF   Erzwingt, da&szlig; ein Bereich f&uuml;r UMBs verwendet wird. Mit
+                dieser Option wird der Bereich C000-EFFF nach unbenutzten
+                Seiten durchgescannt. Kann auch verwendet werden, um 
+                (Teile der) Bereiche A000-BFFF oder F000-F7FF als UMBs
+                hinzuzuf&uuml;gen. Verwenden Sie diese Option nicht, wenn
+                Sie nicht wissen, was Sie tun!
+  I=TEST        Scanne die ROMs nach unbenutzten Seiten, schlie&szlig;e
+                gefundene Bereiche als UMBs ein.
+  [MAX=]#####   Grenze f&uuml;r VCPI (und EMS wenn &lt; 32M) Speicher in KB
+                (Standard: 120 MB).
+  MAXEXT=n      Begrenzt die Verwendung von Extended Memory auf n KB.
+  MIN=#####     Reserviere bis zu ##### kB f&uuml;r EMS/VCPI Speicher beim
+                Initialisieren (Standard=0).
+  NOCHECK       Verbiete Zugang zu Adressraum ohne RAM (MMIO).
+  NOE801        Verwende nicht Int 15h, E801h um eine Menge extended
+                Memory zu bekommen.
+  NOE820        Verwende nicht Int 15h, E820h um eine Menge extended
+                Memory zu bekommen.
+  NOEMS         Schalte EMS Handhabung aus. Verwenden Sie NOEMS um mehr
+                freie UMBs zu bekommen, wenn Sie kein EMS ben&ouml;tigen.
+  NODYN         Keine dynamische XMS Speicherzuweisung (verwenden Sie
+                MIN= um einen festen Wert zu setzen).
+  NOHI          Bewege den residenten Teil NICHT in den ersten UMB.
+  NOINVLPG      Verwende nicht den INVLPG Befehlscode.
+ +PGE/NOPGE     Page Global Enable Featureverwendung ein/aus (on/off)
+                (Standard: off).
+  RAM/NORAM     Versuche UMBs zu liefern ein/aus (on/off) (Standard: on).
+  S=D000-D7FF   Nehme an, da&szlig; von UMBPCI Shadow-RAM aktiviert wurde,
+                f&uuml;ge es als UMB ein.
+  SB            SoundBlaster Treiber Kompatibilit&auml;tsmodus.
+  SPLIT         Gewinne teilweise verwendete 4 KB EPROM Seiten f&uuml;r
+                UMBs zur&uuml;ck.
+ +VCPI/NOVCPI   VCPI Unterst&uuml;tzung ein/aus (on/off) (Standard: on).
+  VDS/NOVDS     Virtual DMA Services ein/aus (on/off) (Standard: on).
+ +VME/NOVME     V86-Modus Erweiterungen ein/aus (on/off) (Standard: on).
+  VERBOSE       Zeigt w&auml;hrend des Starts zus&auml;tzliche Details 
+                (Abk&uuml;rzung f&uuml;r VERBOSE: /V).
+  X=D000-D7FF   Schlie&szlig;e einen Bereich davon aus, von Jemmex benutzt
+                oder ber&uuml;hrt zu werden.
+                X=D000-D7FF kann z.B. bei Netzwerken ben&ouml;tigt werden.
+  X=TEST        Scanne den Speicherbereich C000-EFFF f&uuml;r UMB Ausschluss.
+  X2MAX=n       Maximaler Wert in KB f&uuml;r XMS Version 2 freiem Speicher-
+                bericht (Standard=65535)
+  XMSHANDLES=n  Zahl der verf&uuml;gbaren XMS Handles (8&lt;=n&lt;=128,
+                Standard=32).
+  /?            Zeigt die Hilfe.
+
+ '+': Die Option kann dynamisch gesetzt werden, indem man JemmEX von der
+      Kommandozeile aus startet.
+  Wenn von der Kommandozeile aus gestartet versteht Jemmex zus&auml;tzlich
+  folgende Befehle:
+  LOAD          installiere
+  UNLOAD        deinstalliere
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  JEMMEX ben&ouml;tigt eine 80386+ CPU. Laden Sie JEMMEX mit 
+  "DEVICE=Laufwerk:\Pfad\JEMMEX.exe" in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>
+  (obwohl es eine ".exe"-Datei ist)!
+  JEMMEX ist h&ouml;chstwahrscheinlich die bessere Wahl als <a href="../base/himemx.htm">HIMEMX</a> / <a href="../base/jemm386.htm">JEMM386</a>
+  weil es weniger DOS Speicher ben&ouml;tigt, als ein externer XMM + JEMM386.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\jemmex.exe
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

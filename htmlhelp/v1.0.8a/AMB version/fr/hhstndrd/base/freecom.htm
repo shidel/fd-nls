@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : FreeCom (command.com)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : FreeCom (command.com)</h1>
+<pre>
+  FREECOM (command.com) d&eacute;marre une nouvelle copie du shell de commande
+  de FreeDOS.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  COMMAND [[lecteur]chemin] [device] [/E:nnnnn] [/L:nnnn] [/U:nnn] [/P]
+          [/MSG] [/LOW] [/Y [/[C|K] commande]]
+  COMMAND [/?]
+          [lecteur]chemin  Sp&eacute;cifie le r&eacute;pertoire contenant COMMAND.COM,
+                           par exemple C:\exemple\
+          lecteur          La lettre du lecteur, par exemple C:
+          chemin           Le r&eacute;pertoire, par exemple \exemple\
+          device           Sp&eacute;cifie le p&eacute;riph&eacute;rique &agrave; utiliser pour les
+                           entr&eacute;es et sorties de commandes.
+</pre>
+<h2>Options :</h2>
+<pre>
+  /E:nnnnn    R&egrave;gle la taille initiale de l'environnement &agrave; nnnnn octets.
+              (nnnnn devrait &ecirc;tre entre 256 et 32,768).
+  /L:nnnn     Sp&eacute;cifie la taille des tampons internes (n&eacute;cessite /P
+              &eacute;galement). (nnnn devrait &ecirc;tre entre 128 et 1,024).
+  /U:nnn      Sp&eacute;cifie la taille du tampon d'entr&eacute;e (n&eacute;cessite /P
+              &eacute;galement). (nnn devrait &ecirc;tre entre 128 et 255).
+  /P          Rend le nouveau shell de commandes permanent (impossible
+              de sortir).
+  /MSG        Stocke tous les messages d'erreur dans la m&eacute;moire
+              (n&eacute;cessite /P &eacute;galement).
+  /LOW        Force le shell de commandes &agrave; garder ses donn&eacute;es r&eacute;sidentes
+              dans m&eacute;moire basse.
+  /Y          Parcourt le programme batch sp&eacute;cifi&eacute; par /C o.
+  /C commande Ex&eacute;cute la commande sp&eacute;cifi&eacute;e puis retourne.
+  /K commande Ex&eacute;cute la commande sp&eacute;cifi&eacute;e puis continue.
+  /?          Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  [lecteur]chemin  Le lecteur et le chemin o&ugrave; le shell doit rechercher la
+                   partie transitoire du programme. C'est g&eacute;n&eacute;ralement
+                   seulement n&eacute;cessaire pour d&eacute;finir le COMSPEC.
+  device           Un p&eacute;riph&eacute;rique alternatif pour toutes les E/S.
+  /e:nnnnn         La taille de l'environnement, en octets, dans la plage
+                   160-32768. Ce nombre sera arrondi aux 16 octets les
+                   plus proches. La valeur par d&eacute;faut est 256.
+  /p               Rend le shell permanent, donc la commande EXIT ne
+                   quitte pas le shell.
+  /c {cha&icirc;ne}      Ex&eacute;cute la commande dans {cha&icirc;ne}, puis quitte.
+  /msg             Charge dans la m&eacute;moire les messages d'erreur qui
+                   pourraient &ecirc;tre stock&eacute;s sur le disque.
+  Command (command.com) est aussi appel&eacute; FreeCom. Il contient de
+  nombreuses commandes internes qui n'ont besoin d'aucun autre fichier
+  pour fonctionner.
+  Vous pouvez trouver la liste des commandes internes <a href="../../index.htm#command">ici</a>.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  C:\command /E:1024 /L:1024 /U:128 /P
+  command /?
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../command/exit.htm">exit</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../cnfigsys/shell.htm">shell</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis &agrave; jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

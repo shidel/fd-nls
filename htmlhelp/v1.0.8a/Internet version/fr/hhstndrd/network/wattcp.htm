@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Mise en r&eacute;seau de FreeDOS - WatTCP/Watt-32</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top"></a>Mise en r&eacute;seau de FreeDOS - WatTCP/Watt-32</h1>
+<h2><a name="zzz"></a>Vue d'ensemble :</h2>
+<pre>
+  Waterloo TCP (WatTCP) a &eacute;t&eacute; &eacute;crit entre 1990 et 1992 &agrave; l'Universit&eacute;
+  de Waterloo en Ontario (Canada). L'auteur est Erick Engelke, alors
+  d&eacute;veloppeur &agrave; la facult&eacute; d'ing&eacute;nieurs, aujourd'hui <b>Directeur de
+  l'ing&eacute;nierie informatique</b> de l'universit&eacute; (cf. <b>http://www.eng.
+  uwaterloo.ca/~erick/ (*01)</b>).
+  Le coeur du moteur TCP de WatTCP &eacute;tait bas&eacute; sur TinyTCP de Geoffrey
+  H. Cooper. WatTCP &eacute;tait publi&eacute; &agrave; l'origine sous sa propre licence
+  - les binaires et le code source &eacute;taient gratuits &agrave; utiliser, la
+  distribution n'&eacute;tait autoris&eacute;e que si cela &eacute;tait fait dans un cadre
+  non commercial. En 2004, Erick Engelke l'a publi&eacute; sous la licence
+  GNU LGPL. WatTCP peut &ecirc;tre trouv&eacute; sur le <b>site personnel</b> d'Erick
+  Engelke (<b>http://www.erickengelke.com/wattcp/index.shtml (*02)</b>).
+  Bien que le logiciel soit libre, le livre WatTCP Programmer's
+  Reference est <b> vendu en tant que PDF pour 25$</b>
+  (voyez : <b>http://www.erickengelke.com/wattcp/docs.shtml (*03)</b>).
+  WatTCP a &eacute;t&eacute; port&eacute; vers 32 bits par Gisle Vanem &agrave; Bergen, en Norv&egrave;ge
+  en 1999. Le portage est appel&eacute; <b>Watt-32</b> (voyez : <b>http://home.
+  broadpark.no/~gvanem/ (*04)</b>). Il prend en charge le mode prot&eacute;g&eacute;
+  32 bits tout comme le mode r&eacute;el 16 bits. Sur le site vous pouvez
+  trouver les binaires, le code source et la documentation &agrave;
+  t&eacute;l&eacute;charger. Davantage de binaires qui utilisent la pile Watt-32
+  peuvent &ecirc;tre trouv&eacute;s <b>ici</b> (voyez : <b>http://www.filegate.net/
+  utiln/utilnet/wt32apps.zip (*05)</b>). Il existe un <b>forum pour
+  d&eacute;veloppeurs</b> (cf. <b>http://tech.groups.yahoo.com/group/watt-32/
+  messages/2617?viscount=-30&amp;l=1 (*06)</b>) qui est toujours actif.
+  WatTCP et Watt-32 ne sont pas des <a href="../network/ldtcpipk.htm">noyaux TCP/IP</a> externes. Les deux
+  sont des ensembles de <b>biblioth&egrave;ques</b> con&ccedil;ues pour les
+  programmeurs - ils peuvent utiliser ces biblioth&egrave;ques pour impl&eacute;menter
+  des fonctionnalit&eacute;s <a href="../network/tcpip.htm">TCP/IP</a> dans leurs applications. Le paquet
+  WatTCP comprend de telles applications avec un noyau WatTCP int&eacute;gr&eacute;
+  comme "ping", "finger", "whois" ou "lpr". De nombreuses applications
+  <a href="../network/network.htm">r&eacute;seau</a> DOS importantes utilisent les biblioth&egrave;ques WatTCP comme
+  <a href="../network/tcpip_ap.htm#ccc">Arachne</a> ou <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a>. Une liste de ces applications
+  est disponible chez "<b>DOS Solutions</b>"
+  (<b>http://www.dossolutions.pwp.blueyonder.co.uk/wattcp.htm (*07)</b>).
+</pre>
+<h2><a name="aaa"></a>Installation et configuration:</h2>
+<pre>
+  Donc vous n'avez pas besoin de t&eacute;l&eacute;charger quoi que ce soit pour
+  utiliser le noyau WatTCP/Watt-32. Il est d&eacute;j&agrave; dans les applications.
+  La seule chose n&eacute;cessaire est un fichier de configuration, qui est
+  appel&eacute; "WATTCP.CFG" et qui est fondamentalement le m&ecirc;me dans les
+  deux versions. Il se trouve par d&eacute;faut dans le r&eacute;pertoire des
+  applications. Les r&eacute;glages, si vous travaillez avec des IP fixes :
+      --- WATTCP.CFG ---
+      # Ce sont des exemples de valeurs :
+      my_ip = 192.168.1.10
+      netmask = 255.255.255.0
+      nameserver = 192.168.1.1
+      nameserver = 129.97.128.196
+      nameserver = 129.97.128.1
+      gateway = 192.168.1.1
+      # Enlevez le commentaire si vous recevez votre configuration via
+      # DHCP
+      # my_ip = dhcp
+  Si vous recevez vos r&eacute;glages par un serveur ou routeur DHCP :
+      --- WATTCP.CFG ---
+      my_ip = dhcp
+      netmask = 255.255.255.0
+      gateway = 0.0.0.0
+      domain_list = mon.domaine.com
+      # le domaine, la passerelle, l'IP, etc. sera d&eacute;fini via DHCP
+  Si l'application n'est pas dans le m&ecirc;me r&eacute;pertoire que WATTCP.CFG,
+  veuillez utiliser set WATTCP.CFG=\chemin\vers\fichier pour pointer
+  vers lui (dans <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>).
+  Des r&eacute;glages suppl&eacute;mentaires peuvent &ecirc;tre n&eacute;cessaires selon
+  l'application utilis&eacute;e.
+  introduction plus approfondie sur l'utilisation des programmes
+  WatTCP peut &ecirc;tre trouv&eacute;e <b>ici</b>
+  (voyez : <b>http://www.web.archive.org/web/20080329105946/http://www.
+  smashco.com/wattcp.asp (*08)</b>).
+
+  <b>(*01) OK</b>
+  <b>(*02) https://web.archive.org/web/20100414105959/http://
+        www.erickengelke.com/wattcp
+        et: http://www.erickengelke.com/history.html</b>
+  <b>(*03) ?</b>
+  <b>(*04) http://www.watt-32.net/</b>
+  <b>(*05) OK</b>
+  <b>(*06) https://groups.io/g/watt-32/message/1</b>
+  <b>(*07) https://web.archive.org/web/20090509205846/http://
+        www.dossolutions.pwp.blueyonder.co.uk/wattcp.htm</b>
+  <b>(*08) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Allemagne), modifi&eacute; en 2010
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Pour plus d'informations, <a href="../network/intro.htm#ddd">voyez ici</a>.
+
+  La permission est accord&eacute;e de copier, distribuer et/ou modifier ce
+  document selon les termes de la licence de documentation libre GNU,
+  version 1.2 ou toute version ult&eacute;rieure publi&eacute;e par la Free Software
+  Foundation.
+  Une copie de la licence est incluse dans la section intitul&eacute;e
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

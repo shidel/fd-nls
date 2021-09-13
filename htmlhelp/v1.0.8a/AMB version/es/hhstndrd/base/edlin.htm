@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: edlin</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: edlin</h1>
+<pre>  EDLIN es un editor de l&iacute;neas peque&ntilde;as.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>  edlin [[unidad][ruta]archivo]
+        unidad   La letra de unidad, p. C:
+        ruta     El directorio, p. \ejemplo\
+        archivo  El archivo, p. testo.txt.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  Un signo de d&oacute;lar en las siguientes listas representa una cadena de
+  caracteres. Pueden estar entre comillas simples o dobles y pueden
+  contener las siguientes secuencias de escape:
+
+  \a              alerta
+  \b              retroceso
+  \e              escape
+  \f              alimentaci&oacute;n
+  \t              tabulador horizontal
+  \v              pesta&ntilde;a vertical
+  \"              comillas dobles
+  \'              comillas simples
+  \.              punto
+  \\              barra invertida
+  \xXX            Donde X es un d&iacute;gito hexadecimal (0-9, a-f, A-F) -
+                  constante hexadecimal
+  \dddd           Donde d es un d&iacute;gito decimal (0-9) - constante decimal
+  \OOO            Donde O es un d&iacute;gito octal (0-7) - constante octal
+  \^C             personaje de control
+
+  En las siguientes listas de comandos, los corchetes [] representan
+  construcciones opcionales. El s&iacute;mbolo # representa un n&uacute;mero de l&iacute;nea,
+  que es una cadena de d&iacute;gitos, un punto (.) que representa la l&iacute;nea
+  actual, un signo de d&oacute;lar ($) que representa la &uacute;ltima l&iacute;nea de archivo
+  o un n&uacute;mero de l&iacute;nea agregado o restado de otra l&iacute;nea n&uacute;mero, para que
+    .,.+1p
+  imprime la l&iacute;nea actual y la l&iacute;nea siguiente. Edlin tiene los siguientes
+  comandos internos (utilizados mientras se ejecuta edlin):
+
+  #               editar una sola l&iacute;nea
+  a               ap&eacute;ndice
+  [#],[#],#,[#]c  copia un rango de l&iacute;neas
+  [#][,#]d        eliminar un bloque de l&iacute;neas
+  enom_archi      salida (guardar y salir)
+  [#]i            modo insertar
+  [#][,#]l        l&iacute;neas de lista
+  [#],[#],#m      bloque mover
+  [#][,#]p        p&aacute;gina
+  q               quitar
+  [#][,#][?]r$,$  remplazar cadena
+  [#][,#][?]s$    buscar subcadena
+  [#]tNom_Archi   transferencia de archivo
+  [#]wNom_Archi   escribir archivo
+
+  # - EDITAR UNA LINEA SIMPLE
+  El programa edline genera la &uacute;nica l&iacute;nea indicada por el n&uacute;mero, y la
+  siguiente l&iacute;nea ingresada reemplaza la l&iacute;nea emitida en el archivo.
+
+  a - A&Ntilde;ADIR
+  Este comando es equivalente a $+1i .
+
+  [#],[#],#,[#]c - COPIAR UNA GAMA DE LINEAS
+  Este comando copia un bloque de l&iacute;neas consecutivas a otra ubicaci&oacute;n
+  en el b&uacute;fer. Los par&aacute;metros son:
+    * La primera l&iacute;nea que desea copiar (predeterminado = l&iacute;nea actual)
+    * La &uacute;ltima l&iacute;nea que desea copiar (predeterminado = l&iacute;nea actual)
+    * La l&iacute;nea antes de la cual desea insertar el bloque de l&iacute;neas
+    * El n&uacute;mero de veces que desea copiar el bloque (predeterminado = 1)
+  Despu&eacute;s de que edlin copia las l&iacute;neas, puede usar el comando l (lista)
+  para ver las l&iacute;neas correctamente renumeradas.
+
+  [#][,#]d - BORRAR UN BLOQUE DE LINEAS
+  Este comando elimina un bloque de l&iacute;neas consecutivas. Los par&aacute;metros
+  son la primera y la &uacute;ltima l&iacute;nea del bloque que se eliminar&aacute;. Si omite
+  el segundo par&aacute;metro, elimina solo la l&iacute;nea especificada en el primer
+  par&aacute;metro. Si omite el primer par&aacute;metro, elimina el bloque de la l&iacute;nea
+  actual a la l&iacute;nea especificada en el segundo par&aacute;metro (aseg&uacute;rese de
+  incluir la coma). La omisi&oacute;n de ambos par&aacute;metros hace que se elimine
+  la l&iacute;nea actual.
+
+  eNom_Archi - GUARDAR Y SALIR
+  Este comando es equivalente a:
+    w Nom_Archi  seguido de: q
+
+  [#]i - MODO INSERTAR
+  Este comando ingresa al modo de inserci&oacute;n. Su par&aacute;metro es el n&uacute;mero de
+  l&iacute;nea antes del cual desea insertar l&iacute;neas. Durante la inserci&oacute;n, las
+  secuencias de escape como las anteriores son legales para escribir.
+  Para salir del modo de inserci&oacute;n, escriba un punto (.) en una l&iacute;nea en
+  blanco (si necesita una l&iacute;nea con solo un punto, escape).
+  Despu&eacute;s de salir del modo de inserci&oacute;n, la l&iacute;nea despu&eacute;s del texto
+  insertado se convierte en la l&iacute;nea actual a menos que la inserci&oacute;n se
+  haya agregado al final del texto, en cuyo caso la &uacute;ltima l&iacute;nea del
+  texto se convierte en la nueva l&iacute;nea actual.
+
+  [#][,#]l - LINEAS DE LISTA
+  Este comando enumera l&iacute;neas de texto en la pantalla. Si omite el primer
+  par&aacute;metro, el comando comienza a mostrar texto que comienza con 11
+  l&iacute;neas de texto antes de la l&iacute;nea actual. Omitir el segundo par&aacute;metro
+  muestra una p&aacute;gina de texto que comienza con la l&iacute;nea especificada en el
+  primer par&aacute;metro. Omitir ambos muestra una p&aacute;gina de texto que comienza
+  en 11 l&iacute;neas antes de la l&iacute;nea actual. En todos los casos, si el n&uacute;mero
+  de l&iacute;neas es mayor que el n&uacute;mero de l&iacute;neas en una p&aacute;gina, el programa
+  le preguntar&aacute; despues de cada p&aacute;gina de l&iacute;neas.
+
+  [#],[#],#m - MOVER BLOQUE
+  Este comando mueve un bloque de texto a la l&iacute;nea antes del n&uacute;mero
+  especificado en el tercer par&aacute;metro. Es similar a copiar, luego 
+  eliminar el bloque original.
+
+  [#][,#]p - P&Aacute;GINA
+  Esto es similar a l escepto que la p&aacute;gina predeterminada comienza con
+  la l&iacute;nea actual en lugar de las 11 l&iacute;neas anteriores.
+
+  q - SALIR
+  Cierre el archivo que se est&aacute; editando perdiendo todos los cambios y
+  salga de EDLIN.
+
+  [#][,#][?]r$,$ - REEMPLAZAR CADENA
+  Este comando reemplaza todas las apariciones de la primera cadena con
+  la segunda entre las dos l&iacute;neas especificadas. Un primer par&aacute;metro
+  omitido inicia el reemplazo en la l&iacute;nea despu&eacute;s de la l&iacute;nea actual;
+  un segundo par&aacute;metro omitido detiene el reemplazo en la &uacute;ltima l&iacute;nea
+  del archivo. El signo de interrogaci&oacute;n env&iacute;a un mensaje de confirmaci&oacute;n
+  antes del reemplazo.
+
+  [#][,#][?]s$ - BUSCAR SUBCADENA
+  Este comando busca la primera l&iacute;nea que contiene la subcadena
+  especificada. Omitir el primer par&aacute;metro hace que la b&uacute;squeda comience
+  en la l&iacute;nea actual; Si omite el segundo, la b&uacute;squeda se detendr&aacute; al
+  final del archivo. El signo de interrogaci&oacute;n hace que la b&uacute;squeda env&iacute;e
+  un mensaje de confirmaci&oacute;n. Decir no al mensaje de confirmaci&oacute;n 
+  contin&uacute;a la b&uacute;squeda; decir que si lo termina. La l&iacute;nea actual se
+  restablecer&aacute; a la l&iacute;nea donde finaliz&oacute; la b&uacute;squeda si fue exitosa.
+
+  [#]tNom_Archi - TRANSFER ARCHIVO
+  Este comando hace que el contenido del archivo se inserte antes del
+  n&uacute;mero de l&iacute;nea especificado. Si se omite el n&uacute;mero de l&iacute;nea, el
+  valor predeterminado es la l&iacute;nea actual.
+
+  [#]wNom_Archi - ESCRIBIR ARCHIVO
+  Este comando hace que el primer n&uacute;mero de l&iacute;neas especificado por el
+  par&aacute;metro se escriba en el archivo especificado. Si se omite el
+  par&aacute;metro, escribir&aacute; todas las l&iacute;neas en el b&uacute;fer en el archivo.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  EDLIN es un editor de l&iacute;nea peque&ntilde;a, escrito para FreeDOS como un clon
+  funcional del antiguo programa de MS-DOS EDLIN. Su objetivo principal
+  es crear <a href="../batch/index.htm">ARCHIVOS POR LOTES</a> y peque&ntilde;os programas. Se diferencia de 
+  MS-EDLIN en que primero, es software libre y, en segundo lugar, la
+  interfaz de usuario es ligeramente diferente en algunos lugares. La
+  raz&oacute;n de la diferencia es que el usuario no tiene que escribir 
+  caracteres de control obligatorios seg&uacute;n la sintaxis de EDLIN.
+  EDLIN es compatible con NLS (soporte de idioma nacional).
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  edlin c:\config.sys  Abre el archivo config.sys para editarlo.
+  edlin                Si no se especifica ning&uacute;n archivo, edline 
+                       comienza con un documento en blanco.
+  Quiero ingresar y guardar cuatro oraciones, una debajo de la otra.
+
+  Esta es la oraci&oacute;n cuatro.
+  Esta es la oraci&oacute;n tres.
+  Esta es la oraci&oacute;n tres.
+  Esta es la oraci&oacute;n uno.
+
+  (desde el indicador * de edlin, con un b&uacute;fer vac&iacute;o ...)
+
+  yo
+  Esta es la oraci&oacute;n cuatro.
+  Esta es la oraci&oacute;n tres.
+  Esta es la oraci&oacute;n tres.
+  Esta es la oraci&oacute;n uno.
+  .
+
+  Ahora quiero guardar estas cuatro oraciones en un archivo .txt en
+  C:\test.txt
+
+  wc:\test.txt
+
+  Luego descubro que la tercera oraci&oacute;n esta quivocada (correcto: esta
+  es la oraci&oacute;n dos). &iquest;C&oacute;mo corregirlo y guardarlo?
+
+  3rtres,dos
+  wc:\test1.txt
+
+  Entonces quiero agregar una quita oraci&oacute;n al principio (Esta es la
+  oraci&oacute;n cinco). &iquest;C&oacute;mo agregarlo?
+
+  1i
+  Esta es la oraci&oacute;n cinco.
+  .
+  wc:\test2.txt
+
+  Quiero ver si todo est&aacute; correcto.
+
+  l
+
+  Quiero salir.
+
+  q
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../batch/index.htm">Archivo por lotes</a>
+  <a href="../base/edit.htm">edit</a>
+  <a href="../util/freemacs.htm">freemacs</a>
+  <a href="../util/ospedit.htm">ospedit</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Gregory Pietsch, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: country.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: country.sys</h1>
+<pre>
+  COUNTRY.SYS es el archivo de ayuda de donde COUNTRY obtiene su 
+  informaci&oacute;n. COUNTRY.SYS debe cargarse en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Cuando FreeDOS ya se est&aacute; ejecutando, puede cargar COUNTRY.SYS m&aacute;s
+  tarde con <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>  - ninguna -</pre>
+<h2>Opciones:</h2>
+<pre>  - ninguna -</pre>
+<h2>Comentarios:</h2>
+<pre>
+  <a href="../cnfigsys/country.htm">COUNTRY</a> habilita / establece caracter&iacute;sticas internacionales de DOS
+  seleccionando un c&oacute;digo de pa&iacute;s y (solo con el kernel inestable /
+  desarrollador) opcionalmente tambi&eacute;n una p&aacute;gina de c&oacute;digos y un archivo
+  de pa&iacute;s. El kernel estable solo usa el valor nnn. Para soporte
+  completo, use el kernel inestable / desarrollador. Tambi&eacute;n necesita un
+  archivo COUNTRY.SYS para este &uacute;ltimo, mientras que el primero ignora el
+  argumento del nombre de archivo y solo establece los formatos de 
+  fecha/hora/n&uacute;mero, utlizando valores compilados en el n&uacute;cleo para
+  algunos pa&iacute;ses comunes. No establece el orden de clasificaci&oacute;n ni las
+  tablas de traducci&oacute;n en may&uacute;sculas / min&uacute;sculas. <a href="../base/nlsfunc.htm">NLSFUNC</a> solo se puede
+  usar con el kernel inestable. COUNTRY.SYS tiene informaci&oacute;n completa de
+  NLS (COUNTRY, UCASE, LCASE, FUCASE, COLLATE, DBCS y YESNO) para los
+  siguientes pa&iacute;ses:
+
+  C&oacute;digos est&aacute;ndar:
+  C&oacute;digo de pa&iacute;s       P&aacute;ginas de c&oacute;digos
+  Estados Unidos          1 437,850,858
+  Canad&aacute; (franc&eacute;s)        2 863,850,858
+  Am&eacute;rica Latina          3 858,850,437
+  Rusia                   7 866,808,855
+                            872,852,850
+                            858,437
+  Grecia                 30 869,737,850
+                            858
+  Pa&iacute;ses Bajos           31 858,850,437
+  B&eacute;lgica                32 858,850,437
+  Francia                33 858,850,437
+  Espa&ntilde;a                 34 858,850,437
+  Hungr&iacute;a                36 852,850,858
+  Yugoslavia             38 852,855,872
+                            850,858
+  Italia                 39 858,850,437
+  Ruman&iacute;a                40 852,850,858
+  Suiza                  41 858,850,437
+  Rep&uacute;blica Checa        42 852,850,858
+  Austria                43 858,850,437
+  Reino Unido            44 858,850,437
+  Dinamarca              45 865,850,858
+  Suecia                 46 858,850,437
+  Noruega                47 865,850,858
+  Polonia                48 852,850,858
+  Alemania               49 858,850,437
+  Argentina              54 858,850,437
+  Brasil                 55 858,850,437
+  Malasia                60 437
+  Australia              61 437,850,858
+  Singapur               65 437
+  Jap&oacute;n                  81 437,932*
+  Corea                  82 437,934*
+  China                  86 437,936*
+  Turqu&iacute;a                90 857,850
+  India                  91 437
+  Portugal              351 860,850,858
+  Finlandia             358 858,850,437
+  Bulgaria              359 855,872,850
+                            858,866,808
+                            849,1131
+                            30033
+  Bielorrusia           375 849,850,858
+                            1131
+  Ucrania               380 848,1125
+  Serbia y Montenegro   381 855,872,852
+                            850,858
+  Croacia               384 852,850,858
+  Eslovenia             386 852,850,858
+  Bosnia Herzegovina    387 852,850,858
+                            855,872
+  Macedonia             389 855,872,850
+                            858
+  Oriente Medio         785 858,850,864*
+  Israel                972 858,850,862*
+
+  C&oacute;digos extendidos (pa&iacute;ses multiling&uuml;es):
+  C&oacute;digo de pa&iacute;s       P&aacute;ginas de c&oacute;digos
+  B&eacute;lgica/holand&eacute;s    40032 858,850,437
+  B&eacute;lgica/franc&eacute;s     41032 858,850,437
+  B&eacute;lgica/alem&aacute;n      42032 858,850,437
+  Espa&ntilde;a/espa&ntilde;ol      40034 858,850,437
+  Espa&ntilde;a/catal&aacute;n      41034 858,850,437
+  Espa&ntilde;a/gallego      42034 858,850,437
+  Espa&ntilde;a/euskera      43034 858,850,437
+  Suiza/alem&aacute;n        40041 858,850,437
+  Suiza/franc&eacute;s       41041 858,850,437
+  Suiza/italiano      42041 858,850,437
+
+  * Estas p&aacute;ginas a&uacute;n no est&aacute;n disponibles en FreeDOS. 
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  En CONFIG.SYS / FDCONFIG.SYS
+    device=c:\fdos\bin\himemx.exe
+    device=c:\fdos\bin\jemm386.exe
+    dos=high,umb
+    country=001,437,c:\fdos\bin\country.sys
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-development</a>
+  <a href="../base/nlsfunc.htm">nlsfunc</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

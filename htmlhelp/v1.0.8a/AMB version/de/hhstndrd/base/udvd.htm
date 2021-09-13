@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: udvd.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: udvd.sys</h1>
+<pre>
+  UDVD.SYS ist ein DOS Treiber f&uuml;r 1 bis 3 CD/DVD-Laufwerke, inklusive
+  SATA, UltraDMA und &auml;tere "PIO Modus"-Laufwerke.
+  UDVD.SYS mu&szlig; in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen werden.
+  Alternativ kann UDVD.SYS w&auml;hrend des Betriebes mit <a href="../util/devload.htm">DEVLOAD</a>
+  nachtr&auml;glich geladen werden.
+  <b>UDVD.SYS ist veraltet. Der Autor gibt KEINEN Support mehr!
+  Sie sollten stattdessen <a href="../base/uide.htm">UIDE.SYS</a> verwenden</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE = [Pfad] UDVD.SYS [/A] [/C] [/D:Ger&auml;tename] [/UX]
+  DEVICEHIGH = [Pfad] UDVD.SYS [/A] [/C] [/D:Ger&auml;tename] [/UX]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  UDVD.SYS ben&ouml;tigt nur die Option /C zum Cachen und /D: um f&uuml;r den
+  <a href="../base/shsucdx.htm">SHSUCDX</a> "CD-ROM-Weiterleiter" einen Ger&auml;tenamen anzugeben. 
+  Die UDVD.SYS Schalteroptionen sind:
+  /A   Spezifiziert die Verwendung von ALTERNATIVEN "Legacy" IDE I-O
+       Adressen. Vgl. auch die Beschreibung zu /A bei <a href="../base/uide.htm">UIDE.SYS</a>.
+  /C   Ersucht den UDMA-Treiber, Daten-Dateicaching vorzunehmen. Dies
+       verursacht, da&szlig; "raw-Modus" Eingabeersuchen zur&uuml;ckgewiesen
+       werden, da UDMA zum Cachen Sektoren ben&ouml;tigt, die ein ganzes
+       Mehrfaches von 512 Bytes sind ("raw"-Sektoren sind 2.352 Bytes!)
+       Wenn /C weggelassen wird, wird auch die "raw-Modus" Eingabe
+       (Audio, Spurenschreiber usw.) akzeptiert.
+  /D:  Spezifiziert den von <a href="../base/shsucdx.htm">SHSUCDX</a> gew&uuml;nschten Ger&auml;tenamen um auf
+       die CD/DVD-Laufwerke Zugriff zu haben.
+       Beispiel: /D:CDROM1 /D:MYCDROM usw.
+       Der Ger&auml;tnamen darf 1 bis 8 in DOS Dateinamen g&uuml;ltige Bytes
+       (Zeichen) verwenden. Wenn /D: weggelassen wird oder der Ger&auml;te-
+       namen nach /D: fehlt oder ung&uuml;ltig ist, wird standardm&auml;&szlig;ig
+       UDVD1 verwendet.
+  /UX  Deaktiviert ALLE UltraDMA, selbst wenn ein CD/DVD-Laufwerk dies
+       unterst&uuml;tzt. UDVD.SYS verwendet dann den "PIO-Modus" f&uuml;r jede I-O
+       Anfrage. /UX wird selten ben&ouml;tigt, haupts&auml;chlich f&uuml;r Tests und
+       Diagnostik.
+  Bei allen Schaltern kann ein "-" den "/" ersetzen und es k&ouml;nnen Gross-
+  oder Kleinbuchstaben verwendet werden.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Beim Laden testet UDVD.SYS bis zu 4 "Legacy" oder "Native PCI" IDE-
+  Controller in der Reihenfolge Erster Master bis Zweiter Slave und
+  betreibt die 3 zuerst gefundenen CD/DVD-Laufwerke. UDVD.SYS hat Schalter
+  um den Ger&auml;tenamen zu spezifizieren oder andere Optionen anzufordern.
+  Es kann Dateieingabeanforderungen von <a href="../base/shsucdx.htm">SHSUCDX</a> oder anderen "CD-ROM-
+  Weiterleiter" Programmen, wie z.B. <a href="../base/mscdex.htm">MSCDEX</a> usw. handhaben. Es unter-
+  st&uuml;tzt auch DOS "Audio" Anforderungen und kann Audio CDs "wieder-
+  geben". Wenn der "raw" CD/DVD Eingang nicht ben&ouml;tigt wird und
+  <a href="../base/udma.htm">UDMA.SYS</a> auch geladen ist, erm&ouml;glicht UDVD's /C Schalter das Cachen
+  von Datendateien durch den UDMA Treiber!
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  In der CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    DEVICEHIGH=C:\FDOS\DRIVERS\UDMA.SYS /S125
+    DEVICEHIGH=C:\FDOS\BIN\UDVD.SYS /D:MYDVD /C
+  IN der AUTOEXEC.BAT:
+    c:\fdos\bin\SHSUCDX /D:MYDVD
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+ (<a href="../base/udma.htm">udma.sys</a>)
+ (<a href="../base/udma2.htm">udma2.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+ (<a href="../base/xdma.htm">xdma.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

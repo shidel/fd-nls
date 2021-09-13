@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Netzwerken unter FreeDOS - 3Com</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top"></a>Netzwerken unter FreeDOS - 3Com</h1>
+<pre>
+  Wenn Ihre 3Com Netzwerkkarte (NIC) nicht von den <a href="../network/crynwr.htm">Crynwr</a> Paket-
+  treibern unterst&uuml;tzt wird, k&ouml;nnen Sie hier einen Treiber finden:
+  <b>ftp://ftp.3com.com/pub/nic/3c90x/3c90x2.exe (*01)</b>
+  Das ist die EtherCD v5.4, Disk 2 von 2 der <b>3C90x</b> Adapterfamilie.
+  Disk 2 ent&auml;lt DOS <a href="../network/odi.htm">ODI</a> und <a href="../network/ndis.htm">NDIS</a> Treiber, Pakettreiber, Hilfedateien
+  und die DOS Diagnostik. Sie ist ein selbstentpackendes DOS Programm
+  (.exe-Datei). Nachdem Sie es ausgef&uuml;hrt haben, gehen Sie in das
+  PKTDVR Unterverzeichnis und starten 3C90XPD.COM. Das sollte automa-
+  tisch Ihre NIC (Netzwerkkarte) erkennen, was eine Zeitlang dauern
+  kann und den Pakettreiber in den ersten freien Interrupt Vektor
+  installieren, angefangen bei 0x60. Der Interrupt Vektor kann mit /I
+  auch spezifiziert werden; vgl. auch /? f&uuml;r Details.
+  Sie sollten dies in Ihrer <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> erg&auml;nzen.
+  Danach k&ouml;nnen Sie jede <a href="../network/wattcp.htm">WatTCP</a> Anwendung, wie z.B. SSH (siehe:
+  <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a>) und <a href="../network/tcpip_ap.htm#ccc">Arachne</a> konfigurieren und anwenden. Verwenden Sie
+  folgende Befehlszeile in Ihrer WATTCP.CFG um den Interrupt Vektor
+  zu spezifizieren:
+    pkt.vector = 0x60
+
+  <b>(*01) internet: "3c90x2.exe"</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), 2010 an die
+  FreeDOS-Hilfe angepasst von W.Spiegl, 2020 aktualisiert.</b>
+  Weitergehende Informationen <a href="../network/intro.htm#ddd">finden Sie hier</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

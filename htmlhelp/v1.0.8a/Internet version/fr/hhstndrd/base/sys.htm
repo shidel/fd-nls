@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : sys / sys config</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : sys / sys config</h1>
+<pre>
+  SYS rend une disquette, un disque dur ou un autre m&eacute;dia amor&ccedil;able.
+  SYS CONFIG configure le <a href="../base/kernel.htm">KERNEL</a> FreeDOS.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  SYS [source] lecteur: [sectboot] [{option}]
+  SYS [/?]
+      source    = A:,B:,C:\KERNEL\BIN\,etc., L'emplacement (facultatif)
+                des fichiers syst&egrave;me. S'il n'est pas indiqu&eacute;, le
+                r&eacute;pertoire courant sera utilis&eacute;.
+      lecteur   = A,B,C etc. Le lecteur &agrave; rendre amor&ccedil;able.
+      sectboot  Le nom de du fichier image du secteur d'amor&ccedil;age de 512
+                octets pour le lecteur : pour y &eacute;crire *au lieu du*
+                secteur d'amor&ccedil;age r&eacute;el.
+
+  SYS CONFIG [lecteur][chemin]kernel.sys [option=valeur...]
+  SYS CONFIG [/help][/?]
+
+  SYS CONFIG
+    Cela affichera simplement les r&eacute;glages actuels pour le fichier
+    KERNEL.SYS dans le r&eacute;pertoire courant. Il est utile de savoir
+    comment les options actuelles sont r&eacute;gl&eacute;es, quelles options sont
+    prises en charge et cela devrait aussi afficher les valeurs valides
+    avec les valeurs par d&eacute;faut (les valeurs par d&eacute;faut sont les valeurs
+    valides suivies d'un '*').
+
+  SYS CONFIG [lecteur][chemin]KERNEL.SYS
+    Cette forme se comporte comme celle ci-dessus, sauf qu'elle
+    affichera les r&eacute;glages pour le fichier de kernel que vous
+    sp&eacute;cifiez. Le lecteur ainsi que le chemin sont facultatifs et
+    g&eacute;n&eacute;ralement un simple '\' sera utilis&eacute; afin d'indiquer le
+    r&eacute;pertoire racine du lecteur actuel. KERNEL.SYS sp&eacute;cifie le
+    nom de fichier du kernel, qui peut ne pas &ecirc;tre "KERNEL.SYS",
+    par exemple lors de tests vous voudrez alt&eacute;rer KERNTEST.SYS et
+    plus tard le copier sur (ou le renommer en) KERNEL.SYS pour
+    l'amor&ccedil;age.
+</pre>
+<h2>Options :</h2>
+<pre>
+  OPTIONS DE SYS :
+  /BOTH          Le nouveau secteur d'amor&ccedil;age sera &eacute;crit sur le fichier
+                 image et sur le secteur d'amor&ccedil;age du lecteur.
+  /BOOTONLY      Le secteur d'amor&ccedil;age (ou l'image) sera mis &agrave; jour,
+                 mais le <a href="../base/kernel.htm">KERNEL</a> et <a href="../base/command.htm">COMMAND.COM</a> ne seront pas copi&eacute;s sur
+                 la destination.
+  /UPDATE        Copie <a href="../base/kernel.htm">KERNEL</a> et met
+                 &agrave; jour le secteur d'amor&ccedil;age (ne copie *pas* le shell).
+  /OEM[:AUTO]    Indique le secteur d'amor&ccedil;age (de boot), les noms de
+                 fichiers et le segment de chargement (load segment)
+                 &agrave; utiliser.
+  /OEM:DE        Utilise les r&eacute;glages du Kernel DEll mode r&eacute;el.
+  /OEM:DR        Utilise des r&eacute;glages compatibles avec DR DOS 7+.
+  /OEM:EDR       Utilise des r&eacute;glages compatibles avec DR DOS 7+
+                 am&eacute;lior&eacute;.
+  /OEM:FD        Utilise des r&eacute;glages compatibles avec FreeDOS.
+  /OEM:MS        Utilise des r&eacute;glages compatibles avec MS-DOS.
+  /OEM:PC        Utilise des r&eacute;glages compatibles avec  PC-DOS.
+  /OEM:Rx        Utilise des r&eacute;glages compatibles avec RxDOS.
+  /OEM:W9x       Utilise des r&eacute;glages compatibles avec MS Win9x DOS.
+                 La valeur par d&eacute;faut est /OEM[:AUTO], s&eacute;lectionne
+                 le DOS en se fondant sur les fichiers existants.
+  /K nom         Donne le nom du fichier du kernel (noyau) &agrave; copier.
+                 Cette option n'est requise que lorsque le kernel
+                 n'est pas appel&eacute; "kernel.sys"
+  /L segm        Le segment de chargement, en hexad&eacute;cimal, &agrave; utiliser.
+                 La valeur par d&eacute;faut est de 60.
+  /B btdrv :     hex BIOS # du lecteur d'amor&ccedil;age d&eacute;fini dans bs 0=A:,
+                 80=1er disque dur,...
+  /FORCE         Ignore la s&eacute;lection automatique des param&egrave;tres li&eacute;s
+                 au BIOS.
+  /FORCE:AUTO    S&eacute;lectionne LBA ou CHS en fonction de la disponibilit&eacute;
+                 du BIOS.
+  /FORCE:BIOSDRV Utilise le lecteur d'amor&ccedil;age # indiqu&eacute; par le BIOS.
+  /FORCE:BSDRV   Utilise le lecteur d'amor&ccedil;age # d&eacute;fini dans le secteur
+                 d'amor&ccedil;age.
+  /FORCE:LBA     Utilise toujours LBA.
+  /FORCE:CHS     Utilise toujours CHS.
+  /NOBAKBS       Ignore la copie du secteur d'amor&ccedil;age pour la sauvegarde
+                 bs, FAT32 seulement, sinon ignor&eacute;.
+  /SKFN nomfichier          Copie depuis nomfichier sur to KERNEL.SYS ;
+                            r&eacute;glages identiques &agrave; /OEM:FD.
+  /SCFN nomfichier          Copie depuis nomfichier sur COMMAND.COM.
+  /BACKUPBS [chemin]nomfichier  Enregistre le bs courant avant d'&eacute;craser.
+  /DUMPBS   [chemin]nomfichier  Enregistre le bs courant et quitte.
+  /RESTORBS [chemin]nomfichier  &Eacute;crase le bs et quitte.
+  /VERBOSE                  Affiche des sorties (de d&eacute;bogage)
+                            suppl&eacute;mentaires.
+  /help          Affiche l'aide.
+  /?             Affiche l'aide.
+
+  OPTIONS DE SYS CONFIG :
+  /help          Affiche l'aide.
+  /?             Affiche l'aide.
+  Les options actuelles sont :
+  DLASORT=0|1
+    Cette option sert &agrave; sp&eacute;cifier si l'attribution de lettre de lecteur
+    devrait suivre la mani&egrave;re normale de MSDOS de toutes les partitions
+    primaires sur les lecteurs, puis les partitions &eacute;tendues, ou la
+    mani&egrave;re plus logique de toutes les partitions (primaires et &eacute;tendues)
+    sur le premier lecteur, puis r&eacute;p&eacute;ter cela pour tous les lecteurs
+    suivants (tous les primaires et &eacute;tendus, puis essayer le lecteur
+    suivant). 0 correspond &agrave; la mani&egrave;re MS et 1 correspond au premier
+    lecteur enti&egrave;rement, puis le suivant ...
+  SHOWDRIVEASSIGNMENT=0|1
+    Si 1 alors les informations normales d'attribution de lecteur sont
+    affich&eacute;es au moment de l'amor&ccedil;age. Si 0 alors ces informations sont
+    supprim&eacute;es (non affich&eacute;es).
+  SKIPCONFIGSECONDS=# (peut &ecirc;tre de -128 &agrave; 127)
+    Une valeur n&eacute;gative ( &lt; 0 ) indique que le traitement de F5/F8 sera
+    ignor&eacute; (le kernel ne v&eacute;rifiera pas si vous avez appuy&eacute; sur ces
+    touches, donc vous ne pourrez ignorer le traitement du fichier
+    de configuration (CONFIG.SYS). Un 0 signifie que vous avez appuy&eacute;
+    sur la touche pr&eacute;cis&eacute;ment au moment o&ugrave; le kernel v&eacute;rifie ces
+    appuis - ce qui revient &agrave; ignorer, m&ecirc;me si un doigt bien chronom&eacute;tr&eacute;
+    sera en mesure de l'utiliser. Et toutes les valeurs sup&eacute;rieures &agrave;
+    0 repr&eacute;sentent le nombre de secondes ou l'invite sera affich&eacute; en
+    attendant que vous appuyiez sur la touche avant de supposer que
+    vous ne l'avez pas fait.
+  FORCELBA=0|1
+    Si 1 alors le kernel utilisera les techniques LBA (INT13 &eacute;tendu)
+    pour adresser toutes les partitions si c'est possible, m&ecirc;me si
+    celles-ci ont un type de partition non-LBA et sont compl&egrave;tement en
+    dessous du cylindre 1023 (g&eacute;n&eacute;ralement la limite des 8 Go). La
+    valeur par d&eacute;faut est de 0, pour des raisons de compatibilit&eacute;.
+    R&eacute;gler cette valeur sur 1 peut contourner certains BIOS bugu&eacute;s et
+    donne des performances l&eacute;g&egrave;rement am&eacute;lior&eacute;es.
+  GLOBALENABLELBASUPPORT=0|1
+    Si 0 alors LBA sera compl&egrave;tement d&eacute;sactiv&eacute;, sans tenir compte du
+    r&eacute;glage FORCELBA. Vous en aurez besoin si FreeDOS pense que vous
+    avez une LBA de disponible, alors qu'en r&eacute;alit&eacute; ce ne sera pas
+    vrai. La valeur par d&eacute;faut de ce r&eacute;glage est de 1.
+
+    Pour davantage d'informations sur SYS CONFIG, voyez :
+    <b>http://www.fdos.org/kernel/</b>
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  SYS:
+  La commande SYS cr&eacute;e un secteur d'amor&ccedil;age (boot sector) sur le
+  secteur 0 de la disquette ou du disque dur. Puis elle copie <a href="../base/kernel.htm">KERNEL.SYS</a>
+  et <a href="../base/command.htm">COMMAND.COM</a> sur le m&eacute;dia. Suite &agrave; cela l'ordinateur sera capable
+  de d&eacute;marrer FreeDOS depuis ce m&eacute;dia.
+  SYS CONFIG:
+  Si aucune option n'est donn&eacute;e, les valeurs actuelles seront affich&eacute;es.
+  /help ou /? affiche des informations d'utilisation.
+  [lecteur][chemin]kernel.sys sp&eacute;cifie le fichier de kernel &agrave; modifier,
+  si omis la valeur par d&eacute;faut de <a href="../base/kernel.htm">KERNEL.SYS</a> sera utilis&eacute;e.
+  Option=valeur ... sp&eacute;cifie une ou plusieurs options et les valeurs
+  auxquelles chaque option sera r&eacute;gl&eacute;e. Si une option est entr&eacute;e
+  plusieurs fois, la valeur d&eacute;finie sera celle la plus &agrave; droite.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  sys c: (depuis une disquette ; la commande sys et <a href="../base/command.htm">COMMAND.COM</a> et
+         <a href="../base/kernel.htm">KERNEL.SYS</a> devraient &ecirc;tre sur la disquette, apr&egrave;s l'ex&eacute;cution
+         le disque dur sera amor&ccedil;able)
+  sys a: (depuis un disque dur ou un CD; la commande et <a href="../base/command.htm">COMMAND.COM</a>
+         et <a href="../base/kernel.htm">KERNEL.SYS</a> devraient &ecirc;tre sur le lecteur source, apr&egrave;s
+         l'ex&eacute;cution la disquette sera amor&ccedil;able)
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../base/command.htm">command.com</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-devel</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../command/vol.htm">vol</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

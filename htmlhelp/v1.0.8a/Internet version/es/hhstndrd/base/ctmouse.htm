@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: ctmouse (Cutemouse)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: ctmouse (Cutemouse)</h1>
+<pre>
+  CuteMouse (CTMOUSE) es el controlador de rat&oacute;n de FreeDOS.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  ctmouse [opciones]
+  LH ctmouse [opciones]
+  LOADHIGH ctmouse [opciones]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /3        Forzar el modo de 3 botones (solo para ratones Microsoft
+            y PS/2).
+  /B        Cancela la ejecuci&oacute;n si los servicios del rat&oacute;n ya est&aacute;n
+            presentes.
+  /L        Cambiar bot&oacute;n izquierdo y derecho.
+  /M        Pruebe *antiguo* sistemas de rat&oacute;n / Genius para ratones
+            que no sean PnP.
+  /N        Cargue CuteMouse como nuevo TSR, incluso si CuteMouse ya
+            est&aacute; cargado (&uacute;til para archivos por lotes que descargan
+            CuteMouse al final).
+  /O        Habilite la detecci&oacute;n de rueda USB de PS2 y BIOS (podr&iacute;a
+            bloquearse).
+  /P        Fuerza el modo de rat&oacute;n PS/2.
+  /R[h[v]]  Resoluci&oacute;n horizontal/vertical: h,v = 1-9, o 0 para auto.
+            (sin valor = uso predeterminado: autom&aacute;tico para h, o 
+            "como h" para v).
+  /S[c[i]]  Forzar el modo de rat&oacute;n serie en el puerto COM c (c=1-4,
+            el valor predeterminado es IRQ4 para COM 1/3 e IRQ3 para
+            COM 2/4).
+  /U        Desistalar controlador, eliminar TSR de la memoria.
+  /V        B&uacute;squeda inversa: encuentra PS/2 despu&eacute;s del rat&oacute;n serial.
+  /Y        Fuerza la b&uacute;squeda en serie del rat&oacute;n, pero, a diferencia
+            de la opci&oacute;n /S no deshabilita la compatibilidad con PS/2.
+  /W        No permita que CuteMouse se mueva a UMB.
+  /?        Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  CTMOUSE no es compatible con ratones USB.
+  CTMOUSE se puede cargar en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> o en <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>
+  o en la l&iacute;nea de comando. CTMOUSE2 es una nueva ramificaci&oacute;n de 
+  CuteMouse que admite la rueda del rat&oacute;n. Proporciona una rueda API
+  (interfaz del programador de aplicaciones), para que los programas
+  de FreeDOS puedan usar la rueda del rat&oacute;n. Visite el sitio web de
+  CuteMouse en <b>http://cutemouse.sourceforge.net</b>
+  CTMOUSE tiene los siguientes <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0  PS/2, rat&oacute;n Microsoft o Logitech encontrados y CTMOUSE instalado;
+       Descarga exitosa; /? opci&oacute;n utilizada.
+    1  CTMOUSE instalado en modo rat&oacute;n del sistema; La descarga fall&oacute;
+       porque CTMOUSE no se carg&oacute;.
+    2  La parte residente cambi&oacute; el modo PS/2, Microsoft o Logitech; La
+       descarga fall&oacute; porque las interrupciones del conductor fueron
+       interceptadas.
+    3  La parte residente cambi&oacute; el modo rat&oacute;n del sistema.
+    4  Servicios de rat&oacute;n ya presentes (devueltos solo para la opci&oacute;n /B)
+    5  Rat&oacute;n no encontrado; Opci&oacute;n inv&aacute;lida utilizada.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    devicehigh=C:\fdos\bin\ctmouse  carga ctmouse en la memoria superior
+  EN AUTOEXEC.BAT O EN LINEA DE COMANDOS:
+    lh ctmouse  carga ctmouse en memoria superior
+    ctmouse /u  descarga el controlador del rat&oacute;n
+    ctmouse /?  Muestra la ayuda (opciones)
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/device.htm">controlador</a>
+  <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1997 - 2004 Nagy Daniel, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

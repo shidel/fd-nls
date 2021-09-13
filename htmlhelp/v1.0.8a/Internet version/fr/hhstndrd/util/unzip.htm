@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : unzip</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : unzip</h1>
+<pre>
+  UNZIP liste, teste ou extrait des fichiers depuis une archive ZIP,
+  trouv&eacute;e couramment sur les syst&egrave;mes DOS. Le comportement par d&eacute;faut
+  (sans option) est d'extraire tous les fichiers depuis l'archive ZIP
+  sp&eacute;cifi&eacute;e dans le r&eacute;pertoire courant (et les sous-r&eacute;pertoires en
+  dessous).
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  unzip [-Z] [-options[modificateurs]] fichier[.zip] [fichiers]
+        [-x xlist] [-d exdir]
+          fichier[.zip]  Chemin des archives ZIP. Cela peut &ecirc;tre un
+                         joker.
+          [fichiers]   Une liste facultative des membres d'archive qui
+                       doivent &ecirc;tre trait&eacute;s, s&eacute;par&eacute;s par des espaces.
+          [-d exdir]   Un r&eacute;pertoire facultatif o&ugrave; les fichiers seront
+                       extraits. Par d&eacute;faut, tous les fichiers et les
+                       sous-r&eacute;pertoires sont recr&eacute;&eacute;s dans le r&eacute;pertoire
+                       courant ; l'option -d permet l'extraction dans
+                       un r&eacute;pertoire arbitraire.
+</pre>
+<h2>Options :</h2>
+<pre>
+    -d   Extraire les fichiers dans exdir (un r&eacute;pertoire optionnel).
+    -f   Rafra&icirc;chir les fichiers existants, c'est-&agrave;-dire extraire
+         seulement les fichiers qui existent d&eacute;j&agrave; sur le disque et
+         qui sont plus r&eacute;cents que les copies du disque.
+    -l   Lister les fichiers (format court). Les noms, tailles des
+         fichiers d&eacute;compress&eacute;es et l'horodatage de modification des
+         fichiers sp&eacute;cifi&eacute;s, sont affich&eacute;s avec les totaux pour tous
+         les fichiers sp&eacute;cifi&eacute;s.
+    -p   Extraire les fichiers vers le pipe (sortie standard), aucun
+         message.
+    -t   Tester les donn&eacute;es de l'archive compress&eacute;e. Cette option
+         extrait chaque fichier sp&eacute;cifi&eacute; dans la m&eacute;moire et compare
+         la somme de contr&ocirc;le CRC du fichier d&eacute;compress&eacute; avec la valeur
+         CRC stock&eacute;e du fichier original.
+    -u   Mettre &agrave; jour les fichiers, en cr&eacute;er de nouveaux si n&eacute;cessaire.
+    -x   Exclure les fichiers suivants (dans xlist). Xlist est une liste
+         optionnelle de membres d'archive &agrave; exclure du traitement. Comme
+         les caract&egrave;res joker correspondent normalement aux ('/')
+         s&eacute;parateurs de r&eacute;pertoire, cette option peut &ecirc;tre utilis&eacute;e
+         pour exclure tout fichier qui serait dans un sous-r&eacute;pertoire.
+    -z   Afficher le commentaire de l'archive.
+    -Z   Mode ZipInfo. Si la premi&egrave;re option sur la ligne de commande
+         est -Z, les options restantes sont consid&eacute;r&eacute;es comme des
+         options zipinfo(1L).
+  Modificateurs :
+    -$   &Eacute;tiqueter les amovibles (-$$ => disques fixes)
+    -a   Convertir automatiquement tout fichier texte.
+    -aa  Traiter TOUS les fichiers comme des fichiers textuels.
+    -C   -C Correspondance insensible &agrave; la casse pour les noms de
+         fichiers.
+    -j   Chemins ind&eacute;sirables. La structure de r&eacute;pertoires de
+         l'archive n'est pas recr&eacute;&eacute;e ; tous les fichiers sont d&eacute;pos&eacute;s
+         dans le r&eacute;pertoire d'extraction.
+    -L   Basculer (certains) noms en minuscules.
+    -n   Ne jamais &eacute;craser les fichiers existants.
+    -o   &Eacute;craser les fichiers SANS demande de confirmation.
+    -M   Envoyer vers le pipe de pagination "more".
+    -q   Mode silencieux (-qq => encore plus silencieux).
+    -s   Convertir les espaces dans les noms de fichiers en '_'
+    -v   &Ecirc;tre verbeux ou afficher les informations de diagnostic
+         de version.
+    -V   Conserver les num&eacute;ros de version VMS.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Pour davantage d'informations veuillez lire UNZIP.TXT.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  unzip data1 -x joe    extraire tous les fichiers sauf joe depuis
+                        le fichier zip data1.zip
+  unzip -fo foo ReadMe  remplacer silencieusement le ReadMe existant
+                        si le fichier de l'archive est plus r&eacute;cent
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../util/zip.htm">zip</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

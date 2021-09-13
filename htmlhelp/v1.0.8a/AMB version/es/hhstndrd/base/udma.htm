@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: udma.sys / udmajr.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: udma.sys / udmajr.sys</h1>
+<pre>
+  UDMA.SYS / UDMAJR.SYS son controladores de almacenamiento en cach&eacute; de
+  disco duro de DOS para discos duros UltraDMA. UDMA.SYS / UDMAJR.SYS se
+  debe cargar en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Cuando FreeDOS ya se est&aacute; ejecutando, puede cargar UDMA.SYS / UDMAJR.SYS
+  m&aacute;s tarde con <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>UDMA.SYS / UDMAJR.SYS no est&aacute;n actualizados. &iexcl;NO hay MAS apoyo de autor!
+  Deber&iacute;a usar <a href="../base/uide.htm">UIDE.SYS</a> en su lugar</b>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  DEVICE[HIGH] = [ruta]UDMA.SYS [/A] [/Q] [/R] [/Sn] [/U]
+  DEVICE[HIGH] = [ruta]UDMAJR.SYS [/A] [/Q] [/R] [/Sn] [/U]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  UDMA.SYS / UDMAJR.SYS normalmente no necesita interruptores. Sus
+  opciones de cambio son las siguientes:
+    /A   Especifica el uso de las antiguas direcciones alternativas del
+         controlador EIDE, 01E8h-01EFh en el canal primario y 0168h-016Fh
+         en el canal secundario. Si se omite /A, el controlador utilizar&aacute;
+         las direcciones normales del controlador de 01F0h-01F7h o 
+         0170h-0177h. /A es solo para un BIOS SATA "extra&ntilde;o" u otros
+         casos inusuales.
+    /Q   Habilita la espera de "solicitud de datos" antes de iniciar las
+         transferencias de datos UltraDMA. /Q debe OMITIRSE con un
+         adaptador SATA a IDE por Sabrent, etc., ya que estas tarjetas no
+         emulan la solicitud de datos de los discos SATA /Q no es
+         necesario con controladores m&aacute;s nuevos de discos IDE. Es para
+         sistemas "antiguos" y debe usarse solo si UDMA carga OK pero
+         parece incapaz de transferir datos.
+    /R   Restringe UDM a la memoria "normal" y evite el HMA para su tabla
+         de b&uacute;squeda binaria. /R puede ser necesario con sistemas DOS que
+         NO asignar&aacute;n memoria hasta que CONFIG.SYS cargue los
+         controladores. /R no es necesario con V7.0 MS-DOS, V6.22 MS-DOS,
+         V7.1 PC-DOS, PTS-DOS o EDR-DOS. &iexcl;Se requiere /R para trabajar
+         con ROM-DOS! Otras variantes de DOS deben probarse primero.
+    /Sn  Especifica el tama&ntilde;o de cach&eacute; deseado, de la siguiente manera:
+           /S0     5-MB cach&eacute;,  1280-byte tama&ntilde;o tabla,  8K bloques.
+           /S1    10-MB cach&eacute;,  2560-byte tama&ntilde;o tabla,  8K bloques.
+           /S2    20-MB cach&eacute;,  2560-byte tama&ntilde;o tabla, 16K bloques.
+           /S3    40-MB cach&eacute;,  2560-byte tama&ntilde;o tabla, 32K bloques.
+           /S4    80-MB cach&eacute;,  2560-byte tama&ntilde;o tabla, 64K bloques.
+           /S5   120-MB cach&eacute;,  3840-byte tama&ntilde;o tabla, 64K bloques.
+           /S6   160-MB cach&eacute;,  5120-byte tama&ntilde;o tabla, 64K bloques.
+           /S7   200-MB cach&eacute;,  6400-byte tama&ntilde;o tabla, 64K bloques.
+           /S8   250-MB cach&eacute;,  8000-byte tama&ntilde;o tabla, 64K bloques.
+           /S9   400-MB cach&eacute;, 12800-byte tama&ntilde;o tabla, 64K bloques.
+           /SL   750-MB cach&eacute;, 24000-byte tama&ntilde;o tabla, 64K bloques.
+         Cuando se omite /S, se supone /S4. La l&oacute;gica del controlador y
+         la pila toman 2544 bytes fijos junto con los tama&ntilde;os de tabla
+         de b&uacute;squeda binaria anteriores. UDMA establece su tabla de
+         b&uacute;squeda binaria y 1088 bytes de l&oacute;gica en el HMA est&eacute;n libres
+         (2368 bytes con /S0), en cuyo caso se utilizar&aacute; memoria normal.
+         Cuando no hay suficiente HMA o memoria normal para un /S dado
+         es "libre", se utiliza la memoria cach&eacute; m&aacute;s grande que cabe en
+         la memoria "libre". UDMA se carga en 4K, por lo que siempre se
+         puede configurar al menos un cach&eacute; de 5 MB en la memoria normal.
+         Los cach&eacute;s de 400 MB y 750 MB no pueden usar el HMA y siempre
+         ocupan 15K o 26K de memoria normal. Para ning&uacute;n disco UltraDMA,
+         UDMA descarta su l&oacute;gica UltraDMA durante init, para ahorrar 
+         368 bytes de HMA. Para un antiguo administrador V2.0 XMS
+         (ROM-DOS, etc.), el m&aacute;ximo es /S3 o 40 MB. /S0 es para sistemas
+         DOS de 8 MB antiguos y puede perder eficiencia al almacenar en
+         cach&eacute; los archivos grandes de hoy. Se recomienda al menos /S1.
+         &iexcl;Debe haber suficiente memoria XMS libre disponible para
+         establecer el tama&ntilde;o de cach&eacute;, o UDMA aborta!
+    /U   Solicita solo el controlador UltraDMA "aut&oacute;nomo" (sin 
+         almacenamiento en cach&eacute;), que puede ser &uacute;til para ejecutar un
+         programa de diagn&oacute;stico de disco.
+  Para cada interruptor, un gui&oacute;n puede reemplazar la barra oblicua y
+  se pueden usar letras min&uacute;sculas.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  UDMA.SYS se ofrece para aquellos que desean seguir siendo "compatibles"
+  con versiones anteriores de ese controlador. Utiliza el mismo "n&uacute;cleo"
+  residente de 640 bytes que <a href="../base/udma2.htm">UDMA2.SYS</a> o UDMAJR.SYS. Como con todas las
+  versiones anteriores, UDMA.SYS es el &uacute;nico controlador en el conjunto
+  que muestra los "nombres" del controlador UltraDMA y los datos del bus
+  PCI en el momento de la carga, para aquellos que desean ver qu&eacute; chip
+  se ejecutar&aacute;. UDMA.SYS ofrece el conjunto completo de pruebas de tiempo
+  de carga igual que UDMA2.SYS.
+  UDMAJR.SYS se ofrece para "disco RAM" o sistemas "integrados" que 
+  requieren un controlador UltraDMA de tama&ntilde;o m&iacute;nimo absoluto. Tiene el
+  mismo "n&uacute;cleo" residente de 640 bytes que UDMA2S.SYS o UDMA.SYS con la
+  misma capacidad de tiempo de ejecuci&oacute;n.
+  UDMAJR.SYS omite una prueba 80386, "pruebas de lectura" y los "nombres"
+  del controlador y del disco en el momento de la carga (se muestra la
+  direcci&oacute;n de E/S del controlador), por lo que alcanza un tama&ntilde;o del
+  archivo de objetos de 2048 bytes.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  En CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\UDMA.SYS
+    DEVICEHIGH=C:\FDOS\BIN\UDMA.SYS
+    DEVICE=C:\FDOS\BIN\UDMAJR.SYS
+    DEVICEHIGH=C:\FDOS\BIN\UDMAJR.SYS
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/udma2.htm">udma2.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xdma.htm">xdma.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, modificado en 2011 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

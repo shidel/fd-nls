@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: menudefault</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: menudefault</h1>
+<pre>
+  MENUDEFAULT establece una opci&oacute;n predeterminada de tiempo retrasado para
+  un men&uacute; config.sys / fdconfig.sys.
+  MENUDEFAULT es un comando de <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  menudefault=opci&oacute;n_por_defecto,retraso
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  retraso             tiempo de retardo en segundos
+  opci&oacute;n_por_defecto  utiliza la opci&oacute;n est&aacute;ndar si el tiempo de retardo
+                      ha terminado
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  MENUDEFAULT establece una opci&oacute;n predeterminada de tiempo retrasado para
+  un men&uacute; config.sys / fdconfig.sys: Si no se ha pulsado ninguna tecla
+  durante los segundos de 'retardo', se activa la opci&oacute;n predeterminada.
+  Al pulsar una tecla se detiene la cuenta atr&aacute;s, el n&uacute;cleo esperar&aacute;
+  infinitamente a que el usuario realice una selecci&oacute;n. Tenga en cuenta que
+  algunas m&aacute;quinas virtuales como Bochs pueden haber roto (demasiado
+  r&aacute;pido) el tiempo.
+  MENUDEFAULT es un comando interno de kernel.sys y no necesita ning&uacute;n
+  otro archivo para funcionar.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    menucolor 15,1
+    MENU Elija sabiamente:
+    MENU
+    MENU 0)    controladores normales (himem y emm386)
+    MENU 1)    controladores alternativos (himemx y jemm386)
+    MENUDEFAULT=0,5
+    0?DEVICE=A:\himem.exe
+    1?DEVICE=A:\himemx.exe
+    0?DEVICE=A:\emm386.exe
+    1?DEVICE=A:\jemm386.exe
+  El men&uacute; esperar&aacute; 5 segundos. Si no se pulsa ninguna tecla en este
+  tiempo, la opci&oacute;n 0 se selecciona autom&aacute;ticamente. Menucolor 15,1 cambia
+  el color a texto blanco sobre fondo azul.
+    0 elige himem.exe y emm386.exe, 
+    1 elige himem.exe y jemm386.exe
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/menu.htm">menu</a>
+  <a href="../cnfigsys/menucol.htm">menucolor</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 2003 <b>Robert Platt</b>, modificado en 2011 <b>W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+
+</pre></body></html>

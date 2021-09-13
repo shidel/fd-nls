@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: command (command.com oder FreeCom)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: command (command.com oder FreeCom)</h1>
+<pre>
+  COMMAND startet eine neue Kopie der FreeDOS Command Shell.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  COMMAND [[Laufwerk]Pfad] [Ger&auml;t] [/E:nnnnn] [/L:nnnn] [/U:nnn] [/P] 
+          [/MSG] [/LOW] [/Y [/[C|K] Befehl]]
+  COMMAND [/?]
+          [Laufwerk]Pfad   Spezifiziert das Verzeichnis, das die 
+                           COMMAND.COM ent&auml;lt, z.B. C:\Beispiel\
+          Laufwerk         Der Laufwerksbuchstabe, z.B.: C:
+          Pfad             Der zu w&auml;hlende Pfad, z.B.: \Beispiel\
+          Ger&auml;t           Spezifiziert das f&uuml;r die Befehlsein- und 
+                           -ausgabe zu benutzende Ger&auml;t.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /E:nnnnn   Setzt die anf&auml;ngliche Umgebungsgr&ouml;&szlig;e auf nnnnn Bytes.
+             (nnnnn sollte eine Zahl zwischen 256 und 32.768 sein).
+  /L:nnnn    Spezifiziert die Gr&ouml;&szlig;e der internen Puffer (erfordert 
+             ebenfalls /P). (nnnn sollte eine Zahl zwischen 128 und 1.024
+             sein).
+  /U:nnn     Spezifiziert die Eingabepuffergr&ouml;&szlig;e (erfordert auch /P).
+             (nnn sollte eine Zahl zwischen 128 und 255 sein).
+  /P         Richtet die neue Command Shell Instanz dauerhaft ein (kann 
+             nicht beendet werden).
+  /MSG       Speichert alle Fehlermeldungen im Speicher (erfordert 
+             auch /P).
+  /LOW       Zwingt die Command Shell, bleibende Daten im LowMem zu 
+             speichern.
+  /Y         Arbeitet schrittweise die durch /C oder durch /K 
+             spezifizierten Stapelverarbeitungsdaten ab.
+  /C Befehl  F&uuml;hrt den spezifizierten Befehl aus und kehrt zur&uuml;ck.
+  /K Befehl  F&uuml;hrt den spezifizierten Befehl aus und l&auml;uft weiter.
+  /?         Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  [Laufwerk]Pfad  Das Laufwerk und der Pfad, an dem die Shell nach dem 
+                  vor&uuml;bergehend anzuwendenden Teil des Programms schauen
+                  soll. Dies wird normalerweise nur ben&ouml;tigt, um COMSPEC
+                  zu setzen.
+  Ger&auml;t          Ein alternatives Ger&auml;t f&uuml;r alle I/O
+  /e:nnnnn        Die Umgebungsgr&ouml;&szlig;e in Bytes im Bereich von 160 - 
+                  32.768 Bytes.
+                  Die Zahl wird auf die n&auml;chsten 16 Bytes gerundet. 
+                  Standardwert ist 256 Byte.
+  /p              Macht die Shell permanent, so da&szlig; der EXIT-Befehl die
+                  Shell nicht beenden kann.
+  /c {string}     F&uuml;hrt den in {string} angegebenen Befehl aus, sobald 
+                  command geladen ist. Nach der Verarbeitung des 
+                  angegebenen Befehls wird command wieder beendet.
+  /msg            L&auml;dt jede Fehlermeldung, die auf Diskette gespeichert
+                  werden k&ouml;nnten in den Arbeitsspeicher. 
+  Der Befehl command (command.com) wird auch FreeCom genannt. Er ent&auml;lt
+  eine Menge von internen Befehlen, die keine eigene Datei ben&ouml;tigen, um
+  ausgef&uuml;hrt zu werden. Sie finden die Liste der internen Befehle <a href="../../index.htm#command">hier</a>.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  C:\command /E:1024 /L:1024 /U:128 /P
+  command /?
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/exit.htm">exit</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../cnfigsys/shell.htm">shell</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

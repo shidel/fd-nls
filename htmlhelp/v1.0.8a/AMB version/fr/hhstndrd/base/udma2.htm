@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : udma2.sys / udma2s.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : udma2.sys / udma2s.sys</h1>
+<pre>
+  UDMA2.SYS / UDMA2S.SYS sont des pilotes de mise en cache DOS pour
+  les disques durs UltraDMA.
+  UDMA2.SYS / UDMA2S.SYS doit &ecirc;tre charg&eacute; dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS fonctionne d&eacute;j&agrave;, vous pouvez charger UDMA2.SYS /
+  UDMA2S.SYS par la suite avec <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>UDMA2.SYS / UDMA2S.SYS sont p&eacute;rim&eacute;s. Leur auteur ne les prend PLUS en
+  charge ! Vous devriez utiliser <a href="../base/uide.htm">UIDE.SYS</a> &agrave; la place</b>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEVICE = [chemin]UDMA2.SYS [/O] [/L] [/S] [...]
+  DEVICE = [chemin]UDMA2S.SYS [/L] [/S] [...]
+  DEVICEHIGH = [chemin]UDMA2.SYS [/O] [/L] [/S] [...]
+  DEVICEHIGH = [chemin]UDMA2S.SYS [/L] [/S] [...]
+</pre>
+<h2>Options :</h2>
+<pre>
+  /O   Pour UDMA2.SYS uniquement, active le chevauchement de la sortie.
+       Cela N&Eacute;CESSITE un gestionnaire XMS (<a href="../base/himemx.htm">HIMEMX</a>, etc.) et 128 Ko de
+       m&eacute;moire XMS. Si /B est &eacute;galement choisie, ou si XMS n'est pas
+       disponible, le chevauchement ne sera pas activ&eacute; puisque UDMA2.SYS
+       devra alors utiliser le mode "DMA seul".
+  /L   Limite DMA &agrave; la "m&eacute;moire basse" sous 640K. /L est N&Eacute;CESSAIRE pour
+       utiliser le pilote de m&eacute;moire haute UMBPCI, ou d'autres pilotes
+       similaires dont les plages de m&eacute;moire haute ne prennent pas en
+       charge DMA. Si /L est sp&eacute;cifi&eacute;e, UDMA2.SYS ou UDMA2S.SYS doivent
+       &ecirc;tre en m&eacute;moire BASSE (car leur liste de commandes est accessible
+       via DMA), ou le pilote va ABANDONNER le chargement ! /L force les
+       requ&ecirc;tes E/S sup&eacute;rieures &agrave; 640 Ko &agrave; passer par le tampon XMS du
+       pilote. Si /B est sp&eacute;cifi&eacute;e avec /L ou si la m&eacute;moire XMS n'est
+       pas disponible, de telles requ&ecirc;tes E/O sont transmises au BOIS
+       pour ex&eacute;cution.
+  /S   Pour UDMA2.SYS, active la pile locale du pilote pour le mode
+       "DMA uniquement". Pour UDMA2S.SYS, active la pile locale pour
+       tous les cas.
+       Notez que les deux pilotes g&egrave;rent /S diff&eacute;remment ! UDMA.SYS
+       n'active g&eacute;n&eacute;ralement pas une pile (pour la compatibilit&eacute; avec
+       les versions anciennes !) et n&eacute;cessite /S d&egrave;s qu'une pile est
+       demand&eacute;e. UDMA2.SYS d&eacute;finit toujours une pile (et ignore /S) pour
+       l'utilisation normale ou de chevauchement de sortie, il n&eacute;cessite
+       donc /S seulement pour le "mode DMA seul". /S est destin&eacute; aux
+       syst&egrave;mes avec un ou plusieurs programmes utilisateur qui
+       d&eacute;finissent des piles d'ex&eacute;cution "courtes". /S et /B
+       sont ind&eacute;pendantes et les deux peuvent &ecirc;tre sp&eacute;cifi&eacute;es ensemble.
+  /B   Fait que la m&eacute;moire XMS sera IGNOR&Eacute;E, pour la
+       "r&eacute;trocompatibilit&eacute;".
+       /B force UDMA2.SYS ou UDMA2S.SYS &agrave; utiliser le mode "DMA seul".
+       Ainsi, /B annule /O (le chevauchement de la sortie UDMA2.SYS
+       n'est pas activ&eacute;), fait que les "tests de lecture"
+       d'initialisation dans UDMA2.SYS seront omis, et affecte &eacute;galement
+       /L comme indiqu&eacute; ci-dessus.
+  /Mn  Sp&eacute;cifie le "mode" UltraDMA MAXIMUM qui doit &ecirc;tre utilis&eacute; par
+       tous les disques, o&ugrave; n est un nombre entre 0 et 7, comme suit :
+         0 = ATA-16,   16 Mo/sec.     4 = ATA-66,   66 Mo/sec.
+         1 = ATA-25,   25 Mo/sec.     5 = ATA-100, 100 Mo/sec.
+         2 = ATA-33,   33 Mo/sec.     6 = ATA-133, 133 Mo/sec.
+         3 = ATA-44,   44 Mo/sec.     7 = ATA-166, 166 Mo/sec.
+       Les disques con&ccedil;us pour un "mode" INF&Eacute;RIEUR &agrave; la valeur donn&eacute;e
+       seront limit&eacute;s &agrave; leur propre "mode" le plus &eacute;lev&eacute;. &Agrave; l'heure
+       actuelle, le "mode 7" ATA-166 n'est pas encore implement&eacute;, mais
+       si les disques UltraDMA l'utilisaient, tout pilote PEUT le g&eacute;rer.
+  /X   Pour UDMA2.SYS seulement, d&eacute;sactive les "tests de lecture" lors
+       de l'initialisation. Ce commutateur est un "sch&eacute;ma" de DERNI&Egrave;RE
+       chance pour forcer le chargement d'UDMA2.SYS sur les syst&egrave;mes
+       "probl&eacute;matiques" ! Les erreurs d&eacute;tect&eacute;es par les "tests de
+       lecture" doivent &ecirc;tre CORRIG&Eacute;ES, chaque fois que ce sera possible!
+  Pour chaque commutateur, un tiret peut remplacer la barre oblique et
+  des lettres minuscules peuvent &ecirc;tre utilis&eacute;es.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  UDMA2.SYS est le pilote le plus complet. Il offre le "chevauchement
+  des sorties" qui met en m&eacute;moire tampon toute la sortie et n'attend
+  PAS la fin des la sortie, donc le travail de l'utilisateur peut donc
+  chevaucher le DMA ! En fonction du syst&egrave;me de l'utilisateur et de son
+  logiciel, le chevauchement des sorties peut donner lieu &agrave; un gain de
+  vitesse significatif. Pour toute erreur de sortie ou si un minuteur
+  de 400 ms expirait, un message d'erreur sera affich&eacute;. Le chevauchement
+  des sorties doit &ecirc;tre activ&eacute; avec un /O sur la ligne qui charge
+  UDMA2.SYS dans CONFIG.SYS (cf. ci-dessus pour les options des
+  commutateurs). UDMA2S.SYS est le "petit pilote" PR&Eacute;F&Eacute;R&Eacute; pour les
+  syst&egrave;mes n'utilisant pas le chevauchement des sorties. Il omet les
+  "test de lecture" d'initialisation et de chevauchement et atteint
+  ainsi une taille de fichier objet de 3072 octets. Toutes les autres
+  capacit&eacute;s de l'UDMA2.SYS plus grand (y compris un test 80386) sont
+  conserv&eacute;s. UDMA2S.SYS utilise le m&ecirc;me coeur r&eacute;sident de 640 octets
+  que <a href="../base/udma.htm">UDMA.SYS</a> ou <a href="../base/udma.htm">UDMAJR.SYS</a>.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Dans CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDDOS\BIN\UDMA2.SYS
+    DEVICEHIGH=C:\FDOS\BIN\UDMA2S.SYS
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/himemx.htm">himemx</a>
+ (<a href="../base/udma.htm">udma.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xdma.htm">xdma.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

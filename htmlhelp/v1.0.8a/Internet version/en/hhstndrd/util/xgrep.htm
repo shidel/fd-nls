@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: xgrep</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: xgrep</h1>
+<pre>
+  XGREP is a program for searching text files based on the UNIX utility
+  GREP. You can use XGREP to:
+    - display the lines in a file that contain a particular word,
+      phrase or pattern;
+    - count those lines in which a particular pattern occurs; or
+      generate a list of files that refer to a given topic.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  xgrep [-chlnsvyorx] expression [files]
+  xgrep [/chlnsvyorx] expression [files]
+        expression  the expression to search, may also be classes.
+</pre>
+<h2>Options:</h2>
+<pre>
+  -c  Line count only.
+  -h  No file names.
+  -l  File names only.
+  -n  Number of lines.
+  -o  Errors to stdout - error messages will be redirected along with
+      standard output.
+  -r  Recursively search subdirectories - looks for files not only in
+      the specified directory but in all the subdirectories of that
+      directory.
+  -s  Silent about inaccessible files.
+  -v  Non-matching lines - "inverts" the result of any match.
+  -x  No magic: all operators need '\'. The -x option causes the 
+      ordinarily "special" characters: . [ * + ? ^ $ to be parsed, by
+      default, as literals. For example, the following commands are
+      equivalent:
+        xgrep    "p\[0] \* 3" test.c
+        xgrep -x "p[0] * 3"   test.c
+      All regular expression operators are still accessible, but must
+      be preceded by a \ (backslash).
+  -y  Case-insensitive match - matching is not case-sensitive.
+  Two further options are supported as aliases for other options:
+  -d  is an alias for -r.
+  -i  is an alias for -y.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Like GREP, XGREP works best on plain text files: the sort of files
+  that do not contain binary data or non-ASCII control characters, and
+  which are divided into lines or records ending in a '\n' (newline).
+  XGREP supports text files in both UNIX (LF) and MS-DOS (CR, LF)
+  formats.
+  In XGREP, the : (colon) may be used to refer to predefined classes.
+  The twelve predefined classes, together with their definitions, are as
+  follows:
+    :a  Alpha  alphabetic   [A-Za-z]       =ASCII range: 65-90,97-122
+    :c  Cntrl  control                     =ASCII range: 0-31,127
+    :d  Digit  digits       [0-9]          =ASCII range: 48-57
+    :g  Graph  graphics     [!-&tilde;]          =ASCII range: 33-126
+    :l  Lower  lowercase    [a-z]          =ASCII range: 97-122
+    :n  Alnum  alphanumeric [0-9A-Za-z]    =ASCII range: 48-57,65-90,
+                                                         97-122
+    :p  Punct  punctuation  [!-/:-@[-`{-&tilde;] =ASCII range: 33-47,58-64,
+                                                         91-96, 123-126
+    :s  Space  whitespace                  =ASCII range: 9-13,32
+    :t  Print  printable    [ -&tilde;]          =ASCII range: 32-126
+    :u  Upper  uppercase    [A-Z]          =ASCII range: 65-90
+    :x  Xdigit hex digits   [0-9A-Fa-f]    =ASCII range: 48-57,65-70,
+                                                         97-102
+    :z  ASCII                              =ASCII range: 0-127
+
+  Signs to specify the context:
+    ^    Start of line
+    $    End of line
+    .    Wildcard
+    []   Character class
+    [^]  Inverse Class
+    \    Quote next character
+  Repeat:
+    *        0 or more times
+    +        1 or more times
+    ?        0 or 1 times
+    \{m\}    m times
+    \{m,\}   m or more times
+    \{m,u\}  m to u times
+  For more information about ":" and "signs to specify the context"
+  please read XGREP.DOC.
+  XGREP has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0  At least one match found.
+    1  No matches found.
+    2  Error(s) occurred.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  xgrep "Hello World" *.c
+  xgrep -c jill group
+  xgrep -l SCSI *.doc
+  xgrep widgets
+  xgrep -n widgets notes.txt
+  xgrep -n -rs widgets \*.txt \*.doc
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/find.htm">find</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy;2008 W. Spiegl. Updated in 2020.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

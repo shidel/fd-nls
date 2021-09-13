@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: install</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: install</h1>
+<pre>
+  INSTALL runs a TSR program (a program that stays in memory), without
+  an environment, instead of using something like lh or loadhigh.
+  INSTALL loads a TSR program into low or conventional memory,
+  whereas INSTALLHIGH loads the TSR program into high memory.
+  INSTALL is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  install=[drive][path]filename [options]
+          drive     The drive letter, e.g. C:
+          path      The directory, e.g. \example\
+          filename  The filename of the tsr to run, e.g. test.sys
+</pre>
+<h2>Options:</h2>
+<pre>
+  options  These are the options which will be passed to the TSR. They
+           are not options for the 'install' command.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  INSTALL loads the program specified by drive:\path\filename. It is
+  generally used to load TSR (terminate and stay resident) programs with
+  a minimal environment block. The options are for the program itself;
+  refer to documentation that came with your particular software for
+  supported options and usage.
+  INSTALL is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    install=C:\fdos\bin\ctmouse.exe
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/installh.htm">installhigh</a>
+  <a href="../batch/lh.htm">lh</a>
+  <a href="../batch/loadhigh.htm">loadhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

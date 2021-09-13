@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: udma2.sys / udma2s.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: udma2.sys / udma2s.sys</h1>
+<pre>
+  UDMA2.SYS / UDMA2S.SYS son controladores de almacenamiento en cach&eacute;
+  de disco duro de DOS para disco duro UltraDMA.
+  UDMA2.SYS / UDMA2S.SYS tiene que cargarse en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Cuando FreeDOS ya se est&aacute; ejecutando, puede cargar UDMA2.SYS / 
+  UDMA2S.SYS m&aacute;s tarde con <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>UDMA2.SYS / UDMA2S.SYS no est&aacute;n actualizados. &iexcl;NO hay MAS apoyo del
+  autor! Deber&iacute;a usar <a href="../base/uide.htm">UIDE.SYS</a> en su lugar</b>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  DEVICE = [ruta]UDMA2.SYS [/O] [/L] [/S] [...]
+  DEVICE = [ruta]UDMA2S.SYS [/L] [/S] [...]
+  DEVICEHIGH = [ruta]UDMA2.SYS [/O] [/L] [/S] [...]
+  DEVICEHIGH = [ruta]UDMA2S.SYS [/L] [/S] [...]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /O   Solo para UDMA2.SYS, habilita la superposici&oacute;n de salida. Esto
+       REQUIERE un administrador XMS (<a href="../base/himemx.htm">HIMEMX</a>, etc.) y 128K de memoria
+       XMS. Si tambi&eacute;n se especifica /B, o si XMS no est&aacute; disponible,
+       NO se habilitar&aacute; la superposici&oacute;n, ya que UDMA2.SYS debe usar 
+       el modo "DMA solamente".
+  /L   Limita DMA a "memoria baja" por debajo de 640K. /L es NECESARIO
+       usar el controlador de memoria superior UMBPCI, o cualquier
+       controlador similar cuyas &aacute;reas de memoria superior no admitan
+       DMA. Si se especifica /L, UDMA2.SYS o UDMA2S.SYS deben residir
+       en memoria BAJA (ya que se accede a su lista de comandos a
+       trav&eacute;s de DMA), &iexcl;o el controlador ABORTARA la carga! /L hace
+       que las solicitudes de E/S m&aacute;s all&aacute; de 640K atraviesen el b&uacute;fer
+       XMS del controlador. Si se especifica /B con /L o si la memoria
+       XMS no est&aacute; disponible, dicha E/S se "pasa" a la BIOS para su
+       ejecuci&oacute;n.
+  /S   Para UDMA2.SYS, habilita la pila local del controlador para el
+       modo "DMA solamente". Para UDMA2S.SYS, habilita la pila local
+       para todos los casos. &iexcl;NOTA que los dos controladores manejan
+       /S siempre que se desee una pila. UDMA2.SYS siempre establece
+       una pila (e ignora /S) para el uso normal o de superposici&oacute;n de
+       salida, por lo que requiere /S simplemente para el modo "DMA
+       solamente". /S est&aacute; destinado a sistemas con uno o m&aacute;s programas
+       de usuario que establecen pilas de tiempo de ejecuci&oacute;n "cortas".
+       /S y /B son independientes y ambos pueden especificarse juntos.
+  /B   Hace que la memoria XMS se IGNORE, por "compatibilidad con
+       versiones anteriores". /B obliga a UDMA2.SYS o UDMA2S.SYS a usar
+       el modo "DMA solamente". Por lo tanto, /B cancela /O (la 
+       superposici&oacute;n de salida de UDMA2.SYS no est&aacute; habilitada), hace
+       que se omitan las "pruebas de lectura" de inicializaci&oacute;n en
+       UDMA2.SYS y tambi&eacute;n afecta a /L como se indic&oacute; anteriormente.
+  /Mn  Especifica el "modo" MAXIMO UltraDMA para ser utilizado por
+       todos los discos, donde n es un n&uacute;mero entre 0 y 7, de la
+       siguiente manera:
+         0 = ATA-16,   16 MB/sec.     4 = ATA-66,   66 MB/sec.
+         1 = ATA-25,   25 MB/sec.     5 = ATA-100, 100 MB/sec.
+         2 = ATA-33,   33 MB/sec.     6 = ATA-133, 133 MB/sec.
+         3 = ATA-44,   44 MB/sec.     7 = ATA-166, 166 MB/sec.
+       Los discos dise&ntilde;ados para un "modo" MENOS que el valor dado se
+       limitar&aacute;n a su propio "modo" m&aacute;s alto. En la actualidad, el
+       "modo 7" ATA-166 a&uacute;n no est&aacute; implementado, pero cualquier
+       controlador PUEDE manejarlo si los discos UltraDMA lo usan
+       alguna vez.
+  /X   Solo para UDMA2.SYS, deshabilita la inicializaci&oacute;n "pruebas de
+       lectura". &iexcl;Este interruptor es un "esquema" de ULTIMA oportunidad
+       de obligar a UDMA2.SYS a cargar en sistemas "problem&aacute;ticos"!
+       Cualquier error detectado por las "pruebas de lectura" debe
+       CORREGIRSE, siempre que sea posible.
+  Para cada interruptor, un gui&oacute;n puede reemplazar la barra oblicua y se
+  pueden usar letras min&uacute;sculas.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  UDMA2.SYS es el controlador con m&aacute;s funciones. Ofrece "superposici&oacute;n de
+  salida" que amortigua toda la salida y NO espera el final de la salida,
+  por lo que el trabajo del usuario puede superponerse al DMA. 
+  Dependiendo del sistema y el software del usuario, la superposici&oacute;n de
+  salida puede producir un aumento significativo de la velocidad. Para
+  cualquier error de salida o si vence un temporizador de 400 ms,
+  aparecer&aacute; un mensaje de error. La superposici&oacute;n de salida debe estar
+  habilitada con un /O en la l&iacute;nea CONFIG.SYS que carga UDMA2.SYS (ver
+  arriba para las opciones de interruptor). UDMA2S.SYS es el "controlador
+  peque&ntilde;o" PREFERIDO, para sistemas que no utilizan superposici&oacute;n de
+  salida. Omite las "pruebas de lectura" de superposici&oacute;n e
+  inicializaci&oacute;n, por lo tanto, alcanza un tama&ntilde;o de archivo de objeto de
+  3072 bytes. Todas las dem&aacute;s capacidades del UDMA2.SYS m&aacute;s grande 
+  (incluida una prueba 80386) se conservan. UDMA2S.SYS utiliza el mismo
+  "n&uacute;cleo" residente de 640 bytes que <a href="../base/udma.htm">UDMA.SYS</a> o <a href="../base/udma.htm">UDMAJR.SYS</a>.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  En CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDDOS\BIN\UDMA2.SYS
+    DEVICEHIGH=C:\FDOS\BIN\UDMA2S.SYS
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/himemx.htm">himemx</a>
+ (<a href="../base/udma.htm">udma.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xdma.htm">xdma.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, modificado en 2011 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

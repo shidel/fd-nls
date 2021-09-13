@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: pushd</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: pushd</h1>
+<pre>
+  PUSHD pushes current directory onto the directory stack, 
+  with the option to change current working directory.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  PUSHD [[drive]path] [/?]
+        [[drive]path] is a path to which you wish to change.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  PUSHD is a lot like CD, except that it stores the current directory
+  before changing it. Later on, <a href="../command/popd.htm">POPD</a> can be used to restore it. 
+  PUSHD can be used several times, storing a stack of directories.
+  Using PUSHD without specifying a directory will store the current 
+  directory, but not change it.
+  PUSHD is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+this command            changes the current directory to / shows:
+============            =========================================cd c:\fdos\bin          c:\fdos\bin
+pushd c:\games          c:\games      (and stores c:\fdos\bin)
+pushd c:\utils          c:\utils      (and stores c:\games)
+pushd c:\packages       c:\packages   (and stores c:\utils)
+dirs                    shows the directories stored by pushd:
+                          0001=c:\fdos\bin
+                          0002=c:\games
+                          0003=c:\utils
+popd                    c:\utils      (and removes c:\utils (0003)
+                                      from directory stack)
+popd                    c:\games      (and removes c:\games (0002)
+                                      from directory stack)
+popd                    c:\fdos\bin   (and removes c:\fdos\bin (0001)
+                                      from directory stack)
+popd                    shows the message: 
+                          "Directory stack empty"
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/cd.htm">cd</a>
+  <a href="../command/chdir.htm">chdir</a>
+  <a href="../command/dirs.htm">dirs</a>
+  <a href="../command/popd.htm">popd</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2007 and 2020 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

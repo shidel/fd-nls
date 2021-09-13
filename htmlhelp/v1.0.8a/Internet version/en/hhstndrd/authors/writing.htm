@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Writing for the HTML Help System:</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Writing for the HTML Help System:</h1>
+<pre>
+  Contributions are very welcome. If you wish to make a contribution to
+  the HTML Help System, please contact the maintainer: 
+    fritzdotmuelleratmaildotcom
+</pre>
+<h2>The structure of the \help directory:</h2>
+<pre>
+  <b>\help\index.htm</b>
+    Lists the help languages installed on the system.
+    Loaded automatically if LANG is not set to an available language
+    and English (EN) not installed.
+  <b>\help\%LANG%\index.htm</b>
+    HELP will load this by default. %LANG% is the language selected by
+    setting the LANG environment variable. If LANG isn't set, EN is
+    assumed.
+  <b>\help\%LANG%\help.htm</b>
+    HELP will load this when the user presses F1 or clicks on 
+    "Help on Help".
+  <b>\help\docinfo\bi\nls\%LANG%.bi</b>
+    Stores bookshelf files, for use with Aitor's bookshlf tool, to
+    create the language index (\help\index.htm).
+</pre>
+<h2>Creating compressed help files:</h2>
+<pre>
+  You should use for your compressed file set a name such as: 
+    <b>\help\...\[name]\[name].zip</b>
+  If you wish to compress your help files, they should be in the
+  zip format. They should have the same filename as the directory
+  they are stored in, and the zip extension. For instance:
+    <b>\help\en\myhelp\myhelp.zip</b>
+  The index.htm can be inside the zip file, but help and bookshlf
+  will both work better if it is not.
+  Directory structures are allowed within the zip file. However,
+  encryption and some of the older and more obscure compression
+  methods are not supported.
+</pre>
+<h2>Creating modified versions of the help files:</h2>
+<pre>
+  Use a distinct title on the title page (often index.htm) in any
+  modified versions. This is to avoid any confusion or conflicts,
+  and most importantly, is necessary under the
+  <a href="../other/fdl11.htm">GNU Free Documentation License 1.1</a> part 4A.
+  In addition to changing the title, please update the history, list of
+  authors etc, in accordance with section 4 of the   
+  <a href="../other/fdl11.htm">GNU Free Documentation License 1.1</a>.
+  If the file set is meant to describe a new or modified package, or if
+  the file set undergoes a fundamental change (e.g. a translation), then
+  it is best to use a distinct subdirectory name, as explained in "The
+  structure of the \help directory" above. This is simply a matter of
+  doing a find and replace on the subdirectory name in index.htm, and is
+  well worth it. 
+  For example, a streamlined version of the "hhstndrd" file set might be
+  called "hhmicro". This would be the name of the subdirectory, and the
+  title in index.htm might be: 
+    FreeDOS Hilfe (hhmicro 1.0)
+  It is reasonable to change only the version number (rather than the
+  name and directory "hhmicro") when releasing updates. 
+</pre>
+<h2>Creating or adding new files:</h2>
+<pre>
+  It is advised that the following license message be put at the end of
+  any new help files (unless it is going to be a stand alone file, not
+  included in a help file set):
+
+    ...
+    &lt;hr&gt;
+    &lt;address&gt;
+
+    &lt;b&gt;Copyright &amp;copy; 2008
+    &lt;a href="mailto:<b>myemail@address.com</b>"&gt;<b>My name</b>&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
+    This file forms part of The FreeDOS HTML Help Documentation, and is
+    covered under its terms, see:
+    &lt;a href="../index.htm"&gt;index.htm&lt;/a&gt;
+
+    &lt;/address&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+
+  Providing an email is entirely optional; if you load your help files on
+  to a website, then email addresses can be subjected to spamming.
+  The terms are the <a href="../other/fdl11.htm">GNU Free Documentation License 1.1</a>.
+</pre>
+<h2>Editing a file stored in a zip:</h2>
+<pre>
+  You may wish to unzip the html files so that they can be read with
+  another browser, or to edit them. Zip files usually take priority over
+  uncompressed files; if you want to make sure that help reads an edited,
+  uncompressed version of a file, you should replace or delete the
+  original version inside that zip. 
+</pre>
+<h2>Testing help files:</h2>
+<pre>
+  The reference browsers for testing help files are:
+    * the FreeDOS HTML Help Viewer (help.exe)
+    * a Chromium derivative.
+</pre>
+<h2>Creating tables:</h2>
+<pre>
+  Unfortunately, help does not support table tags. Use the preformatting
+  tags &lt;pre&gt; &lt;/pre&gt; for tables of information. 
+</pre>
+<h2>General tips:</h2>
+<pre>
+  Press F5 or Ctrl+R to refresh the file being displayed by Help.The
+  effects of changes to the file can be seen immediately. Useful when
+  editing help files in a windows-type environment.
+  To use HTML Help Viewer to view files that aren't yet integrated into
+  the file set, the help path override switch can be used:
+    help /O[drive:][path]filename[.htm]
+  or if relative to the /HELP folder:
+    help /L[subdirs]filename[.htm]
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="tags.htm">Tags supported by HTML Help</a>
+  <a href="index.htm">Authoring Resources</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-4 Robert Platt, updated 2008 and 2020
+  by W. Spiegl</b>
+  This file forms part of The FreeDOS HTML Help Documentation, and is
+  covered under its terms: see <a href="../../index.htm">index.htm</a>
+
+</pre></body></html>

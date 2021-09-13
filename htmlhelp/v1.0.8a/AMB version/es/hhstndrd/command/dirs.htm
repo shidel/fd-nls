@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: dirs</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: dirs</h1>
+<pre>
+  DIRS muestra el contenido de la pila de directorios.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  DIRS [/?]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /?  Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  DIRS muestra el contenido de la pila de directorios que se llena con 
+  <a href="../command/pushd.htm">PUSHD</a> y se vac&iacute;a con <a href="../command/popd.htm">POPD</a>.
+  DIRS es un comando interno de command.com y no necesita ning&uacute;n otro
+  archivo para funcionar.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+este comando            cambia el directorio actual a / muestra:
+============            =========================================
+cd c:\fdos\bin          c:\fdos\bin
+pushd c:\games          c:\games      (y almacena c:\fdos\bin)
+pushd c:\utils          c:\utils      (y almacena c:\games)
+pushd c:\packages       c:\packages   (y almacena c:\utils)
+dirs                    muestra los directorios almacenados por pushd:
+                          0001=c:\fdos\bin
+                          0002=c:\games
+                          0003=c:\utils
+popd                    c:\utils      (y elimina c:\utils (0003) de la
+                                      pila de directorios)
+popd                    c:\games      (y elimina c:\games (0002) de la
+                                      pila de directorios)
+popd                    c:\fdos\bin   (y elimina c:\fdos\bin (0001) de
+                                      la pila de directorios)
+popd                    muestra el mensaje: 
+                          'Pila de directorios vac&iacute;a'
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../command/cd.htm">cd</a>
+  <a href="../command/chdir.htm">chdir</a>
+  <a href="../command/pushd.htm">pushd</a>
+  <a href="../command/popd.htm">popd</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 2003 <b>Robert Platt</b>, Modificado en 2007 por <b>W. Spiegl.</b>
+  Traducido en 2018 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+</pre></body></html>

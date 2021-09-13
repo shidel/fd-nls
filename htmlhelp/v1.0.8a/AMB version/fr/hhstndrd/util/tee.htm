@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : tee</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : tee</h1>
+<pre>
+  TEE enregistre une copie de l'entr&eacute;e (STDIN) dans un ou plusieurs
+  fichiers et l'affiche.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  tee [options] [d:][chemin]fichier [[d:][chemin]fichier2] ...
+      [d:][chemin]fichier [[d:][chemin]fichier2]  Sp&eacute;cifie les fichiers
+      de sortie.
+</pre>
+<h2>Options :</h2>
+<pre>
+  /A  Ajouter aux fichiers donn&eacute;s : ajouter aux fichiers de sortie au
+      lieu de les &eacute;craser.
+  /I  Ignorer les interruptions: ignore les tentatives d'interruption
+      par un utilisateur.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  TEE lit les donn&eacute;es depuis l'entr&eacute;e standard et &eacute;crit sur la sortie
+  standard ainsi que tous les fichiers sp&eacute;cifi&eacute;s par l'utilisateur.
+  TEE est livr&eacute; avec deux versions par d&eacute;faut. TEE.EXE est compil&eacute; avec
+  la prise de charge de kitten. _TEE.EXE est compil&eacute; sans kitten.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  echo "Bonjour, le monde !" | tee bonjour.txt
+    Affiche "Bonjour, le monde !" sur l'&eacute;cran et l'enregistre dans
+    bonjour.txt.
+  tee log.txt autre_log.txt &lt; input.txt
+    Affiche le contenu d'input.txt et l'enregistre dans log.txt et
+    autre_log.txt.
+  catdoc lettre.doc | tee /I lettre.txt | wc
+    Enregistre le contenu de lettre.doc tel que trait&eacute; par catdoc dans
+    lettre.txt et le transmet &agrave; wc pour compter les mots.
+    N'autorise pas les interruptions par un utilisateur.
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../base/more.htm">more</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

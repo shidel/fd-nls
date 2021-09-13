@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : udvd.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : udvd.sys</h1>
+<pre>
+  UDVD.SYS est un pilote pour de 1 &agrave; 3 lecteurs CD/DVD, y compris les
+  lecteurs SATA, UltraDMA et les lecteurs plus anciens "de mode PIO".
+  UDVD.SYS doit &ecirc;tre charg&eacute; dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS fonctionne d&eacute;j&agrave;, vous pouvez charger UDVD.SYS par la
+  suite avec <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>UDVD.SYS est abandonn&eacute;. Son auteur ne le prend plus en charge !
+  Vous devriez utiliser <a href="../base/uide.htm">UIDE.SYS</a> &agrave; la place</b>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEVICE = [chemin] UDVD.SYS [/A] [/C] [/D:NomAppareil] [/UX]
+  DEVICEHIGH = [chemin] UDVD.SYS [/A] [/C] [/D:NomAppareil] [/UX]
+</pre>
+<h2>Options :</h2>
+<pre>
+  UDVD.SYS a g&eacute;n&eacute;ralement besoin seulement de /C pour la mise en cache
+  et de /D: pour sp&eacute;cifier un nom d'appareil dans le "redirecteur de
+  CD-ROM" <a href="../base/shsucdx.htm">SHSUCDX</a>.
+  Les options de UDVD.SYS sont :
+  /A   Sp&eacute;cifie l'utilisation d'adresses E/S IDE ALTERNATIFS "anciens".
+       Voyez la description de /A pour <a href="../base/uide.htm">UIDE.SYS</a>.
+  /C   Demande la mise en cache du fichier de donn&eacute;es par le pilote
+       UDMA. Cela fait que les demandes d'entr&eacute;e en "mode brut" soient
+       rejet&eacute;es, puisque l'UDMA n&eacute;cessite des secteurs qui soient des
+       multiples pairs de 512 octets pour la mise en cache (les secteurs
+       "bruts" sont de 2352 octets !). Si /C est omis, les entr&eacute;es en
+       "mode brut" (audio, enregistreurs de pistes, etc.) seront
+       accept&eacute;es.
+  /D:  Sp&eacute;cifie le nom d'appareil voulu, utilis&eacute; par <a href="../base/shsucdx.htm">SHSUCDX</a> pour
+       acc&eacute;der aux lecteurs the CD/DVD.
+       Exemple : /D:CDROM1 /D:MONCDROM etc.
+       Les noms d'appareil doivent &ecirc;tre de 1 &agrave; 8 octets valides pour
+       &ecirc;tre utilis&eacute;s dans les noms de fichiers DOS. Si /D: est omis, ou
+       si le nom d'appareil apr&egrave;s un /D: est manquant ou invalide, UDVD1
+       sera utilis&eacute; par d&eacute;faut.
+  /UX  D&eacute;sactive TOUT l'UltraDMA, m&ecirc;me pour un lecteur CD/DVD qui le
+       prend en charge. UDVD.SYS utilise alors le "mode PIO" pour chaque
+       requ&ecirc;te E/S. /UX est rarement n&eacute;cessaire. Il est utilis&eacute;
+       principalement pour les tests et les diagnostics.
+  Pour chaque option, un tiret d'union peut remplacer la barre oblique,
+  et des lettres minuscules peuvent &ecirc;tre utilis&eacute;es.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Au chargement, UDVD.SYS teste jusqu'&agrave; 4 contr&ocirc;leurs IDE "anciens" ou
+  "PCI natifs" dans l'ordre de ma&icirc;tre primaire jusqu'&agrave; esclave
+  secondaire, et ex&eacute;cute les 3 premiers lecteurs CD/DVD trouv&eacute;s.
+  UDVD.SYS a des options pour sp&eacute;cifier un nom de lecteur ou demander
+  d'autres options. Il g&egrave;re les demandes d'entr&eacute;e de fichier depuis
+  <a href="../base/shsucdx.htm">SHSUCDX</a> ou d'autres programmes "redirecteurs de CD-ROM" comme <a href="../base/mscdex.htm">MSCDEX</a>,
+  etc. Il g&egrave;re &eacute;galement les requ&ecirc;tes DOS "audio" DOS et peut jouer les
+  CD audio. Si l'entr&eacute;e "brute" de CD/DVD n'est pas n&eacute;cessaire est que
+  <a href="../base/udma.htm">UDMA.SYS</a> est &eacute;galement charg&eacute;, l'option /C d'UDVD active la mise
+  en cache des fichiers de donn&eacute;es via le pilote UDMA !
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Dans CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDOS\BIN\XMGR.SYS /N128 /B
+    DEVICEHIGH=C:\FDOS\DRIVERS\UDMA.SYS /S125
+    DEVICEHIGH=C:\FDOS\BIN\UDVD.SYS /D:MONDVD /C
+  Dans AUTOEXEC.BAT:
+    c:\fdos\bin\SHSUCDX /D:MYDVD
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+ (<a href="../base/udma.htm">udma.sys</a>)
+ (<a href="../base/udma2.htm">udma2.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+ (<a href="../base/xdma.htm">xdma.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: touch</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: touch</h1>
+<pre>
+  The TOUCH program modifies the date and/or time of files on a disk.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  touch [-?] [-C] [-Dpathname] [-F] [Date] [Time] Pathspec [...]
+  touch [/?] [/C] [/Dpathname] [/F] [Date] [Time] Pathspec [...]
+        Pathspec specifies a file or group of files to be touched, and
+        may contain an initial drive specification, a directory path
+        specification, and/or a file specification, and may specify a
+        group of files (using the '?' and '*' wildcard characters) or
+        a single file (an unambiguous specification). Pathspec may be
+        repeated as needed.
+</pre>
+<h2>Options:</h2>
+<pre>
+  -C          Don't create files that do not already exist.
+  -Dpathname  Duplicate date and time from specified file. If this option
+              is used, date or time may not be specified.
+  -F          Set time to file's version number.
+  -?          Shows the help.
+  Date        The new date on the files to be modified. If this option is
+              used, -Dpathname may not be specified.
+  Time        The new time on the files to be modified. If this option is
+              used, -Dpathname may not be specified.
+  The date format is determined by your <a href="../cnfigsys/country.htm">COUNTRY</a> setting, see <a href="../cnfigsys/index.htm">CONFIG.SYS</a>
+  / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>. 
+  The character '/' may be used as the date separator.
+  The A and P (a.m, p.m) suffixes on the time parameter are optional.
+  If neither date nor time are supplied, current date and time are used.
+  Non-existent files are created unless -C is given.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  TOUCH allows the date, time, or both date and time of the file to be
+  modified. TOUCH can set the date and time to the current date and
+  time, or to any date and time specified by the user. The date and time
+  can also be set to zero, which causes the values to be displayed as
+  blank in the directory listing under some versions of DOS.
+  A date must be formatted as:
+    nn-nn-nn or nn/nn/nn.
+  The order in which the date numbers are interpreted depends on the
+  country number. There are three standard date orders:
+    mm-dd-yy  (American)
+    dd-mm-yy  (European)
+    yy.mm.dd  (Japanese)
+  A time parameter must be formatted as:
+    hh:mm[:ss][a|p]
+  The second colon and the 'ss' value are optional. If they are not given,
+  a seconds value of zero will be used. The 'a' and 'p' suffixes (a.m and
+  p.m) are optional, and if neither is used, TOUCH will assume that the
+  time is being specified in 24-hour format.
+  THE -C OPTION:
+    TOUCH will (by default) create files specified unambiguously (i.e.
+    named explicitly, without wildcards) if they don't already exist.
+    This is apparently the behaviour of the Unix 'touch', though it is
+    not usual in DOS implementations. This feature can be overridden
+    by the -C command line switch, which tells TOUCH not to create the
+    specified file if it does not already exist. I believe this is also
+    standard in Unix implementations.
+    For example, the command TOUCH NOSUCH.FIL (if NOSUCH.FIL does not
+    already exist), will create an empty (zero bytes long) file called
+    NOSUCH.FIL. The command TOUCH -C NOSUCH.FIL will report an error
+    and will not create the file.
+  TOUCH has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0    Normal completion; no errors
+    2    One or more errors occurred during processing
+    48   Error during processing of -Dpathname option
+    162  Insufficient memory (approx. 64K of memory is required)
+    255  Incorrect usage syntax
+</pre>
+<h2>Examples:</h2>
+<pre>
+  touch 12-31-2008 06:10p C:\FDOS\BIN\*.*
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

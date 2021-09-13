@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: attrib</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: attrib</h1>
+<pre>
+  ATTRIB muestra o cambia los atributos del archivo.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  ATTRIB { opciones | [unidad][ruta]nombre_archivo | /@[lista] }
+         unidad          La letra de unidad, por ejemplo C:
+         ruta            El directorio, por ejemplo \ejemplo\
+         nombre_archivo  El archivo, por ejemplo texto.exe
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  +A  Establece el atributo de archivo.
+  -A  Borra el atributo de archivo.
+  +H  Establece el atributo oculto.
+  -H  Borra el atributo oculto.
+  +R  Establece el atributo de solo lectura.
+  -R  Borra el atributo de solo lectura.
+  +S  Establece el atributo del sistema.
+  -S  Borra el atributo de sistema.
+  /@  Procesar archivos, listados en el archivo especificado [o en stdin]
+  /D  Procesar nombres de directorio para argumentos con comodines.
+  /S  Procesar archivos en todos los directorios en la rutas
+      especificadas.
+  /?  Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Si no se especifica ning&uacute;n archivo, los atributos para todos los
+  archivos en el directorio actual se cambian (o simplemente se muestran
+  si no se utiliza ninguno de los especificadores anteriores). El 
+  atributo de archivo (+A) se establece cuando se modifica un archivo.
+  Las utilidades de respaldo pueden borrar el atributo para indicar que
+  el archivo ha sido respaldado. Si un archivo tiene el indicador oculto
+  (+H), no se muestra si escribe "dir". Si un archivo tiene el indicador
+  de solo lectura (+R), puede leerse pero no modificarse. Si un archivo
+  tiene el indicador del sistema (+S), est&aacute; especialmente protegido, no
+  se puede eliminar&aacute; ni sobrescribir. ATTRIB tiene los siguientes 
+  <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0  finalizaci&oacute;n exitosa; /? opci&oacute;n utilizada
+    1  error al cambiar los atributos de los archivos
+    2  no se encontraron archivos coincidentes para los objetivos
+    3  archivos abiertos de error, se&ntilde;alados en /@ opci&oacute;n(es)
+    4  error(es) en la l&iacute;nea de comandos
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  attrib archivo -rhs
+  attrib +a -r dir1 dir2*.dat /s
+  attrib -hs/sd /@lista.txt *.*
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>  - ninguna parte -</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

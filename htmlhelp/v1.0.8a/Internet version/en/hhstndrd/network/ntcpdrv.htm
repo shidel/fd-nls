@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Networking FreeDOS - NTCPDRV</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top"></a>Networking FreeDOS - NTCPDRV</h1>
+<h2><a name="zzz"></a>Overview:</h2>
+<pre>
+  The Trumpet TCP driver is an external <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a>. It works as a TSR
+  (=terminate and stay resident) program that runs on top of a packet
+  driver. TCPDRV was created in 1992 by Peter Tattam, a programmer at the
+  Psychology department of the University of Tasmania at Hobart,
+  Australia. According to a biography on his website (see: <b>http://
+  www.tattsoft.com/aboutUs.htm (*01)</b>), he developed the shareware "Trumpet
+  Newsreader" short time before and wrote the TCP driver just because
+  nothing else was openly available for Turbo Pascal. Development
+  eventually lead to the popular Windows software "Trumpet Winsock",
+  which Tattam sold through his own company "Trumpet International of
+  Australia", founded in 1994 (see: <b>http://www.trumpet.com.au/ (*02)</b>).
+  TCPDRV 2.01 was released as "experimental version". In 1993 a version
+  3.01 followed, which was called NTCPDRV. Improvements included a more
+  efficient memory usage and bug fixes (see: <b>http://alumnus.caltech.
+  edu/~dank/trumpet/ (*03)</b>). Both versions and the textfile TCP201.SPE
+  (see: <b>http://wiretap.area.com/Gopher/pub/tsoft/trumpet-abi/tcp201.
+  specification (*04)</b>) - the specification for programmers - were made
+  publicly available from the Trumpet website (see: <b>http://www.trumpet.
+  com.au/dosapps/ (*05)</b>).
+  Licensing issues on this site are kept short and simple: "These DOS
+  applications are provided free without support." Thanks to the
+  popularity of the trumpet software, it can be downloaded from various
+  mirrors (see: <b>http://wiretap.area.com/Gopher/pub/tsoft/trumpet-abi/
+  (*06)</b>). A commerical version of the TCP driver is available from
+  Peter Tattam's new company "Tattam Software Enterprises" (see: <b>http://
+  www.tattsoft.com/index.php/products/tcpip-driver.html (*07)</b>). 
+</pre>
+<h2><a name="aaa"></a>Installation and configuration:</h2>
+<pre>
+  Download NTCPDRV.ZIP (see: <b>http://wiretap.area.com/Gopher/pub/tsoft/
+  trumpet-abi/ntcpdrv.zip (*08)</b>) and extract it. If you need a
+  documentation, download the older version TCP201.ZIP (see: <b>http://
+  wiretap.area.com/Gopher/pub/tsoft/trumpet-abi/tcp201.zip (*09)</b>)
+  as well, which also includes several applications.
+  The <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a> has to be configured with the settings of your
+  <a href="../network/network.htm">network</a>. This is either done by commandline parameters or by setting
+  DOS environment variables.
+  So start NTCPDRV.EXE with a command like this (one line):
+      NTCPDRV -ip=192.168.1.80 -netmask=255.255.255.0
+      -gateway=192.168.1.1 -dns-host=192.168.1.1
+  or configure it first by setting environment variables: Add those
+  lines to <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> or to a batch file that will be started before
+  NTCPDRV.EXE.
+      --- <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> ---
+      set ip=192.168.1.80
+      set netmask=255.255.255.0
+      set gateway=192.168.1.1
+      set dns=192.168.1.1
+  As shown in the picture below, the kernel automatically searchs for a
+  usable interrupt vector, after it is started. You may also use the
+  parameter "-vec=61" to specify for instance the vector 0x61 that's
+  provided by the packet driver for applications. See the documentation
+  for more possibilities.
+    (Picture: Start messages of NTCPDRV)
+  After the Trumpet <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a> has been started, you are able to run
+  several <a href="../network/tcpip.htm">TCP/IP</a> applications which require a <a href="../network/ldtcpipk.htm">TCP/IP Kernel</a> (for instance
+  the Trumpet Newsreader, the DOS webservers Sioux or Webserv). Your
+  machine will also be reachable from the <a href="../network/network.htm">network</a> now, just try a ping
+  request.
+    (Picture: Ping from a Windows machine)
+  In the picture above, we ping the machine with FreeDOS and the running
+  NTCPDRV TSR from another computer with Windows XP. It is not the
+  fastest performance and the first packet is lost.
+
+  Then we ping it from a Debian GNU/Linux machine:
+    (Picture: Ping from a GNU/Linux box)
+  The first packet needs more time again, the third is received in
+  reasonable time. At least we see: The <a href="../network/network.htm">network</a> is up and the Trumpet
+  TCP driver is answering our calls.
+
+  <b>(*01) http://www.tattsoft.com/index.php/about-us.html</b>
+  <b>(*02) OK</b>
+  <b>(*03) https://web.archive.org/web/20100127193745/http://alumnus.
+        caltech.edu/~dank/trumpet/</b>
+  <b>(*04) ftp://ftp.tsoft.net/pub/tsoft/trumpet-abi/</b>
+  <b>(*05) http://www.trumpet.com.au/ ?</b>
+  <b>(*06) http://ftp.gnome.org/mirror/archive/ftp.sunet.se/pub/
+        simtelnet/trumpet/tcp-abi/</b>
+  <b>(*07) OK</b>
+  <b>(*08) ftp://ftp.oldskool.org/pub/tvdog/internet/ntcpdrv.zip</b>
+  <b>(*09) ftp://ftp.oldskool.org/pub/tvdog/internet/tcp201.zip
+        ftp://ftp.oldskool.org/pub/tvdog/internet/tcp201.txt</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), modified 2010
+  and 2020 by W.Spiegl.</b>
+  For more information <a href="../network/intro.htm#ddd">see here</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : diskcopy</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : diskcopy</h1>
+<pre>
+  DISKCOPY copie le contenu d'une disquette vers une autre seconde
+  disquette.
+  Cr&eacute;&eacute;, copie et restaure &eacute;galement des fichiers d'images de disquette.
+  Les images peuvent &ecirc;tre utilis&eacute;es par <a href="../util/shsufdrv.htm">SHSUFDRV</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  Diskcopy [source][destination][/a][/v][/m][/i][/o][/1][/x][/d][/r]
+           [/f][/t]
+  Diskcopy [/?]
+           source:      lecteur ou fichier d'image duquel effectuer une
+                        copie.
+           destination: lecteur ou fichier d'image vers lequel copier.
+</pre>
+<h2>Options :</h2>
+<pre>
+  /a  donner un avertissement sonore pour les actions de l'utilisateur.
+  /v  v&eacute;rifie les lectures et &eacute;critures.
+  /m  utilise seulement la m&eacute;moire pour la copie de disques.
+  /i  affiche l'utilisation de la m&eacute;moire (informatif).
+  /o  &eacute;crase la destination, m&ecirc;me s'il existe d&eacute;j&agrave; (dans le cas d'un
+      fichier d'image).
+  /x  quitter toujours automatiquement.
+  /d  suppose que le disque est d&eacute;j&agrave; dans le lecteur.
+  /r  passer en mode de r&eacute;cup&eacute;ration des erreurs de disque.
+  /f  effectue une copie rapide (seuls sont copi&eacute;s les secteurs occup&eacute;s).
+  /t  ne pas demander de disque cible si la copie du fichier image se
+      fait sur le m&ecirc;me disque.
+  /1  no-op inclus pour la compatibilit&eacute; MS-DOS. Sur d'autres versions
+      de DOS, cela ne copiait que le premier c&ocirc;t&eacute;.
+  /?  Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Un signe moins apr&egrave;s une option la d&eacute;sactive.
+  Si la source et/ou la destination est un lecteur, par exemple "a:"
+  alors elle est trait&eacute;e comme une disquette, sinon elle est trait&eacute;e
+  comme un fichier image.
+  La source et la destination peuvent &ecirc;tre le m&ecirc;me lecteur ; DISKCOPY
+  copiera d'abord depuis la source, puis vous demandera de changer les
+  disquettes. Ensuite il &eacute;crira sur la destination.
+  DISKCOPY utilise le format Linux rawrite pour ses fichiers image.
+  Donc les fichiers image de DISKCOPY peuvent &ecirc;tre utilis&eacute;s par Rawrite
+  et Rawrite et r&eacute;ciproquement.
+  DISKCOPY ne peut lire et &eacute;craser les disquettes GNU/Linux.
+  Il peut, cependant, &eacute;crire une image disquette GNU/Linux sur un disque
+  DOS. DISKCOPY prend en charge le NLS (support des langues nationales).
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  diskcopy a: a:            Copie d'une disquette vers une autre
+  diskcopy a: c:\image.img  Copie la disquette vers une image
+                            sur C:\image.img
+  diskcopy c:\image.img a:  Copie l'image vers une disquette
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../command/copy.htm">copy</a>
+  <a href="../base/diskcomp.htm">diskcomp</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../util/shsufdrv.htm">shsufdrv</a>
+  <a href="../base/xcopy.htm">xcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis &agrave; jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+
+</pre></body></html>

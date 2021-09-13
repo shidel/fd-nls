@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: popd</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: popd</h1>
+<pre>
+  POPD l&ouml;scht ein Verzeichnis aus der Verzeichnisliste
+  (die mit pushd erstellt wurde) und wechselt in dieses Verzeichnis.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  POPD [*] [/?]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  *   Loescht die Dateiverzeichnisliste
+  /?  Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  <a href="../command/pushd.htm">PUSHD</a> arbeitet fast wie CD, mit der Ausnahme, da&szlig; es das
+  aktuelle Verzeichnis abspeichert, bevor es zum neuen Verzeichnis 
+  wechselt. Danach kann man POPD verwenden, um wieder zum alten 
+  Verzeichnis zu gelangen.
+  <a href="../command/pushd.htm">PUSHD</a> kann man mehrere Male verwenden um damit eine
+  Verzeichnisliste zu erstellen. 
+  <a href="../command/pushd.htm">PUSHD</a> ohne eine neue Verzeichnisangabe speichert das
+  aktuelle Verzeichnis, &auml;ndert es aber nicht.
+  POPD ist ein interner Befehl, d.h. der Befehl ist in der
+  command.com enthalten. Es wird zur Ausf&uuml;hrung des Befehls kein 
+  zus&auml;tzlicher Befehl (Datei) ben&ouml;tigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+Der Befehl:          wechselt vom aktuellen Verzeichnis nach / zeigt:
+===========          ================================================cd c:\fdos\bin       c:\fdos\bin
+pushd c:\games       c:\games      (und speichert c:\fdos\bin)
+pushd c:\utils       c:\utils      (und speichert c:\games)
+pushd c:\packages    c:\packages   (und speichert c:\utils)
+dirs                 zeigt die Verzeichnisse, die von pushd gespeichert
+                     wurden:
+                       0001=c:\fdos\bin
+                       0002=c:\games
+                       0003=c:\utils
+popd                 c:\utils      (und entfernt c:\utils (0003)
+                                   aus der Verzeichnisliste)
+popd                 c:\games      (und entfernt c:\games (0002)
+                                   aus der Verzeichnisliste)
+popd                 c:\fdos\bin   (und entfernt c:\fdos\bin (0001)
+                                   aus der Verzeichnisliste)
+popd                 zeigt die Nachricht: 
+                       "Directory stack empty" (Verzeichnisliste leer) 
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/cd.htm">cd</a>
+  <a href="../command/chdir.htm">chdir</a>
+  <a href="../command/dirs.htm">dirs</a>
+  <a href="../command/pushd.htm">pushd</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: screen</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: screen</h1>
+<pre>
+  SCREEN establece el n&uacute;mero de l&iacute;neas de texto en la pantalla.
+  SCREEN es un comando de <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  screen=xx
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  xx (C&oacute;digos):
+    0x11  fuente 8x14 (28 l&iacute;neas VGA, 25 l&iacute;neas EGA)
+    0x12  fuente 8x8  (50 l&iacute;neas VGA, 43 l&iacute;neas EGA)
+    0x14  fuente VGA predeterminada (25 l&iacute;neas VGA)
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  SCREEN cambia al modo de video xxx (INT10/11xx/000).
+  Es posible que algunas tarjetas gr&aacute;ficas m&aacute;s nuevas no tengan fuentes
+  8x14 en la BIOS. En ese caso, se puede cargar un controlador para
+  cargar una fuente adecuada en la RAM, pero SCREEN=0x11 no se debe usar.
+  Si xx es menor que 15 (0x0f), se trata como un n&uacute;mero de modo de
+  pantalla, por ejemplo, 1 para texto en color CGA 40x25 o 7 para texto
+  monocromo.
+  SCREEN es un comando interno de kernel.sys y no necesita ning&uacute;n otro
+  archivo para funcionar.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    screen=0x12
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 2003 <b>Robert Platt</b>, modificado en 2008 <b>W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+
+</pre></body></html>

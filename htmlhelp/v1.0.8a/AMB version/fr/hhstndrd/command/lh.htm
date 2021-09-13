@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : lh (loadhigh)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : lh (loadhigh)</h1>
+<pre>
+  LH charge un programme dans l'espace m&eacute;moire haute.
+  Comme LH charge le programme en m&eacute;moire haute, il reste
+  davantage d'espace libre dans la m&eacute;moire basse ou conventionnelle
+  pour les autres programmes.
+  LH est une commande de <a href="../batch/index.htm">FICHIER BATCH</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+  Elle peut &eacute;galement &ecirc;tre utilis&eacute;e sur la ligne de commande.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  LH [lecteur][chemin]nomfichier [param&egrave;tres]
+  LH [/L:r&eacute;gion1[,taillemin1][;r&eacute;gion2[,taillemin2]...] [/S] [/?]]
+     [lecteur][chemin]nomfichier [param&egrave;tres]
+     lecteur     La lettre du lecteur, par exemple C:
+     chemin      Le r&eacute;pertoire, par exemple \exemple\
+     nomfichier  Le nom du programme &agrave; charger dans l'espace m&eacute;moire
+                 haute, par exemple edit.exe
+</pre>
+<h2>Options :</h2>
+<pre>
+  /L:r&eacute;gion1[,taillemin1][;r&eacute;gion2[,taillemin2]]...
+                Sp&eacute;cifie la ou les r&eacute;gions de m&eacute;moire dans lesquelles
+                charger le programme. R&eacute;gion1 sp&eacute;cifie le num&eacute;ro de
+                la premi&egrave;re r&eacute;gion de m&eacute;moire ; taillemin1 sp&eacute;cifie la
+                taille minimale, si elle existe, pour la r&eacute;gion1.
+                R&eacute;gion2 et taillemin2 sp&eacute;cifient le num&eacute;ro et la taille
+                minimale de la seconde r&eacute;gion, si elle existe. Vous
+                pouvez sp&eacute;cifier autant de r&eacute;gions que vous le
+                souhaitez.
+  /S            R&eacute;duit un UMB &agrave; sa taille minimale lors du chargement
+                du programme.
+  /?            Affiche l'aide
+  param&egrave;tres    Ce sont les options du programme que vous chargez.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  LH peut &eacute;galement &ecirc;tre utilis&eacute;e en dehors d'un fichier batch.
+  Pour charger un pilote ou un programme dans la m&eacute;moire haute, vous
+  devez d'abord charger un pilote comme (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a>, <a href="../base/jemmex.htm">JEMMEX</a>, (<a href="../base/emm386.htm">EMM386</a>)
+  ou <a href="../base/jemm386.htm">JEMM386</a> dans config.sys. Vous pouvez aussi utiliser <a href="../batch/loadhigh.htm">LOADHIGH</a> au
+  lieu de LH.
+  LH est une commande interne &agrave; command.com et ne n&eacute;cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS UN FICHIER .BAT / AUTOEXEC.BAT :
+    lh c:\fdos\bin\edit.exe
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">fichiers batch</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../cnfigsys/install.htm">install</a>
+  <a href="../cnfigsys/installh.htm">installhigh</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../batch/loadhigh.htm">loadhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : screen</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : screen</h1>
+<pre>
+  SCREEN d&eacute;finit le nombre de lignes de texte &agrave; l'&eacute;cran.
+  SCREEN est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  screen=xx
+</pre>
+<h2>Options :</h2>
+<pre>
+  xx (Codes) :
+    0x11  police 8x14 (28 lignes VGA, 25 lignes EGA)
+    0x12  police 8x8  (50 lignes VGA, 43 lignes EGA)
+    0x14  police VGA par d&eacute;faut (25 lignes VGA)
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  SCREEN bascule dans le mode vid&eacute;o xxx (INT10/11xx/000).
+  Certaines cartes graphiques peuvent ne pas avoir les polices 8x14
+  dans le BIOS. Dans ce cas, un pilote peut &ecirc;tre charg&eacute; afin de
+  charger une police appropri&eacute;e dans la RAM, mais SCREEN=0x11 ne
+  devrait pas &ecirc;tre utilis&eacute;. Si xx est inf&eacute;rieur &agrave; 15 (0x0f), il sera
+  trait&eacute; comme un nombre de mode d'&eacute;cran, par exemple 1 pour du texte
+  monochrome 40x25 CGA.
+  SCREEN est une commande interne &agrave; kernel.sys et ne n&eacute;cessite
+  aucun autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS :
+    screen=0x12
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis &agrave; jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

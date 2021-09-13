@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS: defrag</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : defrag</h1>
+<pre>
+  DEFRAG optimise le temps de chargements depuis un disque en rassemblant
+  les fragments de fichiers.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  defrag [/C] [lecteur] [{/F|/U|/DF|/FF|/FD}] [/Sordre[-]] [/B] [/X] [/A]
+         [/FO] [/?]
+         drive  C'est la lettre du lecteur pour le lecteur que vous
+                souhaitez d&eacute;fragmenter. Par exemple : defrag c:
+</pre>
+<h2>Options :</h2>
+<pre>
+  /C   Utilise seulement la version en ligne de commande. Defrag
+       n'utilisera pas son interface utilisateur pilot&eacute;e par les menus
+       si vous choisissez cette option. Il communiquera &agrave; travers la
+       ligne de commande. Lorsque vous utilisez le commutateur /C,
+       vous devez utiliser l'option [lecteur] comme d&eacute;crit ci-dessus,
+       par exemple defrag /c c:
+  /F   Optimise enti&egrave;rement le lecteur sp&eacute;cifi&eacute;. Avec cette option,
+       defrag effectuera une optimisation compl&egrave;te, en s'assurant que
+       tous les fichiers seront au d&eacute;but du disque, sans &eacute;cart entre eux.
+  /U   Avec cette option, defrag d&eacute;fragmentera les fichiers mais des
+       &eacute;carts peuvent subsister entre ces fichiers.
+  /FF  Optimise enti&egrave;rement le lecteur, d&eacute;pla&ccedil;ant tous les fichiers
+       d'abord.
+  /DF  Optimise enti&egrave;rement le lecteur, d&eacute;pla&ccedil;ant tous les r&eacute;pertoires
+       d'abord.
+  /FD  Optimise enti&egrave;rement le lecteur, d&eacute;pla&ccedil;ant ensemble tous les
+       fichiers d'un m&ecirc;me r&eacute;pertoire.
+  /S   Trier les fichiers par ordre sp&eacute;cifi&eacute;.
+       ordre: N  par Nom (alphab&eacute;tique)
+              E  par Extension (alphab&eacute;tique)
+              D  par Date et temps (les plus anciens en premier)
+              S  par taille (les plus petits en premier)
+              -  suffixe pour trier par ordre descendant.
+  /B   Red&eacute;marre l'ordinateur apr&egrave;s l'optimisation.
+  /X   Force defrag &agrave; quitter d&egrave;s qu'il aura termin&eacute; l'optimisation.
+  /A   &Agrave; utiliser avec l'option /C, defrag donnera un avertissement
+       sonore avant d'effectuer des actions.
+  /FO  &Agrave; utiliser avec l'option /C, cela indique &agrave; defrag de donner une
+       sortie d'informations plus compl&egrave;te.
+  /?   Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Tapez DEFRAG /no-ops pour une liste de no-ops (/SKIPHIGH, /LCD, /BW,
+  /GO). Tapez DEFRAG /contrib pour une liste des contributeurs.
+  Il est recommand&eacute; d'utiliser DEFRAG avec l'interface utilisateur
+  (sans : /C). Qu'est-ce que la fragmentation du disque ?
+  Lorsque des fichiers sont effac&eacute;s, ou rendus plus petits, cela laisse
+  des &eacute;carts entre les donn&eacute;es stock&eacute;es sur le disque. Si un fichier est
+  cr&eacute;&eacute;, ou si sa taille augmente, il sera plac&eacute; dans ces espaces, mais
+  si cet espace n'est pas assez grand, le fichier sera continu&eacute; ailleurs
+  sur le disque. &Agrave; la suite de nombreuses op&eacute;rations de ce type, les
+  donn&eacute;es peuvent &ecirc;tre tr&egrave;s &eacute;parpill&eacute;es. Cette fragmentation ralentit
+  l'acc&egrave;s au disque. La fragmentation est un processus normal sur les
+  disques DOS.
+
+  Quand dois-je utiliser defrag ?
+  Utilisez defrag occasionnellement, ou apr&egrave;s l'installation de gros
+  programmes ou apr&egrave;s la cr&eacute;ation de nombreux (petits) fichiers.
+  DEFRAG a les <a href="../batch/if.htm#comment">CODES DE SORTIE
+  (ERRORLEVEL)</a> suivants :
+    0  succ&egrave;s
+    1  erreur interne
+    2  disque trop plein pour &ecirc;tre d&eacute;fragment&eacute;
+    3  annul&eacute; par l'utilisateur
+    4  erreur g&eacute;n&eacute;rale
+    5  erreur de lecture
+    6  erreur d'&eacute;criture
+    7  erreur d'allocation FAT
+    8  erreur de la m&eacute;moire
+    9  m&eacute;moire insuffisante
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  defrag c: /F
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../base/chkdsk.htm">chkdsk</a>
+  <a href="../util/dosfsck.htm">dosfsck</a>
+ (<a href="../base/scandisk.htm">scandisk</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 - 2004 Robert Platt, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

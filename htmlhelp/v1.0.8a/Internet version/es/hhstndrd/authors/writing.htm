@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Escribir para el sistema de ayuda HTML:</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Escribir para el sistema de ayuda HTML:</h1>
+<pre>
+  Las contribuciones son muy bienvenidas. Si desea hacer una contribuci&oacute;n
+  al sistema de ayuda HTML, p&oacute;ngase en contacto con el responsable de
+  mantenimiento:
+    fritzdotmuelleratmaildotcom
+</pre>
+<h2>La estructura del directorio \help:</h2>
+<pre>
+  <b>\help\index.htm</b>
+    Enumera los idiomas de ayuda instalados en el sistema. Se carga
+    autom&aacute;ticamente si LANG no est&aacute; configurado en un idioma disponible
+    y el ingl&eacute;s (EN) no est&aacute; instalado.
+  <b>\help\%LANG%\index.htm</b>
+    HELP cargar&aacute; esto por defecto. %LANG% es el idioma seleccionado al
+    configurar la variable de entorno LANG. Si LANG no est&aacute; configurado,
+    se supone EN.
+  <b>\help\%LANG%\help.htm</b>
+    HELP cargar&aacute; esto cuando el usuario presione F1 o haga clic en 
+    "Ayuda en Ayuda".
+  <b>\help\docinfo\bi\nls\%LANG%.bi</b>
+    Almacena archivos de estanter&iacute;a, para usar con la herramienta de
+    estanteria de Aitor, para crear el indice de idioma (\help\index.htm).
+</pre>
+<h2>Crear archivos de ayuda comprimidos:</h2>
+<pre>
+  Debe utilizar para su archivo comprimido establecer un nombre como:
+    <b>\help\...\[nombre]\[nombre].zip</b>
+  Si desea comprimir sus archvos de ayuda, debe estar en formato zip.
+  Debe tener el mismo nombre de archivo que el directorio en el que est&aacute;n
+  almacenados y la extensi&oacute;n zip. Por ejemplo:
+    <b>\help\en\mi_ayuda\mi_ayuda.zip</b>
+  Index.htm puede estar dentro del archivo zip, pero la ayuda y la 
+  herramienta de estanter&iacute;a funcionar&aacute;n mejor si no lo est&aacute;. Las
+  estructuras de directorio est&aacute;n permitidas dentro del archivo sip. Sin
+  embargo, el cifrado y algunos de los m&eacute;todos de compresi&oacute;n m&aacute;s antiguos
+  y oscuros no son compatibles.
+</pre>
+<h2>Crear versiones modificadas de los archivos de ayuda:</h2>
+<pre>
+  Use un t&iacute;tulo distinto en p&aacute;gina de t&iacute;tulo (a menudo index.htm) en
+  cualquier versi&oacute;n modificada. Esto es para evitar confusiones o
+  conflictos, y los m&aacute;s importante, es necesario seg&uacute;n la Parte 4A de la
+  <a href="../other/fdl11.htm">Licencia de Documentaci&oacute;n Libre de GNU 1.1</a>. Adem&aacute;s de cambiar el t&iacute;tulo,
+  actualice el historial, la lista de autores, etc., de acuerdo con la
+  secci&oacute;n 4 de la <a href="../other/fdl11.htm">Licencia de documentaci&oacute;n libre de GNU 1.1</a>. Si el
+  conjunto de archivos est&aacute; destinado a describir un paquete nuevo o
+  modificado, o si el conjunto de archivos sufre un cambio fundamental
+  (por ejemplo, una traducci&oacute;n), entonces es mejor usar un nombre de
+  subdirectorios distinto, como se explica arriba en "La estructura del
+  directorio \ayuda". Esto es simplemente una cuesti&oacute;n de buscar y
+  reemplazar el nombre del subdirectorio en index.htm, y vale la pena.
+  Por ejemplo, una versi&oacute;n simplificada de conjunto de archivos "hhstndrd"
+  podr&iacute;a llamarse "hhmicro". Este ser&iacute;a el nombre del subdirectorio, y el
+  t&iacute;tulo en index.htm podr&iacute;a ser:
+    FreeDOS Hilfe (hhmicro 1.0)
+  Es razonable cambiar solo el n&uacute;mero de versi&oacute;n (en lugar del nombre y
+  el directorio "hhmicro") al publicar actualizaciones.
+</pre>
+<h2>Crear o agregar nuevos archivos:</h2>
+<pre>
+  Se recomienda que el siguiente mensaje de licencia se coloque al final
+  de cualquier archivo de ayuda nuevo (a menos que sea un archivo 
+  independiente, no incluido en un conjunto de archivos de ayuda):
+
+    ...
+    &lt;hr&gt;
+    &lt;address&gt;
+
+    &lt;b&gt;Copyright &amp;copy; 2008
+    &lt;a href="mailto:<b>miemail@address.com</b>"&gt;<b>Mi nombre</b>&lt;/a&gt;&lt;/b&gt;&lt;br&gt;
+    Este archivo forma parte de la documentaci&oacute;n de ayuda HTML de FreeDOS
+    y est&aacute; cubierto por sus t&eacute;rminos, consulte:
+    &lt;a href="../index.htm"&gt;index.htm&lt;/a&gt;
+
+    &lt;/address&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+
+  Proporcionar un correo electr&oacute;nico es completamente opcional; Si carga
+  sus archivos de ayuda en un sitio web, las direcciones de correo
+  electr&oacute;nico pueden estar sujutas a spam. Los t&eacute;rminos son la <a href="../other/fdl11.htm">Licencia
+  de Documentaci&oacute;n Libre de GNU 1.1</a>.
+</pre>
+<h2>Edici&oacute;n de un archivo almacenado en un zip:</h2>
+<pre>
+  Es posible que desee descomprimir los archivos html para que puedan
+  leerse con otro navegador o editarlos. Los archivos zip generalmente
+  tienen prioridad sobre los archivos sin comprimir; Si desea asegurarse
+  de que la ayuda lea una versi&oacute;n aditada y sin comprimir de un archivo,
+  debe reemplazar o eliminar la versi&oacute;n original dentro de ese archivo
+  zip.
+</pre>
+<h2>Prueba de archivos de ayuda:</h2>
+<pre>
+  Los navegadores de referencia para probar los archivos de ayuda son:
+    * el visor de ayuda HTML de FreeDOS (help.exe)
+    * un derivado de cromo.
+</pre>
+<h2>Crear tablas:</h2>
+<pre>
+  Lamentablemente, la ayuda no admite etiquetas de tablas. Utilice las
+  etiquetas de formato previo &lt;pre&gt; &lt;/pre&gt; para las tablas de
+  informaci&oacute;n.
+</pre>
+<h2>Consejos generales:</h2>
+<pre>
+  Presione F5 o Ctrl+R para actualizar el archivo que muestra la ayuda.
+  Los efectos de los cambios en el archivo se pueden ver de inmediato.
+  Util al editar archivos de ayuda en un entorno de tipo Windows. Para
+  usar el Visor de ayuda HTML para ver archivos que a&uacute;n no est&aacute;n
+  integrados en el conjunto de archivos, se puede usar el interruptor de
+  anulaci&oacute;n de ruta de ayuda:
+    help /O[unidad:][ruta]nombre_archivo[.htm]
+  o si est&aacute; relacionado con la carpeta /HELP:
+    help /L[subdirectorio]nombre_archivo[.htm]
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="tags.htm">Etiquetas compatibles con la Ayuda HTML</a>
+  <a href="index.htm">Recursos de autor&iacute;a</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-4 Robert Platt, Modificado en 2008 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo forma parte de la documentaci&oacute;n de ayuda HTML de FreeDOS y
+  est&aacute; cubierto bajo sus t&eacute;rminos: ver <a href="../../index.htm">index.htm</a>
+
+</pre></body></html>

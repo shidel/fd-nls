@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : keybuf</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : keybuf</h1>
+<pre>
+  KEYBUF d&eacute;place le tampon du clavier de l'emplacement par d&eacute;faut &agrave;
+  0x40:0x1e-0x3e vers 0x40:n-m.
+  KEYBUF est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  keybuf=n[,m]
+    o&ugrave; n est dans la plage 0xac-0xde ou 0x106-0x1de et m est <= 0x200
+</pre>
+<h2>Options :</h2>
+<pre>  - aucune -</pre>
+<h2>Commentaires :</h2>
+<pre>
+  KEYBUF d&eacute;place le tampon du clavier de l'emplacement par d&eacute;faut &agrave;
+  0x40:0x1e-0x3e vers 0x40:n-m. Le tampon doit avoir plus de 32 octets
+  et ne doit pas toucher les offsets 0x100-0x105.
+  La valeur par d&eacute;faut pour m est "multiple suivant de 0x100 apr&egrave;s n".
+  Remarque : Certains BIOS stockent des donn&eacute;es dans l'espace 0xac-0xff.
+  BASICA utilisera la zone 0x106-0x120. D'autres mat&eacute;riels, pilotes ou
+  applications peuvent aussi entrer en collision avec KEYBUF, donc
+  utilisez-le &agrave; vos risques et p&eacute;rils. Un choix raisonnablement s&ucirc;r
+  devrait &ecirc;tre "keybuf=0x140,0x1c0".
+  KEYBUF est une commande interne &agrave; kernel.sys et ne n&eacute;cessite
+  aucun autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    keybuf=0x140,0x1c0
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis &agrave; jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de HOWTO FreeDOS Spec Command.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

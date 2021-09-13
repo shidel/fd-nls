@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: diskcopy</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: diskcopy</h1>
+<pre>
+  DISKCOPY kopiert den Inhalt einer Diskette auf eine andere Diskette.
+  Au&szlig;erdem erstellt es und kopiert es Diskettenimagedateien
+  und stellt sie auch wieder her.
+  Diskettenimagedateien k&ouml;nnen mit <a href="../util/shsufdrv.htm">SHSUFDRV</a> verwendet werden.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  Diskcopy [Quelle][Ziel][/a][/v][/m][/i][/o][/1][/x][/d][/r][/f][/t]
+  Diskcopy [/?]
+           Quelle:  Laufwerk oder Abbild-Datei, die gelesen wird.
+           Ziel:    Laufwerk oder Abbild-Datei, die geschrieben wird.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /a  Akustische Warnung bei Eingabeaufforderung ausgeben.
+  /v  &uuml;berpr&uuml;ft Lese- und Schreibvorg&auml;nge.
+  /m  Benutzt ausschlie&szlig;lich das RAM als Zwischenspeicher.
+  /i  Zeigt Arbeitsspeicherauslastung an.
+  /o  &uuml;berscheibt die Ziel-Abbild-Datei, falls sie bereits existiert.
+  /x  Beendet Diskcopy automatisch.
+  /d  Nimmt an, da&szlig; sich bereits eine Diskette im Laufwerk befindet.
+  /r  Wechselt in den Diskettenwiederherstellungs-Modus.
+  /f  Schnelles Diskcopy (kopiert nur belegte Sektoren)
+  /t  Fragt nicht nach der Zieldiskette, falls die Abbilddatei auf
+      dieselbe Diskette geschrieben werden soll.
+  /1  Unwirksam, nur f&uuml;r Kompatibilit&auml;t mit MS-DOS.
+      Bei anderen DOS Versionen kopiert dies nur die erste Seite.
+  /?  Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Ein Minuszeichen nach einer Option deaktiviert diese.
+  Wenn die Quelle und/oder das Ziel ein Laufwerk ist, z.B.
+  "A:", dann wird es als Diskettenlaufwerk behandelt, andernfalls
+  wird es als Imagedatei behandelt.
+  Quelle und Ziel k&ouml;nnen das selbe Laufwerk sein; DISKCOPY wird
+  zuerst von der Quelle kopieren und Sie dann auffordern, die
+  Disketten zu wechseln (die Zieldiskette einzulegen). Danach wird
+  es auf die Zieldiskette schreiben. 
+  DISKCOPY benutzt seine Imagedateien das Linux rawrite Format.
+  Aus diesem Grund k&ouml;nnen die Imagedateien von DISKCOPY von
+  Rawrite und umgekehrt verwendet werden.
+  DISKCOPY kann nicht von Linux Disketten lesen oder diese
+  &uuml;berschreiben.
+  Es kann jedoch ein Linux Diskettenimage auf eine DOS Diskette
+  schreiben.
+  DISKCOPY unterst&uuml;tzt NLS (national language support - nationale
+  Sprachunterst&uuml;tzung).
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  diskcopy a: a:            Kopiert von einer Diskette auf eine andere
+  diskcopy a: c:\image.img  Kopiert die Diskette auf ein Image auf 
+                            c:\image.img
+  diskcopy c:\image.img a:  Kopiert das Image auf eine Diskette
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/copy.htm">copy</a>
+  <a href="../base/diskcomp.htm">diskcomp</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../util/shsufdrv.htm">shsufdrv</a>
+  <a href="../base/xcopy.htm">xcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

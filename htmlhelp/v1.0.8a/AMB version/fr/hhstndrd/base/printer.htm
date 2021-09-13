@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : printer.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : printer.sys</h1>
+<pre>
+  PRINTER.SYS fournit des capacit&eacute;s de gestion de pages de code &agrave; un
+  pilote d'imprimante. PRINTER.SYS doit &ecirc;tre charg&eacute; dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> /
+  <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS fonctionne d&eacute;j&agrave;, vous pouvez charger PRINTER.SYS par
+  la suite avec <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  printer [nomp&eacute;riph][:]=([typemat&eacute;riel],[{n|(n1,[n2,]...)}],[m])
+</pre>
+<h2>Options :</h2>
+<pre>
+  nomp&eacute;riph     Nom du p&eacute;riph&eacute;rique du port d'imprimante qui doit &ecirc;tre
+                &eacute;tendu, tel que PRN or LPTx. Les deux-points sont
+                optionnels.
+  typemat&eacute;riel  Identificateur du type d'adaptateur mat&eacute;riel d'affichage.
+                Il peut aussi d&eacute;terminer le nombre de sous-polices &agrave;
+                utiliser.
+                Il n'existe pas encore de types pris en charge.
+  n, n1, n2,..  Num&eacute;ros pour les num&eacute;ros de page de code des pages de
+                code du  mat&eacute;riel.
+  m             Le nombre de tampons que vous souhaitez sp&eacute;cifier pour
+                pr&eacute;parer les pages de code (la valeur par d&eacute;faut
+                est de 1)
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Ce pilote n'a pas encore de forme binaire, car aucune gestion
+  d'imprimante sp&eacute;cifique n'a encore &eacute;t&eacute; ajout&eacute;e (vous pouvez compiler
+  &agrave; la fois PRINTER.SYS et DISPLAY.SYS depuis les sources de <a href="../base/display.htm">DISPLAY</a>).
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Lorsque PRINTER.SYS aura un support de mat&eacute;riel, vous pourrez entrer :
+    PRINTER PRN=(IBMPro,437,1)
+  Vous sp&eacute;cifiez que vous avez une imprimante compatible IBM Proprinter,
+  avec une page de code mat&eacute;rielle 437, et demandez seulement 1 tampon
+  dans le but de minimiser l'empreinte m&eacute;moire r&eacute;sidente.
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/print.htm">print</a>
+  <a href="../base/printq.htm">printq</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; Aitor SANTAMARIA MERINO, mis &agrave; jour en 2008
+  par W. Spiegl.</b>
+ <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

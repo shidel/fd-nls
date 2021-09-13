@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: dos</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: dos</h1>
+<pre>
+  DOS sagt dem DOS Kernel, wie er sich selbst laden soll.
+  DOS ist ein <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>-Befehl.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  dos=high|low[,umb|noumb]
+    oder
+  dos=[high|low,]umb|noumb
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  dos=high   Sagt DOS, da&szlig; es sich selbst in den hohen Speicher laden
+             soll. Sie m&uuml;ssen zuvor ein Verwaltungsprogramm f&uuml;r den
+             hohen Speicher laden (z.B. FDXMS oder HIMEM oder HIMEMX)
+  dos=low    Sagt DOS, da&szlig; es sich in den normalen Speicher laden soll.
+  dos=umb    Sagt DOS, da&szlig; es eine Verbindung zwischen hohem und
+             konventionellen Speicher herstellen soll.
+  dos=noumb  Sagt DOS, da&szlig; es keine Verbindung zwischen hohem und
+             konventionellen Speicher herstellen soll.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  DOS zeigt an, ob der Kernel versuchen soll, sich selbst in den hohen
+  Speicher (HIGH) oder nur in den konventionellen Speicher (LOW) laden
+  soll und ob es eine Verbindung zwischen den hohen Speicherbl&ouml;cken und
+  dem konventionellen Speicher herstellen soll (UMB) oder nicht (NOUMB).
+  Anmerkung: Es mu&szlig; nur eine Option angegeben werden, d.h. dos=high
+  und dos=noumb sind in Ordnung.
+  Wichtig: Wenn sie dos=high[,umb|noumb] w&auml;hlen, mu&szlig; zuerst ein
+  Verwalter f&uuml;r den hohen Speicherbereich, wie z.B. (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a>
+  oder <a href="../base/jemmex.htm">JEMMEX</a> geladen werden.
+  DOS ist ein interner Befehl, d.h. der Befehl ist in der kernel.sys
+  enthalten. Es wird zur Ausf&uuml;hrung des Befehls kein zus&auml;tzlicher
+  Befehl (Datei) ben&ouml;tigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    DOS=HIGH,UMB
+  ODER:
+    DOS=LOW,NOUMB
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: xcdrom.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: xcdrom.sys</h1>
+<pre>
+  XCDROM.SYS es un controlador de CD-ROM UDMA y no UDMA para DOS. 
+  XCDROM.SYS debe cargarse en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>. Cuando FreeDOS
+  ya se est&aacute; ejecutando, puede cargar XCDROM.SYS m&aacute;s tarde con <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>XCDROM.SYS est&aacute; desactualizado. &iexcl;NO hay MAS apoyo del autor! Deber&iacute;a
+  usar <a href="../base/uide.htm">UIDE.SYS</a> en su lugar</b>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  device=xcdrom.sys [opciones]
+  devicehigh=xcdrom.sys [opciones]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /AX  Excluye TODAS las funciones de audio. &iexcl;Esto hace que el 
+       controlador informe sobre una solicitud de estado del dispositivo
+       que solo lee pistas de DATOS! /AX reduce el controlador residente
+       en 448 bytes. &iexcl;UltraDMA, las unidades m&uacute;ltiples y otras
+       caracter&iacute;sticas del controlador NO se ven afectadas!
+  /D:  Especifica el "nombre del dispositivo" deseado que <a href="../base/shsucdx.htm">SHSUCDX</a> o
+       <a href="../base/mscdex.htm">MSCDEX</a> usar&aacute;n durante su inicializaci&oacute;n para direccionar las
+       unidades de CD-ROM. Los ejemplos son: /D:CDROM1 /D:MYCDROM etc.
+       El nombre del dispositivo debe ser de 1 a 8 bytes v&aacute;lido para su
+       uso en nombres de archivos DOS. Si se omite /D: o el "nombre del
+       dispositivo" despu&eacute;s de un /D: falta o no es v&aacute;lido, "XCDROM"
+       ser&aacute; el valor predeterminado.
+  /L   Limita UltraDMA a "poca memoria" por debajo de 640K. /L est&aacute;
+       obligado a utilizar UMBPCI o un controlador similar cuyas &aacute;reas
+       de memoria superior no pueden hacer UltraDMA. Si se proporciona
+       /L, el controlador debe cargarse en la memoria BAJA para que sus
+       listas de comandos DMA puedan recuperarse correctamente, &iexcl;o la
+       carga del controlador ABORTARA! /L hace que cualquier solicitud
+       de E/S por encima de 640K use la entrada "PIO modo". Tenga en
+       cuenta que /L estar&aacute; IGNORADO si tambi&eacute;n se proporciona /UX.
+  /Mn  Especifica el "modo" MAXIMO UltraDMA que se configurar&aacute; para una
+       unidad de CD-ROM, donde n es un n&uacute;mero entre 0 y 6, de la
+       siguiente manera:
+         0 = ATA-16,   16 MB/seg.     4 = ATA-66,   66 MB/seg.
+         1 = ATA-25,   25 MB/seg.     5 = ATA-100, 100 MB/seg.
+         2 = ATA-33,   33 MB/seg.     6 = ATA-133, 133 MB/seg.
+         3 = ATA-44,   44 MB/seg.
+       Una unidad de CD-ROM designada para usar "modos" MENOS que el valor
+       dedo se limitar&aacute; a su propio "modo" m&aacute;s alto. /M estar&aacute; IGNORADO
+       para las unidades de CD-ROM que no pueden hacer UltraDMA, y se
+       ignorar&aacute; para TODAS las unidades si tambi&eacute;n se proporciona /UX.
+  /PM  Solicita al controlador que compruebe la unidad primaria-maestra
+       IDE para una unidad de CD-ROM durante la inicializaci&oacute;n del
+       controlador. Si una unidad de CD-ROM NO se encuentra como maestro
+       principal, &iexcl;la carga del controlador se ABORTARA!
+  /PS  Igual que /PM pero solo prueba la unidad primaria-esclava.
+  /SM  Igual que /PM pero solo prueba la unidad maestra-secundaria.
+  /SS  Igual que /PM pero solo prueba la unidad secundaria-esclava.
+       --- NOTA ---
+       Usando m&uacute;ltiples unidades, se pueden dar m&uacute;ltiples interruptores
+       /PM /PS /SM /SS. La primera unidad especificada se direcciona
+       como "unidad 0", la segunda como "unidad 1", etc. Si se dan menos
+       interruptores que unidades, las unidades sin referencia NO se
+       utilizar&aacute;n. Si NO se dan tales interruptores, el controlador
+       "escanea" las unidades de CD-ROM, desde maestro pricipal a 
+       esclavo secundario. La primera unidad encontrada ser&aacute; "unidad 0",
+       la segunda ser&aacute; "unidad 1", etc.
+  /UF  Habilita "Fast UltraDMA". Las solicitudes de entrada de datos
+       que cruzan un "l&iacute;mite de 64K" de UltimaDMA se ejecutan utilizando
+       una lista de comandos DMA de 2 elementos, una para datos hasta el
+       l&iacute;mite y otra para los datos m&aacute;s all&aacute;. La velocidad del CD-ROM
+       aumenta significativamente. La entrada del "PIO modo" todav&iacute;a es
+       mecesaria para las memorias intermedias del usuario que est&aacute;n
+       desalineadas (ni siquiera en una direcci&oacute;n de 4 bytes).
+       /UF estar&aacute; IGNORADO para las unidades de CD-ROM que no pueden
+       hacer UltraDMA.
+       --- NOTA ---
+       A pesar de las especificaciones de UltraDMA, &iexcl;NO TODOS los 
+       chipsets o placas base pueden ejecutar comandos DMA de elementos
+       m&uacute;ltiples correctamente! Aunque es valioso, /UF debe PROBARSE en
+       todos los sistemas, &iexcl;&iexcl;y "Fast UltraDMA" debe habilitarse con 
+       CARE!!
+  /UX  Deshabilita TODO UltraDMA, incluso para las unidades de CD-ROM
+       con capacidad para ello. El controlador luego utiliza el "PIO
+       modo" para toda la entrada de datos. /UX solo debe ser necesario
+       para pruebas y trabajos de diagn&oacute;stico.
+  Para cada interruptor, un gui&oacute;n puede reemplazar la barra oblicua y 
+  se pueden usar letras min&uacute;sculas.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  El controlador de CD-ROM se denomin&oacute; XCDROM.SYS hasta la versi&oacute;n 2.2.
+  M&aacute;s tarde se llam&oacute; <a href="../base/udvd.htm">UDVD.SYS</a> y al final <a href="../base/uide.htm">UIDE.SYS</a>. XCDROM.SYS es 
+  compatible con NLS (soporte de idioma nacional), consulte xcdmsgs.eng.
+  Solo tiene que compilarse en el idioma correspondiente.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=c:\fdos\bin\XCDROM.SYS
+    DEVICEHIGH=c:\fdos\bin\XCDROM.SYS /D:CDROM001 /SM /SS
+  EN AUTOEXEC.BAT:
+    c:\fdos\bin\SHSUCDX /D:CDROM001
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2006 Jack Ellis, modificado en 2011 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

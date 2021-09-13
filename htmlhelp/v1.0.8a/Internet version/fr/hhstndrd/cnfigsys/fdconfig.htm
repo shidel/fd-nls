@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : fdconfig.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : fdconfig.sys</h1>
+<pre>
+  FreeDOS lit le fichier <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / FDCONFIG.SYS au d&eacute;marrage pour
+  configurer le syst&egrave;me DOS. Il est lu avant que le fichier <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>
+  ne soit ex&eacute;cut&eacute;.
+  FreeDOS essaye d'abord d'utiliser FDCONFIG.SYS (et ignore <a href="../cnfigsys/index.htm">CONFIG.SYS</a>).
+  Si FDCONFIG.SYS n'existe pas, FreeDOS utilisera <a href="../cnfigsys/index.htm">CONFIG.SYS</a> &agrave; la place.
+  <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / FDCONFIG.SYS sont des fichiers textuels. Ils peuvent
+  &ecirc;tre cr&eacute;&eacute;s ou &eacute;dit&eacute;s avec un &eacute;diteur tel que <a href="../base/edit.htm">EDIT</a> ou <a href="../base/edlin.htm">EDLIN</a>.
+  FDCONFIG.SYS / <a href="../cnfigsys/index.htm">CONFIG.SYS</a> doivent TOUJOURS &ecirc;tre dans le r&eacute;pertoire
+  racine du m&eacute;dia d'amor&ccedil;age.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>  - aucune -</pre>
+<h2>Options :</h2>
+<pre>  - aucune -</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Lors de l'amor&ccedil;age de DOS, vous verrez qu'il prend en charge seulement
+  un sous-ensemble de p&eacute;riph&eacute;riques disponibles sur de nombreux
+  ordinateurs. Pour prendre en charge des p&eacute;riph&eacute;riques suppl&eacute;mentaires
+  et des fonctionnalit&eacute;s avanc&eacute;es, des pilotes et des logiciels r&eacute;sidents
+  en m&eacute;moire sp&eacute;cifiques &agrave; ces p&eacute;riph&eacute;riques doivent &ecirc;tre charg&eacute;s. Cela
+  permet au kernel d'&ecirc;tre facilement &eacute;tendu pour prendre en charge du
+  mat&eacute;riel qui ne serait pas disponible pr&eacute;sentement et pour mieux
+  exploiter le mat&eacute;riel install&eacute; sans gaspiller des ressources sur
+  des ordinateurs qui en manqueraient. Ces logiciels sont g&eacute;n&eacute;ralement
+  charg&eacute;s pendant la phase d'initialisation du kernel, avec les d&eacute;tails
+  d&eacute;crivant ce qui doit &ecirc;tre charg&eacute; exprim&eacute;s dans le fichier <a href="../cnfigsys/index.htm">CONFIG.SYS</a>.
+  Le kernel FreeDOS cherchera d'abord un fichier appel&eacute; FDCONFIG.SYS
+  qui, s'il existe, sera utilis&eacute; &agrave; la place de  <a href="../cnfigsys/index.htm">CONFIG.SYS</a> ; cela permet
+  au kernel FreeDOS de coexister avec et d'&ecirc;tre configur&eacute; diff&eacute;remment
+  qu'un autre kernel DOS. Il existe des options suppl&eacute;mentaires pour
+  ajuster d'autres aspects du comportement du kernel.
+  Il existe un jeu de commandes sp&eacute;ciales destin&eacute; &agrave; &ecirc;tre utilis&eacute; dans le
+  fichier <a href="../cnfigsys/index.htm">CONFIG.SYS</a> /   FDCONFIG.SYS, voyez les liens ci-dessous.
+  Les commandes de l'invite DOS et celles des <a href="../batch/index.htm">FICHIERS BATCH</a> ne peuvent
+  g&eacute;n&eacute;ralement pas &ecirc;tre utilis&eacute;es dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / FDCONFIG.SYS.
+  Voyez aussi la commande <a href="../cnfigsys/menu.htm">MENU</a>.
+  Si vous appuyez sur "F5" lors de l'amor&ccedil;age du syst&egrave;me, les commandes
+  <a href="../cnfigsys/index.htm">CONFIG.SYS</a> /   FDCONFIG.SYS et <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> seront ignor&eacute;es.
+  Cela est utile si vous avez un pilote install&eacute; qui plante lors de
+  l'amor&ccedil;age du syst&egrave;me.
+  Si vous appuyez sur "F8" lors de l'amor&ccedil;age du syst&egrave;me, chaque
+  commande dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / FDCONFIG.SYS et dans <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> devra
+  &ecirc;tre confirm&eacute; avec "oui" ou "non". Cela est utile si vous souhaitez
+  trouver quel pilote plante.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  - aucun - voyez les commandes une par une.
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/slashdot.htm">;</a>             <a href="../cnfigsys/exclamat.htm">!</a>             <a href="../cnfigsys/question.htm">?</a>             <a href="../cnfigsys/break.htm">break</a>         <a href="../cnfigsys/buffers.htm">buffers</a>
+  <a href="../cnfigsys/buffersh.htm">buffershigh</a>   <a href="../cnfigsys/index.htm">config.sys</a>    <a href="../cnfigsys/country.htm">country</a>       <a href="../cnfigsys/device.htm">device</a>        <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../cnfigsys/dos.htm">dos</a>           <a href="../cnfigsys/dosdata.htm">dosdata</a>       <a href="../cnfigsys/echo.htm">echo</a>          <a href="../cnfigsys/eecho.htm">eecho</a>         <a href="../cnfigsys/fcbs.htm">fcbs</a>
+  <a href="../cnfigsys/files.htm">files</a>         <a href="../cnfigsys/filesh.htm">fileshigh</a>     <a href="../cnfigsys/idlehalt.htm">idlehalt</a>      <a href="../cnfigsys/install.htm">install</a>       <a href="../cnfigsys/installh.htm">installhigh</a>
+  <a href="../cnfigsys/keybuf.htm">keybuf</a>        <a href="../cnfigsys/lastdrv.htm">lastdrive</a>     <a href="../cnfigsys/lastdrvh.htm">lastdrivehigh</a> <a href="../cnfigsys/menu.htm">menu</a>          <a href="../cnfigsys/menucol.htm">menucolor</a>
+  <a href="../cnfigsys/menudef.htm">menudefault</a>   <a href="../cnfigsys/numlock.htm">numlock</a>       <a href="../cnfigsys/rem.htm">rem</a>           <a href="../cnfigsys/screen.htm">screen</a>        <a href="../cnfigsys/set.htm">set</a>
+  <a href="../cnfigsys/shell.htm">shell</a>         <a href="../cnfigsys/shellh.htm">shellhigh</a>     <a href="../cnfigsys/stacks.htm">stacks</a>        <a href="../cnfigsys/stacksh.htm">stackshigh</a>    <a href="../cnfigsys/switchar.htm">switchar</a>
+  <a href="../cnfigsys/switches.htm">switches</a>      <a href="../cnfigsys/version.htm">version</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis &agrave; jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

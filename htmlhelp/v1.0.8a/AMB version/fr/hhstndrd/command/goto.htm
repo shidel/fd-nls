@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : goto</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : goto</h1>
+<pre>
+  GOTO dirige le shell de commande vers une ligne &eacute;tiquet&eacute;e dans un
+  programme batch.
+  GOTO est une commande de <a href="../batch/index.htm">FICHIER BATCH</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  GOTO &eacute;tiquette
+</pre>
+<h2>Options :</h2>
+<pre>
+  &eacute;tiquette  Sp&eacute;cifie une cha&icirc;ne de texte utilis&eacute;e comme &eacute;tiquette dans
+  un programme batch.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Le fichier de commandes passera &agrave; l'&eacute;tiquette et continuera &agrave;
+  fonctionner &agrave; partir de l&agrave;. Utilisez GOTO avec la commande <a href="../batch/if.htm">IF</a> pour
+  contr&ocirc;ler le flux des fichiers batch.
+  Vous devez taper une &eacute;tiquette sur une ligne seule, en commen&ccedil;ant par
+  deux points, par exemple :
+  :&Eacute;TIQUETTE1
+  Le nom de l'&eacute;tiquette ne devrait pas &ecirc;tre long et &ecirc;tre explicatif.
+  GOTO est une commande interne &agrave; command.com et ne n&eacute;cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS UN FICHIER .BAT / AUTOEXEC.BAT :
+    if %config%==1 goto DEFRAG
+    if %config%==2 goto COPIE
+    :DEFRAG
+    defrag c:
+    goto END
+    :COPIE
+    copy xy.txt c:\test\xy.txt
+    goto END
+    :END
+    cls
+  DANS UN FICHIER .BAT / AUTOEXEC.BAT :
+    @ECHO 1 = Faites ceci
+    @ECHO 2 = Faites cela
+    @ECHO 3 = Faites autre chose
+    @ECHO 4 = Ne faites rien
+    @choice /B /C:1234 /N /S Que souhaitez-vous faire ?
+    if errorlevel 4 goto NEFAITESRIEN
+    if errorlevel 3 goto FAITESAUTRECHOSE
+    if errorlevel 2 goto FAITESCECI
+    if errorlevel 1 goto FAITESCELA
+    :FAITESCECI
+    vos commandes
+    goto EXIT
+    :FAITESCELA
+    vos commandes
+    goto EXIT
+    :FAITESAUTRECHOSE
+    vos commandes
+    goto EXIT
+    :NEFAITESRIEN
+    vos commandes
+    goto EXIT
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">fichiers batch</a>
+  <a href="../batch/choice.htm">choice</a>
+  <a href="../batch/if.htm">if</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, mis &agrave; jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

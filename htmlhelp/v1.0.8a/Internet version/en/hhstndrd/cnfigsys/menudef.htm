@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: menudefault</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: menudefault</h1>
+<pre>
+  MENUDEFAULT sets a time delayed default option for a config.sys /
+  fdconfig.sys menu.
+  MENUDEFAULT is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  menudefault=defaultoption,delay
+</pre>
+<h2>Options:</h2>
+<pre>
+  delay          delay time in seconds
+  defaultoption  used standard option if delay time is over
+</pre>
+<h2>Comments:</h2>
+<pre>
+  MENUDEFAULT sets a time delayed default option for a config.sys /
+  fdconfig.sys menu: If no key has been pressed during 'delay' seconds,
+  the default choice is activated. Pressing a key stops the countdown,
+  the kernel will wait infinitely for the user to make a selection. Note
+  that some virtual machines like Bochs can have broken (too fast) timing.
+  MENUDEFAULT is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    menucolor 15,1
+    MENU Choose wisely:
+    MENU
+    MENU 0)    normal driver (himem and emm386)
+    MENU 1)    alternative driver (himemx and jemm386)
+    MENUDEFAULT=0,5
+    0?DEVICE=A:\himem.exe
+    1?DEVICE=A:\himemx.exe
+    0?DEVICE=A:\emm386.exe
+    1?DEVICE=A:\jemm386.exe
+  The menu will wait 5 seconds. If no key is pressed in this time, 
+  option 0 is selected automatically. Menucolor 15,1 changes the 
+  colour to white text on blue background.
+    0 chooses himem.exe and emm386.exe, 
+    1 chooses himem.exe and jemm386.exe
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/menu.htm">menu</a>
+  <a href="../cnfigsys/menucol.htm">menucolor</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

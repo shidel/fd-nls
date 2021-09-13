@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: if</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: if</h1>
+<pre>
+  IF realiza el procesamiento condicional en programas por lotes.
+  IF es un comando de <a href="../batch/index.htm">PROGRAMAS POR LOTES</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+  Tambi&eacute;n se puede utiliar en la l&iacute;nea de comandos.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  IF [NOT] ERRORLEVEL Numero comando
+  IF [NOT] cadena1==cadena2 comando
+  IF [NOT] EXIST nombre_archivo comando
+     unidad          La letra de la unidad, p.ej. C:
+     ruta            El directorio, p.ej. \ejemplo\
+     nombre_archivo  El archivo, p.ej. texto.txt
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  NOT                  Especifica que comando del shell se tiene que
+                       llevar a cabo, s&oacute;lo se ejecuta si la condici&oacute;n es
+                       falsa. (Sin esto, el comando se ejecutar&aacute; si la
+                       condici&oacute;n es cierta)
+  ERRORLEVEL N&uacute;mero    Especifica una condici&oacute;n verdadera si se ejecuta el
+                       &uacute;ltimo programa devolviendo un c&oacute;digo de salida 
+                       igual o mayor que el n&uacute;mero especificado.
+  comando              Espcifica el comando a ejecutar si la condici&oacute;n se
+                       cumple.
+  cadena1==cadena2     Especifica una condici&oacute;n verdadera si el texto 
+                       especificado en las cadenas coinciden.
+  EXIST nombre_archivo Especifica una condici&oacute;n verdadera si el nombre del
+                       archivo especificado existe.
+</pre>
+<h2><a name="comment"></a>Comentarios:</h2>
+<pre>
+  <I>ERRORLEVEL</I> numero:   Los programas de DOS devuelven un n&uacute;mero cuando
+                       salen, que a veces contiene informaci&oacute;n sobre si el
+                       programa fue exitoso. Si el &uacute;ltimo programa para
+                       salir devolvi&oacute; el n&uacute;mero dado, entonces la 
+                       condici&oacute;n es verdadera.
+  cadena1==cadena2     Si las dos cadenas de caracteres son iguales,
+                       entonces la condici&oacute;n es verdadera.
+  exist [unidad][ruta] Si el archivo dado est&aacute; ah&iacute;, entonces la condici&oacute;n
+        nombre_archivo es verdadero.
+
+  IF es un comando interno de command.com y no necesita otro archivo para
+  que funcione.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN UN ARCHIVO .BAT / AUTOEXEC.BAT:
+    if exist c:\kernel.sys ECHO nucleo existe 
+                  (da un mensaje si el nucleo existe)
+    set A=freedos
+    set B=freedos
+    set C=otherdos
+    if %A%==%B% ECHO A y B son la misma cadena  
+                  (A y B son "freedos", por lo que aparecer&aacute; el mensaje)
+    if %A%==%C% ECHO A y C son la misma cadena
+                  (A es "freedos", C es "otherdos", entonces no apacerer&aacute;
+                  mensaje)
+    if not %A%==%C% ECHO A y C no son la misma cadena 
+                  (A es "freedos", C es "otherdos", ya que NO son el mismo
+                  mensaje, aparecer&aacute; el mensaje)
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">archivo por lotes</a>
+  <a href="../batch/choice.htm">choice</a>
+  <a href="../batch/goto.htm">goto</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 2003 <b>Robert Platt</b>, Modificado en 2007 por <b>W. Spiegl.</b>
+  Traducido en 2018 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+</pre></body></html>

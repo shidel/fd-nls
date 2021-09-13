@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: udma2.sys / udma2s.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: udma2.sys / udma2s.sys</h1>
+<pre>
+  UDMA2.SYS / UDMA2S.SYS are DOS hard-disk caching driver for UltraDMA
+  hard-disks.
+  UDMA2.SYS / UDMA2S.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  When FreeDOS is already running, you can load UDMA2.SYS / UDMA2S.SYS
+  later with <a href="../util/devload.htm">DEVLOAD</a>.
+  <b>UDMA2.SYS / UDMA2S.SYS are out of date. There is NO MORE support
+  by the author! You should use <a href="../base/uide.htm">UIDE.SYS</a> instead</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE = [path]UDMA2.SYS [/O] [/L] [/S] [...]
+  DEVICE = [path]UDMA2S.SYS [/L] [/S] [...]
+  DEVICEHIGH = [path]UDMA2.SYS [/O] [/L] [/S] [...]
+  DEVICEHIGH = [path]UDMA2S.SYS [/L] [/S] [...]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /O   For UDMA2.SYS only, enables output overlap. This REQUIRES an XMS
+       manager (<a href="../base/himemx.htm">HIMEMX</a>, etc.) and 128K of XMS memory. If /B is
+       also specified, or if XMS is not available, overlap will NOT
+       be enabled, as UDMA2.SYS must then use "DMA only" mode.
+  /L   Limits DMA to "low memory" below 640K. /L is REQUIRED to use
+       the UMBPCI upper-memory driver, or any similar drivers whose
+       upper-memory areas do not support DMA. If /L is specified, UDMA2.
+       SYS or UDMA2S.SYS must reside in LOW memory (as their command-
+       list is accessed via DMA), or the driver will ABORT loading!
+       /L causes I/O requests past 640K to go through the driver's XMS
+       buffer. If /B is specified with /L or if XMS memory is not
+       available, such I/O is "passed" to the BIOS for execution.
+  /S   For UDMA2.SYS, enables the driver local-stack for "DMA only" mode.
+       For UDMA2S.SYS, enables the local-stack for all cases. NOTE that
+       the two drivers handle /S differently! UDMA2S.SYS usually does
+       not enable a stack (for compatiblity with old versions!) and
+       requires /S whenever a stack is wanted. UDMA2.SYS always sets
+       a stack (and ignores /S) for normal or output-overlap usage,
+       so it requires /S merely for "DMA only" mode. /S is meant
+       for systems with one or more user programs which set "short"
+       run-time stacks. /S and /B are independent and both may be
+       specified together.
+  /B   Causes XMS memory to be IGNORED, for "backward compatibility".
+       /B forces UDMA2.SYS or UDMA2S.SYS to use "DMA only" mode. Thus, /B
+       cancels /O (UDMA2.SYS output overlap is not enabled), causes the
+       initialization "read tests" in UDMA2.SYS to be omitted, and also
+       affects /L as noted above.
+  /Mn  Specifies the MAXIMUM UltraDMA "mode" to be used by all disks,
+       where n is a number between 0 and 7, as follows:
+         0 = ATA-16,   16 MB/sec.     4 = ATA-66,   66 MB/sec.
+         1 = ATA-25,   25 MB/sec.     5 = ATA-100, 100 MB/sec.
+         2 = ATA-33,   33 MB/sec.     6 = ATA-133, 133 MB/sec.
+         3 = ATA-44,   44 MB/sec.     7 = ATA-166, 166 MB/sec.
+       Disks designed to a "mode" LESS than the given value will be
+       limited to their own highest "mode". At present, "mode 7"
+       ATA-166 is not yet implemented, but any driver CAN handle it
+       if UltraDMA disks ever use it.
+  /X   For UDMA2.SYS only, disables initialization "read tests". This
+       switch is a LAST-chance "scheme" of forcing UDMA2.SYS to load on
+       "problem" systems! Any errors detected by the "read tests"
+       should be CORRECTED, wherever possible!
+  For each switch, a dash may replace the slash, and lower-case letters
+  may be used.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  UDMA2.SYS is the most full-featured driver. It offers "output overlap"
+  which buffers all output and does NOT await output end, so user work
+  may overlap the DMA! Depending on the user's system and software,
+  output overlap can yield a significant speed boost. For any output
+  error or if a 400-msec timer expires, an error message will display.
+  Output overlap must be enabled with a /O in the CONFIG.SYS line that
+  loads UDMA2.SYS (see above for switch options).
+  UDMA2S.SYS is the PREFERRED "small driver", for systems not using out-
+  put overlap. It omits overlap and initialization "read tests", thus it
+  achieves an object-file size of 3072 bytes. All other capabilities
+  of the larger UDMA2.SYS (including an 80386 test) are retained.
+  UDMA2S.SYS uses the same 640 byte resident "core" as <a href="../base/udma.htm">UDMA.SYS</a> or
+  <a href="../base/udma.htm">UDMAJR.SYS</a>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  In CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FDDOS\BIN\UDMA2.SYS
+    DEVICEHIGH=C:\FDOS\BIN\UDMA2S.SYS
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../base/himemx.htm">himemx</a>
+ (<a href="../base/udma.htm">udma.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xdma.htm">xdma.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: xmgr.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: xmgr.sys</h1>
+<pre>
+  XMGR.SYS is a DOS driver that works as an XMS memory manager.
+  XMGR.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE [HIGH] = [path] XMGR.SYS [/B] [/Mn] [/Nnn] [/PA] [/Tn] [/W] [/Z]
+</pre>
+<h2>Options:</h2>
+<pre>
+  XMGR.SYS usually needs only its /B switch if "booting" with
+  <a href="../base/jemm386.htm">JEMM386</a>. XMGR.SYS switch options are as follows:
+  /B    Specifies "boot" mode. XMGR.SYS loads in temporary memory
+        until upper-memory is enabled by EMM386. Without /B,
+        XMGR.SYS will load stand-alone in low memory or directly
+        in upper-memory with UMBPCI.
+  /Mn   Specifies the temporary area used to load XMGR.SYS in
+        "boot" mode and used for UMBPCI upper memory I/O before
+        DOS can post a "workspace" buffer. Values are:
+          /M1 = 64K.    /M3 = 192K.   /M5 = 320K.   /M7 = 448K.
+          /M2 = 128K.   /M4 = 256K.   /M6 = 384K.   /M8 = 512K.
+        Without /M, /M5 is assumed and the 320K area will be used.
+        NOTE: A DOS system often may NOT load at address 0 up and
+        may leave temporary data anywhere in memory! /Mn changes
+        the temporary area to find a "safe" place for XMGR.SYS
+        to use. /M is ignored if XMGR.SYS loads stand-alone.
+  /Nnn  Specifies how many XMS "Handles" can be used by DOS programs.
+        The value nn may be 48, 80, or 128. If /N is omitted, 48
+        "Handles" are used and work fine for most systems. A big
+        system doing much XMS work may need 80 or 128 "Handles".
+  /PA    Specifies use or non-use of PS/2 Port 92h logic to handle the
+  /PN    system's "A20" line. /PA indicates "Always" use Port 92h
+         logic. /PN indicates "Never" use it and handle "A20" via
+         normal keyboard-port logic. If /P is omitted, XMGR "asks
+         the BIOS" if the system has Port 92h logic. If not, XMGR
+         will use normal "A20" logic. NOTE: If "A20" was enabled
+         by DOS before XMGR loads, XMGR does not handle it at all!
+  /Tn   Specifies the BIOS requests to use in getting extended memory
+        as follows:
+          /T0  Neither "E820h" nor "E801h" requests.
+          /T1  Memory-list requests only (Int 15h, AX=E820h).
+          /T2  A dual-area request only (Int 15h, AX=E801h).
+          /T3  "E820h" requests first, then an "E801h" request.
+          /T   can usually be omitted, which causes /T3 to be assumed.
+        In addition, XMGR.SYS always uses an old 64-MB request, to get
+        extended memory for /T0, or if the requests specified with
+        /T1 through /T3 are unsuccessful. Users may need to test
+        /T1 and /T2 separately, to see if their BIOS accepts them.
+        A pre-1994 BIOS may not "ignore" /T1 through /T3 properly and
+        may require /T0 to be used. For compatibility with older
+        QHIMEM drivers, /T4 through /T7 may be used and work the same
+        as /T0 through /T3.
+  /W    Specifies use of the DOS "workspace" buffer, for upper-memory
+        I/O if loading with UMBPCI. If /W is omitted, or if the
+        DOS system does not have proper workspace logic, XMGR.SYS
+        will set its own buffer in low memory. An EDR-DOS system must
+        OMIT this switch! Without UMBPCI, /W will be ignored.
+  /Z    For XMGR or UIDE only, limits their XMS moves to a maximum 2K
+        bytes in protected-mode, not 64K. /Z is ignored by real-mode
+        systems (UMBPCI etc.) and is not needed if JEMM386 or EMM386
+        handle protected-mode. Systems using other VCPI/DPMI/EMM
+        drivers must be TESTED, to see if /Z is needed by XMGR or UIDE
+        -- BAD schemes allowing NOT enough interrupts in an XMS move
+        may still exist! UIDE's old /N4 switch is the same as /Z and
+        can still be given. UIDEJR ignores /Z or /N4 and always
+        issues standard XMS calls.
+  For each switch, a dash may replace the slash, and lower-case letters
+  may be used.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  XMGR.SYS is a DOS driver that works as an XMS memory manager. It
+  supports V3.70+ UMBPCI by Uwe Sieber. After UMBPCI enables upper-
+  memory, XMGR.SYS can load there directly and provide both upper and
+  XMS memory for a DOS system. XMGR.SYS uses an "I/O catcher" with
+  UMBPCI, to intercept diskette or hard disk I/O above 640K. Such I/O
+  is done through a low memory area, to avoid DMA trouble in UMBPCI
+  "Shadow RAM". XMGR.SYS also supports V4.49 and V4.95 EMM386 (MS-DOS
+  V6.22 or V7.10). With <a href="../base/jemm386.htm">JEMM386</a>, XMGR.SYS using its /B switch can first
+  "boot" into temporary space. After <a href="../base/jemm386.htm">JEMM386</a> enables upper-memory,
+  XMGR.SYS loads there with no /B switch, copies all its "boot" data,
+  and takes-over XMS work. Only its XMS "Handles" table stays in low
+  memory, so EMM386 can always find them at fixed addresses. For a
+  small XMS-only system, XMGR.SYS can also load entirely in low memory.
+  For more information read "README.txt" in drivers.zip.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  In CONFIG.SYS / FDCONFIG.SYS:
+    SHELL=C:\DOS\COMMAND.COM C:\DOS /E:512 /P
+    DEVICE=C:\BIN\UMBPCI.SYS
+    DEVICE=C:\BIN\XMGR.SYS /W
+    DOS=HIGH,UMB
+    DEVICE=C:\BIN\JEMM386.EXE I=B000-B7FF X=C800-EFFF NOEMS  ;Optional
+    DEVICEHIGH=C:\BIN\UIDE.SYS /S500 /D:CDROM1               ;Or UIDEJR
+    DEVICEHIGH=C:\BIN\RDISK.COM /S250                        ;Optional
+        ..
+        ..  Etc.
+        ..
+</pre>
+<h2>See also:</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Jack Ellis, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

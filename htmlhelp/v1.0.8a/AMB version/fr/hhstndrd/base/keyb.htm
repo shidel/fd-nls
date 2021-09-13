@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : keyb</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : keyb</h1>
+<pre>
+  KEYB est une extension BIOS de localisation pour DOS.
+  KEYB peut &ecirc;tre consid&eacute;r&eacute; comme &eacute;tant un pilote de clavier qui
+  intercepte les routines BIOS de gestion du clavier pour adapter les
+  claviers non am&eacute;ricains au syst&egrave;me, et qui fournit d'autres facilit&eacute;s.
+  (NOTE : KEYB n'est pas un pilote de p&eacute;riph&eacute;rique &agrave; proprement parler
+  et n'est pas charg&eacute; avec DEVICE= dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> ; &agrave; la place vous
+  l'utiliserez comme un programme r&eacute;sident). Les donn&eacute;es n&eacute;cessaires
+  sont lues depuis un fichier de disposition de claviers, un fichier
+  KL.
+  Une disposition de clavier est identifi&eacute;e par deux &eacute;tiquettes, une
+  &eacute;tiquette de lettres qui est obligatoire (g&eacute;n&eacute;ralement une cha&icirc;ne de
+  deux lettres, comme GR, FR or SP) et un identifiant num&eacute;rique pour
+  distinguer les diverses variantes.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  KEYB  nomdisposition[,[CP][,nomfichier]] [/ID:nnn] [/E] [/9] [/I]
+        [/Dx] [/V] [/L=m] [/NOHI] [/B] [/S]
+  KEYB [/U]
+  KEYB /?
+</pre>
+<h2>Options :</h2>
+<pre>
+  Sans param&egrave;tre KEYB affichera des informations sur le KEYB
+                actuellement charg&eacute;.
+  nomdisposition Cha&icirc;ne d'identification.
+  /ID:nnn       Sp&eacute;cifie l'identifiant num&eacute;rique nnn.
+  CP            La page de code dans laquelle vous souhaitez d&eacute;marrer
+                KEYB (s'il est omis, DISPLAY.SYS et le syst&egrave;me sont
+                v&eacute;rifi&eacute;s).
+  nomfichier    Le fichier KL qui contient les informations pour la
+                disposition donn&eacute;e. S'il est omis, alors KEYBOARD.SYS
+                est essay&eacute;, sinon nomdisposition.KL
+  /E            Sp&eacute;cifie que le clavier est un clavier AT am&eacute;lior&eacute;
+                (ce commutateur est incompatible avec /9).
+  /9            Sp&eacute;cifie que les services de gestion int9h doivent
+                &ecirc;tre activ&eacute;s (ce commutateur est incompatible avec /E).
+  /I            Forces l'installation sur un pilote de clavier d&eacute;j&agrave;
+                existant.
+  /Dx           R&egrave;gle le caract&egrave;re de s&eacute;paration d&eacute;cimale &agrave; x.
+  /U            D&eacute;charge un KEYB auparavant charg&eacute; dans la m&eacute;moire.
+  /V            Verbeux : affiche des informations suppl&eacute;mentaires.
+  /L=m          Force l'utilisation d'un sous-mappage m, &agrave; condition
+                qu'il soit compatible avec la page de code actuelle.
+  /NOHI         &Eacute;vite &agrave; KEYB de charger des donn&eacute;es dans la m&eacute;moire
+                haute, en les chargeant sous 640 Ko.
+  /B            D&eacute;sactive les alertes audibles (bip).
+  /S            Mode sans &eacute;chec: n'autorise pas les collections de
+                disposition de clavier non ferm&eacute;es et bloque les
+                cha&icirc;nes et autres commandes critiques.
+  /?            Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Vous pouvez programmer FreeDOS pour que le clavier soit configur&eacute; au
+  moment du d&eacute;marrage au moyen d'<a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+  Ajoutez la ligne de commande &agrave; votre AUTOEXEC.BAT pour ce faire.
+  Vous pouvez cr&eacute;er vos propres fichiers de disposition personnalis&eacute;e
+  en utilisant l'outil de compilation <a href="../base/keyb-kc.htm">KC</a>.
+  De fa&ccedil;on alternative, vous pouvez utiliser un fichier de donn&eacute;es KL
+  d&eacute;j&agrave; pr&eacute;par&eacute; depuis le paquet de fichiers KL (cf. r&eacute;f&eacute;rences
+  ci-dessous). KEYB est fourni avec le paquet KEYB200.
+  FD-KEYB est compatible avec les <a href="../batch/if.htm#comment">CODES DE SORTIE (ERRORLEVEL)</a>
+  de MS-KEYB. Cependant, comme un grand nombre de causes d'erreurs
+  possibles est pris en compte, une num&eacute;rotation alternative des
+  erreurs est affich&eacute;e sur l'&eacute;cran au moment du chargement.
+
+  ExitCode  KEYB ErrorCode  Description de l'erreur
+(code sortie) (code erreur)
+========================================================================
+    0        0             Ex&eacute;cut&eacute; avec succ&egrave;s
+
+                    LANGUE INVALIDE, PAGE DE CODE OU SYNTAXE
+                    INCORRECTE
+    1        3        Identifiant de clavier nomdisposition manquant.
+    1       11        Modificateur ou commutateur non valide.
+    1       14        Le fichier sp&eacute;cifi&eacute; ne contient pas d'informations
+                      pour cette disposition/cet identifiant.
+    1       21        Le sous-mappage requis ne correspond pas avec la
+                      page de code actuelle : vous utilisez /L=m mais
+                      le sous-mappage requis ne correspond pas &agrave; la
+                      page de code actuelle.
+
+                    FICHIER DE D&Eacute;FINITION DE CLAVIER MAUVAIS
+                    OU MANQUANT
+    2        4        Le fichier sp&eacute;cifi&eacute; n'a pu &ecirc;tre ouvert.
+    2       13        Fichier invalide ou corrompu.
+    2       19        Version incompatible du descripteur de clavier
+                      (le fichier de compilation ou fichier KL sont
+                      d'une version incompatible).
+    2       20        Somme de contr&ocirc;le invalide pour le bloc de
+                      donn&eacute;es : le fichier de compilation est corrompu.
+    3       10        Le tableau de clavier n'a pu &ecirc;tre cr&eacute;&eacute;.
+    4       16        Erreur de communication avec le p&eacute;riph&eacute;rique CON.
+    5       17        La page de code n'a pas &eacute;t&eacute; pr&eacute;par&eacute;e.
+    6       12        La page de code n'a pas &eacute;t&eacute; trouv&eacute;e dans le
+                      fichier de d&eacute;finition du clavier.
+
+                    KEYB OU VERSION INCOMPATIBLE TROUV&Eacute;S
+    7        1        Version diff&eacute;rente de KEYB install&eacute;e.
+    7        2        Pilote de clavier incompatible install&eacute;.
+    7       18        Version incompatible de DR-KEYB install&eacute;.
+
+  Non pr&eacute;sent dans MS-KEYB :
+
+                    LA PARTIE R&Eacute;SIDENTE DE KEYB N'A PU &Ecirc;TRE ENLEV&Eacute;E
+    8        5        La partie r&eacute;sidente de KEYB n'a pu &ecirc;tre enlev&eacute;e.
+    8        8        KEYB n'a PAS &eacute;t&eacute; install&eacute;.
+
+                    PROBL&Egrave;ME INATTENDU : VISITEZ LE SITE DE KEYB POUR
+                    UNE VERSION PLUS R&Eacute;CENTE OU CONTACTEZ L'AUTEUR
+    9        6        &Eacute;chec interne : espace m&eacute;moire global trop petit
+    9        7        KEYB n&eacute;cessite (encore) un AT/286 ou plus r&eacute;cent.
+    9        9        La surcharge n'est (toujours) pas prise en charge.
+    9       15        Fichier KL trop grand ((encore) 3Ko maximum).
+  ========================================================================
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  KEYB SP,858        Charge KEYB avec la disposition pour la
+                     distribution espagnole et la page de code 858
+  KEYB GR,,GR.KL /E  Charge la disposition de clavier allemand pour
+                     KEYB, informant explicitement KEYB que nous
+                     utilisons un clavier am&eacute;lior&eacute;.
+                     Utilisez cela si KEYB ne peut pas identifier la
+                     pr&eacute;sence d'un clavier am&eacute;lior&eacute;.
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 Aitor SANTAMARIA MERINO.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

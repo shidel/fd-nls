@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Networking FreeDOS - Loading the TCP/IP Kernel
+(Stack)</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top"></a>Networking FreeDOS - Loading the TCP/IP
+Kernel (Stack)</h1>
+<h2><a name="zzz"></a>Overview</h2>
+<pre>
+  Modern operating systems have their own <a href="../network/tcpip.htm">TCP/IP</a> kernel already built-in:
+  Microsoft systems come with "Winsock" since Windows 95. In GNU/Linux
+  the TCP/IP stack is part of the Linux kernel. DOS however comes without
+  kernel. So after we had installed our packet driver, we have to give
+  the TCP/IP kernel a thought.   
+</pre>
+<h2><a name="aaa"></a>How it works</h2>
+<pre>
+  The TCP/IP kernel is also called "stack" or "protocol stack", because
+  it consists of two layers: IP and TCP. IP runs on top of the hardware
+  driver and TCP on top of IP, providing an interface to <a href="../network/network.htm">network</a>
+  applications. For DOS different types of TCP/IP kernels are available.
+    (Picture of TCP/IP kernel)
+  As we see in the figure above, they can either work as external
+  programs or they are already built into the applications.
+    * An external TCP/IP kernel is typically started by <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> or
+      by a batch-file. It stays memory resident, so it can answer ping
+      requests for instance.
+    * Other <a href="../network/network.htm">network</a> applications come with TCP/IP kernel functions
+      already built-in and do not need an external TSR kernel. An
+      application with built-in TCP kernel has the advantage that it
+      doesn't need another driver which consumes precious DOS memory.
+      On the other hand <a href="../network/tcpip.htm">TCP/IP</a> functions are limited to those of the
+      <a href="../network/network.htm">network</a> application and are only provided as long as it runs. 
+</pre>
+<h2><a name="bbb"></a>Configuration needed</h2>
+<pre>
+  Every TCP/IP kernel must be configured with general information about
+  the <a href="../network/network.htm">network</a>, as IP address, netmask, nameservers and gateway, or it
+  must be told to get this information via a BOOTP or DHCP server.
+</pre>
+<h2><a name="ccc"></a>Examples</h2>
+<pre>
+  Examples for external TCP/IP kernels for DOS are
+    * the free Trumpet TCP kernel <a href="../network/ntcpdrv.htm">NTCPDRV</a>.EXE,
+    * the TCP/IP kernel of <a href="../network/novell.htm">Novell</a> NetWare TCPIP.EXE,
+    * Microsoft <a href="../network/msclient.htm">MS client's</a> TCPTSR.EXE and
+    * FTP Software Inc.'s ETHDRV.EXE. 
+  Examples for TCP/IP kernels built into DOS applications are
+    * <a href="../network/wattcp.htm">WatTCP</a>, which is f.i. already built-in the graphical web browser
+      "<a href="../network/tcpip_ap.htm#ccc">Arachne</a>",
+    * the <a href="../network/mtcp.htm">mTCP</a> kernel, written in 2009,
+    * the <a href="../network/history.htm#bbf">KA9Q</a> kernel which is part of that program,
+    * the NCSA <a href="../network/history.htm#bbg">Telnet</a> kernel which is built into the applications
+      included in this suite,
+    * the <a href="../network/history.htm#bbh">CUTCP</a> kernel and
+    * the University of Minnesota stack, which is part of "<a href="../network/history.htm#bbi">MINUET</a>". 
+  <b>More than half of the DOS networking applications available use the
+  <a href="../network/wattcp.htm">WatTCP</a> kernel</b> says Jeffrey L. Hayes from the retrocomputing website
+  <b>http://www.oldskool.org (*01)</b> (see: <b>ftp://ftp.oldskool.org/pub/tvdog/
+  internet/readme.txt (*02)</b>).
+  So most of us will not have to install a TCP/IP kernel at all. Instead
+  we only have to care about the WATTCP.CFG configuration file for those
+  networking applications.
+  The next chapter takes a closer look at <a href="../network/wattcp.htm">WatTCP</a> and its successor
+  <a href="../network/wattcp.htm">Watt-32</a>. Then we will examine <a href="../network/ntcpdrv.htm">NTCPDRV</a> which is the only free external
+  TCP/IP kernel available. Afterwards we briefly look at other external
+  TCP/IP kernels.
+    * [<a href="../network/wattcp.htm">WatTCP/Watt-32</a>]
+    * [<a href="../network/ntcpdrv.htm">TCPDRV</a>]/[<a href="ntcpdrv.htm">NTCPDRV</a>]
+    * [<a href="../network/mtcp.htm">mTCP</a>]
+    * [<a href="../network/ot_tcpip.htm">Others</a>]
+
+  <b>(*01) OK</b>
+  <b>(*02) OK</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), modified 2010
+  and 2020 by W.Spiegl.</b>
+  For more information <a href="../network/intro.htm#ddd">see here</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

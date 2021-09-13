@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: fc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: fc</h1>
+<pre>
+  FC vergleicht zwei Dateien oder Dateis&auml;tze, im Text- oder Bin&auml;rmodus,
+  und zeigt die Unterschiede zwischen ihnen an.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FC [Schalter] [Laufwerk1:][Pfad1]Dateiname1 [Laufwerk2][Pfad2]
+     Dateiname2 [Schalter]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /A    Nur die erste und letzte Zeile von mehreren Abweichungen in
+        Folge zeigen.
+  /B    Bin&auml;ren Vergleich durchf&uuml;hren.
+  /C    Gross- und Kleinschreibung nicht ber&uuml;cksichtigen.
+  /L    Dateien als ASCII Text vergleichen.
+  /LBn  Anzeige der zusammenh&auml;ngenden Unterschiede auf n Textzeilen
+        beschr&auml;nken.
+  /Mn   Anzeige auf n Bytes bei bin&auml;rem Vergleich beschr&auml;nken.
+        (Standard = 20, 0 = unbegrenzt, /M = /M0).
+  /N    Zeilennummern beim Textvergleich anzeigen.
+  /Q    Zeige die Liste der Unterschiede nicht an.
+  /R    Zeige einen genauen Bericht am Ende an (immer aktiv wenn /S
+        benutzt wird).
+  /S    Dateien in Unterverzeichnissen mit einbeziehen.
+  /T    Tabulatoren nicht durch Leerzeichen ersetzen.
+  /U    Zeige die Namen der Dateien, die kein Gegenst&uuml;ck haben.
+  /W    Tabulatoren und Leerzeichen beim Textvergleich komprimieren.
+  /X    Umgebungszeilen beim Textvergleich nicht anzeigen.
+  /nnn  Mindestanzahl der zusammenh&auml;ngenden &Uuml;bereinstimmungen auf nnn
+        Zeilen f&uuml;r die Resynchronisation des Vergleichs festlegen.
+  /?    Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  FC unterst&uuml;tzt <a href="../util/doslfn.htm">LANGE DATEINAMEN</a> und
+  verwendet diese automatisch, wenn das Betriebssystem lange Dateinamen
+  unterst&uuml;tzt.
+  FC verwendet bei Dateien mit .EXE, .COM, .SYS, .OBJ, .BIN, .DLL und
+  .LIB -Endung standardm&auml;&szlig;ig den Bin&auml;rmodus.
+  Im Bin&auml;rmodus zeigt FC den Offset in der Datei der unterscheidenden 
+  Bytes, ihren Wert in Hexadezimal und, wenn es ASCII-druckbare Zeichen
+  sind, ihr ASCII-Zeichen.
+  Standardm&auml;&szlig;ig h&auml;lt der Bin&auml;rvergleich nach 20 Unterschieden, aber
+  der Wert kann durch den /M Schalter ver&auml;ndert werden. /M0 bedeuted
+  "unbegrenzte Anzahl von Unterschieden". /M wird als /M0 interpretiert.
+  Eine Begrenzung dieses Programmes ist, da&szlig; im Textmodusdateivergleich
+  nur die ersten 32.765 Zeilen vergleichen werden; die verbleibenden
+  Zeilen werden ignoriert. Die Zeilenl&auml;nge ist virtuell unbegrenzt. 
+  FC unterst&uuml;tzt NLS (national language support - nationale Sprach-
+  unterst&uuml;tzung).
+  FC hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    0  Alle die Dateien sind identisch
+    1  Mindestens ein Dateienpaar differiert
+    2  Ung&uuml;ltiger Parameter in der Kommandozeile
+    3  Datei nicht gefunden
+    4  Fehler beim Datei(en) &ouml;ffnen
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  FC /L /M0 C:\ foo.txt D:\foo.txt
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/comp.htm">comp</a>
+  <a href="../base/diskcomp.htm">diskcomp</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../util/md5sum.htm">md5sum</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1999 Maurizio Spagni, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

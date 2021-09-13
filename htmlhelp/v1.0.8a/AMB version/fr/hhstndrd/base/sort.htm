@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : sort</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : sort</h1>
+<pre>
+  SORT trie un fichier ou l'entr&eacute;e &agrave; afficher.
+  Le fichier ou l'entr&eacute;e n'est pas modifi&eacute;e.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  sort [/R] [/N] [/+num] [/A] [/?] [lecteur][chemin]nomfichier
+  commande | sort [/R] [/N] [/A] [/+num] [/?]
+       lecteur     La lettre du lecteur, par exemple C:
+       chemin      Le r&eacute;pertoire, par exemple \exemple\
+       nomfichier  Le pilote (fichier) &agrave; charger, par exemple
+                   nonordonn&eacute;.txt
+</pre>
+<h2>Options :</h2>
+<pre>
+  /R     Trie dans l'ordre inverse (Z - A).
+  /A     Trie par l'ordre ASCII, ignore <a href="../cnfigsys/country.htm">COUNTRY</a>.
+  /N     Active le NLS / l'ordre de tri bas&eacute; sur <a href="../other/cpidos.htm">LA PAGE DE CODE</a> /
+         <a href="../cnfigsys/country.htm">COUNTRY</a> (pays).
+  /+num  D&eacute;bute le tri au num&eacute;ro de colonne donn&eacute; sur chaque ligne de
+         texte. Valeur par d&eacute;faut=1.
+  /?     Affiche l'aide.
+</pre>
+<h2>Commentaires:</h2>
+<pre>
+  SORT ne modifie pas le fichier d'entr&eacute;e, seulement la sortie.
+  SORT prend en charge le NLS (support des langues nationales).
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Affiche le r&eacute;pertoire courant dans l'ordre alphab&eacute;tique :
+    dir | sort
+  Trie le fichier et l'&eacute;crit sur un autre fichier :
+    sort nonordonn&eacute;.txt &gt; ordonn&eacute;.txt
+    sort           -ENTR&Eacute;E-   (alternative : sort /+2)
+    this           -ENTR&Eacute;E-
+    is             -ENTR&Eacute;E-
+    a              -ENTR&Eacute;E-
+    short          -ENTR&Eacute;E-
+    sentence       -ENTR&Eacute;E-
+  (CTRL-Z)  (sort de la commande et l'ex&eacute;cute)
+    donne :                tri&eacute; par la seconde lettre de chaque ligne :
+    a                         a
+    is                        sentence
+    sentence                  this
+    short                     short
+    this                      is
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../other/cpidos.htm">codepage</a>
+  <a href="../base/more.htm">more</a>
+  <a href="../command/type.htm">type</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis &agrave; jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

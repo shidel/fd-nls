@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: shsucdx</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: shsucdx</h1>
+<pre>
+  SHSUCDX es un sustituto de redirector de CD-ROM descargable para
+  MSCDEX. Admite hasta 10 unidades. Cada unidad est&aacute; almacenada en un
+  solo sector y las &uacute;ltimas 10 entradas est&aacute; almacenada en un solo sector
+  y las &uacute;ltimas 10 entradas de directorio se almacenan en cach&eacute;. A cada
+  unidad de cada controlador se le puede asignar una letra de unidad
+  espec&iacute;fica.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  shsucdx /D[:][?|*]controlador[,[letra][,[unidad][,[max]]]]
+          [interruptores]
+        CONTROLADOR es el nombre del controlador de dispositivo 
+          instalado para controlar la unidad de CD-ROM. Prefijar el
+          controlador con '?' lo ignorar&aacute; en silencio si no existe
+          (o si no es realmente un CD-ROM); el prefijo '*' tambi&eacute;n
+          lo ignorar&aacute;, pero se reservar&aacute; una unidad (ver m&aacute;s abajo).
+        LETRA es la primera letra de unidad que se asigna a las
+          unidades en este controlador. El valor predeterminado es la
+          primera letra disponible. Nota: las letras de unidad
+          asignadas a unidades posteriores siempre ser&aacute;n m&aacute;s altas que
+          las asignadas a unidades anteriores.
+        UNIDAD es la primera unidad en este controlador que se le
+          asigna una unidad. La unidad 0 es la predeterminada.
+        MAX es el n&uacute;mero m&aacute;ximo de unidades a este controlador para
+          asignar unidades. El valor predeterminado es todas las
+          unidades (o todas las unidades restantes, si se da UNIDAD).
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /D  Controlador: Esta opci&oacute;n se utiliza para especificar el nombre del
+      contorlador del dispositivo. Tambi&eacute;n puede indicar qu&eacute; unidad(es)
+      deben asignarse y a qu&eacute; letra. Manipulaci&oacute;n de unidades: en el
+      momento de la instalaci&oacute;n, /D tambi&eacute;n se puede utilizar para
+      reservar espacio para unidades adicionales. Use un solo d&iacute;gito 
+      para indicar cu&aacute;ntas unidades se deben reservar (por ejemplo: /D1).
+      (Si tiene un nombre de controlador de dispositivo con un solo
+      d&iacute;gito, use el prefijo '?'). Despu&eacute;s de la instalaci&oacute;n, la misma
+      opci&oacute;n eliminar&aacute; las unidades que se asignaron por &uacute;ltima vez. Es
+      posible especificar ambas formas de /D, en cuyo caso se eliminar&aacute;n
+      las unidades actuales y luego se agregar&aacute;n las nuevas unidades.
+      Solo puede usar una letra de unidad que sea m&aacute;s peque&ntilde;a o incluso
+      con la letra en <a href="../cnfigsys/lastdrv.htm">LASTDRIVE</a> / <a href="../cnfigsys/lastdrvh.htm">LASTDRIVEHIGH</a>.
+  /L  Letra: esta opci&oacute;n es una alternativa al componente LETRA de /D,
+      que debe seguir (es decir: /D:controlador /L:letra). Tambi&eacute;n se
+      puede usar para devolver el n&uacute;mero de unidades instaladas (/L:0,
+      devolver&aacute; 255 si no est&aacute; instalado) y la letra de cada unidad
+      asignada (/L:1, /L:2, etc., con A:=1 y 255 si la unidad no est&aacute;
+      asignada). Solo puede usar una letra de unidad que sea m&aacute;s peque&ntilde;a
+      o incluso con la letra en <a href="../cnfigsys/lastdrv.htm">LASTDRIVE</a> / <a href="../cnfigsys/lastdrvh.htm">LASTDRIVEHIGH</a>.
+  /C  Utiliza memoria convencional en lugar de alta.
+  /V  Estad&iacute;sticas de memoria: cuando esta opci&oacute;n se utiliza en la
+      instalaci&oacute;n, se mostrar&aacute; un resumen del uso de la memoria. Este
+      resumen incluye:
+        Est&aacute;tico   C&oacute;digo y variable
+        Din&aacute;mico   Datos para cada unidad y redondeo de p&aacute;rrafo
+        Total      Uso general de memoria
+      Informaci&oacute;n: cuando se usa con /?, o despu&eacute;s de la instalaci&oacute;n,
+      esta opci&oacute;n muestra las opciones de compilaci&oacute;n y tiempo de
+      ejecuci&oacute;n de SHSUCDX. Esta informaci&oacute;n incluye:
+        8086/386         El procesador m&iacute;nimo requerido
+        Forma de CD root TRUENAME devolver&aacute; \\D.\A.\ en lugar de D:\
+        Sierra alta      El formato original para el sistema de 
+                         archivos de CD
+        Joliet           El formato de Windows para nombres largos
+        Imagen en CD     Permite el acceso a una imagen que est&aacute; en un CD
+  /&tilde;  Uso de Tilde: el est&aacute;ndar ISO permite que los CD tengan nombres de
+      hasta 31 caracteres y Joliet puede tener nombres de hasta 64
+      caracteres. Cuando esto se reduce a 8.3 para DOS, puede generar
+      entradas duplicadas. Esta opci&oacute;n eliminar&aacute; la duplicaci&oacute;n agregando
+      un n&uacute;mero inclinado despu&eacute;s del nombre (similar a lo que hace
+      Windows). Por defecto, tildes est&aacute;n apagados. Esta opci&oacute;n tambi&eacute;n
+      est&aacute; disponible despu&eacute;s de la instalaci&oacute;n. Por si solo alternar&aacute; el
+      estado (es decir, se las tildes est&aacute;n actualmente activadas, /&tilde; las
+      desactivar&aacute; y viceversa). Tildes se puede activar o desactivar 
+      expl&iacute;citamente agregando un signo '+' o '-' (es decir: /~+ activar&aacute;
+      tildes, independientemente del estado actual). No tiene estos
+      problemas cuando utiliza el programa <a href="../util/doslfn.htm">DOSLFN</a>.
+  /R  Elimina el atributo de solo lectura.
+  /I  Instale de todos modos, incluso si hay otro redirector presente.
+  /U  Descarga el controlador SHSUCDX de la memoria.
+  /Q  Tranquilo. Impide la visualizaci&oacute;n del banner de inicio de sesi&oacute;n
+      (aviso de copyright).
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  SHSUCDX tiene los siguientes <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+       0  Desinstalado, ayuda, conjunto de opciones
+    1-32  N&uacute;mero de unidad de la primera unidad instalada (A=1)
+     246  Opci&oacute;n inv&aacute;lida o desconocida
+     247  No se puede desinstalar
+     248  No hay suficiente memoria
+     249  No hay unidades asignadas (es decir, no est&aacute; instalado)
+     250  No hay letras de unidad disponibles
+     251  La unidad en el controlador no existe
+     252  Controlador inv&aacute;lido o inexistente
+     253  Ya instalado
+     254  Versi&oacute;n no compatible de DOS
+     255  386 requerido
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=XCDROM.SYS /D:SHSU001
+  EN AUTOEXEC.BAT:
+    SHSUCDX /D:SHSU001
+
+  Ejemplo con varias unidades de CD-ROM:
+  En CONFIG.SYS /FDCONFIG.SYS:
+
+    MENU 1.    FreeDOS
+    MENU 2.    FreeDOS  + IDE CD-ROM (XDROM)
+    MENU 3.    FreeDOS  + USB CD-ROM (NOVAC)
+    MENU 4.    FreeDOS  + ASPI CD-ROM  (SCSI AIC-75XX 78XX)
+    MENU 5.    FreeDOS  + IDE CD-ROM + USB CD-ROM + ASPI CD-ROM
+    lastdrivehigh=U
+    25?DEVICEHIGH=\fdos\bin\xcdrom.sys /D:IDE-CD
+    35?DEVICEHIGH=\fdos\drivers\usb\usbaspi.sys
+    35?DEVICEHIGH=\fdos\drivers\usb\usbcd.sys /D:USB-CD
+    45?DEVICEHIGH=\fdos\drivers\aspi\aspi8dos.sys
+    45?DEVICEHIGH=\drivers\scsi\aspicd.sys /D:ASPICD
+
+  En AUTOEXEC.BAT:
+    SHSUCDX /D:IDE-CD,R /D:*ASPICD,S /D:?USB-CD,U /L:0
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+  <a href="../cnfigsys/lastdrv.htm">lastdrive</a>
+  <a href="../cnfigsys/lastdrvh.htm">lastdrivehigh</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-2004 Robert Platt, modificado en 2011 
+  por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

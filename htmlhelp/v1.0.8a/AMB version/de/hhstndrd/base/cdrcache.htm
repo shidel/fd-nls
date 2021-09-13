@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: cdrcache.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: cdrcache.sys</h1>
+<pre>
+  CDRCACHE.SYS ist ein CD-Laufwerk Zwischenspeicherprogramm. Es ver-
+  bessert die Laufwerksperformance. Es setzt XMS Speicher und mindestens
+  einen 386er Computer voraus.
+  CDRCACHE.SYS mu&szlig; in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen werden.
+  Alternativ kann CDRCACHE.SYS w&auml;hrend des Betriebes mit <a href="../util/devload.htm">DEVLOAD</a>
+  nachtr&auml;glich geladen werden.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  In der config.sys entweder:
+    device=cdrcache.sys Ger&auml;t Name cachesize
+  oder:
+    devicehigh=cdrcache.sys Ger&auml;t Name cachesize
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Ger&auml;t     Der gleiche Name f&uuml;r das Ger&auml;t, das Sie vorher mit Ihrem 
+             CD-ROM-Ger&auml;tetreiber geladen haben. 
+  Name       Ein neuer Name, den Sie an shsucdx in der autoexec.bat
+             anstelle von Ger&auml;t weitergeben werden.
+  cachesize  Gibt die Cachepuffergr&ouml;&szlig;e in Kilobytes an. Der
+             Cache wird im XMS Speicher abgelegt.
+             Minimaler Wert ist 128.
+             Maximaler Wert ist 65280.
+             Werte unter 100 sind aus Kompatibilit&auml;tsgr&uuml;nden
+             zu vorhergehenden Versionen von CDRCACHE.SYS g&uuml;ltig.
+             Bei Werten unter 100 wird die Gr&ouml;&szlig;e als Mehrfaches
+             von 0,25 MB interpretiert.
+  Nach dem Laden k&ouml;nnen Sie den Treiber wie folgt kontrollieren:
+  Syntax:
+    echo Befehl &gt; Name
+  Befehl:
+    F     Leert den Cache.
+    S     Zeigt die Statistik an.
+    I     Zeigt die Statistik mit zus&auml;tzlichen technischen Informationen.
+    C     Loescht die Statistik.
+    Q     Stiller Modus.
+    N     Normale Ausgabe.
+    V     Umfangreiche Ausgabe / Spurmodus.
+    0     Beendet das Cachen.
+    1     Setze das Cachen fort (z.B. nach einem Stop).
+    ?     Zeigt den Hilfetext.
+    Name  Der Parameter, der an CDRCACHE.SYS weitergegeben wurde
+          (siehe Beispiel).
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Laden Sie CDRCACHE.SYS NACHDEM Sie Ihren CD-ROM-Ger&auml;tetreiber geladen
+  haben (in der Regel uide.sys).
+  Nachdem CDRCACHE.SYS (2003) auf <a href="../base/lbacache.htm">LBACACHE.SYS</a> basiert, lesen Sie
+  bitte die LBAcache.sys Dokumentation f&uuml;r zus&auml;tzliche technische /
+  programmiererische Details.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  In der config.sys / fdconfig.sys:
+    DEVICE=c:\fdos\bin\xcdrom.sys /D:FDCD0000
+    DEVICE=c:\fdos\bin\CDRCACHE.SYS FDCD0000 CDRCACH$ 2048
+  dann in der autoexec.bat:
+    c:\fdos\bin\shsucdx /D:CDRCACH$
+  Dies weist einen 2.048 KB (2 MB) gro&szlig;en Cachepuffer f&uuml;r ein
+  einzelnes IDE CD-Laufwerk zu.
+    echo F &gt; cdrcach$    (leert den Cache)
+    echo SCF &gt; cdrcach$  (Zeigt die Statistik, l&ouml;scht danach die
+                         Statistik und leert danach den Cache)
+    echo S &gt; cdrcach$    (zeigt nur die Statistik)
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+  <a href="../base/lbacache.htm">lbacache</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+  <a href="../base/tickle.htm">tickle</a>
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

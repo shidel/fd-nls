@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: sort</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: sort</h1>
+<pre>
+  SORT sortiert eine Datei oder Eingabe f&uuml;r die Ausgabe.
+  Die Eingangsdatei wird nicht ver&auml;ndert.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  sort [/R] [/N] [/+num] [/A] [/?] [Laufwerk][Pfad]Dateiname
+  command | sort [/R] [/N] [/A] [/+num] [/?]
+       Laufwerk   Der Laufwerksbuchstabe, z.B: C:
+       Pfad       Der zu w&auml;hlende Pfad, z.B.: \Beispiel\
+       Dateiname  Der zu ladende Treiber (Dateiname), z.B. geordnet.txt
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /R     Sortiert in umgekehrter Reihenfolge (Z - A).
+  /A     Sortiert nach ASCII, ignoriert <a href="../cnfigsys/country.htm">COUNTRY</a>.
+  /N     Erm&ouml;glicht NLS / <a href="../other/cpidos.htm">CODEPAGE</a> / <a href="../cnfigsys/country.htm">COUNTRY</a> basierte Sortier
+         reihenfolge.
+  /+num  Fange mit dem Sortieren bei Spalte num jeder Textzeile an.
+         Standard=1.
+  /?     Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Die zu sortierende Datei wird durch den Befehl nicht ver&auml;ndert, nur 
+  ggfs. die Ausgabedatei.
+  SORT unterst&uuml;tzt NLS (national language support - nationale Sprach-
+  unterst&uuml;tzung).
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  Zeigt das aktuelle Verzeichnis in alphabetischer Reihenfolge:
+    dir |sort  
+  Sortiert eine Datei und schreibt sie in eine andere Datei:
+    sort unordered.txt &gt; ordered.txt  
+    sort           -ENTER-   (alternativ: sort /+2)
+    this           -ENTER-
+    is             -ENTER-
+    a              -ENTER-
+    short          -ENTER-
+    sentence       -ENTER-
+  (CTRL-Z)  (beendet den Befehl und f&uuml;hrt ihn aus)
+    gibt aus:                 sortiert den zweiten Buchstaben
+                              pro Zeile:            
+    a                         a
+    is                        sentence 
+    sentence                  this
+    short                     short
+    this                      is
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../other/cpidos.htm">codepage</a>
+  <a href="../base/more.htm">more</a>
+  <a href="../command/type.htm">type</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

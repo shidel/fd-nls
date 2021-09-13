@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: diskcopy</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: diskcopy</h1>
+<pre>
+  DISKCOPY copia el contenido de un disquete a un segundo disquete.
+  Tambi&eacute;n crea, copia y restaura archivos de imagen de disquete. Las
+  im&aacute;genes pueden ser utilizadas por <a href="../util/shsufdrv.htm">SHSUFDRV</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  Diskcopy [fuente][destino][/a][/v][/m][/i][/o][/1][/x][/d][/r][/f][/t]
+  Diskcopy [/?]
+           fuente:      unidad o archivo de imagen para copiar.
+           destino:     unidad o archivo de imagen para copiar.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /a  da una advertencia audible para la acci&oacute;n del usuario.
+  /v  verificar lecturas y escrituras.
+  /m  solo usa memoria para copia de disco.
+  /i  muestra el uso de memoria (informativo).
+  /o  sobrescribir el destino, si ya existe (en el caso de un archivo de
+      imagen).
+  /x  siempre sale autom&aacute;ticamente.
+  /d  supone que el disco ya est&aacute; en la unidad.
+  /r  entra en modo de recuperaci&oacute;n de error de disco.
+  /f  realiza una copia r&aacute;pida de disco (solo copia sectores llenos).
+  /t  no pregunte al disco de destino si copia el archivo de imagen al
+      mismo disco.
+  /1  no-op incluido para compatibilidad con MS-DOS. En otras versiones
+      de DOS, esto copi&oacute; solo el primer lado.
+  /?  Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Un signo menos despu&eacute;s de una opci&oacute;n deshabilita la opci&oacute;n. Si el
+  origen y/o el destino es una unidad, por ejemplo "a:", entonces se
+  trata como un disquete, de lo contrario, se trata como un archivo de
+  imagen.
+  El origen y el destino pueden ser la misma unidad; DISKCOPY primero
+  copiar&aacute; de la fuente y luego le pedir&aacute; que cambie los disquetes. Luego
+  escribir&aacute; al destino.
+  DISKCOPY utiliza el formato rawrite de Linux para sus archivos de
+  imagen. Por lo tanto, Rawrite puede usar los archivos de imagen de
+  DISKCOPY y viceversa.
+  DISKCOPY no puede leer ni sobrescribir los disquetes de Linux. Sin
+  embargo, puede escribir una imagen de disquete de Linux en un disco de
+  DOS. DISKCOPY admite NLS (soporte de idioma nacional).
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  diskcopy a: a:            Copia de un disquete a otro
+  diskcopy a: c:\image.img  Copia el disquete a una imagen en C:\image.img
+  diskcopy c:\image.img a:  Copia la imagen en un disquete
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../command/copy.htm">copy</a>
+  <a href="../base/diskcomp.htm">diskcomp</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../util/shsufdrv.htm">shsufdrv</a>
+  <a href="../base/xcopy.htm">xcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

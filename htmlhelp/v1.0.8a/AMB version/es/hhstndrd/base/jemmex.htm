@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: jemmex</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: jemmex</h1>
+<pre>
+  JEMMEX es un administrador de memoria expandido que ya tiene un XMM
+  incluido. JEMMEX tiene que cargarse en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  DEVICE=[unidad][ruta][jemmex.exe] [opciones]
+         unidad  La letra de unidad, p. ej. C:
+         ruta    El directorio, p. ej. \ejemplo\
+  o ejec&uacute;telo desde la l&iacute;nea de comando:
+  [unidad][ruta][jemmex.exe] [opciones]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+ +A20/NOA20     A20-desactiva la emulaci&oacute;n activado/desactivado (opci&oacute;n
+                predeterminada activada).
+  A20METHOD:m   Establecer el m&eacute;todo de cambio A20. Los valores posibles
+                para m son KBC, PS2, BIOS, FAST, PORT92 y ALWAYSON.
+  ALTBOOT       Use una estrategia de reinicio alternativa.
+  B=####        Especifique la direcci&oacute;n del segmento m&aacute;s bajo para la
+                banca EMS (predeterminado=4000).
+  D=###         Establece el tama&ntilde;o del b&uacute;fer DMA en kB 
+                (predeterminado=64, el m&aacute;ximo es 128).
+  EMX           Mayor compatibilidad con el extensor EMX DOS.
+  FASTBOOT      Reinicio r&aacute;pido. Requiere que JemmEx se cargue en 
+                CONFIG.SYS.
+  FRAME=E000    Establecer marco de p&aacute;gina EMS (FRAME=NONE desactiva el
+                marco). Se hacepta alg&uacute;n valor entre 8000 y E000, pero no
+                todos funcionar&aacute;n.
+  HMAMIN=n      Establecer la cantidad m&iacute;nima en Kb para arignar el HMA.
+  I=D000-D7FF   Forzar el uso de una regi&oacute;n para UMB. Sin esta opci&oacute;n, el
+                rango C000-EFFF se escanea en busca de p&aacute;ginas no
+                utilizadas. Tambi&eacute;n se puede usar para agregar (partes 
+                de) las regiones A000-BFFF o F000-F7FF como UMB. &iexcl;No use
+                esta opci&oacute;n si no sabe lo que est&aacute; haciendo!
+  I=TEST        Escanea p&aacute;ginas de la ROMs no utilizadas, incluye 
+                regiones encontradas como UMBs.
+  [MAX=]#####   L&iacute;mite para memoria VCPI (y EMS si <32M) en kB
+                (predeterminado 120 MB).
+  MAXEXT=n      Limite el uso de memoria extendida en n kB.
+  MIN=#####     Reserve hasta ##### kB para la memoria EMS / VCPI en init
+                (predeterminado=0).
+  NOCHECK       No permite el acceso al espacion de direcciones sin RAM
+                (MMIO).
+  NOE801        No use int 15h, E801h para obtener la cantidad de memoria
+                extendida.
+  NOE820        No use int 15h, E820h para obtener la cantidad de memoria
+                extendida.
+  NOEMS         Desactiva el manejo de EMS.
+  NODYN         Sin asignaci&oacute;n din&aacute;mica de memoria XMS (use MIN= para
+                establecer la cantidad fija).
+  NOHI          No mueva la parte residente a la primera UMB.
+  NOINVLPG      No utilice el c&oacute;digo de operaci&oacute;n INVLPG.
+ +PGE/NOPGE     Activaci&oacute;n/Desactivaci&oacute;n del uso de la funci&oacute;n de
+                habilitaci&oacute;n global de la p&aacute;gina (opci&oacute;n predeterminada
+                desactivada).
+  RAM/NORAM     Intenta suministrar UMBs activado/desactivado
+                (predeterminado activado).
+  S=D000-D7FF   Asumir la activaci&oacute;n de la Shadow-RAM por UMBPCI,
+                incl&uacute;yalo como UMB
+  SB            Modo de compatibilidad del controlador SoundBlaster
+  SPLIT         Recupera p&aacute;ginas EPROM 4k parcialmente usadas para UMBs.
+ +VCPI/NOVCPI   VCPI soporte activado/desactivado (predeterminado 
+                activado).
+  VDS/NOVDS     Servicios virtales DMA activado / desactivado
+                (predeterminado activado).
+ +VME/NOVME     Extensiones V86-Modo activado / desactivado
+                (predeterminado activado).
+  VERBOSE       Muestra detalles adicionales durante el inicio
+                (abreviatura: /V).
+  X=D000-D7FF   Excluir la regi&oacute;n de ser tocada o utilizada por JemmEx.
+  X=TEST        Escanee la regi&oacute;n de memoria C000-EFFF para la exlusi&oacute;n
+                UMS.
+  X2MAX=n       M&aacute;ximo valir en kB para el informe de memoria libre de 
+                XMS V2. (predeterminado=65535).
+  XMSHANDLES=n  Numero de manejadores XMS disponibles (8<=n<=128, 
+                predeterminado=32).
+  /?            Muestra la ayuda.
+  '+': la opci&oacute;nse puede establecer din&aacute;micamente ejecutando JemmEx desde
+       la l&iacute;nea de comandos.
+  Cuando se invoca desde la l&iacute;nea de comandos, JemmEx comprender&aacute; 
+  adicionalmente:
+  LOAD          instalar
+  UNLOAD        desinstalar
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  JEMMEX requiere una CPU 80386+. Cargue JEMMEX como DEVICE=JEMMEX.EXE
+  en CONFIG.SYS (&iexcl;aunque es un archivo ".exe"!).
+  JEMMEX tiene que cargarse en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lo m&aacute;s probable es que JEMMEX sea la mejor opci&oacute;n que <a href="../base/himemx.htm">HIMEMX</a> / <a href="../base/jemm386.htm">JEMM386</a>
+  porque necesitar&aacute; menos memoria de DOS que un XMM + JEMM386.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\jemmex.exe
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

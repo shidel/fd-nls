@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: choice, _choice</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: choice, _choice</h1>
+<pre>
+  CHOICE / _CHOICE suspends processing and waits for the user to press a
+  valid key from a given list of choices. Choice gives out an <a href="../batch/if.htm">ERRORLEVEL</a>
+  which can be used for further work.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  CHOICE [ /B ] [ /C[:]choices ] [ /N ] [ /S ] [ /T[:]c,nn ] [ text ]
+         [/?]
+  _CHOICE [ /B ] [ /C[:]choices ] [ /N ] [ /S ] [ /T[:]c,nn ] [ text ]
+          [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /B         Sound an alert (beep) at prompt.
+  /C[:]      choices  -  Specifies allowable keys. Default is: yn (if
+             /C was not used), you may also be 0 - 9 or A - Z.
+  /N         Do not display the choices and ? at end of prompt.
+  /S         Treat choices as case-sensitive.
+  /T[:]c,nn  Automatically choose key c after nn seconds.
+             c must be one of the keys specified with /C; nn may be a
+             value between 0 and 99. 
+  text       The text to display as a prompt (default=none).
+  /?         Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  CHOICE shows the messages according to the file:
+    %NLSPATH%\CHOICE.%LANG%,
+  where LANG is <a href="../batch/set.htm">SET</a> in the environment variable in <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> and
+  NLSPATH is the path to the national language files.
+  _CHOICE uses english texts only.
+  CHOICE is not a command internal to command.com and needs a 
+  choice file in order to work.
+  CHOICE supports NLS (national language support).
+  CHOICE has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0    if aborted
+    ...  ERRORLEVEL is set to offset of key user presses in choices.
+    255  any error
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN A BATCH FILE:
+   @ECHO 1 = Do this
+   @ECHO 2 = Do that
+   @ECHO 3 = Do another thing
+   @ECHO 4 = Do nothing
+   @choice /B /C:1234 /N /S What do you want to do?
+   if errorlevel 4 goto DONOTHING
+   if errorlevel 3 goto DOANOTHER
+   if errorlevel 2 goto DOTHAT
+   if errorlevel 1 goto DOTHIS
+   :DOTHIS
+   your DOTHIS-commands
+   goto EXIT
+   :DOTHAT
+   your DOTHAT-commands
+   goto EXIT
+   :DOANOTHER
+   your DOANOTHER-commands
+   goto EXIT
+   :DONOTHING
+   your DONOTHING-commands
+   goto EXIT
+   :EXIT
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../batch/if.htm">if</a>
+  <a href="../batch/goto.htm">goto</a>
+  <a href="../batch/pause.htm">pause</a>
+  <a href="../batch/set.htm">set</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1994-2003 Jim Hall, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

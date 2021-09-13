@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: idlehalt</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: idlehalt</h1>
+<pre>
+  IDLEHALT activates built-in kernel energy saving functionality if
+  n is not 0.
+  IDLEHALT is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  idlehalt=n
+    where n can be -1, 0, 1 or higher (default 0)
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  IDLEHALT activates built-in kernel energy saving functionality if 
+  n is not 0. Value -1 enables all hooks, 1 enables only "safe" hooks,
+  CPU halted only if kernel is waiting for CON char device input.
+  Further hooks for n=-1 and n&gt;0 depend on the kernel version:
+  In addition to the safe hooks, other hooks can get activated, for
+  example one for int 0x2f, ax=0x1680 "release time slice".
+  Note: In rare cases, entering or leaving HLT mode (which causes big
+  changes in CPU power consumption) can cause crashes if cheap power
+  supplies or mainboards cannot properly filter the transients.
+  Underclocking the whole system may help.
+  Linux always does a few HLT at boot time, to force a hang on buggy
+  systems early (boot with no-hlt to disable HLT).
+  P90 may have buggy HLT? www.tavi.co.uk/ps2pages/ohland/halt.html
+  IDLEHALT is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    idlehalt=1
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

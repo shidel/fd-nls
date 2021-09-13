@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: debug</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: debug</h1>
+<pre>
+  DEBUG ist ein Nachbau des gleichnamigen MS-DOS Befehls. Einige
+  kleinere Dinge sind nicht implementiert. Es unterst&uuml;tzt nicht nur
+  die 8086/8088 und 8087 Register und Befehlss&auml;tze, sondern auch
+  die 32bit Register und Befehls&auml;tze bis zur PentiumPro CPU - mit
+  Ausnahme der MMX-Erweiterungen. DEBUG ist ein relativ weit fort-
+  geschrittenes DOS-Werkzeug f&uuml;r viele Anwendungen. Zum Beispiel
+  kann es benutzt werden zum:
+    * Finden von Fehlern in Programmen,
+    * Erstellen von Programmen durch Assembler-Code,
+    * Inspizieren und Bearbeiten von Bin&auml;r-Dateien.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEBUG [[Laufwerk:][Pfad]Dateiname [Argumente]]
+        [Laufwerk:][Pfad]Dateiname  Gibt die Datei an, die getestet
+                                    werden soll. Diese mu&szlig; nicht
+                                    ausf&uuml;hrbar sein. Es kann auch
+                                    eine Bin&auml;r- oder Text-Datei sein.
+                                    Daher mu&szlig; auch die Dateinamens-
+                                    Erweiterung angegeben werden.
+        Argumente                   Befehlszeilenparameter f&uuml;r die
+                                    zu testende Datei.
+                                    Siehe <a href="#progexec">Programmausf&uuml;hrung</a> unten,
+                                    f&uuml;r weitere Informationen &uuml;ber den
+                                    Aufruf von ausf&uuml;hrbaren Dateien.
+  Nach dem Start von Debug erwartet das Programm hinter dem Bindestrich
+  die Eingabe von Kommandos, wie Q zum Beenden oder ? zur Auflistung
+  der Befehle.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Q                      Beenden (Quit)
+  ?                      Hilfe
+
+  <b>Inspektion und Bearbeiten vom Speicher:</b>
+    VERGLEICHEN (COMPARE):
+      C Bereich Adresse  Vergleicht zwei Speicherbereiche und zeigt die
+                         Unterschiede an. Nur die Start-Adresse des
+                         zweiten Bereiches ist n&ouml;tig. Dann wird f&uuml;r die
+                         Gr&ouml;&szlig;e die gleiche wie beim ersten angenommen.
+                         Zum Beispiel:
+                           C 100,110 200
+                         vergleicht den Bereich von 100,110 mit 200,210.
+    DUMP:
+      D [Bereich]        Zeigt den Inhalt des Speicherbereiches. Ohne
+                         Bereichsangabe werden 128 Bytes ausgegeben ent-
+                         weder ab der Stelle der letzten DUMP Ausgabe
+                         oder dem Beginn der geladenen Datei.
+      DM                 Anzeige der DOS-Speicher-Steuerblock-Kette 
+                         (Memory Control Block) und des aktuellen PSP.
+    EINGABE:
+      E Adresse [Liste]  &Uuml;berschreibt den Teil des Speichers, beginnend
+                         ab der Adresse, mit der Liste der Bytes. F&uuml;r
+                         Eingabe einer Zeichenfolge setzen sie den Text
+                         in Anf&uuml;hrungszeichen. Zum Beispiel:
+                           E 100 "Hallo!"
+    FUELLEN:
+      F Bereich Liste    &Uuml;berschreibt einen Speicherbereich mit einer
+                         sich wiederholenden Liste von Bytes. Um etwas
+                         auszunullen, benutzen sie zum Beispiel:
+                           E 100,110 0
+                         Zum Fuellen mit dem Text "brumbrum" benutzen
+                         Sie:
+                           E 100,107 "brum"
+    VERSCHIEBEN (MOVE):
+      M Quellbereich Zieladresse
+                         Kopiert den Quellbereich in einen anderen be-
+                         ginnend ab der Zieladresse.
+    SUCHE:
+      S Bereich Liste    Sucht nach alle Vorkommen der Liste von Bytes
+                         in dem festgelegten Bereich und zeigt deren
+                         Startadressen an.
+
+  <b>Berechnung von Zahlen in Hexadezimal:</b>
+    HEX
+      H Wert1 Wert2      Zeigt die Summe und Differenz der zwei angege-
+                         benen Zahlen. Doppelwort-Werte k&ouml;nnen gehand-
+                         habt werden.
+
+  <b>Laden und Speichern von Dateien:</b>
+    LADE PROGRAMM ODER DATEI:
+      L [Adresse]        Lade Programm.
+      L Adresse Laufwerk Sektor Sektorzahl
+                         Lade Sektor(en).
+    NAMENSVERGABE:
+      N [[Laufwerk:][Pfad]Programmnamen [Argumentenliste]]
+                         Namen f&uuml;r die aktuelle Datei, Programm
+                         festlegen.
+    SCHREIBE (WRITE) PROGRAMM ODER DATEI:
+      W [Adresse]        Schreibt das aktuelle Programm, Datei auf die
+                         Platte. Verwenden Sie N, um den Namen &auml;ndern,
+                         wenn sie nicht die urspr&uuml;ngliche Datei &uuml;ber-
+                         schreiben m&ouml;chten.
+      W Adresse Laufwerk Sektor Zahl
+                         Schreibt Sektor(en).
+
+  <b>Assemblierung und Disassemblierung:</b>
+    ASSEMBLIERUNG:
+      A [Adresse]        Assemblieren.
+    DISASSEMBLIERUNG:
+      U [Bereich]        Disassemblieren.
+    80x86 MODUS:
+      M[Einstellung]     Der aktuellen Prozessortyp (zum Zwecke der
+                         Assembler und Disassembler Warnungen, siehe
+                         oben) kann als etwas anderes vereinbart wer-
+                         den, &uuml;ber die folgenden Befehle:
+                           m0  Deklariert den aktuellen Typ als 8088
+                           m1  Deklariert als 80186
+                           m2  Deklariert als 286
+                           m3  Deklariert als 386
+                           m4  Deklariert als 486
+                           m5  Deklariert als Pentium
+                           m6  Deklariert als Pentium Pro
+      MC                 Vereinbart die Existenz eines mathematischen
+                         Coprozessors.
+      MNC                Vereinbart das Fehlen eines mathematischen
+                         Coprozessors.
+      MC2                Deklariert den mathematische Coprozessor vom
+                         Typ 287 (nur g&uuml;ltig, wenn der aktuellen
+                         Prozessor ein 386er ist).
+      M?                 (nur bei &auml;teren Versionen): Ausgabe des
+                         aktuellen Prozessortyps.
+      M                  Ausgabe des aktuellen Prozessortyps.
+
+  <a name="progexec"></a><b>Programmausf&uuml;hrung:</b>
+    GEHE ZU:
+      G [=Adresse] [Haltemarken]
+                         Beginnt die Ausf&uuml;hrung des geladenen Programmes
+                         oder des Maschinencodes an der angegebenen
+                         Adresse. Diese wird an dem Haltepunkt unter-
+                         brochen, um den Speicher etc. untersuchen zu
+                         k&ouml;nnen.
+    FORTFAHREN:
+      P [=Adresse] [Anzahl]
+                         Mit der Ausf&uuml;hrung um die Anzahl der gegebenen
+                         Schritte weitermachen.
+    REGISTER:
+      R [Register [Wert]]
+                         Anzeige alle CPU-Register oder Anzeige/Setzen
+                         eines Registers. Akzeptiert 32-Bit-Register-
+                         Namen (f&uuml;r CPUs ab 80386).
+      RN                 Zeigt den FPU Register Status. DEBUG zeigt nur
+                         die Roh-Hex-Werte der Register an, w&auml;hrend
+                         DEBUGX die Werte im Floating-Point-Format an-
+                         zeigt. 
+      RX                 Umschalten der Register-Anzeige von 8086 und
+                         80386 (f&uuml;r CPU ab 80386).
+    VERFOLGUNG (TRACE):
+      T [=Adresse] [Anzahl]
+                         Verfolgung.
+      TM [0|1]           Setzt den Trace-Kommando-Modus, 0=verarbeite
+                         INTs (Standard), 1=Einzelschritt INTs(MS-DOS-
+                         Debug kompatibeler Modus).
+
+  <b>I/O Anschl&uuml;sse:</b>
+    EINGABE:
+      I port             Einlesen von einem Port
+      IW port            Einlesen von einem WORT Port
+      ID port            Einlesen von einem Doppelwort Port
+                         Doppelwort-Werte ben&ouml;tigen eine CPU ab 80386.
+    AUSGABE:
+      O port Wert        Schreiben auf einen Port
+      OW port Wert       Schreiben auf einen WORT Port
+      OD port Wert       Schreiben auf einen Doppelwort Port 
+                         Doppelwort-Werte ben&ouml;tigen eine CPU ab 80386.
+
+  <b>Expansionsspeicher(EMS)-Befehle (nur, wenn <a href="../base/jemm386.htm">EMM v4.0</a> vorhanden ist):</b>
+    XA Nummer            Allozieren einer "leeren" EMS-Zugriffsnummer
+                         mit Null Seiten.
+    XD Nummer            Freigeben der Zugriffsnummer.
+    XM logische-Seite physikalische-Seite Zugriffsnummer
+                         Speicher abbilden.
+    XR Nummer Zahl       Neuverteilung einer EMS Zugriffsnummer.
+    XS                   Status anzeigen.
+    X?                  Zeigt Hilfe zu X-Befehlen.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  DEBUG verwendet hexadezimal (Basis 16). Speicher-Adressen werden in
+  Segment:Offset Form angezeigt, z.B. 0D00:0100. Die letzten vier
+  hexadezimalen Stellen, bestimmen den Abstand im Segment und k&ouml;nnen
+  von 0000 bis FFFF reichen, was 64 Kilobytes umfasst.
+  Ausf&uuml;hrbare Dateien mit der Endung .COM haben alle ihre Daten und
+  Code in einem Segment. F&uuml;r solche Dateien k&ouml;nnen Sie in der Regel
+  einfach nur den Offset bei der Angabe von Speicher-Adressen in Debug-
+  Kommandos angeben. Es wird dann vom Programm-Segment ausgegangen.
+  Das gleiche gilt auch f&uuml;r Text-, Bin&auml;r-Dateien, die kleiner als
+  64KB sind.
+  Zur Angabe eines Speicherbereiches, trennen sie zwei Adressen mit
+  einem Komma.
+  Das Laden von .HEX-Dateien ist nicht implementiert.
+  Der Assembler und Disassembler unterst&uuml;tzt alle oeffentlich
+  dokumentierten Anweisungen f&uuml;r die Intel-Chips &uuml;ber den Pentium
+  Pro (P6), mit Ausnahme von den MMX-Anweisungen. Diese informieren
+  sie, wenn eine Anweisung nicht f&uuml;r den aktuellen Prozessortyp
+  anwendbar ist. FPU Befehlscodes werden unterst&uuml;tzt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  Bootsektor (Sektor Nummer 0 mit 512 Bytes=0x200) vom Laufwerk C:
+  (Nummer 2) in Datei BOOT_C.BIN auf erstem Diskettenlaufwerk sichern
+  durch folgende Eingaben:
+    A:
+    cd \
+    echo L 100 2 0 1 &gt; BOOT_C.TXT
+    echo RCX &gt;&gt; BOOT_C.TXT
+    echo 200 &gt;&gt; BOOT_C.TXT
+    N BOOT_C.BIN &gt;&gt; BOOT_C.TXT
+    W &gt;&gt; BOOT_C.TXT
+    Q &gt;&gt; BOOT_C.TXT
+    DEBUG &lt; BOOT_C.TXT
+
+  Mit Hilfe von DEBUG im normalen Speicherbereich einer Grafikkarte
+  nach charakteristischen Zeichenfolgen wie Jahreszahlen suchen um
+  die Karte zu identifizieren:
+    DEBUG
+    S C000:0000,07FF "BIOS"
+    S C000:0,7FF     "(C)"
+    S c000:0,7ff     "199"
+    s c000:0,7ff     "200"
+    D C000:0000,100
+    Q
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, &uuml;bersetzt 2009 von J. Jenderek.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: undelete</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: undelete</h1>
+<pre>
+  UNDELETE attempts the recovery of deleted files.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  undelete [directory] [options]
+           directory  The location where the file to be undeleted is.
+                      If no directory is given, the current working
+                      directory is assumed.
+  There are also more advanced undelete options:
+  undelete /action what destination [size]
+</pre>
+<h2>Options:</h2>
+<pre>
+    /ALL         Undelete ALL files in the given directory without
+                 prompting for each file.
+    /LIST        Lists files that can be undelete without prompting to
+                 undelete; no action is taken.
+    /E           Exports any undeleted files to an external disk and
+                 directory. With this option the source disk isn't
+                 modified.
+  Possible [action]s:
+    /syssave     Saves the 1st or 2nd copy of the FAT, boot sector or root
+                 directory. Select fat1, fat2, boot, or root in [what].
+    /follow      Looks for a (possibly deleted) file starting at the
+                 cluster [what] and saves data to a file given as
+                 [destination]. The output of DIRSAVE helps you to find
+                 the right cluster number.
+    /dirsave     Like FOLLOW, but saves a directory to a file. Directory
+                 [what] must be given by an absolute path starting with 
+                 \ OR by a cluster number. Also shows a technical
+                 directory listing on the screen.
+    destination  must be on a drive other than the current drive. Data
+                 is always read/recovered from the drive from which
+                 undelete is invoked.
+    size         Specifying size is not needed, but you can override the 
+                 autodetection by specifying size (in clusters for
+                 FOLLOW, in sectors for DIRSAVE).
+</pre>
+<h2><a name="comment"></a>Comments:</h2>
+<pre>
+  UNDELETE only works on FAT12 / FAT16 disks!
+  Using UNDELTE:
+    1. Finding undeleteable files and directories:
+       Run undelete in DIRSAVE mode. You will see deleted directory
+       entries specially marked, and you will see their cluster numbers
+       on the screen. You can redirect screen output to a file, for
+       example:
+         undelete /DIRSAVE \ x:\rescued.dir &gt;y:\logfile
+       Where logfile will contain the screen output.
+       If you have the FreeDOS utilites installed on your system, you
+       could use something like one of the following instead:
+         undelete /DIRSAVE \ x:\rescued.dir | <a href="../util/tee.htm">TEE</a> y:\logfile
+         undelete /DIRSAVE \ x:\rescued.dir | <a href="../util/tee.htm">TEE</a> y:\logfile | <a href="../base/more.htm">MORE</a>
+       These will display the information on screen as well as store it
+       in the logfile.
+    2. Recovering an undeleteable file
+      Find the starting cluster of the file using DIRSAVE, as explained
+      above. Then use FOLLOW on that cluster, for example:
+        undelete FOLLOW 1234 x:\rescued.bin
+      would save the contents of the deleted file starting on cluster
+      1234 to the file rescued.bin on drive x.
+  Advanced Uses
+    - Recovering from within deleted directories
+      Run DIRSAVE on an existing directory to find the starting cluster
+      of the deleted directory. Then run DIRSAVE on that cluster to find
+      deleted files and directories within the deleted directory... and
+      so on with successive cluster numbers as required.
+    - Recovering partially overwritten files
+      Use FOLLOW on the existing new files and override the size value
+      (in clusters, undelete tells you how big a cluster on the current
+      drive is when you start undelete). So, if you have accidentally
+      overwritten a long file "OLD" with a short new file "NEW":
+      * find the cluster number of "NEW"
+      * give the size of "OLD" when using FOLLOW
+      * The recovered output will begin with the contents of "NEW" but
+        should contain the not-overwritten end of "OLD" as well,
+        hopefully. 
+    - Using undelete to "mirror" important drive data
+      If your filesystem gets completely broken, you can try to write
+      back the important data saved by SYSSAVE. The saved information
+      has to be stored on a separate disk. You may also wish to use the
+      <a href="../base/mirror.htm">MIRROR</a> command, which is simpler to use but stores the saved
+      information at the end of the disk.
+      * Run undelete in SYSSAVE mode for all 4 sources: fat1, fat2, boot,
+        root
+      * Keep the files in a safe place 
+    - Restoring the "mirror" data
+      This may be necessary in some cases of disk disaster.
+      WARNING: This is for experts, repair-men and very desperate people
+      only! Doing this incorrectly or unnecessarily could make things
+      worse!
+      * Glue the 4 sources together in the order "boot fat1 fat2 root" to
+        reconstruct the first part of your partition, starting with the
+        first sector.
+      * you could use <a href="../base/debug.htm">DEBUG</a> (w command) to restore this info
+      * You can also merge saved and existing data with a hex editor. 
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - see <a href="#comment">comments</a> -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/debug.htm">debug</a>
+  <a href="../command/del.htm">del</a>
+  <a href="../base/deltree.htm">deltree</a>
+  <a href="../command/erase.htm">erase</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/more.htm">more</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+  <a href="../util/tee.htm">tee</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Eric Auer, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

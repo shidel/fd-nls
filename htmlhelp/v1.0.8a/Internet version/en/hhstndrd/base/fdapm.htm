@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: fdapm</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: fdapm</h1>
+<pre>
+  FDAPM is an advanced Power Management tool.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  fdapm [Options]
+</pre>
+<h2>Options:</h2>
+<pre>
+ (none)     If no options are given, default is to show both the
+            INFO and the STATS output (if shell loaded, otherwise,
+            when loaded through INSTALL, default is to do APMDOS).
+  APMoff    Disable plain BIOS APM energy saving mode. MS POWER syntax
+            compatibility alias: "OFF".
+  OFF       Same as APMoff, for compatibility with MS power.
+  APMbios   Enable plain BIOS APM energy saving mode. MS POWER syntax
+            compatibility alias: "STD".
+  STD       Same as APMbios, for compatibility with MS power.
+  APMDOS    This should give you maximum energy savings. It is the
+            only mode that causes FDAPM to stay resident in RAM.
+            To stop, select APMbios/APMoff.
+  ADV:MAX   Maximum energy savings, for compatibility with MS power.
+  ADV:MIN   Minimum energy savings, for compatibility with MS power.
+  ADV:REG   Restricted energy savings, for compatibility with MS power.
+  INFO      Show information about APM status. Displays things like
+            battery fill percentage.
+  STATS     Show information about APM status / APMDOS. Displays things
+            like CPU busy time percentage, if resident FDAPM or POWER is
+            loaded in memory.
+  FLUSH     Flushes the disk caches (writes back data to disk).
+  SPINUP    Wakes up IDE disks again.
+  SPINDOWN  Flushes the disk caches and stops IDE disks on the first 2
+            IDE controllers. Use at your own risk. The disks will spin
+            up again when you use them again. The disks have builtin 
+            "intelligence" for that. To save energy automatically, you
+            can often use a BIOS setup option which tells the disk at 
+            boot time that it can spin down itself (it has a builtin
+            timer!) whenever it has not been accessed for a while.
+  ACPIOFF   As POWEROFF but explicitly uses ACPI instead of APM. Note that
+            the classic functions will use ACPI, too, if no APM BIOS
+            support is present. The system is placed into S5 soft-off
+            after flushing caches and spinning down disks. Useful to
+            compare APM / ACPI handling.
+  STANDBY   Flushes the disk caches, enter stand-by mode. Requires APM or
+            ACPI and an ATX or newer power supply.
+  SUSPEND   Flushes the disk caches, stops (will auto wake up) IDE disks,
+            suspends system. Useful if you have a BIOS with suspend to
+            disk, to avoid spinning the disks right before suspend needs
+            them. Requires APM or ACPI and an ATX or newer power supply.
+  PURESUSP  As SUSPEND, but does not stop IDE disks first. Requires APM
+            or ACPI and an ATX or newer power supply.
+  POWEROFF  Flushes the disk caches, stop IDE disks, power off VGA and
+            system. Requires APM or ACPI and an ATX or newer power supply.
+  PUREOFF   As POWEROFF, but does not stop IDE disks first. Useful if your
+            BIOS would otherwise wake up the disk right before cutting off
+            power (ouch). Requires APM or ACPI and an ATX or newer power
+            supply.
+  VGAoff    Switches EGA/VGA DPMS screen off (no auto wake up!).You have
+            to type FDAPM VGAon or to reboot to switch on. VGAoff is no
+            screensaver. Use idledpms as screensaver instead.
+  VGAon     Switches EGA/VGA DPMS screen on again. Just pressing a key
+            after using the VGAoff function will NOT enable video again,
+            this is not a screen saver. It is only a way to turn video on
+            and off without any kind of system monitoring or automatic
+            wakeup.
+  ZapStats  Clear STATS counters.
+  SPEEDn    Set system speed to n/8 (n * 12,5%) of max. (0 halts until 
+            'power' pressed). Use SPEED9 to show current setting.
+            SPEED9 is the recommended way to test if your system does
+            use ACPI in a FDAPM compatible way. Requires ACPI.
+  SPEED0    Speed 0 will put the system into S1 standby (press the ATX
+            power or sleep button to continue) CPU-wise. None of the
+            other devices will sleep. Use the PCISLEEP tool if you want
+            to do experiments with PCI Power Management.
+  COLDboot  Do a reboot with BIOS tests (POST) (after flushing the disk
+            caches) by telling the 8042 keyboard controller to pulse
+            the hardware reset circuits. Very similar to a real cold
+            reboot - only in rare cases, pressing the reset button or
+            power-cycling the computer will give you a "colder" reset.
+  WARMboot  Do a reboot without BIOS tests (POST). Usually safe but can
+            crash if you use incompatible protected mode software, like
+            some versions of EMM386. Flushes the disk caches before
+            rebooting.
+  HOTboot   Try a reboot at once using int 19h (will often crash!).
+            Before attempting the reboot, FDAPM tells caches to flush 
+            (write back data to disk) themselves and waits for a moment.
+  HELP      Shows the help.
+  /?        Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  FDAPM is a replacement for MS-DOS Power.
+  APM: Advanced Power Management.
+  ACPI: Advanced Configuration and Power Interface.
+  ATX: Advanced Technology Extended.
+  DPMS: Display Power Management Signaling.
+  Please read fdapm.txt in the fdapm packet for more information.
+  Case is irrelevant, "-" or "/" are not needed.
+  All harddisk sleep/standby/off related options automatically add a
+  delay to give the harddisk time to change state. All of those and all
+  reboot related options tell caches to write back dirty buffers to
+  disk before the real action begins.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  fdapm apmdos  gives you maximum energy savings
+  fdapm speed2  sets speed to 2x12,5% = 25% of maximum speed e.g. for
+                old games
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/pcisleep.htm">pcisleep</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eric Auer, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

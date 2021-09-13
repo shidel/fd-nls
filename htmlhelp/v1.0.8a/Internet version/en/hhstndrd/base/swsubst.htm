@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: swsubst</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: swsubst</h1>
+<pre>
+  SWSUBST combines subst with join with enhanced options.
+  SWSUBST replaces a path by a drive letter so that you have access to
+  a path via a drive letter.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  swsubst [option] [command]
+  If swsubst is used without specifying a command, the CDS table is
+  displayed.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /#     View the statistic of JOIN'ed drives in the CDS table.
+  /!     Like /#; initialize the JOIN-flag, if it differs.
+  /f     View non-printable characters hexadecimal.
+  /a     View the CDS table after the command.
+  /k     Create the pathes mentioned within the command.
+  /t     Like /k, in SUBST check only, if path exist.
+  /_     Dump all attributes within the CDS table.
+  /o=#   Use this backslash offset, do not calculate itself.
+  /x=??  List of drive letters to be ignored while a ::label: search
+  Commands:
+  -                      Initialize all SUBST'ed and JOIND'ed drives.
+  --                     Initialize all non-networked drives.
+  dr [-]path             Like %s dr [-]path.
+  /u dr [-]path          Substitute dr to point to path.
+  /j dr [-]path          Join dr into path.
+  /d dr | dr /d | dr -   Initialize drive dr (and break SUBST/JOIN).
+  /s dr1 dr2             Swap dr1 and dr2.
+  /n [dr1 dr2]           Swap unit numbers of the same device driver
+                         (Std.: floppies).
+  /w dr                  Set ERRORLEVEL to the drive letter of drive.
+  /m [-]path             Create path including all leading up-directories.
+  /c [-]path             Like /m, then chdir into it.
+  dr:[+-=]{off,on,phys,net,join,subst,hidden}  Set drive flags directly.
+  /q dr:[+-]{phys,net,join,subst,hidden}       Query the drive flags.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The DOS-standard emulating entities of SWSUBST, SUBST and JOIN, have
+  the same command line as DOS's have. But they differ in the following
+  points:
+    - The specified path will be make'ed, including the full path to it,
+      e.g. "SUBST c: d:/blah/humpf" creates the path "d:\blah\humpf",
+      regardless if d:\blah exists.
+    - You are allowed to break off relations on the fly, that means:
+      an already SUBST'ed can be re-SUBST'ed or re-JOIN'ed without
+      further note/warning.
+    - You are allowed to process a drive with itself, e.g.: "JOIN a:
+      a:\blah"
+    - The table dump is different, swsubst prints "X: =&gt; Y:\PATH" instead
+      of "X: is joined to Y:\PATH".
+    - You cannot rename the executables SUBST and JOIN.
+    - It won't test the DOS version, unless it's necessary for adjusting
+      different data structure sizes.
+  If you need SUBST or JOIN simply execute: "copy SWSUBST.EXE JOIN.EXE
+  or SUBST.EXE".
+  An <a href="../batch/if.htm#comment">ERRORLEVEL</a> between 65 (ASCII 'A') and 90 (ASCII 'Z') indicates OK
+  and the drive letter itself; whereas an <a href="../batch/if.htm#comment">ERRORLEVEL</a> of zero indicates,
+  that there is no such drive; and other <a href="../batch/if.htm#comment">ERRORLEVELS</a> indicate an error.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  swsubst b: c:\blah\humpf 
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/assign.htm">assign</a>
+  <a href="../base/join.htm">join</a>
+  <a href="../base/subst.htm">subst</a>
+  <a href="../command/truename.htm">truename</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1995 Steffen Kaiser, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : fc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : fc</h1>
+<pre>
+  FC compare deux fichiers ou jeux de fichiers, en mode binaire ou texte
+  et affiche leurs diff&eacute;rences.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  FC [commutateurs] [lecteur1:][chemin1]nomfich1 [lecteur2][chemin2]
+     nomfich2
+     [commutateurs]
+</pre>
+<h2>Options :</h2>
+<pre>
+  /A    Affiche seulement la premi&egrave;re et derni&egrave;re lignes pour chaque jeu
+        de diff&eacute;rences.
+  /B    Effectue une comparaison binaire.
+  /C    Ne tient pas compte de la casse des lettres.
+  /L    Compare les fichiers en tant que texte as ASCII.
+  /LBn  D&eacute;finit le nombre maximal de lignes ASCII diff&eacute;rentes
+        cons&eacute;cutives &agrave; n.
+  /Mn   D&eacute;finit les diff&eacute;rences maximales dans la comparaison binaire
+        &agrave; n octets (par d&eacute;faut = 20, 0 = illimit&eacute;, /M = /M0).
+  /N    Affiche les num&eacute;ros de ligne lors d'une comparaison de textes.
+  /Q    N'affiche pas la liste des diff&eacute;rences.
+  /R    Affiche un bref rapport final (toujours actif si /S est utilis&eacute;).
+  /S    &Eacute;tend l'analyse aux fichiers dans les sous-r&eacute;pertoires.
+  /T    N'&eacute;tend pas les tabulations en espaces.
+  /U    Affiche les noms de fichier des fichiers sans correspondant.
+  /W    Empaquette les espaces vides (tabulations et espaces) pour une
+        comparaison de textes.
+  /X    N'affiche pas les lignes de contexte lors d'une comparaison
+        de textes.
+  /nnn  D&eacute;finit le nombre minimal de lignes avec correspondance
+        cons&eacute;cutives sur nnn pour la resynchronisation de la
+        comparaison.
+  /?    Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  FC prend en charge le <a href="../util/doslfn.htm">LFN</a> et l'utilise automatiquement si le syst&egrave;me
+  d'exploitation supporte les noms de fichiers longs.
+  FC utilise par d&eacute;faut le mode binaire pour les fichiers .EXE, .COM,
+  .SYS, .OBJ, .BIN, .DLL et .LIB.
+  En mode binaire FC affiche l'offset dans le fichier des octets
+  pr&eacute;sentant une diff&eacute;rence leur valeur hexad&eacute;cimale, et s'il s'agit
+  de caract&egrave;res ASCII imprimables, leur caract&egrave;re ASCII.
+  Par d&eacute;faut la comparaison binaire cesse apr&egrave;s 20 diff&eacute;rences mais
+  cette valeur peut &ecirc;tre modifi&eacute;e avec le commutateur /M. /M0 signifie
+  "diff&eacute;rences illimit&eacute;es". /M est interpr&eacute;t&eacute; en tant que /M0.
+  Une limitation de conception de ce programme est que, en mode de
+  comparaison texte de fichiers, seuls les 32765 premi&egrave;res lignes sont
+  compar&eacute;es ; les lignes restantes sont ignor&eacute;es. La longueur des
+  lignes est virtuellement illimit&eacute;e.
+  FC prend en charge le NLS (support des langues nationales).
+  FC a les <a href="../batch/if.htm#comment">CODES DE SORTIE (ERRORLEVEL)</a> suivants :
+    0  Tous les fichiers correspondent
+    1  Au moins une paire de fichiers diff&egrave;re
+    2  Param&egrave;tre invalide sur la ligne de commande
+    3  Fichier introuvable
+    4  Erreur lors de l'ouverture de fichier(s)
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  FC /L /M0 C:\ foo.txt D:\foo.txt
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../base/comp.htm">comp</a>
+  <a href="../base/diskcomp.htm">diskcomp</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../util/md5sum.htm">md5sum</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1999 Maurizio Spagni, mis &agrave; jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

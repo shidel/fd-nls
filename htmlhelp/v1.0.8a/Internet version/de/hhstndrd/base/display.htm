@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: display</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: display</h1>
+<pre>
+  DISPLAY l&auml;dt Konsolen-Codepageverwaltungsf&auml;higkeiten.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DISPLAY Ger&auml;tename[:]=(HardwareTyp,[n|(n1[,n2]...)],[m|(m,p)]) 
+          [/V] [/C] [/NOHI]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Ger&auml;tename  Ein g&uuml;ltiger Ger&auml;tename (welcher es ist, wird in dieser
+               Version ignoriert). Nehmen Sie irgendeinen (z.B. CON).
+  HardwareTyp  Ein unterst&uuml;tztes Hardwaretypetikett(wie z.B. EGA
+               oder VGA)
+  n            Standard Hardwarecodepage (f&uuml;r eine Hardwarecodepage).
+               Es ist normal 437 (deutsch: 850)
+  n1, n2,...   Hardwarecodepages, wenn mehr als eine (&uuml;blicherweise
+               werden Sie ARABISCHE/HEBR&Auml;ISCHE Treiber von Drittan-
+               bietern verwenden m&uuml;ssen).
+  m            Zahl der Puffer f&uuml;r die vorbereiteten Codepages
+               (Standard: 1).
+  p            Extra Hardware-spezifischer Parameter.
+  /C           ExClusiv: L&auml;dt nicht nocheinmal, wenn DISPLAY bereits
+               geladen ist.
+  /NOHI        L&auml;&szlig;t f&uuml;r die vorbereiteten Codepages keinen XMS
+               Speicher zu.
+  /V           Verbose: ausf&uuml;hrliche Information. 
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Unterst&uuml;tzte Hardware:
+  VGA     VGA Adapter. 3 Subfonts werden verwendet werden - in jedem Fall
+          EGA Adapter.
+  EGA     Bestimmt automatisch die Zahl der zu verwendenden Subfonts.
+  EGA 14  Erzwingt die Verwendung von zwei Sub-Sonts (8x8 und 8x14).
+  EGA 8   Erzwingt die Verwendung von einem Sub-Font (8x8).
+  LCD     LCD Adapter (gleiche wie EGA 8).
+  
+          Bei allen obigen Adaptern wird der Parameter p versuchen, die
+          Anzahl der zu verwendenden Subfonts zu erzwingen (1=8x8, 2=8x8,
+          8x14, 3=8x8,8x14,8x16), wann immer die Hardware das zul&auml;&szlig;t.
+
+  CGA     CGA Adapter (FreeDOS GRAFTABL). Parameter p wird ignoriert.
+
+  DISPLAY erzeugt keine <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>, liefert
+  aber &uuml;ber die int2Fh/AD03h Funktion f&uuml;r jede Funktion eine Menge
+  Fehler. Sie sollten das nach jeder nicht erfolgreichen Operation
+  pr&uuml;fen.
+
+  Error code   Operation     Bedeutung
+  --------------------------------------------------------------
+  1            Alle          Unbekannte Funktion
+  26           Select        Codepage war nicht vorbereitet
+  26           Query         Es war noch keine Codepage gew&auml;hlt
+  27           Select        KEYB konnte die Codepage nicht wechseln
+  27           Query         Ger&auml;tefehler
+  27           Prepare       Die Codepage wurde in der Datei nicht
+                             gefunden
+  29           Select        Ger&auml;tefehler
+  29           Prepare       Ger&auml;tefehler oder XMS Fehler
+  31           Prepare       Quelldatei besch&auml;digt oder XMS Fehler
+  31           End Prepare   Kein 'Start prepare' gefunden
+  --------------------------------------------------------------
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  DISPLAY CON=(VGA,437,1)
+    VGA Adapter, dessen BIOS Standardcodepage 437 ist. 1 Buffer
+    wird f&uuml;r die Softwarecodepage verwendet. Dies ist der Standard
+    f&uuml;r die meisten Anwender.
+
+  DISPLAY CON=(EGA,,2)
+    Der Graphikadapter ist EGA oder besser, aber unbekannt. Die BIOS
+    Standardcodepage ist ebenfalls unbekannt. Es werden zwei Buffer
+    ben&ouml;tigt.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/graftabl.htm">graftabl</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keyb.htm">keyb</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/printer.htm">printer.sys</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Aitor SANTAMARIA MERINO, aktualisiert 2008
+  von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

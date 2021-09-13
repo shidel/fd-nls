@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : fdxms286.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : fdxms286.sys</h1>
+<pre>
+  FDXMS286.SYS est un pilote de m&eacute;moire &eacute;tendue pour FreeDOS.
+  FDXMS286.SYS est destin&eacute; aux ordinateurs 286. FDXMS est destin&eacute; aux
+  ordinateurs 386+.
+  FDXMS286.SYS doit &ecirc;tre charg&eacute; dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  <b>FDXMS286.SYS est p&eacute;rim&eacute;. Vous devriez utiliser <a href="../base/himemx.htm">HIMEMX</a> ou <a href="../base/jemmex.htm">JEMMEX</a>
+  &agrave; la place</b>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEVICE=[lecteur][chemin]\fdxms286.sys [options]
+         lecteur  La lettre du lecteur, par exemple C:
+         chemin   Le r&eacute;pertoire, par exemple \exemple\
+</pre>
+<h2>Options :</h2>
+<pre>
+  NUMHANDLES=  D&eacute;finit le nombre de descripteurs XMS. La valeur par
+               d&eacute;faut est 32. La valeur minimale est deux (XMS n'est pas
+               utile sans aucun handle !), la valeur maximale est
+               actuellement 1024. Chaque descripteur prend 5 octets
+               (FDXMS.SYS) ou 9 (FDXXMS.SYS).
+  BIOS         Fait que FDXMS286 appelle toujours le BIOS via INT15 au
+               lieu d'utiliser sa propre commutation de mode prot&eacute;g&eacute;.
+  PS           Bascule vers la gestion particuli&egrave;re A20 n&eacute;cessaire sur
+               les machines PS/2.
+  GEODE        Supprime les d&eacute;lais lors du changement de la ligne A20.
+               Il a &eacute;t&eacute; signal&eacute; que cela aide au fonctionnement de
+               FDXMS286 sur le processeur Geode GX1 de National
+               Semiconductor.
+  DELAY=       Le nombre d'appels &agrave; la routine de d&eacute;lai apr&egrave;s avoir
+               charg&eacute; la ligne A20. Si vous recevez le message d'erreur
+               "Unable to switch A20 address line" c'est-&agrave;-dire
+               "Impossible de changer la ligne d'adresse A20", essayez
+               de le r&eacute;gler sur une valeur &eacute;lev&eacute;e (disons 4000) et voyez
+               si cela aide. Puis faites le r&eacute;glage fin pour une valeur
+               aussi faible que possible pour la vitesse. La valeur par
+               d&eacute;faut est 1. La valeur maximale est 65535 et 0
+               correspond &agrave; 65536.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  FDXMS286.SYS doit &ecirc;tre charg&eacute; dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\fdxms286.sys
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Martin Stromberg, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

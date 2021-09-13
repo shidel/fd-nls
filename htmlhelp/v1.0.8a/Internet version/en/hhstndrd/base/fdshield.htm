@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: fdshield</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: fdshield</h1>
+<pre>
+  The FreeDOS FDSHIELD malware shield monitors DOS sessions and helps
+  block dangerous activity typical of trojan horses, viruses, malware,
+  and human error. It is not a virus scanner like Clamscanand does not
+  check known virus signatures, but only monitors for known risky
+  behavior.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FdShield [/v][/t][/T][/x][/X][/b][/B][/w][/W]
+</pre>
+<h2>Options:</h2>
+<pre>
+      Basic protection when called without options. Halts the system if
+      a program attempts to disable certain other common anti-virus
+      monitors, and blocks certain potentially dangerous <a href="../cnfigsys/fcbs.htm">FCB</a>-based deletes
+      with wildcards in the file name extension. If you use FdShield in a
+      DOS box, only the DOS in the box is stopped, not the whole system.
+  /v  Makes verbose. Verbose gives additional information on why an action
+      was prohibited, and when FdShield halts the system, it will wait 20
+      seconds before automatically rebooting or closing the DOS box.
+  /t  Prohibits TSR. When this is selected, FdShield will print an system
+      halted message and reboot or close the session if a program attempts
+      to terminate and stay resident. This may help stop trojans and some
+      resident file infectors and multipartite viruses. The DOS extenders
+      CWSDPMI and RTM are explicitly allowed to load in this mode. Note
+      that viruses tend to go resident without using the DOS functions
+      for that, which allows them to bypass FdShield.
+      This option makes sense as many programs like <a href="../util/dosfsck.htm">DOSFSCK</a>, BZIP2, UPX,
+      WGET and others originally come from UNIX and are ported to DOS by
+      compilertools like DJGPP and need CWSDPMI.
+  /T  Prohibits TSR. When this is selected, FdShield will print an system
+      halted message and reboot or close the session if a program attempts
+      to terminate and stay resident. This option works pretty much like
+      the /t option. The CWSDPMI and RTM DOS extenders are not allowed to
+      load in this mode. In OS/2 DOS box and similar, CWSDPMI is not
+      needed anyway. Some other DOS extenders are not TSR at all and
+      therefore work without problems with FdShield /T.
+  /x  Write protects program files with the com, exe, and sys suffix. When
+      you select this option, FdShield prevents most attempts to write to
+      system files, but does allow creating new program files in ways
+      which explicitly avoid overwriting existing files. Many tools like
+      compilers or archivers use other, unsafe, ways to create files, so
+      they will get blocked by FdShield. You should boot without the
+      FdShield /x protection if you plan to install or compile programs.
+      If you do have /x protection on, however, many viruses will not be
+      able to infect program files.
+  /X  Write protects system files with bat, com, exe, and sys suffix.
+      This option does not permit creating system files at all. Batch
+      files are no common target for viruses, but there are situations
+      where you do not want them to be modified anyway. Neither the /x
+      nor the /X protection prevent <a href="../util/doslfn.htm">long file name</a> based access to
+      program files. This affects only DOS versions which support long
+      file names in some way.
+  /b  Write protects floppy disk BOOT areas. This can prevent boot sector
+      and multipartite viruses from spreading to diskettes in plain DOS.
+      However, the protection does not work in OS/2 and Win NT DOS boxes.
+      As these sectors are usually only written by tools like <a href="../base/format.htm">FORMAT</a>,
+      <a href="../base/sys.htm">SYS</a> and <a href="../base/fdisk.htm">FDISK</a> /b and /B should not be used when running
+      these tools.
+  /B  Write protects hard disk BOOT areas. This may prevent multipartite
+      viruses from spreading to the hard drive partitions. It may not
+      work in OS/2 and Win NT DOS boxes, but they have built in
+      protection against boot sector modifications.
+  /w  Write protects floppy (/w) disks. Pipes do not work if the temp
+      directory (if none <a href="../command/set.htm">set</a>: current directory) is on a read-only disk.
+      This protection does not work in OS/2 or NT DOS boxes.
+  /W  Write protects hard disks and all other non-diskette drives with FAT
+      filesystem, like RAMDISKs. If DOS tries to write to a "fixed" disk,
+      it can get stuck at a prompt which only lets you retry but not abort
+      the write attempt. If you use both /w and /W at the same time,
+      FdShield will make all files look as if they are readonly, which
+      usually prevents DOS from trying to write to disk. The same warning
+      about pipes and DOS boxes as for the /w protection holds for the /W
+      protection.
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Load FdShield as early as possible (after TSR programs like keyboard
+  and CD-ROM drivers) to get its protection as all actions before
+  loading FdShield can damage your system.
+  For this reason you should change the boot order in the BIOS to C:
+  instead of A: first. Many new machines offer a manual change of the 
+  boot order when starting the computer if you need it.
+  As FdShield offers no function to unload you have to reboot the
+  computer if some programs are blocked by its functions. For this
+  reason it is recommended to add a boot menu (see example) for
+  different purposes.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  In CONFIG.SYS / FDCONFIG.SYS:
+    MENU 0. FreeDOS system
+    MENU 1. minimal virus protection
+    MENU 2. medium protection (1.-TSR +HD bootsector write prtoection)
+    MENU 3. medium protection (recommended) (2.+program write protection)
+    MENU 4. maximum protection (3.-all TSR+write protection all)
+  and in AUTOEXEC.BAT:
+    IF "%CONFIG%"=="0" echo The system is not protected by FdShield
+    IF "%CONFIG%"=="1" LH FdShield /v
+    IF "%CONFIG%"=="2" LH FdShield /v /t /B
+    IF "%CONFIG%"=="3" LH FdShield /v /t /B /x
+    IF "%CONFIG%"=="4" LH FdShield /v /T /B /b /X /w /W
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/dosfsck.htm">dosfsck</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../cnfigsys/fcbs.htm">fcbs</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../command/set.htm">set</a>
+  <a href="../base/sys.htm">sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2005 Eric Auer, Walt Gregg, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

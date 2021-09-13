@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: himem</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: himem</h1>
+<pre>
+  HIMEM es el administrador de memoria alta.
+  HIMEM debe cargarse en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  <b>HIMEM est&aacute; desactualizado. En su lugar, debe usar <a href="../base/himemx.htm">HIMEMX</a> o <a href="../base/jemmex.htm">JEMMEX</a></b>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  HIMEM [/MAX=####] [/METHOD:xxx] [/HMAMIN=n] [/NUMHANDLES=m]
+        [/TESTMEM:ON|OFF] [/VERBOSE] [/NOABOVE16] [/X] [/LOG]
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /MAX=#####       Limite la memoria controlada por HIMEM a #####K.
+  /METHOD:xxx      Especifica el m&eacute;todo que se utilizar&aacute; para el manejo
+                   de A20.
+                   Posibles valores para xxx:
+                   ALWAYSON    Asuma que la l&iacute;nea A20 est&aacute; ENCENDIDA
+                               permanentemente
+                   BIOS        Use BIOS para alternar la l&iacute;nea A20
+                   FAST        Use el puerto 92h, omita la prueba INT15h
+                   PS2         Use el puerto 92h, omita la prueba PS/2
+                   KBC         Usa el controlador del teclado
+                   PORT92      Use el puerto 92h siempre
+  /HMAMIN=n        Especifica el n&uacute;mero m&iacute;nimo de Kbs de HMA que un
+                   programa debe solicitar para obtener acceso a HMA
+                   (valor predeterminado: 0Kb).
+  /NOX2MAX32       Sin limite XMS 2.0 gratis/disponible. informe de
+                   memoria a 32M-1K
+  /NUMHANDLES=m    Especifica el n&uacute;mero de manejadores XMS disponibles
+                   (def: 72).
+  /TESTMEM:ON|OFF  Realiza u omite una prueba de memoria extendida
+                   (def: OFF).
+  /VERBOSE         Proporciona informaci&oacute;n adicional durente la 
+                   instalaci&oacute;n.
+  /NOABOVE16       No utilice la funci&oacute;n INT 15h E801h para detectar &gt; 64M.
+  /X               No utilice la funci&oacute;n INT 15h E820h para detectar &gt; 64M.
+  /X2MAX32         Limite el informe de memoria libre/disponible de 
+                   XMS 2.0 a 32M-1K (defecto).
+  /LOG             Registra la actividad del controlador en un archivo
+                   de registro.
+  /?               Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  HIMEM requiere una CPU 80386+. EMM386 se puede cargar despu&eacute;s de este
+  controlador. Cargue HIMEM como DEVICE=HIMEM.EXE en CONFIG.SYS
+  (&iexcl;aunque es un archivo ".exe"!)
+  HIMEM debe cargarse en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\himem.exe
+    device=c:\fdos\bin\emm386.exe
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+ (<a href="../base/emm386.htm">emm386</a>)
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, modificado en 2011 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

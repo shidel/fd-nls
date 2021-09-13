@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: locate</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: locate</h1>
+<pre>
+  LOCATE ist ein DOS-Dateifinder.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  LOCATE [Dateiangaben] [Optionen]
+         Die Dateiangaben k&ouml;nnen einen Laufwerksbuchstaben, Verzeichnis,
+         oder beides enthalten. Wenn ein Laufwerksbuchstabe angegeben ist,
+         wird nur dieses durchsucht. Wenn kein Laufwerk angegeben wird,
+         wird locate selbst entscheiden welche Laufwerke zu durchsuchen
+         sind. Alles vor dem letzten zur&uuml;ckgelehnter Schr&auml;gstrich im
+         Dateinamen wird als Verzeichnis betrachtet, das mit seinen
+         Unterverzeichnissen durchsucht wird. Bei Verzeichnisnamen ohne
+         Laufwerksbuchstaben wird diese auf dem aktuellen Laufwerk
+         durchsucht. Platzhalter im Verzeichnisnamen sind nicht erlaubt.
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  Was gesucht wird:
+    /D              Sowohl Dateien als auch Unterverzeichnisse (Standard).
+    /D-             Dateien, keine Unterverzeichnisse (Standard mit
+                    /B /K /X /S: /0).
+    /D+             Nur Unterverzeichnisse, keine Dateien.
+    /H              Nur versteckte oder System-Dateien.
+    /X              Ausf&uuml;hrbare Dateien (.COM .EXE .BAT).
+    /0              Nur leere (0-Byte gro&szlig;e) Dateien.
+    /S:[min][,max]  Dateiengr&ouml;&szlig;e innerhalb des gegebenen Bereichs.
+    /D:[min][,max]  Elemente innerhalb des gegebenen Datumbereichs.
+    /D:Tagesliste   Nur von bestimmten Tagen der Woche.
+    /T:[min][,max]  Elemente innerhalb des gegebenen Zeitbereichs.
+    /A:[a+][a-]     Maske mit Dateiattributen.
+  Wo gesucht wird:
+    /T              Aktuelles Verzeichnis und Suchpfad nur.
+    /NR             Keine rekursiv Suche in Unterverzeichnissen.
+    /R              Nur lokale Festplatten.
+    /M              Einschlie&szlig;lich doppelter Netzlaufwerks-Zuordnungen.
+    /E:variable     Verzeichnisse, die in gegebener Umgebungsvariable
+                    aufgelistet sind.
+  Wie die Suchergebnisse angezeigt werden:
+    /P              Anzeige im ausf&uuml;hrlichen Stil, mit Datum, Uhrzeit,
+                    Attributen und Gr&ouml;&szlig;en.
+    /I              Mit Indexnummern, Datum, Uhrzeit, Attributen,
+                    Gr&ouml;&szlig;en.
+    /W              Weite Anzeige.
+    /N              Blo&szlig;e Anzeige (Dateiliste).
+    /B:"Befehl"     Ausgabe als Stapelverarbeitungs-Datei.
+    /L              Benutzt lange Windows 95 Dateinamen
+    /O:"Makrotext"  Formatierte Ausgabe per Makros.
+    /S              Nur &Uuml;bersichts-Informationen.
+    /US             Verwendet amerikanisches Datums- und Uhrzeit-Format
+                    (Tue May 31 1994).
+    /UK             Verwendet englisches Datums- und Uhrzeit-Format
+                    (Tue 31 May 1994).
+    /UJ             Verwendet japanisches (ISO) Datums- und Uhrzeit-Format
+                    (Tue 1994-05-31).
+    /12             12-Stunden-Format
+    /24             24-Stunden-Format.
+    /NP             Keine seitenweise Anzeige.
+  Was mit gefundenen Punkten zu tun ist:
+    /G              Zum Verzeichnis gehen.
+    /K              L&ouml;sche (kill) gefundene Punkte.
+    /C:"Befehl"     F&uuml;hrt Befehle aus, mit den gleichen Makros wie /O.
+    /F:n            Stoppt nach der ersten n Ergebnissen.
+  Andere Optionen:
+    /Y              Ja (Yes) - keine Eingabeaufforderung bei /K oder /C.
+    /NV             Keine Video-BIOS Aufrufe.
+    /V              Vertausche Leer- und Enter-Taste bei seitenweiser
+                    Anzeige.
+    /NA             Keine Romanisierung von Buchstaben f&uuml;r den Vergleich.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Bitte lesen Sie locate.txt, um weitere Informationen zu erhalten.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  locate           findet alle Dateien und Verzeichnisse
+  locate *.SYS     findet alle Dateien mit der .SYS-Erweiterung
+  locate /H        findet alle versteckten oder System-Dateien
+  locate *.SYS /H  findet alle versteckten oder System-Dateien mit
+                   der .SYS-Erweiterung
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  - nirgendwo -
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl, &uuml;bersetzt von J. Jenderek.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

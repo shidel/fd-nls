@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: break</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: break</h1>
+<pre>
+  BREAK sets extended CTRL+C (STRG+C) / Control-Break checking to on
+  [default] or off. When set to on, the kernel will perform the check 
+  (and invoke current handler if pressed) prior to most int 21h calls.
+  When set to off, the kernel only performs the check on I/O calls using
+  standard streams.
+  BREAK can be used in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> and <a href="../command/break.htm">WHILE RUNNING</a>
+  FreeDOS.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  BREAK=[ON | OFF]
+</pre>
+<h2>Options:</h2>
+<pre>
+  ON   CTRL+C (STRG+C) is also tested while an access 
+       to diskette or HD.
+  OFF  CTRL+C (STRG+C) is only tested if there is an
+       output on the screen. Default=OFF
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Type "BREAK" without a parameter to display the current BREAK setting.
+  If BREAK is ON, programs and commands can always be aborted by typing
+  CTRL+C (STRG+C).
+  If BREAK is OFF, programs and commands can only be aborted if you get 
+  an output on the screen.
+  BREAK can be used in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> but it is also a
+  <a href="../command/break.htm">COMMAND.COM</a> command.
+  BREAK is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    break=on   programs can be aborted by CTRL+C (STRG+C)
+    break=off  programs cannot be aborted by CTRL+C (STRG+C)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/break.htm">break command.com</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

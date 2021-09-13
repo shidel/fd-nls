@@ -1,0 +1,652 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>KPDOS v3.0 - Paquete de distribuci&oacute;n de teclado para p&aacute;gina de c&oacute;digo DOS</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>KPDOS v3.0 - Paquete de distribuci&oacute;n de teclado para p&aacute;gina de c&oacute;digo DOS</h1>
+<pre>
+  KPDOS contiene archivos de biblioteca para usar con <a href="../base/keyb.htm">KEYB</a>.
+  La herramienta oficial de FreeDOS para hacer que uno de los archivos
+  siguientes funcione con una de sus posibles p&aacute;ginas de c&oacute;digos es <a href="../base/mode.htm">MODE</a>.
+  Para usar MODE, <a href="../base/display.htm">DISPLAY</a> ya debe estar ejecut&aacute;ndose.
+  Todos los archivos CPI en esta lista son los disponibles en el paquete
+  <a href="../base/cpidos.htm">CPIDOS</a>. <a href="../base/keyb-kc.htm">KC</a> puede compilar los archivos de biblioteca personalizados
+  por <a href="../base/klib.htm">KLIB</a>.
+  M&aacute;s detalles disponibles en el paquete <a href="../base/keyb-kc.htm">KC</a>, que tambi&eacute;n incluye KLIB.
+
+  Dise&ntilde;os de teclado oficiales de FreeDOS, v3.0
+  =============================================
+
+  Esta es la lista de todos los nombres de los dise&ntilde;os de teclado
+  disponibles para FreeDOS. Cuando el nombre tiene el formato zz999,
+  significa que hay un nombre Y un identificador que DEBE especificarse;
+  de lo contrario, KEYB cargar&aacute; el dise&ntilde;o de otro teclado para ese pa&iacute;s.
+
+  En ese caso, el usuario deber&aacute; ejecutar: "KEYB ZZ /ID: 999".
+
+  Cuando el nombre est&aacute; en el formato "aa, bb", significa que en realidad
+  hay (al menos) dos nombres que se pueden usar para cargar el dise&ntilde;o de
+  ese pa&iacute;s/idioma. (Puede encontrar otros nombres y/o identificadores en
+  la secci&oacute;n [GENERAL] de los archivos KEY).
+
+  Consulte la secci&oacute;n Notas al final de este archivo siempre que haya un
+  (n&uacute;mero) a la derecha del nombre de su teclado.
+
+  Trabajando con teclados de doble-gui&oacute;n
+  ======================================
+
+  Es necesario presionar una combinaci&oacute;n de teclas para acceder a la
+  capa no latina cuando se trabaja con teclados que est&aacute;n destinados
+  (o fueron mejorados para) trabajar con m&aacute;s de un alfabeto/gui&oacute;n. Por
+  favor, consulte las tablas a continuaci&oacute;n.
+  Teclados de doble escritura: &aacute;rabe, armenio, azer&iacute;, bielorruso, 
+  b&uacute;lgaro, cherokee, georgiano, griego, hebreo, kazaj, kirgu&iacute;s,
+  macedonio, mongol*, ruso, serbio, tayiko, ucraniano y azbeco:
+
+      Descripci&oacute;n de la capa     Combinaci&oacute;n de teclas
+      ----------------------     ---------------------
+      Lat&iacute;n                      [ALT]+[LEFT_SHIFT]
+      Alfabeto Nacional          [ALT]+[RIGHT_SHIFT]
+
+  *Alfabeto Cir&iacute;lico.
+
+  Teclados italianos, cuando se trabaja con CP869 (griego):
+
+      Descripci&oacute;n de la capa     Combinaci&oacute;n de teclas
+      ----------------------     ---------------------
+      Lat&iacute;n                      [ALT]+[LEFT_SHIFT]
+      Fon&eacute;tica griega            [ALT]+[RIGHT_SHIFT]
+
+  Teclado let&oacute;n lv455:
+  (Capa cir&iacute;lica disponible cuando se trabaja con cp3012)
+
+      Descripci&oacute;n de la capa     Combinaci&oacute;n de teclas
+      ----------------------     ---------------------
+      Lat&iacute;n QWERTY               [ALT]+[LEFT_SHIFT]
+      Lat&iacute;n UGJRMV               [ALT]+[RIGHT_SHIFT]
+      Cyrillic phonetic          [ALT]+[LEFT_CTRL]
+
+  Teclado lituano lt456:
+  (Capa cir&iacute;lica disponible cuando se trabaja con CP771 o cp772)
+
+      Descripci&oacute;n de la capa     Combinaci&oacute;n de teclas
+      ----------------------     ---------------------
+      Lat&iacute;n QWERTY               [ALT]+[LEFT_SHIFT]
+      Lat&iacute;n AZERTY               [ALT]+[RIGHT_SHIFT]
+      Cyrillic phonetic          [ALT]+[LEFT_CTRL]
+
+  Teclados noruego y sueco/finland&eacute;s, cuando se trabaja con cp30000:
+  (cp30000: Saami)
+
+      Descripci&oacute;n de la capa     Combinaci&oacute;n de teclas
+      ----------------------     ---------------------
+      Lat&iacute;n QWERTY               [ALT]+[LEFT_SHIFT]
+      Lat&iacute;n ASERIT               [ALT]+[RIGHT_SHIFT]
+
+  Teclado de EE.UU., cuando se trabaja con cp30034:
+
+      Descripci&oacute;n de la capa     Combinaci&oacute;n de teclas
+      ----------------------     ---------------------
+      Lat&iacute;n                      [ALT]+[LEFT_SHIFT]
+      Cherokee                   [ALT]+[RIGHT_SHIFT]
+
+  Teclado turcomano, cuando se trabaja con cp59234(*):
+
+      Descripci&oacute;n de la capa     Combinaci&oacute;n de teclas
+      ----------------------     ---------------------
+      Lat&iacute;n                      [ALT]+[LEFT_SHIFT]
+      Fon&eacute;tica Cir&iacute;lica          [ALT]+[RIGHT_SHIFT]
+
+  (*)Los turcomanos se pueden escribir con el alfabeto latino cuando
+     se usan con CP852. En ese caso, la capa cir&iacute;lica no estar&aacute;
+     disponible.
+
+  El esquema fon&eacute;tico cir&iacute;lico a continuaci&oacute;n se aplica a lo siguiente:
+
+  1) Teclados letones (todos menos lv455), cuando se trabaja con CP3012
+     ("RusLat").
+  2) Teclados letones (todos menos lt456), cuando se trabaja con 
+     cp771 o cp772.
+  3) Teclados polacos, cuando se trabaja con cp848 (ucraniano o cp849
+     (bielorruso).
+  4) Teclados rumanos, cuando se trabaja con cp848 (ucraniano) o
+     cp30010 (cir&iacute;lico gagauz/rumano).
+
+      Descripci&oacute;n de la capa     Combinaci&oacute;n de teclas
+      ----------------------     ---------------------
+      Lat&iacute;n                      [ALT]+[LEFT_SHIFT]
+      Fon&eacute;tica Cir&iacute;lica          [ALT]+[RIGHT_SHIFT]
+
+
+  Dise&ntilde;os disponibles en el archivo de biblioteca KEYBOARD.SYS
+  ============================================================
+
+  Pa&iacute;s/Regi&oacute;n                      Nombre  P&aacute;ginas de C&oacute;digos       CPX
+  -----------                      ------  ------------------       ---
+
+  A
+  -----------------------------------------------------------------------
+  Argentina (1)                    la      858, 850, 437            EGA
+                                           30003                    EGA12
+  Australia (1)                    us      858, 850, 437            EGA
+  Austria (est&aacute;ndar) (1)           gr, de  858, 850, 437, 852       EGA
+          (Doble capa)             gr453   858, 850, 437, 852, 853  EGA
+
+  B
+  -----------------------------------------------------------------------
+  B&eacute;lgica (1)                      be      858, 850, 437            EGA 
+                                           859                      EGA2
+                                           30007                    EGA11
+  Bosnia y Herzegovina             yu, ba  852, 858, 850            EGA 
+                                           113                      EGA5
+  Brasil (dise&ntilde;o ABNT)             br      858, 850, 437            EGA
+                                           860                      EGA9
+                                           3848                     EGA18
+         (dise&ntilde;o US)               br274   858, 850, 437            EGA
+                                           860                      EGA9
+                                           3848                     EGA18
+
+  C
+  -----------------------------------------------------------------------
+  Canad&aacute; (est&aacute;ndar) (1)            cf, ca  858, 863                 EGA9
+                                           850                      EGA
+                                           859                      EGA2
+                                           30022                    EGA16
+         (Doble capa)              cf445   858, 863                 EGA9
+                                           850, 852, 853, 857       EGA
+                                           859, 775                 EGA2
+                                           30001, 30007             EGA11
+                                           30020                    EGA14
+                                           30022, 30031             EGA16
+  Chile (1)                        la      858, 850, 437            EGA
+  Colombia (1)                     la      858, 850, 437            EGA
+  Croacia                          yu, hr  852, 858, 850            EGA
+                                           113                      EGA5
+  Rep&uacute;blica Checa (QWERTY)         cz      852                      EGA
+                                           867                      EGA9
+                 (Est&aacute;ndar)        cz243   852, 858, 850            EGA
+                                           867                      EGA9
+                 (Programadores)   cz489   852                      EGA
+                                           867                      EGA9
+
+  D
+  -----------------------------------------------------------------------
+  Dinamarca (1)                    dk      858, 865                 EGA9
+                                           850                      EGA
+                                           30004                    EGA11
+
+  E
+  -----------------------------------------------------------------------
+  Ecuador (1)                      la      858, 850, 437            EGA
+
+  F
+  -----------------------------------------------------------------------
+  Finlandia (1)                    su, fi  858, 850, 437            EGA
+                                           859                      EGA2
+                                           30000                    EGA11
+                                           808, 866                 EGA3
+  Francia (Est&aacute;ndar) (1)           fr      858, 850, 437            EGA
+                                           859                      EGA2
+                                           30021                    EGA14
+
+  G
+  -----------------------------------------------------------------------
+  Alemania (Est&aacute;ndar) (1)          gr, de  858, 850, 437, 852       EGA
+                                           859                      EGA2
+                                           30009                    EGA11
+                                           30020                    EGA14
+          (Doble capa)             gr453   858, 850, 437, 852, 853  EGA
+                                           859, 775                 EGA2
+                                           30009                    EGA11
+                                           30020                    EGA14
+
+  H
+  -----------------------------------------------------------------------
+  Hungr&iacute;a (101-teclas)             hu      852, 858, 850            EGA
+                                           3845                     EGA10
+          (102-teclas)             hu208   852, 858, 850            EGA
+                                           3845                     EGA10
+
+  I
+  -----------------------------------------------------------------------
+  Irlanda (Est&aacute;ndar) (1)           uk      858, 850, 437            EGA
+                                           30001                    EGA11
+            (Alternativo)          uk168   858, 850, 437            EGA
+                                           30001                    EGA11
+  Italia (Estandar) (1)            it      858, 850, 437, 852       EGA
+                                           869                      EGA5
+                                           30007                    EGA11
+      (Coma en teclado num&eacute;rico)   it142   858, 850, 437, 852       EGA
+                                           869                      EGA5
+                                           30007                    EGA11
+
+  J
+  -----------------------------------------------------------------------
+  Jap&oacute;n (2)                        jp      932                      ---
+
+  L
+  -----------------------------------------------------------------------
+  Am&eacute;rica Latina (1)               la      858, 850, 437            EGA
+                                           30003, 30029, 30030      EGA12
+
+  M
+  -----------------------------------------------------------------------
+  M&eacute;xico (1)                       la      858, 850, 437            EGA
+                                           30029, 30030             EGA12
+  Montenegro                       yu, cg  852, 858, 850            EGA
+                                           113                      EGA5
+
+  N
+  -----------------------------------------------------------------------
+  Pa&iacute;ses Bajos (102-teclas) (1)    nl      858, 850, 437            EGA
+                                           30020                    EGA14
+  Nueva Zelanda (1)                us      858, 850, 437            EGA
+                                           30021                    EGA14
+  Noruega (1)                      no      858, 865                 EGA9
+                                           850                      EGA
+                                           30000                    EGA11
+
+  P
+  -----------------------------------------------------------------------
+  Polonia (101-teclas, prog.) (1)  pl      852, 858, 850            EGA
+                                           667, 668, 790, 991       EGA10
+                                           58335                    EGA12
+                                           848, 849                 EGA4
+         (102-teclas)              pl214   852, 858, 850            EGA
+                                           667, 668, 790, 991       EGA10
+                                           58335                    EGA12
+                                           848, 849                 EGA4
+  Portugal                         po      858, 860                 EGA9
+                                           850                      EGA
+
+  S
+  -----------------------------------------------------------------------
+  Eslovaquia                       sk      852, 858, 850            EGA
+                                           867                      EGA9
+  Eslovenia                        yu, si  852, 858, 850            EGA
+                                           113                      EGA5
+  Sud&aacute;frica (1)                    us      858, 850, 437            EGA
+                                           30023                    EGA15
+  Espa&ntilde;a (1)                       sp, es  858, 850, 437            EGA
+                                           30007                    EGA11
+  Suecia (1)                       sv      858, 850, 437            EGA
+                                           859                      EGA2
+                                           30000                    EGA11
+                                           808, 866                 EGA3
+  Suiza (franc&eacute;s) (1)              sf      858, 850, 437            EGA
+                                           859                      EGA2
+              (Alem&aacute;n)             sg, sd  858, 850, 437            EGA
+
+  U
+  -----------------------------------------------------------------------
+  Reino Unido (Est&aacute;ndar) (1)       uk      858, 850, 437            EGA
+                                           859                      EGA2
+                                           30001                    EGA11
+     (Alternativo)                 uk168   858, 850, 437            EGA
+                                           859                      EGA2
+                                           30001                    EGA11
+  EE.UU. (Est&aacute;ndar) (1)(6)         us      858, 850, 437            EGA
+                                           859                      EGA2
+                                           30021                    EGA14
+   (Cherokee)                              30034                    EGA17
+   (Colemak)                       co      858, 850, 437            EGA
+   (Dvorak)                        dv      858, 850, 437            EGA
+   (Dvorak izquierdo)              lh      858, 850, 437            EGA
+   (Dvorak derecho)                rh      858, 850, 437            EGA
+
+  V
+  -----------------------------------------------------------------------
+  Venezuela (1)                    la      858, 850, 437            EGA
+
+
+  Dise&ntilde;os disponibles en el archivo de biblioteca KEYBRD2.SYS
+  ===========================================================
+
+  Pa&iacute;s/Regi&oacute;n                      Nombre  P&aacute;ginas de C&oacute;digos       CPX
+  -----------                      ------  ------------------       ---
+
+  B
+  -----------------------------------------------------------------------
+  Bulgaria (101-teclas)            bg      872, 855, 808, 866       EGA3
+                                           3021                     EGA16
+                                           858, 850                 EGA
+           (101 fon&eacute;tica)          bg103   872, 855, 808, 866       EGA3
+                                           3021                     EGA16
+                                           858, 850                 EGA
+           (102-teclas)            bg241   872, 855, 808, 866       EGA3
+                                           3021                     EGA16
+                                           849                      EGA4
+                                           858, 850                 EGA
+
+  G
+  -----------------------------------------------------------------------
+  Grecia (319)                     gk, el  869, 737, 851, 858       EGA5
+                                           850                      EGA
+         (220)                     gk220   869, 737, 851, 858       EGA5
+                                           850                      EGA
+         (101-teclas)              gk459   869, 737, 851, 858       EGA5
+                                           850                      EGA
+
+  I
+  -----------------------------------------------------------------------
+  Islandia (101-teclas)            is      858, 861                 EGA9
+                                           850                      EGA
+           (102-teclas)            is161   858, 861                 EGA9
+                                           850                      EGA
+
+  R
+  -----------------------------------------------------------------------
+  Ruman&iacute;a (Est&aacute;ndar) (1)           ro      852, 858, 850            EGA
+                                           848, 30010               EGA4
+                                           30009                    EGA11
+          (Qwerty)                 ro446   852, 858, 850            EGA
+                                           848, 30010               EGA4
+                                           30009                    EGA11
+  Rusia (Estandar) (3)             ru      808, 866, 872, 855       EGA3
+                                           858, 850, 437            EGA
+         (M&aacute;quina de escribir)     ru443   808, 866, 872, 855       EGA3
+                                           858, 850, 437            EGA
+         (Est&aacute;ndar de chechenia)   ce      30019, 30011             EGA7
+         (M&aacute;quina de escribir 
+          chechenia)               ce443   30019, 30011             EGA7
+         (Estandar Tatarst&aacute;n)      tt      30018, 30013             EGA7
+         (M&aacute;quina de escribir
+          Tatarst&aacute;n)               tt443   30018, 30013             EGA7
+         (Est&aacute;ndar extendido)      rx      30011, 30013, 30014,     EGA7
+                                           30017                    EGA7
+                                           30012, 30015, 30016      EGA14
+         (M&aacute;quina de escribir
+          extendida)               rx443   30011, 30013, 30014,     EGA7
+                                           30017                    EGA7
+                                           30012, 30015, 30016      EGA14
+
+  S
+  -----------------------------------------------------------------------
+  Serbia (clave muerta) (1)        yc, sr  872, 855                 EGA3
+                                           848                      EGA4
+                                           858, 850                 EGA
+         (Sin clave muerta) (1)    yc450   872, 855                 EGA3
+                                           848                      EGA4
+                                           858, 850                 EGA
+
+  T
+  -----------------------------------------------------------------------
+  Turqu&iacute;a (Qwerty) (1)             tr      857, 858, 850, 853       EGA
+                                           3846                     EGA18
+          (No est&aacute;ndar) (1)        tr440   857, 858, 850, 853       EGA
+                                           3846                     EGA18
+
+
+  Dise&ntilde;os disponibles en el archivo de biblioteca KEYBRD3.SYS
+  ===========================================================
+
+  Pa&iacute;s/Regi&oacute;n                      Nombre  P&aacute;ginas de C&oacute;digos       CPX
+  -----------                      ------  ------------------       ---
+
+  A
+  -----------------------------------------------------------------------
+  Albania (Sin clave muerta)       sq      852, 858, 850, 437       EGA
+          (clave muerta)           sq448   852, 858, 850, 437       EGA
+  Armenia                          hy      899                      EGA6
+  Azerbaiy&aacute;n                       az      60258, 58210             EGA6
+
+  B
+  -----------------------------------------------------------------------
+  Bielorrusia                      bl, by  849, 1131                EGA4
+                                           872, 855                 EGA3
+                                           858, 850                 EGA
+
+  E
+  -----------------------------------------------------------------------
+  Estonia                          et, ee  775, 859, 1116           EGA2
+                                           858, 850                 EGA
+
+  F
+  -----------------------------------------------------------------------
+  Islas Feroe                      fo      858, 861                 EGA9
+                                           850                      EGA
+
+  G
+  -----------------------------------------------------------------------
+  Georgia (4)                      ka      59829, 60853, 30008      EGA6
+
+  I
+  -----------------------------------------------------------------------
+  Israel (13)                      il      862                      EGA17
+                                           856                      EGA18
+
+  K
+  -----------------------------------------------------------------------
+  Kazajst&aacute;n                        kk      58152                    EGA13
+                                   kk476   58152                    EGA13
+  Kirguist&aacute;n                       ky      58152                    EGA13
+
+  L
+  -----------------------------------------------------------------------
+  Letonia (est&aacute;ndar)               lv      775, 1117                EGA2
+                                           770, 773                 EGA8
+                                           3012                     EGA4
+         (Dise&ntilde;o dual)             lv455   775, 1117                EGA2
+                                           770, 773                 EGA8
+                                           3012                     EGA4
+  Lituania (Est&aacute;ndar, LST 1582)    lt221   775                      EGA2
+                                           771, 772                 EGA3
+                                           770, 773, 774, 777, 778  EGA8
+         (Dise&ntilde;o dual)             lt456   775                      EGA2
+                                           771, 772                 EGA3
+                                           770, 773, 774, 777, 778  EGA8
+         (101-teclas, prog.)       lt210   775                      EGA2
+                                           771, 772                 EGA3
+                                           770, 773, 774            EGA8
+         (Azerty)                  lt211   775                      EGA2
+                                           771, 772                 EGA3
+                                           770, 773, 774, 777, 778  EGA8
+         (B&aacute;ltico)                 lt      775                      EGA2
+                                           771, 772                 EGA3
+                                           770, 773, 774, 777, 778  EGA8
+
+  M
+  -----------------------------------------------------------------------
+  Macedonia (1)                    mk      872, 855                 EGA3
+                                           858, 850                 EGA
+                                           30009                    EGA11
+  Malta (Con sede en Reino Unido)  mt, ml  853                      EGA
+        (Con sede en EE.UU.)       mt103   853                      EGA
+  Mongolia                         mn, mo  58152                    EGA13
+
+  P
+  -----------------------------------------------------------------------
+  Filipinas                        ph      858, 850, 437            EGA
+
+  T
+  -----------------------------------------------------------------------
+  Tayikist&aacute;n                       tj      30002                    EGA13
+  Turkmenist&aacute;n                     tm      852, 59234               EGA13
+
+  U
+  -----------------------------------------------------------------------
+  Ucrania (101-teclas)             ur, ua  848, 1125                EGA4
+                                           808, 866                 EGA3
+                                           30033, 30039, 30040      EGA17
+                                           857                      EGA
+                                   ur465   848, 1125                EGA4
+                                           808, 866                 EGA3
+                                           30033, 30039, 30040      EGA17
+                                           857                      EGA
+                                   ur1996  848, 1125                EGA4
+                                           808, 866                 EGA3
+                                           30033, 30039, 30040      EGA17
+                                           857                      EGA
+          (102-teclas)             ur2001  848, 1125                EGA4
+                                           808, 866                 EGA3
+                                           30033, 30039, 30040      EGA17
+                                           857                      EGA
+                                   ur2007  848, 1125                EGA4
+                                           808, 866                 EGA3
+                                           30033, 30039, 30040      EGA17
+                                           857                      EGA
+  Uzbekist&aacute;n                       uz      62306                    EGA13
+
+  V
+  -----------------------------------------------------------------------
+  Vietnam                          vi      30006                    EGA14
+
+
+  Dise&ntilde;os disponibles en el archivo de biblioteca KEYBRD4.SYS
+  ===========================================================
+
+  Pa&iacute;s/Regi&oacute;n                      Nombre  P&aacute;ginas de C&oacute;digos       CPX
+  -----------                      ------  ------------------       ---
+
+  A
+  -----------------------------------------------------------------------
+  Algelia (13)                     ar462,  864                      EGA17
+                                   ar470
+
+  B
+  -----------------------------------------------------------------------
+  Bahrain (13)                     ar470   864                      EGA17
+  B&eacute;lgica (internacional) (10)     bx      30024, 30026             EGA15
+  Benin (1)                        bn      30027                    EGA15
+
+  E
+  -----------------------------------------------------------------------
+  Egipto (13)                      ar470   864                      EGA17
+
+  F
+  -----------------------------------------------------------------------
+  Francia (internacional) (8)      fx      30021                    EGA14
+                                           30024, 30025, 30026      EGA15
+
+  I
+  -----------------------------------------------------------------------
+  Italia (internacional) (11)      ix      30024                    EGA15
+
+  J
+  -----------------------------------------------------------------------
+  Jordan (13)                      ar470   864                      EGA17
+
+  K
+  -----------------------------------------------------------------------
+  Kuwait (13)                      ar470   864                      EGA17
+
+  L
+  -----------------------------------------------------------------------
+  L&iacute;bano (13)                      ar470   864                      EGA17
+
+  M
+  -----------------------------------------------------------------------
+  Marruecos (13)                   ar462,  864                      EGA17
+                                   ar470
+
+  N
+  -----------------------------------------------------------------------
+  N&iacute;ger (1)                        ne      30028                    EGA15
+  Nigeria (1)                      ng      30005                    EGA16
+
+  O
+  -----------------------------------------------------------------------
+  Om&aacute;n (13)                        ar470   864                      EGA17
+
+  P
+  -----------------------------------------------------------------------
+  Portugal (internacional) (12)    px      30024, 30025, 30026      EGA15
+
+  Q
+  -----------------------------------------------------------------------
+  Qatar (13)                       ar470   864                      EGA17
+
+  S
+  -----------------------------------------------------------------------
+  Arabia Saudita (13)              ar470   864                      EGA17
+  Espa&ntilde;a (internacional) (9)       sx      30024, 30026             EGA15
+  Siria (13)                       ar470   864                      EGA17
+
+  T
+  -----------------------------------------------------------------------
+  T&uacute;nez (13)                       ar462,  864                      EGA17
+                                   ar470
+
+  U
+  -----------------------------------------------------------------------
+  Emiratos Arabes Unidos (13)      ar470   864                      EGA17
+  Reino Unido (Internacional) (7)  kx      30021                    EGA14
+                                           30023, 30024, 30025,     EGA15
+                                           30026                    EGA15
+  EE.UU. (Internacional) (5)       ux      858, 850, 437            EGA
+                                           859                      EGA2
+                                           30021                    EGA14
+                                           30023, 30024, 30025,     EGA15
+                                           30026                    EGA15
+
+  Y
+  -----------------------------------------------------------------------
+  Yemen (13)                       ar470   864                      EGA17
+
+  Notas:
+  ------
+   (1) Consulte el siguiente archivo para obtener m&aacute;s detalles:
+       ENHANCED.TXT
+   (2) Consulte el siguiente archivo para obtener m&aacute;s detalles:
+       JP106.TXT
+   (3) Consulte el siguiente archivo para obtener m&aacute;s detalles:
+       RUSSIA.TXT
+   (4) Consulte el siguiente archivo para obtener m&aacute;s detalles:
+       GEORGIA.TXT
+   (5) Consulte el siguiente archivo para obtener m&aacute;s detalles:
+       US-INTL.TXT
+   (6) Consulte el siguiente archivo para obtener m&aacute;s detalles:
+       CHEROKEE.TXT
+   (7) Consulte el siguiente archivo para obtener m&aacute;s detalles:
+       UK-INTL.TXT
+   (8) Consulte el siguiente archivo para obtener m&aacute;s detalles:
+       FR-INTL.TXT
+   (9) Consulte el siguiente archivo para obtener m&aacute;s detalles:
+       SP-INTL.TXT
+  (10) Consulte el siguiente archivo para obtener m&aacute;s detalles:
+       BE-INTL.TXT
+  (11) Consulte el siguiente archivo para obtener m&aacute;s detalles:
+       IT-INTL.TXT
+  (12) Consulte el siguiente archivo para obtener m&aacute;s detalles:
+       PO-INTL.TXT
+  (13) FreeDOS no maneja scripts bidi de forma nativa. Un buen bidi se
+       requiere editor de texto; probado solo con Mined. Uso:
+         "MINED -E=CPxxx",
+       escrito en may&uacute;scula (xxx=856 no funcionar&aacute; en Mined).
+</pre>
+<h2>Derechos de autor:</h2>
+<pre>
+  Todos los programas a continuaci&oacute;n se distribuyen bajo la licencia
+  GNU-GPL 2.0 o porterior. KPDOS y CPIDOS son desarrollados y con 
+  derechos de autor por Henrique Peron.
+  KEYB y KC est&aacute;n desarrollados y protegidos por Aitor Santamaria 
+  Merino.
+
+  CPIDOS  DISPLAY  KC  KEYB  KLIB  MODE
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keyb.htm">keyb</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Este archivo tiene copyright &copy; 2011 Henrique Peron
+  (hperon -at- terra -dot- com -dot- br).</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

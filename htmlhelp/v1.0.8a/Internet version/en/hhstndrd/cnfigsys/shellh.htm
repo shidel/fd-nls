@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: shellhigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: shellhigh</h1>
+<pre>
+  SHELLHIGH tells FreeDOS what command shell to run.
+  SHELLHIGH is a <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  shellhigh=[drive][path]filename [options]
+            drive     The drive letter, e.g. C:
+            path      The directory, e.g. \example\
+            filename  The command shell to run. For example, 
+                      C:\example\COMMAND.COM
+</pre>
+<h2>Options:</h2>
+<pre>
+  options  These are passed to the command shell.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  SHELLHIGH indicates the shell to use; often used to alter <a href="../base/command.htm">COMMAND.COM</a>'s
+  behavior. Note: it is command.com that processes <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>; by using
+  the SHELL option, you can get command.com to process a differently named
+  file (such as FDAUTO.BAT for coexisting with another DOS using different
+  configuration options) or run a completely different command interpreter
+  such as 4DOS or a (unix) sh variant.
+  SHELLHIGH is like SHELL, except it attempts to load the command SHELL
+  (COMMAND.COM) into high memory first (failing that it should load it
+  in conventional memory).
+  Note: The order you load devices may have a large impact on amount
+  of free memory available. In general try to load large (in memory
+  usage) programs into high memory first.
+  Important: You should have a high memory manager such as (<a href="../base/himem.htm">HIMEM</a>),
+  <a href="../base/himemx.htm">HIMEMX</a> or <a href="../base/jemmex.htm">JEMMEX</a> installed (prior device=himem.exe or device=himemx.exe
+  in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>) before using this option.
+  SHELLHIGH is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    shellhigh=C:\4DOS.COM /E:256 /P
+    shellhigh=C:\FDOS\bin\command.com C:\FDOS\bin /E:1024 /P=C:\fdauto.bat
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../base/command.htm">command.com</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/shell.htm">shell</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2011 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

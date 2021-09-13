@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: nlsfunc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comando: nlsfunc</h1>
+<pre>
+  NLSFUNC agrega la funcionalidad NLS (Soporte Nacional de Lenguaje).
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  NLSFUNC [/Y] [unidad][ruta]NomArchivo
+  NLSFUNC [/?]
+    unidad                     La letra de unidad, p. ej. C:
+    ruta                       El directorio, p. ej. \ejemplo\
+    NomArchivo                 El archivo que contiene la 
+                               informaci&oacute;n NLS
+    [unidad][ruta] NomArchivo  Unidad y ruta a un archivo v&aacute;lido
+                               COUNTRY.SYS, que contiene la informaci&oacute;n
+                               espec&iacute;fica del pa&iacute;s.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  /Y                 Carga la tabla opcional SI / NO.
+  /?                 Muestra la ayuda.
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Esta implementaci&oacute;n de NLSFUNC es espec&iacute;fica de FreeDOS.
+  No funcionar&aacute; con MS-DOS o cualquier otra variante de DOS.
+  &iexcl;Tampoco funciona con el n&uacute;cleo 2.036!
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    COUNTRY=34,858,C:\FDOS\COUNTRY.SYS
+  EN AUTOEXEC.BAT:
+    LH DISPLAY CON=(EGA,858,2)
+    MODE CON CP PREP=((850) C:\FDOS\CPI\EGA.CPX)
+    MODE CON CP PREP=((,437) C:\FDOS\CPI\EGA.CPX)
+    LH NLSFUNC /Y
+  Luego cambie las p&aacute;ginas de c&oacute;digos usando CHCP.
+  Si no necesita cambiar las p&aacute;ginas de c&oacute;digos, simplemente omita las
+  l&iacute;neas MODE.
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/mode.htm">mode</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eduardo Casino, modificado en 2007 por W. Spiegl.</b>
+  Traducido en 2020 por <b>Lorenzo del Toro Saravia</b>.
+
+  Este archivo se deriva del comando de especificaciones HOWTO de FreeDOS.
+  Consulte el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para ver las condiciones de copia.
+
+</pre></body></html>

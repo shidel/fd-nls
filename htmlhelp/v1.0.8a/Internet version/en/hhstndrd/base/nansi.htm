@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: nansi.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: nansi.sys</h1>
+<pre>
+  NANSI.SYS is a console enhancing driver. FreeDOS uses NANSI.SYS
+  instead of ANSI.SYS.
+  NANSI.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  When FreeDOS is already running, you can load NANSI.SYS later
+  with <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE[HIGH]=[drive:][path]NANSI.SYS [/K] [/C] [/X] [/S] [/Tnn] [/R]
+               [/B|/Q] [/P]
+  DEVLOAD      [drive:][path]NANSI.SYS [/K] [/C] [/X] [/S] [/Tnn] [/R]
+               [/B|/Q] [/P]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /K    Force 84 key keyboard style.
+  /X    Extended key definitions.
+  /S    Safe mode - no key redefinitions.
+  /Tnn  Mode nn is a text mode.
+  /R    Use BIOS (for some screen readers).
+  /B    Use BIOS for bell sound.
+  /Q    Use no bell sound at all (quiet).
+  /P    Pass all unknown requests to CON.
+  /C    Force 101+ key keyboard style.
+  /?    Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  When loaded (for more information please read nansi.doc):
+    ESC[#;#H        Cursor Position specified by parameters.
+    ESC[#;#f        Horizontal and Vertical Position.
+    ESC[#A          Cursor Up.
+    ESC[#B          Cursor Down.
+    ESC[#C          Cursor Forward.
+    ESC[#D          Cursor Backward.
+    ESC[#n          Device Status, Report! # must be 6. The sequence
+                    ESC[6n causes the console driver to output Cursor
+                    Position Report.
+    ESC[#;#R        Cursor Position Report.
+    ESC[s           Save Cursor Position.
+    ESC[u           Restore Cursor Position.
+    ESC[#J          Erase in Display.# must be 2. Clears the entire
+                    screen.
+    ESC[K           Erase in Line. Deletes from the cursor to the end
+                    of the line.
+    ESC[#L          Insert Lines - not supported in ANSI.SYS.
+    ESC[#M          Delete Lines - not supported in ANSI.SYS.
+    ESC[#@          Insert Characters - not supported in ANSI.SYS.
+    ESC[#P          Delete Characters - not supported in ANSI.SYS.
+    ESC["string"p   Keyboard Key Reassignment. This feature is a
+                    security risk, and can be disabled with the /s
+                    option when loading NANSI.SYS in config.sys.
+    ESC[#;#;...#m   Set Graphics Rendition:
+            0       All attributes off (normal white on black)
+            1       Bold
+            4       Underline
+            5       Blink
+            7       Reverse Video
+            30      foreground black
+            31      foreground red
+            32      foreground green
+            33      foreground yellow
+            34      foreground blue
+            35      foreground magenta
+            36      foreground cyan
+            37      foreground white
+            40      background black
+            41      background red
+            42      background green
+            43      background yellow
+            44      background blue
+            45      background magenta
+            46      background cyan
+            47      background white
+    These settings also work at the <a href="../batch/prompt.htm">PROMPT</a>. You have to type there:
+            prompt $e[1;33;44m for bold / yellow /blue.
+    ESC[=nh         Set Video Mode:
+      Mode Code:    Value:
+            0       text 40x25 Black and White
+            1       text 40x25 Color
+            2       text 80x25 Black and White
+            3       text 80x25 Color
+            4       bitmap 320x200 4 bits/pixel
+            5       bitmap 320x200 1 bit/pixel
+            6       bitmap 640x200 1 bit/pixel
+            13      bitmap 320x200 4 bits/pixel
+            14      bitmap 640x200 4 bits/pixel
+            15      bitmap 640x350 1 bit/pixel
+            16      bitmap 640x350 4 bits/pixel
+            17      bitmap 640x480 1 bit/pixel
+            18      bitmap 640x480 4 bits/pixel
+            19      bitmap 320x200 8 bits/pixel
+    Modes 0, 1, and 4-19 require a CGA, EGA or VGA.
+    Modes 13-16 require an EGA or VGA.
+    Modes 17-19 require a VGA.
+  For more information please read nansi.doc. 
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    device=C:\fdos\bin\nansi.sys
+    devicehigh=C:\fdos\bin\nansi.sys
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/device.htm">device</a>
+  <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../batch/prompt.htm">prompt</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 - 2004 Robert Platt, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

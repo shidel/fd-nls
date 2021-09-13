@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: atapicdd.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: atapicdd.sys</h1>
+<pre>
+  ATAPICDD.SYS ist ein allgemeiner CD-ROM-Treiber f&uuml;r IDE-CD-ROM-
+  Laufwerke (ATAPI). 
+  Er befindet sich noch in der Entwicklungsphase. Verwenden Sie bitte
+  stattdessen <a href="../base/uide.htm">UIDE.SYS</a>.
+  ATAPICDD.SYS mu&szlig; in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen werden.
+  Alternativ kann ATAPICDD.SYS w&auml;hrend des Betriebes mit <a href="../util/devload.htm">DEVLOAD</a>
+  nachtr&auml;glich geladen werden.
+  <b>ATAPICDD.SYS ist veraltet. Sie sollten stattdessen <a href="../base/uide.htm">UIDE.SYS</a> verwenden</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+   device=[Laufwerk][Pfad]atapicdd.sys [options]
+          Laufwerk  Der Laufwerksbuchstabe, z.B: C:
+          Pfad      Der zu w&auml;hlende Pfad, z.B.: \Beispiel\
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /D:name  Setzt den Ger&auml;tenamen auf "Name". Standardwert: FDCD0000.
+           Dieser Name mu&szlig; auch in der autoexec.bat beim Laden des
+           shsucdx / mscdex als Option angef&uuml;hrt werden.
+  /N:x     Setzt die Zahl der zu suchenden Ger&auml;te auf x.
+           Standardeinstellung: 1
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  ATAPICDD.SYS wird in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen.
+  Die Option /D: xxxxyyyy mu&szlig; die gleiche sein wie unter <a href="../base/shsucdx.htm">SHSUCDX</a>
+  (MSCDEX) der in der <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> geladen wird.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\atapicdd.sys /d: fdc0000 /n:2
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

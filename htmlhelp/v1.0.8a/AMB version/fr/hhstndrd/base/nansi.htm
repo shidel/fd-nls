@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : nansi.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : nansi.sys</h1>
+<pre>
+  NANSI.SYS est un pilote d'am&eacute;lioration de la console. FreeDOS utilise
+  NANSI.SYS au lieu d'ANSI.SYS.
+  NANSI.SYS doit &ecirc;tre charg&eacute; dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+  Lorsque FreeDOS est d&eacute;j&agrave; en fonctionnement, vous pouvez charger
+  NANSI.SYS par la suite avec <a href="../util/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  DEVICE[HIGH]=[lecteur:][chemin]NANSI.SYS [/K] [/C] [/X] [/S] [/Tnn]
+               [/R] [/B|/Q] [/P]
+  DEVLOAD      [lecteur:][chemin]NANSI.SYS [/K] [/C] [/X] [/S] [/Tnn]
+               [/R] [/B|/Q] [/P]
+</pre>
+<h2>Options :</h2>
+<pre>
+  /K    Force le style de clavier &agrave; 84 touches.
+  /X    D&eacute;finitions de touches &eacute;tendues.
+  /S    Mode s&ucirc;r - pas de red&eacute;finitions de touches.
+  /Tnn  Mode nn est un mode texte.
+  /R    Utilise le BIOS (pour certains lecteurs d'&eacute;cran).
+  /B    Utilise le BIOS pour le bip syst&egrave;me.
+  /Q    N'utilise aucun bip du tout (silencieux).
+  /P    Transmet toutes les requ&ecirc;tes inconnues &agrave; CON.
+  /C    Force le style de clavier &agrave; 101+ touches.
+  /?    Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Une fois charg&eacute; (pour plus d'informations veuillez lire nansi.doc) :
+    ESC[#;#H        Position du curseur sp&eacute;cifi&eacute; par les param&egrave;tres.
+    ESC[#;#f        Position horizontale et verticale.
+    ESC[#A          Curseur haut.
+    ESC[#B          Curseur bas.
+    ESC[#C          Curseur en avant.
+    ESC[#D          Curseur en arri&egrave;re.
+    ESC[#n          &Eacute;tat du p&eacute;riph&eacute;rique, Rapport ! # doit &ecirc;tre 6. La
+                    s&eacute;quence ESC[6n force le pilote de la console &agrave;
+                    g&eacute;n&eacute;rer un Rapport de Position du Curseur.
+    ESC[#;#R        Rapport de position du curseur.
+    ESC[s           Enregistre la position du curseur.
+    ESC[u           Restaure la position du curseur.
+    ESC[#J          Efface sur l'&eacute;cran.# doit &ecirc;tre 2. Efface tout
+                    l'&eacute;cran.
+    ESC[K           Efface sur la ligne. Efface depuis le curseur
+                    jusqu'&agrave; la fin de la ligne.
+    ESC[#L          Ins&egrave;re des lignes - non pris en charge dans ANSI.SYS.
+    ESC[#M          Efface des lignes - non pris en charge dans ANSI.SYS.
+    ESC[#@          Ins&egrave;re des caract&egrave;res - non pris en charge dans
+                    ANSI.SYS.
+    ESC[#P          Efface des caract&egrave;res - non pris en charge dans
+                    ANSI.SYS.
+    ESC["cha&icirc;ne"p   R&eacute;attribution des touches du clavier. Cette
+                    fonctionnalit&eacute; est un risque de s&eacute;curit&eacute; et peut
+                    &ecirc;tre d&eacute;sactiv&eacute; avec l'option /s lors du chargement
+                    de NANSI.SYS dans config.sys.
+    ESC[#;#;...#m   D&eacute;finit le rendu graphique :
+            0       Tous les attributs d&eacute;sactiv&eacute;s (blanc normal sur noir)
+            1       Gras
+            4       Soulign&eacute;
+            5       Clignotement
+            7       Vid&eacute;o invers&eacute;e
+            30      noir au premier plan
+            31      rouge au premier plan
+            32      vert au premier plan
+            33      jaune au premier plan
+            34      bleu au premier plan
+            35      magenta au premier plan
+            36      cyan au premier plan
+            37      blanc au premier plan
+            40      fond noir
+            41      fond rouge
+            42      fond vert
+            43      fond jaune
+            44      fond bleu
+            45      fond magenta
+            46      fond cyan
+            47      fond blanc
+    Ces r&eacute;glages fonctionnent aussi sur <a href="../batch/prompt.htm">L'INVITE</a>. Vous devez y taper :
+            invite $e[1;33;44m pour le gras / jaune / bleu.
+    ESC[=nh         D&eacute;finit le mode vid&eacute;o :
+      Code de Mode :    Valeur :
+            0        texte 40x25 Noir et blanc
+            1        texte 40x25 En couleurs
+            2        texte 80x25 Noir et blanc
+            3        texte 80x25 En couleurs
+            4        bitmap 320x200 4 bits/pixel
+            5        bitmap 320x200 1 bit/pixel
+            6        bitmap 640x200 1 bit/pixel
+            13       bitmap 320x200 4 bits/pixel
+            14       bitmap 640x200 4 bits/pixel
+            15       bitmap 640x350 1 bit/pixel
+            16       bitmap 640x350 4 bits/pixel
+            17       bitmap 640x480 1 bit/pixel
+            18       bitmap 640x480 4 bits/pixel
+            19       bitmap 320x200 8 bits/pixel
+    Les modes 0, 1, et 4-19 n&eacute;cessite CGA, EGA or VGA.
+    Les modes 13-16 n&eacute;cessitent EGA ou VGA.
+    Les modes 17-19 n&eacute;cessitent VGA.
+  Pour plus d'informations veuillez lire nansi.doc.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    device=C:\fdos\bin\nansi.sys
+    devicehigh=C:\fdos\bin\nansi.sys
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+  <a href="../cnfigsys/device.htm">device</a>
+  <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../batch/prompt.htm">prompt</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 - 2004 Robert Platt, mis &agrave; jour en 2008
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

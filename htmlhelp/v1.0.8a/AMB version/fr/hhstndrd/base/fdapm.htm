@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : fdapm</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : fdapm</h1>
+<pre>
+  FDAPM est un outil avanc&eacute; de gestion de l'alimentation.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  fdapm [Options]
+</pre>
+<h2>Options :</h2>
+<pre>
+ (aucune)   Si aucune option n'est donn&eacute;e, la valeur par d&eacute;faut est
+            d'afficher &agrave; la fois les sorties INFO et STATS (si le shell
+            est charg&eacute;, sinon lorsqu'il est charg&eacute; depuis INSTALL, la
+            valeur par d&eacute;faut est APMDOS).
+  APMoff    D&eacute;sactive le mode d'&eacute;conomie d'&eacute;nergie APM du BIOS brut.
+            Alias de compatibilit&eacute; avec la syntaxe MS POWER : "OFF".
+  OFF       Identique &agrave; APMoff, pour la compatibilit&eacute; avec MS power.
+  APMbios   Active le mode d'&eacute;conomie d'&eacute;nergie APM du BIOS brut. Alias
+            de compatibilit&eacute; avec la syntaxe MS POWER : "STD".
+  STD       Identique &agrave; APMbios, pour la compatibilit&eacute; avec MS power.
+  APMDOS    Cela devrait vous permettre de r&eacute;aliser des &eacute;conomies
+            d'&eacute;nergie maximales. C'est le seul mode qui fait que FDAPM
+            reste r&eacute;sident dans la RAM. Pour arr&ecirc;ter, s&eacute;lectionnez
+            APMbios/APMoff.
+  ADV:MAX   &Eacute;conomies d'&eacute;nergie maximales, pour la compatibilit&eacute; avec
+            MS power.
+  ADV:MIN   &Eacute;conomies d'&eacute;nergie minimales, pour la compatibilit&eacute; avec
+            MS power.
+  ADV:REG   &Eacute;conomies d'&eacute;nergies restreintes, pour la compatibilit&eacute; avec
+            MS power.
+  INFO      Affiche des informations sur l'&eacute;tat APM. Affiche des choses
+            comme le pourcentage de remplissage de la batterie.
+  STATS     Affiche des informations sur l'&eacute;tat APM/ APMDOS. Affiche
+            des choses comme le pourcentage du temps de processeur
+            occup&eacute;, si FDAPM ou POWER sont r&eacute;sidents et charg&eacute;s dans
+            m&eacute;moire.
+  FLUSH     Vide les caches du disque (r&eacute;&eacute;crit les donn&eacute;es sur
+            le disque).
+  SPINUP    R&eacute;veille les disques IDE &agrave; nouveau.
+  SPINDOWN  Vide les caches disque et arr&ecirc;te les disques IDE sur les
+            2 premiers contr&ocirc;leurs IDE. Utilisez &agrave; vos risques et
+            p&eacute;rils. Les disques vont red&eacute;marrer lorsque vous les
+            utiliserez &agrave; nouveau. Les disques ont "l'intelligence"
+            incorpor&eacute;e pour cela. Pour &eacute;conomiser de l'&eacute;nergie
+            automatiquement, vous pouvez souvent utiliser une option
+            de configuration du BIOS qui indique au disque au d&eacute;marrage
+            qu'il peut s'arr&ecirc;ter (il poss&egrave;de un minuteur incorpor&eacute; !)
+            d&egrave;s qu'il n'aura pas &eacute;t&eacute; utilis&eacute; pendant un certains temps.
+  ACPIOFF   Comme POWEROFF mais utilise explicitement l'ACPI au lieu
+            de l'APM. Notez que les fonctions classiques utiliseront
+            l'ACPI aussi, si aucun support BIOS de l'APM n'est pr&eacute;sent.
+            Le syst&egrave;me est plac&eacute; en S5 soft-off apr&egrave;s avoir vid&eacute; les
+            caches et arr&ecirc;t&eacute; les disques.
+            Utile pour comparer la gestion APM / ACPI.
+  STANDBY   Vide les caches disque, entre en mode veille. N&eacute;cessite
+            l'APM ou l'ACPI et une alimentation ATX ou plus r&eacute;cente.
+  SUSPEND   Vide les cache disque, arr&ecirc;te (les r&eacute;veillera
+            automatiquement) les disques IDE, et met en veille le
+            syst&egrave;me. Utile si vous avez un BIOS avec hibernation des
+            disques, pour &eacute;viter de les activer juste avant que
+            l'hibernation n'en ait besoin. N&eacute;cessite l'APM ou
+            l'ACPI et une alimentation ATX ou plus r&eacute;cente.
+  PURESUSP  Comme SUSPEND, mais n'arr&ecirc;te pas d'abord les disques IDE.
+            N&eacute;cessite l'APM ou l'ACPI et une alimentation ATX ou plus
+            r&eacute;cente.
+  POWEROFF  Vide les caches disque, arr&ecirc;te les disques IDE, &eacute;teint le
+            VGA et le syst&egrave;me. N&eacute;cessite l'APM ou l'ACPI et une
+            alimentation ATX ou plus r&eacute;cente.
+  PUREOFF   Comme POWEROFF, mais n'arr&ecirc;te pas d'abord les disques IDE.
+            Utile si votre BIOS r&eacute;veillerait autrement les disques juste
+            avant de couper l'alimentation (a&iuml;e). N&eacute;cessite l'APM ou
+            l'ACPI et uen alimentation ATX ou plus r&eacute;cente.
+  VGAoff    &Eacute;teint l'&eacute;cran EGA/VGA DPMS (pas de r&eacute;veil automatique !).
+            Vous devez taper FDAPM VGAon ou red&eacute;marrer pour l'allumer.
+            VGAoff n'est pas un &eacute;conomiseur d'&eacute;cran. Utilisez idledpms
+            en tant qu'&eacute;conomiseur d'&eacute;cran.
+  VGAon     Allume &agrave; nouveau l'&eacute;cran EGA/VGA DPMS. Appuyer simplement
+            sur une touche apr&egrave;s avoir utilis&eacute; la fonction VGAoff
+            N'activera PAS la vid&eacute;o &agrave; nouveau, ce n'est pas un
+            &eacute;conomiseur d'&eacute;cran. C'est seulement une fa&ccedil;on d'allumer
+            et d'&eacute;teindre la vid&eacute;o sans aucune surveillance du syst&egrave;me
+            ou de r&eacute;veil automatique.
+  ZapStats  Efface les compteurs STATS.
+  SPEEDn    R&egrave;gle la vitesse du syst&egrave;me sur n/8 (n * 12,5%) du maximum
+            (0 arr&ecirc;te jusqu'&agrave; un appui sur le bouton d'alimentation).
+            Utilisez SPEED9 pour afficher le r&eacute;glage actuel. SPEED9 est
+            la m&eacute;thode recommand&eacute;e de v&eacute;rifier si votre syst&egrave;me utilise
+            l'ACPI d'une mani&egrave;re compatible avec FDAPM. N&eacute;cessite l'ACPI.
+  SPEED0    Speed 0 mettra le syst&egrave;me en veille S1 (appuyez sur le bouton
+            d'alimentation ATX ou le bouton veille pour continuer) du
+            point de vue du processeur. Aucun autre p&eacute;riph&eacute;rique ne se
+            mettra en veille. Utilisez l'outil PCISLEEP si vous souhaitez
+            faire des exp&eacute;riences avec la gestion de l'alimentation PCI.
+  COLDboot  Effectue un red&eacute;marrage avec les tests BIOS (POST) (apr&egrave;s
+            avoir vid&eacute; les caches disque) en indiquant au contr&ocirc;leur de
+            clavier 8042 d'activer les circuits de remise &agrave; z&eacute;ro du
+            mat&eacute;riel. Tr&egrave;s similaire &agrave; un red&eacute;marrage &agrave; froid - seuls
+            dans de rares cas, appuyer sur le bouton reset ou de
+            red&eacute;marrer l'ordinateur vous donnera une remise &agrave; z&eacute;ro
+            plus "froide".
+  WARMboot  Effectue un red&eacute;marrage sans les tests BIOS (POST).
+            G&eacute;n&eacute;ralement s&ucirc;r mais peut planter si vous utilisez des
+            logiciels de mode prot&eacute;g&eacute; incompatibles comme certaines
+            versions d'EMM386. Vide les caches disque avant de
+            red&eacute;marrer.
+  HOTboot   Tente un red&eacute;marrage en utilisant int 19h (plantera
+             souvent !).
+            Avant de tenter le red&eacute;marrage, FDAPM indique aux caches
+            de se vider (&eacute;crire les donn&eacute;es sur le disque) et attend
+            un moment.
+  HELP      Affiche l'aide.
+  /?        Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  FDAPM est un alternatif pour MS-DOS Power.
+  APM: Advanced Power Management (gestion avanc&eacute;e de l'alimentation).
+  ACPI: Advanced Configuration and Power Interface (interface avanc&eacute;e de
+        configuration et gestion de l'alimentation).
+  ATX: Advanced Technology Extended (technologie avanc&eacute;e &eacute;tendue).
+  DPMS: Display Power Management Signaling (signalisation de gestion de
+        l'alimentation de l'affichage).
+  Veuillez lire fdapm.txt dans le paquet fdapm pour plus d'informations.
+  La casse est sans objet, "-" ou "/" ne sont pas n&eacute;cessaires.
+  Toutes les options d'hibernation/veille/extinction des disques durs
+  ajoutent automatiquement un d&eacute;lai pour donner au disque dur le temps
+  de changer d'&eacute;tat.
+  Toutes ces op&eacute;rations et toutes les options relative au red&eacute;marrage
+  indiquent aux caches d'&eacute;crire les tampons sales sur le disque avant
+  que l'action concr&egrave;te ne commence.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  fdapm apmdos  vous permet de r&eacute;aliser des &eacute;conomies d'&eacute;nergie
+                maximales
+  fdapm speed2  r&egrave;gle la vitesse sur 2x12,5% = 25 % de la vitesse
+                maximale, par exemple pour d'anciens jeux
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../util/pcisleep.htm">pcisleep</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Eric Auer, mis &agrave; jour en 2008 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

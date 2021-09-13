@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Comando de FreeDOS: buffershigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Comandos: buffershigh</h1>
+<pre>
+  BUFFERSHIGH indica a FreeDOS cu&aacute;ntos b&uacute;feres de disco debe asignar.
+  BUFFERSHIGH es un comando <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Sintaxis:</h2>
+<pre>
+  buffers=nn[,m]
+    nn  es el n&uacute;mero de b&uacute;feres de disco primario, en el rango 1-99.
+    m   es el n&uacute;mero de b&uacute;feres de disco secundarios, en el rango 1-8.
+</pre>
+<h2>Opciones:</h2>
+<pre>
+  Uso:
+
+  La configuraci&oacute;n predeterminada depende de la cantidad de memoria
+  convencional que su sistema tiene:
+
+  Memoria (KB)             B&uacute;feres Primarios         B&uacute;feres Secundarios
+  ----------------------------------------------------------------------
+    &lt; 128                           3                         1
+  128 - 255                         5                         1
+  256 - 511                        10                         1
+  512 - 640                        15                         1
+</pre>
+<h2>Comentarios:</h2>
+<pre>
+  Aumentar el n&uacute;mero de BUFFERS puede mejorar la velocidad de los 
+  programas que funcionan con un gran n&uacute;mero de archivos, pero tambi&eacute;n
+  utiliza m&aacute;s recursos de memoria.
+  La opci&oacute;n de b&uacute;fer secundario est&aacute; disponible para la compatibilidad con
+  otros n&uacute;cleos de DOS, pero es ignorado por el kernel de FreeDOS. En
+  MS-DOS, un b&uacute;fer secundario se puede utilizar para leer datos
+  anticipados. FreeDOS no hace esto. FreeDOS almacena los b&uacute;feres en HMA,
+  a menos que seleccione nn para asignar m&aacute;s b&uacute;feres de los que caben en
+  HMA. Si nn es m&aacute;s peque&ntilde;o, el espacio HMA no utilizado se utilizar&aacute; para
+  otros b&uacute;feres hasta que otra cosa asigne el espacio HMA para otra cosa.
+  Incluso entonces, al menos nn b&uacute;feres siempre estar&aacute;n disponibles. Usted
+  puede fijar nn a un valor negativo para inhabilitar el uso del espacio
+  HMA no utilizado: BUFFERS-10 utiliza solamente 10 b&uacute;feres, m&aacute;s especio
+  libre en el HMA permanecer&aacute; sin usar.
+  BUFFERSHIGH es como BUFFERS, excepto que intenta cargar en memoria alta
+  primero (en su defecto que debe cargarse en la memoria convencional).
+  Nota: El orden en que cargue los dispositivos puede tener un gran 
+  impacto en la cantidad de memoria libre disponible. En general, intente
+  cargar primero programas grandes (en uso de memoria) en memoria alta.
+  Importante: Debe tener instalado un administrador de memoria alta como
+  <a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a> o <a href="../base/jemmex.htm">JEMMEX</a> (dispositivo anterior=himem.exe o 
+  dispositivo=himemx.exe en <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>) antes de utilizar
+  esta opci&oacute;n.
+  BUFFERSHIGH es un comando interno del kernel.sys y no necesita ning&uacute;n
+  otro archivo para funcionar.
+</pre>
+<h2>Ejemplos:</h2>
+<pre>
+  EN CONFIG.SYS / FDCONFIG.SYS:
+    buffershigh=3,1
+</pre>
+<h2>Ver tambi&eacute;n:</h2>
+<pre>
+  <a href="../cnfigsys/buffers.htm">buffers</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+</pre>
+<hr>
+<pre>
+  Copyright &copy; 2003 <b>Robert Platt</b>, modificado en 2008 <b>W. Spiegl.</b>
+  Traducido en 2019 por <b>Lorenzo del Toro Saravia.</b>
+
+  Este archivo se deriva del FreeDOS Spec Command HOWTO.
+  Ver el archivo <a href="../other/h2cpying.htm">H2Cpying</a> para las condiciones de copiado.
+
+</pre></body></html>

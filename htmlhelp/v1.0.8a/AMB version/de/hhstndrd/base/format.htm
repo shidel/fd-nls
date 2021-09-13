@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: format</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: format</h1>
+<pre>
+  FORMAT formatiert eine Festplatte oder Diskette (beides='Disk').
+  Damit wird das Medium auf die Verwendung durch FreeDOS vorbereitet.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FORMAT Laufwerk [/V[:label]] [/Q] [/U] [/F:size] [/S] [/D]
+  FORMAT Laufwerk [/V[:label]] [/Q] [/U] [/T:tracks /N:sectors] [/S] [/D]
+  FORMAT Laufwerk [/V[:label]] [/Q] [/U] [/4] [/S] [/D]
+  FORMAT [/?]
+         Laufwerk  Der Laufwerksbuchstabe, z.B. C:
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /1            Formatiere eine einseitige Diskette (160KB/180KB).
+  /4            Formatiere eine 160KB/360KB Diskette in einem 1,2 MB
+                Diskettenlaufwerk.
+  /8            Formatiere eine 5,25 Zoll Diskette mit 8 Sektoren pro 
+                Spur (160KB/320KB, DOS 1.x)
+  /A            Erzwingt 4KB Ausrichtung f&uuml;r FAT32 Formatierung.
+  /B            Reserviert Platz um eine bootf&auml;hige 'Disk' zu erstellen
+                (ist ein Dummy und kann nicht mit /s (sys) kombiniert
+                werden).
+  /D            Ausf&uuml;hrlich und zeigt die Debugging-Ausgabe. F&uuml;r 
+                Fehlerberichte geeignet.
+  /F:size       Gibt die Gr&ouml;&szlig;e der zu formatierenden Diskette an.
+                &Uuml;bliche Gr&ouml;&szlig;en sind: 360, 720, 1200, 1440 oder 2880 
+                (Einheit: KiloBytes=KB). 160, 180, 320 sollte auch
+                funktionieren. /F:0 zeigt eine List der erlaubten
+                Gr&ouml;&szlig;en.
+  /N:sectors    Gibt die Zahl der Sektoren pro Spur auf einer Diskette
+                an.
+  /Q            Formatiert die 'Disk' schnell. Wenn nicht mit /U
+                kombiniert, kann diese <a href="../base/unformat.htm">UNFORMAT</a>iert werden und be&auml;lt
+                die Markierungen von schlechten Clustern (/Q /U tut dies
+                nicht!)
+  /S            Ruft <a href="../base/sys.htm">SYS</a> auf, um die 'Disk' bootf&auml;hig zu machen und
+                Systemdateien beim Formatieren hinzuzuf&uuml;gen.
+  /T:tracks     Gibt die Anzahl der Spuren (Zylinder) auf eine Diskette
+                an.
+  /U            Formatiert die 'Disk' unwiderruflich. Bei einer Diskette
+                wird eine Lowlevelformatierung durchgef&uuml;hrt.
+                ACHTUNG: Kann SEHR SEHR lange dauern! ESC dr&uuml;cken und
+                warten, um /U zu beenden.
+  /V:label      Gibt der 'Disk' einen Laufwerksnamen (<a href="../base/label.htm">LABEL</a>), speichert
+                dabei Datum und Zeit (nicht bei 160KB/320KB Disketten).
+  /Y            &Uuml;bergeht Best&auml;tigungsanfragen.
+  /Z:longhelp:  Gibt detaillierte technische Gebrauchsinformation.
+  /Z:mirror     Speichert die <a href="../base/unformat.htm">UNFORMAT</a> "<a href="../base/mirror.htm">MIRROR</a> Daten" ohne die 'Disk'
+                zu formatieren.
+  /Z:seriously  Unterdr&uuml;ckt die Best&auml;tigungsr&uuml;ckfrage wenn Sie eine
+                Festplatte formatieren.
+  /Z:unformat   Entformatiert die Disk, wenn die <a href="../base/mirror.htm">MIRROR</a> Daten
+                frisch sind.
+  /?            Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Warnung: Obwohl FORMAT FAT32 unterst&uuml;tzt, funktioniert es nicht sehr
+  gut unter Win9x(-DOS), um FAT32-Partitionen zu erstellen.
+  Die Modi f&uuml;r DISKETTE sind: Versucht, schnelles sicheres Format zu
+  verwenden. Verwenden Sie Lowlevelformatierung nur wenn n&ouml;tig. Schnelles
+  sicheres Formatieren speichert die Mirror Daten f&uuml;r <a href="../base/unformat.htm">UNFORMAT</a>.
+  Die Modi f&uuml;r FESTPLATTEN sind: Versucht, schnelles sicheres Format zu
+  verwenden. Nehmen Sie schnelles vollst&auml;ndiges Formatieren nur wenn
+  erforderlich. Schnelles vollst&auml;ndiges Formatieren setzt nur das Datei-
+  system zur&uuml;ck. Wenn Sie Lowlevelformatierung erzwingen wollen
+  (Diskette) oder die die gesamte Festplattenoberfl&auml;che gescannt und
+  alle Inhalte gewiped haben wollen, verwenden Sie /U.
+  FORMAT /Q /U ist ein schnelles volles Formatieren (kein Lowlevel For-
+  matieren / scannen / wipen!).
+  FORMAT /Q ist ein schnelles, sicheres Formatieren (speichert wenn m&ouml;g-
+  lich die Mirror Daten). Die Mirror Daten &uuml;berschreiben immer das Ende
+  des Datenbereichs! Wenn Sie weder /Q oder /U verwenden, w&auml;hlt Format
+  automatisch einen Modus (siehe oben).
+
+  Unterst&uuml;tzte FAT-Typen sind: FAT12, FAT16, FAT32, alle mit Mirror /
+  unformat. Unterst&uuml;tzte Diskettengr&ouml;&szlig;en sind: 160 KB, 180 KB, 320 KB,
+  360 KB und 1200 KB f&uuml;r 5,25 Inch und 720 KB und 1440 KB (2880 KB
+  wurde bisher nie getestet) f&uuml;r 3,5 Inch Laufwerke.
+  Unterst&uuml;tzte &Uuml;berformate sind: 400 KB, 800 KB, 1680 KB (und 3660 KB),
+  mit mehr Sektoren und 1494 KB (anstelle 1200 KB) und 1743 KB (und
+  3486 KB) mit auch mehr Zylinder. Mehr Zylinder werden nicht auf allen
+  Laufwerken funktionieren, verwenden Sie dies auf eigenes Risiko.
+  Achtung: &Auml;ltere DOS Versionen k&ouml;nnen &Uuml;berformate nur zusammen mit
+  einem Treiber verwenden. 720 KB Disketten in einem 1440 KB Laufwerk
+  ben&ouml;tigen eine 720 KB Diskette. Verwenden Sie ein 360KB Laufwerk, um
+  360 KB zu formatieren.
+  Um mit FAT32 zu formatieren, k&ouml;nnen Sie den /A Schalter verwenden, um
+  4 KB Clustergr&ouml;&szlig;e zu erzwingen. 
+  FORMAT hat folgende <a href="../batch/if.htm#comment">Beendigungswerte (EXITCODES/ERRORLEVEL)</a>:
+    0        Okay,
+    1        Defekte Sektoren gefunden (nur wenn /d oder /y oder
+             die /z:seriously Option aktiv)
+    2        Die Hilfe wurde angezeigt oder Syntax Error,
+    3        Abbruch durch Benutzer,
+    4        Format Fehler,
+    5        Benutzer hat nicht best&auml;tigt.
+  Die Errorlevel 1 und 2 gibt es unter MS FORMAT nicht.
+  Wenn Sie die /D Option verwenden, erscheinen andere errorlevel. Diese
+  k&ouml;nnen abh&auml;ngig von der jeweiligen FORMAT Version sein.
+
+  Zum Beispiel in Version 0.91t:
+    0        Okay,
+    1        Defekte Sektoren gefunden,
+    2        Die Hilfe wurde angezeigt oder Syntax Error,
+    10..13   Userint Error (nicht best&auml;tigt / Syntax Error)
+    20..22   Createfs Error (Erzeugung des Dateisystems),
+    25..29   dDrive I/O Error,
+    30..31   Recordbc Error (Analyse des vorhandenen Dateisystems),
+    35..36   Uformat Error (unwiderrufliches Formatieren),
+    38..39   Savefs Error (SafeFormat / Mirror)
+    40..52   Diskettenfehler,
+    55..59   Festplattenfehler,
+    60..62   Grundfehler: Nicht passender Laufwerkstyp, z.B. CD-ROM,
+   128..255  Kritischer Fehler (userint: (DOS or BIOS error code) | 128)
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  format a: /f:1440   formatiert eine 1,4 MB Diskette
+  format c: /v:meine_hd  formatiert eine Festplatte, Label: meine_hd
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/sys.htm">sys</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

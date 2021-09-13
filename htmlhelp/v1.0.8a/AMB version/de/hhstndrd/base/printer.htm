@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: printer.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: printer.sys</h1>
+<pre>
+  PRINTER.SYS liefert die Codepageverwaltungsf&auml;higkeiten f&uuml;r einen
+  Druckertreiber. PRINTER.SYS mu&szlig; in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>
+  geladen werden. Alternativ kann PRINTER.SYS w&auml;hrend des Betriebes mit
+  <a href="../util/devload.htm">DEVLOAD</a> nachtr&auml;glich geladen werden.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  printer [devname][:]=([hardwaretype],[{n|(n1,[n2,]...)}],[m])
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  devname       Name des Druckerportger&auml;ts das erweitert werden soll,
+                wie z.B. PRN oder LPTx. Der Doppelpunkt ist optional.
+  hardwaretype  Die Bezeichnung des Hardwareanzeigeadaptertyps. Es kann 
+                auch die Anzahl der zu verwendenden Subfonts bestimmen.
+                Es gibt jedoch noch immer nicht unterst&uuml;tzte Typen.
+  n, n1, n2,..  Zahlen f&uuml;r die Codepagezahlen der Hardware Codepages.
+  m             Zahl der Puffer, die sie spezifizieren wollen, um 
+                Codepages vorzubereiten (Standard ist 1).
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Dieser Treiber hat noch keine bin&auml;re Form, weil noch kein spezifisches
+  Druckerhardwaremanagement hinzugef&uuml;gt wurde (Sie k&ouml;nnen sowohl
+  PRINTER.SYS als auch DISPLAY.SYS aus dem Quellcode von <a href="../base/display.htm">DISPLAY</a>
+  kompilieren).
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  Wenn PRINTER.SYS einmal Hardwareunterst&uuml;tzung hat, k&ouml;nnen Sie
+  folgendes ausf&uuml;hren:
+    PRINTER PRN=(IBMPro,437,1)
+  Sie geben an, da&szlig; Sie einen IBM Proprinter kompatiblen Drucker mit
+  der Hardware Codepage 437 haben der nur einen Puffer braucht, um das
+  residente Speicherabbild zu minimieren.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/print.htm">print</a>
+  <a href="../base/printq.htm">printq</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; Aitor SANTAMARIA MERINO, aktualisiert 2008
+  von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

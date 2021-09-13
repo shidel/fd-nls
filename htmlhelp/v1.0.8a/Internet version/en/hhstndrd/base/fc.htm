@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: fc</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: fc</h1>
+<pre>
+  FC compares two files or sets of files, in text or binary mode,
+  and displays the differences between them.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FC [switches] [drive1:][path1]filename1 [drive2][path2]filename2 
+     [switches]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /A    Display only first and last lines for each set of differences.
+  /B    Perform a binary comparison.
+  /C    Disregard the case of letters.
+  /L    Compare files as ASCII text.
+  /LBn  Set the maximum number of consecutive different ASCII lines to n.
+  /Mn   Set the maximum differences in binary comparison to n bytes
+        (default = 20, 0 = unlimited, /M = /M0).
+  /N    Display the line numbers on a text comparison.
+  /Q    Don't show the list of differences.
+  /R    Show a brief final report (always active when using /S).
+  /S    Extend the scan to the files in subdirectories.
+  /T    Do not expand tabs to spaces.
+  /U    Show the filenames of the files without a correspondent.
+  /W    Pack white space (tabs and spaces) for text comparison.
+  /X    Do not show context lines in text comparison.
+  /nnn  Set the minimum number of consecutive matching lines to nnn.
+        for comparison resynchronization.
+  /?    Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  FC is <a href="../util/doslfn.htm">LFN</a> aware and use them automatically if the operating system
+  supports the long file names.
+  FC defaults to binary mode for files .EXE, .COM, .SYS, .OBJ, .BIN,
+  .DLL and .LIB.
+  In binary mode FC shows the offset in the file of the differing bytes,
+  their value in hexadecimal and, if they are ASCII printable chars,
+  their ASCII char.
+  By default the binary compare stops after 20 differences but that
+  value can be modified through the /M switch. /M0 means "unlimited
+  differences". /M is interpreted as /M0.
+  A design limitation of this program is that, in the text mode file
+  comparison, only the first 32765 lines are compared; the remaining
+  lines are ignored. The line length is virtually unlimited.
+  FC supports NLS (national language support).
+  FC has the following <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a>:
+    0  All the files match
+    1  At least a pair of files differs
+    2  Invalid parameter on the command line
+    3  File not found
+    4  Error opening file(s)
+</pre>
+<h2>Examples:</h2>
+<pre>
+  FC /L /M0 C:\ foo.txt D:\foo.txt
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/comp.htm">comp</a>
+  <a href="../base/diskcomp.htm">diskcomp</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../util/md5sum.htm">md5sum</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1999 Maurizio Spagni, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

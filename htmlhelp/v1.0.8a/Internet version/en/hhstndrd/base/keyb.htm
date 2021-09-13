@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: keyb</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: keyb</h1>
+<pre>
+  KEYB is a localization BIOS extension for DOS.
+  KEYB can be considered as a keyboard driver which intercepts the
+  keyboard management BIOS routines in order to adapt non-US keyboards
+  to the system, and provides other facilities.
+  (NOTE: KEYB is not a proper device driver, and is not loaded with 
+  DEVICE= in <a href="../cnfigsys/index.htm">CONFIG.SYS</a>; you run it as a resident program instead).
+  Required data is read from a keyboard layout data file, a KL file.
+  A keyboard layout is identified by two labels, a string label, which is
+  mandatory (usually a two letter string, such as GR, FR or SP), and an
+  optional numeric identifier to distinguish different variants.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  KEYB  layoutName[,[CP][,filename]]  [/ID:nnn]  [/E] [/9] [/I] [/Dx]
+                  [/V] [/L=m] [/NOHI] [/B] [/S]
+  KEYB [/U]
+  KEYB /?
+</pre>
+<h2>Options:</h2>
+<pre>
+  Parameterless KEYB will show information on the currently loaded KEYB.
+  LayoutName    String identifier.
+  /ID:nnn       Specifies the numeric identifier nnn.
+  CP            Codepage in which you want KEYB to start (if omitted,
+                DISPLAY.SYS and the system are checked).
+  filename      The KL file that contains the information for the given
+                layout. If it is omitted, then KEYBOARD.SYS is tried,
+                otherwise LayoutName.KL
+  /E            Specifies that the keyboard is an AT enhanced keyboard
+                (this switch is incompatible with /9).
+  /9            Specifies that int9h management services must be
+                activated (this switch is incompatible with /E).
+  /I            Forces the installation over an already existing
+                keyboard driver.
+  /Dx           Sets the decimal separator character to x.
+  /U            Unloads a KEYB previously loaded in memory.
+  /V            Verbose: shows extra information.
+  /L=m          Forces the usage of submapping m, provided that it is
+                compatible with current codepage.
+  /NOHI         Avoids KEYB to load data into Upper memory, by loading
+                it below 640Kb.
+  /B            Disables sound alerts (Beep).
+  /S            Safemode: does not allow un-closed keyboard layout
+                collections and blocks strings and other critical
+                commands.
+  /?            Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  You can program FreeDOS so that keyboard is  configured  at boot time
+  by means of <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+  Append the command line into your AUTOEXEC.BAT to do this.
+  You can create your own customized layout files by using the compiler
+  tool <a href="../base/keyb-kc.htm">KC</a>.
+  Alternatively, you can use a standard already made KL data file from
+  the KL file package. (See references below).
+  KEYB comes with the packet KEYB200.
+  FD-KEYB is compatible with the <a href="../batch/if.htm#comment">EXITCODES (ERRORLEVEL)</a> of MS-KEYB.
+  However, as a large number of possible error causes is considered, an
+  alternative numeration of errors is shown on screen at load time.
+
+  ExitCode  KEYB ErrorCode  Error description
+  ========================================================================    0        0             Successful execution
+                            
+                         INVALID LANGUAGE, CODE PAGE OR INCORRECT SYNTAX
+    1        3             Missing keyboard identifier layoutName.
+    1       11             Invalid modifier or switch.
+    1       14             Specified file does not contain information
+                           for this layout/id.
+    1       21             Required submapping does not match with
+                           current codepage: you are using /L=m but the
+                           requested submapping does not correspond
+                           with current CP.
+
+                         BAD OR MISSING KEYBOARD DEFINITION FILE
+    2        4             Specified file could not be opened.
+    2       13             Invalid file, or file corrupt.
+    2       19             Incompatible version of keyboard descriptor
+                           (the compilation file or KL file are of an
+                           incompatible version).
+    2       20             Invalid checksum for data block: the
+                           compilation file is corrupt.
+    3       10             The keyboard table could not be created.
+    4       16             Error in communication with the CON device.
+    5       17             The codepage has not been prepared.
+    6       12             Codepage not found in keyboard definition
+                           file. 
+
+                         INCOMPATIBLE KEYB OR VERSION FOUND
+    7        1             Different version of KEYB installed.
+    7        2             Incompatible keyboard driver installed.
+    7       18             Incompatible version of DR-KEYB installed.
+
+  Not present in MS-KEYB:
+
+                         RESIDENT PART OF KEYB COULD NOT BE REMOVED
+    8        5             The resident part of KEYB could not be
+                           removed.
+    8        8             KEYB was NOT installed.
+
+                         UNEXPECTED PROBLEM: VISIT THE KEYB SITE FOR A
+                         NEWER VERSION OR CONTACT THE AUTHOR
+    9        6             Internal failure: Global memory space
+                           too small
+    9        7             KEYB (still) requires an AT/286 or better.
+    9        9             Overloading is (still) not supported.
+    9       15             KL file too large ((still) 3KB maximum).
+  ========================================================================</pre>
+<h2>Examples:</h2>
+<pre>
+  KEYB SP,858        Loads KEYB with the layout for the Spanish
+                     distribution and codepage 858
+  KEYB GR,,GR.KL /E  Loads the German keyboard layout for KEYB, 
+                     explicitely informing KEYB that we are using an
+                     enhanced keyboard.
+                     Use this if KEYB cannot identify the presence of
+                     an enhanced keyboard.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/keyb-kc.htm">kc</a>
+  <a href="../base/keycode.htm">keycode</a>
+  <a href="../base/keyman.htm">keyman</a>
+  <a href="../base/klib.htm">klib</a>
+  <a href="../base/kpdos.htm">kpdos</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 Aitor SANTAMARIA MERINO.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

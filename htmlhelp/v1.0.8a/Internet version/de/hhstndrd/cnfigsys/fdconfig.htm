@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: fdconfig.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: fdconfig.sys</h1>
+<pre>
+  FreeDOS liest die <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / FDCONFIG.SYS Datei beim Hochfahren,
+  um das DOS System zu konfigurieren. Sie wird vor der <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>
+  gestartet.
+  Standardm&auml;&szlig;ig versucht FreeDOS, zuerst die FDCONFIG.SYS zu starten 
+  (und ignoriert dann die <a href="../cnfigsys/index.htm">CONFIG.SYS</a>). Sollte die FDCONFIG.SYS nicht
+  gefunden werden, verwendet FreeDOS stattdessen die <a href="../cnfigsys/index.htm">CONFIG.SYS</a>.
+  <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / FDCONFIG.SYS sind Textdateien. Sie k&ouml;nnen mit
+  einem Texteditor wie z.B. <a href="../base/edit.htm">EDIT</a> oder <a href="../base/edlin.htm">EDLIN</a> erstellt oder
+  bearbeitet werden. Die FDCONFIG.SYS / <a href="../cnfigsys/index.htm">CONFIG.SYS</a> mu&szlig; sich IMMER im
+  Rootverzeichnis (Stammverzeichnis) eines Mediums befinden!
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  - keine -
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  - keine -
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Wenn Sie DOS booten, werden Sie bemerken, da&szlig; es nur einen
+  Bruchteil der in vielen Computern vorhandenen Ger&auml;te erkennt.
+  Um zus&auml;tzliche Ger&auml;te und weitere Features zu unterst&uuml;tzen,
+  m&uuml;ssen ger&auml;tespezifische Treiber und speicherresidente 
+  Software geladen werden. Dies erm&ouml;glicht es dem Kernel, leicht
+  erweiterbar zu sein, um Hardware zu unterst&uuml;tzen, die derzeit
+  noch nicht erh&auml;ltlich ist und um installierte Hardware besser
+  ausn&uuml;tzen zu k&ouml;nnen ohne unn&ouml;tige Ressourcen auf schwachen 
+  Computern zu verbrauchen. Diese Software wird grunds&auml;tzlich
+  w&auml;hrend der Kernelinitialisierungsphase mit den Optionen geladen,
+  wie sie in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> beschrieben sind.
+  Der FreeDOS Kernel schaut zuerst nach einer Datei namens
+  FDCONFIG.SYS und verwendet sie, falls sie existiert, anstelle der
+  <a href="../cnfigsys/index.htm">CONFIG.SYS</a>; dies erm&ouml;glicht es dem FreeDOS Kernel neben einem
+  anderen Kernel zu existieren und gesondert konfiguriert zu werden.
+  Es gibt au&szlig;erdem zus&auml;tzliche Optionen und Befehle um andere 
+  Aspekte des Kernelverhaltens einzustellen.
+  Es gibt spezielle Befehle f&uuml;r die Benutzung in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> /
+  FDCONFIG.SYS Datei, siehe auch die Links weiter unten.
+  DOS-Befehle und <a href="../batch/index.htm">BATCH-DATEI</a> Befehle k&ouml;nnen grunds&auml;tzlich
+  nicht in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / FDCONFIG.SYS verwendet werden. Siehe hierzu
+  auch den <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / FDCONFIG.SYS <a href="../cnfigsys/menu.htm">MENU</a> Befehl.
+  Wenn Sie w&auml;hrend des Bootvorgangs "F5" dr&uuml;cken, werden die config.sys
+  / fdconfig.sys und die autoexec.bat-Befehle ignoriert. Dies kann
+  hilfreich sein, wenn sie einen Treiber installiert haben, der beim
+  Booten crasht. Wenn Sie w&auml;hrend des Bootvorgangs "F8" dr&uuml;cken, mu&szlig;
+  jeder Befehl in der config.sys / fdconfig.sys bzw. der autoexec.bat
+  einzeln mit "yes" oder "no" best&auml;tigt werden. Dies kann hilfreich
+  sein, wenn Sie herausfinden wollen, welcher Treiber crasht.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  - keines - vgl. auch die einzelnen Befehle.
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/slashdot.htm">;</a>             <a href="../cnfigsys/exclamat.htm">!</a>             <a href="../cnfigsys/question.htm">?</a>             <a href="../cnfigsys/break.htm">break</a>         <a href="../cnfigsys/buffers.htm">buffers</a>
+  <a href="../cnfigsys/buffersh.htm">buffershigh</a>   <a href="../cnfigsys/index.htm">config.sys</a>    <a href="../cnfigsys/country.htm">country</a>       <a href="../cnfigsys/device.htm">device</a>        <a href="../cnfigsys/deviceh.htm">devicehigh</a>
+  <a href="../cnfigsys/dos.htm">dos</a>           <a href="../cnfigsys/dosdata.htm">dosdata</a>       <a href="../cnfigsys/echo.htm">echo</a>          <a href="../cnfigsys/eecho.htm">eecho</a>         <a href="../cnfigsys/fcbs.htm">fcbs</a>
+  <a href="../cnfigsys/files.htm">files</a>         <a href="../cnfigsys/filesh.htm">fileshigh</a>     <a href="../cnfigsys/idlehalt.htm">idlehalt</a>      <a href="../cnfigsys/install.htm">install</a>       <a href="../cnfigsys/installh.htm">installhigh</a>
+  <a href="../cnfigsys/keybuf.htm">keybuf</a>        <a href="../cnfigsys/lastdrv.htm">lastdrive</a>     <a href="../cnfigsys/lastdrvh.htm">lastdrivehigh</a> <a href="../cnfigsys/menu.htm">menu</a>          <a href="../cnfigsys/menucol.htm">menucolor</a>
+  <a href="../cnfigsys/menudef.htm">menudefault</a>   <a href="../cnfigsys/numlock.htm">numlock</a>       <a href="../cnfigsys/rem.htm">rem</a>           <a href="../cnfigsys/screen.htm">screen</a>        <a href="../cnfigsys/set.htm">set</a>
+  <a href="../cnfigsys/shell.htm">shell</a>         <a href="../cnfigsys/shellh.htm">shellhigh</a>     <a href="../cnfigsys/stacks.htm">stacks</a>        <a href="../cnfigsys/stacksh.htm">stackshigh</a>    <a href="../cnfigsys/switchar.htm">switchar</a>
+  <a href="../cnfigsys/switches.htm">switches</a>      <a href="../cnfigsys/version.htm">version</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, aktualisiert 2008 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

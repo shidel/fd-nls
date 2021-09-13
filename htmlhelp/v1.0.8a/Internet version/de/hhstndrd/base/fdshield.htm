@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: fdshield</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: fdshield</h1>
+<pre>
+  Das FreeDOS FDSHIELD Schutzprogramm gegen Schaden verursachende Software
+  kontrolliert DOS-Sitzungen und hilft bei der Blockierung gef&auml;hrlicher
+  Aktivit&auml;ten, die typisch f&uuml;r Trojaner, Viren, Malware, und menschliche
+  Fehler sind. Es ist kein Viren-Scanner wie Clamscan, es pr&uuml;ft nicht auf
+  bekannte Viren-Signaturen, sondern beobachtet nur bekanntes riskantes
+  Verhalten.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FdShield [/v][/t][/T][/x][/X][/b][/B][/w][/W] [/?]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+      Basis-Schutz beim Aufruf ohne Optionen. H&auml;lt das System an, wenn
+      ein Programm versucht andere &uuml;bliche Anti-Virus-Monitore zu
+      deaktivieren und blockiert bestimmte potenziell gef&auml;hrliche
+      FCB-basierte Loeschungen mit Platzhaltern in der Dateinamenser-
+      weiterung (<a href="../cnfigsys/fcbs.htm">FCB</a>=Dateisteuerblock). Wenn Sie FdShield in einer
+      DOS-Emulationsbox verwenden, wird nicht das ganze System, sondern
+      nur die Box gestoppt.
+  /v  Ausf&uuml;hrlicher Modus. Dieser gibt zus&auml;tzliche Informationen aus,
+      warum eine Aktion verboten wurde, und wenn FdShield das System
+      anh&auml;lt, wird vor dem automatischen Neustart oder dem Schlie&szlig;en der
+      DOS-Box 20 Sekunden gewartet.
+  /t  Verbietet TSR-Programme. Wenn diese Option ausgew&auml;hlt ist, wird
+      FdShield eine Systemnachricht ausgeben und neu starten bzw. die
+      Sitzung schlie&szlig;en, wenn ein Programm versucht dauerhaft im Arbeits-
+      speicher zu verbleiben (Englisch: Terminate and Stay Resident=TSR).
+      Dies kann helfen, Trojaner und einige residente Datei-infizierende
+      Programme und Viren zu stoppen. Das Laden der DOS-Erweiterungen
+      CWSDPMI und RTM ist in diesem Modus ausdr&uuml;cklich erlaubt. Bedenken
+      sie, da&szlig; Viren dazu tendieren sich ohne Benutzung der DOS-Funktio-
+      nen im Speicher zu verankern, wodurch der Schutz von FdShield
+      umgangen wird.
+      Diese Option ist sinnvoll da viele Programme wie <a href="../util/dosfsck.htm">DOSFSCK</a>, BZIP2,
+      UPX, WGET mit Hilfe der DJGPP-Compilerwerkzeuge f&uuml;r DOS portiert
+      wurden aus Programmcode, der urspr&uuml;nglich f&uuml;r UNIX-Systeme
+      geschrieben wurde. Daher benutzen diese Programme die DPMI-Schnitt-
+      stelle, wie ihn der DOS-Extender CWSDPMI bietet.
+  /T  Verbietet TSR-Programme. Wenn diese Option ausgew&auml;hlt ist, wird
+      FdShield auch eine Systemnachricht ausgeben und neu starten bzw. die
+      Sitzung schlie&szlig;en, wenn ein TSR-Programm abl&auml;uft. Im Gegensatz zur
+      Option /t ist das Laden der DOS-Extender CWSDPMI und RTM verboten.
+      In der OS/2 und &auml;hnlichen DOS-Box ist CWSDPMI nicht mehr
+      erforderlich. Einige andere DOS-Erweiterungen sind keine TSR-
+      Programme und funktionieren daher ohne Probleme trotz dieser Option.
+  /x  Schreibschutz f&uuml;r Systemdateien mit der Endung COM, EXE, und SYS.
+      Mit dieser Option verhindert FdShield die meisten Versuche, in
+      solche Systemdateien zu schreiben, aber erm&ouml;glicht die Erzeugung
+      neuer, wenn dabei keine &uuml;berschrieben werden. Viele Werkzeuge wie
+      Compiler oder andere Archivierer nutzen andere, unsichere Wege zum
+      Erstellen von Dateien, so da&szlig; sie durch FdShield blockiert werden.
+      Sie sollten FdShield ohne die Option /x starten, wenn Sie planen
+      Programme zu kompilieren oder zu installieren. Mit dieser Option
+      werden viele Viren kein Programmdateien mehr infizieren k&ouml;nnen.
+  /X  Schreibschutz f&uuml;r Systemdateien mit der Endung BAT, COM, EXE, und
+      SYS. Dies verbietet generell die Erzeugung dieser Systemdateien.
+      Stapeldateien sind gew&ouml;hnlich kein Ziel f&uuml;r Viren, aber es gibt
+      Situationen, in denen Sie nicht wollen, da&szlig; sie &uuml;berhaupt ge&auml;n-
+      dert werden. Weder diese noch die /x Option verhindern den Zugriff
+      auf Programmdateien &uuml;ber <a href="../util/doslfn.htm">lange Dateinamen</a>. Dies wirkt nur in DOS-
+      Versionen, die langen Dateinamen in gewisser Weise unterst&uuml;tzen.
+  /b  Schreibschutz des Startbereiches von Disketten. Dies kann die
+      Ausbreitung von Boot-Sektor-Viren &uuml;ber Disketten unter DOS
+      verhindern, aber nicht unter OS/2 und Win NT-DOS-Boxen.
+      Diese Sektoren werden in der Regel nur beschrieben von <a href="../base/format.htm">FORMAT</a>, <a href="../base/sys.htm">SYS</a>,
+      <a href="../base/fdisk.htm">FDISK</a> und &auml;hnlichen Werkzeugen. Bei Benutzung dieser Programme
+      d&uuml;rfen daher die Optionen zum Schutz der Bootsektoren nicht aktiv
+      sein.
+  /B  Schreibschutz des Startbereiches von Festplatten. Dies mag die
+      Verbreitung von Viren auf die Festplattenpartitionen verhindern.
+      Funktioniert aber m&ouml;glicherweise nicht in OS/2 und Win NT-DOS-
+      Boxen, aber diese haben ihren eigenen Schutz gegen &Auml;nderungen von
+      Bootsektoren.
+  /w  Schreibschutz von Disketten. Befehlsausgabe-Umleitungen (Pipes)
+      funktionieren nicht, wenn das Verzeichnis f&uuml;r tempor&auml;re Dateien
+      (dies ist das aktuelles Verzeichnis, wenn TEMP nicht <a href="../command/set.htm">gesetzt</a> ist)
+      sich auf einem schreibgesch&uuml;tzen Datentr&auml;ger befindet.
+      Dieser Schutz funktioniert nicht in OS/2 und NT-DOS-Boxen.
+  /W  Schreibschutz f&uuml;r Festplatten und alle anderen Nicht-Disketten-
+      Laufwerke mit FAT-Dateisystem, wie RAM-Laufwerke. Wenn DOS versucht
+      auf solche Laufwerke zu schreiben, kann es in einer Aufforderung
+      stecken bleiben, in der sie den Schreibversuch nur wiederholen,
+      aber nicht abbrechen k&ouml;nnen. Wenn sie diese Option zusammen mit /w
+      verwenden, wird FdShield alle Dateien als nur lesbar erscheinen
+      lassen, was in der Regel verhindert, da&szlig; DOS versucht auf die
+      Platte zu schreiben. Die Warnung bez&uuml;glich Pipes und DOS-Boxen
+      gelten auch hier.
+  /?  Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Laden sie FdShield so fr&uuml;h wie m&ouml;glich, aber nach TSR-Programmen wie
+  z.B. Treibern f&uuml;r Tastatur oder optische Laufwerke um dessen Schutz zu
+  haben. Denn alle Aktionen vor diesem Programmaufruf, wie das Laden der
+  Bootsektoren, k&ouml;nnen ungehindert das System sch&auml;digen.
+  Daher sollten sie im BIOS das standardm&auml;&szlig;ige Verhalten ihres Compu-
+  ters, zuerst von Wechseldatentr&auml;gern (wie m&ouml;glicherweise infizierten
+  Disketten, CD-ROMs, USB-Speicher) zu starten, &auml;ndern in Booten von
+  Festplatte. Um dennoch bequem von solchen Medien zu starten, bieten
+  viele neuere PCs bei einem bestimmten Tastendruck ein Auswahlmenue mit
+  diesen an. Diese Funktionalit&auml;t kann auch ein Bootmanager (z.B. GRUB,
+  SMBTMGR, XOSL, BOOTMGR, METAKERN) bieten, wenn er auf der Festplatte
+  installiert ist. Ferner sind diese noch komfortabler und enthalten oft
+  auch eigene Funktionen zum Schutz vor Bootviren.
+  Da FdShield kein Entladefunktion ent&auml;lt, m&uuml;ssen sie bei der Blockade
+  von Funktionen mancher Programme den Computer neu starten, dann den
+  Schutz lockern oder weglassen und schlie&szlig;lich nochmals die gew&uuml;nschte
+  Aktion ausf&uuml;hren. Es empfiehlt sich in die DOS Startdateien ein
+  Auswahlmenue einzubauen, da&szlig; Aufrufe von mehreren TSR-Programmen und
+  FdShield mit verschiedenen Optionen entsprechend kombiniert.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  In der CONFIG.SYS / FDCONFIG.SYS:
+    MENU 0. FreeDOS System
+    MENU 1. mit minimalen Schutz vor Viren
+    MENU 2. mittlerer Schutz (1.-TSR +Schreibschutz Bootsektor Festplatte)
+    MENU 3. mittel starker (EMPFOHLEN) Schutz (2.+Schreibschutz Programme)
+    MENU 4. maximaler Schutz (3.-alle TSR+Schreibschutz Alle)
+  und in AUTOEXEC.BAT:
+    IF "%CONFIG%"=="0" echo kein Schutz des Systems durch FdShield
+    IF "%CONFIG%"=="1" LH FdShield /v
+    IF "%CONFIG%"=="2" LH FdShield /v /t /B
+    IF "%CONFIG%"=="3" LH FdShield /v /t /B /x
+    IF "%CONFIG%"=="4" LH FdShield /v /T /B /b /X /w /W
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../util/dosfsck.htm">dosfsck</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../cnfigsys/fcbs.htm">fcbs</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../command/set.htm">set</a>
+  <a href="../base/sys.htm">sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2005 Eric Auer, Walt Gregg &uuml;bersetzt 2008 von J. Jenderek.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

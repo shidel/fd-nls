@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : copy</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : copy</h1>
+<pre>
+  COPY copie un ou plusieurs fichiers sur un autre emplacement.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  COPY [lecteur][chemin]nomfichier [/A | /B]
+       + [lecteur][chemin]nomfichier [/A | /B]
+       [+ [...]] [lecteur][chemin]nomfichier [/A | /B] [/V] [/Y | /-Y]
+       [/?]
+       lecteur     La lettre du lecteur, par exemple C:
+       chemin      Le r&eacute;pertoire, par exemple \exemple\
+       nomfichier  Le nom du fichier, par exemple test.txt
+</pre>
+<h2>Options :</h2>
+<pre>
+  source       Sp&eacute;cifie le ou les fichiers &agrave; copier
+               (= premier [[lecteur][chemin][fichier]]).
+  /A           Indique un fichier textuel ASCII.
+  /B           Indique un fichier binaire.
+  destination  Sp&eacute;cifie le r&eacute;pertoire et/ou le nom de fichier pour le
+               ou les nouveaux fichiers (=dernier [[lecteur][chemin]
+               [fichier]]).
+  /V           V&eacute;rifie que les nouveaux fichiers ont &eacute;t&eacute; &eacute;crits
+               correctement.
+  /Y           Supprime la demande de confirmation avant d'&eacute;craser
+               un fichier de destination existant.
+  /-Y          Invite &agrave; confirmer que vous souhaitez remplacer un
+               fichier de destination existant.
+  /?           Affiche l'aide.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  COPY ne copiera pas les dossiers ou fichiers qui ont une taille nulle.
+  Pour les copier, veuillez utiliser <a href="../base/xcopy.htm">XCOPY</a>.
+  La variable d'environnement COPYCMD peut &ecirc;tre d&eacute;finie pour faire de /Y
+  la valeur par d&eacute;faut :  <a href="../command/set.htm">SET</a> COPYCMD=/Y
+  Pour annuler /Y pour une commande copy particuli&egrave;re, utilisez /-Y sur
+  la ligne de commande. La variable COPYCMD affecte aussi la commande
+  <a href="../base/xcopy.htm">XCOPY</a>.
+  Pour concat&eacute;ner des fichiers, sp&eacute;cifiez un seul fichier de destination
+  mais de multiples fichiers pour la source (avec les jokers ou le
+  format fichier1+fichier2+fichier3).
+  Explication d&eacute;taill&eacute;e des options :
+    source       La source se compose de "lecteur" "chemin" et "fichier".
+    lecteur      La lettre du lecteur, par exemple "C:" ou bien "D:".
+    chemin       Le r&eacute;pertoire, par exemple "\exemple\"
+    fichier      Le om du fichier &agrave; copier, par exemple "test.txt".
+                 En entier :  C:\exemple\test.txt .
+    destination  Le nom du r&eacute;pertoire ou des fichiers de destination.
+                 Si le nom de fichier de destination contient a *, cela
+                 sera remplac&eacute; par cette partie du nom de fichier avec
+                 la m&ecirc;me partie que la source.
+    /A           Copie un fichier ASCII. Si cela pr&eacute;c&egrave;de un nom de
+                 fichier sur une liste de fichiers, alors &agrave; partir de
+                 ce fichier la copie sera effectu&eacute;e en fichiers ASCII.
+                 par exemple:
+                 copy /A ASCI1.txt+ASCI2.txt+ASCI3.txt  /B+BIN1.bin
+                 CIBLE
+    /B           Copie un fichier binaire. C'est la valeur par d&eacute;faut.
+                 Si cela pr&eacute;c&egrave;de un nom de fichier sur une liste de
+                 fichiers, alors &agrave; partir de ce fichier, la copie sera
+                 effectu&eacute;e en binaire, par exemple :
+                 copy /B BIN1.bin+BIN2.bin+BIN3.bin /A+ASCI1.txt CIBLE
+    /V           V&eacute;rifie que les fichiers sont &eacute;crits correctement.
+    /Y           Supprime le message de confirmation avant d'&eacute;craser ;
+                 les fichiers avec le m&ecirc;me nom sur la destination
+                 seront &eacute;cras&eacute;s.
+  COPY est une commande interne &agrave; command.com et ne n&eacute;cessite aucun
+  autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  copy c:\command.com a:
+  copy c:\*.exe d:\exemple
+  copy c:\fdos\bin\edit.* a:
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../command/set.htm">set</a>
+  <a href="../command/verify.htm">verify</a>
+  <a href="../base/xcopy.htm">xcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis &agrave; jour en 2007 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

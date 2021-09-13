@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Networking FreeDOS - NFS</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top"></a>Networking FreeDOS - NFS</h1>
+<pre>
+  This document describes how to set up NFS networking on a DOS system
+  with a <a href="../network/network.htm">network</a> card, so that a DOS drive letter is mapped to a directory
+  path on an NFS server (UNIX). 
+</pre>
+<h2><a name="aaa"></a>Hardware</h2>
+<pre>
+  This has been tested on a server (486dx2-66s) running Red Hat Linux 5.2
+  (kernel 2.0.36), using DOS clients on 4.77mhz 8088s, some 80286s, and
+  various higher level machines, with NE2000 generic clone <a href="../network/network.htm">network</a> cards.
+  They all work fine. <a href="../network/network.htm">Network</a> was a 10base2 over coaxial cable, with 10-20
+  systems on it, and one 10baseT hub for more recent machines.
+</pre>
+<h2><a name="bbb"></a>Software</h2>
+<pre>
+  Software was XFS. In the XFS80286 directory, find a FreeDOS file-set
+  that runs on 80286 and above machines. In the XFS8088 directory, look
+  for a 8088 file-set that runs on the oldest PCs.
+</pre>
+<h2><a name="ccc"></a>NFS server</h2>
+<pre>
+  On the Linux server, you will need to create (or modify) the /etc/
+  exports file to export the necessary directory paths. For example,
+  to share the /home/dos directory as read-write for all clients:
+    /home/dos  (rw,insecure)
+  In order to support remote printing, you will also need to start
+  rpc.pcnfsd. You may need to modify the /etc/rc.d/init.d/nfs script
+  so that rpc.pcnfsd starts automatically at system boot.
+  Note that pcnfsd is a small C program written by Sun, and is freely
+  available on the Internet. If your server does not come with a
+  version of pcnfsd, you will need to compile it and install into the
+  /usr/sbin directory (use the same permissions as rpc.nfsd).
+</pre>
+<h2><a name="ddd"></a>DOS client</h2>
+<pre>
+  <b>80286 and above</b>
+  
+  From the XFS software, look in the xfs80286 directory to support
+  systems with an 80286 CPU and above. Copy this whole directory as-is
+  to a directory on your hard drive. You will have to edit HOSTS, XFS.BAT
+  - and perhaps <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> and <a href="../cnfigsys/index.htm">CONFIG.SYS</a> - to use the correct path
+  to XFS. To start your <a href="../network/network.htm">network</a>, type:
+    XFS
+  You will see a character in the upper-right corner of your screen
+  which indicates what XFS is trying to do:
+   <b> A </b> running ARP request to get an IP address,
+   <b> &gt; </b> sending packets to the <a href="../network/network.htm">network</a>,
+   <b> &lt; </b> receiving packets from the <a href="../network/network.htm">network</a>
+
+   <b>8088</b>
+   
+  From the XFS software, see the xfs8088 directory for 8088-specific
+  support, and copy these files to your hard drive. Edit HOSTS and
+  XFS.BAT to use the new paths.
+  The oldest 4.77 MHz 8088 PCs work just fine. However, a special driver
+  is needed on the 8088, because the original <a href="../network/crynwr.htm">Crynwr</a> packet driver makes
+  three 80286 instructions.) I patched that driver and renamed it
+  ne2000b8.com. Load the new driver. You also need files from a special
+  8088-only version of the XFS package (xt-191.zip).
+  Originally, there was an NE1000 card for 8088s. These have all but
+  disappeared. All the NE2000 cards we tested worked just fine on the
+  8088, even when the 16-bit card is inserted in an 8-bit ISA slot. Some
+  of the newer NE cards may need to be set up in a 80286 or above before
+  being put into 8088s.
+  Only tested with MS-DOS; FreeDOS COMMAND.COM does not support
+  8088 CPUs. MS-DOS versions 3.20, 5.00, and 6.22 all tested ok. 
+</pre>
+<h2><a name="eee"></a>Troubleshooting</h2>
+<pre>
+  Most problems we experienced were due to bad <a href="../network/network.htm">network</a> cables or inter-
+  rupt problems. Before starting, ensure your network is available (test
+  using ping from one Linux box to another.)
+  On the DOS boxes, we set all the NE2000 cards to the 0x300 address,
+  and then picked an unused interrupt and set the card and the driver
+  line to match (please see the "ne2000" line in XFS.BAT.)
+  With a little playing around, you should have your first DOS client
+  using NFS very quickly.
+  For other problems, see the documentation in the XFS191.ZIP and
+  xt-191.zip files. Most Linux servers have similar documentation about
+  NFS, which may help set up the server. 
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), modified 2010
+  by W.Spiegl.</b>
+  For more information <a href="../network/intro.htm#ddd">see here</a>.
+
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2 or
+  any later version published by the Free Software Foundation.
+  A copy of the license is included in the section entitled
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: erase</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: erase</h1>
+<pre>
+  ERASE l&ouml;scht eine oder mehrere Dateien.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  ERASE [Laufwerk][Pfad]Dateiname [/P] [/V] [/?]
+        Laufwerk   Spezifiziert den Laufwerksbuchstaben auf dem 
+                   sich die Datei befindet, z.B. C:
+        Pfad       Spezifiziert den Pfad zu der Datei,z.B. \Beispiel\
+        Dateiname  Spezifiziert die zu l&ouml;schende(n) Datei(en).
+                   Benutzen Sie Wildcards (*,?), um mehrere Dateien 
+                   anzugeben. Es kann ein Punkt verwendet werden, um 
+                   alle Dateien im aktuellen Verzeichnis zu 
+                   spezifizieren (bedeutet das Gleiche wie *.*).
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  /P  Fragt f&uuml;r jede zu l&ouml;schende Datei nach Best&auml;tigung.
+  /V  Zeigt alle gel&ouml;schten Dateien an.
+  /?  Zeigt die Hilfe
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  Aus Performancegr&uuml;nden &uuml;berschreibt ERASE nur den ersten Buchstaben
+  des Dateinamens mit einem '?'. Es l&ouml;scht nicht die Datei selbst,
+  sondern gibt den Platz frei, auf dem der Dateiinhalt steht. FreeDOS
+  und andere DOSse erkennen daran, da&szlig; die umbenannte Datei (myfile.txt
+  hei&szlig;t dann ?yfile.txt) gel&ouml;scht ist und zeigen sie dann auch nicht
+  mehr an und lassen auch keinen Zugriff darauf mehr zu. Programme wie
+  <a href="../base/debug.htm">DEBUG</a>, die einen Sektorzugriff haben, k&ouml;nnen den Inhalt der Datei
+  aber noch lesen. Solange Sie nicht auf das Laufwerk schreiben, haben
+  Sie eine Chance, die Datei mit <a href="../base/undelete.htm">UNDELETE</a> wiederherzustellen; nur das
+  erste Zeichen des Dateinamens geht verloren (_yfile.txt). Der einzige
+  Weg, um einen DATEIINHALT ABSOLUT SICHER zu l&ouml;schen, ist, das Medium
+  mit anderen Dateien komplett zu beschreiben oder ein Wipeouttool zu
+  verwenden. Der einzige Weg, um einen DATEINAMEN ABSOLUT SICHER zu
+  l&ouml;schen, ist, ihn zuerst mit <a href="../command/rename.htm">RENAME</a> <a href="../command/ren.htm">(REN)</a> umzubenennen (z.B.: "a.")
+  und ihn erst danach zu l&ouml;schen (gilt nur f&uuml;r 8.3 - nicht f&uuml;r lange
+  Dateinamen!). 
+  Sie k&ouml;nnen statt ERASE auch <a href="../command/del.htm">DEL</a> verwenden.
+  ERASE ist ein interner Befehl, d.h. der Befehl ist in der command.com
+  enthalten. Es wird zur Ausf&uuml;hrung des Befehls kein zus&auml;tzlicher 
+  Befehl (Datei) ben&ouml;tigt.
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  erase C:\PROGRAM\test.txt
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../base/debug.htm">debug</a>
+  <a href="../command/del.htm">del</a>
+  <a href="../base/deltree.htm">deltree</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/ren.htm">ren</a>
+  <a href="../command/rename.htm">rename</a>
+  <a href="../command/rmdir.htm">rmdir</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, aktualisiert 2007 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS Befehl: emm386</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Befehl: emm386</h1>
+<pre>
+  EMM386 ist ein Expanded Memory Manager. EMM386 mu&szlig; in der 
+  <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> geladen werden.
+  <b>EMM386 ist veraltet. Sie sollten stattdessen <a href="../base/himemx.htm">HIMEMX</a> / <a href="../base/jemm386.htm">JEMM386</a>
+  oder <a href="../base/jemmex.htm">JEMMEX</a> verwenden</b>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE=[Laufwerk][Pfad][EMM386.EXE] [Optionen]
+         Laufwerk  Der Laufwerksbuchstabe, z.B.: C:
+         Pfad      Der zu w&auml;hlende Pfad, z.B.: \Beispiel\
+  oder starten Sie es von der Kommandozeile aus:
+  [Laufwerk][Pfad][emm386.exe] [Optionen]
+</pre>
+<h2>Optionen:</h2>
+<pre>
+  ALTBOOT       H&auml;ngt den Tastaturinterrupt f&uuml;r Neustartprozesse ein.
+  EMM=#####     Reserviert bis zu ##### kB nur f&uuml;r EMS/VCPI Speicher.
+  FRAME=E000    Setzt den EMS Seitenrahmen.
+  I=hhhh:hhhh   Verwendet Speicher, der f&uuml;r einige Ger&auml;te reserviert
+                ist, z.B.:
+                  I=A000-AFFF (VGA Graphics)
+                  I=B000-B7FF (Hercules Graphics)
+                Verwenden Sie I=hhhh:hhhh um UMB &uuml;ber andere Bereiche
+                zu erzwingen.
+  I=TEST        Scannt die ROMs nach unbenutzten Seiten, schlie&szlig;t
+                gefundene Bereiche als UMBs ein.
+  MAX=#####     Grenze f&uuml;r VCPI (und EMS wenn &lt; 32M) Speicher in KB
+                (Standard: 120 MB).
+  MEMCHECK      L&auml;&szlig;t den Zugriff auf den vollen 4GB Adressspeicher
+                ohne RAM zu (MMIO).
+  NOALTBOOT     H&auml;ngt den Tastaturinterrupt NICHT f&uuml;r Neustartprozesse
+                ein (Standard).
+  NOCHECK       Kein Zugriff auf Adressen die nicht mit ROM/RAM unterlegt
+                sind.
+  NODISABLEA20  L&auml;&szlig;t nicht zu, da&szlig; EMM386 A20 abschaltet. 
+  NOEMS         Schaltet EMS aus. Verwenden Sie NOEMS um mehr freie
+                UMBs zu bekommen, wenn Sie kein EMS ben&ouml;tigen.
+  NOVCPI        Verwendet kein VCPI (mu&szlig; zusammen mit NOEMS verwendet
+                werden).
+  NOVDS         Schaltet Virtual DMA Dienste ab.
+  SB            SoundBlaster Treiber Kompatibilit&auml;tsmodus.
+  VDS           Schaltet Virtual DMA Dienste ein (Standard).
+  /VERBOSE      Zeigt w&auml;hrend des Starts zus&auml;tzliche Details.
+  X=hhhh:hhhh   Schlie&szlig;t einen Bereich davon aus, von Jemm386 benutzt
+                oder ber&uuml;hrt zu werden.
+                X=D000-D800. X= kann z.B. bei Netzwerken ben&ouml;tigt werden.
+  X=TEST        Scanne den Speicherbereich C000-EFFF f&uuml;r UMB Ausschluss. 
+  /?            Zeigt die Hilfe.
+</pre>
+<h2>Kommentar:</h2>
+<pre>
+  EMM386 erfordert eine 80386+ CPU. Der HIMEM-Treiber sollte vorher
+  geladen sein. Laden Sie EMM386 mit "DEVICE=Laufwerk:\Pfad\EMM386.exe"
+  in der <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a> (obwohl es eine ".exe"-Datei ist)!
+</pre>
+<h2>Beispiel:</h2>
+<pre>
+  IN DER CONFIG.SYS / FDCONFIG.SYS:
+    device=c:\fdos\bin\himem.exe
+    device=c:\fdos\bin\emm386.exe
+</pre>
+<h2>Siehe auch:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/devload.htm">devload</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-2004 Robert Platt, aktualisiert 2011 von W. Spiegl.</b>
+
+  Diese Datei ist abgeleitet vom FreeDOS Spezifikationen-HOWTO.
+  Vgl. auch die Datei <a href="../other/h2cpying.htm">H2Cpying</a> bez&uuml;glich der Kopierbedingungen.
+
+</pre></body></html>

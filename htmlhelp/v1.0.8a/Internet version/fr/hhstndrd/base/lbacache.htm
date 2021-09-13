@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : lbacache</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : lbacache</h1>
+<pre>
+  LBACACHE est un programme de cache pour disque dur. Il am&eacute;liore
+  la performance du lecteur. Il n&eacute;cessite de la m&eacute;moire <a href="../base/himemx.htm">XMS</a>, et au
+  moins un ordinateur 386.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  Pour charger    : LBACACHE  [taille] [DRV listedelecteurs] [FLOP]
+                    [TUNA] [TUNW] [TUNS]
+  Une fois charg&eacute; : LBACACHE  [INFO] [SYNC] [STOP] [STAT] [ZERO]
+  Pour l'aide     : LBACACHE  HELP|/HELP|/?
+</pre>
+<h2>Options:</h2>
+<pre>
+  taille    Sp&eacute;cifie la taille du tampon. Par d&eacute;faut : 2048 ko. Si un ou
+            deux chiffres sont utilis&eacute;s, l'unit&eacute; est de 256 ko
+            (en XMS), donc la la valeur par d&eacute;faut est d'utiliser 2
+            Mo XMS. Si plus de deux chiffres sont utilis&eacute;s, l'unit&eacute; est
+            simplement 1 ko. Exemple :
+            'LBACACHE 8192'. Autre syntaxe possible : "BUF taille" au
+            lieu de "taille".
+  FLOP      Active le cache des disquettes (A: et B:, autod&eacute;tect&eacute;s). Pour
+            l'utilisation des disquettes, chargez &eacute;galement TICKLE !
+            Veuillez faire des rapports si FLOP a des bugs. Un bug peut
+            par exemple signifier que le cache fait des suppositions
+            erron&eacute;es sur la g&eacute;om&eacute;trie des disquettes, ce qui peut
+            provoquer des corruptions de donn&eacute;es sur le disque ou sur
+            les fichiers copi&eacute;s depuis le disque. Cependant si vous
+            utilisez uniquement des disquettes de 1,44 Mo dans un
+            lecteur de 1,44 Mo, les bugs sont extr&ecirc;mement improbables...
+  DRV list  Choisit quels disques durs seront mis en cache. Aucun disque
+            ne sera mis en cache si le mot-clef NULL est utilis&eacute;.
+            Il est fortement recommand&eacute; de laisser LBAcache auto-d&eacute;tecter
+            tous disques durs qu'il sera possible de mettre en cache au
+            lieu d'utiliser cette option ! La liste se compose de
+            chiffres en 0..7, pour les lecteurs BIOS 80h+x. Par exemple:
+            023   met en cache les lecteurs BIOS 80h, 82h, 83h - les
+                  premier, troisi&egrave;me et quatri&egrave;me disques durs (hda,
+                  hdc, hdd dans la terminologie GNU/Linux).
+            Important : Le premier disque dur BIOS signifie TOUTES les
+            lettres de lecteur qui sont sur le premier disque dur
+            physique.
+  TUNA      Cache enti&egrave;rement associatif : recherche le cache entier
+            pour un secteur ou pour de l'espace libre dans le pire des
+            cas. Plus lent pour les caches de grande taille mais peut
+            donner plus de r&eacute;sultats en m&eacute;moire cache que la nouvelle
+            valeur par d&eacute;faut (6/2004) de recherche uniquement jusqu'&agrave;
+            N (r&eacute;glage actuel : 16) &eacute;l&eacute;ments de cache (taille actuelle
+            d'un &eacute;l&eacute;ment : 8 ko). Les premiers tests sugg&egrave;rent :
+            l&eacute;g&egrave;rement plus de r&eacute;sultats de cache mais vitesse plus
+            lente !
+  TUNW      Alloue en &eacute;criture : lorsque des donn&eacute;es sont &eacute;crites sur
+            le disque, en stocker une copie dans le cache, M&Ecirc;ME si cela
+            signifie d'allouer un nouvel espace dans le cache en
+            anticipation d'une lecture des donn&eacute;es plus tard. C'&eacute;tait la
+            valeur par d&eacute;faut jusqu'&agrave; 7/2004. Fait que les &eacute;critures
+            "consomment" plus de cache, mais est utile pour les t&acirc;ches
+            qui travaillent beaucoup avec les fichiers temporaires. Si
+            les donn&eacute;es &eacute;taient mises en cache de toute fa&ccedil;on, la copie
+            en cache est mise &agrave; jour sans tenir compte de cette option.
+  TUNS      Alloue 320 octets de RAM DOS basse pour les piles (nouveau
+            7/2004). Utilisez cette option si vous souhaitez charger
+            LBAcache dans l'UMB de JEMM386 ou autrement si vous avez un
+            "UMB pas tr&egrave;s convivial pour DMA" et un syst&egrave;me SCSI. Les
+            BIOS SCSI semblent utiliser DMA pour empiler les appels de
+            v&eacute;rification de g&eacute;om&eacute;trie ! Notez que cette m&eacute;moire n'est
+            *pas* lib&eacute;r&eacute;e par LBAcache STOP car le protocole devrait
+            &ecirc;tre chang&eacute; trop en profondeur pour cela.
+NON-LOAD options:
+  INFO      Affiche les statistiques de cache et des d&eacute;tails au sujet
+            des LBAcache r&eacute;sidents. Utile pour le d&eacute;bogage, mais un peu
+           difficile &agrave; comprendre.
+  STAT      Affiche des statistiques plus faciles &agrave; comprendre de cache
+            seulement.
+  ZERO      Remet les compteurs de statistiques de cache &agrave; z&eacute;ro.
+  SYNC      Synchronise tous les tampons LBAcache en fonctionnement pour
+            tous lecteurs. Comme LBAcache ne retarde jamais les
+            &eacute;critures, SYNC signifie simplement d'oublier les donn&eacute;es
+            mises en cache. C'est fait en appelant int 13.46 (disque
+            BIOS : &eacute;jecter) pour tous les lecteurs mettables en cache
+            (0, 1, 0x80 .. 0c87). Il est recommand&eacute; d'ex&eacute;cuter LBACACHE
+            ZERO apr&egrave;s LBACACHE SYNC, cela rendra les statistiques plus
+            intuitifs &agrave; lire.
+  STOP      Ferme toutes les instances de LBAcache en fonctionnement et
+            lib&egrave;re la RAM XMS et DOS qu'ils avaient allou&eacute; (les enl&egrave;ve
+            de la RAM). Si la cha&icirc;ne d'interruption ne peut &ecirc;tre
+            restaur&eacute;e, les instances de LBAcache sont laiss&eacute;es dans la
+            RAM de DOS, mais &agrave; une taille r&eacute;duite de &lt; 500 octets. La
+            m&eacute;moire XMS est toujours lib&eacute;r&eacute;e. Lorsqu'un seul LBAcache
+            est charg&eacute; en tant que programme r&eacute;sident relatif au
+            dernier disque, le d&eacute;chargement complet devrait marcher la
+            plupart du temps. Lors du chargement de plusieurs instances
+            de LBAcache, souvent seule la derni&egrave;re instance peut &ecirc;tre
+            enti&egrave;rement d&eacute;charg&eacute;e.
+  COOL      Met le cache en mode "froid" : les secteurs acc&eacute;d&eacute;s sont
+            gel&eacute;s dans le cache (autant que possible - utilisez TUNA
+            pour am&eacute;liorer l'effet). Voyez les explications de BINSEL
+            pour voir si ce mode exp&eacute;rimental (9/2004) vous est utile.
+  WARM      Met le cache en mode "fusion" : les secteurs acc&eacute;d&eacute;s sont
+            d&eacute;gel&eacute;s (d&eacute;congel&eacute;s ? :-)) dans le cache. Voyez ci-dessus.
+            (9/2004) Note : WARM, COOL et TEMP affichent tous une valeur
+            d'&eacute;tat de diagnostic pour le d&eacute;bogage, par exemple le
+            "nombre d'&eacute;l&eacute;ments verrouill&eacute;s" actuels. Apr&egrave;s cela, la
+            sortie normale STAT est affich&eacute;e.
+  TEMP      Restaure le cache en mode "temp&eacute;rature normale" : l'&eacute;tat de
+            froideur des contenus actuels est pr&eacute;serv&eacute; autant que
+            possible (si le cache devient vraiment plein, les choses
+            vont fondre). Maintenant vous avez r&eacute;serv&eacute; la partie du
+            cache pour les donn&eacute;es gel&eacute;es/verrouill&eacute;es et le reste de
+            l'espace du cache en mode classique. (9/2004)
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Pour plus d'informations voyez lbacache.txt.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Dans CONFIG.SYS / FDCONFIG.SYS:
+    INSTALL=LBACACHE.COM [arguments]
+  ou
+    INSTALLHIGH=LBACACHE.COM [arguments]
+  ou depuis la ligne de commande ou AUTOEXEC.BAT:
+    LBACACHE [arguments]
+  ou
+    LOADHIGH LBACACHE.COM [arguments]
+
+    LBACACHE              Lancer simplement la commande sans aucune
+                          option lira le cache de tous vos disques durs
+                          (si disponibles via le BIOS) avec la taille
+                          de tampon de cache par d&eacute;faut.
+    LBACACHE buf 20 flop  Cela lira le cache de tous les disques durs
+                          et des disquettes, avec 5 Mo de m&eacute;moire pour
+                          le tampon de cache.
+    LBACACHE info         Affiche des informations sur vos caches.
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../base/cdrcache.htm">cdrcache.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/tickle.htm">tickle</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: print</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: print</h1>
+<pre>
+  PRINT prints a file in the background, while you run other DOS commands.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+   print [options] [[drive:][path]file] [[drive:][path]file] [...]
+           drive:path\file  The file that you want to print.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /D:device  Specify the name of the device to print to. If not given,
+             Print will use the default LPT: device.
+  /B:size    Set the size of the buffer, in bytes, in the range 512-16384.
+             The default is 512.
+  /U:ticks   The number of clock ticks, in the range 1-255, that Print is
+             to wait for the printer to become available before printing
+             the job.
+  /M:ticks   The maximum number of ticks for sending a single character
+             to the printer, in the range 1-255.
+  /S:ticks   The number of clock ticks, in the range 1-255, for the
+             background spooler process. The default is 2. Larger numbers
+             will speed up printing but slow down other DOS programs.
+  /Q:nn      The number of files that will be allowed in the print queue,
+             in the range 1-32. The default is 10.
+  /T         Remove all files in the print queue. Terminates the job that
+             is currently being printed.
+  /C         Cancel jobs in the print queue. If this is used with a list
+             of file names, only those files are removed from the queue.
+             If this is used alone, all jobs are cancelled (although the
+             current job isn't terminated.)
+  /P         Add a file to the print queue. If this precedes a list of
+             files, only those files are printed. You may use /P and /C
+             together on the same command line.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  If no options are given to PRINT, only files, /P is assumed. If no
+  options and no files are provided, print displays the contents of the
+  print queue.
+  This PRINT here only takes /1 /2 /3 as "/D:lpt1" etc equivalent
+  options or a filename to print a file. Please use the free <a href="../base/printq.htm">PRINTQ</a>
+  tool for "print file", "print /t" (clear queue incl current job),
+  "print /c" (clear queue) and "print /p file" (add file to queue).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  print c:\foo.txt c:\test.txt
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/chcp.htm">chcp</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/printer.htm">printer.sys</a>
+  <a href="../base/printq.htm">printq</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998-2003 Jim Hall, updated 2008 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

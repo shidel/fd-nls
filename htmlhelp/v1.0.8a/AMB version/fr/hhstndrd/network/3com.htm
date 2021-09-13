@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Mise en r&eacute;seau de FreeDOS - 3Com</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1><a name="top"></a>Mise en r&eacute;seau de FreeDOS - 3Com</h1>
+<pre>
+  Si votre NIC 3Com n'est pas prise en charge par les pilotes de paquets
+  <a href="../network/crynwr.htm">Crynwr</a> vous pouvez trouver un
+  pilote ici :
+  <b>ftp://ftp.3com.com/pub/nic/3c90x/3c90x2.exe (*01)</b>
+  Il s'agit d'EtherCD v5.4, second disque sur 2 de la famille
+  d'adaptateurs <b>3C90x</b>. Le second disque contient les pilotes DOS <a href="../network/odi.htm">ODI</a>
+  et <a href="../network/ndis.htm">NDIS</a>, le pilote de paquets, les fichiers d'aide et les diagnostics
+  DOS. C'est un ex&eacute;cutable DOS auto-extractible. Apr&egrave;s l'avoir ex&eacute;cut&eacute;,
+  allez dans le sous-r&eacute;pertoire PKTDVR et lancez 3C90XPD.COM. Cela
+  devrait d&eacute;tecter automatiquement votre NIC, ce qui peut prendre du
+  temps, et installer le pilote de paquets dans le premier vecteur
+  d'interruption disponible, commen&ccedil;ant par 0x60. Le vecteur
+  d'interruption peut aussi &ecirc;tre sp&eacute;cifi&eacute; avec /I; voyez /? pour les
+  d&eacute;tails. Vous devez ajouter cela &agrave; votre <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a>.
+
+  Par la suite, vous pouvez configurer et utiliser toute application
+  <a href="../network/wattcp.htm">WatTCP</a> telle que SSH (cf. <a href="../network/tcpip_ap.htm#eee">SSH2DOS</a>) et <a href="../network/tcpip_ap.htm#ccc">Arachne</a>. Utilisez ce qui suit
+  dans votre WATTCP.CFG pour sp&eacute;cifier le vecteur d'interruption :
+    pkt.vector = 0x60
+
+  <b>(*01) internet: "3c90x2.exe"</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Allemagne), modifi&eacute; en 2010
+  par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Pour plus d'informations, <a href="../network/intro.htm#ddd">voyez ici</a>.
+
+  La permission est accord&eacute;e de copier, distribuer et/ou modifier ce
+  document selon les termes de la licence de documentation libre GNU,
+  version 1.2 ou toute version ult&eacute;rieure publi&eacute;e par la Free Software
+  Foundation.
+  Une copie de la licence est incluse dans la section intitul&eacute;e
+  <a href="../other/fdl12.htm">"GNU Free Documentation License 1.2"</a>.
+
+</pre></body></html>

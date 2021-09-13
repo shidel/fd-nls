@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: for</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: for</h1>
+<pre>
+  FOR runs a specified command for each file in a set of files.
+  FOR is a <a href="../batch/index.htm">BATCH-FILE</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> command.
+  It can also be used in command line.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FOR %variable IN (set) DO command [cmd-parameters]
+  FOR %%variable IN (set) DO command [cmd-paramters]
+</pre>
+<h2>Options:</h2>
+<pre>
+  %variable       A name for the parameter that will be replaced
+                  with each file name.
+  %%variable      A name for the parameter that will be replaced
+                  with each file name.
+  (set)           Specifies a set of one or more files. Wildcards
+                  and ? may be used.
+  command         Specifies the command to run for each file.
+  cmd-parameters  Specifies parameters or switches for the specified
+                  command.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  To use the FOR command in a batch program, specify %%variable instead 
+  of %variable.
+  FOR is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN A .BAT FILE / AUTOEXEC.BAT:
+    Displays all the text files in the current directory, one after
+    another:
+      FOR %f in (*.txt) DO more %f
+    The following two commands list all files starting with an "a". The
+    list starts with "---start---" and ends with "---end---". The "-"
+    sign at the beginning and at the end of each line comes from "DO
+    ECHO - %f -".
+      ECHO off
+      FOR %f IN (---start--- a*.* ---end---) DO ECHO - %f -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2007 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+
+</pre></body></html>

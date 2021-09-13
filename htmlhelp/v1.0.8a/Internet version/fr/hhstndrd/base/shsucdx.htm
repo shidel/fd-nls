@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : shsucdx</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : shsucdx</h1>
+<pre>
+  SHSUCDX est un substitut d&eacute;chargeable de redirecteur de CD-ROM pour
+  MSCDEX. Il prend en charge jusqu'&agrave; 10 lecteurs. Un seul secteur de
+  chaque lecteur est mis en m&eacute;moire tampon et les 10 derniers
+  r&eacute;pertoires sont mis en cache.
+  Chaque unit&eacute; de chaque lecteur peut se voir attribuer une lettre
+  de lecteur sp&eacute;cifique.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  shsucdx /D[:][?|*]pilote[,[lettre][,[unit&eacute;][,[max]]]] [commutateurs]
+        Le PILOTE est le nom du pilote de p&eacute;riph&eacute;rique install&eacute; pour
+          contr&ocirc;ler le lecteur de CD-ROM. Pr&eacute;fixer le pilote avec '?'
+          l'ignorera silencieusement s'il n'existe pas (ou n'est pas en
+          v&eacute;rit&eacute; un CD-ROM) ; pr&eacute;fixer avec '*' l'ignorera &eacute;galement,
+          mais un lecteur sera r&eacute;serv&eacute; (voyez ci-dessous).
+        La LETTRE est la premi&egrave;re lettre &agrave; attribuer aux unit&eacute;s sur
+          ce lecteur. La valeur par d&eacute;faut est la premi&egrave;re lettre
+          disponible. Remarque : les lettres de lecteur attribu&eacute;es aux
+          unit&eacute;s suivantes seront toujours sup&eacute;rieures &agrave; celles
+          attribu&eacute;es aux unit&eacute;s pr&eacute;c&eacute;dentes.
+        L'UNIT&Eacute; est la premi&egrave;re unit&eacute; sur ce pilote &agrave; se voir attribuer
+          un
+          lecteur. L'Unit&eacute; 0 est la valeur par d&eacute;faut.
+        MAX est le nombre maximal d'unit&eacute;s sur ce pilote &agrave; se voir
+          attribuer des lecteurs. La valeur par d&eacute;faut est toutes les
+          unit&eacute;s (ou toutes les unit&eacute;s restantes, si UNIT&Eacute; est fournie).
+</pre>
+<h2>Options :</h2>
+<pre>
+  /D  Pilote : Cette option est utilis&eacute;e pour sp&eacute;cifier le nom du pilote
+      de p&eacute;riph&eacute;rique. Elle peut aussi indiquer quelles unit&eacute;s doivent
+      &ecirc;tre attribu&eacute;es et &agrave; quelle lettre.
+      Manipulation du disque: lors de l'installation, /D peut &eacute;galement
+      &ecirc;tre utilis&eacute;e pour r&eacute;server de l'espace pour des lecteurs
+      suppl&eacute;mentaires.
+      Utilisez un seul chiffre pour indiquer combien de lecteurs
+      devraient &ecirc;tre r&eacute;serv&eacute;s (par exemple /D1). (Si vous avez un nom
+      de pilote de p&eacute;riph&eacute;rique avec un seul chiffre, utilisez le
+      pr&eacute;fixe '?'.) Apr&egrave;s l'installation, la m&ecirc;me option enl&egrave;vera les
+      lecteurs qui &eacute;taient les derniers &agrave; &ecirc;tre attribu&eacute;s. Il est possible
+      de sp&eacute;cifier les deux formes de /D, auquel cas les lecteurs
+      actuels seront enlev&eacute;s et les nouveaux ajout&eacute;s. Vous ne pouvez
+      qu'utiliser une lettre qui est plus petite ou identique &agrave; la
+      lettre dans <a href="../cnfigsys/lastdrv.htm">LASTDRIVE</a> / <a href="../cnfigsys/lastdrvh.htm">LASTDRIVEHIGH</a>.
+  /L  Lettre : Cette option est une alternative &agrave; la composante LETTRE
+      de /D qu'elle doit suivre (par exemple : /D:pilote /L:lettre).
+      Elle peut aussi &ecirc;tre utilis&eacute;e pour retourner le nombre de lecteurs
+      install&eacute;s (/L:0, retournera 255 si non install&eacute;) et la lettre de
+      chaque lecteur attribu&eacute; (/L:1, /L:2, etc., avec A: = 1 et 255 si
+      le lecteur n'est pas attribu&eacute;).
+      Vous pouvez uniquement utiliser une lettre qui est plus petite ou
+      identique &agrave; la lettre dans <a href="../cnfigsys/lastdrv.htm">LASTDRIVE</a> / <a href="../cnfigsys/lastdrvh.htm">LASTDRIVEHIGH</a>.
+  /C  Utilise la m&eacute;moire conventionnelle au lieu de la m&eacute;moire haute.
+  /V  Statistiques de m&eacute;moire : Lorsque cette option est utilis&eacute;e lors
+      de l'installation, un r&eacute;sum&eacute; de l'utilisation de la m&eacute;moire
+      sera affich&eacute;.
+      Le r&eacute;sum&eacute; comprend :
+        Static   Code et variables
+        Dynamic  Donn&eacute;es pour chaque lecteur et arrondi de paragraphe
+        Total    Utilisation globale de la m&eacute;moire
+      Information : quand utilis&eacute; avec /?, ou apr&egrave;s l'installation,
+      cette option affiche les options de compilation et d'ex&eacute;cution
+      de SHSUCDX. Ces informations comprennent :
+        8086/386      Le processeur minimum requis
+        CD root form  TRUENAME retournera \\D.\A.\ au lieu de D:\
+        High Sierra   Le format original pour le syst&egrave;me de fichiers du
+                      CD
+        Joliet        Le format Windows pour les noms de fichiers longs
+        Image on CD   Active l'acc&egrave;s &agrave; une image qui est elle-m&ecirc;me sur
+                      un CD
+  /~    Utilisation du tilde : Le standard ISO permet aux CD d'avoir
+        des noms jusqu'&agrave; 31 caract&egrave;res et Joliet peut avoir des noms
+        jusqu'&agrave; 64 caract&egrave;res. Lorsque cela est r&eacute;duit au format 8.3
+        pour DOS il peut se trouver des entr&eacute;es en double. Cette option
+        enl&egrave;vera la duplication en ajoutant un num&eacute;ro pr&eacute;c&eacute;d&eacute; d'un
+        tilde au nom (de fa&ccedil;on similaire &agrave; ce que fait Windows). Par
+        d&eacute;faut, les tildes sont d&eacute;sactiv&eacute;s.
+        Cette option est &eacute;galement disponible apr&egrave;s l'installation. En
+        lui-m&ecirc;me il basculera l'&eacute;tat (c'est-&agrave;-dire si les tildes sont
+        activ&eacute;s, /~ les d&eacute;sactivera et inversement). Les tildes peuvent
+        &ecirc;tre explicitement activ&eacute;s ou d&eacute;sactiv&eacute;s en ajoutant un signe
+        '+' ou '-'  (c'est-&agrave;-dire qu'un /~+ activera les tildes, sans
+        tenir compte de l'&eacute;tat actuel). Vous n'aurez pas ces probl&egrave;mes
+        lors de l'utilisation du programme <a href="../util/doslfn.htm">DOSLFN</a>.
+  /R  Enl&egrave;ve l'attribut lecture seule.
+  /I  Installe de toute fa&ccedil;on m&ecirc;me si un autre redirecteur est pr&eacute;sent.
+  /U  D&eacute;charge le pilote shsucdx de la m&eacute;moire.
+  /Q  Silencieux. Emp&ecirc;che l'affichage de la banni&egrave;re de sign-on (avis
+      de copyright).
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  SHSUCDX a les <a href="../batch/if.htm#comment">CODES DE SORTIE (ERRORLEVEL)</a> suivants :
+       0  D&eacute;sinstall&eacute;, aide, option d&eacute;finie
+    1-32  Num&eacute;ro de lecteur du premier lecteur install&eacute; (A=1)
+     246  Option invalide ou inconnue
+     247  Impossible de d&eacute;sinstaller
+     248  M&eacute;moire insuffisante
+     249  Aucun lecteur attribu&eacute; (c'est-&agrave;-dire non install&eacute;)
+     250  Aucune lettre de lecteur disponible
+     251  L'unit&eacute; n'existe pas sur le lecteur
+     252  Pilote invalide ou non existant
+     253  D&eacute;j&agrave; install&eacute;
+     254  Version de DOS non prise en charge
+     255  386 n&eacute;cessaire
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=XCDROM.SYS /D:SHSU001
+  DANS AUTOEXEC.BAT:
+    SHSUCDX /D:SHSU001
+
+  Exemple avec plusieurs lecteurs de CD-ROM :
+  Dans CONFIG.SYS /FDCONFIG.SYS:
+
+    MENU 1.    FreeDOS
+    MENU 2.    FreeDOS  + IDE CD-ROM (XDROM)
+    MENU 3.    FreeDOS  + USB CD-ROM (NOVAC)
+    MENU 4.    FreeDOS  + ASPI CD-ROM  (SCSI AIC-75XX 78XX)
+    MENU 5.    FreeDOS  + IDE CD-ROM + USB CD-ROM + ASPI CD-ROM
+    lastdrivehigh=U
+    25?DEVICEHIGH=\fdos\bin\xcdrom.sys /D:IDE-CD
+    35?DEVICEHIGH=\fdos\drivers\usb\usbaspi.sys
+    35?DEVICEHIGH=\fdos\drivers\usb\usbcd.sys /D:USB-CD
+    45?DEVICEHIGH=\fdos\drivers\aspi\aspi8dos.sys
+    45?DEVICEHIGH=\drivers\scsi\aspicd.sys /D:ASPICD
+
+  Dans AUTOEXEC.BAT:
+    SHSUCDX /D:IDE-CD,R /D:*ASPICD,S /D:?USB-CD,U /L:0
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+ (<a href="../base/atapicdd.htm">atapicdd.sys</a>)
+  <a href="../batch/autoexec.htm">autoexec.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../util/doslfn.htm">doslfn</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+  <a href="../cnfigsys/lastdrv.htm">lastdrive</a>
+  <a href="../cnfigsys/lastdrvh.htm">lastdrivehigh</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+ (<a href="../base/udvd.htm">udvd.sys</a>)
+  <a href="../base/uide.htm">uide.sys</a>
+ (<a href="../base/xcdrom.htm">xcdrom.sys</a>)
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003-2004 Robert Platt, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>

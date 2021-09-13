@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Commande FreeDOS : stackshigh</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : stackshigh</h1>
+<pre>
+  STACKSHIGH ajoute des piles pour g&eacute;rer les interruptions mat&eacute;rielles.
+  STACKSHIGH est une commande <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>.
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  stackshigh=nn,mmm
+</pre>
+<h2>Options :</h2>
+<pre>
+  nn   Le nombre de piles dans la plage 8-64 et 0.
+  mmm  La taille de chaque pile, en octets, dans la plage 32-512.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Cette commande n'est pas n&eacute;cessaire dans les installations standards.
+  STACKSHIGH modifie le nombre et la taille des piles d'interruptions
+  mat&eacute;rielles disponibles. nn est le nombre de diff&eacute;rentes piles et
+  mmm est la taille en octets de chacune d'entre elles. Dans certains
+  cas vous pouvez utiliser "stacks=0,0" pour utiliser seulement les
+  piles standards au lieu de laisser DOS allouer des piles
+  suppl&eacute;mentaires pour les interruptions mat&eacute;rielles.
+  STACKSHIGH ressemble &agrave; STACKS, sauf qu'il tente de se charger
+  dans la m&eacute;moire haute d'abord (en cas d'&eacute;chec, il devrait se
+  charger dans la m&eacute;moire conventionnelle).
+  Remarque : L'ordre avec lequel vous chargez les p&eacute;riph&eacute;riques peut
+  avoir un grand impact sur la quantit&eacute; de m&eacute;moire libre disponible.
+  En g&eacute;n&eacute;ral essayez de charger les gros (en termes d'utilisation de
+  m&eacute;moire) programmes d'abord dans la m&eacute;moire haute.
+  Important :vous devriez avoir un gestionnaire de m&eacute;moire tel que
+  (<a href="../base/himem.htm">HIMEM</a>), <a href="../base/himemx.htm">HIMEMX</a> ou <a href="../base/jemmex.htm">JEMMEX</a> install&eacute; (device=himem.exe ou
+  device=himemx.exe avant dans <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/fdconfig.htm">FDCONFIG.SYS</a>) avant
+  d'utiliser cette option.
+  STACKSHIGH est une commande interne &agrave; kernel.sys et ne n&eacute;cessite
+  aucun autre fichier pour fonctionner.
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  DANS CONFIG.SYS / FDCONFIG.SYS :
+    stackshigh=16,256
+</pre>
+<h2>Voir &eacute;galement :</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys</a>
+  <a href="../cnfigsys/fdconfig.htm">fdconfig.sys</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/himem.htm">himem</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/stacks.htm">stacks</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, mis &agrave; jour en 2011 par W. Spiegl.</b>
+  <b>Traduit en 2020 par Berki Yenig&uuml;n.</b>
+
+  Ce fichier est d&eacute;riv&eacute; de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+
+</pre></body></html>
