@@ -1,4 +1,4 @@
-# fd-nls [FreeDOS Translation Project](https://shidel.github.io/fd-nls)
+# fd-nls [the FreeDOS Translation Project](https://shidel.github.io/fd-nls)
 
 This project contains language contributions and other submissions 
 for software related to [FreeDOS&trade;](https://www.freedos.org).
