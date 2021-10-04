@@ -58,6 +58,9 @@ COLOR.ERASE=Borrar
 ; Algunas cadenas m s por venir con respecto a las secuencias de animaci¢n
 ; de sprites.
 
+ERROR.MOUSE=no se puede localizar el mouse. es realmente necesario.
+ERROR.VIDEO=no se puede encontrar ning£n controlador de gr ficos adecuado
+
 ERROR.DRIVER.FIND=no se puede localizar el controlador %0
 ERROR.DRIVER.INIT=no se puede inicializar el controlador %0
 ERROR.DRIVER.MODE=abriendo el controlador de gr ficos %0 modo %1

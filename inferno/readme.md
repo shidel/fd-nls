@@ -25,11 +25,12 @@ of importance...
 Of much less importance at present. However, when additional higher resolution
 video drivers are added, that may change.
 
-08x12
-08x10
-08x14
-08x20
 12x14
+08x20
+08x18
+08x12
+08x14
+08x10
 
 Additional sizes can be provided as well. :-)
 
