@@ -1,8 +1,9 @@
 #!/bin/bash
 
 EXCEPT=';packages;fdi;htmlhelp;'
-SPECIAL=';pgme;'
+SPECIAL=';pgme;inferno;imgedit;'
 EXCLUDE=';txt;docinfo;htm;html;'
+
 LANGUAGES=''
 APPLANGS=''
 APPS=0
@@ -11,9 +12,13 @@ TRANS=0
 PLATFORM="$(uname)"
 KEYFILE_ERR="translation file"
 URL="https://github.com/shidel/fd-nls/tree/master"
+
+# inferno extra EN fonts, not needing language specific versions
+EXTRAFNTS=';1214;0820;0818;0814;0812;0810;'
+
 unset CHECK_PGME
 
-DEBUGGING=";pkgtools;pgme;pause;"
+DEBUGGING=";pkgtools;inferno;imgedit;pause;"
 unset DEBUGGING
 
 function script_header () {
@@ -700,7 +705,83 @@ function special_pgme () {
         done
         echo "${msg:0:$(( ${#msg} - 1))} (language files only)"
     done
+}
 
+function check_group_app () {
+    local lfile afile app tfile appf appl curf
+    # figure out what apps
+    for lfile in "${1}"/* ; do
+        [[ ! -d "${lfile}" ]] && continue
+        lfile="${lfile##*/}"
+        tfile=$(upperCase "${lfile}")
+        [[ "${EXCLUDE//;${tfile};}" != "${EXCLUDE}" ]] && continue
+        app=$(lowerCase "${lfile}")
+        # get app english file versions
+        appf=
+        appl=
+        for afile in "${1}/${app}/"* ; do
+            afile="${afile##*/}"
+            tfile=$(upperCase "${lfile}")
+            [[ "${EXCLUDE//;${tfile};}" != "${EXCLUDE}" ]] && continue
+            [[ "${tfile//.UTF-8}" != "${tfile}" ]] && continue
+            # add lang to list
+            tfile=$(lowerCase "${tfile}")
+            [[ "${appl//;${tfile##*.}}" == "${appl}" ]] && appl="${appl};${tfile##*.};"
+            # not english skip for now
+            [[ "${afile##*.}" != "en" ]] && continue
+            appf="${appf};${afile%.*};"
+        done
+        while [[ ${#appf} -ne 0 ]] ; do
+            curf="${appf%%;*}"
+            appf="${appf:$(( ${#curf} + 1))}"
+            [[ ${#curf} -eq 0 ]] && continue
+            compare_nls $(fileCase "${1}/${app}/${curf}.es")
+            echo ${1}, ${app}.${curf}: ${appl}
+        done
+
+    done
+    return 0
+
+}
+
+function special_inferno () {
+    local lfile reqf='' appl=';en;' cur msg havl curx
+    # see what english fonts are there
+    for lfile in "${2}/fonts/"* ; do
+        lfile=$(lowerCase "${lfile}")
+        lfile="${lfile##*/}"
+        [[ "${lfile//.fnt}.fnt" != "${lfile}" ]] && continue
+        lfile="${lfile//.fnt}"
+        # add lang to list
+        [[ "${appl//;${lfile:6:2};}" == "${appl}" ]] && appl="${appl};${lfile:6:2};"
+        # not english skip for now
+        [[ "${lfile:6:2}" != "en" ]] && continue
+        # check if non-required font
+        [[ "${EXTRAFNTS//;${lfile:0:4};}" != "${EXTRAFNTS}" ]] && continue
+        # its a required english font
+        reqf="${reqf};${lfile:0:6};"
+    done
+    while [[ ${#appl} -gt 0 ]] ; do
+        cur="${appl%%;*}"
+        appl="${appl:$(( ${#cur} + 1))}"
+        [[ ${#cur} -eq 0 ]] && continue
+        havl="${reqf}"
+        for lfile in "${2}/fonts/"* ; do
+            lfile=$(lowerCase "${lfile}")
+            lfile="${lfile##*/}"
+            [[ "${lfile//.fnt}.fnt" != "${lfile}" ]] && continue
+            lfile="${lfile//.fnt}"
+            [[ "${lfile:6:2}" != "${cur}" ]] && continue
+            havl="${havl//;${lfile:0:6};}"
+        done
+        [[ ${#msg} -ne 0 ]] && msg="${msg}, "
+        [[ "${havl}" == '' ]] && msg="${msg}${cur}" || msg="${msg}${cur}*"
+    done
+    echo "${2}: ${msg} (font files)"
+}
+
+function special_imgedit () {
+    :;
 }
 
 function each_app () {
@@ -782,32 +863,6 @@ function create_report () {
     # scan_summary | tee -a "${out}.txt" # new process, subshell values lost.
 }
 
-
-function header_markdown () {
-
-echo '# fd-nls
-
-User language contributions and submissions for software related to FreeDOS
-
-## Contribution Licensing
-
-All user accepted contributions in this project are required for their
-submissions to accept and be bound by the overall license of this project and
-the license for any software projects to which their submission is related.
-Any accepted submission will automatically be covered by the GNU General
-Public License, version 2 or later. Also when required, the submissions will
-automatically be licensed under any additional open source licenses to
-maintain consistency and compatibility to the project for which it is
-submitted. This includes, but is not limited to, any licensing additions or
-changes that may be required to release, modify and distribute any provided
-submissions. This includes any subsequent changes to this project or any of
-the related projects licenses.
-
-
-### View the [Current Translations Status](https://shidel.github.io/fd-nls/report.html) report file.
-
-'
-}
 
 function html_intro () {
 echo '<body>
@@ -1312,120 +1367,6 @@ function create_readme_html () {
     echo "<br>">>${out}
     echo "<br>">>${out}
     echo "</body></html>">>${out}
-
-}
-
-function create_readme_md () {
-    local out=README.md
-    local rdate=$(grep -i "^Report Date: " report.txt | cut -d ':' -f 2-)
-    local langs lng lcnt=0 tcnt=0 tlng
-    local apps app acnt=0 tapp x alng tline line s v
-    rdate=$(trim "${rdate}")
-
-    while IFS=''; read -r line ; do
-        [[ "${line}" == '' ]] && continue
-        app="${line%%:*}"
-        if [[ "${app/ /}" != "${app}" ]] ; then
-            [[ "${app/pgme/}" == "${app}" ]] && continue
-            [[ "${app/(/}" != "${app}" ]] && continue
-        fi
-        (( acnt++ ))
-        apps="${apps};${app};"
-        line="${line#*:}"
-        while [[ ${#line} -gt 0 ]] ; do
-            lng="${line%% *}"
-            line="${line:$(( ${#lng} + 1))}"
-            [[ "${lng/(}" != "${lng}" ]] && break
-            (( tcnt++ ))
-            lng="${lng//[![:alpha:]]}"
-            [[ "${lng}" == "" ]] && continue
-            if [[ "${langs/;${lng};}" == "${langs}" ]] ; then
-                langs="${langs};${lng};"
-                (( lcnt++ ))
-            fi
-        done;
-    done<report.txt
-
-    header_markdown >${out}
-
-    langs="${langs};!!;"
-    # echo "${langs}">>${out}
-    local tables=0
-    local sets
-    while [[ ${tables} -lt 5 ]] ; do
-        case ${tables} in
-            0)
-                sets='-'
-                echo '### Individual "missing" translations'>>${out}
-            ;;
-            11)
-                sets='*'
-                echo '### Individual "Known problems" translations, missing keys'>>${out}
-            ;;
-            2)
-                sets='!'
-                echo '### Individual "Could not compare" translations, unsupported format'>>${out}
-            ;;
-            3)
-                sets='@'
-                echo '### Individual "GOOD" translations'>>${out}
-            ;;
-            *)
-                break
-        esac
-        echo '<table>'>>${out}
-        tapp="${apps}"
-        while [[ ${#tapp} -gt 0 ]] ; do
-            app="${tapp%%;*}"
-            tapp="${tapp:$(( ${#app} + 1 ))}"
-            [[ ${#app} -eq 0  ]] && continue
-            tlng="${langs}"
-            x="<tr><td>${app}</td>"
-            line=$(grep "^${app}:" report.txt)
-            line="${line#*: }"
-            while [[ ${#tlng} -gt 0 ]] ; do
-                lng="${tlng%%;*}"
-                tlng="${tlng:$(( ${#lng} + 1 ))}"
-                tline="${line}"
-                v='-'
-                [[ "${lng}" == "" ]] && continue
-                while [[ ${#tline} -gt 0 ]] ; do
-                    alng="${tline%% *}"
-                    if [[ "${alng/(}" != "${alng}" ]] && [[ "${lng}" == '!!' ]] ; then
-                        v="<i>${tline}</i>"
-                        break
-                    fi
-                    tline="${tline:$(( ${#alng} + 1))}"
-                    if [[ "${alng//[![:alpha:]]}" == "${lng}" ]] ; then
-                        v="${alng//[[:alpha:]]}"
-                        v="${v//,}"
-                        [[ "${v}" == '' ]] && v='@'
-                        [[ "${v}" == '?' ]] && v='!'
-                        [[ "${v}" == "${sets}" ]] && v="<b>${lng}</b>" ||  v="&nbsp;"
-                        break
-                    fi
-                done
-                if [[ "${v}" == "-" ]] ; then
-                    [[ "${sets}" == "-" ]] && v="<b>${lng}</b>" || v=""
-                fi
-                [[ "${lng}" == "!!" ]] && v=""
-
-                x="${x}<td>${v}</td>"
-            done
-            x="${x}</tr>"
-            echo "${x}">>${out}
-        done
-
-        echo '</table>'>>${out}
-        echo >>${out}
-        (( tables++ ))
-    done
-
-    echo >>${out}
-    echo >>${out}
-    echo >>${out}
-    echo "**${acnt}** total programs, **${lcnt}** total languages, **${tcnt}** total translations">>${out}
-    echo "Report date: *${rdate}*">>${out}
 
 }
 
