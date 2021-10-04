@@ -10,6 +10,12 @@ is set to TR, the 1012N-TR.FNT will be used for 10x12 characters. However,
 since no smaller size is provided that fits in the 8x8 requirement, the
 0808N-EN.FNT will get loaded for that size.
 
+The first letter following the font size is the basic style idenifier.
+N, T, B & I stand for normal, thin, bold and italic.
+
+The - is kinda reserved for future use. Eventually, it will probably be for
+other typeface information. Maybe things like Sarif, Gothic, etc.
+
 On a side note, ImgEdit uses two font file formats. 08x?? is always saved in
 a flat font bitmap file compatible with most programs that can load fonts (like
 VFONT and other utilities). For fonts more than 8-bits wide, it uses a new
@@ -32,7 +38,4 @@ video drivers are added, that may change.
 08x14
 08x10
 
-Additional sizes can be provided as well. :-)
-
-The N stands for Normal font. I & B would be bold and italic. The - is kinda
-a reserved for future use typeface stuff.
+Additional sizes and types can be provided as well. :-)
