@@ -15,10 +15,15 @@ LOADING=Cargando %0...
 STANDBY=Procesamiento en espera...
 GORT=Klaatu barada nikto
 
+COMBO.ALTPLUS=(Alt+%0)
+COMBO.CTLPLUS=(Ctrl+%0)
+
 ; Elementos del men£ principal
 MENU.FILE=Archivo
-MENU.FILE.NEW.FONT=Fuente
-MENU.FILE.NEW.IMAGE=Imagen
+MENU.FILE.NEW.FONT=Nueva Fuente
+MENU.FILE.NEW.IMAGE=Nueva Imagen
+MENU.FILE.NEW.SPRITE=Nueva Sprite
+
 MENU.FILE.OPEN=Abrir...
 MENU.FILE.SAVE=Guardar
 MENU.FILE.SAVEAS=Guardar como...
@@ -112,6 +117,7 @@ ERROR.244=falla del controlador del joystick
 MKEY.FILE=
 MKEY.FILE.NEW.FONT=f
 MKEY.FILE.NEW.IMAGE=i
+MKEY.FILE.NEW.SPRITE=p
 
 MKEY.FILE.OPEN=a
 MKEY.FILE.SAVE=g
@@ -121,7 +127,7 @@ MKEY.FILE.EXIT=s
 
 MKEY.EDIT=
 MKEY.EDIT.COPY=c
-MKEY.EDIT.PASTE=p
+MKEY.EDIT.PASTE=v
 
 MKEY.TOOLS=
 MKEY.IMAGE.CLEAR=b
