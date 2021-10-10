@@ -43,6 +43,11 @@ MENU.EDIT=Editar
 MENU.EDIT.COPY=Copiar
 MENU.EDIT.PASTE=Pegar
 
+MENU.EDIT.FRAME.ADD=Agregar fotograma
+MENU.EDIT.FRAME.DEL=Eliminar fotograma
+MENU.EDIT.SEQ.ADD=Agregar secuencia
+MENU.EDIT.SEQ.DEL=Eliminar secuencia
+
 MENU.TOOLS=Herramientas
 MENU.IMAGE.CLEAR=Borrar
 MENU.IMAGE.INVERT=Invertir
