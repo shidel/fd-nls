@@ -1,6 +1,20 @@
+( New pre-release coming very soon... It has numerous bug fixes and additional
+features in it. Probably be available on 10/13 sometime. It contains several
+new menu items as well. )
+
 Although not officially released to the general public yet, you can download
 a debug copy of [ImgEdit](https://fd.lod.bz/Members-Only/imgedit-211002.zip) in
 order to test translations. :-)
+
+Actually, ImgEdit and ImgView are two separate programs for one package.  They
+don't use the standard NLS directories. Instead, all resources (images, text,
+etc) are attached to the executable. This eliminates the need for an end user
+to worry about such things.
+
+Also, the utilities to monitor the FD-NLS project don't handle multiapplication
+for single projects. Eventually, I'll get around to adding that. But, in the
+meantime, I've just mimicked the normal dir structure for the main program
+in the ImgEdit project.
 
 Put your translation files in the same directory as ImgEdit. Then simply set
 your language *SET LANG=ML* and run ImgEdit. It will see those files and
