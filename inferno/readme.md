@@ -8,7 +8,10 @@ suitable font is found.
 For example, ImgEdit uses 2 fonts at present 10x12 and 8x8. So, if the language
 is set to TR, the 1012N-TR.FNT will be used for 10x12 characters. However,
 since no smaller size is provided that fits in the 8x8 requirement, the
-0808N-EN.FNT will get loaded for that size.
+0808N-EN.FNT will get loaded for that size. If you use ImgEdit to create or
+edit a font, the different formats are handled automatically and transparently.
+Other editors will not be capable of creating fonts wither than 8 bits that
+are compatible with ImgEdit or the Inferno Game Engine.
 
 The first letter following the font size is the basic style idenifier.
 N, T, B & I stand for normal, thin, bold and italic.

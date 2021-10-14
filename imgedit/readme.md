@@ -3,7 +3,7 @@ features in it. Probably be available on 10/13 sometime. It contains several
 new menu items as well. )
 
 Although not officially released to the general public yet, you can download
-a debug copy of [ImgEdit](https://fd.lod.bz/Members-Only/imgedit-211002.zip) in
+a debug copy of [ImgEdit](https://fd.lod.bz/Members-Only/imgedit-211014.zip) in
 order to test translations. :-)
 
 Actually, ImgEdit and ImgView are two separate programs for one package.  They

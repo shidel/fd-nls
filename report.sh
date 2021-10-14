@@ -1,7 +1,7 @@
 #!/bin/bash
 
 EXCEPT=';packages;fdi;htmlhelp;'
-SPECIAL=';pgme;inferno;imgedit;'
+SPECIAL=';pgme;inferno;'
 EXCLUDE=';txt;docinfo;htm;html;'
 
 LANGUAGES=''
