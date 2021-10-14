@@ -1,7 +1,3 @@
-( New pre-release coming very soon... It has numerous bug fixes and additional
-features in it. Probably be available on 10/13 sometime. It contains several
-new menu items as well. )
-
 Although not officially released to the general public yet, you can download
 a debug copy of [ImgEdit](https://fd.lod.bz/Members-Only/imgedit-211014.zip) in
 order to test translations. :-)
