@@ -7,15 +7,19 @@ don't use the standard NLS directories. Instead, all resources (images, text,
 etc) are attached to the executable. This eliminates the need for an end user
 to worry about such things.
 
-Also, the utilities to monitor the FD-NLS project don't handle multiapplication
-for single projects. Eventually, I'll get around to adding that. But, in the
-meantime, I've just mimicked the normal dir structure for the main program
-in the ImgEdit project.
+Also, the utilities to monitor the FD-NLS project don't handle multiple
+applications for single projects. Eventually, I'll get around to adding that.
+But, in the meantime, I've just mimicked the normal dir structure for the main
+program in the ImgEdit project.
 
 Put your translation files in the same directory as ImgEdit. Then simply set
 your language *SET LANG=ML* and run ImgEdit. It will see those files and
-use them instead of any included translations. If you notice the font for your
-language is not correct. Just fetch it from the
+use them instead of any included translations.
+
+For the __Help text__, rename it to HELPTXT.* (like HELPTXT.TR) and place it
+in the same directory as well.
+
+If you notice the font for your language is not correct. Just fetch it from the
 [Inferno fonts](https://github.com/shidel/fd-nls/tree/master/inferno/fonts)
 pool here on FD-NLS. Drop that font in the same directory and it will override
 the built in font. Oh, and you can easily edit it in ImgEdit as well.
