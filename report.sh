@@ -14,7 +14,8 @@ KEYFILE_ERR="translation file"
 URL="https://github.com/shidel/fd-nls/tree/master"
 
 # inferno extra EN fonts, not needing language specific versions
-EXTRAFNTS=';1214;0820;0818;0814;0812;0810;'
+EXTRAFNTS=';1214;0820;0818;0814;0812;0810;0808;'
+REQFNTS=';1012;0816;'
 
 unset CHECK_PGME
 
