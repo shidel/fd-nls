@@ -1,6 +1,8 @@
-Although not officially released to the general public yet, you can download
-a debug copy of [ImgEdit](https://fd.lod.bz/Members-Only/imgedit-211014.zip) in
-order to test translations. :-)
+This document is specifically for Translators and does not need translated.
+
+Now that ImgEdit has been officially released to the general public. You can
+download the [latest version](https://fd.lod.bz/Members-Only/imgedit-211014.zip)
+directly from my DOS Software Repostory in order to test translations. :-)
 
 Actually, ImgEdit and ImgView are two separate programs for one package.  They
 don't use the standard NLS directories. Instead, all resources (images, text,
@@ -22,17 +24,18 @@ in the same directory as well.
 If you notice the font for your language is not correct. Just fetch it from the
 [Inferno fonts](https://github.com/shidel/fd-nls/tree/master/inferno/fonts)
 pool here on FD-NLS. Drop that font in the same directory and it will override
-the built in font. Oh, and you can easily edit it in ImgEdit as well.
+the built in font. Oh, and you can easily edit fonts in ImgEdit as well.
 
-Just a few notes on the pre-release version of ImgEdit...
+Just a few notes on ImgEdit...
 
 First, it is not a photo or picture editor. It is something I needed to make
-graphics for my Inferno Game Engine. That engine is far from finished and the
-graphics driver is at a bare minimum. So, most visual stuff is handled by the
-general graphics sub-system and overall performance is affected. When the
-driver is "done", the sub-system will defer to using it and performance will
-improve. Probably a lot. So if your running it in DOSBox, you'll want to
-crank up the Khz.
+graphics for my Inferno Game Engine. That engine is far from finished. But,
+with the recent update to the video driver, it is much much faster. So if your
+running it in DOSBox, you'll no longer need to crank up the Khz. It actually
+runs much better now at the default 3000 cycles than previous versions did at
+over 10,000 cycles. Offloading the image rendering functions from the graphics
+subsystem into the driver, resulted in a roughly 15x performance boost for
+image related stuff.
 
 ImgEdit doesn't have Undo/Redo. You can only set image/font size from the
 command line. Doesn't do sprites yet. Very very limited BMP support. Only edit

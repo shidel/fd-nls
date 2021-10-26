@@ -19,26 +19,29 @@ N, T, B & I stand for normal, thin, bold and italic.
 The - is kinda reserved for future use. Eventually, it will probably be for
 other typeface information. Maybe things like Sarif, Gothic, etc.
 
-On a side note, ImgEdit uses two font file formats. 08x?? is always saved in
-a flat font bitmap file compatible with most programs that can load fonts (like
-VFONT and other utilities). For fonts more than 8-bits wide, it uses a new
-font file format which will only work in programs that support that format.
+On a side note, ImgEdit uses two font file formats. Eight bit wide fonts are
+always saved in a flat font bitmap file compatible with most programs that can
+load fonts (like VFONT and other utilities). For fonts more than 8-bits wide,
+it automatically switches to a new font file format. Obviously, the wider fonts
+will only work in programs that support that format.
 
 If you desire creating/updating fonts, I currently suggest the following order
 of importance...
 
-10x12
-08x08
-08x16
+    10x12
+    08x08
+    08x16
 
 Of much less importance at present. However, when additional higher resolution
-video drivers are added, that may change.
+video drivers are added, that may change. For now, fonts taller than 12 pixels
+high are too big for most things in resolutions less than 640x480.
 
-12x14
-08x20
-08x18
-08x12
-08x14
-08x10
+    14x16
+    12x14
+    08x20
+    08x18
+    08x12
+    08x14
+    08x10
 
 Additional sizes and types can be provided as well. :-)
