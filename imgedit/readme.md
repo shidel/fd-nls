@@ -1,7 +1,7 @@
 This document is specifically for Translators and does not need translated.
 
 Now that ImgEdit has been officially released to the general public. You can
-download the [latest version](https://fd.lod.bz/Members-Only/imgedit-211014.zip)
+download the [latest version](https://fd.lod.bz/repos/current/pkg-html/imgedit.html)
 directly from my DOS Software Repostory in order to test translations. :-)
 
 Actually, ImgEdit and ImgView are two separate programs for one package.  They
