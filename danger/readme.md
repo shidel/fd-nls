@@ -1,7 +1,12 @@
-This directory does not require actual translations. It contains a pool of
-all fonts used by programs that run on top of the Inferno Game Engine.
+The Danger Engine was previously called the Inferno Game Engine. But, I
+recently found an existing project called Inferno. So, to avoid confusion and
+any conflicts, my game engine was renamed. The new name is mostly just a
+"working title" and I'm not sure if I'll stick with it.
 
-Inferno based programs select a _best fitting_ font based on language,
+This directory does not require actual translations. It contains a pool of
+all fonts used by programs that run on top of the Danger Engine.
+
+Danger based programs select a _best fitting_ font based on language,
 requested size and type. Finally, falling back on English versions when no
 suitable font is found.
 
@@ -11,7 +16,7 @@ since no smaller size is provided that fits in the 8x8 requirement, the
 0808N-EN.FNT will get loaded for that size. If you use ImgEdit to create or
 edit a font, the different formats are handled automatically and transparently.
 Other editors will not be capable of creating fonts wither than 8 bits that
-are compatible with ImgEdit or the Inferno Game Engine.
+are compatible with ImgEdit or the Danger Engine.
 
 The first letter following the font size is the basic style idenifier.
 N, T, B & I stand for normal, thin, bold and italic.

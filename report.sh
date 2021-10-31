@@ -1,7 +1,7 @@
 #!/bin/bash
 
 EXCEPT=';packages;fdi;htmlhelp;'
-SPECIAL=';pgme;inferno;'
+SPECIAL=';pgme;danger;'
 EXCLUDE=';txt;docinfo;htm;html;'
 
 LANGUAGES=''
@@ -13,13 +13,13 @@ PLATFORM="$(uname)"
 KEYFILE_ERR="translation file"
 URL="https://github.com/shidel/fd-nls/tree/master"
 
-# inferno extra EN fonts, not needing language specific versions
+# Danger Engine extra EN fonts, not needing language specific versions
 EXTRAFNTS=';1214;0820;0818;0814;0812;0810;0808;'
 REQFNTS=';1012;0816;'
 
 unset CHECK_PGME
 
-DEBUGGING=";pkgtools;inferno;imgedit;pause;"
+DEBUGGING=";pkgtools;danger;imgedit;pause;"
 unset DEBUGGING
 
 function script_header () {
@@ -745,7 +745,7 @@ function check_group_app () {
 
 }
 
-function special_inferno () {
+function special_danger () {
     local lfile reqf='' appl=';en;' cur msg havl curx
     # see what english fonts are there
     for lfile in "${2}/fonts/"* ; do
