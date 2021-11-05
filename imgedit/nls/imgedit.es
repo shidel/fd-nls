@@ -25,8 +25,10 @@ MENU.FILE.NEW.IMAGE=Nueva Imagen
 MENU.FILE.NEW.SPRITE=Nueva Sprite
 
 MENU.FILE.OPEN=Abrir...
+MENU.FILE.IMPORT=Importar...
 MENU.FILE.SAVE=Guardar
 MENU.FILE.SAVEAS=Guardar como...
+MENU.FILE.EXPORT=Exportar...
 MENU.FILE.SAVEAS.IMGIGG=Gr fico IGG
 MENU.FILE.SAVEAS.SPRIGS=Sprite IGS
 MENU.FILE.SAVEAS.IMGBMP=Imagen BMP
@@ -64,6 +66,16 @@ MENU.HELP.ABOUT=Acerca de...
 
 COLOR.DRAW=Dibujar
 COLOR.ERASE=Borrar
+
+NOFILES=no hay archivos coincidentes
+DLG.BUTTON.OK=confirmar
+DLG.BUTTON.CANCEL=cancelar
+
+DLG.OPEN.CAPTION=Abrir un archivo
+DLG.IMPORT.CAPTION=Importar una gr fica
+DLG.EXPORT.CAPTION=Exportar c¢mo
+DLG.SAVEAS.FORMAT=Formato de archivo
+
 
 ; Algunas cadenas m s por venir con respecto a las secuencias de animaci¢n
 ; de sprites.
@@ -127,6 +139,8 @@ MKEY.FILE.NEW.SPRITE=p
 MKEY.FILE.OPEN=a
 MKEY.FILE.SAVE=g
 MKEY.FILE.SAVEAS=
+MKEY.FILE.IMPORT=m
+MKEY.FILE.EXPORT=
 
 MKEY.FILE.EXIT=s
 
