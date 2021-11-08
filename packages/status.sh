@@ -107,7 +107,7 @@ function fetch_csv () {
 MASTER_HEADER=
 MASTER_FIELDS=0
 MASTER_IGNORE=";md5;group;crc;versions;version;entered-date;modified-date;"\
-"changes;primary-site;alternate-site;original-site;wiki-site;"\
+"changes;primary-site;alternate-site;original-site;wiki-site;mirror-site;"\
 "author;maintained-by;"
 
 MASTER_TOTAL=0
