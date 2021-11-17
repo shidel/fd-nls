@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>edlin</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h3>EDLIN 2.14</h3>
+<pre>
+Le programme edlin est un petit ‚diteur de lignes, ‚crit pour FreeDOS en
+tant que clone fonctionnel du vieux programme MS-DOS edlin. Il diffŠre de
+MS edlin du fait que d'abord, il s'agit d'un logiciel libre, et ensuite
+car l'interface utilisateur est l‚gŠrement diff‚rente … certains endroits.
+La diff‚rence est que l'utilisateur n'a pas … taper les caractŠres de
+contr“le requis par la syntaxe de MS edlin.
+</pre>
+<h3>INVOCATION D'EDLIN</h3>
+<pre>
+
+Le programme edlin est soit invoqu‚ par son nom :
+
+  edlin
+
+soit avec un nom de fichier qui est initialement lu :
+
+  edlin fichier
+</pre>
+<h3>COMMANDES INTERNES D'EDLIN</h3>
+<pre>
+Dans les listes suivantes de commandes, les crochets repr‚sentent des
+constructions facultatives. Le symbole # repr‚sente un num‚ro de ligne,
+qui est soit une chaŒne de chiffres, soit un point repr‚sentant la ligne
+actuelle, ou un signe du dollar ($) qui repr‚sente la derniŠre ligne dans
+le fichier, ou bien un num‚ro de ligne ajout‚ ou soustrait d'un autre
+num‚ro de ligne, de sorte que
+
+  .,.+1p
+
+affiche la ligne actuelle et la ligne suivante.
+
+Un signe du dollar dans la liste suivante repr‚sente une chaŒne de
+caractŠres. Elles peuvent ˆtre comprises entre des guillemets simples ou
+doubles et peuvent contenir les s‚quences d'‚chappement suivantes :
+
+  \a - alerte
+  \b - effacement
+  \e - ‚chappement
+  \f - page vide
+  \t - onglet horizontal
+  \v - onglet vertical
+  \" - guillemets doubles
+  \' - guillemets simples
+  \. - point
+  \\ - barre oblique invers‚e
+  \xXX o— X est un chiffre hexad‚cimal (0-9, a-f, A-F) - constante
+       hexad‚cimale
+  \dddd o— d est un chiffre d‚cimal (0-9) - constante d‚cimale
+  \OOO o— O est un chiffre octal digit (0-7) - constante octale
+  \^C - caractŠre de contr“le
+
+Le programme edlin prend en charge la syntaxe suivante :
+</pre>
+<h3># - DITER UNE SEULE LIGNE</h3>
+<pre>
+Le programme edlin affiche la seule ligne indiqu‚e par le nombre et la
+ligne suivante entr‚e remplace la ligne affich‚e dans le fichier.
+</pre>
+<h3>a - APPEND</h3>
+<pre>
+Cette commande est ‚quivalente … $+1i .
+</pre>
+<h3>[#],[#],#,[#]c - COPIER UNE PLAGE DE LIGNES</h3>
+<pre>
+Cette commande copie un bloc de lignes cons‚cutives vers un autre endroit
+dans le tampon. Les paramŠtres sont :
+
+  * La premiŠre ligne que vous voulez copier (par d‚faut = ligne actuelle)
+  * La derniŠre ligne que vous voulez copier (par d‚faut = ligne actuelle)
+  * La ligne avant laquelle vous souhaitez ins‚rer des blocs de lignes
+  * Le nombre de fois que vous souhaitez copier le bloc (par d‚faut = 1)
+
+AprŠs qu'edlin copie les lignes, vous pouvez utiliser la commande l
+(lister) pour voir les lignes correctement renum‚rot‚es.
+</pre>
+<h3>[#][,#]d - EFFACER UN BLOC DE LIGNES</h3>
+<pre>
+Cette commande efface un bloc de lignes cons‚cutives. Les paramŠtres sont
+la premiŠre et derniŠre ligne du bloc … effacer.
+
+Si vous omettez le second paramŠtre, seule la ligne sp‚cifi‚e dans le
+premier paramŠtre sera effac‚e. Si vous omettez le second paramŠtre, le
+bloc de la ligne actuelle jusqu'… la ligne sp‚cifi‚e dans le second
+paramŠtre sera effac‚ (assurez-vous d'inclure la virgule). L'omission des
+deux paramŠtres provoque l'effacement de la ligne actuelle.
+</pre>
+<h3>e nomfichier - ENREGISTRER ET QUITTER</h3>
+<pre>
+Cette commande est ‚quivalente …
+
+  w nomfichier
+
+suivi par
+
+  q
+</pre>
+<h3>[#]i - MODE D'INSERTION</h3>
+<pre>
+Cette commande entre dans le mode d'insertion. Son paramŠtre est le num‚ro
+de ligne avant laquelle vous souhaitez ins‚rer des lignes.
+
+Lors de l'insertion, les s‚quences d'‚chappement tels que ci-dessus sont
+l‚gaux … taper. Pour quitter le mode d'insertion, tapez un point (.) sur
+une ligne vide (si vous avez besoin d'une ligne avec simplement un point,
+utilisez l'‚chappement).
+
+AprŠs avoir quitt‚ le mode d'insertion, la ligne aprŠs le texte ins‚r‚
+devient la ligne actuelle sauf si l'insertion a ‚t‚ ajout‚ … la fin du
+texte, auquel cas la derniŠre ligne devient la nouvelle ligne actuelle.
+</pre>
+<h3>[#][,#]l - LISTER LES LIGNES</h3>
+<pre>
+Cette commande liste les lignes de texte sur l'‚cran. Si vous omettez le
+premier paramŠtre, la commande commence par afficher le texte commen‡ant
+par 11 lignes avant la ligne actuelle. L'omission du second paramŠtre
+affiche une page de texte commen‡ant avec la ligne sp‚cifi‚e dans le
+premier paramŠtre. L'omission des deux affiche une page de texte
+commen‡ant … 11 lignes avant la ligne actuelle. Dans tous les cas, si le
+num‚ro de lignes est sup‚rieur au nombre de lignes sur une page, le
+programme affichera une invite aprŠs chaque page de lignes.
+</pre>
+<h3>[#],[#],#m - DPLACER UN BLOC</h3>
+<pre>
+Cette commande d‚place un bloc de texte … la ligne avant le num‚ro
+sp‚cifi‚ dans le troisiŠme paramŠtre. Il est similaire … la copie, puis …
+l'effacement du bloc original.
+</pre>
+<h3>[#][,#]p - PAGE</h3>
+<pre>
+Cela est similaire … l sauf que la page par d‚faut commence avec la ligne
+actuelle au lieu des 11 lignes pr‚c‚dentes.
+</pre>
+<h3>q - QUITTER</h3>
+<pre>
+Pas grand-chose … expliquer.
+</pre>
+<h3>[#][,#][?]r$,$ - REMPLACER LA CHA×NE</h3>
+<pre>
+Cette commande remplace toutes les occurrences de la premiŠre chaŒne avec
+la seconde entre les deux lignes sp‚cifi‚es. Si le premier paramŠtre est
+omis, le remplacement commence … la ligne suivant la ligne actuelle ; si
+le secon paramŠtre est omis, le remplacement s'arrˆte … la derniŠre ligne
+du fichier.
+
+Le point d'interrogation envoie un message de confirmation avant le
+remplacement.
+</pre>
+<h3>[#][,#][?]s$ - RECHERCHER LA SOUS-CHA×NE</h3>
+<pre>
+Cette commande recherche la premiŠre ligne contenant la sous-chaŒne
+sp‚cifi‚e. L'omission du premier paramŠtre fait que la recherche commence
+sur la ligne actuelle ; l'omission du second fait que la recherche
+s'arrˆte … la fin du fichier.
+
+Le point d'interrogation fait que la recherche envoie un message de
+confirmation. R‚pondre non au message de confirmation continue la
+recherche ; dire oui l'arrˆte.
+
+La ligne actuelle sera r‚initialis‚e … la ligne o— la recherche se sera
+arrˆt‚e si elle a ‚t‚ un succŠs.
+</pre>
+<h3>[#]t nomfichier - TRANSFRER UN FICHIER</h3>
+<pre>
+Cette commande fait que les contenus du fichier seront ins‚r‚s avant le
+num‚ro de ligne sp‚cifi‚e. Si le num‚ro de ligne est omis, la valeur par
+d‚faut est la ligne actuelle.
+</pre>
+<h3>[#]w nomfichier - CRIRE LE FICHIER</h3>
+<pre>
+Cette commande fait que les premiers num‚ros de ligne sp‚cifi‚s par le
+paramŠtre seront ‚crits dans le fichier sp‚cifi‚. Si le paramŠtre est
+omis, toutes les lignes du tampon seront ‚crites dans le fichier.
+</pre>
+<h3>AUTEUR/MAINTENEUR</h3>
+<pre>
+Gregory Pietsch, gpietsch@comcast.net
+<BR><BR>
+</pre>
+</body>
+</html>
