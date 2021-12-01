@@ -1,8 +1,4 @@
 @ECHO OFF
-REM country changed to 049, W. Spiegl,
-
-rem COUNTRY=049,858,C:\FDOS\BIN\COUNTRY.SYS
-
 set LANG=DE
 
 IF NOT EXIST %DOSDIR%\BIN\DISPLAY.EXE GOTO NoCodePage

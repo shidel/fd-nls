@@ -1,0 +1,2 @@
+@ECHO OFF
+set CNTRY=034,850
