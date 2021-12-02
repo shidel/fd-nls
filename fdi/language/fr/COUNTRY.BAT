@@ -1,2 +1,3 @@
 @ECHO OFF
-set CNTRY=033,858
+set FCCTY=033
+set FCKEY=858
