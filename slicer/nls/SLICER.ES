@@ -7,7 +7,7 @@
 
 LANGUAGE=es
 TITLE=%, versi¢n %
-COPYRIGHT=Copyright (c) 2020, Jerome Shidel
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
 
 ; Same params as reporting
 INC_FILE=%9%2 %8
