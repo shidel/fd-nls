@@ -1,0 +1,132 @@
+
+     ASSIGN (1)                  08 Augusti 1995                 ASSIGN (1)
+
+
+
+     NAMN
+          assign - Tilldela en enhetsbokstav till en annan enhet
+
+
+     SYNOPSIS
+          assign [/m] [/shadow] /?
+          assign [/m] [/shadow] /status
+          assign [/m] [/shadow] /u
+          assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+     BESKRIVNING
+          Assign mappar en enhetsbokstav till en annan enhet.  Denna
+          mappning påverkar endast enhetsbokstaven, inte sökvägen,
+          vilket skiljer Assign från Subst, t.ex.:
+          Med aktuell sökväg "C:\FREEDOS\ och "B:\TEMP" efter
+          kommandona "assign B=C" och "cd C:\", kommer sökvägen "B:"
+          också att peka på katalogen "C:\".
+          Medan efter kommandona "subst B: ." och "cd C:\", kommer
+          sökvägen fortfarande att peka på "C:\FREEDOS".
+
+          Då detta program inte är en TSR, ladda inte in det via
+          "LOADHIGH" eller "LH"-kommandot.
+
+     FLAGGOR
+
+       /? Visar en liten hjälpskärm.
+
+       /SHADOW Denna flagga gömmer den residenta delen av Assign från
+          att lätt detekteras. Det inkluderar att:
+	  1) minnesblocket som innehåller den residenta delen markeras
+	  som en del av systemet.
+	  2) Avbrottet för installationskontroll returnerar "Inte
+	  installerad, men får lov att installeras" snarare än
+	  "Installerad" eller "Inte installerad.".
+
+	  Om den residenta delen installeras med denna flagga men
+	  senare anrop görs utan den kommer en varning att visas men
+	  åtgärden utförs.
+
+	  Flaggan förkortas /SH.
+
+       /STATUS Visa alla tilldelade enhetsbokstäver på formen:
+          en1: => en2:
+	  där en1 är den tilldelade enhetsbokstaven och en2 är enheten
+	  som en1 pekar på.
+
+	  Om det inte finns några tilldelningar alls kommer inget att
+	  matas ut.
+
+	  Denna flagga förhindrar inläsning av den residenta delen om
+	  den inte redan har installerats.
+
+	  Flagga förkortas /S.
+
+       /u Avinstallera en tidigare installerad Assign.
+
+
+
+                                      -1-
+
+
+     ASSIGN (1)                  08 Augusti 1995                 ASSIGN (1)
+
+
+       en1[:]=en2[:] Detta definierar en tilldelning av en
+          enhetsbokstav, där en1 ska peka på en2. Kolonen ":" är
+	  valfria. Inga blanktecken tillåts mellan enhetsbokstäverna,
+	  kolonen och likhetstecknet '='.
+
+       /m Flytta om möjligt den residenta delen in i UMB-området.
+          Denna flagga ignoreras om den residenta delen redan är
+	  installerad.
+
+       ingen flagga Om det varken finns /STATUS eller /u eller någon
+          tilldelning angiven på kommandorader kommer alla existerande
+	  tilldelningar att brytar så att alla enhetsbokstäver pekar
+	  på sig själva.
+
+     KÄNDA FEL
+
+       o  Eftersom Assign inte själv är en TSR kan inläsning av en via
+          kommandona "LOADHIGH" eller "LH" komma att misslyckas. Om du
+          vill läsa in den residenta delen i högt minne måste du ange
+	  flaggan /m.
+
+       o  Flaggorna /STATUS och /SHADOW följer inte flaggstandarden
+          på grund av kompatibilitet med original-Assign.
+
+       o  Senare installerade TSR:er eller en andra kommandohanterare
+          (skal) kommer mestadels att förhindra
+          avinstallationsproceduren. I detta fall kommer inte Assign
+          att avbrytas, utan att förbli aktivt i minnet. Använd ASSIGN
+          utan några flaggor för att rensa tilldelningstabellen
+          istället.
+
+       o  Vissa skal förhindrar att ASSIGN hittar sin residenta kopia
+          i minnet, om ASSIGN installeras från en sekundär kopia av
+	  skalet.
+
+     SE VIDARE
+          Subst, Join
+
+     BIDRAGSGIVARE
+                                 Steffen Kaiser
+                             Mittelstraáe 112/B115
+                         53757 Sankt Augustin - Menden
+                             Deutschland - Tyskland
+
+                    e-mail: Steffen.Kaiser@FH-Rhein-Sieg.DE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                      -2-
+
