@@ -16,3 +16,5 @@
 1.2:Kan inte ”ppna filen
 2.0:Mera
 2.1:<STDIN>
+
+1.3:flagga /Tab m†ste vara /T1..9 (standard 4)
