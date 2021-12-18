@@ -1,0 +1,38 @@
+vchoice [options]
+
+Choisir une option.
+
+Retourne un niveau d'erreur du choix effectué fondé sur son numéro d'entrée.
+Pas sur la lettre/chiffre du choix. Par exemple, si le second item est choisi,
+retournera un niveau d'erreur de 2. Sans prendre en compte les préfixes (tels
+que C, 1, R, etc). En outre, je recommande d'utiliser auto pour tout jeu de
+choix que vous préfixeriez avec une lettre ou un chiffre.
+    [aucun]     Utiliser tous les réglages automatiques par défaut.</td></tr>
+    /A n        Définir l'attribut texte sur n pour l'item sélectionné.
+    /B couleur  Définir l'attribut de texte d'arrière-plan sur couleur (ou une
+                valeur) pour l'élément sélectionné.
+    /F couleur  Définir l'attribut de texte d'avant-plan sur couleur (ou une
+                valeur) pour l'élément sélectionné.
+    /D n        Présélectionner l'élément numéro n comme choix par défaut.
+    type        Type de sélection par appui direct.
+                    off    Sélectionner uniquement avec les touches de curseur.
+                    auto   Détecter les caractères de saut direct. (valeur par
+                           défaut)
+                    alpha   Aller aux sélections en utilisant A-Z.
+                    chiffre Aller aux sélections en utilisant 1-9 (+0).
+    /Q          Requête pour le résultat. Lorsque le choix est effectué,
+                texte sera envoyé vers STDOUT.
+    /T secondes Délai en secondes avant que l'élément par défaut est choisi
+                automatiquement (0-3600). Notez que même si l'utilisateur
+                navigue vers un élément différent, l'élément par défaut
+                original sera choisi lorsque le délai d'attente sera dépassé.
+    /P n        Utiliser le mode sondage et présélectionner l'élément numéro n
+                en tant que choix actuel. Notez que toute modification de la
+                sélection quittera vchoice et retournera 100+ le chiffre actuel
+                du choix.
+    /K n        Utiliser n au lieu du caractère de cadrage pour détecter les
+                limites.
+    CTRL-C      Lorsqu'elle est spécifiée et que Contrôle-C est pressée,
+                quittera avec un niveau d'erreur de 200.
+
+                (toujours en développement, plus à venir)
