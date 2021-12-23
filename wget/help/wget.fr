@@ -1,4 +1,4 @@
-GNU Wget 1.8.2, un r‚cup‚rateur r‚seau non interactif.
+GNU Wget 1.11.1, un r‚cup‚rateur r‚seau non interactif.
 Utilisation : wget.exe [OPTION]... [URL]...
 
 Les arguments obligatoires pour les options longues le sont ‚galement pour
@@ -7,6 +7,7 @@ les options courtes.
 D‚marrage :
   -V,  --version           afficher la version de Wget et quitter.
   -h,  --help              afficher cette aide.
+  -b,  --background        aller … l'arriŠre-plan aprŠs d‚marrage.
   -e,  --execute=COMMANDE  ex‚cuter une commande de style '.wgetrc'.
 
 Journalisation et fichier d'entr‚e :
@@ -16,19 +17,14 @@ Journalisation et fichier d'entr‚e :
        --wdebug               afficher la sortie de d‚bogage WATT-32.
   -q,  --quiet                silencieux (aucune sortie).
   -v,  --verbose              ˆtre verbeux (c'est la valeur par d‚faut).
-  -nv, --non-verbose          d‚sactiver la verbosit‚, sans ˆtre silencieux.
+  -nv, --no-verbose           d‚sactiver la verbosit‚, sans ˆtre silencieux.
   -i,  --input-file=FICHIER   URL de t‚l‚chargement trouv‚s dans FICHIER.
   -F,  --force-html           traiter le fichier d'entr‚e en tant que HTML.
   -B,  --base=URL             ajoute l'URL aux liens relatifs dans le fichier
-                              -F -i.
-       --sslcertfile=FICHIER  certificat client optionnel.
-       --sslcertkey=KEYFILE   fichier clef optionnel pour ce certificat.
-       --egd-file=FICHIER     nom de fichier du socket EGD.
 
 T‚l‚chargement :
-       --bind-address=ADDRESSE  lier … l'ADDRESSE (nom d'h“te ou IP) sur l'h“te
-                                local.
   -t,  --tries=NOMBRE           NOMBRE de tentatives (0, illimit‚).
+       --retry-connrefused      r‚essayer mˆme si la connexion est refus‚e.
   -O   --output-document=FICHIER ‚crire les documents dans FICHIER.
   -nc, --no-clobber             ne pas ‚craser les fichiers existants ou
                                 utiliser le suffixe #.
@@ -39,56 +35,110 @@ T‚l‚chargement :
   -S,  --server-response        afficher la r‚ponse du serveur.
        --spider                 ne rien t‚l‚charger.
   -T,  --timeout=SECONDES       d‚finir toutes les valeurs de d‚lai d'attente.
+       --dns-timeout=SECS       d‚finir le d‚lai de recherche DNS sur SECS.
+       --connect-timeout=SECS   d‚finir le d‚passement du d‚lai d'attente sur
+                                SECS.
+       --read-timeout=SECS      d‚finir le d‚passement du d‚lai d'attente de
+                                lecture sur SECS.
   -w,  --wait=SECONDES          d‚lai d'attente entre les essais.
        --waitretry=SECONDES     d‚lai d'attente maximal entre les essais.
-       --random-wait            d‚lai d'attente al‚atoireÿ: avec un coefficient
-                                compris entre 0,5 et 1,5 du d‚lai d'attente.
-  -Y,  --proxy=on/off           d‚sactiver ou activer le serveur mandataire.
+       --random-wait            attendre de 0...2*WAIT secondes entre les
+                                r‚cup‚rations.
+       --no-proxy               d‚sactiver explicitement le serveur mandataire.
   -Q,  --quota=NOMBRE           d‚finir le quota de r‚cup‚ration … NOMBRE.
+       --bind-address=ADRESSE   lier … l'ADRESSE (nom d'h“te ou IP) sur l'h“te
+                                local.
        --limit-rate=TAUX        limiter le TAUX de t‚l‚chargement.
+       --no-dns-cache           d‚sactiver la mise en tampon des recherches DNS.
+       --restrict-file-names=OS restreindre les caractŠres des noms de fichier
+                                … ceux autoris‚s par le systŠme d'exploitation.
+       --ignore-case            ignorer la casse lors de la correspondance des
+                                fichiers/r‚pertoires.
+  -4,  --inet4-only             ne se connecter qu'aux adresses IPv4.
+  -6,  --inet6-only             ne se connecter qu'aux adresses IPv6.
+       --prefer-family=FAMILLE  se connecter d'abord aux adresses de la famille
+                                sp‚cifi‚e, l'une d'IPv6, d'IPv4, ou aucune.
+       --user=UTILISATEUR       d‚finir … la fois ftp et http en UTILISATEUR.
+       --password=MDP           d‚finir le mot de passe du ftp et http en MDP.
 
 R‚pertoires :
   -nd  --no-directories            ne pas cr‚er de r‚pertoires.
   -x,  --force-directories         forcer la cr‚ation de r‚pertoires.
   -nH, --no-host-directories       ne pas cr‚er de r‚pertoires sur l'h“te.
+       --protocol-directories      utiliser le nom du protocole dans les
+                                   r‚pertoires.
   -P,  --directory-prefix=PRFIXE  sauvegarder les fichiers dans PRFIXE/...
        --cut-dirs=NOMBRE           ignorer NOMBRE composants de r‚pertoire.
 
 Options HTTP :
        --http-user=IDENTIFIANT d‚finir l'IDENTIFIANT HTTP.
        --http-passwd=MDP     d‚finir le mot de passe HTTP.
-  -C,  --cache=on/off        interdire donn‚es mises en tampon du serveur ou
-                             l'autoriser (normalement autoris‚).
+       --no-cache            ne pas autoriser les donn‚es dans le tampon du
+                             serveur.
   -E,  --html-extension      sauvegarder les docs texte/html avec l'ext. .html.
        --ignore-length       ignorer le champ d'en-tˆte 'Content-Length'.
        --header=CHA×NE       ins‚rer la CHA×NE dans les en-tˆtes
+       --max-redirect        redirections maximales autoris‚es par page.
        --proxy-user=IDENTIFIANT  d‚finir l'IDENTIFIANT du serveur mandataire.
        --proxy-passwd=MDP    d‚finir le mot de passe du serveur mandataire.
        --referer=URL         inclure l'en-tˆte ®ÿReferer: URLÿ¯ en requˆte.
-  -s,  --save-headers        sauvegarder les en-tˆtes HTTP dans le fichier.
+       --save-headers        sauvegarder les en-tˆtes HTTP dans le fichier.
   -U,  --user-agent=AGENT    s'identifier comme AGENT et non Wget/VERSION.
        --no-http-keep-alive  d‚sactiver les connexions persistantes.
-       --cookies=off         ne pas utiliser les cookies.
+       --no-cookies          ne pas utiliser les cookies.
        --load-cookies=FICHIER  charger les cookies du FICHIER avant la session.
        --save-cookies=FICHIER  sauvegarder cookies en FICHIER aprŠs la session.
+       --keep-session-cookies  charger et enregistrer les cookies de session
+                               (non-permanents).
+       --post-data=CH¶INE      utiliser la m‚thode POST ; envoyer CHA×NE en tant
+                               que donn‚es.
+       --post-file=FICHIER     utiliser la m‚thode POST ; enovyer le contenu du
+                               FICHIER.
+       --content-disposition   honorer l'en-tˆte Content-Disposition lors du
+                               choix des noms de fichiers locaux (EXPRIMENTAL).
+       --auth-no-challenge     Envoyer des informations de base
+                               d'authentification HTTP sans attendre d'abord le
+                               d‚fi du serveur.
+
+HTTPS (SSL/TLS) options:
+       --secure-protocol=PR     choisir un protocole s–r, l'un entre auto,
+                                SSLv2, SSLv3, et TLSv1.
+       --no-check-certificate   ne pas valider le certificat du serveur.
+       --certificate=FICHIER    fichier de certificat du client.
+       --certificate-type=TYPE  type de certificat du client, PEM ou DER.
+       --private-key=FILE       fichier de clef priv‚e.
+       --private-key-type=TYPE  type de clef priv‚e, PEM ou bien DER.
+       --ca-certificate=FICHIER fichier avec le paquet de l'autorit‚ de
+                                certification (CA).
+       --ca-directory=DOSSIER   dossier o— la liste des hachages du CA est
+                                stock‚e.
+       --random-file=FICHIER    fichier avec des donn‚es al‚atoires pour semer
+                                le SSL PRNG.
+       --egd-file=FICHIER       fichier nommant le socket EGD avec des donn‚es
+                                al‚atoires.
 
 Options FTP :
-  -nr, --dont-remove-listing   ne pas enlever les fichiers ®ÿ.listingÿ¯.
-  -g,  --glob=on/off           d‚sactiver d‚veloppement de noms de fichiers.
-       --passive-ftp           Utiliser le mode de transfert ® passif ¯.
-       --retr-symlinks         en mode r‚cursif, prendre les fichiers
-                               attach‚s aux liens (pas les r‚pertoires).
+       --ftp-user=UTILISATEUR  d‚finir l'utilisateur ftp en UTILISATEUR.
+       --ftp-password=MDP      d‚finir le mot de passe du ftp en MDP.
+       --no-remove-listing     ne pas enlever les fichiers `.listing'.
+       --no-glob               d‚sactiver le 'globbing' du nom de fichier FTP.
+       --no-passive-ftp        d‚sactiver le mode de transfert "passif".
+       --retr-symlinks         lors d'une r‚cursion, prendre les fichiers li‚s
+                               (pas les r‚pertoires).
+       --preserve-permissions  pr‚server les permissions distantes du fichier.
 
 
 T‚l‚chargement r‚cursifÿ:
   -r,  --recursive          activer les t‚l‚chargements r‚cursifs (prudence) !
   -l,  --level=NOMBRE       niveau de r‚cursion maximal (inf ou 0 pour infini).
        --delete-after       effacer les fichiers locaux aprŠs t‚l‚chargement.
-  -k,  --convert-links      convertir les liens non-relatifs en relatifs.
+  -k,  --convert-links      convertir les liens non-relatifs en liens relatifs.
   -K,  --backup-converted   sauver fichier X en X.orig avant conversion.
   -m,  --mirror             raccourci de -r -N -l inf -nr.
   -p,  --page-requisites    obtenir toutes les images,ÿetc. n‚cessaires
                             pour afficher la page HTML
+       --strict-comments    activer la gestion stricte des commentaires HTML
+                            (SGML).
 
 Acceptation ou rejet r‚cursifÿ:
   -A,  --accept=LISTE               liste d'extensions accept‚es, s‚par‚es par
@@ -100,7 +150,7 @@ Acceptation ou rejet r‚cursifÿ:
        --follow-ftp                 suivre les liens FTP des documents HTML.
        --follow-tags=LISTE          liste des balises HTML … suivre, s‚par‚es
                                     par des virgules.
-  -G,  --ignore-tags=LISTE          liste des balises HTML ignor‚es, s‚par‚es
+       --ignore-tags=LISTE          liste des balises HTML ignor‚es, s‚par‚es
                                     par des virgules.
   -H,  --span-hosts                 suivre les liens externes en mode r‚cursif.
   -L,  --relative                   ne suivre que les liens relatifs.

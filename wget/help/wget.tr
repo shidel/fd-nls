@@ -1,4 +1,4 @@
-GNU Wget 1.8.2, etkileüimsiz bir dosya/dizin indirme aracç.
+GNU Wget 1.11.1, etkileüimsiz bir dosya/dizin indirme aracç.
 Usage: wget.exe [SEÄENEK]... [URL]...
 
 Uzun seáeneklerdeki mecburi argÅmanlar kçsa seáeneklerde de mecburidir.
@@ -6,6 +6,7 @@ Uzun seáeneklerdeki mecburi argÅmanlar kçsa seáeneklerde de mecburidir.
 Baülangçá:
   -V,  --version           Wget sÅrÅmÅnÅ gîster ve áçk.
   -h,  --help              bu yardçm metnini gîster.
+  -b,  --background        baülangçcçn ardçndan arka plana geá.
   -e,  --execute=COMMAND   '.wgetrc'-tarzç bir komut áalçütçr
 
 KÅtÅk kaydç ve girdi dosyasç:
@@ -20,15 +21,11 @@ KÅtÅk kaydç ve girdi dosyasç:
                               adresleri indir.
   -F,  --force-html           girdi dosyasçnçn HTML oldußu varsay.
   -B,  --base=URL             HTML girdi-dosya baßlantçlarçnç dînÅütÅr (-i -F).
-       --sslcertfile=DOSYA    seáime dayalç istemci sertifikasç.
-       --sslcertkey=KEYFILE   bu sertifika iáin seáime dayalç anahtar dosya.
-       --egd-file=DOSYA       EGD soketi iáin dosya ismi.
 
 òndirme:
-       --bind-address=ADRES     yerel makinedeki ADRES'e (makine ismi veya IP)
-                                baßlan.
   -t,  --tries=SAYI             yeniden deneme sayçsçnç SAYI olarak ayarla
                                 (0 sçnçrsçz).
+       --retry-connrefused      baßlantç reddedilse dahi tekrar dene.
   -O   --output-document=DOSYA  belgeleri DOSYA'ya yaz.
   -nc, --no-clobber             mevcut dosyalarç ezme veya .# soneki kullanma.
   -c,  --continue               kçsmi indirilen dosyayç indirmeye devam et.
@@ -38,46 +35,92 @@ KÅtÅk kaydç ve girdi dosyasç:
   -S,  --server-response        sunucunun cevabçnç gîster.
        --spider                 hiábir üey indirme.
   -T,  --timeout=SANòYE         zaman aüçmç deßerini SANòYE olarak ayarla.
+       --dns-timeout=SANòYE     DNS arama zaman aüçmçnç SANòYE olarak ayarla.
+       --connect-timeout=SANòYE baßlantç zaman aüçmçnç SANòYE olarak ayarla.
+       --read-timeout=SANòYE    okuma zaman aüçmçnç SANòYE olarak ayarla.
   -w,  --wait=SANòYE            bilgi áekmeler arasçnda SANòYE kadar bekle.
        --waitretry=SANòYE       bilgi áekme yeniden denemeleri arasçnda 1...
                                 SANòYE bekle.
        --random-wait            bilgi áekmeler arasç 0...2*WAIT sn bekle.
-  -Y,  --proxy=on/off           vekil sunucuyu aá veya kapat.
+       --no-proxy               vekil sunucuyu aáçkáa devre dçüç bçrak.
   -Q,  --quota=SAYI             alçm kotasçnç SAYI'ya ayarla.
+       --bind-address=ADRES     yerel makinede ADRES'e baßlan (makine ismi veya
+                                IP).
        --limit-rate=ORAN        indirme orançnç ORAN olarak sçnçrla.
+       --no-dns-cache           DNS aramalarçnç arabelleße koymayç devre dçüç
+                                bçrak.
+       --restrict-file-names=òS dosya isimlerindeki karakterleri òületim
+                                Sisteminin izin verdikleriyle sçnçrla.
+       --ignore-case            dosya/dizin eüleütirirken BöYöK/kÅáÅk karakter
+                                farkçnç gîzetme.
+  -4,  --inet4-only             sadece IPv4 adreslerine baßlan.
+  -6,  --inet6-only             sadece IPv6 adreslerine baßlan.
+       --prefer-family=AòLE     înce belirtilen aile adreslerine baßlan, ya IPv6
+                                ya IPv4, ya da hiábiri.
+       --user=KULLANICI         Hem ftp hem de http kullançcçsçnç KULLANICI
+                                olarak ayarla.
+       --password=PAROLA        Hem ftp hem de http parolasçnç PAROLA olarak
+                                ayarla.
 
 Dizinler:
   -nd  --no-directories            dizin oluüturma.
   -x,  --force-directories         dizin oluüturulmasçnç zorla.
   -nH, --no-host-directories       ana bilgisayar dizinleri oluüturma.
+       --protocol-directories      dizinlerde protokol ismini kullan.
   -P,  --directory-prefix=ôNEK     dosyalarç üuraya kaydet: ôNEK/...
-       --cut-dirs=SAYI           SAYI kadar uzak dizin bileüenini yok say.
+       --cut-dirs=SAYI             SAYI kadar uzak dizin bileüenini yok say.
 
 HTTP seáenekleri:
        --http-user=KULLANICI http kullançcçsçnç KULLANICI olarak ayarla.
        --http-passwd=PAROLA  http kullançcç parolasçnç PAROLA olarak ayarla.
-  -C,  --cache=on/off        sunucu tamponundaki verileri kullan veya kullanma
-                             (normal olarak izinlidir).
+       --no-cache            sunucu arabelleßindeki verilere izin verme.
   -E,  --html-extension      tÅm metin/html belgeleri .html uzantçsçyla kaydet.
        --ignore-length       'Content-Length' baülçk alançnç yok say.
        --header=KARAKTERDòZòSò baülçklara KARAKTERDòZòSò'ni ilave et
+       --max-redirect        sayfa baüçna izin verilen azami yeniden
+                             yînlendirme.
        --proxy-user=òSòM     vekil sunucu kullançcç ismini òSòM olarak ayarla.
        --proxy-passwd=PAROLA vekil sunucu parolasçnç PAROLA olarak ayarla.
        --referer=URL         HTTP isteßine 'Referer: URL' baülçßçnç da ekle.
-  -s,  --save-headers        HTTP baülçklarçnç dosyaya kaydet.
+       --save-headers        HTTP baülçklarçnç dosyaya kaydet.
   -U,  --user-agent=AJAN     Wget/SöRöM yerine AJAN olarak tançmla.
        --no-http-keep-alive  HTTP keep-alive (sÅrekli baßlantç) îzellißini
                              kapat.
-       --cookies=off         áerez kullanma.
+       --no-cookies          áerez kullanma.
        --load-cookies=DOSYA  áerezleri oturumdan înce DOSYA'dan yÅkle.
        --save-cookies=DOSYA  oturum sonrasç áerezleri DOSYA'ya kaydet.
+       --keep-session-cookies  oturum (daimi olmayan) áerezleri yÅkle ve kaydet.
+       --post-data=DòZE        POST yîntemini kullan; DòZE'yi veri olarak yolla.
+       --post-file=DOSYA       POST yîntemini kullan; DOSYA iáerißini yolla.
+       --content-disposition   yerel dosya ismi seáerken Content-Disposition
+                               baülçßçnç dikkate al (DENEYSEL).
+       --auth-no-challenge     ônce sunucunun sçnamasçnç beklemeden basit HTTP
+                               kimlik doßrulama bilgilerini gînder.
+
+HTTPS (SSL/TLS) options:
+       --secure-protocol=PR     gÅvenli protokolÅ seá, auto, SSLv2, SSLv3, ve
+                                TLSv1 unsurlarçndan biri.
+       --no-check-certificate   sunucunun sertifikasçnç teyit etme.
+       --certificate=DOSYA      istemci sertifika dosyasç.
+       --certificate-type=TöR   istemci sertifika tÅrÅ, PEM veya DER.
+       --private-key=DOSYA      îzel anahtar dosyasç.
+       --private-key-type=TöR   îzel anahtar tÅrÅ, PEM veya DER.
+       --ca-certificate=DOSYA   sertifika otoriteleri (CA) paketiyle dosya.
+       --ca-directory=DòZòN     CA'larçn karma listesinin saklandçßç dizin.
+       --random-file=DOSYA      SSL PRNG'yi tohumlayan rastgele veri dosyasç.
+       --egd-file=DOSYA         EGD soketini rastgele verilerle isimlendiren
+                                dosya.
 
 FTP seáenekleri:
-  -nr, --dont-remove-listing   '.listing' dosyalarçnç silme.
-  -g,  --glob=on/off           FTP dosya ismi arama kalçplarçnç aá veya kapat.
-       --passive-ftp           "pasif" aktarma kipini kullan.
-       --retr-symlinks         yineleme sçrasçnda, baßlantçlanan dosyalarç
-                               getir (dizinleri deßil).
+       --ftp-user=KULLANICI    ftp kullançcçsçnç KULLANICI olarak ayarla.
+       --ftp-password=PAROLA   sftp parolasçnç PAROLA olarak ayarla.
+       --no-remove-listing     `.listing' dosyalarçnç kaldçrma.
+       --no-glob               'globbing' esnasçnda FTP dosya ismini devre dçüç
+                               bçrak.
+       --no-passive-ftp        "Pasif" aktarçm kipini devre dçüç bçrak.
+       --retr-symlinks         yineleme esnasçnda, baßlantçlç dosyalarç al
+                               (dizinleri deßil).
+       --preserve-permissions  uzaktaki dosya izinlerini muhafaza et.
 
 Yinelemeli indirme:
   -r,  --recursive          yinelemeli indirmeyi etkinleütir -- dikkatli
@@ -90,6 +133,8 @@ Yinelemeli indirme:
   -m,  --mirror             -r -N -l inf -nr iáin kçsayol.
   -p,  --page-requisites    HTML sayfada gîsterilmesi gerekenleri, bÅtÅn
                             resimler vs. indir.
+       --strict-comments    HTML yorumlarçnçn sçkç (SGML) yînetilmelerini
+                            etkinleütir.
 
 Yinelemeli kabul/red seáenekleri:
   -A,  --accept=LòSTE               kabul edilen uzantçlarçn virgÅlle-ayrçlmçü
