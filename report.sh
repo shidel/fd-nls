@@ -19,7 +19,7 @@ REQFNTS=';1012;0816;'
 
 unset CHECK_PGME
 
-DEBUGGING=";pkgtools;danger;imgedit;pause;"
+DEBUGGING=";tee;"
 unset DEBUGGING
 
 function script_header () {
@@ -352,6 +352,7 @@ function compare_nls () {
 
 function lang_of_nls () {
 
+	[[ -d "${1}" ]] && return 0
     local t=$(echo "${1}" | tr "[:upper:]" "[:lower:]")
     t="${t##*/}"
     t="${t#*.}"
