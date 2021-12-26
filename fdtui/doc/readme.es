@@ -2,7 +2,7 @@ FDTUI
 
 Interfaz en modo texto del intÇrprete de ¢rdenes de FreeDOS
 
-(C) 2017-2020 Ercan Ersoy Todos los derechos reservados
+(C) 2017-2021 Ercan Ersoy Todos los derechos reservados
 Este programa es de c¢digo libre (Licencia P£blica General de GNU versi¢n 2)
                                  (Licencia P£blica General de GNU versi¢n 3)
 
@@ -12,11 +12,16 @@ Este proyecto incluye la biblioteca Kitten. Kitten tiene su propia licencia.
 
 Agradecimientos:
 
-* A Atnode por la traducci¢n al francÇs.
+* A Atnode por las traducciones al francÇs.
+* A Berki YenigÅn por las traducciones al francÇs
 * A Eric Auer por la biblioteca Kitten.
+* Al Proyecto FLTK por la biblioteca FDOSTUI.
+* A Jerome Shidel por la biblioteca FDOSTUI.
 * A Jim Hall por la biblioteca Kitten.
 * A Mark Olesen por las modificaciones que hizo y la biblioteca FDOSTUI.
+* A Parodper por las traducciones al castellano.
 * A Tom Ehlert por la biblioteca Kitten.
+* A Wilhelm Spiegl por las traducciones al alem†n.
 
 
 Compilaci¢n:
@@ -31,61 +36,74 @@ Contribuir:
 
 Registro de cambios:
 
-* 0.5 (09-20-2020)
-  * Fixed some typographic errors on French translations and Turkish README.
-  * Updated French translations.
-  * Added new French README file.
-  * Updated changelog.
+* 0.7 (26/12/2021)
+  * A§adida traduci¢n al alem†n.
+  * A§adida traducci¢n al castellano.
+  * Actualizada informaci¢n de derechos de autor en el archivo README.md.
+  * Actualizados agradecimientos en los archivos README.md y README.
+  * Actualizado registro de cambios.
 
-* 0.4 (05-28-2020)
+* 0.6 (20/12/2021)
+  * Actualizadas traducciones al francÇs.
+  * Actualizada la forma de mostrar los atributos en el explorador de archivos.
+  * Actualizada informaci¢n de ayuda.
+  * Actualizada informaci¢n de derechos de autor en los archivos README.
+  * Actualizada captura de pantalla.
+  * Actualizado registro de cambios.
 
-  * Changed name of this software as "FDTUI".
-  * Fixed help information for localization.
-  * Fixed some typographic errors.
-  * Updated French translations.
-  * Updated .gitignore file.
-  * Removed executable file on sources.
-  * Updated LICENSE, README.md, English README and Turkish README files.
-  * Removed French README file.
-  * Updated changelog.
+* 0.5 (20/09/2020)
+  * Arregladas erratas en las traducciones a los README francÇs y turco.
+  * Actualizadas traducciones al francÇs.
+  * A§adido nuevo README en francÇs.
+  * Actualizado registro de cambios.
 
-* 0.3 (12-09-2018)
+* 0.4 (28/05/2020)
+  * Cambiado el nombre de este programa a ÆFDTUIØ.
+  * Arreglada informaci¢n de la ayuda sobre la localizaci¢n.
+  * Arregladas erratas.
+  * Actualizadas traducciones al francÇs.
+  * Actualizado archivo .gitignore.
+  * Quitado el ejecutable que hab°a junto al c¢digo fuente.
+  * Actualizados los archivos LICENSE, README.md y el README en inglÇs y turco.
+  * Eliminado README en francÇs.
+  * Actualizado registro de cambios.
 
-  * Changed color theme.
-  * Changed menus of bar.
-  * Updated language files.
-  * Deleted unneded line of DOSSHELL.FR file.
-  * Fixed "Show Archive Items" and fixed "Show Hidden Items" checkboxes
-    on file manager.
-  * Disabled ESC key.
-  * Changed directory tree.
-  * Fixed some typographic errors.
-  * Fixed drivers listbox selecting with keyboard bug.
-  * Fixed item attributes not shown with changing drive and file manager
-    opening bugs.
-  * Splitted header files and source files.
-  * Fixed help parameter.
-  * Changed extensions of header files from ".h" to ".hpp".
-  * Replaced clearing screen as standard function of Open Watcom instead of
-    CLS command.
-  * Fixed all warnings.
-  * Added GNU GPL version 2 license information.
-  * Updated changelog.
+* 0.3 (09/12/2018)
+  * Cambiado el color del tema.
+  * Cambiados men£s de la barra.
+  * Actualizadas traducciones.
+  * Eliminada l°nea extra del archivo DOSSHELL.FR.
+  * Arregladas opci¢nes ÆMostrar elementos archivadosØ [ÆShow Archive ItemsØ] y
+    ÆMostrar elementos ocultosØ [ÆShow Hidden ItemsØ] en el explorador de
+    archivos.
+  * Desactivada tecla ESC.
+  * Cambiado †rbol de carpetas.
+  * Arregladas erratas.
+  * Arreglado fallo sobre seleccionar mediante teclado la lista de
+    controladores.
+  * Arreglado fallo, por el cu†l no se mostraban los atributos al cambiar de
+    unidad y abrir el explorador de archivos.
+  * Separadas cabeceras del c¢digo.
+  * Arreglado par†metro de la ayuda.
+  * Cambiada extensi¢n de las cabeceras de Æ.hØ a Æ.hppØ.
+  * Cambiada la manera de limpiar la pantalla, de usar el comando CLS a la
+    funci¢n de Open Watcom.
+  * Arreglados todos los avisos.
+  * A§adida informaci¢n sobre la licencia GNU GPL versi¢n 2.
+  * Actualizado registro de cambios.
 
-* 0.2 (09-24-2018)
+* 0.2 (24/09/2018)
+  * El color de las opciones desactivadas en los men£s ahora es gris, pero
+    parece rojo.
+  * La opci¢n predeterminada se ha cambiado a mostrar elementos archivoados y
+    ocultos.
+  * A§adidas pausas al terminar los comandos en ejecuci¢n.
+  * Actualizadas traducciones al inglÇs y turco.
+  * Cambiadas terminaciones de l°nea equivocadas por las correctas.
+  * Actualizado registro de cambios.
 
-  * Disabled menu item foreground color have changed to grey. But, it seems
-    red.
-  * Changed default is showing archive items and readonly items to enabled.
-  * Add pause to ending command to running command.
-  * Updated English and Turkish translations.
-  * Correct new line characters is used in some files instead of
-    wrong new line characters.
-  * Updated changelog.
-
-* 0.1 (07-13-2018)
-
-  * Create first version.
+* 0.1 (13/07/2018)
+  * Creada versi¢n primigenia.
 
 
 
