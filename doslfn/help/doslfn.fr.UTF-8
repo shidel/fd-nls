@@ -1,10 +1,11 @@
- Pour le texte en allemand cf. DOSLFN.DE (pour v0.32o).
- Pour le journal des modifications, voyez la fin du fichier.
+* Pour le texte en allemand cf. DOSLFN.DE (pour v0.32o).
+* Pour le texte en anglais cf. DOSLFN.TXT.
+* Pour le journal des modifications, voyez la fin du fichier.
 
-+------------------------------------------------------------------------+
-| DOSLFN - Un pilote en mode réel pour les noms de fichier longs sous    |
-|	       DOS avec prise en charge complète de l'Unicode et du DBCS !	 |
-+------------------------------------------------------------------------+
++----------------------------------------------------------------------+
+| DOSLFN - Un pilote en mode réel pour les noms de fichier longs sous  |
+|	   DOS avec prise en charge complète de l'Unicode et du DBCS ! |
++----------------------------------------------------------------------+
 
 APPROCHE
 
@@ -64,8 +65,8 @@ points à la fin soient tronqués. En gardant "*." à l'esprit, cela est
 nécessaire car il n'existe pas de manière de retrouver les fichiers avec un
 point à la fin. Par conséquent, les noms de fichiers avec des espaces et des
 points seuls ne sont pas autorisés, avec l'exception virtuelle des répertoires
- "." et ".." inutiles. COMMAND.COM utilise la fonctionnalité DOS Get Extended
- Error Information (Obtenir des informations étendues sur l'erreur), donc j'ai
+"." et ".." inutiles. COMMAND.COM utilise la fonctionnalité DOS Get Extended
+Error Information (Obtenir des informations étendues sur l'erreur), donc j'ai
 dû utiliser la fonction complémentaire peu pratique pour définir ce code
 d'erreur afin que COMMAND.COM fonctionne correctement.
 
@@ -185,13 +186,15 @@ m[sln] Spécifier la taille maximale du chemin de nom court (80), du chemin de
   donc la valeur par défaut de 80 pourrait être insuffisant. Cf. MVALUES
   ci-dessous.
 
-l DOSLFN est bilingue. S'il détecte un réglage pour l'Autriche, la Suisse ou
-  l'Allemagne, il utilisera par défaut l'allemand et l'anglais sinon. Afin
-  d'outrepasser la valeur par défaut des langues, utilisez "ld" pour l'allemand
-  ou "le" pour l'anglais. Par exemple pour obtenir l'aide en anglais en
-  Autriche, utilisez "doslfn -le -h" ou "doslfn leh" (Comme vous le voyez,
-  DOSLFN ignore les préfixes des commutateurs et les espaces. Une espace de
-  n'est nécessaire que pour la commande z.)
+l DOSLFN est multilingue. S'il détecte un réglage d'Autriche ou d'Allemagne
+  il utilisera par défaut l'allemand ; s'il s'agit de la France ou du Canada
+  francophone, le français sera utilisé par défaut ; le turc pour la Turquie ;
+  l'anglais sinon. Pour remplacer la langue, utilisez "ld" pour l'allemand,
+  "le" pour l'anglais, "lf" pour le français ou "lt" pour le turc. Par exemple
+  pour obtenir l'aide en anglais en Autriche, utilisez "doslfn -le -h" ou
+  "doslfn leh".
+  (Comme vous le voyez, DOSLFN ignore les préfixes des commutateurs et les
+  espaces. Une espace de n'est nécessaire que pour la commande z.)
   Lorsque DOSLFN est résident, outrepasser la langue est permanent.
 
 o Décalage du fuseau horaire. Si aucun fuseau horaire n'est entré, TZ sera
@@ -611,9 +614,9 @@ Version 0.32o (05/03)
   court) avec l'effet tunnel
 * L'accès aux secteurs passe par le tampon (non documenté) SmartDrive, améliore
   la performance comme décrit lors de la copie de certains fichiers depuis C:
-  sans DOSLFN	25 s copier vers A:		7 s effacer de A:
-  avec DOSLFN 0.32n	78 s copier vers A:		12 s effacer de A:
-  avec DOSLFN 0.32o	43 s copier vers A:		7 s effacer de A:
+  sans DOSLFN		25 s copier vers A:	7 s effacer de A:
+  avec DOSLFN 0.32n	78 s copier vers A:	12 s effacer de A:
+  avec DOSLFN 0.32o	43 s copier vers A:	7 s effacer de A:
 * MKLINK peut désormais gérer les répertoires supérieurs à 64KB (rare, non
   testé)
 * MKLINK.PAS peut être compilé en une version DPMI pour utiliser davantage la
@@ -645,7 +648,7 @@ Version 0.32o, première version jh (10/03)
 - MKLINK : correction d'un problème potentiel avec les étiquettes de volume
   Joliet ;
 + MKLINK : option pour créer "manuellement" les liens ;
-- CP437UNI.TBL: correction de la translation du symbole "micro" (æ).
+- CP437UNI.TBL: correction de la translation du symbole "micro" (µ).
 
 Version 0.32o, seconde version jh (10/03)
 - définir le code d'erreur lors de l'utilisation de la fonction enlèvement du
@@ -705,7 +708,7 @@ Source :
     USEFREESPC	activer le réglage du compteur de cluster libre DPB
     PROFILE	activer le profilage (nécessite et suppose un Pentium)
     PROFILECACHE activer le profilage du tampon fastopen (nécessite aussi
-    les éléments ci-dessus)
+		 les éléments ci-dessus)
     PATHLOOK	voir ce qui (n')est (pas) en train d'être mis en mémoire tampon
 
 * enlèvement de DT_BIGDOS, ajout de DT_FAT12 et échange des positions de
@@ -784,6 +787,55 @@ Version 0.40c (11/05)
   l'entrée de répertoire
 * CD : amélioration de la reconnaissance de noms longs ISO
 
+Version 0.40d (09/06)
+* modification de l'ouverture en lecture/écriture et en lecture seule en
+  simplement lecture/écriture (contournement d'une incompatibilité avec
+  Win9X/DOS - DOS Navigator)
+* modification des attributs lors de l'ouverture d'un fichier existant en
+  lecture seule (contournement d'une incompatibilité avec DR-DOS 7.03 - les
+  fichiers système ne s'ouvraient pas et les pipes étaient empêchés)
+- conserver IF lors d'un filtrage des LFN des fonctions de recherche des noms
+  de fichiers courts
+* enchaîner le gestionnaire Int21 en cas de fonction inconnue (fonctions 64
+  bits de DR-DOS d'Udo)
++ prise en charge de FAT+ (définir le dword haut de la taille de fichier dans
+  les données de recherche)
+
+Version 0.40e (10/06)
+- correction d'une incompatibilité avec FreeDOS généré par une incompatibilité
+  avec DR-DOS.
+
+Version 0.41 (12/2011)
+- invalidation d'un secteur après l'obtention d'un nom court (corrige DIR suite
+  à une commande COPY)
+- correction de la création d'un nom court (merci à Japheth)
+- empêcher le passage en majuscules des octets de fin de DBCS
+* arrêt de l'utilisation du tampon FASTOPEN (mais peut être recompilé avec)
+* réduction de la taille du .com (grâce à une meilleure définition des appels
+  standards)
++ utilisation de XMS pour stocker les pages de code DBCS
++ ajout de cp860uni.tbl (portugais)
+
+Version 0.41a (1/2012)
+- la ligne de commande était corrompue par des variables (cela empêchait -z de
+  fonctionner)
+
+Version 0.41b (2/2012)
+- correction du chargement d'un fichier DBCS avec -z vers le XMS lorsqu'il
+  était résident
++ ajout de -f- pour désactiver le repli, utilisation du gestionnaire LFN
+  précédent (permet à par exemple NTFSDOS ou Paragon IFS d'utiliser leurs
+  fonctions LFN)
+
+Version 0.41c (11/2012)
+- définir explicitement carry (supposer un échec) avant d'enchaîner
+  (contournement djgpp 2.04 pour les version de DOS antérieures à DOS 7)
+
+Version 0.41d (12/2021)
++ traductions en français et en turc (merci à Berki Yenigün)
+* la Suisse n'est plus en allemand par défaut
+- correction de la lecture de la variable TZ sans décalage (offset)
+
 Bugs connus restants :
 - pas de définition/mise à jour de la date du "dernier accès"
 - pas de définition/effacement des DirEnts LFN lors d'un appel aux fonctions
@@ -798,11 +850,6 @@ Bugs connus restants :
 - la création d'un nom *vraiment* long sur un cluster de 512 octets (allouer un
   second cluster échouera ; les autres tailles de cluster auront toujours
   suffisamment d'espace).
-- un changement de disque (ou formater, redimensionner un disque RAM) ne
-  remettra pas le tampon à zéro pour ce lecteur. Cela peut faire en sorte que
-  DOSLFN pense que le fichier/répertoire existe toujours.
-  Solution de contournement : remplir le tampon avec des entrées depuis un
-  autre lecteur (par exemple : attrib /s).
 - la désactivation peut rendre invalide les répertoires courants des CD (c'est
   équivalent à insérer un autre disque).
 - les commandes internes de NIOS ne fonctionnent pas (c'est un problème avec
@@ -813,10 +860,7 @@ Bugs connus restants :
 - NTFSDOS retourne parfois des horodatages erronés - c'est un bug dans NTFSDOS.
 
 
-e-mail:	  <Henrik.Haftmann@gmail.com> mais veuillez lire
-<https://www-user.tu-chemnitz.de/~heha/email.en.htm> avant.
-<jadoxa@yahoo.com.au>
-
-Téléchargement : https://www-user.tu-chemnitz.de/~heha/hsn/dos/doslfn/
-				 http://adoxa.altervista.org/doslfn/
+e-mail :	 <jadoxa@yahoo.com.au>
+Téléchargement : http://doslfn.adoxa.vze.com/
+		 https://www-user.tu-chemnitz.de/~heha/hsn/dos/doslfn/
 

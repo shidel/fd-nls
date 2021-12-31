@@ -1,5 +1,5 @@
 Ÿ Para el texto en alem n consulte DOSLFN.DE (para v0.32o).
-Ÿ Para el texto en ingl‚s consulte DOSLFN.EN.
+Ÿ Para el texto en ingl‚s consulte DOSLFN.TXT.
 Ÿ Para el registro de cambios baje al final del archivo.
 
 +---------------------------------------------------------------+
@@ -74,9 +74,9 @@ funcione correctamente.
 EXPLICACIàN DE LAS OPCIONES:
 
 ~ (uso de la virgudilla): Por omisi¢n Win9x le a¤ade un ®~1¯ al final de
-cualquier nombre largo, ®~2¯ si ya existe otro, etc. Por lo tanto DOS normal no
-puede usar esos nombres. Esto parece ser culpa de problemas dentro de los
-programas que prob‚ (o eso creo, eran viejos programas de Microsoft).
+  cualquier nombre largo, ®~2¯ si ya existe otro, etc. Por lo tanto DOS normal
+  no puede usar esos nombres. Esto parece ser culpa de problemas dentro de los
+  programas que prob‚ (o eso creo, eran viejos programas de Microsoft).
 
   Esto no le es c¢modo ni a los usuarios de DOS ni a los de Windows. DOS normal
   es capaz de ®manejar¯ nombres largos trunc ndolos autom ticamente al formato
@@ -142,16 +142,17 @@ z DOSLFN tiene que convertir Unicode a la p gina de codificaci¢n local, y esto
   DOSLFN tiene 19 tablas de conversi¢n Unicode: para 437 (IBM normalizado, para
   reiniciar), 850 (Europa Occidental), 852 (Europa Oriental), 866 (cir¡lico),
   dos para el griego, entre otros. Una p gina puede cargarse o cambiarse incluso
-  si DOSLFN es residente. La mayor¡a de europeos no suelen usar las di‚resis (por
-  las abundantes incompatibilidades que existen en los distintos programas*), por
-  lo tanto, olvidarse de cargar una tabla no es el fin del mundo. Pero si ves
-  nombres de archivos con barras bajas fuera de lugar deber¡as cargar la tabla
-  de conversi¢n (DOSLFN convierte sin avisar los caracteres Unicode que no puede
-  transformar a ®_¯). Nota: DOSLFN carga la tabla ®correcta¯ al iniciarse, por
-  lo tanto ya no es necesario este cambio, incluso en Europa Oriental. Adem s
-  DOSLFN carga la tabla de conversi¢n necesaria si cambias la codificaci¢n de
-  DOS con NLSFUNC; pero puede que necesites asignarle m s memoria al mont¢n (el
-  DOS japon‚s necesita incluir /m18000 si carga DOSLFN en modo EE.UU.).
+  si DOSLFN es residente. La mayor¡a de europeos no suelen usar las di‚resis
+  (por las abundantes incompatibilidades que existen en los distintos
+  programas*), por lo tanto, olvidarse de cargar una tabla no es el fin del
+  mundo. Pero si ves nombres de archivos con barras bajas fuera de lugar
+  deber¡as cargar la tabla de conversi¢n (DOSLFN convierte sin avisar los
+  caracteres Unicode que no puede transformar a ®_¯). Nota: DOSLFN carga la
+  tabla ®correcta¯ al iniciarse, por lo tanto ya no es necesario este cambio,
+  incluso en Europa Oriental. Adem s DOSLFN carga la tabla de conversi¢n
+  necesaria si cambias la codificaci¢n de DOS con NLSFUNC; pero puede que
+  necesites asignarle m s memoria al mont¢n (el DOS japon‚s necesita incluir
+  /m18000 si carga DOSLFN en modo EE.UU.).
 
   * Suele ser el malvado software de Unix (p.e. ®tar¯) el que mata las di‚resis.
   Internamente Unix es m s un sistema operativo de 7 bits que de 32 bits, y esta
@@ -698,8 +699,6 @@ Problemas que quedan sin arreglar:
 - NTFSDOS a veces devuelve el tiempo incorrecto. Este es un problema de NTFSDOS.
 
 
-correo-e: henrik.haftmann@e-technik.tu-chemnitz.de
-	  jadoxa@yahoo.com.au
-Descargar: http://www.tu-chemnitz.de/~heha/hs_freeware/doslfn.zip
-	   http://doslfn.adoxa.cjb.net/
-         o http://www.simtel.net/pub/dl/62342.shtml
+correo-e:  jadoxa@yahoo.com.au
+Descargar: http://doslfn.adoxa.vze.com/
+	   https://www-user.tu-chemnitz.de/~heha/hsn/dos/doslfn/
