@@ -11,28 +11,26 @@ Başlangıç:
 
 Kütük kaydı ve girdi dosyası:
   -o,  --output-file=DOSYA    günlük kayıtlarını DOSYA'ya yaz.
-  -a,  --append-output=DOSYA  mesajları DOSYA'ya ekle.
+  -a,  --append-output=DOSYA  iletileri DOSYA'ya iliştir.
   -d,  --debug                hata ayıklama bilgisi göster.
        --wdebug               WATT-32 hata ayıklama çıktısı görüntüle.
-  -q,  --quiet                sessiz (çıktı yok).
+  -q,  --quiet                sessiz (çıktısız).
   -v,  --verbose              ayrıntılı bilgi ver (bu parametre varsayılandır).
-  -nv, --non-verbose          ayrıntılı bilgi vermeyi kapat, sessiz olmadan.
-  -i,  --input-file=DOSYA     yerelde ya da dışarıda bulunan DOSYA içerisindeki
+  -nv, --non-verbose          sessiz kipe geçmeden ayrıntılı bilgiyi kapat.
+  -i,  --input-file=DOSYA     yerelde veya dışarıda bulunan DOSYA içerisindeki
                               adresleri indir.
   -F,  --force-html           girdi dosyasının HTML olduğu varsay.
   -B,  --base=URL             HTML girdi-dosya bağlantılarını dönüştür (-i -F).
 
 İndirme:
-  -t,  --tries=SAYI             yeniden deneme sayısını SAYI olarak ayarla
-                                (0 sınırsız).
-       --retry-connrefused      bağlantı reddedilse dahi tekrar dene.
+  -t,  --tries=SAYI             yeniden deneme SAYI'sını ayarla (0 sınırsız).
+       --retry-connrefused      bağlantı reddedilse bile yeniden dene.
   -O   --output-document=DOSYA  belgeleri DOSYA'ya yaz.
-  -nc, --no-clobber             mevcut dosyaları ezme veya .# soneki kullanma.
-  -c,  --continue               kısmi indirilen dosyayı indirmeye devam et.
+  -nc, --no-clobber             dosyaların üzerine yazacak indirmeleri atla.
+  -c,  --continue               kısmi indirilen dosyayı indirmeyi sürdür.
        --progress=TÜR           ilerleme göstergesi TÜR'ünü seç.
-  -N,  --timestamping           yerelden daha yeni olmayan dosyaları yeniden
-                                indirme.
-  -S,  --server-response        sunucunun cevabını göster.
+  -N,  --timestamping           dosyalar yereldekinden yeni değilse indirme.
+  -S,  --server-response        sunucu yanıtını göster.
        --spider                 hiçbir şey indirme.
   -T,  --timeout=SANİYE         zaman aşımı değerini SANİYE olarak ayarla.
        --dns-timeout=SANİYE     DNS arama zaman aşımını SANİYE olarak ayarla.
@@ -44,19 +42,18 @@ Kütük kaydı ve girdi dosyası:
        --random-wait            bilgi çekmeler arası 0...2*WAIT sn bekle.
        --no-proxy               vekil sunucuyu açıkça devre dışı bırak.
   -Q,  --quota=SAYI             alım kotasını SAYI'ya ayarla.
-       --bind-address=ADRES     yerel makinede ADRES'e bağlan (makine ismi veya
-                                IP).
+       --bind-address=ADRES     yerel makinede ADRES'e bağlan (makine veya IP).
        --limit-rate=ORAN        indirme oranını ORAN olarak sınırla.
        --no-dns-cache           DNS aramalarını arabelleğe koymayı devre dışı
                                 bırak.
-       --restrict-file-names=İS dosya isimlerindeki karakterleri İşletim
+       --restrict-file-names=İS dosya adlarındaki karakterleri işletim
                                 Sisteminin izin verdikleriyle sınırla.
        --ignore-case            dosya/dizin eşleştirirken BÜYÜK/küçük karakter
                                 farkını gözetme.
-  -4,  --inet4-only             sadece IPv4 adreslerine bağlan.
-  -6,  --inet6-only             sadece IPv6 adreslerine bağlan.
+  -4,  --inet4-only             yalnızca IPv4 adreslerine bağlan.
+  -6,  --inet6-only             yalnızca IPv6 adreslerine bağlan.
        --prefer-family=AİLE     önce belirtilen aile adreslerine bağlan, ya IPv6
-                                ya IPv4, ya da hiçbiri.
+                                ya IPv4 ya da hiçbiri.
        --user=KULLANICI         Hem ftp hem de http kullanıcısını KULLANICI
                                 olarak ayarla.
        --password=PAROLA        Hem ftp hem de http parolasını PAROLA olarak
@@ -66,7 +63,7 @@ Dizinler:
   -nd  --no-directories            dizin oluşturma.
   -x,  --force-directories         dizin oluşturulmasını zorla.
   -nH, --no-host-directories       ana bilgisayar dizinleri oluşturma.
-       --protocol-directories      dizinlerde protokol ismini kullan.
+       --protocol-directories      dizinlerde protokol adını kullan.
   -P,  --directory-prefix=ÖNEK     dosyaları şuraya kaydet: ÖNEK/...
        --cut-dirs=SAYI             SAYI kadar uzak dizin bileşenini yok say.
 
@@ -79,11 +76,11 @@ HTTP seçenekleri:
        --header=KARAKTERDİZİSİ başlıklara KARAKTERDİZİSİ'ni ilave et
        --max-redirect        sayfa başına izin verilen azami yeniden
                              yönlendirme.
-       --proxy-user=İSİM     vekil sunucu kullanıcı ismini İSİM olarak ayarla.
+       --proxy-user=AD       vekil sunucu kullanıcı adını AD olarak ayarla.
        --proxy-passwd=PAROLA vekil sunucu parolasını PAROLA olarak ayarla.
        --referer=URL         HTTP isteğine 'Referer: URL' başlığını da ekle.
        --save-headers        HTTP başlıklarını dosyaya kaydet.
-  -U,  --user-agent=AJAN     Wget/SÜRÜM yerine AJAN olarak tanımla.
+  -U,  --user-agent=ARACI    Wget/SÜRÜM yerine ARACI olarak tanımla.
        --no-http-keep-alive  HTTP keep-alive (sürekli bağlantı) özelliğini
                              kapat.
        --no-cookies          çerez kullanma.
@@ -92,7 +89,7 @@ HTTP seçenekleri:
        --keep-session-cookies  oturum (daimi olmayan) çerezleri yükle ve kaydet.
        --post-data=DİZE        POST yöntemini kullan; DİZE'yi veri olarak yolla.
        --post-file=DOSYA       POST yöntemini kullan; DOSYA içeriğini yolla.
-       --content-disposition   yerel dosya ismi seçerken Content-Disposition
+       --content-disposition   yerel dosya adı seçerken Content-Disposition
                                başlığını dikkate al (DENEYSEL).
        --auth-no-challenge     Önce sunucunun sınamasını beklemeden basit HTTP
                                kimlik doğrulama bilgilerini gönder.
@@ -108,14 +105,14 @@ HTTPS (SSL/TLS) options:
        --ca-certificate=DOSYA   sertifika otoriteleri (CA) paketiyle dosya.
        --ca-directory=DİZİN     CA'ların karma listesinin saklandığı dizin.
        --random-file=DOSYA      SSL PRNG'yi tohumlayan rastgele veri dosyası.
-       --egd-file=DOSYA         EGD soketini rastgele verilerle isimlendiren
+       --egd-file=DOSYA         EGD soketini rastgele verilerle adlandıran
                                 dosya.
 
 FTP seçenekleri:
        --ftp-user=KULLANICI    ftp kullanıcısını KULLANICI olarak ayarla.
        --ftp-password=PAROLA   sftp parolasını PAROLA olarak ayarla.
        --no-remove-listing     `.listing' dosyalarını kaldırma.
-       --no-glob               'globbing' esnasında FTP dosya ismini devre dışı
+       --no-glob               'globbing' esnasında FTP dosya adını devre dışı
                                bırak.
        --no-passive-ftp        "Pasif" aktarım kipini devre dışı bırak.
        --retr-symlinks         yineleme esnasında, bağlantılı dosyaları al
