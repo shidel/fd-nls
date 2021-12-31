@@ -4,7 +4,7 @@
 #
 #	Language: Turkish
 #	Codepage: ASCII (7bit) / CP857
-#	Author:   Emir SARI <bitigchi@me.com>
+#	Author:   Emir SARI
 # 
 # This file is used to generate all the messages that command.com
 # outputs.  This file is the input to the fixstrs program, and it
@@ -175,7 +175,7 @@ Kanal oluüturulamadç! Geáici dosya aáçlamadç!
 .
 
 :TEXT_ERROR_LONG_LINE_BATCHFILE#0%
-'%s' toplu iü dosyasçnda satçr #%ld áok uzun.
+'%s' toplu iü dosyasçnda #%ld. satçr áok uzun.
 .
 
 :TEXT_ERROR_BFILE_VANISHED#0%
@@ -183,7 +183,7 @@ Toplu iü dosyasç '%s' bulunamadç.
 .
 
 :TEXT_ERROR_BFILE_LABEL#0%
-'%s' toplu iü dosyasç '%s' etiketini iáermemekte.
+'%s' toplu iü dosyasç, '%s' etiketini iáermemekte.
 .
 
 :TEXT_ERROR_DIRFCT_FAILED#1%
@@ -282,11 +282,11 @@ FOR: DO ardçndan hiábir komut girilmemiü.
 .
 
 :TEXT_ERROR_REDIRECT_FROM_FILE#0%
-Äçktç '%s' dosyasçndan yînlendirilemedi.
+Äçktç, '%s' dosyasçndan yînlendirilemedi.
 .
 
 :TEXT_ERROR_REDIRECT_TO_FILE#0%
-Äçktç '%s' dosyasçna yînlendirilemedi.
+Äçktç, '%s' dosyasçna yînlendirilemedi.
 .
 
 :TEXT_ERROR_EMPTY_REDIRECTION#1
@@ -306,7 +306,7 @@ GOTO iáin hiábir etiket belirtilmemiü.
 .
 
 :TEXT_CTTY_NOTIMPLEMENTED
-CTTY komutu bu COMMAND.COM'dan hariá tutulmuütur.
+CTTY komutu bu COMMAND.COM'dan hariá tutuldu.
 .
 
 :TEXT_ERROR_NORW_DEVICE#0%
@@ -375,7 +375,7 @@ IF: Eksik komut.
 .
 
 :TEXT_NOT_IMPLEMENTED_YET
-ôzÅr dileriz. ôzellik mevcut deßil.
+ôzÅr dileriz, îzellik mevcut deßil.
 .
 
 :TEXT_FAILED_LOAD_STRINGS
@@ -505,30 +505,30 @@ DOSKEY îzellikleri halihazçrda kabukta etkinleütirilmiü.
 .
 
 :TEXT_MSG_ECHO_STATE#0%
-ECHO üudur: %s
+ECHO: %s
 .
 
 :TEXT_MSG_VERIFY_STATE#0%
-VERIFY üudur: %s
+VERIFY: %s
 .
 
 :TEXT_MSG_FDDEBUG_STATE#0%
-DEBUG áçktçsç üudur: %s.
+DEBUG áçktçsç: %s.
 .
 :TEXT_MSG_FDDEBUG_TARGET#0%
-DEBUG áçktçsç üuraya yazçlçyor: '%s'.
+DEBUG áçktçsç yazçlma konumu: '%s'.
 .
 
 :TEXT_MSG_BREAK_STATE#0%
-BREAK üudur: %s
+BREAK: %s
 .
 
 :TEXT_MSG_LFNFOR_STATE#0%
-LFNFOR üudur: %s
+LFNFOR: %s
 .
 
 :TEXT_MSG_LFNFOR_COMPLETE_STATE#0%
-LFN Complete üudur: %s
+LFN Complete: %s
 .
 
 :TEXT_MSG_CURRENT_DATE#0%
@@ -572,7 +572,7 @@ Yeni zaman gir: \
 # Used by Delete all (Y/N) --> let ENTER default to NO
 # Return value: a -> Yes; else -> No
 :PROMPT_DELETE_ALL#1%
-YyNn{CR}{LF}{CBREAK}
+EeHh{CR}{LF}{CBREAK}
 aabb   b   b       b
 '%s' iáindeki tÅm dosyalar silinecek!
 Emin misiniz (E/H)? \
@@ -583,7 +583,7 @@ Emin misiniz (E/H)? \
 # keep interactive prompt & user-interaction in sync.
 # Return value: a -> Yes; else -> No
 :PROMPT_YES_NO#1
-YyNn{LF}{CR}{CBREAK}{ESC}
+EeHh{LF}{CR}{CBREAK}{ESC}
 aabb   a   a       b    b
  [Evet=ENTER, Hayçr=ESC]? \
 .
@@ -595,7 +595,7 @@ aabb   a   a       b    b
 #	by \r!
 # Return value: a -> Yes; b -> No; c -> All; else -> Undefined
 :PROMPT_CANCEL_BATCH#1%
-YyNnAaQq{LF}{CR}{CBREAK}{ESC}
+EeHhTtKk{LF}{CR}{CBREAK}{ESC}
 aabbcccc   a   a       c    b
 Control-Break'e basçldç.\r
 '%s' toplu iü dosyasç sonlandçrçlsçn mç (Evet/Hayçr/TÅmÅ)? \
@@ -606,7 +606,7 @@ Control-Break'e basçldç.\r
 # keep interactive prompt & user-interaction in sync.
 # Return value: a -> Yes; b -> No; c -> All; d -> Quit
 :PROMPT_OVERWRITE_FILE#1%
-YyNnAaQq{BREAK}{ENTER}{ESC}
+EeHhTtKk{BREAK}{ENTER}{ESC}
 aabbccdd      d      a    b
 '%s' dosyasçnçn Åzerine yazçlsçn mç (Evet/Hayçr/TÅmÅ/Äçk) ? \
 .
@@ -616,7 +616,7 @@ aabbccdd      d      a    b
 # keep interactive prompt & user-interaction in sync.
 # Return value: a -> Yes; b -> No; c -> All; d -> Quit
 :PROMPT_APPEND_FILE#1%
-YyNnAaQq{BREAK}{ENTER}{ESC}
+EeHhTtKk{BREAK}{ENTER}{ESC}
 aabbccdd      d      a    b
 '%s' dosyasçna eklensin mi (Evet/Hayçr/TÅmÅ/Äçk) ? \
 .
@@ -626,7 +626,7 @@ aabbccdd      d      a    b
 # keep interactive prompt & user-interaction in sync.
 # Return value: a -> Yes; b -> No; c -> All; d -> Quit
 :PROMPT_DELETE_FILE#1%
-YyNnAaQq{BREAK}{ENTER}{ESC}
+EeHhTtKk{BREAK}{ENTER}{ESC}
 aabbccdd      d      a    b
 '%s' silinsin mi (Evet/Hayçr/TÅmÅ/Äçk) ? \
 .
@@ -824,8 +824,8 @@ hatta TòCARò ELVERòûLòLòK veya AMACA UYGUNLUK zçmni garantileri de
 verilmeden sunulmaktadçr. Daha fazla ayrçntç iáin GNU Genel Kamu Lisansçnç
 okuyunuz.
 
-Hata raporlarçnç üu adrese gînderiniz: freedos-freecom@lists.sourceforge.net.
-GÅncellemeler http://freedos.sourceforge.net/freecom adresinde mevcuttur
+Hata raporlarçnç üu adrese gînderiniz: freedos-devel@lists.sourceforge.net.
+GÅncellemeler https://github.com/FDOS/freecom adresinde mevcuttur
 .
 
 :TEXT_MSG_VER_REDISTRIBUTION
@@ -836,8 +836,8 @@ GNU Genel Kamu Lisansçnçn ya 2. sÅrÅmÅ veya (sizin seáiminize
 dayalç olarak) herhangi bir daha yeni sÅrÅmÅ kapsamçnda tekrar 
 daßçtabilir ve/veya deßiütirebilirsiniz.
 
-Hata raporlarçnç üu adrese gînderiniz: freedos-freecom@lists.sourceforge.net.
-GÅncellemeler http://freedos.sourceforge.net/freecom adresinde mevcuttur
+Hata raporlarçnç üu adrese gînderiniz: freedos-devel@lists.sourceforge.net.
+GÅncellemeler https://github.com/FDOS/freecom adresinde mevcuttur
 .
 
 :TEXT_MSG_VER_DEVELOPERS
@@ -847,8 +847,8 @@ HISTORY.TXT dosyasçna bakçn.
 
 ûu anki geliütirici: Steffen Kaiser mailto:freecom@freedos.org.
 
-Hata raporlarç iáin: freedos-freecom@lists.sourceforge.net
-GÅncellemeler iáin: http://freedos.sourceforge.net/freecom 
+Hata raporlarç iáin: freedos-devel@lists.sourceforge.net
+GÅncellemeler iáin: https://github.com/FDOS/freecom
 
 
 
@@ -1121,14 +1121,14 @@ Komut satçrçnç dÅzenler, geri alçr ve makro oluüturur
 DOSKEY [/anahtar ...] [makroadç=[metin]]
 
   /BUFSIZE:boyu	Makro ve komut arabelleßi boyutunu ayarla (întançmlç:512)
-  /ECHO:on|off  Makro geniüleme yazçmçnç etkinleütir/devre dçüç (întançmlç:aáçk)
+  /ECHO:on|off  Makro geniüleme yazçmçnç aá/kapat (întançmlç:aáçk)
   /FILE:dosya   Makro listesi iáeren dosya belirt
   /HISTORY      Bellekte muhafaza edilen tÅm komutlarç gîrÅntÅle
   /INSERT       Yeni karakterleri dÅßmesine basçldçßçnda ekle
   /KEYSIZE:boy. Klavyenin type-ahead arabelleßi boyutu (întançmlç:15)
   /LINE:boyut   Satçr dÅzenleme arabelleßinin azami boyutu (întançmlç:128)
   /MACROS       TÅm DOSKEY makrolarçnç gîrÅntÅle
-  /OVERSTRIKE   Yeni karakterleri dÅßmesine basçldçßçnda Åzerine yaz (întançmlç)
+  /OVERSTRIKE   Yazarken yeni karakterleri satçrçn Åzerine yaz (întançmlç)
   /REINSTALL    Yeni bir DOSKEY kopyasç kur
   makroadç      Oluüturdußunuz makro iáin bir ad belirt
   metin         Makroya atamak istedißiniz komutlarç belirt
@@ -1168,7 +1168,7 @@ Belirtilen komutu bir dosya kÅmesindeki her dosya iáin áalçütçrçr.
 FOR %deßiüken IN (kÅme) DO komut [komut-parametreleri]
 
   %deßiüken	Deßiütirilebilir bir parametre belirtir.
-  (kÅme)     	Bir veya birden áok dosya kÅmesi belirtir. Joker kullançlabilir.
+  (kÅme)     	Bir/birden áok dosya kÅmesi belirtir. Joker kullançlabilir.
   komut      	Her dosya iáin áalçütçrçlacak komutu belirtir.
   komut-parametreleri
              	Belirtilen komut iáin parametre veya anahtar belirtir.
@@ -1207,7 +1207,7 @@ IF [NOT] ERRORLEVEL sayç komut
 IF [NOT] dize1==dize2 komut
 IF [NOT] EXIST dosyaadç komut
 
-  NOT			Komut kabußunun komutu sadece koüul yanlçü ise
+  NOT			Komut kabußunun komutu yalnçzca koüul yanlçü ise
                     	áalçütçrmasç gerektißini belirtir.
   ERRORLEVEL number 	Son áalçütçrçlan program belirtilene eüit veya ondan
                     	yÅksek bir áçkçü kodu geri gînderdiyse doßru koüul
@@ -1273,8 +1273,8 @@ MD [sÅrÅcÅ:]yol
 PATH [[sÅrÅcÅ:]yol[;...]]
 PATH ;
 
-TÅm arama yolu ayarlarçnç temizlemek ve komut kabußunu sadece gÅncel dizinde
-arama yapmaya yînlendirmek iáin PATH ; yazçn.
+TÅm arama yolu ayarlarçnç temizlemek ve komut kabußunu yalnçzca
+gÅncel dizinde arama yapmaya yînlendirmek iáin PATH ; yazçn.
 GÅncel yolu gîrÅntÅlemek iáin parametresiz PATH yazçn.
 .
 
@@ -1546,4 +1546,3 @@ yerleüik oldu\
 :TEXT_ERROR_EXE_CORRUPT
 EXE dosyasç hasarlç\
 .
-
