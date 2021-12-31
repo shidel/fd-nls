@@ -1,0 +1,89 @@
+;Türkçe çeviriler:	;(DOS CP857)
+dz	10							;0
+dz    "yüksek"							;1
+dz    "%u bayt kullanarak yüklendi."				;2
+dz 10,"%s Unicode tablo dosyası bulunamadı/açılamadı!"		;3
+dz 10,"%s dosyasında yanlış içerik veya okunamıyor!"		;4
+dz    "devre dışı."						;5
+dz 10,"(Başka bir TSR Int21 ve/veya Int2F kesmesini aldı)"	;6
+dz    "Henüz kurulmadı!"					;7
+dz    "En az 386 işlemcisine gereksinim duyar!"			;8
+dz    "seçenekler alındı"					;9
+db    "	(386+)	++ FREEWARE ++",10			;10
+db   "DOS için uzun dosya adlarını destekleyen program.",10
+db   "BU PROGRAMI RİSKİ SİZ ÜSTLENEREK KULLANIN, VERİ KAYBI OLABİLİR",10
+db   "Kullanım:- (boş)		TSR'i yükle ve/veya etkinleştir",10
+db   "		- h veya ?	bu yardımı göster",10
+db   "		- d		DOSLFN'i devre dışı bırak",10
+db   "		- s		durum ve ayarları göster",10
+ifdef PROFILE
+db   "		- p		profil verilerini göster",10
+db   "		- pr		profil verilerini sıfırla",10
+db   "		- pc		profil zamanlamasını kalibre et",10
+endif
+db   "		- u		TSR'yi bellekten kaldır",10
+db   "Seçenekler:	- w{+|-}	* yazma erişimi",10
+db   "		- ~{+|-}	* NameNumericTail - tilde kullanımı",10
+db   "		- t{+|-}	* PreserveLongNames - tünel etkisi",10
+db   "		- f{+|-}	* geri dönüş kipi - tüm sürücülere LFN sağla",10
+db   "		- c{+|-}	* CD-ROM desteği",10
+db   "		- i{+|-}	* InDOS bayrağıyla kilidi yeniden gir + SÜRÜCÜYÜ SIFIRLA",10
+db   "		- r{+|-}	* CD-ROM dosyaları için saltokunur bit",10
+if USEWINTIME
+db   "		- o[N]		* Saat dilimini ayarla veya mevcut değilse oku",10
+endif
+db   "		- z[:|=]tablo	Unicode tablosunu yükle (Volkov .TBL biçimi)",10
+db   "		- m[:|=]bayt	dahili yığın için boyut beyan et, 600..50000",10
+db   "		- ms[:|=]bayt	kısa yolun boyutunu beyan et, 16..141",10
+db   "		- ml[:|=]bayt	uzun yolun boyutunu beyan et, 16..1024",10
+db   "		- mn[:|=]bayt	uzun adın boyutunu beyan et, 13..512",10
+db   "		- p[:|=]yol 	.TBL/.JLT/.386 için çalışma dizinini beyan et",10
+db   "		- l{d|e|f|t}	dili ayarla (Almanca|İngilizce|Fransızca|Türkçe)",10
+db   "Ortam: 		TZ=xxxNyyy	saat dilimi dönüşümü için N saat dilimi, yaz saati yok",10
+db   "E-posta: %s",10
+db   "İndirme: %s",10
+dz   "         %s"
+
+dz   "etkin"							;11
+dz   "etkinleştirildi."					;12
+dz   "bellekten kaldırıldı."					;13
+dz   "%7lu okuma erişimi"					;14
+dz   "%7lu yazma erişimi"					;15
+dz   "%7lu Int21/AH=71 çağrısı"				;16
+dz   "yazma erişimi"						;17
+dz   "tilde kullanımı"					;18
+dz   "tünel etkisi"						;19
+dz   "CD-ROM desteği"						;20
+dz   "geri dönüş kipi"					;21
+dz   "CD dosyalarında ayarlanan salt-okunur bit"		;22
+dz   "geçersiz yığın boyutu"					;23
+dz   "AÇIK"							;24
+dz   "KAPALI"							;25
+dz   "%35s %s",10						;26
+dz   "dizin mevcut değil!"					;27
+dz   "çalışma dizini ayarlanamaz"				;28
+dz   "yığın yeniden boyutlandırılamaz"			;29
+dz   "seçenek reddedildi"					;30
+dz			 " - ônce TSR'i bellekten kaldır"	;31
+dz    "DOS'ın en az 4. sürümüne gereksinim duyar!"		;32
+dz 10,"Bu program bu Windows sürümünün DOS penceresinde işe çalışmaz!";33
+dz   "Yığın: Boyut %u, Kullanılan %u, Boş=%u, Azami mevcut=%u bayt",10 ;34
+dz   "Son hata: %u - "					;35  =   0
+dz			"kullanıcı yazma erişimini reddetti"		;1
+dz			"FAT dizini genişletilemedi"			;2
+dz			"Joliet Bağlantı Tablosu bulunamadı"		;3
+dz			"bellek yetersiz - yığını artırın"		;4
+dz			"Unicode tablosu kendiliğinden yüklenemedi" 	;5
+dz   "InDOS bayrağı ve sürücü kullanımını SIFIRLA"		;41
+if USEWINTIME
+dz   "Saat dilimi:"					;42
+dz   "%35s UTC%+d",10						;43
+endif
+ifdef PROFILE
+dz   "Profil.",10						;ProfileNr
+dz   "Profil sıfırlandı.",10					;+1
+dz   "%7lu %2d.%03d %s",10					;+2
+dz   "Profil kalibre ediliyor.",10				;+3
+dz   "Profil zamanlayıcı değişmezi = %lu000",10		;+4
+dz   "Kalibrasyon çalışması sırasında hata",10		;+5
+endif
