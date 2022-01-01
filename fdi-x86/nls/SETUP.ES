@@ -2,7 +2,7 @@
 WELCOME_DEF=Bienvenido al programa de instalaci¢n /fLightGreen %1 /fCyan %2 /fGray
 WELCOME_ADV=Bienvenido al instalador /fLightRed avanzado /fGray para /fLightGreen %1 /fCyan %2 /fGray /s- .
 WELCOME_0=/p
-WELCOME_1=/fLightGreen "%1" /fGray es un sistema operativo completo. Si escoje instalarlo en su ordenador puede ser que sobrescriba el sistema operativo que ya tenga (por /p ejemplo, Windows.)
+WELCOME_1=/fLightGreen "%1" /fGray es un sistema operativo completo. Si escoje instalarlo en su /p ordenador puede ser que sobrescriba el sistema operativo que ya tenga /p (por ejemplo, Windows.) /p
 WELCOME_2=/c32 Si no quiere que pase eso salga ahora.
 WELCOME_3=
 WELCOME_4=
@@ -83,8 +83,8 @@ FAILED=/fLightRed Fallo. /fGray
 
 # Copyright and License Notices
 TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Instalador (" /fWhite FDI-x86 /fGray ")"
-COPYRIGHT=/fDarkGray Licenciado bajo la GPL v2.0 ./pCopyright $YEAR$ Jerome Shidel. /fGray /p
-TRADEMARK=FreeDOS es una marca registrada de Jim Hall, 2001-$YEAR$
+COPYRIGHT=/fDarkGray Licenciado bajo la GPL v2.0 ./pCopyright 2021 Jerome Shidel. /fGray /p
+TRADEMARK=FreeDOS es una marca registrada de Jim Hall, 2001-2021
 
 # Help screen
 HELP_0="uso: SETUP.BAT [opciones] [objetivo]"
