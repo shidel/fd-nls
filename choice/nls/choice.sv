@@ -10,3 +10,6 @@
 0.7:Texten som ska visas som prompt
 0.8:Ljud en signal n„r prompten visas
 3.0:jn
+
+0.9:Felaktig tidssyntax. Förväntade formen Tc,nn eller T:c,nn
+0.10:Standardvärde för tidsgräns finns ej bland angivna val (eller standardvärde)
