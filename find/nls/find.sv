@@ -8,3 +8,4 @@
 1.1:str„ng
 2.0:Kan inte ”ppna filen
 2.1:Ingen s†dan fil
+2.2:Kan inte byta till katalog
