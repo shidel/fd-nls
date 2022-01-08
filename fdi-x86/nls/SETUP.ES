@@ -2,8 +2,8 @@
 WELCOME_DEF=Bienvenido al programa de instalaci¢n /fLightGreen %1 /fCyan %2 /fGray
 WELCOME_ADV=Bienvenido al instalador /fLightRed avanzado /fGray para /fLightGreen %1 /fCyan %2 /fGray /s- .
 WELCOME_0=/p
-WELCOME_1=/fLightGreen "%1" /fGray es un sistema operativo completo. Si escoje instalarlo en su /p ordenador puede ser que sobrescriba el sistema operativo que ya tenga /p (por ejemplo, Windows.) /p
-WELCOME_2=/c32 Si no quiere que pase eso salga ahora.
+WELCOME_1=/fLightGreen "%1" /fGray es un sistema operativo completo. Si escoje instalarlo en su /p ordenador puede ser que sobrescriba el sistema operativo que ya tenga /p (por ejemplo, Windows.)
+WELCOME_2=Si no quiere que pase eso salga ahora.
 WELCOME_3=
 WELCOME_4=
 WELCOME_5=/p
@@ -43,7 +43,7 @@ BACKUP_ASK=¨Donde quiere guardar la copia de seguridad? /c32
 BACKUP_PROMPT=/fWhite /bBlue %1
 BACKUP_BAD=/fLightRed Destino inv lido. No se pudo hacer la copia de seguridad. /fGray
 
-DELETE_OLD=Se pueden sobreescribir los archivos viejos en /fWhite %1 /fGray. /p ¨Quiere borrar la carpeta antigua antes de instalar? /c32
+DELETE_OLD=Se pueden sobreescribir los archivos viejos en /fWhite %1 /fGray /s- . /s+ /p ¨Quiere borrar la carpeta antigua antes de instalar? /c32
 
 FORCE_MBR=Forzar actualizaci¢n del MBR en /fWhite %1 /fGray /c32
 SYS_FILES=Instalar nuevos archivos de arranque en la unidad /fWhite %1 /fGray /c32
@@ -65,7 +65,7 @@ EXTRACTION=Archivo /fLightGreen %1 /fCyan %2 /fGray extra¡do.
 UPDATE_LST=Actualiar listas de archivos. /p
 
 DO_BACKUP=Crear copia de seguridad del SO previo en /fWhite %1 /fGray /s- .
-DO_ERASE=Borrar archivos y carpetas viejos /fWhite %1 /fGray.
+DO_ERASE=Borrar archivos y carpetas viejos /fWhite %1 /fGray /s- .
 DO_SYSFILES=Pasar nuevos archivos del sistema /fWhite %1 /fGray /s- .
 DO_FORCEMBR=Actualizar el MBR en la unidad /fWhite %1 /fGray /s- .
 DO_ACTIVATE=Establecer partici¢n /fWhite %1 /fGray /s- : /fWhite %2 /fGray como activa de arranque.
