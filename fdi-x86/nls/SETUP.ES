@@ -6,7 +6,7 @@ WELCOME_1=/fLightGreen "%1" /fGray es un sistema operativo completo. Si escoje i
 WELCOME_2=/c32 Si no quiere que pase eso salga ahora.
 WELCOME_3=
 WELCOME_4=
-WELCOME_5=/p
+WELCOME_5=/fGray /p
 
 HRULE=/fDarkGray /x 0xC4 /fGray
 
