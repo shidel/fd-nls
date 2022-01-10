@@ -90,6 +90,9 @@ Here is color table used for all **/A**, **/F** and **/B** switches:
     5           0x05        Magenta
     6           0x06        Brown
     7           0x07        Gray / Grey
+
+    (Foreground /f and /a only)
+
     8           0x08        DarkGray / DarkGrey
     9           0x09        LightBlue
     10          0x0a        LightGreen
@@ -99,4 +102,19 @@ Here is color table used for all **/A**, **/F** and **/B** switches:
     14          0x0e        Yellow
     15          0x0f        White
 
+Most of the individual tools that support color changing also support changing
+the Blink/Intensity setting. However, most tools do not mention it.
 
+	/BlinkOn    Enable the Blink/Intensity bit. (Start Blinking)
+	/BlinkOff   Disable the Blink/Intensity bit. (Stop Blinking)
+
+===============================================================================
+
+The DOS command line (and batch files) is limited to approximately 128
+characters. This could make it difficult for tools like vecho to print multiple
+lines at once. Hoever, many tools such as vecho, vstr, etc support loading text
+resources from a file using the /T switch. Generally, the /T switch is used
+to provide "Translation" text for a batch. When loaded from file, the V8Power
+Tools utility is limited to 10 kilobytes per lines. Beyond that, the utility
+will ignore any remaining text on that line. 10kb is equal to 5 screens or more
+of text and is overkill.
