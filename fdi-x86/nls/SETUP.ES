@@ -13,12 +13,12 @@ HRULE=/fDarkGray /x 0xC4 /fGray
 CONTINUE=/p ¨Quiere continuar? /c32
 REBOOT=/p ¨Quiere reiniciar ahora? /c32
 
-AUTO_YES=/s- [Y,N]? /fWhite Y /fGray
-AUTO_NO=/s- [Y,N]? /fWhite N /fGray
+AUTO_YES=/s- [S,N]? /fWhite S /fGray
+AUTO_NO=/s- [S,N]? /fWhite N /fGray
 
 ABORTED=/fLightRed Instalaci¢n de %1 %2 abortada. /e /fGray /bBlack
 
-PARTITION_AUTO=Dividir la unidad /fWhite %1 /s- /fGray automaticamente.
+PARTITION_AUTO=Dividir la unidad /fWhite %1 /fGray automaticamente.
 PARTITION_WARN=/fYellow AVISO: /fGray se necesita una partici¢n FAT16 de un tama¤o menor a 2Gb para KERNL86.
 PARTITION_MBR=Actualizar MBR de la unidad /fWhite %1 /s- /fGray .
 PARTITION_ACTIVE=Indicar la partici¢n /fWhite %1 /fGray como activa.
