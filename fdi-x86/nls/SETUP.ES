@@ -2,8 +2,8 @@
 WELCOME_DEF=Bienvenido al programa de instalaci¢n /fLightGreen %1 /fCyan %2 /fGray
 WELCOME_ADV=Bienvenido al instalador /fLightRed avanzado /fGray para /fLightGreen %1 /fCyan %2 /fGray /s- .
 WELCOME_0=/p
-WELCOME_1=/fLightGreen "%1" /fGray es un sistema operativo completo. Si escoje instalarlo en su /p ordenador puede ser que sobrescriba el sistema operativo que ya tenga /p (por ejemplo, Windows.)
-WELCOME_2=/c32 Si no quiere que pase eso salga ahora.
+WELCOME_1=/fLightGreen "%1" /fGray es un sistema operativo completo. Si escoje instalarlo en su /p ordenador puede /fLightRed /BlinkOn "ser que sobrescriba el sistema operativo que ya tenga" /BlinkOff /p (por ejemplo, Windows.) /fGray /p
+WELCOME_2=/fGray /c32 Si no quiere que pase /fLightRed "eso salga ahora." /fGray
 WELCOME_3=
 WELCOME_4=
 WELCOME_5=/fGray /p
@@ -13,12 +13,12 @@ HRULE=/fDarkGray /x 0xC4 /fGray
 CONTINUE=/p ¨Quiere continuar? /c32
 REBOOT=/p ¨Quiere reiniciar ahora? /c32
 
-AUTO_YES=/s- [S,N]? /fWhite S /fGray
-AUTO_NO=/s- [S,N]? /fWhite N /fGray
+AUTO_YES=/s- [Y,N]? /fWhite Y /fGray
+AUTO_NO=/s- [Y,N]? /fWhite N /fGray
 
 ABORTED=/fLightRed Instalaci¢n de %1 %2 abortada. /e /fGray /bBlack
 
-PARTITION_AUTO=Dividir la unidad /fWhite %1 /fGray automaticamente.
+PARTITION_AUTO=Dividir la unidad /fWhite %1 /s- /fGray automaticamente.
 PARTITION_WARN=/fYellow AVISO: /fGray se necesita una partici¢n FAT16 de un tama¤o menor a 2Gb para KERNL86.
 PARTITION_MBR=Actualizar MBR de la unidad /fWhite %1 /s- /fGray .
 PARTITION_ACTIVE=Indicar la partici¢n /fWhite %1 /fGray como activa.
@@ -83,7 +83,7 @@ FAILED=/fLightRed Fallo. /fGray
 
 # Copyright and License Notices
 TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Instalador (" /fWhite FDI-x86 /fGray ")"
-COPYRIGHT=/fDarkGray Licenciado bajo la GPL v2.0 ./pCopyright 2021-$YEAR$ Jerome Shidel. /fGray /p
+COPYRIGHT=/fDarkGray Licenciado bajo la GPL v2.0 ./pCopyright 2021-2022 Jerome Shidel. /fGray /p
 TRADEMARK=FreeDOS es una marca registrada de Jim Hall, 2001-2021
 
 # Help screen
