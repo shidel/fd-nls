@@ -1,0 +1,29 @@
+FreeDOS APPEND. Låter program öppna datafiler i angivna kataloger som om filerna
+                fanns i den aktuella katalogen.
+(C) 2004-2006 Eduardo Casino, under villkoren för GNU GPL, Version 2
+
+
+Syntax:
+
+  APPEND [[enhet:]sökväg[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+  APPEND ;
+
+    [enhet:]sökväg Enhet och katalog att lägga till.
+    /X[:ON]        Utöka APPEND till sökningar och kommandokörning.
+    /X:OFF         Applicerar APPEND endast till begäran om att öppna filer.
+                   Standardvärde /X:OFF
+    /PATH:ON       Söker genom tillagda kataloger för filbegäran som redan
+                   inkluderar en sökväg. Detta är standardinställningen.
+    /PATH:OFF      Stänger av /PATH:ON.
+    /E             Lagrar den tillagda kataloglista i miljön. /E får endast
+                   användas vid den första körningen av APPEND. Du kan inte
+		   inkludera några sökvägar på samma kommandorad som /E.
+
+  APPEND ; rensar listan av tillagda kataloger.
+  APPEND utan parametrar visar listan av tillagda kataloger.
+
+Not:
+
+  APPEND installerar sig själv som ett internt kommando efter den första
+  exekveringen. Den andra och påföljande exekveringar MÅSTE exkludera
+  filsökväg och ändelse.
