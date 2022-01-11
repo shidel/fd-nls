@@ -78,7 +78,7 @@ SAF_CAT=establecer categor¡a de archivo %
 SAF_SLICING=Cortando archivos en %
 VERB_SAF_IUP=Actualizar informaci¢n estad¡stica de archivo %
 
-MEDIA=Inserte el disquete que contiene el archivo % en la unidad %.
+MEDIA=Inserte el disquete que contiene el archivo %0 en la unidad %1.
 PAUSE=Presione cualquier tecla para continuar.
 
 PROMPT_YES=Si
