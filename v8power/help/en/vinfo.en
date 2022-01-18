@@ -1,18 +1,16 @@
 vinfo [options]
-
 General system information utility.
-
     [none]      Does nothing.
     /V          Verbose Mode.
     /D a        Test drive status.
                 Returns these error codes:
-                    15 - Not Present
-                     5 - Not Formatted (for DOS)
-                     4 - Network Drive (untested)
-                     3 - CD/DVD-ROM (MSCDEX Only, most report error 15)
-                     2 - Removable Media (like Floppy)
-                     1 - (Reserved)
-                     0 - No Special Conditions
+                   15 - Not Present
+                    5 - Not Formatted (for DOS)
+                    4 - Network Drive (untested)
+                    3 - CD/DVD-ROM (MSCDEX Only, most report error 15)
+                    2 - Removable Media (like Floppy)
+                    1 - (Reserved)
+                    0 - No Special Conditions
     /M          Return Machine Type (This may break on future platforms)
                 Returns these exit codes:
                     0 - Unknown, Normal or Native 8086 Hardware.
@@ -28,28 +26,22 @@ General system information utility.
                   104 - VMware.
                   200 - General, other emulator detected.
     /P          Same as /M switch. However, excludes test for virtual machine.
-
     /E n        Probe physical Hard Disk #n (1, 2, etc) for MBR status
-                    0  - MBR is completely empty
-                    5  - MBR only contains partition information
-                    10 - MBR contains a boot code
-                    101 - Error Occurred
-
+                    0 - MBR is completely empty
+                    5 - MBR only contains partition information
+                   10 - MBR contains a boot code
+                  101 - Error Occurred
 More options that are mostly only useful for programmers and R&D. They have
 been available for a while. But are not officially (by me) part of the
 V8Power Tools API and may change or be removed at anytime. But since I use
 some of them, maybe they'll get moved into their own utilities.
-
     ASCII       Display entire ASCII table
     RAM         Dump all of conventional memory to StdOut.
-
     /C *        output ascii values for remainder of command line
     /R string   Search all of conventional memory for string
     /U string   Search memory (a000:0000 and up) for caseless string
-
     /J pos *    Return the ascii value of the character in pos on the remainder
-    			of the command line as an errorlevel. 0 is returned if the
-    			position was not found.
+                of the command line as an errorlevel. 0 is returned if the
+                position was not found.
     /K pos *	Same as /J, but converted to uppercase first.
-
     tba         (Still under development, more to be announced)
