@@ -3,7 +3,9 @@
 #   Language: German
 #   Codepage: 858 (850 plus Euro currency sign)
 #   Author: Clemens Lîser (Cl.Loeser@web.de)
-# 
+#   2022-01-19: corrected: line 287, "Eigabe", 311 "öngÅltig", 434 "Speicherpatz", 439 "Speicherpaltz",
+#   1121 "Dienstrogramm", 1395 "richtung", 1405 "double space", 1456 "Standart"
+#   modified the line breaks of command, del, dir, erase, history, if, lh, loadhigh, set.
 # This file is used to generate all the messages that command.com
 # outputs.  This file is the input to the fixstrs program, and it
 # outputs strings.h and strings.dat.  The .DAT file is appended to
@@ -165,7 +167,7 @@ Zuteilung von DOS-Speicher fehlgeschlagen.
 .
 
 :TEXT_ERROR_CANNOTPIPE
-Kann keine Pipe erstellen!  Kann temporÑre Datei nicht îffnen!
+Kann keine Pipe erstellen! Kann temporÑre Datei nicht îffnen!
 .
 
 :TEXT_ERROR_LONG_LINE_BATCHFILE
@@ -283,7 +285,7 @@ Kann Eingabe von Datei '%s' nicht umleiten.
 .
 
 :TEXT_ERROR_REDIRECT_TO_FILE
-Kann Eigabe in Datei '%s' nicht umleiten.
+Kann Eingabe in Datei '%s' nicht umleiten.
 .
 
 :TEXT_ERROR_EMPTY_REDIRECTION#1
@@ -307,7 +309,7 @@ Der CTTY-Befehl wurde nicht in diese COMMAND.COM implementiert.
 .
 
 :TEXT_ERROR_NORW_DEVICE
-öngÅltiges oder kein Lese-/Schreib-GerÑt '%s'.
+UngÅltiges oder kein Lese-/Schreib-GerÑt '%s'.
 .
 
 :TEXT_ERROR_CTTY_DUP
@@ -430,12 +432,12 @@ Tausch fehlgeschlagen: Aliase reservieren zu viel Speicher.
 
 
 :TEXT_ERROR_KSWAP_ALLOCMEM
-Tausch fehlgeschlagen: Kann keinen weiteren Speicherpatz
+Tausch fehlgeschlagen: Kann keinen weiteren Speicherplatz
 reservieren.
 .
 
 :TEXT_ERROR_ALIAS_OUT_OF_MEM#1
-Kein weiterer Aliasspeicherpaltz verfÅgbar.
+Kein weiterer Aliasspeicherplatz verfÅgbar.
 .
 
 :TEXT_ERROR_ALIAS_NO_SUCH#1
@@ -471,7 +473,7 @@ Das EinfÅgen von Statusinformationen in den Kontext ist
 fehlgeschlagen. Dieser Fehler kann auf Speicherfehler oder
 eine falsch bestimmte Minimalgrî·e des Kontexts hindeuten.
 Bitte benachrichtigen Sie die Verantwortlichen von FreeCOM:
-freecom@freedos.org
+freedos-devel@lists.sourceforge.net
 .
 
 :TEXT_ERROR_CONTEXT_AFTER_SWAP#1
@@ -796,7 +798,7 @@ GewÑhr der MARKTGéNGIGKEIT oder TAUGLICHKEIT FöR EINEN
 BESTIMMTEN ZWECK.  Bitte lesen Sie die GNU General Public License
 fÅr nÑhere Informationen hierzu.
 
-Bitte senden Sie Fehlerberichte an freedos-freecom@lists.sourceforge.net.
+Bitte senden Sie Fehlerberichte an freedos-devel@lists.sourceforge.net.
 Updates sind unter http://freedos.sourceforge.net/freecom erhÑltlich.
 .
 
@@ -809,7 +811,7 @@ Free Software Foundation verîffentlicht, weitergeben und/oder
 modifizieren, entweder gemÑ· Version 2 der Lizenz oder (nach
 Ihrer Option) jeder spÑteren Version.
 
-Bitte senden Sie Fehlerberichte an freedos-freecom@lists.sourceforge.net.
+Bitte senden Sie Fehlerberichte an freedos-devel@lists.sourceforge.net.
 Updates sind unter http://freedos.sourceforge.net/freecom erhÑltlich.
 .
 
@@ -819,9 +821,7 @@ Die FreeDOS Command Shell wurde von vielen Entwicklern entwickelt,
 fÅr nÑhere Informationen greifen Sie bitte auf die Datei
 HISTORY.TXT zurÅck.
 
-Momentan instandgehalten von Steffen Kaiser (freecom@freedos.org)
-
-Bitte senden Sie Fehlerberichte an freedos-freecom@lists.sourceforge.net.
+Bitte senden Sie Fehlerberichte an freedos-devel@lists.sourceforge.net.
 Updates sind unter http://freedos.sourceforge.net/freecom erhÑltlich.
 .
 
@@ -1000,10 +1000,12 @@ COMMAND [[Laufwerk:]Pfad] [GerÑt] [/E:nnnnn] [/L:nnnn] [/U:nnn] [/P] [/MSG]
                    (nnnn sollte eine Zahl zwischen 128 und 1.024 sein.)
   /U:nnn           Spezifiziert die Eingabepuffergrî·e (erfordert ebenso /P).
                    (nnn sollte eine Zahl zwischen 128 und 255 sein.)
-  /P               Richtet die neue Command Shell Instanz dauerhaft ein (kann nicht
-                   beendet werden).
-  /MSG             Speichert alle Fehlermeldungen im Speicher (erfordert ebenso /P).
-  /LOW             Zwingt die Command Shell, bleibende Daten im LoMem zu speichern.
+  /P               Richtet die neue Command Shell Instanz dauerhaft ein
+                   (kann nicht beendet werden).
+  /MSG             Speichert alle Fehlermeldungen im Speicher (erfordert
+                   ebenso /P).
+  /LOW             Zwingt die Command Shell, bleibende Daten im LoMem zu
+                   speichern. 
   /Y               Arbeitet schrittweise die durch /C oder /K spezifizierten
                    Stapelverarbeitungsdateien ab.
   /C Befehl        FÅhrt den spezifizierten Befehl aus und kehrt zurÅck.
@@ -1062,8 +1064,10 @@ DEL [Laufwerk:][Pfad]Dateiname [/P] [/V]
 ERASE [Laufwerk:][Pfad]Dateiname [/P] [/V]
 
   [Laufwerk:][Pfad]Dateiname  Spezifiziert die zu lîschende(n) Datei(en).
-                              Benutzen Sie Wildcards, um mehrere Dateien anzugeben.
-  /P                          Fragt fÅr jede zu lîschende Datei nach BestÑtigung.
+                              Benutzen Sie Wildcards, um mehrere Dateien
+                              anzugeben.
+  /P                          Fragt fÅr jede zu lîschende Datei nach
+                              BestÑtigung.
   /V                          Zeigt alle gelîschten Dateien an.
 .
 
@@ -1074,9 +1078,9 @@ DIR [Laufwerk:][Pfad][Dateiname] [/P] [/W] [/A[[:]Attribute]]
   [/O[[:]Reihenfolge]] [/S] [/B] [/L] [/V]
 
   [Laufwerk:][Pfad][Dateiname]
-               Spezifiziert Laufwerk, Verzeichnis, und/oder aufzulistende Dateien.
-               (Kînnen sowohl erweiterte als auch mehrere Dateispezifikationen
-               sein.)
+               Spezifiziert Laufwerk, Verzeichnis, und/oder aufzulistende
+               Dateien. (Kînnen sowohl erweiterte als auch mehrere Datei-
+               spezifikationen sein.)
   /P           Legt nach jedem vollstÑndigen AusfÅllen des Bildschirms mit
                Informationen eine Pause ein.
   /W           Benutzt das ausfÅhrliche Listenformat.
@@ -1109,14 +1113,15 @@ Grundeinstellungen kînnen durch das Voranstellen eines - (Bindestrich)
 .
 
 :TEXT_CMDHELP_DOSKEY#1
-Das externe DOSKey Dienstrogramm wurde in FreeCOM eingebunden.
+Das externe DOSKey Dienstprogramm wurde in FreeCOM eingebunden.
 Benutzen Sie die Pfeiltasten HOCH und RUNTER, um die Befehls-History abzurufen
 und durch HISTORY anzeigen zu lassen.
 Benutzen Sie LINKS und RECHTS und die ENDE und POS1 Tasten, um innerhalb der
 Befehlszeile zu navigieren und schalten Sie mit der EINFG-Taste zwischen dem
 öberschreibe- und EinfÅge-Modus hin und her.
 Benutzen Sie die Tabulatortaste, um das aktuelle Wort als Dateinamen zu
-vervollstÑndigen; drÅcken Sie sie zweimal, um alle mîglichen Treffer anzuzeigen.
+vervollstÑndigen; drÅcken Sie sie zweimal, um alle mîglichen Treffer anzu-
+zeigen.
 .
 
 :TEXT_CMDHELP_ORIGINAL_DOSKEY#1
@@ -1164,7 +1169,8 @@ Zeigt Nachrichten an oder schaltet das Befehls-Echoing an oder aus.
   ECHO [ON | OFF]
   ECHO [Nachricht]
 
-Geben Sie ECHO ohne Parameter ein, um die aktuelle Echoeinstellung anzuzeigen.
+Geben Sie ECHO ohne Parameter ein, um die aktuelle Echoeinstellung
+anzuzeigen.
 .
 
 :TEXT_CMDHELP_EXIT
@@ -1176,17 +1182,17 @@ EXIT
 :TEXT_CMDHELP_FOR
 FÅhrt einen spezifizierten Befehl fÅr jede Datei eines Dateisatzes aus.
 
-FOR %Variable IN (Dateisatz) DO Befehl [Befehlsparameter]
+FOR %%Variable IN (Dateisatz) DO Befehl [Befehlsparameter]
 
-  %Variable    Spezifiziert einen ersetzbaren Parameter.
+  %%Variable    Spezifiziert einen ersetzbaren Parameter.
   (Dateisatz)  Spezifiziert einen Satz aus einer oder mehreren Dateien.
                Wildcards kînnen benutzt werden.
   Befehl       Spezifiziert einen auf jede Datei anzuwendenden Befehl.
   Befehlsparameter
                Spezifiziert Parameter oder Switches fÅr den angegebenen Befehl.
 
-Um den FOR-Befehl in einem Stapelprogramm zu benutzen, geben Sie %%Variable
-anstelle von %Variable an.
+Um den FOR-Befehl in einem Stapelprogramm zu benutzen, geben Sie %%%%Variable
+anstelle von %%Variable an.
 .
 
 :TEXT_CMDHELP_GOTO
@@ -1206,8 +1212,8 @@ History-Befehl.
 
 HISTORY [Grî·e]
 
-Ohne "Grî·e" wird der aktuelle Inhalt des Befehlszeilen-History-Puffers angezeigt.
-Bei Angabe einer Grî·e wird die Grî·e des History-Puffers geÑndert.
+Ohne "Grî·e" wird der aktuelle Inhalt des Befehlszeilen-History-Puffers
+angezeigt. Bei Angabe einer Grî·e wird die Grî·e des History-Puffers geÑndert.
 .
 
 :TEXT_CMDHELP_IF
@@ -1217,8 +1223,8 @@ IF [NOT] ERRORLEVEL Nummer Befehl
 IF [NOT] Zeichenkette1==Zeichenkette2 Befehl
 IF [NOT] EXIST Dateiname Befehl
 
-  NOT                Gibt an, dass der Interpreter den Befehl nur dann ausfÅhren
-                     soll, wenn die Bedingung nicht zutrifft.
+  NOT                Gibt an, dass der Interpreter den Befehl nur dann
+                     ausfÅhren soll, wenn die Bedingung nicht zutrifft.
   ERRORLEVEL Nummer  Ergibt eine wahre Bedingung, falls das zuletzt
                      ausgefÅhrte Programm einen Ausgangscode zurÅckgegeben hat,
                      der gleich oder grî·er als die spezifizierte Nummer ist.
@@ -1243,8 +1249,8 @@ LOADHIGH [/L:Region1[,minGrî·e1][;Region2[,minGrî·e2]...] [/S]]
             werden soll.  Region1 spezifiziert die Nummer der ersten
             Speicherregion; minGrî·e1 spezifiziert, falls vorhanden, die
             minimale Grî·e fÅr Region1. Region2 und minGrî·e2 spezifizieren,
-            falls erforderlich, Nummer und minimale Grî·e fÅr die zweite Region.
-            Sie kînnen beliebig viele Regionen spezifizieren.
+            falls erforderlich, Nummer und minimale Grî·e fÅr die zweite
+            Region. Sie kînnen beliebig viele Regionen spezifizieren.
 
 /S          Schrumpft ein UMB auf seine Minimalgrî·e wÑhrend das Programm
             geladen wird.
@@ -1377,7 +1383,8 @@ SET [/C] [/P] [Variable=[Zeichenkette]]
 * Falls keine Zeichenkette spezifiziert wird, wird die Variable aus der
 Umgebung gelîscht.
 
-Geben Sie SET ohne Parameter ein, um die aktuellen Umgebungsvariablen anzuzeigen.
+Geben Sie SET ohne Parameter ein, um die aktuellen Umgebungsvariablen
+anzuzeigen.
 
 /C erzwingt die Einhaltung der Gro·-/Kleinschreibung der Variable; die
 Voreinstellung ist, die Variable in Gro·buchstaben zu Åbernehmen, falls
@@ -1393,7 +1400,7 @@ der Variable zu.
 
 SHIFT [RUNTER]
 
-RUNTER verschiebt das Argumentfenster richtung Anfang (%0); andernfalls
+RUNTER verschiebt das Argumentfenster Richtung Anfang (%0); andernfalls
 in Richtung Ende.
 .
 
@@ -1402,9 +1409,9 @@ Zeigt oder setzt die Systemzeit.
 
 TIME [/T] [Zeit]
 
-Geben Sie TIME ohne Parameter ein, um die aktuelle Zeiteinstellung anzuzeigen
-und nach der neuen Einstellung zu fragen.  DrÅcken Sie ENTER, um die Zeit
-beizubehalten.
+Geben Sie TIME ohne Parameter ein, um die aktuelle Zeiteinstellung anzu-
+zeigen und nach der neuen Einstellung zu fragen. DrÅcken Sie ENTER, um
+die Zeit beizubehalten.
 
 /T verhindert, dass TIME interaktiv wird.
 .
@@ -1454,7 +1461,7 @@ Geben Sie FDDEBUG ohne Parameter ein, um die aktuelle Einstellung anzuzeigen.
 Falls eine Datei spezifiziert wird, werden alle Fehlerinformationen in diese
 Datei umgeleitet; die Ausgabe wird an die Datei angehÑngt, falls sie schon
 existiert.  Die besonderen Namen "stdout" und "stderr" kînnen benutzt werden,
-um die Ausgabe zur Standartausgabe oder zum Standart-Fehler-Stream umzuleiten.
+um die Ausgabe zur Standardausgabe oder zum Standard-Fehler-Stream umzuleiten.
 .
 
 :TEXT_CMDHELP_VOL
