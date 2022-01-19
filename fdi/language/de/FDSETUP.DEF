@@ -1,8 +1,8 @@
 *******************************************************************************
 FreeDOS Installer German Translation.
 Provided by: Christian Imhorst
-Contact Email: christian.imhorst@gmail.com, modified by W. Spiegl
-Created/Modified: 01/15/2016,
+Contact Email: christian.imhorst@gmail.com, 
+Created/Modified: 01/15/2016, modified 2022-01-19 by W. Spiegl, added HELLO_WARN.1+2+$LANG_SETLIST$,removed LANG_LIST
 Released Under GPL v2.0 License.
 *******************************************************************************
 
@@ -15,6 +15,7 @@ TITLE=/s- /f %1 "%2 " /f %3 "%4" /f %1 " Installationsprogramm"
 
 # STAGE300 - Initial welcome screen message
 LANG_ASK="Bitte Sprache auswÑhlen."
+# LANG_LIST=/r4/c32 'Englisch' /e/p/r4/c32 'Deutsch' /e/p/r4/c32 'Esperanto' /e/p/r4/c32 'Spanisch' /e/p/r4/c32 'Franzîsisch' /e/p/r4/c32 'NiederlÑndisch' /e/p/r4/c32 'Russisch' /e/p/r4/c32 'TÅrkisch' /e
 $LANG_SETLIST$
 LANG_EN=Englisch
 LANG_ES=Spanisch
@@ -29,11 +30,12 @@ HELLO_FRAME=/w70 /h11 /c
 HELLO_OPTS=/w40 /h5 /c
 HELLO=/s- "Willkommen zum Installationsprogramm fÅr " /f %1 "%2" /f %3 .
 HELLO_ADV=/s- "Willkommen zum erweiterten Installationsprogramm fÅr " /p /f %1 "%2" /f %3 .
-HELLO_WARN.1=
-HELLO_WARN.2=
+HELLO_WARN.1=/f%1 "%2" /f%3 "ist ein vollstÑndiges Betriebssystem. Wenn Sie dieses auf Ihrem" /p "Computer installieren mîchten, werden Sie das aktuelle Betriebssystem" /p "öBERSCHREIBEN (LôSCHEN!) (z.B. Windows)."
+HELLO_WARN.2=/c32 "Wenn Sie das nicht mîchten, beenden Sie bitte JETZT!"
 HELLO_WARN.3=
 HELLO_WARN.4=
 HELLO_WARN.5=
+
 PROCEED?="Mîchten Sie fortfahren?"
 CONTINUE="  Ja   - Weiter mit Installation."
 EXIT="  Nein - ZurÅck zu DOS."
@@ -44,8 +46,7 @@ NOPART_OPTS=/w40 /h5 /c
 NOPART=/s- "Laufwerk " /f  %1 %2 /f %3 " scheint nicht partitioniert zu sein."
 PART?="Soll das Laufwerk partitioniert werden?"
 PART_YES="  Ja - Laufwerk partitionieren."
-PARTING_FRAME=/w42 /h5 /c
-PARTING="Partitionieren der Festplatte..."
+# EXIT
 
 # STAGE400 - After partitioned specific
 PARTED_FRAME=/w62 /h11 /c
@@ -55,6 +56,8 @@ REBOOT?="Soll jetzt neu gestartet werden?"
 REBOOT_YES="  Ja - Bitte jetzt neu starten."
 # EXIT
 REBOOT="Der Computer sollte jetzt neu starten."
+PARTING_FRAME=/w42 /h5 /c
+PARTING="Partitionieren der Festplatte..."
 
 # STAGE500 - Formating specific
 NOFORMAT_FRAME=/w55 /h10 /c
@@ -148,6 +151,9 @@ AUTO_DONE=Erfolgreiche AusfÅhrung der Startdateien /fCyan %1 /a7 und /fCyan %2 /
 AUTO_HELP=Geben Sie /fWhite %1 /fGray ein, um UnterstÅtzung bei Befehlen und der Navigation zu /p erhalten.
 AUTO_WELCOME=Willkommen zum /fGreen %1 /fCyan %2 /fGray Betriebssystem ( /s- /fYellow "%3" /fGray )
 
+
+# FDASK000 - Select Keyboard Layout
+
 # FDASK100 - Reserved
 KBS_FRAME=/w55 /h16 /c
 KBS_OPTS=/w38 /h12 /c
@@ -195,15 +201,13 @@ XFER?=Kopiere Systemdateien von Laufwerk /f %1 %2 /f %3 /s- ?
 XFERY="  Ja  - Kopiere Systemdateien."
 XFERN="  Nein - Keine Systemdateien kopieren."
 
-# FDASK600 - Advanced mode force new boot sector
 OBSS_FRAME=/w64 /h8 /c
 OBSS_OPTS=/w36 /h5 /c
-# vecho "Force new boot sector code on dive C:?"
 OBSS?=Erzwinge neuen Bootsektorcode auf dem Laufwerk /f %1 %2 /f %3 (%4:%5)?
 OBSSY="  Ja   - öberschreiben MBR."
 OBSSN="  Nein - Nicht mit Gewalt."
 
-# FDASK700 - Package group selection.
+# FDASK600 - Package group selection.
 PAC_FRAME=/w72 /h11 /c
 PAC_OPTS=/w52 /h8 /c
 PAC_FRAME_B=/w72 /h8 /c
