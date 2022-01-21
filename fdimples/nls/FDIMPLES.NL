@@ -52,7 +52,7 @@
 
 {Help-berichten en dergelijke}
 50:uitgebracht onder de GNU General Public License, versie 2.0
-51:Copyright 2020 Jerome Shidel
+51:Copyright 2016-2022 Jerome Shidel
 52:FDIMPLES biedt een eenvoudig te gebruiken tekstgebruikersinterface voor het FDINST-pakketbeheerhulpprogramma.
 
 53:Toon dit helpscherm.
