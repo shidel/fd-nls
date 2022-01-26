@@ -2,7 +2,7 @@
 
 EXCEPT=';packages;fdi;htmlhelp;'
 SPECIAL=';pgme;danger;'
-EXCLUDE=';txt;docinfo;htm;html;'
+EXCLUDE=';txt;docinfo;htm;html;inc;'
 
 LANGUAGES=''
 APPLANGS=''
