@@ -11,4 +11,4 @@
 3.0:jn
 
 0.9:Felaktig tidssyntax. F”rv„ntade formen Tc,nn eller T:c,nn
-0.10:Standardv„rde för tidsgr„ns finns ej bland angivna val (eller standardv„rde)
+0.10:Standardv„rde f”r tidsgr„ns finns ej bland angivna val (eller standardv„rde)
