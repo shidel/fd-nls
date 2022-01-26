@@ -8,13 +8,13 @@
 #
 ## Primary strings
 S2
-BLOCK_DEVICE: Fel %1 enhet %A: %2 område: %3
+BLOCK_DEVICE: Fel %1 enhet %A: %2 omr†de: %3
 S3
 CHAR_DEVICE: Fel %1 enhet %A: %3
 
 ## kind of operation
 S0
-READ: läser från
+READ: l„ser fr†n
 S1
 WRITE: skriver till
 
@@ -32,11 +32,11 @@ DATA: Data
 S8
 IGNORE: (I)gnorera
 S9
-RETRY: (N)ytt försök
+RETRY: (N)ytt f”rs”k
 S10
 ABORT: (A)vbryt
 S11
-FAIL: (F)ortsätt
+FAIL: (F)orts„tt
 ## keys associated with the actions
 S14 (compacted)
 KEYS_IGNORE: iI
@@ -50,26 +50,26 @@ S13
 DELIMITER: , %.
 
 ## Error strings
-UNKNOWN: Okänd fel-kod
+UNKNOWN: Ok„nd fel-kod
 S15
-0: försök att bryta skrivskyddet
-1: okänd typ för drivrutin
+0: f”rs”k att bryta skrivskyddet
+1: ok„nd typ f”r drivrutin
 2: enhet inte klar
-3: drivrutin fick okänt kommando
+3: drivrutin fick ok„nt kommando
 4: datafel (fel CRC)
-5: ogiltig strukturlängd på drivrutinsbegäran
-6: sökfel
-7: okänd mediatyp
+5: ogiltig strukturl„ngd p† drivrutinsbeg„ran
+6: s”kfel
+7: ok„nd mediatyp
 8: sektorn hittades inte
-9: slut på papper i skrivaren
+9: slut p† papper i skrivaren
 10: skrivfel
-11: läsfel
-12: allmänt fel
+11: l„sfel
+12: allm„nt fel
 13: delningsfel
-14: lås fel
+14: l†s fel
 15: felaktigt diskbyte
-16: FCB ej tillgänglig
+16: FCB ej tillg„nglig
 17: delningsbuffer overflow
-18: codepage stämmer inte
+18: codepage st„mmer inte
 19: ingen input
-20: otillräckligt diskutrymme
+20: otillr„ckligt diskutrymme
