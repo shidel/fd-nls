@@ -1,0 +1,25 @@
+FreeDOS NLSFUNC. Lägger till NLS-funktioner (Nationellt språk stöd).
+
+(C) 2004 Eduardo Casino, under villkoren för GNU GPL, Version 2
+
+  NLSFUNC [/Y|/?] [[D:][SÖKVÄG]FIL]
+
+  [D:][SÖKVÄG]FIL  Sökväg till en fil som innehåller NLS
+  /Y               Läser in (valfri) JA/NEJ-tabell
+  /?               Skriver ut användning
+
+Exempel:
+
+  CONFIG.SYS
+     COUNTRY=34,858,C:\COUNTRY.SYS
+
+  AUTOEXEC.BAT
+     LH DISPLAY CON=(EGA,858,2)
+     MODE CON CP PREP=((850) C:\CPI\EGA.CPI)
+     MODE CON CP PREP=((,437) C:\CPI\EGA.CPI)
+     LH NLSFUNC /Y
+
+Växla sedan kodsidor med FreeCOM:S CHCP-kommando.
+
+Om du inte behöver ändra kodsidor, hoppa bara över MODE-raderna.
+
