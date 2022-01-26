@@ -1,14 +1,14 @@
-Detta är hjälpfilen för MORE:
+Detta „r hj„lpfilen f”r MORE:
 
-MORE: Visa innehållet i en textfil en skärm åt gången
-  Detta program är fri programvara, och du får gärna distribuera 
-  det under GNU GPL; se filen COPYING för vidare information.
+MORE: Visa inneh†llet i en textfil en sk„rm †t g†ngen
+  Detta program „r fri programvara, och du f†r g„rna distribuera 
+  det under GNU GPL; se filen COPYING f”r vidare information.
 
-Användning:
-  kommando ¦ MORE
+Anv„ndning:
+  kommando Ý MORE
   MORE fil..
   MORE < fil
 
-Tillgängliga tangenter (när en fil visas):
-  N n = Nästa fil
+Tillg„ngliga tangenter (n„r en fil visas):
+  N n = N„sta fil
   Q q = Avsluta program
