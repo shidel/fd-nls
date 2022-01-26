@@ -1,4 +1,3 @@
-# Language: Swedish (CP850)
 # Translation by Martin Str”mberg <ams@ludd.luth.se>
 0.0:V„ntar tills anv„ndaren trycker p† en tangent fr†n en lista av val
 0.1:val
@@ -11,5 +10,5 @@
 0.8:Ljud en signal n„r prompten visas
 3.0:jn
 
-0.9:Felaktig tidssyntax. Förväntade formen Tc,nn eller T:c,nn
-0.10:Standardvärde för tidsgräns finns ej bland angivna val (eller standardvärde)
+0.9:Felaktig tidssyntax. F”rv„ntade formen Tc,nn eller T:c,nn
+0.10:Standardv„rde för tidsgr„ns finns ej bland angivna val (eller standardv„rde)
