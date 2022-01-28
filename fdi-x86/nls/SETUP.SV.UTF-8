@@ -1,0 +1,134 @@
+# Welcome Message
+WELCOME_DEF="Välkommen till installationsprogrammet för " /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Welcome to the" /fLightRed "advanced" /fGray "installer for" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_ADV="Välkommen till det " /fLightRed "avancerade" /fGray "installationsprogrammet för" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "är ett komplett operatigsystem. Om du väljer att installera detta på" /p "din dator, kan du komma att " /fLightRed /BlinkOn "skriva över" /BlinkOff /fGray "operativsystemet dur har nu" /p "(till exempel Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Om detta inte är vad du avser göra," /fLightRed "sluta NU!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Vill du fortsätta" /c32
+REBOOT=/p "Vill du starta om nu" /c32
+
+AUTO_YES="[J,N]?" /fWhite "J" /fGray
+AUTO_NO="[J,N]?" /fWhite "N" /fGray
+
+ABORTED=/fLightRed "Installationen av" %1 %2 "har avbrutits." /e /fGray /bBlack
+
+PARTITION_AUTO="Partitionera enhet automatiskt" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "NOTERA:" /fGray "FAT16-partition under 2Gb krävs för KERNL86."
+PARTITION_MBR="Uppdatera MBR på enhet" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Sätt enhet" /fWhite %1 /fGray "-partition som aktiv."
+PARTITION_DONE=/p "Du måste starta om din dator för att den nya partitioneringen ska får effekt."
+
+FORMAT="Enhet" /fWhite %1 /fGray "verkar inte vara formatterad."
+FORMAT_DEF="Vill du formatera din enhet" /c32
+FORMAT_ADV="Hur vill du formattera din enhet" /s- /c32 ( /fWhite "F" /fGray "ulltändigt," /c32 /fWhite "S" /fGray "nabbt," /c32 /fWhite "I" /fGray "nte)" /c32
+
+FILESYSTEM_TEST="Testa filsystemet på enhet" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Mata in en diskett" /fWhite #%1 /fGray (%2) "i" /fWhite %3 /s- /fGray .
+PRESS_KEY="Tryck på en tangent för att fortsätta."
+
+TARGET_ASK="Var vill du installera" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Ogiltig enhet begärd. Kan inte installera på en diskett."
+
+CHANGE_PATH="Sökvägen" /fWhite %1 /fGray "finns redan." /p "Vill du ändra installationskatalog" /c32
+
+BACKUP_OLD="Ett tidigare operatigsystem identifierades på enhet" /fWhite %1 /fGray /s- . /s+ /p "Vill du göra en säkerhetskopia av de gamla filerna före instllation" /c32
+BACKUP_ASK="Var vill du placera de säkerhetskopierade filerna?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Ogiltig destination begärd. Kan inte göra säkerhetskopia till den platsen." /fGray
+
+DELETE_OLD="De existerande filerna i" /fWhite %1 /fGray "kommer att skrivas över." /p "Vill du ta bort den gamla katalogen helt före installation" /c32
+
+FORCE_MBR="Tvinga fram en uppdatering av MBR på enhet" /fWhite %1 /fGray /c32
+SYS_FILES="Installera nya systemstartfiler på enhet" /fWhite %1 /fGray /c32
+CFG_FILES="Ersätt systemkonfigurationsfiler på enhet" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Installationsinställningar:" /p
+STATUS_CPU=/r4/c32 "Plattform (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Installera från" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Destinationsenhet" /fWhite %1 /fGray (disk %2, partition %3)
+STATUS_DOS=/r4/c32 "Installationssökväg för DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Säkerhetskopiera tidigare OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Katalog för tidigare OS" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Installera ny MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopiera systemfiler" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopiera konfigurationsfiler" /fWhite %1 /fGray
+
+INSTALL_NOW="Vi är nu redo att installera" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION=/fLightGreen %1 /fCyan %2 /fGray "filextraktion."
+UPDATE_LST="Uppdatera paketlistningsfiler." /p
+
+DO_BACKUP="Skapa säkerhetskopia av tidigare OS-filer till" /fWhite %1 /fGray /s- .
+DO_ERASE="Ta bort" /fWhite %1 /fGray "katalog och filer."
+DO_SYSFILES="Överför nya systemfiler till enhet" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Tvinga fram uppdatering av MBR på enhet" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Sätt aktiva startpartition på disk" /fWhite %1 /fGray "till partition" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Överför nya konfigurationfiler till enhet" /fWhite %1 /fGray /s- .
+DO_PREPARE="Förbereder att installera körbara filer och verktyg."
+DO_INSTALL="Installera" /fLightGreen %1 /fGray "filer för " /fWhite %2 /fGray /s- .
+
+DONE_NOW="Installationen av" /fLightGreen %1 /fCyan %2 /fGray "har slutförts."
+REBOOT_NOW="Vill du starta om nu" /c32
+
+REMOVE_MEDIA="Du bör ta bort disketter och CD-media."
+
+SUCCESS=/fLightGreen "Framgång." /fGray
+FAILED=/fLightRed "Misslyckat." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Installationsprogram (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Släppt under GPL v2.0 Licensen."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS är ett varumärket från Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="användning: SETUP.BAT [flaggor] [mål]"
+HELP_1=""
+HELP_2="  [inga flaggor]  utför installationen med standardvärden"
+HELP_3=
+HELP_4="  adv             starta installationen i avancerat läge. (fler frågor)"
+HELP_5=
+HELP_6="  auto            utför en fullständigt automatiserad instllation utan frågor." /p/r18/c32 "detta rekommenderas inte och bör endast göra på hårdvara" /p/r18/c32 "utan existerande operativsystem."
+HELP_7=
+HELP_8="  [mål]           förinställ en enhet och/eller sökväg för målinstallationen"
+HELP_9=
+HELP_10="  info            visa installationsen konfigurationsinställningar och avsluta"
+HELP_11=
+HELP_12="  mbr             tvinga fram en uppdatering av MBR och avsluta"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITISKT fel:" /fGray /c32
+ERROR_NoHDD="Kan inte hitta en partitionerad och formatterad hårddiskenhet."
+ERROR_MINOR=/fLightRed "fel:" /fGray /c32
+ERROR_Option="Okänd eller ogiltig kommandoradsflagga" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Kani nte identifiera grundläggande systemkonfiguration och sökvägsinställningar."
+ERROR_NotFreeCOM="Denna batchfil kröver FreeCOM eller kompatibelt skal för FreeDOS."
+ERROR_MissingFreeCOM="Kan inte hitta FreeDOS:s kommandoradsskal FreeCOM."
+ERROR_MissingAUTOEXEC="Unable to locate FreeDOS's startup batch file FDAUTO.BAT."
+ERROR_MissingAUTOEXEC="Kan inte hitta FreeDOS:s batchfil för uppstat FDAUTO.BAT."
+ERROR_MakeDir="Kani nte skapa katalog" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Kan inte säkerhetskopiera start- 'och/eller' konfigurationsfiler."
+ERROR_BackupOS="Kan inte säkerhetskopiera filer till målkatalog."
+ERROR_Partition="Ett partitioneringsfel har inträffat. Kanske finns ingen hårddisk eller" /p "så är den osynlig för det aktuella operativsystemet" /p /p "En annan metod för partitionering krävs."
+ERROR_NoPartition="Kan inte hitta BIOS-partitionen för" /fWhite %1 /fGray /s- . /s+ /p "Manuell installation (eller avancerat läge utan framtvingad MBR) rekommenderas."
+ERROR_Format="Ett fel har inträffat vid formattering av enhet" /fWhite %1 /fGray /s- . /s+ /p /p "En annan metod krävs för att formattera den."
+ERROR_FileSystem="Kan inte initiera temporärt utrymme på enhet" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Kan inte konfigurera katalog för säkerhetskopia."
+ERROR_MBRBackup="Kan inte skapa säkerhtskopia av MBR för enhet" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Kan inte kopiera systemfiler till enhet" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Kan inte uppdaterad startsektor för enhet" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Kan inte uppdaterad startsektor för enhet" /fWhite %1 /fGray /s- .
+ERROR_Activate="Kan inte ställa in enhet" /fWhite %1 /fGray "att starta från partition" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Kan inte ställa in nya konfigurationsfiler på enhet" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Kan inte duplicera nödvändig installationsfil till" /fWhite %1 /fGray /s- .
+ERROR_SAF="Problem inträffade vid extrahering av arkivet" /fWhite %1 /fGray "."
+ERROR_WTF="Okänt och osannoliktfel inträffade under en enkel åtgärd."
