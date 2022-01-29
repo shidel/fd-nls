@@ -1,0 +1,25 @@
+SYSLINUX
+
+SYSLINUX är en samling av uppstartsinläsare
+
+Installation:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+När du ser en kommandorad vid uppstart, skriv
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Alternativt skapa en SYSLINUX.CFG, läs dokumentationen noggrannt om detta!
+(i nedanstående exempel finns "CONTENTS" katalogen inuti ISOLINUX katalogen,
+och inom den ISLINUX.BIN CDROM-uppstartsinläsaren - utan emulering.
+
+Se till att använda "/" och "\" precis som nedan!
+ 
+För MEMDISK och ISOLINUX, läs dokumentationen noggrannt!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents 
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso contents 
+
+Alternativ för CDRECORD (inkluderat i MKISOFS) är XORRISO och CDRKIT
+(se http://sites.google.com/site/blairdude/cdrkit för en DOS-portering)

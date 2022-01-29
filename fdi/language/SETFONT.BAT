@@ -19,6 +19,10 @@ goto Load
 set _DCP=858
 goto Load
 
+:SV
+set _DCP=850
+goto Load
+
 :Unload
 :EN
 vfont /d
