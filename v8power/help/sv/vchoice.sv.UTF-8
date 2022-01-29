@@ -1,0 +1,36 @@
+vchoice [flaggor]
+
+Välj ett alterntiv.
+
+Returnerar en errorlevel för det val som valts baserat på dess postnummer. Inte
+bokstaven/numret för alternativet. Om t.ex. det andra objektet väljs kommer
+det att returnera en errorlevel som är 2. Oavsett vilket prefix (så som C,
+1, R, etc). Jag rekommnderar också personligen att använda auto för en
+uppsättning alternativ som du prefixar med en bokstav eller ett nummer.
+
+    [inga]      Utför alla automatiska standardinställningar.
+    /A n        Sätt textattribut till n för valt objekt.
+    /B färg     Sätt textattribut för bakgrunden till färg (eller värde)
+                för valt objekt.
+    /F färg     Sätt textattribut för förgrunden till färg (eller värde)
+                för valt objekt.
+    /D n        Förvälj objekt nummer n som standard alternativ.
+    type        Val för typ av direkttangent
+                    off     Välj endast med piltangenterna.
+                    auto    Identifiera hopptecken. (Standard)
+                    alpha   Hoppa till alternativ med A-Z.
+                    digit   Hoppa till alternativ med 1-9 (+0).
+    /Q          Fråga efter resultat. När alternativet görs kommer dess text
+                att skickas till STDOUT.
+    /T sekunder Fördröjning i sekunder innan standardobjektet väljs automatiskt
+                (0-3600). Notera att även om användaren navigerar till ett annat
+                objekt, kommer original standardobjektet att vara valt när
+		tidsgrändsen löper ut.
+    /P n        Använd pollningsläge och förvälj objekt nummer n som aktuellt
+                val. Notera att ändring av valet kommer att avsluta vchoice och
+                returnera 100 + nummer för aktuellt alternativ.
+    /K n        Använd n istället för ramtecken för att identifiera ramar.
+    CTRL-C      När angivet och Control-C trycks ned kommer det att avsluta
+                med errorlevel 200.
+
+    tba         (Fortfarande under utveckling, mer kommer att annonseras)
