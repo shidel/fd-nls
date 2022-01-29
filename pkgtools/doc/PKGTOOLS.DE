@@ -1,0 +1,87 @@
+Pakettools fr FreeDOS
+
+(ein sehr schneller und hastiger Entwurf)
+
+PKGINFO
+
+ist ein Befehlszeilenprogramm zum Anzeigen von Metadaten und Datei-
+informationen von installierten Paketen. Meistens ist die Verwendung
+sehr einfach. Beachten Sie aber ein paar wichtige Dinge.
+Erstens kann die Paketliste durch eine "erweiterte Wildcard" eingeschr„nkt
+werden. Zum Beispiel geben *XMS* und ?D*N alle erwarteten Ergebnisse aus.
+Das Zweite ist die Suchoption. Sie k”nnen die Suche auf ganz bestimmte
+Pakete beschr„nken oder es werden standardm„áig bei allen Paketen die
+Metadaten durchsucht. Die Suche ist im Grunde eine erweiterte Wildcard-
+suche.
+Sie k”nnen also eine Suche "pkginfo *fd* /s gnu*ver*2" starten und
+eine Liste aller Pakete erhalten, deren ID "FD" und dort irgendwo
+in den Metadaten "gnu*ver*2" enth„lt. Sie k”nnen auch /d anh„ngen, um
+auáerdem die Metadaten angezeigt zu bekommen. Gr”átenteils ist es egal,
+in welcher Reihenfolge die Kommandozeilenparameter angeh„ngt werden.
+
+
+PKGMAKER
+
+Kommandozeilenprogramm zur Untersttzung beim Erstellen von FreeDOS-
+Paketen. Es kann auf unterschiedliche Weise verwendet werden.
+
+Angenommen, Sie haben ein Programm mit einem Installationsprogramm,
+welches Sie in ein Paket verwandeln wollen. Das ist leicht. Fhren Sie
+einfach PKGMAKER aus. Dann fhren Sie Ihre Installation durch. Fhren Sie
+danach PKGMAKER nochmals aus. Das wrde in etwa wie folgt aussehen:
+
+    pkgmaker pkg-neu
+    install
+    pkgmaker
+    edit %DOSDIR%\APPINFO\pkg-neu.LSM
+    pkgmaker /z
+
+Das ist alles dazu. Naja, fast alles. Nun, ich glaube es gibt vermutlich
+mehr zu erw„hnen...
+
+Wenn es das erste Mal ausgefhrt wird, zeichnet es den Status des Lauf-
+werks auf, auf dem FreeDOS installiert ist. Mit dem /d-Schalter k”nnen
+Sie zus„tzliche Laufwerke aufzeichnen lassen. Sollen auch Laufwerk D:
+und E: aufgezeichnet werden? Dann geben Sie einfach ein "/d de" in der
+Kommandozeile mit ein. Wenn Sie es vergessen haben sollten, ist das auch
+nicht schlimm.
+Sagen Sie PKGMAKER einfach, daá er den Erstscan nochmals durchfhren
+soll, indem Sie den /i Schalter verwenden.
+
+Nachdem die Installation fertig ist, starten Sie PKGMAKER ein zweites
+Mal. Wenn Sie den Paketnamen nicht beim ersten Durchlauf vergeben haben
+sollten, mssen Sie es jetzt tun. Er scannt das/die Laufwerk(e) ein
+zweites Mal und vergleicht es mit dem ursprnglichen Scan. Es wird eine
+Paketdateiliste mit allen neu gefundenen Dateien erstellt. Gleichzeitig
+wird auch eine Vorlagen-LSM-Datei fr diesen Zeitpunkt erstellt. Wenn er
+auáerdem feststellt, daá eine vorher existierende Datei ver„ndert wurde,
+erstellt er eine .MOD Datei, welche diese Dateien auflistet.
+
+Die erstellten .LSM, .LST und .MOD Dateien werden in den normalen Paket-
+verwaltungsverzeichnissen unter %DOSDIR%\APPINFO und %DOSDIR%\PACKAGES
+abgespeichert. Und Sie k”nnten einen Paketmanager wie FDNPKG dazu
+verwenden, Ihre neu erstellten Pakete jetzt wieder zu "deinstallieren".
+Aber wir sind noch nicht ganz fertig. 
+
+An dieser Stelle m”chten Sie wahrscheinlich Ihre textbasierte Metadaten-
+datei bearbeiten. Sie wurde unter %DOSDIR%\APPINFO\pkg-neu.LSM mit einem
+etwas faden generischen Text gespeichert. Sachen wie Titel, Version,
+Beschreibung und Lizenz mssen alle mit "edit" o.„. aktualisiert werden.
+
+Jetzt wollen wir es "zippen und versenden". PKGMAKER wird mit einer
+Standard-Konfigurationsdatei geliefert, die dazu verwendet wird, um
+"echte Verzeichnisse" auf die fr Pakete verwendete "Pseudoverzeichnis-
+struktur" umzuordnen (remappen). Wenn die Sachen nicht dort landen, wo
+Sie es erwarten wrden, wenn Ihr Paket installiert wird, handelt es sich
+h”chstwahrscheinlich um ein "Umordnungsproblem". Das "Umordnen" mehrerer
+"Pseudoverzeichnisse" in ein einzelnes "echtes Verzeichnis" kann fr den
+"Umordner" (remapper) verwirrend sein. Er hat keine M”glichkeit zu fragen,
+welches Verzeichnis Sie wirklich wollen und wird einfach eines ausw„hlen.
+
+Ich hoffe, daá die wichtigsten Sachen damit abgedeckt sind. Oh, habe ich
+erw„hnt, daá Sie auch an Pakete Dateien anh„ngen oder von ihnen entfernen
+k”nnen? Oder daá Sie manchmal PKGMAKER dazu zwingen k”nnen, eine Reihe
+unterschiedlicher Fehler zu ignorieren und trotzdem fortzufahren?
+
+HINWEIS: Derzeit werden lange Dateinamen (LFN) nicht untersttzt. Sie
+mssen auch ZIP installiert haben.
