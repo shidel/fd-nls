@@ -30,7 +30,6 @@ Kompilera:
 
 Bidrag:
 
-  If you want to contribute to this project, you can report possible bugs and
   Om du vill bidra till detta projekt, kan du rapportera fel och g”ra
   en pull-f”rfr†ga i FDTUI-akrivet.
 
