@@ -1,6 +1,7 @@
 # Mensaje de ayuda cp850
 # Basado en el archivo move.en
 # Traducido por Lorenzo del Toro Saravia
+# some adjustments and corrections with the help of Google Translate
 
 0.0:Move
 0.1:Mueve un fichero/directorio a otro lugar.
@@ -8,7 +9,7 @@
 0.3:(C) 2003-2004 by Imre Leber
 0.4:Sintaxis: MOVE
 0.5:origen1[, origen2[,...]] destino
-0.6: origen      El nombre del fichero o directory you want to move (rename)
+0.6: origen      El nombre del fichero o directorio que desea mover (rebautizar)
 0.7: destino     El lugar a donde desea mover el (los) fichero(s)
 0.8:          No pide confirmaci¢n para sobreescribir un fichero
 0.9:             ya existente en la ruta destino.
@@ -24,7 +25,7 @@
 
 1.0:­No existe!
 1.1:!ya esiste!
-1.2:Sobreescribir fichero
+1.2:Sobrescribir fichero
 1.3:Problema moviendo directorio
 1.4:Problema moviendo fichero
 1.5:Par metro no v lido
@@ -41,17 +42,17 @@
 1.16:Insuficiente espacio de disco en la ruta destino
 1.17:Insuficiente espacio en disco
 1.18:Falta un par metro requerido
-1.19:Invalid source specification
+1.19:Especificaci¢n de fuente no v lida
 1.20:No se encuentra la ruta origen
 1.21:Ruta origen demasiado larga\n
 1.22:Ruta de destino demasiado larga\n
-1.23:Unidad de Invalid destination drive specification\n
+1.23:Unidad de Especificaci¢n de unidad de destino no v lida\n
 1.24:Ruta de destino demasiado larga\n
 1.25:No se puede abrir fichero origen
 1.26:No se puede crear fichero destino
 1.27:Error de escritura en el fichero destino
 1.28:Incapaz de crear directorio
-1.29:Insufficient disk space in destination path
+1.29:Espacio en disco insuficiente en la ruta de destino
 
 # S/N/Todo(s)/Ninguno; Mensajes sencillos
 
