@@ -1,0 +1,32 @@
+vfdutil [flaggor]
+
+Fil- och katalogverktyg.
+
+    [inga]      Gör ingenting
+    /D fil      Beräkna och mata ut enhetsbokstav för fil till STDOUT.
+    /P fil      Beräkna och mata ut sökväg för fil till STDOUT.
+    /C          Använd för /D eller /P för att ändra enhetsbokstav eller sökväg
+                utan utmatning.
+    /X          Använd före /D eller /P för att returnera errorleve 1-26 för
+                enhetsbokstav.
+    /F fil      Beräkna och mata ut komplett filnamn till STDOUT.
+    /B fil      Beräkna och mata ut filnamn med filändelse till STDOUT.
+    /N fil      Beräkna och mata ut filnamn utan filändelse till STDOUT.
+    /E fil      Beräkna och mata ut filändelse till STDOUT.
+    /U mall     Beräkna och mata ut unikt fil-/katalognamn baserat på mall till
+                STDOUT. Enheten och sökvägen måste exitera.
+                Exempel: "vfdutil /u C:\TEMP\TEST????.$$$"
+    /S filspec  Genomsök PATH efter angiven filspec och mata ut alla matchande
+                filer till STDOUT. Aktuell katalog genomsöks inte. Om en filspec
+                inte hittas i sökvägen avslutas verktyget med errorlevel 1.
+    /T filspec  Precis som /S förutom att endast errorlevel returneras.
+    /M plats    Mata ut mängd ledig utrymme på plats.
+    /R krävs    Används i kombination med /M för att testa om mängden ledigt
+                utrymme finns tillgänglit. Krävs är begränsat till 65535, men
+                kan kan åtföljas av B, K, M osv. Det kommer att returnera
+                errorlevel 1 om det inte fanns tillräckligt med utrymme.
+    /A sökväg   Testa om några filer eller katalog finns i en sökväg, 0=katalog
+                finns och är inte tom, andra värden är DOS-felkoder från testet.
+
+    tba         (Still under development, more to be announced)
+

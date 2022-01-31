@@ -1,0 +1,53 @@
+vinfo [flaggor]
+
+Allmänt systeminformationsverktyg.
+
+    [inga]      Gör ingenting
+    /V          Utförligt läge
+    /D a        Testa enhetsstatus.
+                Returnerar dessa avslutningskoder:
+                   15 - Saknas
+                    5 - Inte formatterad (för DOS)
+                    4 - Nätverksenhet (otestad)
+                    3 - CD/DVD-ROM (endast MSCDEX, de flesta rapporterar 15)
+                    2 - Borttagningsbar media (så som diskett)
+                    1 - (Reserverat)
+                    0 - Ingen speciell status
+    /M          Returnera maskintyp (Kan gå sönder för framtida plattformar)
+                Returnerar dessa avslutningskoder:
+                    0 - Okänd, normal eller inbyggd 8086-hårdvara.
+                    1 - 80186
+                    2 - 80286
+                    3 - 80386
+                    4 - 80486
+                    5 - 80586
+                    6 - 80686 eller senare
+                  101 - DOSBox.
+                  102 - QEMU.
+                  103 - VirtualBox.
+                  104 - VMware.
+                  200 - Annan emulator identifierad.
+    /P          Samma som /M, men exkluderar tester för virtuella maskiner.
+    /E n        Genomsök fysisk hårddisk #n (1, 2, etc) efter MBR-status
+                    0 - MBR helt tom
+                    5 - MBR innehåller endast partitionsinformation
+                   10 - MBR innehåll startkod
+                  101 - Ett fel inträffade
+
+Fler flaggor som mest är användbara för programmerare och utveckling. De
+har funnits ett tag, men är inte (enligt mig) officiellt en del av 
+V8Power Tools API och kan ändras eller tas bort när som helst. Men eftersom
+jag använder dem kanske de flyttas till egna verktyg.
+
+    ASCII       Visa hela ASCII-tabellen
+    RAM         Dumpa allt konventionellt minne till Stdut.
+    /C *        skriv ut ascii-värden för resten av kommandoraden
+    /R sträng   Sök genom allt konventionellt minne efter en sträng
+    /U sträng   Genomsök minne (a000:0000 och upp) efter skiftlägesokänslig
+                sträng
+    /J pos *    Return the ascii value of the character in pos on the remainder
+    /J pos *    Returnera ascii-värdet för tecknet på position i resten av
+                kommandoraden som en ERRORLEVEL. 0 returneras om positionen
+                inte hittades.
+    /K pos *	Samma som /J, men konverteras först till versal.
+    tba         (Fortfarande under utveckling, mer kommer att annonseras)
