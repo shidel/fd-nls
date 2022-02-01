@@ -1,8 +1,7 @@
 *******************************************************************************
-FreeDOS Installer English Translation.
-Provided by: Jerome Shidel
-Contact Email: jerome@shidel.net
-Created/Modified: 07/27/2016
+FreeDOS Installer Swedish Translation.
+Provided by: Sebastian Rasmussen
+Created/Modified: 01/31/2022
 Released Under GPL v2.0 License.
 *******************************************************************************
 
@@ -24,17 +23,17 @@ LANG_EO=Esperanto
 LANG_NL=Nederländska
 LANG_TR=Turkiska
 LANG_RU=Ryska
+LANG_SV=Svenska
 
-HELLO_FRAME=/w70 /h15 /c
+HELLO_FRAME=/w70 /h16 /c
 HELLO_OPTS=/w43 /h5 /c
 HELLO=/s- "Väkommen till installationsprogrammet för " /f %1 "%2" /f %3 "."
-HELLO_ADV=/s- "Välkommen till det avancerade installationsprogrammet för " /f %1 "%2" /f %3 .
-HELLO_WARN.1=/f%1 "%2" /f%3 is a complete operating system. If you choose to /p install this on your computer, you may overwrite the operating /p system you have now (for example, Windows.)
+HELLO_ADV=/s- "Välkommen till det avancerade installationsprogrammet för" /p /f %1 "%2" /f %3 .
 HELLO_WARN.1=/f%1 "%2" /f%3 är ett komplett operativsystem. Om du väljer att /p installera detta på din dator kan du komma att skriva över operativ /p systemt du har nu (till exempel Windows.)
 HELLO_WARN.2=/c32 Om detta inte är vad du avser göra, sluta nu.
 HELLO_WARN.3=
 HELLO_WARN.4=
-HELLO_WARN.5=
+HELLO_WARN.5=/p
 
 # RELDATE=/r56 /c32 "Release date %1" /e
 
@@ -53,7 +52,7 @@ PART_YES="  Ja  - Partitionera enhet %1"
 # STAGE400 - After partitioned specific
 PARTED_FRAME=/w62 /h11 /c
 PARTED_OPTS=/w40 /h5 /c
-PARTED=/s- "Du måste starta om din dator för att den ny partitioneringen" /p "ska få effekt."
+PARTED=/s- "Du måste starta om din dator för att den ny" /p "partitioneringen ska få effekt."
 REBOOT?="Vill du starta om nu?"
 REBOOT_YES="  Ja  - starta om nu"
 # EXIT
@@ -64,12 +63,11 @@ PARTING="Partitionerar hårddisk..."
 # STAGE500 - Formating specific
 NOFORMAT_FRAME=/w55 /h10 /c
 NOFORMAT_OPTS=/w45 /h5 /c
-NOFORMATADV_FRAME=/w55 /h11 /c
-NOFORMATADV_OPTS=/w45 /h6 /c
+NOFORMATADV_FRAME=/w72 /h11 /c
+NOFORMATADV_OPTS=/w62 /h6 /c
 NOFORMAT=/s-  "Enhet " /f %1 %2 /f %3 " verkar inte vara formatterad."
 FORMAT?="Vill du formattera din enhet?"
 FORMAT_YES="  Ja  - Rensa och formattera enhet %1"
-FORMATADV_QUICK="  Ja  - Quick erase and format drive %1"
 FORMATADV_QUICK="  Ja  - Rensa och formattera enhet %1 snabbt"
 FORMATADV_SLOW="  Ja  - Gör en fullständig rensan och formattera enhet %1"
 # EXIT
@@ -170,8 +168,8 @@ KBA_FRAME=/w58 /h13 /c
 # FDASK200 - Backup old OS
 BACKUP_FRAME=/w65 /h10 /c
 BACKUP_OPTS=/w42 /h5 /c
-BACKUPADV_FRAME=/w65 /h11 /c
-BACKUPADV_OPTS=/w42 /h5 /c
+BACKUPADV_FRAME=/w70 /h11 /c
+BACKUPADV_OPTS=/w58 /h5 /c
 BACKUP=Ett tidigare operativsystem identifierades på enhet /f %1 %2 /f %3 /s- .
 BACKUP?=Vill du säkerhetskopiera de gamla filerna före installationen?
 BACKUPY="  Ja  - Gör först en säkerhetskopia"
@@ -204,27 +202,26 @@ XFER?=Överför systemfiler till enhet /f %1 %2 /f %3 /s- ?
 XFERY="  Ja  - Överför systemfiler"
 XFERN="  Nej - Överför inte systemfiler"
 
-OBSS_FRAME=/w52 /h8 /c
-OBSS_OPTS=/w34 /h5 /c
-OBSS?=Tvinga installation av ny kod i startsektor för enhet /f %1 %2 /f %3 (%4:%5)?
+OBSS_FRAME=/w60 /h8 /c
+OBSS_OPTS=/w34 /h6 /c
+OBSS?=Tvinga installation av ny kod i startsektor /p för enhet /f %1 %2 /f %3 (%4:%5)?
 OBSSY="  Ja  - Skriv över MBR"
 OBSSN="  Nej - Tvinga inte MBR"
 
 # FDASK600 - Package group selection.
-PAC_FRAME=/w70 /h11 /c
-PAC_OPTS=/w58 /h8 /c
-PAC_FRAME_B=/w70 /h8 /c
-PAC_OPTS_B=/w54 /h5 /c
-PAC_FRAME_D=/w70 /h14 /c
-PAC_OPTS_D=/w58 /h11 /c
-PAC_FRAME_BD=/w70 /h11 /c
-PAC_OPTS_BD=/w54 /h8 /c
-PACS?=What /f %1 %2 /f %3 packages do you want to install?
+PAC_FRAME=/w72 /h11 /c
+PAC_OPTS=/w64 /h8 /c
+PAC_FRAME_B=/w72 /h8 /c
+PAC_OPTS_B=/w64 /h5 /c
+PAC_FRAME_D=/w72 /h14 /c
+PAC_OPTS_D=/w64 /h11 /c
+PAC_FRAME_BD=/w72 /h11 /c
+PAC_OPTS_BD=/w64 /h8 /c
 PACS?=Vilka /f %1 %2 /f %3 paket vill du installera?
 PACBO="  Rent DOS-system"
 PACBS="  Rent DOS-system, med källkod"
 PACAO="  Fullständig installation inklusive applikationer och spel"
-PACAS="  Fullständig installation med källkod""
+PACAS="  Fullständig installation med källkod"
 PACDO_ADV="  Valda binärpaket"
 PACDS_ADV="  Valda binärpaket med källkod"
 
