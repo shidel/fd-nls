@@ -7,9 +7,9 @@ sInTPA           DB     " i TPA, $"
 sInXMS           DB     " i XMS$"
 
 ; Meddelanden specifika f”r H†rdvarudrivrutin
-errAcient        DB     "DISPLAY: †tminston en EGA-adapter kr„vs f”r denna typ av h†rdvara", 0dH, 0aH, "$"
+errAcient        DB     "DISPLAY: †tminstone en EGA-adapter kr„vs f”r denna typ av h†rdvara", 0dH, 0aH, "$"
 errNoCGA         DB     "DISPLAY: CGA-adapter hittades ej", 0dH, 0aH, "$"
-errDrvSpecific   DB     "DISPLAY: Drivrutinsspecifikt kristiskt fel", 0dH, 0aH, "$"
+errDrvSpecific   DB     "DISPLAY: Drivrutinsspecifikt kritiskt fel", 0dH, 0aH, "$"
 
 ; Felmeddelanden f”r kommandoradstolkning
 SyntaxErrorStr:         DB      "Syntaxfel ($"

@@ -1,16 +1,16 @@
 *******************************************************************************
 V8Power Tools
 Copyright 2015-2021 Jerome Shidel
-Released under GPL v2.0 License.
+Sl„ppt under licensen GPL v2.0.
 *******************************************************************************
 
-Som att stoppa kraftern fr†n en V8 under huven p† DOS-kommandofiler.
+Som att stoppa kraften fr†n en V8 under huven p† DOS-kommandofiler.
 
 ===============================================================================
 
 V8Power Tools-projektet har designats i samarbete med
 Jim Hall f”r operativsystemet FreeDOS(TM) (http://www.freedos.org). Det „r
-avsett att expandera funktionalitetn f”r skrivs skrivna med kommandofiler och
+avsett att expandera funktionaliteten f”r skrivs skrivna med kommandofiler och
 f”r att tillhandah†lla dem med ett snyggare anv„ndargr„nssnitt med ”kad
 funktionalitet.
 
@@ -47,7 +47,7 @@ Begr„nsad kompatibilitet f”r avancerade funktioner (inte kommandost”d f”r "set /
     MS-DOS 6.2 och 6.22
     PC-DOS 7.0, 7.01 och 2000
     DR-DOS 7.03
-    DOSBox (i/o-omdirigering eller f”rfr†gan via stdut kommer INTE att fungera
+    DOSBox (i/o-omdirigering eller f”rfr†gan via stdout kommer INTE att fungera
         via det inbyggda DOSBox-skalet. De fungerar dock bra i DOSBox n„r ett
         kompatibelt skal s† som FreeCOM anv„nds)
     Windows 3.11-skal
@@ -58,7 +58,7 @@ Begr„nsad kompatibilitet f”r avancerade funktioner (inte kommandost”d f”r "set /
 
 V8Power Tools anv„ndning
 
-H„r lite graundl„ggande information kring alla verktyg och hur de fungerar.
+H„r lite grundl„ggande information kring alla verktyg och hur de fungerar.
 
     Flaggor, v„rden och hexadecimala nummer „r skiftl„gesok„nsliga /f vitt „r
     det samma som /F vITt.
@@ -118,6 +118,6 @@ Detta skulle kunna g”ra det sv†rt f”r verktyg som vecho att skriva ut flera
 rader p† en g†ng. M†nga verktyg s† som vecho, vstr, etc. har st”d f”r att
 l„sa in textresurser fr†n en fil med /T-flaggan. Generellt anv„nds /T-flaggan
 f”r att tillhandah†lla ”versatt text f”r en kommandofil. N„r den l„ses in fr†n
-fil „r V8Power Tools-vertyget begr„nsat till 10 kilobyte per rad. Ut”ver det
+fil „r V8Power Tools-verktyget begr„nsat till 10 kilobyte per rad. Ut”ver det
 kommer verktyget att hoppa ”ver †terst†ende text p† den raden. 10kbyte „r
 detsamma som 5 eller fler fulla sk„rmar text och det r„cker tillr„ckligt.

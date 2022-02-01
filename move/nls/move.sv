@@ -34,7 +34,7 @@
 1.11:Fil kan inte kopieras ovanp† sig sj„lv
 1.12:Kan inte flytta en fil till en katalog
 1.13:Fil finns redan
-1.14:Fil kan inte kopieras ovanp† sig sj„v
+1.14:Fil kan inte kopieras ovanp† sig sj„lv
 1.15:tkomst nekad
 1.16:Otillr„ckligt diskutrymme i destinationss”kv„g
 1.17:Otillr„ckligt diskutrymme

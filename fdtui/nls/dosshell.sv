@@ -4,7 +4,7 @@
 0.1:  Copyright (C) 2017-2021 Ercan Ersoy
 0.2:  FDTUI licensierat under GNU GPL version 2 och GNU GPL version 3.
 
-1.0:Kan inte initera FDOSTUI-subsystemet.
+1.0:Kan inte initiera FDOSTUI-subsystemet.
 1.1:\r\nTryck p† valfri tangent f”r att †terg† till DOSSHELL.
 
 2.0:Interna program

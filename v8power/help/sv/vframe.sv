@@ -20,4 +20,4 @@ Rita en f”nsterruta och flytta in mark”ren till dess ”vre v„nstra h”rn.
                 och Hidden.
     shadow      L„gg till en 3D-skugga.
     textbox     Rita en ram i textboxstil med lite utfyllnad och marginaler.
-    optionbox   Rite en alternativbox i g”md stil f”r alternativ inuti en ram.
+    optionbox   Rita en alternativbox i g”md stil f”r alternativ inuti en ram.

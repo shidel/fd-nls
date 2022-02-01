@@ -2,7 +2,7 @@ vcls [flaggor]
 
 Rensa sk„rmen, omr†det eller rad.
 
-    [inga]      Rensa skr„men med aktuellt textattribut.
+    [inga]      Rensa sk„rmen med aktuellt textattribut.
     n           S„tt textattribut till n.
     /A n        S„tt textattribut till n.
     /B f„rg     S„tt textattribut f”r bakgrunden till f„rg (eller v„rde).
@@ -18,5 +18,5 @@ Rensa sk„rmen, omr†det eller rad.
     /C kod      Rensa genom att fylla med ASCII-teckenkod.
     /X kolumn   Absolut sk„rmkolumn att b”rja rensa p†.
     /Y rad      Absolut sk„rmrad att b”rja resan p†
-    /W bredd    Total breed p† omr†de att rensa.
+    /W bredd    Total bredd p† omr†de att rensa.
     /H h”jd     Total h”jd p† omr†de att rensa.

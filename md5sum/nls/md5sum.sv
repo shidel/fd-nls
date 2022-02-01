@@ -1,8 +1,8 @@
 # Hj„lpmeddelande
 
 0.0:Anv„ndning: MD5SUM [/TBV] [/C [fil]] | [fil...]
-0.1:Genererar eller kontrollerar MD5 Message Digests
-0.2:    /C           kontrollera message digests (standard „r generera)
+0.1:Genererar eller kontrollerar MD5 kontrollsummor
+0.2:    /C           kontrollera kontrollsumma (standard „r generera)
 0.3:    /[-]V        (in-)aktivera utf”rligt l„ge (standard „r av)
 0.4:    /[-]L        (in-)aktivera LFN-anv„ndning (standard „r aktivt)
 0.5:    /[-]R[num]   (in-)aktivera rekursion (standard „r av), num „r
@@ -10,10 +10,10 @@
 0.7:    /[-]S        samma som /[-]R=]
 0.8:    /T           l„ser filer i textl„ge
 0.9:    /B           l„ser filer i bin„rt l„ge (standard; †sidos„tts av /T)
-0.10:    /M[:|=]l„ge  v„ljer digest-l„ge (SHA eller MD5)
-0.11:Indatan till /C ska vara en lista av meddelande digester och filnamn som
-0.12:skrivits ut p† standard ut av detta program n„r det genererat digester.
-0.13:Argumentet till /M ska vara ett digest-l„ge, vilket kan vara SHA, CRC32
+0.10:    /M[:|=]l„ge  v„ljer l„ge f”r kontrollsumma (SHA eller MD5)
+0.11:Indatan till /C ska vara en lista av kontrollsummor och filnamn som skrivits
+0.12:ut p† standard ut av detta program n„r det genererat kontrollsummor.
+0.13:Argumentet till /M ska vara ett l„ge, vilket kan vara SHA, CRC32
 0.14:SHA256 eller MD5, beroende p† hur MD5SUM kompilerats.
 
 # Diverse andra meddelanden

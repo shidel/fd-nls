@@ -1,4 +1,4 @@
-vstr [flaggoer]
+vstr [flaggor]
 
 Enkelt verktyg f”r str„ngbehandling. Matar ut resultat till STDOUT.
 

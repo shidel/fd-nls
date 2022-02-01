@@ -36,13 +36,13 @@ RETRY: (N)ytt f”rs”k
 S10
 ABORT: (A)vbryt
 S11
-FAIL: (F)orts„tt
+FAIL: (M)isslyckas
 ## keys associated with the actions
 S14 (compacted)
 KEYS_IGNORE: iI
-KEYS_RETRY:  rR
+KEYS_RETRY:  nN
 KEYS_ABORT:  aA
-KEYS_FAIL:   fF
+KEYS_FAIL:   mM
 ## embedded strings
 S12
 QUESTION:  ? %.
@@ -69,7 +69,7 @@ S15
 14: l†s fel
 15: felaktigt diskbyte
 16: FCB ej tillg„nglig
-17: delningsbuffer overflow
-18: codepage st„mmer inte
-19: ingen input
+17: ”verspill av delningsbuffert
+18: kodsida st„mmer inte
+19: ingen indata
 20: otillr„ckligt diskutrymme

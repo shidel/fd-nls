@@ -38,22 +38,22 @@
 2.15:               f”ruts„tt att destinationen „r en katalog.
 2.16:  /L           Lista filer utan att kopiera dem. (simulerar kopiering)
 2.17:  /M           Kopierar endast filer med arkivattributet satt och tar bort
-2.18:               akrivattributet f”r k„llfilerna efter att de kopierats.
+2.18:               arkivattributet f”r k„llfilerna efter att de kopierats.
 2.19:  /N           Undertrycker fr†ga om bekr„ftelse om att du vill ta bort
 2.20:               existerande destinationsfiler och hoppa ”ver dessa filer.
 2.21:  /P           Fr†gar om bekr„ftelse innan skapande av varje destinationsfil.
 2.22:  /Q           Tyst l„ge, visa inte kopierade filnamn.
-2.23:  /R           Skriv ”ver skrivskydddadee filer s† v„l som oskyddade filer.
+2.23:  /R           Skriv ”ver skrivskyddade filer s† v„l som oskyddade filer.
 2.24:  /S           Kopierar kataloger och underkataloger, f”rutom tomma.
 2.25:  /T           Skapar katalogtr„d utan att kopierar filer. Tomma kataloger
 2.26:               kommer inte att kopieras. F”r att kopiera dem anv„nd flaggan /E.
 2.27:  /V           Verifierar varje ny fil.
 2.28:  /W           V„ntar p† en knapptryckning innan start.
 2.29:  /Y           Undertrycker f”rfr†gan om att bekr„fta att du vill skriva ”ver
-2.30:               en existerande destinationsfil coh skriv ”ver dessa filer.
+2.30:               en existerande destinationsfil och skriv ”ver dessa filer.
 2.31:  /-Y          Fr†gar om bekr„ftelse att du vill skriva ”ver en existerande
 2.32:               destinationsfil.
-2.33:Flaggan /Y eller /N kan f”rist„llas i milj”variabeln COPYCMD.
+2.33:Flaggan /Y eller /N kan f”rinst„llas i milj”variabeln COPYCMD.
 2.34:Detta kan †sidos„ttas med /-Y p† kommandoraden.
 2.35:tryck p† retur f”r mer
 
@@ -67,7 +67,7 @@
 1.25:Otillr„ckligt diskutrymme i destinationss”kv„gen
 1.26:Kopierar
 
-# f”ljande tre anv„ns i shared.inc:
+# f”ljande tre anv„nds i shared.inc:
 25.0:Kan inte ”ppna k„llfil
 25.1:Kan inte skapa destination
 25.2:Skrivfel vid destination

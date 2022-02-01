@@ -4,7 +4,7 @@ G”r n†gonting f”r varje objekt i en lista.
 
     /S          Sl† p† list sortering.
     /L          Visa listinneh†ll.
-    /F fil      L„gg till objet till lista fr†n fil.
+    /F fil      L„gg till objekt till lista fr†n fil.
     /I          L„gg till objekt till lista fr†n standard in.
     /D spec     L„gg till filnamn som matchar spec till listan.
     /A +/-      Modifierar /d-flaggan till att aktivera alla filer/kataloger

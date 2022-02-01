@@ -47,7 +47,7 @@ RETURVŽRDEN
    ERRORLEVEL s„tts till positionen bland valen f”r den tangent
               som anv„ndaren trycker p†.
 
-AUTHOR
+F™RFATTARE
 
    Jim Hall, jhall@freedos.org
 

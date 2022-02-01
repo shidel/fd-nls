@@ -31,7 +31,7 @@ Kompilera:
 Bidrag:
 
   Om du vill bidra till detta projekt, kan du rapportera fel och g”ra
-  en pull-f”rfr†ga i FDTUI-akrivet.
+  en pull-f”rfr†ga i FDTUI-arkivet.
 
 
 Žndringslogg:
