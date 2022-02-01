@@ -1,3 +1,3 @@
 @ECHO OFF
-set FCCTY=001
-set FCKEY=858
+set FCCTY=041
+set FCKEY=850
