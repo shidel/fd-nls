@@ -1,6 +1,5 @@
 # Welcome Message
 WELCOME_DEF="V„lkommen till installationsprogrammet f”r " /fLightGreen %1 /fCyan %2 /fGray "."
-WELCOME_ADV="Welcome to the" /fLightRed "advanced" /fGray "installer for" /fLightGreen %1 /fCyan %2 /fGray /s- .
 WELCOME_ADV="V„lkommen till det " /fLightRed "avancerade" /fGray "installationsprogrammet f”r" /fLightGreen %1 /fCyan %2 /fGray /s- .
 WELCOME_0=/p
 WELCOME_1=/fLightGreen "%1" /fGray "„r ett komplett operatigsystem. Om du v„ljer att installera detta p†" /p "din dator, kan du komma att " /fLightRed /BlinkOn "skriva ”ver" /BlinkOff /fGray "operativsystemet dur har nu" /p "(till exempel Windows.)" /fGray
@@ -113,7 +112,6 @@ ERROR_Option="Ok„nd eller ogiltig kommandoradsflagga" /s- "`" /fWhite %1 /fGray 
 ERROR_NoCfgEnv="Kani nte identifiera grundl„ggande systemkonfiguration och s”kv„gsinst„llningar."
 ERROR_NotFreeCOM="Denna batchfil kr”ver FreeCOM eller kompatibelt skal f”r FreeDOS."
 ERROR_MissingFreeCOM="Kan inte hitta FreeDOS:s kommandoradsskal FreeCOM."
-ERROR_MissingAUTOEXEC="Unable to locate FreeDOS's startup batch file FDAUTO.BAT."
 ERROR_MissingAUTOEXEC="Kan inte hitta FreeDOS:s batchfil f”r uppstat FDAUTO.BAT."
 ERROR_MakeDir="Kani nte skapa katalog" /fWhite %1 /fGray /s- .
 ERROR_BackupCfg="Kan inte s„kerhetskopiera start- 'och/eller' konfigurationsfiler."
