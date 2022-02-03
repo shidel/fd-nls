@@ -26,7 +26,7 @@
 # A missing version is assumed as "#0".
 # If there is a percent sign (%) appended to the version, the printf()
 # format string %-style placeholders are compared for the strings. The
-# sign need to be set in DEFAULT.lng only.
+# sign need to be set in DEFAULT.LNG only.
 #
 # All lines after the label are the message until a line with a
 # single "." or "," in the first column.  The difference is the
@@ -171,7 +171,7 @@ L'allocation de m‚moire DOS a ‚chou‚.
 .
 
 :TEXT_ERROR_CANNOTPIPE
-Cannot pipe!  Ne peut ouvrir le fichier temporaire !
+Impossible d'‚tablir un pipe !  Impossible d'ouvrir le fichier temporaire !
 .
 
 :TEXT_ERROR_LONG_LINE_BATCHFILE#0%
@@ -667,7 +667,7 @@ Total des fichiers list‚s :
 %10s r‚pertoire(s)\
 .
 :TEXT_DIR_FTR_BYTES_FREE#0%
- %15s octets de libres
+ %15s octets de libre
 .
 :TEXT_DIR_DIRECTORY#0%
 R‚pertoire de %s
@@ -752,7 +752,7 @@ Fonctionnalit‚s pr‚sentes :
 ## Displayed within "?" <-> showcmd() to enumerate the included features
 ## Note the trailing single space
 :TEXT_SHOWCMD_FEATURE_ALIASES#1
-[aliases] \
+[alias] \
 .
 :TEXT_SHOWCMD_FEATURE_ENHANCED_INPUT#1
 [saisie ‚tendue] \
@@ -767,7 +767,7 @@ Fonctionnalit‚s pr‚sentes :
 [swapping] \
 .
 :TEXT_SHOWCMD_FEATURE_CALL_LOGGING#1
-[start logging] \
+[commencer la journalisation] \
 .
 :TEXT_SHOWCMD_FEATURE_LAST_DIR#1
 [dernier r‚pertoire] \
@@ -776,7 +776,7 @@ Fonctionnalit‚s pr‚sentes :
 [longs noms de fichiers] \
 .
 :TEXT_SHOWCMD_FEATURE_KERNEL_SWAP_SHELL#1
-[swap kernel] \
+[swap noyau] \
 .
 :TEXT_SHOWCMD_FEATURE_XMS_SWAP#1
 [swap XMS] \
@@ -827,7 +827,7 @@ commercialisation ou d'adaptation dans un but sp‚cifique. Prenez
 connaissance de la Licence Publique G‚n‚rale GNU pour plus de d‚tails.
 
 Envoyez les rapports de bugs … freedos-devel@lists.sourceforge.net.
-Les mises … jour sont disponibles sur http://freedos.sourceforge.net/freecom
+Les mises … jour sont disponibles sur https://github.com/FDOS/freecom
 .
 
 :TEXT_MSG_VER_REDISTRIBUTION
@@ -839,7 +839,7 @@ Software Foundation (version 2 ou bien toute autre version ult‚rieure
 choisie par vous).
 
 Envoyez les rapports de bugs … freedos-devel@lists.sourceforge.net.
-Les mises … jour sont disponibles sur http://freedos.sourceforge.net/freecom
+Les mises … jour sont disponibles sur https://github.com/FDOS/freecom
 .
 
 :TEXT_MSG_VER_DEVELOPERS
@@ -847,8 +847,8 @@ Les mises … jour sont disponibles sur http://freedos.sourceforge.net/freecom
 Le shell de commandes FreeDOS est d‚velopp‚ par de nombreux d‚veloppeurs,
 consultez le fichier HISTORY.TXT attach‚.
 
-Envoyer les rapports de bugs … freedos-devel@lists.sourceforge.net.
-Les mises … jour sont disponibles … http://freedos.sourceforge.net/freecom
+Envoyez les rapports de bugs … freedos-devel@lists.sourceforge.net.
+Les mises … jour sont disponibles sur https://github.com/FDOS/freecom
 .
 
 
@@ -1159,7 +1159,7 @@ Tapez ECHO sans paramŠtres pour afficher le r‚glage echo actuel.
 .
 
 :TEXT_CMDHELP_EXIT
-Quitte le shell FreeDOS sauf si charg‚ avec /P.
+Quitte le shell FreeDOS sauf s'il est charg‚ avec /P.
 
 EXIT
 .
@@ -1167,19 +1167,19 @@ EXIT
 :TEXT_CMDHELP_FOR
 Ex‚cute une commande sp‚cifi‚e pour chaque fichier dans un jeu de fichiers.
 
-FOR %%variable IN (set) DO commande [paramŠtres-de-commande]
+FOR %variable IN (set) DO commande [paramŠtres-de-commande]
 
-  %%variable  Sp‚cifie un paramŠtre rempla‡able.
+  %variable  Sp‚cifie un paramŠtre rempla‡able.
   (set)      Sp‚cifie un jeu d'un ou plusieurs fichiers.  Jokers accept‚s.
   commande   Sp‚cifie la commande … ex‚cuter pour chaque fichier.
   paramŠtres-de-commande
              Sp‚cifie des paramŠtres ou options pour la commande sp‚cifi‚e.
 
-Pour utiliser la commande FOR dans un programme batch, sp‚cifiez %%%%variable
-au lieu de %%variable.
+Pour utiliser la commande FOR dans un programme batch, sp‚cifiez %%variable
+au lieu de %variable.
 
 Par exemple :
-  FOR %%f IN (---d‚but--- a*.* ---fin---) DO ECHO - %%f -
+  FOR %f IN (---d‚but--- a*.* ---fin---) DO ECHO - %f -
 .
 
 :TEXT_CMDHELP_GOTO
@@ -1214,9 +1214,9 @@ IF [NOT] EXIST nom-de-fichier commande
   ERRORLEVEL nombre Sp‚cifie une condition vraie si le dernier programme
                     ex‚cut‚ a retourn‚ un code de sortie ‚gal ou sup‚rieur au
                     nombre sp‚cifi‚.
-  command           Sp‚cifie la commande … ex‚cuter si la condition est
+  commande          Sp‚cifie la commande … ex‚cuter si la condition est
                     satisfaite.
-  string1==string2  Sp‚cifie une condition vraie si les chaŒnes de texte
+  chaŒne1==chaŒne2  Sp‚cifie une condition vraie si les chaŒnes de texte
                     sp‚cifi‚es correspondent.
   EXIST nom-de-fich.Sp‚cifie une condition vraie a si le nom de fichier
                     sp‚cifi‚ existe.
@@ -1259,7 +1259,7 @@ Charge un programme au-dessus des premiers 64K de m‚moire et l'ex‚cute.
 LOADFIX [lecteur:][chemin]nom-de-fichier
 
 Utilisez LOADFIX pour charger un programme si vous avec re‡u le message
-"Fichier compress‚ corrompu" lorsque vous le chargez dans la m‚m. basse.
+"Fichier compress‚ corrompu" lorsque vous le chargez dans la m‚moire basse.
 .
 
 :TEXT_CMDHELP_MD
@@ -1497,10 +1497,10 @@ le disque serait-il satur‚ ? (%lu octets requis)
 # **_NO_END if the input file size is unknown.
 # Both must end in \r rather than \n!!
 :TEXT_COPY_COPIED_NO_END#0%
-%luKB/???KB copi‚ \r\
+%luKo/???Ko copi‚s \r\
 .
 :TEXT_COPY_COPIED#0%
-%luKB/%luKB copi‚\r\
+%luKo/%luKo copi‚s\r\
 .
 
 :TEXT_ERROR_FCOM_IS_DEVICE#0%
@@ -1545,4 +1545,7 @@ termin‚ par une erreur critique\
 .
 :TEXT_EXIT_REASON_3
 devenu r‚sident\
+.
+:TEXT_ERROR_EXE_CORRUPT
+fichier EXE corrompu\
 .
