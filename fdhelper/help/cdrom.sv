@@ -1,8 +1,8 @@
-cdrom [options]
+cdrom [flaggor]
 
 Ett kommandoverktyg f”r inl„sning av CD/DVD-drivrutin och disktill„gg.
 
-    [none]          F”rs”k att leta efter l„mplig drivrutin.
+    [inga]          F”rs”k att leta efter l„mplig drivrutin.
     search          G”r samma sak.
 
     help            Visa denna hj„lpsk„rm. ;)

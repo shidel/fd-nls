@@ -16,5 +16,5 @@
 2.4:Ogiltig etikett\n
 2.5:Inte en giltig enhet\n
 2.6:Du kan inte s„tta etikett p† en n„tverksenhet\n
-2.7:Du kan inte s„tta etikett p† en enhet som har\nanv„nder ASSIGN, JOIN eller SUBST.\n
+2.7:Du kan inte s„tta etikett p† en enhet som\nanv„nder ASSIGN, JOIN eller SUBST.\n
 2.8:Ogiltig enhet\n

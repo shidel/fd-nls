@@ -1,4 +1,4 @@
 FLASHROM
 
-FLASHROM is a universal tool for backing up and updating your system BIOS.
+FLASHROM „r ett universellt verktyg f”r att s„kerhetskopiera och uppdatera
 ditt system BIOS. Var f”rsiktigt vid anv„ndning d† det kan skada ditt system.

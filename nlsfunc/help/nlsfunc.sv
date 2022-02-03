@@ -11,15 +11,15 @@ FreeDOS NLSFUNC. L„gger till NLS-funktioner (Nationellt spr†k st”d).
 Exempel:
 
   CONFIG.SYS
-     COUNTRY=34,858,C:\COUNTRY.SYS
+     COUNTRY=41,850,C:\COUNTRY.SYS
 
   AUTOEXEC.BAT
-     LH DISPLAY CON=(EGA,858,2)
+     LH DISPLAY CON=(EGA,850,2)
      MODE CON CP PREP=((850) C:\CPI\EGA.CPI)
-     MODE CON CP PREP=((,437) C:\CPI\EGA.CPI)
+     MODE CON CP PREP=((,850) C:\CPI\EGA.CPI)
      LH NLSFUNC /Y
 
-V„xla sedan kodsidor med FreeCOM:S CHCP-kommando.
+V„xla sedan kodsidor med FreeCOM:s CHCP-kommando.
 
 Om du inte beh”ver „ndra kodsidor, hoppa bara ”ver MODE-raderna.
 

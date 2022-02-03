@@ -1,4 +1,4 @@
-# Detta „r den svenska ”vers„ttningn f”r FreeDOS Password v0.50
+# Detta „r den svenska ”vers„ttning f”r FreeDOS Password v0.50
 #
 #               Spr†k: Svenska
 #               Kodsida: 850 (Ascii 8bit)
@@ -27,7 +27,7 @@
 0.17:anv„nds redan.
 0.18: Flaggor:
 0.19: /adduser   L„gg till en ny anv„ndare till programmet
-0.20: /login     Anv„darnamn
+0.20: /login     Anv„ndarnamn
 0.21: /remuser   Ta bort en anv„ndare fr†n programmet
 0.22:har loggat in framg†ngsrikt
 0.23:har f”rs”kt att logga in

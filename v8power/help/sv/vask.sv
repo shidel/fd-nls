@@ -13,7 +13,7 @@ Fr†ga efter textinmatning.
     /C          N„r angivet och Ctrl-C trycks, avsluta med
                 errorlevel 200 och returnera standardv„rdet.
     /W bredd    sidos„tt standardbredd f”r raden.
-                (standrd „r fr†n mark”ren till slutet p† raden)
+                (standard „r fr†n mark”ren till slutet p† raden)
     /T fil ID   Sl† upp ID i fil och behandla den som en kommandoradsparameter.
                 Ytterligare parametrar som f”ljer p† denna flagga anv„nds f”r
 		att populera variablerna %1-%9 i textstr„ngen.

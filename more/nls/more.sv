@@ -7,7 +7,7 @@
 0.4:Tillg„ngliga tangenter
 0.5:Nn
 0.6:N„sta fil
-0.7:Qq
+0.7:Aa
 0.8:Avsluta program
 0.9:Mellanslag
 0.10:N„sta sida

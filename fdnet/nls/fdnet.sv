@@ -9,6 +9,5 @@ FOUND.VMWARE=/fLightGreen VMware-n„tverk identifierat. /fGrey /p
 NOTES.VMWARE=/p /fLightGreen Notera att du kan beh”va konfigurera VMware f”r /fYellow Bryggat /fLightGreen l„ge. /fGrey /p
 NO.NETWORK=/fLightRed 'N„tverk „r on†bart/otillg„ngligt.' /fGray
 USER.FDNETPD=/fLightGreen Anv„nd anpassade inst„llningar f”r paketdrivrutin i /fWhite FDNETPD.BAT /fGrey /p
-USER.DRIVER=/fLightGreen Using custom packet driver /fWhite %1 /fGrey /p
 USER.DRIVER=/fLightGreen Anv„nd anpassad paketdrivrutin /fWhite %1 /fGrey /p
 NO.HELP=Kan inte hitta hj„lpfiler.

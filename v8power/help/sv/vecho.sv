@@ -14,7 +14,7 @@ Mata ut text till sk„rmen.
     /S +        Infoga ett blanksteg mellan parametrar. (STANDARD)
     /S -        Mata inte ut blanksteg mellan flera parametrar.
     /C kod      Skriv ut en ASCII-teckenkod.
-    /R g†nger   Repterar n„sta skrivning g†nger antal g†nger. (1-65535)
+    /R g†nger   Repeterar n„sta skrivning g†nger antal g†nger. (1-65535)
     /I          Skriv ut text som v„ntar p† STDIN-enheten.
     /G          Skriv ut text globalt och ignorera alla ramar.
     /L          Skriv ut text lokalt med h„nsyn tagen till ramar. (STANDARD)
@@ -25,4 +25,4 @@ Mata ut text till sk„rmen.
                 Resterande parametrar som f”ljer denna flagga anv„nds f”r att
 		populera variablerna %1-%9 i textstr„ngen.
 
-    tba         (Still under development, more to be announced)
+    tba         (Fortfarande under utveckling, mer kommer att annonseras)

@@ -1,11 +1,11 @@
 vchoice [flaggor]
 
-V„lj ett alterntiv.
+V„lj ett alternativ.
 
 Returnerar en errorlevel f”r det val som valts baserat p† dess postnummer. Inte
 bokstaven/numret f”r alternativet. Om t.ex. det andra objektet v„ljs kommer
 det att returnera en errorlevel som „r 2. Oavsett vilket prefix (s† som C,
-1, R, etc). Jag rekommnderar ocks† personligen att anv„nda auto f”r en
+1, R, etc). Jag rekommenderar ocks† personligen att anv„nda auto f”r en
 upps„ttning alternativ som du prefixar med en bokstav eller ett nummer.
 
     [inga]      Utf”r alla automatiska standardinst„llningar.
@@ -25,7 +25,7 @@ upps„ttning alternativ som du prefixar med en bokstav eller ett nummer.
     /T sekunder F”rdr”jning i sekunder innan standardobjektet v„ljs automatiskt
                 (0-3600). Notera att „ven om anv„ndaren navigerar till ett annat
                 objekt, kommer original standardobjektet att vara valt n„r
-		tidsgr„ndsen l”per ut.
+		tidsgr„nsen l”per ut.
     /P n        Anv„nd pollningsl„ge och f”rv„lj objekt nummer n som aktuellt
                 val. Notera att „ndring av valet kommer att avsluta vchoice och
                 returnera 100 + nummer f”r aktuellt alternativ.

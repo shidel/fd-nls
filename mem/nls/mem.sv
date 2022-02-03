@@ -1,7 +1,7 @@
 # fatal errors
 0.0:Slut p† minne. Beh”ver ytterligare %ld byte.\n
 0.1:SYSTEMMINNE S™NDERTRASAT! (int 21.5803-fel)\n
-0.2:UMB-korruption: Kedja n†g inte toppen av l†gt RAM vid %dk. Sista=0x%x.\n
+0.2:UMB-korruption: Kedja n†r inte toppen av l†gt RAM vid %dk. Sista=0x%x.\n
 0.3:MCB-kedjan „r korrupt (ingen Z MCB efter sista M MCB, men %c vid seg 0x%x.\n
 0.4:Anv„nd /? f”r hj„lp\n
 0.5:ok„nd flagga: %s\n%s
@@ -10,10 +10,9 @@
 0.8:ok„nd flagga (f”rv„ntade ett '/'): %s\n%s
 0.9:F”rv„ntade ett v„rde efter /%s inte en annan flagga\n%s
 0.10:Internt fel: flagga '%s' har '%s' som ett prefix\nsamt ett annat lika l†ngt prefix
-0.11:Internet fel: flagga '%s' var en exakt matchning f”r tv†\nolika flaggor\n
+0.11:Internt fel: flagga '%s' var en exakt matchning f”r tv†\nolika flaggor\n
 0.12:Fel: flagga '%s' „r tvetydig - det „r en delmatchning f”r tv†\neller fler olika flaggor\n%s
 0.13:F”rv„ntade ett v„rde efter /%s\n%s
-0.14:Invalid option '%s': you must specify at least one letter of the\noption name
 0.14:Ogiltig flagga '%s': du m†ste ange †tminstone en bokstav fr†n\nflaggnamnet
 # misc messages
 1.0:Ok„nt operativsystem
@@ -51,7 +50,6 @@
 2.20:HMA „r inte tillg„ngligt via XMS-drivrutinen: ok„nt fel %02Xh\n
 2.21:HMA „r inte tillg„ngligt d† ingen XMS-drivrutin „r inl„st\n
 2.22:Minne n†bart via Int 15h
-2.23:Memory is not accessible using Int 15h (code %02xh)\n
 2.23:Minne „r inte n†bart via Int 15h (kod %02xh)\n
 # block types
 3.0:
@@ -125,7 +123,7 @@
 7.0:FreeDOS MEM version %s
 7.1:Visar m„nden anv„nt och fritt minne i ditt system.
 7.2:Syntax: MEM [inga eller flera av flaggorna nedan]
-7.3:/E          Rapporterar all infroamtionom Ut”kat minne
+7.3:/E          Rapporterar all information om Ut”kat minne
 7.4:/FULL       Full lista ”ver minnesblock
 7.5:/C          Klassificera moduler som anv„nder minne under 1 MB
 7.6:/DEVICE     Lista ”ver enhetsdrivrutiner som f”r n„rvarande finns i minne

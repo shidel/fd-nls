@@ -12,7 +12,7 @@ their built-in values.
 1:ogiltig parameter
 2:V„nligen v„nta...
 3:V„nta
-4:Tryck p† en tanget...
+4:Tryck p† en tangent...
 5:Grupp
 6:Paketmedia hittas ej!
 7:Endast installerade paket visas.
@@ -40,8 +40,8 @@ their built-in values.
 27:Mbyte
 28:filer
 29:fil
-30:k„llkods filer
-31:k„llkods fil
+30:k„llkodsfiler
+31:k„llkodsfil
 
 { Basic Load and save stuff }
 32:Inkludera paketborttagningar.
@@ -61,12 +61,12 @@ their built-in values.
 { Help Messages and such }
 50:Publicerat under GNU General Public License, Version 2.0
 51:Copyright 2016-2022 Jerome Shidel
-52:FDIMPLES tillhandah†lle ett l„ttanv„nt textgr„nssnitt f”r kommandoradspakethanteraren FDINST .
+52:FDIMPLES tillhandah†ller ett l„ttanv„nt textgr„nssnitt f”r kommandoradspakethanteraren FDINST.
 
 53:Visa denna hj„lpsk„rm.
 54:Visa fillista i paketbeskrivning.
-55:V„lj [INTE] att automatiskt uppdtera paket.
-56:Skapa filer med paketlista f”r anv„nding med FDI-byggverktyg.
+55:V„lj att [INTE] automatiskt uppdatera paket.
+56:Skapa filer med paketlista f”r anv„ndning med FDI-byggverktyg.
 57:Konfigurera FDI installerare BAS och ALLA paketlistor.
 
 58:Tangentbordskommandon f”r anv„ndargr„nssnitt:
@@ -80,7 +80,7 @@ their built-in values.
 66:Visa v„ntade „ndringar.
 67:Rensa alla v„ntade „ndringar.
 68:Skriv en anpassad paketlistfil som inneh†ller „ndringar.
-69:L„s en anpassad paketlistfil coh applicera „ndringar.
+69:L„s en anpassad paketlistfil och applicera „ndringar.
 70:L†t CPU:n sova n„r inget g”rs..
 71:Ange enhet eller s”kv„g att anv„nda som arkivk„lla.
 
@@ -91,7 +91,7 @@ their built-in values.
 100:BOOT=Uppstartsverktyg
 100:DEVEL=Utveckling
 100:EDIT=Textredigerare
-100:EMULATOR=Emualtorer
+100:EMULATOR=Emulatorer
 100:GAMES=Spel
 100:GUI=Grafiska skrivbord
 100:NET=N„tverk

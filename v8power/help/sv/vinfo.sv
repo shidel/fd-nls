@@ -40,12 +40,11 @@ V8Power Tools API och kan „ndras eller tas bort n„r som helst. Men eftersom
 jag anv„nder dem kanske de flyttas till egna verktyg.
 
     ASCII       Visa hela ASCII-tabellen
-    RAM         Dumpa allt konventionellt minne till Stdut.
+    RAM         Dumpa allt konventionellt minne till Stdout.
     /C *        skriv ut ascii-v„rden f”r resten av kommandoraden
     /R str„ng   S”k genom allt konventionellt minne efter en str„ng
     /U str„ng   Genoms”k minne (a000:0000 och upp) efter skiftl„gesok„nslig
                 str„ng
-    /J pos *    Return the ascii value of the character in pos on the remainder
     /J pos *    Returnera ascii-v„rdet f”r tecknet p† position i resten av
                 kommandoraden som en ERRORLEVEL. 0 returneras om positionen
                 inte hittades.

@@ -1,3 +1,3 @@
 DOSUTIL
 
-En samling anv„ndbara BATCH-filsverktyg
+En samling anv„ndbara kommandofilsverktyg

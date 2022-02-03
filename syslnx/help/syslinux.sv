@@ -11,13 +11,13 @@ COPY MENU.C32 C:\
 N„r du ser en kommandorad vid uppstart, skriv
 CHAIN.C32 FREEDOS=KERNEL.SYS
 
-Alternativt skapa en SYSLINUX.CFG, l„s dokumentationen noggrannt om detta!
-(i nedanst†ende exempel finns "CONTENTS" katalogen inuti ISOLINUX katalogen,
-och inom den ISLINUX.BIN CDROM-uppstartsinl„saren - utan emulering.
+Alternativt skapa en SYSLINUX.CFG, l„s dokumentationen noggrant om detta!
+(i nedanst†ende exempel finns "CONTENTS"-katalogen inuti ISOLINUX-katalogen,
+och inom den, ISOLINUX.BIN CDROM-uppstartsinl„sare - utan emulering.
 
 Se till att anv„nda "/" och "\" precis som nedan!
  
-F”r MEMDISK och ISOLINUX, l„s dokumentationen noggrannt!:
+F”r MEMDISK och ISOLINUX, l„s dokumentationen noggrant!:
 * mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents 
 * mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso contents 
 

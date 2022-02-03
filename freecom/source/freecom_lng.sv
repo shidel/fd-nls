@@ -93,15 +93,15 @@ Kan inte ”ppna tempor„r fil!
 .
 
 :TEXT_ERROR_LONG_LINE_BATCHFILE
-Rad #%ld i batch-fil '%s' „r f”r l†ng.
+Rad #%ld i kommandofil '%s' „r f”r l†ng.
 .
 
 :TEXT_ERROR_BFILE_VANISHED
-Batch-fil '%s' hittades inte.
+Kommandofil '%s' hittades inte.
 .
 
 :TEXT_ERROR_BFILE_LABEL
-Batch-fil '%s' inneh†ller inte etiketten '%s'.
+Kommandofil '%s' inneh†ller inte etiketten '%s'.
 .
 
 :TEXT_ERROR_DIRFCT_FAILED#1
@@ -188,7 +188,7 @@ FOR: IN saknas.
 .
 
 :TEXT_ERROR_MISSING_PARENTHESES#1
-En eller b†da paranteserna saknas.
+En eller b†da parenteserna saknas.
 .
 
 :TEXT_ERROR_DO_MISSING#1
@@ -264,11 +264,11 @@ Kunde inte skriva till filen '%s'
 .
 
 :TEXT_ERROR_LEADING_PLUS
-Parametrar f†r inte b”rja med hops„ttningstecknet '+'.
+Parametrar f†r inte b”rja med ihops„ttningstecknet '+'.
 .
 
 :TEXT_ERROR_TRAILING_PLUS
-Hops„ttningstecknet '+' f†r inte sp†ra parametrar.
+Ihops„ttningstecknet '+' f†r inte sp†ra parametrar.
 .
 
 :TEXT_ERROR_NOTHING_TO_DO
@@ -320,7 +320,7 @@ V„xlarna /C och /K f†r inte omslutas av citattecken, de ignorerades.
 
 :TEXT_INIT_FULLY_QUALIFIED#1
 S”kv„gen f”r COMMAND.COM m†ste vara fullst„ndig!
-Det betyder att den ska inneh†lla enhetsbokstav och b”rja med ett backslash.
+Det betyder att den ska inneh†lla enhetsbokstav och b”rja med ett bak†tsnedstreck.
 Till exempel: C:\\FDOS
 
 COMMAND.COM antar nu denna s”kv„g:
@@ -342,12 +342,12 @@ Enhet %c: svarar inte eller det interna minnet „r slut.
 .
 
 :TEXT_ERROR_KSWAP_ALIAS_SIZE
-Swappning misslyckades: Alias allokerar f”r mycket minne.
+Speglingen misslyckades: Alias allokerar f”r mycket minne.
 .
 
 
 :TEXT_ERROR_KSWAP_ALLOCMEM
-Swappning misslyckades: Kunde inte allokera bortre minnet.
+Speglingen misslyckades: Kunde inte allokera bortre minnet.
 .
 
 :TEXT_ERROR_ALIAS_OUT_OF_MEM#1
@@ -373,7 +373,7 @@ Kunde inte ladda Context modulen eller Critical Error-hanteraren.
 :TEXT_ERROR_CONTEXT_OUT_OF_MEMORY#1
 Context har slut p† minne.
 Om felet kvarst†r kan ni f”rs”ka med att ”ka n†gon intern buffer, 
-som tidigare-bufferten eller katalogstacken.
+som historikbufferten eller katalogstacken.
 .
 
 :TEXT_ERROR_CONTEXT_LENGTH#1
@@ -387,7 +387,7 @@ indikera korrupt minne eller felaktig uppskattning av minimistorleken p† context
 .
 
 :TEXT_ERROR_CONTEXT_AFTER_SWAP#1
-Context-informationen „r borta efter swappning. Context †terskapas men alla alias etc. har g†tt f”rlorade.
+Context-informationen „r borta efter spegling. Context †terskapas men alla alias etc. har g†tt f”rlorade.
 .
 
 #
@@ -395,11 +395,11 @@ Context-informationen „r borta efter swappning. Context †terskapas men alla alia
 #
 
 :TEXT_MSG_PAUSE#1
-Tryck p† valfi tangent f”r att forts„tta . . .\
+Tryck p† valfri tangent f”r att forts„tta . . .\
 .
 
 :TEXT_MSG_HISTORY_SIZE
-Tidigare-buffertens storlek „r %d byte.
+Historikbuffertens storlek „r %d byte.
 .
 
 :TEXT_MSG_DOSKEY
@@ -492,7 +492,7 @@ aabb   a   a       b    b
 JaNnAaQq{LF}{CR}{CBREAK}{ESC}
 aabbcccc   a   a       c    b
 Ctrl+Break.\r
-Avbryt batch-fil '%s' (Ja/Nej/Avbryt alla) ? \
+Avbryt kommandofil '%s' (Ja/Nej/Avbryt alla) ? \
 .
 
 # This prompt MUST include the pseudo key CBREAK!
@@ -640,13 +640,13 @@ Tillg„ngliga funktioner:
 [ut”kad inmatning] \
 .
 :TEXT_SHOWCMD_FEATURE_HISTORY#1
-[tidigare] \
+[historik] \
 .
 :TEXT_SHOWCMD_FEATURE_FILENAME_COMPLETION#1
 [filnamns-komplettering] \
 .
 :TEXT_SHOWCMD_FEATURE_SWAP_EXEC#1
-[swappning] \
+[spegling] \
 .
 :TEXT_SHOWCMD_FEATURE_CALL_LOGGING#1
 [start-loggning] \
@@ -655,13 +655,13 @@ Tillg„ngliga funktioner:
 [f”reg†ende katalog] \
 .
 :TEXT_SHOWCMD_FEATURE_KERNEL_SWAP_SHELL#1
-[kernel swap] \
+[k„rnspegling] \
 .
 :TEXT_SHOWCMD_FEATURE_XMS_SWAP#1
-[XMS swap] \
+[XMS-spegling] \
 .
 :TEXT_SHOWCMD_DEFAULT_TO_SWAP#1
-[swap som standard] \
+[spegling som standard] \
 .
 :TEXT_SHOWCMD_FEATURE_INSTALLABLE_COMMANDS#1
 [kommandon att installera] \
@@ -678,7 +678,7 @@ Tillg„ngliga funktioner:
 
 :TEXT_MSG_INIT_BYPASS_AUTOEXEC#1
 
-Tryck F8 f”r trace-l„ge, eller F5 f”r att hoppa ”ver %s... \
+Tryck F8 f”r sp†rningsl„ge, eller F5 f”r att hoppa ”ver %s... \
 .
 :TEXT_MSG_INIT_BYPASSING_AUTOEXEC
 Hoppar ”ver '%s'.
@@ -689,11 +689,11 @@ DOS version %u.%u
 .
 
 :TEXT_MSG_VER_EARLY_FREEDOS
-FreeDOS kernel (build 1933 eller tidigare)
+FreeDOS-k„rna (bygge 1933 eller tidigare)
 .
 
 :TEXT_MSG_VER_LATER_FREEDOS
-FreeDOS kernel version %d.%d.%d
+FreeDOS-k„rna version %d.%d.%d
 .
 
 
@@ -703,16 +703,16 @@ Copyright (C) 1994-2001 Tim Norman och andra.
 Detta program distribueras i hop om att det ska vara anv„ndbart, 
 men UTAN NGON GARANTI; utan ens p†st†dd garanti om att det PASSAR F™R ETT VISST SYFTE. Se GNU General Public License f”r mer detaljer.
 
-Bug-rapporter skickas till freedos-freecom@lists.sourceforge.net.
+Felrapporter skickas till freedos-freecom@lists.sourceforge.net.
 Uppdateringar finns tillg„ngliga p† http://freedos.sourceforge.net/freecom
 .
 
 :TEXT_MSG_VER_REDISTRIBUTION
 Copyright (C) 1994-2001 Tim Norman och andra.
 
-Detta program „r fri programvara; ni kan omdistribuera den och/eller „ndra den under reglerna definerade i GNU General Public License som det publiserats av Free Software Foundation; antingen version 2 av licensen, eller om ni ”nskar, den senaste.
+Detta program „r fri programvara; ni kan omdistribuera den och/eller „ndra den under reglerna definierade i GNU General Public License som det publicerats av Free Software Foundation; antingen version 2 av licensen, eller om ni ”nskar, den senaste.
 
-Bug-rapporter skickas till freedos-freecom@lists.sourceforge.net.
+Felrapporter skickas till freedos-freecom@lists.sourceforge.net.
 Uppdateringar finns tillg„ngliga p† http://freedos.sourceforge.net/freecom
 .
 
@@ -722,7 +722,7 @@ FreeDOS kommandoprompt har utvecklats av m†nga personer, se HISTORY.TXT f”r mer 
 
 Nuvarande prefekt „r Steffen Kaiser mailto:freecom@freedos.org
 
-Bug-rapporter skickas till freedos-freecom@lists.sourceforge.net.
+Felrapporter skickas till freedos-freecom@lists.sourceforge.net.
 Uppdateringar finns tillg„ngliga p† http://freedos.sourceforge.net/freecom
 .
 
@@ -737,13 +737,13 @@ Uppdateringar finns tillg„ngliga p† http://freedos.sourceforge.net/freecom
 Kommandoprompten h†ller p† att avslutas, trots att detta\r
 „r f”rbjudet (vanligtvis genom att anv„nda "/P" v„xeln).\r
 Ni m†ste starta om datorn, eller om prompten k”rs i en \r
-multitasking milj”, st„nga av processen manuellt.\r
+multitaskingsmilj”, st„nga av processen manuellt.\r
 .
 
 # Displayed during the initialization phase of FreeCOM, if its own
 # filename could not be determined.
 :TEXT_MSG_FREECOM_NOT_FOUND#1
-FreeCOMs programfil hittades inte.
+FreeCOM:s programfil hittades inte.
 Ni m†ste ange fullst„ndig s”kv„g till COMMAND.COM
 som f”rsta parameter i COMMAND, till exempel:
 C:\\FDOS
@@ -751,44 +751,44 @@ C:\\FDOS
 
 
 :TEXT_MEMORY_ENVIRONMENT#1
-Milj”segment    : max %5u byte; ledigt %5u byte
+Milj”segment       : max %5u byte; ledigt %5u byte
 .
 :TEXT_MEMORY_CONTEXT#1
-Kontext-segment : max %5u byte; ledigt %5u byte
+Kontext-segment    : max %5u byte; ledigt %5u byte
 .	
 :TEXT_MEMORY_HEAP#1
-Heap            : ledigt %5lu byte
+Heap               : ledigt %5lu byte
 .
 :TEXT_MEMORY_CTXT_ALIAS#1
-\tAlias         : gr„ns %5u byte, nuvarande %5u byte, %5u objekt
+\tAlias            : gr„ns %5u byte, nuvarande %5u byte, %5u objekt
 .
 :TEXT_MEMORY_CTXT_HISTORY#1
-\tTidigare      : gr„ns %5u byte, nuvarande %5u byte, %5u objekt
+\tHistorik         : gr„ns %5u byte, nuvarande %5u byte, %5u objekt
 .
 :TEXT_MEMORY_CTXT_DIRSTACK#1
-\tKatalogstack  : gr„ns %5u byte, nuvarande %5u byte, %5u objekt
+\tKatalogstack     : gr„ns %5u byte, nuvarande %5u byte, %5u objekt
 .
 :TEXT_MEMORY_CTXT_LASTDIR#1
-\tF”reg†ende kat : anv„nt  %5u byte, %5u objekt
+\tF”reg†ende kat   : anv„nt  %5u byte, %5u objekt
 .
 :TEXT_MEMORY_CTXT_BATCH#1
-\tBatch nesting  : anv„nt  %5u byte, %5u objekt
+\tKommandon„stling : anv„nt  %5u byte, %5u objekt
 .
 :TEXT_MEMORY_CTXT_SWAPINFO#1
-\tSwappinfo       : anv„nt  %5u byte, %5u objekt
+\tSpelingsinfo     : anv„nt  %5u byte, %5u objekt
 .
 
 
 ## CHCP
 :TEXT_ERROR_GET_CODEPAGE#1
-Kunde inte h„mta codepage fr†n systemet.
+Kunde inte h„mta kodsida fr†n systemet.
 .
 :TEXT_ERROR_SET_CODEPAGE#1
-Kunde inte „ndra aktuellt codepage.
+Kunde inte „ndra aktuellt kodsida.
 .
 :TEXT_DISPLAY_CODEPAGE#1
-Aktuell codepage „r %u.
-Systemets codepage „r: %u.
+Aktuell kodsida „r %u.
+Systemets kodsida „r: %u.
 .
 
 #
@@ -820,13 +820,13 @@ BREAK utan parametrar visar aktuellt BREAK-inst„llning.
 .
 
 :TEXT_CMDHELP_CALL#1
-Anropar ett batch-program fr†n ett annat.
+Anropar ett kommandofil fr†n ett annat.
 
-CALL [/S | /N] [/Y] [enhet:][s”kv„g]filnamn [batch-parametrar]
+CALL [/S | /N] [/Y] [enhet:][s”kv„g]filnamn [kommandofilsparametrar]
 
-  batch-parametrar   Anger kommandorads-information som                                            batch-programmet beh”ver.                    
-  /S tvingar, /N f”rbjuder swappning av FreeCOM.
-  /Y aktiverar trace-l„ge under utf”randet av kommandot.
+  kommandofilsparametrar   Anger kommandoradsinformation som                                             kommandofilen beh”ver.                    
+  /S tvingar, /N f”rbjuder spegling av FreeCOM.
+  /Y aktiverar sp†rningsl„ge under utf”randet av kommandot.
 .
 
 :TEXT_CMDHELP_CD
@@ -861,13 +861,13 @@ CDD utan parametrar visar aktuell enhet och katalog.
 .
 
 :TEXT_CMDHELP_CHCP
-Visar eller anger aktiv codepage-nummer.
+Visar eller anger nummer f”r aktiv kodsida.
 
 CHCP [nnn]
 
-  nnn   Anger ett codepage-nummer.
+  nnn   Anger ett nummer f”r en kodsida.
 
-CHCP utan parametrar visar aktivt codepage-nummer.
+CHCP utan parametrar visar nummer f”r aktiv kodsida.
 .
 
 :TEXT_CMDHELP_CLS
@@ -892,13 +892,13 @@ COMMAND [[enhet:]s”kv„g] [enhet] [/E:nnnnn] [/L:nnnn] [/U:nnn] [/P] [/MSG]
   /P              G”r den nya kommandoprompten permanent (kan ej avslutas).
   /MSG            Lagrar alla felmeddelanden i minnet (kr„ver /P).
   /LOW            Resident data beh†lls i det l†ga minnesomr†det.
-  /Y              Stegar igenom batch-programmet med /C eller /K.
+  /Y              Stegar igenom kommandofil med /C eller /K.
   /C kommando      Utf”r angivet kommando och †terg†r till programmet.
   /K kommando      Utf”r angivet kommando och forts„tter k”ra..
 .
 
 :TEXT_CMDHELP_COPY
-Koperar en eller flera filer till en annan plats
+Kopierar en eller flera filer till en annan plats
 
 COPY [/A | /B] k„lla [/A | /B] [+ k„lla [/A | /B] [+ ...]] [m†l
   [/A | /B]] [/V] [/Y | /-Y]
@@ -909,7 +909,7 @@ COPY [/A | /B] k„lla [/A | /B] [+ k„lla [/A | /B] [+ ...]] [m†l
   k„lla        Anger katalog och/eller filnamn f”r de nya filerna.
   /V           Verifierar att nya filer skrivs korrekt.
   /Y           Bekr„ftelse kr„vs inte f”r att skriva ”ver en befintlig fil
-  /-Y          Bekr„ftelse kr„vs f”r att skriva ”ven en befintlig fil
+  /-Y          Bekr„ftelse kr„vs f”r att skriva ”ver en befintlig fil
 
 V„xeln /Y kan vara f”rinst„lld i milj”variabeln COPYCMD.
 Det kan †sidos„ttas med /-Y i kommandoraden
@@ -971,18 +971,19 @@ DIR [enhet:][s”kv„g][filnamn] [/P] [/W] [/A[[:]attribut]]
  /S         Visar filer i angiven katalog och filerna i dess underkataloger.
  /B         Enkelt format (Ingen inledande information och sammanfattning).
  /L         Anv„nder gemener.
- /Y or /4   Visa 4-siffriga †rtal.
+ /Y eller /4 Visa 4-siffriga †rtal.
 
-V„xlar kanf”rinst„llas med milj”variabeln DIRCMD.  
+V„xlar kan f”rinst„llas med milj”variabeln DIRCMD.  
 sidos„tt dessa v„xlar med - (bindestreck), till exempel /-W.
 .
 
 :TEXT_CMDHELP_DOSKEY#1
-Det externa DOSKEY-verktyget finns inbyggt i FreeCOM.
-Anv„nd UPP- och NEDPIL f”r att †terkalla lagrade kommandon eller skriv HISTORY f”r att visa dem.
-Use cursor LEFT,& RIGHT and the END and HOME keys to navigate within
-the command line and toggle INSERT between overstrike and insert mode.
-Tryck TAB f”r att komplettera aktuellt ord som filnamn; tryck tv† g†nger f”r att visa alla matchande filer.
+Det externa DOSKEY-verktyget finns inbyggt i FreeCOM. Anv„nd UPP- och NEDPIL
+f”r att †terkalla historiken och HISTORY f”r att visa den. Anv„nd VNSTER-
+och H™GERPIL samt END och HOME f”r att navigera inom kommandoraden och
+anv„nd INSERT f”r att v„xla mellan ”verskrivnings- och infogningsl„ge.
+Tryck TAB f”r att komplettera aktuellt ord som filnamn; tryck tv† g†nger f”r
+att visa alla matchande filer.
 .
 
 :TEXT_CMDHELP_ORIGINAL_DOSKEY#1
@@ -1013,7 +1014,7 @@ UPP- och NEDPIL †terkallar kommandon
 
 Specialkoder ni kan anv„nda i DOSKey makrodefinitioner:
   $T     Kommando separator: till†ter flera kommandon i samma makro
-  $1-$9  Batch-parametrar: likv„rdiga med %1-%9 i batch-program
+  $1-$9  kommandofilsparametrar: likv„rdiga med %1-%9 i kommandofil
   $*     Utvidgad till allt som st†r p† kommandoraden efter makrots namn
 .
 
@@ -1043,42 +1044,43 @@ FOR %variabel IN (grupp) DO kommando [kommandoparametrar]
   kommandoparametrar
              Anger parametrar och/eller v„xlar f”r det angivna kommandot.
 
-F”r att anv„nda FOR kommandot i ett batch-program, ange %%variabel ist„llet
+F”r att anv„nda FOR kommandot i ett kommandofil, ange %%variabel ist„llet
 f”r %variabel.
 .
 
 :TEXT_CMDHELP_GOTO
-Styr kommandoprompten till en rad med givnen etikett i ett batch-program.
+Styr kommandoprompten till en rad med given etikett i ett kommandofil.
 
 GOTO etikett
 
-  etikett    Anger en textstr„ng som anv„nds i batch-programmet som etikett.
+  etikett    Anger en textstr„ng som anv„nds i kommandofil som etikett.
 
 Ni skriver etiketten f”r sig sj„lv p† en rad, med ett kolon f”re.
 .
 
 :TEXT_CMDHELP_HISTORY#1
-Tidigare-kommandot.
+Historikkommando.
 
 HISTORY [storlek]
 
-Utan "storlek" visas det aktuella inneh†llet i kommandopromptens tidigare-buffer.
-Med "storlek" s† „ndras tidigare-bufferns storlek.
+Utan "storlek" visas det aktuella inneh†llet i historikbufferten f”r
+kommandoraden.
+Med "storlek" s† „ndras storleken p† historikbufferten.
 .
 
 :TEXT_CMDHELP_IF
-K”r ett kommando i ett kommandoprogram om ett vilkor „r sant.
+K”r ett kommando i ett kommandoprogram om ett villkor „r sant.
 
 IF [NOT] ERRORLEVEL tal kommando
 IF [NOT] str„ng1==str„ng2 kommando
 IF [NOT] EXIST filnamn kommando
 
-  NOT               Anger att komandoprompten ska utf”ra kommandot bara 
-                    om vilkoret „r falskt.                   
-  ERRORLEVEL tal    Anger att vilkoret „r sant om det sista programmet som 
+  NOT               Anger att kommandoprompten ska utf”ra kommandot bara 
+                    om villkoret „r falskt.                   
+  ERRORLEVEL tal    Anger att villkoret „r sant om det sista programmet som 
                     k”rts returnerat en slutkod som „r lika med eller st”rre 
                     „n det angivna talet.
-  kommando          Anger ett kommando som ska utf”ras om vilkoret har uppn†tts.
+  kommando          Anger ett kommando som ska utf”ras om villkoret har uppn†tts.
   str„ng1==str„ng2  Anger att villkoret „r sant om de angivna textstr„ngarna 
                     „r lika.
   EXIST filnamn     Anger att villkortet „r sant om det angivna filnamnet existerar.
@@ -1146,7 +1148,7 @@ PROMPT [text]
 
   text    Best„mmer den nya promptens utseende.
 
-Prompten kan best† av valiga tecken och f”ljande specialtecken:
+Prompten kan best† av vanliga tecken och f”ljande specialtecken:
 
   $Q   = (lika med-tecken)
   $$   $ (dollartecken)
@@ -1217,11 +1219,11 @@ SET [/C] [/P] [variabel=[str„ng]]
   variabel  Anger milj”variabelns namn.
   str„ng    Anger en serie tecken som tilldelas variabeln
 
-* Om ingen str„ng anges tas angiven m”lj”variabel bort.
+* Om ingen str„ng anges tas angiven milj”variabel bort.
 
 SET utan parametrar visar aktuella milj”variabler.
 
-/C tvingar SET att beh†lla information om gemener och VERSALER i variabelnamn; som standard s† omvanlas alla gemener till versaler om milj”variabeln inte redan finns, g”r den det s† beh†ller den sitt namn.
+/C tvingar SET att beh†lla information om gemener och VERSALER i variabelnamn; som standard s† omvandlas alla gemener till versaler om milj”variabeln inte redan finns, g”r den det s† beh†ller den sitt namn.
 
 /P Fr†gar anv„ndaren efter en str„ng som sen ges till variabeln.
 .
@@ -1262,9 +1264,9 @@ Visar FreeDOS kommandoprompt version och annan information.
 
 VER [/R] [/W] [/D] [/C]
 
- /R         Visar kernel-version och annan information.
+ /R         Visar k„rnversion och annan information.
  /W         FreeDOS kommandoprompt garanti.
- /D         FreeDOS kommandoprompt omdistributions information.
+ /D         FreeDOS kommandoprompt omdistributionsinformation.
  /C         FreeDOS kommandoprompt medhj„lpare.
 .
 
@@ -1285,10 +1287,10 @@ FDDEBUG [ON | OFF | fil]
 
 Skriv FDDEBUG utan parameter f”r att visa nuvarande inst„llningar
 f”r utmatning av debug-information.
-Om en fil specifiseras kommer all debug-information att skickas till den filen;
+Om en fil specificeras kommer all debug-information att skickas till den filen;
 utmatningen l„ggs till sist i filen, om den redan finns. De speciella
-namnen "stdout" och "stderr" kan anv„ndas f”r att vidarebefodra utmatningen 
-till standard out eller standard error stream.
+namnen "stdout" och "stderr" kan anv„ndas f”r att vidarebefordra utmatningen 
+till str”mmen standard out eller standard error.
 .
 
 :TEXT_CMDHELP_VOL
@@ -1301,11 +1303,11 @@ VOL [enhet:]
 Visar en lista p† kommandon och funktioner som finns tillg„ngliga i prompten.
 
 ?
-?command [parameter]
+?kommando [parameter]
 
 Den f”rsta varianten visar tillg„ngliga interna kommandon och funktioner.
 Den andra kommer fr†ga om det givna kommandot ska k”ras som om
-trace-l„ge vore aktiverat.
+sp†rningsl„ge vore aktiverat.
 
 .
 

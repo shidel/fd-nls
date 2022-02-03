@@ -1,6 +1,6 @@
 # Language: Swedish (CP850)
 # Translation courtesy of Martin Str”mberg <ams@ludd.luth.se>.
-# Needs translation for 1.13, 1.14, 1.15, 1.16, 1.17, 1.18, 2.12, 2.14, 2.15, 3.0, 3.1, 3.2, 3.3
+# Translation updated by Sebastian Rasmussen <sebras@gmail.com>.
 #### Help        ####
 1.0:J„mf”r tv† filer eller set av filer och visar skillnaderna mellan dem
 1.1:FC [optioner] [drive1:][path1]filnamn1 [drive2][path2]filnamn2 [optioner]
@@ -15,17 +15,17 @@
 1.10: /T    Expandera inte tabbar till mellanslag
 1.11: /W    Packa tabbar och mellanslag vid textj„mf”relse
 1.12: /X    Visa inte kontextrader vid textj„mf”relse
-1.13: /LBn  Set the maximum number of consecutive different ASCII lines to n
-1.14: /nnn  Set the minimum number of consecutive matching lines to nnn
-1.15:       for comparison resynchronization
-1.16: /R    Show a brief final report (always active when using /S)
-1.17: /Q    Don't show the list of differences
-1.18: /U    Show the filenames of the files without a correspondent
+1.13: /LBn  S„tter maximalt antal konsekutiva olika ASCII-rader till n
+1.14: /nnn  S„tt minsta antal konsekutiva matchande rader till nnn
+1.15:       f”r omsynkronisering vid j„mf”relse
+1.16: /R    Visa en kort slutrapport (alltid aktiv n„r /S anv„nds)
+1.17: /Q    Visa inte listan ”ver skillnader
+1.18: /U    Visa filnamnen f”r filer som inte har n†gon motsvarighet
 #### Messages    ####
 2.0:Ogiltig option: %s
 2.1:F”r m†nga filnamn
 2.2:Ogiltigt filnamn
-2.3:Ingen fil specifierad
+2.3:Ingen fil specificerad
 2.4:Varning: filerna „r olika stora!
 2.5:J„mf”relsen avslutad efter %d feltr„ffar
 2.6:Inga skillnader
@@ -34,12 +34,12 @@
 2.9:Fel vid ”ppnande av fil %s
 2.10:J„mf”r %s och %s
 2.11:Ingen s†dan fil eller katalog
-2.12:Resync failed: files too different
+2.12:Omsynkronisering misslyckades: filerna „r allt f”r olika
 2.13:Filerna „r olika stora
-2.14:The files are different
-2.15:File %s has no correspondent (%s)
+2.14:Filerna „r olika
+2.15:Fil %s har ingen motsvarighet(%s)
 #### Report text ####
-3.0:Compared %d files
-3.1: in %d directories
-3.2:%d files match, %d files are different
-3.3:%d files have no correspondent
+3.0:J„mf”rde %d filer
+3.1: i %d kataloger
+3.2:%d filer matchar, %d filer skiljer sig
+3.3:%d filer har ingen motsvarighet

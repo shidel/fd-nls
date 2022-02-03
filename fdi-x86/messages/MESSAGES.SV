@@ -28,7 +28,7 @@ FreeDOS Alpha 1 sl„pptes 16:e September 1994. Det „r mer „n 25 †r sedan.
 
 Du kan ocks† dela med dig av $OS_NAME$ till andra! Du kan titta p† och redigera
 v†r k„llkod eftersom alla $OS_NAME$ program distribueras under licensen GNU
-General Public License eller liknande licenser f”r ”ppen k„lkod.
+General Public License eller liknande licenser f”r ”ppen k„llkod.
 *
 
 $OS_NAME$ har alltid handlat om att utvecklare samlas f”r att skriva kod.
