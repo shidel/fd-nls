@@ -11,7 +11,6 @@ INC_CONT=%2 (forts„tter)
 INC_DIR=%2
 INC_TEXT=inb„ddad text: %2 %8
 INC_HEAD=text: %2 %8
-USE_COMP=enabled %0 compression pass-through
 USE_COMP=aktiverade %0-kompressionsgenomg†ng
 
 VERB_PRE_SCAN=genoms”kte % objekt att l„gga till arkiv
@@ -140,7 +139,7 @@ HELP_39=
 HELP_40=Kompressiongenomg†ng:
 HELP_41=
 HELP_42=  %0p ?      Aktivera kompressionsgenomg†ng (GZ, kanske andra senare)
-HELP_42=
+HELP_43=
 
 ; Reserved for future use
 ; HELP_00=  %0u        update existing archive
@@ -163,7 +162,6 @@ BAD_EMB=Kan endast ange en texfil med meddelanden †t g†ngen.
 BAD_MSG=Meddelande not "%1" f”r stor. Trunkerad till %2.
 BAD_CMP=Kompressionsgenomg†ng "%2" st”ds inte
 BAD_TMP=TEMP-katalog kr„vs.
-ER_UNK=error code #%0, unspecified error with "%1" %2
 ER_UNK=felkod #%0, ok„nt fel med "%1" %2
 ER_2=Fil "%1" hittades inte.
 ER_3=S”kv„g f”r fil "%1" hittades inte.
