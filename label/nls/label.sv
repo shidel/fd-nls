@@ -4,7 +4,7 @@
 0.3:  [enhet:]  Anger vilken enhet du vill s„tta etikett p†\n
 0.4:  [etikett] Anger den nya etiketten du vill s„tta p† enheten\n
 0.5:  /?        Visar detta hj„lpmeddelande\n
-1.0:Ta bort aktuell volymetikett (Y/N)? 
+1.0:Ta bort aktuell volymetikett (J/N)? 
 1.1:Volymetikett (11 tecken, ENTER f”r ingen)? 
 1.2:Volym i enhet %c saknar etikett\n
 1.3:Volym i enhet %c „r %s\n
