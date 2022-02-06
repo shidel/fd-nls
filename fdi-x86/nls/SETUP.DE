@@ -13,8 +13,8 @@ HRULE=/fDarkGray /x 0xC4 /fGray
 CONTINUE=/p "Wollen Sie wirklich weitermachen" /c32
 REBOOT=/p "Wollen Sie jetzt neu starten" /c32
 
-AUTO_YES=/s- [J,N]? /fWhite J /fGray
-AUTO_NO=/s- [J,N]? /fWhite N /fGray
+AUTO_YES="[J,N]?" /fWhite "J" /fGray
+AUTO_NO="[J,N]?" /fWhite "N" /fGray
 
 ABORTED=/fLightRed "Die Installation von %1 %2 wurde abgebrochen." /e /fGray /bBlack
 
@@ -26,13 +26,13 @@ PARTITION_DONE=/p "Sie mÅssen Ihren Computer neu starten, damit das neue Partiti
 
 FORMAT="Das Laufwerk" /fWhite %1 /fGray "scheint nicht formatiert zu sein."
 FORMAT_DEF="Wollen Sie ihr Laufwerk formatieren" /c32
-FORMAT_ADV="Wie wollen Sie Ihr Laufwerk formatieren" /s- /c32 ( /fWhite "v" /fGray "oll," /c32 /fWhite "s" /fGray "chnell," /c32 /fWhite "n" /fGray "icht)?" /c32
+FORMAT_ADV="Wie wollen Sie Ihr Laufwerk formatieren" /s- /c32 ( /fWhite "F" /fGray "ull," /c32 /fWhite "Q" /fGray "uick," /c32 /fWhite "N" /fGray "ot)?" /c32
 
 FILESYSTEM_TEST="Teste Dateisystem auf Laufwerk" /fWhite %1 /s- /fGray .
 INSERT_DISKETTE="FÅgen Sie eine Diskette" /fWhite #%1 /fGray "(%2) in" /fWhite %3 /fGray "ein."
 PRESS_KEY="DrÅcken Sie eine Taste, um fortzufahren."
 
-TARGET_ASK="Wohin wollen Sie installieren?" /fLightGreen %1 /fGray /c32
+TARGET_ASK="Wohin wollen Sie installieren" /fLightGreen %1 /s- /fGray "?" /c32
 TARGET_PROMPT=/fWhite /bBlue %1
 TARGET_BAD=/fLightRed "UngÅltiges Laufwerk angefordert. Installation auf Diskette nicht mîglich."
 
