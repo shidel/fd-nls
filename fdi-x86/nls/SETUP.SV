@@ -15,7 +15,7 @@ REBOOT=/p "Vill du starta om nu" /c32
 
 AUTO_YES="[J,N]?" /fWhite "J" /fGray
 AUTO_NO="[J,N]?" /fWhite "N" /fGray
-AUTO_FMT="[F,S,I]" /fWhite "S" /fGray
+AUTO_FMT=/s- "[F,S,I]?" /fWhite "S" /fGray
 
 PROMPT_YESNO=/s JN
 PROMPT_FMT=/s FSI

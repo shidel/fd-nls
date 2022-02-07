@@ -15,7 +15,7 @@ REBOOT=/p ¨Quiere reiniciar ahora? /c32
 
 AUTO_YES=/s- [S,N]? /fWhite S /fGray
 AUTO_NO=/s- [S,N]? /fWhite N /fGray
-AUTO_FMT="[F,Q,N]" /fWhite "Q" /fGray
+AUTO_FMT=/s- "[F,Q,N]?" /fWhite "Q" /fGray
 
 PROMPT_YESNO=/s SN
 PROMPT_FMT=/s FQN
