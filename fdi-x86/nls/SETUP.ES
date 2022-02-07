@@ -13,8 +13,12 @@ HRULE=/fDarkGray /x 0xC4 /fGray
 CONTINUE=/p ¨Quiere continuar? /c32
 REBOOT=/p ¨Quiere reiniciar ahora? /c32
 
-AUTO_YES=/s- [Y,N]? /fWhite Y /fGray
-AUTO_NO=/s- [Y,N]? /fWhite N /fGray
+AUTO_YES=/s- [S,N]? /fWhite S /fGray
+AUTO_NO=/s- [S,N]? /fWhite N /fGray
+AUTO_FMT="[F,Q,N]" /fWhite "Q" /fGray
+
+PROMPT_YESNO=/s SN
+PROMPT_FMT=/s FQN
 
 ABORTED=/fLightRed Instalaci¢n de %1 %2 abortada. /e /fGray /bBlack
 
