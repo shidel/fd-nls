@@ -226,7 +226,7 @@ function process_line () {
 
     local index=0
     local id sha field
-    local data storage finished piece xpiece
+    local data storage finished piece xpiece spiece
     unset data
     local data
 
@@ -243,7 +243,11 @@ function process_line () {
 			xpiece=0
 			line="${line:1}"
 			while [[ ${xpiece} -lt ${#line} ]] ; do
+				spiece="${line:${xpiece}}"
+				spiece="${spiece%%\"*}"
+				xpiece=$(( ${xpiece} + ${#spiece} ))
 				piece="${line:${xpiece}:2}"
+				echo '? ${piece}'
 				if [[ "${piece}" == '""' ]] ; then
 					(( xpiece++ ))
 				elif [[ "${piece:0:1}" == '"' ]] ; then
@@ -251,7 +255,7 @@ function process_line () {
 				fi
 				(( xpiece++ ))
 			done
-			piece="${line:0:$(( ${xpiece} ))}"
+			piece="${line:0:${xpiece}}"
 			line="${line:$((${xpiece} + 1 ))}"
 			field="${field}${piece}"
 		fi
@@ -260,7 +264,7 @@ function process_line () {
 		field="${field}${piece}"
 		field="${field//\"\"/\"}"
 
-        # echo ">> ${field}"
+        echo ">> ${field}"
 
         if [[ "${CSV_FIELD[${index}]}" == 'id' ]] ; then
             id="${field}"
@@ -274,6 +278,8 @@ function process_line () {
         data[${index}]="${field}"
 
     done
+
+	return 0
 
     RECENT_ID="${id}"
 
@@ -503,6 +509,6 @@ function maintest () {
 
 }
 
-main
-# maintest
+# main
+maintest
 exit $?
