@@ -1,0 +1,104 @@
+TITLE=Enhanced Disk Image Creation Tool, Version %_ %s
+COPYRIGHT=Copyright (c) 2018, Jerome Shidel
+
+;LANGUAGE=Deutsche Übersetzung durch Robert Riebisch, Umlaute W.Spiegl
+
+HELP_00="Informationen zu EDICT-Optionen: "
+HELP_01=
+HELP_02="  /d <Laufwerk>    Legt Laufwerksbuchstaben fest"
+HELP_03="  /f <Dateiname>   Legt Dateinamen fest"
+HELP_04="  /p <Durchläufe>  Begrenzt Anzahl zusätzlicher Durchläufe"
+HELP_05=
+HELP_06="  /t <Typ>         Übersteuert BIOS und wählt Laufwerkstypeinstellung"
+HELP_07="                   (0=360 KB, 1=1,2 MB, 2=720 KB, 3=1,44 MB)"
+HELP_08=
+HELP_09="  /c <Anzahl>      Übersteuert Anzahl Zylinder/Spuren (0-1023)"
+HELP_0a="  /r <Anzahl>      Übersteuert Anzahl Seiten/Köpfe pro Spur (0-255)"
+HELP_0b="  /s <Anzahl>      Übersteuert Anzahl Sektoren pro Seite (0-63)"
+HELP_0c="  /b <Anzahl>      Übersteuert Anzahl Bytes pro Sektor (1-8192)"
+HELP_0d=
+HELP_0e="  /h               Zeigt Hilfeinformationen an"
+
+; Mögliche zukünftige Ergänzungen zu EDICT sollten ebenfalls übersetzt
+; werden
+
+HELP_??="  /T             Teste nur lesen"
+HELP_??="  /w             Schreibe Image auf Diskette"
+HELP_??="  /v             Prüfe Diskette"
+HELP_??="  /i             Nur Information"
+HELP_??="  /o             Nur ein Sektor"
+HELP_??="  /q             Ruhemodus"
+HELP_??="  /e             Von existierender Imagedatei fortfahren"
+HELP_??="  /m <filename>  Mounte Imagedatei"
+HELP_??="  /u             Unmounte Imagedatei"
+HELP_??="  /l             Liste Festplattentypen auf"
+
+INVALID=%r "Ungültiger Befehl: `" %s "'"
+BAD_INT="Ungültiger numerischer Wert."
+BAD_VAL="Wert außerhalb des Bereiches."
+
+DRIVE=Laufwerk %_ %c: (ID 0x %b ) %_
+DRIVE_TYPE=%_ (ID 0x %b )
+DRIVE_TYPE_00=Unbekannter Laufwerkstyp
+DRIVE_TYPE_01='5,25"'-360-KB-Laufwerk
+DRIVE_TYPE_02='5,25"'-1,2-MB-Laufwerk
+DRIVE_TYPE_03='3,5"'-720-KB-Laufwerk
+DRIVE_TYPE_04='3,5"'-1,44-MB-Laufwerk
+DRIVE_TYPE_05=Sonstiger Laufwerkstyp
+
+DRIVE_SPEC=%i %_ Byte, %_ %I %_ Sektoren, %_ %I %_ Spuren, %_ %I %_ Seite(n)
+
+PASS_LIMIT=Bis zu %_ %i %_ weitere Durchläufe zum Lesen der Diskette erlaubt
+BUFFERS=%i %_ Byte Diskettenpuffer, %_ %i %_ Byte Spurergebnispuffer
+
+PASS=Diskettenlesedurchlauf # %i. %_ %i %_ Sektor(en) verbleibend.
+
+READ_FAST=LESE SPUR: %_ %i, KOPF: %_ %i
+READ_SLOW=LESE SPUR: %_ %i, KOPF: %_ %i, SEKTOR: %_ %i
+
+FAILED=Abbilderstellung fehlgeschlagen.
+ABORTED=Abbilderstellung abgebrochen.
+COMPLETED=Abbilderstellung abgeschlossen.
+
+; Mit einer kleinen Änderung sind diese BIOS- und DOS-Fehlermeldungstexte
+; eine abgespeckte Version von denen, die online von einem großartigen DOS
+; und ASM verfügbar sind
+; Ressource unter http://stanislavs.org/helppc/idx_interrupt.html
+
+BErr=%r "BIOS-Fehlercode: 0x" %b %_ --> %_
+BErr_01=Fehlerhafter Befehl an Treiber übergeben
+BErr_02=Adressmarkierung nicht gefunden oder fehlerhafter Sektor
+BErr_03=Schreibschutzfehler
+BErr_04=Sektor nicht gefunden
+BErr_05=Zurücksetzen der Festplatte fehlgeschlagen
+BErr_06=Diskette gewechselt oder entfernt
+BErr_07=Fehlerhafte Festplattenparametertabelle
+BErr_08=DMA-Überlauf
+BErr_09=DMA-Zugriff über 64 KiB-Grenze
+BErr_0a=Fehlerhaftes Festplattensektorkennzeichen
+BErr_0b=Fehlerhafter Festplattenzylinder
+BErr_0c=Nicht unterstützte Spur
+BErr_0d=Ungültige Anzahl von Sektoren bei Festplattenformatierung
+BErr_0e=Festplattensteuerungsdatenadressmarkierung entdeckt
+BErr_0f=Festplatten-DMA-Schlichtungsebene außerhalb des Bereiches
+BErr_10=ECC/CRC-Fehler beim Lesen
+BErr_11=Wiederherstellbarer Festplattendatenfehler, Daten korrigiert durch ECC
+BErr_20=Controllerfehler
+BErr_40=Positionierungsfehler
+BErr_80=Laufwerk nicht bereit
+BErr_aa=Festplatte nicht bereit
+BErr_bb=Undefinierter Festplattenfehler
+BErr_cc=Festplattenschreibfehler auf ausgewähltem Laufwerk
+BErr_e0=Festplattenstatusfehler
+BErr_ff=Abtastungsvorgang fehlgeschlagen
+
+DErr=%r "DOS-Fehlercode: 0x" %b %_ --> %_
+DErr_01=Ungültige Funktion
+DErr_02=Datei nicht gefunden
+DErr_03=Pfad nicht gefunden
+DErr_04=Zu viele geöffnete Dateien
+DErr_05=Zugriff verweigert
+DErr_06=Ungültiges Handle
+DErr_08=Unzureichender Speicher
+DErr_0f=Ungültiges Laufwerk angegeben
+DErr_15=Laufwerk nicht bereit
