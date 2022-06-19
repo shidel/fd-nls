@@ -1,0 +1,129 @@
+
+                        STAMP 2.0
+
+
+Inhalt
+--------
+
+        1. Features
+        2. Errorlevel
+        3. Noch zu erledigen
+        4. Historie
+        5. Author
+
+
+1. Features
+-----------
+
+- Datum/Uhrzeit für Dateien ändern
+- Attribute für Dateien und Verzeichnisse ändern
+- Datum/Uhrzeit und Attribute für Dateien und Verzeichnisse vergleichen
+- Datums-/Uhrzeitoptionen ermöglichen das gleichzeitige Abrufen von Werten
+  aus dem aktuellen und dem Dateidatum / -uhrzeit mit expliziten Zahlen
+- komplexer Datum/Uhrzeit-Vergleich mit aktuellem Datum/Uhrzeit, ebenso
+  mit Datei
+- Datum/Uhrzeit in Formaten, die den COUNTRY-Einstellungen entsprechen
+- UNC- und NetWare-Pfade erlaubt
+- Ziele in einer Befehlszeile multiplizieren
+- erweiterte Wildcards: Namen können beliebig viele '*' enthalten, auch
+  als '?'; "name" bedeutet "name.", aber "*" bedeutet "*.*"
+- Optionszeichen ('/' oder '-') Autosense
+- Option zum Einschließen von Verzeichnisnamen in die Wildcard-Suche
+- Option zum Verarbeiten von Dateien und Verzeichnissen in allen Unterver-
+  zeichnissen des Ziels
+- Option zum Verarbeiten einer Datei mit einer Liste von Zielen; fehlendes
+  Argument bedeutet Standardeingabe
+
+
+
+
+2. Errorlevel
+-------------
+
+0   - Datum/Uhrzeit und Attributeinstellung oder Vergleichen erfolgreich
+1   - Vergleichen (eines von) ist nicht erfolgreich
+2   - Fehler beim Dateizugriff oder beim Setzen von Dateidatum/-uhrzeit/
+      -attribut
+128 - Ungültige oder diplizierte (?) Option
+129 - inkompatible Optionen, keine Ziele oder ungültige Argumente
+130 - Interner Fehler (nicht genügend Speicher oder zu tiefes Verzeichnis)
+
+
+3. Noch zu erledigen
+--------------------
+
+- Listen der verarbeiteten Dateien anzeigen
+- Vergleiche/kopiere Datum/Uhrzeit/Attribute Datei-mit-Dateien
+- Datum/Uhrzeit/Attribute Datei-zu-Dateien vergleichen/kopieren
+- Vergrößerung/Verkleinerung für Datums-/Zeitfelder
+- größerer/kleinerer Vergleich für Attribute
+
+4. Historie
+-----------
+
+        1.0 [16.02.98]
++ Erste Version
+
+        1.1 [19.02.98]
++ Akzeptiert jetzt Datum/Uhrzeit in Formaten, die den COUNTRY-Einstellungen
+  entsprechen
+
+        1.2 [21.02.98]
+* Leicht verbesserte Interpretation von weggelassenen Feldern und Argumenten
+* Verringerte Größe der ausführbaren Datei
++ Eine -a Option hinzugefügt um Datei- und Verzeichnisattribute ändern
+  zu können
+
+        1.3 [21.02.98]
+
++ Akzeptiert jetzt mehrere Ziele in einer Kommandozeile
++ Die -a Option kann jetzt im Vergleich verwendet werden
+
+        1.4 [26.02.98]
+# Die Ausführung stoppt nicht mehr, wenn bei einer Datei ein Fehler gefunden
+  wurde, sondern arbeitet für die nächsten Ziele weiter.
+# Die Ausgabe wird jetzt nicht auf die Konsole dupliziert, wenn sie zur
+  Datei umgeleitet wird
+* -@ Option umbeannt in -c
++ Datum/Uhrzeit von Verzeichnissen können jetzt auch im Vergleich überprüft
+  werden
++ -r ermöglicht die Verarbeitung von Verzeichnissen durch Wildcards
+
+        1.41 [28.02.98]
++ Zeichen für Optionen, die beim ersten Auftreten von '/' oder '-'
+  automatisch ausgewählt werden
++ Ein einzelnes Optionszeichenpaar ("--" oder "//") stoppt die Suche nach
+  weiteren Optionen
++ Ein einzelnes Optionszeichen wird als Standardeingabe interpretiert
+- Das Hinzufügen eines Optionszeichens vor dem Namen mit demselben Zeichen
+  am Anfang zum Ermöglichen eines solchen Namens als Argument verursacht
+  jetzt eine Fehlermeldung; um willkürliche Namen zu umgehen fügen Sie
+  vorher ein einzelnes Paar von Optionszeichen zuvor ein.
+  Englischer Text hierzu (sorry, habe es nicht begriffen!):
+- Adding option character before name with same character at start for
+  enabling such name as argument now causes error message; for passing
+  arbitrary names insert alone pair of option characters before
+
+        1.5 [14.03.98]
+# Bugfix: Unter einigen Umständen wurden explizit korrekt übergebene
+  Tageswerte 30 und 31 nicht akzeptiert.
+# Bugfix: Zielname jetzt entsprechend den COUNTRY-Einstellungen in
+  Großbuchstaben
++ /s verarbeitet Dateien und Verzeichnisse auch in allen Unterverzeichnissen
+  des Ziels
+
+
+        2.0 [14.04.98]
+# Bugfix: Beim Lesen der Dateizeit das vorzeichenrichtigste Bit der Sekunden
+  verloren
++ /@, um die Datei mit der Liste der Ziele zu verarbeiten
+* Einzelnes Optionszeichen spezifiziert jetzt Standardeingabe nur als
+  /@ Option Argument
+* Größe der ausführbaren Datei verringert
++ DIET zum Komprimieren von Dateien verwendet
+
+
+5. Author
+---------
+                                        Arkady Belousov
+                                        E-mail: ark@mos.ru

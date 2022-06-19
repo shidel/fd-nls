@@ -1,0 +1,163 @@
+GNU Wget 1.11.1, ein nicht interaktiver Netzwerk-Retriever.
+Aufruf: wget.exe [OPTION]... [URL]...
+
+Obligatorische Argumente für lange Optionen sind auch für kurze Optionen
+obligatorisch.
+
+Startup:
+  -V,  --version              Zeigt die Version von Wget und beendet.
+  -h,  --help                 Zeigt die Hilfe.
+  -b,  --background           Geht nach dem Starten in den Hintergrund.
+  -e,  --execute=COMMAND      Einen Befehl im Stil von `.wgetrc'ausführen.
+
+Logging und Eingabedatei:
+  -o,  --output-file=FILE     Protokolliert Nachrichten in FILE.
+  -a,  --append-output=FILE   Hängt Nachrichten an FILE an.
+  -d,  --debug                Gibt umfangreiche debug-Informationen aus.
+       --wdebug               Gibt WATT-32 debug-Ausgaben aus.
+  -q,  --quiet                Ruhig (keine Ausgabe).
+  -v,  --verbose              Ausführliche Ausgabe (Standardeinstellung).
+  -nv, --no-verbose           Schaltet ausführliche Ausgabe ab, ist aber
+                              nicht ganz ruhig.
+  -i,  --input-file=FILE      Lädt in FILE gefundene URLs herunter.
+  -F,  --force-html           Eingabedatei als HTML behandeln.
+  -B,  --base=URL             Stellt relativen Links in -F/-i-Datei die
+                              URL voran.
+
+Download:
+  -t,  --tries==NUMBER           Setzt Anzahl Versuche auf NUMBER (0=unbegrenzt).
+       --retry-connrefused       Erneut versuchen, auch bei Ablehnung der
+                                 Verbindung.
+  -O   --output-document=FILE    Schreibt Dokumente in FILE.
+  -nc, --no-clobber              Übergeht Downloads die in vorhandene
+                                 Dateien heruntergeladen würden.
+  -c,  --continue                Stellt teilweise heruntergeladene Datei fertig.
+       --progress=TYPE           Wählt Typ der Fortschrittsanzeige.
+  -N,  --timestamping            Ruft Dateien nicht erneut ab außer sie sind
+                                 neuer als die lokalen.
+  -S,  --server-response         Antwort des Druckservers.
+       --spider                  Lädt nichts herunter.
+  -T,  --timeout=SECONDS         Setzt alle Timeoutwerte auf SECONDS.
+       --dns-timeout=SECS        Setzt Timeoutwert für die DNS-Suche auf SECS.
+       --connect-timeout=SECS    Setzt Verbindungstimeout auf SECS.
+       --read-timeout=SECS       Setzt Lesetimeout auf SECS.
+  -w,  --wait=SECONDS            Wartet SECONDS zwischen den Abrufen.
+       --waitretry=SECONDS       Warte 1.. SECONDS zwischen Abrufwiederholung.
+       --random-wait             Wartet 0...2*WAIT Sekunden zwischen Abrufen.
+       --no-proxy                Schaltet Proxy explizit aus.
+  -Q,  --quota=NUMBER            Setzt Abrufkontingent auf NUMBER.
+       --bind-address=ADDRESS    Bindet auf lokalem Host (Hostname oder IP)
+                                 an ADRESS.
+       --limit-rate=RATE         Begrenzt Downloadrate auf RATE.
+       --no-dns-cache            Deaktiviert das Cachen von DNS Lookups.
+       --restrict-file-names=OS  Begrenzt Zeichen in Dateinamen auf die vom
+                                 OS zugelassenen.
+       --ignore-case             Ignoriert beim Dateiabgleich Groß- / Klein-
+                                 schreibung.
+  -4,  --inet4-only              Verbindet nur mit IPv4-Adressen.
+  -6,  --inet6-only              Verbindet nur mit IPv6-Adressen.
+       --prefer-family=FAMILY    Verbindet zuerst mit den Adressen der ange-
+                                 gebenen Familie, entweder IPv6, IPv4 oder
+                                 keiner.
+       --user=USER               Setzt sowohl den FTP- als auch den HTTP-
+                                 Benutzer auf USER
+       --password=PASS           Setzt sowohl den FTP- als auch das HTTP-
+                                 Passwort auf PASS.
+
+Verzeichnisse:
+  -nd  --no-directories           Erstellt keine Verzeichnisse.
+  -x,  --force-directories        Erzwingt Erstellung von Verzeichnissen.
+  -nH, --no-host-directories      Erstellt keine Hostverzeichnisse.
+       --protocol-directories     Verwendet in Verzeichnissen den Protokoll-
+                                  namen.
+  -P,  --directory-prefix=PREFIX  Speichert Dateien unter PREFIX/...
+       --cut-dirs=NUMBER          Ignoriert NUMBER Remoteverzeichniskompo-
+                                  nenten.
+
+HTTP Optionen:
+       --http-user=USER      Setzt http-Benutzer auf USER.
+       --http-passwd=PASS    Setzt das HTTP-Passwort auf PASS.
+       --no-cache            Verbietet Server-gecachte Daten.
+  -E,  --html-extension      Speichert HTML-Dokumente mit html-Erweiterung.
+       --ignore-length       Ignoriert das "Inhaltslänge" Header-Feld.
+       --header=STRING       Fügt STRING zwischen die Header ein.
+       --max-redirect        Pro Seite maximal erlaubte Weiterleitungen.
+       --proxy-user=USER     Setzt USER als Proxy-Benutzername.
+       --proxy-passwd=PASS   Setzt PASS als Proxy-Passwort.
+       --referer=URL         Schließt "Referenz: URL" Header in HTTP-
+                             Anfrage ein.
+       --save-headers        Speichert die HTTP-Header in einer Datei.
+  -U,  --user-agent=AGENT    Identifiziert als AGENT anstelle von Wget/VERSION.
+       --no-http-keep-alive  Deaktiviert HTTP-Keep-Alive (persistente
+                             Verbindungen).
+       --no-cookies          Verwendet keine Cookies.
+       --load-cookies=FILE   Lädt Cookies vor der Sitzung aus FILE.
+       --save-cookies=FILE   Speichert Cookies nach der Sitzung in FILE.
+       --keep-session-cookies  Lädt und speichert (nicht permanent) Session-
+                             Cookies
+       --post-data=STRING    Verwendet die POST-Methode, sendet STRING als
+                             Daten.
+       --post-file=FILE      Verwendet die POST-Methode, sendet Inhalte von
+                             FILE.
+      --content-disposition  Beachten Sie den Content-Disposition-Header,
+                             wenn Sie lokale Dateinamen auswählen (EXPERIMENTELL).
+       --auth-no-challenge   Sendet grundlegende HTTP Authentifizierungs-
+                             information ohne zuerst auf die Serverauf-
+                             forderung zu warten.
+
+HTTPS (SSL/TLS) Optionen:
+       --secure-protocol=PR     Wählt sicheres Protokoll wie z.B. auto,
+                                SSLv2, SSLv3, und TLSv1.
+       --no-check-certificate   Überprüft das Serverzertifikat nicht.
+       --certificate=FILE       Client-Zertifikatsdatei=FILE.
+       --certificate-type=TYPE  Client-Zertifikatstyp, PEM oder DER.
+       --private-key=FILE       Private Schlüsseldatei.
+       --private-key-type=TYPE  Privater Schlüsseltyp, PEM oder DER.
+       --ca-certificate=FILE    Datei mit dem Bündel von CA's.
+       --ca-directory=DIR       Verzeichnis, in der die Hashliste der CA's
+                                gespeichert ist.
+       --random-file=FILE       Datei mit Zufallsdaten zum "seeding des SSL
+                                PRNG" (Erstellen eines Startwerts für SSL
+                                Pseudo-Zufallszahlengenerators).
+       --egd-file=FILE          Datei die den EGD Sockel mit Zufallsdaten
+                                benennt.
+
+FTP Optionen:
+       --ftp-user=USER         Setzt den FTP-Benutzer auf USER.
+       --ftp-password=PASS     Setzt FTP-Passwort auf PASS.
+       --no-remove-listing     Entfernt `.listing' Dateien nicht.
+       --no-glob               Schaltet FTP Dateinamen"globbing" aus.
+       --no-passive-ftp        Deaktiviert den "passiven" Transfermodus.
+       --retr-symlinks         Wenn rekursierend, erhält "verlinkt-mit"-
+                               Dateien (keine Verzeichnisse).
+       --preserve-permissions  Behält Remote-Dateiberechtigungen.
+
+Rekursiver Download:
+  -r,  --recursive          Spezifiziert den rekursiven download.
+  -l,  --level=NUMBER       max. Rekursionstiefe (inf oder 0 für unendlich).
+       --delete-after       Löscht Dateien nach dem Download lokal.
+  -k,  --convert-links      Läßt Links in heruntergeladenem HTML-Code auf
+                            lokale Dateien verweisen.
+  -K,  --backup-converted   Sichert Datei X vor dem Konvertieren als X.orig.
+  -m,  --mirror             Shortcut Option äquivalent zu -N -r -l inf
+                            --no-remove-listing.
+  -p,  --page-requisites    Lädt alle für die Anzeige der HTML-Seite
+                            benötigten Bilder herunter.
+       --strict-comments    Schaltet die strikte (SGML) Behandlung von HTML-
+                            Kommentaren ein.
+
+Rekursives Akzeptieren/Ablehnen:
+  -A,  --accept=LIST                CSV-LISTE akzeptierter Erweiterungen.
+  -R,  --reject=LIST                CSV-LISTE abgelehnter Erweiterungen.
+  -D,  --domains=LIST               CSV-LISTE akzeptierter Domänen.
+       --exclude-domains=LIST       CSV-LISTE abgelehnter Domänen.
+       --follow-ftp                 Folge FTP-Links aus HTML-Dokumenten.
+       --follow-tags=LIST           CSV-Liste von verfolgten HTML-Tags.
+       --ignore-tags=LIST           CSV-LISTE von ignorierten HTML-Tags.
+  -H,  --span-hosts                 Geht bei Rekursion zu fremden Hosts.
+  -L,  --relative                   Folgt nur relativen Links.
+  -I,  --include-directories=LIST   LIST erlaubter Verzeichnisse.
+  -X,  --exclude-directories=LIST   LIST ausgeschlossener Verzeichnisse.
+  -np, --no-parent                  Geht nicht zum Überverzeichnis.
+
+Maile Fehlerberichte und Vorschläge an <bug-wget@gnu.org>.
