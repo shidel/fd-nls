@@ -1,0 +1,56 @@
+; updated by W. Spiegl
+NAME
+
+   CHOICE - Wartet darauf, dass der Benutzer eine Taste aus einer
+   Auswahlliste drückt
+
+SYNOPSIS
+
+   CHOICE [/B] [/C[:]choices] [/N] [/S] [/T[:]c,nn] [text]
+
+OPTIONEN
+
+ /B Gibt bei Aufforderung einen Warnton (Piepton) aus.
+
+ /C[:]choices (z.B.: choice /c:1234)
+    Gibt in der Eingabeaufforderung zulässige Werte an. Wenn dies
+    angezeigt wird, werden die Werte durch Kommas getrennt und
+    sie erscheinen in Klammern ([]), gefolgt von einem Fragezeichen.
+    Wenn Sie den Schalter /C nicht angeben, wird die Auswahl Y/N
+    als Standard verwendet. Der Doppelpunkt (:) ist optional.
+
+ /N
+   Bewirkt, dass CHOICE die Eingabeaufforderung nicht anzeigt. Der
+   Text vor der Aufforderung wird aber trotzdem angezeigt. Wenn Sie
+   den Schalter /N angeben, sind die angegebenen Werte weiterhin
+   gültig.
+
+ /S
+   Bewirkt, dass zwischen Groß- und Kleinschreibung unterschieden wird.
+   Ohne den /S-Schalter akzeptiert CHOICE sowohl eingegebene Groß- als
+   auch Kleinbuchstaben.
+
+ /T[:]c,nn
+     Bewirkt, dass die Auswahl für eine bestimmte Anzahl von Sekunden
+     angehalten wird, bevor standardmäßig ein vorbestimmter Wert 
+     verwendet wird. Die Werte für den Schalter /T sind wie folgt:
+
+       c   Gibt das Zeichen an, das nach nn Sekunden angezeigt werden
+           soll. Das Zeichen muss in der Auswahl enthalten sein,
+           die durch den /C Schalter spezifiziert ist.
+
+       nn  Gibt die Anzahl der Sekunden an, die angehalten werden soll.
+           Akzeptable Werte sind von 0 bis 99. Wenn 0 angegeben ist,
+           gibt es vor der Verwendung des Standardwertes keine Pause.
+
+   text
+     Die anzuzeigende Zeichenfolge
+
+RETURN VALUE
+
+   ERRORLEVEL ist auf den Offset der Taste eingestellt, die
+   der Benutzer bei der Auswahl drückt.
+
+AUTHOR
+
+   Jim Hall, jhall@freedos.org

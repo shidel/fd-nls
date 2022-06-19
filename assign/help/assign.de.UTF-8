@@ -1,0 +1,108 @@
+; updated (modified) by W. Spiegl
+
+ ASSIGN (1)                  08 August 1995                  ASSIGN (1)
+
+
+
+     NAME:
+
+          assign - Leitet ein Laufwerk in ein anderes Laufwerk um
+
+
+     SYNOPSIS:
+
+          assign [/m] [/shadow] /?
+          assign [/m] [/shadow] /status
+          assign [/m] [/shadow] /u
+          assign [/m] [/shadow] [{ lw1[:]=lw2[:] }]
+
+
+     BESCHREIBUNG:
+
+          Assign leitet Zugriffe auf ein Laufwerk an ein anderes Laufwerk
+          weiter. Das beeinflußt nur die Laufwerksbuchstaben, jedoch nicht
+          den Pfadanteil, was Assign von Subst unterscheidet, z.B.:
+          Mit den aktuellen Pfaden:
+          "C:\FREEDOS" und "B:\TEMP" und nach den Kommandos:
+          "assign B=C" und "cd C:\", zeigt der Pfad:
+          "B:" ebenfalls nach "C:\".
+          Wohingegen nach  den  Kommandos:
+          "subst B: ." und "cd C:\",
+          der Pfad "B:" immernoch nach "C:\FREEDOS" zeigt.
+          Da dieses Programm kein TSR ist, sollten Sie es nicht mittels
+          "LOADHIGH" oder "LH" laden.
+
+
+     OPTIONEN:
+
+       /? Zeigt einen kleinen Hilfebildschirm an.
+       /SHADOW Diese Option versteckt den residenten Tail von Assign
+          vor allzuleichtem Entdecktwerden. Das beinhaltet:
+          1) Der den residenten Teil enthaltenen Speicherblock wird
+          als Teil des Systems markiert.
+          2) Der Installationstest liefert "Nicht installed, jedoch
+          nicht erlaubt zu installieren" zurück, und nicht
+          "Installiert" bzw. "Nicht installiert".
+          Falls der residente Teil mit dieser Option installiert
+          wurde, erzeugen alle weiteren Rufe von Assign eine Warnung,
+          wenn die Option fehlt. Die Aktion wird trotz allem ausgeführt.
+          Diese Option kann bis zu /SH abgekürzt werden.
+       /STATUS Zeigt alle umgewiesenen Laufwerksbuchstaben in
+          folgender Form an:
+          lw1: => lw2:
+          wobei das Laufwerk lw1 in das Laufwerk lw2 umgesetzt wird.
+          Falls keine Umweisung besteht, wird auch nichts angezeigt.
+          Ist der residente Teil noch nicht geladen, wird er auch
+          nicht geladen. Diese Option kann bis zu /S abgekürzt werden.
+       /u Entfernt eine zuvor installierte Kopie von Assign.
+
+
+                                      -1-
+
+
+     ASSIGN (1)                  08 August 1995                  ASSIGN (1)
+
+
+       lw1[:]=lw2[:] Dies definiert, daß Laufwerk lw1 zukünftig zum
+          Laufwerk lw2 zeigen soll. Die Doppelpunkte ':' sind
+          optional. Zwischen den Laufwerksbuchstaben, den Doppelpunkten
+          und dem Gleichheitszeichen sind keine Leerzeichen erlaubt.
+          Falls der residente Teil noch nicht geladen ist, wird er
+          ohne weitere Notiz geladen.
+       /m Bestimmt, daß der residente Teil, falls möglich, im UMB
+          Bereich angelegt werden.
+       ohne Option Falls weder /STATUS noch /u noch eine Umleitung auf
+          der Kommandozeile angegeben ist, werden alle Umleitungen
+          gelöscht. Als Resultat zeigen wieder alle Laufwerksbuchstaben
+          auf sich selbst.
+
+
+     BEKANNTE BUGS:
+
+       o  Da Assign kein TSR ist, kann ein Laden mit "LOADHIGH" oder
+          "LH" fehlschlagen. Möchten Sie den residenten Teil hochladen,
+          müssen Sie die Option /m verwenden.
+
+       o  Aus Kompatibilitätsgründen zum  Original-Assign folgen die
+          Optionen /STATUS und /SHADOW nicht  dem  Standard für Optionen.
+
+       o  Später installierte TSRs oder ein zweiter Kommandoprozessor
+          (Shell) können das Entfernen von Assign verhindern. In
+          diesem Fall verbleibt Assign weiterhin aktiv im Speicher.
+          Um Auswirkungen zu unterbinden, sollten Sie ASSIGN ohne
+          Argument aufrufen.
+
+       o  Einige Shells verhindern, daß ASSIGN seine residente Kopie
+          im Speicher wiederfindet, wenn ASSIGN von einer sekundären
+          Shell installiert wird.
+
+     SEE ALSO
+          Subst, Join
+
+     CONTRIBUTERS
+                                 Steffen Kaiser
+                             Mittelstraße 112/B115
+                         53757 Sankt Augustin - Menden
+                             Deutschland - Germany
+
+                    e-mail: Steffen.Kaiser@FH-Rhein-Sieg.DE

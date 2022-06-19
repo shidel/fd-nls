@@ -1,0 +1,888 @@
+Dieser deutsche Text wurde von Wilhelm Spiegl an die neuere englische
+Version 0.41d angepaßt (bzw. ergänzt) da diese sehr stark von der alten
+deutschen Übersetzung abweicht.
+Die change.log finden Sie am Ende der Datei.
+
++-----------------------------------------------------------------+
+| DOSLFN - Ein Real-Mode-Treiber für lange Dateinamen, der in DOS │
+| fehlt. Mit voller Unicode- und DBCS-Unterstützung!              │             |│
++-----------------------------------------------------------------+
+
+
+ANSTOß:
+
+Natürlich brauchte ich ein solches Programm seit 1996, aber damals
+dachte ich, irgendjemand wird's ja wohl schreiben. Also wartete ich,
+und wartete... und fand erst 2000 ein halbwegs geeignetes Programm,
+LFNDOS.EXE, geschrieben 1998, also nicht so alt wie erwartet.
+
+Dieses Programm wurde für die Funktionalität mit Win9x COMMAND.COM
+geschrieben und funktioniert nicht mit meinem bevorzugten Dateimanager,
+dem Volkov Commander (man kann nicht in Verzeichnisse mit langem Namen
+hineinwechseln). Und es ist SOO langsam und verbraucht außerdem 64 KB
+Speicher, viel zu viel! Das Programm kann keine Dateien und Verzeich-
+nisse mit Kleinbuchstaben erstellen (warum??), es gibt keine Möglich-
+keit, den Schlangen zu entkommen (Tilden, analog dem Registrierungs-
+schlüssel NameNumericTail=0), und nicht zuletzt unterstützt es Umlaute
+nicht korrekt. 
+
+
+DER EIGENE VERSUCH:
+
+Natürlich muss ein solches Programm in Assembler geschrieben sein.
+Mit dem netten Turbo Assembler habe ich den nicht so häufig verwendeten
+IDEAL-Modus verwendet um unter anderem lokale Strukturelemente zu
+ermöglichen (z.B. Geschwindigkeit).
+Dieses Programm sollte die oben erwähnten Fehler nicht enthalten. Und
+es sollte lange Dateinamen auf CD (Joliet) unterstützen, was zum
+Wiederherstellen von Backups unter einfachem DOS sehr nützlich ist. Ein 
+einigermaßen gutes Werkzeug dafür sind ODIs LFN-Tools, aber das sind
+keine Treiber.
+
+Wichtig ist mir zumindest die Nützlichkeit in Verbindung mit dem Volkov
+Commander, dem beste Norton Commander-Klon, denke ich. Unter anderem
+unterstützt er lange Dateinamen, ist viel kleiner und schneller als das
+Original und hat einige nette Funktionen. (Leider gibt es einige
+Nachteile, wie fehlende Hotkeys für Verzeichnissortierung oder eine
+Computerverknüpfungsfunktion.)
+
+Beim Programmieren musste ich feststellen, dass es nicht so einfach
+ist, einen narrensicheren Treiber mit maximal vollem Funktionsumfang zu
+schreiben wie ich auf den ersten Blick gedacht hatte. Kein Wunder,
+dass ich so einen nicht früher gefunden habe - wirklich schwer zu
+programmieren.
+
+Ziel war es zunächst, so wenig Speicher wie möglich zu verbrauchen,
+ca. 4KB. Jetzt bin ich weit, weit von diesem Ziel entfernt, und ich bin
+mit weniger als 12KB zufrieden. Im Vergleich zu 64KB ist das gut genug.
+
+Eine weitere Hürde bestand darin, die Semantik der langen Windows9x-
+Dateinamen zu verstehen. Was "cd .." sollte sein, ist allgemein bekannt,
+"cd ..." ist neu mit 9x und wechselt zwei Verzeichnisebenen nach oben,
+"cd ...." drei und so weiter. (mir war die Tatsache bekannt, dass die
+Verzeichniseinträge "." und ".." nicht direkt von DOS verwendet werden).
+Oder die Art und Weise, wie ein Musterabgleich mit langen Dateinamen
+durchgeführt wird: einige sind aus UNIX bekannt (wie *1 entspricht allen
+Dateien, die mit "1" enden), einige sind Win32-spezifisch, wie "*." das
+entspricht allen Dateien OHNE Erweiterung.
+Und, eine Erweiterung ist definiert als der Teil nach dem LETZTEN Punkt
+nicht in einer Kette von ersten Punkten. Oder dass es ist möglich ist,
+Dateien mit führenden Leerzeichen und/oder "." zu erstellen, aber nach-
+gestellte Leerzeichen und/oder Punkte wurden abgeschnitten.
+Mit "*." im Hinterkopf ist das notwendig, weil es keine andere Möglich-
+keit gibt, Dateien mit einem Punkt am Ende zu finden.
+Daher sind Dateinamen nur mit Leerzeichen und Punkten nicht erlaubt, mit
+der virtuellen Ausnahme von nutzlosen "." und ".." Verzeichniseinträgen.
+COMMAND.COM verwendet die DOS-Funktion Get Extended Error Information,
+und so mußte ich die unhandliche komplementäre Funktion verwenden, um
+diesen Errorcode zu setzen, damit COMMAND.COM richtig funktioniert.
+Setzen Sie COMMAND.COM ein, damit es richtig funktioniert.
+
+
+ERKLÄRUNG DER SCHALTER:
+
+~ (Tilde-Nutzung): Standardmäßig fügt Win9x dem Alias von jedem langen 
+  Dateinamens einen "~1"-Bezeichner hinzu, "~2", wenn es zu Konflikten
+  kommt und so weiter. Daher können diese langen Dateinamen in reinem
+  DOS den Alias nicht adressieren. Dieses Verhalten scheint aufgrund
+  eines fehlerhaften Verhaltens von verschiedener getesteter Software
+  eingebaut worden zu sein. (Ich schätze, es war eine alte Microsoft-
+  Software.)
+  Für normale DOS & Win-Benutzer ist dies unpraktisch. Ein einfaches DOS
+  kann lange Namen dadurch "unterstützen", indem sie automatisch auf das
+  8.3-Format gekürzt werden.
+  Sofern der Name keine Leerzeichen oder mehrere Punkte enthält, kann
+  derselbe lange Name eine Datei sowohl mit als auch ohne verfügbare
+  LFNs adressieren. Benutzer können die Kompatibilität für einige
+  Programmkonfigurationen erhalten, unabhängig davon, ob sie unter
+  {Win9x oder DOSLFN} oder nicht ausgeführt werden.
+  Sie können die Tilde-Nutzung in Win9x deaktivieren, indem Sie den
+  folgenden Binärschlüssel hinzufügen:
+        REGEDIT4
+        [HKEY_LOCAL_MACHINE\System\CurrentControlSet\control\FileSystem]
+        "NameNumericTail"=hex:00
+  Dann müssen Sie Windows neu starten. (Vergessen Sie nicht, die "Shift"-
+  Taste gedrückt zu halten, wenn Sie die Auswahl "Neustart" bestätigen;
+  ein Neustart ist nicht erforderlich.)  
+  Sie können auch im Internet nach dem Schlüsselwort "NameNumericTail"
+  suchen.
+
+t (Tunneleffekt): Diese im Win9x-Dateisystem integrierte Funktion hilft
+  langen Dateinamen zu überleben, wenn Dateien mit einem herkömmlichen
+  (8.3) Texteditor oder einem vergleichbaren Tool geändert werden. Sie
+  ersetzt Dateien wie folgt:
+  * Sie löscht eine Datei <alias>.bak (falls vorhanden)
+  * Sie benennt die Originaldatei <alias>.txt in <alias>.bak um
+  * Sie erstellt eine neue Datei <alias>.txt
+
+  Bei dieser Sequenz geht der lange Dateiname für immer verloren.
+  Aber bei aktivem "Tunneleffekt" werden Win9x und DOSLFN nach Löschen-
+  Umbenennen-Erstellen (DRC) Sequenzen suchen und "automagisch" vorher
+  gelöschte lange Dateinameneinträge an an neu erstellten Namen anhängen,
+  wenn der <Alias> identisch ist.
+  Die obige DRC-Sequenz kann auch auf DR, DC, RR oder RC abgekürzt
+  werden und funktioniert auch für Verzeichnisse.
+
+  Wie in der MSDN-CD dokumentiert, werden die internen "Tunnel-Infos" von
+  Win9x 15 Sekunden lang gespeichert; ich kann aber keine Vergesslich-
+  keit feststellen. Außerdem funktioniert das Tunneling in Win9x in
+  beiden "Richtungen", es merkt sich den Alias, wenn ein LFN-fähiges
+  Programm die gleiche Prozedur ausführt. Daher können Sie "~" in
+  "PROGRA~1" nicht einfach loswerden, indem Sie einfach "Program Files"
+  in "Programs" und zurück umbenennen.
+  (Sie können aber Windows zwischen zwei Umbenennungen neu starten, um
+  diesen gewünschten Effekt zu erzielen.)
+
+  Darüber hinaus verfügt Win9x, wie in einem Multitasking-Betriebssystem
+  erforderlich, über mehr als EINE "Tunnelinfo"; es erlaubt zwei oder
+  mehreren Prozessen (Win16 oder DOS-Programmen) solche DRC-Sequenzen
+  gleichzeitig oder in einem Prozess verschachtelt auszuführen.
+  Der Einfachheit halber unterstützt DOSLFN nur EINE "Tunnelinfo".
+
+c (CDROM-Unterstützung): Aktiviert die CDROM-Unterstützung, d. h. DOSLFN
+  benötigt viel mehr Speicher um den Code für die CDROM-Initialisierung
+  und den CDROM-Zugriff zu behalten. Dieser Schalter ist standardmäßig
+  in diesem Zustand eingestellt, egal ob SHSUCDX v3.01 geladen ist oder
+  nicht (diese Version von DOSLFN funktioniert nicht mit MSCDEX oder
+  früheren Versionen von SHSUCDX). Sie müssen einen c+-Schalter aktivie-
+  ren, wenn Sie DOSLFN vor SHSUCDX laden und lange Dateinamen bei CD-ROM
+  erhalten wollen!
+
+i (InDOS-Flag-Verwendung): Zur Unterstützung von TSR-Programmen, die
+  LFNs verwenden, müssen diese wissen ob DOSLFN noch arbeitet oder nicht.
+  Noch schlimmer, das Arbeiten mit kurzen Dateinamen kann zu Datenmüll
+  führen, wenn DOSLFN nicht verwendete LFNs entfernt oder LFNs durch
+  Tunneling hinzufügt (siehe Schalter -t).
+  Die Wahrscheinlichkeit für die Verwendung von InDOS-Flags besteht
+  darin, dass der Wert von InDOS auf 2 steigt, wenn DOSLFN OldInt21
+  aufruft.
+  Ich kenne keine bessere narrensichere Lösung dafür, das InDOS-Flag
+  ungleich null zu halten _und_ DOS aufzurufen.
+  Wenn Sie Probleme haben, können Sie es ausschalten. Die Standardein-
+  stellung ist EIN.
+
+z DOSLFN muss Unicode in eine lokale Codepage konvertieren, und dies ist
+  abhängig vom Gebietsschema. Da DOS (oder NLSFUNC) keine solche Tabelle
+  eingebaut hat, muß diese Tabelle an DOSLFN geliefert werden.
+  Neunzehn Unicode-Übersetzungstabellen, z.B. für 437 (Standard IBM, für
+  Rücksetzzwecke), 850 (Westeuropa), 852 (Osteuropa), 866 (kyrillisch)
+  und zwei für Griechisch sind jetzt mit DOSLFN gebündelt.
+  Eine Codepage kann geladen/geändert werden, selbst wenn DOSLFN resident
+  ist. Die meisten europäischen Benutzer verwenden Umlaute sehr selten
+  (aufgrund bekannter Probleme mit schlecht codierter Software[*] auf
+  der ganzen Welt), daher ist das vergessene Laden einer Codetabelle
+  nicht kritisch. Wenn Sie aber Dateinamen mit unerwarteten Unter-
+  streichungen sehen, sollten Sie die Codetabelle laden. (DOSLFN konver-
+  tiert einfach nicht konvertierbare Unicodes in "_", ohne jede Benach-
+  richtigung über jetzt gleiche Dateinamen.)
+  Hinweis: DOSLFN lädt beim Start automatisch die "richtige" Unicode-
+  Tabelle, deshalb benötigen Sie diesen Schalter auch in osteuropäischen
+  Ländern nicht.
+  Außerdem lödt DOSLFN automatisch eine Tabelle, wenn Sie die Codepage
+  ändern, indem Sie NLSFUNC von DOS verwenden, aber Sie müssen möglicher-
+  weise zusätzlichen Heap reservieren (Japanisches DOS muss /m18000
+  enthalten, wenn sie DOSLFN laden, während es im US-Modus läuft).
+
+  [*] Oft ist es bösartige Unix-Software (z.B. "tar"), die Umlaute tötet.
+  Unix ist intern eher ein 7-Bit- als ein 32-Bit-Betriebssystem, und
+  diese Einschränkung ist bis vor kurzem in der Welt verbreitet
+  (hirntote UTF-7, MIME-Codierungen...)
+
+m DOSLFN benötigt einen internen Heap zum Speichern von Daten; meistens
+  für "Find Handles". Die Größe dieses Datenbereichs beträgt standard-
+  mäßig 1000 Bytes. Kleinere Werte reduzieren den Speicherverbrauch des
+  residenten DOSLFN. Dieser Schalter kann nicht angegeben werden, während
+  DOSLFN resident ist, da der Speicher in Benutzung sein kann.
+
+m[sln] Geben Sie die maximale Größe des Kurznamenpfads (80), Langnamen-
+  pfades (260) und des Dateinamen (256) an. Beachten Sie, dass DOS
+  obwohl es nicht in einen extralangen Pfad hineinwechseln wird, 
+  er immer noch explizit angegeben werden kann, so dass der Wert von 80
+  nicht genug sein kann. Siehe MVALUES unten.
+
+l DOSLFN ist zweisprachig. Wird ein Gebietsschema von Österreich, der
+  Schweiz oder Deutschland erkannt, verwendet es standardmäßig Deutsch,
+  ansonsten Englisch. Um die Standardsprache zu übergehen, verwenden Sie
+  "ld" für Deutsch oder "le" für Englisch. Z.B. erhalten Sie in Öster-
+  reich die englische Hilfe mit "doslfn -le -h" oder "doslfn leh".
+  (Wie Sie sehen, ignoriert DOSLFN Schalterpräfixe und Leerzeichen.
+  Ein nachgestelltes Leerzeichen ist nur für den z-Befehl erforderlich.)
+  Solange DOSLFN resident ist, ist die Sprachüberschreibung permanent.
+
+o Zeitzonen-Offset. Wenn keine Zeitzone angegeben ist, wird TZ erneut
+  gelesen. Siehe unten. 
+
+TZ Umgebungsvariable Zeitzone - zum Konvertieren des FAT-Zeitstempels
+  in das Win32-Zeitformat (ein Int64 in 100-ns-Schritten nach dem
+  1.1.1601).
+  Das Format ist [NAME]H[:MM] wobei NAME eine optionale Abkürzung ist.
+  H ist Stunden und MM sind optionale Minuten. Die Zahl drückt die Dis-
+  tanz zur GMT (Greenwich) aus - positiv ist hinterher, negativ ist
+  voraus.
+  Eine Sommerzeit (DST) kann nicht verwendet werden, da die Berechnungs-
+  methode für so viele Länder unbekannt ist. Wenn gewünscht, muss DOSLFN
+  Kenntnisse für alle DST-Regeln der Vergangenheit (und der Zukunft) für
+  das angegebene Land haben, um Dateizeiten nach ihrem Datum zu konver-
+  tieren, nicht zum aktuellen Datum (die meisten Programme scheinen
+  diesen Fehler zu haben). Das Verwenden der amerikanischen DST-Regel
+  ist nicht anwendbar, obwohl dies bei den meisten Programmen so gemacht
+  wird.
+  Daher schlage ich vor, dass Benutzer die TZ-Variable setzen sollten,
+  z. B. für Zentraleuropa:
+        set TZ=MET-1         im Winter
+        set TZ=MET-2         im Sommer
+  keine DST-Informationen verwenden - aber sie müssen ihre AUTOEXEC.BAT
+  zweimal im Jahr ändern.
+
+  TZ ist für die Konvertierung von CDFS in das Win32-Zeitformat nicht
+  erforderlich weil die Daten darauf Informationen zur Zeitzonendistanz
+  (ein Byte in 15-Minuten-Schritten) für das Land, in dem die CD erstellt
+  wurde, enthalten.
+  Um jedoch die gleiche Weltzeit beizubehalten, müssen beim Konvertieren
+  der CDFS-Zeiten in die FAT-Zeit (als Rückgabewert für fast alle Zeit-
+  funktionen) sowohl TZ und CDFS Zeitzoneninfo zusammengesetzt werden
+  um die korrekte FAT-Zeit (=immer lokal) zu berechnen - deshalb ist es
+  also besser intern durch das Win32-Zeitformat zu gehen.
+
+** Wenn Profilerstellung aktiviert ist ** 
+
+p  Anzeige der Profildaten - Anzahl der Anrufe, Zeit in Sekunden,
+   Beschreibung.
+
+pr Profildaten zurücksetzen - Anzahl der Anrufe und Zeit werden auf Null
+   gesetzt.
+
+pc Kalibrieren Sie Ihre Profil-Timing-Konstante. Profiling nutzt den
+   Pentium Read Timestamp Counter (RDTSC)-Befehl für das Timing. Wenn
+   Sie nicht zufällig einen 2,6 GHz P4 haben, müssen Sie DOSLFN mit
+   Ihrer Konstanten neu kompilieren.
+
+
+AKTIONEN:
+
+Aktionsbuchstaben müssen am Ende einer Befehlszeile stehen, da das
+Parsen der Befehlszeile dort endet.
+
+Die Standardaktion ist, DOSLFN zu laden oder zu aktivieren und eine
+kurze Nachricht anzuzeigen, die sagt, dass DOSLFN bereits geladen und
+aktiv ist.
+
+Das Entladen von DOSLFN kann fehlschlagen, wenn ein TSR mit Int21 oder
+2F über DOSLFN verbunden ist.
+Wenn dem so ist, deaktiviert sich DOSLFN selbst, bleibt aber bis zu
+einer anderen Aktion im Speicher (wie z.B. Entladen oder erneutes
+Aktivieren). Sie müssen dies (oder diese) oben genannten TSR(s) zuerst
+entladen. Wenn das nicht möglich ist (meist: Microsoft-Schei..e),
+müssen Sie "einfach Ihr System neu starten".
+
+
+EINIGE HINWEISE ZUR UMSETZUNG:
+
+Ein großes Problem für mich ist die sichere Unterstützung für lange
+Namen auf CD. Weil ich auf MSCDEX aufbauen möchte, muss ich Brücken
+zwischen Joliet und ISO schlagen, und ich fand, es gibt keine sicheren
+Brücken! (WinOnCD brennt eine solche Link-Tabelle, es ist nett für mich,
+aber das ist kein Standard.)
+Windows 9x und NT "erfinden" neue kurze Dateinamen und verwenden den ISO-
+Teil von Joliet-CDs überhaupt nicht, außerdem haben diese beiden Systeme
+unterschiedliche Regeln.
+Wenn Sie also eine CD mit langen Dateinamen in ein Laufwerk einlegen und
+mit einem alten DOS-Programm draufschauen, finden Sie bis zu drei
+verschiedene Kurznamen für einen Langnamen unter bloßem DOS, Windows9x
+und WindowsNT.
+Da die LFN-Tools von ODI kein MSCDEX benötigen (außer zum Lesen von Sek-
+toren), haben sie kein Problem damit; ein Treiber sollte richtige kurze
+Namen für die langen geben, weil MSCDEX mit den kurzen umgehen können
+sollte.
+
+Frühere Versionen von DOSLFN haben eine Datei geladen, die den Link
+zwischen dem Jolietnamen und seinem ISO Gegenstück lieferte. Diese Ver-
+sion unterstützt MSCDEX nicht mehr, stattdessen verwendet es SHSUCDX
+Version 3, welches das Jolietsystem selbst verwendet (und noch eine
+weitere Methode zum Generieren von Kurznamen).
+
+Ein weiteres Problem sind Schreibzugriffe und die Konsistenz von Sektor-
+puffern:
+Ich möchte Daten cachen, aber eine ShortName-API kann den Festplatten-
+inhalt verändern; deshalb muss ich, zumindest für dieses Laufwerk, alle
+Caches verwerfen, und das bei jedem Schreibzugriff auf DOS-Verzeich-
+nisse, sogar auf die alten FCB.
+Dies verschlechtert die Leistung von DOSLFN.
+Um möglichst viele DOS-Versionen (nicht nur MS) zu unterstützen, möchte
+ich undokumentierte interne DOS-Strukturen nicht verwenden.
+
+AUF FUNKTION GEPRÜFT UNTER:
+
+* MS Windows NT 4 DOS-Box, FAT12 und FAT16 Laufwerke
+   (aber Sie sollten NTLFN-Paket nehmen, eine schöne Open-Source-Free-
+   ware)
+* MS-DOS 6.2
+* MS-DOS 7.10, FAT32
+* DR-DOS 7, mit magnetooptischem Laufwerk
+
+
+DAS FUNKTIONIERT NOCH NICHT:
+
+* Ge-JOIN-te Laufwerke (aber SUBST-Laufwerke funktionieren)
+* ASSIGN-te Laufwerke (nicht getestet, aber ähnlich wie SUBST sollten
+  sie später funktionieren)
+* Windows 3.11 mit aktiviertem 32-Bit-Dateizugriff zwingt DOSLFN in
+  seinem FallBack-Modus für Ihre Festplatte(n), weil VCACHE.386 den
+  direkten Festplattenzugriff über Int25/26 und Int21/AH=32 verhindert.
+  Bitte deaktivieren Sie den "32-Bit-Dateizugriff".
+  (Sie können den "32-Bit-Festplattenzugriff" eingeschaltet lassen.)
+
+
+DAS WIRD WAHRSCHEINLICH NIE FUNKTIONIEREN:
+
+* Funktionen rund um SUBST, AL=AAh ("query subst" ist verfügbar)
+* Dateierstellung vom Server, AL=A9h
+* Handle-Informationen abrufen, AL=A6h
+* Laufwerk zurücksetzen, AL=0Dh
+
+
+HINWEIS FÜR DBCS-BENUTZER (Chinesisch, Japanisch, Koreanisch, =CJK):
+
+Einfach DOSLFN als westlicher Benutzer laden - aber DOSLFN verbraucht
+viel mehr Speicher für die größere DBCS<->Unicode-Tabelle.
+
+ETWAS HINTERGRUND:
+Beim Booten von einer Win9x/Me-Notfalldiskette meldet DOS eine Codepage
+von 932, 936, 949 oder 950, aber die Anzeigeschrift ist noch die
+BIOS' 437.
+Außerdem ist die DOS-interne DBCS-Lead-Byte-Tabelle noch nicht aktiviert.
+Daher sehen Sie Müll, wenn Sie Dateinamen auflisten, die chinesische
+Zeichen enthalten, unabhängig von der Verwendung von DOSLFN.
+Nach dem Start von PDOS95.BAT wird das Display vermutlich auf einen
+40x24 Vollbreite (quadratisch) Grafikmodus für chinesische Schrift-
+zeichen (mit halber Breite) Katakana dazwischen, wenn Sie CP932=
+Japanisches Shift-JIS verwenden), umgestellt.
+Die 25. Zeile ist für den Input Method Editor (IME), lediglich eine
+Romaji/Pinyin-Eingabe und Kanji/Kanxi Auswahlzeile. (Die Auswahl ist
+notwendig, da es mehr Zeichen mit unterschiedlichen Bedeutungen für eine
+Schreibweise gibt, insbesondere im Japanischen.)
+Außerdem wird die DOS-interne DBCS-Lead-Byte-Tabelle aktiviert und DOSLFN
+sollte dann beim Schreiben alle Unicodes in LFNs in DBCS und umgekehrt
+konvertieren.
+Aufgrund der Unterstützung eines chinesischen Benutzers vom Festland (und
+mir, der Japanisch versteht), sind zukünftige Tests auf CP932 und CP936
+beschränkt. (CP950 funktioniert angeblich auch.)
+
+Beachten Sie, dass es viel bessere Ersatzwerkzeuge für die PDOS95.BAT 
+gibt; ich konnte das "TechWay SCS V3.2" Programm/Treiber verwenden (Dank
+an 2 wengier), welches auch unter deutschem DOS6 läuft. Eines seiner Vor-
+teile ist die automatische Erkennung gängiger Zeichensymbole und deren
+Nichtinterpretation als chinesische Zeichen (wie es PDOS95.BAT tut). Des-
+halb konnte ich meinen Lieblingsdateimanager (vc.com), Editor (turbo.exe)
+und Debugger (td.exe) fast ohne Probleme laufen lassen..
+
+
+PROGRAMME "DOSLFNMS", "MVALUES", "MK_TABLE" UND "LOWDMA":
+
+DOSLFNMS ist für die Verwendung mit MS-DOS 7 vorgesehen (kann aber auch
+mit FreeDOS funktionieren) und hat auch einige Funktionen entfernt, um
+seine Größe zu reduzieren:
+- deaktiviert sich nicht selbst beim Starten von Windows;
+- erkennt keine Codepage-Änderungen;
+- verarbeitet keine Doppelbyte-Zeichensätze.
+
+Mit MVALUES können Sie Ihre Laufwerke scannen, um die optimale Größe für
+die m Schalter zu finden. Dies könnte einige KB der residenten Größe
+einsparen. Es akzeptiert nur einen Parameter, der ein String der zu
+scannenden Laufwerke ist (Standard ist C).
+
+MK_TABLE konvertiert eine Unicode-Tabelle (ASCII-Form), herunterladbar
+unter www.unicode.org, in binäre Volkov Commander-Form, die von DOSLFN
+verwendet wird.
+
+LOWDMA: siehe LOWDMA.TXT 
+
+
+----------------------------------------------------------------------------
+Change.LOG: (+ hinzugefügt, - Fehler behoben, * geändert)
+
+Version 0.30 (01/2001)
+  Erste Version
+
+Version 0.31 (04/2001)
++ Bessere Unterstützung für Windows NT (jetzt nutzlos)
++ Timeout-Lösung zum Aufbewahren von Daten für Wechselmedien
++ Automatisches Sperren von Volumes auf DOS7 vor dem Schreibzugriff
+* Twiddeling mit PKZIP 2.50-Unterstützung - keine endgültige Lösung
+* ISR terminiert mit IRET statt RETF 2, für Arbeiten mit Einzelschritt-
+  Debugger
+
+Version 0.32 (09/2001)
+- Funktioniert mit internen Geräten wie NUL,CON,LPT...
+* Quellcode hat Option zum Setzen des InDOS-Flags
++ Variable Heap-Größe unterstützt; Speicherverbrauch von DOSLFN liegt
+  beim Benutzer
++ Eingebaute PRINTF-ähnliche Funktion (nur vorübergehender Codeteil)
+* Ausgabestil für Aktion "Status" geändert
++ Vier Codeübersetzungstabellen sind im ZIP-Paket enthalten
+- Eine etwas "entflammte" Readme-Datei
+
+Version 0.32a (10/2001)
+- Fehlerhaftes Root-Verzeichnis einiger FAT32-Laufwerke (dieser Fehler
+  wurde ständig gemeldet, tritt aber bei mir bisher nicht auf)
+- Fehlverhalten beim Starten von DOSLFN von einem FAT32-Laufwerk
+  (dieser Fehler wurde in Version 0.32 einprogrammiert)
++ Alle verfügbaren Codeübersetzungstabellen sind im ZIP-Paket enthalten
++ MK_TABLE.C verbessert (wurde bei Ver 0.32 erstellt) und hinzugefügt
+* Die Versionsnummerierung mit "a" zeigt an, dass derzeit bereits eine
+  Version 0.33 in Entwicklung ist. Dies ist eher ein Bugfix-Release.
+
+Version 0.32b (10/2001)
+- Ungültige AX auf INT21/4E&4F, gemeldet von claude.caillet@free.fr
+  (Das Verhalten wurde in Ralf Browns Liste 03/99 nicht dokumentiert)
+- Ein Teil des englischen Texts fehlt in DOSLFN.TXT (Zeitzone, Testbe-
+  dingungen), berichtet von Wu Yongwei <adah@sh163.net>
+- CP850UNI.TBL war falsch, kopiert nach CP858UNI.TBL (diese enthielt das
+  Eurozeichen, CP850 enthält keinen Euro. (von <ldzip@ldzip.freeservers.
+  com>)
++ MKLINK wurde hinzugefügt, obwohl die Ausgabe-Link-Tabellendatei noch
+  nutzlos ist
+
+Version 0.32c (11/2001)
+- In manchen Fällen funktioniert *. nicht (z.B. Fehler bei "copy *.tmp")
+- FindFirst von zeichenorientierten Geräten gibt einen Fehler zurück,
+  sollte es aber nicht (Fehler bei "copy con xx"), beide gemeldet von
+  wengierwu@sohu.com
+* Reduzierte Standard-Heap-Größe, CD-Sektoren sind noch nicht drin
+* Größe für interne Link-Tabelle auf 32 Bit erweitert
+
+Version 0.32d (06/2002)
+- Komplettausfall auf SUBSTed-Laufwerken geändert auf No-lfn-Support
+- Die Rechtsausrichtung des numerischen Endes beim Einfügen von Unter-
+  strichen war fehlerhaft (caillet)
+* MKLINK geändert, um die Gültigkeit der CeQuadrat-Linktabelle zu über-
+  prüfen
+- MKLINK kann jetzt Multisession- und EasyCdCreator-Disks verarbeiten
+
+Version 0.32e (06/2002)
+* Quellcode neu geordnet, mehr Englisch im Deklarationsbereich
++ Verwendung des InDOS-Flags (vom Benutzer voreinstellbar)
+- Der von MSCDEX gelieferte VolumeStart war falsch, IOCTL-basierte Routine
+  eingefügt
+* "Prüfsummenverknüpfung" und "LoSA"-Schalter entfernt, "LoSA" wird in VxD
+  verschoben
+- LFN GetFAttr des Root-Verzeichnisses auf einer CDROM
+* Standardeinstellungen geändert (Tilde-Nutzung auf ON gesetzt)
++ DOSLFN kann jetzt MKLINK-generierte Dateien laden (d.h. es unterstützt
+  alle Joliet CDROMs)
++ LastError-Berichtsfunktion
+- Kleiner Bugfix in MKLINK (InSTab verglich LowWord statt LongInt)
+* (bekannt) Root-Verzeichnis-Link in *.JLT enthalten, MKLINK wieder
+  geändert
+* MKLINK intern geändert, unter Verwendung eines Objekts, "Baumordnungs-
+  prüfung" hinzugefügt
+
+Version 0.32f (09/2002)
+- Rückgabewert CX bei LFN_FindFirst/FindNext
+* Interner Aufruf von Extended Open/Create(6C) statt Creat(3C)
+- Erkennt auch bootfähige CDs (MKLINK noch nicht)
+* Vorbereitung des Tunneleffekts
+
+Version 0.32fa (10/2002)
+- Erweitertes Öffnen/Erstellen (Bug seit 0.32fa)
+- LFN_DirEnt für lfn_rmdir entfernt (Bug war immer vorhanden)
+* Keine rekursiven Int21-Aufrufe mehr (außer .JLT-Zugriff)
+* Keine Rekursion zu sfn_unlink für lfn_unlink (schneller)
++ Löschen mit Wildcards (nicht getestet; noch nicht für FALLBACK-Modus)
+
+Version 0.32f (11/2002)
+- Interpretiere Datenträgerbezeichnung (Label) als Pfadkomponente
+
+Version 0.32f (12/2002)
+- Die meisten (hoffentlich alle) EDIT.COM-Bugs entfernt
+- Häßliches Write-to-Wrong-Segment entfernt (eingeführt in Version 0.32e)
+
+Version 0.32f (12/2002)
++ Löschen mit Wildcards jetzt implementiert, zumindest für FAT-Laufwerke
+
+Version 0.32f (12/2002) - letzte "f"-Version
+- Erstellen eines bereits bestehenden Verzeichnisses gibt "Datei nicht
+  gefunden" zurück [wengier]
+- Der rename (Umbenennen) Befehl vergißt oder zerstört manchmal ein
+  anderes LFN (zwei Fehler)
+
+Version 0.32 g (12/2002)
+- VC Alt+F7 Bug (nachgestellter Backslash beim Aufruf von lfn_name wurde
+  entfernt)
+- VC rekursives Löschen und PKZIP rekursives Erstellen-Fehler
+  (FastOpenCache Fehler)
+* Entwicklung von Version 0.33 gestoppt
+
+Version 0.32h (12/2002)
+- Zugriff auf SFN mit Leerzeichen (überraschenderweise reduziert dieser
+  Fix die Codegröße)
+- Kleinere Korrekturen in MKLINK: Schalter für Ausführlichkeit,
+  Tabellenanordnung
++ MKLINK erstellt eine Linktabelle, wenn CeQuadrat LT nicht in der ersten
+  Sitzung ist
++ MKLINK hat eine eingebaute Codepage 437 (für ausführliche Ausgabe)
+- Root-Verzeichnis der CDROM zeigt . und .. Einträge
+- "cd"-Befehl mit nachgestelltem Backslash wurde durch VC Alt+F7 Bugfix
+  deaktiviert
+
+Version 0.32i (12/2002)
+- Absturz beim Starten von DOSLFN mit CDROM als aktuellem Laufwerk
+- Falsche Handhabung und Nutzlosigkeit des /p-Schalters
+- Falsches Verzeichnis beim automatischen Laden der Unicode-Tabelle
+  verwendet
+
+Version 0.32j (12/2002 - Weihnachten)
++ LFNXLAT.386 erstellt - eine Protected Mode API für Windows und seine
+  DOS-Boxen
++ Int2F-Schnittstelle zum Laden dieser VxD (Win3) oder zum eigenständigen
+  Deaktivieren (Win95+)
++ DOS- und Windows-Versionsprüfung; arbeitet nicht, während DOS<4 oder
+  Win9x läuft
++ Automatische Codepage-Änderungsbenachrichtigung über Int2F (noch nicht
+  getestet)
++ LastError-Berichtsfunktion jetzt funktional mit fünf Nachrichten
++ Automatische Berechnung der Heap-Größe basierend auf der größten .JLT-
+  Datei
++ Funktionaler /c-Schalter
++ Reduzierter Speicherverbrauch im FAT-ONLY-Modus (dh keine CDROM-Unter-
+  stützung) BITTE AKTIVIEREN SIE DEN /c+ SCHALTER, WENN SIE DOSLFN VOR
+  MSCDEX LADEN UND JOLIET WOLLEN
+- Laden von CeQuadrat LT von CDROM bei Multisession
+- Mindestens drei Fehler rund um die Verzeichniserweiterung
+- Sie könnten einen Dateinamen erstellen, der in seinem langen Namen
+  Wildcards enthält
++ Volle Unterstützung für SUBSTed-Laufwerke
+- Bei langen ISO-Namen stürzt DOSLFN ab - jetzt einfach auf 12 Zeichen
+  gekürzt
+- Umbenennen schlägt fehl, wenn nur Groß-/Kleinschreibung geändert wird
+* setjmp/longjmp oder Catch/Throw - gleiche Fehlerbehandlung vereinfacht
+  Source
++ Tunneleffekt (behält den langen Namen für alte Editoren etc.)
+- Kann keine Datei/Verzeichnis mit dem gleichen Namen wie die Datenträger-
+  bezeichnung (LABEL) erstellen
+- Inkompatible Akzeptanz von Trailing Backslash neigt zum Versagen von
+  PKUNZIP
++ Funktionaler /t-Schalter - jetzt sind alle Schalter funktionsfähig
+- Fehler im Joliet CDROM-Listing im Root-Verzeichnis (Dateien werden zu
+  Verzeichnissen)
++ DBCS-Unterstützung vorbereitet
+
+Version 0.32k (01/2003)
+- "dir Makefile" zeigt das Makefile nicht an (Dieser kleine Fehler
+  erforderte das Umschreiben eines großen Teils von DOSLFN)
+* Ohne eine .TBL-Datei verwendet DOSLFN jetzt standardmäßig ISO-Latin1
+  anstelle von CP437. Dies ist auf interne Änderungen für die DBCS-Unter-
+  stützung zurückzuführen.
+  WESTEUROPÄISCHE BENUTZER SOLLTEN DIE DATEI CP437UNI.TBL NICHT LÖSCHEN!
+- Dateien mit 0xE5 als erstem Byte können nicht verarbeitet werden (DOS
+  TRUENAME "bug" @0.32j)
++ DBCS .TBL Dateiformat jetzt deklariert, siehe TBL.TXT
++ Drei neue Codepage-Tabellen hinzugefügt: Japanisch (Shift-JIS),
+  Vereinfachtes Chinesisch (GB2312, Teilmenge von GBK), Traditionelles
+  Chinesisch (BIG5)
++ Vollständige DBCS-Unterstützung hinzugefügt, aber für mich nicht testbar
+  CHINESISCHE ODER JAPANISCHE BENUTZER müssen /m18000 o.ä. angeben, um
+  mehr HEAP zu erhalten (Dieser Schalter wird in einer späteren Version
+  automatisiert.)
+- Nach dem Zugriff auf Geräte kann es zu Datenbeschädigungen kommen
+- Beim Arbeiten mit verschiedenen Versionen von DOSLFN können falsche
+  Zeichenfolgen auftreten
+- /z-Schalter funktioniert nicht seit 0.32j
+
+Version 0.32l (01/2003)
+- DBCS-Unterstützung funktioniert überhaupt nicht (mehrere Fehler), über-
+  prüft mit TechWay SCS
+- Fehlerhafte Meldungen beim Laden von DBCS ohne CDROM-Unterstützung
+- Teilweise überschriebene DBCS-Tabelle
+* Strengerer Abschnitt "kritischer Initialisierungscode"
++ Automatische Berechnung der Heap-Größe um .TBL-Datei erweitert
+  CJK-Benutzer brauchen keinen Schalter mehr
+
+Version 0.32m (01/2003)
+- Beim Abfragen der Hilfe mit /? oder -h stürzt DOS seit 0.32l ab (ups!)
+- Fehlerhafter Rückgabewert für DEL-Befehl seit 0.32f
+* Leicht verbesserte Leistung beim Erstellen von Kurznamen-Dateien in
+  Großbuchstaben
+- CP950UNI.TBL war im falschen (veralteten) Format
++ Vierte DBCS-Unicode-Tabelle, CP949UNI (Koreanisch) hinzugefügt, aber
+  ich brauche Feedback!
+
+Version 0.32n (01/2003)
++ Die fünfte CP936UNI.GBK ist eine Unicode-Tabelle für das gesamte
+  vereinfachte Chinesisch
+- Die Unicode-Tabelle kann beim CHCP-Befehl nicht automatisch geladen
+  werden
+- Fehler beim Überschreiben der Befehlszeile (längere Pfade konnten nicht
+  eingegeben werden); den variablen Bereich komplett neu geordnet
++ Behandlung von UNC-Namen als FallBack-Modus (nicht gründlich getestet)
+- Truename-Fehler auf SUBSTed-Laufwerken
+- Fehler bei der Datei-/Verzeichniserstellung im FallBack-Modus
++ Überprüfe eher nach ";?" (?=1..9) am Ende von ISO/Joliet-Dateinamen als
+  zwei Zeichen zu entfernen, weil NERO solche Nicht-ISO-CDROMs generieren
+  kann
+* VCACHE.386-Problem erkannt, keine Lösung, außer dass kein 32-Bit-Datei-
+  zugriff verwendet wird
++ Einfacher Heap Walker erkennt Größe und freie Bereiche
++ FMLFN.DRV, eine frühe Beta-Version für lange Dateinamen für den Windows-
+  Dateimanager
++ DOSLFN sollte auf SimTel verfügbar sein (www.simtel.net)
++ MKLINK hat jetzt auch Unicode- und DBCS-Unterstützung (für die Bild-
+  schirmausgabe)
+- Mehrere Links in der .JLT-Datei, die von MKLINK generiert wurde
+- Verzeichnisgrößen, die nicht Modulo 2048 sind, können MKLINK zum Absturz
+  bringen (kein ISO-Standard)
+
+Version 0.32o (05/2003)
+- Die Option /? crasht das System wieder einmal
++ Russische Textstrings verfügbar, aber noch nicht implementiert
+  Die folgenden Änderungen und Bugfixes wurden von jadoxa@yahoo.com.au
+  inspiriert, aber er hat viel mehr getan:
+* Kleinere Codeoptimierungen
+- Setzen des ReadOnly-Attributs beim Erstellen einer SFN-Datei mit Tunnel-
+  effekt
+* Sektorzugriff erfolgt durch (undokumentierten) SmartDrive-Cache, dies
+  verbessert die Leistung wie das Kopieren einiger Dateien von C zeigt:
+  ohne DOSLFN        25 s kopieren nach A:      7 s löschen von A:
+  mit DOSLFN 0.32n   78 s kopieren nach A:     12 s löschen von A:
+  mit DOSLFN 0.32o   43 s kopieren nach A:      7 s löschen von A:
+* MKLINK kann jetzt mit Verzeichnissen größer als 64 KB umgehen (selten,
+  nicht getestet)
+* MKLINK.PAS kann für mehr Speichernutzung in eine DPMI-Version kompiliert
+  werden (getestet)
+
+Die nachfolgenden Versionen stammen alle von Jason Hood:
+
+Version 0.32o, erste JH (Jason Hood)-Version (10/2003)
+* Verschiedene Größenoptimierungen;
+* Modifizierte Erzeugung von CD-Kurznamen, SHSUCDX 2.0 Tilde-Erzeugung;
++ Optionen hinzugefügt, um die maximale Größe von Pfaden anzugeben (/m[sln]);
+- Behält die Erstellungszeit bei (nur LFN-Funktionen);
+- Erkennt Umbenennungen von für Groß-/Kleinschreibung;
+- Korrekter Clear Carry für die Attributfunktionen;
++ Primitive Unterstützung für Linux Rock-Ridge-CDs;
+* Lade die Linktabelle nur beim Einlesen einer neuen CD (wie vom VSN
+  festgelegt);
+- Entfernt abschließende Leerzeichen aus falsch codierten Joliet-Volume-
+  Labels;
+- Schreibt nicht den Puffer für LFN truename (Int21/AX=7160/CL=2) wenn die
+  Datei nicht existiert;
+- Beschreibbare Geräte zulassen, wenn das aktuelle Laufwerk eine CD ist;
+* das Dateiformat Joliet Link Table (.JLT) geändert (Dateiname verwendet
+  die Volume Seriennummer anstelle des Labels; TYPE zeigt es an);
+- MKLINK: bessere Zuordnung leerer Verzeichnisse;
+- MKLINK: Potentielles Problem mit Joliet-Volume-Labels behoben;
++ MKLINK: Option zum "manuellen" Erstellen der Links;
+- CP437UNI.TBL: Die Übersetzung des "Mikro"-Symbols (µ) wurde korrigiert.
+
+Version 0.32o, zweite JH-Version (10/2003)
+- Setzt den Fehlercode bei Verwendung der Wildcard-Unlink-Funktion;
+- Fehler beim Finden von Dateien für die Wildcard Unlink behoben.
+
+Version 0.32o, dritte JH-Version (12/2003, aber datiert 10/2003)
+- Das Löschen auf einer CD gibt Fehler 5 (Zugriff verweigert) zurück,
+  nicht 2 (Datei nicht gefunden);
+- Die Linktabellen von CeQuadrat funktionieren jetzt.
+
+Version 0.33 (07/2004)
+
+Benutzer:
+
++ Zeitumwandlungsfunktionen (NTFSDOS wird jetzt im Verzeichnis (DIR)
+  korrekte Zeiten auflisten
++ o-Schalter, um Zeitzone anzugeben oder die TZ-Umgebungsvariable zu lesen
+* Statistikzähler auf 7 Stellen (DWORDs) geändert
++ Status beinhaltet die verwendete Heap-Größe und Zeitzone
++ von XP generierte Kleinbuchstaben lesen
+- Löscht vor dem Laufwerkswechsel nicht leere Sektoren
+- Fehler behoben, bei dem "Pfad nicht gefunden" "Datei nicht gefunden"
+  heißen sollte
+- Verhindert das Laden von DBCS-Tabellen, wenn DBCS nicht verwendet wird
+- Bessere Unterstützung des Fallback-Modus (Netzlaufwerke & Nicht-
+  Joliet-CDs):
+  - Erhalte/setze Änderungszeit der Arbeit; alle anderen scheitern, nicht
+    irrtümliche sind erfolgreich
+  - Wildcards löschen
+  - Volume Information (71A0) liefert unbekanntes Dateisystem ("?")
+- Fehler beim Umbenennen von beschädigtem Speicher behoben (COMMAND.COM
+  abgestürzt)
+- Fehler 1 (ungültige Unterfunktion) für ungültiges attrib/truename/alias/
+  time zurückgeben
+- Alle Attributfunktionen für Geräte schlagen fehl
+- Befreit die vorherige Linktabelle, wenn eine Rock-Ridge-CD geladen wird
+- Größe der Speicherzuweisung (das Füllen des Heaps würde DOS zum Absturz
+  bringen) & Anzeige korrigiert
+- SFN zu erstellen, aber LFN zu verwenden (zB: SFN MkDir, LFN ChDir, DOSLFN
+  würde nicht das neue Verzeichnis sehen); es können immer noch Probleme
+  mit dem Erstellen von temporären Dateien (5A) bestehen
+- Volume Information gibt ggf. "FAT32" zurück
+- Entfernt die versteckte Datei, die erstellt wurde, wenn ein Verzeichnis
+  nicht erweitert werden konnte
+* Verhindert, dass freier Speicherplatz neu berechnet werden muss (DOSLFNMS)
+
+Quelle:
+
++ bedingte Kompilierungen:
+
+    USEOLDDOS    Aktiviert die LFN-Filterung bei DOS Find-Funktionen
+    USEWINTIME   Ermöglicht echte Win <-> DOS-Dateizeitkonvertierungen
+    USEXP        Ermöglicht das Lesen von XP 8.3-Namen in Kleinbuchstaben 
+    USEFREESPC   Aktiviert die Einstellung der Anzahl der freien DPB-Cluster
+    PROFILE      Aktiviert die Profilerstellung (erfordert & setzt Pentium
+                 voraus)
+    PROFILECACHE Aktiviert die Profilerstellung des Fastopen-Cache
+                 (erfordert auch Pentium)
+    PATHLOOK     Zeigt an, was (nicht) gecached wird
+
+* DT_BIGDOS entfernt, DT_FAT12 hinzugefügt und Positionen von DT_FAT16/32
+  vertauscht (DT_FAT?? ist die Anzahl der Nibbles pro Eintrag - Größenopti-
+  mierung); DT_DrvPar wird jetzt nur von CD verwendet (unterscheidet Rock-
+  Ridge von Joliet)
+* Einige Kommentare korrigiert, einige kommentierte Codes entfernt
+* Installiere den Kurznameneintrag direkt (PF_Install_Short)
+* Größenoptimierungen, einschließlich:
+  * Der meiste CD-Code wird jetzt überschrieben, wenn keine CD-Unter-
+    stützung erforderlich ist
+  * Nur erweiterte oder standardmäßige DPB/Disk-Funktionen verwenden
+  * Gehe davon aus, dass Alias-Nummern (sowohl DOSLFN als auch SHSUCDX)
+    < 2560 sind
+  * Patchcode direkt statt TESTen [Strg]
+* 4 FAT-Sektoren gleichzeitig lesen (2K Puffer)
+* neuer Fastopen-Cache (cached 16 Verzeichnisse und 16 Namen über alle
+  Laufwerke hinweg)
+* get/set-Attribut verwendet Verzeichniseintrag (schneller als mit DOS)
+* CDs verwenden immer Sektor 16 als Volume-Start (das ist alles, was
+  SHSUCDX tut)
+- printf-Bug mit vorzeichenbehafteten Zahlen behoben (verwendete CX, nicht
+  ECX)
++ p  Schalter zum Anzeigen der Profildaten
++ pr Schalter zum Zurücksetzen der Profildaten
++ pc Schalter zum Kalibrieren des Profiltimings (mit diesem Wert neu
+     kompilieren)
+* Der Versuch, eine Datei als Verzeichnis zu verwenden, schlägt sofort fehl
+  (dies ersetzt den FindFirst-Verzeichnisattributtest)
+* Heap geändert, um Zuweisungen in Byte-Größe zu verwenden, die Zuweisung
+  wird erweitert, wenn 1, 2 oder 3 Byte übrig bleiben; die Allokations-
+  strategie entfernt
+* Alloc_Cluster erstellt einen eigenen Verzeichniseintrag
+
+Version 0.33a (07/2004)
+- Holt das Attribut des Root-Verzeichnisses
+
+Version 0.33b (07/2004)
+- Löscht alle Wildcards, nicht nur die ersten
+
+Version 0.34 (11/2004) (MSCDEX)
+- Behoben: -r
+- 2560-Zahlenlimit entfernt
+* CD: Datenträgerbezeichnung (Label) wird unabhängig vom angegebenen
+  Pfad gefunden
+* CD: SHSUCDX-Code entfernt
+* CD: Unterstützung für Rock Ridge entfernt
+
+Version 0.40 (11/2004) (SHSUCDX v3)
+* CD: Diese Version erfordert SHSUCDX v3 für Joliet-Unterstützung!
+* CD: Verbesserte Rock Ridge-Unterstützung (erfordert keine "LINUX"
+      System-ID mehr)
++ CD: Unterstützung für lange ISO-Namen hinzugefügt
+* CD: -r ist standardmäßig gleich mit SHSUCDX
+
+Version 0.40a (03/2005)
+- Cache-Problem mit Attributfunktionen behoben (FreeDOS-Bug 1818)
+- Kompilierungsprobleme mit TASM 5.3 behoben
+- FAT mkdir/rename/del direkt nach dem CD-Zugriff behoben
++ Joliet-Unterstützung für SHSUCDX 3.01 hinzugefügt
+- L: Problem mit dir unter Windows behoben
+
+Version 0.40b (10/2005)
+  Wenn der Heap niedrig war führt dies nicht mehr zu einem Cache-Absturz
+  (spezielles Problem mit MPXPLAY)
+- CD-Probleme behoben (Installation von CD, bestimmte Programme funktio-
+  nieren nicht)
+
+Version 0.40c (11/2005)
+- Das Einstellen der Erstellzeit beim Erstellen der Datei gefixt
+- Weitere CD-Probleme behoben (falsch codierte Verzeichnislängen, Pfad-
+  suche, /c- Option, wenn CD verfügbar war)
+- Fehler beim Finden von Dateien aufgrund von im Verzeichniseintrag
+  gespeicherten NULs behoben
+* CD: verbesserte Erkennung langer ISO-Namen
+
+Version 0.40d (09/2006)
+* Das Öffnen für Lesen/Schreiben und Nur-Schreiben auf nur Lesen/Schreiben
+  geändert (Problemumgehung für Win9X/DOS-Inkompatibilität - DOS Navigator)
+* Das Attribut geändert, wenn eine vorhandene Datei schreibgeschützt
+  geöffnet wird wird (Problemumgehung für DR-DOS 7.03 Inkompatibilität -
+  Systemdateien ließen sich nicht öffnen, verhinderte Pipes)
+- IF beibehalten beim Filtern von LFNs aus SFN-Finde-Funktionen
+* Int21-Handler auf unbekannte Funktion verketten (Udos DR-DOS 64-Bit-
+  Funktionen)
++ FAT+-Unterstützung (Setze hohe Dword-Dateigröße bei Finde Daten) 
+
+Version 0.40e (10/2006)
+- FreeDOS-Inkompatibilität behoben, die durch DR-DOS-Inkompatibilität
+  verursacht wurde.
+
+Version 0.41 (12/2011)
+- Macht den Sektor nach Erhalt eines kurzen Namens ungültig (behebt DIR
+  nach COPY)
+- Fehler beim Erstellen eines Kurznamens behoben (Dank an Japheth)
+- Verhindert das Großschreiben von DBCS-Trail-Bytes
+* Beendet die Verwendung des FASTOPEN-Cache (kann jedoch neu kompiliert
+  werden)
+* Reduzierte .com-Größe (durch bessere Definition der Standardanrufe)
++ Verwende XMS, um DBCS-Codepages zu speichern
++ cp860uni.tbl (Portugiesisch) hinzugefügt
+
+Version 0.41a (1/2012)
+- Befehlszeile wurde durch Variablen beschädigt (verhinderte, dass
+  -z funktioniert)
+
+Version 0.41b (2/2012)
+- Behoben:     -z  Laden einer DBCS-Datei in XMS, wenn resident
++ Hinzugefügt: -f- um Fallback zu deaktivieren; verwendet stattdessen den
+                   vorherigen LFN-Handler (ermöglicht so etwas wie NTFSDOS
+                   oder Paragon IFS, um deren LFN-Funktionen zu nutzen)
+
+Version 0.41c (11/2012)
+- Setzt expliziten Übertrag (nimmt Fehler an) vor der Verkettung (d jgpp
+  2.0.4 Workaround für vor-DOS7.)
+
+Version 0.41d (12/2021)
++ Französische und türkische Übersetzungen (Dank an Berki Yenigün)
+* Die Schweiz verwendet nicht mehr standardmäßig Deutsch
+- Gefixt: TZ-Variable ohne Offset lesen
++ Spanische Dokumentation (Dank an parodper von FreeDOS)
+
+Version 0.41e (3/2022)
+- Gefixt: Erweitern eines Verzeichnisses unter bestimmten Umständen.
+
+Version 0.41f (4/2022)
+- Weitere Fixierungen zum Erweitern von Verzeichnissen.
+* Einfache Versionsprüfung hinzugefügt (wenn andere Progs so tun
+  als wäre es nicht installiert.
+
+Verbleibende bekannte Fehler:
+- Kein Einstellen/Aktualisieren des "letzten Zugriffs"-Datums
+- Kein Setzen/Entfernen von LFN DirEnts beim Aufruf von FCB-Funktionen
+- VCACHE.386-Bug, Sie müssen unter Windows 3.11 den 32-Bit-Dateizugriff
+  deaktivieren
+- LFN DRIVER LOAD ORDER Fehler - NTFSDOS muss nach DOSLFN geladen werden
+- Kein VERSION CHECK - seltsames Verhalten bei Verwendung verschiedener
+  DOSLFN-Versionen
+- TRUENAME behandelt Geräte nicht richtig
+- Erstellen eines *wirklich* langen Namens auf einem 512-Byte-Cluster
+  (Zuweisung eines zweiten Clusters schlägt fehl; andere Clustergrößen
+  haben immer genügend Platz).
+- Deaktivierung kann das aktuelle Verzeichnis der CDs ungültig machen
+  (entspricht dem Einlegen einer anderen CD)
+- Die internen Befehle von NIOS funktionieren nicht (dies ist ein Problem
+  mit NIOS & MS-DOS 7). Problemumgehung: Fügen Sie dem PATH ein ungültiges
+  Laufwerk hinzu.
+- Wenn Sie einen Backslash nach einem Dateinamen anhängen, wird diese
+  Datei nicht gefunden (aber es ist in Ordnung für ein Verzeichnis).
+- NTFSDOS gibt manchmal falsche Zeiten an - dies ist ein Fehler in NTFSDOS.
+
+
+email:    jadoxa@yahoo.com.au
+Download: http://doslfn.adoxa.vze.com/
+          https://www-user.tu-chemnitz.de/~heha/hsn/dos/doslfn/
