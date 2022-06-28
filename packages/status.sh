@@ -475,10 +475,12 @@ function create_master_csv () {
 
 function main () {
 
+    [[ "${1}" = "master" ]] && 	echo "Update MasterCSV only"
     [[ -e "error.log" ]] && rm "error.log"
     local f o
     fetch_csv || return $?
     create_master_csv ibiblio.csv fd-lod.csv || return $?
+    [[ "${1}" = "master" ]] && 	return 0
     CSV_MASTER=
 
     for f in */listing.csv ; do
@@ -507,6 +509,6 @@ function maintest () {
 
 }
 
-main
+main ${@}
 # maintest
 exit $?
