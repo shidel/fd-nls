@@ -46,10 +46,11 @@
 1.18: WAARSCHUWING: Ongeldig bestandsformaat: %s
 1.19: WAARSCHUWING: Actieve codepagina niet gevonden
 1.20:. Tijd om terug te vallen op cp437\n
+1.21: WAARSCHUWING: Gedeelde mappen uitgeschakeld voor dit gast-besturingssysteem.\n
 2.0: Shared Folders gekoppeld onder %c:\n
 2.1: Succesvol gestopt en verwijderd uit geheugen.\n
 9.0: INFO: Werkend op VMware %s versie %lu\n
 9.1: INFO: UTC Offset is %ld seconds\n
 9.2: INFO: Actieve pagina is cp%d. Bezig met laden van unicode tabel %s\n
-9.3: INFO: Stuurprogramma in geheugen geladen met %u bytes gebruikt.\n 
-
+9.3: INFO: Stuurprogramma in geheugen geladen met %u bytes gebruikt.\n
+9.4: INFO: CHCP-ondersteuning ingeschakeld via VMCHCPD.SYS\n

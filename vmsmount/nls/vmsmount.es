@@ -45,6 +45,7 @@
 1.17: ADVERTENCIA: No pudo cargarse tabla Unicode: %s
 1.18: ADVERTENCIA: Formato de archivo incorrecto: %s
 1.19: ADVERTENCIA: P gina de c¢digos activa no encontrada
+1.21: ADVERTENCIA: Carpetas Compartidas deshabilitadas.\n
 1.20:. Se usar  cp437.\n
 2.0: Montando carpetas compartidas en %c:\n
 2.1: Desinstalado y eliminado correctamente de la memoria.\n
@@ -52,3 +53,4 @@
 9.1: INFO: Diferencia con UTC en segundos: %ld\n
 9.2: INFO: La p gina activa es cp%d. Cargando tabla Unicode %s\n
 9.3: INFO: Driver cargado en memoria ocupando %u bytes.\n
+9.4: INFO: Soporte CHCP habilitado a trav‚s de VMCHCPD.SYS\n
