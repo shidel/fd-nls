@@ -1,0 +1,81 @@
+STR1_1 = 'Extensi¢n BIOS para teclados internacionales para el proyecto FreeDOS';
+STR1_2 = 'El £ltimo m¢dulo es: ';
+STR1_3 = 'Disposici¢n del teclado: ';
+STR1_4 = 'Parte residente de KEYB eliminada.';
+STR1_5 = 'Tipo de teclado    : AT mejorado';
+STR1_6 = 'Tipo de teclado    : PC est ndar';
+STR1_7 = 'Autor de la compilaci¢n : ';
+STR1_8 = 'Informaci¢n de la compilaci¢n: ';
+STR1_9 = 'Extensiones para teclado Japon‚s activas';
+
+STR2_1 = 'Hay una versi¢n de KEYB diferente instalada.';
+STR2_2 = 'Hay un controlador incompatible instalado.';
+STR2_3 = 'Falta el identificador del teclado.';
+STR2_4 = 'El archivo especificado no se ha podido abrir.';
+STR2_5 = 'La parte residente de KEYB no se ha podido eliminar.';
+STR2_6 = 'Fallo interno: El espacio de memoria global es demasiado peque¤o (contact el equipo de desarrollo).';
+STR2_7 = 'Keyb requires (a£n) un AT/286 o superior';
+STR2_8 = 'KEYB no pudo ser instalado';
+STR2_9 = 'No se admite (a£n) la superposici¢n de disposiciones';
+STR2_10 = 'La tabla del teclado no se ha podido crear';
+STR2_11 = 'Par metro no v lido -  ';
+STR2_12 = 'La p gina de c¢digos especificada no se ha podido encontrar en el archivo de definici¢n del teclado - ';
+STR2_13 = 'El archivo especificado no es v lido o est  corrupto';
+STR2_14 = 'El archivo especificado no contiene informaci¢n para esta disposici¢n o ID de teclado';
+STR2_15 = 'El archivo KL es demasiado grande (l¡mite (a£n) de 3KB)';
+{  STR2_16 = 'Error al comunicarse con el dispositivo CON';
+STR2_17 = 'La p gina de c¢digos no ha sido preparada';  }
+STR2_18 = 'Se ha encontrado una versi¢n incompatible de DR-DOS KEYB';
+STR2_19 = 'Versi¢n incompatible de descriptores de teclado';
+STR2_20 = 'Checksum inv lido para el bloque de datos';
+STR2_21 = 'El sub-mapeo actual no coincide con la p gina de c¢digos antigua';
+STR2_22 = 'El archivo de biblioteca de disposiciones no est  cerrado para edici¢n';
+STR2_50 = 'Aviso: no se ha podido desasignar el MCB anterior. Error de DOS: ';
+STR2_51 = 'Error cr¡tico: no se puede asignar memoria. DOS error: ';
+
+STR3_1  = '("Taurus") Controlador de teclado de segunda generaci¢n para FreeDOS';
+STR3_2  = 'Licencia:  GNU-GPL 2.0';
+STR3_3  = '(/? ayuda, /V ampliar informaci¢n)';
+STR3_4  = 'KEYB  disposici¢n[,[PC][,nombrearchivo] [/ID:nnn] [/E] [/9] [/I] [/Dx] [/V] [/L=m]';
+STR3_5  = 'disposici¢n Identificador de una disposici¢n de teclado f¡sica, como SP o ES';
+STR3_6  = 'PC          P gina de c¢digos inicial para este teclado';
+STR3_7  = 'archivo     Archivo que contiene la informaci¢n para esta disposici¢n';
+STR3_8  = '/ID:nnn     Identificador num‚rico para una variante de teclado';
+STR3_9  = '/?          Mostrar esta ayuda';
+STR3_10 = '/9          Instala el controlador para int9h (incompatible con /E) ';
+STR3_11 = '/B          Desactiva efectos sonoros de KEYB (altavoz)';
+STR3_12 = '/CAPSLOCK=ON|OFF    Activa o desactiva del Bloqueo May£sculas';
+STR3_13 = '/Dx         Separador decimal: x es el car cter que se utilizar ';
+STR3_14 = '/E          Especifica que el teclado es un teclado AT mejorado';
+STR3_15 = '            (incompatible con /9)';
+STR3_16 = '/I          (forzar Instalaci¢n) Fuerza la instalaci¢n incondicional de KEYB';
+STR3_17 = '/L=m        (forzar subDisposici¢n) Fuerza usar la subdisposici¢n m';
+STR3_18 = '/NOHI       Evita que KEYB cargue datos en la memoria ALTA';
+STR3_19 = '/NOUMB      Evita que KEYB cargue datos en la memoria SUPERIOR';
+STR3_20 = '/NUMLOCK=ON|OFF    Activa o desactiva el Bloqueo Num‚rico';
+STR3_21 = '/S          (modo Seguro) Impide usar Strings,... (ver documentaci¢n)';
+STR3_22 = '/SCROLLLOCK=ON|OFF    Activa o Desactiva el Bloqueo de Desplazamiento';
+STR3_23 = '/U          Desistala la parte residente del controlador';
+STR3_24 = '/V          Muestra informaci¢n extendida al instalar';
+STR3_25 = 'M s informaci¢n: ver README.TXT';
+
+
+STR4_1  = 'Indicador de activo   : ';
+STR4_2  = 'Nombre de disposici¢n : ';
+STR4_3  = 'Detalles de la disposici¢n:';
+STR4_4  = 'P gina de c¢digos actual  : ';
+STR4_4b = 'Subdisposici¢n actual : ';
+STR4_5  = 'N£mero de subdisposiciones: ';
+STR4_6  = 'P ginas de c¢digos admisibles : ';
+
+STR5_1 = 'ERROR: vector int15h sobreescrito';
+STR5_2 = 'ERROR: vector int2Fh sobreescrito';
+STR5_3 = 'ERROR: vector int16h sobreescrito';
+STR5_4 = 'ERROR: vector int9h sobreescrito';
+
+STR6_1 = 'Bloqueo maìsculas: ACTIVO';
+STR6_2 = 'Bloqueo maìsculas: INACTIVO';
+STR6_3 = 'Bloqueo desplazamiento: ACTIVO';
+STR6_4 = 'Bloqueo desplazamiento: INACTIVO';
+STR6_5 = 'Bloqueo num‚rico: ACTIVO';
+STR6_6 = 'Bloqueo num‚rico: INACTIVO';
