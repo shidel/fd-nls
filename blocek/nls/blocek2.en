@@ -1,9 +1,14 @@
+## For instructions for translators please look into file HOWTO.TXT
+##
+
 #identifikuj_se
 English
 #sys_font
-<FONT=latin216.ch>
+latin216.ch
 #sys_font_maly
 latin214.ch
+#sys_font_kodovani
+437
 #m1
 File
 #m2
@@ -16,18 +21,20 @@ About program
 Load file INFO.TXT <<Alt-F1>>
 #m33
 System info
+#m34
+Hypertext help
 #m4
 Text
 #m11
-New file   <<F1>>
+New file <<F1>>
 #m12
-Open      <<F3>>
+Open     <<F3>>
 #m13
-Save      <<F2>>
+Save     <<F2>>
 #m14
 Command prompt
 #m15
-Exit      <<ESC>>
+Exit     <<ESC>>
 #m16
 Close file <<Alt-F3>>
 #m21
@@ -38,8 +45,6 @@ Foreground colour
 Background colour
 #m213
 Desktop colour
-#m214
-Selected text
 #m215
 Highlighted line colour
 #m22
@@ -53,7 +58,7 @@ Select image filter
 #m26
 Preferred keyboards
 #m27
-Preferred unicode filters
+Show/hide the line endings
 #m28
 Save settings
 #m29
@@ -66,8 +71,8 @@ Convert from UTF-8
 Word wrapping
 #m431
 Fix actual word wrapping
-#m431_pomoc
-All lines which are "soft wrapped" by word wrapping algorithms are converted to "hard wrapped".
+#m432
+Line merging
 #m44
 Search       <<Ctrl-F>>
 #m45
@@ -77,15 +82,19 @@ Replace      <<Ctrl-H>>
 #m47
 Charmap
 #m48
-ASCII conversions
+Coding and conversions <<CTRL-K>>
 #m49
 Block operations
+#m490
+QR code generation
 #m491
 Chars to HTML entities
 #m492
 Convert case to up
 #m493
 Convert case to down
+#m494
+HTML entities to chars
 #vyber_soubor
 Select file:
 #jak_to_ulozit
@@ -93,12 +102,10 @@ Enter the file name
 #soubor_existuje_prepsat
 This file already exists
 overwrite?
-#napoveda
+#o_programu
 About application
-#dotaz
-question
-#info
-info
+#napoveda
+help
 #varovani
 <BARVA=51200>warning!<SB>
 #opravdu_konec
@@ -113,8 +120,6 @@ it will behave independently to previous instances!
 unicode
 #zalamovani
 word wrapping
-#unicode_varovani
-Attention! You really shouldn't enable Unicode for non-Unicode files. Else evil things can happen ;-)
 #vyber_barvu_popredi
 Select foreground colour
 #vyber_barvu_pozadi
@@ -125,16 +130,109 @@ select desktop colour
 Do you want to highlight the actual row?
 #nastaveni_ulozeno
 Settings saved
-#ok
-' <BARVA=*;KLAVESY=oO>O<SB>K '
-#zrus
-'<BARVA=*;KLAVESY=cC>C<SB>ancel'
 #zatim_neni
 This function is not yet available.
+#hypertextova_napoveda
+Hypertext help system
+
+#napoveda_koren
+<FONT=latin216.ch>BloŸek<SF> - text editor and image viewer
+
+Help topics:
+1) <OK="napoveda_klavesy">Keyboard control<OK/>
+2) <OK="napoveda_mys">Mouse control<OK/>
+3) <OK="napoveda_prvky">Control elements<OK/>
+
+#napoveda_klavesy
+<FONT=surea37.fn;barva=65346>Keyboard control<SB;SF>
+<barva=65535>F10<sb>   - enter main menu
+<barva=65535>F1<sb>    - make a new file
+<barva=65535>F2<sb>    - save file
+<barva=65535>F3<sb>    - load file
+<barva=65535>Alt+F3<sb> - close file
+<barva=65535>Alt+F1<sb> - load this file (INFO.TXT)
+<barva=65535>Ctrl+F<sb> - search
+<barva=65535>Ctrl+S<sb> - search again
+<barva=65535>Ctrl+H<sb> - replace
+<barva=65535>Ctrl+A<sb> - select all document to block
+<barva=65535>Ctrl+K<sb> - char conversion functions
+<barva=65535>LShift+Alt<sb> - change keyboard layout
+<barva=65535>Ctrl+Alt+Up<sb> - select actual line to block
+<barva=65535>Ctrl+Alt+Down<sb> - word on the cursor to block
+<barva=65535>Ctrl+Alt+Left<sb> - all chars from cursor to left to block
+<barva=65535>Ctrl+Alt+Right<sb> - all chars from cursor to right to block
+<barva=65535>*arrows<sb> - cursor movements
+<barva=65535>*Ctrl+PageUp<sb> or <barva=65535>*Ctrl+Home<sb> - jumps on first line of the file 
+<barva=65535>*Ctrl+PageDown<sb> or <barva=65535>*Ctrl+End<sb>- jumps on last line of the file
+<barva=65535>*Ctrl+RightArrow<sb> - moves one word to right
+<barva=65535>*Ctrl+LeftArrow<sb> - moves one word to left
+   These function keys (marked with the "*" char) can be combined with the <Shift> key.
+   In such case is together *with cursor movement also created or updated the text
+   selection block.
+<barva=65535>Ctrl+Space<sb> - delete selected block
+<barva=65535>Ctrl+[1-7]<sb> - copy selected block of text into clipboard No 1-7
+<barva=65535>Alt+[1-7]<sb> - paste text from clipboard No 1-7 into cursor position
+<barva=65535>Ctrl+plus<sb> and <barva=65535>Ctrl+minus<sb> (on the numeric keyboard) - fast switching among opened files forward or backward
+<barva=65535>ESC<sb>   - quit
+<barva=65535>Alt+F2<sb> - make a screenshot
+
+#napoveda_mys
+<FONT=surea37.fn;barva=65346>Mouse control<SB;SF>
+<barva=65535>1) In document window<SB>
+Left mouse button (LMB) click  - moves cursor on selected place in text
+LMB click+shift - select beginning and end of the text block
+LMB press and drag - interactive selection of the text block
+Right mouse (RMB) click - shows information and optionally a conversion menu for the char you clicked to
+
+<barva=65535>2) In panel with cards of opened files<SB>
+LMB click - switches the main window to the specified file
+RMB click - several actions with the specified file
+(close, close all but this, show full file path)
+
+<barva=65535>3) In the clipboards indicators<SB>
+LMB click - menu for operations with the clipboard
+
+<barva=65535>4) Other notes<SB>
+->> All other buttons and other GUI elements use only left mouse button at this moment. 
+    The right one is not used currently.
+->> Nearly all dialog windows can be moved on the screen by dragging by their title bar.
+->> The mouse dragging with LMB over the text in the information windows (including this one)
+    can select the text block for copying into clipboard using <OK="napoveda_klavesy">Ctrl+[1-7]<OK/>
+    for eventual pasting into document window.
+
+#napoveda_prvky
+<FONT=surea37.fn;barva=65346>Control elements<SB;SF>
+Most of the workplace is covered by the <barva=65535>main window<SB>. In this window is displayed either a document 
+with editable text or the viewer with loaded image.
+Above this area are three horizontal panels.
+<barva=65535>1) Permanent panel<SB>
+The main menu with items: <barva=65535>File<SB>, <barva=65535>Text<SB>, <barva=65535>Options<SB>, <barva=65535>Help<SB>
+To right from this menu are the <OK="napoveda_indikatory">clipboard indicators<OK/> for the text blocks numbered 1-7.
+Even more to right (in the upper right corner) is a pick list, where can be chosen the keyboard layout.
+This list can be also opened by the key shortcut <OK="napoveda_klavesy">ALT+SHIFT<OK/>
+
+<barva=65535>2) Context panel<SB>
+It changes accordingly the content of the main window. 
+If some image is currently viewed then in the left side are shown its dimensions in pixels. To right from this are buttons for fullscreen, for optimal window size and for rotating and flipping the image. 
+If a editable document is viewed then the context panel is different. On the left side is a button linking to dialog window for various code page conversion functions. (also can be activated by the keystroke <OK="napoveda_klavesy">CTRL+K<OK/>). 
+Next to the right side is the button for setting the options for the word wrapping.
+On the right from this button is a checkbox which switches the wrapping and non-wrapping mode.  By the right 
+border is displayed the actual cursor position.
+
+<barva=65535>3) Panel with cards of opened files<SB>
+Until no file is loaded the third panel is empty. When some file is opened, its card is displayed in this panel. In the <FONT=latin216.ch>BloŸek<SF> editor is possible to have opened many files simultaneously. 
+Their cards are displayed next to next and user can switch among them by the <OK="napoveda_mys">mouse.<OK/>.
+The left mouse button switches the main window to specified file (document or image). The right mouse button opens a submenu allowing the closing the file, closing all files but this and the function for displaying the full path to the file.
+
+#napoveda_indikatory
+If some test is copied into clipboard (by the key <OK="napoveda_klavesy">CTRL+[1-7]<OK/>)  or by the special button in several dialog windows) then the presence of the content in the particular clipboard is indicated.
+Its indicator changes its color to white and resembles a lit light bulb.
+If the clipboard is empty then it is displayed with a black color and with symbol of a overstriked circle.
+
 #text_napovedy
 <FONT=surea37.fn>BloŸek<SF>
-<FONT=latin216.ch>version 1.62
-Date of compilation: <BARVA=65535>15.1.2019<SB>
+<FONT=latin216.ch>version 1.71
+Date of compilation: <BARVA=65535>15.11.2022<SB>
 programmed by Laaca (laaca@seznam.cz)
 
 BloŸek is text editor and image viewer which is
@@ -142,7 +240,7 @@ capable of editing files in Unicode UTF-8 coding
 so it's very usable for example by writing WWW pages.
 BloŸek can edit very big files with very long lines.
 Thanks to Mateusz Viste for his Unicode fonts.
-BloŸek is also usable as a simple images viewer of files
+BloŸek is also usable as a simple image viewer for files
 in common graphic formats. It is however not able to
 edit the images.
 
@@ -150,34 +248,13 @@ This program is released as free and open source under
 GNU/GPL license<SF>
 #vyber_filtr
 Select conversion filter
-#to_uz_utf8_je
-This file is already in Unicode
-Conversion has no sense.
-#neni_v_utf8
-This file isn't in Unicode
-#nezname_na_otaznik
-Do you want to replace unknown chars by "?"
+
 #parametr_otaznik
 Syntax:
 BLOCEK [file1 [,file2 [,...]]]
 #ovladani_obrazku
 fullscreen*o<<>>O*+90*-90*horiz*vert*Exif data
-#zoom_info
-Views image on full screen.
-#obrorig_info
-Switches between original size and optimal size to display whole image on screen
-#plus90_info
-turns image to 90 degrees clockwise
-#minus90_info
-turns image to 90 degrees counter-clockwise
-#fliphorz_info
-Flips horizontally
-#flipvert_info
-Flips vertically
-#exifdata_info
-Shows data from EXIF tag (available on some JPEG files)
-#chyba
-Error!
+
 #soubor_nebyl_ulozen
 File wasn't saved!
 there isn't enough space on the drive or
@@ -219,10 +296,7 @@ to cursor
 from beginning
 #roz_vel_pismen
 Case sensitive
-#mapa_shodnosti
-Case mapping:
-#hl_unicode
-<BARVA=65535>unicode<SB>
+
 #text_nenalezen
 Selected text wasn't found.
 #nahradit_vyskyt
@@ -242,14 +316,15 @@ Select image filter
 #opravdu_zavrit
 File was changed.
 Save it?
+#zavrit_ostatni
+Close all but this
+#umisteni_souboru
+Path to file
 #bezejmenny
 <BARVA=46815><<new file>><SB>
 #bezejmenny_soubor
 New file
-#nacitam
-Loading...
-#prer_esc
-<<ESC>> to cancel
+
 #zrusit_nac
 Cancel the loading?
 #chybi_bcfg
@@ -280,13 +355,10 @@ Full list...
 Which keyboards shall be in the main menu?
 #vybprefflt
 Which filters shall be in the main menu?
-#asciihelp
-ASCII conversions can't be used for texts in Unicode
+
 #asciiauto
 autodetection
-#asciiautovaruj
-Autodetection is not always 100% reliable.
-Shall I continue?
+
 #vkod
 <PODTRH=+>source<PODTRH=->
 #ckod
@@ -296,7 +368,9 @@ selected:
 #ozn_nic
 nothing
 #kompinfo
-Processor:*Memory:*MB RAM*Video:* VESA version:*Videomode:*Videomemory*Refresh frequency:*BIOS default*DOS version:
+Processor:*Memory:*MB RAM*Video:* VESA version:*Videomode:*Videomemory*Refresh frequency:*BIOS default*DOS version:*DOS charset:*DOS country identification:
+#kompinfo_lfn
+Long file names (LFN):
 #schranka_c
 Clipboard No.
 #schranka_do
@@ -314,7 +388,7 @@ You must restart the program for change to take effect.
 #prevod_html_entity
 Conversion to HTML entities
 #prevod_html_ent_info
-Chars with ASCII or unicode value greater 255
+Chars with ASCII or unicode value greater 127
 converts to HTML entities.
 Scope of the conversion is defined by the block.
 #text_je_v_unicode
@@ -335,3 +409,244 @@ Convert case to low
 #prevod_velka_mala_inf
 Converts case of latters in the block to low.
 Doesn't touch other chars.
+#kodovani_dokumentu
+Coding:
+#help_non_unicode
+Only changes the codepage sign. Does not change the font.
+#help_inter_znaku
+Conversions between single characters and multiple characters sequentions in UTF-8 or UTF-16.
+Some subfunctions are applicable also to text blocks, some only to whole document.
+If switches from non-Unicode to Unicode or vice-versa changes the font.
+
+#help_tabkonv_znaku
+Recode the chars using conversion tables. The number of characters remains the same.
+Can be applied to whole document or only to specifies block.
+If switches from non-Unicode to Unicode or vice-versa changes the font.
+
+#analyza_nedef_zn_dok
+Analysis of the undefined chars in whole text
+
+#analyza_nedef_zn_blok
+Analysis of the undefined chars in defined block
+
+#poc_vysk_nedef_znaku_n
+number of occurencies of char
+
+#poc_vysk_nedef_znaku_vse
+number of all undefined chars
+
+#poc_vysk_nedef_znaku_unik
+number of unique undefined chars*scope
+
+#zamena_znaku
+Change the char to another one?
+
+#nedefinovany_znak
+Undefined char*Analysis of the undef. chars (block/text)
+
+#nedefinovany_znak_zam
+Replace all kinds of undefined chars?
+
+#zamena_znaku_radiob1
+Once only
+In whole document
+In selected block
+
+#zamena_znaku_radiob2
+Everywhere
+From begining to marked char
+From marked char further
+
+#znak_k_zamene
+Char for replace...
+
+#dotaz_pri_zmene
+Ask when change?
+
+#vice_info_o_znaku
+more...
+
+#kodovaniascii_dlg
+Probable ASCII coding:*cannot determinate*Do you agree?
+
+#polozka_dos
+(using table)*(without table)*more...
+
+#tbl_filtr_ascii
+Conversion in group:*source coding*target coding
+
+#niz_nonunicode1
+In which coding is the displayed text?
+
+#niz_nonunicode2
+The source and target coding are the same.
+No changes will be performed.
+
+#ascii_2_utf_1
+Conversions between ASCII and multibyte sequencies UTF-8 or UTF-16
+
+#ascii_2_utf_2
+Block operations (does not change the coding marker)
+
+#ascii_2_utf_3
+Whole document operations (coding marker changes to Unicode)
+
+#uni_2_utf_1
+Conversions between Unicode and multibyte sequencies UTF-8 or UTF-16
+
+#uni_2_utf_2
+Unicode --> UTF-8 (represented in DOS ASCII chars)
+
+#prohozeni_endianity
+Switch the endianity of the Unicode chars
+
+#tab_konv_zn
+Performs no conversions. Only changes the coding marker to non-Unicode (DOS ASCII)
+Chars in range 0-255 will not be changed, chars above 255 replaces by placeholder.
+
+#zda_prenastavit_font1
+Also switch the font and coding marker to non-Unicode setting?
+
+#zda_prenastavit_font2
+Also switch the font and coding marker to Unicode setting?
+
+#pren_font_ano
+(the whole text conversion, so probably YES)
+
+#pren_font_ne
+(the limited text block conversion so probably NO)
+
+#preznacit_kodovani
+Shall I update the document coding marker?
+
+#zm_kod_dok
+Change of the document coding
+
+#zak_unicode
+Document is encoded in the Unicode.
+
+#sada_a_filtr_souborem
+The charset and conversion filter to Unicode are specified in file:
+
+#interp_nonuni
+Interpretation of non-Unicode
+
+#konv_zn_utf
+Conversion chars/UTF sequencies
+
+#tab_konv_zz
+Table based conversions char/char
+
+#zmena_fontu
+Font change
+
+#nas_zal_rad
+Word wrapping settings
+
+#nas_zal_mozn
+by the document window
+78 chars
+80 chars
+other...
+
+#filesel_nejde_konverze
+Entered filename is not possible to convert to actual DOS codepage.
+Continue anyway?
+
+#podrobnosti
+Details
+
+#moznosti...
+Options...
+
+#form_konc_rad
+Line ending format
+
+#form_konc_help
+I recommend to keep the standard CRLF which is common in the
+DOS or Windows systems.
+LF is standard for Unix/Linux and
+CR is reportedly used in the computers Macintosh.
+
+#form_konc_mozn
+CRLF (DOS/win)
+LF (Unix)
+CR (Mac)
+
+#b_ord_mark
+Byte order mark (BOM)
+
+#bom_help
+"BOM" = "byte order mark"
+It applies only for files coded in Unicode.
+It is two-bytes or three-bytes sequence on the very beginning of the file.
+BOM is recommended to use for files in the UTF-16 variants.
+In UTF-8 documents is used rarely.
+
+#bom_mozn
+UTF-8
+UTF-16le
+UTF-16be
+
+#zobr_konc_rad
+Display the line ending marks?
+(with color diferenced hard and soft endings?)
+
+#opravdu_fix_lom
+Really to fixate the word wrapping in the whole document?
+
+#rozs_fix_lom_blok
+Block does not contain any line end.
+Shall I extend it and continue?
+
+#jen_nezalam_rezim
+This function is for non-wrapping mode only.
+
+#opravdu_spoj_radky
+Really to apply the line merging algorithm over whole document?
+
+#nahr_faze
+phase 1:*phase 2:*phase 3:
+
+#jen_v_bloku
+only in the block
+
+#prevod_z_html_entit
+Decodes the HTML entities to chars
+
+#prevod_z_html_entit_info
+Identifies the HTML entities in numeric format (like &#8222;) and replaces them by Unicode chars
+
+#qr_vygenerovany
+Generated QR code
+
+#qr_ulozit
+Save
+
+#qr_velikost
+Element size in QR code (1-20)
+
+#qr_uspech
+Success! Saved with filename:
+
+#qr_chyba
+Error during conversion to QR code.
+
+#qr_tvorba
+QR codes creation
+
+#qr_text
+Text for creating the QR code
+
+
+
+
+
+
+
+
+
+
+
+
+
