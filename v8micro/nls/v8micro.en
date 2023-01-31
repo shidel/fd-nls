@@ -169,25 +169,17 @@
 ; message displayed when Erase is asked to delete all files (*.*).
 0b,0012=All files in "%0" will be Erased!
 
-; results of file actions, like copy, delete, etc (0b,0200-0b,0204)
+; results of file actions, like copy, delete, etc (0b,0200)
 0b,0100=no files %0
 0b,0101=one file %0
 0b,0101=%1 files %0
 
 ; names for file actions (0b,0100-0b,0101)
-0b,0200=copied
-0b,0201=moved
-0b,0202=renamed
-0b,0203=deleted
-0b,0204=erased
+0b,0200=copied,moved,renamed,deleted,erased
 
 ; default pause messages
 0c,0000=Press a key to continue . . .
 0c,0002=Paused . . .
-
-; date & time command messages
-0d,0000=Current date is %0
-0d,0001=Current time is %0
 
 ; Date command format
 ; %0 = YYYY 	%4 = YY
@@ -195,8 +187,12 @@
 ; %2 = DD	%6 = D
 ; %3 = DAY OF WEEK (0d,0010)
 0d,0005=%3 %7 %6, %0
-0d,0010=Sun,Mon,Tue,Wed,Thu,Fri,Sat
-0d,0011=Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+
+; Day names for date format
+0d,0010=Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday
+
+; Month Names for date format
+0d,0011=January,February,March,April,May,June,July,August,September,October,November,December
 
 ; Time command format
 ; %0 = HH (24hr)	%4 = HH (12hr)		%5 = H (12hr)
@@ -205,7 +201,9 @@
 ; %3 = HS (100ths)
 ; %6 = AM/PM (0d,0020)
 0d,0006=%5:%1:%2 %6
-0d,0012=am,pm
+
+; AM/PM for time format
+0d,0012=AM,PM
 
 ; Date format for directory listings (same params as date command)
 0d,0020=%1-%2-%0

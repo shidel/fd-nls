@@ -210,17 +210,13 @@
 ; message displayed when Erase is asked to delete all files (*.*).
 0b,0012=All files in "%0" will be Erased!
 
-; results of file actions, like copy, delete, etc (0b,0200-0b,0204)
+; results of file actions, like copy, delete, etc (0b,0200)
 0b,0100=no files %0
 0b,0101=one file %0
 0b,0101=%1 files %0
 
 ; names for file actions (0b,0100-0b,0101)
-0b,0200=copied
-0b,0201=moved
-0b,0202=renamed
-0b,0203=deleted
-0b,0204=erased
+0b,0200=copied,moved,renamed,deleted,erased
 
 ; default pause messages.
 ; 0c,0000 and 0c0001 are for 80+ column modes and must be less than 80 characters
@@ -241,7 +237,11 @@
 ; %2 = DD	%6 = D
 ; %3 = DAY OF WEEK (0d,0010)
 0d,0005=%3 %7 %6, %0
+
+; Day names for date format
 0d,0010=Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday
+
+; Month Names for date format
 0d,0011=January,February,March,April,May,June,July,August,September,October,November,December
 
 ; Time command format
@@ -251,6 +251,8 @@
 ; %3 = HS (100ths)
 ; %6 = AM/PM (0d,0020)
 0d,0006=%5:%1:%2 %6
+
+; AM/PM for time format
 0d,0012=AM,PM
 
 ; Date format for directory listings (same params as date command)
@@ -258,7 +260,6 @@
 
 ; Time format for directory listings (same params as time command)
 0d,0021=%4:%2 %6
-
 
 ; When beep command is verbose (not implemented), this message will be
 ; displayed during multiple tone playback. Probably.
