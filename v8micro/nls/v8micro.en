@@ -68,15 +68,15 @@
 02,0005=cannot exit now
 
 ; when exiting shell an there is an error code.
-02,0006=terminating with error code
+02,0006=exit with error
 
 ; extra messages when expanding command line environment variable runs out
 ; of buffer memory.
-02,0007=failed to expand environment variable "%0"
+02,0007=variable expansion "%0" failed
 
 ; extra messages when expanding the command line runs out of buffer memory.
 ; It is similar to 02,0007, but occurs at a different stage of the expansion.
-02,0008=failed to expand command line "%0"
+02,0008=command line expansion "%0" failed
 
 ; extra message for some commands when an Option Switch is not understood
 02,0009=Unknown option "%0"
@@ -84,10 +84,9 @@
 ; help for a command is not available
 02,000a=no help for %0
 
-
 ; Extra messages for when make or remove dir fails
-03,0000=failed to make directory "%0"
-03,0001=failed to remove directory "%0"
+03,0000=make directory "%0" failed
+03,0001=remove directory "%0" failed
 
 ; extra message for when user provides garbage when trying to change errorlevel
 03,0002=error changing errorlevel %0
@@ -99,21 +98,10 @@
 03,0004=invalid drive %0
 
 ; extra message when user attempts to change drives and it fails
-03,0005=failed to change to drive %0
+03,0005=change to drive %0 failed
 
 ; message displayed at the top of list of commands
 04,0000=Internal %0 commands:
-
-; Message displayed for textmode when starting to probe video modes
-06,0000=Probing...
-
-; message displayed at the top of a list of supported text modes
-06,0001=Detected modes:
-; the text for each text mode listing of supported modes (I like it indented)
-06,0002=%0 - %1 x %2
-
-; for reporting the current video mode information.
-06,0003=Active text mode %0, %1 columns x %2 rows.
 
 ; for ChDir without options to display the Drive/Directory
 07,0000=%0:\%1
@@ -127,9 +115,6 @@
 ; for displaying the serial number of a drive when present.
 07,0003=Volume serial number is %0-%1
 
-; message for when reporting the current theme
-08,0000=theme is %0
-
 ; These are the off/on messages that the echo, break and verify commands
 ; will show when no options or text are provided. NOTE: those commands always
 ; test for OFF/ON when changing. They will also check against 09,0000 and
@@ -142,10 +127,10 @@
 
 ; message displayed when PATH command is requested to list the paths but the
 ; corresponding environment variable is not set.
-0a,0000=No system search path is defined.
+0a,0000=No search path defined
 
 ; message displayed for the PATH command before the list of PATHs.
-0a,0001=System path search order:
+0a,0001=System path:
 
 ; prompt for Delete/Del commands when told to prompt for each file.
 0b,0000=Delete file "%0" [Yes,No,All,Quit] ?
@@ -195,10 +180,10 @@
 0d,0005=%3 %7 %6, %0
 
 ; Day names for date format
-0d,0010=Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday
+0d,0010=Sun,Mon,Tue,Wed,Thu,Fri,Sat
 
 ; Month Names for date format
-0d,0011=January,February,March,April,May,June,July,August,September,October,November,December
+0d,0011=Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
 
 ; Time command format
 ; %0 = HH (24hr)	%4 = HH (12hr)		%5 = H (12hr)

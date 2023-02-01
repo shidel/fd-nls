@@ -410,7 +410,7 @@
 ; At present, this general help is provided a single paramater to all lines (1+)
 ; as %0 for the current DOS Switch character. I may add additional params that
 ; may be sent to those lines in the future to provide some other data. But, no
-; worries. Any used paramaters will not cause a problem.
+; worries. Any unused paramaters will not cause a problem.
 
 ; 01, Alias
 ;dd,0100=Display or change command Aliases.
@@ -429,11 +429,11 @@
 42,0205=For multiple entries, if a value is not provided, the default is assumed.
 42,0206=Values may be separated by commas or spaces, and may be either integers or
 42,0207=in hexidecimal.
-; Probably beep will get a /V (verbose) switch as well to display. At that time,
+; Probably beep will get a %0V (verbose) switch as well to display. At that time,
 ; It's help will be changed/inserted...
-; 42,0202=  BEEP [frequency[,delay][,...]] [/V]
+; 42,0202=  BEEP [frequency[,delay][,...]] [%0V]
 ; 42,0203=
-; 42,0204=To display the tones and delays during playback use the /V (Verbose) switch.
+; 42,0204=To display the tones and delays during playback use the %0V (Verbose) switch.
 
 ; 03, Break
 42,0300=Display or change CTRL+C break checking.
@@ -460,11 +460,11 @@
 ; 35, Cdd
 42,3500=Change or display the current drive and directory.
 42,3501=
-42,3502=  CDD [/D][drive:][path]   Change the current drive and directory.
+42,3502=  CDD [%0D][drive:][path]   Change the current drive and directory.
 42,3503=  CDD [..]                 Change to parent directory.
 42,3504=  CDD [-]                  Change to previous directory.
 42,3505=
-42,3506=/D option informs CDD to print a directoy listing after performing a
+42,3506=%0D option informs CDD to print a directoy listing after performing a
 42,3507=directory and/or drive change. Type CDD without options to display the
 42,3508=current path.
 
@@ -496,15 +496,13 @@
 42,0c01=
 42,0c02=Commands DELETE and DEL.
 42,0c03=
-42,0c04=  DEL [drive:][path]filename [/P] [/V]
+42,0c04=  DEL [drive:][path]filename [%0P] [%0V]
 42,0c05=
 42,0c06=  [drive:][path]filename    Specifies the file or files to delete. Use
 42,0c07=                            wildcards to specify multiple files.
 42,0c08=
-42,0c09=  /P    Prompt for confirmation be deleting the file.
-42,0c0a=  /V    Display the file names of deleted files.
-42,0c0b=
-42,0c0c=[actual file deletion is disabled in this pre-release]
+42,0c09=  %0P    Prompt for confirmation be deleting the file.
+42,0c0a=  %0V    Display the file names of deleted files.
 
 ; 0d, Dir
 42,0d00=Display the contents of a directory.
@@ -538,19 +536,17 @@
 ; 11, Erase
 42,1100=Nosey neighbor file delete.
 42,1101=
-42,1102=  ERASE [drive:][path]filename [/P] [/V]
+42,1102=  ERASE [drive:][path]filename [%0P] [%0V]
 42,1103=
 42,1104=  [drive:][path]filename    Specifies the file or files to erase. Use
 42,1105=                            wildcards to specify multiple files.
 42,1106=
-42,1107=  /P    Prompt for confirmation be erasing the file.
-42,1108=  /V    Display the file names of erased files.
+42,1107=  %0P    Prompt for confirmation be erasing the file.
+42,1108=  %0V    Display the file names of erased files.
 42,1109=
 42,110a=Warning: Unlike DELETE, the file will be renamed and then overwritten prior
 42,110b=to deletion. This will make the file unrecoverable using standard utilities.
 42,110c=This is not a "Secure Delete."
-42,110d=
-42,110e=[actual file rename, overwrite and delete is disabled in this pre-release]
 
 ; 12, Errorlevel, Errlvl
 42,1200=Displays or sets the current error level.
@@ -564,11 +560,11 @@
 ; 13, Exit
 42,1300=Terminates the command shell or batch file.
 42,1301=
-42,1302=  EXIT [/SHELL | error code]
+42,1302=  EXIT [%0SHELL | error code]
 42,1303=
 42,1304=If an exit code is not provided, the current exit code is used. When invoked
 42,1305=by a batch file, the batch file will terminate. When issued from the command
-42,1306=line, the shell will terminate if permitted. The /SHELL switch is to request
+42,1306=line, the shell will terminate if permitted. The %0SHELL switch is to request
 42,1307=the shell to terminate from within a batch file.
 
 ; 14, For
@@ -604,7 +600,7 @@
 42,1d03=
 42,1d04=  MD [drive:]path
 42,1d05=
-42,1d06=Someday there will be a /P switch to autocreate parents. Maybe a /N switch
+42,1d06=Someday there will be a %0P switch to autocreate parents. Maybe a %0N switch
 42,1d07=as well.
 
 ; 1e, Path
@@ -660,9 +656,9 @@
 ; 26, Set
 42,2600=Display or change the environment variable table.
 42,2601=
-42,2602=  SET [/I]
+42,2602=  SET [%0I]
 42,2603=
-42,2604=/I to display the internal environment variables available to batch files.
+42,2604=%0I to display the internal environment variables available to batch files.
 42,2605=The internal variables are provided by the shell. If an environment variable
 42,2606=is set using the same name, then that variable will be used instead of the
 42,2607=internal variable.
@@ -764,10 +760,6 @@
 70,000f=functionality will be expanded. There are more commands and features that I am
 70,0010=still thinking about which are not even listed at this time. Stay tuned...
 70,0011=
-70,0012=(P.S. For now, The DELETE/DEL command has actual file deletion disabled. This
-70,0013=will allow you to play with the command and not actually delete anything. When
-70,0014=I remove this PS, that will no longer be the case and files will be erased.)
-70,0015=
-70,0016=Help encourage the continued development of V8Turbo and other DOS software by
-70,0017=becoming a patron. https://patreon.com/shidel
-70,0018=
+70,0012=Help encourage the continued development of V8Turbo and other DOS software by
+70,0013=becoming a patron. https://patreon.com/shidel
+70,0014=
