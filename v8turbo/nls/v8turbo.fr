@@ -6,7 +6,7 @@
 ; Comment lines must start with a ; or an error will occur when the translation
 ; is loaded. Blank lines are ignored.
 ;
-; All spacing before and after = is relavant. Including trailing whitespace.
+; All spacing before and after = is relevant. Including trailing whitespace.
 ;
 ; Each entry must be on a single line. However, there is no limit to the length
 ; of a line.
@@ -28,7 +28,7 @@
 ; Otherwise, you can do all sorts of changes to them. For example, both of these
 ; would be fine:
 ;
-; "Delete %0 file (Ok,Skip,All remaining,Quit) ?"
+; "Delete %0 file (OK,Skip,All remaining,Quit) ?"
 ; "[Do,Do not,This and the rest,Do not continue] delete the %0 file?"
 ;
 ; This brings up the "Hot" key for each action. They are not case specific and
@@ -38,7 +38,7 @@
 ; The options for the prompt are contained in last set of either brackets
 ; "[options]" or braces "(options)" in the text.
 
-; Options are separated by any of these characters ",/;:\|". Just be consistant.
+; Options are separated by any of these characters ",/;:\|". Just be consistent.
 ; -----------------------------------------------------------------------------
 
 ; This is the English language translation. It is also the fallback translation
@@ -62,7 +62,7 @@
 ; the proper codepage. Only non-standard (English) characters need to be
 ; included in this list. The list is limited to 64 characters (0x87 is one
 ; characer). The list uses the hexadecimal Ascii code for characters.
-; To view the current DOS Ascii table under FreeDOS, you can use a utility that
+; To view the current DOS ASCII table under FreeDOS, you can use a utility that
 ; is included by default. Run "vinfo ascii" to display the current table.
 00,0010=0x87,0x84,0x86,0x82,0x91,0x94,0x81,0xa4
 
@@ -175,9 +175,9 @@
 ; for compatibility only "off" should be used in batch files.
 09,0000=d‚sactiv‚
 09,0001=actif
-09,0002=ECHO is %0
-09,0003=BREAK is %0
-09,0004=VERIFY is %0
+09,0002=ECHO est %0
+09,0003=BREAK est %0
+09,0004=VERIFY est %0
 
 ; message displayed when PATH command is requested to list the paths but the
 ; corresponding environment variable is not set.
@@ -185,6 +185,9 @@
 
 ; message displayed for the PATH command before the list of PATHs.
 0a,0001=Ordre de recherche du chemin systŠme :
+
+; message displayed for the CD * command before the list of current directories.
+0a,0002=R‚pertoire actuel des lecteurs systŠme :
 
 ; prompt for Delete/Del commands when told to prompt for each file.
 0b,0000=Effacer le fichier "%0" [Oui,Non,Tout,Quitter] ?
@@ -233,7 +236,7 @@
 ; I have not determined whether the date/time input prompts should end in
 ; a question mark or colon. Also, a space is automatically added to the end
 ; of the prompt string when it is not present in the NLS.
-0d,0002=Entrer la nouvelle date (mm-jj-[cc]aa) :
+0d,0002=Entrer la nouvelle date (mm-jj-[ss]aa) :
 0d,0003=Entrer la nouvelle heure (hh:mm[:ss]) :
 
 ; Date command format
@@ -270,7 +273,17 @@
 ; displayed during multiple tone playback. Probably.
 ; 0e,0000=Fr‚quence %0 Hz, D‚lai %1 ms
 
-; Shell startup information messages
+; Memory command strings
+0f,0000=%0 est charg‚ sur le segment %1 en utilisant %2 octets
+0f,0001=%0 octets pour le code du shell
+0f,0002=%0 octets pour le NLS int‚gr‚
+0f,0003=%0 octets pour la pile
+0f,0004=%0 octets pour les tampons internes
+0f,0005=%0 octets pour d'autres donn‚es
+
+; Shell startup information messages, these messages (50,*) are temporary for
+; the development stage of V8Turbo. Most likely most or all will be removed at
+; release time.
 50,0000=Charg‚ sur le segment %0
 50,0001=L'affichage est %0, mode %1 (%2x%3)
 50,0002=Le NLS int‚gr‚ est %0, consommant %1 bytes
@@ -284,6 +297,8 @@
 50,000a=Aucune souris d‚tect‚e
 50,000b=Souris … %0 boutons d‚tect‚e
 50,000c=%0 octets libre dans le segment
+50,000d=%0 paragraphes initiaux allou‚s
+50,000e=R‚duit … %0 paragraphes
 
 ; Display adapters
 51,0000=MDA
@@ -421,7 +436,7 @@
 
 ; 01, Alias
 ;dd,0100=Afficher ou modifier les alias de commande.
-42,0100=n/a
+42,0100=non disponible
 42,0101=
 42,0102=Cette commande n'a pas ‚t‚ impl‚ment‚e … l'heure actuelle. Il le sera … un
 42,0103=certain moment … l'avenir avec la progression du d‚veloppement du shell. Mais
@@ -437,7 +452,7 @@
 42,0206=suppos‚e. Les valeurs peuvent ˆtre s‚par‚es par des virgules ou des espaces
 42,0207=et peuvent ˆtre soit des nombres entiers, soit en hexad‚cimal.
 ; Probably beep will get a %0V (verbose) switch as well to display. At that time,
-; It's help will be changed/inserted...
+; Its help will be changed/inserted...
 ; 42,0202=  BEEP [fr‚quence[,d‚lai][,...]] [%0V]
 ; 42,0203=
 ; 42,0204=Pour afficher les sons et les d‚lais utilisez l'option %0V (Verbeux).
@@ -530,6 +545,9 @@
 
 ; 0f, Doskey
 42,0f00=Afficher ou modifier les r‚glages du clavier.
+42,0f01=
+42,0f02=  DOSKEY %0INSERT        pour activer le mode insertion (par d‚faut).
+42,0f03=  DOSKEY %0OVERSTRIKE    pour d‚sactiver le mode de frappe avec insertion.
 
 ; 10, Echo
 42,1000=Affiche un message, ou active ou bien d‚sactive l'‚cho des commandes.
@@ -637,6 +655,10 @@
 
 ; 21, Prompt
 42,2100=Modifie la maniŠre dont l'invite de commande est affich‚e.
+42,2101=
+42,2102=TrŠs probablement … un moment donn‚, j'ajouterai la fonctionnalit‚ pour
+42,2103=modifier les informations affich‚es par l'invite de commande. Mais pour le
+42,2104=moment, l'invite par d‚faut de V8Turbo suffira.
 
 ; 22, Pushd
 42,2200=Pousse le r‚pertoire actuel sur la pile des r‚pertoires.
