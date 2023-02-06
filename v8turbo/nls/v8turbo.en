@@ -186,6 +186,9 @@
 ; message displayed for the PATH command before the list of PATHs.
 0a,0001=System path search order:
 
+; message displayed for the CD * command before the list of current directories.
+0a,0002=Current directory of the system drives:
+
 ; prompt for Delete/Del commands when told to prompt for each file.
 0b,0000=Delete file "%0" [Yes,No,All,Quit] ?
 ; 0b,0000=Delete [Yes,No,All,Quit] file "%0" ?
@@ -270,7 +273,17 @@
 ; displayed during multiple tone playback. Probably.
 ; 0e,0000=Frequency %0Hz, Delay %1ms
 
-; Shell startup information messages
+; Memory command strings
+0f,0000=%0 is loaded at segment %1 using %2 bytes
+0f,0001=%0 bytes for the shell code
+0f,0002=%0 bytes for the Built-in NLS
+0f,0003=%0 bytes for the stack
+0f,0004=%0 bytes for internal buffers
+0f,0005=%0 bytes for other data
+
+; Shell startup information messages, these messages (50,*) are temporary for
+; the development stage of V8Turbo. Most likely most or all will be removed at
+; release time.
 50,0000=Loaded at segment %0
 50,0001=Display is %0, mode %1 (%2x%3)
 50,0002=Embedded NLS is %0, using %1 bytes
@@ -284,6 +297,8 @@
 50,000a=No mouse detected
 50,000b=%0 button mouse detected
 50,000c=%0 bytes free in segment
+50,000d=%0 initial paragraphs allocated
+50,000e=Reduced to %0 paragraphs
 
 ; Display adapters
 51,0000=MDA
@@ -528,7 +543,10 @@
 42,0e00=Display the current directory stack.
 
 ; 0f, Doskey
-42,0f00=Display or change keyboard settigns.
+42,0f00=Display or change keyboard settings.
+42,0f01=
+42,0f02=  DOSKEY %0INSERT        to enable insert text typeing mode (default).
+42,0f03=  DOSKEY %0OVERSTRIKE    to disable insert text typing mode.
 
 ; 10, Echo
 42,1000=Displays a message, or turns on or off command echo.
@@ -634,7 +652,11 @@
 42,2000=Pops a directory off of the directory stack and returns to it.
 
 ; 21, Prompt
-42,2100=Changes how the command prompt is displayed.
+42,2100=Changes how the command prompt is displayed (not implemented).
+42,2101=
+42,2102=Most likely at some point, I will add functionality to change what information
+42,2103=is displayed by the command line prompt. But for now, the default V8Turbo
+42,2104=prompt will suffice.
 
 ; 22, Pushd
 42,2200=Pushes the current directory on to the directory stack.
