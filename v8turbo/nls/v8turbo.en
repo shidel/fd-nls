@@ -119,7 +119,7 @@
 02,0009=Unknown option switch "%0"
 
 ; help for a command is not available
-02,000a=help requested for %0 is not available
+02,000a=help requested for "%0" is not available
 
 ; Extra messages for when make or remove dir fails
 03,0000=failed to make directory "%0"
@@ -280,6 +280,34 @@
 0f,0003=%0 bytes for the stack
 0f,0004=%0 bytes for internal buffers
 0f,0005=%0 bytes for other data
+0f,0006=Additional external buffers:
+; development version of buffer memory information
+0f,0007=segment %1, %2Kb allocated, %3 bytes free, for %0
+; alternate version of 0f,0007 without segment info, probably used in release
+; 0f,0007=%2Kb allocated, %3 bytes free, for %0
+0f,0008=Additional translation related memory usage:
+; development version of translation memory information
+0f,0009=segment %1, %2 bytes allocated, for %0
+; alternate version of 0f,0009 without segment info, probably used in release
+; 0f,0009=%2 bytes allocated, for %0
+
+; Buffer types for 0f,0007 %0
+0f,0010=Mouse strings
+0f,0011=History list
+0f,0012=Alias list
+0f,0013=Mime list
+0f,0014=Directory stack
+0f,0015=Dislpay font
+0f,0016=Active NLS
+0f,0017=Verbal NLS
+
+; This string is appended to stack string 0f,0003 only when the shell is
+; compiled with STACK_CHECK enabled. Other than debugging and development
+; of the shell, this will most likely be disabled in public releases.
+0f,0020=, %0 bytes peak usage
+
+; LANG command to display language (id code(s))
+10,0000=The current language is %0 (%1).
 
 ; Shell startup information messages, these messages (50,*) are temporary for
 ; the development stage of V8Turbo. Most likely most or all will be removed at
@@ -382,10 +410,15 @@
 ; set the clock fails.
 21,e505=failed to set clock
 
+; specific error when shell was unable to locate an NLS file for a requested
+; language.
+21,e202=NLS file not found
+
 ; specific error that will occur when an NLS file format is invalid, probably
 ; caused by improper modification of the NLS index (like index "ec,e102=").
-; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
 21,e302=malformed or corrupt NLS file format
+; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
+21,e402=invalid NLS character mapping
 
 ; specific error for when some internal or NLS data is too large and exceeds
 ; the memory segment assigned to it and wraps the segment.
@@ -433,6 +466,21 @@
 ; as %0 for the current DOS Switch character. I may add additional params that
 ; may be sent to those lines in the future to provide some other data. But, no
 ; worries. Any unused parameters will not cause a problem.
+;
+; Also, feel free to completely change the layout, reword, rewrite or add any
+; additional information you like to the command help. Even for the built-in
+; NLS, command help is not embedded into the executable. For the built-in
+; language, V8Turbo/X will switch from the built-in NLS to an external when
+; ether the Language is changed or command help is requested. As long as the
+; entire NLS file fits within a 64kb segment it will be fine.
+;
+; For V8Micro, things work a little different. The V8Micro NLS file has no
+; command help. When command help is requested, it temporarily loads the
+; V8Turbo NLS and prints it's help version. Then, discards the V8Turbo version
+; of the NLS. The commands in V8Turbo and V8Micro work the same and have the
+; same options. V8Micro just doesn't have some of the commands, which is no
+; problem for the NLS.
+
 
 ; 01, Alias
 ;dd,0100=Display or change command Aliases.
@@ -514,6 +562,13 @@
 
 ; 0b, Date
 42,0b00=Display or change the current system date.
+42,0b01=
+42,0b02=  DATE [%0D | %0X] [new_date]
+42,0b03=
+42,0b04=%0D Prevents DATE from prompting to change the date.
+42,0b05=%0X Similar to %0D. However, only the current date may be displayed.
+42,0b06=
+42,0b07=Type DATE without parameters to display and change the current date.
 
 ; 0c, Delete, Del
 42,0c00=Delete files.
@@ -605,7 +660,16 @@
 
 ; 17, History
 42,1700=Display or change the command line history.
-
+42,1701=
+42,1702=  HISTORY %0CLEAR        Clear the current comand line history.
+;42,1703=  HISTORY %0SIZE n       Change the amount of memory used for history.
+;42,1704=
+;42,1705=  HISTORY filename       Set file name for LOAD, SAVE and AUTO operations.
+;42,1706=  HISTORY %0SAVE         Save the current history to a file.
+;42,1707=  HISTORY %0LOAD         Load previous history from a file.
+;42,1708=  HISTORY %0AUTO         Automatically save new history data to file.
+42,1703=
+42,1704=Type HISTORY without any parameters to display the current history.
 ; 18, Lfnfor
 
 ; 19, Loadfix
@@ -626,9 +690,9 @@
 42,1d02=Commands MKDIR and MD.
 42,1d03=
 42,1d04=  MD [drive:]path
-42,1d05=
-42,1d06=Someday there will be a %0P switch to autocreate parents. Maybe a %0N switch
-42,1d07=as well.
+;42,1d04=  MD [%0P] [drive:]path
+;42,1d05=
+;42,1d06=Use the %0P switch to automatically create any required parent directories.
 
 ; 1e, Path
 42,1e00=Display or change the system search path for executables.
@@ -701,6 +765,13 @@
 
 ; 28, Time
 42,2800=Display or set the system time.
+42,2801=
+42,2802=  DATE [%0T | %0X] [new_time]
+42,2803=
+42,2804=%0T Prevents TIME from prompting to change the current time.
+42,2805=%0X Similar to %0T. However, only the current time may be displayed.
+42,2806=
+42,2807=Type TIME without parameters to display and change the current time.
 
 ; 29, Textmode, Tm
 42,2900=Display, list or change the current text mode.
@@ -726,7 +797,15 @@
 42,2b02=  TRUENAME [drive:][path][filename]
 
 ; 2c, Type
-42,2c00=Display the contents of a file.
+42,2c00=Display the contents of one or more files.
+42,2c01=
+42,2c02=  TYPE [%0A | %0T | %0B] filename [filename...]
+42,2c03=
+42,2c04=%0A Autodetect when files are text or binary data. (default)
+42,2c05=%0T Display the following files as ASCII text.
+42,2c06=%0B Display the following files as binary data in hexadecimal.
+42,2c07=
+42,2c08=Note that wildcards may be used in place of filenames.
 
 ; 2d, Verify
 42,2d00=Display or change disk write verification.
@@ -756,7 +835,32 @@
 42,3100=Display or change PowerNap settings.
 
 ; 32, Lang
+;
+; Basically...
+;
+; The /RELOAD option is for you, the translator. When working on a translation
+; or custom font. you can simple type 'LANG /RELOAD' to view your changes.
+;
+; The /N option is to prevent loading a custom NLS font. There are really only
+; three reasons for that. Some sort of compatibility issue. Or, on a system
+; when you only want to use the normal codepage font system. Or, if you are
+; using a custom font other than those provided with the shell.
+;
+; Finally, the /Q option is batch developers. They may want to switch languages
+; (like in the FreeDOS installer) without displaying the language information.
 42,3200=Display or change the language settings.
+42,3201=
+42,3202=  LANG [%0Q][%0N] lang_id     Change languages and load new NLS translations.
+42,3203=  LANG [%0Q][%0N] %0RELOAD     Load (or reload) the current NLS translation.
+42,3204=
+42,3205=Use %0Q to supress the display of NLS translation information.
+42,3206=
+42,3207=Use %0N to prevent the loading of a transcient NLS font. This option is "sticky"
+42,3208=for all subsequent %0RELOAD operations. It will only be disabled when a NLS is
+42,3209=loaded by it's language identifier. The support for font changing is only
+42,320a=available on systems with EGA or better graphics cards.
+42,320b=
+42,320c=Type LANG without parameters to display current translation information.
 
 ; 33, Return
 42,3300=Return from a batch sub-function.
@@ -781,16 +885,15 @@
 70,0005=
 70,0006=To get started, type ? to view the current set of commands that are available
 70,0007=and known to be upcoming in the (hopefully) near future. Entering any command
-70,0008=followed by /?, may provide additional information on that command. However,
-70,0009=most standard DOS command help has not yet been added. I will get to those
-70,000a=eventually. But, you probably already know how to use those. Or, at least you
-70,000b=you think you do. Because, many of those are being improved while trying to
-70,000c=maintain backward compatibility.
-70,000d=
-70,000e=If you have a mouse, it actual does stuff. In the future, integrated mouse
-70,000f=functionality will be expanded. There are more commands and features that I am
-70,0010=still thinking about which are not even listed at this time. Stay tuned...
-70,0011=
-70,0012=Help encourage the continued development of V8Turbo and other DOS software by
-70,0013=becoming a patron. https://patreon.com/shidel
-70,0014=
+70,0008=followed by /?, will provide additional information on that command. But, you
+70,0009=probably already know how to use most of the commands. Or, at least you think
+70,000a=think you do. Many of the commands are being improved with new functionatily
+70,000b=while trying to maintain backward compatibility.
+70,000c=
+70,000d=If you have a mouse, it actual does stuff. In the future, integrated mouse
+70,000e=functionality will be expanded. There are more commands and features that I am
+70,000f=still thinking about which are not even listed at this time. Stay tuned...
+70,0010=
+70,0011=Help encourage the continued development of V8Turbo and other DOS software by
+70,0012=becoming a patron. https://patreon.com/shidel
+70,0013=
