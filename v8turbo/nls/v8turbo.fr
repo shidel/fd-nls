@@ -280,6 +280,34 @@
 0f,0003=%0 octets pour la pile
 0f,0004=%0 octets pour les tampons internes
 0f,0005=%0 octets pour d'autres donn‚es
+0f,0006=Tampons externes suppl‚mentaires :
+; development version of buffer memory information
+0f,0007=segment %1, %2Ko allou‚s, %3 octets libres, pour %0
+; alternate version of 0f,0007 without segment info, probably used in release
+; 0f,0007=%2Ko allou‚s, %3 octets libres, pour %0
+0f,0008=Utilisation suppl‚mentaire de la m‚moire relative … la traduction :
+; development version of translation memory information
+0f,0009=segment %1, %2 octets allou‚s, pour %0
+; alternate version of 0f,0009 without segment info, probably used in release
+; 0f,0009=%2 octets allou‚s, pour %0
+
+; Buffer types for 0f,0007 %0
+0f,0010=ChaŒnes de la souris
+0f,0011=Liste de l'historique
+0f,0012=Liste des alias
+0f,0013=Liste Mime
+0f,0014=Pile des r‚pertoires
+0f,0015=Police d'affichage
+0f,0016=NLS actif
+0f,0017=NLS verbal
+
+; This string is appended to stack string 0f,0003 only when the shell is
+; compiled with STACK_CHECK enabled. Other than debugging and development
+; of the shell, this will most likely be disabled in public releases.
+0f,0020=, %0 octets lors du pic d'utilisation
+
+; LANG command to display language (id code(s))
+10,0000=La langue actuelle est le suivant : %0 (%1).
 
 ; Shell startup information messages, these messages (50,*) are temporary for
 ; the development stage of V8Turbo. Most likely most or all will be removed at
@@ -382,10 +410,16 @@
 ; set the clock fails.
 21,e505=‚chec de la d‚finition de l'heure sur l'horloge
 
+; specific error when shell was unable to locate an NLS file for a requested
+; language.
+21,e202=Le fichier NLS est introuvable
+
 ; specific error that will occur when an NLS file format is invalid, probably
 ; caused by improper modification of the NLS index (like index "ec,e102=").
 ; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
 21,e302=format de fichier NLS malform‚ ou corrompu
+; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
+21,e402=mappage de caractŠres NLS invalide
 
 ; specific error for when some internal or NLS data is too large and exceeds
 ; the memory segment assigned to it and wraps the segment.
@@ -433,6 +467,21 @@
 ; as %0 for the current DOS Switch character. I may add additional params that
 ; may be sent to those lines in the future to provide some other data. But, no
 ; worries. Any unused paramaters will not cause a problem.
+;
+; Also, feel free to completely change the layout, reword, rewrite or add any
+; additional information you like to the command help. Even for the built-in
+; NLS, command help is not embedded into the executable. For the built-in
+; language, V8Turbo/X will switch from the built-in NLS to an external when
+; ether the Language is changed or command help is requested. As long as the
+; entire NLS file fits within a 64kb segment it will be fine.
+;
+; For V8Micro, things work a little different. The V8Micro NLS file has no
+; command help. When command help is requested, it temporarily loads the
+; V8Turbo NLS and prints its help version. Then, discards the V8Turbo version
+; of the NLS. The commands in V8Turbo and V8Micro work the same and have the
+; same options. V8Micro just doesn't have some of the commands, which is no
+; problem for the NLS.
+
 
 ; 01, Alias
 ;dd,0100=Afficher ou modifier les alias de commande.
@@ -514,6 +563,13 @@
 
 ; 0b, Date
 42,0b00=Afficher ou modifier la date actuelle du systŠme.
+42,0b01=
+42,0b02=  DATE [%0D | %0X] [nouvelle_date]
+42,0b03=
+42,0b04=%0D Empˆche DATE d'affiche une invite pour modifier la date.
+42,0b05=%0X Similaire … %0D. Cependant, seule la date actuelle peut ˆtre affich‚e.
+42,0b06=
+42,0b07=Tapez DATE sans paramŠtre afin d'afficher et modifier la date actuelle.
 
 ; 0c, Delete, Del
 42,0c00=Effacer des fichiers.
@@ -560,7 +616,7 @@
 42,1007=Pour afficher une ligne vide ou pour vous assurer que l'‚tat de l'‚cho des
 42,1008=commandes n'est pas affich‚, mettez simplement un s‚parateur valide juste
 42,1009=aprŠs la commande ECHO. Une pratique r‚pandue est d'utiliser un point.
-42,1010=Par exemple : echo.
+42,100a=Par exemple : echo.
 
 ; 11, Erase
 42,1100=Effacement de fichiers pour ‚viter les voisins curieux.
@@ -607,7 +663,16 @@
 
 ; 17, History
 42,1700=Afficher ou modifier l'historique de la ligne de commande.
-
+42,1701=
+42,1702=  HISTORY %0CLEAR        Effacer l'historique actuelle de la ligne de commande.
+;42,1703=  HISTORY %0SIZE n      Modifier la quantit‚ de m‚moire utilis‚e pour history.
+;42,1704=
+;42,1705=  HISTORY nomfichier    D‚finir le nom de fichier pour LOAD, SAVE et AUTO.
+;42,1706=  HISTORY %0SAVE        Sauvegarder l'historique actuelle dans un fichier.
+;42,1707=  HISTORY %0LOAD        Charger l'historique pr‚c‚dente depuis un fichier.
+;42,1708=  HISTORY %0AUTO        Sauvegarder automatiquement la nouvelle historique.
+42,1703=
+42,1704=Tapez HISTORY sans paramŠtre pour afficher l'historique actuelle.
 ; 18, Lfnfor
 
 ; 19, Loadfix
@@ -703,6 +768,13 @@
 
 ; 28, Time
 42,2800=Afficher ou d‚finir l'heure du systŠme.
+42,2801=
+42,2802=  TIME [%0T | %0X] [nouvelle_heure]
+42,2803=
+42,2804=%0T Empˆche TIME d'afficher une invite pour modifier l'heure actuelle.
+42,2805=%0X Similaire … %0T. Cependant, seule l'heure actuelle peut ˆtre affich‚e.
+42,2806=
+42,2807=Tapez TIME sans paramŠtre afin d'afficher et modifier l'heure actuelle.
 
 ; 29, Textmode, Tm
 42,2900=Afficher, lister ou modifier le mode textuel actuel.
@@ -729,6 +801,14 @@
 
 ; 2c, Type
 42,2c00=Afficher le contenu d'un fichier.
+42,2c01=
+42,2c02=  TYPE [%0A | %0T | %0B] nomfichier [nomfichier...]
+42,2c03=
+42,2c04=%0A D‚tecter si les fichiers sont textuels ou binaires. (valeur par d‚faut)
+42,2c05=%0T Afficher les fichiers suivants en tant que texte ASCII.
+42,2c06=%0B Afficher les fichiers suivants en tant que donn‚es binaires en hexad‚cimal.
+42,2c07=
+42,2c08=Notez que les jokers peuvent ˆtre utilis‚s … la place des noms de fichier.
 
 ; 2d, Verify
 42,2d00=Afficher ou modifier la v‚rification de l'‚criture sur le disque.
@@ -759,7 +839,32 @@
 42,3100=Afficher ou modifier les r‚glages PowerNap.
 
 ; 32, Lang
+;
+; Basically...
+;
+; The /RELOAD option is for you, the translator. When working on a translation
+; or custom font. you can simple type 'LANG /RELOAD' to view your changes.
+;
+; The /N option is to prevent loading a custom NLS font. There are really only
+; three reasons for that. Some sort of compatibility issue. Or, on a system
+; when you only want to use the normal codepage font system. Or, if you are
+; using a custom font other than those provided with the shell.
+;
+; Finally, the /Q option is batch developers. They may want to switch languages
+; (like in the FreeDOS installer) without displaying the language information.
 42,3200=Afficher ou modifier les r‚glages de langue.
+42,3201=
+42,3202=  LANG [%0Q][%0N] lang_id     Changer la langue et charger les traductions NLS.
+42,3203=  LANG [%0Q][%0N] %0RELOAD    Charger (ou recharger) les traductions NLS.
+42,3204=
+42,3205=Utilisez %0Q pour ‚viter l'affichage des informations de traduction NLS.
+42,3206=
+42,3207=Utilisez %0N ppour empˆcher le chargement d'une police NLS transitoire. Cette
+42,3208=option reste pour toutes les op‚rations %0RELOAD ult‚rieures. Elle ne sera
+42,3209=d‚sactiv‚e que lorsque'un NLS est charg‚ par son identifiant de langue. La
+42,320a=prise en charge de la modification n'est disponible que sur EGA ou mieux.
+42,320b=
+42,320c=Tapez LANG sans paramŠtre pour afficher l'‚tat actuel de la traduction.
 
 ; 33, Return
 42,3300=Retourner d'une sous-fonction batch.
