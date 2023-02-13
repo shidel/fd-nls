@@ -26,7 +26,7 @@
 
 ; These are additional lower case characters that can be made uppercase under
 ; the proper codepage. Only non-standard (English) characters need to be
-; included in this list. At present, they use the Ascii code for characters.
+; included in this list. At present, they use the ASCII code for characters.
 00,0010=0x87,0x84,0x86,0x82,0x91,0x94,0x81,0xa4
 
 ; These are the upper case letters corresponding to the ones in the lowercase
@@ -212,6 +212,25 @@
 0f,0003=%0 bayt, yığın
 0f,0004=%0 bayt, dahili tamponlar
 0f,0005=%0 bayt, diğer veriler
+0f,0006=External buffers:
+0f,0007=%0, %2Kb, %3 free
+0f,0008=Harici tamponlar:
+0f,0009=%2 bayt, %0 için
+0f,0010=Fare dizeleri
+0f,0011=Tarihçe listesi
+0f,0012=Arma listesi
+0f,0013=Mime listesi
+0f,0014=Dizin yığını
+0f,0015=Görüntüleme yazı tipi
+0f,0016=Faal NLS
+
+; This string is appended to stack string 0f,0003 only when the shell is
+; compiled with STACK_CHECK enabled. Other than debugging and development
+; of the shell, this will most likely be disabled in public releases.
+0f,0020=, %0 bayt uç kullanımda
+
+; LANG command to display language (id code(s))
+10,0000=Dil şudur: %0 (%1)
 
 ; These error messages will be removed at some point.
 21,e002=işlev geliştirme aşamasında
@@ -225,7 +244,9 @@
 21,e301=aralık dışı
 21,e401=desteklenmiyor, V8Turbo gerekli
 21,e505=saati ayarlama başarısız
+21,e202=NLS dosyası bulunamadı
 21,e302=bozuk NLS dosyası
+21,e402=geçersiz NLS karakter eşleşmesi
 21,e109=veriler parçayı aşıyor
 21,e008=yetersiz tampon bellek
 21,e026=kullanıcı iptali
