@@ -280,6 +280,34 @@
 0f,0003=%0 bayt yçßçn iáin
 0f,0004=%0 bayt dahili tamponlar iáin
 0f,0005=%0 bayt dißer veriler iáin
+f,0006=òlave harici tamponlar:
+; development version of buffer memory information
+0f,0007=paráa %1, %2Kb atanmçü, %3 bayt boü, %0 iáin
+; alternate version of 0f,0007 without segment info, probably used in release
+; 0f,0007=%2Kb atanmçü, %3 bayt boü, %0 iáin
+0f,0008=Belleßin tercÅmeyle alakalç kullançmçna dair ek bilgi:
+; development version of translation memory information
+0f,0009=paráa %1, %2 bayt atanmçü, %0 iáin
+; alternate version of 0f,0009 without segment info, probably used in release
+; 0f,0009=%2 bayt atanmçü, %0 iáin
+
+; Buffer types for 0f,0007 %0
+0f,0010=Fare dizeleri
+0f,0011=Tariháe listesi
+0f,0012=Arma listesi
+0f,0013=Mime listesi
+0f,0014=Dizin yçßçnç
+0f,0015=GîrÅntÅleme yazç tipi
+0f,0016=Etkin NLS
+0f,0017=Sîzel NLS
+
+; This string is appended to stack string 0f,0003 only when the shell is
+; compiled with STACK_CHECK enabled. Other than debugging and development
+; of the shell, this will most likely be disabled in public releases.
+0f,0020=, %0 bayt uá kullançmda
+
+; LANG command to display language (id code(s))
+10,0000=GÅncel dil üudur: %0 (%1).
 
 ; Shell startup information messages, these messages (50,*) are temporary for
 ; the development stage of V8Turbo. Most likely most or all will be removed at
@@ -350,6 +378,7 @@
 21,0026=dosya iülemi tamamlanamaz
 21,0027=yetersiz disk alanç
 
+; error when attempting to change to a unsupported text mode
 21,d001=video kipi desteklenmemektedir
 
 ; general error for incompatible version of DOS
@@ -381,10 +410,15 @@
 ; set the clock fails.
 21,e505=saatin ayarlanmasç baüarçsçz oldu
 
+; specific error when shell was unable to locate an NLS file for a requested
+; language.
+21,e202=NLS dosyasç bulunamadç
+
 ; specific error that will occur when an NLS file format is invalid, probably
 ; caused by improper modification of the NLS index (like index "ec,e102=").
-; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
 21,e302=hatalç veya bozuk NLS dosya biáimi
+; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
+21,e402=geáersiz NLS karakter eüleümesi
 
 ; specific error for when some internal or NLS data is too large and exceeds
 ; the memory segment assigned to it and wraps the segment.
@@ -432,6 +466,21 @@
 ; as %0 for the current DOS Switch character. I may add additional params that
 ; may be sent to those lines in the future to provide some other data. But, no
 ; worries. Any unused parameters will not cause a problem.
+;
+; Also, feel free to completely change the layout, reword, rewrite or add any
+; additional information you like to the command help. Even for the built-in
+; NLS, command help is not embedded into the executable. For the built-in
+; language, V8Turbo/X will switch from the built-in NLS to an external when
+; ether the Language is changed or command help is requested. As long as the
+; entire NLS file fits within a 64kb segment it will be fine.
+;
+; For V8Micro, things work a little different. The V8Micro NLS file has no
+; command help. When command help is requested, it temporarily loads the
+; V8Turbo NLS and prints its help version. Then, discards the V8Turbo version
+; of the NLS. The commands in V8Turbo and V8Micro work the same and have the
+; same options. V8Micro just doesn't have some of the commands, which is no
+; problem for the NLS.
+
 
 ; 01, Alias
 ;dd,0100=Komut armalarçnç gîrÅntÅler veya deßiütirir.
@@ -514,6 +563,13 @@
 
 ; 0b, Date
 42,0b00=GÅncel sistem tarihini gîrÅntÅle veya deßiütir.
+42,0b01=
+42,0b02=  DATE [%0D | %0X] [yeni_tarih]
+42,0b03=
+42,0b04=%0D DATE komutunun tarihin deßiütirilmesi iáin istem gîrÅntÅlemesini înler.
+42,0b05=%0X %0D seáeneßine benzer. Ancak sadece gÅncel tarih gîrÅntÅlenebilir.
+42,0b06=
+42,0b07=GÅncel tarihi gîrÅntÅlemek ve deßiütirmek iáin parametresiz DATE yazçn.
 
 ; 0c, Delete, Del
 42,0c00=Dosya sil.
@@ -605,7 +661,16 @@
 
 ; 17, History
 42,1700=Komut satçrç tariháesini gîrÅntÅle veya deßiütir.
-
+42,1701=
+42,1702=  HISTORY %0CLEAR        GÅncel komut satçrç tariháesini temizle.
+;42,1703=  HISTORY %0SIZE n      Tariháe iáin kullançlan bellek miktarçnç deßiütir.
+;42,1704=
+;42,1705=  HISTORY dosaismi      LOAD, SAVE ve AUTO iülemleri iáin dosya ismi belirt.
+;42,1706=  HISTORY %0SAVE        Göncel tariháeyi bir dosyaya kaydet.
+;42,1707=  HISTORY %0LOAD        ônceki tariháeyi bir dosyadan yÅkle.
+;42,1708=  HISTORY %0AUTO        Yeni tariháe verilerini otomatik olarak kaydet.
+42,1703=
+42,1704=GÅncel tariháeyi gîrÅntÅlemek iáin hiábir parametre eklemeden HISTORY yazçn.
 ; 18, Lfnfor
 
 ; 19, Loadfix
@@ -701,6 +766,13 @@
 
 ; 28, Time
 42,2800=Sistem saatini gîrÅntÅle veya deßiütir.
+42,2801=
+42,2802=  TIME [%0T | %0X] [yeni_saat]
+42,2803=
+42,2804=%0T Komutun gÅncel saati deßiütirmek iáin istem gîrÅntÅlemesini înler.
+42,2805=%0X, %0T seáeneßine benzer. Ancak sadece gÅncel saat gîrÅntÅlenebilir.
+42,2806=
+42,2807=GÅncel saati gîrÅntÅlemek ve deßiütirmek iáin parametresiz TIME yazçn.
 
 ; 29, Textmode, Tm
 42,2900=GÅncel metin kipini gîrÅntÅle, listele veya deßiütir.
@@ -727,6 +799,14 @@
 
 ; 2c, Type
 42,2c00=Bir dosyançn iáeriklerini gîrÅntÅle.
+42,2c01=
+42,2c02=  TYPE [%0A | %0T | %0B] dosyaismi [dosyaismi...]
+42,2c03=
+42,2c04=%0A Dosyalarçn metin veya ikili olduklarçnç otomatik tespit et. (varsayçlan)
+42,2c05=%0T Sonraki dosyalarç ASCII metin olarak gîrÅntÅle.
+42,2c06=%0B Sonraki dosyalarç onaltçlçk ikili veri olarak gîrÅntÅle.
+42,2c07=
+42,2c08=Dosya isimleri yerine jokerlerin kullançlabileceklerini unutmayçn.
 
 ; 2d, Verify
 42,2d00=Diske yazma denetlemesinin durumunu gîrÅntÅle veya deßiütir.
@@ -756,7 +836,32 @@
 42,3100=PowerNap ayarlarçnç gîrÅntÅle veya deßiütir.
 
 ; 32, Lang
+;
+; Basically...
+;
+; The /RELOAD option is for you, the translator. When working on a translation
+; or custom font. you can simple type 'LANG /RELOAD' to view your changes.
+;
+; The /N option is to prevent loading a custom NLS font. There are really only
+; three reasons for that. Some sort of compatibility issue. Or, on a system
+; when you only want to use the normal codepage font system. Or, if you are
+; using a custom font other than those provided with the shell.
+;
+; Finally, the /Q option is batch developers. They may want to switch languages
+; (like in the FreeDOS installer) without displaying the language information.
 42,3200=Dil ayarlarçnç gîrÅntÅle veya deßiütir.
+42,3201=
+42,3202=  LANG [%0Q][%0N] lang_id     Dili deßiütir ve yeni NLS tercÅmelerini yÅkle.
+42,3203=  LANG [%0Q][%0N] %0RELOAD    GÅncel NLS tercÅmesini yÅkle (veya tekrar yÅkle).
+42,3204=
+42,3205=NLS tercÅme bilgilerinin gîrÅntÅlenmesini înlemek iáin %0Q kullançn.
+42,3206=
+42,3207=Geáici NLS yazç tiplerinin yÅklenmesini înlemek iáin %0N kullançn. Bu seáenek
+42,3208=tÅm sonraki %0RELOAD iülemleri iáin geáerlidir. Bir NLS'in dil kimlißi ile
+42,3209=yÅklenmesi onu devre dçüç bçrakçr. Yazç tipi deßiütirme desteßi sadece EGA
+42,320a=veya daha iyi grafik kartç bulunan sistemlerde mevcuttur.
+42,320b=
+42,320c=GÅncel tercÅme bilgilerini gîrÅntÅlemek iáin parametresiz LANG yazçn.
 
 ; 33, Return
 42,3300=Bir toplu iü alt iülevinden dîn.
