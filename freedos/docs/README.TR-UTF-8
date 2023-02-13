@@ -1,0 +1,159 @@
+###############################################################################
+		$OS_TITLE_LONG$ ("$OS_TITLE_SHORT$")
+###############################################################################
+$OS_WARNING$
+
+-------------------------------------------------------------------------------
+		Genel sistem gereksinimleri:
+-------------------------------------------------------------------------------
+
+  * DOS uyumlu sistem (Intel + BIOS, veya eski önbaşlatma destekli UEFI)
+
+  * Asgari $REQ_BASE_MIN$ boş disk alanı:
+
+    $REQ_BASE_MIN$  Düz DOS sistemi
+    $REQ_BASE_MAX$  Düz DOS sistemi, kaynak kodları ile
+
+    $REQ_FULL_MIN$  Uygulamaları ve oyunları içeren tam kurulum
+    $REQ_FULL_MAX$  Kaynak kodları ile tam kurulum
+
+
+-------------------------------------------------------------------------------
+		Bütün bu zip dosyalarında ne var?
+-------------------------------------------------------------------------------
+
+$OS_PREFIX$-LiveCD.zip
+
+  * $OS_PREFIX$BOOT.IMG - Temel $OS_NAME$ kurulum önbaşlatma disket kalıbı.
+    Şayet bilgisayarınızda bir CD-ROM sürücüsü bulunuyorsa fakat Live CD'den
+    veya Legacy CD'den başlatma yapamıyorsanız. Bu disket kalıbını sistemi
+    başlatmak için kullanın. Ardından kurulum CD'sini yerleştirin. $OS_NAME$
+    kurulum programı kalanı yapacaktır. Bu disket kalıbı sadece kurulum amacı
+    taşır ve canlı (Live) ortamı sağlamaz.
+
+  * $OS_PREFIX$LIVE.ISO - $OS_TITLE_SHORT$ kurulumu. Kullanıcıların çoğu
+    $OS_NAME$ kurulumu için bu kalıbı kullanmalıdır.
+
+    Bilgisayar sisteminize ve donanım yapılandırmanıza göre $OS_NAME$ başlatmak
+    ve sabit diskinize kurmadan doğrudan çalıştırmak için LiveCD de
+    kullanabilirsiniz.
+
+$OS_PREFIX$-LegacyCD.zip
+
+  * $OS_PREFIX$BOOT.IMG - Bu zip arşivi temel CD-ROM kurulumu önbaşlatma
+    disketi de içerir.
+
+  * $OS_PREFIX$LGCY.ISO - Daha eski donanım için önbaşlatmayı destekleyen CD
+    kalıbı. Eğer $OS_NAME$ kurulumu için LiveCD ile başlatamıyorsanız bu disk
+    kalıbını deneyin.
+
+    Bu disk kalıbı daha eski başlatma CD biçimi olan EL Torito'yu destekler.
+    Bazı yeni bilgisayarlar ve sanal makineler bu eski biçimi kullanamazlar.
+    Bu tür başlatma CD'sine ihtiyaç duyan bir bilgisayarınız yoksa, yerine
+    LiveCD'yi kullanmanızı tavsiye ederiz.
+
+$OS_PREFIX$-BonusCD.zip
+
+  * $OS_PREFIX$BNS.ISO - Başlatmayı desteklemeyen ve LiveCD veya Legacy CD'nin
+    parçası olarak kurulmayan bazı $OS_NAME$ paketlerini içeren CD kalıbı.
+
+$OS_PREFIX$-LiteUSB.zip
+
+  * $OS_PREFIX$LITE.IMG - Temel $OS_NAME$ kurulum programı, bir USB bellek
+    kalıbı olarak. LiveCD veya LegacyCD'de bulunan tüm paketleri içermez,
+    yerine sadece temel $OS_NAME$ paket kümesi içerir.
+
+  * $OS_PREFIX$LITE.VMDK - Sanal makine disk dosyası, VirtualBox, VMware ve
+    diğer sistemler gibi çeşitli sanal makine yazılımlarıyla uyumludur.
+
+    Bir VMDK dosyası kullanmak, $OS_NAME$ kurulumunu kolaylaştırabilir. Sanal
+    makine yazılımınıza VMDK kalıbını bir sabit disk olarak iliştirin ve onu
+    başlatın. ($OS_NAME$ kurmak için yine de sanal bir sabit disk oluşturmanız
+    gerekeceğini unutmayın)
+
+$OS_PREFIX$-FullUSB.zip
+
+  * $OS_PREFIX$FULL.IMG - Düz DOS sistemi ve tam kurulum USB bellek kalıbı.
+
+  * $OS_PREFIX$FULL.VMDK - Çeşitli sanal makine yazılımlarıyla uyumlu bir sanal
+    makine disk kalıbı. Sanal makinenize VMDK kalıbını bir sabit disk olarak
+    ilave edin ve onu başlatın.
+
+VERIFY.TXT
+
+  * Tüm yayınlanan dosyalar için MD5, SHA256 ve SHA512 sağlama değerlerini
+    ihtiva eder. Bunlarla $OS_NAME$ kopyanızı denetleyebilirsiniz.
+
+README.TXT
+
+  * "Seçmeden ve kurmadan önceki" belge. (Yukarıda listelenen tüm zip dosyaları
+    da bu README dosyasının bir kopyasını içerir.)
+
+
+-------------------------------------------------------------------------------
+		$OS_NAME$ Salt Disket Sürümü ($OS_PREFIX$-x86)
+-------------------------------------------------------------------------------
+
+$OS_NAME$ $OS_MAJOR_VERSION$ salt bir disket sürümü de içerir! Bu sürüm,
+$OS_NAME$ çalıştırabilen ve EGA veya daha iyi grafiklere sahip tüm donanımlarda
+kullanılabilir:
+
+  * CD-ROM sürücüsü bulunmayan '286 veya başka bir klasik sistem mi
+    kullanıyorsunuz? $OS_NAME$ kurmak için bu disketlerden kurabilirsiniz.
+
+  * Sadece tek bir sabit diskiniz var ve hiçbir CD veya disket sürücünüz
+    bulunmuyor mu? Bu disketlerin içeriğini geçici bir dizine kopyalayın ve
+    kurulum programını oradan çalıştırın.
+
+  * Başka bir DOS dizinine "headless" kurulum mu yapmak istiyorsunuz? Bu, komut
+    satırı seçenekleriyle kolaydır.
+
+Salt Disket Sürümü, CD-ROM veya USB kurulum programlarından tamamen farklı bir
+kurulum programı kullanır. Salt Disket Sürümü bahsi geçen diğer ortamları
+kurulum için kullanmaz.
+
+Salt Disket Sürümü, klasik PC donanımında daha faydalı olan sınırlı bir
+$OS_NAME$ program kümesi içerir.
+
+$OS_NAME$ Salt Disket Sürümü, önceden oluşturulmuş birkaç disket kalıbı içeren
+tek bir zip arşivi olarak yayınlanmıştır:
+
+    Bu zip arşivleri, ayrı dizinler altında birkaç yaygın disket ortamı için
+    kalıp dosyaları içerir:
+
+    * 720k - 3.5" 720K disket kalıpları
+
+    * 144m - 3.5" 1.44mb disket kalıpları
+
+    * 120m - 5.25" 1.2mb disket kalıpları
+
+    Her bir küme, önceden hazırlanmış bir dizi disk kalıbı içerir:
+
+    * x86BOOT.img - x86 kurulum programını içeren önbaşlatma disk kalıbı.
+
+    * x86DSK??.img - Temel $OS_NAME$ işletim sitemi dosyalarını içeren birkaç
+      disket kalıbı. Disket kalıp sayısı ve her birindeki dosya miktarı disket
+      kapasitesine göre farklılık gösterir.
+
+Disk alanından tasarruf etmek için, $OS_NAME$ Salt Disket Sürümü $OS_NAME$
+paketlerinin kaynak kodunu içermez. Kaynak kodunu $OS_NAME$ İnternet sitesi
+vasıtasıyla ($OS_DOWNLOAD$) veya USB ya da CD-ROM gibi yayınlanmış diğer
+ortamlarda bulabilirsiniz.
+
+
+-------------------------------------------------------------------------------
+		Salt Disket Sür0ümü ile ilgili destek notu
+-------------------------------------------------------------------------------
+
+$OS_TITLE_SHORT$ itibariyle, DOS için (kurulum programında kullanılan) V8Power
+Tools'daki yonga seviyesi tespit algoritmalarının iyileştirilmeye ihtiyaçları
+vardır. Bazı sistemler yanlış olarak sadece bir 80186 yongasına sahipmiş gibi
+kurulum programına rapor edilebilirler. Halbuki işin aslında '286 veya daha iyi
+bir yongaları bulunabilir. Bunun $OS_NAME$ Salt Disket Sürümü'nün kuracağı
+yazılımlara etkisi olacaktır.
+
+Bu sürüm için kurulum programı donanımın '386 veya daha iyi bir yongaya sahip
+olduğunu varsayacaktır. Kurulum SETUP.BAT dosyasını başlattığınızda, yonga
+tespitini (8086, 186, 286, 386, 486, 586, 686, EMU, QEMU, VBX, VMW veya DBX
+gibi) bir seçenek ekleyerek hükümsüz kılabilirsiniz ve bu desteklenecek belli
+bir yonga seviyesini zorlamanıza imkân verir.
