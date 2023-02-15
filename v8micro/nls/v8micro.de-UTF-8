@@ -26,19 +26,13 @@
 
 ; These are additional lower case characters that can be made uppercase under
 ; the proper codepage. Only non-standard (English) characters need to be
-; included in this list. At present, they use the Ascii code for characters.
-; REM WILLI: 87=c cedille ("5" below c), 84=ä (a with 2 dots), 86=a with circle,
-; 82= e with accent aigu, 91=ae written together, 94= ö (o with 2 dots),
-; 81=ü (o with 2 dots), a4=n with tilde on it.
+; included in this list. At present, they use the ASCII code for characters.
 00,0010=0x87,0x84,0x86,0x82,0x91,0x94,0x81,0xa4
 
 ; These are the upper case letters corresponding to the ones in the lowercase
 ; (00,0010) list. They must be in the same position as their counterparts and
 ; the list must contain the same number of characters. These two lists are used
 ; to convert to and from lower/upper case.
-; REM WILLI: 80=C cedille ("5" below C), 8e=Ä (A with 2 dots), 8f=A with circle,
-; 90=E with accent aigu,92=AE written together, 99=Ö (O with 2 dots),
-; 9a=Ü (U with 2 dots), 0xa5= N with tilde on it.
 00,0011=0x80,0x8e,0x8f,0x90,0x92,0x99,0x9a,0xa5
 
 ; This message is displayed for most commands that I have not yet full
@@ -73,7 +67,7 @@
 ; prevent terminating itself for the moment.
 02,0005=EXIT jetzt nicht möglich
 
-; when exiting shell an there is an error code.
+; when exiting shell and there is an error code.
 02,0006=EXIT mit Fehler
 
 ; extra messages when expanding command line environment variable runs out
@@ -84,7 +78,7 @@
 ; It is similar to 02,0007, but occurs at a different stage of the expansion.
 02,0008=Kommandozeilenerweiterung "%0" fehlgeschlagen
 
-; extra message for some commands when an Option Switch is not understood
+; extra message for some commands when an Option Switch is not understood.
 02,0009=Unbekannte Option "%0"
 
 ; help for a command is not available
@@ -211,7 +205,6 @@
 ; Time format for directory listings (same params as time command)
 0d,0021=%4:%2 %6
 
-
 ; Memory command strings
 0f,0000=%0 Geladen bei Segment %1, verbraucht %2 Bytes
 0f,0001=%0 Bytes, Shell Code
@@ -228,7 +221,7 @@
 0f,0012=Alias Liste
 0f,0013=Mime Liste
 0f,0014=Verzeichnisstapel
-0f,0015=Dislpay Schriftart
+0f,0015=Schriftart anzeigen
 0f,0016=Aktive NLS
 
 ; This string is appended to stack string 0f,0003 only when the shell is
@@ -265,7 +258,7 @@
 21,ffff=Unbekannter Fehler
 
 ; Normal DOS error messages. Since they use roughly 1kb, these will probably be
-; excluded from the Built-In V8Micro NLS at release. But, they are usefull so
+; excluded from the Built-In V8Micro NLS at release. But, they are useful so
 ; maybe I'll keep them. I have not decided yet.
 21,0000=Kein Fehler
 21,0001=Ungültige Funktion
