@@ -1,44 +1,12 @@
-; V8Turbo Language Translation file
-
+; V8Micro Language Translation file
 ; -----------------------------------------------------------------------------
-; General Information on translations.
+; This file only requires translation only when compiling V8Micro to have a
+; built in language other than the Default English or to reduce memory usage
+; for a language at runtime. The message here should be as short as possible and
+; some messages should be left out all completely.
 ;
-; Comment lines must start with a ; or an error will occur when the translation
-; is loaded. Blank lines are ignored.
-;
-; All spacing before and after = is relevant. Including trailing whitespace.
-;
-; Each entry must be on a single line. However, there is no limit to the length
-; of a line.
-;
-; The percent symbol denotes a parameter from 0-9. For example, %0 is the first
-; parameter. If there are multiple parameters, you can change their order to
-; better suite the language.
-;
-; Resource strings to prompt the user are processed by the shell automatically.
-; You can change there text however needed, move the list of options around,
-; change their wording and generally not fret about them too much. Just do not
-; change the precedence order of the options themselves.
-;
-; For example, if the original is "Delete file '%0' [Yes,No,All,Quit] ?"
-; internally, ; action 1 is "Yes", 2 is "No", 3 is "All" and 4 is "Quit"".
-; So do not change it to "Delete file '%0' [No,Yes,All,Quit] ?" because the
-; first option would say "no" but it would still perform action 1.
-;
-; Otherwise, you can do all sorts of changes to them. For example, both of these
-; would be fine:
-;
-; "Delete %0 file (OK,Skip,All remaining,Quit) ?"
-; "[Do,Do not,This and the rest,Do not continue] delete the %0 file?"
-;
-; This brings up the "Hot" key for each action. They are not case specific and
-; assigned using the first letter in the option that has not yet been assigned.
-; Using the the "Do/Do not" example above. The keys would be "d, o, t, c"
-;
-; The options for the prompt are contained in last set of either brackets
-; "[options]" or braces "(options)" in the text.
-
-; Options are separated by any of these characters ",/;:\|". Just be consistent.
+; If a translation for a language is not provided for V8Micro at runtime, it
+; will automatically use the one for V8Turbo.
 ; -----------------------------------------------------------------------------
 
 ; This is the English language translation. It is also the fallback translation
@@ -50,9 +18,7 @@
 ; It's Language ID codes supported by this translation.
 00,0001=TR,TR_TR
 
-; This is the recommended codepage(s) for this translation. Also, the LANG
-; command will use this information to temporarily (or permanently) change
-; the display font when an appropriate font is present.
+; This is the recommended codepage(s) for this translation.
 00,0002=857
 
 ; Optional, translation file author text. Uncomment it if you want it displayed.
@@ -60,10 +26,7 @@
 
 ; These are additional lower case characters that can be made uppercase under
 ; the proper codepage. Only non-standard (English) characters need to be
-; included in this list. The list is limited to 64 characters (0x87 is one
-; character). The list uses the hexadecimal ASCII code for characters.
-; To view the current DOS ASCII table under FreeDOS, you can use a utility that
-; is included by default. Run "vinfo ascii" to display the current table.
+; included in this list. At present, they use the ASCII code for characters.
 00,0010=0x87,0x84,0x86,0x82,0x91,0x94,0x81,0xa4
 
 ; These are the upper case letters corresponding to the ones in the lowercase
@@ -75,119 +38,102 @@
 ; This message is displayed for most commands that I have not yet full
 ; MS-DOS/FreeDOS compatibility or options. Eventually, this message will be
 ; removed.
-00,0099=òkaz: üu an bu komut sadece kçsmen geliütirilmiütir. An itibariyle daha acil baüka ihtiyaálar bulunmaktadçr. Bu komutun geliütirmesine daha sonraki bir zamanda devam edeceßim.
+00,0099=òkaz: bu komut sadece kçsmi olarak eklenmiütir.
 
 ; Version information, Copyright and License
 01,0000=%0 komut kabußu, sÅrÅm %1
 01,0001=(%0)
 01,0002=Telif hakkç (c) %0, %1
-01,0003=3 koüullu BSD Lisansç
+01,0003=3 üartlç BSD Lisansç
 
 ; Error message if Shell fails to initialize. However, it is unlikely that
 ; translations have been initialized if that happens. Also, the Shell should
 ; not fail to start. So, this message will probably never been shown.
-02,0000=baülatma hatrasç
+02,0000=baülatma hatasç
 
 ; A general failure to understand the command line entered. This message will
 ; probably be removed.
-02,0001=ûunun iülenmesinde hata: %0
+02,0001=hata: %0
 
 ; Automatic reporting of errorlevel with failed commands and programs
-02,0002=Hata %0, %1
+02,0002=hata %0, %1
 
 ; Extra message displayed when shell is "permanent" and user attempts to exit.
-02,0004=daimi kabuktan áçkçlamaz
+02,0004=áçkçü yasak
 
 ; Extra message displayed when shell is not "permanent" but user cannot exit
 ; right now. This message is not used at present. But, as time goes on, I
 ; see a the potential there could arise circumstances that the shell should
 ; prevent terminating itself for the moment.
-02,0005=áçkçü talebine uymak mÅmkÅn deßil
+02,0005=üimdi áçkçlamaz
 
 ; when exiting shell an there is an error code.
-02,0006=üu hata kodu ile sonlandçrçlçyor
+02,0006=hatayla áçkçü
 
 ; extra messages when expanding command line environment variable runs out
 ; of buffer memory.
-02,0007="%0" ortam deßiükeninin geniületilmesi baüarçsçz oldu
+02,0007="%0" deßiüken geniületilmesi baüarçsçz
 
 ; extra messages when expanding the command line runs out of buffer memory.
 ; It is similar to 02,0007, but occurs at a different stage of the expansion.
-02,0008=komut satçrçnçn geniületilmesi baüarçsçz oldu, "%0" tamponu aüçyor
+02,0008="%0" komut satçrç geniületilmesi baüarçsçz
 
 ; extra message for some commands when an Option Switch is not understood
-02,0009=Bilinmeyen seáenek anahtarç "%0"
+02,0009=Bilinmeyen seáenek "%0"
 
 ; help for a command is not available
-02,000a=%0 iáin istenen yardçm mevcut deßildir
+02,000a=%0 iáin yardçm yok
 
 ; Extra messages for when make or remove dir fails
-03,0000="%0" dizininin oluüturulmasç baüarçsçz oldu
-03,0001="%0" dizininin kaldçrçlmasç baüarçsçz oldu
+03,0000="%0" dizininin oluüturulmasç baüarçsçz
+03,0001="%0" dizininin kaldçrçlmasç baüarçsçz
 
 ; extra message for when user provides garbage when trying to change errorlevel
-03,0002=%0 hata seviyesini deßiütirme teüebbÅsÅnde hata meydana geldi
+03,0002=%0 hata seviyesinin deßiütirilmesinde hata
 
 ; extra message for when a requested drive was not found
 03,0003=%0 sÅrÅcÅsÅ bulunamadç
 
 ; extra message for when the requested drive is not a valid identifier.
-03,0004=geáersiz sÅrÅcÅ kimlißi "%0"
+03,0004=geáersiz sÅrÅcÅ %0
 
 ; extra message when user attempts to change drives and it fails
-03,0005=%0 sÅrÅcÅsÅne geáiü baüarçsçz oldu
+03,0005=%0 sÅrÅcÅsÅne geáiü baüarçsçz
 
 ; message displayed at the top of list of commands
-04,0000=%0 dahili komutun listesi:
-
-; Message displayed for textmode when starting to probe video modes
-06,0000=Video kipleri tespit ediliyor...
-
-; message displayed at the top of a list of supported text modes
-06,0001=ûu video metin kipleri tespit edildi:
-
-; the text for each text mode listing of supported modes (I like it indented)
-06,0002=%0 - %1 x %2
-
-; for reporting the current video mode information.
-06,0003=Faal metin kipi %0, %1 sÅtun x %2 satçr.
+04,0000=Dahili %0 komut:
 
 ; for ChDir without options to display the Drive/Directory
 07,0000=%0:\%1
 
 ; for displaying the volume name of a drive
-07,0001=%0 sÅrÅcÅsÅndeki birim üudur: %1
+07,0001=%0 sÅrÅcÅsÅndeki birim %1
 
 ; for displaying a drive has no volume name set
-07,0002=%0 sÅrÅcÅsÅndeki birimin etiketi yoktur
+07,0002=%0 sÅrÅcÅsÅndeki birimin etiketi yok
 
 ; for displaying the serial number of a drive when present.
-07,0003=Birimin seri numarasç üudur: %0-%1
-
-; message for when reporting the current theme
-08,0000=%0 temasç faaldir.
+07,0003=Birimin seri numarasç %0-%1
 
 ; These are the off/on messages that the echo, break and verify commands
 ; will show when no options or text are provided. NOTE: those commands always
 ; test for OFF/ON when changing. They will also check against 09,0000 and
-; 09,0001 for language specific versions of OFF/ON. For example, if 09,0000=aus
-; then both "echo off" and "echo aus" can be used to turn off echo. However,
-; for compatibility only "off" should be used in batch files.
-09,0000=kapalç
-09,0001=aáçk
+; 09,0001 for language specific versions of OFF/ON.
+09,0000=devre dçüç
+09,0001=faal
 09,0002=ECHO %0
 09,0003=BREAK %0
 09,0004=VERIFY %0
 
 ; message displayed when PATH command is requested to list the paths but the
 ; corresponding environment variable is not set.
-0a,0000=Hiábir sistem arama yolu belirtilmemiütir.
+0a,0000=Hiábir arama yolu tançmlanmamçü
 
 ; message displayed for the PATH command before the list of PATHs.
-0a,0001=Sistem yolu arama sçrasç:
+0a,0001=Sistem yolu:
 
 ; message displayed for the CD * command before the list of current directories.
-0a,0002=Sistem sÅrÅcÅlerinin gÅncel dizini:
+0a,0002=GÅncel dizinler:
 
 ; prompt for Delete/Del commands when told to prompt for each file.
 0b,0000="%0" dosyasç silinsin mi [Evet,Hayçr,TÅmÅ,Äçk] ?
@@ -197,11 +143,9 @@
 0b,0001="%0" dosyasç siliniyor
 
 ; message displayed when Delete/Del is asked to delete all files (*.*).
-0b,0002="%0" dahilindeki tÅm dosyalar silinecek!
+0b,0002="%0" iáindeki tÅm dosyalar silinecek!
 
-; prompt to confim delete or erase all files in a directory. I'll probably
-; change "Maybe" to something like 'Ask' or 'First Ask' or something. Selecting
-; that option will cause it to prompt for confirmation on each file.
+; prompt to confim delete or erase all files in a directory.
 0b,0003=Emin misiniz [Evet,Hayçr,Belki] ?
 
 ; prompt for Erase command when told to prompt for each file.
@@ -211,33 +155,25 @@
 0b,0011="%0" dosyasç kaldçrçlçyor
 
 ; message displayed when Erase is asked to delete all files (*.*).
-0b,0012="%0" dahilindeki tÅm dosyalar kaldçrçlacak!
+0b,0012="%0" iáindeki tÅm dosyalar kaldçrçlacak!
 
 ; results of file actions, like copy, delete, etc (0b,0200)
 0b,0100=hiábir dosya %0
 0b,0101=bir dosya %0
-0b,0101=%1 dosya %0
+0b,0102=%1 dosya %0
 
-; names for file actions (0b,0100-0b,0101)
-0b,0200=copied,moved,renamed,deleted,erased
+; names for file actions (0b,0100-0b,0102)
+0b,0200=kopyalandç,taüçndç,tekrar adlandçrçldç,silindi,kaldçrçldç
 
-; default pause messages.
-; 0c,0000 and 0c0001 are for 80+ column modes and must be less than 80 characters
-; 0c,0002 is for 40 column mode and MUST be 39 characters or less.
-; Exceeding the maximum width will cause the the screen to scroll and the
-; item at the top will be pushed off of the display and no longer visible.
+; default pause messages
 0c,0000=Devam etmek iáin bir tuüa basçn . . .
-0c,0001=Devam etmek iáin bir tuüa basçn veya fareyle tçklayçn . . .
 0c,0002=Duraklatçldç . . .
 
 ; date & time command messages
-0d,0000=GÅncel tarih üudur: %0
-0d,0001=GÅncel saat üudur: %0
-; I have not determined whether the date/time input prompts should end in
-; a question mark or colon. Also, a space is automatically added to the end
-; of the prompt string when it is not present in the NLS.
-0d,0002=Yeni tarih gir (gg-aa-[aa]yy):
-0d,0003=Yeni zaman gir (ss:dd[:ss]):
+0d,0000=GÅncel tarih %0
+0d,0001=GÅncel saat %0
+0d,0002=Yeni tarih (gg-aa-[aa]yy) ?
+0d,0003=Yeni saat (ss:dd[:ss]) ?
 
 ; Date command format
 ; %0 = YYYY 	%4 = YY
@@ -247,10 +183,10 @@
 0d,0005=%2 %7 %3 %0
 
 ; Day names for date format
-0d,0010=Pazar,Pazartesi,Salç,Äarüamba,Perüembe,Cuma,Cumartesi
+0d,0010=Paz,Pzt,Sal,Äar,Per,Cum,Cts
 
 ; Month Names for date format
-0d,0011=Ocak,ûubat,Mart,Nisan,Mayçs,Haziran,Temmuz,Aßustos,EylÅl,Ekim,Kasçm,Aralçk
+0d,0011=Oca,ûub,Mar,Nis,May,Haz,Tem,Aßu,Eyl,Eki,Kas,Ara
 
 ; Time command format
 ; %0 = HH (24hr)	%4 = HH (12hr)		%5 = H (12hr)
@@ -269,37 +205,24 @@
 ; Time format for directory listings (same params as time command)
 0d,0021=%0:%1:%2
 
-; When beep command is verbose (not implemented), this message will be
-; displayed during multiple tone playback. Probably.
-; 0e,0000=Frekans %0 Hz, Zaman sçnçrç %1 ms
-
 ; Memory command strings
-0f,0000=%0, %1 paráasçna %2 bayt kullançlarak yÅklenmiütir
-0f,0001=%0 bayt kabuk kodu iáin
-0f,0002=%0 bayt yerleüik NLS iáin
-0f,0003=%0 bayt yçßçn iáin
-0f,0004=%0 bayt dahili tamponlar iáin
-0f,0005=%0 bayt dißer veriler iáin
-0f,0006=òlave harici tamponlar:
-; development version of buffer memory information
-0f,0007=paráa %1, %2Kb atanmçü, %3 bayt boü, %0 iáin
-; alternate version of 0f,0007 without segment info, probably used in release
-; 0f,0007=%2Kb atanmçü, %3 bayt boü, %0 iáin
-0f,0008=Belleßin tercÅmeyle alakalç kullançmçna dair ek bilgi:
-; development version of translation memory information
-0f,0009=paráa %1, %2 bayt atanmçü, %0 iáin
-; alternate version of 0f,0009 without segment info, probably used in release
-; 0f,0009=%2 bayt atanmçü, %0 iáin
-
-; Buffer types for 0f,0007 %0
+0f,0000=%0 %1 paráasçna %2 bayt kullançlarak yÅklendi
+0f,0001=%0 bayt, kabuk kodu
+0f,0002=%0 bayt, Yerleüik NLS
+0f,0003=%0 bayt, yçßçn
+0f,0004=%0 bayt, dahili tamponlar
+0f,0005=%0 bayt, dißer veriler
+0f,0006=External buffers:
+0f,0007=%0, %2Kb, %3 free
+0f,0008=Harici tamponlar:
+0f,0009=%2 bayt, %0 iáin
 0f,0010=Fare dizeleri
 0f,0011=Tariháe listesi
 0f,0012=Arma listesi
 0f,0013=Mime listesi
 0f,0014=Dizin yçßçnç
 0f,0015=GîrÅntÅleme yazç tipi
-0f,0016=Etkin NLS
-0f,0017=Sîzel NLS
+0f,0016=Faal NLS
 
 ; This string is appended to stack string 0f,0003 only when the shell is
 ; compiled with STACK_CHECK enabled. Other than debugging and development
@@ -307,595 +230,86 @@
 0f,0020=, %0 bayt uá kullançmda
 
 ; LANG command to display language (id code(s))
-10,0000=GÅncel dil üudur: %0 (%1).
+10,0000=Dil üudur: %0 (%1)
 
-; Shell startup information messages, these messages (50,*) are temporary for
-; the development stage of V8Turbo. Most likely most or all will be removed at
-; release time.
-50,0000=%0 paráasçna yÅklendi
-50,0001=Ekran üudur: %0, kip üudur: %1 (%2x%3)
-50,0002=Yerleüik dil (NLS) üudur: %0, %1 bayt kullançr
-50,0003=isimsiz
-50,0004=Äalçütçrçlabilir üudur: %0
-50,0005=ûeáenek anahtar karakteri üudur: %0
-50,0006=NLS yolu üudur: %0
-50,0007=tançmlanmçü
-50,0008=Dahili tampon belleßi %0 bayt
-50,0009=%0 bayt, yçßçn iáin baülatçldç
-50,000a=Hiábir fare tespit edilmedi
-50,000b=%0 dÅßmeli fare tespit edildi
-50,000c=Paráada %0 bayt boü
-50,000d=%0 ilk paragraf tahsis edildi
-50,000e=%0 paragrafa indirgendi
+; These error messages will be removed at some point.
+21,e002=iülev geliütirme aüamasçnda
+21,e006="%0" komutu geliütirilmektedir
 
-; Display adapters
-51,0000=MDA
-51,0001=CGA
-51,0002=EGA
-51,0003=MCGA
-51,0004=VGA
-51,0005=VESA
+; These error messages will probably will be left in the V8Micro NLS.
+21,d001=kip desteklenmiyor
+21,e001=desteklenmeyen DOS
+21,e101=geáersiz anahtar veya seáenek
+21,e201=geáersiz sayç
+21,e301=aralçk dçüç
+21,e401=desteklenmiyor, V8Turbo gerekli
+21,e505=saati ayarlama baüarçsçz
+21,e202=NLS dosyasç bulunamadç
+21,e302=bozuk NLS dosyasç
+21,e402=geáersiz NLS karakter eüleümesi
+21,e109=veriler paráayç aüçyor
+21,e008=yetersiz tampon bellek
+21,e026=kullançcç iptali
+21,e126=CTRL+C ile iptal
+21,e226=iptal edildi
+21,f003=dizin ismi gerekli
+21,f002=dosya ismi gerekli
+21,f102=eüleüen dosya yok
+21,ffff=bilinmeyen hata
 
-; Normal DOS error messages
+; Normal DOS error messages. Since they use roughly 1kb, these will probably be
+; excluded from the Built-In V8Micro NLS at release. But, they are usefull so
+; maybe I'll keep them. I have not decided yet.
 21,0000=hata yok
-21,0001=geáersiz iülev sayçsç
+21,0001=geáersiz iülev
 21,0002=dosya bulunamadç
 21,0003=yol bulunamadç
-21,0004=yetersiz dosya gîstergesi mevcut
-21,0005=dosyaya eriüim reddedildi
-21,0006=geáersiz dosya gîstergesi
-21,0007=bellek kontrol bloku imha edildi
-21,0008=bellek yetersiz
-21,0009=geáersiz bellek blok adresi
+21,0004=yetersiz dosya gîstergesi
+21,0005=eriüim reddedildi
+21,0006=geáersiz gîsterge
+21,0007=MCB yok edildi
+21,0008=yetersiz bellek
+21,0009=geáersiz bellek bloku
 21,000a=geáersiz ortam tablosu
 21,000b=geáersiz biáim
 21,000c=geáersiz eriüim kodu
 21,000d=geáersiz veri
 21,000e=ayrçlmçü
-21,000f=geáersiz sÅrÅcÅ talep edildi
+21,000f=geáersiz sÅrÅcÅ
 21,0010=gÅncel dizin kaldçrçlamaz
 21,0011=aynç cihaz deßil
-21,0012=baüka denkleüen dosya yok
-21,0013=disk yazçlmaya karüç korumalç
+21,0012=baüka dosya yok
+21,0013=yazmaya karüç korumalç
 21,0014=bilinmeyen birim
 21,0015=sÅrÅcÅ hazçr deßil
 21,0016=bilinmeyen komut
-21,0017=CRC veri hatasç
-21,0018=yanlçü talep yapç uzunlußu
-21,0019=disk arama hatasç
-21,001a=bilinmeyen disk ortam tÅrÅ
-21,001b=disk sektîrÅ bulunamadç
-21,001c=yazçcçda kaßçt yok
-21,001d=disk yazma hatasç
-21,001e=disk okuma hatasç
-21,001f=genel disk hatasç
-21,0020=dosya paylaüçm ihlali
-21,0021=dosya kilit ihlali
-21,0022=geáersiz disk deßiüimi
-21,0023=yetersiz dosya kontrol bloklarç
-21,0024=geáersiz dosya paylaüçm arabelleßi
+21,0017=CRC hatasç
+21,0018=yanlçü talep uzunlußu
+21,0019=diskte arama hatasç
+21,001a=bilinmeyen disk tÅrÅ
+21,001b=sektîr bulunamadç
+21,001c=kaßçt kalmadç
+21,001d=yazma hatasç
+21,001e=okuma hatasç
+21,001f=disk hatasç
+21,0020=paylaüçm ihlali
+21,0021=kilit ihlali
+21,0022=geáersiz disk deßiütirme
+21,0023=FCB kalmadç
+21,0024=geáersiz dosya paylaüçm tamponu
 21,0025=kod sayfasç uyumsuzlußu
-21,0026=dosya iülemi tamamlanamaz
+21,0026=dosya iülemi baüarçsçz
 21,0027=yetersiz disk alanç
 
-; error when attempting to change to a unsupported text mode
-21,d001=video kipi desteklenmemektedir
+; Command help is not provided in V8Micro
 
-; general error for incompatible version of DOS
-21,e001=DOS sÅrÅmÅ desteklenmemektedir
-
-; Extra message displayed for reserved commands with a function that has not
-; avaialbel at present. This message will be removed at some point.
-21,e002=iülev henÅz eklenmemiütir
-
-; Extra message displayed for reserved commands not yet implemented at all.
-; This message will be removed at some point.
-21,e006="%0" komutu eklenmemiütir
-
-; general error for command line garbage
-21,e101=geáersiz parametre, anahtar veya seáenek
-
-; general error for when a number is expected on the command line, but it could
-; be used. the number provided contains a bad format or invalid characters
-21,e201=geáersiz sayçsal biáim
-
-; general error for values on the command line that exceed the allows range
-; for an option.
-21,e301=aralçk dçüç sayçsal deßer
-
-; specific error for only V8Micro when command is not available with V8Micro
-21,e401=desteklenmiyor, V8Turbo gereklidir
-
-; specific error that could be returned by date/time commands when attempt to
-; set the clock fails.
-21,e505=saatin ayarlanmasç baüarçsçz oldu
-
-; specific error when shell was unable to locate an NLS file for a requested
-; language.
-21,e202=NLS dosyasç bulunamadç
-
-; specific error that will occur when an NLS file format is invalid, probably
-; caused by improper modification of the NLS index (like index "ec,e102=").
-21,e302=hatalç veya bozuk NLS dosya biáimi
-; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
-21,e402=geáersiz NLS karakter eüleümesi
-
-; specific error for when some internal or NLS data is too large and exceeds
-; the memory segment assigned to it and wraps the segment.
-21,e109=veriler paráa sçnçrçnç aümaktadçr
-
-; general error for when there is insufficient buffer space for the shell to
-; perform a task. For example, command line environment variable expansion.
-21,e008=yetersiz tampon belleßi
-
-; general error for when the user aborts an operation before it is completed.
-21,e026=kullançcç dosya iülemini iptal etti
-
-; general error message for when user performed a CTRL+C to abort, this message
-; is not displayed with ALL CTRL+C events. Only specific ones.
-21,e126=CTRL+C ile iptal
-
-; 21,e226 When paused (or when waiting on input) and the user causes the current
-; action to stop in favor of performing a different action using the mouse. An
-; example of this would be, list the internal commands, then before the list is
-; finished being displayed and is paused, use the mouse to click on one of the
-; available commands. This will stop the list and initiate the display of the
-; help text for the command.
-21,e226=kullançcç faaliyeti iptal gerektiriyordu
-
-; general error for when a directory path is required but not provided
-21,f003=dizin ismi gereklidir
-
-; general error for when a file name is required and not provided
-21,f002=dosya ismi gereklidir
-
-; general error for when files could not be found but were expected
-21,f102=eüleüen hiábir dosya bulunamadç
-
-; any error that does not have an associated NLS string
-21,ffff=bilinmeyen hata
-
-; Below here is all internal command help. Those are all group 42. Followed
-; by the command index + line. Line 0 is the VERY short description (~56 chars)
-; that is shown when listing the internal commands. Line 1+ is the general help
-; text. Additional lines may be added if needed. However, their numbers are in
-; hexadecimal and must be consecutive. The help display routine stops at the
-; first none existing line number.
-;
-; At present, this general help is provided a single parameter to all lines (1+)
-; as %0 for the current DOS Switch character. I may add additional params that
-; may be sent to those lines in the future to provide some other data. But, no
-; worries. Any unused parameters will not cause a problem.
-;
-; Also, feel free to completely change the layout, reword, rewrite or add any
-; additional information you like to the command help. Even for the built-in
-; NLS, command help is not embedded into the executable. For the built-in
-; language, V8Turbo/X will switch from the built-in NLS to an external when
-; ether the Language is changed or command help is requested. As long as the
-; entire NLS file fits within a 64kb segment it will be fine.
-;
-; For V8Micro, things work a little different. The V8Micro NLS file has no
-; command help. When command help is requested, it temporarily loads the
-; V8Turbo NLS and prints its help version. Then, discards the V8Turbo version
-; of the NLS. The commands in V8Turbo and V8Micro work the same and have the
-; same options. V8Micro just doesn't have some of the commands, which is no
-; problem for the NLS.
-
-
-; 01, Alias
-;dd,0100=Komut armalarçnç gîrÅntÅler veya deßiütirir.
-42,0100=mevcut deßil
-42,0101=
-42,0102=Bu komut üimdilik eklenmemiütir. Kabußun geliütirmesi ilerledikáe ileri bir
-42,0103=tarihte eklenecektir. Fakat üimdilik bu komutun iülevi mevcut deßildir.
-42,0104=
-
-; 02, Beep
-42,0200=PC'nin dahili hoparlîrÅnden bip sesi áçkar.
-42,0201=
-42,0202=  BEEP [frekans[,zamansçnçrç][,...]]
-42,0203=
-42,0204=Hiábir parametre olmadan sadece BEEP yazçlçrsa, varsayçlan ses ve zaman
-42,0205=sçnçrç kullançlçr. Äoklu girdiler iáin herhangi bir deßer eksikse, varsayçlan
-42,0206=deßerler kullançlçr. Deßerler virgÅl veya boüluklarla ayrçlabilir ve tam sayç
-42,0207=veya onaltçlçk sayçlar olabilir.
-; Probably beep will get a %0V (verbose) switch as well to display. At that time,
-; Its help will be changed/inserted...
-; 42,0202=  BEEP [frekans[,zamansçnçrç][,...]] [%0V]
-; 42,0203=
-; 42,0204=Äalma esnasçnda ses tonlarçnç ve sÅreleri gîrÅntÅlemek iáin %0V (Verbose)
-; 42,0205=seáeneßini kullançn.
-
-; 03, Break
-42,0300=CTRL+C durdurma denetlemesini gîrÅntÅler veya deßiütirir.
-42,0301=
-42,0302=  BREAK [ON | OFF]
-42,0303=
-42,0304=GÅncel ayarç gîrÅntÅlemek iáin parametre girmeden BREAK yazçn.
-
-; 04, Call
-42,0400=Bir toplu iü (batch) dosyasçnç baüka bir toplu iü dosyasçndan áaßçrçr.
-
-; 05, Chdir, cd
-42,0500=GÅncel dizini deßiütir veya gîrÅntÅle.
-42,0501=
-42,0502=CHDIR ve CD komutlarç.
-42,0503=
-42,0504=  CD [sÅrÅcÅ:]        GÅncel dizini gîrÅntÅle.
-42,0505=  CD [sÅrÅcÅ:][yol]   Dizinleri deßiütir.
-42,0506=  CD [..]             öst dizine git.
-42,0507=  CD [-]              Evvelki dizine git.
-42,0508=  CD [*]              TÅm sÅrÅcÅlerdeki gÅncel yolu gîrÅntÅle.
-42,0509=
-42,050a=GÅncel dizini gîrÅntÅlemek iáin CD yazçn.
-
-; 35, Cdd
-42,3500=GÅncel sÅrÅcÅ ve dizini deßiütir veya gîrÅntÅle.
-42,3501=
-42,3502=  CDD [%0D][sÅrÅcÅ:][yhol] GÅncel sÅrÅcÅ ve dizini deßiütir.
-42,3503=  CDD [..]                 öst dizine git.
-42,3504=  CDD [-]                  Evvelki dizine git.
-42,3505=  CDD [*]                  TÅm sÅrÅcÅlerdeki gÅncel yolu gîrÅntÅle.
-42,3506=
-42,3507=%0D seáeneßi, CDD komutuna dizin ve/veya sÅrÅcÅ deßiüimi yaptçktan sonra
-42,3508=dizin listesi gîrÅntÅlemesi gerektißini bildirir. GÅncel yolu gîrÅntÅlemek
-42,3509=iáin herhangi bir seáenek girmeden CDD yazçn.
-
-; 06, Chcp
-42,0600=Etkin kod sayfasçnç gîrÅntÅle veya deßiütir.
-
-; 07, Cls
-42,0700=Ekranç temizler.
-
-; 08, Commands, ?
-42,0800=Dahili komutlarçn kçsa bir aáçklamayla listesini gîrÅntÅler.
-
-; 09, Copy
-42,0900=Tek veya áoklu dosya kopyala.
-
-; 0a, Ctty
-42,0a00=Birincil girdi cihazçnç deßiütirir veya gîrÅntÅler (eklenmemiütir).
-42,0a01=
-42,0a02=Biraz dÅüÅnmenin ardçndan, CTTY komutunun "modern" DOS sistemlerinde pek
-42,0a03=faydalç olmadçßç kanaatine vardçm. Dolayçsçyla, bu komutu eklememeyi seátim.
-42,0a04=Sadece geri uyumluluk iáin yapmacçk bir komut ekledim. òyi bir sebep bulursam
-42,0a05=veya desteklemem iáin talep gelirse, o zaman eklerim.
-
-; 0b, Date
-42,0b00=GÅncel sistem tarihini gîrÅntÅle veya deßiütir.
-42,0b01=
-42,0b02=  DATE [%0D | %0X] [yeni_tarih]
-42,0b03=
-42,0b04=%0D DATE komutunun tarihin deßiütirilmesi iáin istem gîrÅntÅlemesini înler.
-42,0b05=%0X %0D seáeneßine benzer. Ancak sadece gÅncel tarih gîrÅntÅlenebilir.
-42,0b06=
-42,0b07=GÅncel tarihi gîrÅntÅlemek ve deßiütirmek iáin parametresiz DATE yazçn.
-
-; 0c, Delete, Del
-42,0c00=Dosya sil.
-42,0c01=
-42,0c02=DELETE ve DEL komutlarç.
-42,0c03=
-42,0c04=  DEL [sÅrÅcÅ:][yol]dosyaismi [%0P] [%0V]
-42,0c05=
-42,0c06=  [sÅrÅcÅ:][yol]dosyaismi   Silinecek dosya veya dosyalarç belirtir. Äoklu
-42,0c07=                            dosya kullanmak iáin joker kullançn.
-42,0c08=
-42,0c09=  %0P    Dosyançn silinmesinden înce teyit iste.
-42,0c0a=  %0V    Silinen dosyalarçn dosya isimlerini gîrÅntÅle.
-
-; 0d, Dir
-42,0d00=Bir dizinin iáerißini gîrÅntÅle.
-42,0d01=
-42,0d02=  DIR [sÅrÅcÅ:][yol][dosyaismi]
-42,0d03=
-42,0d04=ûu anda, bu komut sçnçrlç bir üekilde eklenmiütir ve sadece dizin iáeriklerini
-42,0d05=orada ne oldußunu gîrmek iáin listelemekte iyidir. Dosyalar veya dizinlere
-42,0d06=dair hiábir ilave bilgi sunmaz. Onlarç sçralamaz bile. Desteklenen seáenek
-42,0d07=yoktur. ûayet parametre eklerseniz, sonunda bir dosya ismi veya joker
-42,0d08=bulunan tam bir parametreye ihtiyaá duyacaktçr.
-
-; 0e, Dirs
-42,0e00=GÅncel dizin yçßçnçnç gîrÅntÅle.
-
-; 0f, Doskey
-42,0f00=Klavye ayarlarçnç gîrÅntÅle veya deßiütir.
-42,0f01=
-42,0f02=  DOSKEY %0INSERT      ekleme yazçm kipini etkinleütirir (varsayçlan).
-42,0f03=  DOSKEY %0OVERSTRIKE  ekleme yazçm kipini devre dçüç bçrakçr.
-
-; 10, Echo
-42,1000=Mesaj gîrÅntÅler, komut yankçsçnç etkinleütirir veya devre dçüç bçrakçr.
-42,1001=
-42,1002=  ECHO [ON | OFF]   Toplu iü dosyalarçnda yankçyç etkinleütirir.
-42,1003=  ECHO [message]    Mesaj gîrÅntÅler.
-42,1004=
-42,1005=Yankç durumunu gîrÅntÅlemek iáin herhangi bir parametre olmadan ECHO yazçn.
-42,1006=
-42,1007=Boü bir satçr yazmak iáin veya komut yankçlama durumunun gîrÅntÅlenmedißinden
-42,1008=emin olmak iáin ECHO komutundan sonra sadece geáerli bir ayraá girin.
-42,1009=Yaygçn bir kullançm, nokta kullanmaktçr. Mesela: echo.
-
-; 11, Erase
-42,1100=Meraklç komüulara karüç dosya kaldçrma.
-42,1101=
-42,1102=  ERASE [sÅrÅcÅ:][yol]dosyaismi [%0P] [%0V]
-42,1103=
-42,1104=  [sÅrÅcÅ:][yol]dosyaismi   Kaldçrçlacak dosya veya dosyalarç belirtir.
-42,1105=                            Äoklu dosya belirtmek iáin joker kullançn.
-42,1106=
-42,1107=  %0P    Dosyayç kaldçrmadan evvel teyit iste.
-42,1108=  %0V    Kaldçrçlan dosyalarçn isimlerini gîrÅntÅle.
-42,1109=
-42,110a=òkaz: DELETE komutunun aksine, dosya yeniden adlandçrçlacak ve silinmeden
-42,110b=înce Åzerine yazçlacaktçr. Bu, dosyançn standart yardçmcç araálarla geri
-42,110c=getirilmesinin înÅne geáer. Ama bu, "gÅvenli silme" deßildir.
-
-; 12, Errorlevel, Errlvl
-42,1200=GÅncel hata seviyesini gîrÅntÅler veya ayarlar.
-42,1201=
-42,1202=ERRORLEVEL, ERRLVL
-42,1201=
-42,1202=  ERRLVL [hata kodu]
-42,1203=
-42,1204=GÅncel hata kod mesajçnç gîrmek iáin parametre girmeden ERRLVL yazçn.
-
-; 13, Exit
-42,1300=Kabußu veya toplu iü dosyasçnç sonlandçrçr.
-42,1301=
-42,1302=  EXIT [%0SHELL | hata kodu]
-42,1303=
-42,1304=Bir áçkçü kodu verilmediyse, gÅncel áçkçü kodu kullançlçr. Bir toplu iü
-42,1305=dosyasç tarafçndan áaßrçldçßçnda, toplu iü dosyasç durur. Komut satçrçndan
-42,1306=kullançldçßçnda, izin veriliyorsa kabuk sonlançr. %0SHELL seáeneßi, kabußun
-42,1307=toplu iü dosyalarçnçn iáinden sonlandçrçlmasçnç talep eder.
-
-; 14, For
-42,1400=Bir komutu dosya kÅmesinin her dosyasç iáin áalçütçr.
-
-; 15, Goto
-42,1500=Aynç toplu iü dosyasçnçn iáindeki bir etikete git.
-
-; 16, Gosub
-42,1600=Aynç toplu iü dosyasçnçn iáinde alt bir iülevi áaßçr.
-
-; 17, History
-42,1700=Komut satçrç tariháesini gîrÅntÅle veya deßiütir.
-42,1701=
-42,1702=  HISTORY %0CLEAR        GÅncel komut satçrç tariháesini temizle.
-;42,1703=  HISTORY %0SIZE n      Tariháe iáin kullançlan bellek miktarçnç deßiütir.
-;42,1704=
-;42,1705=  HISTORY dosaismi      LOAD, SAVE ve AUTO iülemleri iáin dosya ismi belirt.
-;42,1706=  HISTORY %0SAVE        Göncel tariháeyi bir dosyaya kaydet.
-;42,1707=  HISTORY %0LOAD        ônceki tariháeyi bir dosyadan yÅkle.
-;42,1708=  HISTORY %0AUTO        Yeni tariháe verilerini otomatik olarak kaydet.
-42,1703=
-42,1704=GÅncel tariháeyi gîrÅntÅlemek iáin hiábir parametre eklemeden HISTORY yazçn.
-; 18, Lfnfor
-
-; 19, Loadfix
-42,1900=Bir programç ilk 64 KB belleßin Åzerine yÅkle.
-
-; 1a, Loadhigh, lh
-42,1a00=Bir programç Åst belleße yÅkle.
-
-; 1b, If
-42,1b00=Koüullu iüleme yapar.
-
-; 1c, Memory
-42,1c00=Dahili bellek kullançmçna dair bilgi gîrÅntÅler.
-
-; 1d, Mkdir, md
-42,1d00=Dizin oluütur.
-42,1d01=
-42,1d02=MKDIR ve MD komutlarç.
-42,1d03=
-42,1d04=  MD [sÅrÅcÅ:]yol
-42,1d05=
-42,1d06=Bir gÅn Åst dizinlerin otomatik oluüturulmalarç iáin %0P seáeneßi olacak.
-42,1d07=Belki bir %0N seáeneßi de olacak.
-
-; 1e, Path
-42,1e00=Äalçütçrçlabilir dosyalar iáin sistem arama yolunu gîrÅntÅle veya deßiütir.
-42,1e01=
-42,1e02=  PATH [[sÅrÅcÅ:]yol[;...]]
-42,1e03=
-42,1e04=GÅncel yol ayarlarçnç gîrÅntÅlemek iáin parametre olmadan PATH yazçn.
-42,1e05=
-42,1e06=GÅncel arama yolunu temizlemek iáin PATH ; yazçn. Boü bir arama yoluyla
-42,1e07=kabuk sadece gÅncel dizinde arama yapacaktçr.
-
-; 1f, Pause
-42,1f00=Durakla ve devam etmek iáin bir olay bekle.
-42,1f01=
-42,1f02=  PAUSE [mesaj]
-42,1f03=
-42,1f04=Eßer PAUSE komutuna bir mesaj saßlanmamçüsa, varsayçlan bir mesaj
-42,1f05=gîrÅntÅlenir. Muhtemelen bir zaman aüçmç iülevi eklenecektir buna.
-
-; 20, Popd
-42,2000=Dizin yçßçnçndan bir dizin áçkarçr ve ona dîner.
-
-; 21, Prompt
-42,2100=Komut isteminin nasçl gîrÅntÅlendißini deßiütirir (eklenmemiütir).
-42,2101=
-42,2102=Muhtemelen komut satçrç isteminin hangi verileri gîrÅntÅledißini deßiütiren
-42,2103=bir iülev ekleyeceßim. Ancak üimdilik varsayçlan V8Turbo istemi kafi
-42,2104=gelecektir.
-
-; 22, Pushd
-42,2200=GÅncel dizini dizin yçßçnçnçn Åzerine iter.
-
-; 23, Remark, rem
-42,2300=Toplu iü yorumu veya notu.
-42,2301=
-42,2302=REMARK ve REM komutlarç.
-42,2303=
-42,2304=  REM [yorum]
-42,2305=
-42,2306=REM komutunu takip eden metin áalçütçrçlmaz.
-
-; 24, Rename, ren
-42,2400=Bir dosya veya dizini yeniden isimlendirir.
-
-; 25, Rmdir, rd
-42,2500=Bir dizini kaldçrçr.
-42,2501=
-42,2502=RMDIR ve RD komutlarç.
-42,2503=
-42,2504=  RD [sÅrÅcÅ:]yol
-42,2505=
-42,2506=Bu komuta tÅm dosyalarla alt dizinleri silen bir seáenek ekleyebilirim.
-42,2507=Veya bunu DELETE ve ERASE komutlarçna eklerim. Veya baüka bir üey. Veya
-42,2508=hiábirini yapmam. Bekleyip gîreceßiz...
-
-; 26, Set
-42,2600=Ortam deßiükeni tablosunu gîrÅntÅle veya deßiütir.
-42,2601=
-42,2602=  SET [%0I]
-42,2603=
-42,2604=Toplu iü dosyalarç iáin mevcut olan ortam deßiükenlerini gîrÅntÅlemek iáin %0I.
-42,2605=Dahili deßiükenler kabuk tarafçndan saßlançr. Eßer bir ortam deßiükeni aynç
-42,2606=ismi kullanarak ayarlandçysa o zaman bu deßiüken dahili deßiüken yerine
-42,2607=kullançlacaktçr.
-42,2608=
-42,2609=ûimdilik SET sadece ortam deßiükenlerini gîrÅntÅler.
-
-; 27, Shift
-42,2700=Toplu iü dosyalarçnda parametrelerin konumlarçnç deßiütirir.
-
-; 28, Time
-42,2800=Sistem saatini gîrÅntÅle veya deßiütir.
-42,2801=
-42,2802=  TIME [%0T | %0X] [yeni_saat]
-42,2803=
-42,2804=%0T Komutun gÅncel saati deßiütirmek iáin istem gîrÅntÅlemesini înler.
-42,2805=%0X, %0T seáeneßine benzer. Ancak sadece gÅncel saat gîrÅntÅlenebilir.
-42,2806=
-42,2807=GÅncel saati gîrÅntÅlemek ve deßiütirmek iáin parametresiz TIME yazçn.
-
-; 29, Textmode, Tm
-42,2900=GÅncel metin kipini gîrÅntÅle, listele veya deßiütir.
-42,2901=
-42,2902=TEXTMODE ve TM komutlarç.
-42,2903=
-42,2904=  TM kip                Metin kipine deßiütir.
-42,2905=  TM %0r, %0report      GÅncel metin kipi bilgisini gîrÅntÅle.
-42,2906=  TM %0p, %0probe       Mevcut metin kiplerini tespit et. Ardçndan listele.
-42,2907=
-42,2908=Parametresiz TEXTMODE komutu da gÅncel kipe dair bilgi gîrÅntÅler.
-
-; 2a, Theme
-42,2a00=GÅncel komut kabußu renk üemasçnç gîrÅntÅle veya deßiütir.
-42,2a01=
-42,2a02=  THEME [sayç]    GÅncel temayç deßiütir.
-42,2a03=
-42,2a04=GÅncel tema saysçnç gîrmek iáin paremetre girmeden THEME yazçn.
-
-; 2b, Truename
-42,2b00=SÅrÅcÅler, dizinler veya dosyalar iáin tam yol ismini gîrÅntÅle.
-42,2b01=
-42,2b02=  TRUENAME [sÅrÅcÅ:][yol][dosyaismi]
-
-; 2c, Type
-42,2c00=Bir dosyançn iáeriklerini gîrÅntÅle.
-42,2c01=
-42,2c02=  TYPE [%0A | %0T | %0B] dosyaismi [dosyaismi...]
-42,2c03=
-42,2c04=%0A Dosyalarçn metin veya ikili olduklarçnç otomatik tespit et. (varsayçlan)
-42,2c05=%0T Sonraki dosyalarç ASCII metin olarak gîrÅntÅle.
-42,2c06=%0B Sonraki dosyalarç onaltçlçk ikili veri olarak gîrÅntÅle.
-42,2c07=
-42,2c08=Dosya isimleri yerine jokerlerin kullançlabileceklerini unutmayçn.
-
-; 2d, Verify
-42,2d00=Diske yazma denetlemesinin durumunu gîrÅntÅle veya deßiütir.
-42,2d01=
-42,2d02=  VERIFY [ON | OFF]
-42,2d03=
-42,2d04=GÅncel ayarç gîrÅntÅlemek iáinm parametre eklemeden VERIFY yazçn.
-
-; 2e, Version, ver
-42,2e00=Komut kabußunun sÅrÅm bilgisini gîrÅntÅle.
-42,2e01=
-42,2e02=VERSION ve VER komutlarç.
-
-; 2f, Vol
-42,2f00=Disk biriminin etiketini gîrÅntÅle.
-42,2f01=
-42,2f02=  VOL sÅrÅcÅ:    Belli bir sÅrÅcÅ iáin etiketi gîrÅntÅle.
-42,2f03=  VOL *          TÅm sÅrÅcÅlerin etiketlerini gîrÅntÅle.
-42,2f04=  VOL ?          GÅncel sÅrÅcÅnÅn etiketini gîrÅntÅle.
-42,2f05=
-42,2f06=ûu anda "tÅm sÅrÅcÅler" A: veya B: disket sÅrÅcÅlerini iáermemektedir.
-
-; 30, Which
-42,3000=Bir komut iáin áalçütçrçlabilir dosyayç gîrÅntÅle.
-
-; 31, PowerNap
-42,3100=PowerNap ayarlarçnç gîrÅntÅle veya deßiütir.
-
-; 32, Lang
-;
-; Basically...
-;
-; The /RELOAD option is for you, the translator. When working on a translation
-; or custom font. you can simple type 'LANG /RELOAD' to view your changes.
-;
-; The /N option is to prevent loading a custom NLS font. There are really only
-; three reasons for that. Some sort of compatibility issue. Or, on a system
-; when you only want to use the normal codepage font system. Or, if you are
-; using a custom font other than those provided with the shell.
-;
-; Finally, the /Q option is batch developers. They may want to switch languages
-; (like in the FreeDOS installer) without displaying the language information.
-42,3200=Dil ayarlarçnç gîrÅntÅle veya deßiütir.
-42,3201=
-42,3202=  LANG [%0Q][%0N] lang_id     Dili deßiütir ve yeni NLS tercÅmelerini yÅkle.
-42,3203=  LANG [%0Q][%0N] %0RELOAD    GÅncel NLS tercÅmesini yÅkle (veya tekrar yÅkle).
-42,3204=
-42,3205=NLS tercÅme bilgilerinin gîrÅntÅlenmesini înlemek iáin %0Q kullançn.
-42,3206=
-42,3207=Geáici NLS yazç tiplerinin yÅklenmesini înlemek iáin %0N kullançn. Bu seáenek
-42,3208=tÅm sonraki %0RELOAD iülemleri iáin geáerlidir. Bir NLS'in dil kimlißi ile
-42,3209=yÅklenmesi onu devre dçüç bçrakçr. Yazç tipi deßiütirme desteßi sadece EGA
-42,320a=veya daha iyi grafik kartç bulunan sistemlerde mevcuttur.
-42,320b=
-42,320c=GÅncel tercÅme bilgilerini gîrÅntÅlemek iáin parametresiz LANG yazçn.
-
-; 33, Return
-42,3300=Bir toplu iü alt iülevinden dîn.
-
-; 34, Mime
-42,3400=MIME iáerik tÅrlerini gîrÅntÅle veya deßiütir.
-
-; 36, ?
-42,3600=Komutlarç gîrÅntÅle veya seáime dayalç olarak komut áalçütçr.
-42,3601=
-42,3602=  ? [komut][parametreler]
-42,3603=
-42,3604=Belli bir komutu áalçütçrmadan înce teyit iste. Dahili komutlarçn kçsa bir
-42,3605=listesini gîrmek iáin herhangi bir parametre eklemeden ? yazçn.
-
-; Boot message
+; Intro message
 70,0000=Bu, sÅrmekte olan bir áalçümadçr ve tamamlanmamçütçr. Biráok kritik ve dißer
 70,0001=iülev (henÅz) eklenmemiütir. Bu în yayçn sadece yapçlan mevcut áalçümayç
 70,0002=denemek iáindir. Komut kabußu olarak genel kullançma üimdilik uygun deßildir.
 70,0003=ûimdilik harici komutlarç áalçütçrmaz bile, sadece dahili komutlarç áalçütçrçr.
 70,0004=TÅm bunlar daha sonra eklenecektir.
 70,0005=
-70,0006=Baülarken, mevcut ve umuyoruz ki yakçn gelecekte mevcut olacak komutlar
-70,0007=kÅmesini gîrmek iáin ? yazçn. Herhangi bir komutu /? onu takip edecek üekilde
-70,0008=yazmançz o komuta dair ilave bilgi verebilir. Ancak standart DOS komut
-70,0009=yardçmçnçn áoßu henÅz eklenmemiütir. Bunlarç daha sonra ekleyeceßim. Ama
-70,000a=muhtemelen bunlarç nasçl kullanacaßçnçzç zaten biliyorsunuzdur. En azçndan
-70,000b=bildißinizi dÅüÅnÅyorsunuzdur. ÄÅnkÅ bunlarçn biráoßu, geriye dînÅk uyumluluk
-70,000c=muhafaza edilmeye áalçüçlçrken iyileütirilmektedir.
-70,000d=
-70,000e=Fareniz varsa, geráekten faydalç üeyler yapacaktçr. Gelecekte yerleüik fare
-70,000f=iülevleri geniületilecektir. HenÅz listelenmiü bile olmayan komutlar ve
-70,0010=iülevlere dair fikirlerim var. Takipte kalçn...
-70,0011=
-70,0012=V8Turbo ile dißer DOS yazçlçmlarçnçn sÅrekli geliütirilmesini
-70,0013=cesaretlendirmeye baßçü yaparak yardçmcç olun. https://patreon.com/shidel
-70,0014=
+70,0006=V8Turbo ile dißer DOS yazçlçmlarçnçn sÅrekli geliütirilmesini
+70,0007=cesaretlendirmeye baßçü yaparak yardçmcç olun. https://patreon.com/shidel
+70,0008=
