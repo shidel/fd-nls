@@ -300,6 +300,9 @@
 0f,0015=Dislpay font
 0f,0016=Active NLS
 0f,0017=Verbal NLS
+; this is other additional miscellaneous data, it does not need to be
+; called 'Miscellaneous', other, additional or whatever makes sense. :-)
+0f,0030=Miscellaneous data
 
 ; This string is appended to stack string 0f,0003 only when the shell is
 ; compiled with STACK_CHECK enabled. Other than debugging and development
@@ -406,6 +409,9 @@
 ; specific error for only V8Micro when command is not available with V8Micro
 21,e401=not supported, V8Turbo required
 
+; specific error when a parameter has values that have not been provided
+21,e501=missing a required parameter
+
 ; specific error that could be returned by date/time commands when attempt to
 ; set the clock fails.
 21,e505=failed to set clock
@@ -417,6 +423,7 @@
 ; specific error that will occur when an NLS file format is invalid, probably
 ; caused by improper modification of the NLS index (like index "ec,e102=").
 21,e302=malformed or corrupt NLS file format
+
 ; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
 21,e402=invalid NLS character mapping
 
@@ -427,6 +434,10 @@
 ; general error for when there is insufficient buffer space for the shell to
 ; perform a task. For example, command line environment variable expansion.
 21,e008=insufficient buffer memory
+
+; directory stack specific errors
+21,e601=directory stack is empty
+21,e608=directory stack is full
 
 ; general error for when the user aborts an operation before it is completed.
 21,e026=user canceled file operation
@@ -545,9 +556,13 @@
 
 ; 07, Cls
 42,0700=Clears the screen.
+42,0701=
+42,0702=  CLS
 
 ; 08, Commands, ?
 42,0800=Display a list of internal commands with a brief description.
+42,0801=
+42,0802=  COMMANDS
 
 ; 09, Copy
 42,0900=Copy a single or multiple files.
@@ -596,6 +611,8 @@
 
 ; 0e, Dirs
 42,0e00=Display the current directory stack.
+42,0e01=
+42,0e02=  DIRS
 
 ; 0f, Doskey
 42,0f00=Display or change keyboard settings.
@@ -661,15 +678,51 @@
 ; 17, History
 42,1700=Display or change the command line history.
 42,1701=
-42,1702=  HISTORY %0CLEAR        Clear the current comand line history.
-;42,1703=  HISTORY %0SIZE n       Change the amount of memory used for history.
-;42,1704=
-;42,1705=  HISTORY filename       Set file name for LOAD, SAVE and AUTO operations.
-;42,1706=  HISTORY %0SAVE         Save the current history to a file.
-;42,1707=  HISTORY %0LOAD         Load previous history from a file.
-;42,1708=  HISTORY %0AUTO         Automatically save new history data to file.
-42,1703=
-42,1704=Type HISTORY without any parameters to display the current history.
+42,1702=  HISTORY %0CLEAR             Clear the current comand line history.
+42,1703=  HISTORY %0SIZE n            Change the amount of memory used for history.
+42,1704=
+42,1705=  HISTORY filename           Set file name for LOAD, SAVE and AUTO operations.
+42,1706=  HISTORY %0SAVE              Save the current history to a file.
+42,1707=  HISTORY %0LOAD              Load previous history from a file.
+42,1708=  HISTORY %0AUTO[= ON | OFF]  Automatically save new history data to a file.
+42,1709=
+42,170a=HISTORY command line parameters are processed in order. Which means, using
+42,170b="%0LOAD myhist.hst" will have differnet behaviour than "myhist.hst %0LOAD"
+42,170c=
+42,170d=To resize the HISTORY, provide the SIZE as a value from 1 to 32 representing
+42,170e=the amount of memory in kilobytes to use. Resizing is non-destructive. However,
+42,170f=old items may be discarded when shrinking.
+42,1710=
+42,1711=Type HISTORY without any parameters to display the current history.
+
+; 32, Lang
+;
+; Basically...
+;
+; The /RELOAD option is for you, the translator. When working on a translation
+; or custom font. you can simple type 'LANG /RELOAD' to view your changes.
+;
+; The /N option is to prevent loading a custom NLS font. There are really only
+; three reasons for that. Some sort of compatibility issue. Or, on a system
+; when you only want to use the normal codepage font system. Or, if you are
+; using a custom font other than those provided with the shell.
+;
+; Finally, the /Q option is batch developers. They may want to switch languages
+; (like in the FreeDOS installer) without displaying the language information.
+42,3200=Display or change the language settings.
+42,3201=
+42,3202=  LANG [%0Q][%0N] lang_id     Change languages and load new NLS translations.
+42,3203=  LANG [%0Q][%0N] %0RELOAD     Load (or reload) the current NLS translation.
+42,3204=
+42,3205=Use %0Q to supress the display of NLS translation information.
+42,3206=
+42,3207=Use %0N to prevent the loading of a transcient NLS font. This option is "sticky"
+42,3208=for all subsequent %0RELOAD operations. It will only be disabled when a NLS is
+42,3209=loaded by it's language identifier. The support for font changing is only
+42,320a=available on systems with EGA or better graphics cards.
+42,320b=
+42,320c=Type LANG without parameters to display current translation information.
+
 ; 18, Lfnfor
 
 ; 19, Loadfix
@@ -683,6 +736,12 @@
 
 ; 1c, Memory
 42,1c00=Display information on internal memory usage.
+42,1c01=
+42,1c02=  MEMORY
+42,1c03=
+42,1c04=The MEMORY command only displays the current memory in use by the shell. This
+42,1c05=is not the amount of memory occupied by the shell when executing external
+42,1c06=programs or commands.
 
 ; 1d, Mkdir, md
 42,1d00=Create a directory.
@@ -693,6 +752,9 @@
 ;42,1d04=  MD [%0P] [drive:]path
 ;42,1d05=
 ;42,1d06=Use the %0P switch to automatically create any required parent directories.
+
+; 34, Mime
+42,3400=Display or change MIME content types.
 
 ; 1e, Path
 42,1e00=Display or change the system search path for executables.
@@ -711,6 +773,9 @@
 42,1f03=
 42,1f04=If PAUSE is not provided with a message, a default message will be displayed.
 42,1f05=This will most likely get a timeout feature added at some point.
+
+; 31, PowerNap
+42,3100=Display or change PowerNap settings.
 
 ; 20, Popd
 42,2000=Pops a directory off of the directory stack and returns to it.
@@ -733,6 +798,9 @@
 42,2304=  REM [comment]
 42,2305=
 42,2306=Text following the REM command is not executed.
+
+; 33, Return
+42,3300=Return from a batch sub-function.
 
 ; 24, Rename, ren
 42,2400=Rename a file or directory.
@@ -830,43 +898,6 @@
 
 ; 30, Which
 42,3000=Display the executable file for a command.
-
-; 31, PowerNap
-42,3100=Display or change PowerNap settings.
-
-; 32, Lang
-;
-; Basically...
-;
-; The /RELOAD option is for you, the translator. When working on a translation
-; or custom font. you can simple type 'LANG /RELOAD' to view your changes.
-;
-; The /N option is to prevent loading a custom NLS font. There are really only
-; three reasons for that. Some sort of compatibility issue. Or, on a system
-; when you only want to use the normal codepage font system. Or, if you are
-; using a custom font other than those provided with the shell.
-;
-; Finally, the /Q option is batch developers. They may want to switch languages
-; (like in the FreeDOS installer) without displaying the language information.
-42,3200=Display or change the language settings.
-42,3201=
-42,3202=  LANG [%0Q][%0N] lang_id     Change languages and load new NLS translations.
-42,3203=  LANG [%0Q][%0N] %0RELOAD     Load (or reload) the current NLS translation.
-42,3204=
-42,3205=Use %0Q to supress the display of NLS translation information.
-42,3206=
-42,3207=Use %0N to prevent the loading of a transcient NLS font. This option is "sticky"
-42,3208=for all subsequent %0RELOAD operations. It will only be disabled when a NLS is
-42,3209=loaded by it's language identifier. The support for font changing is only
-42,320a=available on systems with EGA or better graphics cards.
-42,320b=
-42,320c=Type LANG without parameters to display current translation information.
-
-; 33, Return
-42,3300=Return from a batch sub-function.
-
-; 34, Mime
-42,3400=Display or change MIME content types.
 
 ; 36, ?
 42,3600=Display commands or optionally execute command.
