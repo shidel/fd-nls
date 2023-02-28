@@ -75,7 +75,7 @@
 ; This message is displayed for most commands that I have not yet full
 ; MS-DOS/FreeDOS compatibility or options. Eventually, this message will be
 ; removed.
-00,0099=Remarque : · l'heure actuelle, cette commande n'est impl‚ment‚e que partiellement. Il existe d'autres besoins plus pressants pour le moment. Je reprendrai le d‚veloppement de cette commande plus tard.
+00,0099=Remarque : Ž l'heure actuelle, cette commande n'est impl‚ment‚e que partiellement. Il existe d'autres besoins plus pressants pour le moment. Je reprendrai le d‚veloppement de cette commande plus tard.
 
 ; Version information, Copyright and License
 01,0000=%0 shell de commande, version %1
@@ -202,7 +202,7 @@
 ; prompt to confim delete or erase all files in a directory. I'll probably
 ; change "Maybe" to something like 'Ask' or 'First Ask' or something. Selecting
 ; that option will cause it to prompt for confirmation on each file.
-0b,0003=Òtes-vous s–r [Oui,Non,Peut-ˆtre] ?
+0b,0003=’tes-vous s–r [Oui,Non,Peut-ˆtre] ?
 
 ; prompt for Erase command when told to prompt for each file.
 0b,0010=Supprimer le fichier "%0" [Oui,Non,Tout,Quitter] ?
@@ -300,6 +300,9 @@
 0f,0015=Police d'affichage
 0f,0016=NLS actif
 0f,0017=NLS verbal
+; this is other additional miscellaneous data, it does not need to be
+; called 'Miscellaneous', other, additional or whatever makes sense. :-)
+0f,0030=Autres donn‚es
 
 ; This string is appended to stack string 0f,0003 only when the shell is
 ; compiled with STACK_CHECK enabled. Other than debugging and development
@@ -406,6 +409,9 @@
 ; specific error for only V8Micro when command is not available with V8Micro
 21,e401=non pris en charge, V8Turbo est requis
 
+; specific error when a parameter has values that have not been provided
+21,e501=un paramŠtre requis est manquant
+
 ; specific error that could be returned by date/time commands when attempt to
 ; set the clock fails.
 21,e505=‚chec de la d‚finition de l'heure sur l'horloge
@@ -416,8 +422,8 @@
 
 ; specific error that will occur when an NLS file format is invalid, probably
 ; caused by improper modification of the NLS index (like index "ec,e102=").
-; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
 21,e302=format de fichier NLS malform‚ ou corrompu
+
 ; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
 21,e402=mappage de caractŠres NLS invalide
 
@@ -428,6 +434,10 @@
 ; general error for when there is insufficient buffer space for the shell to
 ; perform a task. For example, command line environment variable expansion.
 21,e008=m‚moire tampon insuffisante
+
+; directory stack specific errors
+21,e601=la pile des r‚pertoires est vide
+21,e608=la pile des r‚pertoires est pleine
 
 ; general error for when the user aborts an operation before it is completed.
 21,e026=op‚ration sur le fichier annul‚ par l'utilisateur
@@ -545,10 +555,14 @@
 42,0600=Afficher ou modifier la page de code actuelle.
 
 ; 07, Cls
-42,0700=Nettoyer l'‚cran.
+42,0700=Nettoie l'‚cran.
+42,0701=
+42,0702=  CLS
 
 ; 08, Commands, ?
 42,0800=Afficher une liste des commandes internes avec une brŠve description.
+42,0801=
+42,0802=  COMMANDS
 
 ; 09, Copy
 42,0900=Copier un seul ou plusieurs fichiers.
@@ -589,7 +603,7 @@
 42,0d01=
 42,0d02=  DIR [lecteur:][chemin][nomfichier]
 42,0d03=
-42,0d04=· pr‚sent, cette commande est … peine impl‚ment‚e et est seulement bonne pour
+42,0d04=Ž pr‚sent, cette commande est … peine impl‚ment‚e et est seulement bonne pour
 42,0d05=lister le contenu des dossiers pour voir ce qu'il s'y trouve. Des informations
 42,0d06=informations suppl‚mentaires sur les fichiers ou dossiers ne pas sont fournies.
 42,0d07=Elle ne les trie mˆme pas. Aucune option n'est prise en charge. Au cas o— il y
@@ -598,6 +612,8 @@
 
 ; 0e, Dirs
 42,0e00=Afficher la pile actuelle des r‚pertoires.
+42,0e01=
+42,0e02=  DIRS
 
 ; 0f, Doskey
 42,0f00=Afficher ou modifier les r‚glages du clavier.
@@ -637,10 +653,10 @@
 42,1200=Affiche ou d‚finit le niveau d'erreur actuel.
 42,1201=
 42,1202=ERRORLEVEL, ERRLVL
-42,1201=
-42,1202=  ERRLVL [code d'erreur]
 42,1203=
-42,1204=Tapez ERRLVL sans paramŠtre pour afficher le message de code d'erreur actuel.
+42,1204=  ERRLVL [code d'erreur]
+42,1205=
+42,1206=Tapez ERRLVL sans paramŠtre pour afficher le message de code d'erreur actuel.
 
 ; 13, Exit
 42,1300=Termine le shell de commande ou le fichier batch.
@@ -670,9 +686,45 @@
 ;42,1705=  HISTORY nomfichier    D‚finir le nom de fichier pour LOAD, SAVE et AUTO.
 ;42,1706=  HISTORY %0SAVE        Sauvegarder l'historique actuelle dans un fichier.
 ;42,1707=  HISTORY %0LOAD        Charger l'historique pr‚c‚dente depuis un fichier.
-;42,1708=  HISTORY %0AUTO        Sauvegarder automatiquement la nouvelle historique.
-42,1703=
-42,1704=Tapez HISTORY sans paramŠtre pour afficher l'historique actuelle.
+;42,1708=  HISTORY %0AUTO[= ON | OFF] Sauvegarder automatiquement la nouvelle historique.
+42,1709=
+42,170a=Les paramŠtres de la commande HISTORY sont trait‚s dans l'ordre. Ce qui veut
+42,170b=dire que "%0LOAD myhist.hst" se comportera diff‚remment de "myhist.hst %0LOAD"
+42,170c=
+42,170d=Pour redimensionner l'historique, pr‚cisez la taille (SIZE) en tant que valeur
+42,170e=de 1 … 32 repr‚sentant la quantit‚ de m‚moire en kilooctets. Le
+42,170f=redimensionnement est non destructif. Cependant, les anciens ‚l‚ments peuvent
+42,1710=ˆtre effac‚s lors d'une r‚duction de la taille.
+42,1711=Tapez HISTORY sans paramŠtre pour afficher l'historique actuelle.
+
+; 32, Lang
+;
+; Basically...
+;
+; The /RELOAD option is for you, the translator. When working on a translation
+; or custom font. you can simple type 'LANG /RELOAD' to view your changes.
+;
+; The /N option is to prevent loading a custom NLS font. There are really only
+; three reasons for that. Some sort of compatibility issue. Or, on a system
+; when you only want to use the normal codepage font system. Or, if you are
+; using a custom font other than those provided with the shell.
+;
+; Finally, the /Q option is batch developers. They may want to switch languages
+; (like in the FreeDOS installer) without displaying the language information.
+42,3200=Afficher ou modifier les r‚glages de langue.
+42,3201=
+42,3202=  LANG [%0Q][%0N] lang_id   Modifier la langue et charger les traductions NLS.
+42,3203=  LANG [%0Q][%0N] %0RELOAD  Charger ou recharger la traduction nLS actuelle.
+42,3204=
+42,3205=Utilisez %0Q pour empˆcher l'affichage des informations de traduction NLS.
+42,3206=
+42,3207=Utilisez %0N pour empˆcher le chargement de la police NLS transitoire. Cette
+42,3208=option reste pour toutes les op‚rations %0RELOAD suivantes. Elle ne sera
+42,3209=d‚sactiv‚e que lorsqu'un NLS est charg‚ par son identifiant de langue. Le
+42,320a=changement de police n'est disponible que sur les systŠmes avec une carte
+42,320b=EGA ou meilleure.
+42,320c=Tapez LANG sans paramŠtre pour afficher les informations de traduction.
+
 ; 18, Lfnfor
 
 ; 19, Loadfix
@@ -686,6 +738,12 @@
 
 ; 1c, Memory
 42,1c00=Afficher des informations sur l'utilisation de la m‚moire interne.
+42,1c01=
+42,1c02=  MEMORY
+42,1c03=
+42,1c04=La commande MEMORY n'affiche que la m‚moire utilis‚e par le shell. Cela n'est
+42,1c05=pas la quantit‚ de m‚moire occup‚e par le shell lors de l'ex‚cution des
+42,1c06=programmes ou commandes externes.
 
 ; 1d, Mkdir, md
 42,1d00=Cr‚er un r‚pertoire.
@@ -693,9 +751,12 @@
 42,1d02=Commandes MKDIR et MD.
 42,1d03=
 42,1d04=  MD [lecteur:]chemin
-42,1d05=
-42,1d06=Un jour il y aura une option %0P pour cr‚er automatiquement les parents.
-42,1d07=Peut-ˆtre une option %0N ‚galement.
+;42,1d04=  MD [%0P] [lecteur:]chemin
+;42,1d05=
+;42,1d06=Utiliez l'option %0P pour cr‚er automatiquement les r‚pertoires parents.
+
+; 34, Mime
+42,3400=Afficher ou modifier les types de contenu MIME.
 
 ; 1e, Path
 42,1e00=Afficher ou modifier le chemin de recherche du systŠme pour les ex‚cutables.
@@ -714,6 +775,9 @@
 42,1f03=
 42,1f04=Si PAUSE n'est pas fourni avec un message, un message par d‚faut sera affich‚.
 42,1f05=Une fonction de d‚passement de d‚lai sera probablement ajout‚ … l'avenir.
+
+; 31, PowerNap
+42,3100=Afficher ou modifier les r‚glages PowerNap.
 
 ; 20, Popd
 42,2000=Sort un r‚pertoire de la pile des r‚pertoires et y retourne.
@@ -736,6 +800,9 @@
 42,2304=  REM [commentaire]
 42,2305=
 42,2306=Le texte … la suite de la commande REM n'est pas ex‚cut‚.
+
+; 33, Return
+42,3300=Revenir d'une sous-fonction batch.
 
 ; 24, Rename, ren
 42,2400=Renommer un fichier ou un r‚pertoire.
@@ -829,48 +896,11 @@
 42,2f03=  VOL *          Afficher les ‚tiquettes de tous les lecteurs.
 42,2f04=  VOL ?          Afficher l'‚tiquette pour le lecteur actuel.
 42,2f05=
-42,2f06=· pr‚sent, "tous les lecteurs" ne comprend pas les lecteurs de disquette
+42,2f06=Ž pr‚sent, "tous les lecteurs" ne comprend pas les lecteurs de disquette
 42,2f07=A: ou B:.
 
 ; 30, Which
 42,3000=Afficher le fichier ex‚cutable pour une commande.
-
-; 31, PowerNap
-42,3100=Afficher ou modifier les r‚glages PowerNap.
-
-; 32, Lang
-;
-; Basically...
-;
-; The /RELOAD option is for you, the translator. When working on a translation
-; or custom font. you can simple type 'LANG /RELOAD' to view your changes.
-;
-; The /N option is to prevent loading a custom NLS font. There are really only
-; three reasons for that. Some sort of compatibility issue. Or, on a system
-; when you only want to use the normal codepage font system. Or, if you are
-; using a custom font other than those provided with the shell.
-;
-; Finally, the /Q option is batch developers. They may want to switch languages
-; (like in the FreeDOS installer) without displaying the language information.
-42,3200=Afficher ou modifier les r‚glages de langue.
-42,3201=
-42,3202=  LANG [%0Q][%0N] lang_id     Changer la langue et charger les traductions NLS.
-42,3203=  LANG [%0Q][%0N] %0RELOAD    Charger (ou recharger) les traductions NLS.
-42,3204=
-42,3205=Utilisez %0Q pour ‚viter l'affichage des informations de traduction NLS.
-42,3206=
-42,3207=Utilisez %0N ppour empˆcher le chargement d'une police NLS transitoire. Cette
-42,3208=option reste pour toutes les op‚rations %0RELOAD ult‚rieures. Elle ne sera
-42,3209=d‚sactiv‚e que lorsque'un NLS est charg‚ par son identifiant de langue. La
-42,320a=prise en charge de la modification n'est disponible que sur EGA ou mieux.
-42,320b=
-42,320c=Tapez LANG sans paramŠtre pour afficher l'‚tat actuel de la traduction.
-
-; 33, Return
-42,3300=Retourner d'une sous-fonction batch.
-
-; 34, Mime
-42,3400=Afficher ou modifier les types de contenu MIME.
 
 ; 36, ?
 42,3600=Afficher des commandes ou bien optionnellement ex‚cuter une commande.
@@ -895,7 +925,7 @@
 70,000b=comment les utiliser. Ou vous pensez que vous savez. Car beaucoup d'entre elles
 70,000c=sont am‚lior‚es tout en essayant de maintenir la r‚trocompatibilit‚.
 70,000d=
-70,000e=Si vous avez une souris, elle fera des choses r‚elles. · l'avenir, les
+70,000e=Si vous avez une souris, elle fera des choses r‚elles. Ž l'avenir, les
 70,000f=fonctionnalit‚s int‚gr‚es de la souris seront ‚tendues. Il existe davantage
 70,0010=de commandes et de fonctionnalit‚s auxquelles je r‚fl‚chis et qui ne sont mˆme
 70,0011=pas encore list‚es. Restez … l'‚coute.
