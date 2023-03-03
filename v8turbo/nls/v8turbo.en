@@ -121,6 +121,9 @@
 ; help for a command is not available
 02,000a=help requested for "%0" is not available
 
+; extra message when macro expansion fails
+02,000b=failed to expand "%0" macro
+
 ; Extra messages for when make or remove dir fails
 03,0000=failed to make directory "%0"
 03,0001=failed to remove directory "%0"
@@ -294,7 +297,7 @@
 ; Buffer types for 0f,0007 %0
 0f,0010=Mouse strings
 0f,0011=History list
-0f,0012=Alias list
+0f,0012=Macro list
 0f,0013=Mime list
 0f,0014=Directory stack
 0f,0015=Dislpay font
@@ -311,6 +314,10 @@
 
 ; LANG command to display language (id code(s))
 10,0000=The current language is %0 (%1).
+
+; CHCP messages
+11,0000=The active code page is %0.
+11,0001=The system code page is %0.
 
 ; Shell startup information messages, these messages (50,*) are temporary for
 ; the development stage of V8Turbo. Most likely most or all will be removed at
@@ -416,6 +423,10 @@
 ; set the clock fails.
 21,e505=failed to set clock
 
+; specific error that could be returned by chcp command when attempt to
+; set the active codepage fails.
+21,e025=failed to change code page
+
 ; specific error when shell was unable to locate an NLS file for a requested
 ; language.
 21,e202=NLS file not found
@@ -438,6 +449,11 @@
 ; directory stack specific errors
 21,e601=directory stack is empty
 21,e608=directory stack is full
+
+; doskey macro specific errors
+21,e701=unknown doskey macro name
+21,e702=invalid character in macro name
+21,e708=doskey macro list is full
 
 ; general error for when the user aborts an operation before it is completed.
 21,e026=user canceled file operation
@@ -553,6 +569,10 @@
 
 ; 06, Chcp
 42,0600=Display or change the active code page.
+42,0601=
+42,0602=  CHCP nnn     Change to a specified code page.
+42,0603=
+42,0604=Type CHCP without a parameter to display the current code page information.
 
 ; 07, Cls
 42,0700=Clears the screen.
@@ -615,10 +635,29 @@
 42,0e02=  DIRS
 
 ; 0f, Doskey
-42,0f00=Display or change keyboard settings.
+; Reminder %% means to display the percent symbol and is not a parameter itself
+42,0f00=Display or change keyboard settings and macros.
 42,0f01=
-42,0f02=  DOSKEY %0INSERT        to enable insert text typeing mode (default).
-42,0f03=  DOSKEY %0OVERSTRIKE    to disable insert text typing mode.
+42,0f02=  DOSKEY %0INSERT         to enable insert text typeing mode (default mode).
+42,0f03=  DOSKEY %0OVERSTRIKE     to disable insert text typing mode.
+42,0f04=  DOSKEY %0CLEAR          to delete all current macros
+42,0f05=  DOSKEY %0MACROS         to display current macros
+42,0f06=
+42,0f07=  DOSKEY macro[=][value] display, add, change or remove a macro
+42,0f08=
+42,0f09=To create or change a macro, simply assign it a value. If the value assigned
+42,0f0a=is empty, the macro will be removed. If only the macro name is provided
+42,0f0b=without assigning a value, the macro will be displayed.
+42,0f0c=
+42,0f0d=A macro can support parameters using a special code:
+42,0f0e=
+42,0f0f=$0      The name of the macro as invoked.
+42,0f10=$1-$9   Equivalent to using %%1-%%9 in a batch program.
+42,0f11=$*      All parameters, equivalent to using all $1-$9 parameters.
+42,0f12=$$      Use the $ symbol in the command line.
+42,0f13=
+42,0f14=If no parameters are used in the macro definition, $* is assumed after the
+42,0f15=defined macro text.
 
 ; 10, Echo
 42,1000=Displays a message, or turns on or off command echo.
@@ -779,6 +818,8 @@
 
 ; 20, Popd
 42,2000=Pops a directory off of the directory stack and returns to it.
+42,2001=
+42,2002=  POPD
 
 ; 21, Prompt
 42,2100=Changes how the command prompt is displayed (not implemented).
@@ -789,6 +830,12 @@
 
 ; 22, Pushd
 42,2200=Pushes the current directory on to the directory stack.
+42,2201=
+42,2202=  PUSHD [drive:][path]
+42,2203=
+42,2204=PUSHD saves the current directory on to the directory stack. If any parameters
+42,2205=are provided, it will also change to the specified path. PUSHD supports the
+42,2206=same options as the CDD command.
 
 ; 23, Remark, rem
 42,2300=Batch file comment or note.

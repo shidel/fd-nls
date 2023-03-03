@@ -84,6 +84,9 @@
 ; help for a command is not available
 02,000a=no help for "%0"
 
+; extra message when macro expansion fails
+02,000b=failed to expand "%0" macro
+
 ; Extra messages for when make or remove dir fails
 03,0000=make directory "%0" failed
 03,0001=remove directory "%0" failed
@@ -218,13 +221,12 @@
 0f,0009=%2 bytes, for %0
 0f,0010=Mouse strings
 0f,0011=History list
-0f,0012=Alias list
+0f,0012=Macro list
 0f,0013=Mime list
 0f,0014=Directory stack
 0f,0030=Other data
 0f,0015=Display font
 0f,0016=Active NLS
-
 
 ; This string is appended to stack string 0f,0003 only when the shell is
 ; compiled with STACK_CHECK enabled. Other than debugging and development
@@ -233,6 +235,10 @@
 
 ; LANG command to display language (id code(s))
 10,0000=Language is %0 (%1)
+
+; CHCP messages
+11,0000=Active code page is %0.
+11,0001=System code page is %0.
 
 ; These error messages will be removed at some point.
 21,e002=function under development
@@ -247,6 +253,7 @@
 21,e401=not supported, V8Turbo required
 21,e501=missing parameter
 21,e505=clock set failure
+21,e025=failed to change code page
 21,e202=NLS file not found
 21,e302=corrupt NLS file
 21,e402=invalid NLS character mapping
@@ -255,6 +262,10 @@
 21,e026=user canceled
 21,e601=dir stack empty
 21,e608=dir stack full
+21,e701=unknown macro
+21,e702=invalid macro name
+21,e708=macro list full
+
 21,e126=CTRL+C abort
 21,e226=aborted
 21,f003=directory name required
