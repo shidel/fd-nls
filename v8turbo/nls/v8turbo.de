@@ -121,6 +121,9 @@
 ; help for a command is not available
 02,000a=Die fÅr "%0" angeforderte Hilfe ist nicht verfÅgbar.
 
+; extra message when macro expansion fails
+02,000b=Konnte das Makro "%0" nicht vergrî·ern
+
 ; Extra messages for when make or remove dir fails
 03,0000=Erstellen des Verzeichnisses "%0" fehlgeschlagen
 03,0001=Entfernen des Verzeichnisses "%0" fehlgeschlagen
@@ -294,7 +297,7 @@
 ; Buffer types for 0f,0007 %0
 0f,0010=Maus Strings
 0f,0011=History Liste
-0f,0012=Alias Liste
+0f,0012=Makro Liste
 0f,0013=Mime Liste
 0f,0014=Verzeichnisstapel
 0f,0015=Schriftart anzeigen
@@ -311,6 +314,10 @@
 
 ; LANG command to display language (id code(s))
 10,0000=Die aktuelle Sprache ist %0 (%1).
+
+; CHCP messages
+11,0000=Die aktive Codepage ist %0.
+11,0001=Die Systemcodepage ist %0.
 
 ; Shell startup information messages, these messages (50,*) are temporary for
 ; the development stage of V8Turbo. Most likely most or all will be removed at
@@ -416,6 +423,10 @@
 ; set the clock fails.
 21,e505=Uhr konnte nicht eingestellt werden
 
+; specific error that could be returned by chcp command when attempt to
+; set the active codepage fails.
+21,e025=Codepage konnte nicht geÑndert werden.
+
 ; specific error when shell was unable to locate an NLS file for a requested
 ; language.
 21,e202=NLS Datei nicht gefunden
@@ -438,6 +449,11 @@
 ; directory stack specific errors
 21,e601=Verzeichnisstack ist leer
 21,e608=Verzeichnisstack ist voll
+
+; doskey macro specific errors
+21,e701=Unbekanntes Makro
+21,e702=Unbekannter Makroname
+21,e708=Makroliste ist voll
 
 ; general error for when the user aborts an operation before it is completed.
 21,e026=Vom Benutzer abgebrochene Dateioperation
@@ -553,6 +569,10 @@
 
 ; 06, Chcp
 42,0600=Zeigt oder Ñndert die aktive Codepage.
+42,0601=
+42,0602=  CHCP nnn     Wechselt zu einer angegebenen Codepage.
+42,0603=
+42,0604=CHCP ohne Parameter zeigt die aktuelle Codepageinformation an.
 
 ; 07, Cls
 42,0700=Lîscht die Bildschirmanzeigen.
@@ -619,10 +639,29 @@
 42,0e02=  DIRS
 
 ; 0f, Doskey
-42,0f00=Zeigt oder Ñndert die Tastatureinstellungen.
+; Reminder %% means to display the percent symbol and is not a parameter itself
+42,0f00=Zeigt oder Ñndert die Tastatureinstellungen und Makros.
 42,0f01=
 42,0f02=  DOSKEY %0INSERT        um den TexteinfÅgemodus zu aktivieren (Standard).
 42,0f03=  DOSKEY %0OVERSTRIKE    um den TexteinfÅgemodus zu deaktivieren.
+42,0f04=  DOSKEY %0CLEAR         um alle aktuellen Makros zu lîschen.
+42,0f05=  DOSKEY %0MACROS        um die aktuellen Makros anzuzeigen.
+42,0f06=
+42,0f07=  DOSKEY macro[=][Wert] zeige, Ñndere, entferne oder fÅge ein Makro hinzu
+42,0f08=
+42,0f09=Um ein Makro zu erstellen/zu Ñndern, weisen Sie ihm einfach einen Wert zu.
+42,0f0a=Wenn der zugewiesene Wert leer ist, wird das Makro entfernt. Bei einem Makro-
+42,0f0b=namen ohne irgendeinen Wert wird das Makro angezeigt.
+42,0f0c=
+42,0f0d=Ein Makro kann Parameter unterstÅtzen, die einen speziellen Code verwenden:
+42,0f0e=
+42,0f0f=$0      Der Name des Makros wird aufgerufen.
+42,0f10=$1-$9   Entspricht der Verwendung von %%1-%%9 in einer Batchdatei.
+42,0f11=$*      Alle Parameter, entsprechend der Verwendung aller $1-$9 Parameter.
+42,0f12=$$      Verwenden Sie das $ Symbol in der Kommandozeile.
+42,0f13=
+42,0f14=Wenn in der Makrodefinition keine Parameter verwendet werden, wird nach dem
+42,0f15=definierten Makrotext $* angenommen.
 
 ; 10, Echo
 42,1000=Zeigt eine Meldung an oder schaltet das Befehlsecho ein oder aus.
@@ -726,7 +765,7 @@
 42,1d01=
 42,1d02=Befehle MKDIR und MD.
 42,1d03=
-42,1d04=  MD [Laufw:]Pfad
+42,1d04=  MD [Laufw:] Pfad
 ;42,1d04=  MD [%0P] [Laufw:]Pfad
 ;42,1d05=
 ;42,1d06=Verwenden Sie den Schalter %0P, um automatisch alle erforderlichen Åberge-
@@ -752,6 +791,8 @@
 
 ; 20, Popd
 42,2000=Holt ein Verzeichnis aus dem Verzeichnisstapel und kehrt zu ihm zurÅck.
+42,2001=
+42,2002=  POPD
 
 ; 21, Prompt
 42,2100=éndert die Anzeige des Befehlsprompts (nicht implementiert).
@@ -762,6 +803,12 @@
 
 ; 22, Pushd
 42,2200=Schiebt das aktuelle Verzeichnis auf den Verzeichnisstapel.
+42,2201=
+42,2202=  PUSHD [Laufw:] [Pfad]
+42,2203=
+42,2204=PUSHD speichert das aktuelle Verzeichnis auf dem Verzeichnisstapel. Wenn
+42,2205=irgendwelche Parameter bereitgestellt werden, Ñndert es sich ebenfalls zu dem
+42,2206=angegebenen Pfad. PUSHD unterstÅtzt die gleichen Optionen wie der CDD-Befehl.
 
 ; 23, Remark, rem
 42,2300=Batch-Datei Kommentar oder Notiz.
