@@ -75,7 +75,7 @@
 ; This message is displayed for most commands that I have not yet full
 ; MS-DOS/FreeDOS compatibility or options. Eventually, this message will be
 ; removed.
-00,0099=Remarque : é l'heure actuelle, cette commande n'est implÇmentÇe que partiellement. Il existe d'autres besoins plus pressants pour le moment. Je reprendrai le dÇveloppement de cette commande plus tard.
+00,0099=Remarque : ∑ l'heure actuelle, cette commande n'est implÇmentÇe que partiellement. Il existe d'autres besoins plus pressants pour le moment. Je reprendrai le dÇveloppement de cette commande plus tard.
 
 ; Version information, Copyright and License
 01,0000=%0 shell de commande, version %1
@@ -120,6 +120,9 @@
 
 ; help for a command is not available
 02,000a=L'aide demandÇe pour %0 n'est pas disponible
+
+; extra message when macro expansion fails
+02,000b=êchec de l'expansion de la macro "%0"
 
 ; Extra messages for when make or remove dir fails
 03,0000=Çchec de la crÇation du rÇpertoire "%0"
@@ -202,7 +205,7 @@
 ; prompt to confim delete or erase all files in a directory. I'll probably
 ; change "Maybe" to something like 'Ask' or 'First Ask' or something. Selecting
 ; that option will cause it to prompt for confirmation on each file.
-0b,0003=ítes-vous sñr [Oui,Non,Peut-àtre] ?
+0b,0003=“tes-vous sñr [Oui,Non,Peut-àtre] ?
 
 ; prompt for Erase command when told to prompt for each file.
 0b,0010=Supprimer le fichier "%0" [Oui,Non,Tout,Quitter] ?
@@ -312,6 +315,10 @@
 ; LANG command to display language (id code(s))
 10,0000=La langue actuelle est le suivant : %0 (%1).
 
+; CHCP messages
+11,0000=La page de code active est la %0.
+11,0001=La page de code systäme est la %0.
+
 ; Shell startup information messages, these messages (50,*) are temporary for
 ; the development stage of V8Turbo. Most likely most or all will be removed at
 ; release time.
@@ -416,6 +423,10 @@
 ; set the clock fails.
 21,e505=Çchec de la dÇfinition de l'heure sur l'horloge
 
+; specific error that could be returned by chcp command when attempt to
+; set the active codepage fails.
+21,e025=Çchec de la modification de la page de code
+
 ; specific error when shell was unable to locate an NLS file for a requested
 ; language.
 21,e202=Le fichier NLS est introuvable
@@ -438,6 +449,11 @@
 ; directory stack specific errors
 21,e601=la pile des rÇpertoires est vide
 21,e608=la pile des rÇpertoires est pleine
+
+; doskey macro specific errors
+21,e701=nom de macro doskey inconnu
+21,e702=caractäre invalide dans le nom de macro
+21,e708=la liste des macros doskey est pleine
 
 ; general error for when the user aborts an operation before it is completed.
 21,e026=opÇration sur le fichier annulÇ par l'utilisateur
@@ -553,6 +569,10 @@
 
 ; 06, Chcp
 42,0600=Afficher ou modifier la page de code actuelle.
+42,0601=
+42,0602=  CHCP nnn     Basculer vers une page de code spÇcifiÇe.
+42,0603=
+42,0604=Tapez CHCP sans paramätre pour afficher la page de code actuelle.
 
 ; 07, Cls
 42,0700=Nettoie l'Çcran.
@@ -603,7 +623,7 @@
 42,0d01=
 42,0d02=  DIR [lecteur:][chemin][nomfichier]
 42,0d03=
-42,0d04=é prÇsent, cette commande est Ö peine implÇmentÇe et est seulement bonne pour
+42,0d04=∑ prÇsent, cette commande est Ö peine implÇmentÇe et est seulement bonne pour
 42,0d05=lister le contenu des dossiers pour voir ce qu'il s'y trouve. Des informations
 42,0d06=informations supplÇmentaires sur les fichiers ou dossiers ne pas sont fournies.
 42,0d07=Elle ne les trie màme pas. Aucune option n'est prise en charge. Au cas oó il y
@@ -616,10 +636,29 @@
 42,0e02=  DIRS
 
 ; 0f, Doskey
+; Reminder %% means to display the percent symbol and is not a parameter itself
 42,0f00=Afficher ou modifier les rÇglages du clavier.
 42,0f01=
 42,0f02=  DOSKEY %0INSERT        pour activer le mode insertion (par dÇfaut).
 42,0f03=  DOSKEY %0OVERSTRIKE    pour dÇsactiver le mode de frappe avec insertion.
+42,0f04=  DOSKEY %0CLEAR         pour effacer toutes les macros actuelles
+42,0f05=  DOSKEY %0MACROS        pour afficher les macro actuelles
+42,0f06=
+42,0f07=  DOSKEY macro[=][valeur] afficher, ajouter, modifier ou enlever une macro
+42,0f08=
+42,0f09=Pour crÇer ou modifier une macro, attribuez-lui simplement une valeur. Si la
+42,0f0a=valeur attribuÇe est vide, la macro sera enlevÇe. Si seul le nom est fourni
+42,0f0b=sans attribuer une valeur, la macro sera affichÇe.
+42,0f0c=
+42,0f0d=Une macro peut prendre en charge des paramätres au moyen d'un code spÇcial :
+42,0f0e=
+42,0f0f=$0    Le nom de la macro tel qu'invoquÇe.
+42,0f10=$1-$9 êquivalent Ö l'utilisation de %%1-%%9 dans un programme batch.
+42,0f11=$*    Tous les paramätres, Çquivaut Ö l'utilisation de tous les paramätres $1-$9.
+42,0f12=$$    Utiliser le symbole $ sur la ligne de commande.
+42,0f13=
+42,0f14=Si aucun paramätre n'est utilisÇ lors de la dÇfinition de la macro, $* est
+42,0f15=supposÇ apräs le texte dÇfini par la macro.
 
 ; 10, Echo
 42,1000=Affiche un message, ou active ou bien dÇsactive l'Çcho des commandes.
@@ -681,12 +720,12 @@
 42,1700=Afficher ou modifier l'historique de la ligne de commande.
 42,1701=
 42,1702=  HISTORY %0CLEAR        Effacer l'historique actuelle de la ligne de commande.
-42,1703=  HISTORY %0SIZE n      Modifier la quantitÇ de mÇmoire utilisÇe pour history.
-42,1704=
-42,1705=  HISTORY nomfichier    DÇfinir le nom de fichier pour LOAD, SAVE et AUTO.
-42,1706=  HISTORY %0SAVE        Sauvegarder l'historique actuelle dans un fichier.
-42,1707=  HISTORY %0LOAD        Charger l'historique prÇcÇdente depuis un fichier.
-42,1708=  HISTORY %0AUTO[= ON | OFF] Sauvegarder automatiquement la nouvelle historique.
+;42,1703=  HISTORY %0SIZE n      Modifier la quantitÇ de mÇmoire utilisÇe pour history.
+;42,1704=
+;42,1705=  HISTORY nomfichier    DÇfinir le nom de fichier pour LOAD, SAVE et AUTO.
+;42,1706=  HISTORY %0SAVE        Sauvegarder l'historique actuelle dans un fichier.
+;42,1707=  HISTORY %0LOAD        Charger l'historique prÇcÇdente depuis un fichier.
+;42,1708=  HISTORY %0AUTO[= ON | OFF] Sauvegarder automatiquement la nouvelle historique.
 42,1709=
 42,170a=Les paramätres de la commande HISTORY sont traitÇs dans l'ordre. Ce qui veut
 42,170b=dire que "%0LOAD myhist.hst" se comportera diffÇremment de "myhist.hst %0LOAD"
@@ -781,6 +820,8 @@
 
 ; 20, Popd
 42,2000=Sort un rÇpertoire de la pile des rÇpertoires et y retourne.
+42,2001=
+42,2002=  POPD
 
 ; 21, Prompt
 42,2100=Modifie la maniäre dont l'invite de commande est affichÇe.
@@ -791,6 +832,12 @@
 
 ; 22, Pushd
 42,2200=Pousse le rÇpertoire actuel sur la pile des rÇpertoires.
+42,2201=
+42,2202=  PUSHD [lecteur:][chemin]
+42,2203=
+42,2204=PUSHD enregistre le rÇpertoire actuel dans la pile des rÇpertoires. Si des
+42,2205=paramätres sont fournis, elle basculera aussi vers le chemin spÇcifiÇ. PUSHD
+42,2206=prend en charge les màmes options que la commande CDD.
 
 ; 23, Remark, rem
 42,2300=Commentaire ou note de fichiers batch.
@@ -896,7 +943,7 @@
 42,2f03=  VOL *          Afficher les Çtiquettes de tous les lecteurs.
 42,2f04=  VOL ?          Afficher l'Çtiquette pour le lecteur actuel.
 42,2f05=
-42,2f06=é prÇsent, "tous les lecteurs" ne comprend pas les lecteurs de disquette
+42,2f06=∑ prÇsent, "tous les lecteurs" ne comprend pas les lecteurs de disquette
 42,2f07=A: ou B:.
 
 ; 30, Which
@@ -925,7 +972,7 @@
 70,000b=comment les utiliser. Ou vous pensez que vous savez. Car beaucoup d'entre elles
 70,000c=sont amÇliorÇes tout en essayant de maintenir la rÇtrocompatibilitÇ.
 70,000d=
-70,000e=Si vous avez une souris, elle fera des choses rÇelles. é l'avenir, les
+70,000e=Si vous avez une souris, elle fera des choses rÇelles. ∑ l'avenir, les
 70,000f=fonctionnalitÇs intÇgrÇes de la souris seront Çtendues. Il existe davantage
 70,0010=de commandes et de fonctionnalitÇs auxquelles je rÇflÇchis et qui ne sont màme
 70,0011=pas encore listÇes. Restez Ö l'Çcoute.

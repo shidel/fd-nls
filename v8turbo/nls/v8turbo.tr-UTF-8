@@ -121,6 +121,9 @@
 ; help for a command is not available
 02,000a=%0 için istenen yardım mevcut değildir
 
+; extra message when macro expansion fails
+02,000b="%0" makrosunun genişletilmesi başarısız oldu
+
 ; Extra messages for when make or remove dir fails
 03,0000="%0" dizininin oluşturulması başarısız oldu
 03,0001="%0" dizininin kaldırılması başarısız oldu
@@ -216,7 +219,7 @@
 ; results of file actions, like copy, delete, etc (0b,0200)
 0b,0100=hiçbir dosya %0
 0b,0101=bir dosya %0
-0b,0102=%1 dosya %0
+0b,0101=%1 dosya %0
 
 ; names for file actions (0b,0100-0b,0101)
 0b,0200=copied,moved,renamed,deleted,erased
@@ -311,6 +314,10 @@
 
 ; LANG command to display language (id code(s))
 10,0000=Güncel dil şudur: %0 (%1).
+
+; CHCP messages
+11,0000=Faal kod sayfası şudur: %0.
+11,0001=Sistem kod sayfası şudur: %0.
 
 ; Shell startup information messages, these messages (50,*) are temporary for
 ; the development stage of V8Turbo. Most likely most or all will be removed at
@@ -416,6 +423,10 @@
 ; set the clock fails.
 21,e505=saatin ayarlanması başarısız oldu
 
+; specific error that could be returned by chcp command when attempt to
+; set the active codepage fails.
+21,e025=kod sayfasının değiştirilmesi başarısız oldu
+
 ; specific error when shell was unable to locate an NLS file for a requested
 ; language.
 21,e202=NLS dosyası bulunamadı
@@ -438,6 +449,11 @@
 ; directory stack specific errors
 21,e601=dizin yığını boş
 21,e608=dizin yığını tamamen dolu
+
+; doskey macro specific errors
+21,e701=bilinmeyen doskey makro ismi
+21,e702=makro isminde geçersiz karakter
+21,e708=doskey makro listesi dolu
 
 ; general error for when the user aborts an operation before it is completed.
 21,e026=kullanıcı dosya işlemini iptal etti
@@ -554,6 +570,10 @@
 
 ; 06, Chcp
 42,0600=Etkin kod sayfasını görüntüle veya değiştir.
+42,0601=
+42,0602=  CHCP nnn     Belirtilen kod sayfasına geç.
+42,0603=
+42,0604=Güncel kod sayfası ile ilgili bilgi görüntülemek için parametresiz CHCP yazın.
 
 ; 07, Cls
 42,0700=Ekranı temizler.
@@ -616,10 +636,29 @@
 42,0e02=  DIRS
 
 ; 0f, Doskey
+; Reminder %% means to display the percent symbol and is not a parameter itself
 42,0f00=Klavye ayarlarını görüntüle veya değiştir.
 42,0f01=
 42,0f02=  DOSKEY %0INSERT      ekleme yazım kipini etkinleştirir (varsayılan).
 42,0f03=  DOSKEY %0OVERSTRIKE  ekleme yazım kipini devre dışı bırakır.
+42,0f04=  DOSKEY %0CLEAR       tüm güncel makroları siler
+42,0f05=  DOSKEY %0MACROS      güncel makroları görüntüler
+42,0f06=
+42,0f07=  DOSKEY macro[=][değer] bir makroyu görüntüle, ekle, değiştir veya kaldır
+42,0f08=
+42,0f09=Bir makro oluşturmak veya değiştirmek için ona bir değer atayın. Atanan değer
+42,0f0a=boşsa makro kaldırılır. Eğer bir değer atanmadan sadece makro ismi girilmişse
+42,0f0b=makro görüntülenecektir.
+42,0f0c=
+42,0f0d=Makrolar özel bir kod kullanarak parametre destekleyebilir:
+42,0f0e=
+42,0f0f=$0      Çağrıldığı gibi makro ismi.
+42,0f10=$1-$9   Toplu iş programlarında %%1-%%9 kullanılmasına eşdeğer.
+42,0f11=$*      Tüm parametreler, tüm $1-$9 parametrelerinin kullanılmasına eşdeğer.
+42,0f12=$$      Komut satırında $ simgesini kullan.
+42,0f13=
+42,0f14=Şayet makro tanımında hiçbir parametre kullanılmadıysa tanımlanan makro
+42,0f15=metninin ardından $* varsayılır.
 
 ; 10, Echo
 42,1000=Mesaj görüntüler, komut yankısını etkinleştirir veya devre dışı bırakır.
@@ -680,11 +719,11 @@
 42,1700=Komut satırı tarihçesini görüntüle veya değiştir.
 42,1701=
 42,1702=  HISTORY %0CLEAR        Güncel komut satırı tarihçesini temizle.
-42,1703=  HISTORY %0SIZE n      Tarihçe için kullanılan bellek miktarını değiştir.
-42,1704=
-42,1705=  HISTORY dosaismi      LOAD, SAVE ve AUTO işlemleri için dosya ismi belirt.
-42,1706=  HISTORY %0SAVE        GÜncel tarihçeyi bir dosyaya kaydet.
-42,1707=  HISTORY %0LOAD        Önceki tarihçeyi bir dosyadan yükle.
+;42,1703=  HISTORY %0SIZE n      Tarihçe için kullanılan bellek miktarını değiştir.
+;42,1704=
+;42,1705=  HISTORY dosaismi      LOAD, SAVE ve AUTO işlemleri için dosya ismi belirt.
+;42,1706=  HISTORY %0SAVE        GÜncel tarihçeyi bir dosyaya kaydet.
+;42,1707=  HISTORY %0LOAD        Önceki tarihçeyi bir dosyadan yükle.
 42,1708=  HISTORY %0AUTO[= ON | OFF]  Tarihçe verilerini bir dosyaya otomatik kaydet.
 42,1709=
 42,170a=HISTORY komut satırı parametreleri sırayla işlenir. Bunun anlamı,
@@ -780,6 +819,8 @@
 
 ; 20, Popd
 42,2000=Dizin yığınından bir dizin çıkarır ve ona döner.
+42,2001=
+42,2002=  POPD
 
 ; 21, Prompt
 42,2100=Komut isteminin nasıl görüntülendiğini değiştirir (eklenmemiştir).
@@ -790,6 +831,12 @@
 
 ; 22, Pushd
 42,2200=Güncel dizini dizin yığınının üzerine iter.
+42,2201=
+42,2202=  PUSHD [sürücü:][yol]
+42,2203=
+42,2204=PUSHD, güncel dizini dizinler yığınına kaydeder. Şayet hiçbir parametre
+42,2205=girilmediyse belirtilen yola da geçer. PUSHD, CDD komutuyla aynı seçenekleri
+42,2206=destekler.
 
 ; 23, Remark, rem
 42,2300=Toplu iş yorumu veya notu.
