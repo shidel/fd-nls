@@ -1,0 +1,985 @@
+; V8Turbo Language Translation file
+
+; -----------------------------------------------------------------------------
+; General Information on translations.
+;
+; Comment lines must start with a ; or an error will occur when the translation
+; is loaded. Blank lines are ignored.
+;
+; All spacing before and after = is relevant. Including trailing whitespace.
+;
+; Each entry must be on a single line. However, there is no limit to the length
+; of a line.
+;
+; The percent symbol denotes a parameter from 0-9. For example, %0 is the first
+; parameter. If there are multiple parameters, you can change their order to
+; better suite the language.
+;
+; Resource strings to prompt the user are processed by the shell automatically.
+; You can change there text however needed, move the list of options around,
+; change their wording and generally not fret about them too much. Just do not
+; change the precedence order of the options themselves.
+;
+; For example, if the original is "Delete file '%0' [Yes,No,All,Quit] ?"
+; internally, ; action 1 is "Yes", 2 is "No", 3 is "All" and 4 is "Quit"".
+; So do not change it to "Delete file '%0' [No,Yes,All,Quit] ?" because the
+; first option would say "no" but it would still perform action 1.
+;
+; Otherwise, you can do all sorts of changes to them. For example, both of these
+; would be fine:
+;
+; "Delete %0 file (OK,Skip,All remaining,Quit) ?"
+; "[Do,Do not,This and the rest,Do not continue] delete the %0 file?"
+;
+; This brings up the "Hot" key for each action. They are not case specific and
+; assigned using the first letter in the option that has not yet been assigned.
+; Using the the "Do/Do not" example above. The keys would be "d, o, t, c"
+;
+; The options for the prompt are contained in last set of either brackets
+; "[options]" or braces "(options)" in the text.
+
+; Options are separated by any of these characters ",/;:\|". Just be consistent.
+; -----------------------------------------------------------------------------
+
+; This is the English language translation. It is also the fallback translation
+; for when a user requested language is not available.
+
+; Language name
+00,0000=Deutsch
+
+; It's Language ID codes supported by this translation.
+00,0001=DE,DE_de
+
+; This is the recommended codepage(s) for this translation. Also, the LANG
+; command will use this information to temporarily (or permanently) change
+; the display font when an appropriate font is present.
+00,0002=850,858
+
+; Optional, translation file author text. Uncomment it if you want it displayed.
+00,0005=Deutsche öbersetzung von W. Spiegl.
+
+; These are additional lower case characters that can be made uppercase under
+; the proper codepage. Only non-standard (English) characters need to be
+; included in this list. The list is limited to 64 characters (0x87 is one
+; character). The list uses the hexadecimal ASCII code for characters.
+; To view the current DOS ASCII table under FreeDOS, you can use a utility that
+; is included by default. Run "vinfo ascii" to display the current table.
+00,0010=0x87,0x84,0x86,0x82,0x91,0x94,0x81,0xa4
+
+; These are the upper case letters corresponding to the ones in the lowercase
+; (00,0010) list. They must be in the same position as their counterparts and
+; the list must contain the same number of characters. These two lists are used
+; to convert to and from lower/upper case.
+00,0011=0x80,0x8e,0x8f,0x90,0x92,0x99,0x9a,0xa5
+
+; This message is displayed for most commands that I have not yet full
+; MS-DOS/FreeDOS compatibility or options. Eventually, this message will be
+; removed.
+00,0099=Notice: Momentan ist dieser Befehl nur teilweise implementiert. Es gibt andere Dinge, die im Moment dringender sind. Ich werde die Entwicklung dieses Befehls zu einem spÑteren Zeitpunkt fortsetzen.
+
+; Version information, Copyright and License
+01,0000=%0 Command Shell, Version %1
+01,0001=(%0)
+01,0002=Copyright (c) %0, %1
+01,0003=BSD 3-Clause Lizenz
+
+; Error message if Shell fails to initialize. However, it is unlikely that
+; translations have been initialized if that happens. Also, the Shell should
+; not fail to start. So, this message will probably never been shown.
+02,0000=Initialisierungsfehler
+
+; A general failure to understand the command line entered. This message will
+; probably be removed.
+02,0001=Fehler beim Prozessen: %0
+
+; Automatic reporting of errorlevel with failed commands and programs
+02,0002=Fehler %0, %1
+
+; Extra message displayed when shell is "permanent" and user attempts to exit.
+02,0004=Kann die permanente Shell nicht beenden
+
+; Extra message displayed when shell is not "permanent" but user cannot exit
+; right now. This message is not used at present. But, as time goes on, I
+; see a the potential there could arise circumstances that the shell should
+; prevent terminating itself for the moment.
+02,0005=kann dem Abbruchwunsch nicht nachkommen
+
+; when exiting shell an there is an error code.
+02,0006=Abbruch mit Fehlercode
+
+; extra messages when expanding command line environment variable runs out
+; of buffer memory.
+02,0007=Konnte Umgebungsvariable "%0" nicht erweitern.
+
+; extra messages when expanding the command line runs out of buffer memory.
+; It is similar to 02,0007, but occurs at a different stage of the expansion.
+02,0008=Konnte Kommandozeile nicht erweitern, "%0" Åberschreitet Puffer
+
+; extra message for some commands when an Option Switch is not understood
+02,0009=Unbekannter Optionsschalter "%0".
+
+; help for a command is not available
+02,000a=Die fÅr "%0" angeforderte Hilfe ist nicht verfÅgbar.
+
+; extra message when macro expansion fails
+02,000b=Konnte das Makro "%0" nicht vergrî·ern
+
+; Extra messages for when make or remove dir fails
+03,0000=Erstellen des Verzeichnisses "%0" fehlgeschlagen
+03,0001=Entfernen des Verzeichnisses "%0" fehlgeschlagen
+
+; extra message for when user provides garbage when trying to change errorlevel
+03,0002=Fehler beim Versuch vom Errorlevel %0 zu wechseln.
+
+; extra message for when a requested drive was not found
+03,0003=Laufwerk %0 nicht gefunden.
+
+; extra message for when the requested drive is not a valid identifier.
+03,0004=UngÅltige Laufwerkskennung "%0".
+
+; extra message when user attempts to change drives and it fails
+03,0005=Wechsel zu Laufwerk %0 fehlgeschlagen.
+
+; message displayed at the top of list of commands
+04,0000=Liste der internen %0 Befehle:
+
+; Message displayed for textmode when starting to probe video modes
+06,0000=Teste Videomodi...
+
+; message displayed at the top of a list of supported text modes
+06,0001=Erkannte Videotextmodi:
+
+; the text for each text mode listing of supported modes (I like it indented)
+06,0002=%0 - %1 x %2
+
+; for reporting the current video mode information.
+06,0003=Aktiver Textmodus %0, %1 Spalten x %2 Reihen.
+
+; for ChDir without options to display the Drive/Directory
+07,0000=%0:\%1
+
+; for displaying the volume name of a drive
+07,0001=Volume in Laufwerk %0 ist %1.
+
+; for displaying a drive has no volume name set
+07,0002=Volume in Laufwerk %0 hat kein Label.
+
+; for displaying the serial number of a drive when present.
+07,0003=Volume Seriennummer ist %0-%1.
+
+; message for when reporting the current theme
+08,0000=Thema %0 ist aktiv.
+
+; These are the off/on messages that the echo, break and verify commands
+; will show when no options or text are provided. NOTE: those commands always
+; test for OFF/ON when changing. They will also check against 09,0000 and
+; 09,0001 for language specific versions of OFF/ON. For example, if 09,0000=aus
+; then both "echo off" and "echo aus" can be used to turn off echo. However,
+; for compatibility only "off" should be used in batch files.
+09,0000=AUS
+09,0001=EIN
+09,0002=ECHO ist %0
+09,0003=BREAK ist %0
+09,0004=VERIFY ist %0
+
+; message displayed when PATH command is requested to list the paths but the
+; corresponding environment variable is not set.
+0a,0000=Es ist kein Systemsuchpfad definiert.
+
+; message displayed for the PATH command before the list of PATHs.
+0a,0001=Suchreihenfolge des Systempfads:
+
+; message displayed for the CD * command before the list of current directories.
+0a,0002=Aktuelles Verzeichnis der Systemlaufwerke:
+
+; prompt for Delete/Del commands when told to prompt for each file.
+0b,0000=Datei "%0" lîschen [Ja,Nein,Alle,Beenden] ?
+; 0b,0000=Delete [Yes,No,All,Quit] file "%0" ?
+
+; message displayed when Delete/Del is verbose and deletes a file.
+0b,0001=Lîsche Datei "%0".
+
+; message displayed when Delete/Del is asked to delete all files (*.*).
+0b,0002=Alle Dateien in "%0" werden gelîscht!
+
+; prompt to confim delete or erase all files in a directory. I'll probably
+; change "Maybe" to something like 'Ask' or 'First Ask' or something. Selecting
+; that option will cause it to prompt for confirmation on each file.
+0b,0003=Sind Sie sicher [Ja,Nein,Fragen] ?
+
+; prompt for Erase command when told to prompt for each file.
+0b,0010=Datei "%0" schreddern [Ja,Nein,Alle,Beenden] ?
+
+; message displayed when Erase is verbose and deletes a file.
+0b,0011=Schreddere Datei "%0".
+
+; message displayed when Erase is asked to delete all files (*.*).
+0b,0012=Alle Dateien in "%0" werden geschreddert!
+
+; results of file actions, like copy, delete, etc (0b,0200)
+0b,0100=keine Dateien %0
+0b,0101=eine Datei %0
+0b,0102=%1 Dateien %0
+
+; names for file actions (0b,0100-0b,0101)
+0b,0200=kopiert,verschoben,umbenannt,gelîscht,geschreddert
+
+; default pause messages.
+; 0c,0000 and 0c0001 are for 80+ column modes and must be less than 80 characters
+; 0c,0002 is for 40 column mode and MUST be 39 characters or less.
+; Exceeding the maximum width will cause the the screen to scroll and the
+; item at the top will be pushed off of the display and no longer visible.
+0c,0000=Weiter mit Tastendruck . . .
+0c,0001=Weiter mit Tastendruck oder Mausklick . . .
+0c,0002=Angehalten . . .
+
+; date & time command messages
+0d,0000=Aktuelles Datum ist %0
+0d,0001=Aktuelle Uhrzeit ist %0
+; I have not determined whether the date/time input prompts should end in
+; a question mark or colon. Also, a space is automatically added to the end
+; of the prompt string when it is not present in the NLS.
+0d,0002=Neues Datum (mm-tt-[jj]jj):
+0d,0003=Neue Uhrzeit (hh:mm[:ss]):
+
+; Date command format
+; %0 = YYYY 	%4 = YY
+; %1 = MM	%5 = M		%7 = Month (0d,0011)
+; %2 = DD	%6 = D
+; %3 = DAY OF WEEK (0d,0010)
+0d,0005=%3 %7 %6, %0
+
+; Day names for date format
+0d,0010=Sonntag,Montag,Dienstag,Mittwoch,Donnerstag,Freitag,Samstag
+
+; Month Names for date format
+0d,0011=Januar,Februar,MÑrz,April,Mai,Juni,Juli,August,September,Oktober,November,Dezember
+
+; Time command format
+; %0 = HH (24hr)	%4 = HH (12hr)		%5 = H (12hr)
+; %1 = MM
+; %2 = SS
+; %3 = HS (100ths)
+; %6 = AM/PM (0d,0020)
+0d,0006=%5:%1:%2 %6
+
+; AM/PM for time format
+0d,0012=AM,PM
+
+; Date format for directory listings (same params as date command)
+0d,0020=%1-%2-%0
+
+; Time format for directory listings (same params as time command)
+0d,0021=%4:%2 %6
+
+; When beep command is verbose (not implemented), this message will be
+; displayed during multiple tone playback. Probably.
+; 0e,0000=Frequenz %0Hz, Verzîgerung %1ms
+
+; Memory command strings
+0f,0000=%0 Geladen bei Segment %1, verbraucht %2 Bytes
+0f,0001=%0 Bytes fÅr den Shell Code
+0f,0002=%0 Bytes fÅr die eingebaute NLS
+0f,0003=%0 Bytes fÅr den Stack
+0f,0004=%0 Bytes fÅr interne Puffer
+0f,0005=%0 Bytes fÅr andere Daten
+0f,0006=ZusÑtzliche externe Puffer:
+; development version of buffer memory information
+0f,0007=Segment %1, %2Kb zugewiesen, %3 Bytes frei, fÅr %0
+; alternate version of 0f,0007 without segment info, probably used in release
+; 0f,0007=%2Kb zugewiesen, %3 Bytes frei, fÅr %0
+0f,0008=Weiterer Åbersetzungsbezogener Speicherverbrauch:
+; development version of translation memory information
+0f,0009=Segment %1, %2 Bytes zugewiesen, fÅr %0
+; alternate version of 0f,0009 without segment info, probably used in release
+; 0f,0009=%2 Bytes zugewiesen, fÅr %0
+
+; Buffer types for 0f,0007 %0
+0f,0010=Maus Strings
+0f,0011=History Liste
+0f,0012=Makro Liste
+0f,0013=Mime Liste
+0f,0014=Verzeichnisstapel
+0f,0015=Schriftart anzeigen
+0f,0016=Aktive NLS
+0f,0017=Verbale NLS
+; this is other additional miscellaneous data, it does not need to be
+; called 'Miscellaneous', other, additional or whatever makes sense. :-)
+0f,0030=Andere Daten
+
+; This string is appended to stack string 0f,0003 only when the shell is
+; compiled with STACK_CHECK enabled. Other than debugging and development
+; of the shell, this will most likely be disabled in public releases.
+0f,0020=, %0 Bytes Spitzenverbrauch
+
+; LANG command to display language (id code(s))
+10,0000=Die aktuelle Sprache ist %0 (%1).
+
+; CHCP messages
+11,0000=Die aktive Codepage ist %0.
+11,0001=Die Systemcodepage ist %0.
+
+; Shell startup information messages, these messages (50,*) are temporary for
+; the development stage of V8Turbo. Most likely most or all will be removed at
+; release time.
+50,0000=Geladen bei Segment %0
+50,0001=Anzeige ist %0, Modus %1 (%2x%3)
+50,0002=Eingebetter NLS ist %0, verbraucht %1 Bytes
+50,0003=unbenannt
+50,0004=AusfÅhrbar ist %0
+50,0005=Switch Zeichen ist %0
+50,0006=NLS Pfad ist %0
+50,0007=nicht definiert
+50,0008=Interner Pufferspeicher %0 Bytes
+50,0009=%0 Bytes fÅr Stack initialisiert
+50,000a=Keine Maus erkannt
+50,000b=%0 Tastenmaus erkannt
+50,000c=%0 Bytes frei im Segment
+50,000d=%0 Initiale AbsÑtze zugewiesen
+50,000e=Reduziert auf %0 AbsÑtze
+
+; Display adapters
+51,0000=MDA
+51,0001=CGA
+51,0002=EGA
+51,0003=MCGA
+51,0004=VGA
+51,0005=VESA
+
+; Normal DOS error messages
+21,0000=Kein Fehler
+21,0001=UngÅltige Funktionsnummer
+21,0002=Datei nicht gefunden
+21,0003=Pfad nicht gefunden
+21,0004=Nicht genÅgend Dateihandles verfÅgbar
+21,0005=Dateizugriff verweigert
+21,0006=UngÅltiger Dateihandle
+21,0007=Speicherkontrollblock ist zerstîrt
+21,0008=Arbeitsspeicher reicht nicht aus
+21,0009=UngÅltige Speicherblockadresse
+21,000a=UngÅltige Umgebungstabelle
+21,000b=UngÅltiges Format
+21,000c=UngÅltiger Zugangscode
+21,000d=UngÅltige Daten
+21,000e=reserviert
+21,000f=UngÅltiges Laufwerk angefordert
+21,0010=Kann aktuelles Laufwerk nicht entfernen
+21,0011=Nicht das gleiche GerÑt
+21,0012=keine weitere passende Dateien
+21,0013=Laufwerk ist schreibgeschÅtzt
+21,0014=unbekannte Einheit
+21,0015=Laufwerk ist nicht bereit
+21,0016=unbekannter Befehl
+21,0017=CRC Datenfehler
+21,0018=UngÅltige LÑnge der Anforderungsstruktur
+21,0019=Fehler bei Festplattensuche
+21,001a=Unbekannter DatentrÑgertyp
+21,001b=Festplattensektor nicht gefunden
+21,001c=Drucker hat kein Papier mehr
+21,001d=Schreibfehler auf DatentrÑger
+21,001e=Lesefehler auf DatentrÑger
+21,001f=Allgemeiner DatentrÑger fehler
+21,0020=Versto· beim Filesharing
+21,0021=Versto· bei der Dateisperrung
+21,0022=UnzulÑssiger DatentrÑgerwechsel
+21,0023=Nicht genÅgend Dateikontrollblîcke verfÅgbar
+21,0024=UngÅltiger Filesharing-Puffer
+21,0025=Codepage-Unstimmigkeiten
+21,0026=Dateioperation kann nicht abgeschlossen werden
+21,0027=Nicht genÅgend Platz auf dem DatentrÑger verfÅgbar
+
+; error when attempting to change to a unsupported text mode
+21,d001=Videomodus nicht unterstÅtzt
+
+; general error for incompatible version of DOS
+21,e001=nicht unterstÅtzte DOS Version
+
+; Extra message displayed for reserved commands with a function that has not
+; avaialbel at present. This message will be removed at some point.
+21,e002=Funktion noch nicht implementiert
+
+; Extra message displayed for reserved commands not yet implemented at all.
+; This message will be removed at some point.
+21,e006=Der Befehl "%0" ist nicht implementiert
+
+; general error for command line garbage
+21,e101=UngÅltiger Parameter, Schalter oder Option
+
+; general error for when a number is expected on the command line, but it could
+; be used. the number provided contains a bad format or invalid characters
+21,e201=ungÅltiges numerisches Format
+
+; general error for values on the command line that exceed the allows range
+; for an option.
+21,e301=Numerischer Wert au·erhalb zulÑssigem Bereich
+
+; specific error for only V8Micro when command is not available with V8Micro
+21,e401=nicht unterstÅtzt, V8Turbo erforderlich
+
+; specific error when a parameter has values that have not been provided
+21,e501=Fehlender Parameter
+
+; specific error that could be returned by date/time commands when attempt to
+; set the clock fails.
+21,e505=Uhr konnte nicht eingestellt werden
+
+; specific error that could be returned by chcp command when attempt to
+; set the active codepage fails.
+21,e025=Codepage konnte nicht geÑndert werden.
+
+; specific error when shell was unable to locate an NLS file for a requested
+; language.
+21,e202=NLS Datei nicht gefunden
+
+; specific error that will occur when an NLS file format is invalid, probably
+; caused by improper modification of the NLS index (like index "ec,e102=").
+21,e302=Fehlerhaftes oder beschÑdigtes NLS-Dateiformat
+
+; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
+21,e402=UngÅltige NLS-Zeichenzuordnung
+
+; specific error for when some internal or NLS data is too large and exceeds
+; the memory segment assigned to it and wraps the segment.
+21,e109=Daten Åberschreiten Segmentgrenze
+
+; general error for when there is insufficient buffer space for the shell to
+; perform a task. For example, command line environment variable expansion.
+21,e008=Unzureichender Pufferspeicher
+
+; directory stack specific errors
+21,e601=Verzeichnisstack ist leer
+21,e608=Verzeichnisstack ist voll
+
+; doskey macro specific errors
+21,e701=Unbekannter Doskey Makroname
+21,e702=Unbekanntes Zeichen im Makronamen
+21,e708=Doskey Makroliste ist voll
+
+; general error for when the user aborts an operation before it is completed.
+21,e026=Vom Benutzer abgebrochene Dateioperation
+
+; general error message for when user performed a CTRL+C to abort, this message
+; is not displayed with ALL CTRL+C events. Only specific ones.
+21,e126=CTRL+C Abbruch
+
+; 21,e226 When paused (or when waiting on input) and the user causes the current
+; action to stop in favor of performing a different action using the mouse. An
+; example of this would be, list the internal commands, then before the list is
+; finished being displayed and is paused, use the mouse to click on one of the
+; available commands. This will stop the list and initiate the display of the
+; help text for the command.
+21,e226=Benutzeraktion erfordert Abbruch
+
+; general error for when a directory path is required but not provided
+21,f003=Verzeichnisname erforderlich
+
+; general error for when a file name is required and not provided
+21,f002=Dateiname erforderlich
+
+; general error for when files could not be found but were expected
+21,f102=Keine passende Datei gefunden
+
+; any error that does not have an associated NLS string
+21,ffff=Unbekannter Fehler
+
+; Below here is all internal command help. Those are all group 42. Followed
+; by the command index + line. Line 0 is the VERY short description (~56 chars)
+; that is shown when listing the internal commands. Line 1+ is the general help
+; text. Additional lines may be added if needed. However, their numbers are in
+; hexadecimal and must be consecutive. The help display routine stops at the
+; first none existing line number.
+;
+; At present, this general help is provided a single parameter to all lines (1+)
+; as %0 for the current DOS Switch character. I may add additional params that
+; may be sent to those lines in the future to provide some other data. But, no
+; worries. Any unused parameters will not cause a problem.
+;
+; Also, feel free to completely change the layout, reword, rewrite or add any
+; additional information you like to the command help. Even for the built-in
+; NLS, command help is not embedded into the executable. For the built-in
+; language, V8Turbo/X will switch from the built-in NLS to an external when
+; ether the Language is changed or command help is requested. As long as the
+; entire NLS file fits within a 64kb segment it will be fine.
+;
+; For V8Micro, things work a little different. The V8Micro NLS file has no
+; command help. When command help is requested, it temporarily loads the
+; V8Turbo NLS and prints it's help version. Then, discards the V8Turbo version
+; of the NLS. The commands in V8Turbo and V8Micro work the same and have the
+; same options. V8Micro just doesn't have some of the commands, which is no
+; problem for the NLS.
+
+
+; 01, Alias
+;dd,0100=Zeigt oder Ñndert Befehlsaliase.
+42,0100=n/a
+42,0101=
+42,0102=Dieser Befehl ist zur Zeit noch nicht implementiert. Er wird zu einem
+42,0103=spÑteren Zeitpunkt der Entwicklung der Shell integriert werden. Aber im Moment
+42,0104=ist die FunktionalitÑt dieses Befehls noch nicht vorhanden oder eingebaut.
+
+; 02, Beep
+42,0200=LÑ·t den internen PC-Lautsprecher piepen.
+42,0201=
+42,0202=  BEEP [Frequenz[,Verzîgerung][,...]]
+42,0203=
+42,0204=Bei BEEP ohne Parameter wird der Standardton mit Verzîgerung ausgegeben.
+42,0205=Bei mehreren EintrÑgen ohne Wert wird wird der Standardwert angenommen.
+42,0206=Die Werte kînnen durch Kommas oder Leerzeichen getrennt werden und kînnen
+42,0207=entweder ganzzahlig oder in Hexadezimalwerten sein.
+; Probably beep will get a %0V (verbose) switch as well to display. At that time,
+; It's help will be changed/inserted...
+; 42,0202=  BEEP [Frequenz[,Verzîgerung][,...]] [%0V]
+; 42,0203=
+; 42,0204=Um Tîne/Verzîgerungen wÑhrend der Wiedergabe anzuzeigen verwenden Sie %0V.
+
+; 03, Break
+42,0300=CTRL+C UnterbrechungsprÅfung anzeigen oder Ñndern.
+42,0301=
+42,0302=  BREAK [EIN | AUS]
+42,0303=
+42,0304=Geben Sie BREAK ohne Parameter ein, um die aktuelle Einstellung anzuzeigen.
+
+; 04, Call
+42,0400=Aufruf einer Batch-Datei aus einer anderen.
+
+; 05, Chdir, cd
+42,0500=Das aktuelle Verzeichnis anzeigen oder wechseln.
+42,0501=
+42,0502=Befehle CHDIR und CD.
+42,0503=
+42,0504=  CD [Laufw:]         Zeige das aktuelle Verzeichnis an.
+42,0505=  CD [Laufw:][Pfad]   Wechsle Verzeichnis.
+42,0506=  CD [..]             Wechsle ins Åbergeordnete Verzeichnis.
+42,0507=  CD [-]              Wechsle ins vorherige Verzeichnis.
+42,0508=  CD [*]              Zeige den aktuellen Pfad auf allen Laufwerken an.
+42,0509=
+42,050a=Geben Sie CD ein, um das aktuelle Verzeichnis anzuzeigen.
+
+; 35, Cdd
+42,3500=Das aktuelle Laufwerk und Verzeichnis anzeigen oder wechseln.
+42,3501=
+42,3502=  CDD [%0D][Laufw:][Pfad]   Wechselt das aktuelle Laufwerk und Verzeichnis.
+42,3503=  CDD [..]                 Wechselt ins Åbergeordnete Verzeichnis.
+42,3504=  CDD [-]                  Wechselt ins vorherige Verzeichnis.
+42,3505=  CDD [*]                  Zeigt den aktuellen Pfad auf allen Laufwerken an.
+42,3506=
+42,3507=Die Option %0D weist CDD an, nach dem AusfÅhren eines Verzeichnis- oder
+42,3508=Laufwerkswechsels eine Verzeichnisliste auszugeben. Geben Sie CDD ohne
+42,3509=Optionen ein, um den aktuellen Pfad anzuzeigen.
+
+; 06, Chcp
+42,0600=Zeigt oder Ñndert die aktive Codepage.
+42,0601=
+42,0602=  CHCP nnn     Wechselt zu einer angegebenen Codepage.
+42,0603=
+42,0604=CHCP ohne Parameter zeigt die aktuelle Codepageinformation an.
+
+; 07, Cls
+42,0700=Lîscht die Bildschirmanzeigen.
+42,0701=
+42,0702=  CLS
+
+; 08, Commands, ?
+42,0800=Zeigt Liste der internen Befehle mit einer kurzen Beschreibung.
+42,0801=
+42,0802=  COMMANDS
+
+; 09, Copy
+42,0900=Kopiert einzelne oder mehrere Dateien.
+
+; 0a, Ctty
+42,0a00=éndern oder Anzeigen des primÑren EingabegerÑts (nicht drin).
+42,0a01=
+42,0a02=Nach reiflicher öberlegung kam ich zu dem Schluss, dass der CTTY-Befehl
+42,0a03=auf "modernen" DOS-Systemen kaum von Nutzen ist. Daher habe ich mich ent-
+42,0a04=schieden, ihn nicht zu implementieren. Ich habe nur einen Dummy-Befehl aus
+42,0a05=GrÅnden der AbwÑrtskompatibilitÑt bereitgestellt. Wenn ich einen guten Grund
+42,0a06=finde oder wenn genÅgend Anfragen kommen, um ihn zu unterstÅtzen, werde ich
+42,0a07=den Befehl zu diesem Zeitpunkt implementieren.
+
+; 0b, Date
+42,0b00=Zeigt oder Ñndert das aktuelle Systemdatum.
+42,0b01=
+42,0b02=  DATUM [%0D | %0X] [new_date]
+42,0b03=
+42,0b04=%0D Verhindert, dass DATE zur énderung des aktuellen Datums auffordert.
+42,0b05=%0X Wie %0D. Jedoch kann nur das aktuelle Datum angezeigt werden.
+42,0b06=
+42,0b07=Geben Sie DATE ohne Parameter ein um das aktuelle Datum anzuzeigen/zu Ñndern.
+
+; 0c, Delete, Del
+42,0c00=Lîscht Dateien.
+42,0c01=
+42,0c02=Befehle DELETE und DEL.
+42,0c03=
+42,0c04=  DEL [Laufw:][Pfad]Dateiname [%0P] [%0V]
+42,0c05=
+42,0c06=  [Laufw:][Pfad]Dateiname   Gibt die zu lîschende Datei/en an. Verwenden
+42,0c07=                            Sie Wildcards, um mehrere Dateien anzugeben.
+42,0c08=
+42,0c09=  %0P    BestÑtigungsaufforderung zum Lîschen der Datei.
+42,0c0a=  %0V    Zeigt Dateinamen der gelîschten Dateien an.
+
+; 0d, Dir
+42,0d00=Zeigt den Inhalt eines Verzeichnisses an.
+42,0d01=
+42,0d02=  DIR [Laufw:][Pfad][Dateiname]
+42,0d03=
+42,0d04=Momentan ist dieser Befehl kaum implementiert und eignet sich nur dazu,
+42,0d05=den Inhalt eines Verzeichnisses aufzulisten, um zu sehen, was dort vorhanden
+42,0d06=ist. Es werden keine zusÑtzlichen Informationen Åber die Dateien oder Ver-
+42,0d07=zeichnisse bereitgestellt. Sie werden nicht einmal sortiert. Es werden keine
+42,0d08=Optionen unterstÅtzt. Und wenn Sie irgendwelche Parameter angeben, benîtigt
+42,0d09=es einen vollstÑndigen Parameter entweder mit einem Dateinamen am Ende oder
+42,0d0a=einen Platzhalter.
+
+; 0e, Dirs
+42,0e00=Zeigt den aktuellen Verzeichnisstapel an.
+42,0e01=
+42,0e02=  DIRS
+
+; 0f, Doskey
+; Reminder %% means to display the percent symbol and is not a parameter itself
+42,0f00=Zeigt oder Ñndert die Tastatureinstellungen und Makros.
+42,0f01=
+42,0f02=  DOSKEY %0INSERT        um den TexteinfÅgemodus zu aktivieren (Standard).
+42,0f03=  DOSKEY %0OVERSTRIKE    um den TexteinfÅgemodus zu deaktivieren.
+42,0f04=  DOSKEY %0CLEAR         um alle aktuellen Makros zu lîschen.
+42,0f05=  DOSKEY %0MACROS        um die aktuellen Makros anzuzeigen.
+42,0f06=
+42,0f07=  DOSKEY macro[=][Wert] zeige, Ñndere, entferne oder fÅge ein Makro hinzu
+42,0f08=
+42,0f09=Um ein Makro zu erstellen/zu Ñndern, weisen Sie ihm einfach einen Wert zu.
+42,0f0a=Wenn der zugewiesene Wert leer ist, wird das Makro entfernt. Bei einem Makro-
+42,0f0b=namen ohne irgendeinen Wert wird das Makro angezeigt.
+42,0f0c=
+42,0f0d=Ein Makro kann Parameter unterstÅtzen, die einen speziellen Code verwenden:
+42,0f0e=
+42,0f0f=$0      Der Name des Makros wird aufgerufen.
+42,0f10=$1-$9   Entspricht der Verwendung von %%1-%%9 in einer Batchdatei.
+42,0f11=$*      Alle Parameter, entsprechend der Verwendung aller $1-$9 Parameter.
+42,0f12=$$      Verwenden Sie das $ Symbol in der Kommandozeile.
+42,0f13=
+42,0f14=Wenn in der Makrodefinition keine Parameter verwendet werden, wird nach dem
+42,0f15=definierten Makrotext $* angenommen.
+
+; 10, Echo
+42,1000=Zeigt eine Meldung an oder schaltet das Befehlsecho ein oder aus.
+42,1001=
+42,1002=  ECHO [EIN | AUS]   Aktiviert/deaktiviert den ECHO Befehl in Batch-Dateien.
+42,1003=  ECHO [message]     Zeigt eine Meldung an.
+42,1004=
+42,1005=Geben Sie ECHO ohne Parameter ein um den aktuellen ECHO Status zu erhalten.
+42,1006=
+42,1007=Um eine leere Zeile zu drucken oder um sicherzustellen, dass der Status des
+42,1008=Befehlsechos nicht angezeigt wird, setzen Sie einfach ein gÅltiges Trenn-
+42,1009=zeichen unmittelbar nach dem ECHO Befehl. Eine gÑngige Praxis ist die
+42,100a=Verwendung eines Punktes. Zum Beispiel: ECHO.
+
+; 11, Erase
+42,1100=Sicheres Lîschen von Dateien.
+42,1101=
+42,1102=  ERASE [Laufw:][Pfad]Dateiname [%0P] [%0V]
+42,1103=
+42,1104=  [Laufw:][Pfad]Dateiname   Gibt die zu lîschenden Dateien an. Verwenden
+42,1105=                            Sie Wildcards um mehrere Dateien auszuwÑhlen.
+42,1106=
+42,1107=  %0P    Aufforderung zum BestÑtigen der Dateilîschung.
+42,1108=  %0V    Zeigt Dateinamen der gelîschten Dateien an.
+42,1109=
+42,110a=Achtung: Im Gegensatz zu DELETE wird die Datei vorher umbenannt und danach
+42,110b=zum Lîschen Åberschrieben. Dadurch wird die Datei mit Standarddienstprogrammen
+42,110c=nicht mehr wiederherstellbar. Dies ist aber kein "absolut sicheres Lîschen".
+
+; 12, Errorlevel, Errlvl
+42,1200=Zeigt oder setzt den aktuellen ERRORLEVEL.
+42,1201=
+42,1202=ERRORLEVEL, ERRLVL
+42,1203=
+42,1204=  ERRLVL [Fehlercode]
+42,1205=
+42,1206=Geben Sie ERRLVL ohne Parameter ein zum Anzeigen des aktuellen Fehlercodes.
+
+; 13, Exit
+42,1300=Beendet die Command Shell oder Batch-Datei.
+42,1301=
+42,1302=  EXIT [%0SHELL | Fehlercode]
+42,1303=
+42,1304=Wenn kein Exit-Code (Fehlercode) angegeben wird, wird der aktuelle Exit-Code
+42,1305=verwendet. Beim Aufruf durch eine Batch-Datei wird die Batch-Datei beendet.
+42,1306=Bei der Ausgabe von der Kommandozeile wird die Shell beendet, falls dies
+42,1307=erlaubt ist. Der %0SHELL-Schalter dient dazu, die Shell aufzufordern, sich
+42,1308=innerhalb einer Batch-Datei zu beenden.
+
+; 14, For
+42,1400=FÅhrt einen Befehls fÅr jede Datei in einer Gruppe von Dateien aus.
+
+; 15, Goto
+42,1500=Wechselt zu einem LABEL (Sprungpunkt) innerhalb der gleichen Batch-Datei.
+
+; 16, Gosub
+42,1600=Ruft innerhalb der gleichen Batch-Datei eine Unterfunktion auf.
+
+; 17, History
+42,1700=Zeigt oder Ñndert die Kommandozeilen-Historie.
+42,1701=
+42,1702=  HISTORY %0CLEAR      Lîscht die aktuelle Kommandozeilenhistorie.
+;42,1703=  HISTORY %0SIZE n     éndert die verwendete History-Speichergrî·e.
+;42,1704=
+;42,1705=  HISTORY Dateiname     Setzt Dateiname fÅr LOAD, SAVE und AUTO Operationen.
+;42,1706=  HISTORY %0SAVE       Speichert die aktuelle Historie in einer Datei.
+;42,1707=  HISTORY %0LOAD       LÑdt frÅhere Historie aus einer Datei.
+;42,1708=  HISTORY %0AUTO[= EIN | AUS]       Speichert neue Verlaufsdaten autom. in einer Datei.
+42,1709=
+42,170a=HISTORY-Befehlszeilenparameter werden der Reihe nach verarbeitet. Das hei·t,
+42,170b="%0LOAD myhist.hst" verhÑlt sich anders als "myhist.hst %0LOAD".
+42,170c=
+42,170d=Um die HISTORY-Grî·e zu Ñndern geben Sie SIZE 1 bis 32 (=KB) Speichergrî·e
+42,170e=an. Die Grî·enÑnderung ist nicht destruktiv. Jedoch kînnen alte Objekte
+42,170f=beim Schrumpfen wegfallen.
+42,1710=
+42,1711=Geben Sie HISTORY ohne Parameter ein um die aktuelle Historie anzuzeigen.
+
+; 18, Lfnfor
+
+; 19, Loadfix
+42,1900=LÑdt ein Programm oberhalb der ersten 64 KB des Speichers.
+
+; 1a, Loadhigh, lh
+42,1a00=LÑdt ein Programm in den oberen Speicherbereich.
+
+; 1b, If
+42,1b00=FÅhrt eine bedingte Verarbeitung durch.
+
+; 1c, Memory
+42,1c00=Zeigt Informationen Åber den internen Speicherverbrauch.
+42,1c01=
+42,1c02=  MEMORY
+42,1c03=
+42,1c04=Der MEMORY Befehl zeigt nur den von der Shell aktuell verwendeten Speicher
+42,1c05=an. Das ist nicht die Speichermenge, die von der Shell bei der AusfÅhrung
+42,1c06=externer Programme oder Befehle belegt wird.
+
+; 1d, Mkdir, md
+42,1d00=Erstellt ein Verzeichnis.
+42,1d01=
+42,1d02=Befehle MKDIR und MD.
+42,1d03=
+42,1d04=  MD [Laufw:] Pfad
+;42,1d04=  MD [%0P] [Laufw:]Pfad
+;42,1d05=
+;42,1d06=Verwenden Sie den Schalter %0P, um automatisch alle erforderlichen Åberge-
+;42,1d07=ordneten Verzeichnisse zu erstellen.
+
+; 1e, Path
+42,1e00=Zeigt oder Ñndert den Systemsuchpfad fÅr ausfÅhrbare Dateien.
+42,1e01=
+42,1e02=  PATH [[Laufw:]Pfad[;...]]
+42,1e03=
+42,1e04=Zum Zeigen der aktuellen Pfadeinstellungen geben Sie PATH ohne Parameter ein.
+42,1e05=
+42,1e06=Geben Sie PATH ; ein, um den aktuellen Suchpfad zu lîschen. Bei einem leeren
+42,1e07=Suchpfad wird die Shell nur das aktuelle Verzeichnis durchsuchen.
+
+; 1f, Pause
+42,1f00=HÑlt an und wartet auf ein Ereignis um weiterzumachen.
+42,1f01=
+42,1f02=  PAUSE [Meldung]
+42,1f03=
+42,1f04=Wenn PAUSE nicht mit einer Meldung versehen wird, wird eine Standardmeldung
+42,1f05=angezeigt. Wahrscheinlich wird irgendwann eine Timeout-Funktion hinzugefÅgt.
+
+; 20, Popd
+42,2000=Holt ein Verzeichnis aus dem Verzeichnisstapel und kehrt zu ihm zurÅck.
+42,2001=
+42,2002=  POPD
+
+; 21, Prompt
+42,2100=éndert die Anzeige des Befehlsprompts (nicht implementiert).
+42,2101=
+42,2102=Hîchstwahrscheinlich werde ich irgendwann eine Funktion hinzufÅgen, mit der
+42,2103=man Ñndern kann, welche Informationen in der Befehlszeile angezeigt werden.
+42,2104=Aber fÅr den Moment reicht die Standard-V8Turbo Eingabeaufforderung aus.
+
+; 22, Pushd
+42,2200=Schiebt das aktuelle Verzeichnis auf den Verzeichnisstapel.
+42,2201=
+42,2202=  PUSHD [Laufw:] [Pfad]
+42,2203=
+42,2204=PUSHD speichert das aktuelle Verzeichnis auf dem Verzeichnisstapel. Wenn
+42,2205=irgendwelche Parameter bereitgestellt werden, Ñndert es sich ebenfalls zu dem
+42,2206=angegebenen Pfad. PUSHD unterstÅtzt die gleichen Optionen wie der CDD-Befehl.
+
+; 23, Remark, rem
+42,2300=Batch-Datei Kommentar oder Notiz.
+42,2301=
+42,2302=Befehle REMARK und REM.
+42,2303=
+42,2304=  REM [Kommentar]
+42,2305=
+42,2306=Ein Text hinter dem REM Befehl wird nicht ausgefÅhrt.
+
+; 24, Rename, ren
+42,2400=Benennt eine Datei oder ein Verzeichnis um.
+
+; 25, Rmdir, rd
+42,2500=Entfernt ein Verzeichnis
+42,2501=
+42,2502=Befehle RMDIR und RD.
+42,2503=
+42,2504=  RD [Laufw:]Pfad
+42,2505=
+42,2506=Dies kînnte einen Schalter erhalten, der alle Dateien und Unterverzeichnisse
+42,2507=entfernt. Oder ich werde das in DELETE und ERASE einbauen. Oder mîglicher-
+42,2508=weise etwas anderes. Oder vielleicht auch gar nichts. Wir werden sehen...
+
+; 26, Set
+42,2600=Zeigt oder Ñndert die Tabelle der Umgebungsvariablen.
+42,2601=
+42,2602=  SET [%0I]
+42,2603=
+42,2604=%0I um die internen Umgebungsvariablen anzuzeigen, die fÅr Batch-Dateien
+42,2605=verfÅgbar sind. Die internen Variablen werden von der Shell bereitgestellt.
+42,2606=Wenn eine Umgebungsvariable mit demselben Namen gesetzt ist, wird diese
+42,2607=Variable anstelle der internen Variablen verwendet.
+42,2608=
+42,2609=Im Moment zeigt SET nur die Umgebungsvariablen an.
+
+; 27, Shift
+42,2700=éndert die Position von Parametern in einer Batchdatei.
+
+; 28, Time
+42,2800=Zeigt oder setzt die Sysstemzeit.
+42,2801=
+42,2802=  ZEIT [%0T | %0X] [new_time]
+42,2803=
+42,2804=%0T Verhindert, dass ZEIT zur énderung der aktuellen Zeit auffordert.
+42,2805=%0X Wie %0T. Jedoch kann nur die aktuelle Zeit angezeigt werden.
+42,2806=
+42,2807=Geben Sie TIME ohne Parameter ein, um die aktuelle Zeit anzuzeigen/zu Ñndern.
+
+; 29, Textmode, Tm
+42,2900=Zeigt, Ñndert oder listet den aktuellen Textmodus auf.
+42,2901=
+42,2902=Befehle TEXTMODE und TM.
+42,2903=
+42,2904=  TM Modus            Wechselt in den Textmodus.
+42,2905=  TM %0r, %0report      Zeigt aktuelle Textmodusinformation.
+42,2906=  TM %0p, %0probe       Sucht nach verfÅgbaren Textmodi und listet sie auf.
+42,2907=
+42,2908=TEXTMODE ohne Parameter zeigt auch Informationen zum aktuellen Modus an.
+
+; 2a, Theme
+42,2a00=Zeigt oder Ñndert das aktuelle Farbschema der Command Shell.
+42,2a01=
+42,2a02=  THEME [Nummer]    éndert das aktuelle Thema.
+42,2a03=
+42,2a04=Geben Sie THEME ohne Parameter ein, um die aktuelle Themennummer anzuzeigen.
+
+; 2b, Truename
+42,2b00=Zeigt vollen Pfadnamen eines Laufwerks/Verzeichnisses/Datei an.
+42,2b01=
+42,2b02=  TRUENAME [Laufw:][Pfad][Dateiname]
+
+; 2c, Type
+42,2c00=Zeigt den Inhalt einer oder mehrerer Dateien an.
+42,2c01=
+42,2c02=  TYPE [%0A | %0T | %0B] Dateiname [Dateiname...]
+42,2c03=
+42,2c04=%0A Autom. Erkennung ob es sich um Text- oder BinÑrdateien handelt (Standard)
+42,2c05=%0T Zeigt die folgenden Dateien als ASCII Text.
+42,2c06=%0B Zeigt die folgenden Dateien als BinÑrdaten in Hexadezimal.
+42,2c07=
+42,2c08=Anstelle von Dateinamen kînnen auch Wildcards verwendet werden.
+
+; 2d, Verify
+42,2d00=Zeigt oder Ñndert Festplatten-SchreiÅberprÅfung.
+42,2d01=
+42,2d02=  VERIFY [EIN | AUS]
+42,2d03=
+42,2d04=Geben Sie VERIFY ohne Parameter ein um die aktuelle Einstellung anzuzeigen.
+
+; 2e, Version, ver
+42,2e00=Zeigt Information Åber die Command Shell Version.
+42,2e01=
+42,2e02=Befehle VERSION und VER.
+
+; 2f, Vol
+42,2f00=Zeigt die DatentrÑgerbezeichnung.
+42,2f01=
+42,2f02=  VOL Laufw:     Zeigt die Bezeichnung eines bestimmten Laufwerks.
+42,2f03=  VOL *          Zeigt die Bezeichnung aller Laufwerke.
+42,2f04=  VOL ?          Zeigt die Bezeichnung des aktuellen Laufwerks.
+42,2f05=
+42,2f06=Momentan beinhaltet "alle Laufwerke" keine Diskettenlaufwerke A: oder B:.
+
+; 30, Which
+42,3000=Zeigt die ausfÅhrbare Datei fÅr einen Befehl an.
+
+; 31, PowerNap
+42,3100=Zeigt oder Ñndert PowerNap-Einstellungen.
+
+; 32, Lang
+;
+; Basically...
+;
+; The /RELOAD option is for you, the translator. When working on a translation
+; or custom font. you can simple type 'LANG /RELOAD' to view your changes.
+;
+; The /N option is to prevent loading a custom NLS font. There are really only
+; three reasons for that. Some sort of compatibility issue. Or, on a system
+; when you only want to use the normal codepage font system. Or, if you are
+; using a custom font other than those provided with the shell.
+;
+; Finally, the /Q option is batch developers. They may want to switch languages
+; (like in the FreeDOS installer) without displaying the language information.
+42,3200=Zeigt oder Ñndert die Spracheinstellungen.
+42,3201=
+42,3202=  LANG [%0Q][%0N] lang_id    éndere Sprachen und lade neue NLS-öbersetzungen.
+42,3203=  LANG [%0Q][%0N] %0RELOAD    Lade die aktuelle NLS-öbersetzung (erneut).
+42,3204=
+42,3205=Verwende %0Q zum UnterdrÅcken der Anzeige von NLS-öbersetzungsinformationen.
+42,3206=
+42,3207=Verwenden Sie %0N, um das Laden einer alten NLS-Schrift zu verhindern. Diese
+42,3208=Option ist fÅr alle nachfolgenden %0RELOAD-Operationen "sticky". Sie wird nur
+42,3209=deaktiviert, wenn eine NLS-Schrift Åber ihre Sprachkennung geladen wird. Die
+42,320a=UnterstÅtzung fÅr Schriftartwechsel ist nur auf Systemen mit EGA- oder
+42,320b=besseren Grafikkarten verfÅgbar.
+42,320c=Geben Sie LANG ohne Parameter ein, um aktuelle öbersetzungsinformationen
+42,320d=anzuzeigen.
+
+; 33, Return
+42,3300=RÅckkehr von einer Batch-Unterfunktion.
+
+; 34, Mime
+42,3400=Zeigt oder Ñndert MIME Inhaltstypen.
+
+; 36, ?
+42,3600=Zeigt Befehle oder fÅhrt sie optional aus.
+42,3601=
+42,3602=  ? [Befehl][Parameter]
+42,3603=
+42,3604=Prompt (Eingabeaufforderung) vor der AusfÅhrung eines bestimmten Befehls.
+42,3605=Geben Sie ? ohne Parameter ein um eine Liste der internen Befehle anzuzeigen.
+
+; Boot message
+70,0000=Dieses Programm ist noch in Arbeit und noch lange nicht abgeschlossen. Viele
+70,0001=kritische Features und andere Funktionen sind (noch) nicht implementiert.
+70,0002=Diese Vorabversion ist nur zum Testen der bereits geleisteten Arbeit
+70,0003=gedacht. Es ist momentan noch nicht als Command-Shell einsetzbar.
+70,0004=Sie startet aktuell nicht einmal irgendwelche externen Befehle, nur
+70,0005=interne. Das kommt irgendwann spÑter.
+70,0006=Um loszulegen, geben Sie ? ein, um die aktuell verfÅgbaren und die hoffent-
+70,0007=lich bald verfÅgbaren BefehlssÑtze anzuzeigen. Durch Eingabe eines beliebigen
+70,0008=Befehls gefolgt von /?, erhalten Sie zusÑtzliche Informationen zu diesem
+70,0009=Befehl. Aber wahrscheinlich wissen Sie schon, wie man die meisten Befehle
+70,000a=benutzt. Oder wenigstens glauben Sie das. Viele Befehle werden durch neue
+70,000b=FunktionalitÑten verbessert, wÑhrend die AbwÑrtskompatibilitÑt mîglichst
+70,000c=beibehalten wird.
+70,000d=Wenn Sie eine Maus haben, kînnen Sie damit tatsÑchlich arbeiten. In Zukunft
+70,000e=wird die integrierte MausfunktionalitÑt erweitert werden. Es gibt weitere
+70,000f=Befehle und Funktionen, Åber die ich noch nachdenke und die im Moment noch
+70,0010=nicht einmal aufgelistet sind. Bleiben Sie dran...
+70,0011=Helfen Sie mit, die kontinuierliche Entwicklung von V8Micro und anderer DOS-
+70,0012=Software zu fîrdern indem Sie ein Patron werden. https://patreon.com/shidel
+70,0013=

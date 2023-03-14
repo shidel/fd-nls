@@ -46,9 +46,11 @@
 1.18: WARNING: Ogiltigt filformat: %s
 1.19: WARNING: Aktiv kodsida inte hittad
 1.20:. Standardv„rde cp437 anv„nds\n
+1.21: VARNING: Delade mappar „r inaktiverade f”r det h„r g„stoperativsystemet.\n
 2.0: Monterar delade mappar i %c:\n
 2.1: Framg†ngsrikt avinstallerat och borttaget fr†n minne.\n
 9.0: INFO: K”r p† VMware %s Version %lu\n
 9.1: INFO: UTC-skillnad „r %ld sekunder\n
 9.2: INFO: Aktiv sida „r cp%d. L„ser in Unicode-tabell %s\n
 9.3: INFO: Drivrutin inl„st i minne och anv„nder %u byte.\n
+9.4: INFO: CHCP-st”det aktiverat via VMCHCPD.SYS\n

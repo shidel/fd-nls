@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Hi Newbies!</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h2>Hi Newbies! Congratulations!</h2>
+<pre>
+You made the first important step in understanding FreeDOS. You found the
+Quick instruction manual for FreeDOS!
+Many of the reported commands also work in Windows and - with
+restrictions - in Linux and Mac OS so that this manual also helps you to
+understand the basics of all these OSes.
+
+Let's start:
+
+You are at C:\ and have no idea what to do?
+
+Simply enter "dir" or "dir /p" or "dir /w" or "dir /?"
+What happens? This command shows the content of the current "dir"ectory
+(folder) where you actually are. Depending on which option you have
+chosen you see it without sort order, page wise, in lines or you see
+the help to this command which offers much more options. You can do this
+in each folder where you are. The help ("command /?" or in some cases
+"command -h" or "command --help") should be available for each executable
+("*.exe") file so that it is not necessary to open the manual for each
+command. This was step 01. You got it? Fine!
+
+As you started in C:\ you should see among others "kernel.sys",
+"fdauto.bat", "fdconfig.sys" and maybe "command.com". In FD it is at
+another position, but it exists.
+The kernel is, what it's name says: the kernel. Without it, the
+OS will not boot. You will hear about "fdauto.bat" and "fdconfig.sys"
+later.
+Command.com is a very important file. Inside it there are almost
+50 (!) commands that can be executed by simply typing the command's name.
+As they are inside command.com you will not find external .exe files and
+it is recommended to know their names by heart. But you can find them by
+simply typing "?" (NOT: command /?). As most of these commands also exist
+in Windows it is not a wasted time to know the most important ones of them.
+
+Dir with its options is one of them. Other important commands inside
+command.com are "cls", "cd", "copy", "del", "echo", "md","path", "rd"
+"ren", "set", "ver" and much more. You will find them on the FreeDOS
+help list. It makes really sense to keep at least the mentioned commands
+in mind as Windows command line also uses them and Linux also uses
+commands with other names that do in about the same job.
+This was step 02. You got it? Great!
+
+OK, let's go on.
+Type "cls" + ENTER and you will see that it clears the screen.
+
+Type "md TESTDIR" + ENTER and then "dir" + ENTER and you will see that
+a new "dir"ectory (folder) "TESTDIR" has been created. You will see that
+a directory shows a sharp click &lt;TESTDIR&gt; as attachment or the name in
+square brackets like [TESTDIR] depending on which option you used.
+Files show an extension with max 3 characters and - depending on the option
+you have chosen at "dir" - the size and the creation date of the file.
+You created your first folder!!!
+
+Type "cd TESTDIR" + ENTER and you suddenly are in the folder
+"C:\TESTDIR". Typing "dir" shows you two symbols: "." and "..".
+"." means "current directory" whereas ".." means "there exist directories
+closer to C:\". Means: with "cd foldername" you come into the folder.
+With "cd .." you come back one folder closer to C:\.
+Within a folder you can create another folder, e.g. "SUBDIR1" by
+typing "md SUBDIR1" when you are inside "C:\TESTDIR". With the
+"cd SUBDIR1" you get in, with "cd .." you get out. If you want to
+move back to "C:\" directly you can enter "cd \" or "cd C:\".
+This works with all existing directories and you can crossjump to
+other folders.
+This was step 03. Wow! You move through the hard disk with a few
+simple commands!
+
+Interesting? Well, such were the times before graphical user interfaces!
+Well, now we have created a folder "TESTDIR" and a subfolder "SUBDIR1"
+inside. Nobody wants to give folders such a name. After one week nobody
+remembers what it was good for. Please keep in mind that DOS only
+supports 8.3 which means that the maximum file length is 8 characters
+for file name and 3 characters for ending, e.g. "filename.txt". Folders
+must not be longer than 8 characters. As the folder names are nonsense we
+want to delete the EMPTY folders again. Very simple: You go to the
+subfolder that is most far away from "C:\" in this case "C:\TESTDIR\
+SUBDIR1", check if it is empty, (Which command? - correct: "dir", more
+later), go back to "C:\TESTDIR" (Which command? - correct: "cd ..") and
+then "rd SUBDIR1". Check if "TESTDIR" is empty and then go back to "C:\"
+and enter "rd TESTDIR". Your test directories have gone to NIRVANA!
+In case that there were files inside one of the folders you have to
+delete them first. Depending on if you want to delete ALL files
+(dangerous!) or only a special file you can enter "del *.*" (*.*
+= wildcard = ALL!) or "del filename.ext".
+You can also use "*.txt" for ALL text files or "blahbla*.*"
+for all files starting with "blahbla". For deleting directories you have
+to move out of the EMPTY folder first, otherwise you would cut the tree
+you are sitting on. So "del" is used for deleting one or more files and
+"rd" for removing EMPTY directories.
+Wow, del and md is done too! Don't delete FreeDOS OS! This was step 04.
+
+You really fell asleep? Uff, switch on the coffee machine!
+You want to keep the folders "TESTDIR" and "SUBDIR1" because important
+files are inside but don't like the folder name? No problem, rename the
+folders so that you can keep them in mind.
+As you have deleted these folders at the end of step 04, you can now
+check if you kept in mind how you created them. Eeehhmmm? You got it?
+If yes, goto "C:\" (Which command? - correct: cd \) and enter:
+"ren TESTDIR URGENT" then go to "C:\URGENT" (I am sure you now know the
+command) and enter "ren SUBDIR1 CONTRACT". Now you should have the folders
+C:\URGENT\CONTRACT instead of C:\TESTDIR\SUBDIR. Is the coffee ready?
+Let's create a file now. You can use the external command "edit" or
+another editor to do so.
+Edit works in about the same way as modern editors e.g. Windows Notepad
+work, so a Newbie as you should not have big problems to do so. But this
+can be done by everyone. Are we everyone? NO!
+We test echo! What will it do? I am sure you already heard what happens
+if you enter "echo Hello World!" If not, check. Simply type it.
+Now we do not send the result to the monitor but into a file.
+"echo Hello World! > C:\URGENT\CONTRACT\world.txt".
+You can put a second sentence inside by typing:
+"echo I am fine! How are you? >> C:\URGENT\CONTRACT\world.txt."
+">>" adds the text in a new line.
+You created your first simple text file, guess, where you can find it?
+And how to open it with the "edit" command? Of course, very simple. In
+Windows you can open it by searching the file in a folder and double-
+clicking on the filename. The corresponding program opens automatically.
+In FreeDOS you do nothing else, but vice-versa:
+"edit C:\URGENT\CONTRACT\world.txt"
+Means: You say: use program "edit" and open the file "world.txt" in this
+or that folder.
+If this should not work, type:
+"C:\FREEDOS\BIN\edit C:\URGENT\CONTRACT\world.txt"
+More about this theme later. Great! Step 05 is done!
+
+With the command "copy" you can do exactly what the name says. Basic
+rule:
+You copy a file from source to target, remember where world.txt is now.
+"copy C:\URGENT\CONTRACT\world.txt C:\URGENT" and you have the document
+twice. Instead of "world.txt" you can also use wildcards, e.g. *.txt or
+"world*.*" or "*.*".
+Instead of copying you can move files from one position to another one
+with the EXTERNAL (not in command.com) command "move". Also, basic rule:
+Move the file from source to target, e.g.:
+"move C:\URGENT\CONTRACT\world.txt C:\URGENT\CONTRACT\world2.txt
+I hope you got the coffee in the meantime.
+Now you can navigate thru all folders, copy or move files, rename both!
+What else do you want?
+Fantastic! Step 06 is done! Do you want to know more about this great OS?
+Then do not miss <a href="../help/newbie02.htm">the second part of Newbie</a>! You are welcome!
+
+
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../../index.htm">BACK to main menu</a>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../command/cd.htm">cd</a>
+  <a href="../command/cls.htm">cls</a>
+  <a href="../command/index.htm">command.com</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../command/copy.htm">copy</a>
+  <a href="../command/del.htm">del</a>
+  <a href="../command/dir.htm">dir</a>
+  <a href="../command/echo.htm">echo</a>
+  <a href="../command/md.htm">md</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../help/newbie02.htm">newbie02</a>
+  <a href="../command/path.htm">path</a>
+  <a href="../command/rd.htm">rd</a>
+  <a href="../command/ren.htm">ren</a>
+  <a href="../command/set.htm">set</a>
+  <a href="../command/ver.htm">ver</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2022 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

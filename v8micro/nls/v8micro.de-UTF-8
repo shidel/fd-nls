@@ -1,0 +1,331 @@
+; V8Micro Language Translation file
+; -----------------------------------------------------------------------------
+; This file only requires translation only when compiling V8Micro to have a
+; built in language other than the Default English or to reduce memory usage
+; for a language at runtime. The message here should be as short as possible and
+; some messages should be left out all completely.
+;
+; If a translation for a language is not provided for V8Micro at runtime, it
+; will automatically use the one for V8Turbo.
+; -----------------------------------------------------------------------------
+
+; This is the English language translation. It is also the fallback translation
+; for when a user requested language is not available.
+
+; Language name
+00,0000=Deutsch
+
+; It's Language ID codes supported by this translation.
+00,0001=DE,DE_de
+
+; This is the recommended codepage(s) for this translation.
+00,0002=850,858
+
+; Optional, translation file author text. Uncomment it if you want it displayed.
+00,0005=Deutsche Übersetzung, W. Spiegl
+
+; These are additional lower case characters that can be made uppercase under
+; the proper codepage. Only non-standard (English) characters need to be
+; included in this list. At present, they use the ASCII code for characters.
+00,0010=0x87,0x84,0x86,0x82,0x91,0x94,0x81,0xa4
+
+; These are the upper case letters corresponding to the ones in the lowercase
+; (00,0010) list. They must be in the same position as their counterparts and
+; the list must contain the same number of characters. These two lists are used
+; to convert to and from lower/upper case.
+00,0011=0x80,0x8e,0x8f,0x90,0x92,0x99,0x9a,0xa5
+
+; This message is displayed for most commands that I have not yet full
+; MS-DOS/FreeDOS compatibility or options. Eventually, this message will be
+; removed.
+00,0099=Warnung: Der Befehl ist nur teilweise implementiert.
+
+; Version information, Copyright and License
+01,0000=%0 Command Shell, Version %1
+01,0001=(%0)
+01,0002=Copyright (c) %0, %1
+01,0003=BSD 3-Clause Lizenz
+
+; Error message if Shell fails to initialize. However, it is unlikely that
+; translations have been initialized if that happens. Also, the Shell should
+; not fail to start. So, this message will probably never been shown.
+02,0000=Initialisierungsfehler
+
+; A general failure to understand the command line entered. This message will
+; probably be removed.
+02,0001=Fehler: %0
+
+; Automatic reporting of errorlevel with failed commands and programs
+02,0002=Fehler %0, %1
+
+; Extra message displayed when shell is "permanent" and user attempts to exit.
+02,0004=EXIT nicht erlaubt
+
+; Extra message displayed when shell is not "permanent" but user cannot exit
+; right now. This message is not used at present. But, as time goes on, I
+; see a the potential there could arise circumstances that the shell should
+; prevent terminating itself for the moment.
+02,0005=EXIT jetzt nicht möglich
+
+; when exiting shell and there is an error code.
+02,0006=EXIT mit Fehler
+
+; extra messages when expanding command line environment variable runs out
+; of buffer memory.
+02,0007=Variablenerweiterung "%0" fehlgeschlagen
+
+; extra messages when expanding the command line runs out of buffer memory.
+; It is similar to 02,0007, but occurs at a different stage of the expansion.
+02,0008=Kommandozeilenerweiterung "%0" fehlgeschlagen
+
+; extra message for some commands when an Option Switch is not understood.
+02,0009=Unbekannte Option "%0"
+
+; help for a command is not available
+02,000a=Keine Hilfe für %0
+
+; extra message when macro expansion fails
+02,000b=Konnte das Makro "%0" nicht vergrößern
+
+; Extra messages for when make or remove dir fails
+03,0000=Erstelle Verzeichnis "%0" fehlgeschlagen
+03,0001=Entferne Verzeichnis "%0" fehlgeschlagen
+
+; extra message for when user provides garbage when trying to change errorlevel
+03,0002=Fehler bei Errorleveländerung %0
+
+; extra message for when a requested drive was not found
+03,0003=Laufwerk %0 nicht gefunden
+
+; extra message for when the requested drive is not a valid identifier.
+03,0004=Ungültiges Laufwerk %0
+
+; extra message when user attempts to change drives and it fails
+03,0005=Wechsel zu Laufwerk %0 fehlgeschlagen
+
+; message displayed at the top of list of commands
+04,0000=Interne %0 Befehle:
+
+; for ChDir without options to display the Drive/Directory
+07,0000=%0:\%1
+
+; for displaying the volume name of a drive
+07,0001=Volume in Laufwerk %0 ist %1
+
+; for displaying a drive has no volume name set
+07,0002=Volume in Laufwerk %0 hat kein Label
+
+; for displaying the serial number of a drive when present.
+07,0003=Volume Seriennummer ist %0-%1
+
+; These are the off/on messages that the echo, break and verify commands
+; will show when no options or text are provided. NOTE: those commands always
+; test for OFF/ON when changing. They will also check against 09,0000 and
+; 09,0001 for language specific versions of OFF/ON.
+09,0000=aus
+09,0001=ein
+09,0002=ECHO ist %0
+09,0003=BREAK ist %0
+09,0004=VERIFY ist %0
+
+; message displayed when PATH command is requested to list the paths but the
+; corresponding environment variable is not set.
+0a,0000=Kein Suchpfad definiert
+
+; message displayed for the PATH command before the list of PATHs.
+0a,0001=Systempfad:
+
+; message displayed for the CD * command before the list of current directories.
+0a,0002=Aktuelle Verzeichnisse:
+
+; prompt for Delete/Del commands when told to prompt for each file.
+0b,0000=Lösche Datei "%0" [Ja,Nein,Alle,Beenden] ?
+; 0b,0000=Lösche [Ja,Nein,Alle,Beenden] Datei "%0" ?
+
+; message displayed when Delete/Del is verbose and deletes a file.
+0b,0001=Lösche Datei "%0"
+
+; message displayed when Delete/Del is asked to delete all files (*.*).
+0b,0002=Alle Dateien in "%0" werden gelöscht!
+
+; prompt to confim delete or erase all files in a directory.
+0b,0003=Sind Sie sicher [Ja,Nein,Vielleicht] ?
+
+; prompt for Erase command when told to prompt for each file.
+0b,0010=Datei "%0" löschen [Ja,Nein,Alle,Beenden] ?
+
+; message displayed when Erase is verbose and deletes a file.
+0b,0011=Lösche Datei "%0"
+
+; message displayed when Erase is asked to delete all files (*.*).
+0b,0012=Alle Dateien in "%0" werden gelöscht!
+
+; results of file actions, like copy, delete, etc (0b,0200)
+0b,0100=keine Dateien %0
+0b,0101=eine Datei %0
+0b,0102=%1 Dateien %0
+
+; names for file actions (0b,0100-0b,0101)
+0b,0200=kopiert,verschoben,umbenannt,gelöscht,geschreddert
+
+; default pause messages
+0c,0000=Weiter mit Taste . . .
+0c,0002=Pause . . .
+
+; date & time command messages
+0d,0000=Aktuelles Datum ist %0
+0d,0001=Aktuelle Zeit ist %0
+0d,0002=Neues Datum (MM-TT-[JJ]JJ):
+0d,0003=Neue Zeit (hh:mm[:ss]):
+
+; Date command format
+; %0 = JJJJ 	%4 = JJ
+; %1 = MM	%5 = M		%7 = Monat (0d,0011)
+; %2 = TT	%6 = T
+; %3 = WOCHENTAG (0d,0010)
+0d,0005=%3 %7 %6, %0
+
+; Day names for date format
+0d,0010=So,Mo,Di,Mi,Do,Fr,Sa
+
+; Month Names for date format
+0d,0011=Jan,Feb,Mär,Apr,Mai,Jun,Jul,Aug,Sep,Okt,Nov,Dez
+
+; Time command format
+; %0 = HH (24hr)	%4 = HH (12hr)		%5 = H (12hr)
+; %1 = MM
+; %2 = SS
+; %3 = HS (100ths)
+; %6 = AM/PM (0d,0020)
+0d,0006=%5:%1:%2 %6
+
+; AM/PM for time format
+0d,0012=AM,PM
+
+; Date format for directory listings (same params as date command)
+0d,0020=%1-%2-%0
+
+; Time format for directory listings (same params as time command)
+0d,0021=%4:%2 %6
+
+; Memory command strings
+0f,0000=%0 Geladen bei Segment %1, verbraucht %2 Bytes
+0f,0001=%0 Bytes, Shell Code
+0f,0002=%0 Bytes, eingebaute NLS
+0f,0003=%0 Bytes, Stack
+0f,0004=%0 Bytes, Interne Puffer
+0f,0005=%0 Bytes, andere Daten
+0f,0006=Externe Puffer:
+0f,0007=%0, %2Kb, %3 frei
+0f,0008=Übersetzungsdaten:
+0f,0009=%2 Bytes, für %0
+0f,0010=Maus Strings
+0f,0011=History Liste
+0f,0012=Makro Liste
+0f,0013=Mime Liste
+0f,0014=Verzeichnisstapel
+0f,0030=Andere Daten
+0f,0015=Schriftart anzeigen
+0f,0016=Aktive NLS
+
+; This string is appended to stack string 0f,0003 only when the shell is
+; compiled with STACK_CHECK enabled. Other than debugging and development
+; of the shell, this will most likely be disabled in public releases.
+0f,0020=, %0 Bytes Spitzenverbrauch
+
+; LANG command to display language (id code(s))
+10,0000=Sprache ist %0 (%1)
+
+; CHCP messages
+11,0000=Aktive Codepage ist %0.
+11,0001=Systemcodepage ist %0.
+
+; These error messages will be removed at some point.
+21,e002=Funktion ist in Entwicklung
+21,e006=Befehl "%0" ist in Entwicklung
+
+; These error messages will probably will be left in the V8Micro NLS.
+21,d001=Modus nicht unterstützt
+21,e001=Nicht unterstütztes DOS
+21,e101=Ungültiger Schalter oder Option
+21,e201=Ungültige Nummer
+21,e301=Außerhalb Bereich
+21,e401=Nicht unterstützt, V8Turbo erforderlich
+21,e501=Fehlender Parameter
+21,e505=Fehler beim Stellen der Uhr
+21,e025=Konnte Codepage nicht ändern
+21,e202=NLS Datei nicht gefunden
+21,e302=Korrupte NLS Datei
+21,e402=Ungültige NLS Zeichenzuordnung
+21,e109=Daten überschreiten Segment
+21,e008=Außerhalb Pufferspeicher
+21,e026=Vom Benutzer abgebrochen
+21,e601=Verzeichnisstack ist leer
+21,e608=Verzeichnisstack ist voll
+21,e701=Unbekanntes Makro
+21,e702=Unbekannter Makroname
+21,e708=Makroliste ist voll
+
+21,e126=CTRL+C Abbruch
+21,e226=abgebrochen
+21,f003=Verzeichnisname erforderlich
+21,f002=Dateiname erforderlich
+21,f102=Keine passenden Dateien
+21,ffff=Unbekannter Fehler
+
+; Normal DOS error messages. Since they use roughly 1kb, these will probably be
+; excluded from the Built-In V8Micro NLS at release. But, they are useful so
+; maybe I'll keep them. I have not decided yet.
+21,0000=Kein Fehler
+21,0001=Ungültige Funktion
+21,0002=Datei nicht gefunden
+21,0003=Pfad nicht gefunden
+21,0004=Außerhalb Dateihandles
+21,0005=Zugriff verweigert
+21,0006=Ungültiger Handle
+21,0007=MCB zerstört
+21,0008=Speicherüberlauf
+21,0009=Ungültiger Speicherblock
+21,000a=Ungültige Umgebungstabelle
+21,000b=Ungültiges Format
+21,000c=Ungültiger Zugangscode
+21,000d=Ungültige Daten
+21,000e=reserviert
+21,000f=Ungültiges Laufwerk
+21,0010=Kann aktuelles Verzeichnis nicht entfernen
+21,0011=Anderes Gerät
+21,0012=Keine weiteren Dateien
+21,0013=schreibgeschützt
+21,0014=Unbekannte Einheit
+21,0015=Laufwerk nicht bereit
+21,0016=unbekannter Befehl
+21,0017=CRC Fehler
+21,0018=Anfragelänge falsch
+21,0019=Festplatte nicht gefunden
+21,001a=Unbekannter Festplattentyp
+21,001b=Sektor nicht gefunden
+21,001c=Kein Papier mehr
+21,001d=Schreibfehler
+21,001e=Lesefehler
+21,001f=Festplattenfehler
+21,0020=Freigabeverstoß
+21,0021=Sperrverstoß
+21,0022=Ungültiger Datenträgerwechsel
+21,0023=aus den FCBs
+21,0024=Ungültiger Filesharing-Puffer
+21,0025=Codepage-Unstimmigkeiten
+21,0026=Dateioperation fehlgeschlagen
+21,0027=Festplatte ist voll
+
+; Command help is not provided in V8Micro
+
+; Intro message
+70,0000=Dieses Programm ist noch in Arbeit und noch lange nicht abgeschlossen. Viele
+70,0001=kritische Features und andere Funktionen sind (noch) nicht implementiert.
+70,0002=Diese Vorabversion ist nur zum Testen der bereits geleisteten Arbeit
+70,0003=gedacht. Es ist momentan noch nicht als Kommando-Shell einsetzbar.
+70,0004=Es startet aktuell nicht einmal irgendwelche externen Befehle, nur
+70,0005=interne. Das kommt irgendwann später.
+70,0006=Helfen Sie mit, die kontinuierliche Entwicklung von V8Micro und anderer DOS-
+70,0007=Software zu fördern indem Sie ein Patron werden. https://patreon.com/shidel
+70,0008=

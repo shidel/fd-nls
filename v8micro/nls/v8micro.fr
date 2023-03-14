@@ -1,0 +1,319 @@
+; V8Micro Language Translation file
+; -----------------------------------------------------------------------------
+; This file only requires translation only when compiling V8Micro to have a
+; built in language other than the Default English or to reduce memory usage
+; for a language at runtime. The message here should be as short as possible and
+; some messages should be left out all completely.
+;
+; If a translation for a language is not provided for V8Micro at runtime, it
+; will automatically use the one for V8Turbo.
+; -----------------------------------------------------------------------------
+
+; This is the English language translation. It is also the fallback translation
+; for when a user requested language is not available.
+
+; Language name
+00,0000=franáais
+
+; It's Language ID codes supported by this translation.
+00,0001=FR,FR_FR
+
+; This is the recommended codepage(s) for this translation.
+00,0002=850,858
+
+; Optional, translation file author text. Uncomment it if you want it displayed.
+00,0005=Traduction franáaise effectuÇe par Berki YenigÅn
+
+; These are additional lower case characters that can be made uppercase under
+; the proper codepage. Only non-standard (English) characters need to be
+; included in this list. At present, they use the Ascii code for characters.
+00,0010=0x87,0x84,0x86,0x82,0x91,0x94,0x81,0xa4
+
+; These are the upper case letters corresponding to the ones in the lowercase
+; (00,0010) list. They must be in the same position as their counterparts and
+; the list must contain the same number of characters. These two lists are used
+; to convert to and from lower/upper case.
+00,0011=0x80,0x8e,0x8f,0x90,0x92,0x99,0x9a,0xa5
+
+; This message is displayed for most commands that I have not yet full
+; MS-DOS/FreeDOS compatibility or options. Eventually, this message will be
+; removed.
+00,0099=Avertissement : cette commande n'a ÇtÇ implÇmentÇe que partiellement.
+
+; Version information, Copyright and License
+01,0000=%0 shell de commande, version %1
+01,0001=(%0)
+01,0002=Droit d'auteur (c) %0, %1
+01,0003=Licence BSD Ö 3 clauses
+
+; Error message if Shell fails to initialize. However, it is unlikely that
+; translations have been initialized if that happens. Also, the Shell should
+; not fail to start. So, this message will probably never been shown.
+02,0000=erreur d'initialisation
+
+; A general failure to understand the command line entered. This message will
+; probably be removed.
+02,0001=erreur: %0
+
+; Automatic reporting of errorlevel with failed commands and programs
+02,0002=erreur %0, %1
+
+; Extra message displayed when shell is "permanent" and user attempts to exit.
+02,0004=interdiction de quitter
+
+; Extra message displayed when shell is not "permanent" but user cannot exit
+; right now. This message is not used at present. But, as time goes on, I
+; see a the potential there could arise circumstances that the shell should
+; prevent terminating itself for the moment.
+02,0005=impossible de quitter maintenant
+
+; when exiting shell an there is an error code.
+02,0006=sortie avec erreur
+
+; extra messages when expanding command line environment variable runs out
+; of buffer memory.
+02,0007=Çchec de l'extension de la variable "%0"
+
+; extra messages when expanding the command line runs out of buffer memory.
+; It is similar to 02,0007, but occurs at a different stage of the expansion.
+02,0008=Çcheck de l'extension de la ligne de commande "%0"
+
+; extra message for some commands when an Option Switch is not understood
+02,0009=Option "%0" inconnue
+
+; help for a command is not available
+02,000a=pas d'aide pour %0
+
+; Extra messages for when make or remove dir fails
+03,0000=Çchec de la crÇation du rÇpertoire "%0"
+03,0001=Çchec de la suppression du rÇpertoire "%0"
+
+; extra message for when user provides garbage when trying to change errorlevel
+03,0002=erreur lors de la modification du niveau d'erreur %0
+
+; extra message for when a requested drive was not found
+03,0003=lecteur %0 introuvable
+
+; extra message for when the requested drive is not a valid identifier.
+03,0004=lecteur %0 invalide
+
+; extra message when user attempts to change drives and it fails
+03,0005=Çchec du basculement vers le lecteur %0
+
+; message displayed at the top of list of commands
+04,0000=%0 commandes internes :
+
+; for ChDir without options to display the Drive/Directory
+07,0000=%0:\%1
+
+; for displaying the volume name of a drive
+07,0001=Le volume dans le lecteur %0 est %1
+
+; for displaying a drive has no volume name set
+07,0002=Le volume dans le lecteur %0 n'a pas d'Çtiquette
+
+; for displaying the serial number of a drive when present.
+07,0003=Le numÇro de sÇrie du volume est %0-%1
+
+; These are the off/on messages that the echo, break and verify commands
+; will show when no options or text are provided. NOTE: those commands always
+; test for OFF/ON when changing. They will also check against 09,0000 and
+; 09,0001 for language specific versions of OFF/ON.
+09,0000=actif
+09,0001=dÇsactivÇ
+09,0002=ECHO est %0
+09,0003=BREAK est %0
+09,0004=VERIFY est %0
+
+; message displayed when PATH command is requested to list the paths but the
+; corresponding environment variable is not set.
+0a,0000=Aucun chemin de recherche n'est dÇfini
+
+; message displayed for the PATH command before the list of PATHs.
+0a,0001=Chemin systäme :
+
+; message displayed for the CD * command before the list of current directories.
+0a,0002=RÇpertoires actuels :
+
+; prompt for Delete/Del commands when told to prompt for each file.
+0b,0000=Effacer le fichier "%0" [Oui,Non,Tout,Quitter] ?
+; 0b,0000=Effacer [Oui,Non,Tout,Quitter] le fichier "%0" ?
+
+; message displayed when Delete/Del is verbose and deletes a file.
+0b,0001=Effacement du fichier "%0"
+
+; message displayed when Delete/Del is asked to delete all files (*.*).
+0b,0002=Tous les fichiers dans "%0" seront effacÇs !
+
+; prompt to confim delete or erase all files in a directory.
+0b,0003=ítes-vous sñr [Oui,Non,Peut-àtre] ?
+
+; prompt for Erase command when told to prompt for each file.
+0b,0010=Supprimer le fichier "%0" [Oui,Non,Tout,Quitter] ?
+
+; message displayed when Erase is verbose and deletes a file.
+0b,0011=Suppression du fichier "%0"
+
+; message displayed when Erase is asked to delete all files (*.*).
+0b,0012=Tous les fichiers dans "%0" seront supprimÇs !
+
+; results of file actions, like copy, delete, etc (0b,0200)
+0b,0100=pas de fichier %0
+0b,0101=un fichier %0
+0b,0102=%1 fichiers %0
+
+; names for file actions (0b,0100-0b,0101)
+0b,0200=copiÇ,dÇplacÇ,renommÇ,effacÇ,supprimÇ
+
+; default pause messages
+0c,0000=Appuyez sur une touche pour continuer . . .
+0c,0002=En pause . . .
+
+; date & time command messages
+0d,0000=La date actuelle est le %0
+0d,0001=L'heure actuelle est %0
+0d,0002=Nouvellel date (jj-mm-[ss]aa) ?
+0d,0003=New time (hh:mm[:ss]) ?
+
+; Date command format
+; %0 = YYYY 	%4 = YY
+; %1 = MM	%5 = M		%7 = Month (0d,0011)
+; %2 = DD	%6 = D
+; %3 = DAY OF WEEK (0d,0010)
+0d,0005=%3 %2 %1 %0
+
+; Day names for date format
+0d,0010=Dim,Lun,Mar,Mer,Jeu,Ven,Sam
+
+; Month Names for date format
+0d,0011=Jan,FÇv,Mar,Avr,Mai,Juin,Jul,Aoñt,Sep,Oct,Nov,DÇc
+
+; Time command format
+; %0 = HH (24hr)	%4 = HH (12hr)		%5 = H (12hr)
+; %1 = MM
+; %2 = SS
+; %3 = HS (100ths)
+; %6 = AM/PM (0d,0020)
+0d,0006=%0:%1:%2
+
+; AM/PM for time format
+0d,0012=AM,PM
+
+; Date format for directory listings (same params as date command)
+0d,0020=%2/%1/%0
+
+; Time format for directory listings (same params as time command)
+0d,0021=%0:%1:%2
+
+; Memory command strings
+0f,0000=%0 est chargÇ sur le segment %1 consommant %2 octets
+0f,0001=%0 octets, code du shell
+0f,0002=%0 octets, NLS intÇgrÇ
+0f,0003=%0 octets, pile
+0f,0004=%0 octets, tampons internes
+0f,0005=%0 octets, autres donnÇes
+0f,0006=Tampons externes :
+0f,0007=%0, %2 Ko, %3 de libre
+0f,0008=DonnÇes de traduction :
+0f,0009=%2 octets, pour %0
+0f,0010=Chaånes de souris
+0f,0011=Liste de l'historique
+0f,0012=Liste des alias
+0f,0013=Liste Mime
+0f,0014=Pile des rÇpertoires
+0f,0030=Autres donnÇes
+0f,0015=Police d'affichage
+0f,0016=NLS actif
+
+; This string is appended to stack string 0f,0003 only when the shell is
+; compiled with STACK_CHECK enabled. Other than debugging and development
+; of the shell, this will most likely be disabled in public releases.
+0f,0020=, %0 octets pour le pic d'utilisation
+
+; LANG command to display language (id code(s))
+10,0000=La langue est le suivant : (%1)
+
+; These error messages will be removed at some point.
+21,e002=fonctionnalitÇ en dÇveloppement
+21,e006=La commande "%0" est en dÇveloppement
+
+; These error messages will probably will be left in the V8Micro NLS.
+21,d001=mode non pris en charge
+21,e001=DOS non pris en charge
+21,e101=commutateur ou option invalide
+21,e201=nombre invalide
+21,e301=en dehors de la plage
+21,e401=non pris en charge, V8Turbo requis
+21,e501=paramätre manquant
+21,e505=Çchec du rÇglage de l'horloge
+21,e202=Fichier NLS introuvable
+21,e302=fichier NLS corrompu
+21,e402=mappage des caractäres NLS invalide
+21,e109=les donnÇes dÇpassent le segment
+21,e008=mÇmoire tampon insuffisante
+21,e026=annulÇ par l'utilisateur
+21,e601=pile des rÇpertoires vide
+21,e608=pile des rÇpertoires pleine
+21,e126=annulÇ avec CTRL+C
+21,e226=annulÇ
+21,f003=nom de rÇpertoire nÇcessaire
+21,f002=nom de fichier nÇcessaire
+21,f102=pas de fichier correspondant
+21,ffff=erreur inconnue
+
+; Normal DOS error messages. Since they use roughly 1kb, these will probably be
+; excluded from the Built-In V8Micro NLS at release. But, they are useful so
+; maybe I'll keep them. I have not decided yet.
+21,0000=pas d'erreur
+21,0001=fonction invalide
+21,0002=fichier introuvable
+21,0003=chemin introuvable
+21,0004=plus d'indicateurs de fichiers
+21,0005=accäs refusÇ
+21,0006=indicateur invalide
+21,0007=MCB dÇtruit
+21,0008=mÇmoire insuffisante
+21,0009=bloc de mÇmoire invalide
+21,000a=table d'environnement invalide
+21,000b=format invalide
+21,000c=code d'accäs invalide
+21,000d=donnÇes invalides
+21,000e=rÇservÇ
+21,000f=lecteur invalide
+21,0010=impossible d'enlever le rÇpertoire actuel
+21,0011=pas le màme appareil
+21,0012=plus de fichiers
+21,0013=protÇgÇ en Çcriture
+21,0014=unitÇ inconnue
+21,0015=lecteur pas pràt
+21,0016=commande inconnue
+21,0017=erreur de CRC
+21,0018=taille de requàte erronÇe
+21,0019=erreur de recherche sur le disque
+21,001a=type de disque inconnu
+21,001b=secteur introuvable
+21,001c=Ö court de papier
+21,001d=erreur d'Çcriture
+21,001e=erreur de lecture
+21,001f=Çchec de disque
+21,0020=violation de partage
+21,0021=violation de verrou
+21,0022=changement de disque invalide
+21,0023=plus de FCB
+21,0024=tampon de partage de fichiers invalide
+21,0025=probläme de correspondance des pages de code
+21,0026=Çchec de l'opÇration sur le fichier
+21,0027=espace disque insuffisant
+
+; Command help is not provided in V8Micro
+
+; Intro message
+70,0000=Ceci est un travail en cours et est loin d'àtre terminÇ. Plusieurs fonctions
+70,0001=critiques et d'autres fonctionnalitÇs ne sont pas (encore) implÇmentÇes. Cette
+70,0002=prÇversion est seulement destinÇe Ö tester le travail dÇjÖ effectuÇ. Il ne
+70,0003=convient pas une utilisation gÇnÇrale en tant que shell de commande Ö l'heure
+70,0004=actuelle. Il n'exÇcute màme pas les commandes externes pour le moment, seulement
+70,0005=les commandes internes. Tout cela viendra plus tard.
+70,0006=Aidez Ö encourager la continuitÇ du dÇveloppement de V8Micro ainsi que
+70,0007=d'autres logiciels DOS en devenant mÇcäne. https://patreon.com/shidel
+70,0008=

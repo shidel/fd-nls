@@ -1,0 +1,935 @@
+; V8Turbo Language Translation file
+
+; -----------------------------------------------------------------------------
+; General Information on translations.
+;
+; Comment lines must start with a ; or an error will occur when the translation
+; is loaded. Blank lines are ignored.
+;
+; All spacing before and after = is relevant. Including trailing whitespace.
+;
+; Each entry must be on a single line. However, there is no limit to the length
+; of a line.
+;
+; The percent symbol denotes a parameter from 0-9. For example, %0 is the first
+; parameter. If there are multiple parameters, you can change their order to
+; better suite the language.
+;
+; Resource strings to prompt the user are processed by the shell automatically.
+; You can change there text however needed, move the list of options around,
+; change their wording and generally not fret about them too much. Just do not
+; change the precedence order of the options themselves.
+;
+; For example, if the original is "Delete file '%0' [Yes,No,All,Quit] ?"
+; internally, ; action 1 is "Yes", 2 is "No", 3 is "All" and 4 is "Quit"".
+; So do not change it to "Delete file '%0' [No,Yes,All,Quit] ?" because the
+; first option would say "no" but it would still perform action 1.
+;
+; Otherwise, you can do all sorts of changes to them. For example, both of these
+; would be fine:
+;
+; "Delete %0 file (OK,Skip,All remaining,Quit) ?"
+; "[Do,Do not,This and the rest,Do not continue] delete the %0 file?"
+;
+; This brings up the "Hot" key for each action. They are not case specific and
+; assigned using the first letter in the option that has not yet been assigned.
+; Using the the "Do/Do not" example above. The keys would be "d, o, t, c"
+;
+; The options for the prompt are contained in last set of either brackets
+; "[options]" or braces "(options)" in the text.
+
+; Options are separated by any of these characters ",/;:\|". Just be consistent.
+; -----------------------------------------------------------------------------
+
+; This is the English language translation. It is also the fallback translation
+; for when a user requested language is not available.
+
+; Language name
+00,0000=franáais
+
+; It's Language ID codes supported by this translation.
+00,0001=FR,FR_FR
+
+; This is the recommended codepage(s) for this translation. Also, the LANG
+; command will use this information to temporarily (or permanently) change
+; the display font when an appropriate font is present.
+00,0002=850,858
+
+; Optional, translation file author text. Uncomment it if you want it displayed.
+00,0005=Traduction franáaise effectuÇe par Berki YenigÅn
+
+; These are additional lower case characters that can be made uppercase under
+; the proper codepage. Only non-standard (English) characters need to be
+; included in this list. The list is limited to 64 characters (0x87 is one
+; characer). The list uses the hexadecimal Ascii code for characters.
+; To view the current DOS ASCII table under FreeDOS, you can use a utility that
+; is included by default. Run "vinfo ascii" to display the current table.
+00,0010=0x87,0x84,0x86,0x82,0x91,0x94,0x81,0xa4
+
+; These are the upper case letters corresponding to the ones in the lowercase
+; (00,0010) list. They must be in the same position as their counterparts and
+; the list must contain the same number of characters. These two lists are used
+; to convert to and from lower/upper case.
+00,0011=0x80,0x8e,0x8f,0x90,0x92,0x99,0x9a,0xa5
+
+; This message is displayed for most commands that I have not yet full
+; MS-DOS/FreeDOS compatibility or options. Eventually, this message will be
+; removed.
+00,0099=Remarque : é l'heure actuelle, cette commande n'est implÇmentÇe que partiellement. Il existe d'autres besoins plus pressants pour le moment. Je reprendrai le dÇveloppement de cette commande plus tard.
+
+; Version information, Copyright and License
+01,0000=%0 shell de commande, version %1
+01,0001=(%0)
+01,0002=Copyright (c) %0, %1
+01,0003=Licence BSD Ö 3 clauses
+
+; Error message if Shell fails to initialize. However, it is unlikely that
+; translations have been initialized if that happens. Also, the Shell should
+; not fail to start. So, this message will probably never been shown.
+02,0000=erreur d'initialisation
+
+; A general failure to understand the command line entered. This message will
+; probably be removed.
+02,0001=erreur de traitement de : %0
+
+; Automatic reporting of errorlevel with failed commands and programs
+02,0002=erreur %0, %1
+
+; Extra message displayed when shell is "permanent" and user attempts to exit.
+02,0004=impossible de quitter le shell permanent
+
+; Extra message displayed when shell is not "permanent" but user cannot exit
+; right now. This message is not used at present. But, as time goes on, I
+; see a the potential there could arise circumstances that the shell should
+; prevent terminating itself for the moment.
+02,0005=impossible de se conformer Ö la commande de quitter
+
+; when exiting shell an there is an error code.
+02,0006=quitte avec le code d'erreur
+
+; extra messages when expanding command line environment variable runs out
+; of buffer memory.
+02,0007=Çchec de l'expansion de la variable d'environnement "%0"
+
+; extra messages when expanding the command line runs out of buffer memory.
+; It is similar to 02,0007, but occurs at a different stage of the expansion.
+02,0008=Çchec de l'expansion de la ligne de commande, "%0" dÇpasse le tampon
+
+; extra message for some commands when an Option Switch is not understood
+02,0009=Commutateur d'option "%0" inconnu
+
+; help for a command is not available
+02,000a=L'aide demandÇe pour %0 n'est pas disponible
+
+; Extra messages for when make or remove dir fails
+03,0000=Çchec de la crÇation du rÇpertoire "%0"
+03,0001=Çchec de l'effacement du rÇpertoire "%0"
+
+; extra message for when user provides garbage when trying to change errorlevel
+03,0002=erreur lors de la tentative de changement du niveau d'erreur %0
+
+; extra message for when a requested drive was not found
+03,0003=le lecteur %0 est introuvable
+
+; extra message for when the requested drive is not a valid identifier.
+03,0004=identifiant de lecteur "%0" invalide
+
+; extra message when user attempts to change drives and it fails
+03,0005=Çchec du changement vers le lecteur %0
+
+; message displayed at the top of list of commands
+04,0000=Liste des commandes internes de %0 :
+
+; Message displayed for textmode when starting to probe video modes
+06,0000=DÇtection des modes vidÇo...
+
+; message displayed at the top of a list of supported text modes
+06,0001=Les modes vidÇo textuels dÇtectÇs :
+
+; the text for each text mode listing of supported modes (I like it indented)
+06,0002=%0 - %1 x %2
+
+; for reporting the current video mode information.
+06,0003=Mode textuel actif %0, %1 colonnes x %2 lignes.
+
+; for ChDir without options to display the Drive/Directory
+07,0000=%0:\%1
+
+; for displaying the volume name of a drive
+07,0001=Le volume dans le lecteur %0 est %1
+
+; for displaying a drive has no volume name set
+07,0002=Le volume dans le lecteur %0 n'a pas d'Çtiquette
+
+; for displaying the serial number of a drive when present.
+07,0003=Le numÇro de sÇrie du volume est %0-%1
+
+; message for when reporting the current theme
+08,0000=Le thäme %0 est actif.
+
+; These are the off/on messages that the echo, break and verify commands
+; will show when no options or text are provided. NOTE: those commands always
+; test for OFF/ON when changing. They will also check against 09,0000 and
+; 09,0001 for language specific versions of OFF/ON. For example, if 09,0000=aus
+; then both "echo off" and "echo aus" can be used to turn off echo. However,
+; for compatibility only "off" should be used in batch files.
+09,0000=dÇsactivÇ
+09,0001=actif
+09,0002=ECHO est %0
+09,0003=BREAK est %0
+09,0004=VERIFY est %0
+
+; message displayed when PATH command is requested to list the paths but the
+; corresponding environment variable is not set.
+0a,0000=Aucun chemin de recherche systäme n'est dÇfini.
+
+; message displayed for the PATH command before the list of PATHs.
+0a,0001=Ordre de recherche du chemin systäme :
+
+; message displayed for the CD * command before the list of current directories.
+0a,0002=RÇpertoire actuel des lecteurs systäme :
+
+; prompt for Delete/Del commands when told to prompt for each file.
+0b,0000=Effacer le fichier "%0" [Oui,Non,Tout,Quitter] ?
+; 0b,0000=Effacer [Oui,Non,Tout,Quitter] le fichier "%0" ?
+
+; message displayed when Delete/Del is verbose and deletes a file.
+0b,0001=Effacement du fichier "%0"
+
+; message displayed when Delete/Del is asked to delete all files (*.*).
+0b,0002=Tous les fichiers contenus dans "%0" seront effacÇs !
+
+; prompt to confim delete or erase all files in a directory. I'll probably
+; change "Maybe" to something like 'Ask' or 'First Ask' or something. Selecting
+; that option will cause it to prompt for confirmation on each file.
+0b,0003=ítes-vous sñr [Oui,Non,Peut-àtre] ?
+
+; prompt for Erase command when told to prompt for each file.
+0b,0010=Supprimer le fichier "%0" [Oui,Non,Tout,Quitter] ?
+
+; message displayed when Erase is verbose and deletes a file.
+0b,0011=Suppression du fichier "%0"
+
+; message displayed when Erase is asked to delete all files (*.*).
+0b,0012=Tous les fichiers dans "%0" seront supprimÇs !
+
+; results of file actions, like copy, delete, etc (0b,0200)
+0b,0100=pas de fichier %0
+0b,0101=un fichier %0
+0b,0102=%1 fichiers %0
+
+; names for file actions (0b,0100-0b,0102)
+0b,0200=copiÇ,dÇplacÇ,renommÇ,effacÇ,supprimÇ
+
+; default pause messages.
+; 0c,0000 and 0c0001 are for 80+ column modes and must be less than 80 characters
+; 0c,0002 is for 40 column mode and MUST be 39 characters or less.
+; Exceeding the maximum width will cause the the screen to scroll and the
+; item at the top will be pushed off of the display and no longer visible.
+0c,0000=Appuyez sur une touche pour continuer . . .
+0c,0001=Appuyez sur une touche ou cliquez avec la souris pour continuer . . .
+0c,0002=En pause . . .
+
+; date & time command messages
+0d,0000=La date actuelle est %0
+0d,0001=L'heure actuelle est %0
+; I have not determined whether the date/time input prompts should end in
+; a question mark or colon. Also, a space is automatically added to the end
+; of the prompt string when it is not present in the NLS.
+0d,0002=Entrer la nouvelle date (jj-mm-[ss]aa) :
+0d,0003=Entrer la nouvelle heure (hh:mm[:ss]) :
+
+; Date command format
+; %0 = YYYY 	%4 = YY
+; %1 = MM	%5 = M		%7 = Month (0d,0011)
+; %2 = DD	%6 = D
+; %3 = DAY OF WEEK (0d,0010)
+0d,0005=%3 %2 %1 %0
+
+; Day names for date format
+0d,0010=Dimanche,Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi
+
+; Month Names for date format
+0d,0011=Janvier,FÇvrier,Mars,Avril,Mai,Juin,Juillet,Aoñt,Septembre,Octobre,Novembre,DÇcembre
+
+; Time command format
+; %0 = HH (24hr)	%4 = HH (12hr)		%5 = H (12hr)
+; %1 = MM
+; %2 = SS
+; %3 = HS (100ths)
+; %6 = AM/PM (0d,0020)
+0d,0006=%0:%1:%2
+
+; AM/PM for time format
+0d,0012=AM,PM
+
+; Date format for directory listings (same params as date command)
+0d,0020=%2/%1/%0
+
+; Time format for directory listings (same params as time command)
+0d,0021=%0:%1:%2
+
+; When beep command is verbose (not implemented), this message will be
+; displayed during multiple tone playback. Probably.
+; 0e,0000=FrÇquence %0 Hz, DÇlai %1 ms
+
+; Memory command strings
+0f,0000=%0 est chargÇ sur le segment %1 en utilisant %2 octets
+0f,0001=%0 octets pour le code du shell
+0f,0002=%0 octets pour le NLS intÇgrÇ
+0f,0003=%0 octets pour la pile
+0f,0004=%0 octets pour les tampons internes
+0f,0005=%0 octets pour d'autres donnÇes
+0f,0006=Tampons externes supplÇmentaires :
+; development version of buffer memory information
+0f,0007=segment %1, %2Ko allouÇs, %3 octets libres, pour %0
+; alternate version of 0f,0007 without segment info, probably used in release
+; 0f,0007=%2Ko allouÇs, %3 octets libres, pour %0
+0f,0008=Utilisation supplÇmentaire de la mÇmoire relative Ö la traduction :
+; development version of translation memory information
+0f,0009=segment %1, %2 octets allouÇs, pour %0
+; alternate version of 0f,0009 without segment info, probably used in release
+; 0f,0009=%2 octets allouÇs, pour %0
+
+; Buffer types for 0f,0007 %0
+0f,0010=Chaånes de la souris
+0f,0011=Liste de l'historique
+0f,0012=Liste des alias
+0f,0013=Liste Mime
+0f,0014=Pile des rÇpertoires
+0f,0015=Police d'affichage
+0f,0016=NLS actif
+0f,0017=NLS verbal
+; this is other additional miscellaneous data, it does not need to be
+; called 'Miscellaneous', other, additional or whatever makes sense. :-)
+0f,0030=Autres donnÇes
+
+; This string is appended to stack string 0f,0003 only when the shell is
+; compiled with STACK_CHECK enabled. Other than debugging and development
+; of the shell, this will most likely be disabled in public releases.
+0f,0020=, %0 octets lors du pic d'utilisation
+
+; LANG command to display language (id code(s))
+10,0000=La langue actuelle est le suivant : %0 (%1).
+
+; Shell startup information messages, these messages (50,*) are temporary for
+; the development stage of V8Turbo. Most likely most or all will be removed at
+; release time.
+50,0000=ChargÇ sur le segment %0
+50,0001=L'affichage est %0, mode %1 (%2x%3)
+50,0002=Le NLS intÇgrÇ est %0, consommant %1 bytes
+50,0003=sans nom
+50,0004=L'exÇcutable est %0
+50,0005=Le caractäre de commutation est le %0
+50,0006=Le chemin du NLS est %0
+50,0007=non dÇfini
+50,0008=MÇmoire tampon interne %0 octets
+50,0009=%0 octets initialisÇs pour la pile
+50,000a=Aucune souris dÇtectÇe
+50,000b=Souris Ö %0 boutons dÇtectÇe
+50,000c=%0 octets libre dans le segment
+50,000d=%0 paragraphes initiaux allouÇs
+50,000e=RÇduit Ö %0 paragraphes
+
+; Display adapters
+51,0000=MDA
+51,0001=CGA
+51,0002=EGA
+51,0003=MCGA
+51,0004=VGA
+51,0005=VESA
+
+; Normal DOS error messages
+21,0000=aucune erreur
+21,0001=numÇro de fonction invalide
+21,0002=fichier introuvable
+21,0003=chemin introuvable
+21,0004=indicateurs de fichiers disponibles insuffisants
+21,0005=accäs au fichier refusÇ
+21,0006=indicateur de fichier invalide
+21,0007=le bloc de contrìle de la mÇmoire a ÇtÇ dÇtruit
+21,0008=mÇmoire disponible insuffisante
+21,0009=adresse de bloc de mÇmoire invalide
+21,000a=table d'environnement invalide
+21,000b=format invalide
+21,000c=code d'accäs invalide
+21,000d=donnÇes invalides
+21,000e=rÇservÇ
+21,000f=lecteur invalide demandÇ
+21,0010=impossible d'enlever le rÇpertoire actuel
+21,0011=pas le màme appareil
+21,0012=plus de fichiers correspondants
+21,0013=le disque est protÇgÇ en Çcriture
+21,0014=unitÇ inconnu
+21,0015=le lecteur n'est pas pràt
+21,0016=commande inconnue
+21,0017=erreur de donnÇes CRC
+21,0018=taille de la structure de requàte erronÇe
+21,0019=erreur de recherche sur le disque
+21,001a=type de disque inconnu
+21,001b=secteur de disque introuvable
+21,001c=l'imprimante est Ö court de papier
+21,001d=dÇfaut d'Çcriture sur le disque
+21,001e=dÇfaut de lecture depuis le disque
+21,001f=Çchec gÇnÇral du disque
+21,0020=violation de partage de fichiers
+21,0021=violation du verrou de fichier
+21,0022=Changement de disque invalide
+21,0023=blocs de contrìle de fichiers disponibles insuffisants
+21,0024=tampon de partage de fichiers invalide
+21,0025=probläme de correspondance des pages de code
+21,0026=impossible de terminer l'opÇration sur le fichier
+21,0027=espace disque disponible insuffisant
+
+; error when attempting to change to a unsupported text mode
+21,d001=mode vidÇo non pris en charge
+
+; general error for incompatible version of DOS
+21,e001=version de DOS non pris en charge
+
+; Extra message displayed for reserved commands with a function that has not
+; avaialbel at present. This message will be removed at some point.
+21,e002=la fonctionnalitÇ n'est pas encore implÇmentÇe
+
+; Extra message displayed for reserved commands not yet implemented at all.
+; This message will be removed at some point.
+21,e006=la commande "%0" n'a pas ÇtÇ implÇmentÇe
+
+; general error for command line garbage
+21,e101=paramätre, commutateur ou option invalide
+
+; general error for when a number is expected on the command line, but it could
+; be used. the number provided contains a bad format or invalid characters
+21,e201=format numÇrique invalide
+
+; general error for values on the command line that exceed the allows range
+; for an option.
+21,e301=valeur numÇrique en dehors de la plage
+
+; specific error for only V8Micro when command is not available with V8Micro
+21,e401=non pris en charge, V8Turbo est requis
+
+; specific error when a parameter has values that have not been provided
+21,e501=un paramätre requis est manquant
+
+; specific error that could be returned by date/time commands when attempt to
+; set the clock fails.
+21,e505=Çchec de la dÇfinition de l'heure sur l'horloge
+
+; specific error when shell was unable to locate an NLS file for a requested
+; language.
+21,e202=Le fichier NLS est introuvable
+
+; specific error that will occur when an NLS file format is invalid, probably
+; caused by improper modification of the NLS index (like index "ec,e102=").
+21,e302=format de fichier NLS malformÇ ou corrompu
+
+; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
+21,e402=mappage de caractäres NLS invalide
+
+; specific error for when some internal or NLS data is too large and exceeds
+; the memory segment assigned to it and wraps the segment.
+21,e109=les donnÇes dÇpassent la limite du segment
+
+; general error for when there is insufficient buffer space for the shell to
+; perform a task. For example, command line environment variable expansion.
+21,e008=mÇmoire tampon insuffisante
+
+; directory stack specific errors
+21,e601=la pile des rÇpertoires est vide
+21,e608=la pile des rÇpertoires est pleine
+
+; general error for when the user aborts an operation before it is completed.
+21,e026=opÇration sur le fichier annulÇ par l'utilisateur
+
+; general error message for when user performed a CTRL+C to abort, this message
+; is not displayed with ALL CTRL+C events. Only specific ones.
+21,e126=annulation par CTRL+C
+
+; 21,e226 When paused (or when waiting on input) and the user causes the current
+; action to stop in favor of performing a different action using the mouse. An
+; example of this would be, list the internal commands, then before the list is
+; finished being displayed and is paused, use the mouse to click on one of the
+; available commands. This will stop the list and initiate the display of the
+; help text for the command.
+21,e226=une action de l'utilisateur a nÇcessitÇ l'annulation
+
+; general error for when a directory path is required but not provided
+21,f003=nom de rÇpertoire requis
+
+; general error for when a file name is required and not provided
+21,f002=nom de fichier requis
+
+; general error for when files could not be found but were expected
+21,f102=aucun fichier correspondant trouvÇ
+
+; any error that does not have an associated NLS string
+21,ffff=erreur inconnue
+
+; Below here is all internal command help. Those are all group 42. Followed
+; by the command index + line. Line 0 is the VERY short description (~56 chars)
+; that is shown when listing the internal commands. Line 1+ is the general help
+; text. Additional lines may be added if needed. However, their numbers are in
+; hexadecimal and must be consecutive. The help display routine stops at the
+; first none existing line number.
+;
+; At present, this general help is provided a single paramater to all lines (1+)
+; as %0 for the current DOS Switch character. I may add additional params that
+; may be sent to those lines in the future to provide some other data. But, no
+; worries. Any unused paramaters will not cause a problem.
+;
+; Also, feel free to completely change the layout, reword, rewrite or add any
+; additional information you like to the command help. Even for the built-in
+; NLS, command help is not embedded into the executable. For the built-in
+; language, V8Turbo/X will switch from the built-in NLS to an external when
+; ether the Language is changed or command help is requested. As long as the
+; entire NLS file fits within a 64kb segment it will be fine.
+;
+; For V8Micro, things work a little different. The V8Micro NLS file has no
+; command help. When command help is requested, it temporarily loads the
+; V8Turbo NLS and prints its help version. Then, discards the V8Turbo version
+; of the NLS. The commands in V8Turbo and V8Micro work the same and have the
+; same options. V8Micro just doesn't have some of the commands, which is no
+; problem for the NLS.
+
+
+; 01, Alias
+;dd,0100=Afficher ou modifier les alias de commande.
+42,0100=non disponible
+42,0101=
+42,0102=Cette commande n'a pas ÇtÇ implÇmentÇe Ö l'heure actuelle. Il le sera Ö un
+42,0103=certain moment Ö l'avenir avec la progression du dÇveloppement du shell. Mais
+42,0104=pour le moment, la fonctionnalitÇ de cette commande n'est pas prÇsente.
+
+; 02, Beep
+42,0200=êmettre un bip depuis le haut-parleur interne du PC.
+42,0201=
+42,0202=  BEEP [frÇquence[,dÇlai][,...]]
+42,0203=
+42,0204=Taper BEEP sans paramätre Çmettra le son et le dÇlai par dÇfaut. Pour des
+42,0205=entrÇes multiples, si une valeur n'est pas fournie, la valeur par dÇfaut est
+42,0206=supposÇe. Les valeurs peuvent àtre sÇparÇes par des virgules ou des espaces
+42,0207=et peuvent àtre soit des nombres entiers, soit en hexadÇcimal.
+; Probably beep will get a %0V (verbose) switch as well to display. At that time,
+; Its help will be changed/inserted...
+; 42,0202=  BEEP [frÇquence[,dÇlai][,...]] [%0V]
+; 42,0203=
+; 42,0204=Pour afficher les sons et les dÇlais utilisez l'option %0V (Verbeux).
+
+; 03, Break
+42,0300=Afficher ou modifier la vÇrification de l'arràt CTRL+C.
+42,0301=
+42,0302=  BREAK [ON | OFF]
+42,0303=
+42,0304=Tapez BREAK sans paramätre pour afficher le rÇglage actuel.
+
+; 04, Call
+42,0400=Appeler un fichier batch depuis un autre.
+
+; 05, Chdir, cd
+42,0500=Modifier ou afficher le rÇpertoire actuel.
+42,0501=
+42,0502=Commandes CHDIR et CD.
+42,0503=
+42,0504=  CD [lecteur:]       Afficher le rÇpertoire actuel.
+42,0505=  CD [lecteur:][chemin]   Modifier les rÇpertoires.
+42,0506=  CD [..]             Basculer vers le rÇpertoire parent.
+42,0507=  CD [-]              Basculer vers le rÇpertoire prÇcÇdent.
+42,0508=  CD [*]              Afficher le chemin actuel sur tous les lecteurs.
+42,0509=
+42,050a=Tapez CD afin d'afficher le rÇpertoire actuel.
+
+; 35, Cdd
+42,3500=Modifier ou afficher le lecteur et rÇpertoire actuels.
+42,3501=
+42,3502=  CDD [%0D][lecteur:][chemin]   Changer le lecteur et dossier actuels.
+42,3503=  CDD [..]             Basculer vers le rÇpertoire parent.
+42,3504=  CDD [-]              Basculer vers le rÇpertoire prÇcÇdent.
+42,3505=  CDD [*]              Afficher le chemin actuel sur tous les lecteurs.
+42,3506=
+42,3507=L'option %0D informe CDD qu'il faut afficher une liste de rÇpertoires apräs
+42,3508=avoir effectuÇ un changement de dossier et/ou de lecteur. Tapez CDD sans
+42,3509=option pour afficher le chemin actuel.
+
+; 06, Chcp
+42,0600=Afficher ou modifier la page de code actuelle.
+
+; 07, Cls
+42,0700=Nettoie l'Çcran.
+42,0701=
+42,0702=  CLS
+
+; 08, Commands, ?
+42,0800=Afficher une liste des commandes internes avec une bräve description.
+42,0801=
+42,0802=  COMMANDS
+
+; 09, Copy
+42,0900=Copier un seul ou plusieurs fichiers.
+
+; 0a, Ctty
+42,0a00=Modifier ou afficher le pÇriphÇrique d'entrÇe principal (non implÇmentÇ).
+42,0a01=
+42,0a02=Apräs rÇflexion, j'ai pensÇ que la commande CTTY Çtait de peu d'utilitÇ sur
+42,0a03=les systämes DOS "modernes". Donc j'ai choisi de ne pas l'implÇmenter. J'ai
+42,0a04=seulement fourni une commande factice pour la rÇtrocompatibilitÇ. Si je
+42,0a05=trouve une bonne raison ou reáois assez de requàtes, je l'implÇmenterai.
+
+; 0b, Date
+42,0b00=Afficher ou modifier la date actuelle du systäme.
+42,0b01=
+42,0b02=  DATE [%0D | %0X] [nouvelle_date]
+42,0b03=
+42,0b04=%0D Empàche DATE d'affiche une invite pour modifier la date.
+42,0b05=%0X Similaire Ö %0D. Cependant, seule la date actuelle peut àtre affichÇe.
+42,0b06=
+42,0b07=Tapez DATE sans paramätre afin d'afficher et modifier la date actuelle.
+
+; 0c, Delete, Del
+42,0c00=Effacer des fichiers.
+42,0c01=
+42,0c02=Commandes DELETE et DEL.
+42,0c03=
+42,0c04=  DEL [lecteur:][chemin]nomfichier [%0P] [%0V]
+42,0c05=
+42,0c06=  [lecteur:][chemin]nomfichier SpÇcifie le fichier ou les fichiers Ö effacer.
+42,0c07=                       Utilisez des jokers pour spÇcifier plusieurs fichiers.
+42,0c08=
+42,0c09=  %0P    Invite pour une confirmation avant d'effacer le fichier.
+42,0c0a=  %0V    Afficher les noms de fichier des fichiers effacÇs.
+
+; 0d, Dir
+42,0d00=Afficher le contenu d'un rÇpertoire.
+42,0d01=
+42,0d02=  DIR [lecteur:][chemin][nomfichier]
+42,0d03=
+42,0d04=é prÇsent, cette commande est Ö peine implÇmentÇe et est seulement bonne pour
+42,0d05=lister le contenu des dossiers pour voir ce qu'il s'y trouve. Des informations
+42,0d06=informations supplÇmentaires sur les fichiers ou dossiers ne pas sont fournies.
+42,0d07=Elle ne les trie màme pas. Aucune option n'est prise en charge. Au cas oó il y
+42,0d08=aurait des paramätres, un paramätre complet avec un nom de fichier ou joker
+42,0d09=sera nÇcessaire.
+
+; 0e, Dirs
+42,0e00=Afficher la pile actuelle des rÇpertoires.
+42,0e01=
+42,0e02=  DIRS
+
+; 0f, Doskey
+42,0f00=Afficher ou modifier les rÇglages du clavier.
+42,0f01=
+42,0f02=  DOSKEY %0INSERT        pour activer le mode insertion (par dÇfaut).
+42,0f03=  DOSKEY %0OVERSTRIKE    pour dÇsactiver le mode de frappe avec insertion.
+
+; 10, Echo
+42,1000=Affiche un message, ou active ou bien dÇsactive l'Çcho des commandes.
+42,1001=
+42,1002=  ECHO [ON | OFF]   Active ou dÇsactive l'Çcho dans les fichiers batch.
+42,1003=  ECHO [message]    Afficher un message.
+42,1004=
+42,1005=Tapez ECHO sans paramätre pour afficher l'Çtat de l'Çcho des commandes.
+42,1006=
+42,1007=Pour afficher une ligne vide ou pour vous assurer que l'Çtat de l'Çcho des
+42,1008=commandes n'est pas affichÇ, mettez simplement un sÇparateur valide juste
+42,1009=apräs la commande ECHO. Une pratique rÇpandue est d'utiliser un point.
+42,100a=Par exemple : echo.
+
+; 11, Erase
+42,1100=Effacement de fichiers pour Çviter les voisins curieux.
+42,1101=
+42,1102=  ERASE [lecteur:][chemin]nomfichier [%0P] [%0V]
+42,1103=
+42,1104=  [lecteur:][chemin]nomfichier  SpÇcifie le ou les fichiers Ö supprimer.
+42,1105=                     Utilisez des jokers pour effacer plusieurs fichiers.
+42,1106=
+42,1107=  %0P    Invite pour une confirmation avant de supprimer le fichier.
+42,1108=  %0V    Afficher les noms de fichier des fichiers supprimÇs.
+42,1109=
+42,110a=Avertissement : Contrairement Ö DELETE, le fichier sera renommÇ puis ÇcrasÇ
+42,110b=avant l'effacement. Cela rendra le fichier irrÇcupÇrable avec les utilitaires
+42,110c=standards. Il ne s'agit pas d'un "effacement sÇcurisÇ."
+
+; 12, Errorlevel, Errlvl
+42,1200=Affiche ou dÇfinit le niveau d'erreur actuel.
+42,1201=
+42,1202=ERRORLEVEL, ERRLVL
+42,1203=
+42,1204=  ERRLVL [code d'erreur]
+42,1205=
+42,1206=Tapez ERRLVL sans paramätre pour afficher le message de code d'erreur actuel.
+
+; 13, Exit
+42,1300=Termine le shell de commande ou le fichier batch.
+42,1301=
+42,1302=  EXIT [%0SHELL | code d'erreur]
+42,1303=
+42,1304=Si un code de sortie n'est pas fourni, le code de sortie actuel sera utilisÇ.
+42,1305=Lors d'une invocation par un fichier batch, ledit fichier sera terminÇ. Si
+42,1306=utilisÇe depuis la ligne de commande, le shell quittera si c'est autorisÇ.
+42,1307=L'option %0SHELL sert Ö demander au shell de quitter depuis un fichier batch.
+
+; 14, For
+42,1400=ExÇcuter une commande pour chaque fichier dans un jeu de fichiers.
+
+; 15, Goto
+42,1500=Aller Ö une Çtiquette au sein d'un màme fichier batch.
+
+; 16, Gosub
+42,1600=Appeler une sous-fonction au sein d'un màme fichier batch.
+
+; 17, History
+42,1700=Afficher ou modifier l'historique de la ligne de commande.
+42,1701=
+42,1702=  HISTORY %0CLEAR        Effacer l'historique actuelle de la ligne de commande.
+42,1703=  HISTORY %0SIZE n      Modifier la quantitÇ de mÇmoire utilisÇe pour history.
+42,1704=
+42,1705=  HISTORY nomfichier    DÇfinir le nom de fichier pour LOAD, SAVE et AUTO.
+42,1706=  HISTORY %0SAVE        Sauvegarder l'historique actuelle dans un fichier.
+42,1707=  HISTORY %0LOAD        Charger l'historique prÇcÇdente depuis un fichier.
+42,1708=  HISTORY %0AUTO[= ON | OFF] Sauvegarder automatiquement la nouvelle historique.
+42,1709=
+42,170a=Les paramätres de la commande HISTORY sont traitÇs dans l'ordre. Ce qui veut
+42,170b=dire que "%0LOAD myhist.hst" se comportera diffÇremment de "myhist.hst %0LOAD"
+42,170c=
+42,170d=Pour redimensionner l'historique, prÇcisez la taille (SIZE) en tant que valeur
+42,170e=de 1 Ö 32 reprÇsentant la quantitÇ de mÇmoire en kilooctets. Le
+42,170f=redimensionnement est non destructif. Cependant, les anciens ÇlÇments peuvent
+42,1710=àtre effacÇs lors d'une rÇduction de la taille.
+42,1711=Tapez HISTORY sans paramätre pour afficher l'historique actuelle.
+
+; 32, Lang
+;
+; Basically...
+;
+; The /RELOAD option is for you, the translator. When working on a translation
+; or custom font. you can simple type 'LANG /RELOAD' to view your changes.
+;
+; The /N option is to prevent loading a custom NLS font. There are really only
+; three reasons for that. Some sort of compatibility issue. Or, on a system
+; when you only want to use the normal codepage font system. Or, if you are
+; using a custom font other than those provided with the shell.
+;
+; Finally, the /Q option is batch developers. They may want to switch languages
+; (like in the FreeDOS installer) without displaying the language information.
+42,3200=Afficher ou modifier les rÇglages de langue.
+42,3201=
+42,3202=  LANG [%0Q][%0N] lang_id   Modifier la langue et charger les traductions NLS.
+42,3203=  LANG [%0Q][%0N] %0RELOAD  Charger ou recharger la traduction nLS actuelle.
+42,3204=
+42,3205=Utilisez %0Q pour empàcher l'affichage des informations de traduction NLS.
+42,3206=
+42,3207=Utilisez %0N pour empàcher le chargement de la police NLS transitoire. Cette
+42,3208=option reste pour toutes les opÇrations %0RELOAD suivantes. Elle ne sera
+42,3209=dÇsactivÇe que lorsqu'un NLS est chargÇ par son identifiant de langue. Le
+42,320a=changement de police n'est disponible que sur les systämes avec une carte
+42,320b=EGA ou meilleure.
+42,320c=Tapez LANG sans paramätre pour afficher les informations de traduction.
+
+; 18, Lfnfor
+
+; 19, Loadfix
+42,1900=Charger un programme au-dessus des 64 premiers Ko de mÇmoire.
+
+; 1a, Loadhigh, lh
+42,1a00=Charger un programme dans la mÇmoire haute.
+
+; 1b, If
+42,1b00=Effectue un traitement conditionnel.
+
+; 1c, Memory
+42,1c00=Afficher des informations sur l'utilisation de la mÇmoire interne.
+42,1c01=
+42,1c02=  MEMORY
+42,1c03=
+42,1c04=La commande MEMORY n'affiche que la mÇmoire utilisÇe par le shell. Cela n'est
+42,1c05=pas la quantitÇ de mÇmoire occupÇe par le shell lors de l'exÇcution des
+42,1c06=programmes ou commandes externes.
+
+; 1d, Mkdir, md
+42,1d00=CrÇer un rÇpertoire.
+42,1d01=
+42,1d02=Commandes MKDIR et MD.
+42,1d03=
+42,1d04=  MD [lecteur:]chemin
+;42,1d04=  MD [%0P] [lecteur:]chemin
+;42,1d05=
+;42,1d06=Utiliez l'option %0P pour crÇer automatiquement les rÇpertoires parents.
+
+; 34, Mime
+42,3400=Afficher ou modifier les types de contenu MIME.
+
+; 1e, Path
+42,1e00=Afficher ou modifier le chemin de recherche du systäme pour les exÇcutables.
+42,1e01=
+42,1e02=  PATH [[lecteur:]chemin[;...]]
+42,1e03=
+42,1e04=Pour afficher les rÇglages actuels du chemin, tapez PATH sans paramätre.
+42,1e05=
+42,1e06=Tapez PATH ; pour effacer le chemin de recherche actuel. Avec une chemin de
+42,1e07=recherche vide, le shell ne recherchera que dans le rÇpertoire actuel.
+
+; 1f, Pause
+42,1f00=Se mettre en pause et attendre un ÇvÇnement pour continuer.
+42,1f01=
+42,1f02=  PAUSE [message]
+42,1f03=
+42,1f04=Si PAUSE n'est pas fourni avec un message, un message par dÇfaut sera affichÇ.
+42,1f05=Une fonction de dÇpassement de dÇlai sera probablement ajoutÇ Ö l'avenir.
+
+; 31, PowerNap
+42,3100=Afficher ou modifier les rÇglages PowerNap.
+
+; 20, Popd
+42,2000=Sort un rÇpertoire de la pile des rÇpertoires et y retourne.
+
+; 21, Prompt
+42,2100=Modifie la maniäre dont l'invite de commande est affichÇe.
+42,2101=
+42,2102=Träs probablement Ö un moment donnÇ, j'ajouterai la fonctionnalitÇ pour
+42,2103=modifier les informations affichÇes par l'invite de commande. Mais pour le
+42,2104=moment, l'invite par dÇfaut de V8Turbo suffira.
+
+; 22, Pushd
+42,2200=Pousse le rÇpertoire actuel sur la pile des rÇpertoires.
+
+; 23, Remark, rem
+42,2300=Commentaire ou note de fichiers batch.
+42,2301=
+42,2302=Commandes REMARK et REM.
+42,2303=
+42,2304=  REM [commentaire]
+42,2305=
+42,2306=Le texte Ö la suite de la commande REM n'est pas exÇcutÇ.
+
+; 33, Return
+42,3300=Revenir d'une sous-fonction batch.
+
+; 24, Rename, ren
+42,2400=Renommer un fichier ou un rÇpertoire.
+
+; 25, Rmdir, rd
+42,2500=Enlever un rÇpertoire.
+42,2501=
+42,2502=Commandes RMDIR et RD.
+42,2503=
+42,2504=  RD [lecteur:]chemin
+42,2505=
+42,2506=Cela pourrait recevoir une option qui effacera tous les fichiers et
+42,2507=sous-dossiers. Ou peut-àtre que je l'ajouterai Ö DELETE et ERASE. Ou bien
+42,2508=quelque chose d'autre. Ou rien du tout. Nous verrons...
+
+; 26, Set
+42,2600=Afficher ou modifier la table des variables d'environnement.
+42,2601=
+42,2602=  SET [%0I]
+42,2603=
+42,2604=%0I pour afficher les variables d'environnement internes disponibles pour les
+42,2605=fichiers batch. Les variables internes sont fournies par le shell. Si une
+42,2606=variable d'environnement est dÇfinie avec le màme nom, alors cette variable
+42,2607=sera utilisÇ au lieu de la variable interne.
+42,2608=
+42,2609=Pour l'instant, SET ne fait qu'afficher les variables d'environnement.
+
+; 27, Shift
+42,2700=Modifie la position des paramätres dans un fichier batch.
+
+; 28, Time
+42,2800=Afficher ou dÇfinir l'heure du systäme.
+42,2801=
+42,2802=  TIME [%0T | %0X] [nouvelle_heure]
+42,2803=
+42,2804=%0T Empàche TIME d'afficher une invite pour modifier l'heure actuelle.
+42,2805=%0X Similaire Ö %0T. Cependant, seule l'heure actuelle peut àtre affichÇe.
+42,2806=
+42,2807=Tapez TIME sans paramätre afin d'afficher et modifier l'heure actuelle.
+
+; 29, Textmode, Tm
+42,2900=Afficher, lister ou modifier le mode textuel actuel.
+42,2901=
+42,2902=Commandes TEXTMODE et TM.
+42,2903=
+42,2904=  TM mode             Passer vers le mode texte.
+42,2905=  TM %0r, %0report    Afficher les informations de mode texte actuel.
+42,2906=  TM %0p, %0probe     DÇtecter les modes textuels disponibles et les lister.
+42,2907=
+42,2908=TEXTMODE sans paramätre affichera aussi des informations sur le mode actuel.
+
+; 2a, Theme
+42,2a00=Afficher ou modifier le schÇma de couleurs du shell de commande actuel.
+42,2a01=
+42,2a02=  THEME [chiffre]    Modifier le thäme actuel.
+42,2a03=
+42,2a04=Tapez THEME sans paramätre afin de voir le numÇro du thäme actuel.
+
+; 2b, Truename
+42,2b00=Afficher le chemin complet pour un lecteur, rÇpertoire ou fichier.
+42,2b01=
+42,2b02=  TRUENAME [lecteur:][chemin][nomfichier]
+
+; 2c, Type
+42,2c00=Afficher le contenu d'un fichier.
+42,2c01=
+42,2c02=  TYPE [%0A | %0T | %0B] nomfichier [nomfichier...]
+42,2c03=
+42,2c04=%0A DÇtecter si les fichiers sont textuels ou binaires. (valeur par dÇfaut)
+42,2c05=%0T Afficher les fichiers suivants en tant que texte ASCII.
+42,2c06=%0B Afficher les fichiers suivants en tant que donnÇes binaires en hexadÇcimal.
+42,2c07=
+42,2c08=Notez que les jokers peuvent àtre utilisÇs Ö la place des noms de fichier.
+
+; 2d, Verify
+42,2d00=Afficher ou modifier la vÇrification de l'Çcriture sur le disque.
+42,2d01=
+42,2d02=  VERIFY [ON | OFF]
+42,2d03=
+42,2d04=Tapez VERIFY sans paramätre pour afficher le rÇglage actuel.
+
+; 2e, Version, ver
+42,2e00=Afficher les informations de version du shell de commande.
+42,2e01=
+42,2e02=Commandes VERSION et VER.
+
+; 2f, Vol
+42,2f00=Afficher l'Çtiquette du volume de disque.
+42,2f01=
+42,2f02=  VOL lecteur:   Afficher l'Çtiquette pour un lecteur spÇcifique.
+42,2f03=  VOL *          Afficher les Çtiquettes de tous les lecteurs.
+42,2f04=  VOL ?          Afficher l'Çtiquette pour le lecteur actuel.
+42,2f05=
+42,2f06=é prÇsent, "tous les lecteurs" ne comprend pas les lecteurs de disquette
+42,2f07=A: ou B:.
+
+; 30, Which
+42,3000=Afficher le fichier exÇcutable pour une commande.
+
+; 36, ?
+42,3600=Afficher des commandes ou bien optionnellement exÇcuter une commande.
+42,3601=
+42,3602=  ? [commande][paramätres]
+42,3603=
+42,3604=Demander avant d'exÇcuter une commande donnÇe. Tapez ? sans paramätre pour
+42,3605=voir une bräve liste des commandes internes.
+
+; Boot message
+70,0000=Ceci est un travail en cours et est loin d'àtre terminÇ. Plusieurs fonctions
+70,0001=critiques et d'autres fonctionnalitÇs ne sont pas (encore) implÇmentÇes. Cette
+70,0002=prÇversion est seulement destinÇe Ö tester le travail dÇjÖ effectuÇ. Il ne
+70,0003=convient pas une utilisation gÇnÇrale en tant que shell de commande Ö l'heure
+70,0004=actuelle. Il n'exÇcute màme pas les commandes externes pour le moment, seulement
+70,0005=les commandes internes. Tout cela viendra plus tard.
+70,0006=Pour dÇmarrer, tapez ? pour voir le jeu actuel de commandes qui sont disponibles
+70,0007=et qui arriveront (avec un peu de chance) dans un avenir proche. Entrer une
+70,0008=commande suivie par /? peut fournir des informations supplÇmentaires sur ladite
+70,0009=commande. Cependant, la plupart de l'aide standard des commandes DOS n'a pas
+70,000a=encore ÇtÇ ajoutÇe. Je vais y venir par la suite. Mais vous savez probablement
+70,000b=comment les utiliser. Ou vous pensez que vous savez. Car beaucoup d'entre elles
+70,000c=sont amÇliorÇes tout en essayant de maintenir la rÇtrocompatibilitÇ.
+70,000d=
+70,000e=Si vous avez une souris, elle fera des choses rÇelles. é l'avenir, les
+70,000f=fonctionnalitÇs intÇgrÇes de la souris seront Çtendues. Il existe davantage
+70,0010=de commandes et de fonctionnalitÇs auxquelles je rÇflÇchis et qui ne sont màme
+70,0011=pas encore listÇes. Restez Ö l'Çcoute.
+70,0012=
+70,0013=Aidez Ö encourager la continuitÇ du dÇveloppement de V8Turbo ainsi que
+70,0014=d'autres logiciels DOS en devenant mÇcäne. https://patreon.com/shidel
+70,0015=

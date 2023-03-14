@@ -1,0 +1,129 @@
+*******************************************************************************
+V8Power Tools
+Copyright 2015-2021 Jerome Shidel
+Released under GPL v2.0 License.
+*******************************************************************************
+
+Bringt die Leistung eines 8-Zylinder-Motors unter die Haube von DOS Batch-
+Dateien.
+
+===============================================================================
+
+Das Projekt V8Power Tools wird in Zusammenarbeit mit Jim Hall für das
+Betriebssystem FreeDOS(TM) (http://www.freedos.org) designed. Es soll die
+Funktionalität von Skripten erweitern, die unter Verwendung von Batch-
+Dateien geschrieben wurden, und um ihnen eine besser aussehende Benutzer-
+oberfläche mit erhöhter Funktionalität zu geben.
+
+===============================================================================
+
+Kompilieren von V8Power Tools
+
+    Voraussetzungen:
+
+        8086 oder bessere CPU.
+        EGA oder besserer Videoadapter.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) oder höher
+        NASM für DOS-Version 2.14.02 (http://wwww.nasm.us) oder neuer
+
+    Kompilieren:
+
+        Stellen Sie sicher, dass sich das NASM-Verzeichnis in Ihrer
+        Pfadspezifikation befindet. Laden Sie die neuesten Quellen von
+        http://github.com/LoopZ/V8Power herunter.
+        Führen Sie das Skript mkV8.bat aus.
+        Alle ausführbaren Dateien werden im neu erstellten BIN-Verzeichnis
+        abgelegt.
+
+    Für faule Leute wie mich:
+
+    Vorkompilierte Versionen sind unter http://up.lod.bz/V8Power verfügbar.
+
+===============================================================================
+
+Mit V8Power Tools getestete Kompatibilität:
+
+    FreeDOS 1.1+
+
+Eingeschränkte Kompatibilität von erweiterten Funktionen (keine "set /p"
+Batch-Unterstützung):
+
+    MS-DOS 6.2 und 6.22
+    PC-DOS 7.0, 7.01 und 2000
+    DR-DOS 7.03
+    DOSBox (E/A-Umleitung oder Abfragen mit STDOUT funktionieren NICHT mit
+         der eingebaute DOSBox-Shell. Sie funktionieren jedoch in DOSBox
+         gut, wenn eine kompatible Shell wie FreeCOM verwendet wird)
+    Windows 3.11-Shell
+    Windows 98-Shell und Befehlszeile
+    Windows XP SP3-Shell (außer vcursor)
+
+===============================================================================
+
+Verwendung von V8Power Tools
+
+Anbei einige grundlegende Informationen über alle Utilities und wie sie
+funktionieren.
+
+    Optionen, Werte und Hexadezimalzahlen unterscheiden nicht zwischen Groß-
+    und Kleinschreibung; /f white funktioniert genauso wie /F wHIte.
+
+    Hexadezimalzahlen sollten ein vorangestelltes 0x haben um zu vermeiden,
+    daß sie als base ten verwendet werden (Beispiel: 10 und 0x10).
+
+    Leertasten sind meistens optional. /B7/f0 ist identisch mit /B 7 /F 0.
+    Aber, nicht / B7 /F0.
+
+    Um ein / oder Leertasten in einem Wert zu verwenden, setzen sie diese
+    in Anführungszeichen. Wie "Jack und/oder Jill".
+
+    Verwenden Sie unterschiedliche Anführungszeichen, um Anführungszeichen
+    zu verwenden. Wie "Jack's house" oder 'Say "What?"'.
+
+    Sofern nicht überschrieben, verwenden die meisten Dienstprogramme das
+    Textattribut an der aktuellen Cursorposition.
+
+===============================================================================
+Hier ist die Farbtabelle, die für alle **/A**-, **/F**- und **/B**-Schalter
+verwendet wird:
+
+    Dezimal     Hex         Label (Nicht Fallspezifisch)
+
+    0           0x00        Black                  Schwarz
+    1           0x01        Blue                   Blau
+    2           0x02        Green                  Grün
+    3           0x03        Cyan                   Cyan
+    4           0x04        Red                    Rot
+    5           0x05        Magenta                Magenta
+    6           0x06        Brown                  Braun
+    7           0x07        Gray / Grey            Grau / Grau
+
+    (Nur Vordergrund /f und /a)
+
+    8           0x08        DarkGray / DarkGrey    Dunkelgrau 
+    9           0x09        LightBlue              Hellblau
+    10          0x0a        LightGreen             Hellgrün
+    11          0x0b        LightCyan              Hellcyan
+    12          0x0c        LightRed               Hellrot
+    13          0x0d        LightMagenta           Hellmagenta
+    14          0x0e        Yellow                 Gelb
+    15          0x0f        White                  Weiß
+
+Die meisten der einzelnen Tools, die Farbwechsel unterstützen, unterstützen
+auch die Blink- / Intensitäteinstellung. Die meisten Tools erwähnen dies
+aber nicht.
+
+    /BlinkOn    Aktiviert das Blinken- / Intensitätsbit (Starte Blinken).
+    /BlinkOff   Deaktiviert das Blinken- /Intensitätsbit. (Stoppe Blinken).
+
+Die DOS-Befehlszeile (und Batch-Dateien) ist auf ca. 128 Zeichen begrenzt.
+Dies kann es Tools wie vecho schwermachen, mehrere Zeilen auf einmal zu
+drucken.
+Durch die Verwendung des Schalters /T unterstützen viele Tools wie vecho,
+vstr usw. jedoch das Laden von längeren Textressourcen aus einer Datei.
+Im Allgemeinen wird der Schalter /T verwendet um "Übersetzungstext" für
+eine Batchdatei bereitzustellen.
+Beim Laden aus einer Datei ist das V8PowerTools Utility auf 10 KB pro Zeile
+begrenzt. Darüber hinausgehender Text in dieser Zeile wird von dem Utility
+ignoriert. 10 KB entsprechen 5 Bildschirmen oder mehr an Text und sind
+vollkommen übertrieben.

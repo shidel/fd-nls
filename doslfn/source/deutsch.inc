@@ -1,4 +1,4 @@
-Texte_deutsch:
+Texte_deutsch, CP858:
  dz	10							;0
  dz    "hoch"							;1
  dz    "geladen, verbraucht %u Bytes."				;2
@@ -11,31 +11,32 @@ Texte_deutsch:
  dz    "Schalter angenommen."					;9
  db    "	(386+)	++ FREEWARE ++",10			;10
   db   "Programm fÅr lange Dateinamen unter nacktem DOS.",10
+  db   "VERWENDUNG DES PROGRAMMS AUF EIGENE GEFAHR, DATENVERLUST MôGLICH."
   db   "Aktionen:	- (nichts)	TSR laden oder aktivieren",10
   db   "		- h oder ?	diese Hilfe",10
   db   "		- d		DOSLFN deaktivieren",10
   db   "		- s		Status und Einstellungen",10
 ifdef PROFILE
-  db   "		- p		show profile data",10
-  db   "		- pr		reset profile data",10
-  db   "		- pc		calibrate profile timing",10
+  db   "		- p		Zeige Profildaten an",10
+  db   "		- pr		Setze Profildaten zurÅck",10
+  db   "		- pc		Kalibriere Profildatierung",10
 endif
   db   "		- u		TSR entfernen",10
   db   "Schalter:	- w{+|-}	* Schreibzugriffe",10
   db   "		- ~{+|-}	* Tilde (ich hasse Schlangen)",10
   db   "		- t{+|-}	* Tunneleffekt (fÅr Editoren)",10
-  db   "		- f{+|-}	* Fallback-Modus - supply LFN for all drives",10
+  db   "		- f{+|-}	* Fallback-Modus - unterstÅtze LFN fÅr alle Laufwerke",10
   db   "		- c{+|-}	* CDROM-UnterstÅtzung",10
   db   "		- i{+|-}	* InDOS-Flag-Wiederaufrufsperre fÅr TSRs",10
   db   "		- r{+|-}	* Schreibschutz-Attribut fÅr CDROM-Dateien",10
 if USEWINTIME
-  db   "		- o[N]		* set time zone N or read TZ if absent",10
+  db   "		- o[N]		* setze Zeitzone N oder lese TZ falls nicht vorhanden",10
 endif
   db   "		- z[:|=]table	Unicode-Tabelle (.TBL-Volkov-Format) laden",10
   db   "		- m[:|=]bytes	Grî·e des internen Heaps festlegen, 600..50000",10
-  db   "		- ms[:|=]bytes	declare size of short path, 16..141",10
-  db   "		- ml[:|=]bytes	declare size of long path, 16..1024",10
-  db   "		- mn[:|=]bytes	declare size of long name, 13..512",10
+  db   "		- ms[:|=]bytes	Deklariere Grî·e des kurzen Pfads, 16..141",10
+  db   "		- ml[:|=]bytes	Deklariere Grî·e des langen Pfads, 16..1024",10
+  db   "		- mn[:|=]bytes	Deklariere Grî·e des langen Namens, 13..512",10
   db   "		- p[:|=]path	Arbeitsverzeichnis (.TBL/.JLT/.386) festlegen",10
   db   "		- l{d|e|f|t}	Sprache setzen (deutsch|englisch|franzîsisch|tÅrkisch)",10
   db   "Umgebung: 	TZ=xxxNyyy	Zeitzone N fÅr Zeitumrechnung, ohne DST",10
@@ -60,16 +61,16 @@ endif
  dz    "AUS"							;25
  dz    "%37s %s",10						;26
  dz    "Verzeichnis existiert nicht!"				;27
- dz    "Kann Verzeichnis nicht setzen."				;28
+ dz    "Kann Arbeitsverzeichnis nicht setzen."				;28
  dz    "Kann Heap-Grî·e nicht verÑndern."			;29
- dz    "Kann Schalter nicht annehmen."				;30
+ dz    "Schalter nicht akzeptiert."				;30
  dz 10,"Dazu vorher TSR entfernen."				;31
  dz    "DOS4+ erforderlich!"					;32
  dz 10,"In einem DOS-Fenster dieser Windows-Version ist DOSLFN sinnlos!";33
- dz    "Heap: gesamt=%u, used=%u, frei=%u, grî·ter Block=%u Bytes",10	;34
+ dz    "Heap: gesamt=%u, verwendet=%u, frei=%u, grî·ter Block=%u Bytes",10	;34
  dz    "Letzter Fehler: %u - "					;35  =	 0
  dz			"Verbotener Schreibzugriff"			;1
- dz			"Konnte Verzeichnis nicht expandieren"		;2
+ dz			"Konnte FAT-Verzeichnis nicht expandieren"		;2
  dz			"Konnte Joliet-Link-Tabelle nicht finden"	;3
  dz			"Nicht genug Speicher - bitte vergrî·ern"	;4
  dz			"Konnte Unicode-Datei nicht laden"		;5
@@ -79,12 +80,12 @@ if USEWINTIME
  dz    "%37s UTC%+d",10						;43
 endif
 ifdef PROFILE
- dz    "Profile.",10						;ProfileNr
- dz    "Profile reset.",10					;+1
+ dz    "Profil.",10						;ProfileNr
+ dz    "Profil zurÅckgesetzt.",10					;+1
  dz    "%7lu %2d.%03d %s",10					;+2
- dz    "Calibrating profile.",10				;+3
- dz    "Profile timing constant = %lu000",10			;+4
- dz    "Error running calibration",10				;+5
+ dz    "Kalibriere Profil.",10				;+3
+ dz    "Profil-Timing-Konstante = %lu000",10			;+4
+ dz    "Fehler beim Kalibrieren",10				;+5
  if USEWINTIME
  ProfileNr = 44
  else

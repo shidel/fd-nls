@@ -1,0 +1,74 @@
+FreeDOS için Paket Araçları
+
+(çok aceleyle yazılmış kaba bir taslak)
+
+PKGINFO
+
+    Kurulu paketler için üst verileri ve dosya bilgilerini görüntüleyen komut
+satırı programı. Ekseriyetle kullanımı kolaydır. Sadece bir iki hususa dikkat
+etmek gerekir. İlk olarak, paket listeleri gelişmiş jokerler kullanılarak
+sınırlanabilir. Mesela, *XMS* ve ?D*N beklenen neticeleri geri gönderir. İkinci
+olarak da arama seçeneği. Aramayı sadece belirtilen paketlerle
+sınırlayabilirsiniz, yoksa tüm paketlerin üst verileri aranacaktır. Arama
+temelde başka bir gelişmiş jokerdir. Yani "pkginfo *fd* /s gnu*ver*2" girebilir
+ve kimliği FD içeren ve üst verilerinde gnu*ver*2 bulunan tüm paketlerin
+listesini alabilirsiniz. Ayrıca /d ekleyip üst verilerin de görüntülenmesini
+sağlayabilirsiniz. Çoğunlukla komut satırı parametrelerinin sırasının bir
+etkisi yoktur.
+
+PKGMAKER
+
+    FreeDOS için paket oluşturma maksadını taşıyan komut satırı programı.
+Birçok şekilde kullanılabilir.
+
+    Farzedelim ki kurulumcusu bulunan bir programı bir pakete dönüştürmek
+istiyorsunuz. Kolay. Sadece PKGMAKER'ı çalıştırın. Kurulumu yapın. PKGMAKER'ı
+tekrar çalıştırın. Aşağıdakine benzer bir şey olacaktır:
+
+    pkgmaker anewpkg
+    install
+    pkgmaker
+    edit %DOSDIR%\APPINFO\ANEWPKG.LSM
+    pkgmaker /z
+
+İşte bu kadar. Neredeyse bu kadar. Sanırım bahsetmem gereken daha çok şey var...
+
+İlk defa çalıştırıldığında FreeDOS'un kurulu olduğu sürücünün durumunu kaydeder.
+İlave sürücülerin durumunu kaydetmesini /d seçeneği ile sağlayabilirsiniz. D:
+ile E: sürücülerini de mi eklemek istiyorsunuz? O hâlde komut satırına sadece
+/d de ilave edin. Bunu unuttuysanız panik yapmayın. PKGMAKER'a ilk taramayı
+tekrarlamasını /i seçeneğini kullanarak belirtmeniz kafi olacaktır.
+
+Kurulum tamamlandığında, PKGMAKER ikinci bir kez çalıştırırsınız. Eğer ilk
+taramada paket ismi girmediyseniz, bunu şimdi yapmanız gerekecektir. Program
+sürücüleri ikinci defa tarayacak ve bunu orijinal tarama ile mukayese edecektir.
+Bulunan yeni dosyalar ile bir paket dosyası oluşturacaktır. Ayrıca bir şablon
+LSM dosyası da oluşturacaktır şu anda. Bu ilaveten, mevcut bir dosyanın
+değiştirildiğini fark ederse bu dosyaları listeleyen bir .MOD dosyası da
+oluşturacaktır.
+
+Oluşturulan .LSM, .LST ve .MOD dosyaları, %DOSDIR%\APPINFO ve %DOSDIR%\PACKAGES
+içinde normal paket yönetimi dizinlerinde depolanacaktır. Ve FDNPKG gibi bir
+paket yöneticisini kullanarak yeni oluşturulan paketinizi şimdi
+kaldırabilirsiniz. Ama daha bitmedi.
+
+Bu noktada, muhtemelen metin temelli üst veri dosyanızı düzenlemek
+isteyeceksiniz. O, %DOSDIR%\APPINFO\ANEWPKG.LSM olarak depolanmıştı ve jenerik
+metin içerir. Başlık, Sürüm, Açıklama ve Lisans gibi alanların hepsinin
+güncellenmesi gerekecektir.
+
+Şimdi paketi zip ile sıkıştırıp yayınlamak istiyoruz. PKGMAKER, varsayılan bir
+yapılandırma dosyasıyla gelir, ve bu dosya "gerçek" dizinleri paketler için
+kullanılan "sözde" bir dizin yapısı ile denkleştirir. Şayet paket kurulduğunda
+dosyalar beklediğiniz yerlerde değillerse, muhtemelen bir denkleşme sorunu var
+demektir. Çoklu "sözde" dizini "gerçek" tek bir dizinle denkleştirmek program
+için kafa karıştırıcı olabilir. Hangisini hakikaten istediğinizi tahmin
+etmesinin hiçbir yolu yoktur ve bir tanesini seçecektir.
+
+Umarım bu belge önemli noktaların çoğunu kapsar. Bu arada, paketlere dosya
+ekleyip onlardan dosya çıkartabileceğinizden bahsetmiş miydim? Veya bazen
+PKGMAKER'ı çeşitli hataları görmezden gelmeye ve devam etmeye
+zorlayabileceğinizden bahsetmiş miydim?
+
+NOT: şu anda uzun dosya isimleri (LFN) desteklenmemektedir. Ayrıca ZIP
+programının kurulu olması gerekmektedir.

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Networking FreeDOS - Quick Networking HowTo</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Networking FreeDOS - Quick Networking HowTo</h1>
+<pre>
+  The original of this Quick Networking HowTo is available in internet
+  with pictures, see:
+<b>http://wiki.freedos.org/wiki/index.php/Networking_FreeDOS_-_Quick_</b>
+<b>Networking_HowTo</b> .
+
+  The next chapters of this document will describe DOS networking with a
+  lot of detail. But for the impatient users, here's a quick HowTo: It
+  explains how to set up a network with FreeDOS 1.3.
+</pre>
+<h2>Install the networking software</h2>
+<pre>
+  By default there is no network preinstalled with FreeDOS.
+  But the installer makes it pretty simple to set it up.
+  *  Install FreeDOS according to <b>http://www.freedos.org/install/</b>
+  *  Afterwards, leave the CD in the tray, reboot and choose:
+     <b>"Boot from system harddisk"</b>.
+
+  (Picture installing FreeDOS from CD)
+
+  *  After the reboot run the package manager <b>FDIMPLES</b>:
+
+   (Picture with tool FDIMPLES activating FDNET, mTCP and HTGET.)
+
+  (The install CD has to be present to see all the packages available.)
+  *  In the left window choose Networking, in the right the programs
+     you wish to install.
+  *  <b>FDNET</b> is mandatory for networking in virtual machines. I
+     would also recommend at least <b>mTCP</b> and <b>wget</b>. Confirm with OK.
+  *  Reboot.
+
+  (Picture showing FreeDOS 1.3 that booted up with network support.)
+ 
+  The boot messages above show that the C:\FDOS\BIN\FDNET.BAT network
+  batch file was able to identify my system correctly as running in
+  VirtualBox. It loaded the correct packet driver PCNTPK.COM. DHCP.EXE
+  from mTCP also found the network and was configured automatically.
+  So far FDNET.BAT is able to identify the following virtual machines:
+  QEMU, VirtualBox, VMWARE.
+</pre>
+<h2>If you don't run FreeDOS in a virtual machine</h2>
+<pre>
+  If you don't run FreeDOS in a virtual machine, you should first try
+  to find a packet driver for your network interface card (NIC).
+  Many packet drivers are written and collected by Russell Nelson and
+  his Crynwr Software <b>(*01)</b>. Download them from there or from the
+  FreeDOS repository.
+
+  If you found a packet driver, please add it to your AUTOEXEC.BAT
+  right before the line with FDNET.BAT. For instance for the
+  3COM 3c589 PCMCIA card you'd add:
+
+     LH 3C589PD.COM 0x60 5 0x300
+     if exist &#37;dosdir&#37;\bin\fdnet.bat call &#37;dosdir&#37;\bin\fdnet.bat start
+
+</pre>
+<h3>Without a packet driver</h3>
+<pre>
+  If you can't find a packet driver for your network card, there is a
+  good chance to find a driver that was supposed to work with Novell
+  Netware (ODI driver) or with the Windows Lanmanager or with Windows
+  for Workgroups (NDIS driver). It's a bit of work, but you can use
+  these drivers as packet drivers. Learn more about <a href="../network/ndis_ins.htm">NDIS drivers</a>
+  or <a href="../network/odi_ins.htm">ODI drivers</a> in this <a href="../network/index.htm">documentation</a>.
+</pre>
+<h2>The network's up. Now what?</h2>
+<pre>
+  If you're using FreeDOS in VirtualBox, please check your settings for
+  your network adapter. You have to decide between bridged Networking
+  or NAT. Please see the HowTo about VirtualBox <b>(*02)</b>.
+  You need to configure your networking programs. For instance set the
+  name and password for the FTP server by editing C:\MTCP\FTPPASS.TXT.
+
+  Some DOS networking programs need to find the network configuration
+  in C:\FDOS\WATTCP.CFG. In FreeDOS 1.3 it looks like this:
+
+     my_ip = dhcp
+
+  Unfortunately some old programs are not able to get the values by
+  DHCP themselves. So either you put fixed IPs in here. Or you use a
+  nice utility written by Canadian programmer Dave Dunfield: It will
+  get the correct network settings via DHCP and insert them in
+  C:\FDOS\WATTCP.CFG.
+
+  If you want to do the latter,
+
+  *  Open C:\FDOS\WATTCP.CFG and delete the line
+
+     my_ip = dhcp
+
+  *  Go to Dave Dunfields "DOS Widgets" page (*03).
+  *  Download "DDHCP" from the network tools section
+     (NEW: "DHCP", see (*04)).
+  *  Put it into an directory C:\DDHCP and add these lines to
+     AUTOEXEC.BAT, right after the FDNET.BAT line:
+
+     if exist &#37;dosdir&#37;\bin\fdnet.bat call &#37;dosdir&#37;\bin\fdnet.bat start
+     C:\DDHCP\DDHCP /W /F
+
+  (The "/F" parameter will fill in all values that are missing in
+  WATTCP.CFG.)
+
+  (PLEASE NOTE: The filename is not "DDHCP" but "DHCP"! So there
+  maybe minor changes!)
+
+  Now with every reboot, WATTCP.CFG is updated with the correct network
+  settings.
+</pre>
+<h2>See also:</h2>
+<pre>
+  *  <b>(*01)</b> Crynwr website, see:
+           <b>http://crynwr.com</b>
+           Crynwr packet drivers, see:
+           <b>http://crynwr.com/drivers/</b>
+           OR:
+<b>https://web.archive.org/web/20120623172127/http://www.crynwr.</b>
+<b>com/drivers/</b>
+          (everything in ONE LINE, NO free space!)
+  *  <b>(*02)</b> HowTo about Virtual Box, see:
+           <b>http://wiki.freedos.org/wiki/index.php/VirtualBox</b>
+  *  <b>(*03)</b> Dave Dunfields "DOS Widgets page" is here now:
+           <b>http://dunfield.classiccmp.org/dos/index.html</b>
+  *  <b>(*04)</b> The file seems to have the name "dhcp.zip" instead
+           of ddhcp.zip. So the new link is:
+           <b>http://dunfield.classiccmp.org/dos/dhcp.zip</b>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007 Ulrich Hansen, Mainz (Germany), modified 2022
+  for FreeDOS help by W.Spiegl.</b>
+  For more information <a href="../network/intro.htm#ddd">see here</a>.
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

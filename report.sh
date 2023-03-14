@@ -1,7 +1,7 @@
 #!/bin/bash
 
 EXCEPT=';packages;fdi;htmlhelp;'
-SPECIAL=';pgme;danger;'
+SPECIAL=';pgme;danger;freecom;blocek;v8power;'
 EXCLUDE=';txt;docinfo;htm;html;inc;'
 
 LANGUAGES=''
@@ -19,7 +19,7 @@ REQFNTS=';1012;0816;'
 
 unset CHECK_PGME
 
-DEBUGGING=";tee;"
+DEBUGGING=";freecom;blocek;v8power;"
 unset DEBUGGING
 
 function script_header () {
@@ -227,7 +227,7 @@ function load_nls () {
     unset ${1}
     local line flag hold t
     if [[ -f "${2}" ]] ; then
-        hold=$( while [[ ! $flag ]] ; do
+        hold=$( export LC_CTYPE=C ; while [[ ! $flag ]] ; do
             read -r line || flag=done
             line="${line//[$'\t\r\n']}"
             line="${line#${line%%[![:space:]]*}}"
@@ -359,6 +359,7 @@ function lang_of_nls () {
     t="${t%.*}"
     [[ "${EXCLUDE//;${t};}" != "${EXCLUDE}" ]] && return 0
     echo "${t}"
+    # echo "LANG ${t}" >&2
 
 }
 
@@ -661,6 +662,7 @@ function special_pgme () {
         app=$(cfg_section 'HELP' -x<${lfile})
         appl=$(echo "$cfg" | grep "^ID=" | cut -d '=' -f 2)
         case $(upperCase "${appl}") in
+            'GERMAN') appl="DE";;
             'FRENCH') appl="FR";;
             'SPANISH') appl="ES";;
             'TURKISH') appl="TR";;
@@ -784,6 +786,89 @@ function special_danger () {
 
 function special_imgedit () {
     :;
+}
+
+function special_blocek () {
+    local f t l e x msg tf
+    local td=$(get_stamp "${app}/source/blocek1.en")
+    for f in ${app}/nls/* ; do
+        [[ ! -f "${f}" ]] && continue
+        t=$(lowerCase "${f##*/}")
+        t="${t%%.*}"
+        [[ "${t}" != 'blocek1' ]] && continue
+        l=$(lowerCase "${f##*.}")
+        [[ "${l/utf-8}" != "${l}" ]] && continue
+        e=""
+        x="${f%/*}/blocek2.${l}"
+        x=$(fileCase -a "${x}")
+        if [[ ! -f "${x}" ]] ; then
+        	e='*'
+        else
+	    local tf=$(get_stamp "${f}")
+	    [[ ${tf} -lt ${td} ]] && e='!'
+        fi
+        [[ "${e}" == "" ]] && e='?'
+	[[ "${msg}" == '' ]] && msg="${e}${l}" || msg="${msg}, ${e}${l}"
+    done
+    echo "${2}: ${msg} (compare 'source' manually)"
+
+}
+
+function special_freecom () {
+    local f t l e msg tf
+    local td=$(get_stamp "${app}/source/default.lng")
+    for f in ${app}/source/*.lng ; do
+	t="${f##*/}"
+	t="${t%.*}"
+        l=$(lowerCase "${t}")
+        case "${l}" in
+            "english")       	l='en';;
+            "german") 		l='de';;
+            "french") 		l='fr';;
+            "turkish") 		l='tr';;
+            "spanish") 		l='es';;
+            "italian") 		l='it';;
+            "finnish") 		l='fi';;
+            "russian") 		l='ru';;
+            "polish") 		l='pl';;
+            "swedish") 		l='sv';;
+            "slovene") 		l='sl';;
+            "slovenian") 	l='sl';;
+            "ukrainian") 	l='uk';;
+            "ukr") 		l='uk';;
+            "pt_br") 		l='ptbr';;
+            # per - https://www.loc.gov/standards/iso639-2/php/code_list.php
+            "dutch")		l='nl';;
+            "serbian")		l='sr';;
+	    # other
+            "default")		l='';;
+            "yu437")		l='';;
+            *)           	l="${l}"
+        esac
+        [[ "${l}" == '' ]] && continue
+        e=""
+        if [[ ! -f "${app}/source/${t}.err" ]] ; then
+        	e='*'
+        else
+	    local tf=$(get_stamp "${f}")
+	    [[ ${tf} -lt ${td} ]] && e='!'
+        fi
+        [[ "${e}" == "" ]] && e='?'
+	[[ "${msg}" == '' ]] && msg="${e}${l}" || msg="${msg}, ${e}${l}"
+    done
+    echo "${2}: ${msg} (compare 'source' manually)"
+
+}
+
+function special_v8power () {
+    local f t l e x msg tf
+    for f in ${app}/help/* ; do
+        l=$(lowerCase "${f##*/}")
+        [[ "${e}" == "" ]] && e='?'
+	[[ "${msg}" == '' ]] && msg="${e}${l}" || msg="${msg}, ${e}${l}"
+    done
+    echo "${2}: ${msg} (compare 'help' manually)"
+
 }
 
 function each_app () {

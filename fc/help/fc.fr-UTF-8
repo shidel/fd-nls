@@ -1,0 +1,102 @@
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC compare deux fichiers ou jeux de fichiers, en mode texte ou binaire, et
+affiche leurs différences.
+
+FC implémente l'algorithme de Paul Heckel décrit dans Communications of the
+Association for Computing Machinery, avril 1978, p264 - p268,
+"A Technique for Isolating Differences Between Files", c'est-à-dire "Une
+technique pour isoler les différences entre des fichiers".
+
+L'avantage de cet algorithme sur les algorithmes plus communément utilisés est
+qu'il est rapide et qu'il peut détecter les différences dans un nombre
+arbitraire de lignes. Pour la plupart des applications l'algorithme isole les
+différences similaires à celles isolées par sous-séquence commune la plus
+longue.
+
+La syntaxe est la suivante :
+
+FC [options] [lecteur1:][chemin1]nomfich1 [lecteur2][chemin2]nomfich2 [options]
+
+ /A    N'afficher que la première et dernière ligne pour chaque jeu de diff
+ /B    Effectuer une comparaison binaire
+ /C    Ne pas prendre en compte la casse des lettres
+ /L    Comparer les fichiers en tant que texte ASCII
+ /LBn  Définir le nombre maximum de lignes ASCII différentes consécutives sur n
+ /Mn   Définir les différences maximales de comparaison binaire à n octets
+ /N    Afficher les numéros de ligne lors d'une comparaison de texte
+ /Q    Ne pas afficher la liste des différences
+ /R    Afficher un bref rapport final (tojours actif avec /S)
+ /S    Étendre l'analyse aux fichiers dans les sous-répertoires
+ /T    Ne pas développer les tabulations en espaces
+ /U    Afficher les noms des fichiers pour les fichiers sans correspondant
+ /W    Empaqueter les espaces blancs (tabulations et espaces) pour la
+       comparaison de texte
+ /X    Ne pas afficher le contexte dans la comparaison de texte
+ /nnn  Définir le nombre minimum de lignes correspondantes consécutives sur nnn
+       pour la resynchronisation de la comparaison
+
+Le programme prend en charge le LFN et l'utilise automatiquement si le système
+d'exploitation prend en charge les noms de fichiers longs.
+
+FC utilise par défaut le mode binaire pour les fichiers .EXE, .COM, .SYS, .OBJ,
+.BIN, .DLL et .LIB.
+
+En mode binaire, FC affiche le décalage des octets différents dans le fichier,
+leur valeur en hexadécimal et s'il s'agit de caractères ASCII imprimables, leur
+caractère ASCII.
+
+Par défaut, la comparaison binaire s'arrête au bout de 20 différences mais
+cette valeur peut être modifiée avec l'option /M. /M0 signifie "différences
+illimitées", /M est interprétée comme /M0.
+
+Une limitation de conception de ce programme est que, en mode de comparaison de
+fichier texte, seules les 32765 premières lignes seront comparées, les lignes
+restantes seront ignorées. La longueur de la ligne est virtuellement illimitée.
+
+FC prend en charge les jokers dans les spécifications de fichiers. Quelques
+mots là-dessus :
+- spécifier un répertoire revient à spécifier tous les fichiers dans ce
+  répertoire (c'est-à-dire "*.*").
+  Exemple : "FC C:\ A:" équivaut à "FC C:\*.* A:*.*"
+- si aucun nomfichier2 n'est entré, alors "." (le répertoire courant) est
+  supposé.
+  Exemple : "FC C:\FOO.TXT" équivaut à "FC C:\FOO.TXT .\*.*"
+- si nomfichier1 a des jokers mais nomfichier2 n'en a pas, alors tous les
+  fichiers correspondant à nomfichier1 sont comparés avec nomfichiers2.
+  Exemple : "FC FOO.BK? FOO.TXT"
+	   Tous les fichiers FOO.BK? seront comparés avec with FOO.TXT
+- si nomfichiers1 a des jokers et nomfichier2 est un chemin suivi par "*.*"
+  alors tous les fichiers correspondant à nomfichier1 seront comparés avec les
+  fichiers du même nom mais dans le chemin spécifié par nomfichier2 (si ce
+  fichier existe, bien entendu).
+  Exemple : "FC *.* A:*.*" ou, en version courte, "FC . A:"
+	   Tous les fichiers dans le répertoire courant seront comparés avec leur
+	   copie sur A:
+- si nomfichier1 a des jokers et nomfichier2 en a aussi, alors tous les
+  fichiers sur le chemin de nomfichier1 et correspondant à nomfichier1 seront
+  comparés avec le fichier correspondant à nomfichier2 sur le chemin spécifié
+  par nomfichier2 (si ce fichier existe, bien entendu).
+  Exemple : "FC *.TXT OLDS\*.BAK"
+	   Tous les fichiers dans le répertoire courant seront comparés avec leur
+	   copie de sauvegarde renommée en .BAK dans le sous-répertoire OLDS.
+C'est plus facile à faire qu'à dire.
+Si ce que vous souhaitez vraiment est de comparer chaque fichier dans un
+répertoire avec tous les fichiers dans un autre répertoire, vous pouvez
+toujours utiliser la forme :
+FC *.* MYDIR\????????.???
+
+L'option /S itère le même modèle de recherche dans les sous-répertoires avec le
+même nom sur les deux chemins.
+  Exemple : "FC /S C:*.TXT D:*.BAK"
+	   En supposant par exemple l'existence des sous-répertoires C:BOOK et
+	   D:BOOK, cette commande compare tous les fichiers *.TXT avec leurs copies
+	   de sauvegarde *.BAK dans les sous-répertoires courants et également tous
+	   les fichiers BOOK\*.TXT avec leurs copies de sauvegarde BOOK\*.BAK.
+
+Les codes de sortie pour le niveau d'erreur (ERRORLEVEL) sont les suivants :
+	0	Tous les fichiers correspondent
+	1	Au moins une paire de fichiers diffère
+	2	Paramètre invalide sur la ligne de commande
+	3	Fichier introuvable
+	4	Erreur lors de l'ouverture de(s) fichier(s)

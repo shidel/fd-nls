@@ -1,0 +1,34 @@
+; translated by W. Spiegl
+FreeDOS APPEND.   APPEND ermöglicht es Programmen, Datendateien in
+                  angegebenen Verzeichnissen so zu öffnen, als wenn
+                  die Dateien im momentanen Verzeichnis wären.
+(C) 2004-2006 Eduardo Casino, under the terms of the GNU GPL, Version 2
+
+Syntax:
+
+  APPEND [[drive:]path[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+  APPEND ;
+
+    [drive:]path Laufwerk und Pfad zu APPEND.
+    /X[:ON]      Erweitert APPEND auf Suchvorgänge und Befehlsausführung.
+    /X:OFF       APPEND kann nur verwendet werden, um Dateien zu öffnen.
+                 Standard ist /X:OFF
+    /PATH:ON     Durchsucht angehängte Verzeichnisse nach Dateianforderun-
+                 gen, die bereits einen Pfad enthalten. Dies ist die
+                 Standardeinstellung.
+    /PATH:OFF    Schaltet /PATH:ON aus.
+    /E           Speichert den APPEND-Suchpfad im Umgebungsspeicher
+                 /E kann nur beim ersten Aufruf von APPEND verwendet werden.
+                 Sie können in der gleichen Kommandozeile wie APPEND /E
+                 keine  Pfade angeben.
+
+  APPEND ; Löscht die Liste der zusätzlich angegebenen Suchpfade.
+  APPEND Ohne Parameter zeigt APPEND die Liste der zusätzlich
+         angegebenen Suchpfade an.
+
+Beachte:                                                               
+
+  APPEND installiert sich nach seinem ersten Aufruf als interner Befehl.
+  Ein zweiter und weitere Aufrufe DÜRFEN NICHT den Dateipfad und die 
+  Dateiendung des APPEND-Befehles beinhalten.
+

@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FreeDOS command: ambhelp</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: ambhelp</h1>
+<pre>
+  AMBHELP are the FreeDOS help files in AMB format. To read help files
+  using the AMB file format, also install the <a href="../help/amb.htm">AMB</a> reader.
+</pre>
+<h2>How the AMB container works:</h2>
+<pre>
+  1. The AMB container
+  2. The Document Title
+  3. The AMA format
+  4. Codepage encoding
+  5. Index data
+  6. Rationale
+</pre>
+<h2>Details:</h2>
+<pre>
+                        1. THE AMB CONTAINER
+
+  The AMB file is a container - one could say it is a very simplistic
+  archive format. It starts with a 4-bytes format signature (magic value)
+  "AMB1". Then comes a 2-bytes number that tells how many files are
+  present in the container, followed by the list of all files: each file
+  is described by a file entry. All values are little-endian.
+
+  offset
+    0      format signature: "AMB1"
+    4      files count (16-bit value)
+    6      FILE ENTRY #1
+           FILE ENTRY #2
+           FILE ENTRY #3
+           ....
+           DATA
+
+  Each file entry is a 20-bytes structure:
+
+  offset
+    0      filename, 12 characters, zero-padded ("FILE.EXT\0\0\0\0")
+   12      offset where this file starts (32 bits)
+   16      file length, in bytes (16 bits)
+   18      BSD sum (16-bit) of the file
+
+  The AMB archive is expected to contain a set of AMA (Ancient Machine
+  Article) files, and optionally a title file, an index dictionary and a
+  codepage map.
+
+  An AMB archive must contain at least one AMA file named "index.ama" -
+  this is the first file that an AMB reader will try loading.
+
+  Note: Names of files contained in an AMB archive are to be processed in
+        a case insensitive way and must be composed exclusively of 7-bit
+        characters.
+</pre>
+<hr>
+<pre>
+                        2. THE DOCUMENT TITLE
+
+  The AMB title is a string that may be displayed as the document's main
+  title. To set such title, the AMB archive has to contain a file named
+  simply 'title' that would contain the text. The title string should not
+  be longer than 64 characters, anything longer might be truncated by
+  the reader.
+  The title of the document is expected to be encoded with the same
+  codepage as all the articles. See codepage encoding.
+</pre>
+<hr>
+<pre>
+                        3. THE AMA FORMAT
+
+  The AMA format is a text-based file format. For guaranteed
+  interoperability with old machines, its maximum allowed size is 65535
+  bytes (i.e. 2^16 - 1). Larger contents must be segmented into a set of
+  two or more AMA articles.
+
+  An AMB reader must display content with a 78-characters width, hence an
+  AMA article must not contain any line longer than 78 displayable
+  characters. Lines longer than this limit may be truncated by the client
+  reader.
+
+  AMA articles may contain control codes. A control code is a character
+  pair, where the first is a percent (&#37;) character. Possible control
+  codes:
+
+  &#37;t       normal text follows (default state)
+  &#37;h       heading follows
+  &#37;l       link follows (filename ended by a ':', followed by
+           a description)
+  &#37;!       notice/warning follows
+  &#37;b       boring text follows (usually displayed gray on gray)
+  &#37;&#37;       display a percent character (&#37;)
+
+  It is important to note that the current text mode is reset to &#37;t at
+  the end of every line, hence there is no need to prefix a line of text
+  with &#37;t.
+
+  Line endings may be either LF or CR/LF. The former is recommended, as
+  it is more compact.
+
+  TAB control codes (ASCII decimal value 9) are NOT allowed in AMA files.
+
+  Whenever an external URL appears in an AMA file (for example a link to
+  a web page, to a ftp resource or to a gopher hole) it is encouraged to
+  be enclosed between &lt;&gt; characters. Example: &lt;http://amb.osdn.io"&gt;. This
+  is only a typesetting recommendation based on RFC 3986, it is not part
+  of the AMA specification. Following it would, however, make it much
+  easier for modern AMB readers to detect such links automatically and
+  make them clickable.
+</pre>
+<hr>
+<pre>
+                        4. CODEPAGE ENCODING
+
+  Since ancient computers are displaying text as 8-bit characters due to
+  the design of early video adapters, AMA files are expected to contain
+  8-bit text as well. The exact codepage is unspecified by this format
+  definition and depends on the document's target audience.
+
+  To ease displaying of AMB books on modern (Unicode-enabled) platforms,
+  any AMB file that contains non-7-bit characters SHOULD also contain a
+  file named "unicode.map". This file contains a sequence of 128 16-bit
+  values, mapping bytes of the range 128..255 into Unicode datapoint
+  values. Such file can be readily output by the <a href="http://utf8tocp.sourceforge.net">utf8tocp</a> program.
+
+</pre>
+<hr>
+<pre>
+                        5. INDEX DATA
+
+  On top of AMA files, the AMB archive may contain a file named DICT.IDX.
+  This file, if it exists, provides indexing metadata to allow the client
+  to perform fast and efficient full-text searches across the AMB book.
+
+  The index file contains a hash table: a series of 256 16-bit indexes,
+  where each index points to a region of the index structure that contains
+  a list of words (LoW). The index (0..255) itself is an 8 bits hash based
+  on the length of the word and its characters. The checksum is made of
+  two nibbles: LC. The high nibble (L) is the length of the word minus 2,
+  while the low nibble (C) is a simple checksum of all the word's
+  characters XORed together. This algorithm can be formalized as follows:
+
+  ((wordlen - 2) &lt;&lt; 4) | ((a & 15) XOR (b & 15) XOR (...))
+
+  For example, the word "Disk" would end up being indexed under value
+  0x25, because:
+
+             ((4 - 2) &lt;&lt; 4) | ((D & 15) XOR (i & 15) XOR (s & 15) XOR
+             (k & 15))
+  translates to:   (2 &lt;&lt; 4) | (4 XOR 9 XOR 3 XOR 11)
+  which leads to:        32 | 5
+  resulting in:          37 = 0x25
+
+  After the index we can find the pointer to the words list. A pointer is
+  a 16 bits file offset from the index structure start.
+
+  It needs to be noted that words of less than 2 characters and more than
+  17 characters cannot be indexed. The presented algorithm has also the
+  interesting side effect of indexing low and high caps of the ranges
+  a..z and A..Z identically. An important limitation is the fact that the
+  list of words (LoW) is restricted by the 16-bit addressing offset,
+  which means that all LoWs must start at an offset within the first 64
+  KiB of the file.
+
+  Now that we know the offset at which our LoW starts, we can read the
+  words. First go to the offset, and read a single 16 bits word. Its
+  value contains the number of words in the list. Then, read the words
+  one after another (note that all words in the list have the same
+  length, and you know this length already). Words are always written
+  in lower case characters. Each word is followed by a 1-byte value that
+  tells how many files the word has been found in. Then, that many 32-bit
+  file identifiers follow.
+
+index format:
+
+ * List of words
+
+    xx   number of words in the list
+    ?    word
+    x    how many files the word is present in
+    xxxx file identifier 1
+    xxxx file identifier 2
+    ...
+    xxxx file identifier n
+
+    (other 255 lists of words follow)
+
+ * hash table
+
+    xx offset of the LoW for words that match hash 0x00
+    xx offset of the LoW for words that match hash 0x01
+    ...
+    xx offset of the LoW for words that match hash 0xff
+</pre>
+<hr>
+<pre>
+                        6. RATIONALE
+
+  The AMB format is, by design, burdened by several limitations. These
+  limitations might be misunderstood as shortcomings, while in essence
+  the AMB format's primary objective is to stay as primitive as possible
+  - so it is easy (and fast) for software to parse and display. Below are
+  listed some of these limitations, with explanations about the reasons
+  that led to them.
+
+* Line length limited to 78 characters
+
+  The hard-coded limit of 78 chars is meant to ensure that the reader
+  will not have to worry about line wrapping, which highly simplifies
+  the reader's code thus allowing for faster processing and minimizing
+  potential bugs. It is also meant to allow the content creator to
+  design his screens in a deterministic way - that is, without any risk
+  that his semigraphic tables,
+  ASCII drawings or overall screen disposition will be broken by a
+  reader that attempts to rewrap the text at an unpredictable width.
+  The 80-columns width was ubiquitous since the early 80' and seems to
+  be a reasonable baseline expectation, and a 78-characters limit allows
+  the reader to use two columns for its own needs (vertical cursor,
+  border, etc).
+
+* No control over style (colors) applied to text
+
+  The AMB format defines a set of semantic tags (like "&#37;h" for
+  "heading"). It does not allow control over the exact colors or
+  attributes that will be used by the output device to render the
+  document. This is designed on purpose: AMB documents should be
+  displayable also on monochrome devices. There may also be devices that
+  allow for text attributes like "underlined", "bold", etc - it is up to
+  the AMB reader to make sure the semantic tags are translated into
+  colors/shades/attributes combinations that are nicely rendered on the
+  target hardware.
+
+* Article size limit of 64 KiB
+
+  A single article (AMA file) is limited to a maximum length of 64 KiB
+  (minus one byte). This limitation makes it easier for MS-DOS readers
+  to load the content: in real-mode Intel memory models, a single memory
+  segment is addressable via 16-bit offsets, hence processing content
+  larger than 64 KiB becomes tricky, as it involves crossing memory
+  segment boundaries, or relying on some kludges like "huge" memory
+  pointers (slow), or dynamically reloading parts of the file from disk
+  (very slow). 64 KiB still allows for more than 30 pages of 80x25
+  packed text, which should be more than enough even for very complex
+  subjects (and larger contents should simply be dispatched into two or
+  more different articles, which can only be beneficial for readability).
+
+* Maximum number of 65535 articles
+
+  An AMB book may contain up to 65535 articles and not a single more,
+  because the number of articles is written as a 16-bit integer in the
+  file's header.
+  This allows AMB software to use 16-bit integers when addressing the
+  articles, which is very convenient (and fast) for platforms with
+  16-bit CPUs. And honestly - is that really a limitation? Even the
+  entire Bible has "only" 1189 chapters, or 31103 verses.
+
+* Short filenames + low-ASCII characters only
+
+  Filenames inside an AMB container are limited to 12 (8+3) characters
+  so an AMB container can be unpacked on an old MS-DOS system.
+  The filenames must contain only low-ASCII (7-bit) characters -- for
+  two reasons: so it is possible to unpack an AMB container on any
+  filesystem, independently of the codepage said filesystem relies on,
+  and to make it possible to reliably perform case-insensitive matching
+  of filenames.
+ </pre>
+<hr>
+</pre>
+<h2>Comments:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../help/amb.htm">amb</a>
+  <a href="../help/ambpack.htm">ambpack</a>
+  <a href="../help/apropos.htm">apropos</a>
+  <a href="../help/fasthelp.htm">fasthelp</a>
+  <a href="../help/fasthelp.htm">fdhelp</a>
+  <a href="../help/help.htm">help</a>
+  <a href="../help/index.htm">How to use the Help</a>
+  <a href="../help/help.htm">htmlhelp</a>
+  <a href="../help/newbie01.htm">Newbies01</a>
+  <a href="../help/newbie02.htm">Newbies02</a>
+  <a href="../base/utf8tocp.htm">utf8tocp</a>
+  <a href="../help/whatis.htm">whatis</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2020 Mateusz Viste, updated in 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>
