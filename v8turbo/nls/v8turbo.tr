@@ -121,6 +121,9 @@
 ; help for a command is not available
 02,000a=%0 iáin istenen yardçm mevcut deßildir
 
+; extra message when macro expansion fails
+02,000b="%0" makrosunun geniületilmesi baüarçsçz oldu
+
 ; Extra messages for when make or remove dir fails
 03,0000="%0" dizininin oluüturulmasç baüarçsçz oldu
 03,0001="%0" dizininin kaldçrçlmasç baüarçsçz oldu
@@ -312,6 +315,10 @@
 ; LANG command to display language (id code(s))
 10,0000=GÅncel dil üudur: %0 (%1).
 
+; CHCP messages
+11,0000=Faal kod sayfasç üudur: %0.
+11,0001=Sistem kod sayfasç üudur: %0.
+
 ; Shell startup information messages, these messages (50,*) are temporary for
 ; the development stage of V8Turbo. Most likely most or all will be removed at
 ; release time.
@@ -416,6 +423,10 @@
 ; set the clock fails.
 21,e505=saatin ayarlanmasç baüarçsçz oldu
 
+; specific error that could be returned by chcp command when attempt to
+; set the active codepage fails.
+21,e025=kod sayfasçnçn deßiütirilmesi baüarçsçz oldu
+
 ; specific error when shell was unable to locate an NLS file for a requested
 ; language.
 21,e202=NLS dosyasç bulunamadç
@@ -438,6 +449,11 @@
 ; directory stack specific errors
 21,e601=dizin yçßçnç boü
 21,e608=dizin yçßçnç tamamen dolu
+
+; doskey macro specific errors
+21,e701=bilinmeyen doskey makro ismi
+21,e702=makro isminde geáersiz karakter
+21,e708=doskey makro listesi dolu
 
 ; general error for when the user aborts an operation before it is completed.
 21,e026=kullançcç dosya iülemini iptal etti
@@ -554,6 +570,10 @@
 
 ; 06, Chcp
 42,0600=Etkin kod sayfasçnç gîrÅntÅle veya deßiütir.
+42,0601=
+42,0602=  CHCP nnn     Belirtilen kod sayfasçna geá.
+42,0603=
+42,0604=GÅncel kod sayfasç ile ilgili bilgi gîrÅntÅlemek iáin parametresiz CHCP yazçn.
 
 ; 07, Cls
 42,0700=Ekranç temizler.
@@ -616,10 +636,29 @@
 42,0e02=  DIRS
 
 ; 0f, Doskey
+; Reminder %% means to display the percent symbol and is not a parameter itself
 42,0f00=Klavye ayarlarçnç gîrÅntÅle veya deßiütir.
 42,0f01=
 42,0f02=  DOSKEY %0INSERT      ekleme yazçm kipini etkinleütirir (varsayçlan).
 42,0f03=  DOSKEY %0OVERSTRIKE  ekleme yazçm kipini devre dçüç bçrakçr.
+42,0f04=  DOSKEY %0CLEAR       tÅm gÅncel makrolarç siler
+42,0f05=  DOSKEY %0MACROS      gÅncel makrolarç gîrÅntÅler
+42,0f06=
+42,0f07=  DOSKEY macro[=][deßer] bir makroyu gîrÅntÅle, ekle, deßiütir veya kaldçr
+42,0f08=
+42,0f09=Bir makro oluüturmak veya deßiütirmek iáin ona bir deßer atayçn. Atanan deßer
+42,0f0a=boüsa makro kaldçrçlçr. Eßer bir deßer atanmadan sadece makro ismi girilmiüse
+42,0f0b=makro gîrÅntÅlenecektir.
+42,0f0c=
+42,0f0d=Makrolar îzel bir kod kullanarak parametre destekleyebilir:
+42,0f0e=
+42,0f0f=$0      Äaßrçldçßç gibi makro ismi.
+42,0f10=$1-$9   Toplu iü programlarçnda %%1-%%9 kullançlmasçna eüdeßer.
+42,0f11=$*      TÅm parametreler, tÅm $1-$9 parametrelerinin kullançlmasçna eüdeßer.
+42,0f12=$$      Komut satçrçnda $ simgesini kullan.
+42,0f13=
+42,0f14=ûayet makro tançmçnda hiábir parametre kullançlmadçysa tançmlanan makro
+42,0f15=metninin ardçndan $* varsayçlçr.
 
 ; 10, Echo
 42,1000=Mesaj gîrÅntÅler, komut yankçsçnç etkinleütirir veya devre dçüç bçrakçr.
@@ -780,6 +819,8 @@
 
 ; 20, Popd
 42,2000=Dizin yçßçnçndan bir dizin áçkarçr ve ona dîner.
+42,2001=
+42,2002=  POPD
 
 ; 21, Prompt
 42,2100=Komut isteminin nasçl gîrÅntÅlendißini deßiütirir (eklenmemiütir).
@@ -790,6 +831,12 @@
 
 ; 22, Pushd
 42,2200=GÅncel dizini dizin yçßçnçnçn Åzerine iter.
+42,2201=
+42,2202=  PUSHD [sÅrÅcÅ:][yol]
+42,2203=
+42,2204=PUSHD, gÅncel dizini dizinler yçßçnçna kaydeder. ûayet hiábir parametre
+42,2205=girilmediyse belirtilen yola da geáer. PUSHD, CDD komutuyla aynç seáenekleri
+42,2206=destekler.
 
 ; 23, Remark, rem
 42,2300=Toplu iü yorumu veya notu.
