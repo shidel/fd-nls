@@ -1,0 +1,50 @@
+vtest [options]
+
+Un testeur simple d'‚tat qui peut effectuer diverses v‚rifications qui peuvent
+ˆtre r‚sum‚es en VRAI ou FAUX. Le r‚sultat est transmis en tant que niveau
+d'erreur ERRORLEVEL. Lorsque la r‚ponse est VRAIE un z‚ro est retourn‚. Si la
+r‚ponse est FAUSSE, un 1 est transmis. L'utilisation d'une syntaxe erron‚e ou
+bien d'autres erreurs similaires retourneront 100.
+
+Tests:
+
+	/f fichier 	 	le fichier existe
+	/d r‚pertoire	le chemin existe
+	/e fich ou r‚p	le fichier ou le chemin de r‚pertoire existe
+	val1 /eq val2	les valeurs sont ‚gales
+	val1 /ne val2	les valeurs ne sont pas ‚gales
+	val1 /ge val2	val1 est sup‚rieure ou ‚gale … val2
+	val1 /le val2	val1 est inf‚rieure ou ‚gale … val2
+	val1 /gt val2	val1 est sup‚rieure … val2
+	val1 /lt val2	val1 est inf‚rieure … val2
+	chaŒne		    la chaŒne n'est pas vide
+	/n chaŒne	    la chaŒne n'est pas vide
+	/z string	    la chaŒne est vide
+	/v number	    le chiffre est valide
+
+Op‚rateurs d'expression :
+
+	/c expression	Forcer une valeur … ˆtre trait‚e en tant que chaŒne et
+			effectuer une comparaison sp‚cifique … la casse.
+	/i expression	Forcer une valeur … ˆtre trait‚e en tant que chaŒne et
+			effectuer une comparaison insensible … la casse.
+	exp1 /and exp2  Les deux expressions doivent ˆtre VRAIES.
+	exp1 /or /exp2  L'un ou l'autre expression peut ˆtre VRAIE.
+	/not expression Inverser le r‚sultat d'une expression.
+
+Par d‚faut, la comparaison des valeurs est fond‚e sur leur type. Si les deux
+valeurs sont un nombre (repr‚sent‚s en d‚cimal ou hexad‚cimal), la comparaison
+sera faite math‚matiquement. Sinon, une comparaison alphab‚tique insensible …
+la casse sera effectu‚e. L'utilisation de soit l'une ou l'autre des options /c
+ou /i forcera une comparaison fond‚e sur le texte sans prendre en compte le
+type de donn‚e de la valeur.
+
+Exemples :
+
+Un fichier nomm‚ TEST.TXT existe :		  vtest /f TEST.TXT
+Un fichier nomm‚ TEST.TXT n'existe pas :  vtest /not /f TEST.TXT
+Soit le fichier A.TXT soit B.TXT existe : vtest /f A.TXT /or /f B.TXT
+Ni le fichier A.TXT ni B.TXT n'existent : vtest /not /f A.TXT /and /not /f B.TXT
+%1 est un nombre :          				vtest /v %1
+%1 est un nombre de 1 … 10 :	           	vtest /v %1 /and 1 /le %1 /le 10
+
