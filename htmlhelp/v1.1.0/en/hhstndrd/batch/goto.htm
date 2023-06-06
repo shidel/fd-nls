@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: goto</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: goto</h1>
+<pre>
+  GOTO directs the command shell to a labelled line in a batch program.
+  GOTO is a <a href="../batch/index.htm">BATCH-FILE</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  GOTO  [ ':' ]label
+</pre>
+<h2>Options:</h2>
+<pre>
+  label  Specifies a text string used in the batch program as a label.
+         Both "goto label" and "goto :label" work.
+  /?     Shows the help
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Normally all commands of a batch script are executed in the sequence
+  in which they are appear with the script. GOTO controls the command
+  flow by unconditionally jumping to the specified label; the commands
+  following that label will be executed then. A label is written as a
+  colon in the first column of a line and the name of the label
+  immediately behind. If FreeCOM hits a label in the normal flow, it is
+  ignored completely, even any redirection characters are ignored.
+  The label must be located in the same script file as the GOTO itself,
+  if it appears more than once, the first occurance takes precedence.
+  Conditional jumps can be constructed with help of the IF command,
+  see example 2.
+  The name of the label should be not to long AND self explaining.
+  GOTO is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+    GOTO ende           OR GOTO :ende
+    Jumps the to label :ende
+  Example: 2
+    IF "&percnt;1"=="" GOTO emptyCommandLine
+    Jumps to label :emptyCommandLine, if no argument had been passed to the
+    batch script. For instance:
+    @ECHO OFF
+    IF "&percnt;1"=="" GOTO error
+    REM do something sane here
+    GOTO ende
+   :error
+   ECHO You must pass an argument to me!
+   :ende
+  Example 3:
+  IN A .BAT FILE / AUTOEXEC.BAT:
+    if &percnt;config&percnt;==1 goto DEFRAG
+    if &percnt;config&percnt;==2 goto COPY
+    :DEFRAG
+    defrag c:
+    goto END
+    :COPY
+    copy xy.txt c:\test\xy.txt
+    goto END
+    :END
+    cls
+  Example 4:
+  IN A .BAT FILE / AUTOEXEC.BAT:
+    @ECHO 1 = Do this
+    @ECHO 2 = Do that
+    @ECHO 3 = Do another thing
+    @ECHO 4 = Do nothing
+    @choice /B /C:1234 /N /S What do you want to do?
+    if errorlevel 4 goto DONOTHING
+    if errorlevel 3 goto DOANOTHER
+    if errorlevel 2 goto DOTHAT
+    if errorlevel 1 goto DOTHIS
+    :DOTHIS
+    your commands
+    goto EXIT
+    :DOTHAT
+    your commands
+    goto EXIT
+    :DOANOTHER
+    your commands
+    goto EXIT
+    :DONOTHING
+    your commands
+    goto EXIT
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/at.htm">@ (at)</a>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../batch/choice.htm">choice</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../batch/echo.htm">echo</a>
+  <a href="../batch/errorlvl.htm">errorlevel</a>
+  <a href="../batch/if.htm">if</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2007 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

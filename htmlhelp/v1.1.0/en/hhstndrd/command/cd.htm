@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: cd / chdir</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: cd / chdir</h1>
+<pre>
+  Displays the name of a drive or changes the current directory. CD is
+  100&percnt; compatible with the <a href="../command/cd.htm">CHDIR</a> command; there is no difference --
+  beside the spelling -- between them.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  1. CD
+  2. CD [ drive ':' ] path
+  3. CD '-'
+  4. CD [..] [-] [\] [/?]
+    drive  The drive letter, e.g. C:
+    path   The directory, e.g. \example\
+</pre>
+<h2>Options:</h2>
+<pre>
+  ..  Specifies that you want to change to the parent directory.
+  -   If "last directory" feature is enabled, change to last directory.
+  \   Changes to root (C:\ or D:\ etc.)
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The first variant shows the current working directory as absolute path.
+  The second variant changes the current directory of the given drive. If
+  no drive is specified on command line, the current directory of the
+  currently selected drive (disk) is changed. This command does not
+  change the currently selected drive in opposite to CDD!
+  The third variant changes back into the last visited directory and
+  drive. The commands CD, CHDIR, CDD, and PUSHD save the current working
+  directory before performing the specified directory change; the command
+  CD '-' restores this saved directory. This command is available only,
+  if the feature LAST_DIR has been enabled during the compilation of
+  FreeCOM.
+  CD ".." moves back folder by folder, whereas CD "\" jumps back to root
+  with one command.
+  CD / CHIR is stored in the context segment (last directory) of of
+  command.com, for more information see: <a href="../base/command.htm">COMMAND /E:nnn</a> and <a href="../command/memory.htm">MEMORY</a>.
+
+  CD / CHDIR is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+    CD \FREEDOS\HELP
+  Changes the current working directory of the currently selected drive
+  to the path \FREEDOS\HELP.
+  Example 2:
+    CD C:\FREEDOS\HELP
+  Changes the current directory of drive C:.
+  Example 3:
+  Assuming the current working directory is \FREEDOS\HELP and the
+  currently selected drive is C:.
+    CD displays C:\FREEDOS\HELP
+  Example 4:
+  The command sequence, provided the first two worked successfully:
+    CD \FREEDOS\HELP
+    CD ..
+    CD -
+  changes first into the directory \FREEDOS\HELP, then into its parent
+  directory, which is \FREECOM. And finally CD - changes back to
+  \FREEDOS\HELP, because this was the previous directory before previous
+  CD-like command.
+  Because CD - saves the previous directory, too, any subsequent: CD -
+  will switch between these two directories; until another directory is
+  changed to.
+  Example 5:
+    CD shows C:\FREEDOS\HELP
+    CD HTMLHELP                  OR:
+    CD C:\FREEDOS\HELP\HTMLHELP  changes to this subdirectory.
+    CD ..                        changes to C:\FREEDOS\HELP you can run
+                                 back by using CD .. several times OR:
+    CD \                         changes back to root (C:\) directly.
+</pre>
+</h2>
+<pre>
+  <a href="../command/cd.htm">cd/chdir</a>
+  <a href="../command/cdd.htm">cdd</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../command/dirs.htm">dirs</a>
+  <a href="../command/md.htm">md/mkdir</a>
+  <a href="../command/pushd.htm">pushd</a>
+  <a href="../command/rd.htm">rd/rmdir</a>
+
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

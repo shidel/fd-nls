@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: cdrcache.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: cdrcache.sys</h1>
+<pre>
+  CDRCACHE.SYS is a CD drive cache program. It improves the drive
+  performance. Requires XMS memory, and at least a 386 computer.
+  CDRCACHE.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>.
+  When FreeDOS is already running, you can load CDRCACHE.SYS later
+  with <a href="../base/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  In config.sys, either:
+    device=cdrcache.sys device name size
+  OR:
+    devicehigh=cdrcache.sys device name size
+</pre>
+<h2>Options:</h2>
+<pre>
+  device  The name of the CD-ROM driver device that will be cached.
+  name    The name of the CD-ROM driver device that CDRcache will
+          mimick. You then tell your <a href="../base/shsucdx.htm">SHSUCDX</a> or (<a href="../base/mscdex.htm">MSCDEX</a>) or similar
+          that your CD-ROM driver would be called like that. All
+          cached requests will be handled by CDRcache, all others
+          will be passed on to the real CD-ROM driver device.
+  size    Specifies the XMS cache size in kilobytes, range is 238 to
+          65280. Values below 100 are interpreted as size in units
+          of 1/4 MBytes for backwards compatibility with CDRcache
+          versions before 5/2004. Values are rounded up to multiples
+          of 1/4 MByte.
+  Controlling the driver after loading:
+  If you do not give acceptable values for those options, an
+  help screen will be displayed. Note that if you set name to
+  for example "CDRCACHE" (not recommended) you might not be able
+  to access files with names that start with CDRCACHE, as devices
+  are opened before files when in doubt.
+
+  Currently recognized command letters are:
+  Command:
+    F     Flush the cache.
+    S     Show Statistics.
+    I     Show statistics with extra technical Information.
+    C     Clear statistics.
+    Q     Quiet mode.
+    N     Normal verbosity.
+    V     Verbose/trace mode.
+    0     Stop caching.
+    1     Continue caching (after stop for instance).
+    ?     Shows the help.
+    name  Is the parameter passed to CDRCACHE.SYS (see example).
+
+  All other input to the user interface is ignored.
+
+  The new "tech info" display shows the same information as the
+  "statistics" display of older CDRcaches before 5/2004. The
+  normal statistics display has been beautified in newer versions
+  and has been reduced to show only "easy to understand" values.
+
+  Reading from the device currently causes statistics display
+  and returns an error if you try to do it more than once every
+  2 seconds (this is to throttle software that keeps reading).
+  It is planned that you can read statistics this way, but for
+  now, statistics are directly written to screen only.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Load CDRCACHE.SYS after loading your CD-ROM device driver (usually
+  UDVD2.SYS).
+  CDRCACHE.SYS is read cache only.
+  When you start writing to your CD-R, CDRcache will go to sleep
+  and stop caching data until the next disk change, to make 100&percnt;
+  sure that CD-R contents and cache contents stay consistent.
+  You can also issue sleep / wakeup commands manually.
+  As CDRCACHE.SYS (2003) is based on <a href="../base/lbacache.htm">LBACACHE.SYS</a>, please read the
+  LBAcache documentation for some additional technical/programming
+  details.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  In CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=c:\FREEDOS\BIN\UDVD2.SYS /D:FDCD0000
+    DEVICE=c:\FREEDOS\BIN\CDRCACHE.SYS FDCD0000 CDRCACH$ 2048
+  Then in AUTOEXEC.BAT / FDAUTO.BAT:
+    c:\FREEDOS\BIN\shsucdx /D:CDRCACH$,N
+  This allocates a 2048KB (2MB) cache buffer for a single IDE CD drive.
+  Controlling after loading:
+    echo F &gt; cdrcach$    (flush cache)
+    echo SCF &gt; cdrcach$  (show statistics, then clear statistics and
+                         flush cache)
+    echo S &gt; cdrcach$    (only show statistics)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../cnfigsys/device.htm">device/devicehigh</a>
+  <a href="../base/devload.htm">devload</a>
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+  <a href="../cnfigsys/lastdrv.htm">lastdrive/lastdrivehigh</a>
+  <a href="../base/lbacache.htm">lbacache</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/shsucdx.htm">shsucdx</a>
+  <a href="../base/tickle.htm">tickle</a>
+  <a href="../base/udvd2.htm">udvd2.sys</a>
+  <a href="../base/uide.htm">uide.sys</a>
+  <a href="../base/xdvd2.htm">xdvd2.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

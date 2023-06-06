@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: usbhub</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: usbhub</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  USBHUB is a DOS Driver for up to 16 Generic USB ver 1 Hubs, with
+  up to 7 ports on each Hub.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  USBHUB [Options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  ?         Show this HELP screen
+  A         Show all ALIASES for these command line Options
+  ErrLvl    Show all ErrorLevels (DOS Return Codes)
+  U         UNINSTALL from memory
+  L:Y/N     Force installation into LOW memory (Default = No)
+
+  S         Display current STATUS of program &amp; hubs
+  C         Display CONFIGURATION (&amp; other) descriptors of last hub found
+
+  B         Show list of BAD (incompatible) hubs found
+  Beep:Y/N  BEEP Speaker when bad hub is found (Default = Yes)
+
+  X         Show stage where last eXTERNAL device failed to connect
+</pre>
+<h2>Comments:</h2>
+<pre>
+  USB Hubs are the most basic of Device/Interfaces that you can attach to
+  your computer. In fact, Hubs are so basic to USB busses that they are
+  completely defined in the base USB specification -- there isn't a
+  separate document needed to specify them the way there is for all other
+  Device/Interfaces.
+  A USB Hub is a special Device/Interface that effectively "expands" a USB
+  bus by creating additional ports. If the Root Hubs (integrated with the
+  Host Controllers) do not have enough ports to support all of the
+  Physical Devices you want to plug in, you will need a USB Hub to create
+  new ports. USBHUB is the software driver it takes to enable and manage
+  any USB Hubs you have. If you do not have any USB Hubs installed on
+  your computer, or if you do not want to use the Physical Devices you
+  have attached to those Hubs (the only Physical Devices you want to use
+  are attached to Root Hubs), you do not need to install USBHUB.
+  To install USBHUB into memory, you can simply run it with no option
+  switches. Note, however, that at least one instance of USBUHCI{L} must
+  be installed in memory before USBHUB can be installed. For example:
+    USBHUB
+  USBHUB will enable and manage up to 16 USB Hubs, with up to 7 ports on
+  each Hub. USBHUB will not manage a Hub with more than 7 ports (USBHUB
+  will classify a Hub with more than 7 ports as a "bad" Device).
+  To have USBHUB display the General Descriptors (Device, Configuration,
+  Interface, End Point) of the last Hub that was attached, you would do
+  the following:
+    USBHUB Descriptors
+  In addition to displaying the contents of the General Descriptors, this
+  option switch will also display the contents of the class-specific Hub
+  Descriptor. The Hub Descriptor includes specific details about the Hub,
+  such as the number of ports and power control characteristics.
+  To have USBHUB show you the current status of the Hubs that it is
+  managing, you would to the following:
+    USBHUB Status
+  This will display all of the Hubs that are being controlled, as well as
+  details about each of the ports on each Hub (power usage, which ports
+  have Physical Devices connected, etc.). The details can be a little bit
+  cryptic, so you may want to read the appropriate parts of the USB
+  specifications if you need further explanation of what the different
+  data items are actually telling you.
+  While a New Device is being detected, initialized, and enumerated, there
+  is a large amount of interaction that takes place back and forth between
+  the Host Controller Driver (USBUHCI{L}) and USBHUB. If a Logical Device
+  fails to enumerate properly for some reason, and it is attached to a Hub
+  being managed by USBHUB, you can have USBHUB tell you where and why the
+  failure occurred. You do this as follows:
+    USBHUB ExternalStage
+  As with most troubleshooting details in these programs, the results are
+  rather cryptic. You will need to correlate the error information
+  provided with the Assembly Language source code for USBHUB to figure out
+  exactly what happened. The source code for USBHUB is available if you
+  want it, but if you are not familiar with Assembly Language programming,
+  it may confuse you more than it helps you.
+  Just as a point of clarification, it is not possible to electrically
+  "split" or "tap" the USB bus wires to go to two (or more) different
+  Physical Devices. Everything on a USB bus is carefully managed through
+  the Host Controller Driver (software), and any "splits" in the bus to
+  go to multiple Devices MUST go through a Hub. Each Physical Device must
+  plug into a port that is on either a Root Hub or a managed USB Hub.
+  In order to write the contents of the Descriptors, USBHUB calls the
+  support program USBSUPT1 (page 178 of USBINTRO.DOC, see links below).
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another editor, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  usbuhci    (only UHCI is supported at the moment!)
+  usbhub
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../util/drives.htm">drives</a>
+  <a href="../util/hidsupt1.htm">hidsupt1</a>
+  <a href="../util/inklevel.htm">inklevel</a>
+  <a href="../util/irq.htm">irq</a>
+  <a href="../util/ps2mtest.htm">ps2mtest</a>
+  <a href="../util/scantest.htm">scantest</a>
+  <a href="../util/thrust.htm">thrust</a>
+  <a href="../util/uni2asci.htm">uni2asci</a>
+  <a href="../util/usbdevic.htm">usbdevic</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhosts.htm">usbhosts</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbsupt1.htm">usbsupt1</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/usbuhcil.htm">usbuhcil</a>
+  <a href="../util/vendorid.htm">vendorid</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007-2009 Bret E. Johnson.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

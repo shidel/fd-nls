@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: himemsx</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: himemsx</h1>
+<pre>
+  HIMEMSX is a fork of <a href="../base/himemx.htm">HIMEMX</a>. Its main feature is that it's able to
+  manage more than 4 GB of memory. The memory beyond the 4 GB limit is
+  called "super-extended" in this document.
+  To access extended memory below the 4 GB barrier HIMEMSX uses the
+  so-called "unreal" mode, like most other XMMs.
+  Memory beyond the 4 GB barrier can only be accessed thru special paging
+  mechanisms. HIMEMSX uses the PSE-36 variant. PSE stands for Page Size
+  Extension, the 36 refers to the original 36 bit address extension
+  (64 GB), which was later extended to 40 bit (1 TB).
+  The XMS API has to be extended. See XMS35.txt for details.
+  In v86 mode, the XMM needs support from the v86-monitor program to
+  access extended memory, since it cannot run the privileged code
+  required for the memory access. Currently only <a href="../base/jemm386.htm">JEMM386</a> provides this
+  support.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  HIMEMXS is a device driver to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>
+  Place DEVICE=HIMEMSX.EXE [options] before any driver using XMS!
+  Options: /MAX=&num;&num;&num; /METHOD:xxx /HMAMIN=n /NUMHANDLES=m /V /X2MAX32
+           /SUPERMAX=&num;&num;&num;
+</pre>
+<h2>Options:</h2>
+<pre>
+  /MAX=&num;&num;&num;       Limit memory controlled by XMM to &num;&num;&num;K.
+                 The HMA is not affected by this value, it is always
+                 included.
+  /METHOD:xxx    Specifies the method to be used for A20 handling.
+    Possible valuses for xxx:
+    ALWAYSON     Assume that A20 line is permanently ON
+    BIOS         Use BIOS to toggle the A20 line
+    FAST         Use port 92h, bypass INT 15h test
+    PS2          Use port 92h, bypasse PS/2 test
+    KBC          Use the keyboard controller
+    PORT92       Use port 92h always
+  /HMAMIN=n      Specifies minimum number of Kbs of HMA that a program
+                 must request to gain access to the HMA (default: 0Kb)
+  /NUMHANDLES=m  Set number of XMS handles (default: 48, min: 8,
+                 max: 128).
+  /SUPERMAX=&num;&num;&num;  limit super-extended memory controlled by XMM to &num;&num;&num;K.
+  /V             Gives extra information.
+  /X2MAX32       Limit XMS 2.0 free/avail. memory report to 32M-1K.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Restrictions:
+  - The maximum amount of memory that the XMS API can handle is 4 TB (42
+    physical address lines). However, since HimemSX currently uses 32-bit
+    paging with PSE-36 inside its block-move function, the effective
+    limit is 1 TB (40 address lines).
+  - The 'move extended memory' function 0Bh understands 32-bit offsets
+    only. So if a memory block is larger than 4 GB, you can't use this
+    function to copy memory beyond a 4 GB offset.
+  - if no super-extended memory is found, or the CPU doesn't support
+    PSE-36 paging, HimemSX will still load and behave like a v3 XMM.
+    However, it searches for extended memory via Int 15h, ax=e820h only,
+    without trying to fall back to older detection strategies if this
+    call fails.
+  For more informations see:
+    <b>https://github.com/Baron-von-Riedesel/HimemSX/blob/master/Readme.txt</b>
+  OR:
+    <b>https://gitlab.com/FreeDOS/drivers/himemsx/-/tree/main/DOC/HIMEMSX</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  See links in section Comments above.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../base/devload.htm">devload</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  FD Himem is copyright Till Gerken and Tom Ehlert, with GPL and/or
+  Artistic license.
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

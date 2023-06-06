@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: del / erase</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: del / erase</h1>
+<pre>
+  Del / erase deletes (erases) files.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  1. DEL [{ options | pattern }]
+     ERASE [{ options | pattern }]
+  2. DEL [/P] [/V] [/?] [drive][path]filename
+     ERASE [/P] [/V] [/?] [drive][path]filename
+      drive     Specifies the drive letter where the file is, e.g. C:
+      path      Specifies the path to where the file is, e.g. \example\
+      filename  Specifies the file(s) to delete. Specify multiple
+                files by using wildcards (*,?).
+                A period may be used to specify all files in the
+                current directory, and is the same as *.*
+      pattern   If pattern matches a directory, all files within this
+                directory are deleted.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /P  Prompts for confirmation before deleting each file.
+  /V  Displays all deleted files.
+  /?  Shows the help.
+</pre>
+<h2>Comments:></h2>
+<pre>
+  If pattern matches a directory, all files within this directory are
+  deleted. When all files are to be deleted, a warning prompt is issued.
+  For performance reasons DEL / ERASE overwrites the first letter of
+  the filename by a '?'. It does not delete the file itself, but it
+  deallocates the space where the content of the file is written.
+  FreeDOS, as other DOSes, recognizes the renamed file (myfile.txt
+  becomes ?yfile.txt) as deleted, no longer shows it and does not
+  offer access to it. Programs like <a href="../base/debug.htm">DEBUG</a> which have sector access are
+  able to read the contents of the file. As long as you do not write on
+  the drive you have a chance to restore the file again with <a href="../base/undelete.htm">UNDELETE</a>,
+  only the first character of the filename will be lost (_yfile.txt).
+  The only ways to delete the file CONTENTS FOR ABSOLUTELY CERTAIN are
+  to fill the disk completely with other files or by using a wipeout
+  tool. The only way to delete a file NAME FOR ABSOLUTELY CERTAIN is to
+  <a href="../command/ren.htm">REN / RENAME</a> the file first (e.g. "a.") and to delete it later (only
+  correct at 8.3 - not at long filenames!) You can also use <a href="../command/del.htm">ERASE</a>
+  instead of DEL.
+  DEL is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+    DEL FILE1.EXT FILE2.EXT
+  Deletes the files FILE1.EXT and FILE2.EXT.
+  Example 2:
+    DEL /P *.bak
+  Deletes all files with extension BAK, but prompts the user for each
+  single file before deleting it.
+  Example 3:
+    DEL.
+  Deletes all files within the current directory.
+  Example 4:
+    DEL /V *.txt
+  Lists the deleted files.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../base/debug.htm">debug</a>
+  <a href="../command/dir.htm">dir</a>
+  <a href="../base/deltree.htm">deltree</a>
+  <a href="../command/rd.htm">rd/rmdir</a>
+  <a href="../command/ren.htm">ren/rename</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

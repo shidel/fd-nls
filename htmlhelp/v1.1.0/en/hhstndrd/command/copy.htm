@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: copy</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: copy</h1>
+<pre>
+  Copies one or more source files to another location
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  1. COPY [{ option }] source [{ option }] target [{ option }]
+  2. COPY [/A | /B] [drive][path]filename + [/A | /B] [drive]
+     [path]filename [+ [...]] [/A | /B] [/V] [/Y | /-Y] [/?]
+     [drive][path]filename
+     source:   The source file. If more than one source file is
+               specified, the target must be a directory.
+     target:   The target of the COPY process. If target is a directory,
+               the destination file is placed into this directory, but
+               with the same filename as the source file.
+               If exactly one source is specified, but no target, target
+               defaults to just ., which represant the current directory.
+     drive     The drive letter, e.g. C:
+     path      The directory, e.g. \example\
+     filename  The file name, e.g. test.txt
+</pre>
+<h2>Options:</h2>
+<pre>
+  Unless stated otherwise all options of this command do follow the
+  standard rules for options.
+    /A  Forces ASCII mode, see below
+    /B: Specifies the mode, in which the file is copied, /A forces ASCII
+        and /B forces binary mode.
+        These options do alter the mode of the file immediately
+        preceeding them and all following ones, until changed again.
+        In binary mode the file is copied and nothing is changed at all.
+        In ASCII mode COPY takes special care about linefeeds / newline
+        characters and the end-of-line character.
+        On read, the newline characters, which are a sequence of two
+        different bytes in DOS, are transformed into a single character,
+        as known from Unix-style systems. On write, this single character
+        is transformed into the two-byte sequence.
+        So, if both files are copied with different modes, newline
+        characters are transformed into either way.
+        If the end-of-file character is found on read, the remaining
+        contents of the file is ignored. On write, such character is
+        appended after the last character has been written. By default,
+        files are copied in binary mode, whereas devices, e.g.
+        CON:, are copied in ASCII mode, but no end-of-file is appended.
+    /V  Verifies that new files are written correctly.
+    /Y  Suppresses prompting to confirm you want to overwrite an
+        existing destination file.
+    /-Y Causes prompting to confirm you want to overwrite an existing
+        destination file.
+    /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  COPY won't copy directories or files that are of zero length.
+  To copy either of these, use XCOPY.
+  Before parsing its command line COPY parses any option specified by
+  the <a href="../command/environm.htm">ENVIRONMENT VARIABLE</a> COPYCMD.
+  The COPYCMD <a href="../command/environm.htm">ENVIRONMENT VARIABLE</a> can be set to make /Y the default:
+    SET COPYCMD=/Y
+  To cancel the /Y for a particular copy command, use /-Y at the command
+  line. The COPYCMD variable also affects the XCOPY command.
+  To append files (second variant), specify a single file for
+  destination, but multiple files for source (using wildcards or
+  file1+file2+file3 format).
+  COPY is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  copy c:\command.com a:         (first variant)
+  copy c:\*.exe d:\example       (first variant)
+  copy c:\FREEDOS\BIN\*.* a:\    (first variant)
+  copy c:\FREEDOS\BIN\edit.* a:  (first variant)
+  copy /A hello.txt + /A welcome.txt + /A great.txt /A together.txt
+  (second variant, together.txt contains everything).
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../command/del.htm">del/erase</a>
+  <a href="../base/diskcopy.htm">diskcopy</a>
+  <a href="../command/environm.htm">environment variable</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../command/ren.htm">ren/rename</a>
+  <a href="../batch/set.htm">set</a>
+  <a href="../command/verify.htm">verify</a>
+  <a href="../base/xcopy.htm">xcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

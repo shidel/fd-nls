@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: sort</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: sort</h1>
+<pre>
+  Sort is used to sort the input file. Lines of input are taken from
+  the file named on the sort command or if no file is given, input is
+  taken from standard input.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  sort [/R] [/N] [/+num] [/A] [/?] [drive][path]filename
+  command | sort [/R] [/N] [/A] [/+num] [/?]
+       drive     The drive letter, e.g. C:
+       path      The directory, e.g. \example\
+       filename  The driver (file) to load, e.g. unordered.txt
+</pre>
+<h2>Options:</h2>
+<pre>
+  /R     Sort in reverse order (Z - A).
+  /A     Sort by ASCII, instead of <a href="../cnfigsys/country.htm">COUNTRY</a> sort order.
+  /N     Enables NLS (national language support).
+  /+num  Start sorting with column num in each line of text. Default=1.
+  /?     Shows the help.
+  /?     Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  SORT does not change the input file, only the output.
+  SORT supports NLS (national language support).
+  Known bugs:
+  This version of sort only uses conventional ram and does not do
+  an out-of-memory sort, so it is limited to what can fit in available
+  memory. The maximum record length is 1000 characters and the maximum
+  number of records that can be sorted is 10,000. This does not mean
+  that you will be able to sort 10,000 records of 1000 characters each,
+  since you would run out of memory before you read all of the data in.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+    dir | sort
+  Displays the current directory in alphabetical order (A-Z):
+    dir | sort /r
+  Displays the current directory in reverse order (Z-A):
+  When the simple "dir" command has pauses while showing all files, the
+  sort command also expects these pauses (and several space bars), shows
+  NOTHING till the last space bar is pressed. Please keep this in mind.
+  Example 2:
+    sort file1 OR:
+    sort &lt;file1
+  Sorts the contents of file1 using the entire line as the sort key.
+  Example 3:
+    sort /R /+21 &lt;file1
+  Sorts file1 in reverse order (Z-A) based on the key starting in
+  column 21.
+  Example 4:
+    sort /+2 c:\tmp\foobar.dat &gt;b:\data.out
+  Sorts c:\tmp\foobar.dat using the key in column 2 and put the output
+  on a file called data.out residing on the B: floppy drive.
+  Example 5:
+  In command line:
+    sort           -ENTER-  (alternative: sort /+2)
+    this           -ENTER-
+    is             -ENTER-
+    a              -ENTER-
+    short          -ENTER-
+    sentence       -ENTER-
+  (CTRL-Z)          Exits the command and executes it.
+  <b>PLEASE CHECK IF "Z" IS SHOWN at CTRL-Z, otherwise it will not exit</b>
+  <b>and execute the command!</b>
+   (No /+2) gives out :   (With /+2) sorted by second letter per line:
+    a                      a        ("a")
+    is                     sentence ("e")
+    sentence               this     ("h"i)
+    short                  short    ("h"o)
+    this                   is       ("s")
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../other/cpidos.htm">codepage</a>
+  <a href="../base/find.htm">find</a>
+  <a href="../base/more.htm">more</a>
+  <a href="../command/type.htm">type</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

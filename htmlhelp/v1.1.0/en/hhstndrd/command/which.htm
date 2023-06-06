@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: which</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: which</h1>
+<pre>
+  WHICH searches and displays the executable file for each
+  specified command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  which command [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  command  The command to be found.
+  /?       Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  WHICH is a utility born in the UNIX world that enables users to find
+  executable files in directories listed in the PATH ENVIRONMENT
+  VARIABLE. See <a href="../batch/set.htm">SET</a> / <a href="../command/environm.htm">ENVIRONMENT VARIABLE</a>.
+  WHICH searches for the specified command(s) the same way as if it
+  would be specified on command line as command itself. If an executable
+  file is found, its path is displayed in this format:
+    command "tab" path
+  The "tab" stands for the tabulator character (ASCII 9).
+  If the command is not found only the command part, but neither a path
+  nor the "tab" is displayed.
+  Internal commands, installable commands and aliases are not found.
+  WHICH is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  which xcopy    searches the executable for the xcopy command.
+                 The output is: "xcopy    C:\FREEDOS\BIN\xcopy.exe"
+                 Only works if the path variable C:\FREEDOS\BIN is set.
+  which copy     The output is: "copy"    (copy is a command.com command)
+  which command  The output is: "command" C:\command.com (command is the
+                 string "command" and no placeholder
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../batch/set.htm">set</a>
+  <a href="../command/environm.htm">environment variable</a>
+  <a href="../cnfigsys/set.htm">set (config.sys command)</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

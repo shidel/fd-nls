@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: deltree</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: deltree</h1>
+<pre>
+  FreeDOS DELTREE.COM is a freeware clone of Microsoft's DELTREE.EXE, a
+  utility for quickly deleting files and directories with all included
+  files and subdirectories.
+  DELTREE doesn't care any file attributes, it does its job even files
+  and directories have read-only, hidden or system-attributes!
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DELTREE [/?] [/Y] [/V] [/D] [/X] filespec [filespec...] [@filelist]
+          drive  The drive letter, e.g. C:
+          path   The directory, e.g. \example
+</pre>
+<h2>Options:</h2>
+<pre>
+  /Y            Deletes specified items without prompting.
+  /V            Report counts and totals when finished.
+  /D            Displays the debug info.
+  /X            For testing; don't actually delete anything.
+   @            FLAG to indicate the specified file as a "DR-DOS-type"
+                filelist.
+  /?            Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Options may be uppercase or lowercase, and may begin with a slash or
+  a minus sign. There must be at least one filespec, and there may be
+  more than one. Note that any options must be specified at the start
+  of the command line, before any filespecs. This syntax is different
+  from many DOS utilities, but compatible with Microsoft's DELTREE.EXE.
+  Filespecs may name files, directories, or DR-DOS-type "filelists".
+  You may use wildcards: all matching files and directories will be
+  targeted. Files will be deleted regardless of their attributes.
+  Directories will be deleted with all their contents.
+  <b>Switches:</b>
+  Unless "/Y" is not specified, DELTREE will prompt you before deleting
+  each item specified on the command line. Press [Y] to delete the item
+  indicated, [N] to let it live, or [Q] or [CTRL]+[C] or [CTRL]+[BREAK]
+  to quit DELTREE immediately.
+  If "/Y" is specified, DELTREE doesn't prompt anything! -- WARNING!
+  USE THIS OPTION WITH CAUTION!
+  If "/V" is specified, DELTREE will report the total number of files
+  deleted and subdirectories removed when it finishes. If any files were
+  deleted, the total of the files' sizes will also be reported in bytes
+  and in kilobytes or megabytes. The fractional part of the kilobytes or
+  megabytes may be off by plus-or-minus one in the least significant
+  digit. The total size does not take cluster size into account; the
+  amount of disk space freed may be greater than the size reported.
+  If "/D" is specified, DELTREE will display additional (debug)
+  information. It's the DEBUG-mode of DELTREE.
+  If "/X" is specified, DELTREE will display all files and directories
+  which could be deleted. But DELTREE doesn't delete anything! It's the
+  TEST-mode of DELTREE.
+  If "/?" is specified, the syntax-help will be displayed.
+  <b>DELTREE.COM:</b>
+  [DEFAULT-BUILD] of DELTREE: Includes the "ROOT-SAFETY-CHECK". If you
+  call DELTREE with "/Y"-switch in the root-directory of a non-removal
+  drive, for each delete action a warning-message is displayed and you
+  always have to prompt it.
+  <b>DELTREE2.COM:</b>
+  [DEFANGED-BUILD]: The "/Y"-switch will be ignored, you will always
+  asked before deleting anything. So it's the safest build of DELTREE.
+  <b>DELTREE!.COM:</b>
+  [DANGER-BUILD]: Without the "ROOT-SAFETY-CHECK"! So it's like the
+  Microsoft-DELTREE.
+  WARNING!!!
+  It's the most dangerous version of DELTREE!!!
+  NO WARRANTY! USE IT ON YOUR OWN RISK!
+  DON'T BLAME ME FOR ANY DATALOSS AND DAMAGES!!!
+  IF YOU AREN'T SURE WHAT YOU DO, DON'T USE IT!!!
+  <b>DR-DOS-type "filelist"</b>
+  A "filelist" is a text file containing filespecs, one per line. If
+  you have a list of items to be deleted in a file FILELIST.TXT, type:
+    DELTREE @FILELIST.TXT
+  (Note that the "@"-sign is not part of the filename, just a flag to
+  indicate a file list.) Examples of a "filelist":
+  Example 1:
+    123.txt
+    abc.doc
+    NOP.PNG
+  Example 2:
+    123.txt abc.doc NOP.PNG
+  If you want to comment your filelists, comments have to start with
+  a ";"-sign:
+  Example 3:
+  ;This is a filelist example
+    123.txt ;Example file
+  If you want to delete a file or directory beginning with an "@"-sign,
+  enclose the name in quotes:
+    DELTREE "@FILELIST.TXT"
+
+  DELTREE has the following <a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODES</a>:
+  00  Success. All is well.
+  01  Something could not be deleted or a filelist could not be opened.
+  03  User abort ([Q] or [CONTROL]+[C] or [CONTROL]+[BREAK] was pressed)
+  16  General syntax error, or buffer overflow
+  17  Not enough memory
+  18  DOS 3.0 or better required.
+  19  Problem with filelist
+  20  Internal buffer overflow
+  21  Error resolving directory name (dots_fix)
+</pre>
+<h2>Examples:</h2>
+<pre>
+  deltree /y c:\oldtree  (does not ask for deleting)
+  deltree c:\test2\      Asks for each subdirectory of \test2 if you
+                         really want to delete it
+  deltree c:\test2       Deletes all subdirectories of \test2
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/del.htm">del/erase</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../command/md.htm">md/mkdir</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../command/rd.htm">rd/rmdir</a>
+  <a href="../command/ren.htm">ren/rename</a>
+  <a href="../base/tree.htm">tree/pdtree</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 and 2022
+  by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

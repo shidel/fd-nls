@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: path</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: path</h1>
+<pre>
+  Display or set the search path for executable files.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+   1. PATH
+   2. PATH [ '=' ] { path : ';' }
+   3. PATH;
+</pre>
+<h2>Options:</h2>
+<pre>
+  PATH  Displays the currently active search path.
+  PATH= Assigns the specified paths to the search path.
+        The leading equal sign, if present is ignored.
+  PATH; Empties the search path.
+  /?    Shows the help
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Displays or assigns a new search path.
+  When FreeCOM searches for an external command or a batch script,
+  which has no path specified, it is search for in all the directories
+  specified in the search path. If the current directory . is not
+  mentioned in the search path, it is searched through first.
+  The paths of any frequently used programs can be put on the path list
+  for convenience.
+  When a program or external command is entered at the command prompt,
+  FreeDOS looks for it in the current directory and then in each of the
+  paths specified by the path command.
+  If the same program name is in different path directories, the program
+  will be started from the path which is first mentioned in the
+  pathlist.
+  PATH can also be used outside a batch file.
+  PATH is a command internal to command.com and needs no other file
+  in order to work.
+ </pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+  path C:\FREEDOS\BIN;C:\TOOLS;D:\OTHERS\BIN;BIN
+  If FreeCOM is to execute an external program, e.g. XCOPY, FreeCOM
+  will search for the program in the following directories in the
+  specified order, the first program file found is executed:
+
+    the current directory
+    C:\FREEDOS\BIN
+    C:\TOOLS
+    D:\OTHERS\BIN
+    BIN
+  Note: Because the last directory specification is a relative one,
+  rather than an absolute one, the program is searched for in the
+  sub-directory BIN of the current directory.
+
+  Example 2:
+  IN A .BAT FILE / AUTOEXEC.BAT:
+    path C:\FREEDOS\BIN;C:\UTIL
+    path &percnt;path&percnt;;C:\GAMES
+    This example adds C:\GAMES to the existing list, preserving the
+    previously set paths. When you type path now the result is:
+    path C:\FREEDOS\BIN;C:\UTIL;C:\GAMES
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../base/append.htm">append</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../batch/index.htm">batch files</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

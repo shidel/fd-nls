@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: mem</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: mem</h1>
+<pre>
+  MEM displays the amount of installed and free memory in your system.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  MEM [options] [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /ALL        Show all details of high memory area (HMA).
+  /C          Classify modules using memory below 1 MB.
+  /D          Same as /DEBUG by default, same as /DEVICE if /OLD used.
+  /DEBUG      Show programs and devices in conventional and upper memory.
+  /DEVICE     List of device drivers currently in memory.
+  /E          Reports all information about Expanded Memory.
+  /F          Same as /FREE by default, same as /FULL if /OLD used.
+  /FREE       Show free conventional and upper memory blocks.
+  /FULL       Full list of memory blocks.
+  /M (name) | /MODULE (name)
+              Show memory used by the given program or driver.
+  /NOSUMMARY  Do not show the summary normally displayed when no other
+              options are specified.
+  /OLD        Compatability with FreeDOS MEM 1.7 beta.
+  /P          Pauses after each screenful of information.
+  /SUMMARY    Negates the /NOSUMMARY option.
+  /U          List of programs in conventional and upper memory.
+  /X          Reports all information about Extended Memory.
+  /?          Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Displaying memory status:  FreeDOS displays extended memory only if
+  you have memory installed above the 1MB boundary. FreeDOS displays
+  expanded memory only if it conforms to version 4.0 of the Lotus/Intel/
+  Microsoft Expanded Memory Specification (LIM EMS).
+  Allocating extended memory: To allocate both Interrupt 15h memory and
+  XMS memory, use the int15 switch when you load FD(X)XMS.SYS, HIMEM.EXE
+  or HIMEM.SYS (outdated in FreeDOS).
+
+  Different types of memory:
+  Total conventional memory is the amount of memory on your computer up
+  to the first 640K. Free Conventional Memory is the amount of con-
+  ventional memory FreeDOS has for operating your computer, including
+  the memory it needs for itself.
+  Total EMS memory is the amount of expanded memory on your computer.
+  Free EMS memory is the amount of expanded memory available to programs.
+  If you use EMM386 to simulate expanded memory, that memory appears in
+  these two values.
+  Available XMS memory is memory managed by an extended-memory manager
+  such as HIMEM.SYS, and available to programs that can use it.
+
+  This command is interesting if you have problems with crashing
+  programs. With the command you can see if there is enough memory
+  to execute the program. If the lower memory is too small it may help
+  to load the program into high memory with the <a href="../batch/lh.htm">LH /LOADHIGH</a> command.
+  MEM supports NLS (national language support).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  mem /DEVICE /C /P
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/device.htm">device/devicehigh</a>
+  <a href="../base/himemx.htm">himemx</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../batch/lh.htm">lh/loadhigh</a>
+  <a href="../command/memory.htm">memory</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

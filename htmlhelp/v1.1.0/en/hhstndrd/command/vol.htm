@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: vol</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: vol</h1>
+<pre>
+  VOL displays the disk volume label and serial number, if they exist.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  VOL [drive]
+  VOL [/?]
+      drive  Specifies the drive letter to display the volume
+             label, e.g. C: and the serial number
+</pre>
+<h2>Options:</h2>
+<pre>
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Each drive letter can have an own volume label. You can create it
+  with <a href="../base/label.htm">LABEL</a> and <a href="../base/format.htm">FORMAT drive /V:LABEL</a>. The name cannot be longer
+  than 11 characters.
+  The serial number is shown by <a href="../command/dir.htm">DIR</a> and <a href="../base/label.htm">LABEL</a> independent
+  if the drive has a label set.
+  VOL is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  To obtain a partition:
+  fdisk                (Follow instructions), Option 4 shows the volume
+                       label (when there already exists one)
+  format c: /V:DRV_C   (Formats drive C: and gives the label DRV_C)
+  label c:             (Shows drive C: and its label DRV_C and asks if
+                       you want to create a new label)
+  vol c:               (Shows drive C: and its label DRV_C or a new one
+                       created by format or label)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../command/dir.htm">dir</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/label.htm">label</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

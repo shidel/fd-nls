@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: diskcopy</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: diskcopy</h1>
+<pre>
+  DISKCOPY copies the contents of a floppy disk to a second floppy.
+  It currently supports disk copies for almost any diskette type
+  including 160 Kb, 180 Kb, 320 Kb, 360 Kb, 720 Kb, 1.2 MB, 1.44 MB
+  and 2.88 MB disks, using XMS, EMS, buffers or swap file. On top of
+  that diskcopy supports the use of image files.
+  The images can be used by <a href="../base/shsufdrv.htm">SHSUFDRV</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  Diskcopy [source][destination][/a][/v][/m][/i][/o][/1][/x][/d][/r]
+           [/f][/t][/?]
+    source:       drive or image file to copy from.
+    destination:  drive or image file to copy to.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /a  Give an audible warning for user action.
+      This option gives a beep each time user action is required.
+  /v  Verify reads and writes. With this option enabled reads and writes
+      are verified. Notice that using this option takes twice as long as
+      without it. The DOS verify  flag is not influenced by this option.
+  /m  Only use memory for disk copy. With this option only memory is
+      used for the diskcopy, meaning either XMS, EMS or buffers.
+  /i  Show memory usage (informative).
+      Tells you which kind of memory is used.
+  /o  Overwrite destination, if it already exists (in case of an image
+      file). When you want to make an image file of a floppy disk and
+      a file with that name already exists the program refuses to
+      overwrite the file. With this option you can change this behaviour
+      and force an overwrite of existing files.
+  /x  Always automaticaly exit. This switch makes sure the program
+      always exits. You will most likely notice this at the end of the
+      program. If you use this switch the program will no longer ask you
+      wether you want another copy of the disk.
+  /d  Assume disk already in drive. This switch is used to speed up disk
+      copying. The program will not ask you to insert the source or
+      destination diskette if possible.
+  /r  Go into disk error recovery mode.
+      Sometimes part of a disk is unreadable, but everything else is
+      still valid. In those cases you might want to copy the disk to a
+      new disk, while recovering as much data as possible. Using this
+      switch you can force diskcopy to scan more effectively for media
+      errors on the disk and recover more of the disk than is possible
+      without the switch.
+      This option is not available, if you compile diskcopy to always be
+      in error recovery mode.
+  /f  Perform fast diskcopy (only copy filled sectors).
+      Using this option only the sectors which are filled are copied
+      resulting in a much faster way of making a disk copy. Notice
+      however that the copy of the target disk in this case is not
+      exactly the same as that of the original. All files on the disk
+      will however be identical to those on the original disk.
+      This option is also used to make small image files. These image
+      files will then contain only the information of sectors which
+      contain data. If you write the image file back to a disk the disk
+      will not be identical to the first disk, but all files will be
+      the same.
+  /t  Don't ask target disk if copying image file to same disk.
+      When copying an image file to the same disk as the one that is
+      being copied, the program normally asks to insert a new disk. When
+      using this option the image file is directly written to the disk
+      without asking for an other disk.
+  /1  This option doesn't do anything but has been included for MS-DOS
+      compatibility. In other versions of DOS, this copied the first
+      side only.
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  A minus sign after an option disables the option.
+  If the source and/or destination is a drive, for example
+  "a:" then it is treated as a floppy disk, otherwise it is
+  treated as an image file.
+  The source and destination can be the same drive; DISKCOPY will
+  first copy from the source, and then prompt you to swap floppy
+  disks. Then it will write to the destination.
+  DISKCOPY uses the Linux rawrite format for its image files.
+  Therefore the image files from DISKCOPY can be used by
+  Rawrite and vice versa.
+  DISKCOPY cannot read from or overwrite Linux floppy disks.
+  It can, however, write a Linux floppy image to a DOS disk.
+  DISKCOPY supports NLS (national language support) and long
+  filenames, see a href="../base/doslfn.htm">DOSLFN</a>.
+  In order to facilitate using DISKCOPY you can optionally create
+  a diskcopy.ini file to store the options you use often.
+  For more information see:
+  <b>https://gitlab.com/FreeDOS/base/diskcopy/-/tree/master/DOC/DISKCOPY</b>
+  OR:
+  <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/dos/</b>
+  packet: discopy, section: DOC. OR:
+  b>C:\FREEDOS\DOC\DISKCOPY\diskcopy</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+    Diskcopy a: a: /a /i
+  Copy a floppy disk from a: to a:, give a beep before user action
+  and show memory usage.
+  Example 2:
+    Diskcopy a: example.img
+  Copy the contents of the floppy disk in drive a: to the image file
+  example.img.
+  Example 3:
+    Diskcopy example.img a:
+  Copy the contents of the file example.img to the floppy disk in
+  drive a:
+  Example 4:
+    Diskcopy example1.img example2.img
+  Copy the file example1.img to the file example2.img.
+  Example 5:
+    Diskcopy a: a: /a-
+  Copy the contents of the disk in drive a: to another disk in
+  drive a:, making sure there is no beep for user action.
+  Example 6:
+    Diskcopy a: a:a /f
+  Create a small image file of drive a: on drive a:
+  Notice that in this case:
+    -  The program can give an out of memory error if the entire
+       contents can not be copied in one time.
+    -  The resulting file "a" is not included in the image file.
+  Example 6:
+    Diskcopy a:a a:, or identically: diskcopy a:a a: /f
+  Copy the image file "a" on drive a: to drive a:
+  Notice that in this case:
+    -  The user will be asked to insert a new floppy.
+  Example 7:
+    Diskcopy a:a a: /t
+    Copy the image file "a" on drive a: to drive a:
+    Notice that in this case:
+    -  The contents of drive a: is overwritten. So the image file is
+       gone too!
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/copy.htm">copy</a>
+  <a href="../base/diskcomp.htm">diskcomp</a>
+  <a href="../base/doslfn.htm">doslfn</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../base/shsufdrv.htm">shsufdrv</a>
+  <a href="../base/xcopy.htm">xcopy</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2007 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

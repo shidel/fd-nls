@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: if</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: if</h1>
+<pre>
+  Conditional execution of a command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  1. IF [ NOT ] EXIST file "command"
+  2. IF [ NOT ] ERRORLEVEL number "command"
+  3. IF [ NOT ] string '==' word "command"
+  4. IF [ NOT ] quoted-string '==' quoted-string "command"
+</pre>
+<h2>Options:</h2>
+<pre>
+  command              Specifies the command to carry out if the condition
+                       is met.
+  NOT                  Specifies that the command shell should carry out
+                       the command only if the condition is false.
+                       (Without this, the command will be run if the
+                       condition is true.)
+  ERRORLEVEL number:   DOS Programs return a number when they exit,
+                       which sometimes contains information on
+                       whether the program was successful. If the
+                       last program to exit returned the given number,
+                       then the condition is true.
+  string1==string2     If the two strings of characters are equal,
+                       then the condition is true.
+  exist [drive][path]  If the given file is there, then the condition
+        filename       is true.
+</pre>
+<h2><a name="comment">Comments:</a></h2>
+<pre>
+  Conditionally executes the specified "command". If the keyword NOT is
+  specified, the condition is negated, meaning, the "command" is
+  executed, if the condition evaluates to false.
+  The first condition evaluates to true, if the specified file exists.
+  Wildcards are supported. On local file systems one can test for
+  character devices, too.
+  The second variant evaluates to true, if the ERRORLEVEL is currently
+  assigned to a number greater or equal than the specified number.
+  ERRORLEVELS are assigned when external commands terminates or via
+  CANCEL or QUIT.
+  Due to compatibly with other DOS shells FreeCOM does not check, if the
+  specified ERRORLEVEL is a number, but silently accepts any string. This
+  allows to use the so-called Benny levels, where you can specify HA,
+  HB, ... , HZ or xa, xb, ... , xz instead of 1, 2, ... , 26. Some
+  malformed batch script use this syntax to make mapping of errorlevels
+  to drive letters more visible. See example 5.
+  The third and four ones are true, when the left string is case-
+  sensitively equal to the string on the right side of the double equal
+  sign. Either side may be quoted by double quotes, though, if the right
+  side is not quoted, the first word is tested only.
+  IF is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+    IF NOT EXIST c:\command.com ECHO There is no COMMAND.COM in C:\
+  Executes the ECHO command, if a file C:\COMMAND.COM does not exist.
+  Example 2:
+    IF EXIST c:\FREEDOS\nul GOTO have_fdos_directory
+  Branch the interpretation of the batch script to the label,
+  if the file C:\FREEDOS\NUL exists. Because the filename NUL corresponds
+  to the character device NUL:, which always exists, this test may be
+  used to probe for the existance of the path C:\FREEDOS, because all
+  character devices are virtually present in every directory of local
+  filesystems.
+  Example 3:
+    IF &percnt;1==name ECHO First argument is "name"
+  ECHO is executed, if the first argument of the current batch script is
+  "name" (without the quotes). &percnt;1 may expand to any string, even with
+  embedded whitespaces, but without an embedded double equal sign. Also,
+  metacharacters included within the argument are evaluated.
+  Example 4:
+    IF "&percnt;1"=="first name" ECHO First argument is "first name"
+  ECHO is executed, if the first argument of the current batch script is
+  "first name" (without the quotes). &percnt;1 may expand to any string, even
+  with embedded whitespaces or an embedded double equal sign or
+  metacharacters.
+  Example 5 (see options):
+    "program"   (errorlevel refers to "program")
+    SET drv=
+    FOR &percnt;&percnt;Z IN (A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) DO
+    IF ERRORLEVEL H&percnt;&percnt;Z SET drv=&percnt;&percnt;Z
+    (comment: the two lines are ONE line)
+    IF ERRORLEVEL 27 SET drv=
+    IF "&percnt;drv&percnt;"=="" goto error_no_drive_letter
+  Assuming that "program" is setting the exit code to 1..26 for the drive
+  letter, e.g. when searching for RAMdisks, this code snippet assigns the
+  drive letter to the <a href="../command/environm.htm">ENVIRONMENT VARIABLE</a> drv or unsets the variable on
+  error.
+  Note: The following code is equal to the above one and fully compatible
+  to all shells:
+    "program"
+    SET drv=
+    IF ERRORLEVEL 1 SET drv=A (errorlevel refers to "program")
+    IF ERRORLEVEL 2 SET drv=B
+    IF ERRORLEVEL 3 SET drv=C
+    ...
+    IF ERRORLEVEL 25 SET drv=Y
+    IF ERRORLEVEL 26 SET drv=Z
+    IF ERRORLEVEL 27 SET drv=
+    IF "&percnt;drv&percnt;"=="" goto error_no_drive_letter
+  There are two more examples at "<a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODE</a>.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+
+  FreeDOS commands that support IF / <a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODE</a>:
+  <a href="../base/assign.htm">assign</a>     <a href="../base/attrib.htm">attrib</a>     <a href="../base/chkdsk.htm">chkdsk</a>     <a href="../batch/choice.htm">choice</a>     <a href="../base/ctmouse.htm">ctmouse</a>
+  <a href="../base/defrag.htm">defrag</a>     <a href="../base/deltree.htm">deltree</a>    <a href="../base/diskcomp.htm">diskcomp</a>   <a href="../base/fc.htm">fc</a>         <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/find.htm">find</a>       <a href="../base/format.htm">format</a>     <a href="../batch/goto.htm">goto</a>       <a href="../base/swsubst.htm">join</a>       <a href="../base/keyb.htm">keyb</a>
+  <a href="../base/mode.htm">mode</a>       <a href="../base/replace.htm">replace</a>    <a href="../base/shsucdx.htm">shsucdx</a>    <a href="../base/swsubst.htm">subst</a>      <a href="../base/swsubst.htm">swsubst</a>
+  <a href="../base/tdsk.htm">tdsk</a>       <a href="../base/xcopy.htm">xcopy</a>      <a href="../util/pcisleep.htm">pcisleep</a>   <a href="../base/shsufdrv.htm">shsufdrv</a>   <a href="../util/touch.htm">touch</a>
+  <a href="../util/xgrep.htm">xgrep</a>
+
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: device / devicehigh</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: device / devicehigh</h1>
+<pre>
+  DEVICE loads a driver into low or conventional memory, whereas
+  DEVICEHIGH loads the driver into high memory.
+  DEVICE is a <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  device=[drive][path]filename [options]
+         drive     The drive letter, e.g. C:
+         path      The directory, e.g. \example\
+         filename  The driver (file) to load, e.g. himemx.exe
+</pre>
+<h2>Options:</h2>
+<pre>
+  options  These are options to the driver
+           program, not to the 'device' command.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  DEVICE loads the device driver specified by drive:\path\filename into
+  conventional [low 640 KiB] memory. The options are for the driver
+  itself; refer to documentation that came with your particular device
+  for supported options and their usage.
+  As DEVICE loads the driver into low or conventional memory this leaves
+  less free space for other drivers or programs in low or conventional
+  memory. This may cause problems when executing programs or loading
+  other drivers.
+  DEVICEHIGH is just like DEVICE, except that it attempts to load
+  the device driver into high memory first (failing that it should
+  load it in conventional memory).
+  Note: The order you load devices may have a large impact on amount
+  of free memory available. In general try to load large (in memory
+  usage) programs into high memory first.
+  Important: You should have a high memory manager such as <a href="../base/himemx.htm">HIMEMX</a> or
+  <a href="../base/jemmex.htm">JEMMEX</a> installed when using this option.
+  DEVICE / DEVICEHIGH is a command internal to kernel.sys and needs
+  no other file in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    COUNTRY=049,858,C:\FREEDOS\BIN\country.sys (german setting)
+    LASTDRIVE=Z
+    DEVICE=C:\FREEDOS\BIN\XMGR.SYS /N128 /B
+    DEVICE=C:\FREEDOS\DRIVERS\XDVD2.SYS /D:MYDVD
+
+  Example 2: (Menu in CONFIG.SYS / FDCONFIG.SYS with REM ; ! and ?)
+
+    !COUNTRY=049,858,C:\FREEDOS\BIN\country.sys (german setting)
+    !LASTDRIVE=Z
+    !BUFFERS=20           (!=will be executed under all circumstances)
+    !FILES=40             (!=will be executed under all circumstances)
+    !MENUCOLOR=7,0        (!=will be executed under all circumstances)
+
+    MENUDEFAULT=1,5
+    MENU 1 - Load FreeDOS with JEMM386 (no EMS, max RAM free)
+    MENU 2 - Load FreeDOS with JEMM386 (Expanded Memory)
+    MENU 3 - Load FreeDOS low with some drivers (Safe Mode)
+    MENU 4 - Load FreeDOS without drivers (Emergency Mode)
+
+    12?DOS=HIGH                   (will be processed when pressing 1/2)
+    12?DOS=UMB                    (will be processed when pressing 1/2)
+    12?DOSDATA=UMB                (will be processed when pressing 1/2)
+    123?DEVICE=C:\FREEDOS\BIN\himemx.exe (     "      "      "     1/2/3)
+    1?DEVICE=C:\FREEDOS\BIN\jemm386.exe NOEMS X=TEST I=TEST I=B000-B7FF
+             NOVME NOINVLPG       (will be processed when user presses 1)
+    2?DEVICE=C:\FREEDOS\BIN\jemm386.exe X=TEST I=TEST I=B000-B7FF NOVME
+             NOINVLPG             (will be processed when user presses 2)
+    34?SHELL=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+             /P=C:\FDAUTO.BAT     (will be processed when pressing 3/4)
+    12?SHELLHIGH=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+                 /P=C:\FDAUTO.BAT (will be processed when pressing 1/2)
+    ;1234?BREAK=OFF               (set to REM, nothing happens)
+    REM 1234?DEVICE=C:\blahblah.sys (set to REM, nothing happens)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/semico.htm">; (semicolon)</a>
+  <a href="../cnfigsys/question.htm">? (question mark)</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../cnfigsys/dos.htm">dos</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/mem.htm">mem</a>
+  <a href="../cnfigsys/menu.htm">menu</a>
+  <a href="../cnfigsys/menucol.htm">menucolor</a>
+  <a href="../cnfigsys/menudef.htm">menudefault</a>
+  <a href="../batch/rem.htm">rem</a>
+  <a href="../base/xdvd2.htm">xdvd2</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: drives</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: drives</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  DRIVES shows details about all available disk drives in DOS.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DRIVES
+</pre>
+<h2>Options:</h2>
+<pre>
+  This program displays the information about all of the disk drives it
+  can find and lets you know some technical information about them.
+  The information includes things like important memory addresses related
+  to the disk drivers, whether or not the drive has been accessed yet,
+  and the capacity of the drive.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  DRIVES is a program designed to let you view details about your disk
+  drives (drive letters) in the same way that DOS looks at them. There is
+  a table that DOS uses to manage disks, called the Current Directory
+  Structure Table or CDS Table. Each entry in the CDS Table is a single
+  CDS, and corresponds to a single drive letter (starting at A:). As the
+  name implies, the CDS table keeps track of the current directory for
+  each drive, as well as a small amount of other information (such as
+  whether it is a physical drive or a network drive). Other than the
+  current directory information, the most important thing stored in the
+  CDS is a pointer to another structure called the Drive Parameter Block
+  or DPB, which is where most of the critical information about the drive
+  is actually stored. The DPB is discussed in the next paragraph. The
+  total number of entries in the CDS Table (the total number of drive
+  letters available) is determined by the <a href="../cnfigsys/lastdrv.htm">LASTDRIVE</a> setting in your
+  <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> file, and cannot be changed after DOS
+  has booted.
+  For each valid CDS, there is a corresponding Drive Parameter Block or
+  DPB. The DPB contains most of the critical details about the drive,
+  including the FAT type, capacity, physical disk and partition
+  information, etc. The DPB also contains a pointer to the device driver
+  for the drive, usually installed by the DOS kernel or by a special
+  driver in the <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> file. DOS never accesses
+  the drive directly -- it always does it through the device driver.
+  The Drive Parameter Block also contains a flag which becomes set when
+  the drive has been Accessed in some fashion by DOS (when DOS has read
+  some data from the drive). This flag is very critical, because until a
+  drive (at least a removable drive, such as a floppy or USB disk) has
+  been accessed, none of the other details in the DPB can be trusted. For
+  example, the default DPB entry for a 3-1/2 inch floppy drive usually is
+  set up to look like a low-capacity (720 kB) disk, but the Accessed flag
+  is cleared. This tells DOS that there is a slot to plug in a disk, but
+  because it hasn't been Accessed, we don't know how big the drive
+  actually is. If you insert a 1.44 MB floppy, but don't read any data
+  from it, the contents of the DPB won't change (it will still show an
+  unaccessed 720 kB floppy). When you actually read some data from the
+  drive, DOS will change the DPB entry to correspond to an accessed 1.44
+  MB drive. However, with floppy drives, DOS will regularly unset (clear)
+  the Accessed flag, since DOS can't actually tell if you've changed disks
+  (media) or not. If the media has changed but the Accessed flag is not
+  cleared, DOS will probably corrupt the new disk (because it thinks it is
+  still the old disk).
+
+  DRIVES simply shows you some of the details that are in the DOS Current
+  Directory Structure (CDS) Table, and the corresponding Drive Parameter
+  Block (DPB) entries. This is a "snapshot" view of all the disks you
+  have, as viewed from the perspective of DOS. It is critical to keep in
+  mind that if the drive has not been accessed yet (if the "ACCESd" column
+  is not "Y" for a particular drive letter), none of the other details in
+  the output may be accurate. That is simply how DOS handles removable
+  disks which can be of different formats and capacities.
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another edito, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  drives
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../util/hidsupt1.htm">hidsupt1</a>
+  <a href="../util/inklevel.htm">inklevel</a>
+  <a href="../util/irq.htm">irq</a>
+  <a href="../cnfigsys/lastdrv.htm">lastdrive</a>
+  <a href="../util/ps2mtest.htm">ps2mtest</a>
+  <a href="../base/rdisk.htm">rdisk</a>
+  <a href="../util/scantest.htm">scantest</a>
+  <a href="../base/shsucdx.htm">shsucdx</a>
+  <a href="../util/thrust.htm">thrust</a>
+  <a href="../util/uni2asci.htm">uni2asci</a>
+  <a href="../util/usbdevic.htm">usbdevic</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhosts.htm">usbhosts</a>
+  <a href="../util/usbhub.htm">usbhub</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbsupt1.htm">usbsupt1</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/usbuhcil.htm">usbuhcil</a>
+  <a href="../util/vendorid.htm">vendorid</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007-2009, Bret E. Johnson</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

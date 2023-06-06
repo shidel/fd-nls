@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: srdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: srdisk</h1>
+<pre>
+  SRDISK is a virtual disk device driver (RAM-disk driver like:
+  <a href="../base/tdsk.htm">TDSK (Turbodisk)</a> and <a href="../base/rdisk.htm">RDISK</a>. The purpose of such a driver is to add
+  an extremely fast virtual disk drive to your system. Such a drive
+  is of excellent utility for holding temporary files. Files there get
+  lost when you turn off or reboot your computer, so it can not be used
+  for permanent storage.
+  This device driver and controller are capable of using over 32 MB of XMS
+  and/or EMS memory. The disk can be disabled and it's size can be changed
+  without rebooting. It also can preserve the disk contents when the size
+  is changed and is DISKCOPY compatible -- among a host of other features.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  srdisk [drive letter:] [size] [/F:(DOS disk type)] [/S:(sector size)]
+         [/C:(cluster size)] [/D:(dir entries)] [/V:(verbose)][/E][/U]
+         [/O] [/Y] [/N] [/?]
+         and many more. See documention at the links in section COMMENTS
+         below.
+</pre>
+<h2>Options:</h2>
+<pre>
+  drive letter:      Specifies the drive that is the RAM disk.
+  size               Determines the disk size in Kilobytes.
+  /F:(DOS disk type) Some valid are 1, 160, 180, 320, 360, 720, 1200,
+                     1440.
+  /S:(sector size)   Is a power of 2 in range from 128 to 512 Bytes.
+  /C:(cluster size)  Is a power of 2 in range from 128 to 32768 Bytes.
+  /D:(dir entries)   Is the max. number of entries in the root directory.
+  /A:(FATs)          Number of File Allocation Tables in disk. 1 or 2,
+                     1 is enough.
+  /W                 Write protect disk, /W- enables writes.
+  /V:(verbose)       Verbose level from 0 (silent) to 5 (verbose);
+                     default is 2.
+  /E                 Set environment variables SRDISKn (n=1,2,...) to
+                     SRDISK drive letters.
+  /U                 Clear disk ontents.
+  /O                 Old format as default
+  /Y                 Yes, destroy the contents.
+  /N                 No, preserve contents.
+  /?                 Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The SRDISK is basically split into two parts:
+    1) a device driver to add the virtual drive into DOS and
+    2) a program to control the device driver
+  The following explains the installation and how to use both of
+  these parts.
+
+  BASIC INSTALLATION
+  The basic installation for XMS memory can be done following these
+  steps:
+    1. Copy SRDXMS.SYS into you root directory.
+    2. Copy SRDISK.EXE into some directory in your PATH (e.g.
+       C:\FREEDOS\BIN).
+    3. Make sure you have <a href="../base/himemx.htm">HIMEMX</a> or some other XMS driver installed
+       in <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> before the following step.
+    4. Add into your <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> line:
+         DEVICE=SRDXMS.SYS
+    5. Add into your <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a> after the PATH command line
+         SRDISK (size)
+       The (size) defines the disk size in Kbytes.
+  If you have <a href="../base/jemm386.htm">EMS / JEMM386</a> memory, then use file SRDEMS.SYS in place
+  of SRDXMS.SYS and make sure EMS 4.0 device driver is installed in
+  <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> before the SRDEMS.SYS.
+  The device driver adds into DOS a new disk drive. Before you run
+  SRDISK.EXE or when you set the disk size to zero, the new disk drive
+  behaves as if you have a floppy drive without a floppy inserted.
+
+  For more information see:
+  <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/
+  repositories/1.3/drivers/</b>
+  packet: srdisk, section: DOC  OR:
+  <b>https://gitlab.com/FreeDOS/drivers/srdisk/-/tree/master/DOC/SRDISK</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  See "BASIC INSTALLATION" above.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../cnfigsys/device.htm">device/devicehigh</a>
+  <a href="../cnfigsys/dos.htm">dos</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/lastdrv.htm">lastdrive</a>
+  <a href="../base/rdisk.htm">rdisk</a>
+  <a href="../base/rdiskon.htm">rdiskon</a>
+  <a href="../base/tdsk.htm">tdsk</a>
+  <a href="../base/udvd2.htm">udvd2.sys</a>
+  <a href="../base/uhdd.htm">uhdd.sys</a>
+  <a href="../base/xdvd2.htm">xdvd2.sys</a>
+  <a href="../base/xhdd.htm">xhdd.sys</a>
+  <a href="../base/xmgr.htm">xmgr.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2022 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: fdnpkg</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: fdnpkg</h1>
+<pre>
+  FDNPKG is network-enabled package manager for DOS. FDNPKG is released
+  under the MIT license. It allows to install/remove/update software on
+  a compatible DOS system using remote or local repositories. Remote
+  (online) repositories can be either http or gopher URLs. FDNPKG is
+  written by Mateusz Viste, primarily for the FreeDOS (tm) Project, but
+  it can be used on other DOS systems as well. FDNPKG comes with a
+  lightweight tool called <a href="../base/fdinst.htm">FDINST</a> that is suitable for old, pre-386
+  systems with low amounts of memory. FDINST doesn't provide network
+  support. FDNPKG stands for "FreeDOS Network Package manager".
+</pre>
+<h2>Syntax:</h2>
+<pre>
+Syntax: FDNPKG action [parameters]
+</pre>
+<h2>Options:</h2>
+<pre>
+  Where action is one of the following:
+  search [string]    Search net repositories for package containing
+                     'string'.
+  vsearch [string]   Same as 'search', but prints also source
+                     repositories.
+  install pkg        Install the package 'pkg' (or local zip file).
+  install-nosrc pkg  Install the package 'pkg' (or local zip file)
+                     w/o sources.
+  install-wsrc pkg   Install the package 'pkg' (or local zip file)
+                     with sources.
+  remove pkgname     Remove the package 'pkgname'.
+  listlocal [str]    List all local (installed) packages containing
+                     'str'.
+  listfiles pkg      List files owned by the package 'pkg'.
+  checkupdates       Check for available updates of packages and display
+                     them.
+  update [pkg]       Update 'pkg' to last version (or all packages if
+                     no arg).
+  dumpcfg            Print out the configuration loaded from the
+                     cfg file.
+  clearcache         Clear FDNPKG's local cache.
+  license            Print out the license of this program.
+  /?, -h, --help     Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  FDNPKG is handling FreeDOS packages. A "package" is an archive
+  containing software in its binary and/or source code form. FreeDOS
+  packages are in fact standard ZIP files that contain a predefined
+  directory tree (eg. BIN/, SOURCE/, DOC/...). FDNPKG performs a set
+  of tests on the package before trying to install it, and refuses to
+  install packages that seem to be invalid.
+  The ZIP format is a container that allows for multiple compression
+  algorithms to be used. FDNPKG supports these: stored files (no
+  compression), deflate and lzma.
+
+  Configuration:
+  The FDNPKG configuration file is a text file that contains various
+  directives, like repositories declarations, cache time, etc. I won't
+  describe the configuration file here, because it's pretty well
+  commented itself. FDNPKG looks for its configuration file into
+  &percnt;DOSDIR&percnt;\BIN\FDNPKG.CFG by default, but you can make FDNPKG use a
+  configuration file at any other location, by setting the FDNPKG.CFG
+  environnement variable.
+  Example:
+    SET FDNPKG.CFG=C:\MYDIR\FDNPKG.CFG
+</pre>
+<h2>Examples:</h2>
+<pre>
+  You can find the package.zip files at the FreeDOS live CD at
+  \Packages\APPS or ARCHIVER etc. OR at:
+  <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/repositories/</b>
+  Type:
+    fdnpkg install tar.zip (or another one).
+  To uninstall type:
+    fdnpkg remove tar (not tar.zip or another one).
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/fdimples.htm">fdimples</a>
+  <a href="../base/fdinst.htm">fdinst</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2022 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

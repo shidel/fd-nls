@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: graphics, graph-ps, graphpin, graph-hp</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: graphics, graphics, graph-ps, graphpin, graph-hp</h1>
+<pre>
+  GRAPHICS allows PrtScr to print graphics screens. (CGA/EGA/VGA/MCGA,
+  on PostScript, ESC/P Epson 8/24pin and HP PCL printers)
+
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  GRAPH-PS (options) - for laser printers only (PostScript)
+  GRAPHPIN (options) - for dot matrix printers and other ESC/P (Epson)
+  GRAPH-HP (options) - for HP PCL 3 printers
+  Options see below.
+
+  It is recommend that you copy the file that fits
+  YOUR printer to GRAPHICS.COM for better overview.
+  Run the GRAPH*.COM that fits your printer - It will stay resident in
+  the background until you reboot. You can use the 'shift PrtScr' key
+  while GRAPH... is resident to print hardcopies (screenshots) of your
+  graphical screen contents in all standard CGA, EGA and VGA modes.
+  No support for high resolution modes / VESA / Hercules yet. The print
+  canvas should fit both A4 and letter paper. The screen is printed in
+  landscape mode: The bottom of the screen is at the left of the paper.
+
+  Make sure that you run only versions that match your type of printer.
+  Otherwise, the print screen key will cause lots of nonsense to be
+  printed: You can abort the printing (not in PostScript) by pressing
+  'shift print screen' again. In the PostScript versions, this trick
+  will only cause the rest of the printout to stay white, but this will
+  not save you from printing nonsense on non-PostScript printers.
+
+  Luckily, many 24-pin printers and even Epson ink jet color printers
+  are compatible to Epson. When in doubt, you can always turn off the
+  printer and/or reboot the PC before too much paper is wasted.
+  Accidentally sending PostScript to printers that cannot handle it
+  looks less weird than sending Epson code to other printers
+  (PostScript only uses plain text commands).
+</pre>
+<h2>Options:</h2>
+<pre>
+  /B - process the CGA background color setting
+  /I - inverse printing (useful if lots of dark areas on screen, to
+       save ink / toner: will print black where screen is white etc.)
+  /C - compatibility mode: 120x60 dpi 24 pin
+       (instead of 180x180 dpi 24 pin) in Epson case,
+       HP Laserjet extra compatibility in PostScript case,
+       300 dpi instead of 600 dpi in HP PCL case
+  /9 - 9 pin, Epson only: 120x72 dpi, or 60x72 dpi in compatibility mode
+  /X - Epson only: send print data for whole lines instead of in blocks
+  /R - use random dither instead of ordered dither (not for PostScript)
+  /E - economy mode: only 50&percnt; of the density. Done by reducing the
+       distance of every color to white to 50&percnt; of the normal value
+  /1 - use LPT1 (default is to use LPT1)
+  /2 - use LPT2 (default is to use LPT1)
+  /3 - use LPT3 (you already guessed it)
+  /? - show help screen instead of going resident
+     - you do not need to give any options :-)
+</pre>
+<h2>Comments:</h2>
+<pre>
+  PostScript version:
+  GRAPH-PS produces PostScript output for laser printers, assuming that
+  the laser printer can make some sense of 256 gray level images itself.
+  If you press print screen again while print data is generated, the
+  part of the screen that is not already processed will be printed in
+  white. Canvas size is 9.9 x 7.43 inch, should fit A4 and letter paper.
+
+  HP PCL version:
+  GRAPH-HP is for 600dpi and 300dpi printing on HP PCL 3 compatible
+  printers, like HP Ink-jets. This by default uses EconoFast (at 300dpi),
+  and depletion (can be selected at compile time). You can select either
+  "random" or "ordered" dither as described below. Output looks somewhat
+  different, however, as "regular pattern avoidance" code is different
+  in HP PCL and Epson modes. Canvas size of 7.2 x 9.6 inch should fit
+  both 8.25 x 11.7 inch A4 and 8.5 x 11 inch letter size paper.
+  No color printing or RET (up to 4 intensity levels per color / black
+  channel) is supported currently. Tell me if you want colors!
+
+  Epson version:
+  GRAPHPIN is for 180dpi and 120x60dpi printing on Epson compatible dot
+  matrix printers. If you do not select the /R option, dithering patterns
+  will be based on a bit-mirrored counter, while the /R option enables
+  "random" dither using a linear congruential pseudo random number
+  generator, using both low and high byte of the random number to print
+  a black pixel with probability equal to the darkness of the
+  corresponding screen pixel.
+
+  If you do not understand this tech-speak, look at epson.png: The left
+  image is "ordered", the right image is "random". For space reasons,
+  epson.png only shows about 100x100 pixels of an MCGA picture. The
+  full printed screenshots will use a canvas independent of the screen
+  resolution: 1320x1760 (padded to ...x1776) black and white pixels
+  (less in 120x72 dpi of course, 1330x1776 with OLDRES compile option).
+
+  You can use my pin-read utility for Linux to convert printer data
+  (only 180x180 dpi currently) into images, I provide it in the "extra"
+  subdirectory of the sources. If you press print screen again while
+  printing is in progress, printing will abort at the next available
+  position (a few 100 per screenshot) and some message like "aborted"
+  will be printed to tell you about it.
+
+  Current canvas size is 7.6 (120x60) or 7 7/9 (60x72, 120x72, 180x180)
+  by 9 7/9 inch. It should fit both 8.25 x 11.7 A4 and 8.5 x 11 letter.
+
+  With OLDRES, 120x72 dpi images are 6.2 x 8.2 inch landscape mode,
+  and 180x180 dpi and PostScript images are 7.43 x 9.9 inch landscape
+  mode. This was to make sure that 120x60 dpi (24 pin printers in
+  compatibility mode) still fit the page.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  graphics /9 /1    (driver is loaded) OR:
+  graph-ps /c /1     OR
+  graph-hp /c /e /1
+  After loading the driver you can print screenshots using "Shift
+  PrintScreen" even in graphics mode. Use the correct printer driver!
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/print.htm">print</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Eric Auer, updated 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: scantest</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: scantest</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  SCANTEST is a low-level keyboard testing utility.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  SCANTEST [filename]
+    where [filename] is where you want to send a copy of the screen.
+</pre>
+<h2>Options:</h2>
+<pre>
+  A code surrounded by {brackets} is a key being released.
+  A code surrounded by *stars* is a Microsoft multimedia key.
+  Descriptions may not be valid for non-US or non-Microsoft keyboards.
+  Press "ESC" to Quit.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  SCANTEST is a low-level keyboard testing program. It's included here as
+  a "companion" program to help you test and configure USBKEYB (discussed
+  on page 90 of USBINTRO.DOC, see links below), but you can use it test
+  any kind of keyboard. This version of SCANTEST is actually a slightly
+  updated version of the SCANTEST that was included with one of my other
+  programs (SCANCODE) that was last released several years ago. The
+  updates added to this version include descriptions for several of the
+  "multimedia" keys on the keyboard (volume controls, CD player play/
+  pause, etc.), an indicator for "repeating" keystrokes (typeamatic
+  repeats), and support for Long File Names in the output. If you've
+  used earlier versions of SCANTEST, the differences are relatively minor
+  and will probably not be all that obvious to you.
+  When you run SCANTEST, it "intercepts" every keystroke you type from
+  the keyboard, and displays the Scan Code of the keystroke (a number or
+  a series of numbers), along with a description of the keystroke. Note
+  that the description is only valid for United States QWERTY keyboards,
+  so if that's not the kind of keyboard you're using, the descriptions
+  will probably be different than what you're expecting. The Scan Code
+  numbers displayed will always be correct, no matter what kind of
+  keyboard you have. To exit the SCANTEST program, simply press "Escape"
+  on the keyboard.
+  It is important that you realize that SCANTEST is a low-level program,
+  and what is displays are the Scan Codes that are coming from the
+  keyboard, and are NOT the ASCII characters that usually appear on the
+  screen as you are typing. Scan Codes and ASCII characters are
+  COMPLETELY different animals, and there is no direct relationship
+  between the two. You can read the documentation for my SCANCODE program
+  if you want to investigate this further -- we will not discuss it in
+  detail here.
+  The only option switch SCANTEST provides is the ability to "tee" the
+  displayed output to both the screen and to another location (DOS file
+  or device) at the same time. For instance, let's say you intend to have
+  a long SCANTEST "session", and you would like to remember the entire
+  session by sending everything that gets displayed on the screen to the
+  printer (LPT1:). To accomplish this, you would start SCANTEST the
+  following way:
+    SCANTEST LPT1:
+  If you do this, everything that SCANTEST displays on the screen will
+  also be sent to LPT1:.
+  You can "tee" the output to almost any DOS device or file you want to,
+  not just the printer. Here are a some examples:
+    SCANTEST C:\SCANTEST.TXT
+    SCANTEST "C:\My Documents\ScanTest.Out"
+  Obviously, the second example above will only work if you're currently
+  working in an environment that supports Long File Names (LFN's).
+  The one Device that you cannot "tee" the output to is the CON: Device,
+  because it is the same thing as the screen. That is, you cannot send
+  the output to the screen (CON:), and then try to "tee" the output to
+  the same place (the screen or CON:). I can't imagine anybody trying to
+  do this (at least not on purpose), but if you do SCANTEST will
+  generate an error.
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another editor, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  scantest LPT2
+  scantest C:\scantest.txt
+  scantest "C:\my documents\scantest.out"
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../util/drives.htm">drives</a>
+  <a href="../util/hidsupt1.htm">hidsupt1</a>
+  <a href="../util/inklevel.htm">inklevel</a>
+  <a href="../util/irq.htm">irq</a>
+  <a href="../util/ps2mtest.htm">ps2mtest</a>
+  <a href="../util/thrust.htm">thrust</a>
+  <a href="../util/uni2asci.htm">uni2asci</a>
+  <a href="../util/usbdevic.htm">usbdevic</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhosts.htm">usbhosts</a>
+  <a href="../util/usbhub.htm">usbhub</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbsupt1.htm">usbsupt1</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/usbuhcil.htm">usbuhcil</a>
+  <a href="../util/vendorid.htm">vendorid</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1999-2008, Bret E. Johnson</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

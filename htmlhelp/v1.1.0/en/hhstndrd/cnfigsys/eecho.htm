@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: eecho</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: eecho</h1>
+<pre>
+  EECHO displays messages.
+  EECHO is a <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  EECHO [message] with ANSI Escape Sequence
+</pre>
+<h2>Options:</h2>
+<pre>
+  message  The message you want to be displayed to the user.
+  ANSI Escape Sequences:
+    0       All attributes off (normal white on black)
+    1       Bold
+    4       Underline (seems not to work!)
+    5       Blink
+    7       Reverse Video
+    30      foreground black
+    31      foreground red
+    32      foreground green
+    33      foreground yellow
+    34      foreground blue
+    35      foreground magenta
+    36      foreground cyan
+    37      foreground white
+    40      background black
+    41      background red
+    42      background green
+    43      background yellow
+    44      background blue
+    45      background magenta
+    46      background cyan
+    47      background white
+</pre>
+<h2>Comments:</h2>
+<pre>
+  EECHO allows for echo-ing ANSI Escape Sequences (redefines keyboard
+  input for example). Use a dollar sign ($) to represent the ANSI Escape
+  character. Note: requires an ANSI driver like <a href="../base/nansi.htm">NANSI.SYS</a> loaded
+  prior to use.
+  EECHO is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    DEVICE=C:\FREEDOS\BIN\nansi.sys
+    EECHO feeling $[33;44;1m blue :-) (yellow and bold text, blue
+                                       background)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../cnfigsys/echo.htm">echo</a>
+  <a href="../base/nansi.htm">nansi.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2008 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

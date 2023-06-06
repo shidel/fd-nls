@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: memory</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: memory</h1>
+<pre>
+  MEMORY displays the usage of internal memory of FreeCOM.
+  Note:
+  The internals of FreeCOM are currently under heavy construction,
+  the actual output might vary heavily from this example.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  MEMORY [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /?  Shows the help
+</pre>
+<h2>Comments:</h2>
+<pre>
+  MEMORY may display this:
+
+  Environment segment    : max    1200 bytes; free     8 bytes
+  Context segment        : max    2304 bytes; free  2252 bytes
+          Aliases        : limit  1024 bytes, current  5 bytes,  0 items
+          History        : limit   256 bytes, current 34 bytes,  2 items
+          Directory stack: limit   256 bytes, current  5 bytes,  0 items
+          Last dir cache : used      0 bytes,     0 items
+          Swapinfo       : used      0 bytes,     0 items
+  Heap                   : free 482080 bytes
+
+  -  The <b>Environment segment</b> is the storage area, the <a href="../command/environm.htm">ENVIRONMENT</a>
+     <a href="../command/environm.htm">VARIABLES</a> are stored in. It may be changed passing the <b>/E</b>
+     option to FreeCOM.
+  -  FreeCOM stores several internal information into the <b>Context</b>
+     <b>segment</b>; the <b>Aliases</b> - modified by the <b><a href="../batch/alias.htm">ALIAS</a></b> command -,
+     the <b>History</b> - displayed using the <b><a href="../command/history.htm">HISTORY</a></b> command, accessed by
+     pressing the cursor Up/Down keys on command line -, the <b>Directory</b>
+     <b>stack</b> - displayed with the <b><a href="../command/dirs.htm">DIRS</a></b> command and accessed using the
+     <b><a href="../command/pushd.htm">PUSHD</a></b> and <b><a href="../command/popd.htm">POPD</a></b> commands -, the <b>Last directory</b> - accessed with
+     the <b><a href="../command/cd.htm">CD / CHDIR</a></b> command -, and, finally, some internal commands
+     used by the low-level swap interface of FreeCOM.
+  -  The <b>Heap</b> is the storage area FreeCOM can allocated memory
+     from itself. This value is useful for FreeCOM developers mostly.
+
+  - <b>max</b> specifies the maximum amount of bytes allocatable within
+    this storage area.
+  - <b>free</b> specifies the unused bytes within this storage area.
+  - <b>limit</b> specifies the maximum amount of bytes allocatable
+    for the particular information within the area.
+  - <b>current</b> specifies the amount of bytes currently allocated
+    for the particular information.
+  - <b>items</b> specifies the number of items stored for the particular
+    information, e.g. how many directories have been pushed onto the
+    stack using <b><a href="../command/pushd.htm">PUSHD</a></b>.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/alias.htm">alias</a>
+  <a href="../command/cd.htm">cd/chdir</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../command/dirs.htm">dirs</a>
+  <a href="../command/environm.htm">environment variable</a>
+  <a href="../command/history.htm">history</a>
+  <a href="../base/mem.htm">mem</a>
+  <a href="../command/popd.htm">popd</a>
+  <a href="../command/pushd.htm">pushd</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

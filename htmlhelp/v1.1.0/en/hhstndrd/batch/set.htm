@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: set (command.com command)</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: set (command.com command)</h1>
+<pre>
+  SET displays, sets, or removes <a href="../command/environm.htm">ENVIRONMENT VARIABLE</a>.
+  SET is a <a href="../batch/index.htm">BATCH-FILE</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a> command.
+  It can also be used in command line.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  SET [/C] [/I] [/P] [/E] [/U] [variable[=[string]]]
+  SET [/?]
+  variable  Specifies the <a href="../command/environm.htm">ENVIRONMENT VARIABLE</a> name.
+  string    Specifies a series of characters to assign to the variable.
+  * If no string is specified, the variable is removed from the
+    <a href="../command/environm.htm">ENVIRONMENT</a>.
+  Type SET without parameters to display the current environment
+  variables. Type SET VAR to display the value of VAR.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /C  Forces to keep the exact case of the letters of the variable name;
+      by default all letters are uppercased to keep compatibly.
+  /I: has been temporarily included to the SET command to allow an easy
+      way to display the current size of the <a href="../command/environm.htm">ENVIRONMENT</a> segment, because
+      it is one of the most frequently reported, but not reproduceable
+      bug report. Once this option has been encountered, all the
+      remaining command line is ignored.
+  /P: Prompts the user with the specified "string" and assigns the user's
+      input to the variable. If no input is made, hence, one taps just
+      ENTER, an empty value is assigned to the variable, which is then
+      removed from the <a href="../command/environm.htm">ENVIRONMENT</a>.
+  /E  Sets the given variable to the first line of output of the
+      command pointed to by [string].
+  /U  Changes the case of [string] to uppercase.
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The variant without any argument displays all the currently defined
+  <a href="../command/environm.htm">ENVIRONMENT VARIABLES</a> in the format (without any whitespaces before
+  or after the equal sign): name '=' "value"
+  The variant "set variable=string" assigns a new value "string" to the
+  specified variable. If the variable already exists, the old value is
+  OVERWRITTEN WITHOUT NOTICE; otherwise it is newly created.
+  Please keep this in mind as it may cause confusion!
+  The command "set variable=" should be put before and after the last
+  execution of "set variable=string" in a batch file to avoid wrong
+  values for "variable" in another bad written batch file.
+  SET can also be used outside a batch file. Please keep in mind that
+  these are forgotten as soon as you shut down the machine!
+  SET is a command internal to command.com and needs no other file
+  in order to work.
+  <b>ENVIRONMENT VARIABLES are very helpful</b>. As soon as they are set, you
+  can use them instead of very long paths / text, e.g.:
+  set DRV=C:\FREEDOS\BIN
+  You can then enter defrag c: instead of C:\FREEDOS\BIN\defrag c: OR:
+  edit: instead of C:\FREEDOS\BIN\edit etc - and this with one command
+  line in <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a>!
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN A .BAT FILE / AUTOEXEC.BAT:
+    set            Displays a list of the current environment variables.
+    set DRIVE=Z:\  Sets the environment variable DRIVE to the given
+                   value "Z:\".
+    set DRIVE      Shows the value of variable "DRIVE" (Z:\)
+    &percnt;DRIVE&percnt;xy.bat (or xy.exe) executes the command
+                   Z:\xy.bat or Z:\xy.exe.
+                   Means: &percnt;DRIVE&percnt represents the value
+                   "Z:\" in this case.
+    set DRIVE=C:\  Changes from Z:\ to C:\. Z:\ will be FORGOTTEN!
+    set DRIVE=     Removes the variable DRIVE from the environment so
+                   that "DRIVE" and "C:\" are forgotten too.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../command/environm.htm">environment variable</a>
+  <a href="../cnfigsys/set.htm">set (config.sys command)</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

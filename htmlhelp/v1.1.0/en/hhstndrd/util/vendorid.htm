@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: usbhosts</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: usbhosts</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  VENDORID translates PCI &amp; USB Vendor ID codes to words.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+VENDORID [Options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  ?  Show this HELP screen
+  O  Show all aliases for these command line OPTIONS
+  E  Show all ErrorLevels (DOS Return Codes)
+  The Following Options require a Vendor Type (PCI, PNP, or USB) to be
+  entered first, and also require an appropriate Data File (VENDORID.PCI,
+  .PNP, .USB) to be located in the same directory as this executable file
+  (VENDORID.COM).
+  PNP aaa          Show Vendor Name for PNP Vendor ID aaa
+                   aaa is a three-letter acronym (e.g., SNY = Sony Corp).
+  {PCI/USB} &num;      Show Vendor Name for {PCI/USB} Vendor ID &num;
+                   &num; is Decimal (0-65535) or Hex (0h-FFFFh, 0x0-0xFFFF).
+
+  {PCI/PNP/USB} "String"  Search for "String" in {PCI/PNP/USB} Vendor
+                          Names. Search is case-insensitive.
+
+  {PCI/PNP/USB}    A List ALL {PCI/PNP/USB} Vendor IDs and Names.
+                   You may want to use one or more of the DOS Filters
+                   (FIND, SORT, MORE) with the ALL Option.
+                   "VENDORID USB All | FIND "h  " | SORT /+8 | MORE",
+                   for example, will sort the entire USB Vendor Name
+                   Table by Vendor Name, and pause after each screen.
+  {PCI/PNP/USB} S  List the {PCI/PNP/USB} data SOURCE details
+
+  If running from inside another program (not running from the command-
+  line), the Option can be followed with a hex address (Segment:Offset)
+  to which the output will be written.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  VENDORID is a program that searches for and displays the names of all of
+  the known PCI, PNP, or USB Vendor ID's. PNP (Plug-N-Play) ID's are
+  three letter acronyms (for example, ICO = Intel Corporation) assigned by
+  Microsoft, and will receive limited discussion here since they do not
+  directly apply to USB devices. In the PCI (Peripheral Component
+  Interface) and USB (Universal Serial Bus) architectures, each vendor
+  (manufacturer) registers with the appropriate organization, and receives
+  a Vendor ID (a number). Every device that the Vendor manufacturers is
+  required to have the ID stored in the firmware of the device, so that
+  the device can be identified automatically (using software). In
+  addition to the Vendor ID, PCI and USB Devices also contain a field for
+  the Device ID. While the Vendor ID is assigned by the USB or PCI
+  organization (and requires a registration fee), the Device ID's are
+  assigned and maintained by the individual Vendor.
+  Even though the PCI and USB organizations are the only ones who can
+  officially assign Vendor ID's, some Vendors make up their own, "borrow"
+  ID's from each other, change their names, get taken over by other
+  companies, go out of business, etc. Therefore, it is very difficult to
+  maintain an accurate list of names, since it is a "moving target". On
+  top of that, the PCI and USB organizations are not always willing to
+  release their official information freely (even for something as simple
+  as the list of Vendor ID's). Over the years, there have been several
+  volunteers that have gathered information about the Vendors and Devices
+  for both USB and PCI. However, you cannot always believe all of the
+  information that you find, even if it comes directly from the
+  organization itself.
+  I have taken the information from several different locations (including
+  the USB and PCI organizations where possible), and combined them into
+  two sets data, one set for PCI and one for USB. The VENDORID executable
+  file itself (VENDORID.COM) does not actually contain the data, but
+  simply allows you to look and search through the data that is in the
+  data files (VENDORID.USB, VENDORID.PCI, and VENDORID.PNP). The data
+  files must be in the same directory as the executable file
+  (VENDORID.COM). The data files are in a simple ASCII text format, so
+  you can easily look at and modify the data yourself with a simple text
+  editor if you are so inclined.
+  There are four basic functions that VENDORID provides for the data. The
+  first function will tell you where the data came from (which web sites
+  the data came from, and the date that the data was downloaded). For
+  example, to see where I got the PCI data from, you would do the
+  following:
+    VENDORID PCI Source
+  Similarly, to see where I got the PNP data from, you would do the
+  following:
+    VENDORID PNP Source
+  The second function that VENDORID provides allows you to discover the
+  name of the company associated with a specific Vendor ID (number or
+  acronym). To do this, you must provide VENDORID with the Vendor ID
+  number (either in decimal or hexadecimal format), or three-letter
+  acronym (case-insensitive). To indicate a hexadecimal number, you can
+  either precede the number with a "0x" (C-style), follow the number with
+  an "h", or both. For example, the following lines will all provide the
+  same result:
+    VENDORID PCI 0x8086
+    VENDORID PCI   8086h
+    VENDORID PCI 0x8086h
+    VENDORID PCI 32902
+  The third function that VENDORID provides allows you to search for
+  Vendor ID's by knowing all or part of the vendor's company name. To do
+  this, you provide a string to search for, surrounded by quotes (double
+  quotes, left single quotes, or right single quotes). The search is
+  case-insensitive. For example, the following lines will provide the
+  same result:
+    VENDORID USB "Intel"
+    VENDORID USB 'intel'
+    VENDORID USB 'INTEL'
+  The results in this case would of course include "Intel Corp", along
+  with several other vendors that included "intel" somewhere in their name
+  (e.g., "Intelligent", "Intellix", etc.).
+  If you want to see the entire list of USB vendors, you would do the
+  following:
+    VENDORID USB AllVendors
+  The VENDORID.USB, VENDORID.PCI, and VENDORID.PNP data files store the
+  information sorted by Vendor ID (number or acronym) rather than by
+  vendor name. VENDORID does not offer any kind of sorting other than by
+  Vendor ID. If you want the display sorted in some fashion other than by
+  Vendor ID (say, by vendor name), or want to filter it some other way
+  (say, do a case-sensitive vendor name search), you will need to use an
+  external filter. The standard filters that come with DOS are FIND,
+  SORT, and MORE, and if you're very familiar with DOS you should already
+  understand them. There are also several "after market" filters that you
+  can obtain. For example, if you want to sort the entire PCI vendor list
+  by vendor name, and pause the screen after each page has been displayed,
+  you would do the following:
+    VENDORID PCI All | FIND "h " | SORT /+8 | MORE
+  The company names as stored and displayed in VENDORID are limited to 40
+  characters, so are almost always abbreviated in some fashion (Company is
+  always "Co", Incorporated is always "Inc", etc.). If you edit the data
+  files yourself, and make a vendor name longer than 40 characters, the
+  name will be truncated to 40 characters when it is displayed by
+  VENDORID.COM.
+  The format of the data files is fairly self explanatory if you look at
+  them. They can have blank lines and comment lines -- comment lines
+  always start with a semicolon (";"). The lines containing the data
+  sources start with "Source =". A line containing a Vendor ID and name
+  will start with the Vendor ID (number or acronym), followed by at least
+  one space, followed by the vendor name. VENDORID does not do any
+  testing to verify sort order, duplicates, etc., in the data file, but
+  rather simply assumes the data file is correct.
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another editor, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  usbuhci    (only UHCI is supported at the moment!)
+  vendorid
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../util/drives.htm">drives</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcodes</a>
+  <a href="../util/hidsupt1.htm">hidsupt1</a>
+  <a href="../util/inklevel.htm">inklevel</a>
+  <a href="../util/irq.htm">irq</a>
+  <a href="../util/ps2mtest.htm">ps2mtest</a>
+  <a href="../util/scantest.htm">scantest</a>
+  <a href="../util/thrust.htm">thrust</a>
+  <a href="../util/uni2asci.htm">uni2asci</a>
+  <a href="../util/usbdevic.htm">usbdevic</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhosts.htm">usbhosts</a>
+  <a href="../util/usbhub.htm">usbhub</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbsupt1.htm">usbsupt1</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/usbuhcil.htm">usbuhcil</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007-2010, Bret E. Johnson</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: errorlevel (exitcode)</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: errorlevel (exitcode)</h1>
+<pre>
+  Errorlevel is NO existing command but part of the <a href="../batch/if.htm">IF</a> command.
+  It is also called EXITCODE. As it is often in use there is an
+  own "command" here to show where and how it can be used.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  SEE: <a href="../batch/if.htm">IF</a> command
+</pre>
+<h2>Options:</h2>
+<pre>
+  SEE: <a href="../batch/if.htm">IF</a> command
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Sometimes ERRORLEVELS are not documented in programs. With a trick
+  you can try to find out if the program has some:
+  Try to run a program in a way where you know that it cannot function,
+  e.g.:
+  "dir --help" and then "echo &percnt;errorlevel" (return= 2) OR:
+  "chkdsk 2: /h" and then: "echo &percnt;errorlevel&percnt;" (return=2) OR:
+  "mode con cp prepare ((437) C:\FREEDOS\CPI\ega22.cpx" (return=255) OR:
+  "mode con cp prepare ((437) C:\FREEDOS\CPI\ega22.cpx)" (return=101)
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+    path C:\FREEDOS;C:\FREEDOS\BIN
+    cls
+    @ECHO. Please choose a keyboard driver:
+    @ECHO. A = US = United States
+    @ECHO. B = GR = German
+    @ECHO. C = SP = Spanish
+    @ECHO. D = FR = French
+    @ECHO. E = TR = Turkish Q layout
+    @ECHO. F = TRF  = Turkish F layout
+    @choice /B /N /C:ABCDEF "Please choose your driver: "
+    cls
+    if errorlevel 7 goto :GO_ON
+    if errorlevel 6 goto :KEYB_F
+    if errorlevel 5 goto :KEYB_E
+    if errorlevel 4 goto :KEYB_D
+    if errorlevel 3 goto :KEYB_C
+    if errorlevel 2 goto :KEYB_B
+    if errorlevel 1 goto :KEYB_A
+
+    :KEYB_A
+    lh mkeyb.exe US
+    goto :GO_ON
+
+    :KEYB_B
+    lh mkeyb.exe GR
+    goto :GO_ON
+
+    :KEYB_C
+    lh mkeyb.exe SP
+    goto :GO_ON
+
+    :KEYB_D
+    lh mkeyb.exe FR
+    goto :GO_ON
+
+    :KEYB_E
+    lh mkeyb.exe TR
+    goto :GO_ON
+
+    :KEYB_F
+    lh mkeyb.exe TRF
+    goto :GO_ON
+
+    :GO_ON
+    cls
+
+  Example 2:
+  IN A BATCH FILE:
+  C:\FREEDOS\BIN\defrag C:
+  if errorlevel 9 echo out of memory
+  if errorlevel 8 echo memory error
+  if errorlevel 7 echo FAT allocation error
+  if errorlevel 6 echo write error
+  if errorlevel 5 echo read error
+  if errorlevel 4 echo general error
+  if errorlevel 3 echo aborted by user
+  if errorlevel 2 echo disk too full to defrag
+  if errorlevel 1 echo internal error
+  if errorlevel 0 echo success
+  pause
+</pre>
+<h2>See also:</h2>
+<pre>
+  FreeDOS commands that support <a href="../batch/if.htm">IF</a> / ERRORLEVEL:
+  <a href="../base/assign.htm">assign</a>     <a href="../base/attrib.htm">attrib</a>     <a href="../base/chkdsk.htm">chkdsk</a>     <a href="../batch/choice.htm">choice</a>     <a href="../base/ctmouse.htm">ctmouse</a>
+  <a href="../base/defrag.htm">defrag</a>     <a href="../base/deltree.htm">deltree</a>    <a href="../base/diskcomp.htm">diskcomp</a>   <a href="../base/fc.htm">fc</a>         <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/find.htm">find</a>       <a href="../base/format.htm">format</a>     <a href="../batch/goto.htm">goto</a>       <a href="../base/swsubst.htm">join</a>       <a href="../base/keyb.htm">keyb</a>
+  <a href="../base/mode.htm">mode</a>       <a href="../base/replace.htm">replace</a>    <a href="../base/shsucdx.htm">shsucdx</a>    <a href="../base/swsubst.htm">subst</a>      <a href="../base/swsubst.htm">swsubst</a>
+  <a href="../base/tdsk.htm">tdsk</a>       <a href="../base/xcopy.htm">xcopy</a>      <a href="../util/pcisleep.htm">pcisleep</a>   <a href="../base/shsufdrv.htm">shsufdrv</a>   <a href="../util/touch.htm">touch</a>
+  <a href="../util/xgrep.htm">xgrep</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

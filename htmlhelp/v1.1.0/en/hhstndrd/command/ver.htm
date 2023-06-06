@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: ver</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: ver</h1>
+<pre>
+  VER displays the FreeDOS version information. By default,
+  only the version of the command shell (FreeCOM) is reported.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  VER [/R] [/W] [/D] [/C]
+</pre>
+<h2>Options:</h2>
+<pre>
+  none  Shows COMMAND.COM version number.
+  /R    Shows the KERNEL and COMMAND.COM version numbers. When
+        <a href="../cnfigsys/version.htm">VERSION=x.yy</a> is set in <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>
+        it also shows this DOS version number.
+  /W    Shows the FreeDOS command shell warranty.
+  /D    Shows the FreeDOS command shell distribution information.
+  /C    The FreeCOM acknowledgements section. It lists contributors.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The <a href="../base/callver.htm">CALLVER</a> DOS version is NOT shown by VER /R.
+  VER is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+    ver     Shows COMMAND.COM version number.
+    ver /R  Shows KERNEL and COMMAND.COM version number and
+            if set, the DOS version number set by version.
+    ver /W  Shows the FreeDOS command shell warranty.
+    ver /D  Shows the FreeDOS command shell distribution information.
+    ver /C  The FreeCOM acknowledgements section. It lists contributors.
+
+  Example 2:
+    In CONFIG.SYS / FDCONFIG.SYS:
+      version=9.99 Sets DOS version number to 9.99
+
+    In COMMAND LINE:
+      ver /r       Shows KERNEL and COMMAND.COM version number and
+                   DOS-Version 9.99
+
+  Example 3:
+    In COMMAND LINE:
+      callver 6.67 Shows version number 6.67
+      ver /r       Shows the version number 9.99 (see Example 2) or none.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/callver.htm">callver</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+ (<a href="../base/setver.htm">setver</a>)
+  <a href="../cnfigsys/version.htm">version</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: xkeyb / xkeybres</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: xkeyb / xkeybres</h1>
+<pre>
+  XKEYB is a keyboard driver with a certain resemblance to the
+  well-known <a href="../base/keyb.htm">KEYB</a>. <b>It supports the .key format.</b>
+  FreeDOS has three keyboard drivers: <a href="../base/keyb.htm">KEYB</a>, <a href="../base/mkeyb.htm">MKEYB</a> and XKEYB.
+  The .KEY files of XKEYB and KEYB are NOT compatible!
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  xkeyb configuration file[.KEY] [/Xnn] [/Q] [/U] [/I] [/E][/?]
+    whereas configuration file is the country code ("GR.key" or "US.key")
+</pre>
+<h2>Options:</h2>
+<pre>
+  /Xnn  This switch should be used to explicitly set the amount of
+        storage space to be reserved for XStrings (where nn is the
+        memory-size indicated in bytes).
+  /Q    (Quiet), suppresses the output of LIST paragraph in configuration
+        files.
+  /U    (Uninstall), removes the resident copy from XKeyb from memory
+        (if installed).
+  /E    Maps extended (E0-prefixed) keys to their corresponding normal
+        key
+  /I    Forces the installation, ignoring the current driver
+  /?    Shows the help
+</pre>
+<h2>Comments:</h2>
+<pre>
+  As with <a href="../base/keyb.htm">KEYB</a>, XKEYB is also a keyboard driver for MS-DOS computers,
+  which is installed as a memory-resident program and can be configured
+  for different countries using parameters.
+  However XKEYB allows many more configuration options than <a href="../base/keyb.htm">KEYB</a>. Thus,
+  you can configure XKEYB not only for different countries, but also for
+  your own personal preferences.
+  On the one hand XKEYB permits the free allocation of all keys on all
+  levels (normally with SHIFT, CTRL, ALT, and CTRL-ALT), while on the
+  other hand it offers the flexibility to define character strings to
+  individual keys on certain levels.
+  Furthermore for each key it can be determined separately whether it is
+  influenced by CAPS LOCK, NUM LOCK or SCROLL LOCK, and if the SHIFT,
+  CTRL, and ALT keys determine what values are issued.
+  The programmer is provided with a PI (Program Interface) to XKEYB.
+  It allows access to many of the XKEYB functions.
+  XKEYB comes with the packet XKEYB. It contains the related commands:
+    XKEYBRES     Alternative version of XKEYB with smaller resident size
+                 (source only, in source package)
+    KEYMAN       KEYMAN is an interactive macro recorder for use with
+                 XKEYB. Either XKEYB or XKEYBRES must be resident in
+                 memory before KEYMAN can be installed (and XKEYBRES
+                 must have a configuration file allocated by XKEYB).
+    LISTXDEF     LISTXDEF is used to output (to STDOUT) the definition
+                 file currently being used by XKeyb (including any keys
+                 defined using KEYMAN.EXE). It is most commonly used to
+                 save a custom definition file (ie. one created by
+                 loading one of the standard definition files with XKEYB
+                 then assigning additional macros using KEYMAN).
+    SCANKBD      Program for scanning current keyboard layout.
+  For more information see:
+    <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/dos/keyb/
+    xkeyb-1.15/</b> (1.15 is the latest version!!), includes .key files OR:
+    <b>https://gitlab.com/FreeDOS/drivers/xkeyb</b>
+  The .KEY files of XKEYB and KEYB are NOT compatible!
+</pre>
+<h2>Examples:</h2>
+<pre>
+  XKEYB GR /X480
+  XKEYB /X480 <b>C:\FREEDOS\BIN\KEY\TR.key</b>
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../other/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/keyb.htm">keyb</a>
+  <a href="../other/kpdos.htm">kpdos</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Aitor SANTAMARIA MERINO, updated 2008
+  and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

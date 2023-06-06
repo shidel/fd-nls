@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: dirs</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: dirs</h1>
+<pre>
+  DIRS displays the contents of the directory stack.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DIRS [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  DIRS displays the content of the directory stack which is filled up
+  by <a href="../command/pushd.htm">PUSHD</a> and emptied by <a href="../command/popd.htm">POPD</a>.
+  DIRS is stored in the context segment (directory stack) of
+  command.com, for more information see: <a href="../base/command.htm">COMMAND /E:nnn</a> and <a href="../command/memory.htm">MEMORY</a>.
+  DIRS is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  this command            changes the current directory to / shows:
+  ============            =========================================
+  cd c:\FREEDOS\BIN       c:\FREEDOS\BIN
+  pushd c:\GAMES          c:\GAMES        (and stores c:\FREEDOS\BIN)
+  pushd c:\UTILS          c:\UTILS        (and stores c:\GAMES)
+  pushd c:\packages       c:\packages     (and stores c:\UTILS)
+  dirs                    shows the directories stored by pushd:
+                            0001=c:\FREEDOS\BIN
+                            0002=c:\GAMES
+                            0003=c:\UTILS
+  popd                    c:\UTILS        (and removes c:\UTILS (0003)
+                                          from directory stack)
+  popd                    c:\GAMES        (and removes c:\GAMES (0002)
+                                          from directory stack)
+  popd                    c:\FREEDOS\BIN  (and removes c:\FREEDOS\BIN
+                                          (0001) from directory stack)
+  popd                    shows the message: "Directory stack empty"
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/cd.htm">cd/chdir</a>
+  <a href="../command/cdd.htm">cdd</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../command/memory.htm">memory</a>
+  <a href="../command/pushd.htm">pushd</a>
+  <a href="../command/popd.htm">popd</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

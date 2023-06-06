@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: fdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: fdisk</h1>
+<pre>
+  FDISK creates one or several partitions on a hard disk. After this,
+  the partitions can be <a href="../base/format.htm">formatted</a> and are ready to work with FreeDOS.
+  To make them bootable you may have to set an 'active partition' and
+  to run 'fdisk /ipl' (or: 'fdisk /mbr') and 'sys c:'.
+  FDISK is not needed for floppy disks!
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FDISK [drive&num;][argument]...
+  no argument       Runs in interactive mode.
+  /INFO             Displays partition information of &lt;drive&num;>.
+  /REBOOT           Reboots the Computer.
+</pre>
+<h2>Options:</h2>
+<pre>
+  Commands to create and delete partitions:
+  &lt;size&gt;  is a number for megabytes or MAX for maximum size
+          or &lt;number&gt;,100 for &lt;number&gt; to be in percent.
+  &lt;type&num;&gt; is a numeric partition type or FAT-12/16/32 if /SPEC not given.
+
+  /PRI:&lt;size&gt; [/SPEC:&lt;type&num;&gt;]              Creates a primary partition.
+  /EXT:&lt;size&gt;                              Creates an Extended DOS
+                                           Partition.
+  /LOG:&lt;size&gt; [/SPEC:&lt;type&num;&gt;]              Creates a logical drive.
+  /PRIO,/EXTO,/LOGO                        Same as above, but avoids
+                                           FAT32.
+  /AUTO                                    Automatically partitions the
+                                           disk.
+  /DELETE {/PRI[:&num;] | /EXT | /LOG:&lt;part&num;&gt;  Deletes a partition.
+           | /NUM:&lt;part&num;&gt;}                 ...logical drives start at
+                                           /NUM=5.
+  /DELETEALL                               Deletes all Partitions from
+                                           &lt;drive&num;&gt;.
+
+Setting active partitions:
+  /ACTIVATE:&lt;partition&num;&gt;                   Sets &lt;partition&num;&gt; active.
+  /DEACTIVATE                              Deactivates all partitions.
+
+MBR (Master Boot Record) management:
+  /CLEARMBR               Deletes all partitions and boot code.
+  /LOADMBR                Loads part. table and code from "boot.mbr"
+                          into MBR.
+  /SAVEMBR                Saves partition table and code into file
+                          "boot.mbr".
+
+MBR code modifications leaving partitions intact:
+  /IPL                    Installs the standard boot code into MBR
+                          &lt;drive&num;&gt;.
+                          ...Same as /MBR and /CMBR for compatibility.
+  /SMARTIPL               Installs DriveSmart IPL into MBR &lt;drive&num;&gt;.
+  /LOADIPL                Writes 440 code bytes from "boot.mbr" into MBR.
+
+Advanced partition table modification:
+  /MODIFY:&lt;part&num;&gt;,&lt;type&num;&gt;                    Changes partition type to
+                                             &lt;type&num;&gt;. ...Logical drives
+                                             start at "5".
+  /MOVE:&lt;srcpart&num;&gt;,&lt;destpart&num;&gt;               Moves primary partitions.
+  /SWAP:&lt;1stpart&num;&gt;,&lt;2ndpart&num;&gt;                Swaps primary partitions.
+
+For handling flags on a hard disk:
+  /CLEARFLAG[{:&lt;flag&num;&gt;} | /ALL}]             Resets &lt;flag&num;&gt; or all on
+                                             &lt;drive&num;&gt;.
+  /SETFLAG:&lt;flag&num;&gt;[,&lt;value&gt;]                 Sets &lt;flag&num;&gt; to 1 or
+                                             &lt;value&gt;.
+  /TESTFLAG:&lt;flag&num;&gt;[,&lt;value&gt;]                Tests &lt;flag&num;&gt; for 1 or
+                                             &lt;value&gt;.
+
+For obtaining information about the hard disk(s):
+  /STATUS       Displays the current partition layout.
+  /DUMP         Dumps partition information from all hard disks
+               (for debugging).
+
+Interactive user interface switches:
+  /UI           Always starts UI if given as last argument.
+  /MONO         Forces the user interface to run in monochrome mode.
+  /FPRMT        Prompts for FAT32/FAT16 in interactive mode.
+  /XO           Enables extended options.
+
+Compatibility options:
+  /X            Disables ext. INT 13 and LBA for the following commands.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  As FDISK creates / deletes partitions, you should handle it carefully.
+  If you want to make a HD bootable, don't forget to set the 'Active'
+  flag and to run 'fdisk /mbr' to write the Master boot record on the HD.
+  FreeDOS supports up to FOUR primary partitions. If you want to
+  create more than FOUR partitions on a HD you should first create a
+  maximum of THREE primary partitions, then add ONE (=maximum!) extended
+  partition and inside of this partition ONE or MORE logical partitions.
+  To be able to boot from up to four different partitions, you have to
+  install a system on these partitions (minimum = "sys c: / d: /e: / f:")
+  and then run fdisk and change the 'Active' flag to another primary
+  partition. You can NOT boot from logical drives!
+  FDISK has the following <a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODES</a>:
+     0  Normal program completion, no errors
+     1  Syntax error
+     3  Error in the fdisk.ini file
+     4  Error in the part.dat file
+     5  Non-existant hard disk
+     6  Buffer allocation failure
+     7  Hard disk is already partitioned. (This is only
+        returned if the "/AUTO" function is used and there are
+        already partitions other than a Compaq Diagnostic
+        Partition on the hard disk.)
+     8  Error reading from or writing to the boot.mbr file.
+     9  Miscellaneous error. It is best to examine
+        the output printed to the screen from Free FDISK to
+        determine the exact cause of the problem.
+    20  Flag has been set (see /SETFLAG, /TESTFLAG, and
+        /CLEARFLAG for details)
+    21  Flag has not been set (see errorlevel 20, above)
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+  Making a diskette bootable, version 1:
+  From an existing bootable HD or CD:
+    fdisk      (is not needed!)
+    format a:  (Formats the diskette so that files can be written).
+    sys a:     The <a href="../base/kernel.htm">KERNEL (KERNEL.SYS)</a> and <a href="../base/command.htm">COMMAND.COM</a>
+               will be copied from your bootable HD or CD to A:; after
+               the execution the diskette will be bootable.
+  Example 2:
+  Making a diskette bootable version 2:
+  From a booted diskette (in drive A:):
+    fdisk      (is not needed!)
+    format b:  (Formats the diskette so that files can be written).
+               Depending on if you have two floppy drives or not the
+               format command formats at drive B: or asks you to enter
+               a new floppy into drive A: and formats from there.
+               When this is done, insert the original diskette again,
+               then enter:
+    sys b:     The <a href="../base/kernel.htm">KERNEL (KERNEL.SYS)</a> and <a href="../base/command.htm">COMMAND.COM</a>
+               will be copied from your bootable diskette A: to B:,
+               (same procedure as format b:) after the execution
+               the diskette will be bootable.
+  Example 3:
+  Making a HD bootable:
+  From an existing bootable diskette or CD:
+    fdisk      (This allows you to create ONE or MORE partitions, see
+               above; up to FOUR primary partitions can be created.
+               (If you create four primary partitions the remaining space
+               of your HD can not be used!) Do not forget to reboot!
+               Fdisk without options shows a user interface.
+    fdisk      Set <b>ACTIVE PARTITION</b> (only THIS ONE partition can boot,
+               but you can change this by making one of the three other
+               primary partitons ACTIVE (there is NO boot manager) with
+               fdisk. Do not forget to reboot!
+    fdisk      Type <b>FDISK /IPL</b> (or: FDISK /mbr) to update the boot
+               code, then do not forget to reboot!
+    format c:  Prepares the HD to so that files can be written on
+               partition C:. You have to do this for all partitions that
+               you want to use and have prepared with fdisk.
+    sys c:     The <a href="../base/kernel.htm">KERNEL (KERNEL.SYS)</a> and <a href="../base/command.htm">COMMAND.COM</a>
+               will be copied from your bootable diskette or CD to C:
+  Example 4:
+    fdisk /info
+</pre>
+<h2>See also:</h2>
+<pre>
+
+  <a href="../base/command.htm">command.com</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/sys.htm">sys</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+  <a href="../command/vol.htm">vol</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998-2023 Brian E. Reifsnyder and the FreeDOS
+  Community, help updated 2023 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

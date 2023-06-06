@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: blocek</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: blocek</h1>
+<pre>
+  Blocek is a text editor for DOS with several unique features. Unlike
+  the most DOS editors it works in graphic mode which brings many
+  advantages. First of all it is not limited to 256 chars of the ASCII
+  set like editors working in the text mode. Blocek can work with Unicode
+  files and use 65,536 characters of the Basic Multilingual Plane which
+  is sufficient to nearly all present languages.
+  Besides that it still keeps the ability to work in the non-Unicode mode
+  using the legacy DOS fonts from data files or using the hardware font
+  the VGA graphic card effectively emulating the traditional text mode
+  editors.
+  Blocek is also a image viewer which displays BMP, PCX, PNG, JPG and WMF
+  vector files. In JPG files it can show the EXIF tags and allows to copy
+  the stored information to text window.
+  Blocek can open, display and edit many files simultaneously and can
+  process very big files with very long lines. It uses mainly
+  proportional fonts but the unproportional fonts are also available.
+  Other interesting features are advanced word wrapping in the text
+  files, the ability to change interface language (at the moment, Czech,
+  English, French, German, Russian and Turkish versions are available)
+  and more. The home site for Blocek is: <b>http://www.laaca.borec.cz/blocek</b>
+</pre>
+<h2>FONTS AND KEYBOARD:</h2>
+<pre>
+  Hence Blocek is the DOS editor, it tries to cooperate with DOS system
+  settings and environment as much as possible.
+  By default (which can be changed), it loads the current DOS character
+  set and uses the DOS keyboard driver and some tricks on using the DOS
+  keyboard driver after changing to Unicode mode. However, except the
+  default DOS keyboard driver, Blocek can use its own keyboard drivers.
+  You can switch them anytime by clicking the language selector in the
+  upper right corner of the screen (or pressing Alt+LShift).
+  For example, you have DOS set to Central European code page with the
+  DOS keyboard driver set to Polish, but you need to write Russian text.
+  In Blocek, you simply set the keyboard language to Russian and either
+  switch the font to non-Unicode Cyrillic font or you convert the
+  document to Unicode and you have all the Unicode characters available
+  in the Basic Multilingual Plane.
+  The default fonts for Unicode and non-Unicode modes can be changed by
+  editing the configuration file BLOCEK.CFG.
+  For Unicode mode you can use the bundled fonts with extension UFN
+  (located in the FONTY subdirectory). The default one is the file
+  UNISMALL.UFN which is quite complete but you can use other UFN fonts
+  but they currently contain much less chars.
+  For non-Unicode use the fonts with extensions CH or FN defining the
+  codepage dependent charsets with 256 glyphs. Or you can use the
+  current loaded VGA fonts used by DOS.
+</pre>
+<h2>LIMITATIONS OF THE UNICODE SUPPORT:</h2>
+<pre>
+  Blocek supports only the so called basic multilingual plane (BMP) of
+  Unicode standard. But it covers virtually all present languages, except
+  some less frequent east-Asian glyphs. The emoji pictures are currently
+  not supported.
+  The combining diacritics marks are also not currently supported but
+  it is not a big problem as the Unicode files usually use the embedded
+  diacritics marks. The only exception where it is really missing are
+  the emphasised cyrillic chars (but anyway, they are used very rarely).
+  There are supported all relevant standards for Unicode coding: UTF-8,
+  UTF-16 LE and UTF-16 BE. Also is supported the HTML Unicode represen-
+  tation like "&#269;" for "c with carron".
+</pre>
+<h2>BLOCK OPERATIONS AND CLIPBOARDS:</h2>
+<pre>
+  The block operations were reworked in the version 1.7. First of all,
+  the text blocks can be selected not only in the edited text, but also
+  in the single line input boxes or from most of the texts somewhere in
+  GUI like in information windows.
+  The block can be selected in three ways:
+  1)   By keyboard functions. For the keyboard shortcut, look below.
+  2)   By dragging the mouse with pressed left button.
+  3)   Go to the some place of the text and press Shift+Left mouse
+       button (LMB). Then go to the other place and again press the
+       Shift+LMB. The space between these two locations will be selected
+       as a block. (This mechanism only works in the edited text).
+
+  What you can do with selected blocks:
+  -    Delete them (CTRL-Del).
+  -    Use them as a scope for many search or conversion operations.
+  -    Copy to clipboard and eventualy paste somewhere.
+  Most of the editors use only one clipboard. Blocek has seven indepen-
+  dent clipboards. For copying into clipboard press Ctrl+number 1-7 (it
+  was inspired by Command and Conquer game) and the block will be copied
+  into clipboard 1-7. The upper line shows which clipboards are used in
+  the menu. With Alt+number 1-9 you can paste defined clipboard in cursor
+  position. Or you can also click on clipboard indicators in the menu.
+  However, this variant will only work on editing text – not from the
+  information windows.
+</pre>
+<h2>IMAGE VIEWER:</h2>
+<pre>
+  Blocek is not only the text editor but also a picture viewer. It is
+  possible to open several text editor and picture windows simultaneously
+  and fluently switch among them. However, there's a limitation that
+  Blocek runs in 16-bit colors, but most images in these days use 24-bit
+  colors. So the colour quality is reduced a little bit in the viewer.
+  Also note that Blocek can only display the images but not modify them.
+  Which image formats Blocek can load:
+  BMP, PCX, GIF, PNG, JPG - even with EXIF tags. Blocek is able to show
+  EXIF tags and copy the information to clipboard and edited text (I'm
+  not aware of any other DOS program which knows the EXIF information).
+  WMF - still used but a little bit outdated vector format.
+</pre>
+<h2>CONFIGURATION:</h2>
+<pre>
+  Blocek loads its configuration from two files: DEFAULT.CFG and
+  BLOCEK.CFG. DEFAULT.CFG is a "factory setting" and shouldn't be changed.
+  BLOCEK.CFG is user setting which has higher priority than the default
+  one. In other words: if a variable will be found in both files, variant
+  from BLOCEK.CFG will be used.
+  In the distribution archive is spread only DEFAULT.CFG - so getting a
+  new version can't change your favourite setting. If Blocek is installed
+  first time and no BLOCEK.CFG is present, it will be created from
+  DEFAULT.CFG. If in future I add some new variable into DEFAULT.CFG,
+  Blocek will detect it and copy this setting into BLOCEK.CFG.
+</pre>
+<h2>LOCALIZATION AND EXTENSIBILITY:</h2>
+<pre>
+  All texts in Blocek will be loaded from files in the TRANSLAT sub-
+  directory and are named BLOCEK1.xx and BLOCEK2.xx (where „xx“ is the
+  language identifier). It allows you to use Blocek in various languages.
+  Czech, English, French, German, Russian and Turkish languages are
+  supported. Blocek is open source so feel free to create your own
+  translations. In the past we had a Hungarian translation but it's not
+  fully compatible with the current version. The translation instructions
+  can be found in the file \TRANSLAT\TRANSLAT.TXT.
+  The other localization features are the custom keyboard layouts and
+  the Unicode and non-Unicode conversions filters.
+  All these files are in the KEY_TBL subdirectory. Feel free to create
+  your own keyboard layouts. You have to create a new .KBT file and store
+  it in the KEY_TBL subdirectory.
+  You can also create your own ASCII-Unicode conversion filters in .TBL
+  format. They are already prepared for many languages but you can still
+  need a filter between Unicode and some alternate non-Microsoft standard
+  for extended ASCII. The description of the .TBL format and a small
+  conversion utility for it is available in the KEY_TBL subdirectory.
+  And finally, you can define files with the A8T extension which is used
+  to group alternate ASCII codings to one language. For example, Czech
+  uses codepages 852 (MS-DOS), 1250 (Windows), ISO-8859-2 (Unix) and 895
+  („Kamenicti“ standard for DOS). The A8T can group these codings
+  together to make the conversions easier between them.
+</pre>
+<h2>TECHNICAL INFORMATION</h2>
+<pre>
+  The reasonable minimal hardware for running Blocek:
+  Pentium 100MHz, 16MB RAM, Graphic card with 1MB VRAM compatible with
+  VESA VBE 1.2 and capable to run at least 800x600 16-bit, Mouse,
+  DOS 5.0 or equivalent.
+  Blocek needs the 386 instruction set but supports MMX extensions when
+  available. The 686 instructions are not used in the official builds.
+  Blocek needs the DPMI server for handling the extended memory. There
+  is bundled a CWSDPMI r7 server in Rayer’s modification (which disables
+  VCPI) but you can use any other DPMI server (official CWSDPMI, HDPMI32,
+  ..). However you should prefer some with disk swapping.
+  Blocek can use the long file name services when available (e.g. under
+  Windows 95 or with proper DOS driver). This program is written and
+  complied in Freepascal (http://www.freepascal.org) actualy used version
+  3.0.4, for GO32V2 (DOS).
+</pre>
+<h2>KEYBOARD CONTROL:</h2>
+<pre>
+  F10              - enter main menu
+  F1               - make a new file
+  F2               - save file
+  F3               - load file
+  Alt+F3           - close file
+  Alt+F1           - load this file (INFO.TXT)
+  Ctrl+F           - search
+  Ctrl+S           - search again
+  Ctrl+H           - replace
+  Ctrl+A           - select all document to block
+  Ctrl+Q           - offers a variant for last written character
+                     (like a-á-ą-...])
+  Ctrl+K           - char conversion functions
+  LShift+Alt       - change keyboard layout
+  Ctrl+Alt+Up      - select actual line to block
+  Ctrl+Alt+Down    - word on the cursor to block
+  Ctrl+Alt+Left    - all chars from cursor to left to block
+  Ctrl+Alt+Right   - all chars from cursor to right to block
+  *arrows          - moves cursor
+  *Ctrl+PageUp     - jumps on first line of the file
+  *Ctrl+Home       - dito
+  *Ctrl+PageDown   - jumps on last line of the file
+  *Ctrl+End        - dito
+  *Ctrl+RightArrow - moves one word to right
+  *Ctrl+LeftArrow  - moves one word to left
+    These function keys (marked with the "*" char) can be combined with
+    the <b>Shift</b> key. In such case, together with cursor movement
+    also creates or updates the selected text block.
+  Ctrl+Space       - delete selected block
+  Ctrl+[1-7]       - copy selected block of text into clipboard No 1-7
+  Alt+[1-7]        - paste text from clipboard No 1-7 into cursor
+                     position.
+  Ctrl+plus and Ctrl+minus (on the numeric keyboard)
+                   - fast switching of opened files forward or backward
+  ESC              - quit
+  Alt+F2           - make a screenshot
+</pre>
+<h2>MOUSE CONTROL:</h2>
+<pre>
+  a) In the document window:
+     Left mouse button (LMB) click - moves cursor on selected place
+                                     in text
+     LMB click+shift               - select beginning and end of text
+                                     block
+     LMB press and drag            - interactive selection of text block
+     Right mouse (RMB) click       - shows information and optionally a
+                                     conversion menu for the char you
+                                     clicked to
+  b) In panel with cards of opened files:
+     LMB click - switch the main window to specified file
+     RMB click - several actions with specified file (close, close all
+     but this, show full file path)
+  c) In the clipboards indicators:
+     MB click - menu for operations with the clipboard
+  d) All other buttons and GUI elements only use the left mouse button
+     at the moment. The right button is not currently used.
+  e) As described above, since version 1.7, it is possible to move the
+     windows by dragging the title bar with their mouse.
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2023 Ladislav Lacina.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

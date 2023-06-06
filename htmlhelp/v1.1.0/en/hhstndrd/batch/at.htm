@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: @ (at)</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: @ (at)</h1>
+<pre>
+  The at-sign @ disables the echo status right for this line in
+  a <a href="../batch/index.htm">BATCH FILE</a> or in <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a>.
+  If you enter a command in command line the command will be executed
+  immediately. When executing a command from a batch file without at-sign
+  @ it is first given from batch to command line, shown there, and then
+  executed. @ avoids this.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  @command
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  @command: Instead of ECHO ON / OFF you can place an @ character in
+  front of each BATCH command you do not want to show.
+  @ECHO OFF: Disables the echo status in the batch file. Because the
+  at-sign @ disables the echo status right for this line, this command
+  disables echoing all the next lines of a batch script and is not
+  echoed to the console itself. It is, therefore, best placed in the
+  first line of a batch script.
+  @ECHO ON: Enables the echo status. Because the at-sign @ disables
+  the echo status right for this line, this command enables echoing all
+  the next lines of a batch script and is not echoed to the console
+  itself.
+  @ is no existing command but part of the commands in a <a href="../batch/index.htm">batch file</a>:
+  As it is often in use there is an own "command" here to show
+  where and how it can be used.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN A BATCH FILE:
+  Example 1:
+    chkdsk c:
+    pause       (repeats the chkdsk c: command and then executes it)
+  Example 2:
+    @chkdsk c:  (same as Example 1 but the chkdsk c: command is not
+                repeated, only executed)
+    pause
+  Example 3:
+    @echo on    (repeats ALL commands except "echo on" before execution)
+    chkdsk c:
+    pause
+    dir c:
+    pause
+  Example 4:
+    @echo off   (repeats none of the commands before execution)
+    chkdsk c:
+    pause
+    dir c:
+    pause
+  @ECHO OFF  Disables the ECHO status. Because the at-sign @ disables the
+  ECHO status right for this line, this command disables echoing all the
+  next lines of a batch script and is not echoed to the console itself.
+  It is, therefore, best placed in the first line of a batch script.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../batch/echo.htm">echo</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

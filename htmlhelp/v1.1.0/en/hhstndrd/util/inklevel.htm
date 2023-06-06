@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: inklevel</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: inklevel</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  INKLEVEL is a Printer Ink Fill Percentage Display Program for DOS.
+  It works with many Epson- and HP-compatible Printers.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  INKLEVEL [LPTx] [LPTx] ...
+    where [LPTx] is a Printer Port number between LPT1 and LPT9.
+  INKLEVEL
+    with no LPT numbers after it will display Ink Quantity information
+    for all Epson- and HP-compatible Printers that it can find.
+</pre>
+<h2>Options:</h2>
+<pre>
+  INKLEVEL is a program designed to show you the amount of ink remaining
+  in your printer cartridges. Many modern ink jet and laser printers have
+  a method of "downloading" this data from the printer, though the printer
+  manufacturers almost never provide a way for you to see the data without
+  using a special Windows program. As far as I know, INKLEVEL is the only
+  program available anywhere that will let you view your printer ink
+  levels in DOS.
+  In order for INKLEVEL to work properly, however, you must have <a href="../util/usbprint.htm">USBPRINT</a>
+  installed in memory first. <a href="../util/usbprint.htm">USBPRINT</a> provides certain extended printer
+  BIOS functions that INKLEVEL needs to communicate with the printer
+  properly. Without <a href="../util/usbprint.htm">USBPRINT</a> (or some equivalent program developed in
+  the future) installed in memory, INKLEVEL will not function.
+  Currently, INKLEVEL only works with some Hewlett Packard and Epson
+  printers, because those are the only ones I have ever had access to for
+  testing. I strongly encourage someone to take INKLEVEL and "run with
+  it", adding support for various other models and manufacturers of
+  printers. I will not be doing this myself unless I personally come
+  across a printer that I want to support for some reason, and that is
+  not likely to happen any time soon. Unlike most of my other programs
+  (written in ASM), INKLEVEL is written in C++ so it should be relatively
+  easy for someone to update and improve it. My purpose for writing
+  INKLEVEL was to relieve some of the frustration I had with not being
+  able to view this information from DOS, and to "show off" some of the
+  capabilities of <a href="../util/usbprint.htm">USBPRINT</a>.
+  By default, INKLEVEL will show you the ink level status of all printers
+  (USB and parallel) that it can find.
+  For example:
+    INKLEVEL
+  If you have more than one printer, but only want to see the status of a
+  particular one, you must provide an LPT number, between LPT1 and LPT9.
+  For example:
+    INKLEVEL LPT1
+  If you have several printers but only want to see the status of one or
+  two of them, you can also provide more than one LPT number,
+  for example:
+    INKLEVEL LPT1 LPT4
+  INKLEVEL requires <a href="../util/usbprint.htm">USBPRINT</a> to be installed in memory before it will
+  function. If you do not need or want <a href="../util/usbprint.htm">USBPRINT</a> to be installed in memory
+  permanently (for instance, if you have no USB printers), you can set
+  yourself up a batch file to show you the ink levels that looks
+  something like this:
+     USBPRINT               Install USBPRINT into memory
+     INKLEVEL               Show ink levels for all printers
+     USBPRINT Uninstall     Uninstall USBPRINT from memory
+  What INKLEVEL displays will be an identification of the port and
+  printer type, followed by a cryptic string, followed by the ink levels
+  of all the different ink cartridges both in simple percentages (numbers) and as
+  a graph. The "cryptic string" is the data that INKLEVEL downloads from
+  the printer that contains the ink level percentages embedded in it. It
+  would be nice if the printer simply said something like, "Red: 20&percnt;",
+  but none of them ever do that. The ink percentages are encoded in some
+  special way, unique to the manufacturer, and sometimes to the model, of
+  the printer. INKLEVEL displays the string so that I could see it as I
+  was troubleshooting INKLEVEL during development, and I left it in there
+  just as an "added feature" so that you could see what's going on behind
+  the scenes.
+  Every printer I've ever seen that tells you what the ink level is lies
+  about it. As you use the printer, the ink level will go down slowly
+  until it reaches 0&percnt;, which should mean the printer won't work any more.
+  I've been able to print hundreds of pages on every printer I've had,
+  even after it told me it didn't have any ink left. I know part (if not
+  all) of this is a marketing ploy to get you to buy more ink than you
+  really need (Epson has been sued over this). The bottom line is no
+  matter what the printer tells you (through INKLEVEL), you shouldn't
+  necessarily believe it.
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another editor, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  usbprint
+  inklevel LPT2
+  usbprint uninstall
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../util/drives.htm">drives</a>
+  <a href="../util/hidsupt1.htm">hidsupt1</a>
+  <a href="../util/irq.htm">irq</a>
+  <a href="../util/ps2mtest.htm">ps2mtest</a>
+  <a href="../util/scantest.htm">scantest</a>
+  <a href="../util/thrust.htm">thrust</a>
+  <a href="../util/uni2asci.htm">uni2asci</a>
+  <a href="../util/usbdevic.htm">usbdevic</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhosts.htm">usbhosts</a>
+  <a href="../util/usbhub.htm">usbhub</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbsupt1.htm">usbsupt1</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/usbuhcil.htm">usbuhcil</a>
+  <a href="../util/vendorid.htm">vendorid</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007, Bret E. Johnson</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

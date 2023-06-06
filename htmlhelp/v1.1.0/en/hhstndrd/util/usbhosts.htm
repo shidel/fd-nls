@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: usbhosts</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: usbhosts</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  USBHOSTS shows Details of One or All USB Host Controllers.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  USBHOSTS [Options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  ?    Show this HELP screen
+  A    Show all ALIASES for these command line options
+  V    Show all <a href="../batch/errorlvl.htm">errorleVel</a> (DOS return codes)
+
+  D      Show DETAILED status of All Hosts
+  E &num;    Show Detailed status of ENHANCED Host, PCI Search Index &num;
+  O &num;    Show Detailed status of OPEN Host, PCI Search Index &num;
+  U &num;    Show Detailed status of UNIVERSAL Host, PCI Search Index &num;
+
+  With no Options, shows a Summary (not Detailed) status of all USB
+  Hosts.
+  S &num;    STOP (unconfigure) Enhanced Host, PCI Search Index &num;
+
+  If running from inside another program (if not running from the
+  command-line), the other options can be followed by two hex call-back
+  addresses (&num;Segment:&num;Offset) to which the output and headers will be
+  written. See USBHOSTS.DOC for details (Comment: sorry, not found).
+</pre>
+<h2>Comments:</h2>
+<pre>
+  <b>Showing Host Controller Status</b>
+    The main purpose of USBHOSTS is show details about the different
+    Host Controllers that are installed on your computer (UHCI, OHCI,
+    and EHCI). If you run USBHOSTS with no option switches at all, it
+    will show you a summary of ALL the Host Controllers that are
+    installed.
+    This summary only includes "high-level" (PCI bus related) details
+    of the Host Controllers, such as the PCI Search Index (discussed
+    on page 54 of USBINTRO.DOC, see links below), manufacturer, IRQ
+    number, PCI base memory or I/O address, etc. Again, to see the
+    summary, you run USBHOSTS with no options switches, as follows:
+      USBHOSTS
+    You can also have USBHOSTS show you virtually ALL of the details for
+    an individual Host Controller. This is includes all of the "high-
+    level" information indicated above, as well as Framing details, Root
+    Hub Physical Device connection details, Legacy Support configuration,
+    etc. The exact details of what it shows you are VERY different for
+    each type of Host Controller (UHCI, OHCI, or EHCI), and we will not
+    try to explain any of it here. You can download and peruse all three
+    specifications (they are freely available) if you're interested in
+    all of the details.
+    To show all of the details for a specific Host Controller, you must
+    specify to USBHOSTS exactly which Host Controller you want to see.
+    You do this by specifying two pieces of information: a single letter
+    indicating the type of Host Controller (U = UHCI, O = OHCI, E =
+    EHCI), followed by a number indicating the 0-based PCI Search Index.
+    For example:
+      USBHOSTS U0
+    will show you the details of the first UHCI Host Controller (the one
+    with PCI Search Index 0).
+    You can also have USBHOSTS show you the details of more than one Host
+    Controller at a time. For example:
+      USBHOSTS U2 E0
+    will show you details of the third UHCI Host Controller, followed by
+    details of the first EHCI Host Controller.
+    You can also view all of the details for all of the Host Controllers
+    as follows:
+      USBHOSTS D
+    Depending on the exact type of data element that is being shown,
+    USBHOSTS will either show you a short word or phrase, a number, a
+    "Y", a ".", or a "±".  A word, phrase, or number generally pretty
+    self-explanatory.  Here is what the "Y", ".", and "±" indicate:
+      Y = Yes, On, True, Enabled
+      . = No, Off, False, Disabled
+      ± = Not Applicable, Unknown
+    In order to write the company name of the Host Controller
+    manufacturer, USBHOSTS calls the support program VENDORID (page 184
+    of USBINTRO.DOC, see links below).
+
+  <b>Disabling EHCI Host Controllers</b>
+    As discussed in "Disabling the Companion EHCI Host Controller" (page
+    59 of USBINTRO.DOC, see links below), there are times when it is
+    necessary or desirable to unconfigure (disable) a particular high-
+    speed (EHCI) Host Controller. This in turn forces all of the Devices
+    attached to the EHCI Controller to be routed to the companion low-
+    speed (UHCI or OHCI) Controller. This is required in certain
+    situations to force the USB hardware to do what you want it to do,
+    instead of having it act the way the BIOS or hardware manufacturer
+    wants it to. To unconfigure (Stop) a particular EHCI Host Controller,
+    you must provide USBHOSTS with the PCI Search Index of the EHCI Host
+    Controller you want to Stop. E.g.:
+      USBHOSTS Stop 0
+    will Stop (unconfigure) the first high-speed (EHCI) Host Controller
+    (the one with PCI Search Index 0), forcing all of the Devices to
+    route to the companion low-speed (UHCI or OHCI) Controller(s).
+
+    A single high-speed (EHCI) controller is usually associated with more
+    than one low-speed (UHCI or OHCI) companion Controller. On the Sony
+    laptop I currently use, for example, there is one EHCI Controller and
+    two companion UHCI Controllers. On the Dell Desktop I currently use,
+    there are two EHCI Controllers each with three companion UHCI
+    Controllers (a total of six UHCI Controllers). What you do to a
+    single EHCI Controller usually affects several UHCI (or OHCI)
+    Controllers.
+
+    It is not possible to reliably force a single EHCI port to the
+    companion low-speed controller using USBHOSTS. Attempting to do so
+    could potentially "break" the EHCI software (in the BIOS) and wreak
+    havoc on the entire USB bus. Rather, what USBHOSTS does is
+    unconfigure the entire EHCI host, forcing ALL ports to the companion
+    Controller(s). In addition, once an EHCI Controller is unconfigured
+    (Stopped), it is potentially unsafe to simply try and "turn it on"
+    (configure it) again.  Therefore, USBHOSTS does NOT provide a way to
+    re-configure an EHCI Host Controller that has be unconfigured
+    (Stopped). Once it has been Stopped with USBHOSTS, the only way to
+    safely re-start an EHCI Host Controller is to reboot the computer.
+
+    The Stop (unconfigure) option for USBHOSTS should no longer be needed
+    once an EHCI Host Controller Driver is completed, though that is not
+    expected to happen in the near future.
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another editor, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  usbhosts OR: see examples above
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../util/drives.htm">drives</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcodes</a>
+  <a href="../util/hitsupt1.htm">hidsupt1</a>
+  <a href="../util/inklevel.htm">inklevel</a>
+  <a href="../util/irq.htm">irq</a>
+  <a href="../util/ps2mtest.htm">ps2mtest</a>
+  <a href="../util/scantest.htm">scantest</a>
+  <a href="../util/thrust.htm">thrust</a>
+  <a href="../util/uni2asci.htm">uni2asci</a>
+  <a href="../util/usbdevic.htm">usbdevic</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhub.htm">usbhub</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbsupt1.htm">usbsupt1</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/usbuhcil.htm">usbuhcil</a>
+  <a href="../util/vendorid.htm">vendorid</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007-2009, Bret E. Johnson</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: keyb</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: keyb</h1>
+<pre>
+  KEYB is a localization BIOS extension for DOS.
+  KEYB can be considered as a keyboard driver which intercepts the
+  keyboard management BIOS routines in order to adapt non-US keyboards
+  to the system, and provides other facilities.
+  (NOTE: KEYB is not a proper device driver, and is not loaded with
+  DEVICE= in <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>; you run it as a resident
+  program instead).
+  Required data is read from a keyboard layout data file like
+  KEYBOARD.SYS/KEYBRD2/3/4.sys (see link KEYB_LAY below) OR a KL file.
+  A  KL keyboard layout is identified by two labels, a string label,
+  which is mandatory (usually a two letter string, such as GR, FR or SP),
+  and an optional numeric identifier to distinguish different variants.
+  You can create .KL files by running KC (link to packet see below)
+  and using the KEY files from KEYB-LAYOUT. KEY files from XKEYB
+  do NOT WORK!
+  FreeDOS has three keyboard drivers: KEYB, <a href="../base/mkeyb.htm">MKEYB</a>, and <a href="../base/xkeyb.htm">XKEYB</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  KEYB  layoutName[,[CP][,filename]]  [/ID:nnn]  [/E] [/9] [/I] [/Dx]
+                  [/V] [/L=m] [/NOHI] [/B] [/S]
+  KEYB [/U]
+  KEYB /?
+</pre>
+<h2>Options:</h2>
+<pre>
+  Parameterless KEYB will show information on the currently loaded KEYB.
+  LayoutName    A physical layout identifier, such as GR or SP.
+  /ID:nnn       Specifies the numeric identifier nnn.
+  CP            Codepage in which you want KEYB to start (if omitted,
+                DISPLAY.SYS and the system are checked).
+  filename      The KL file that contains the information for the given
+                layout, or the compilation file where the information
+                resides. If it is omitted, then <b>KEYBOARD.SYS</b> is tried,
+                otherwise <b>LayoutName.KL</b>.
+  /E            Specifies that the keyboard is an AT enhanced keyboard
+                (this switch is incompatible with /9).
+  /9            Specifies that int9h management services must be
+                activated (this switch is incompatible with /E).
+  /CAPSLOCK=ON|OFF  Enables or disables Caps Lock
+  /I            Forces the installation over an already existing
+                keyboard driver.
+  /Dx           Sets the decimal separator character to x.
+  /U            Unloads a KEYB previously loaded in memory.
+  /V            Verbose: Shows extra information.
+  /L=m          Forces the usage of submapping to m, provided that it
+                is compatible with current codepage.
+  /NOHI         Avoids KEYB to load data into high memory, by loading
+                it below 640Kb.
+  /NOUMB        Avoids KEYB to load data into upper memory.
+  /NUMLOCK=ON|OFF  Enables or disables Num Lock
+  /B            Disables sound alerts (Beep).
+  /S            Safemode: does not allow un-closed keyboard layout
+                collections and blocks strings and other critical
+                commands.
+  /SCROLLLOCK=ON|OFF  Enables or disables Scroll Lock
+  /?            Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  You can program FreeDOS so that keyboard is  configured  at boot
+  time by means of <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a>.
+  Append the command line into your AUTOEXEC.BAT to do this.
+  You can create your own customized layout files by using the compiler
+  tool KC200x. See link below. KC comes with the following tools:
+    KC       Is the KEY language Keyboard descriptor files compiler.
+             KC takes a source keyboard language descriptor file (in KEY
+             language) and converts it into a bare KeybCB or a KL file
+             to be used with FD-KEYB.
+    KEYCODE  Helps you scan the output of the keyboard driver.
+    KLIB     Is a librarian for KL files: groups KL files into a single
+             library file. KLIB allows you to create libraries, list,
+             add and remove KL files inside a library, and finally to
+             make it no longer editable (close it).
+  FD-KEYB is compatible with the <a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODES</a> of MS-KEYB.
+  However, as a large number of possible error causes is considered, an
+  alternative numeration of errors is shown on screen at load time.
+
+  ExitCode  KEYB ErrorCode  Error description
+  ========================================================================
+    0        0             Successful execution
+                         INVALID LANGUAGE, CODE PAGE OR INCORRECT SYNTAX
+    1        3             Missing keyboard identifier LayoutName.
+    1       11             Invalid modifier or switch.
+    1       14             Specified file does not contain information
+                           for this layout/id.
+    1       21             Required submapping does not match with
+                           current codepage: you are using /L=m but the
+                           requested submapping does not correspond
+                           with current CP.
+                         BAD OR MISSING KEYBOARD DEFINITION FILE
+    2        4             Specified file could not be opened.
+    2       13             Invalid file, or file corrupt.
+    2       19             Incompatible version of keyboard descriptor
+                           (the compilation file or KL file are of an
+                           incompatible version).
+    2       20             Invalid checksum for data block: the
+                           compilation file is corrupt.
+    3       10             The keyboard table could not be created.
+    4       16             Error in communication with the CON device.
+    5       17             The codepage has not been prepared.
+    6       12             Codepage not found in keyboard definition
+                           file.
+                         INCOMPATIBLE KEYB OR VERSION FOUND
+    7        1             Different version of KEYB installed.
+    7        2             Incompatible keyboard driver installed.
+    7       18             Incompatible version of DR-KEYB installed.
+
+  Not present in MS-KEYB:
+                         RESIDENT PART OF KEYB COULD NOT BE REMOVED
+    8        5             The resident part of KEYB could not be
+                           removed.
+    8        8             KEYB was NOT installed.
+
+                         UNEXPECTED PROBLEM: VISIT THE KEYB SITE FOR A
+                         NEWER VERSION OR CONTACT THE AUTHOR
+    9        6             Internal failure: Global memory space
+                           too small
+    9        7             KEYB (still) requires an AT/286 or better.
+    9        9             Overloading is (still) not supported.
+    9       15             KL file too large ((still) 3KB maximum).
+  ========================================================================
+      For more information see:
+  <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/dos/keyb/</b>
+  <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/dos/keyb/
+  fdkeyb-2.0/kc200x.zip</b> (KC, KEYCODE, KLIB)
+  <b>https://github.com/FDOS/keyb</b> OR:
+  <b>https://gitlab.com/FreeDOS/base/keyb</b> OR:
+  <b>https://gitlab.com/FreeDOS/base/keyb_lay</b> (layout)
+    packet: keyb, keyb_layout, section: DOC OR:
+  <b>C:\FREEDOS\DOC\KEYB\</b>
+  <b>https://gitlab.com/FreeDOS/base/keyb_lay/-/tree/master/SOURCE/KEYB
+  /LAYOUTS</b> THIS KEY files can be used to create .KL files
+  with KC (in packet kc200x). XKEYB USES DIFFERENT KEYB files!
+</pre>
+<h2>Examples:</h2>
+<pre>
+    KEYB SP,858
+      Loads KEYB with the layout for the Spanish distribution and
+      codepage 858. For being able to load it search for the
+      settings in (<a href="../other/kpdos.htm">KPDOS</a>) first.
+      The KEYBOARD files are in packet KEYB_LAY, link see above.
+      SP,858 is found at C:\FREEDOS\BIN\KEYBOARD.SYS then.
+      KEYBRD2/3/4.SYS for other countries have to be mentioned
+      explicitely, see turkish example below!
+
+    KEYB GR,,C:\FREEDOS\BIN\PATH TO KL FILES\GR.KL /E (CP 858!)
+    KEYB GR,850,C:\FREEDOS\BIN\PATH TO KL FILES\GR.KL (CP 850!)
+      Loads the German keyboard layout for KEYB, explicitely informing
+      KEYB that we are using an enhanced keyboard.
+      Use this if KEYB cannot identify the presence of an enhanced
+      keyboard. Please check for .KL file, they are in:
+      NOWHERE, but if you need them have a closer look at kc200x.zip,
+      LINK see above.
+
+  In special cases you have to check <a href="../other/kpdos.htm">KPDOS</a> and to find the correct
+  KEYBOARD/KEYBRD2/KEYBRD3/KEYBRD4.SYS files first:
+
+    KEYB TR,857,C:\FREEDOS\BIN\keybrd2.sys /ID:440
+      (This is turkish keyboard, see above: It is mentioned at KEYBRD2.
+      SYS, with values: tr440 (/ID:440)  857 (first value), 858, 850,
+      853  EGA).
+
+  Turkish offers Q-Type and F-Type. The other version can be used by:
+    KEYB TR,857,C:\FREEDOS\BIN\keybrd2.sys
+      values: tr (no /ID:440!!)  857 (first value), 858, 850, 853  EGA.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../other/cpidos.htm">cpidos</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../other/kpdos.htm">kpdos</a>
+  <a href="../base/mkeyb.htm">mkeyb</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/xkeyb.htm">xkeyb</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 Aitor SANTAMAIA MERINO.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: fdimples</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: fdimples</h1>
+<pre>
+  FDIMPLES - the FreeDOS Installer - My Package List Editor Software
+  is the package list editor for the advanced mode of the FreeDOS
+  Installer (FDI). It also can run as a stand-alone program for a
+  more user friendly interface to install or remove packages from
+  the FreeDOS installation or package media (LiveCD, BonusCD,
+  RepoCD, etc.).
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FDIMPLES [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /HELP,/?        Shows the help screen.
+  /[NO]FILES      Shows a list of files for each package below the
+                  package description.
+  /[NO]UPDATE     [DO NOT] Automatically select updatable packages.
+  /LISTS          Create package list files for use with OS release
+                  build utilities.
+  /CONFIG         Reconfigure installer package lists on writable OS
+                  release media. Such as USB sticks.
+  /IDLE           Sleep CPU when idle.
+  [pkgsrc]        Specify drive or path to use for the repository of
+                  packages.
+</pre>
+<h2>User interface keyboard commands:</h2>
+<pre>
+  SPACE,ENTER     Toggle selection.
+  TAB,LEFT,RIGHT  Change what panel section or button has focus.
+  UP,DOWN         Move focus up or down an item, also Page Up/Down.
+  ESC             Quit without making or saving changes.
+  h,H,F1          Display help screen.
+  u               Toggle the status of all updatable packages in group.
+  U               Toggle the status of all updatable packages.
+  v,V             View pending changes.
+  c,C             Clear all pending changes.
+  w,W             Write a package list customization file that contains
+                  changes.
+  r,R             Read a package list customization file and apply
+                  changes.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  FDIMPLES is a visual tool to browse, install and remove packages that
+  are included on the FreeDOS release media. Depending on the choices
+  made during the installation of FreeDOS, many packages may not be
+  included during installation. Those packages and others can be installed
+  later by inserting the package media (LiveCD, BonusCD, etc.) and then
+  execute FDIMPLES. If the package media is not found or inserted before
+  running FDIMPLES, only the packages that are already installed are
+  displayed.
+
+  Then browse the lists of packages and select any you want to install.
+  Use the TAB, LEFT, RIGHT, UP, DOWN keys to navigate. To cycle through
+  the available actions for a package or group of packages use either
+  the SPACE or ENTER keys. This will change the state of the selected
+  package or group. The desired state is represented by different
+  symbols inside the square brackets next to the group or package.
+  The current group and package are displayed using green text when
+  they do not have focus.
+
+  The symbols used for group states (left panel):
+
+  empty    No programs in group are to be installed or kept. Any
+           programs in this group that were installed will be removed.
+  +        Some programs in this group are (or will be) installed.
+  X        All programs in this group are (or will be) installed.
+
+  The symbols used for package states (right panel):
+
+  empty    Package is not installed or should be removed.
+  X        Package is (or will be) installed.
+  U        Newer version of package is on the media. The current
+           packages should be removed and the newer one installed.
+  R        Older version of the package is on the media. The current
+           package should be removed and the older version should
+           be installed replacing the newer package. (downgrade)
+
+  No package changes are performed until you navigate to the "OK"
+  button in the lower right of the display and press SPACE or ENTER.
+  Then all package installations or removals will be performed at once.
+
+  If you are unsure of which packages will be removed or installed,
+  press the "V" key to view all proposed changes that will occur.
+
+  ESC exits the program at any time without making any changes to the
+  currently installed packages. Of course you can also use the commands
+  described at section "Options" - User interface commands.
+
+  FDIMPLES gives you basic information about the programs in the lower
+  part of the window. You can jump in there with TAB (text will be
+  highlighted) to see which files will be installed if you want to do
+  so.
+
+  To perform installation or removal of packages, FDIMPLES requires that
+  the command line utility FDINST is installed. FDINST is a simplified
+  version of FDNPKG and is usually installed by default with the FDNPKG
+  package.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  fdimples            launch and search for the package media
+  fdimples X:\FDPKGS  launch and use the specified path as package media
+  fdimples /update    launch, find the package media and preselect
+                      updating any packages that are newer than those
+                      already installed. Great for just updating packages
+                      using newer OS release or Repository CD without
+                      reinstalling the operating system.
+  fdimples /nofiles   turn off the file list when displaying packages to
+                      have over-all better navigation performance.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/fdinst.htm">fdinst</a>
+  <a href="../base/fdnpkg.htm">fdnpkg</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2016-2023 Jerome Shidel.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: for</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: for</h1>
+<pre>
+  FOR runs a specified command for each file in a set of files.
+  FOR is a COMMAND LINE and a <a href="../batch/index.htm">BATCH-FILE</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT /FDAUTO.BAT</a>
+  command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  FOR &percnt;variable IN (set) DO command [cmd-parameters] OR:
+  FOR &percnt;&percnt;variable IN (set) DO command [cmd-paramters]
+</pre>
+<h2>Options:</h2>
+<pre>
+  &percnt;variable       A name for the parameter that will be replaced
+                  with each file name. The variable may only be one
+                  character long.
+  &percnt;&percnt;variable      A name for the parameter that will be replaced
+                  with each file name. The variable may only be one
+                  character long.
+  (set)           Specifies a set of one or more files. Wildcards
+                  and ? may be used.
+  command         Specifies the command to run for each file.
+  cmd-parameters  Specifies parameters or switches for the
+                  specified command.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The FOR command does NOT distinguish if ONE or more percent characters
+  are used in COMMAND LINE or in BATCH FILES (tested). The variables are
+  case sensitive and maybe only ONE character long.
+  FOR is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN COMMAND LINE:
+    Example 1:
+    Displays all the text files in the current directory, one after
+    another:
+      FOR &percnt;f in (*.txt) DO more &percnt;f
+
+    Example 2:
+    The following two commands list all files starting with an "a". The
+    list starts with "---start---" and ends with "---end---". The "-"
+    sign at the beginning and at the end of each line comes from "DO
+    ECHO - &percnt;f -".
+      ECHO off
+      FOR &percnt;f IN (---start--- a*.* ---end---) DO ECHO - &percnt;f -
+      ECHO on
+
+    Example 3:
+    The following command writes a list of all files in the directory
+    into a .txt file. You need a ">>", otherwise the first written text
+    is overwritten by the following text:
+      ECHO off
+      for &percnt;g in (*.*) do echo &percnt;i &gt;&gt; echo.txt
+      ECHO on
+
+    Example 4:
+    The following command creates folder01 till folder10.
+      for &percnt;i in (01,02,03,04,05,06,07,08,09,10) DO MD folder&percnt;i
+    You can also use a space instead of a comma, e.g.:
+    for &percnt;j in (01 02 03 04 05 06 07 08 09 10) DO RD folder&percnt;j
+
+    Example 5:
+    The following command deletes all files ending with "tmp" or starting
+    with "temp" in a batch file:
+      for &percnt;&percnt;b in (*.tmp temp????.*) do del &percnt;&percnt;b
+    Please keep in mind that variables are case sensitive, means:
+    do not mix &percnt;b with &percnt;B.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../batch/set.htm">set</a>
+  <a href="../batch/shift.htm">shift</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2007 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

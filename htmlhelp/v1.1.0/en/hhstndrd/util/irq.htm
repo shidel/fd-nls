@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: irq</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: irq</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  IRQ shows you which Hardware Interrupt lines (IRQs or Interrupt
+  ReQuest lines) on your computer are currently in use.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  IRQ number D
+</pre>
+<h2>Options:</h2>
+<pre>
+  The purpose of this program is to show you which Hardware Interrupt
+  lines (IRQs or Interrupt ReQuest lines) on your computer are currently
+  in use. You may want to know this simply as an academic exercise, or
+  may need to know in order to configure or troubleshoot something.
+  Note that in the output some of the IRQ descriptions are surrounded by
+  *'s. This indicates that the particular interrupt is hard-wired on the
+  motherboard, and is not available for use on external devices.
+  In addition to just showing you which IRQs are enabled, this program
+  can also enable or disable individual IRQs to help you identify and
+  troubleshoot things. You should be EXTREMELY careful when you are doing
+  this, however, since it can cause your computer to stop responding.
+  To enable a particular IRQ, you simply give this program an IRQ number
+  (a number between 0 and 15). To disable a particular IRQ, give this
+  program an IRQ number (between 0 and 15) followed by another character
+  (any character will do). For Example:
+    IRQ  3       {Enable IRQ 3}
+    IRQ 12 D     {Disable IRQ 12}
+</pre>
+<h2>Comments:</h2>
+<pre>
+  There are a total of 16 IRQ's (Interrupt ReQuests) on your computer. An
+  IRQ is also called a Hardware Interrupt, because it is "caused" by a
+  hardware device of some sort. In some contexts, the word interrupt has
+  a negative connotation, and is something you usually want to avoid. In
+  a computer, though, an Interrupt is usually a good thing.
+  Computers have 16 IRQ's, numbered 0-15. Some IRQ's are "hard-wired" to
+  certain hardware Devices, such as the clocks inside the computer, the
+  keyboard, and the math coprocessor. Others are there for "general use"
+  (not hard-wired for a specific purpose), and can be used by most any
+  hardware device, including USB Host Controllers. For an IRQ to be
+  useful, it must be "wired" to a hardware device of some sort, and it
+  must also be enabled.
+  The view the status of the 16 IRQ's on your computer, you run IRQ with
+  no option switches:
+    IRQ
+  This will show you which of the 16 IRQ's are enabled, which are hard-
+  wired (and consequently not available for general-use), and what each
+  of the general-use ones is commonly (but not always) used for. For
+  instance, IRQ 3 is usually used for serial ports COM2 &amp; COM4. However,
+  IRQ 3 is not REQUIRED to be used for COM2 &amp; COM4 -- it is actually a
+  general-use IRQ and can be associated with any type of hardware device.
+  Many newer computers only have one serial port (COM1) if they have any
+  at all, and modern laptops usually don't have any built-in serial ports
+  at all. An IRQ that is enabled was put that way by the BIOS as the
+  computer was booting up, and does have some kind of hardware device
+  "wired" to it. An IRQ that is disabled by the BIOS is probably not
+  wired to any kind of hardware device (at least not one that is "turned
+  on"), and is available to be used by a hardware device like a USB Host
+  Controller.
+  In addition to just showing you which IRQ's are currently enabled, the
+  IRQ program also lets you turn the IRQ's on and off (enable and disable
+  them). This is actually a useful troubleshooting tool in certain
+  situations, such as the one I describe in the "IRQ &amp; I/O
+  Resources" section (page 56 of USBINTRO.DOC, see links below).
+  To enable a particular IRQ, simply give the IRQ program an IRQ number
+  (0-15) as an option switch. For example, to enable IRQ 4, you would do
+  the following:
+    IRQ 4
+  To disable a particular IRQ, you must give the IRQ program an IRQ
+  number followed by any character (any character at all). For example,
+  to disable IRQ 4, you could do either of the following:
+    IRQ 4 Disable
+    IRQ 4 *
+  While the IRQ program will let you enable and disable any of the 16
+  available IRQ's (numbered 0-15), you should generally avoid disabling
+  IRQ 0 (system timer), 1 (keyboard), and 2 (PIC controller &num;2).
+  Disabling any of these will usually screw up your computer beyond
+  repair (you'll need to reboot using the power switch to recover).
+  Disabling (or enabling) any of the other IRQ's will USUALLY not screw
+  anything up too badly, but exactly what happens will depend on what
+  hardware (if any) is wired to the IRQ.
+
+  As described in the "IRQ &amp; I/O Resources" section (page 56 of
+  USBINTRO.DOC, see links below), I was having a problem with the USB
+  Host Controller on my laptop. Basically, the software (as configured
+  by the BIOS) was lying to me about which IRQ the USB Host Controller
+  was using. The software said it was using IRQ 5 when it was actually
+  using IRQ 7. The way I found the real IRQ was to attach a Legacy
+  Support Device (in my case, a USB Mouse) to the Root Hub, which would
+  work as soon as the computer turned on. I then disabled the IRQ's
+  one at a time (using the IRQ program), until I found out when the USB
+  Mouse (the USB Host Controller) stopped working. After I figured out
+  what the problem was, I "fixed" it in my AUTOEXEC.BAT file
+  so I don't need to remember how to fix it each time.
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another editor, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IRQ      Shows the IRQs currently in use
+  IRQ 3    (Enable IRQ 3 - Shown as "Enabled:  YES)
+  IRQ 3 U  (Disable IRQ 3 - Shown as "Enabled: nothing)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../util/drives.htm">drives</a>
+  <a href="../util/hidsupt1.htm">hidsupt1</a>
+  <a href="../util/inklevel.htm">inklevel</a>
+  <a href="../util/ps2mtest.htm">ps2mtest</a>
+  <a href="../util/scantest.htm">scantest</a>
+  <a href="../util/thrust.htm">thrust</a>
+  <a href="../util/uni2asci.htm">uni2asci</a>
+  <a href="../util/usbdevic.htm">usbdevic</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhosts.htm">usbhosts</a>
+  <a href="../util/usbhub.htm">usbhub</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbsupt1.htm">usbsupt1</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/usbuhcil.htm">usbuhcil</a>
+  <a href="../util/vendorid.htm">vendorid</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008, Bret E. Johnson</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

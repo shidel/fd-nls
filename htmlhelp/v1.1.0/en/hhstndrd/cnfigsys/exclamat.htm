@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: ! (exclamation mark)</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: ! (exclamation mark)</h1>
+<pre>
+  With "!" and "?" CONFIG.SYS / FDCONFIG.SYS can be made interactive.
+  CONFIG.SYS lines that begin with "!" will be processed
+  even when single stepping, see: <a href="../cnfigsys/F8.htm">F8</a>.
+  CONFIG.SYS lines that begin with '?' will be queried:
+  The user will be asked for confirmation before a CONFIG.SYS
+  line that begins with '?' is run.
+  '!' is a <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  ! other config.sys command such as DEVICE=...
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Command lines in config.sys starting with '!' will be executed under
+  all circumstances.
+  '!' is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    COUNTRY=049,858,C:\FREEDOS\BIN\country.sys (German setting)
+    LASTDRIVE=Z
+    FILES?=20
+    DOS?=HIGH,UMB
+    BUFFERS?=30
+    DEVICE?=MyNetWorkDriver.sys
+
+  Example 2: (Menu in CONFIG.SYS / FDCONFIG.SYS with REM ; ! and ?)
+
+    !COUNTRY=049,858,C:\FREEDOS\BIN\country.sys (german setting)
+    !LASTDRIVE=Z
+    !BUFFERS=20           (!=will be executed under all circumstances)
+    !FILES=40             (!=will be executed under all circumstances)
+    !MENUCOLOR=7,0        (!=will be executed under all circumstances)
+
+    MENUDEFAULT=1,5
+    MENU 1 - Load FreeDOS with JEMM386 (no EMS, max RAM free)
+    MENU 2 - Load FreeDOS with JEMM386 (Expanded Memory)
+    MENU 3 - Load FreeDOS low with some drivers (Safe Mode)
+    MENU 4 - Load FreeDOS without drivers (Emergency Mode)
+
+    12?DOS=HIGH                   (will be processed when pressing 1/2)
+    12?DOS=UMB                    (will be processed when pressing 1/2)
+    12?DOSDATA=UMB                (will be processed when pressing 1/2)
+    123?DEVICE=C:\FREEDOS\BIN\himemx.exe (     "      "      "     1/2/3)
+    1?DEVICE=C:\FREEDOS\BIN\jemm386.exe NOEMS X=TEST I=TEST I=B000-B7FF
+             NOVME NOINVLPG       (will be processed when user presses 1)
+    2?DEVICE=C:\FREEDOS\BIN\jemm386.exe X=TEST I=TEST I=B000-B7FF NOVME
+             NOINVLPG             (will be processed when user presses 2)
+    34?SHELL=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+             /P=C:\FDAUTO.BAT     (will be processed when pressing 3/4)
+    12?SHELLHIGH=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+                 /P=C:\FDAUTO.BAT (will be processed when pressing 1/2)
+    ;1234?BREAK=OFF               (set to REM, nothing happens)
+    REM 1234?DEVICE=C:\blahblah.sys (set to REM, nothing happens)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/semico.htm">; (semicolon)</a>
+  <a href="../cnfigsys/question.htm">? (question mark)</a>
+  <a href="../cnfigsys/break.htm">break</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../cnfigsys/device.htm">device/devicehigh</a>
+  <a href="../cnfigsys/dos.htm">dos</a>
+  <a href="../cnfigsys/dosdata.htm">dosdata</a>
+  <a href="../cnfigsys/F8.htm">F8</a>
+  <a href="../cnfigsys/menu.htm">menu</a>
+  <a href="../cnfigsys/menucol.htm">menucolor</a>
+  <a href="../cnfigsys/menudef.htm">menudefault</a>
+  <a href="../batch/rem.htm">rem</a>
+  <a href="../cnfigsys/shell.htm">shell/shellhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008, updated 2022 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: time</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: time</h1>
+<pre>
+  Displays or sets current time.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  1. TIME
+  2. TIME [ /T ]
+  3. TIME [ /T ] time
+</pre>
+<h2>Options:</h2>
+<pre>
+  All options must precede any arguments.
+  none     You are prompted for a new time for your system.
+           hh:mm
+           hh:mm:ss
+           hh:mm:ss.ss
+           The time to set for your system.
+           'hh' is the hour on a 12 or 24 hour clock.
+           'mm' is the minute.
+           'ss.ss' is seconds and hundredths of seconds.
+  /T       Prevents from prompting the user, only he time is displayed.
+  /T time  The time is tried to be changed, but the loop is not entered
+           on failure.
+  /?       Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Variant 1 displays the current time, then enters a loop prompting
+  the user to enter a new time. The loops terminates when a valid
+  time had entered or the user just pressed the ENTER key to acceppt
+  the current setting without changing it.
+  Variant 2 displays the current system time only.
+  Variant 3 does not display the current time, but tries to change the
+  current time to the specified time, on failure the loop as explained
+  above is entered.
+  The individual portions of a time may be sperated by at least:
+  dots ., colons : and forward slashes /. Other nationally used
+  characters may be supported, too. If a certain number of portions
+  are specified:
+    error,
+    hour:minute; seconds and hundreds default to zero,
+    hour:minute:seconds; hundreds defaults to zero,
+    hour:minute:seconds.hundreds;
+    more than 4 portions result in an error.
+  Separated by no, one or more whitespaces the am/pm modifiers may
+  follow optionally. If present they alter the given time as follows:
+    AM: if hour is equal to 12, it becomes 0 (midnight).
+    PM: if hour is greater than 12, it is incremented by 12.
+  TIME is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+    TIME
+    Asks you for a new time
+  Example 2:
+    TIME /T
+    Just displays the current time.
+  Example 3:
+    TIME 18:2
+    Sets the current system time to 6:02 PM.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../command/date.htm">date</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

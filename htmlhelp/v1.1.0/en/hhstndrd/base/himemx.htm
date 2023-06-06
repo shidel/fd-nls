@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: himemx</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: himemx</h1>
+<pre>
+  HIMEMX is the extended memory host for DOS (coordinates the usage of
+  XMS and HMA). HIMEMX has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>.
+  Please place DEVICE=HIMEMX.EXE [options] before any driver using XMS.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  HIMEMX [/MAX=&num;&num;&num;&num;] [/METHOD:xxx] [/HMAMIN=n] [/NUMHANDLES=m]
+         [/VERBOSE] [/NOABOVE16] [/X] [/XMAX32]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /MAX=&num;&num;&num;&num;&num;       Limit memory controlled by XMM to &num;&num;&num;&num;&num; KB.
+  /METHOD:xxx      Specifies the method to be used for A20 handling.
+                   Possible values for xxx:
+                   ALWAYSON    Assume that A20 line is permanently ON
+                   BIOS        Use BIOS to toggle the A20 line
+                   FAST        Use port 92h, bypass INT 15h test
+                   PS2         Use port 92h, bypass PS/2 test
+                   KBC         Use the keyboard controller
+                   PORT92      Use port 92h always
+  /HMAMIN=n        Specifies minimum number of KBs of HMA that a program
+                   must request to gain access to the HMA (def: 0 KB).
+  /NUMHANDLES=m    Number of XMS handles available (default: 48, min: 8,
+                   max:128).
+  /VERBOSE         Gives extra information.
+  /NOABOVE16       Do not use INT 15h function E801h to detect &gt; 64 MB.
+  /X               Do not use INT 15h function E820h to detect &gt; 64 MB.
+  /X2MAX32         Limit XMS 2.0 free/avail. memory report to 32 MB-1 KB.
+  /?               Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  HIMEMX requires a 80386+ CPU. <a href="../base/jemm386.htm">JEMM386</a> can be loaded after this
+  driver. Load HIMEMX as DEVICE=HIMEMX.EXE in <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>
+  (although it is an ".exe"-file!
+    For more informations see:
+    <b>https://github.com/Baron-von-Riedesel/HimemX/blob/master/Readme.txt</b>
+  OR:
+    <b>https://gitlab.com/FreeDOS/base/himemx/-/tree/master/DOC/HIMEMX</b>
+  OR:
+    <b>C:\FREEDOS\DOC\HIMEMX\readme.txt</b> (can be installed with FD live CD).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    files=20
+    buffers=30
+    lastdrive=Z
+    break=off
+    DOS=high,umb
+    device=C:\FREEDOS\BIN\himemx.exe
+    device=C:\FREEDOS\BIN\jemm386.exe NOEMS
+    shellhigh=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+    /p:C:\fdauto.bat
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../base/devload.htm">devload</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 W. Spiegl, updated in 2022.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

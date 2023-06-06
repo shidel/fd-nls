@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: environment variable</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: Environment Variables</h1>
+<pre>
+  Environment variable is no direct command but part of
+  <a href="../command/index.htm">COMMAND.COM / FREECOM.COM</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  - none
+</pre>
+<h2>Options:</h2>
+<pre>
+ - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Environment variables can be freely assigned using the <a href="../batch/set.htm">SET</a> command,
+  e.g. executing:
+    SET var1=tecxsgk;jsdgsdflfsjdflkasjf/lasjflas
+  assigns this nonsense to the variable <b>var1</b>. Later on, the
+  value of the variable can be used by writing: <b>&percnt;var1&percnt;</b>, thus, writing
+  the name of the variable enclosed without whitespace by two percent
+  signs.
+  <b>Warning</b>: Environment variables are expanded fully into plain
+  text before the command line is furtherly parsed. If a variable
+  contains an odd number of quotes, the remaining command line must
+  contain the closing quote in order to operate properly. Also see this:
+    SET var=text del
+    IF text==&percnt;var&percnt; GOTO label
+  The second line looks uninteresting, but once the environment variable
+  has been expanded the line has morphed into:
+    IF text==text del GOTO label
+  not that funny anymore, because the IF command interpretes only the
+  string <b>text==text</b> as condition, but <b>del GOTO label</b> is executed
+  as command.
+
+  FreeCOM uses a number of environment variables for its own purpose.
+  - <B>COMSPEC</B>: FreeCOM loads some information on demand, these data
+    are stored in the FreeCOM executable. The value of this environment
+    variable contains the filename FreeCOM shall use. The contents can
+    be changed with the <a href="../batch/set.htm">SET</a> command.
+  - <B>DIRCMD</B>: The user may define default values for the
+    DIR command. Any options specified within <b>DIRCMD</b> are prefixing
+    any entered ones, so to say FreeCOM behaves as if the user always
+    types:
+      DIR &percnt;DIRCMD&percnt; &laquo;other arguments&raquo;
+    This variable must be changed using the <a href="../batch/set.htm">SET</a> command.
+  - <B>COPYCMD</B>: This variable contains default options for the COPY
+    command.
+  - <B>PROMPT</B>: FreeCOM prompts the user to enter commands to run,
+    the <a href="../batch/prompt.htm">PROMPT</a> can be customized by changing the contents of this
+    variable.
+    This variable can be changed using the <a href="../batch/set.htm">SET</a> or the <a href="../batch/prompt.htm">PROMPT</a> commands.
+    Latter one includes a detailed description of the format of the
+    <a href="../batch/prompt.htm">PROMPT</a> string.
+  - <B>PATH</B>: When FreeCOM is to execute an external command and this
+    one does not contain no path, FreeCOM searched for the command in a
+    number of paths. These ones are enumerated by the <a href="../batch/path.htm">PATH</a> environment
+    variable.
+    This variable can be changed using the <a href="../batch/set.htm">SET</a> or the <a href="../batch/path.htm">PATH</a> commands.
+    Latter one includes a detailed description of the format of the
+    search path.
+
+  There are a number of automatic variables that do not follow the above
+  mentioned syntax and which contents is automatically generated. Unlike
+  the normal variables these automatic variables are constructed of
+  exactly two characters, the first one is a single percent sign and the
+  second one the variable identifier:
+  - <B>&percnt;?</B>: expands to the current <a href="../batch/errorlvl.htm">ERRORLEVEL</a>, which is the exit code of
+    the previously executed external command.
+  - <B>&percnt;0</B>: in <A HREF="../batch/index.htm">BATCH SCRIPTS</A> only: is the name of the script currently
+    executed.
+  - <B>&percnt;1</B> through <B>&percnt;9</B>: in <A HREF="../batch/index.htm">BATCH SCRIPTS</A> only: are the first through nineth
+    argument passed to the currently executed batch script. If less than
+    nine arguments had been passed to the script, they return an empty
+    string. To access the tenth argument please refer to the SHIFT
+    command.
+  - FOR <b>&percnt;v</b> IN (...) DO &laquo;any command&raquo;: <B>&percnt;v</B> may use any letter,
+    the <a href="../batch/for.htm">FOR</a> command creates a new variable, which is valid in the
+    &laquo;any command&raquo; following the <b>DO</b> keyword.
+  - <B>&percnt;&percnt;</B>: Is no real variable, but expands to a single percent sign.
+
+  Because automatic variables have one percent sign only, it sometimes lead to
+  confusion within the <a href="../batch/for.htm">FOR</a> command, e.g. in:
+    SET adam=eva
+    FOR &percnt;a in (*.*) DO echo &percnt;adam&percnt; &percnt;a
+    <b>&percnt;adam</b> is interpreted as [<b>&percnt;a</b>]dam.
+</pre>
+  <h2>Examples:</h2>
+<pre>
+  SHELL=C:\FREEDOS\BIN\COMMAND.COM C:\FREEDOS\BIN /P=C:\FDAUTO.BAT
+           /E:1024 OR:
+  SHELLHIGH=C:\FREEDOS\BIN\COMMAND.COM C:\FREEDOS\BIN /P=C:\FDAUTO.BAT
+           /E:1024
+  /P       Loads command.com permanently
+  /E:1024  Sets the initial environment size to 1024 Bytes
+           Standard size is 256 Bytes)
+  When command.com is loaded, the environment variable exists and you
+  can use it via command line or batch file. E.g.:
+  set path=C:\FREEDOS\BIN, C:\
+  prompt $p$g
+  memory   Shows size and used space of Environment variable
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/alias.htm">alias</a>
+  <A HREF="../batch/index.htm">batch scripts</A>
+  <a href="../command/cd.htm">cd/chdir</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../command/dirs.htm">dirs</a>
+  <a href="../batch/errorlvl.htm">errorlevel</a>
+  <a href="../batch/for.htm">for</a>
+  <a href="../command/history.htm">history</a>
+  <a href="../base/mem.htm">mem</a>
+  <a href="../command/memory.htm">memory</a>
+  <a href="../batch/path.htm">path</a>
+  <a href="../command/popd.htm">popd</a>
+  <a href="../batch/prompt.htm">prompt</a>
+  <a href="../command/pushd.htm">pushd</a>
+  <a href="../batch/set.htm">set</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2006 the FreeDOS command.com team, adapted to
+  FreeDOS help in 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

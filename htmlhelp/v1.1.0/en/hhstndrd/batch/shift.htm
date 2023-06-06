@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: shift</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: shift</h1>
+<pre>
+  SHIFT changes the position of replacable parameters
+  in a batch file.
+  (Used to shift the replacable batch file parameters).
+  SHIFT is a <a href="../batch/index.htm">BATCH-FILE</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  SHIFT
+  SHIFT [DOWN]
+</pre>
+<h2>Options:</h2>
+<pre>
+  Shifts the arguments of a batch script one position up (first variant)
+  or down (second variant).
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Within a batch script the automatic variables &percnt;0 through &percnt;9 are
+  replaced by the script name and the first nine arguments. This can be
+  imagined as a window to ten arguments of the script. SHIFT will allow
+  to move this window of ten arguments towards its end (up) or its start
+  (down).
+  After SHIFT has been executed, the former &percnt;0 is hidden and in-
+  accessable, &percnt;1 became &percnt;0, &percnt;2 became &percnt;1 a.s.o, &percnt;9 became &percnt;8 and the
+  formerly hidden tenth argument became &percnt;9. SHIFT DOWN reverses one
+  SHIFT command.
+  SHIFT can be called as many times as wanted, SHIFT DOWN won't allow to
+  underflow the very first argument.
+  SHIFT is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+  If the batch script B.BAT:
+    @ECHO OFF
+    ECHO 0: &percnt;0
+    ECHO 1: &percnt;1
+    ECHO 2: &percnt;2
+    had been executed using:
+    B.BAT 1 2 3 4
+    it displays:
+
+    B.BAT
+    1
+    2
+
+  If a SHIFT command had been inserted as second line, the same
+  call displays:
+
+    1
+    2
+    3
+
+  Example 2:
+  Script test.bat, execute it with: "test 0 1 2 3 4 5 6 7 8 9"
+    :START
+    cls
+    @echo off
+    SHIFT
+    if &percnt;0X==X goto :END
+    md folder&percnt;0
+    echo The actual shift parameter is: &percnt;0
+    echo Folder&percnt;0 was created.
+    echo The numbers go upwards!
+    pause
+    goto :START
+    :END
+    cls
+    echo The shift job (creating folders) is done...
+    pause
+    cls
+    choice /C:YN "Do you want to delete this folders again? "
+
+    if errorlevel 2 goto :FINISH
+    if errorlevel 1 goto :DELETE
+
+    :DELETE
+    cls
+    SHIFT DOWN
+    if &percnt;0X==X goto :END1
+    REM The following two lines are needed as SHIFT shows the name of
+    REM the batch file (test or test.bat)!
+    if &percnt;0X==testX goto :END1
+    if &percnt;0X==test.batX goto :END1
+    rd folder&percnt;0
+    echo The actual shift parameter is: &percnt;0
+    echo Folder&percnt;0 was deleted.
+    echo The numbers go downwards!
+    pause
+    goto :DELETE
+
+    :END1
+    cls
+    echo The shift down job (deleting folders) is done...
+    pause
+    cls
+    goto :FINISH
+
+    :FINISH
+    @echo on
+    cls
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/at.htm">@(at)</a>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../batch/choice.htm">choice</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../batch/errorlvl.htm">errorlevel</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../batch/echo.htm">echo</a>
+  <a href="../batch/if.htm">if</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2007 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

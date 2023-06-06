@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: thrust</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: thrust</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  THRUST returns low-level information (raw numbers) about your game
+  port and joysticks. This information will probably not be very useful
+  unless you understand how game ports and joysticks really work.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  THRUST [Options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  There are two methods THRUST can use to look at your joysticks. Depen-
+  ding on your exact hardware and software, one method may work better
+  than the other.
+  The first method uses the computer's BIOS. If you are using a
+  compatible digital joystick driver (like my SDWRGMPD or USBJSTIK
+  programs), THRUST will automatically use the BIOS method.
+  The second method looks directly at the I/O port hardware. THRUST uses
+  the direct hardware method by default if it does not find a compatible
+  digital joystick driver installed in memory.
+  To have THRUST use a specific method (BIOS or Direct I/O Port access),
+  whether there is a compatible digital joystick driver installed or not,
+  use an appropriate option on the command line:
+    THRUST B                               (force BIOS method)
+    THRUST D &num;, THRUST P &num;, or THRUST I &num;  (force DIRECT I/O PORT method)
+
+    The &num; (I/O Port Number) is optional, and can be a decimal
+    (512-527) or hexadecimal (200h-20Fh) port number. The default is 201h
+    (513), which is the correct port for 99.99&percnt; of all computers.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  THRUST is a program designed to test your joysticks. It does this by
+  displaying the low-level, "raw" data that is coming from the joysticks,
+  either through the joystick BIOS (software) or directly from the
+  joystick (game port) hardware. It's included here as a "companion"
+  program to help you test USBJSTIK (discussed directly on page 123
+  of USBINTRO.DOC, see links below), but you can also use it to simply
+  test your analog joysticks.
+  What you will see on the screen when you run THRUST is divided into
+  three sections. At the left will be a description of how THRUST is
+  currently interacting with the joysticks: using the joystick BIOS
+  (software), or by directly using the hardware (in which case USBJSTIK
+  will show you an I/O port number).
+  The second section will show you the raw data (numbers) being returned
+  by each of the four axes (AX, AY, BX, and BY). For each particular
+  axis, if you move the appropriate control (handle or direction-pad or
+  slider or whatever), the displayed number will change. Usually, moving
+  the control left or up or counter-clockwise will make the number get
+  smaller, and moving it right or up or clockwise will make the number
+  get bigger. However, if the joystick is using the ThrustMaster protocol
+  (described in "Joystick Protocols" on page 124 of USBINTRO.DOC,
+  see links below), the last (BY) axis is displaying the status of the
+  (digital) 4-way Hat-switch. In this case, the number in BY will be
+  maximum when the Hat-switch is centered, a little lower when up, a
+  little lower yet when right, still lower when down, and minimum when
+  left.
+  The third and last section of THRUST will display the status of the
+  joystick buttons, whether the joystick is using the 4-button or 15-
+  button protocol (see "Joystick Protocols" on page 124 of USBINTRO.DOC,
+  see links below) if you don't know what this means). If the joystick
+  is using the 4-button protocol, the A1, A2, B1, and B2 columns will
+  display the status of the four buttons (whether they are each pressed
+  or not). If the joystick is using the 15-button protocol, the column
+  labeled "15" will display the number of the button that is currently
+  pressed (0 = no Button currently pressed, 1 = Button &num;1 pressed,
+  etc.).
+  THRUST can interact with the joysticks in two different ways, either
+  through the BIOS (software) or directly through the hardware. The
+  default method that THRUST uses depends on whether or not you have a
+  digital joystick driver (like my SDWRGMPD or USBJSTIK programs)
+  installed in memory or not. If you do have such a program, THRUST will
+  use the BIOS (software) method by default. If you do not have such a
+  program installed, THRUST will use the direct hardware method by
+  default.
+  No matter which access method THRUST would use by default, you can
+  force it to use whichever method you want. To force THRUST to use the
+  BIOS method, you would do the following:
+    THRUST B
+  To force THRUST to use the direct hardware method, you would do the
+  following:
+    THRUST D &num;
+  where the &num; (the I/O port number) is optional. The I/O port number can
+  be any number between 200h and 20Fh, which is the range of I/O port
+  numbers reserved for game ports. The default I/O port number that game
+  ports use is 201h, which is what THRUST will use if you don't specify a
+  number (if you simply do "THRUST D"). Virtually all computers use port
+  201h, so there is rarely a reason to specify any other port. In
+  addition to the "D" (Direct), you can also use the alias "P" (Port) or
+  "I" (I/O port) to tell THRUST to use the direct hardware method.
+  After you are through viewing the raw joystick data, simply press a key
+  on the keyboard and THRUST will stop.
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another editor, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - see examples above -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../util/drives.htm">drives</a>
+  <a href="../util/hidsupt1.htm">hidsupt1</a>
+  <a href="../util/inklevel.htm">inklevel</a>
+  <a href="../util/irq.htm">irq</a>
+  <a href="../util/ps2mtest.htm">ps2mtest</a>
+  <a href="../util/scantest.htm">scantest</a>
+  <a href="../util/uni2asci.htm">uni2asci</a>
+  <a href="../util/usbdevic.htm">usbdevic</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhosts.htm">usbhosts</a>
+  <a href="../util/usbhub.htm">usbhub</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbsupt1.htm">usbsupt1</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/usbuhcil.htm">usbuhcil</a>
+  <a href="../util/vendorid.htm">vendorid</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998-2009, Bret E. Johnson</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

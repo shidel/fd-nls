@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: doslfn</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: doslfn</h1>
+<pre>
+  DOSLFN is a program that supports long filenames in pure DOS.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  doslfn [options] [switches]
+</pre>
+<h2>Options:</h2>
+<pre>
+Actions:
+  - (nothing)     load and/or enable TSR
+  - h or ?        this help
+  - d             disable DOSLFN
+  - s             show status and settings
+  - u             unload TSR
+Switches:
+  - w{+|-}        * write access
+  - ~{+|-}        * NameNumericTail - tilde usage (I hate snakes)
+  - t{+|-}        * PreserveLongNames - tunnel effect
+  - f{+|-}        * fallback mode - supply LFN for all drives
+  - c{+|-}        * CDROM support
+  - i{+|-}        * reenter lock via InDOS flag + RESET DRIVE
+  - r{+|-}        * read-only bit for CDROM files
+  - o[N]          * set time zone N or read TZ if absent
+  - z[:|=]table   load Unicode table (format Volkov .TBL)
+  - m[:|=]bytes   declare size of internal heap, 600..50000
+  - ms[:|=]bytes  declare size of short path, 16..141
+  - ml[:|=]bytes  declare size of long path, 16..1024
+  - mn[:|=]bytes  declare size of long name, 13..512
+  - p[:|=]path    declare working directory for .TBL/.386
+  - l{d|e|f|t}    language for messages (german|english|french|turkish)
+                  (only for versions till 0.4.1f).
+Environment:
+  TZ=xxxNyyy      time zone N for time conversion, no DST usage
+  LANG=cc         language for messages (since version 0.4.1g)
+</pre>
+<h2>Comments:</h2>
+<pre>
+  USE THIS PROGRAM AT YOUR OWN RISK, DATA LOSS MAY BE POSSIBLE!
+  Without this program FreeDOS only supports filenames in the format 8.3
+  e.g. filename.txt.
+  Since version 0.4.1g DOSLFN supports NLS. This means that the option
+  - l{d|e|f|t} is no longer needed.
+    For more information see:
+  <b>https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/util/system/</b>
+  packet: doslfn, section: DOC  OR:
+  <b>https://gitlab.com/FreeDOS/drivers/doslfn/-/tree/master/DOC/DOSLFN</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN a BATCH file or in AUTOEXEC.BAT / FDAUTO.BAT:
+  set lang=DE  (sets the language for messages to german)
+  doslfn       (loads long file name support driver)
+  doslfn /u    (unloads long file name support driver)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../batch/set.htm">set</a>
+  Some examples for commands that support DOSLFN:
+  <a href="../base/dosfsck.htm">dosfsck</a>
+  <a href="../batch/for.htm">for</a>
+  <a href="../command/lfnfor.htm">lfnfor</a>
+  <a href="../util/locate.htm">locate</a>
+  <a href="../base/tree.htm">pdtree/tree</a>
+  <a href="../base/shsucdx.htm">shsucdx</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008, updated in 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

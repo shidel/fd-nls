@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: usbdevic</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: usbdevic</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  USBDEVIC is a Program to display information about Devices attached
+  to the USB Host(s).
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  USBDEVIC [Options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  ?    Show this HELP screen
+  A    Show all ALIASES for these command line Options
+  V    Show all ErrorLevels (DOS Return Codes)
+  &num;    Show all devices attached to USB Host Index &num; (0-15)
+  N    Show New Device Notification Table for USB Hosts
+  You can combine more than one &num; (Host Index) and N (New Device
+  Table) on the same command-line. The following, for example, is OK:
+    USBDEVIC 0 1 12 N
+  If running from inside another program (if not running from the command-
+  line), the Options can be followed with a hex call-back address
+  (Segment:Offset) to which the output will be written.
+  USBDEVIC with no Options after it will display details about the USB
+  Devices attached to all compatible USB Hosts.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  USBDEVIC shows details about all of the different Device/Interfaces
+  that are attached to the USB busses. The details include the assigned
+  Address, the Device/Interface "type" or "class", power requirements,
+  manufacturer, which port of which Hub the Physical Device is plugged
+  into, etc.
+  If you run USBDEVIC with no option switches, it will show you the
+  details of ALL Device/Interfaces that are attached to ALL busses:
+    USBDEVIC
+  You can also have USBDEVIC show you all Device/Interfaces that are
+  attached to a single bus. To do this, you must provide USBDEVIC the
+  Host Index number (0-15) of the Host Controller you are wanting to view.
+  For example, to view the details of all Device/'Interfaces attached to
+  Host Index 2:
+    USBDEVIC 2
+  Note that what must be provided is the Host Index number, and NOT the
+  PCI Search Index number. The Host Index number is associated with the
+  Host Controller Driver (USBUHCI{L}) and the Application Programming
+  Interface (API), not with the PCI bus hardware.
+  You can also have USBDEVIC show you the Device/Interface details for
+  more than one bus at a time, but not necessarily all of them. To do
+  this, you just provide more than one Host Index number. The show the
+  Device/Interface details for Host Index 2 followed by Host Index 1,
+  for example, you would do:
+    USBDEVIC 2 1
+  Most of the Device/Interface details shown by USBDEVIC are fairly self-
+  explanatory, at least if you're familiar with the USB architecture.
+  Some of them need further explanation, however. The explanations are
+  provided under "Attached Devices" (page 73 of USBINTRO.DOC, see links
+  below), and will not be repeated here.
+  In addition to showing you details about the Device/Interfaces attached
+  to the bus, USBDEVICE will also show you the contents of the New Device
+  Notification table. The concept of New Device Notifications is a
+  complicated aspect of the Application Programming Interface (API), which
+  is described in detail in a separate document called USBAPI.DOC. There
+  is also a brief description given in the "New Device Notifications"
+  section (page 74 of USBINTRO.DOC, see links below). Those details will
+  not be repeated here.
+  To display the contents of the New Device Notification table (stored in
+  memory as along with the first instance of USBUHCI{L}), you would do
+  the following:
+    USBDEVIC NewDeviceTable
+  In order to write the company name of the Device/Interface manufacturer,
+  USBDEVIC calls the support program VENDORID (page 184 of USBINTRO.DOC,
+  see links below). In order to write a description of the "type" of
+  Device/Interface, USBDEVIC calls the support program USBSUPT1 (page 178
+  of USBINTRO.DOC, see links below).
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another editor, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  usbuhci    (only UHCI is supported at the moment!)
+  usbdevic
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../util/drives.htm">drives</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcodes</a>
+  <a href="../util/hidsupt1.htm">hidsupt1</a>
+  <a href="../util/inklevel.htm">inklevel</a>
+  <a href="../util/irq.htm">irq</a>
+  <a href="../util/ps2mtest.htm">ps2mtest</a>
+  <a href="../util/scantest.htm">scantest</a>
+  <a href="../util/thrust.htm">thrust</a>
+  <a href="../util/uni2asci.htm">uni2asci</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhosts.htm">usbhosts</a>
+  <a href="../util/usbhub.htm">usbhub</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbsupt1.htm">usbsupt1</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/usbuhcil.htm">usbuhcil</a>
+  <a href="../util/vendorid.htm">vendorid</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008, Bret E. Johnson.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

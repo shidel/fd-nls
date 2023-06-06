@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: ps2mtest</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: ps2mtest</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  PS2MTEST will simply display the "raw" data as it comes from the
+  PS2 Mouse BIOS.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  PS2MTEST &num;
+    where &num; is either 0, 1, or 2, and is the maximum number of
+    wheels that you want this program to look for.
+</pre>
+<h2>Options:</h2>
+<pre>
+  0 = Enable the Mouse as a "Regular" Mouse (No Wheels, Max 3 Buttons),
+      even if the Mouse has Wheel(s).
+  1 = Enable the IntelliMouse Protocol (Max 1 Wheel, 3 Buttons),
+      if the Mouse is capable. Do not enable the IntelliMouse2
+      Protocol, even if the Mouse supports it.
+  2 = Enable the IntelliMouse2 Protocol (Max 2 Wheels, 5 Buttons),
+      if the Mouse is capable.  If the IntelliMouse2 Protocol is
+      not supported, enable the IntelliMouse Protocol.  If neither
+      IntelliMouse Protocol is supported, enable the Mouse as a
+      "Regular" Mouse.  This is the Default.
+  This program will simply display the "raw" data as it comes from the
+  PS2 Mouse BIOS. It is designed as a testing program, so may not be
+  very useful if you're not writing a program related to the PS2 Mouse.
+  Then again, you may find it interesting to see what the Mouse BIOS
+  is actually doing behind the scenes.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  PS2MTEST is a program designed to test your PS2 mouse. It does this by
+  displaying the "raw" data that is coming from the mouse through the PS2
+  mouse BIOS (software). It's included here as a "companion" program to
+  help you test USBMOUSE (discussed directly on page 107 of
+  USBINTRO.DOC, see links below), but you can also use it to simply
+  test your PS2 mouse.
+  What you will see on the screen when you run PS2MTEST will be four
+  words (eight bytes) of data on the left, labeled "Raw PS2 Mouse Data".
+  The PS2 Mouse BIOS always transfers eight bytes of data, even though
+  only three or four of the bytes actually contain any useful data. This
+  is  where the raw data (numbers) will be displayed as you move the
+  mouse and press the buttons.
+  To the right of the raw data on the screen are three columns, labeled
+  "Buttons", "Motion", and "Wheels". This is where the raw data is
+  translated into meaningful descriptions (button presses, mouse
+  movements, and scrolling wheel clicks). Exactly how the data gets
+  translated depends on which protocol is currently being used by the
+  mouse (PS2, IntelliMouse, or IntelliMouse2, described on page
+  110 of USBINTRO.DOC, see links below). Only three bytes of actual data
+  are transferred when the mouse is in PS2 mode, and four bytes are
+  transferred when the mouse is in IntelliMouse or IntelliMouse2 mode.
+  Exactly which bits of data correspond to which buttons and movements
+  changes based on the protocol currently in use, and those details will
+  not be discussed here.
+  Information about that is available at various places on the internet
+  if you want to search for it.
+  By default, PS2MTEST will use the most sophisticated protocol supported
+  by the mouse hardware and BIOS (IntelliMouse2 is the first choice,
+  followed by IntelliMouse, with PS2 as the last choice). If you are
+  using USBMOUSE in BIOS (software) emulation mode, it will always
+  support the IntelliMouse2 protocol. If you are not using USBMOUSE at
+  all, or are using USBMOUSE in hardware emulation mode, the most
+  sophisticated protocol supported will depend on the PS2 mouse hardware
+  (how many wheels and buttons it has).
+  Although the default is for PS2MTEST to use the most sophisticated
+  protocol, you can force it to use a less sophisticated protocol if you
+  want to for testing or educational purposes. To do this, you must
+  provide to PS2MTEST a number which corresponds to the maximum number of
+  wheels supported by the protocol (0 = PS2, 1 = IntelliMouse, and 2 =
+  IntelliMouse2). For example, to provide the same functionality as the
+  default, you would do the following:
+    PS2MTEST 2
+  This will test the mouse using the IntelliMouse2 protocol (maximum of 2
+  wheels and 5 buttons) if the mouse supports it. If the mouse does not
+  support the IntelliMouse2 protocol, but does support the IntelliMouse
+  protocol, this will test the mouse using the IntelliMouse protocol. If
+  the mouse only supports the PS2 protocol, this will test in using the
+  PS2 protocol.
+  To test the mouse using the IntelliMouse protocol, even if it supports
+  the IntelliMouse2 protocol, you would do the following:
+    PS2MTEST 1
+  If the mouse does not support the IntelliMouse protocol, PS2MTEST will
+  test the mouse with the PS2 protocol.
+  To force PS2MTEST to test the mouse with the PS2 protocol, no matter
+  how many wheels it actually has, you would do the following:
+    PS2MTEST 0
+  After you are through viewing the raw PS2 mouse data, simply press a
+  key on the keyboard and PS2MTEST will stop. After PS2MTEST stops, it
+  will attempt to restore the PS2 mouse BIOS and DOS Mouse Driver to the
+  same exact state it was in before you ran PS2MTEST. While the
+  restoration process usually works just fine, there are times when it
+  does not. If the restoration process does not seem to work correctly,
+  you will need to reset or reinstall the DOS Mouse Driver again.
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another editor, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  ps2mtest 2  (Intellimouse 2)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../util/drives.htm">drives</a>
+  <a href="../util/hidsupt1.htm">hidsupt1</a>
+  <a href="../util/inklevel.htm">inklevel</a>
+  <a href="../util/irq.htm">irq</a>
+  <a href="../util/scantest.htm">scantest</a>
+  <a href="../util/thrust.htm">thrust</a>
+  <a href="../util/uni2asci.htm">uni2asci</a>
+  <a href="../util/usbdevic.htm">usbdevic</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhosts.htm">usbhosts</a>
+  <a href="../util/usbhub.htm">usbhub</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbsupt1.htm">usbsupt1</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/usbuhcil.htm">usbuhcil</a>
+  <a href="../util/vendorid.htm">vendorid</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007, Bret E. Johnson</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

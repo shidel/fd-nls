@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: rd / rmdir</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: rd / rmdir</h1>
+<pre>
+ RD / RMDIR removes (deletes) an empty directory.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  RMDIR [drive:][path] [/?]
+  RD [drive:][path] [/?]
+        drive     The drive letter where you want to delete a
+                  directory, e.g. C:
+        path      The pathname which already exists, e.g. if you are
+                  already in a directory.
+</pre>
+<h2>Options:</h2>
+<pre>
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  For performance reasons RD / RMDIR only overwrites the first letter of
+  each directory name / filename by a '?'. See <a href="../command/del.htm">DEL / ERASE</a> or
+  <a href="../base/deltree.htm">DELTREE</a> for more information. You can also use <a href="../command/rd.htm">RD</a> instead of RMDIR.
+  RMDIR will only delete empty directories (no files or directories
+  inside)! Do not forget to remove hidden files or directories!
+  In DOS directories are shown in capital letters and have NO ending.
+  RMDIR is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  You have a directory: C:\TEST01\TEST02\TEST03\example.txt (or more
+  files inside)
+  To delete all folders you have to do the following:
+    cd C:\TEST01\TEST02\TEST03
+  then:
+    del example.txt               OR:
+    del *.*                       (More files inside) OR:
+    move example.txt C:\anywhere  (Rescues file example.txt) OR:
+    move *.* C:\anywhere          (Rescues all files)
+  then you have to go back step by step and delete each empty folder
+    cd ..                         (Goes back to C:\TEST01\TEST02)
+    rd TEST03                     (Deletes folder TEST03)
+    cd ..                         (Goes back to C:\TEST01)
+    rd TEST02                     (Deletes folder TEST02)
+    cd ..                         (Goes back to C:\)
+    rd TEST01                     (Deletes folder TEST01)
+    dir                           (Whole folder structure is deleted)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/attrib.htm">attrib</a>
+  <a href="../command/cd.htm">cd/chdir</a>
+  <a href="../command/cdd.htm">cdd</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../command/del.htm">del/erase</a>
+  <a href="../base/deltree.htm">deltree</a>
+  <a href="../command/dir.htm">dir</a>
+  <a href="../command/md.htm">md/mkdir</a>
+  <a href="../base/move.htm">move</a>
+  <a href="../base/undelete.htm">undelete</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2007 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

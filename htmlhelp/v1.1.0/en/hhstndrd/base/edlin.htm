@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: edlin</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: edlin</h1>
+<pre>
+  The edlin program is a small line editor, written for FreeDOS as a
+  functional clone of the old MS-DOS program edlin. It differs from MS
+  edlin in that first, it's free software, and second, the user interface
+  is slightly different in a few places. The reason for the difference is
+  so that the user does not have to type in control characters mandated
+  by MS edlin's syntax.
+</pre>
+<h3>INVOKING EDLIN</h3>
+<pre>
+  The edlin program is invoked either by itself:
+    edlin
+  or with a filename that's initially read in:
+    edlin file
+</pre>
+<h3>EDLIN'S INTERNAL COMMANDS</h3>
+<pre>
+  In the following command lists:
+    The [ and ] brackets represent optional values.
+    The &num; symbol represents a line number, which can be one of several
+    possible values:
+    -  A string of digits as a literal line number, such as 12 for
+       line 12.
+    -  A period "." as the current line in the file.
+    -  A dollar sign "$" as the last line in the file.
+    -  A number "&num;" as the line number just after the last line in the
+       file.
+    -  A +n or -n as a count added or subtracted from a line number.
+       This is useful for relative line addressing, such as .+1 for the
+       line after the current line.
+
+  The $ symbol represents a string of characters. Strings may be
+  enclosed in either single or double quotes, and may contain the
+  following escape sequences:
+
+  \a    - Alert character
+  \b    - Backspace character
+  \e    - Escape
+  \f    - Form feed
+  \t    - Horizontal tab
+  \v    - Vertical tab
+  \"    - Double quote
+  \'    - Single quote
+  \.    - Period
+  \\    - Backslash
+  \xXX  - Hexadecimal value, where each x is a hexadecimal digit
+         (0 to F, uppercase or lowercase)
+  \dNNN - Decimal value, where each N is a decimal digit (0 to 9)
+  \OOO  - Octal value, where each O is an octal digit (0 to 7)
+  \^C   - Control character, such as \^J for the literal "control J"
+          (linefeed) character.
+
+  The edlin program supports the following syntax:
+</pre>
+<h3>&num; - EDIT A SINGLE LINE</h3>
+<pre>
+  The edlin program outputs the single line indicated by the number, and
+  the next inputted line replaces the outputted line in the file.
+</pre>
+<h3>a - APPEND to the file</h3>
+<pre>
+  This command is equivalent to $+1i .
+</pre>
+<h3>[&num;],[&num;],&num;,[&num;]c - COPY A RANGE OF LINES</h3>
+<pre>
+This command copies a block of consecutive lines to another location in
+the buffer. The parameters are, in order:
+
+  1. The first line you want to copy (default = current line).
+  2. The last line you want to copy (default = current line).
+  2. The line before which you want to insert the block of lines.
+  4. The number of times you want to copy the block (default = 1).
+
+  After copying lines, use the l (list) command to see the new line
+  numbers.
+</pre>
+<h3>[&num;][,&num;]d - DELETE A RANGE OF LINES</h3>
+<pre>
+  Delete a block of consecutive lines from the buffer. The parameters
+  are the first and last line of the block to be deleted.
+  If you omit the first parameter, delete the block from the current
+  line to the line specified in the second parameter (be sure to include
+  the comma).
+  If you omit the second parameter, delete only the line specified in
+  the first parameter.
+  Omitting both parameters deletes the current line.
+</pre>
+<h3>e filename - SAVE AND EXIT</h3>
+<pre>
+  This command is equivalent to w filename followed by q.
+  This verifies whether the user actually wants to quit before doing so.
+  To quit, answer the "Abort edit (Y/N)?" prompt with "yes."
+</pre>
+<h3>[&num;]i - INSERT LINES</h3>
+<pre>
+  Enter insert mode. Its parameter is the line number before which you
+  want to insert lines.
+  While entering text, you can use the escape sequences from above.
+  To exit insert mode, type . (period) on a line by itself. (If you need
+  a line with just a period, you need to enter it as \.)
+  After exiting insert mode, the line after the inserted text becomes
+  the current line - unless the insertion was appended to the end of
+  the buffer, in which case the last line in the buffer becomes the new
+  current line.
+</pre>
+<h3>[&num;][,&num;]l - LIST LINES</h3>
+<pre>
+  List the lines of text to the screen. If you omit the first parameter,
+  start showing text starting at 11 lines before the current line.
+  If you omit the second parameter, shows a screen of text beginning
+  with the line specified in the first parameter.
+  If you omit both parameters, show a screen of text starting at 11
+  lines before the current line.
+  If the number of lines to show is longer than the number of lines on
+  the screen, edlin will prompt after each screen.
+</pre>
+<h3>[&num;],[&num;],&num;m - MOVE LINES</h3>
+<pre>
+  Move a block of text to the line before the number specified in the
+  third parameter. It is similar to copying then deleting the original
+  block.
+</pre>
+<h3>[&num;][,&num;]p - PRINT LINES</h3>
+<pre>
+  Similar to the l (list) command except that the default parameters
+  starts at the current line instead of 11 lines before it.
+</pre>
+<h3>q - QUIT</h3>
+<pre>
+  Quit the program.
+  This verifies whether the user actually wants to quit before doing so.
+  To quit, answer the "Abort edit (Y/N)?" prompt with "yes."
+</pre>
+<h3>[&num;][,&num;][?]r$,$ - REPLACE STRING</h3>
+<pre>
+  Replace all occurrences of the first string with the second between
+  the two lines specified.
+  If you omit the first parameter, start replacing at the line after the
+  current line.
+  If you omit the second parameter, stops replacing text at the last
+  line of the buffer.
+  If you include the ? (question mark), edlin will print a confirmation
+  message before replacing text.
+</pre>
+<h3>[&num;][,&num;][?]s$ - SEARCH FOR A SUBSTRING</h3>
+<pre>
+  Search for the first line containing the specified substring.
+  If you omit the first parameter, start searching from the current
+  line.
+  If you omit the second parameter, stop the search at the end of the
+  buffer.
+  If you include the ? (question mark), edlin will print a confirmation
+  message. Responding "no" to the confirmation message continues the
+  search; "yes" ends the search.
+  If the search found the substring, the current line will be set to the
+  line where the search ended.
+</pre>
+<h3>[&num;]t filename - TRANSFER A FILE</h3>
+<pre>
+  Insert the contents of a file before the specified line number.
+  If you omit the line number, insert before the current line.
+</pre>
+<h3>[&num;]w filename - WRITE THE FILE</h3>
+<pre>
+  Write the first &num; lines in the buffer to the specified file.
+  If you omit the number parameter, write all the lines in the buffer
+  to the file.
+</pre>
+<h2>Author / Maintainer</h2>
+<pre>
+Gregory Pietsch, gpietsch@comcast.net
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/blocek.htm">blocek</a>
+  <a href="../base/edit.htm">edit</a>
+  <a href="../util/ospedit.htm">ospedit</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; Gregory Pietsch, gpietsch@comcast.net
+  Updated in 2023 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body>
+</html>

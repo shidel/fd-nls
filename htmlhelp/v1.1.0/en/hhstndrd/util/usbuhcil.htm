@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: usbuhcil</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: usbuhcil</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  USBUHCIL is a DOS Driver for a Universal HCI compatible USB Host
+  Controller.
+  LITE version (maximum 16 Devices, no Isochronous Transactions).
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  USBUHCIL [Options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /?              Show this HELP screen
+  /A              Show all ALIASES for these command line Options
+  /ErrLvl         Show all <a href="../batch/errorlvl.htm">ErrorLevels</a> (DOS Return Codes)
+  /U              UNINSTALL from memory
+  /L:Y|N          Force installation into LOW memory (default = No)
+
+  /Index &num;        Use UHCI Host with PCI INDEX &num; (default = 0)
+  /IOAddr &num;       Use I/O base ADDR &num; (100h-FFE0h, divisible by 32)
+  /IRQ &num;          Use IRQ &num; (3-15, default = 9)
+  /DisableLegacy  Disable Legacy Keyboard/Mouse support
+  /DisableOther   Disable Other Control program
+  /P:&num;            Pause &num; deciSeconds before finding Root Devices (0-255)
+  /Beep:Y|N       BEEP Speaker when bad Device is found (default = Yes)
+  /PD[:&num;]         Display Program Debug messages during install and
+                  uninstall
+                  &num; = Milliseconds to delay each step (0-2000, default=0)
+
+  /Run &num;          Run (Resume/Enable) Device Address &num; |
+  /Stop &num;         Stop (Disable) Device Address &num;      |0-1 =Host/Root Hub
+  /Reset &num;        Reset Device Address &num;               |2-17=Attached Dvc
+  /Suspend &num;      Suspend Device Address &num;             |18-255=All Hosts
+  /Resume &num;       Resume (not Enable) Device Address &num; |
+
+  /PowerOn &num;      Power On Device Address &num;    |
+  /PowerOff &num;     Power Off Device Address &num;   | 2-17
+  /PowerReset &num;   Power Reset Device Address &num; |
+
+  /SC D&num; C&num;       Set Configuration of Device D&num; (2-17) to value C&num;
+                  (0-255)
+  /RW:&num; Y|N       Enable/disable Remote Wakeup on Device &num; (2-17)
+  /TM:&num; Y|N       Enable/disable Test Mode on Device &num; (2-17)
+
+  /Timing &num;       Set Timing to &num; Bits/Frame (11936-12063, default = 12000)
+  /Debug, /SST    Debug/SingleStep the Host
+
+  /Host           Show Status of Host (PCI/USB/Root Hub)
+  /FL             Show Status of Frame List
+  /QH             Show Status of Queue Heads
+  /TD [&num;]         Show Status of Transfer Descriptor(s), optional
+                  Idx &num; (0-79)
+  /AD             Show Status of Addressed Devices
+  /ND             Show Status of New Device Notification Entries
+  /Descr [:&num;]     Show Descriptors for Device Address &num; (2-17)
+                  If no Address is provided, shows Last Enumerated Device
+  /R A&num; I&num;        Show HID Report Descr for Dvc Addr A&num; (2-17),
+                  Intf I&num; (0-255)
+</pre>
+<h2>Comments:</h2>
+<pre>
+  USBUHCIL is too complex and too long to describe it completely in
+  htmlhelp. Please have a look into pages 53 till 175 of USBINTRO.DOC,
+  see links below).
+
+  USBUHCI is the full USB Host Controller Driver program. USBUHCIL is the
+  "Lite" or "Limited" version. The difference between the two is that
+  USBUHCI can handle a full 126 Logical Devices (Addresses), and allows
+  Isochronous Transactions to be scheduled. USBUHCIL can only handle 16
+  Logical Devices, and does not allow the scheduling of Isochronous
+  Transactions. Both programs implement the full Application Programming
+  Interface (API) as described in USBAPI.DOC, and are equivalent in every
+  other way.
+  From now on, when we are referring to one or the other of the programs
+  (USBUHCI or USBUHCIL), we will use the name of the individual program.
+  When we are referring to a Host Controller Driver in general (and can
+  be actually referring to either program), we will use USBUHCI{L}.
+  USBUHCIL uses substantially less memory than USBUHCI, and should be
+  sufficient for most applications. Most computers only have a few
+  Physical Devices plugged into any particular USB bus, and there are no
+  Drivers available yet for any type of Isochronous Device/Interface (such
+  as a Video Camera). Note, however, that because there has not yet been
+  a Device/Interface Driver developed for a "real" Isochronous Device, the
+  Isochronous capabilities of USBUHCI have not been tested with an actual
+  Physical Device and may not work correctly.
+  Both USBUHCI &amp; USBUHCIL require an overlay file to operate properly.
+  The overlay file for USBUHCI is called USBUHCI.OVL, and the overlay file
+  for USBUHCIL is called USBUHCIL.OVL. The overlay file must be in the
+  same directory as the main executable file (USBUHCI.COM or
+  USBUHCIL.COM). If USBUHCI{L} cannot find the overlay file (or it is the
+  wrong version of overlay file), the program will not work.
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another editor, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  usbuhcil    (only UHCI is supported at the moment!)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../util/drives.htm">drives</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcodes</a>
+  <a href="../util/hidsupt1.htm">hidsupt1</a>
+  <a href="../util/inklevel.htm">inklevel</a>
+  <a href="../util/irq.htm">irq</a>
+  <a href="../util/ps2mtest.htm">ps2mtest</a>
+  <a href="../util/scantest.htm">scantest</a>
+  <a href="../util/thrust.htm">thrust</a>
+  <a href="../util/uni2asci.htm">uni2asci</a>
+  <a href="../util/usbdevic.htm">usbdevic</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhosts.htm">usbhosts</a>
+  <a href="../util/usbhub.htm">usbhub</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbsupt1.htm">usbsupt1</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/vendorid.htm">vendorid</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007-2009, Bret E. Johnson.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

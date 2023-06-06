@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: F8 button</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: F8 button</h1>
+<pre>
+  Executes each single line in <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> AND
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a> by asking you if you really
+  want to execute it.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  If you press "F8" while booting up the system, each command in
+  CONFIG.SYS / FDCONFIG.SYS and in AUTOEXEC.BAT has to be
+  confirmed with "yes" or "no". This is helpful if you want to
+  find out which driver crashes as it stops at the bad driver or
+  command.
+  F8 is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  FreeDOS crashes while executing config.sys / autoexec.bat every
+  time. You have no chance to change something as this happens at
+  each bootup.
+  Press F8 while booting (kernel message is shown), then each driver
+  in config.sys and each command in autoexec.bat is executed step by
+  step. So you can check each single driver / command step by step
+  and can choose "NO" if you know which one should not be loaded.
+  The machine boots without this driver / command and you can fix the
+  problem by <a href="../base/edit.htm">editing</a> config.sys / autoexec.bat. E.g.:
+    DOS=HIGH[Y,N]
+    DOS=UMB[Y,N]
+    SHELLHIGH=C:\FREEDOS\BIN\command.com C:\FreeDOS\BIN /E:1024 /P
+      /P=C:\FDAUTO.BAT[Y,N]  etc. Simply press Y or N button.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/semico.htm">; (semicolon)</a>
+  <a href="../cnfigsys/question.htm">? (question mark)</a>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../cnfigsys/dos.htm">dos</a>
+  <a href="../cnfigsys/echo.htm">echo</a>
+  <a href="../base/edit.htm">edit</a>
+  <a href="../base/edlin.htm">edlin</a>
+  <a href="../cnfigsys/F5.htm">F5</a>
+  <a href="../cnfigsys/shell.htm">shell/shellhigh</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008, updated in 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

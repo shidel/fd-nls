@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: date</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: date</h1>
+<pre>
+  Displays or sets current date.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  1. DATE
+  2. DATE [ /D ]
+  3. DATE [ /D ] date
+</pre>
+<h2>Options:</h2>
+<pre>
+  All options must precede any arguments.
+  none     You are prompted for a new date for your system.
+           Values for the day (dd), month (mm), and year (yy or yyyy)
+           may be seperated by periods, hyphens, or slashes. Either
+           a 4-digit or 2-digit year may be used.
+           So you can choose between:
+           mm-dd-yy or mm-dd-yyyy e.g. date 04-22-07 or 04-22-2007
+           mm/dd/yy or mm/dd/yyyy e.g. date 04/22/07 or 04/22/2007
+           mm.dd.yy or mm.dd.yyyy e.g. date 04.22.07 or 04.22.2007
+  /D       Prevents from prompting the user. The date is displayed only.
+  /D date  The date is tried to be changed, but the loop is not entered
+           on failure.
+  /?       Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The first variant displays the current system date, then enters a
+  loop prompting the user for a new date. The loop terminates, if the
+  user entered a valid new date or just pressed the ENTER key to
+  accept the current setting without changing it.
+  The second variant displays the current system date only.
+  The third variant does not display the current date and tries to
+  change the date to the specified date. On success the command
+  terminates, otherwise enters the loop explained above.
+  The individual portions of a date may be separated by at least:
+  dots ., forward slashes / or dashes -. Other nationally used
+  characters may be supported, too.
+  DATE will support partial formats:
+    A single number: specifies the day only.
+    Two numbers: specifies the day and the month in the order used by
+    the national date format, which is MM/DD for American and Japanese
+    and DD/MM for European format.
+    Three numbers: specifies a full date including day, month and year
+    in the order suitable for the national date format, which is:
+        MM/DD/[CC]YY: for American,
+        DD/MM/[CC]YY: for European and
+        [CC]YY/MM/DD: for Japanese format.
+  If the year portion is less than 100, the century is assumed to
+  be 1900, if it is greater or equal than 80; otherwise the century
+  is 2000.
+  Note: Some European countries introduced the so-called business date
+  in 1996 or so, which is the same as the Japanese format; it makes
+  sorting of literal dates a lot easier. If FreeCOM will or will not
+  support it, this will depend on the NLS used by DOS.
+  Symbolical names of monthes are not support (yet).
+  DATE is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+    DATE
+    Asks you for a new date.
+  Example 2:
+    DATE /D
+    Just displays the current system date.
+  Example 3:
+    DATE 2/1/22
+    Sets the current date to 1st February of 2022.
+    DATE 2/1/97
+    Sets the current date to 1st Feburary of 1997.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../command/time.htm">time</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

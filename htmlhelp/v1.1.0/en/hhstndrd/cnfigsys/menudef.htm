@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: menudefault</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: menudefault</h1>
+<pre>
+  MENUDEFAULT sets a time delayed default option for a config.sys /
+  fdconfig.sys menu.
+  MENUDEFAULT is a <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  menudefault=defaultoption,delay
+</pre>
+<h2>Options:</h2>
+<pre>
+  delay          delay time in seconds
+  defaultoption  used standard option if delay time is over
+</pre>
+<h2>Comments:</h2>
+<pre>
+  MENUDEFAULT sets a time delayed default option for a CONFIG.SYS /
+  FDCONFIG.SYS menu: If no key has been pressed during 'delay' seconds,
+  the default choice is activated. Pressing a key stops the countdown,
+  the kernel will wait infinitely for the user to make a selection. Note
+  that some virtual machines like Bochs can have broken (too fast) timing.
+  MENUDEFAULT is a command internal to kernel.sys and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+  IN CONFIG.SYS / FDCONFIG.SYS (on a diskette):
+    menucolor 15,1
+    MENU Choose wisely:
+    MENU
+    MENU 0)    normal driver (himemx and jemm386)
+    MENU 1)    alternative driver (jemmex)
+    MENUDEFAULT=0,5
+    0?DEVICE=A:\himemx.exe
+    0?DEVICE=A:\jemm386.exe
+    1?DEVICE=A:\jemmex.exe
+  The menu will wait 5 seconds. If no key is pressed in this time,
+  option 0 is selected automatically. Menucolor 15,1 changes the
+  colour to white text on blue background.
+    0 chooses himemx.exe and jemm386.exe,
+    1 chooses jemmex.exe
+
+  Example 2:
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    !COUNTRY=049,858,C:\FREEDOS\BIN\country.sys (german setting)
+    !LASTDRIVE=Z
+    !BUFFERS=20           (!=will be executed under all circumstances)
+    !FILES=40             (!=will be executed under all circumstances)
+    !MENUCOLOR=7,0        (!=will be executed under all circumstances)
+
+    MENUDEFAULT=1,5
+    MENU 1 - Load FreeDOS with JEMM386 (no EMS, max RAM free)
+    MENU 2 - Load FreeDOS with JEMM386 (Expanded Memory)
+    MENU 3 - Load FreeDOS low with some drivers (Safe Mode)
+    MENU 4 - Load FreeDOS without drivers (Emergency Mode)
+
+    12?DOS=HIGH                   (will be processed when pressing 1/2)
+    12?DOS=UMB                    (will be processed when pressing 1/2)
+    12?DOSDATA=UMB                (will be processed when pressing 1/2)
+    123?DEVICE=C:\FREEDOS\BIN\himemx.exe (     "      "      "     1/2/3)
+    1?DEVICE=C:\FREEDOS\BIN\jemm386.exe NOEMS X=TEST I=TEST I=B000-B7FF
+             NOVME NOINVLPG       (will be processed when user presses 1)
+    2?DEVICE=C:\FREEDOS\BIN\jemm386.exe X=TEST I=TEST I=B000-B7FF NOVME
+             NOINVLPG             (will be processed when user presses 2)
+    34?SHELL=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+             /P=C:\FDAUTO.BAT     (will be processed when pressing 3/4)
+    12?SHELLHIGH=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+                 /P=C:\FDAUTO.BAT (will be processed when pressing 1/2)
+    ;1234?BREAK=OFF               (set to REM, nothing happens)
+    REM 1234?DEVICE=C:\blahblah.sys (set to REM, nothing happens)
+
+  IN AUTOEXEC.BAT / FDAUTO.BAT:
+    Depending if you have chosen "1", "2", "3" or "4" in CONFIG.SYS
+    your AUTOEXEC.BAT / FDAUTO.BAT can execute different routines, e.g.:
+      IF "&percnt;config&percnt;"=="1" goto :BAT_ROUTINE1
+      IF "&percnt;config&percnt;"=="2" goto :BAT_ROUTINE2
+      IF "&percnt;config&percnt;"=="3" goto :BAT_ROUTINE3
+      IF "&percnt;config&percnt;"=="4" goto :BAT_ROUTINE4
+      goto :END
+
+      :BAT_ROUTINE1
+      execute commands for routine1
+      goto: END
+
+      :BAT_ROUTINE2
+      execute commands for routine2
+      goto: END
+
+      :BAT_ROUTINE3
+      execute commands for routine3
+      goto: END
+
+      :BAT_ROUTINE4
+      execute commands for routine4
+      goto: END
+
+      :END
+      cls
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/semico.htm">; (semicolon)</a>
+  <a href="../cnfigsys/exclamat.htm">! (exclamation mark)</a>
+  <a href="../cnfigsys/question.htm">? (question mark)</a>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../cnfigsys/dos.htm">dos</a>
+  <a href="../cnfigsys/dosdata.htm">dosdata</a>
+  <a href="../cnfigsys/files.htm">files</a>
+  <a href="../batch/goto.htm">goto</a>
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../batch/if.htm">if</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/lastdrv.htm">lastdrive/lastdrivehigh</a>
+  <a href="../cnfigsys/menu.htm">menu</a>
+  <a href="../cnfigsys/menudef.htm">menudefault</a>
+  <a href="../batch/rem.htm">rem</a>
+  <a href="../base/shsucdx.htm">shsucdx</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

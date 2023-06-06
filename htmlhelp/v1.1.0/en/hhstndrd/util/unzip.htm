@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: unzip</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: unzip</h1>
+<pre>
+  UNZIP lists, tests, or extracts files from a <a href="../util/zip.htm">ZIP</a> archive, commonly found
+  on DOS systems. The default behavior (with no options) is to extract
+  all files from the specified ZIP archive into the current directory
+  (and subdirectories below it).
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  unzip [-Z] [-options[modifiers]] file[.zip] [list] [-x xlist]
+        [-d exdir]
+  Default action is to extract files in list, except those in xlist, to
+  to exdir; file[.zip] may be a wildcard. -Z=>ZipInfo mode ("unzip-Z"
+  for usage.
+</pre>
+<h2>Options:</h2>
+<pre>
+  -p   Extract files to pipe, no messages.
+  -f   Freshen existing files, create none.
+  -u   Update files, create if necessary.
+  -v   List verbosely/show version info.
+  -x   Exclude files that follow (in xlist).
+  -l   List files (short format).
+  -t   Test compressed archive data.
+  -z   Display archive comment only.
+  -T   Timestamp archive to latest.
+  -d   Extract files indo exdir.
+Modifiers:
+  -n   Never overwrite existing files.
+  -o   Overwrite files WITHOUT prompting.
+  -j   Junk paths (do not make directories).
+  -C   Match filenames case-insensitively.
+  -$   Label removables (-$$ => fixed disks).
+  -M   Pipe through "more" pager.
+  -q   Quiet mode (-qq => quieter).
+  -a   Auto-convert any text files.
+  -aa  Treat ALL files as text.
+  -L   Make (some) names lowercase.
+  -V   Retain VMS version numbers
+  -s   Spaces in filenames => '_'
+  -h   Shows the help.
+  -hh  Shows more help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  For more information see:
+  <b>https://gitlab.com/FreeDOS/archiver/unzip/-/blob/master/DOC/
+  UNZIP/UNZIP.TXT</b> OR:
+  <b>C:\FreeDOS\DOC\UNZIP\unzip.txt</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  unzip data1 -x joe    Extract all files except joe from zipfile
+                        data1.zip.
+  unzip -fo foo ReadMe  Quietly replace existing ReadMe if archive file
+                        newer.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/zip.htm">zip</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 - 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: jemm386</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: jemm386</h1>
+<pre>
+  JEMM386 is an Expanded Memory Manager.
+  JEMM386 has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>.
+  Like other EMMs it installs the following services:
+  - Uses extended memory to simulate expanded memory (EMS) according to
+    EMS v3.2 and EMS v4.0.
+  - Upper memory blocks (UMB) where drivers and resident programs may
+    be loaded, thus increasing available free DOS memory.
+  - Mapping RAM to the video address segments A000-AFFF and B000-B7FF.
+  - VCPI services to allow DOS applications running in V86-mode to
+    switch to protected mode. VCPI also implements a simple memory
+    management.
+  - VDS API to give drivers/applications some control over DMA and
+    physical addresses in V86-mode.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE=[drive][path][jemm386.exe] [options]
+         drive  The drive letter, e.g. C:
+         path   The directory, e.g. \example\
+  or run it from the command line:
+  [drive][path][jemm386.exe] [options]
+</pre>
+<h2>Options:</h2>
+<pre>
+ +A20/NOA20     A20-disable emulation on/off (default on).
+  ALTBOOT       Use alternate reboot strategy.
+  B=segm        Specify lowest segment address for EMS banking
+                (default=4000).
+  D=n           Set DMA buffer size in KB (default=64, max is 128).
+  EMX           Increased EMX DOS extender compatibility.
+  FASTBOOT      Fast reboot. Requires Jemm386 to be loaded in CONFIG.SYS.
+  FRAME=E000    Set EMS page frame (FRAME=NONE disables frame). Any value
+                between 8000 and E000 is accepted, but not all will work.
+  I=start-end   Force a region to be used for UMBs. Without this option
+                range C000-EFFF is scanned for unused pages. May also
+                be used to add (parts of) regions A000-BFFF or F000-F7FF
+                as UMBs. Don't use this option if you don't know what
+                you are doing!
+  I=TEST        Scan ROMs for unused pages, include found regions
+                as UMBs.
+  [MAX=]=n      Limit for VCPI (and EMS if &lt; 32 MB) memory in KB
+                (default 120 MB).
+  MIN=n         Reserve up to n KB for EMS/VCPI memory on init
+                (default=0).
+  NOCHECK       Disallow access to address space without RAM (MMIO)
+  NOEMS         Disable EMS handling.
+  NODYN         No dynamic XMS memory allocation (use MIN= to set fix
+                amount).
+  NOHI          Don't move resident part into first UMB.
+  NOINVLPG      Don't use INVLPG opcode.
+ +PGE/NOPGE     Page Global Enable feature usage on/off (default off).
+  RAM/NORAM     Try to supply UMBs on/off (default on).
+  S=start-end   Assume Shadow-RAM activated by UMBPCI, include it as UMB.
+  SB            SoundBlaster driver compatibility mode.
+  SPLIT         Regain partially used EPROM 4 KB pages for UMBs.
+ +VCPI/NOVCPI   VCPI Support on/off (default on).
+  VDS/NOVDS     Virtual DMA Services on/off (default on).
+ +VME/NOVME     V86-Mode Extensions on/off (default off).
+  VERBOSE       Display additional details during start (abbr: /V).
+  X=start-end   Exclude region from being touched or used by Jemm386.
+  X=TEST        Scan memory region C000-EFFF for UMB exclusion.
+  /?            Shows the help.
+
+ '+': option can be set dynamically by running Jemm386 from the command
+      line.
+  When invoked from the command line Jemm386 additionally will understand:
+    LOAD        install
+    UNLOAD      uninstall
+</pre>
+<h2>Comments:</h2>
+<pre>
+  JEMM386 requires a 80386+ CPU. HIMEMX should be loaded before.
+  Load JEMM386 as DEVICE=JEMM386.EXE in <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>
+  (although it is an ".exe"-file!).
+  For more informations see:
+    <b>https://github.com/Baron-von-Riedesel/Jemm/tree/master/Html</b>
+  OR:
+    <b>https://gitlab.com/FreeDOS/base/jemm/-/tree/master/DOC/JEMM</b>
+  OR:
+    <b>C:\FREEDOS\DOC\JEMM\readme.txt</b> (can be installed with FD live CD).
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    files=20
+    buffers=30
+    lastdrive=Z
+    break=off
+    DOS=high,umb
+    device=C:\FREEDOS\BIN\himemx.exe
+    device=C:\FREEDOS\BIN\jemm386.exe NOEMS
+    shellhigh=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+    /p:C:\fdauto.bat
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../base/devload.htm">devload</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2011 W. Spiegl, updated 2022.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

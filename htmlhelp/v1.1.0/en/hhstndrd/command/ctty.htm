@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: ctty</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: ctty</h1>
+<pre>
+  Changes TTY (console), the terminal device used to control your system.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  CTTY device
+  CTTY [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  device  The terminal device you want to use. Valid devices are prn,
+          lpt1, lpt2, lpt3, con, aux, com1, com2, com3, com4, NUL.
+  /?      Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  CTTY device
+  With this command the console device can be changed. A console device
+  performs all basic input and output operations. This change is more
+  complete than IO-redirections, because latter one might not catch all
+  output, for instance the error messages. See example 3 below.
+  Because the console is a bidirectional virtual device, meaning it is
+  to perform input and output, the specified device must not be a
+  unidirectional device, such as PRN.
+  To specify a second argument on the command line of FreeCOM has the
+  same effect.
+  Attention: This command is to effect the whole system, not only
+  FreeCOM itself; so the effect of CTTY does not only depend on the
+  implementation status of FreeCOM, but on the DOS kernel, too.
+  Also, some programs access the screen or keyboard directly, rather
+  than using the DOS functions; these programs are not effected by CTTY.
+  CTTY is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+Example 1:
+    CTTY aux
+  Changes the console to the AUX: device, which is usually the first
+  serial communication port COM1:. If this line is connected to a
+  terminal or a terminal emulator, the system can be controlled from
+  the terminal by now.
+Example 2:
+    CTTY nul
+  any command sequence
+    CTTY con
+  The first command discards any output. If a program attempts any
+  input operation, it gets none. Some programs may not handle such
+  situation correctly.
+  So, any output, even error messages, are discarded during the command
+  sequence.
+  The second command changes the console back to the screen/keyboard
+  pair.
+  Example 3:
+  To display a string onto screen or read from keybord the usual
+  I/O-redirections may be used, for instance:
+    ECHO This line appears on the screen &gt;CON
+    PAUSE &gt;CON
+    This PAUSE command will get its input even within the "CTTY nul"
+    environment.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../batch/echo.htm">echo</a>
+  <a href="../batch/pause.htm">pause</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

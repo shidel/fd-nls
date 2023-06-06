@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: format</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: format</h1>
+<pre>
+  FORMAT formats a hard drive or floppy disk. This prepares the medium
+  for the use with FreeDOS. <a href="../base/fdisk.htm">FDISK</a> is not needed for floppy disks!
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  <b>Simplified syntax:</b>
+    FORMAT drive [/V[:label]] [/Q] [/U] [/F:size] [/S] [/D]
+    FORMAT drive [/V[:label]] [/Q] [/U] [/T:tracks /N:sectors] [/S] [/D]
+    FORMAT drive [/V[:label]] [/Q] [/U] [/4] [/S] [/D]
+    FORMAT [/?]
+  <b>Full syntax (including new features and backwards compatibility</b>
+  <b>options):</b>
+  Harddisk drives:
+    FORMAT drive: [/V[:label]] [/Q] [/U] [/Z:seriously]
+                  [/S] [/A] [/D] [/Y]
+  New features, all drives:
+    FORMAT drive: [/Z:mirror | /Z:unformat] [/D] [/Y]
+  Floppy disk drives:
+    FORMAT drive: [/V[:label]] [/Q] [/U] [/F:size]
+                  [/B | /S] [/D] [/Y]
+    FORMAT drive: [/V[:label]] [/Q] [/U] [/T:cyls /N:sect]
+                  [/B | /S] [/D] [/Y]
+    FORMAT drive: [/V[:label]] [/Q] [/U] [/1] [/4]
+                  [/B | /S] [/D] [/Y]
+  Old DOS 1.x floppy disks:
+    FORMAT drive: /8 [/Q] [/U] [/1] [/4] [/B | /S] [/D] [/Y]
+
+         drive  The drive letter, e.g. C:
+</pre>
+<h2>Options:</h2>
+<pre>
+  /1            Format a single-sided floppy disk (160k/180k).
+  /4            Format a 160k/360k floppy disk in a 1.2 MB floppy drive.
+                As 1.2 MB uses narrower tracks, format can be too weak
+                for 360k drives.
+  /8            Format a 5-1/4 inch floppy disk with 8 sectors per track
+                (160k/320k, DOS 1.x).
+  /A            Force metadata (reserved/boot sectors and FAT32s
+                together) to be a multiple of 4k in size. The NTFS
+                converter of WinXP wants that.
+  /B            Reserve space to make a bootable disk (is dummy and
+                cannot be combined with /s (<a href="../base/sys.htm">SYS</a>).
+  /D            Be very verbose and show <a href="../base/debug.htm">DEBUGGING</a> output. For bug
+                reports (always allowed). This even changes the returned
+                error levels to be more "verbose".
+  /F:size       Specifies the size of the floppy disk to format. Normal
+                sizes are: 160, 180, 320, 360, 720, 1200, 1440, or 2880.
+                To format to 720k in a drive which can do 1440k or more,
+                you must use 720k DD media. /F shows a list of allowed
+                sizes.
+  /N:sectors    Specifies the number of sectors per track on a floppy
+                disk.
+  /Q            Quick formats the disk. The disk can be <a href="../base/unformat.htm">UNFORMATed</a> and
+                the bad cluster list is preserved (not preserved in
+                /Q /U mode). This is the default if an existing
+                filesystem is found.
+  /Q /U         Quick formats the disk but does NOT preserve unformat
+                data and does NOT wipe or scan the surface. Just deletes
+                everything FAST. This is the default if an unformatted
+                harddisk is detected.
+  /S            Copies the operating system files to make the disk
+                bootable. Needs <a href="../base/sys.htm">SYS</a>. The displayed size info describes
+                the pre-SYS state!
+  /T:tracks     Specifies the number of tracks on a floppy disk.
+  /U            Unconditionally formats the disk. The disk cannot be
+                <a href="../base/unformat.htm">UNFORMATed</a>. Causes lowlevel format for floppy and
+                surface scan, overwriting all data with "empty" sectors,
+                for harddisk. This is the default if an unformatted
+                floppy is detected. NOTE: This option may last VERY
+                VERY long! Press ESC and wait to exit /U.
+  /V:label      Specifies a volume <a href="../base/label.htm">LABEL</a> for the disk, stores date and
+                time of it (is not for 160k/320k disks).
+  /Y            Do not prompt for a new floppy, just format at once.
+                Similar to /AUTOTEST and /BACKUP switches in other
+                FORMAT implementations. (Always allowed).
+  /Z:longhelp   Gives detailed, technical usage information.
+  /Z:mirror     Just save the "<a href="../base/mirror.htm">MIRROR</a>" data for a later <a href="../base/unformat.htm">UNFORMAT</a>. This
+                will overwrite the very end of the disk with a copy of
+                one FAT, root directory and main boot sector. If this
+                space is in use, MIRROR will fail (new feature 0.91r).
+                To force, you MIGHT use SafeFormat plus UnFormat instead
+                - SafeFormat is allowed to overwrite data. It is not
+                possible to save mirror data to another location.
+  /Z:seriously  Suppresses the confirmation request when you use format
+                with a hard disk. Similar to the /AUTOTEST switch in
+                other FORMAT implementations.
+  /Z:unformat   This will "restore" saved "<a href="../base/mirror.htm">MIRROR</a>" data (copy it back,
+                overwriting your FATs etc. with the backup). Do ONLY use
+                this if you have just accidentally formatted a disk. In
+                all other situations, UNFORMAT can seriously trash the
+                disk contents.
+  /?            Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Warning: while format supports FAT32, running under Win9x to create
+  FAT32 does not work well.
+  Modes for FLOPPY are: Tries to use quick safe format. Use lowlevel
+  format only when needed. Quick safe format saves mirror data for
+  <a href="../base/unformat.htm">UNFORMAT</a>.
+  Modes for HARDDISK are: Tries to use quick safe format. Use quick full
+  format only when needed. Quick full format only resets the filesystem.
+  If you want to force lowlevel format (floppy) or want to have the
+  whole disk surface scanned and all contents wiped (harddisk), use /U.
+  FORMAT /Q /U is quick full format (no lowlevel format / scan / wipe!)
+  FORMAT /Q is quick save format (save mirror data if possible).
+  The mirror data will always overwrite the end of the data area!
+  FORMAT autoselects a mode (see above) if you select neither /Q nor /U.
+
+  Supported FAT types are: FAT12, FAT16, FAT32, all with mirror /
+  unformat.
+  Supported floppy sizes are: 160k, 180k, 320k, 360k and 1200k for 5,25
+  inch and 720k and 1440k (2880k never tested so far) for 3,5 inch
+  drives.
+  Supported overformats are: 400k, 800k, 1680k (and 3660k) with more
+  sectors and 1494k (instead of 1200k) and 1743k (and 3486k) with more
+  tracks, too. More tracks will not work on all drives, use at your own
+  risk.
+  Warning: older DOS versions can only use overformats with a driver.
+  720k in 1440k needs 720k media. Use a 360k drive to format 360k.
+  For FAT32 formatting, you can use the /A switch to force 4k alignment.
+  FORMAT has the following <a href="../batch/errorlvl.htm">ERRORLEVEL / EXITCODES</a>:
+    0        Okay,
+    1        Bad sectors detected (only if /d or /y or
+             /z:seriously option active)
+    2        Help screen shown or syntax error,
+    3        User abort,
+    4        Format error,
+    5        User did not confirm.
+  Errorlevels 1 and 2 are extensions beyond MS FORMAT style.
+  If you use the /D flag, errorlevels will be different.
+  They will be specific to the particular FORMAT version.
+
+  In 0.91t, for example:
+    0        Okay,
+    1        Bad sectors detected,
+    2        Help displayed or syntax error,
+    10..13   Userint error (not confirmed / syntax error)
+    20..22   Createfs error (filesystem creation),
+    25..29   dDrive I/O error,
+    30..31   Recordbc error (existing filesystem analysis),
+    35..36   Uformat error (unconditional format),
+    38..39   Savefs error (SafeFormat / Mirror)
+    40..52   Floppy error,
+    55..59   Hdisk error,
+    60..62   Main error: unsuitable drive type, e.g. CD-ROM,
+   128..255  Critical error (userint: (DOS or BIOS error code) | 128)
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+  Making a diskette bootable version 1:
+  From an existing bootable HD or CD:
+    fdisk      (is not needed!)
+    format a:  (Formats the diskette so that files can be written).
+    sys a:     The <a href="../base/kernel.htm">KERNEL (KERNEL.SYS)</a> and <a href="../base/command.htm">COMMAND.COM</a>
+               will be copied from your bootable HD or CD to A:; after
+               the execution the diskette will be bootable.
+  Example 2:
+  Making a diskette bootable version 2:
+  From an booted diskette (in drive A:):
+    fdisk      (is not needed!)
+    format b:  (Formats the diskette so that files can be written).
+               Depending on if you have two floppy drives or not the
+               format command formats at drive B: or asks you to enter
+               a new floppy into drive A: and formats from there.
+               When this is done, insert the original diskette again,
+               then enter:
+    sys b:     The <a href="../base/kernel.htm">KERNEL (KERNEL.SYS)</a> and <a href="../base/command.htm">COMMAND.COM</a>
+               will be copied from your bootable diskette A: to B:,
+               (same procedure as format b:) after the execution
+               the diskette will be bootable.
+  Example 3:
+  Making a HD bootable:
+  From an existing bootable diskette or CD:
+    fdisk      (This allows you to create ONE or MORE partitions, see
+               <a href="../base/fdisk.htm">FDISK</a>; up to FOUR primary
+               partitions can be created. (If you create four primary
+               partitions the remaining space of your HD can not be
+               used!) Do not forget to reboot!
+    fdisk      Set <b>ACTIVE PARTITION</b> (only THIS ONE partition can boot,
+               but you can change this by making one of the three other
+               primary partitons ACTIVE (there is NO boot manager) with
+               fdisk. Do not forget to reboot!
+    format c:  Prepares the HD to so that files can be written on it.
+    sys c:     The <a href="../base/kernel.htm">KERNEL (KERNEL.SYS)</a> and <a href="../base/command.htm">COMMAND.COM</a>
+               will be copied from your bootable diskette or CD to C:
+  Example 4:
+  format a: /f:1440   formats a 1,4 MB diskette
+  format c: /v:my_hd  formats a harddisk, label: my_hd
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/command.htm">command.com</a>
+  <a href="../base/debug.htm">debug</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/sys.htm">sys</a>
+  <a href="../command/vol.htm">vol</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998 Jim Hall, updated 2008 and 2022
+  by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

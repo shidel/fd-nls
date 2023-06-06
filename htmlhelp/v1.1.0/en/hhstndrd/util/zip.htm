@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: zip</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: zip</h1>
+<pre>
+  ZIP is a compression and file packaging utility, like PKZIP.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  zip [-options] [-b path] [-t mmddyyyy] [-n suffixes] [zipfile list]
+       [xi list]
+  The default action is to add or replace zipfile entries from list,
+  which can include the special name - to compress standard input.
+  If zipfile and list are omitted, zip compresses stdin to stdout.
+</pre>
+<h2>Options:</h2>
+<pre>
+  -f   Replace (freshen) an existing entry in the zip archive only
+       if it has been modified more recently than the version already
+       in the archive.
+  -d   Remove (delete) entries from a zip archive. For example:
+       zip -d foo foo/tom/junk foo/harry/\* \*.o will remove the entry
+       foo/tom/junk, all of the files that start with foo/harry/, and
+       all of the files that end with .o (in any path).
+  -r   Travel the directory structure recursively.
+  -0   Indicates no compression (store all files).
+  -1   Indicates the fastest compression method (less compression).
+  -q   Quiet mode; eliminate informational messages and comment prompts.
+       (Useful, for example, in shell scripts and background tasks).
+  -c   Add one-line comments for each file.
+  -@   Take the list of input files from standard input. Only one file-
+       name per line.
+  -x files  Explicitly exclude the specified files.
+  -F   Fix the zip archive. (-FF try harder)
+  -A   Adjust self-extracting executable archive.
+  -T   Test the integrity of the new zip file. If the check fails, the
+       old zip file is unchanged and (with the -m option) no input
+       files are removed.
+  -$   Include the volume label for the drive holding the first file to
+       be compressed.
+  -e   Encrypt the contents of the zip archive using a password which
+       is entered on the terminal in response to a prompt (this will
+       not be echoed; if standard error is not a tty, zip will exit
+       with an error). The password prompt is repeated to save the
+       user from typing errors. Note that this encrypts with standard
+       pkzip encryption which is considered weak.
+  -h   Display the zip help information (this also appears if zip is
+       run with no arguments).
+  -h2  Show more help.
+  -u   Replace (update) an existing entry in the zip archive only if it
+       has been modified more recently than the version already in the
+       zip archive.
+  -m   Move the specified files into the zip archive; actually,
+       this deletes the target directories/files after making the
+       specified zip archive.
+  -j   Store just the name of a saved file (junk the path), and do
+       not store directory names. By default, zip will store the full
+       path
+  -l   Translate the Unix end-of-line character LF into the MSDOS con-
+       vention CR LF (-ll CR LF to LF)
+  -9   Indicates the slowest compression method (optimal compression,
+       ignores the suffix list). The default compression level is -6.
+  -v   Verbose mode or print diagnostic version info.
+  -z   Prompt for a multi-line comment for the entire zip archive.
+  -o   Set the "last modified" time of the zip archive to the latest
+       (oldest) "last modified" time found among the entries in the
+       zip archive.
+  -i files      Include only the specified files, as in: zip -r foo .
+                -i \*.c which will include only the files that end in
+                .c in the current directory and its subdirectories.
+                -F  fix zipfile (-FF try harder)
+                -D  do not add directory entries
+                -A  adjust self-extracting exe
+  -D   Do not create entries in the zip archive for directories.
+  -J   Strip any prepended data (e.g. a SFX stub) from the archive.
+  -X   Do not save extra file attributes.
+  -S   Include system and hidden files.
+  -n suffixes   Do not attempt to compress files named with the given
+                suffixes.
+  -L   Display the zip software license.
+  -g   Grow (append to) the specified zip archive, instead of creating
+       a new one.
+  -k   Attempt to convert the names and paths to conform to MSDOS,
+       store only the MSDOS attribute (just the user write attribute
+       from UNIX), and mark the entry as made under MSDOS (even though
+       it was not); for compatibility with PKUNZIP under MSDOS which
+       cannot handle certain names such as those with two dots.
+  -MM  All input patterns must match at least one file and all input
+       files found must be readable.
+  -R   Travel the directory structure recursively starting at the
+       current directory.
+  -b path       Use the specified path for the temporary zip archive. For
+                example: zip -b /tmp stuff * will put the temporary zip
+                archive in the directory /tmp, copying over stuff.zip to
+                the current directory when done.
+  -P password   Use password to encrypt zipfile entries (if any). THIS
+                IS INSECURE!
+  -t mmddyyyy   Do not operate on files modified prior to the specified
+                date, where mm is the month (0-12), dd is the day of the
+                month (1-31), and yyyy is the year. The ISO 8601 date
+                format yyyy-mm-dd is
+                also accepted.
+  -tt mmddyyyy  Do not operate on files modified after or at the speci-
+                fied date, where mm is the month (0-12), dd is the day
+                of the month (1-31), and yyyy is the year. The ISO 8601
+                date format yyyy-mm-dd is also accepted.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  For more information see:
+  <b>https://gitlab.com/FreeDOS/archiver/zip/-/blob/master/DOC/ZIP/MANUAL</b>
+  OR: <b>https://infozip.sourceforge.net/</b>
+  OR: <b>C:\FreeDOS\DOC\ZIP\manual</>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  The simplest example:
+    zip stuff *
+  creates the archive stuff.zip (assuming it does not exist) and puts
+  all the files in the current directory in it, in compressed form.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/unzip.htm">unzip</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008 - 2023 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

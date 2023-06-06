@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: UHDD.SYS</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: UHDD.SYS</h1>
+<pre>
+  UHDD is a disk caching driver.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE[HIGH] = [path] UHDD.SYS [/A] [/B] [/E] [/H] [/O] [/Q]
+                 [/R15] [/R63] [/Snn] [/Z]
+</pre>
+<h2>Options:</h2>
+<pre>
+  UHDD usually needs only a /H switch to use HMA space and a /S switch
+  to set its cache size, and a /O switch to enable DMA/Caching Overlap
+  (best, for most systems!). All UHDD switches are:
+  /A    Requests "alternate" addressing for "legacy" IDE controllers,
+        01E8h/0168h for the first one, 01F0h/0170h for the second.
+        /A is rarely needed. Without /A, the first "legacy" con-
+        troller will use 01F0h/0170h and a second uses 01E8h/0168h
+        as is usual for PC mainboards.
+  /B    Sets a "basic" UltraDMA disk driver (no cache), using 128K of
+        XMS as its buffer for I-O unsuited to UltraDMA. With /B,
+        the /E /O and /S switches are ignored.
+  /E    Does not use UltraDMA, for old 80386/80486 PCs that never had
+        UltraDMA! UHDD "calls the BIOS" for disk I-O and caches
+        data (as needed) after the BIOS is done. With /E, the /A
+        /Q and /Z switches are ignored.
+  /H    Puts most of the driver in "free HMA" space. To use /H, the
+        driver must load from FDAUTO.BAT (not FDCONFIG.SYS), since
+        FreeDOS provides no "free HMA" until FDAUTO is run.
+  /O    Overlaps disk UltraDMA with caching tasks, for faster speed.
+        Although preferred, /O may NOT work on old/odd/"cheap" PC
+        mainboards unable to do UltraDMA and access XMS memory at
+        the same time! Systems should be tested, using /O. If
+        disk errors occur, but CD/DVD input via UDVD2 works fine,
+        /O must NOT be used!
+  /Q    Awaits "data request" before starting UltraDMA I-O transfers.
+        /Q is rarely needed, only for old systems where the driver
+        loads O.K. but seems unable to transfer data. /Q is NOT
+        for use with Sabrent or other SATA-to-IDE adapters that do
+        not emulate "data request"!
+  /R15  "Reserves" 15-MB or 63-MB of XMS, for old DOS "game" programs
+  /R63  which require XMS memory below 16- or 64-MB. The drivers
+        must be able to reserve this memory, reserve their own XMS
+        memory beyond that, and then "free" the 15/63-MB XMS. If
+        not, the drivers display "XMS init error" and abort! /R
+        for UDVD2 is ignored if it loads after UHDD, as UDVD2 will
+        then share UHDD's XMS memory.
+  /Snn  Requests the desired cache size, in megabytes of XMS memory.
+        Values are any number from 5 to 4093 (4-GB). A minimum
+        20-MB cache is recommended when possible, for best speed.
+        If /S is omitted or invalid, a 20-MB cache is set. UHDD
+        displays "XMS init error" and aborts, when not-enough XMS
+        is free! If so, request a smaller cache.
+  /Z    Moves protected-mode XMS data in 8K blocks (not 64K) for 486+
+        CPUs and 4K blocks for slow 386 CPUs. For more /Z notes,
+        see /Z for <a href="../base/xmgr.htm">XMGR</a>, above.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  UHDD is a disk caching driver that runs up to 10 BIOS disks of any type
+  or size using up to 4 "Legacy" or Native-PCI UltraDMA controllers. It
+  traps Int 13h I-O calls and caches data for disks, A: and B: diskettes,
+  and other Int 13h drivers which load first. If loaded after UHDD, the
+  <a href="../base/udvd2.htm">UDVD2</a> driver (below) will call UHDD to cache CD/DVD data files. UHDD
+  uses Read-Ahead for UltraDMA disks, and its /O switch will overlap disk
+  UltraDMA and caching tasks. Using both is up to 20 &percnt; faster than older
+  "UIDE" drivers! Write-Through caching is done (NO "delayed" output!).
+  UHDD's cache uses XMS memory and holds up to 4 Gigabytes of data. Its
+  /B switch also sets a basic UltraDMA disk driver (no cache) taking 128K
+  of XMS as its buffer for I-O unsuited to UltraDMA. The basic UHDD can
+  handle tests and other noncached work.
+  For all switches in each driver, a dash may replace the slash and lower
+  case letters may be used if desired.
+  XHDD and XDVD2 are Closed-Source DOS drivers for PCs with an 80386+
+  CPU (XHDD requires an 80486+ CPU) and using MS-DOS V5.0+ or a
+  fully compatible variant.
+  The latest UHDD and UDVD2 are Open Source device drivers for PCs with
+  an 80386+ CPU and using FreeDOS, whereas at XMGR, RDISK it depends on
+  the version number if it is Open Source or Closed Source.
+  For more information and if you are in doubt, read "README.txt" in
+  "drivers.zip".
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Comment: There are new closed source drivers for UHDD.SYS (=XHDD.SYS)
+  and UVD2.SYS (=XDVD2.SYS) which may have other options. So please do
+  not rely on the options in the examples!
+  A) A small real-mode system that needs only XMS may use this
+    <a href="../cnfigsys/index.htm">CONFIG.SYS/FDCONFIG.SYS</a> example file:
+       ..
+       ..
+     DOS=HIGH
+     DEVICE=C:\BIN\XMGR.SYS /Rnn              ;R if DOS "games" need it
+       ..
+       ..  Int 13h drivers cached by XHDD load now.
+       ..
+     DEVICE=C:\BIN\XHDD.SYS /S20 /H /O        ;Min. 20 MB recommended
+     DEVICE=C:\BIN\XDVD2.SYS /D:BLURAY1 /H    ;Must load after XHDD
+     DEVICE=C:\BIN\RDISK.COM /S5 /F           ;Optional. If not used,
+                                              ; XHDD/XDVD2 can issue /F
+       ..
+       ..  Further CONFIG.SYS commands can be given here.
+       ..
+  B) Real-mode systems with V3.70+ UMBPCI and XMGR do not need the LOWDMA
+     driver, as XMGR has an "I-O Catcher" for UMBPCI. This scheme takes
+     NO low memory if /W can be used (MS-DOS etc.) or only 544 low memory
+     bytes without /W (PC-DOS etc.). <a href="../base/xmgr.htm">XMGR</a> and other drivers load direct
+     to UMBPCI "Shadow RAM"! Systems which permit multiple providers of
+     upper memory (MS-DOS, PC-DOS, etc.) can also load an "EMM" driver as
+     shown below, to map the B000-B7FFh "Monochrome Graphics" area as 32K
+     more upper memory. For more SERIOUS protected-mode notes, please
+     READ Section 6 below! An example CONFIG.SYS file is:
+       ..
+       ..
+     DOS=HIGH,UMB
+     DEVICE=C:\BIN\UMBPCI.SYS
+     DEVICE=C:\BIN\XMGR.SYS /W /Rnn            ;W only when permitted!
+                                               ;R &lt;= 15.5 MB with JEMM!
+     DEVICE=C:\BIN\JEMM386.EXE I=B000-B7FF X=C800-EFFF ...   ;Optional
+       ..
+       ..  Int 13h drivers cached via XHDD load now
+       ..  and can be loaded in UMBPCI upper memory.
+       ..
+     DEVICEHIGH=C:\BIN\XHDD.SYS /S200 /H /O    ;Fast 200 MB cache
+     DEVICEHIGH=C:\BIN\XDVD2.SYS /D:CDROM1 /H  ;Must load after XHDD
+     DEVICEHIGH=C:\BIN\RDISK.COM /S50 /F       ;Optional. If unused,
+                                               ; XHDD/XDVD2 can issue /F
+       ..
+       ..  Further CONFIG.SYS commands can be given here.
+       ..
+  C) A protected-mode system with <a href="../base/xmgr.htm">XMGR</a> and an "EMM" driver can use XMGR's
+     "boot", taking a minimum 304 bytes of low memory for a 24-entry "XMS
+     Handles" table, plus any low memory the "EMM" driver may need. For
+     more SERIOUS protected-mode notes, please READ Section 6 below! A
+     CONFIG.SYS example file is:
+       ..
+       ..
+     DOS=HIGH,UMB
+     DEVICE=C:\BIN\XMGR.SYS /B /N24 /R15.5     ;24 Handle XMGR "boot"
+                                               ;R &lt;= 15.5 MB with JEMM!
+     DEVICE=C:\BIN\JEMM386.EXE I=B000-B7FF ...
+     DEVICEHIGH=C:\BIN\XMGR.SYS                ;Loads the runtime XMGR
+       ..
+       ..  Int 13h drivers cached by XHDD load
+       ..  now and can load into upper memory.
+       ..
+     DEVICEHIGH=C:\BIN\XHDD.SYS /S400 /H /O /P ;Optimal 400 MB cache
+     DEVICEHIGH=C:\BIN\XDVD2.SYS /D:MYDVD /H   ;Must load after XHDD
+     DEVICEHIGH=C:\BIN\RDISK.COM /S125 /F      ;Optional. If unused,
+                                               ; XHDD/XDVD2 can issue /F
+       ..
+       ..  Further CONFIG.SYS commands can be given here.
+       ..
+  In each example above, XDVD2 must load after XHDD, so XDVD2 will "find"
+  XHDD in memory and call it for CD/DVD file caching.
+
+  Users that need RDISK with a specific drive letter may delay loading it
+  until <a href="../batch/autoexec.htm">AUTOEXEC.BAT</a> is run. If /F or /G are also needed for DOS games,
+  RDISK must issue them from AUTOEXEC, since it is then the last of these
+  drivers to load. Whenever RDISK is used, AUTOEXEC.BAT must also issue
+  commands to copy all RDISK programs and data up to the RAM-disk, as XMS
+  memory is LOST when PCs shut down! Such copies require little time.
+
+  If XHDD and RDISK will both run, users must balance how much XMS memory
+  the drivers take. XHDD can set a 400-MB cache, as in example C above,
+  and RDISK can request 125-MB of XMS for its programs, "fast" data files
+  and compiler TEMP files. Such sizes should be optimal on most systems
+  but can be adjusted up or down, as desired. All remaining XMS memory
+  is left free for use by other programs. The basic "plan" is for RDISK
+  to hold programs and high-speed files, while XHDD then caches "regular"
+  data files. Properly balanced use of XMS memory will give a VERY fast
+  DOS system!
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../base/cc.htm">cc cash cleaner for uhdd</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../cnfigsys/device.htm">device/devicehigh</a>
+  <a href="../cnfigsys/dos.htm">dos</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/lastdrv.htm">lastdrive/lastdrivehigh</a>
+  <a href="../base/rdisk.htm">rdisk</a>
+  <a href="../base/rdiskon.htm">rdiskon</a>
+  <a href="../base/tdsk.htm">tdsk</a>
+  <a href="../base/udvd2.htm">udvd2.sys</a>
+  <a href="../base/uide.htm">uide.sys</a>
+  <a href="../base/xdvd2.htm">xdvd2.sys</a>
+  <a href="../base/xhdd.htm">xhdd.sys</a>
+  <a href="../base/xmgr.htm">xmgr.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2018 - 2022 Jack Ellis, updated 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

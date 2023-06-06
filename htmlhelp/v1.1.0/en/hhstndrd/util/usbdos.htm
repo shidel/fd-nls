@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: usbdos</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: usbdos</h1>
+<pre>
+  <b>USBDOS is a collection of different USB drivers and tools:</b>
+    <a href="../util/boundtst.htm">BOUNDTST</a> is a program to test the CPU BOUND Instruction Bug.
+    <a href="../util/drives.htm">DRIVES</a> shows details about all available disk drives in DOS.
+    <a href="../util/hidsupt1.htm">HIDSUPT1</a> is a program that is designed as a Support Program, to be
+      called from "inside" some of Bret E. Johnsons other USB-related
+      Programs.
+    <a href="../util/inklevel.htm">INKLEVEL</a> is a Printer Ink Fill Percentage Display Program for DOS.
+      Works with many Epson- and HP-compatible Printers.
+    <a href="../util/irq.htm">IRQ</a> shows you which Hardware Interrupt lines (IRQs or Interrupt
+      ReQuest lines) on your computer are currently in use.
+    <a href="../util/ps2mtest.htm">PS2MTEST</a> simply displays the "raw" data as it comes from the
+      PS2 Mouse BIOS.
+    <a href="../util/scantest.htm">SCANTEST</a> is a low-level keyboard testing utility.
+    <a href="../util/thrust.htm">THRUST</a> returns low-level information (raw numbers) about your game
+      port and joysticks.
+    <a href="../util/uni2asci.htm">UNI2ASCI</a> attempts to convert a UniCode String (16-bit characters)
+      into an ASCII String (7-bit characters).
+    <a href="../util/usbdevic.htm">USBDEVIC</a> is a program to display information about Devices attached
+      to the USB Host(s).
+    <a href="../util/usbdrive.htm">USBDRIVE</a> is a DOS Driver for up to 8 SCSI-compatible USB Mass
+      Storage Devices.
+    <a href="../util/usbhosts.htm">USBHOSTS</a> shows Details of One or All USB Host Controllers.
+    <a href="../util/usbhub.htm">USBHUB</a> is a DOS Driver for up to 16 Generic USB ver 1 Hubs, with
+      up to 7 ports on each Hub.
+    <a href="../util/usbjstik.htm">USBJSTIK</a> is a DOS Driver for up to 8 USB Joysticks or GamePads.
+    <a href="../util/usbkeyb.htm">USBKEYB</a> is a DOS Driver for up to 4 USB Keyboards.
+    <a href="../util/usbmouse.htm">USBMOUSE</a> is a DOS Driver for up to 8 Generic USB Mice.
+    <a href="../util/usbprint.htm">USBPRINT</a> is a DOS Driver for up to 8 USB Printers.
+    <a href="../util/usbsupt1.htm">USBSUPT1</a> is designed as a Support Program, to be called from
+      "inside" some of Bret E. Johnsons other USB-related Programs.
+    <a href="../util/usbuhci.htm">USBUHCI</a> is a DOS Driver for a Universal HCI compatible USB Host
+      Controller.
+    <a href="../util/usbuhcil.htm">USBUHCIL</a> is a DOS Driver for a Universal HCI compatible USB Host
+      Controller.
+      LITE version (maximum 16 Devices, no Isochronous Transactions).
+    <a href="../util/vendorid.htm">VENDORID</a> Translates PCI &amp; USB Vendor ID codes to words.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  All Device/Interfaces have General Descriptors, and all Device/Inter-
+  face Drivers need to download the General Descriptors in order to
+  configure and control the Device/Interfaces. All of the DOS USB Drivers
+  have options to let you view the Descriptors of the Device/Interfaces
+  it is controlling. You can view the Descriptors just for casual
+  interest, or because something is not working correctly and you need
+  to do some troubleshooting. It actually takes quite a bit of
+  programming to decode and print the various Descriptors in an under-
+  standable fashion. So, rather than "copying" everything it takes to do
+  that into every single program that needs it, it is much easier and
+  more efficient to create a separate program (or set of programs)
+  dedicated to that purpose. When a Device/Interface Driver needs to
+  decode and print a Descriptor for you to view, it just "calls" the
+  Support Program instead of trying to do it internally.
+  In these DOS USB Drivers, the program that actually decodes the General
+  Descriptors is called USBSUPT1 (USB SUPporT program &num;1). In turn, the
+  Support Program USBSUPT1 at various times may call other "sub-support"
+  programs, such as VENDORID (which translates USB or PCI Vendor ID's
+  into Vendor Names) and UNI2ASCI (which translates Unicode strings into
+  ASCII strings). Of course, USBSUPT1 isn't the only program that may
+  need the functions contained in the "sub-support" programs, which is
+  why they are not "embedded" into USBSUPT1. The Support Programs can be
+  called by any other program that wants to use them, not necessarily
+  just the ones contained in this DOS USB package.
+  The Support Programs are written as stand-alone DOS programs, rather
+  than simple "data files" or in some "special" format that can only be
+  read or executed in some unique way. This allows you, if you want, to
+  run the Support Programs as a separate, stand-alone programs, and
+  discern all sorts of interesting things about the USB structure and
+  organization.
+  In addition, to Support Programs, there are also several Test Programs
+  included in this package. A Test Program is designed to test a specific
+  Device/Interface Driver to make sure it is operating properly. An
+  example of a Test Program is PS2MTEST (PS2 Mouse TEST), which is
+  specifically designed to test USBMOUSE (the USB Mouse Driver). Test
+  programs are originally written as part of the program-writing process,
+  in order to test and troubleshot all of the features and compati-
+  bilities of a Device/Interface Driver. You can use them to test and
+  troubleshoot things as well, or you can just "play around" with them
+  to see how things work.
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another editor, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  - see above -
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007-2010, Bret E. Johnson.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

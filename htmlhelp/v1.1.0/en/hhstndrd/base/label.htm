@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: label</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: label</h1>
+<pre>
+  LABEL creates, changes or deletes the volume label of a disk.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  LABEL  [drive:][label] [/?]
+    drive:  Specifies which drive you want to assign a label, e.g. C:
+            If missing, the current drive is assumed.
+</pre>
+<h2>Options:</h2>
+<pre>
+  label  Specifies the new LABEL you want to label the drive.
+         If missing, LABEL prompts you for it.
+  /?     Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The LABEL (name) of the partition can be up to 11 letters long.
+  Network drives and a drive which has been <a href="../base/assign.htm">ASSIGNED</a>, <a href="../base/swsubst.htm">JOINed</a> or
+  <a href="../base/swsubst.htm">SUBSTed or SWSUBSTed</a> can not be labeled.
+  The latest version of LABEL (ver 1.5) supports NLS.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  label C:
+  label C: PARTITION-C
+  label D: my_files
+  dir c:                (shows: PARTITION-C)
+  dir d:                (shows: MY_FILES)
+  vol c: (d:)           (same as dir)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/assign.htm">assign</a>
+  <a href="../command/dir.htm">dir</a>
+  <a href="../base/fdisk.htm">fdisk</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/swsubst.htm">join/subst/swsubst</a>
+  <a href="../command/vol.htm">vol</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2007 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: prompt</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: prompt</h1>
+<pre>
+  PROMPT changes the way command prompt appears.
+  PROMPT is a <a href="../batch/index.htm">BATCH-FILE</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a> command.
+  It can also be used in command line.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  PROMPT [Options] [text]
+</pre>
+<h2>Options:</h2>
+<pre>
+  text    Specifies a new command prompt.
+  /?   Shows the help.
+  Prompt can be made up of normal characters and the following special
+  codes:
+  $$   $ (dollar sign)
+  $_   Carriage return and linefeed
+  $B   | (pipe)
+  $D   Current date
+  $E   Escape code (ASCII code 27, see <a href="../base/nansi.htm">NANSI.SYS</a>
+  $G   &gt; (greater-than sign)
+  $H   Backspace (erases previous character)
+  $L   &lt; (less-than sign)
+  $N   Current drive
+  $P   Current drive and path
+  $Q   = (equal sign)
+  $T   Current time
+  $V   The FreeDOS command shell version number
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Type PROMPT without parameters to reset the prompt to the default
+  setting. PROMPT can also be used outside a batch file.
+  When <a href="../base/nansi.htm">NANSI.SYS</a> is loaded, PROMPT can also use different foreground /
+  background colours with the setting: prompt $e[&num;;&num;;&num;m , where &num; represents
+  values.
+  PROMPT is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN A .BAT FILE / AUTOEXEC.BAT:
+    prompt $p$g            (Same as the default setting) OR:
+    prompt $p$g Please enter a command! OR:
+    prompt $p Hello Jim! $g OR:
+    prompt Hello Jim, you are at: $p$g
+  When NANSI.SYS is loaded, you can also change the colours:
+    prompt $p$g$e[1;33;44m  for bold (1) / yellow (33) / blue (44).
+  If you like underline and other colours:
+    prompt $p$g$e[4;30;46m  for underline (4) / red (30) / cyan (46).
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../base/nansi.htm">nansi.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

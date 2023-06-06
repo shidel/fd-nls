@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: usbsupt1</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: usbsupt1</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  USBSUPT1 is designed as a Support Program, to be called from
+  "inside" some of Bret Johnsons other USB-related Programs.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  USBSUPT1 [Options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  This program is designed as a Support Program, to be called from
+  "inside" some of Bret Johnsons other USB-related Programs. Because it
+  is designed to called from "inside" another program, it does not have
+  all of the nice things that a "real", stand-alone program should have.
+  However it does contain a lot of useful/interesting tidbits of
+  information.
+  I should warn you that if you're not pretty familiar with the technical
+  details of how USB is organized, this information may actually confuse
+  you more than it helps you, but it's still there for your viewing
+  pleasure.
+  If the Option asks for number(s) to be entered (&num;), they can generally
+  be entered in decimal (0-65535) or in hexadecimal (0h-FFFFh). The
+  exception to this is &num;Segment:&num;Offset, which must ALWAYS be in
+  hexadecimal.
+  If you leave number(s) out, ALL possible values will usually be
+  displayed.
+  If running from inside another program (if not running from the command-
+  line), the number(s) can be followed with a hex call-back address
+  (&num;Segment:&num;Offset) to which the output will be written.
+
+GENERAL USB DESCRIPTORS (Device, Config, Interface, EndPoint):
+  DeviceClass       &num;Class
+  DeviceSubClass    &num;Class &num;SubClass
+  DeviceProtocol    &num;Class &num;SubClass &num;Protocol
+  InterfaceClass    &num;Class
+  InterfaceSubClass &num;Class &num;SubClass
+  InterfaceProtocol &num;Class &num;SubClass &num;Protocol
+  DeviceDescription &num;DClass &num;DSubClass &num;DProtocol &num;IClass &num;ISubClass
+                    &num;IProtocol
+  DescriptorType    &num;Type
+  Vendor            &num;Vendor
+  Descriptor        &num;Segment:&num;Offset &num;HostIndex &num;DvcAddress
+
+HID (HUMAN INTERFACE DEVICE) DESCRIPTORS:
+  PhysicalBias       &num;Bias
+  PhysicalDesignator &num;Designator
+  PhysicalQualifier  &num;Qualifier
+  PhysicalDescriptor &num;Segment:&num;Offset
+  ReportCollection   &num;Collection
+  ReportDelimiter    &num;Delimiter
+  ReportTag          &num;Tag
+  ReportDescriptor   &num;Segment:&num;Offset
+  UsagePage          &num;UsagePage
+  Usage              &num;UsagePage &num;Usage
+
+OTHER/MISCELLANEOUS:
+  Aliases
+  Country        &num;Country
+  Language       &num;Language
+  Dialect        &num;Language &num;Dialect
+  StringLanguage &num;StringLanguage
+  Int14Structure &num;Segment:&num;Offset
+  ControlPacket  &num;Segment:&num;Offset
+  Int14ErrorCode &num;Int14ErrorCode
+  TDStatusCode   &num;TDStatusCode
+</pre>
+<h2>Comments:</h2>
+<pre>
+  USBSUPT1 is the main support program for this USB software package.
+  It's main purpose is to "translate" the various cryptic USB code
+  numbers and data structures (of which there are many) into a format
+  that you (as a human being) can understand. While USBSUPT1 can be used
+  as a standalone program, it's actually designed to be called by other
+  programs, such as the various DOS USB drivers. USBSUPT1 is able to
+  translate many of the things that are common to several USB programs.
+  By putting the "common" things that several programs use into one place,
+  it makes each individual program smaller and makes it easier to update
+  the entire architecture.
+  USBSUPT1 does not actually provide all of the support functions itself,
+  however. USBSUPT1 at times itself calls other "sub-support" programs,
+  which may be specific to a certain class of USB Device or Interface or
+  Vendor, or some specialized function that is complicated or data-
+  intensive enough to warrant a separate program. For example, HIDSUPT1
+  (described at page 180 of USBINTRO.DOC, see links below) is a support
+  program specifically dedicated to USB Human Interface Devices (mice,
+  keyboard, joysticks, etc.), and UNI2ASCI (described at page 181 of
+  USBINTRO.DOC, see links below) translates Unicode strings into ASCII.
+  USBSUPT1, and the entire set of USB support programs in general, is
+  incomplete. There are many kinds of USB devices that will need
+  specialized support programs, assuming DOS device drivers are ever
+  developed for them. For instance, USBSUPT1 currently contains some of
+  the translation data it needs for USB Audio Device/Interfaces
+  (microphones, speakers, equalizers, etc.), but does not contain all of
+  them. I was actually working on this several months ago, but decided it
+  would be better to distribute the USB package as it is (incomplete but
+  functional).
+  Because USBSUPT1 is designed to be called from other programs, it does
+  not contain many of the "nice" features that many of the other programs
+  have (lengthy lists of Aliases, ErrorLevel tables, environment variable
+  support, etc.). Nonetheless, you can use it as a standalone program to
+  translate specific codes or display lengthy tables of data for various
+  USB related items. Playing around with USBSUPT1 should provide lots of
+  interesting information to you (assuming you like to play around with
+  that sort of thing), but if you're not already pretty familiar with the
+  USB architecture and terminology and structure of these DOS USB driver
+  programs, it may confuse you more than it helps you.
+  Since the main purpose of USBSUPT1 is to translate USB codes (numbers)
+  into something understandable, you many times need to provide some sort
+  of number (or numbers) to USBSUPT1. USBSUPT1 will generally accept
+  numbers in either decimal or hexadecimal format, with hexadecimal
+  numbers indicated by an "h" at the end. For example, the following are
+  equivalent:
+    USBSUPT1 Country 10
+    USBSUPT1 Country Ah
+  Usually, if you don't provide a number at all, USBSUPT1 will display the
+  entire list of appropriate codes. For example, to display the entire
+  list of Country codes (rather than a single one), you would do:
+    USBSUPT1 Country
+  There are certain options where USBSUPT1 does not translate a simple
+  code number, but rather translates an entire structure or descriptor or
+  set of descriptors that are stored somewhere in memory. What must be
+  provided to USBSUPT1 in this case is a memory address, in Segment:Offset
+  format. When providing a memory address, however, the numbers are
+  ALWAYS assumed to be in hexadecimal format, even if they are not
+  followed by an "h". For example, the following are equivalent:
+    USBSUPT1 ControlPacket 1234:5678
+    USBSUPT1 ControlPacket 1234h:5678h
+  We will not list here all of the different types of things that USBSUPT1
+  will display. To display the list, you can simply type "USBSUPT1" at
+  the command line with no options at all:
+    USBSUPT1
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit, please use
+    another editor, e.g. Blocek!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  usbsupt1 country 09h
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../util/drives.htm">drives</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcodes</a>
+  <a href="../util/hidsupt1.htm">hidsupt1</a>
+  <a href="../util/inklevel.htm">inklevel</a>
+  <a href="../util/irq.htm">irq</a>
+  <a href="../util/ps2mtest.htm">ps2mtest</a>
+  <a href="../util/scantest.htm">scantest</a>
+  <a href="../util/thrust.htm">thrust</a>
+  <a href="../util/uni2asci.htm">uni2asci</a>
+  <a href="../util/usbdevic.htm">usbdevic</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhosts.htm">usbhosts</a>
+  <a href="../util/usbhub.htm">usbhub</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/usbuhcil.htm">usbuhcil</a>
+  <a href="../util/vendorid.htm">vendorid</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007-2009, Bret E. Johnson.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

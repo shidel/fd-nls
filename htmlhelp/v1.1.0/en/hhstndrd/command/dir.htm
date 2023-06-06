@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: dir</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: dir</h1>
+<pre>
+  DIR displays the contens of the directory
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  1. DIR [{ options | pattern }]
+  2. DIR  [drive][path][filename][/P] [/W] [/A[[:]attributes]]
+    [/O[[:]sortorder]] [/S] [/B] [/L] [/Y] [/?]
+      drive     The drive letter, e.g. C:
+      path      The directory, e.g. \example\
+      filename  The file to display, e.g. test.txt
+                [drive][path][filename]
+                Specify drive, directory, and/or files to list. (Could
+                be enhanced file specification or multiple filespecs.)
+</pre>
+<h2>Options:</h2>
+<pre>
+  /A:   (All) Wildcards are matched against System and Hidden files, too.
+  /A**: (Attribute) Wildcards are matched against files with selected
+        attributes set or clear. The argument of the /A option is a
+        sequence of:
+        ?  meaning: attribute ? must be set, or
+        -? meaning: attribute ? must not be set.
+    The following attributes, the ? above, are supported:
+        r | -r  Read-only files             -r Files that are not
+                                               read-only
+        h | -h  Hidden files                -h Files that are not hidden
+        s | -s  System files                -s Files that are not system
+                                               files
+        d | -d  Directories                 -d Directories
+        a | -a  Files with the archive      -a Files without the archive
+                bit                            bit
+  /B    (Bare) Displays the lines with the information of files and
+        directories only. The ones displaying the volume label, the
+        serial number, totals etc. are suppressed. In combination with
+        /S the absolute path of the files is displayed.
+  /L    (Lower-case) Filenames are displayed in lower-case letters
+        rather than capitol ones.
+  /O:   (Order default) is a synonym of /ONG.
+  /O**: (Order) Sort the entries displayed in a specific order. The
+        following sort orders are supported:
+        d | -d  By date and time            -d Date/time reverse order.
+        e | -e  By file extension A-Z       -e File extension (Z-A)
+        g | -g  Group directories first     -g Group directories last.
+        n | -n  By file name A-Z            -n By file name (Z-A)
+        s | -s  By size (smallest-biggest)  -s By size (biggest-smallest)
+        u       (unsorted)
+  Each sort order, except U, may be prefixed by a hyphen to reverse the
+  sort order. U effectively cancels any previous setting or specified
+  sort order, e.g. to override an /O option from the DIRCMD <a href="../command/environm.htm">ENVIRONMENT</a>
+  <a href="../command/environm.htm">VARIABLE</a>.
+  If the same sort order is specified twice within the same /O option,
+  the last one superceeds previous ones; if more than one /O option is
+  specified, the last one superceeds all previous ones.
+  Warning: The entries are cached within memory before displaying them;
+  if FreeCOM runs short on memory, to sort is disabled completely or
+  the entries are sorted in chunks only.
+  /P    (Page) Page the output -- pause the display after issuing one
+        screen-full.
+  /S    (Subdirectories) Recursively display directories.
+  /W    (Wide) Displays five filenames per line and suppress the
+        information about the file size, date etc.
+  /Y    (Year) Displays a 4-digit year, rather than just two digits.
+  /4    (4digit Year) is a synonym of /Y.
+  /?    Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  DIR displays the contents of direcories and/or the attributes of
+  files, whatever the pattern specifies. If no pattern is specified on
+  command line, the current working directory is displayed. The actual
+  information displayed depends on the specified options and is
+  explained below.
+  A pattern may contain wildcards, which are expanded against both files
+  and directories. To specify a directory is essentially equal to write:
+  directory\*.*.
+  Unlike options patterns are performed in sequence, that means that if
+  two patterns are specified, first all entries matching the first one,
+  then all entries matching the second one are displayed; instead of to
+  display the matching entries intermixed.
+  Before parsing its command line DIR parses any option specified by the
+  <a href="../command/environm.htm">ENVIRONMENT VARIABLE</a> DIRCMD.
+  DIR is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+    DIR
+  Displays the contents of the current directory, but ignores System and
+  Hidden files.
+  Example 2:
+    DIR a* bb* *.txt
+  First displays all files, that begin with the letter A; then all
+  files, that begin with two letters B, are displayed and at last all
+  files with the extension TXT.
+  Example 3:
+    DIR /w a* b*
+    DIR a* /w b*
+    DIR a* b* /w
+  Because the position of options is not significant, all these
+  examples behave the same way and display the matching files in wide
+  or also called short form.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/cd.htm">cd/chdir</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../command/environm.htm">environment variable</a>
+  <a href="../command/md.htm">md/mkdir</a>
+  <a href="../command/rd.htm">rd/rmdir</a>
+  <a href="../batch/set.htm">set</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

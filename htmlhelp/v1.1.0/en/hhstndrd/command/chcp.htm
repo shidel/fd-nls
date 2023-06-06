@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: chcp</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: chcp</h1>
+<pre>
+  CHCP displays or sets the active <a href="../other/cpidos.htm">CODE PAGE</a> number.
+  <a href="../base/display.htm">DISPLAY</a> and <a href="../base/nlsfunc.htm">NLSFUNC</a> have to run to make CHCP work correctly.
+  See Examples.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  CHCP [nnn] [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  nnn  Specifies a <a href="../other/cpidos.htm">CODE PAGE</a> number.
+  Examples:
+    437  US
+    850  Multi (Latin I)
+    852  Slavic (Latin II)
+    860  Portuguese
+    863  Canadian-French
+    865  Nordic
+  /?   Shows the help.
+  For more countries see: <a href="../cnfigsys/country.htm">COUNTRY</a> or <a href="../base/cntrysys.htm">COUNTRY.SYS</a>
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Type CHCP without a parameter to display the active code page number.
+  Any program that started before the new code page was assigned may
+  continue to use the original code page. (This excludes <a href="../command/index.htm">COMMAND.COM</a>,
+  which will be aware of code page changes.)
+  To use chcp:
+    1. specify the location of <a href="../base/cntrysys.htm">COUNTRY.SYS</a> with the <a href="../cnfigsys/country.htm">COUNTRY</a> command.
+    2. load the <a href="../base/nlsfunc.htm">NLSFUNC</a> program.
+    3. use CHCP at any time to change the code page.
+  CHCP is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  This is an example for Bosnia Herzegovina. First of all goto <a href="../cnfigsys/country.htm">COUNTRY</a>
+  or <a href="../base/cntrysys.htm">COUNTRY.SYS</a> to find the country number (387) and the codepages
+  that are available in this case (852, 850, 858, 855, 872). Then check
+  <a href="../other/kpdos.htm">KPDOS</a> to find out in which EGA package these languages are. In this
+  case the codepages 852, 850 and 858 are in EGA.CPX whereas 855 and
+  872 are in EGA3.CPX.
+
+  <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>:
+    ! COUNTRY=387,852,C:\FREEDOS\BIN\country.sys
+    !LASTDRIVE=Z
+    !BUFFERS=20
+    !FILES=40
+    DOS=HIGH
+    DOS=UMB
+    DOSDATA=UMB
+    DEVICE=C:\FREEDOS\BIN\himemx.exe
+    DEVICEHIGH=C:\FREEDOS\BIN\jemm386.exe
+    SHELLHIGH=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+              /P=C:\fdauto.bat
+
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a>:
+    path C:;C:\FREEDOS\,C:\FREEDOS\BIN
+    keyb yu
+    ctmouse
+    LH DISPLAY CON=(EGA,437,5)
+    MODE CON CP PREP=((852,850,858) C:\FREEDOS\CPI\EGA.CPX)
+    MODE CON CP PREP=(,,,855,872) C:\FREEDOS\CPI\EGA3.CPX
+              (,,, represents the presence of 852,850,858)
+
+      REM OR INSTEAD OF THE TWO LINES ABOVE (works slower, only
+      REM for demonstration purposes:
+      REM MODE CON CP PREP=((852) C:\FREEDOS\CPI\EGA.CPX)
+      REM MODE CON CP PREP=((,850) C:\FREEDOS\CPI\EGA.CPX)
+      REM MODE CON CP PREP=((,,858) C:\FREEDOS\CPI\EGA.CPX)
+      REM MODE CON CP PREP=((,,,855) C:\FREEDOS\CPI\EGA3.CPX)
+      REM MODE CON CP PREP=((,,,,872) C:\FREEDOS\CPI\EGA3.CPX)
+      REM Without commas the previous CP would be overwritten!
+
+    MODE CON CP SELECT=852 (should also work without this command)
+    LH NLSFUNC /Y C:\FREEDOS\BIN\country.sys
+
+  IN COMMAND LINE:
+    CHCP      (Shows actual codepage, 852 in this example because
+               of setting in CONFIG.SYS)
+    CHCP 850  (changes to CP 850)
+    CHCP 858  (changes to CP 858)
+    CHCP 855  (changes to CP 855)
+    CHCP 872  (changes to CP 872)
+    CHCP 857  gives an error message (CP is not prepared!)
+
+    For an alternative example see <a href="../base/nlsfunc.htm">NLSFUNC</a>.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../cnfigsys/country.htm">country</a>
+  <a href="../base/cntrysys.htm">country.sys</a>
+  <a href="../other/cpidos.htm">cpidos</a>
+  <a href="../cnfigsys/device.htm">device/devicehigh</a>
+  <a href="../base/display.htm">display</a>
+  <a href="../base/graftabl.htm">graftabl</a>
+  <a href="../base/keyb.htm">keyb</a>
+  <a href="../other/kpdos.htm">kpdos</a>
+  <a href="../base/mode.htm">mode</a>
+  <a href="../base/nlsfunc.htm">nlsfunc</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

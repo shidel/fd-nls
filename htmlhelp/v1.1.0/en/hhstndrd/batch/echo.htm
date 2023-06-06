@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: echo</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: echo (command.com command)</h1>
+<pre>
+  ECHO displays messages, or turns command-echoing on or off.
+  There also exists a <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> <a href="../cnfigsys/echo.htm">ECHO</a> command.
+  ECHO is a <a href="../batch/index.htm">BATCH-FILE</a> / <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a> command.
+  It can also be used in command line (except with @ - at symbol).
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  1. ECHO [ON | OFF]
+  2. ECHO [message (string)]
+  3. ECHO.
+</pre>
+<h2>Options:</h2>
+<pre>
+  ON       ECHO mode is activated. If you use ECHO within a batch
+           file, each command line is shown when it is executed.
+  OFF      ECHO mode is deactivated. If you use ECHO within a batch
+           file, the command line is not shown when it is executed.
+           This does not affect the output of the command itself.
+  message  The message you want to print on the screen.
+  .        Displays an empty line.
+  /?       Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  When executing a <a href="../batch/index.htm">BATCH</a> script each line is displayed to the console
+  before executing it by default. The first variant of ECHO enables or
+  disables this behaviour. To disable echoing the command is equal to
+  prefix each line of a batch script with the at-symbol @.
+  If ECHO is invoked with no argument at all, the current echo status
+  is displayed.
+  When entered on an interactive command line the echo status controls
+  whether or not the PROMPT string is displayed.
+  The second variant displays the specified "string". Note:
+  Because of variant 1 "string" may not expand to the single words ON
+  or OFF without another character.
+  The third variant displays an empty line. No space must be placed
+  between the dot and ECHO.
+  ECHO can be used to create text files, e.g. BATCH files. In this case
+  you have to send the text to a file via "&gt;" or "&gt;&gt;" if you
+  want to add several lines. See example below. &percnt; characters have
+  to be added twice.
+  ECHO is a command internal to command.com and needs no other file
+  in order to work. There also exists a <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>
+  <a href="../cnfigsys/echo.htm">ECHO</a> command with different options.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1 (in command line and BATCH):
+    ECHO
+  Displays the current echo status, e.g. responding:
+    ECHO is on
+  Example 2 (only in a BATCH file):
+    @ECHO OFF
+  Disables the echo status. Because the at-sign @ disables the echo
+  status right for this line, this command disable echoing all the next
+  lines of a batch script and is not echoed to the console itself. It
+  is, therefore, best placed in the first line of a batch script.
+  Example 3 (in command line and BATCH):
+    ECHO Just a text
+  Displays Just a text
+  Example 4:
+  IN A BATCH FILE / AUTOEXEC.BAT:
+    ECHO Hi,
+    ECHO. how are you?
+    @ECHO Fine?
+    @ECHO. Nice to hear this
+  Example 5:
+  You want to create a text file with ECHO:
+    ECHO How are you? &gt; C:\DOCUMENT\areyouok.txt
+    ECHO Yes, I am fine &gt;&gt; C:\DOCUMENT\areyouok.txt
+    ECHO At least for 50 &percnt;&percnt; &gt;&gt; C:\areyouok.txt
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/at.htm">@ (at)</a>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../cnfigsys/echo.htm">echo (config.sys command)</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

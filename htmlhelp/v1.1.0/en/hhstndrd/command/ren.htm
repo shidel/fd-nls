@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: ren / rename</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: ren / rename</h1>
+<pre>
+  REN / RENAME renames a file/directory or files/directories.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  REN [drive][path][directoryname1 | filename1]
+      [directoryname2 | filename2] [/?]
+  RENAME [drive][path][directoryname1 | filename1]
+      [directoryname2 | filename2] [/?]
+      drive           The drive letter, e.g. C:
+      path            The directory, e.g. \example\ , complete:
+                      "C:\example\"
+      directoryname1  The name of the old subdirectory,
+                      e.g. \dir_old , complete: "C:\example\dir_old"
+      directoryname2  The name of the new subdirectory,
+                      e.g. dir_new , complete: "dir_new"
+      filename1       The old filename, e.g. \old_file.txt
+                      complete: "C:\example\old_file.txt"
+      filename2       The new filename, e.g. new_file.txt
+                      complete: "new_file.txt"
+</pre>
+<h2>Options:</h2>
+<pre>
+  /?  Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The "destination" must not contain any path specification, the
+  "source" file is renamed within the directory it is currently located
+  in, see example 2 below. Any wildcards used within "destination" are
+  replaced by the corresponding character of the source filename, see
+  example 4 below.
+  Wildcars are "*" and "?". ? symbolizes ONE character only, e.g.
+  "e?ample" means, that only ? can be replaced by any character whereas
+  * means that beginning with * all characters are possible e.g. "ex*"
+  can be everything from "ex" via "exa" till "exzzz999" or "ex999zzz".
+  In pure DOS the directory name must not be longer than 8 letters.
+  Filenames use 8.3 means: 8 letters for the name, 3 letters for
+  ending, e.g. example1.txt. So a "*" can fill up till maximum 8
+  characters.
+  REN is a command internal to command.com and needs no other file
+  in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+    REN file1.txt file2.txt
+  Renames file1.txt into file2.txt
+  Example 2_
+    REN path\file1.txt file2.txt
+  Renames path\file1.txt into path\file2.txt
+  Example 3:
+    REN path\file*.txt *.bak
+  Renames all files located within directory path with extension .txt
+  and which filename is beginning with file, such as file.txt, filea.txt
+  and file99xx.txt, into *.bak files.
+  Example 4:
+    REN *.DAT A*.*
+  Renames all files located within the current directory with extension
+  .DAT into files by replacing the very first character of the filename
+  by the letter A, all other characters, the file extension and path are
+  remain unchanged.
+  Example 5:
+    REN *.TXT ??b*.bak
+  Renames all files located within the current directory with extension
+  .TXT into files by replacing the third character of the filename by
+  the letter B and the file extension to .BAK, all other characters and
+  the file path are remain unchanged.
+  Warning: If the source file name consists of one character only, the
+  second question mark in the destination pattern is ignored, hence,
+  e.g. the file A.TXT is renamed into AB.BAK by this example, what is
+  incompatible to MS COMMAND v6.22 (maybe others, too), which embedds
+  a space as second character making the file inaccessable, but what is
+  exactly the same behaviour of the same MS COMMAND's COPY command.
+  Example 6:
+    c:                        You are at C:\
+    md test1                  You create the directory C:\test1
+    cd test1                  You change into directory C:\test1
+    md test2                  You create a subdirectory C:\test1\test2
+    cd test2                  You change into C:\test1\test2
+    echo hallo &gt; text01.txt   You create a file text01.txt inside there
+                              So now you have c:\test1\test2\text01.txt
+    cd ..                     You go back to C:\test1
+    ren test2 test3           Now you have C:\test1\test3 with file
+                              text01.txt inside (directory has new name)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../command/copy.htm">copy</a>
+  <a href="../base/move.htm">move</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2011 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

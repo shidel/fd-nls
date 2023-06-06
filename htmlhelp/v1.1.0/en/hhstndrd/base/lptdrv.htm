@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: lptdrv</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: lptdrv</h1>
+<pre>
+  LPTDRV is a driver for computer LPT ports (parallel "CENTRONICS"). It
+  allows to change easily the logic states of any pins, either manually
+  or automatically (on a predefined time basis).
+  With a small electronic circuit we can for example drive electric
+  devices trought the PC. The program can support max. 24 devices and
+  3 LPT ports (0x287, 0x387 and 0x3BC). There is no need to build an
+  additional electronic circuit for small power devices like LEDs
+  (10-20mA), but for bigger projects (motors, etc.), the circuit
+  is needed.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  LPTDRV [/Auto] [Help]
+  </pre>
+<h2>Options:</h2>
+<pre>
+  /Auto  Automatic mode
+  Help   Shows the help
+</pre>
+<h2>Comments:</h2>
+<pre>
+  LPTDRV works with a user interface.
+  With LPTDRV.CFG you can program LPTDRV to work by itself. You have to
+  enter at least one time variable, the port and the pin (D0..D7) which
+  will have to change. The syntax is as following:
+  DD,MM,YYYY,hh,mm,ss,P,D,S
+
+  Where DD is the day of the month, MM is the month, YYYY is the year,
+  hh the hour, mm the minutes, ss the seconds, P the port to affect (1
+  for 0x3BC, 2 for 0x387, 3 for 0x287), D the pin (0 to 7) and S the
+  state to force (1 for High or 0 for Low). If you don't want for example
+  to enter a specific month and year (to have a daily cycle), enter -1
+  for month and year.
+
+  DD,MM,YYYY,hh,mm,ss,P,D,S
+  00,00,0000,00,00,00,0,0,0
+  00,00,0000,00,00,00,0,0,0
+  00,00,0000,00,00,00,0,0,0
+  00,00,0000,00,00,00,0,0,0
+  00,00,0000,00,00,00,0,0,0
+  00,00,0000,00,00,00,0,0,0
+  00,00,0000,00,00,00,0,0,0
+  00,00,0000,00,00,00,0,0,0
+  00,00,0000,00,00,00,0,0,0
+  00,00,0000,00,00,00,0,0,0
+  00,00,0000,00,00,00,0,0,0
+  00,00,0000,00,00,00,0,0,0
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - none -
+</pre>
+<h2>See also:</h2>
+<pre>
+  - nowhere -
+  <a href="../../index.htm">main site</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2005 Mateusz Viste.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: spool</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: spool</h1>
+<pre>
+  SPOOL is a print spooler.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  - none -
+  SPOOL.DEV is a driver to be installed.
+  BUFFERP.COM is the print spooler command.control
+  (actual only available as .asm file!)
+</pre>
+<h2>Options:</h2>
+<pre>
+  BUFFERP.COM: NONE
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Install the following line you CONFIG.SYS file on the boot disk:
+   device=spool.dev [/option1] [/option2]
+   Where option may be the following:
+     Option 1:  "/1" -"/64" Decimal digit(s) indicating (k)size of memory
+                to reserve for print buffer.
+     Option 2:  "/L(1,2,3)" or "/C(1,2)".
+                Specifies which port is buffered, and becomes STANDARD
+                PRN output. Only one may be specified.
+                Option "L(1,2,3)" indicates LPT1,LPT2 or LPT3
+                respectively. Option "/C(1,2)" indicates
+                Com1 or Com2 port.
+  Thus if the following line is installed:
+                device = spool.dev /l2 /60
+  It means spool the PRN output to LPT2, reserve a 60K buffer. Options
+  are not case sensitive! Options may be installed in any order. Any
+  other characters are ignored. Default setup is:
+                LPT1  and 1K buffer
+
+  Buffer control:
+    Operating the buffer control program, "BUFFERP" is fairly simple.
+    Just execute it at DOS prompt. It will bring up a simple menu. Only
+    one command is executed at a time. Pretty self-explanatory.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  In <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>:
+  device=spool.dev /L2 /60
+
+  In command line:
+  bufferp.com (does only exist as .asm file at the moment)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1995 Craig Derouen, updated 2023 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

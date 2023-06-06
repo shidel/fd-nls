@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: hiram</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: hiram</h1>
+<pre>
+  HIRAM binds available RAM areas (ausiliary memory cards, shadow-RAM,
+  etc.) between the Segments A000h and F000h into Upeer memory.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  Use HIRAM in <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>:
+  device=[drive:] [\path\]hiram.exe [/option [/option [...]]]
+</pre>
+<h2>Options:</h2>
+<pre>
+    Debug      Prevent installation and shows only memory information.
+    Exclude=start-end[,start-end]  Leave a range out of the RAM-Test.
+    FixMSDOS   Initialize auxiliary memory in the MS-DOS 5.0 manner.
+    FixDRDOS   Initialize auxiliary memory in the DR-DOS 5.0/6.0 manner.
+    Chain      Connects conventional and auxiliary memory.
+    NoChain    Load conventional and auxiliary memory separately.
+    Int2F      Installs the Int 2Fh handler for MS-DOS/DR-DOS.
+    NoInt2F    Prevents the installation of the Int 2Fh handlers.
+  [Presets]
+    MS-DOS 3.x - 4.0x:  /FixMSDOS /Chain /NoInt2F,
+    MS-DOS 5.x:         /FixMSDOS /NoChain /Int2F,
+    DR-DOS 3.41:        /FixMSDOS /Chain /NoInt2F,
+    DR-DOS 5.0 - 6.0:   /FixDRDOS /Chain /Int2F
+</pre>
+<h2>Comments:</h2>
+<pre>
+  The range between the segments A000h and F000h is designed for ISA/PCI/
+  AGP extension/add-on cards since the release of version 5.0 of DR-DOS
+  and MS-DOS, which allows UMA (Upper Memory Area) to be used.
+  This way the free conventional DOS memory can be increased up to ~
+  620 KB. HIRAM supports UMA on PCs with 8086/88 or 80286 processors and
+  memory between the segments A000h and E000h (inclusively). On PCs with
+  386/486 and Shadow RAM within the above mentioned area, HIRAM can also
+  be used, even without EMM386 and its V86 (Virtual) Mode UMBs.
+  Device drivers can be loaded high with <a href="../cnfigsys/device.htm">DEVICEHIGH</a> / <a href="../cnfigsys/install.htm">INSTALLHIGH</a> in
+  <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> or <a href="../batch/lh.htm">LOADHIGH</a> in <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a>
+
+  The table below shows the output of MEM (DR-DOS 6.0) on a AT/286 with
+  640 KB RAM and 64 KB auxiliary RAM in the segment E000h after using
+  HIRAM.EXE:
+
+  Memory type   (KBytes)        Available
+  ----------------------------------------------
+  Conventional  655.360 (640K)  643.040 (627K)
+  Upper memory   65.488 (63K)       288 (0K)
+
+  Since the use of the UMA differs clearly with the DOS versions, HIRAM
+  adjusts automatically to the used version. Optional parameters should
+  be used only for special configurations or in the case of errors.
+
+  For more informations see:
+  <b>https://gitlab.com/FreeDOS/drivers/hiram/-/tree/master/DRIVERS/HIRAM</b>
+  OR:
+  <b>C:\FREEDOS\DRIVERS\HIRAM\HIRAM.TXT</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Usage may differ depending on used DOS versions and/or particular
+  hardware requirements:
+  - MS-DOS starting from version 5, 8086/88 or 80286 without Extended
+  MEMORY, but with auxiliary memory.
+
+  CONFIG.SYS                  <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a>
+  --------------------------------------------------------
+  DOS=UMB                     C:\HIRAM\HIFILES=12
+  DEVICE=C:\HIRAM\HIRAM.EXE   LH KEYB GR,,KEYBOARD.SYS
+  FILES=8                    ...
+  DEVICEHIGH=...
+
+  - MS-DOS starting from version 5, 80286 with Extended MEMORY, 80386/486
+  with Shadow RAM.
+  DEVICE drivers and TSR programs load into the UMA, but the OS kernel
+  does not.
+
+  CONFIG.SYS                  AUTOEXEC.BAT
+  --------------------------------------------------------
+  DOS=HIGH,UMB                C:\HIRAM\HIFILES=12
+  DEVICE=C:\HIRAM\HiRAM.EXE   LH KEYB GR,,KEYBOARD.SYS
+  FILES=8                     ...
+  DEVICEHIGH=HIMEM.SYS
+...
+
+  DEVICE drivers and TSR programs load into the UMA, but the OS kernel
+  does not.
+  - DR-DOS starting from version 5, 8086/88 or 80286 without Extended
+  MEMORY, but with auxiliary memory.
+
+  CONFIG.SYS                  AUTOEXEC.BAT
+  ---------------------------------------------------------
+  HIDOS=ON                    MEMMAX +U
+  SHELL=COMMAND.COM /P /MU    C:\HIRAM\HIFILES=15
+  DEVICE=C:\HIRAM\HiRAM.EXE   KEYB GR,,KEYBOARD.SYS /MU
+  FILES=5                     HILOAD ...
+  HIBUFFERS=...
+  HIDEVICE=...
+
+  DEVICE drivers, TSR programs and the OS kernel load into the UMA.
+  - DR-DOS starting from version 5, 80286 with Extended MEMORY, 80386/486
+  with Shadow RAM.
+
+  CONFIG.SYS                  AUTOEXEC.BAT
+  ---------------------------------------------------------
+  HIDOS=ON                    MEMMAX +U
+  SHELL=COMMAND.COM /P /MH    C:\HIRAM\HiFILES=15
+  DEVICE=HIDOS.SYS /BDOS=FFFF KEYB GR,,KEYBOARD.SYS /MH
+  DEVICE=C:\HIRAM\HiRAM.EXE   HILOAD ...
+  FILES=5
+  HIBUFFERS=...
+  HIDEVICE=...
+
+  DEVICE drivers and TSR programs load into the UMA, but the OS kernel
+  is shifted into the HMA.
+  HIRAM tests the upper memory in 4 KB steps for the presence of upper
+  RAM and initializes it if necessary.
+  HIRAM does not occupy additional memory after successful initialization
+  if using DR-DOS 3.41 and MS-DOS. If using DR-DOS 5.0 or 6.0 only 48
+  Bytes load in the UMA.
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../cnfigsys/device.htm">devicehigh</a>
+  <a href="../base/devload.htm">devload</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../cnfigsys/install.htm">installhigh</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../batch/lh.htm">loadhigh</a>
+  <a href="../base/xmgr.htm">xmgr</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2023 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

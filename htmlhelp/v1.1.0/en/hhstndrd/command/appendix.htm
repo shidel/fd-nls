@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Appendix</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Appendix to the Description of Features and Implementation Status</h1>
+<h1> of FreeCOM</h1>
+<h2>Current Directory</h2>
+<pre>
+  The current directory is the default directory of a drive.
+  DOS stores a default directory for each drive. When a path is
+  specified with a drive specification only, such as D:, it is completed
+  with this default directory of that drive to construct the absolute
+  path to be used.
+</pre>
+<hr>
+<h2>Current Working Directory</h2>
+<pre>
+  In opposite to the current directory the current working directory is
+  the absolute path constructed out of the currently selected drive and
+  current directory of that drive.
+</pre>
+<hr>
+<h2>Path Specification</h2>
+<pre>
+  In DOS an absolute path is constructed out of several components:
+    1. drive,
+    2. directory,
+    3. filename, and
+    4. file extension.
+  like this: D:\DIR1\DIR2\FILENAME.EXT.
+  The drive is a single letter from A through Z followed by a colon :.
+  The remaining part of a path consists of similiar components delimited
+  by a single backslash \. The last component is also called filename.
+  Each of these components may be formed of a name, up to eight
+  characters long, and an extension, up to three characters long. Both
+  parts are delimited by a single dot .. Although the extension may be
+  absent, the filename must have at least one character.
+  Note: The term filename is not limited to files in the usual sense,
+  but may apply to any name visible in a directory, such as sub-
+  directories and volume labels, as well.
+  To ease the way to enter a path the user may specify a relative path,
+  rather than an absolute one. In such path one or more components may
+  be missing:
+    - If no drive is specified, what means that no colon is specified,
+      the path is prefixed by the currently selected drive.
+    - If the directory is not prefixed by the backslash or no directory
+      is specified at all, the current directory of the drive is inserted
+      right behind the colon.
+    - Some programs may append an absent extension to the very last
+      filename component.
+  Examples, assume the current directories of
+
+  Drive     Current Directory
+  C:        \FREEDOS\HELP
+  D:        \TEMP\TEXT
+  The currently selected drive is C:.
+
+    1. C:\
+       The root directory of drive C:.
+    2. .
+       The current working directory, ergo: C:\FREEDOS\HELP.
+    3. ..
+       The parent directory, ergo: C:\FREEDOS.
+    4. D:
+       The current directory of drive D:, ergo: D:\TEMP.
+    5. D:.
+       The current directory of drive D:, ergo: D:\TEMP.
+    6. D:..
+       The parent directory of drive D:, ergo: D:\.
+    7. ..\BIN
+       Because there is neither a drive nor a leading backslash, both
+       the currently selected drive and the current directory of that
+       drive is inserted before the given path, ergo:
+       C:\FREEDOS\HELP\..\BIN.
+       The embedded component .. has the same meaning as when specified
+       alone: parent directory, though, here in the context of the
+       directory C:\FREEDOS\HELP\. That means that the final absolute
+       path is: C:\FREEDOS\BIN.
+  Path specifications that do not conform to above mentioned format
+  lead to various different behaviour of the various programs, because
+  there is no standard to scan, parse and interprete such patterns.
+  Problems include:
+    - multiple backslashes,
+    - multiple dots,
+    - multiple colons, or a colon at a position unequal to two,
+    - The current directory . or parent directory .. special directories
+      in the context of a root directory, such as C:\., C:\.., or
+      C:\TEMP\..\.. .
+  Note: The special directories . and .. are no phantom directories or
+  virtual entries, but standard entries of every directory except the
+  root directories. These entries help crash recovery tools, such as
+  CHKDSK or SCANDISK, to find errors within the directory structure and
+  restore it to a valid file tree. Therefore a common assumption that a
+  tripple dot ... directory means parent-of-parent is incorrect, though,
+  might be supported by certain programs.
+</pre>
+<hr>
+<h2>Standard Rules for Options</h2>
+<pre>
+  Options are prefixed by one forward slash "/", the following character
+  identifies the option and is called option character, for instance: /A
+  Some commands do accept long option names, where a complete word
+  identifies the option rather than a single character, e.g. /MSG.
+  Some option may be used in conjunction with an argument. The argument
+  is appended to the option with one colon ":" or one equal sign "=",
+  for instance: /A:hr or /P=fdexec.bat.
+  Multiple options without argument maybe merged together as a single
+  option with or without embedded slashes, e.g. /WS or /W/S, instead
+  of /W /S.
+  However, because some commands do accept long option names, the way
+  with embedded slashes is more secure and is recommended therefore.
+  An option with argument may be the last one of such merged options.
+  Options without arguments enable or disable certain features.
+  Therefore, those options are sometimes called boolean options or flags.
+  Boolean options may be optionally prefixed by a plus "+" or minus "-"
+  sign. So, the boolean option O can be written in three ways:
+    1. /+O: The option is enabled.
+    2. /-O: The option is disabled.
+    3. /O:  (neither plus nor minus sign) The option is toggled or
+            flipped; this means if the option is enabled currently, it
+            is disabled; but if it is disabled currently, it is enabled.
+  Without user invention a boolean option is disabled by default, so
+  both /+O and /O behave the same most of the time. However, some
+  commands allow the user to change the default settings of certain
+  options, e.g. COPY and DIR.
+</pre>
+<hr>
+<h2>I/O Redirection</h2>
+<pre>
+  In DOS the standard input and output can be redirected to a file or
+  another device; however, although it is common to use these I/O
+  streams today, some programmers cowardly ignore them for reasons of
+  speed or program size.
+  If the input stream is redirected to a file or device, instead of
+  polling the keyboard and request the user to interactively enter
+  characters via the keyboard, those characters are read from the file
+  or device. Usually these programs terminate when the file has been
+  read wholely.
+  If the output stream is redirected to a file or device, instead of
+  issuing the information onto screen, it is dumped into the file or
+  device. Per convention each program has two output streams: one
+  (called standard output) to issue normal information and one (called
+  standard error output) for error messages the user should not miss.
+  Redirections are specified on command line and effect exactly that
+  command invoked herein, regardless if the command is an external or
+  internal one, an alias or <a href="../batch/index.htm">BATCH</a> script. The utter exception is the
+  FOR command, which requires that the redirection is to apply to the
+  command specified behind the DO keyword rather than FOR itself.
+  If more than one redirection is specified on the command line and they
+  effect the same stream (input, output, or error), the rightmost one
+  superceed any previous one.
+  Redirections are syntactically specified like this:
+  operator target
+    operator ::= '&lt;' | '&gt;' [ '&gt;' ] [ '&amp;' [ '&gt;' ] ]
+    target ::= file | device
+  Although it is not relevant where the redirections are placed on the
+  command line, it is common praxis to place them at the end of it.
+  The operators have the following meaning:
+    Operator    Redirection
+    &lt;     Input stream
+    &gt;     Output stream; target file is overwritten
+    &gt;&gt;    Output stream; output is appended to target, if it
+          already exists
+    &gt;&amp;    Output and error stream; target file is overwritten
+    &gt;&gt;&amp;   Output and error stream; output is appended to target,
+          if it already exists
+    &gt;&amp;&gt;   Error stream; target file is overwritten
+    &gt;&gt;&amp;&gt;  Error stream; output is appended to target,
+          if it already exists
+</pre>
+  <h3>Examples:</h3>
+  <h4>Example 1:</h4>
+<pre>
+    cmd &lt;in1 &lt;in2
+  Input stream is redirected to file IN2, because it is the rightmost
+  one.
+  </pre>
+  <h4>Example 2:</h4>
+<pre>
+    cmd &lt;in &gt;out
+  Input stream is redirected to file IN, output and error streams are
+  joined together and redireced into file OUT. If the file OUT already
+  exists, the old contents is discarded and replaced by the new one;
+  otherwise, the OUT is created anew.
+  </pre>
+  <h4>Example 3:</h4>
+<pre>
+    cmd &lt;in &gt;&gt;out
+  As example 2, but instead of replacing the contents of OUT, if the
+  file already exists, the new information is appended to the end of
+  the file.
+  </pre>
+  <h4>Example 4:</h4>
+<pre>
+    FOR &percnt;a IN (*.*) DO ECHO &percnt;a &gt;out
+  As mentioned earlier, FOR is an exception and passes forth the
+  redirections to each invocation of the command specified right of the
+  DO keyword. So this examples overwrites the output file each time the
+  <a href="../batch/echo.htm">ECHO</a> command is performed, thus, instead of creating a file list,
+  only the last found file is recorded into OUT.
+  </pre>
+  <h4>Example 5:</h4>
+<pre>
+    IF EXIST out DEL out
+    FOR &percnt;a IN (*.*) DO ECHO &percnt;a &gt;&gt;out
+  This sequence eliminate the problem, the IF command is required to
+  actually replace the file rather than appending the file list to the
+  probably existent file.
+</pre>
+<hr>
+<h2>Pipes</h2>
+<pre>
+  Another form of redirection is piping. Hereby, the output stream of
+  one command is connected to the input stream of another command. Pipes
+  can combine any number of commands this way. Because DOS is no
+  multitasking system, pipes are simulated by spawning the first command
+  with an output redirection capturing the issued information into a
+  temporary file and then the second command with an input redirection
+  from that very same temporary file, on completation of the second
+  command the temporary file is deleted.
+</pre>
+  <h3>Examples:</h3>
+  <h4>Example 1:</h4>
+<pre>
+  cmd1 | cmd2 | cmd3
+
+  Which is similiar to this sequence:
+    cmd1 &gt;&percnt;TEMP&percnt;\t1
+    cmd2 &lt;&percnt;TEMP&percnt;\t1 &gt;&percnt;TEMP&percnt;\t2
+    DEL &percnt;TEMP&percnt;\t1
+    cmd3 &lt;&percnt;TEMP&percnt;\t2
+    DEL &percnt;TEMP&percnt;\t2
+</pre>
+  <h4>Example 2:</h4>
+<pre>
+  The first and last command can have an input or output redirection
+  respectively, like so:
+    cmd1 | cmd2 | cmd3 &lt;in &gt;out
+
+  Which is similiar to this sequence:
+    cmd1 &gt;&percnt;TEMP&percnt;\t1 &lt;in
+    cmd2 &lt;&percnt;TEMP&percnt;\t1 &gt;&percnt;TEMP&percnt;\t2
+    DEL &percnt;TEMP&percnt;\t1
+    cmd3 &lt;&percnt;TEMP&percnt;\t2 &gt;out
+    DEL &percnt;TEMP&percnt;\t2
+</pre>
+  <h4>Example 3:</h4>
+<pre>
+  The error stream can be piped as well:
+    cmd1 |&amp; cmd2 | cmd3
+
+  Which is similiar to this sequence:
+    cmd1 &gt;&amp;&percnt;TEMP&percnt;\t1
+    cmd2 &lt;&percnt;TEMP&percnt;\t1 &gt;&percnt;TEMP&percnt;\t2
+    DEL &percnt;TEMP&percnt;\t1
+    cmd3 &lt;&percnt;TEMP&percnt;\t2
+    DEL &percnt;TEMP&percnt;\t2
+
+  Here only the error messages of cmd1 are passed into cmd2; the error
+  messages of both cmd2 and cmd3 are issued to the screen.
+</pre>
+<hr>
+<h2>Nested redirections</h2>
+<pre>
+  <a href="../batch/index.htm">BATCH</a> scripts or when external programs invoke other programs or
+  another shell, redirections may be nested, e.g.:
+  Consider the <a href="../batch/index.htm">BATCH</a> file BATCH.BAT:
+    @ECHO OFF
+    ECHO 1
+    ECHO 2 &gt;out_2
+    ECHO 3
+  which is invoked via:
+    BATCH &gt;out_1
+  When the script <a href="../batch/index.htm">BATCH</a> gets executed, the actual output stream is
+  redirected to the file OUT_1. Therefore the output of the first <a href="../batch/echo.htm">ECHO</a>
+  command is redirected into this file.
+  Because the second <a href="../batch/echo.htm">ECHO</a> command has its own output redirection, its
+  output is redirected into the file OUT_2. On completion of <a href="../batch/echo.htm">ECHO</a> the
+  redirection is closed and the former one is restored.
+  What causes that the output of the third <a href="../batch/echo.htm">ECHO</a> command is redirected
+  into OUT_1 again.
+</pre>
+<hr>
+<h2>Wildcards</h2>
+<pre>
+  DOS accepts certain placeholders instead of files, so you can specify
+  one or more files with the same wildcard pattern. In opposite to other
+  systems each program expands wildcards individually instead of let the
+  shell do this; however, the shell must epxand wildcards for its
+  internal commands.
+  FreeCOM supports the standard DOS wildcards as supported by the DOS
+  kernel itself:
+  Wildcard   Meaning
+    *        Any remaining body, except a dot (.)
+    ?        Any character, except the dos (.); acts as *, if the last
+             character
+  Wildcards are allowed in the last portion of a qualified path, that
+  means behind the last backslash (\) or colon (:).
+  Wildcards match either before or behind the dot delimiting the
+  filename and its extension.
+  Whether or not directories or volume lables or hidden and system files
+  do match a pattern depends on the command expanding it.
+  Letters match case-insensitively.
+</pre>
+<h3>Examples:</h3>
+<pre>
+  Pattern        Meaning
+  *.*            Any file in the current directory
+  c:*.*          Any file in the current working directory of drive C:
+  *              Any file without an extension. Some commands, such as
+                 DIR, interprete a single * as *.*
+  a*.*           Any file, which first character is an A, neither the
+                 remainder of the filename nor the extension of the
+                 file matters
+  a?.*           Same as above
+  a???.*         Same as above
+  a*b.*          Same as above
+  a?b.*          Any file, which first character is an A and the third
+                 one is a B; the remaining characters nor the extension
+                 matter
+  file?.txt      All files, which first four characters are FILE and
+                 which extension is equal to TXT
+  \scripts\*.pl  Any perl file in the directory \SCRIPTS located in the
+                 root directory of the currently selected drive
+  Warning: There are common mistakes about wildcards, as DOS has less
+  functional wildcards than other systems, in particular:
+    a*bc.*txt:   Any character right of an asterisk * up to the dot . or
+                 the end of the filename is ignored; this pattern is
+                 equal to: a*.*.
+    a?.?:        A question mark ? as the last character of either the
+                 filename or file extension has the same effect as an
+                 asterisk * and does not mean exactly one any character,
+                 in particular no character must be present; this pattern
+                 is equal to a*.*.
+</pre>
+<hr>
+<H2><a href="../batch/index.htm">BATCH</a> Scripts</H2>
+<pre>
+  The shell lets to automate simple tasks by writing <a href="../batch/index.htm">BATCH</a> scripts.
+  These are plain text files with one command is written at one line.
+  Any command, both internal and external ones, can be used in <a href="../batch/index.htm">BATCH</a>
+  scripts, along with redirections, pipes <a href="../command/environm.htm">ENVIRONMENT VARIABLE</a>
+  substitions a.s.o. The script is performed line-by-line.
+  By default, before executing a line, it is displayed onto the screen,
+  in order to prevent this, one can turn off this feature with the <a href="../batch/echo.htm">ECHO</a>
+  command or prefix each line with the Ad sign (@), e.g.:
+    ECHO This line is displayed
+    @ECHO This line is NOT displayed
+  Commonly <a href="../batch/index.htm">BATCH</a> scripts start with the line:
+    @ECHO OFF
+  in order to turn off to echo each line furtherly in the script
+  processing and to suppress to echo the line itself, too.
+  Lines starting with a colon (:) label this particular script
+  line, in order to be jumped to with the <a href="../batch/goto.htm">GOTO</a> command, e.g.:
+    @ECHO OFF
+    IF "&percnt;1"=="" GOTO usage
+    ECHO argument1=&percnt;1
+    ECHO argument2=&percnt;2
+    ECHO argument3=&percnt;3
+    GOTO ende
+    :usage
+    ECHO Usage: &percnt;0 {arguments}...
+    :end
+  If the script is invoked with no argument, line 2 performs the GOTO
+  command and, thus, skips the lines 3 through 7 and proceeds with
+  line 8.
+  Otherwise the three <a href="../batch/echo.htm">ECHO</a> commands are invoked and the GOTO command of
+  line 6 skips the ECHO'ing of the error message in line 8 and proceeds
+  in line 9.
+  If the shell hits a line starting with a colon, it is silently
+  skipped; not even redirections are evaluated in opposite to the REM
+  command.
+  When the shell reaches the end of the file, the <a href="../batch/index.htm">BATCH</a> processing
+  terminates. The errorlevel of the last spawned external command
+  remains unchanged. Because the shell closes the <a href="../batch/index.htm">BATCH</a> script and
+  re-opens it each time a command, for both internal and external ones,
+  is invoked, one can savely replace floppy disks during a <a href="../batch/index.htm">BATCH</a>
+  processing, e.g.:
+    @ECHO OFF
+    ECHO Copying disk1
+    COPY files\*.* C:&percnt;1
+    :disk2
+    PAUSE Insert disk &num;2, then hit ENTER
+    IF NOT EXIST disk2 GOTO disk2
+    ECHO Copying disk2
+    COPY files\*.* C:&percnt;1
+    :disk3
+    PAUSE Insert disk &num;3, then hit ENTER
+    IF NOT EXIST disk2 GOTO disk3
+    ECHO Copying disk3
+    COPY files\*.* C:&percnt;1
+    ECHO Copying done.
+  When a <a href="../batch/index.htm">BATCH</a> file is invoked within another <a href="../batch/index.htm">BATCH</a> file, the previous
+  ones does not proceed once the called one terminates, regardless of
+  the nesting level; this is called chaining, one chains to another
+  program and does not intend to come back. To have a <a href="../batch/index.htm">BATCH</a> script
+  behave like an external program in this regard, it must be invoke via
+  the CALL command, e.g.:
+  BATCH1.BAT:
+    @ECHO OFF
+    ECHO &percnt;0 - line 2
+    CALL batch2
+    ECHO &percnt;0 - line 4
+  and
+    BATCH2.BAT:
+    ECHO &percnt;0 - line 1
+
+  shows:
+    BATCH1 - line 2
+    BATCH2 - line 1  (BATCH2!)
+    BATCH1 - line 4
+</pre>
+<hr>
+<h2>Hidden internal commands</h2>
+<pre>
+  There are some special internal commands, that are not directly
+  visible nor accessable. They are hidden because of two main purposes:
+    1. Many of them are of internal nature and should not used by
+       the user.
+    2. They are extensions to the normal <a href="../batch/index.htm">BATCH</a> language and may,
+       therefore, clash with a particular installation. To prevent this
+       clash those commands are hidden by default and can be made
+       directly accessable via the ICMD command.
+  Hidden internal commands can be access by prefixing the command
+  with ::=. This token usually specifies a label within the <a href="../batch/index.htm">BATCH</a>
+  language, given the nature of the labels, they may be comments as
+  well. Due to the latter variant, most non-FreeCOM shells won't see
+  the ::=, hence, ignore those commands.
+    For example: C&gt; ::=CANCEL 30
+  cancels (terminates) all currently active <a href="../batch/index.htm">BATCH</a> files and assigns
+  30 to the current errorlevel.
+</pre>
+<hr>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/index.htm">batch</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../batch/echo.htm">echo</a>
+  <a href="../batch/goto.htm">goto</a>
+  <a href="../command/environm.htm">environment variable</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2006 the FreeDOS command.com team, adapted to
+  FreeDOS help in 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

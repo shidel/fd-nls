@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: menucolor</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: menucolor</h1>
+<pre>
+  MENUCOLOR makes the CONFIG.SYS / FDCONFIG.SYS coloured.
+  Use MENUCOLOR before the CONFIG.SYS / FDCONFIG.SYS menu command to
+  create a full screen menu which supports the arrow cursor keys.
+  MENUCOLOR is a <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> command.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  menucolor foreground[,background]
+</pre>
+<h2>Options:</h2>
+<pre>
+  The following colors can be used for foreground and background:
+     0      Black
+     1      Blue
+     2      Green
+     3      Cyan
+     4      Red
+     5      Magenta
+     6      Brown
+     7      Light Gray
+  The following colors can only be used for the foreground:
+     8      Dark Gray
+     9      Light Blue
+    10      Light Green
+    11      Light Cyan
+    12      Light Red
+    13      Light Magenta
+    14      Yellow
+    15      White
+</pre>
+<h2>Comments:</h2>
+<pre>
+  Use MENUCOLOR before the CONFIG.SYS / FDCONFIG.SYS menu command, to
+  create a full screen menu which supports the arrow cursor keys.
+  If you do not use MENUCOLOR, the menu will not be full screen, so
+  some of the BIOS, bootloader, and kernel init messages (list of drives,
+  version info...) stays visible.
+  MENUCOLOR is a command internal to kernel.sys and needs no other
+  file in order to work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  Example 1:
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    menucolor 15,1  changes the colour of config.sys to white text
+                    on blue backgrounnd
+
+  Example 2:
+  IN CONFIG.SYS / FDCONFIG.SYS:
+    !COUNTRY=049,858,C:\FREEDOS\BIN\country.sys (german setting)
+    !LASTDRIVE=Z
+    !BUFFERS=20           (!=will be executed under all circumstances)
+    !FILES=40             (!=will be executed under all circumstances)
+    !MENUCOLOR=7,0        (!=will be executed under all circumstances)
+
+    MENUDEFAULT=1,5
+    MENU 1 - Load FreeDOS with JEMM386 (no EMS, max RAM free)
+    MENU 2 - Load FreeDOS with JEMM386 (Expanded Memory)
+    MENU 3 - Load FreeDOS low with some drivers (Safe Mode)
+    MENU 4 - Load FreeDOS without drivers (Emergency Mode)
+
+    12?DOS=HIGH                   (will be processed when pressing 1/2)
+    12?DOS=UMB                    (will be processed when pressing 1/2)
+    12?DOSDATA=UMB                (will be processed when pressing 1/2)
+    123?DEVICE=C:\FREEDOS\BIN\himemx.exe (     "      "      "     1/2/3)
+    1?DEVICE=C:\FREEDOS\BIN\jemm386.exe NOEMS X=TEST I=TEST I=B000-B7FF
+             NOVME NOINVLPG       (will be processed when user presses 1)
+    2?DEVICE=C:\FREEDOS\BIN\jemm386.exe X=TEST I=TEST I=B000-B7FF NOVME
+             NOINVLPG             (will be processed when user presses 2)
+    34?SHELL=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+             /P=C:\FDAUTO.BAT     (will be processed when pressing 3/4)
+    12?SHELLHIGH=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+                 /P=C:\FDAUTO.BAT (will be processed when pressing 1/2)
+    ;1234?BREAK=OFF               (set to REM, nothing happens)
+    REM 1234?DEVICE=C:\blahblah.sys (set to REM, nothing happens)
+
+  IN AUTOEXEC.BAT / FDAUTO.BAT:
+    Depending if you have chosen "1", "2", "3" or "4" in CONFIG.SYS
+    your AUTOEXEC.BAT / FDAUTO.BAT can execute different routines, e.g.:
+      IF "&percnt;config&percnt;"=="1" goto :BAT_ROUTINE1
+      IF "&percnt;config&percnt;"=="2" goto :BAT_ROUTINE2
+      IF "&percnt;config&percnt;"=="3" goto :BAT_ROUTINE3
+      IF "&percnt;config&percnt;"=="4" goto :BAT_ROUTINE4
+      goto :END
+
+      :BAT_ROUTINE1
+      execute commands for routine1
+      goto: END
+
+      :BAT_ROUTINE2
+      execute commands for routine2
+      goto: END
+
+      :BAT_ROUTINE3
+      execute commands for routine3
+      goto: END
+
+      :BAT_ROUTINE4
+      execute commands for routine4
+      goto: END
+
+      :END
+      cls
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/semico.htm">; (semicolon)</a>
+  <a href="../cnfigsys/exclamat.htm">! (exclamation mark)</a>
+  <a href="../cnfigsys/question.htm">? (question mark)</a>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../cnfigsys/dos.htm">dos</a>
+  <a href="../cnfigsys/dosdata.htm">dosdata</a>
+  <a href="../cnfigsys/files.htm">files</a>
+  <a href="../batch/goto.htm">goto</a>
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../batch/if.htm">if</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/lastdrv.htm">lastdrive/lastdrivehigh</a>
+  <a href="../cnfigsys/menu.htm">menu</a>
+  <a href="../cnfigsys/menudef.htm">menudefault</a>
+  <a href="../batch/rem.htm">rem</a>
+  <a href="../base/shsucdx.htm">shsucdx</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2004 Robert Platt, updated 2008 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

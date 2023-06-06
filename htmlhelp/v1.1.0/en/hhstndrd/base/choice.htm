@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+<title>FreeDOS command: choice, _choice</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: choice, _choice</h1>
+<pre>
+  CHOICE / _CHOICE suspends processing and waits for the user to press a
+  valid key from a given list of choices. Choice gives out an
+  <a href="../batch/errorlvl.htm">ERRORLEVEL (EXITCODE)</a> which can be used for further work.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  CHOICE [ /B ] [ /C[:]choices ] [ /N ] [ /S ] [ /T[:]c,nn ] [ text ]
+         [/?]
+  _CHOICE [ /B ] [ /C[:]choices ] [ /N ] [ /S ] [ /T[:]c,nn ] [ text ]
+          [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  /B           Sounds an alert (beep) at prompt.
+  /C[:]choices Specifies allowable keys in the prompt. When displayed,
+               the keys will be separated by commas, will appear in
+               brackets ([]), and will be followed by a question mark.
+               If you don't specify the /C switch, choice uses YN as the
+               default, you may also be 0 - 9 or A - Z. The colon (:) is
+               optional.
+  /N           Causes choice not to display the prompt. The text before
+               the prompt is still displayed, however. If you specify
+               the /N switch, the specified keys are still valid.
+  /S           Causes choice to be case sensitive. If the /S switch is
+               not specified, choice will accept either upper or lower
+               case of the keys that the user specifies.
+  /T[:]c,nn    Causes choice to pause for a specified number of seconds
+               before defaulting to a specified key. The values for the
+               /T switch are as follows:
+               c   Specifies the character to display after nn seconds.
+                   The character must be in the set of choices specified
+                   by the /C switch.
+               nn  Specifies the number of seconds to pause. Acceptable
+                   values are from 0 to 99. If 0 is specified, there will
+                   be no pause before defaulting.
+  text       The text to display as a prompt (default=none).
+  /?         Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  CHOICE shows the messages according to the file:
+    &percnt;NLSPATH&percnt;\CHOICE.&percnt;LANG&percnt;,
+  where LANG is <a href="../batch/set.htm">SET</a> in the <a href="../command/environm.htm">ENVIRONMENT VARIABLE</a>
+  <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a> and NLSPATH is the path to the national
+  language files.
+  _CHOICE uses english texts only.
+  CHOICE is not a command internal to command.com and needs a
+  choice file in order to work.
+  CHOICE supports NLS (national language support).
+  CHOICE has the following <a href="../batch/errorlvl.htm">ERRORLEVEL (EXITCODE)</a>:
+    0    if aborted
+    ...  ERRORLEVEL is set to offset of key user presses in choices.
+    255  any error
+</pre>
+<h2>Examples:</h2>
+<pre>
+  IN A BATCH FILE:
+   @ECHO 1 = Do this
+   @ECHO 2 = Do that
+   @ECHO 3 = Do another thing
+   @ECHO 4 = Do nothing
+   @choice /B /C:1234 /N /S What do you want to do?
+   if errorlevel 4 goto DONOTHING
+   if errorlevel 3 goto DOANOTHER
+   if errorlevel 2 goto DOTHAT
+   if errorlevel 1 goto DOTHIS
+   :DOTHIS
+   your DOTHIS-commands
+   goto EXIT
+   :DOTHAT
+   your DOTHAT-commands
+   goto EXIT
+   :DOANOTHER
+   your DOANOTHER-commands
+   goto EXIT
+   :DONOTHING
+   your DONOTHING-commands
+   goto EXIT
+   :EXIT
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/at.htm">@(at)</a>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../batch/index.htm">batch files</a>
+  <a href="../command/index.htm">command.com/freecom</a>
+  <a href="../batch/echo.htm">echo</a>
+  <a href="../command/environm.htm">environment variable</a>
+  <a href="../batch/errorlvl.htm">errorlevel (exitcode)</a>
+  <a href="../batch/if.htm">if</a>
+  <a href="../batch/goto.htm">goto</a>
+  <a href="../batch/pause.htm">pause</a>
+  <a href="../batch/set.htm">set</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1994-2003 Jim Hall, updated 2008 and 2022
+  by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

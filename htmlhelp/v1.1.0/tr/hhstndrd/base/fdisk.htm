@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<title>FreeDOS komutu: fdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Komut: fdisk</h1>
+<pre>
+  FDISK sabit diskler zerinde bir veya daha fazla b”lm oluŸturur. Sonra
+  b”lmler <a href="../base/format.htm">bi‡imlendirilebilir</a> ve FreeDOS
+  ile kullanlmaya hazr olurlar. Onlar baŸlatlabilir yapmak i‡in bir
+  'faal b”lm' ayarlamanz ve 'fdisk /ipl' (veya: 'fdisk /mbr') ardndan
+  'sys c:' komutlarn ‡alŸtrmanz gerekir. FDISK komutuna disketler
+  i‡in ihtiya‡ duyulmaz!
+</pre>
+<h2>S”z dizimi:</h2>
+<pre>
+  FDISK [argman]...
+  argmansz        EtkileŸimli kipte ‡alŸr.
+  /INFO [src#]   &lt;src#> hakknda b”lm verileri g”rntler.
+  /REBOOT           Bilgisayar yeniden baŸlatr.
+</pre>
+<h2>Se‡enekler:</h2>
+<pre>
+  B”lm oluŸturmak ve silmek i‡in komutlar:
+  &lt;boyut&gt;  megabayt says veya azami boyut i‡in MAX de§eridir
+          ya da &lt;say&gt;,100 ki bu  &lt;say&gt; de§erini yzde olarak
+          ifade eder.
+  &lt;tr#&gt; saysal bir b”lm trdr veya /SPEC girilmemiŸse
+          FAT-12/16/32.
+
+  /PRI:&lt;boyut&gt; [/SPEC:&lt;tr#&gt;] [src#] Birincil bir b”lm
+                                                    oluŸturur.
+  /EXT:&lt;boyut&gt; [src#]    GeniŸletilmiŸ bir DOS b”lm oluŸturur.
+  /LOG:&lt;boyut&gt; [/SPEC:&lt;tr#&gt;] [src#] Mantksal bir src
+                                                    oluŸturur.
+  /PRIO,/EXTO,/LOGO                        Yukardaki gibi, ama FAT32'den
+                                           ka‡nr.
+  /AUTO [src#]                          Diski otomatik olarak b”lmler.
+  /DELETE {/PRI[:#] | /EXT | /LOG:&lt;b”lm#&gt; Bir b”lm siler.
+           | /NUM:&lt;b”lm#&gt;} [src#] ...mantksal srcler /NUM=5
+                                           de§erinden itibaren baŸlar.
+  /DELETEALL [src#]                     &lt;src#&gt; zerindeki tm
+                                           b”lmleri siler.
+
+Faal b”lmlerin ayarlanmalar:
+  /ACTIVATE:&lt;b”lm#&gt; [src#]       &lt;b”lm#&gt; faal olarak
+                                           ayarlanr.
+  /DEACTIVATE [src#]                    Tm b”lmler devre dŸ
+                                           braklr.
+MBR (Master Boot Record) y”netimi:
+  /CLEARMBR [src#]      Tm b”lmleri ve baŸlatma kodunu siler.
+  /LOADMBR  [src#]      B”lm tablosuyla kodu "boot.mbr" konumundan
+                           MBR'e ykler.
+  /SAVEMBR  [src#]      B”lmler tablosuyla kodu "boot.mbr" dosyasna
+                           kaydeder.
+
+B”lmlere dokunmadan MBR kod de§iŸiklikleri:
+  /IPL      [src#]     Standart baŸlatma kodunu &lt;src#&gt; MBR'na
+                          kurar.
+                          ... /MBR ve /CMBR ile ayn, uyumluluk i‡in.
+  /SMARTIPL [src#]      DriveSmart IPL'i &lt;src#&gt; MBR'na kurar.
+  /LOADIPL  [src#]      MBR'a "boot.mbr" dosyasndan 440 kod bayt
+                           yazar.
+
+GeliŸmiŸ b”lm tablosu de§iŸiklikleri:
+  /MODIFY:&lt;b”lm#&gt;,&lt;tr#&gt; [src#] B”lm trn &lt;tr#&gt;
+                                              olarak de§iŸtirir. ...
+                                              Mantksal srcler "5"
+                                              de§erinden baŸlar.
+  /MOVE:&lt;kaynakb”lm#&gt;,&lt;hedefb”lm#&gt; [src#] Birincil
+                                                          b”lmleri taŸr.
+  /SWAP:&lt;ilkb”lm#&gt;,&lt;ikincib”lm&gt;  [src#] Birincil b”lmler
+                                                     arasnda ge‡iŸ yapar.
+
+Bir sabit disk zerindeki bayraklarn y”netimi:
+  /CLEARFLAG[{:&lt;bayrak#&gt;} | /ALL}] [src#]  &lt;bayrak#&gt; veya
+                                               tm &lt;src#&gt;
+                                               zerinde sfrlanr.
+  /SETFLAG:&lt;bayrak#&gt;[,&lt;de§er&gt;] [src#]  &lt;bayrak#&gt; 1
+                                             veya &lt;de§er&gt; olarak
+                                             ayarlanr.
+  /TESTFLAG:&lt;bayrak#&gt;[,&lt;de§er&gt;] [src#] &lt;bayrak#&gt; 1 ya
+                                            da &lt;de§er&gt; i‡in denenir.
+
+Sabit disklere dair bilgi edinmek i‡in:
+  /STATUS       Gncel b”lm dzenini g”rntler.
+  /DUMP         Tm sabit disklerden b”lm bilgisini d”ker (hata ayklama
+                i‡in).
+
+EtkileŸimli kullanc arayz se‡enekleri:
+  /UI           Son argman olarak girildiyse arayz daima baŸlatlr.
+  /MONO         Kullanc arayzn tek renk kipinde ‡alŸmaya zorlar.
+  /FPRMT        EtkileŸimli kipte FAT32/FAT16 i‡in sorar.
+  /XO           GeniŸletilmiŸ se‡enekleri etkinleŸtirir.
+
+Uyumluluk se‡enekleri:
+  /X            Sonraki komutlar i‡in ext. INT 13 ve LBA'yi devre dŸ
+                brakr.
+</pre>
+<h2>A‡klamalar:</h2>
+<pre>
+  FDISK b”lm oluŸturup sildi§i i‡in onu dikkatli kullanmalsnz. ayet
+  bir sabit diski baŸlatlabilir yapmak istiyorsanz, 'Active' yani faal
+  bayra§n ayarlayp MBR' sabit diske yazmak i‡in 'fdisk /mbr' komutunu
+  ‡alŸtrmay unutmayn. FreeDOS D™RT de§erine dek birincil b”lm
+  destekler. Bir sabit diskte D™RTTEN fazla b”lm oluŸturmak istiyorsanz
+  ”nce azami š€ birincil b”lm oluŸturup B˜R (=azami!) geniŸletilmiŸ b”lm
+  oluŸturmanz, bunun i‡inde de B˜R veya DAHA FAZLA mantksal b”lmler
+  oluŸturmanz gerekir. D”rde kadar farkl b”lmden baŸlatma yapmak i‡in
+  bu b”lmlere sistem kurmanz gerekir (en azndan = "sys c: / d: /e: /
+  f:") ve ardndan fdisk'i ‡alŸtrmanz ve 'Faal' bayra§n baŸka bir
+  birincil b”lme de§iŸtirmeniz gerekir. Mantksal  srclerden baŸlatma
+  YAPAMAZSINIZ!
+  FDISK'in <a href="../batch/errorlvl.htm">hata kodlar (ERRORLEVEL / EXITCODES)</a> Ÿunlardr:
+     0  Programn normal tamamlanmas, hata yok
+     1  S”z dizimi hatas
+     3  fdisk.ini dosyasnda hata
+     4  part.dat dosyasnda hata
+     5  Mevcut olmayan sabit disk
+     6  Tampon atama baŸarszl§
+     7  Sabit disk zaten b”lmlenmiŸ. (Bu sadece "/AUTO" iŸlevi
+        kullanlrsa ve sabit diskte zaten Compaq Diagnostic
+        Partition b”lm dŸnda b”lmler varsa meydana
+        gelir.)
+     8  boot.mbr dosyasndan okuma veya dosyaya yazma hatas.
+     9  €eŸitli hatalar. En iyisi, hatann kesin kayna§n
+        bulmak i‡in ekrana ”zgr FDISK'ten g”nderilen
+        ‡kty okumaktr.
+    20  Bayrak ayarland  (detaylar i‡in /SETFLAG, /TESTFLAG ve
+        /CLEARFLAG se‡eneklerine bakn)
+    21  Bayrak ayarlanmad (yukardaki errorlevel 20'ye bakn)
+</pre>
+<h2>™rnekler:</h2>
+<pre>
+  ™rnek 1:
+  Bir disketin baŸlatlabilir yaplmas, srm 1:
+  Mevcut baŸlatlabilir bir sabit disk veya CD'den:
+    fdisk      (gerekli de§ildir!)
+    format a:  (Disketi bi‡imlendirir ki dosyalar yazlabilsin).
+    sys a:     <a href="../base/kernel.htm">€EK˜RDEK (KERNEL.SYS)</a> ve <a href="../base/command.htm">COMMAND.COM</a>
+               baŸlatlabilir sabit diskiniz veya CD'nizden A:'ya
+               kopyalanr; iŸlemden sonra disket baŸlatlabilir olacaktr.
+  ™rnek 2:
+  Bir disketin baŸlatlabilir yaplmas, srm 2:
+  BaŸlatlmŸ bir disketten (A: srcsnde):
+    fdisk      (gerekli de§ildir!)
+    format b:  (Disketi bi‡imlendirir ki dosyalar yazlabilsin).
+               ˜ki disket srcnz olup olmad§na dayal olarak format
+               komutu B: srcsnde bi‡imlendirme yapar veya sizden A:
+               srcsne yeni bir disket koymanz ister ve
+               bi‡imlendirmeyi orada yapar. ˜Ÿlem tamamland§nda,
+               orijinal disketi yeniden koyun ve Ÿu komutu ‡alŸtrn:
+    sys b:     <a href="../base/kernel.htm">€EK˜RDEK (KERNEL.SYS)</a> ve <a href="../base/command.htm">COMMAND.COM</a>
+               baŸlatlabilir A: disketinizden B:'ye kopyalanacaktr,
+               (format b: ile ayn sre‡) iŸlem tamamland§nda disket
+               baŸlatlabilir olacaktr.
+  ™rnek 3:
+  Bir sabit diskin baŸlatlabilir yaplmas:
+  Mevcut bir baŸlatlabilir disketten veya CD'den:
+    fdisk      (Bu, B˜R veya DAHA FAZLA b”lm oluŸturmanza imkƒn verir,
+               yukarda a‡klanmŸtr; D™RDE kadar birincil b”lm
+               yaratlabilir. (ayet d”rt birincil b”lm oluŸturursanz
+               sabit diskinizin kalan alan kullanlamaz!) Bilgisayar
+               tekrar baŸlatmay unutmayn! Se‡eneksiz ‡alŸtrlan Fdisk
+               bir grafik arayz g”rntler.
+    fdisk      <b>FAAL B™LšMš</b> ayarla (SADECE BU b”m baŸlatma
+               yapabilir, ama bunu di§er ‡ b”lm fdisk ile FAAL yaparak
+               de§iŸtirebilirsiniz (baŸlatma y”neticisi YOKTUR).
+               Bilgisayarnz tekrar baŸlatmay unutmayn!
+    fdisk      BaŸlatma kodunu gncellemek i‡in <b>FDISK /IPL</b>
+               (veya: FDISK /mbr) yazn, ardndan bilgisayarnz tekrar
+               baŸlatmay unutmayn!
+    format c:  Sabit diski C: b”lmne dosya yazlabilmesi i‡in hazrlar.
+               Kullanmak istedi§iniz ve fdisk ile hazrlad§nz tm
+               b”lmler i‡in bunu yapmanz gerekir.
+    sys c:     <a href="../base/kernel.htm">€EK˜RDEK (KERNEL.SYS)</a> ve <a href="../base/command.htm">COMMAND.COM</a>
+               baŸlatlabilir disketinizden veya CD'nizden C:'ye
+               kopyalanr.
+  ™rnek 4:
+    fdisk /info
+</pre>
+<h2>Ayrca baknz:</h2>
+<pre>
+
+  <a href="../base/command.htm">command.com</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-devel</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/sys.htm">sys</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+  <a href="../command/vol.htm">vol</a>
+</pre>
+<hr>
+<pre>
+  <b>Telif hakk &copy; 1998-2023 Brian E. Reifsnyder ve FreeDOS camias,
+  yardm 2023 senesinde by W. Spiegl tarafndan gncellenip Berki Yenign
+  tarafndan tercme edilmiŸtir.</b>
+
+  Bu dosya FreeDOS Spec Command HOWTO'dan tretilmiŸtir.
+  Kopyalama Ÿartlar i‡in <a href="../other/h2cpying.htm">H2Cpying</a> dosyasna bakn.
+</pre>
+<hr>
+</body></html>

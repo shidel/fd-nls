@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: uni2asci</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: uni2asci</h1>
+<pre>
+  <a href="../util/usbdos.htm">USBDOS</a> is a collection of different USB drivers and tools:
+  UNI2ASCI attempts to convert a UniCode String (16-bit characters)
+  into an ASCII String (7-bit characters).
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  UNI2ASCI [Options]
+</pre>
+<h2>Options:</h2>
+<pre>
+  This program attempts to convert a UniCode String (16-bit characters)
+  into an ASCII String (7-bit characters). Because UniCode and ASCII are
+  so different from each other, the translation is not always accurate
+  or complete. In spite of the shortcomings, this program can help
+  you "see" what a UniCode String might be trying to tell you.
+  The UniCode string to be converted must be terminated with a NULL
+  character (0000h), and must be in memory. You must provide UNI2ASCI
+  with the hexadecimal memory address (&num;Segment:&num;Offset) where
+  the UniCode string is stored (for example: "UNI2ASCI 1234:5678").
+  The ASCII output is normally sent to the screen, but can be redirected
+  using standard DOS redirection and piping methods. If running from
+  inside another program (if not running from the command-line), the
+  hexadecimal memory address can be followed with a hexadecimal call-back
+  address to which the output will be written.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  UNI2ASCI is a program that converts Unicode strings into ASCII strings,
+  so that they can be viewed and printed in regular DOS programs. When
+  the screen of the computer is in text mode (which is the case for most
+  DOS programs), each character that is viewed on the screen must be
+  selected from a set of 256 possibilities (8-bit characters). The entire
+  set of 256 possibilities is called a Code Page. The default Code Page
+  that DOS uses is the one for United States English, and is called Code
+  Page 437. There are also several other Code Pages available for DOS,
+  and there are various DOS utilities related to changing and controlling
+  the Code Pages (NLSFUNC, COUNTRY, CHCP, etc.).
+  The ASCII character set is actually limited to 128 characters (7 bits).
+  For each Code Page, the first 128 (of 256 possible) characters
+  correspond directly to the ASCII characters. These include various
+  control characters (escape, carriage return, form feed, etc.), upper-
+  and lower-case letters (a-z), numbers (0-9), and miscellaneous
+  punctuation (periods, commas, parentheses, etc.). The second 128
+  characters of each Code Page are different for each Code Page, but
+  generally include box-drawing characters, accented letters and numbers
+  (characters with acute, grave, diereses, etc.), and miscellaneous other
+  characters. For instance, Code Page 869 is specifically designed for
+  the Greek language, and contains the entire upper- and lower-case Greek
+  alphabet (Code Page 437 contains a few Greek characters, but not the
+  entire Greek alphabet).
+  The Unicode character set allows 20 bits for each character, for a total
+  of 1,048,576 possibilities. This includes support for all kinds of
+  languages that there are no DOS Code Pages for, such as Arabic, Chinese,
+  and Cherokee. 20 bits is an unusual number in the programming world, so
+  the Unicode organization has come up with three different ways of
+  "encoding" Unicode characters: UTF-32, UTF-16, and UTF-8. UTF-32
+  encodes a 20-bit Unicode character into a 32-bit space by simply
+  ignoring the upper 12 bits (making them 0). UTF-16 encodes 20-bit
+  characters into 16 bit words by making certain Unicode characters
+  require 2 16-bit words instead of just one (that is, the length of a
+  single Unicode character is variable). UTF-8 works in a similar
+  fashion, encoding a single 20-bit Unicode character as a variable-
+  length string of 8-bit bytes.
+  In addition to the UTF-8, UTF-16, and UTF-32 encodings, Unicode
+  characters can be encoded either Little-Endian or Big-Endian. Endian-
+  ness comes about because of the way different processors store numbers.
+  Intel-compatible CPU's always store things Little-Endian, while certain
+  other CPU's (such as Motorola) store them Big-Endian. With UTF-8,
+  Endian-ness does not matter. With UTF-16 and UTF-32, there are "sub-
+  categories": UTF-16 LE, UTF-16 BE, UTF-32 LE, and UTF-32 BE.
+  In order to correctly decode a Unicode string, the decoding program (in
+  this case, UNI2ASCI) needs to know how the string is encoded (UTF-8,
+  UTF-16 LE, UTF-16 BE, UTF-32 LE, or UTF-32 BE), or it will not be able
+  to decode it properly. It is usually not possible for a decoding
+  program to determine the encoding scheme automatically. However, if a
+  decoding program knows the number of bits per character in the encoding
+  scheme (UTF-8, UTF-16, or UTF-32), the first character in the string can
+  (but does not need to) contain a special character that will tell the
+  decoding program whether it is Big-Endian or Little-Endian.
+  UNI2ASCI takes a Unicode string that is stored in memory somewhere,
+  decodes it, and displays it on the screen as well as it can. That is,
+  it will take each Unicode character, and if it is similar to a character
+  that can be displayed on the screen using the current DOS Code Page,
+  UNI2ASCI will display it on the screen as that character. If there is
+  no Code Page character that is similar to the Unicode character,
+  UNI2ASCI will display the character as "{U+&num;&num;&num;&num;}", where the &num;&num;&num;&num; is the
+  hexadecimal number of the Unicode character ("U+&num;&num;&num;&num;" is a standard way
+  of expressing Unicode characters in general). If the Unicode character
+  is a Control Character, the hexadecimal number will be displayed along
+  with the common acronym used to describe the control (for example,
+  "{1B=ESC}" for the Escape character). The Unicode character set is
+  divided into "regions", where certain characters (numbers) are Reserved,
+  Private, Illegal, etc. When UNI2ASCI comes across one of these
+  "special" characters, it will display the hexadecimal number of the
+  character along with an appropriate description (e.g.,
+  "{F603=Private}"). You should review the Unicode specification if you
+  want further details on all of this.
+  There are direct relationships between some of the Unicode characters
+  and the Code Page characters. However, there are also many (in some
+  cases, very many) Unicode characters that appear very similar to one of
+  the Code Page characters, even though they are technically not the same.
+  In such cases, UNI2ASCI will still display the character using the Code
+  Page character that it is similar to, rather than simply displaying a
+  "{U+&num;&num;&num;&num;}". Of course, similarity is in the eye of the beholder, and
+  characters that some people believe are "similar" other people may not.
+  I have gone through all of the Unicode version 5.0 characters and found
+  the Code Page characters from Code Page 437 (United States English) that
+  I personally believe they are similar to. It took many, many days to go
+  through all of them, so things that I thought looked similar on one day
+  versus another will not necessarily be consistent (depending on how I
+  felt at the time, the weather, the lighting in the room, and who knows
+  what else).
+  In spite of the inconsistencies, I think UNI2ASCI is a pretty good start
+  to a "universal" Unicode-to-Code-Page conversion program for DOS.
+  However, UNI2ASCI currently only supports UTF-16 LE (which is how all
+  USB-related strings are encoded), and will only decode to Code Page 437
+  (the Code Page that I use). Unless I find myself with a LOT of spare
+  time on my hands (hah!), I will probably not update UNI2ASCI in any
+  significant way, such as supporting other UTF encodings or Code Pages.
+  I would strongly encourage someone who is interested to take UNI2ASCI
+  and "run with it", updating it to include all sorts of new items, and
+  enabling it to be used in all sorts of ways other than USB.
+  To use UNI2ASCI, you must simply provide the memory address (hexadecimal
+  Segment:Offset format) where the Unicode string (UTF-16 LE) is located.
+  The string must end in Unicode character 0. For example:
+    UNI2ASCI 1234:5678
+  The USBSUPT1 program (page 178 above) calls UNI2ASCI to display all
+  Unicode strings that are downloaded from the USB Devices.
+
+  For more information see:
+    <b>https://gitlab.com/FreeDOS/drivers/usbdos/-/tree/master/DOC/DOSUSB</b>
+  OR:
+    <b>C:\FREEDOS\DOC\usbintro.doc</b> (too big for edit!)
+  OR:
+    <b>https://bretjohnson.us/</b>
+</pre>
+<h2>Examples:</h2>
+<pre>
+  - see examples above -
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../util/boundtst.htm">boundtst</a>
+  <a href="../util/drives.htm">drives</a>
+  <a href="../util/hidsupt1.htm">hidsupt1</a>
+  <a href="../util/inklevel.htm">inklevel</a>
+  <a href="../util/irq.htm">irq</a>
+  <a href="../util/ps2mtest.htm">ps2mtest</a>
+  <a href="../util/scantest.htm">scantest</a>
+  <a href="../util/thrust.htm">thrust</a>
+  <a href="../util/usbdevic.htm">usbdevic</a>
+  <a href="../util/usbdos.htm">usbdos</a>
+  <a href="../util/usbdrive.htm">usbdrive</a>
+  <a href="../util/usbhosts.htm">usbhosts</a>
+  <a href="../util/usbhub.htm">usbhub</a>
+  <a href="../util/usbjstik.htm">usbjstik</a>
+  <a href="../util/usbkeyb.htm">usbkeyb</a>
+  <a href="../util/usbmouse.htm">usbmouse</a>
+  <a href="../util/usbprint.htm">usbprint</a>
+  <a href="../util/usbsupt1.htm">usbsupt1</a>
+  <a href="../util/usbuhci.htm">usbuhci</a>
+  <a href="../util/usbuhcil.htm">usbuhcil</a>
+  <a href="../util/vendorid.htm">vendorid</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007-2009, Bret E. Johnson</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

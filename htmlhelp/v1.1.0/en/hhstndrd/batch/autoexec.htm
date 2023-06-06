@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: autoexec.bat / fdauto.bat</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: autoexec.bat / fdauto.bat</h1>
+<pre>
+  AUTOEXEC.BAT is a batch file that is run AUTOMATICALLY when FreeDOS
+  starts. (Exception: <a href="../cnfigsys/shell.htm">SHELL / SHELLHIGH</a> is loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS /</a>
+  <a href="../cnfigsys/index.htm">FDCONFIG.SYS</a>), then you have to load it there, see example in
+  <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a>). FDAUTO.BAT does NOT start automatically,
+  you have to add it via <a href="../cnfigsys/shell.htm">SHELL / SHELLHIGH</a> /p.
+  FreeDOS also accepts other .bat names instead of AUTOEXEC.BAT.
+  Batch files are text files, but with the .bat file extension. They can
+  be created or edited with a text editor such as <a href="../base/edit.htm">EDIT</a> or <a href="../base/edlin.htm">EDLIN</a>.
+  To run a batch file, simply type its name at the DOS prompt, with or
+  without the .bat extension.
+  AUTOEXC.BAT must ALWAYS be in the root directory of the boot media.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  - none - simply copy AUTOEXEC.BAT / FDAUTO.BAT into the root directory.
+  (A:\ or C:\).
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  FreeDOS also accepts other .bat names instead of AUTOEXEC.BAT
+  that can be started automatically, e.g. FDAUTO.BAT. You have to
+  load it in in <a href="../cnfigsys/index.htm">CONFIG.SYS / FDCONFIG.SYS</a> e.g:
+  "SHELL=DRIVE:\PATH\command.com /p=DRIVE:\PATH\FDAUTO.bat" OR:
+  "SHELLHIGH=DRIVE:\PATH\command.com /p=DRIVE:\PATH\FDAUTO.bat"
+  Many FreeDOS fans use "FDAUTO.BAT" instead of "AUTOEXEC.BAT".
+  You can use AUTOEXEC.BAT to load different .com and .exe drivers,
+  e.g. keyboard driver, mouse driver, CD-ROM driver and so on,
+  but can you also use the commands that are internal to command.com.
+  Several of these internal commands are for special use in BATCH files,
+  e.g. beep, call, choice, cls, echo, for, goto, if, lh, loadhigh, path,
+  prompt, pause, prompt, rem, set and shift.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  In CONFIG.SYS / FDCONFIG.SYS:
+    ...
+    SHELL=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+         /P=C:\FDAUTO.BAT
+
+  In AUTOEXEC.BAT / FDAUTO.BAT (example with german settings):
+    SET LANG=DE
+    SET PATH=C:\;C:\FREEDOS\BIN
+    SET NLSPATH=C:\FREEDOS\NLS
+    SET HELPPATH=C:\FREEDOS\HELP
+    ALIAS reboot=fdapm warmboot
+    ALIAS shutdown=fdapm poweroff
+    LH display con=(EGA,,1)
+    mode con cp prep=((858) C:\FREEDOS\BIN\CPI\ega.cpx
+    mode con cp sel=858
+    mode con cp refresh
+    lh C:\freedos\bin\mkeyb.exe gr
+    lh C:\freedos\bin\ctmouse.exe
+    lh C:\freedos\bin\dz.exe        (starts doszip)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/index.htm">alias</a>         <a href="../batch/index.htm">batch files</a>   <a href="../batch/beep.htm">beep</a>          <a href="../batch/call.htm">call</a>           <a href="../batch/choice.htm">choice</a>
+  <a href="../batch/cls.htm">cls</a>           <a href="../cnfigsys/index.htm">config.sys</a>    <a href="../command/index.htm">command.com</a>   <a href="../batch/echo.htm">echo</a>          <a href="../base/edit.htm">edit</a>
+  <a href="../base/edlin.htm">edlin</a>         <a href="../cnfigsys/index.htm">fdconfig.sys</a>  <a href="../batch/for.htm">for</a>           <a href="../batch/goto.htm">goto</a>          <a href="../batch/if.htm">if</a>
+  <a href="../batch/lh.htm">lh</a>            <a href="../batch/lh.htm">loadhigh</a>      <a href="../batch/path.htm">path</a>          <a href="../batch/pause.htm">pause</a>         <a href="../batch/prompt.htm">prompt</a>
+  <a href="../batch/rem.htm">rem</a>           <a href="../batch/set.htm">set</a>           <a href="../cnfigsys/shell.htm">shell</a>         <a href="../cnfigsys/shell.htm">shellhigh</a>     <a href="../batch/shift.htm">shift</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2007 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

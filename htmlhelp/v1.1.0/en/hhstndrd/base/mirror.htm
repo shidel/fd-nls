@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: mirror</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: mirror</h1>
+<pre>
+  MIRROR records information about the disk, such as the boot sector,
+  file allocation table and root directory for possible data recovery
+  via <a href="../base/unformat.htm">UNFORMAT</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  MIRROR [drive]
+  MIRROR [/PARTN]
+  MIRROR [/?]
+</pre>
+<h2>Options:</h2>
+<pre>
+  drive   Saves <a href="../base/unformat.htm">UNFORMAT</a> information
+          to the end of drive &num;. FAT32 is NOT supported.
+  /PARTN  Saves the partition tables to a:\partnsav.fil for future.
+          Recovery is possible via <a href="../base/unformat.htm">UNFORMAT</a> /PARTN.
+  /P      Same as /PARTN.
+  /?      Shows the help.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  MIRROR stores a copy of the boot sector, 1 FAT table and the root
+  directory in a "storage location" near the end of the disk.
+  The space used by the mirror image is marked as reserved in the FAT
+  tables, if necessary. (Currently works only on FAT-16 file systems.)
+  By using the /PARTN switch with the mirror command you can
+  save a backup of the partition tables to a partnsav.fil on
+  the a: drive.
+  Note: The mirror image created by this program is only recoverable
+  by using the <a href="../base/unformat.htm">UNFORMAT</a> program for FreeDOS.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  mirror d:      (FAT32 is NOT supported.)
+  mirror /partn  (Saves Backup to A:\partnsav.fil)
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2008, updated in 2022 W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

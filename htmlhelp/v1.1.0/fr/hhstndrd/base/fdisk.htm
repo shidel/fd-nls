@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<title>Commande FreeDOS : fdisk</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Commande : fdisk</h1>
+<pre>
+  FDISK crÇÇ une ou plusieurs partitions sur un disque dur. Apräs quoi,
+  les partitions peuvent àtre <a href="../base/format.htm">formatÇes</a>
+  et seront pràtes Ö l'emploi avec FreeDOS. Pour les rendre amoráables,
+  vous pourriez avoir Ö rÇgler une  'partition active' et Ö exÇcuter
+  'fdisk /ipl' (ou : 'fdisk /mbr') et 'sys c:'.
+  FDISK n'est pas nÇcessaire pour les disquettes !
+</pre>
+<h2>Syntaxe :</h2>
+<pre>
+  FDISK [argument]...
+  pas d'arguments  Fonctionne en mode interactif.
+  /INFO [lecteur#] Affiche les informations de partition du &lt;lecteur#>.
+  /REBOOT          RedÇmarre l'ordinateur.
+</pre>
+<h2>Options :</h2>
+<pre>
+  Commandes pour crÇer et effacer des partitions :
+  &lt;taille&gt;  est un chiffre pour les mÇgaoctets ou MAX pour la taille
+          maximale ou &lt;chiffre&gt;,100 pour &lt;chiffre&gt; en
+          pourcentage.
+  &lt;type#&gt; est un type de partition numÇrique ou FAT-12/16/32 si
+          /SPEC n'est pas fourni.
+
+  /PRI:&lt;taille&gt; [/SPEC:&lt;type#&gt;] [lecteur#] CrÇe une partition
+                                                       primaire.
+  /EXT:&lt;taille&gt; [lecteur#]                 CrÇe une partition DOS
+                                                 Çtendue.
+  /LOG:&lt;taille&gt; [/SPEC:&lt;type#&gt;] [lecteur#] CrÇe un lecteur
+                                                       logique.
+  /PRIO,/EXTO,/LOGO                        Identique Ö ci-dessus, mais
+                                           Çvite le FAT32.
+  /AUTO [lecteur#]                         Partitionne automatiquement le
+                                           disque.
+  /DELETE {/PRI[:#] | /EXT | /LOG:&lt;part#&gt;  Efface une partition.
+           | /NUM:&lt;part#&gt;} [drive#]        ...le lecteur logique
+                                           dÇmarre Ö /NUM=5.
+  /DELETEALL [lecteur#]                    Efface toutes les partitions du
+                                           &lt;lecteur#&gt;.
+
+DÇfinition des partitions actives :
+  /ACTIVATE:&lt;partition#&gt; [lecteur#]        DÇfinit la &lt;partition#&gt;
+                                                 active.
+  /DEACTIVATE [lecteur#]                  DÇsactive toutes les partitions.
+
+Gestion MBR (Master Boot Record, zone amorce) :
+  /CLEARMBR [lecteur#]    Efface toutes les partitions et le code
+                          d'amoráage.
+  /LOADMBR  [lecteur#]    Charge la table des partitions et le code depuis
+                          "boot.mbr" vers le MBR.
+  /SAVEMBR  [lecteur#]    Sauvegarde la table des partitions et le code
+                          dans le fichier "boot.mbr".
+
+Modifications de code MBR laissant les partitions intactes :
+  /IPL      [lecteur#]    Installe le code d'amoráage standard sur le
+                          &lt;lecteur#&gt; MBR.
+                          ...Identique Ö /MBR et /CMBR pour la
+                          compatibilitÇ.
+  /SMARTIPL [lecteur#]      Installe l'IPL DriveSmart sur le &lt;lecteur#&gt;
+                          MBR.
+  /LOADIPL  [lecteur#]    êcrit 440 octets de code depuis "boot.mbr" vers
+                          le MBR.
+
+Modification avancÇe de la table des partitions :
+  /MODIFY:&lt;part#&gt;,&lt;type#&gt; [lecteur#]         Change le type de
+                                        partition en &lt;type#&gt;. ...
+                                        Les lecteurs logiques dÇmarrent Ö
+                                        "5".
+  /MOVE:&lt;srcpart#&gt;,&lt;destpart#&gt; [lecteur#] DÇplace les
+                                                     partitions primaires.
+  /SWAP:&lt;1erepart#&gt;,&lt;2ndepart#&gt; [lecteur#] êchange les
+                                                     partitions primaires.
+
+Gestion des indicateurs sur un disque dur :
+  /CLEARFLAG[{:&lt;indicateur#&gt;} | /ALL}] [lecteur#] RÇinitialise
+                      l'&lt;indicateur#&gt; ou bien tout sur le &lt;lecteur#&gt;.
+  /SETFLAG:&lt;indicateur#&gt;[,&lt;valeur&gt;] [lecteur#] DÇfinit
+                     l'&lt;indicateur#&gt; en 1 ou bien en &lt;valeur&gt;.
+  /TESTFLAG:&lt;indicateur#&gt;[,&lt;valeur&gt;] [lecteur#] Teste
+              l'&lt;indicateur#&gt; pour 1 ou bien pour la &lt;valeur&gt;.
+
+Obtention d'informations sur les disques durs :
+  /STATUS       Affiche la disposition de partition actuelle.
+  /DUMP         DÇcharge les informations de partition de tous les disques
+                durs (pour le dÇbogage).
+
+Commutateurs de l'interface utilisateur interactif :
+  /UI           DÇmarre toujours l'IU si fourni comme dernier argument.
+  /MONO         Force l'interface utilisateur Ö fonctionner en monochrome.
+  /FPRMT        Affiche une invite pour FAT32/FAT16 en mode interactif.
+  /XO           Active les options Çtendues.
+
+Options de compatibilitÇ :
+  /X            DÇsactive ext. INT 13 et LBA pour les commandes suivantes.
+</pre>
+<h2>Commentaires :</h2>
+<pre>
+  Comme FDISK crÇe / efface des partitions, vous devriez l'utilisez avec
+  prudence. Si vous souhaitez rendre un disque dur amoráable, n'oubliez
+  pas de rÇgler l'indicateur 'Actif' et d'exÇcuter 'fdisk /mbr' pour
+  Çcrire le MBR sur le disque dur. FreeDOS prend en charge jusqu'Ö QUATRE
+  partitions primaires. Si vous souhaitez crÇer plus de QUATRE partitions
+  sur un disque dur vous devriez d'abord crÇer un maximum de TROIS
+  partitions primaires, puis ajouter UNE (=au maximum !) partition Çtendue
+  et Ö l'intÇrieur de cette partition UNE ou DAVANTAGE de partitions
+  logiques.
+  Pour pouvoir amorcer depuis jusqu'Ö quatre partitions diffÇrentes, vous
+  devez installer un systäme sur ces partitions (au minimum = "sys c: /
+  d: /e: / f:") et ensuite exÇcuter fdisk puis modifier l'indicateur
+  'Actif' vers une autre partition primaire. Vous ne pouvez PAS amorcer
+  depuis les lecteurs logiques !
+FDISK a les  <a href="../batch/errorlvl.htm">NIVEAUX D'ERREURS / CODES DE SORTIE</a> suivants :
+     0  Fin normal du programme, pas d'erreur
+     1  Erreur de syntaxe
+     3  Erreur dans le fichier fdisk.ini
+     4  Erreur dans le fichier part.dat
+     5  Disque dur inexistant
+     6  êchec de l'allocation de tampon
+     7  Disque dur dÇjÖ partitionnÇ. (Cela n'est retournÇ que si
+        la fonction "/AUTO" est utilisÇe et qu'il existe dÇjÖ des
+        partitions autres qu'une partition de diagnostic Compaq
+        sur le disque dur.)
+     8  Erreur de lecture depuis ou d'Çcriture sur le fichier boot.mbr.
+     9  Erreur diverse. Il vaut mieux examiner la sortie affichÇe
+        sur l'Çcran depuis FDISK libre pour dÇterminer la cause
+        exacte du probläme.
+    20  L'indicateur n'a pas ÇtÇ dÇfini (cf. /SETFLAG, /TESTFLAG et
+        /CLEARFLAG pour les dÇtails)
+    21  L'indicateur n'a pas ÇtÇ dÇfini (cf. le niveau d'erreur 20
+        ci-dessus)
+</pre>
+<h2>Exemples :</h2>
+<pre>
+  Exemple 1 :
+  Rendre une disquette amoráable, version 1 :
+  Depuis un disque dur ou une disquette amoráable :
+    fdisk     (n'est pas nÇcessaire !)
+    format a: (Formate la disquette pour que des fichiers puissent àtre
+              Çcrits).
+    sys a:    Le <a href="../base/kernel.htm">NOYAU (KERNEL.SYS)</a> et <a href="../base/command.htm">COMMAND.COM</a>
+              seront copiÇs depuis votre disque dur ou disquette amoráable
+               vers A:; apräs l'exÇcution la disquette sera amoráable.
+  Exemple 2 :
+  Rendre une disquette amoráable, version 2 :
+  Depuis une disquette amorcÇe (dans le lecteur A:) :
+    fdisk     (n'est pas nÇcessaire !)
+    format b: (Formate la disquette pour que des fichiers puissent àtre
+              Çcrits). En fonction de la prÇsence d'un ou bien deux
+              lecteurs de disquettes, la commande format formate sur le
+              lecteur B: ou vous demande d'insÇrer une nouvelle disquette
+              dans le lecteur A: et effectue le formatage. Lorsque cela
+              est terminÇ, insÇrez la disquette originale Ö nouveau,
+              puis entrez :
+    sys b:    Le <a href="../base/kernel.htm">NOYAU (KERNEL.SYS)</a> et <a href="../base/command.htm">COMMAND.COM</a>
+              seront copiÇs depuis votre disquette amoráable A: vers B:,
+              (procÇdure indique Ö format b:) apräs l'exÇcution la
+              disquette sera amoráable.
+  Exemple 3 :
+  Rendre un disque dur amoráable :
+  Depuis une disquette amoráable ou depuis un CD :
+    fdisk      (Cela vous permet de crÇer UNE ou PLUS de partitions, cf.
+               ci-dessus ; jusqu'Ö QUATRE partitions primaires peuvent
+               àtre crÇÇes.
+               (Si vous crÇez quatre partitions primaires l'espace restant
+               de votre disque dur ne peut àtre utilisÇ !) N'oubliez pas
+               de redÇmarrer !
+               Fdisk sans options affiche une interface utilisateur
+               graphique.
+    fdisk      DÇfinit la <b>PARTITION ACTIVE</b> (seule cette partition
+               peut amorcer, mais vous pouvez changer cela en rendant
+               ACTIVE l'une des trois autres partitions primaires (il n'y
+               a PAS de gestionnaire d'amoráage) avec fdisk. N'oubliez pas
+               de redÇmarrer votre ordinateur !
+    fdisk      Tapez <b>FDISK /IPL</b> (ou : FDISK /mbr) pour mettre Ö
+               jour le code d'amoráage, puis n'oubliez pas de redÇmarrer !
+    format c:  PrÇpare le disque dur pour que les fichiers puissent àtre
+               Çcrits sur la partition C:. Vous devez le faire pour toutes
+               les partitions que vous souhaitez utiliser et que vous avez
+               prÇparÇ avec fdisk.
+    sys c:     Le <a href="../base/kernel.htm">NOYAU (KERNEL.SYS)</a> et <a href="../base/command.htm">COMMAND.COM</a>
+               seront copiÇs depuis la disquette ou CD amoráable vers C:
+  Exemple 4 :
+    fdisk /info
+</pre>
+<h2>Voir Çgalement :</h2>
+<pre>
+
+  <a href="../base/command.htm">command.com</a>
+  <a href="../batch/errorlvl.htm">errorlevel/exitcode</a>
+  <a href="../base/format.htm">format</a>
+  <a href="../base/kernel.htm">kernel</a>
+  <a href="../base/krnl-dvl.htm">kernel-devel</a>
+  <a href="../base/label.htm">label</a>
+  <a href="../base/mirror.htm">mirror</a>
+  <a href="../base/sys.htm">sys</a>
+  <a href="../base/undelete.htm">undelete</a>
+  <a href="../base/unformat.htm">unformat</a>
+  <a href="../command/vol.htm">vol</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 1998-2023 Brian E. Reifsnyder et la communautÇ FreeDOS,
+  l'aide Ö ÇtÇ actualisÇe en 2023 par W. Spiegl et traduit par Berki
+  YenigÅn.</b>
+
+  Ce fichier est dÇrivÇ de FreeDOS Spec Command HOWTO.
+  Voyez le fichier <a href="../other/h2cpying.htm">H2Cpying</a> pour les conditions de copie.
+</pre>
+<hr>
+</body></html>

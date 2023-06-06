@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FreeDOS command: uide.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: uide.sys</h1>
+<pre>
+  UIDE.SYS is a DOS "Universal IDE" caching driver, which
+  supports IDE and SATA-HDs, CD and DVD.
+  UIDE.SYS has to be loaded in <a href="../cnfigsys/index.htm">CONFIG.SYS</a> / <a href="../cnfigsys/index.htm">FDCONFIG.SYS</a>.
+  When FreeDOS is already running, you can load UIDE.SYS
+  later with <a href="../base/devload.htm">DEVLOAD</a>.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  DEVICE = [path] UIDE.SYS [/A] [/B] [/D:DeviceNm] [/E] [/H] [/N1]
+           [/N2] [/N3] [/N4] [/Q] [/Rnn] [/Snnnn] [/UX] [/Z]
+  DEVICEHIGH = [path] UIDE.SYS [/A] [/B] [/D:DeviceNm] [/E] [/H] [/N1]
+               [/N2] [/N3] [/N4] [/Q] [/Rnn] [/Snnnn] [/UX] [/Z]
+</pre>
+<h2>Options:</h2>
+<pre>
+  UIDE usually needs only a /H switch to use HMA space and a /S switch to
+  specify its cache size. All UIDE switches are as follows:
+  /A    Requests "alternate" addressing for "legacy" IDE controllers,
+        01E8h/0168h for the first one, 01F0h/0170h for the second.
+        /A is rarely needed. Without /A, the first "legacy" con-
+        troller will use 01F0h/0170h and a second uses 01E8h/0168h
+        as is usual for PC mainboards.
+  /B    Requests a "basic" UltraDMA driver for disks and CDs/DVDs, no
+        caching nor diskette handling. The /B driver can request
+        128K of XMS for an UltraDMA I-O buffer, and it can load in
+        the HMA.
+  /D:   Specifies the "device name" used by the CD/DVD Redirector to
+        access CD/DVD drives, e.g. /D:CDROM1 /D:SANYO1 etc.
+        If /D: is omitted, or the name following a /D: is missing
+        or invalid, UDVD1 is set by default.
+  /E    Makes the driver call the BIOS for any hard disk I-O request.
+        /E avoids setup trouble on some DOS emulators (VirtualBox,
+        etc.) that do not emulate all PC hardware logic! /E also
+        allows using hard disks on 1994 or older PCs which have no
+        UltraDMA or no PCI/EDD BIOS. /E still caches disk data,
+        unlike /N1 that removes ALL disk logic! If /B is given,
+        /E is ignored.
+
+  NOTE:
+  Using /E on protected-mode systems (JEMM386 etc.) may LOSE
+  much speed, as a newer BIOS may omit "Virtual DMA" support
+  and force disks to run in PIO mode! If /E is required, a
+  DOS system should run in real-mode (UMBPCI, etc.) whenever
+  possible.
+  /H    Puts most of the driver in "free HMA" space. To use /H, the
+        driver must load from FDAUTO.BAT (not FDCONFIG.SYS), since
+        FreeDOS provides no "free HMA" until FDAUTO is run.
+  /N1   Requests NO hard-disk handling by the driver.
+  /N2   Requests NO CD/DVD handling by the driver.
+  /N3   Requests no XMS memory. /N3 sets UIDE's /B "basic" driver.
+        /N3 requires loading in LOW memory, or UIDE aborts! /N3
+        can LOSE much speed, as misaligned or other I-O unsuitable
+        for UltraDMA requires calling the BIOS for a disk or using
+        PIO-mode for CD/DVD drives!
+  /N4   See /Z below.
+  /Q    Awaits "data request" before starting UltraDMA I-O transfers.
+        /Q is rarely needed, only for old systems where the driver
+        loads O.K. but seems unable to transfer data. /Q is NOT
+        for use with Sabrent or other SATA-to-IDE adapters that do
+        not emulate "data request"!
+  /R15  "Reserves" 15-MB or 63-MB of XMS, for old DOS "game" programs
+  /R63  which require XMS memory below 16- or 64-MB. The drivers
+        must be able to reserve this memory, reserve their own XMS
+        memory beyond that, and then "free" the 15/63-MB XMS. If
+        not, the drivers display "XMS init error" and abort! /R
+        for UDVD2 is ignored if it loads after UHDD, as UDVD2 will
+        then "share" UHDD's XMS memory.
+  /Snn  Specifies the desired cache size, in megabytes of XMS memory.
+        Values for /S can be 5, 10, 15 or any number from 20 thru
+        4093 (4 Gigabytes). When /S is omitted/invalid, a 20-MB
+        cache is set. UIDE displays "XMS init error" and aborts,
+        if not-enough XMS memory is free! If so, a smaller cache
+        must be requested.
+  /UX   Disables all CD/DVD UltraDMA, even for units that can do it.
+        All CD/DVD data input then uses PIO-mode. /UX is rarely
+        needed, only for odd drives that do not obey ATAPI rules.
+        /UX does not affect hard disks.
+  /Z    Moves protected-mode XMS data in 8K blocks (not 64K) for 486+
+        CPUs and 4K blocks for slower 386 CPUs. With JEMM386, /Z
+        is unneeded. When other EMM/VCPI/DPMI drivers are used,
+        PCs must be tested to find if /Z is needed. BAD schemes,
+        that allow not-enough interrupts during an XMS move, could
+        still be in use!
+  For all switches, a dash may replace the slash and lower case letters
+  may be used if desired.
+</pre>
+<h2>Comments:</h2>
+<pre>
+  UIDE is an Open Source DOS disk caching driver for a PC system with an
+  80386+ CPU and using FreeDOS. It traps BIOS "Int 13h" I-O and caches
+  data for up to 22 BIOS disks of any size on up to 9 "Legacy" and Native
+  PCI SATA/IDE controllers. It calls the BIOS to run A: or B: diskettes
+  and caches data for other Int 13h drivers which load first. UIDE also
+  runs up to 4 CD/DVD drives, including old PIO-mode types (no UltraDMA),
+  and caches their data files and directories for FAR faster speed (audio
+  or trackwriting is uncached). UIDE's cache is in XMS memory and holds
+  up to 4 Gigabytes of data. Its /B switch also sets a "basic" UltraDMA
+  disk driver (no cache) which can use 128K of XMS to buffer I-O unsuited
+  to UltraDMA. The basic UIDE is for tests and other non-cached work.
+</pre>
+<h2>Examples:</h2>
+<pre>
+  A)  Small real-mode systems that need only XMS may use this FDCONFIG.SYS
+      example file:
+          ..
+          ..
+        DOS=HIGH
+        DEVICE=C:\FREEDOS\BIN\XMGR.SYS
+          ..
+          ..  Etc.
+          ..
+  B)  Real-mode systems with V3.70+ UMBPCI and XMGR do not need the LOWDMA
+      driver, as XMGR sets an "I-O Catcher" for UMBPCI. This scheme uses
+      NO low memory, if /W is given; XMGR and other drivers go directly to
+      UMBPCI "Shadow RAM" upper memory! An example FDCONFIG.SYS file is:
+          ..
+          ..
+        DOS=HIGH,UMB
+        DOSDATA=UMB
+        DEVICE=C:\FREEDOS\BIN\UMBPCI.SYS
+        DEVICE=C:\FREEDOS\BIN\XMGR.SYS /W
+          ..
+          ..  Etc.
+          ..
+  C)  A protected-mode system with XMGR and JEMM386 can use XMGR's "boot",
+      taking only 384 low memory bytes as its 32-entry "XMS Handles" table
+      (used early by JEMM386). An example FDCONFIG.SYS file is:
+          ..
+          ..
+        DOS=HIGH,UMB
+        DOSDATA-UMB
+        DEVICE=C:\FREEDOS\BIN\XMGR.SYS /B /N32     ;32 Handle XMGR "boot"
+        DEVICE=C:\FREEDOS\BIN\JEMM386.EXE I=B000-B7FF ...
+        DEVICEHIGH=C:\FREEDOS\BIN\XMGR.SYS         ;Loads the runtime XMGR
+          ..
+          .. Etc.
+          ..
+  When all above drivers are loaded, other needed FDCONFIG.SYS files such
+  as SETVER, ANSI.SYS, etc. can then load in any desired order.
+  For each of the above examples, FDAUTO.BAT can then load UHDD and UDVD2
+  (or just UIDE) using the DEVLOAD program. This permits the drivers to
+  use "free HMA" and save low memory. UDVD2 must load after UHDD, so it
+  will find UHDD in memory and "link" to it for CD/DVD data file caching.
+  Example FDAUTO command lines are:
+          ..
+          ..  Int 13h drivers cached thru UHDD/UIDE
+          ..  load now and can load in upper memory.
+          ..
+        DEVlOAD /H C:\FREEDOS\BIN\UHDD.SYS /S500 /H /O     ;Or UIDE alone
+        DEVLOAD /H C:\FREEDOS\BIN\UDVD2.SYS /D:BLURAY1 /H
+        LH C:\FREEDOS\BIN\RDISK.COM /S250                  ;Optional
+          ..
+          ..  Etc.
+          ..
+</pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../batch/autoexec.htm">autoexec.bat/fdauto.bat</a>
+  <a href="../cnfigsys/index.htm">config.sys/fdconfig.sys</a>
+  <a href="../cnfigsys/device.htm">device/devicehigh</a>
+  <a href="../base/devload.htm">devload</a>
+  <a href="../cnfigsys/dos.htm">dos</a>
+ (<a href="../base/fdxms.htm">fdxms</a>)
+ (<a href="../base/fdxms286.htm">fdxms286</a>)
+ (<a href="../base/gcdrom.htm">gcdrom.sys</a>)
+  <a href="../base/himemx.htm">himemx</a>
+  <a href="../base/jemm386.htm">jemm386</a>
+  <a href="../base/jemmex.htm">jemmex</a>
+  <a href="../cnfigsys/lastdrv.htm">lastdrive/lastdrivehigh</a>
+ (<a href="../base/mscdex.htm">mscdex</a>)
+  <a href="../base/rdisk.htm">rdisk</a>
+  <a href="../base/rdiskon.htm">rdiskon</a>
+  <a href="../base/shsucdx.htm">shsucdx</a>
+  <a href="../base/tdsk.htm">tdsk</a>
+  <a href="../base/udvd2.htm">udvd2.sys</a>
+  <a href="../base/uhdd.htm">uhdd.sys</a>
+  <a href="../base/xdvd2.htm">xdvd2.sys</a>
+  <a href="../base/xhdd.htm">xhdd.sys</a>
+  <a href="../base/xmgr.htm">xmgr.sys</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2007-2021 Jack Ellis, updated 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>

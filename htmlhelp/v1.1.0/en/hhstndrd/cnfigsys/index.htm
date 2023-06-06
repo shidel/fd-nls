@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>FreeDOS command: config.sys / fdconfig.sys</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"><link rel="stylesheet" type="text/css" href="../other/fdhelp.css">
+</head>
+<body>
+<h1>Command: config.sys / fdconfig.sys</h1>
+<pre>
+  FreeDOS reads the CONFIG.SYS / FDCONFIG.SYS file at startup to
+  configure the DOS system. It is read before the <a href="../batch/autoexec.htm">AUTOEXEC.BAT /</a>
+  <a href="../batch/autoexec.htm">FDAUTO.BAT</a> file is run.
+  FreeDOS first tries to use FDCONFIG.SYS first (and ignores CONFIG.SYS).
+  If FDCONFIG.SYS does not exist, FreeDOS will use CONFIG.SYS instead.
+  CONFIG.SYS / FDCONFIG.SYS are text files. They can be created
+  or edited with a text editor such as <a href="../base/edit.htm">EDIT</a> or <a href="../base/edlin.htm">EDLIN</a>.
+  CONFIG.SYS / FDCONFIG.SYS must ALWAYS be in the root directory
+  of the boot media.
+</pre>
+<h2>Syntax:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Options:</h2>
+<pre>
+  - none -
+</pre>
+<h2>Comments:</h2>
+<pre>
+  When booting DOS, you will find it only supports a subset
+  of the devices available on many computers. To support
+  additional devices and advanced features, device specific
+  driver and memory resident software must be loaded. This
+  allows the kernel to be easily extended to support hardware
+  not presently available and take better advantage of installed
+  hardware without wasting resources on computers lacking it.
+  This software is generally loaded during the kernel initialization
+  phase, with details describing what to load expressed in the
+  file CONFIG.SYS. The FreeDOS kernel will first look for a
+  file named FDCONFIG.SYS, should it exist, it will be used
+  instead of CONFIG.SYS; this allows the FreeDOS kernel to coexist
+  and be configured differently than another DOS kernel. There are
+  additional options available to adjust other aspects of the kernel's
+  behaviour.
+  There is a special set of commands for use in the CONFIG.SYS /
+  FDCONFIG.SYS file, see the links below.
+  DOS prompt and <a href="../batch/index.htm">BATCH FILE</a> commands generally cannot be used in
+  CONFIG.SYS / FDCONFIG.SYS. See also the <a href="../cnfigsys/menu.htm">MENU</a> command.
+  If you press "F5" while booting up the system, CONFIG.SYS /
+  FDCONFIG.SYS and <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a> commands are ignored.
+  This is helpful if you have a driver installed which crashes
+  while booting up the system. With this option you can repair
+  a system by removing the crashing driver / command from
+  CONFIG.SYS / FDCONFIG.SYS or <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a>.
+  If you press "F8" while booting up the system, each command in
+  CONFIG.SYS / FDCONFIG.SYS and in <a href="../batch/autoexec.htm">AUTOEXEC.BAT / FDAUTO.BAT</a> has to be
+  confirmed with "yes" or "no". This is helpful if you want to
+  find out which driver crashes.
+</pre>
+<h2>Examples:</h2>
+
+<h3>Simple example for german settings (Load FreeDOS with JEMM386,</h3>
+<h3>(no EMX, max RAM free, modified from FreeDOS 1.3 live HD):</h3>
+<pre>
+    SET DOSDIR=C:\FREEDOS
+    COUNTRY=049,858,C:\FREEDOS\BIN\country.sys (german setting)
+    LASTDRIVE=W
+    BUFFERS=20
+    FILES=40
+    DOS=HIGH
+    DOS=UMB
+    DOSDATA=UMB
+    DEVICE=C:\FREEDOS\BIN\himemx.exe
+    DEVICE=C:\FREEDOS\BIN\jemm386.exe NOEMS X=TEST I=TEST I=B000-B7FF
+           NOVME NOINVLPG
+    SHELLHIGH= C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+           /P=C:\FDAUTO.BAT
+</pre>
+<h3>Same example for german settings with a menu:</h3>
+<pre>
+    !SET DOSDIR=C:\FREEDOS
+    !COUNTRY=049,858,C:\FREEDOS\BIN\country.sys (german setting)
+    !LASTDRIVE=W
+    !BUFFERS=20
+    !FILES=40
+    !MENUCOLOR=7,0
+
+    MENUDEFAULT=1,5
+    MENU 1 - Load FreeDOS with JEMM386 (no EMS, max RAM free)
+    MENU 2 - Load FreeDOS with JEMM386 (Expanded Memory)
+    MENU 3 - Load FreeDOS low with some drivers (Safe Mode)
+    MENU 4 - Load FreeDOS without drivers (Emergency Mode)
+
+    12?DOS=HIGH
+    12?DOS=UMB
+    12?DOSDATA=UMB
+    123?DEVICE=C:\FREEDOS\BIN\himemx.exe
+    1?DEVICE=C:\FREEDOS\BIN\jemm386.exe NOEMS X=TEST I=TEST I=B000-B7FF
+             NOVME NOINVLPG
+    2?DEVICE=C:\FREEDOS\BIN\jemm386.exe X=TEST I=TEST I=B000-B7FF NOVME
+             NOINVLPG
+    34?SHELL=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+             /P=C:\FDAUTO.BAT
+    12?SHELLHIGH=C:\FREEDOS\BIN\command.com C:\FREEDOS\BIN /E:1024
+             /P=C:\FDAUTO.BAT
+
+  Note:
+  SHELL / SHELLHIGH indicates the shell to use; often used to alter
+  COMMAND.COM's behavior. It is command.com that processes AUTOEXEC.BAT /
+  FDAUTO.BAT; by using the SHELL option you have to choose which
+  XY.BAT / AUTOEXEC.BAT / FDAUTO.BAT you want to use.
+  </pre>
+<h2>See also:</h2>
+<pre>
+  <a href="../cnfigsys/semico.htm">; (semicolon)</a>  <a href="../cnfigsys/exclamat.htm">! (exclamation)</a> <a href="../cnfigsys/question.htm">? (question)</a>  <a href="../batch/autoexec.htm">autoexec.bat</a>  <a href="../cnfigsys/break.htm">break</a>
+  <a href="../cnfigsys/buffers.htm">buffers</a>        <a href="../cnfigsys/buffers.htm">buffershigh</a>     <a href="../cnfigsys/country.htm">country</a>       <a href="../cnfigsys/device.htm">device</a>        <a href="../cnfigsys/device.htm">devicehigh</a>
+  <a href="../cnfigsys/dos.htm">dos</a>            <a href="../cnfigsys/dosdata.htm">dosdata</a>         <a href="../cnfigsys/echo.htm">echo</a>          <a href="../cnfigsys/eecho.htm">eecho</a>         <a href="../cnfigsys/fcbs.htm">fcbs</a>
+  <a href="../batch/autoexec.htm">fdauto.bat</a>     <a href="../cnfigsys/index.htm">fdconfig.sys</a>    <a href="../cnfigsys/files.htm">files</a>         <a href="../cnfigsys/files.htm">fileshigh</a>     <a href="../cnfigsys/idlehalt.htm">idlehalt</a>
+  <a href="../cnfigsys/install.htm">install</a>        <a href="../cnfigsys/install.htm">installhigh</a>     <a href="../cnfigsys/keybuf.htm">keybuf</a>        <a href="../cnfigsys/lastdrv.htm">lastdrive</a>     <a href="../cnfigsys/lastdrv.htm">lastdrivehigh</a>
+  <a href="../cnfigsys/menu.htm">menu</a>           <a href="../cnfigsys/menucol.htm">menucolor</a>       <a href="../cnfigsys/menudef.htm">menudefault</a>   <a href="../cnfigsys/numlock.htm">numlock</a>       <a href="../batch/rem.htm">rem</a>
+  <a href="../cnfigsys/screen.htm">screen</a>         <a href="../cnfigsys/set.htm">set</a>             <a href="../cnfigsys/shell.htm">shell</a>         <a href="../cnfigsys/shell.htm">shellhigh</a>     <a href="../cnfigsys/stacks.htm">stacks</a>
+  <a href="../cnfigsys/stacks.htm">stackshigh</a>     <a href="../cnfigsys/switchar.htm">switchar</a>        <a href="../cnfigsys/switches.htm">switches</a>      <a href="../cnfigsys/version.htm">version</a>
+</pre>
+<hr>
+<pre>
+  <b>Copyright &copy; 2003 Robert Platt, updated 2008 and 2022 by W. Spiegl.</b>
+
+  This file is derived from the FreeDOS Spec Command HOWTO.
+  See the file <a href="../other/h2cpying.htm">H2Cpying</a> for copying conditions.
+</pre>
+<hr>
+</body></html>
