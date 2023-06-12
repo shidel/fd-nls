@@ -39,7 +39,8 @@ By default, comparison of values is based on their type. If both values are
 a number (represented in decimal or hexadecimal), the comparison will be made
 mathematically. Otherwise, an non-case specific alphabetical comparison will
 be performed. Using either the /c or /i options will force a text based
-comparison regardless of the value's data type.
+comparison regardless of the value's data type. An empty VALUE does not have
+a numerical value and will force the two items to be compared as strings.
 
 Basic examples:
 
@@ -82,8 +83,3 @@ String "Y" then option "/N". To interpret both as a string it would be "Y//N".
 For example:
 
 vtest /n y//n
-
-Finally, null (empty) strings have no value. This is not the same as a zero
-value. A null value equates to false. This example returns FALSE:
-
-vtest 5 /gt /and 1 /lt 2
