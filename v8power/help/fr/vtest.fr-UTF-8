@@ -1,6 +1,6 @@
 vtest [options]
 
-Un testeur simple d'état qui peut effectuer diverses vérifications qui peuvent
+Un testeur d'état. Il peut effectuer diverses vérifications qui peuvent
 être résumées en VRAI ou FAUX. Le résultat est transmis en tant que niveau
 d'erreur ERRORLEVEL. Lorsque la réponse est VRAIE un zéro est retourné. Si la
 réponse est FAUSSE, un 1 est transmis. L'utilisation d'une syntaxe erronée ou
@@ -20,7 +20,10 @@ Tests:
 	chaîne		    la chaîne n'est pas vide
 	/n chaîne	    la chaîne n'est pas vide
 	/z string	    la chaîne est vide
-	/v number	    le chiffre est valide
+	/v chiffre	    le chiffre est valide
+	/f fichier  	le fichier existe
+	/d répertoire 	le chemin existe
+	/e fich ou rép	tout type d'élément de répertoire
 
 Opérateurs d'expression :
 
@@ -32,14 +35,19 @@ Opérateurs d'expression :
 	exp1 /or /exp2  L'un ou l'autre expression peut être VRAIE.
 	/not expression Inverser le résultat d'une expression.
 
+Autres options :
+
+	/tf		Afficher TRUE ou FALSE une fois terminé.
+
 Par défaut, la comparaison des valeurs est fondée sur leur type. Si les deux
 valeurs sont un nombre (représentés en décimal ou hexadécimal), la comparaison
 sera faite mathématiquement. Sinon, une comparaison alphabétique insensible à
 la casse sera effectuée. L'utilisation de soit l'une ou l'autre des options /c
 ou /i forcera une comparaison fondée sur le texte sans prendre en compte le
-type de donnée de la valeur.
+type de donnée de la valeur. Une VALEUR vide n'a pas de valeur numérique
+et forcera les deux éléments à être comparés comme des chaînes.
 
-Exemples :
+Exemples de base :
 
 Un fichier nommé TEST.TXT existe :		  vtest /f TEST.TXT
 Un fichier nommé TEST.TXT n'existe pas :  vtest /not /f TEST.TXT
@@ -47,4 +55,43 @@ Soit le fichier A.TXT soit B.TXT existe : vtest /f A.TXT /or /f B.TXT
 Ni le fichier A.TXT ni B.TXT n'existent : vtest /not /f A.TXT /and /not /f B.TXT
 %1 est un nombre :          				vtest /v %1
 %1 est un nombre de 1 à 10 :	           	vtest /v %1 /and 1 /le %1 /le 10
+
+Alors que les options /f, /d et /e testent les éléments de fichier ou de
+répertoires, ils peuvent utiliser des modificateurs d'expression tels que /not,
+/c et /i et peuvent également prendre en charge les jokers. Une fois qu'un
+système de fichiers à été testé pour l'existence d'une entrée correspondante,
+ils deviennent la valeur du premier élément de système de fichiers correspondant
+et peuvent être traités comme des valeurs. Si aucune entrée correspondante
+n'est trouvée, la valeur devient nulle et résultera très probablement dans
+l'évaluation de l'expression en tant que fausse (false).
+
+Lors de la comparaison de deux valeurs, si chaque valeur contient un chiffre
+valide (décimal or hexadécimal) la comparaison sera effectuée numériquement.
+Si l'une des valeur n'est pas un chiffre, elle sera effectuée alphabétiquement.
+Bien qu'il soit possible de mélanger les types de données dans une série de
+comparaisons, le résultat peut être difficile à prévoir et ce n'est généralement
+pas conseillé.
+
+Les guillemets NE sont PAS utilisés pour les chaînes avec des espaces. Les
+guillemets sont toujours traités comme des caractères de texte normaux.
+L'analyseur de la ligne de commande n'essayera de séparer les chaînes que
+lorsqu'un SWITCH_CHAT (normalement /) est détecté. Ceci est un exemple
+acceptable :
+
+vtest a, b et c /lt d, e et f /and 6 /gt 5 /lt 7
+
+L'utilisation de guillemets pour simplement envelopper les chaînes produira
+des résultats erronés. L'exemple suivant aura TOUJOURS pour résultat TRUE
+(vrai) indépendamment de la valeur de %1 :
+
+vtest /n "%1"
+
+De plus, si une chaîne contient le SWITCH_CHAR, la partie suivant le SWITCH_CHAR
+sera interprétée comme une option de programme sauf si elle est échappée par
+l'insertion d'un SWITCH_CHAR supplémentaire. Par exemple, "O/N" serait
+interprété comme la chaîne "O" puis l'option "/N". Pour interpréter les deux
+en tant que chaînes il faudrait utiliser "O//N".
+Par exemple :
+
+vtest /n o//n
 
