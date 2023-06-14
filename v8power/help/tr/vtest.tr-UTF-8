@@ -1,7 +1,7 @@
 vtest [seçenekler]
 
-DOĞRU veya YANLIŞ olarak özetlenebilecek çeşitli testler yapan sade bir durum
-deneyicisi. Netice bir hata seviyesi yani ERRORLEVEL olarak gönderilir. Sonuç
+Durum deneyicisi. DOĞRU veya YANLIŞ olarak özetlenebilecek çeşitli testler
+yapar. Netice bir hata seviyesi yani ERRORLEVEL olarak gönderilir. Sonuç
 DOĞRU olduğunda bir sıfır geri gönderilir. Şayet sonuç YANLIŞ ise, bir 1 geri
 gönderilir. Yanlış bir söz dizimi veya benzer bir hata 100 geri gönderecektir.
 
@@ -18,8 +18,11 @@ Testler:
 	val1 /lt val2	    val1 val2'den küçüktür
 	dize    		    dize boş değildir
 	/n dize     	    dize boş (null) değildir
-	/z dize     	    dize boşteur (null)
+	/z dize     	    dize boştur (null)
 	/v sayı     	    sayı geçerlidir
+	/f dosya        	dosya mevcuttur
+	/d dizin	 	    yol mevcuttur
+	/e dosya veya dizin	herhangi bir dizin girdisi türü
 
 Operatörler:
 
@@ -31,13 +34,19 @@ Operatörler:
 	exp1 /or /exp2  İfadelerden biri DOĞRU olabilir.
 	/not ifade      İfadenin sonucunu tersine çevir.
 
+Diğer seçenekler:
+
+	/tf		Bittiğinde TRUE veya FALSE görüntüle.
+
 Varsayılan olarak, değerler karşılaştırması türlerine dayalıdır. Eğer iki
 değer de bir sayıysa (ondalık veya onaltılık), karşılaştırma matematik olarak
 yapılır. Aksi halde büyük küçük harflere duyarsız alfabetik bir karşılaştırma
 yapılır. /c veya /i seçeneklerinden birinin kullanılması, değerin veri türüne
-bakılmaksızın metin temelli bir karşılaştırmayı zorlar.
+bakılmaksızın metin temelli bir karşılaştırmayı zorlar. Boş bir değerin
+sayısal bir değeri yoktur ve iki unsurun dize olarak karşılaştırılmalarını
+zorlar.
 
-Örnekler:
+Temel örnekler:
 
 TEST.TXT isimli bir dosya mevcut:		vtest /f TEST.TXT
 TEST.TXT isimli bir dosya mevcut değil:	vtest /not /f TEST.TXT
@@ -45,4 +54,39 @@ Ya A.TXT dosyası ya da B.TXT mevcut:	vtest /f A.TXT /or /f B.TXT
 Ne A.TXT ne de B.TXT mevcut değil:	    vtest /not /f A.TXT /and /not /f B.TXT
 %1 bir sayıdır:				            vtest /v %1
 %1 1 ila 10 arası bir sayıdır:		    vtest /v %1 /and 1 /le %1 /le 10
+
+/f, /d ve /e seçenekleri dosya veya dizin unsurlarını denerler, /not, /c ve
+/i değiştiricileri ile jokerleri de kullanabilirler. Bir dosya sistemi eşleşen
+bir unsur için kontrol edildikten sonra ilk eşleşen dosya sistemi unsurunun
+değeri olurlar ve değer olarak işlem görebilirler. Şayet hiçbir eşleşen unsur
+bulunamadıysa, değer boş olur ve büyük ihtimalle bir ifadenin yanlış olarak
+değerlendirilmesine yol açar.
+
+İki değerin karşılaştırması yapıldığında eğer her bir değer geçerli bir sayı
+(onluk veya onaltılık) içeriyorsa, karşılaştırma sayısal olarak yapılır.
+Eğer değerlerden biri sayısal değilse, alfabetik olarak kaşılaştırılır. Her
+ne kadar veri türlerini karşılaştırma serilerinde karıştırmak mümkün olsa da
+neticenin öngörülmesi zor olabilir ve bu genel olarak tavsiye edilmez.
+
+Tırnak işaretleri boşluklar içeren dizeler için KULLANILMAZ. Tırnak işaretleri
+daima normal metin karakterleri olarak işlenir. Komut satırı ayrıştırıcısı
+dizeleri sadece bir SWITCH_CHAR (normalde /) tespit edildiğinde ayırır. Bu,
+kabul edilebilir bir örnektir:
+
+vtest a, b ve c /lt d, e ve f /and 6 /gt 5 /lt 7
+
+Tırnak işaretlerinin dizeleri sadece toparlamak için kullanılması hatalı
+sonuçlara yol açar. Aşağıdaki örnek DAİMA DOĞRU (TRUE) sonucunu verir, %1
+değerinden bağımsız olarak:
+
+vtest /n "%1"
+
+Dahası, şayet bir dize SWITCH_CHAR içeriyorsa, SWTICH_CHAR'ın sonrasındaki
+kısım program seçeneği olarak yorumlanacaktır, bunun istisnası ilave bir
+SWITCH_CHAR ile kaçış yapmaktır. Mesela "E/H", "E" dizesi ve ardından "/H"
+seçeneği olarak yorumlanır. Her ikisini de dize olarak yorumlamak için "E//H"
+kullanılmalıdır.
+Mesela:
+
+vtest /n e//h
 
