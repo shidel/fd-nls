@@ -1,7 +1,7 @@
 vtest [seáenekler]
 
-DO¶RU veya YANLIû olarak îzetlenebilecek áeüitli testler yapan sade bir durum
-deneyicisi. Netice bir hata seviyesi yani ERRORLEVEL olarak gînderilir. Sonuá
+Durum deneyicisi. DO¶RU veya YANLIû olarak îzetlenebilecek áeüitli testler
+yapar. Netice bir hata seviyesi yani ERRORLEVEL olarak gînderilir. Sonuá
 DO¶RU oldußunda bir sçfçr geri gînderilir. ûayet sonuá YANLIû ise, bir 1 geri
 gînderilir. Yanlçü bir sîz dizimi veya benzer bir hata 100 geri gînderecektir.
 
@@ -18,8 +18,11 @@ Testler:
 	val1 /lt val2	    val1 val2'den kÅáÅktÅr
 	dize    		    dize boü deßildir
 	/n dize     	    dize boü (null) deßildir
-	/z dize     	    dize boüteur (null)
+	/z dize     	    dize boütur (null)
 	/v sayç     	    sayç geáerlidir
+	/f dosya        	dosya mevcuttur
+	/d dizin	 	    yol mevcuttur
+	/e dosya veya dizin	herhangi bir dizin girdisi tÅrÅ
 
 Operatîrler:
 
@@ -31,13 +34,19 @@ Operatîrler:
 	exp1 /or /exp2  òfadelerden biri DO¶RU olabilir.
 	/not ifade      òfadenin sonucunu tersine áevir.
 
+Dißer seáenekler:
+
+	/tf		Bittißinde TRUE veya FALSE gîrÅntÅle.
+
 Varsayçlan olarak, deßerler karüçlaütçrmasç tÅrlerine dayalçdçr. Eßer iki
 deßer de bir sayçysa (ondalçk veya onaltçlçk), karüçlaütçrma matematik olarak
 yapçlçr. Aksi halde bÅyÅk kÅáÅk harflere duyarsçz alfabetik bir karüçlaütçrma
 yapçlçr. /c veya /i seáeneklerinden birinin kullançlmasç, deßerin veri tÅrÅne
-bakçlmaksçzçn metin temelli bir karüçlaütçrmayç zorlar.
+bakçlmaksçzçn metin temelli bir karüçlaütçrmayç zorlar. Boü bir deßerin
+sayçsal bir deßeri yoktur ve iki unsurun dize olarak karüçlaütçrçlmalarçnç
+zorlar.
 
-ôrnekler:
+Temel îrnekler:
 
 TEST.TXT isimli bir dosya mevcut:		vtest /f TEST.TXT
 TEST.TXT isimli bir dosya mevcut deßil:	vtest /not /f TEST.TXT
@@ -45,4 +54,39 @@ Ya A.TXT dosyasç ya da B.TXT mevcut:	vtest /f A.TXT /or /f B.TXT
 Ne A.TXT ne de B.TXT mevcut deßil:	    vtest /not /f A.TXT /and /not /f B.TXT
 %1 bir sayçdçr:				            vtest /v %1
 %1 1 ila 10 arasç bir sayçdçr:		    vtest /v %1 /and 1 /le %1 /le 10
+
+/f, /d ve /e seáenekleri dosya veya dizin unsurlarçnç denerler, /not, /c ve
+/i deßiütiricileri ile jokerleri de kullanabilirler. Bir dosya sistemi eüleüen
+bir unsur iáin kontrol edildikten sonra ilk eüleüen dosya sistemi unsurunun
+deßeri olurlar ve deßer olarak iülem gîrebilirler. ûayet hiábir eüleüen unsur
+bulunamadçysa, deßer boü olur ve bÅyÅk ihtimalle bir ifadenin yanlçü olarak
+deßerlendirilmesine yol aáar.
+
+òki deßerin karüçlaütçrmasç yapçldçßçnda eßer her bir deßer geáerli bir sayç
+(onluk veya onaltçlçk) iáeriyorsa, karüçlaütçrma sayçsal olarak yapçlçr.
+Eßer deßerlerden biri sayçsal deßilse, alfabetik olarak kaüçlaütçrçlçr. Her
+ne kadar veri tÅrlerini karüçlaütçrma serilerinde karçütçrmak mÅmkÅn olsa da
+neticenin îngîrÅlmesi zor olabilir ve bu genel olarak tavsiye edilmez.
+
+Tçrnak iüaretleri boüluklar iáeren dizeler iáin KULLANILMAZ. Tçrnak iüaretleri
+daima normal metin karakterleri olarak iülenir. Komut satçrç ayrçütçrçcçsç
+dizeleri sadece bir SWITCH_CHAR (normalde /) tespit edildißinde ayçrçr. Bu,
+kabul edilebilir bir îrnektir:
+
+vtest a, b ve c /lt d, e ve f /and 6 /gt 5 /lt 7
+
+Tçrnak iüaretlerinin dizeleri sadece toparlamak iáin kullançlmasç hatalç
+sonuálara yol aáar. Aüaßçdaki îrnek DAòMA DO¶RU (TRUE) sonucunu verir, %1
+deßerinden baßçmsçz olarak:
+
+vtest /n "%1"
+
+Dahasç, üayet bir dize SWITCH_CHAR iáeriyorsa, SWTICH_CHAR'çn sonrasçndaki
+kçsçm program seáeneßi olarak yorumlanacaktçr, bunun istisnasç ilave bir
+SWITCH_CHAR ile kaáçü yapmaktçr. Mesela "E/H", "E" dizesi ve ardçndan "/H"
+seáeneßi olarak yorumlançr. Her ikisini de dize olarak yorumlamak iáin "E//H"
+kullançlmalçdçr.
+Mesela:
+
+vtest /n e//h
 
