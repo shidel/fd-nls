@@ -1,0 +1,800 @@
+De§iŸiklikler kt§ i‡in dosya sonuna bakn.
+
++----------------------------------------------------------------------+
+| DOSLFN - DOS zerinde uzun dosya isimleri i‡in ger‡ek kip srcs,  |
+|	       DBCS ile Unicode'u tamamen destekler!                       |
++----------------------------------------------------------------------+
+
+
+YAKLAIM
+
+Tabii ki b”yle bir programa 1996 senesinden beri ihtiyacm vard, fakat b”yle
+bir aracn herkesin iŸine yarayaca§ndan dolay baŸka birinin bunu yazaca§n
+dŸndm. Yani boŸta durdum ve bekliyordum, ve ge‡en sene baz ara‡lar buldum,
+1998 senesinde yazlan LFNDOS.EXE gibi, beklendi§i gibi ‡ok eski de§ildi.
+
+Bu program Win9x COMMAND.COM iŸlevleri i‡in yazlmŸt ve en be§endi§im dosya
+y”neticisi olan Volkov Commander ile ‡alŸmyordu. (Uzun isim barndran bir
+dizine gidemezsiniz.) Ve bu yerleŸik (TSR, Terminate and Stay Resident) o denli
+YAVA ve di§er taraftan 64 KB bellek kullanyor, gere§inden ‡ok fazla! Bu
+program k‡k harfler kullanarak dosya ve dizin oluŸturamyor (Niye??),
+ylanlardan (NameNumericTail=0 kayt anahtarna g”re tilde iŸaretleri)
+kurtulmak mmkn de§il ve, son olarak, st iki nokta iŸaretlerini do§ru bir
+Ÿekilde desteklemiyor.
+
+
+BEN˜M DENEMEM:
+
+Tabii ki b”yle bir programn assembly dilinde yazlmas gerekir. Gzel Turbo
+Assembler ile az kullanlan IDEAL kipi, yap bileŸenlerini etkinleŸtirmek i‡in
+ve baz baŸka avantajlar i‡in (mesela hz) kullandm. Bu program, yukarda
+bahsi ge‡en programdaki hatalar barndrmamak i‡in tasarland. Ayrca CD
+zerinde uzun isimleri de destekleyecektim, ki bu sade DOS zerinde
+yedeklemeleri geri getirmek i‡in ‡ok kullanŸl. Bunun i‡in makul bir ara‡
+ODI'nin LFN ara‡lardr, fakat bu bir src de§ildir.
+
+En azndan benim i‡in ”nemli olan Volkov Commander ile kullanlr olmas, ki
+bana g”re bu en iyi Norton Commander klonudur. Uzun dosya isimlerini destekler,
+‡ok daha k‡ktr ve orijinalinden daha hzldr, baz gzel ”zellikler de
+cabasdr. (Maalesef baz dezavantajlar da bulunur, dizin sralamas i‡in
+eksik ksayol tuŸlar veya bilgisayarlar arasnda ba§lant iŸlevi gibi.)
+
+Programlama esnasnda aklmdan ge‡en tm iŸlevleri i‡eren mkemmel bir src
+yazmann o kadar da kolay olmad§n s”ylemem gerekir. Neden daha evvel b”yle
+bir src bulamad§ma ŸaŸmamal - ve programlamas ‡ok zor.
+
+˜lk baŸnda bir hedef mmkn oldu§u kadar az bellek kullanmakt, aŸa§ yukar
+4 KB. imdi bu hedeften ‡ok ‡ok uza§m ve 12 KB'tan az kulland§m i‡in
+memnunum. 64 K ile mukayese edildi§inde bu kafi derecede iyidir.
+
+BaŸka bir sorun Windows9x dosya ismi semanti§ini anlamakt. "cd .." komutunun
+ne olmas gerekti§i genel olarak bilinir, "cd ..." 9x ile yenidir ve iki dizin
+yukar taŸr, "cd ...." d”rt dizin ve b”yle devam eder. ("." ile ".." dizin
+girdilerinin DOS tarafndan do§rudan kullanmyor olmadklarn biliyordum.)
+Veya uzun dosya isimlerinin desen eŸleŸmesinin yaplmas: bunun biraz UNIX
+iŸletim sisteminden bilinir (*1 unsurunun nasl "1" ile biten tm dosyalarla
+eŸleŸti§i gibi), biraz Win32'ye ”zeldir, "*." unsurunun nasl uzantsz tm
+dosyalara denk geldi§i gibi. Ve bir uzantnn nasl ilk nokta zincirinde
+olmayan SON noktadan sonra gelen par‡a olarak tanmlanmas gibi. Veya baŸnda
+boŸluklar ve/veya noktalar olan dosyalarn oluŸturulabilmesi, fakat sondaki
+boŸluklar ve/veya noktalarn kesilmesi gibi. "*." unsurunu aklmzda tutarsak
+bu gereklidir, ‡nk sonunda nokta bulunan dosyalar bulmak i‡in hi‡bir yol
+yoktur. Dolaysyla, sadece boŸluk ve nokta i‡eren dosya isimlerine izin
+verilmez, "." ile ".." dizin unsurlar sanal istisnas haricinde. COMMAND.COM,
+Get Extended Error Information (GeniŸletilmiŸ Hata Bilgileri Al) DOS iŸlevini
+kullanr, yani bu hata kodunu ayarlamak i‡in ve COMMAND.COM'un do§ru bir
+Ÿekilde ‡alŸmas i‡in kullanŸsz tamamlayc iŸlevi kullanmak zorunda kaldm.
+
+
+ANAHTARLARIN A€IKLAMASI:
+
+~ (tilde kullanm): Varsaylan olarak Win9x herhangi bir uzun dosya ismine
+  bir "~1" ekler, ‡akŸma varsa "~2" ekler ve bu b”yle devam eder.
+  Dolaysyla bu uzun dosya isimleri sade DOS zerinde di§er isme adresleme
+  yapamaz. Bu iŸleyiŸ, test edilen baz yazlmlardaki hatal iŸleyiŸ sebebiyle
+  yerleŸik yaplmŸ gibi g”rnmektedir. (Tahminimce eski Microsoft yazlmlar
+  idi bunlar.)
+
+  Normal DOS ile Win kullanclar i‡in bu pratik de§ildir. Sade DOS uzun
+  isimleri onlar 8.3 Ÿekline ksaltarak "destekleyebilir".  ˜simler boŸluk
+  veya ‡oklu nokta i‡ermiyorlarsa, ayn uzun isim bir dosyay hem mevcut hem de
+  mevcut olmayan LFN'ler ile adresleyebilir. Kullanclar, {Win9x veya DOSLFN}
+  ‡alŸr olsun veya olmasn bundan ba§msz olarak baz program yaplandrmas
+  ile uyumlulu§u muhafaza edebilirler.
+
+  Win9x zerinde tilde kullanmn aŸa§daki ikili anahtar kullanarak devre
+  dŸ brakabilirsiniz:
+	REGEDIT4
+	[HKEY_LOCAL_MACHINE\System\CurrentControlSet\control\FileSystem]
+	"NameNumericTail"=hex:00
+  Ardndan Windows'u tekrar baŸlatmanz gerekir. ("Yeniden baŸlatmay" teyit
+  ederken "shift" tuŸunu basl tutmay unutmayn; bilgisayar tekrar
+  baŸlatmaya gerek yoktur.)
+
+  ˜nternet zerinde "NameNumericTail" anahtar kelimesi ile arama da
+  yapabilirsiniz.
+
+t (tunnel etkisi): Win9x dosya sistemine g”ml bu iŸlev, dosyalarn
+  konvansiyonel (8.3) bir metin dzenleyicisi veya eŸde§er bir ara‡la
+  de§iŸtirildiklerinde uzun dosya isimlerinin hayatta kalmalarna yardmc
+  olur. Dosyalar Ÿu Ÿekilde de§iŸtirilir:
+  * (varsa) <alias>.bak dosyasn sil
+  * orijinal <alias>.txt dosyasn <alias>.bak olarak yeniden isimlendir
+  * yeni bir <alias>.txt dosyas oluŸtur
+
+  Bu dizi ile uzun dosya ismi daimi olarak yok olacaktr. Fakat "tnel etkisi"
+  faal ise, Win9x ve DOSLFN sil-yeniden adlandr-oluŸtur (delete-rename-create
+  (DRC)) dizilerini izleyecek ve silinmiŸ uzun dosya ismi unsurlarn yeni
+  oluŸturulan isimlerle ototmatik olarak iliŸkilendireceklerdir, Ÿayet <alias>
+  aynysa.
+  Yukardaki DRC dizisi ayrca DR, DC, RR, veya RC olarak kesilebilir ve
+  ile de ‡alŸr.
+  MSDN CD'sinde belgelendirildi§i zere, Win9x dahili "tnel etkisi" 15 saniye
+  boyunca muhafaza edilir, ancak herhangi bir unutkanlk bulamadm. Ayrca,
+  Win9x zerinde tnel etkisi her iki "y”nde" de ‡alŸr, takma ad LFN destekli
+  program ayn sreci iŸletirse hatrlanlr. Dolaysyla, "Program Files"
+  dizinini "Program" olarak yeniden adlandrr ve tekrar "Program Files" olarak
+  isimlendirirseniz, "PROGRA~1" unsurundaki "~" iŸaretinden kurtulamazsnz.
+  (˜ki tekrar isimlendirme arasnda Windows'u yeniden baŸlatarak istenilen
+  etkiyi elde edebilirsiniz.)
+
+  šstelik, ‡ok g”revli bir iŸletim sisteminde olmas gerekti§i gibi, Win9x
+  birden fazla "tnel bilgisi" bulundurur, ki bu da iki veya daha fazla srecin
+  (Win16 veya DOS programlar) b”yle DRC dizilerini ayn anda veya
+  serpiŸtirilmiŸ olarak tek sre‡te yapmalarna imkan sa§lar. Sadelik
+  maksadyla DOSLFN sadece bir "tnel bilgisi" destekleyecektir.
+
+c (CD-ROM deste§i): CD-ROM deste§ini etkinleŸtirir, yani DOSLFN CD-ROM ,
+  baŸlatlmas ve CD-ROM eriŸimi kodunu bellekte tutmak i‡in ‡ok daha fazla
+  hafza kullanr. Bu se‡enek, varsaylan olarak SHSUCDX V3.01'in yklenip
+  yklenmedi§i duruma g”re de§er alr (DOSLFN'nin bu srm MSCDEX veya
+  SHSUCDX'in ”nceki srmleriyle ‡alŸmaz). DOSLFN'i SHSUCDX'ten evvel
+  yklediyseniz ve CD-ROM zerinde uzun dosya isimleri istiyorsanz  c+
+  anahtar kullanmanz gerekir!
+
+i (InDOS bayrak kullanm): Uzun dosya ismi kullanan yerleŸik (TSR) programlar
+  desteklemek i‡in bunlarn DOSLFN'in hƒlƒ ‡alŸp ‡alŸmad§n bilmeleri
+  gerekir. Daha da k”ts, ksa dosya isimleriyle ‡alŸmak e§er DOSLFN
+  kullanlmayan uzun isimleri kaldrrsa veya tnel etkisi ile uzun isim ilave
+  ederse (-t anahtarna bakn) veri kaybna yol a‡abilir.
+  InDOS bayra§nn kullanmndaki sorun, DOSLFN OldInt21 ‡a§rs yapt§nda
+  InDOS bayra§nn 2'ye ykselmesidir. InDOS bayra§n sfr dŸ bir de§erde
+  tutmann _ve_ DOS ‡a§rs yapmann daha iyi bir ‡”zmn bilmiyorum. ayet
+  sorun yaŸarsanz, devre dŸ brakabilirsiniz. Faal, varsaylan de§erdir.
+
+z DOSLFN, Unicode'u yerel kod sayfasna d”nŸtrmelidir ve bu lke ayarlarna
+  ba§mldr. DOS (veya NLSFUNC) b”ylesi bir tabloyu yerleŸik olarak
+  bulundurmad§ndan dolay, bu tablo DOSLFN'e sa§lanmaldr.
+  19 Unicode d”nŸtrme tablosu, mesela 437 (Standart IBM, sfrlama i‡in),
+  850 (Bat Avrupa), 852 (Do§u Avrupa), 866 (Kiril alfabesi i‡in) ve Yunanca
+  i‡in iki tanesi DOSLFN ile sa§lanr.
+  Bir kod sayfas DOSLFN yerleŸik oldu§unda bile yklenebilir/de§iŸtirilebilir.
+  Avrupal kullanclarn ekseriyeti st iki nokta iŸaretini nadiren kullanr
+  (k”t yazlmŸ yazlmlarla[*] karŸlaŸlan bilinen sorunlar yznden),
+  dolaysyla unutulmuŸ bir kod tablo yklemesi kritik bir ”neme sahip
+  de§ildir. Fakat beklenilmedik alt ‡izgiler bulunduran dosya isimleri
+  g”rrseniz kod tablosunu yklemeniz iyi olur.
+  (DOSLFN d”nŸtrlemeyen Unicode karakterlerini  "_" karakterine d”nŸtrr
+  ve artk eŸit olan dosya isimleri mevzusunda hi‡bir bildirimde bulunmaz.)
+  ˜pucu: DOSLFN, baŸlang‡ta "do§ru" Unicode tablosunu otomatik olarak ykler,
+  dolaysyla bu anahtara Do§u Avrupa lkelerinde bile ihtiyacnz olmaz.
+  šstelik DOSLFN kod sayfasn DOS'un NLSFUNC iŸlevini kullanarak
+  de§iŸtirirseniz otomatik olarak bir tablo ykler ama ilave y§n ayrmanz
+  gerekebilir (Japon DOS, DOLSFN'i Amerika kipinde yklerse /m18000 kullanmak
+  mecburiyetindedir).
+
+  [*] Sklkla, st iki nokta iŸaretlerin canna okuyan k”t UNIX
+  yazlmlardr (mesela "TAR"). UNIX dahili olarak 32 bitten ‡ok 7 bit bir
+  iŸletim sistemidir ve bu snrlama dnyaya yakn bir tarihe kadar yaylmŸtr
+  (‡ok basit UTF-7, MIME kodlamalar...)
+
+m DOSLFN'nin veri depolamak i‡in dahili bir y§na ihtiyac vardr; ekseriyetle
+  takma isimleri (Find Handles) bulmak i‡in.
+  Bu veri alannn boyutu varsaylan de§er olarak 1000 bayta denk gelir.
+  Daha k‡k de§erler yerleŸik DOSLFN'in bellek kullanmn azaltr.
+  Bu anahtar DOSLFN yerleŸikken girilemez; bellek kullanmda olabilir.
+
+m[sln] Ksa isim yolunun (80), uzun isim yolunun (260) ve dosya isminin (256)
+  azami boyutunu belirt. DOS bunu ekstra uzun bir yola d”nŸtrmeyecek olmasna
+  ra§men yine de a‡k olarak belirtilebilece§ini, dolaysyla varsaylan de§er
+  olan 80'in kafi gelmeyebilece§ini unutmayn. AŸa§da MVALUES ksmna bakn.
+
+o Saat dilimi ofseti. Hi‡bir zaman dilimi verilmezse, TZ yeniden okunur.
+  AŸa§ya bakn.
+
+TZ Saat dilimi ortam de§iŸkeni - FAT zaman damgasn Win32 zaman bi‡imine
+  d”nŸtrmek i‡in (1.1.1601'den sonra 100 ns admlarla bir Int64).
+  Bi‡im, is [AD]S[:DD] Ÿeklindedir, AD tercihe dayal bir ksaltmadr,
+  S saatleri ve DD tercihe dayal dakikalar g”sterir. Say, GMT'den
+  (Greenwich) olan mesafeyi ifade eder - art geride, eksi ileridedir.
+  Yaz/kŸ saati  (Daylight Savings Time (DST)) kullanlamaz ‡nk ‡ok fazla
+  lke i‡in bilinmeyen hesaplama y”ntemleri bulunmaktadr. ayet istenirse,
+  DOSLFN, belli bir lke i‡in ge‡miŸteki (ve gelecekteki) tm DST kaideleri
+  hakknda bilgi sahibi olmaldr, ki dosya zamanlarn Ÿimdiki tarihe g”re
+  de§il, tarihlerine g”re d”nŸtrebilsin (programlarn ekseriyetine bu hata
+  var gibi g”rnmektedir). Programlarn ‡o§u bunu yapsa da Amerikan DST kaidesi
+  uygulanamaz. Dolaysyla, kullanclarn TZ de§iŸkenini ayarlamalarn
+  tavsiye ederim, mesela Orta Avrupa i‡in:
+  	set TZ=MET-1		kŸn
+	set TZ=MET-2		yazn
+  hi‡bir DST bilgisi kullanmadan - ama AUTOEXEC.BAT dosyalarn senede iki defa
+  de§iŸtirmeleri gerekecektir.
+
+  TZ, CDFS'i Win32 zaman bi‡imine d”nŸtrmek i‡in gereksizdir, ‡nk
+  zerindeki tarihler saat dilimi mesafesi hakknda bilgi i‡erir (her 15
+  dakikalk adm i‡in bir bayt), bu CD'nin oluŸturuldu§u lkeyle iliŸkilidir.
+  Ancak eŸit bir dnya zaman muhafaza etmek ve CDFS zamanlarn FAT zamanna
+  d”nŸtrmek amacyla (neredeyse tm zaman iŸlevleri i‡in d”nŸ de§eri olarak)
+  hem TZ hem de CDFS zaman bi‡imi beraber ele alnmaldr do§ru FAT (=daima
+  yerel) zamann hesaplamak i‡in - dolaysyla Win32 zaman bi‡iminde dahili
+  olarak ilerlemek daha iyidir.
+
+LANG ortam de§iŸkeni. DOSLFN ‡ok dillidir; otomatik olarak lke koduna veya bu
+  de§iŸkene dayal bir lisan se‡er. Mesajlar NLS dizinindeki dosyalardan
+  okunur, ki bu dizin ikili dosya ile ayn dizinde veya yakn bir dizinde
+  bulunabilir.
+
+** E§er profil oluŸturma etkinse **
+
+p Profil verilerini g”rntle - ‡a§r says, saniye olarak zaman, a‡klama.
+
+pr Profil verilerini sfrla - ‡a§r says ve zaman sfrlanr.
+
+pc Profil zamanlama de§iŸmezini kalibre et. Profil oluŸturma, zamanlama i‡in
+  Pentium iŸlemcilerin Read Timestamp Counter (RDTSC) komutunu kullanr. 2,6Ghz
+  bir P4 sahibi de§ilseniz DOSLFN'i de§iŸmeziniz ile tekrar derlemeniz
+  gerekecektir.
+
+DOSLFN ”n ekleri ve boŸluklar g”rmezden gelir. Sondaki bir boŸluk sadece z
+komutu i‡in gereklidir.
+
+EYLEMLER:
+
+Eylem harfleri komut satrnn sonunda yer almaldr ‡nk komut satrnn
+ayrŸtrlmas burada son bulur.
+
+Varsaylan eylem DOSLFN'i yklemek veya etkinleŸtirmek ve DOSLFN'in zaten ykl
+ve faal oldu§unu a‡klayan ksa bir mesaj g”stermektir.
+
+DOSLFN'in bellekten kaldrlmas DOSLFN zerinde Int21 veya 2F'ye ba§l bir
+yerleŸik TSR varsa baŸarsz olabilir. Durum b”yleyse DOSLFN kendisini devre
+dŸ brakr ama (bellekten kaldrma veya tekrar etkinleŸtirme gibi) baŸka bir
+eyleme dek bellekte kalr. šstteki yerleŸi§i veya yerleŸikleri ”nce kaldrmanz
+gerekir. E§er bu mmkn de§ilse (‡o§unlukla Microsoft sorunu) "sisteminizi
+yeniden baŸlatmanz" gerekir.
+
+UYGULAMA šZER˜NE BAZI NOTLAR:
+
+Benim i‡in byk bir sorun, CD'deki uzun isimler i‡in gvenli destektir. MSCDEX
+programna dayanmak istedi§im i‡in Joliet ve ISO arasnda k”prler kurmam
+gerekti ve farkna vard§m gibi, gvenli k”pr bulunmamaktadr! (WinOnCD
+b”yle bir Ba§lant Tablosu yazar ve bu benim i‡in iyidir, ama bir standart
+de§ildir.)
+Windows 9x ve NT Joliet CD'lerinin ISO ksmn hi‡ kullanmayp yeni
+ksa dosya isimleri "icat etmektedirler", ayrca bu iki sistem de§iŸik kurallar
+kullanrlar. Dolaysyla e§er uzun dosya isimleri barndran bir CD'yi srcye
+koyup ona eski bir DOS program ile bakarsanz, sade DOS, Windows9x ve Windows
+NT zerinde uzun bir isim i‡in ‡e kadar de§iŸik ksa isim g”rrsnz.
+ODI'nin LFN ara‡lar (sekt”rleri okumak haricinde) MSCDEX gerektirmedi§inden
+dolay bununla bir sorun yaŸamaz, bir srcnn uzun dosya isimleri i‡in do§ru
+ksa dosya isimlerini vermesi gerekir ‡nk MSCDEX ksa isimleri iŸlemelidir.
+
+DOSLFN'in ”nceki srmleri Joliet ismi ile ISO muadili arasndaki ba§lanty
+sa§layan bir dosya yklerdir. Bu srm artk MSCDEX'i desteklememektedir ve
+yerine SHSUCDX srm 3' kullanr ki bu da Joliet sisteminin kendisini
+kullanr (ve ksa isimleri oluŸturmak i‡in gene baŸka bir y”ntemi).
+
+BaŸka bir sorun yazma eriŸimleri ve sekt”r tamponlarnn tutarll§dr:
+Ara belle§e veri almak istiyorum, ama bir ShortName API'si disk verilerini
+de§iŸtirebilir; dolaysyla en azndan bu src i‡in her DOS dizin yazma
+eriŸiminde tm tamponlar boŸaltmam gerekir, eski FCB eriŸimlerinde bile.
+Bu, DOSLFN'in performansn bozar.
+Mmkn oldu§u kadar ‡ok DOS ‡eŸidini desteklemek i‡in (sadece MS-DOS'u de§il)
+belgelendirilmemiŸ dahili DOS yaplarn kullanmak istemiyorum.
+
+
+€ALITI¦I U S˜STEMLERDE KONTROL ED˜LM˜T˜R:
+
+* MS Windows NT 4 DOS-Box, FAT12 and FAT16 srcleri
+  (ama NTLFN paketini almalsnz, o da a‡k kaynakl gzel bir pakettir)
+* MS-DOS 6.2
+* MS-DOS 7.10, FAT32
+* DR-DOS 7, manyeto-optik bir src ile
+
+
+HENšZ €ALIMAYAN UNSURLAR:
+
+* JOIN komutu kullanlmŸ srcler (ama SUBST komutu kullanlmŸ srcler
+  ‡alŸr)
+* ASSIGN komutu kullanlmŸ srcler (denenmemiŸtir, ‡nk SUBST komutuna
+  benzer bir Ÿekilde daha sonra ‡alŸmas beklenir)
+* 32 bit dosya eriŸimi etkinleŸtirilmiŸ Windows 3.11, DOSLFN'i sabit
+  diskleriniz i‡in geri yedek kipine zorlar ‡nk VCACHE.386, Int25/26 ve
+  Int21/AH=32 vastasyla disk eriŸimine mani olur. Ltfen "32 bit dosya
+  eriŸimini" devre dŸ brakn. ("32 bit disk eriŸimini" etkin
+  brakabilirsiniz.)
+
+
+MUHTEMELEN H˜€B˜R ZAMAN €ALIMAYACAK UNSURLAR:
+
+* SUBST etrafndaki iŸlevler, AL=AAh	("query subst" mevcuttur)
+* sunucudan dosya oluŸturulmas, AL=A9h
+* g”sterge (handle) bilgisi almak, AL=A6h
+* srcy sfrlamak, AL=0Dh
+
+
+DBCS (€ince, Japonca, Korece, =CJK) KULLANICILARI ˜€˜N ˜PU€LARI:
+
+DOSLFN'i batl bir kullanc gibi ykleyin - fakat DOSLFN daha byk
+DBCS<->Unicode tablosunu muhafaza etmek i‡in ‡ok daha fazla bellek kullanr.
+
+ BAZI ARKA PLAN B˜LG˜LER˜:
+Acil kullanm Win9x/Me diskinden baŸlatt§nz vakit DOS, 932, 936, 949, veya
+950 kod sayfas bildirir ama g”rntleme yaz tipi hƒlƒ BIOS'un 437'sidir.
+Ayrca, DOS'un dahili DBCS Lead Bayt tablosu henz etkinleŸtirilmemiŸtir.
+Dolaysyla €ince karakterler i‡eren dosya isimlerini listeledi§inizde anlamsz
+Ÿeyler g”rrsnz, bu DOSLFN kullanmndan ba§mszdr.
+PDOS95.BAT dosyasn baŸlattktan sonra, sanrm, g”rnt 40x24 tam geniŸlikte
+(kare Ÿekilli) €ince karakter grafik kipinde ge‡ilir (CP932=Japonca Shift-JIS
+kullanyorsanz arada yar geniŸlikte katakana bulunur). 25. satr Girdi
+Y”ntemi Y”neticisi (Input Method Editor (IME)) i‡indir, sadece bir
+Romaji/Pinyin girdi ve Kanji/Kanxi se‡me satrdr bu. (Se‡im, bilhassa
+Japonca'da bir yazm i‡in farkl anlamlara sahip birden fazla karakterin
+mevcut olmas sebebiyle gereklidir.)
+Ayrca DOS'un dahili DBCS Lead Bayt tablosu etkinleŸtirilmiŸtir ve DOSLFN artk
+yazm esnasnda uzun dosya isimlerindeki tm Unicode'lar DBCS'e ve tersine
+d”nŸtrmelidir. Ana karal €inli bir kullancnn yardmyla (ve Japonca
+anlamam sayesinde) gelecek denemeler CP932 ile CP936 ile snrl olacaktr.
+(CP950'nin ‡alŸt§ bildirildi.)
+
+PDOS95.bat dosyasnn yerine ge‡ecek ‡ok daha iyi ara‡larn oldu§unu unutmayn,
+"TechWay SCS V3.2" program/srcsn kullanabildim (teŸekkrler wengier), ki
+bu, Alman DOS6 zerinde de ‡alŸr. Avantajlarndan biri, (PDOS95.BAT aracnn
+yapt§nn aksine) sk kullanlan kutu ‡izme simgelerini otomatik olarak tespit
+etmesi ve bunlar €ince karakterler olarak yorumlamamasdr). Yani en
+be§endi§im dosya y”neticisini (vc.com), dzenleyiciyi (turbo.exe) ve hata
+ayklaycy (td.exe) neredeyse hi‡bir sknt olmadan ‡alŸtrabildim.
+
+
+"DOSLFNMS", "MVALUES", "MK_TABLE" VE "LOWDMA" PROGRAMLARI:
+
+DOSLFNMS, MS-DOS 7 ile kullanlmak i‡in tasarlanmŸtr (ama FreeDOS ile de
+‡alŸabilir) ve baz iŸlevleri boyutunu azaltmak i‡in kaldrlmŸtr:
+- Windows baŸlatld§nda kendisini devre dŸ brakmaz;
+- kod sayfas de§iŸikliklerini tanmaz;
+- ‡ift baytl karakter setlerini y”netemez.
+(GeliŸtiriciler i‡in bu, USEOLDDOS, USEWIN, USECP ve USEDBCS de§erlerini 0'a,
+USEFREESPC de§erini 1'e ayarlamak manasna gelir.)
+
+MVALUES, srclerinizde m anahtarlar i‡in en uygun boyutlar bulmak i‡in
+kullanlabilir. Bu, yerleŸi§in boyutundan ¬ KB'den fazla tasarruf etmenizi
+sa§layabilir. Sadece tek bir parametre kabul eder, ki bu taranacak srclerin
+dizesidir (varsaylan de§er C'dir).
+
+MK_TABLE, www.unicode.org adresinden indirilebilecek bir Unicode tablosunu
+DOSLFN tarafndan kullanlan ikili Volkov Commander Ÿekline d”nŸtrr.
+
+LOWDMA: LOWDMA.TXT dosyasna bakn.
+
+----------------------------------------------------------------------------
+Change.LOG (De§iŸiklik kt§): (+ ilaveler, - giderilen hatalar,
+* de§iŸiklikler)
+
+Srm 0.30 (01/2001)
+  ˜lk srm
+
+Srm 0.31 (04/2001)
++ Windows NT i‡in daha iyi destek (artk iŸe yaramaz)
++ ‡karlabilir ortam i‡in veri tutmak amacyla zaman aŸm ‡”zm
++ DOS7 zerinde yazma eriŸiminden evvel b”lmleri otomatik kilitle
+* PKZIP 2.50 deste§i i‡in kurcalamalar - nihai ‡”zm yok
+* ISR, tek adml hata ayklayclarla ‡alŸmak i‡in RETF 2 yerine IRET ile
+  sonlandrlr
+
+Srm 0.32 (09/01)
+- NUL, CON, LPT... gibi dahili cihazlarla ‡alŸr NUL,CON,LPT...
+* kaynak kod, InDOS bayra§n ayarlamak i‡in se‡enek bulundurur
++ de§iŸken y§n boyut deste§i; DOSLFN bellek tketimi kullancya ba§l
++ yerleŸik PRINTF benzeri iŸlev (sadece ge‡ici kod par‡as)
+* "Durum" yani "Status" eylemi i‡in ‡kt tarz de§iŸtirildi
++ ZIP paketine dahil d”rt kod ‡eviri tablosu
+- Readme dosyasndaki taŸknlklar biraz azaltld
+
+Srm 0.32a (10/2001)
+- Baz FAT32 srclerinde hatal k”k dizini
+  (bu hata devaml rapor ediliyordu ama Ÿimdiye dek bende hi‡ olmamŸt)
+- DOSLFN FAT32 srcsnden baŸlatld§nda yanlŸ iŸleyiŸ
+  (bu hata, 0.32 srmnde programa katlmŸt)
++ Zip paketi ile birlikte mevcut tm kod ‡eviri tablolar eklendi
++ MK_TABLE.C geliŸtirildi (0.32 srmnde yaplmŸt) ve ilave edildi
+* "a" ile srm numaralar geliŸtirilmekte olan baŸka bir 0.33 srm oldu§una
+  iŸaret eder. Bu daha ‡ok bir hata giderme srmdr.
+
+Srm 0.32b (10/2001)
+- INT21/4E&4F zerinde ge‡ersiz AX, raporlayan claude.caillet@free.fr
+  (˜ŸleyiŸ, Ralf Brown 03/99 listesinde belgelendirilmemiŸti)
+- DOSLFN.TXT dosasynda eksik ˜ngilizce metin (saat dilimi, test koŸullar)
+  raporlayan Wu Yongwei <adah@sh163.net>
+- CP850UNI.TBL hatalyd, CP858UNI.TBL dosyasna kopyaland (bu, Euro simgesini
+  ihtiva edendi, CP850 Euro'yu i‡ermez. (raporlayan
+  <ldzip@ldzip.freeservers.com>)
++ MKLINK eklendi, her ne kadar ‡kt ba§lant tablosu Ÿimdilik kullanlamasa da
+
+Srm 0.32c (11/2001)
+- baz durumlarda *. ‡alŸmyor (mesela "copy *. tmp" komutunda baŸarszlk)
+- Src karakterlerinin FindFirst unsuru hata geri g”nderiyor ama bunu
+  yapmamal ("copy con xx" komutunda baŸarszlk), her ikisi de
+  wengierwu@sohu.com tarafndan raporland
+* varsaylan y§n boyutu azaltld, CD sekt”rleri henz i‡inde de§il
+* Dahili Ba§lant Tablsou boyutu 32 bite geniŸletildi
+
+Srm 0.32d (06/2002)
+- uzun isim desteksiz olarak de§iŸtirilen SUBST komutlu srclerde tam
+  baŸarszlk
+- Saysal kuyruk ekleme alt ‡izgilerinin sa§ hizas hatal (caillet)
+* MKLINK, CeQuadrat ba§lant tablosunun ge‡erlili§ini kontrol etmek i‡in
+  de§iŸtirildi
+- MKLINK artk ‡ok oturumlu ve EasyCdCreator disklerini y”netebiliyor
+
+Srm 0.32e (06/2002)
+* kaynak tekrar dzenlendi, beyan alannda daha fazla ˜ngilizce
++ InDOS bayrak kullanm (kullanc tarafndan ”n ayar yaplabilir)
+- MSCDEX tarafndan verilen VolumeStart hatalyd, IOCTL temelli rutin eklendi
+* "sa§lama toplam ba§lants" ve "LoSA" anahtarlar kaldrld, "LoSA" VxD'ye
+  taŸnacak
+- Bir CD-ROM'da k”k dizinin LFN GetFAttr
+* varsaylan ayarlar de§iŸtirildi (tilde kullanm faal olarak ayarland)
++ DOSLFN artk MKLINK tarafndan oluŸturulan dosyalar ykleyebilir (yani tm
+  Joliet CD-ROM'lar desteklenir)
++ LastError (son hata) raporlama iŸlevi
+- MKLINK i‡in k‡k hata dzeltmesi (InSTab, LowWord yerine LongInt
+  karŸlaŸtryordu)
+* (bilinen) k”k dizin ba§lants *.JLT'ye eklendi, MKLINK gene de§iŸtirildi
+* MKLINK dahili olarak de§iŸtirildi, bir nesne kullanlarak, "tree order check"
+  eklendi
+
+Srm 0.32f… (09/2002)
+- LFN_FindFirst/FindNext'ten CX de§erini geri g”nder
+* dahili Creat(3C) ‡a§rs yerine geniŸletilmiŸ Open/Create(6C)  ‡a§rs
+- ™nyklenebilir CD'leri de tan (MLKINK henz de§il)
+* tnel etkisi i‡in hazrlk
+Srm 0.32f  (10/2002)
+- geniŸletilmiŸ a‡/oluŸtur (0.32f… srmnden beri mevcut hata)
+- LFN_DirEnt lfn_rmdir i‡in kaldrld (hata daima mevcuttu)
+* artk ”zyinelemeli Int21 ‡a§rlar yok (.JLT eriŸimi haricinde)
+* lfn_unlink i‡in sfn_unlink unsuruna ”zyineleme kaldrld (daha hzl)
++ jokerler ile silme (denenmedi; henz FALLBACK kipi i‡in de§il)
+Srm 0.32fƒ (11/2002)
+- birim etiketli yol bileŸeni olarak yorumlanyor
+Srm 0.32fÆ (12/2002)
+- EDIT.COM hatalarnn ‡o§u (umarm tm) giderildi
+- ‡irkin yanlŸ par‡aya yazma hatas dzeltildi (0.32e srmnde baŸlamŸt)
+Srm 0.32f„ (12/2002)
++ Jokerler ile silme artk uyguland, en azndan FAT srcler i‡in
+Srm 0.32f (12/2002) - son "f" srm
+- zaten mevcut bir dizini oluŸturmak "dosya bulunamad" g”nderiyor [wengier]
+- rename komutu bazen baŸka bir uzun ismi unutuyor veya yok ediyor (iki hata)
+
+Srm 0.32g (12/2002)
+- VC Alt+F7 hatas (lfn_name call unsurunda sondaki ters e§ik ‡izgi
+  siliniyordu)
+- VC ”zyinelemeli silme ve ”zyinelemeli PKZIP hata oluŸturuyor (FastOpenCache
+  hatas)
+* 0.33 srmnn geliŸtirilmesi durduruldu
+
+Srm 0.32h (12/2002)
+- BoŸluk bulunduran ksa isimlere eriŸim (ŸaŸrtc bir Ÿekilde, bu dzeltme
+  kod boyutunu k‡ltt)
+- MKLINK'de k‡k dzeltmeler: gevezelik anahtar, tablo dzenlemesi
++ CeQuadrat LT ilk oturumda de§ilse MKLINK bir ba§lant tablosu oluŸturur
++ MKLINK yerleŸik bir 437 kod sayfas kazand (geveze ‡kt i‡in)
+- CD-ROM'larn k”k dizini . ve .. unsurlarn g”steriyor
+- Alt+F7 hata dzeltmesi tarafndan sonda ters e§ri ‡izgi bulunduran "cd"
+  komutu devre dŸ brakld
+
+Srm 0.32i (12/2002)
+- DOSLFN CD-ROM gncel src olarak baŸlatld§nda ‡”kme
+- /p anahtarnn yanlŸ y”netimi ve iŸe yaramazl§
+- Unicode tablosunun yklenmesi i‡in yanlŸ dizin ele alnyor
+
+Srm 0.32j (12/2002 - Noel)
++ LFNXLAT.386 yazld - Windows ile DOS pencereleri i‡in korumal kip API'si
++ VxD'yi yklemek (Win3) veya kendisini devre dŸ brakmak (Win95+) i‡in
+  Int2F arayz
++ DOS ve Windows srm kontrol, DOS<+ veya Win9x ‡alŸyorsa ret
++ Int2F zerinden otomatik kod sayfas de§iŸtirilme bildirimi (henz denenmedi)
++ LastError rapor iŸlevi artk beŸ mesaj ile ‡alŸyor
++ en byk .JLT dosyasna dayal otomatik y§n boyutu hesab
++ iŸlevsel /c anahtar
++ Salt FAT kipinde (yani CD-ROM deste§i yokken) bellek kullanm azaltld
+  DOSLFN'˜ MSCDEX ™NCES˜ YšKLEY˜P JOLIET DESTE¦˜ ˜ST˜YORSANIZ LšTFEN /c+
+  ANAHTARINI KULLANIN
+- ‡ok oturumlu ise CD-ROM'dan CeQuadrat ba§lant tablosu yklenir
+- dizin geniŸletilmesiyle alakal en az ‡ hata
+- uzun isminde jokerler i‡eren bir dosya ad oluŸturabilirdiniz
++ SUBST komutu kullanlmŸ srcler i‡in tam destek
+- Uzun ISO isimleri DOSLFN ‡”kmesine sebep oluyor - artk sadece 12 karaktere
+  kesiliyorlar
+- tekrar isimlendirme sadece k‡k byk harf de§iŸimi yapld§nda baŸarsz
+  oluyor
+* setjmp/longjmp veya Catch/Throw benzer hata y”netimi kayna§ sadeleŸtiriyor
++ tnel etkisi (uzun ismi eski dzenleyiciler vs. i‡in muhafaza ediyor)
+- birim etiketi ile ayn isme sahip dosya/dizin oluŸturulamyor
+- sonda ters e§rinin uyumsuz kabul PKUNZIP ile baŸarszlk e§ilimine yol
+  a‡yor
++ iŸlevsel /t anahtar - artk tm anahtarlar iŸlevsel
+- Joliet CDROM k”k dizini listelemede hata (dosyalar dizine d”nŸyor)
++ DBCS deste§i hazrland
+
+Srm 0.32k (01/2003)
+- "dir makefile" makefile' g”stermiyor
+  (bu k‡k hata DOSLFN'in byk bir ksmnn yeniden yazlmasn gerektirdi)
+* Hi‡bir .TBL yoksa, DOSLFN artk varsaylan olarak CP437 yerine ISO-Latin1
+  kullanyor. Bunun nedeni DBCS deste§i i‡in yaplan dahili de§iŸikliklerdir.
+  BATI AVRUPALI KULLANICILAR CP437UNI.TBL DOSYASINI S˜LMEMEL˜LER!
+- ilk bayt 0xE5 olan dosyalar y”netilemiyor (DOS TRUENAME "hatas" @0.32j)
++ DBCS .TBL dosya bi‡imi artk beyan ediliyor, baknz TBL.TXT
++ š‡ yeni kod sayfa tablosu ilave edildi: Japonca (Shift-JIS),
+  BasitleŸtirilmiŸ €ince (GB2312, GBK alt kmesi), Geleneksel €ince (BIG5)
++ Tam DBCS deste§i eklendi, ama denemem imkƒnsz
+  €˜NL˜ VE JAPON KULLANICILAR daha fazla y§n i‡in /m18000 veya benzerine
+  kullanmallar (Bu anahtar sonraki bir srmde otomatik hale gelecek.)
+- cihazlara eriŸimin ardndan veri bozulmas meydana gelebilir
+- DOSLFN de§iŸik srmleriyle ‡alŸrken yanlŸ dizeler meydana gelebilir.
+- /z anahtar 0.32j srmnden beri ‡alŸmyor
+
+Srm 0.32l (01/2003)
+- DBCS deste§i hi‡ ‡alŸmyor (bir‡ok hata), TechWay SCS ile denendi
+- DBCS, CD-ROM deste§i olmadan yklenince hatal mesajlar
+- ksmi olarak ezilen DBCS tablosu
+* daha kat "kritik baŸlatma kodu" b”lm
++ otomatik y§n hesaplamas .TBL dosyasn i‡erecek Ÿekilde geniŸletildi
+  CJK kullanclar artk bir anahtara ihtiya‡ duymuyorlar
+
+Srm 0.32m (01/2003)
+- yardm /? veya -h ile sorgulamak 0.32l srmnden beri DOS'u ‡”kertiyor
+  (af ola!)
+- 0.32f  srmnden beri DEL komutu i‡in hatal geri g”nderilen de§er
+* ksa, sadece byk harf isimli dosya oluŸturmada biraz geliŸmiŸ performans
+- CP950UNI.TBL hatal (eski) bir bi‡imdeydi
++ d”rdnc DBCS Unicode tablosdu, CP949UNI (Korece) eklendi, ama geri d”nŸe
+  ihtiyacm var!
+
+Srm 0.32n (01/2003)
++ beŸinci CP936UNI.GBK, tam kapsaml basitleŸtirilmiŸ €ince i‡in bir Unicode
+  tablosu
+- CHCP komutu kullanld§nda Unicode tablosunun otomatik yklenmesi baŸarsz
+- komut satr ezilme hatas (uzun yollar girilemiyordu),
+  de§iŸken alan tamamen tekrar dzenlendi
++ UNC isimlerinin FallBack kipi olarak y”netilmesi (derin Ÿekilde denenmemiŸ)
+- SUBST komutu kullanlmŸ srclerde truename hatas
+- FallBack kipinde dosya/dizin oluŸturma hatas
++ ISO/Joliet dosya isimlerinin sonunda ";?" (?=1..9) kontrol, iki karakter
+  silinmesi yerine, ‡nk NERO b”yle ISO olmayan CD-ROM oluŸturabiliyor
+* VCACHE.386 problemi tespit edildi, dzeltme yok 32 bit dosya eriŸiminin
+  kullanlmamas dŸnda
++ sade bir y§n admlaycs boyut ve boŸ alanlar tespit ediyor
++ FMLFN.DRV, Windows Dosya Y”neticisi i‡in henz beta uzun isim sa§laycs
++ DOSLFN SimTel'de mevcut olmal (www.simtel.net)
++ MKLINK artk Unicode ve DBCS deste§ine kavuŸtu (ekran ‡kts i‡in)
+- .JLT dosyasnda MKLINK tarafndan oluŸturulmuŸ bir‡ok ba§lant
+- 2048 b”lmnn kalan olmayan dizin boyutlar MKLINK ‡”kmesine sebep olabilir
+  (ISO standard de§il)
+
+Srm 0.32o (05/2003)
+- /? se‡ene§i gene sistem ‡”kmesine sebep oluyor
++ Russian metin dizeleri mevcut, ama henz uygulanmŸ de§iller
+ AŸa§daki de§iŸiklikler ve hata gidermeleri i‡in jadoxa@yahoo.com.au'dan ilham
+ alnmŸtr ama o ‡ok daha fazlasn yapmŸtr:
+* k‡k kod iyileŸtirmeleri
+- Tnel efekti ile SFN dosyas oluŸtururken Readonly ”zniteli§ini ayarlama
+* Sekt”rlere eriŸim (belgelendirilmemiŸ) SmartDrive arabelle§inden ge‡iyor,
+  performans C: srcsnden dosyalar kopyalarken Ÿu Ÿekilde iyileŸmiŸ:
+  DOSLFN olmadan    25 s A: srcsne kopyala		7 s A:'dan sil
+  DOSLFN 0.32n ile	78 s A: srcsne kopyala		12 s A:'dan sil
+  DOSLFN 0.32o ile	43 s A: srcsne kopyala		7 s A:'dan sil
+* MKLINK artk 64 KB'den byk dizinleri y”netebilir (nadir, denenmemiŸ)
+* MKLINK.PAS, daha fazla bellek kullanm i‡in bir DPMI srm olarak
+  derlenebilir (denenmiŸ)
+
+AŸa§daki srmlerin tm Jason Hood tarafndan geliŸtirilmiŸtir:
+
+Srm 0.32o, ilk jh srm (10/2003)
+* ‡eŸitli boyut iyileŸtirmeleri;
+* CD ksa isimlerin oluŸturulmas de§iŸtirildi, SHSUCDX 2.0 tilde oluŸturmas;
++ yollarn azami boyutunu belirtmek i‡in se‡enekler eklendi (/m[sln]);
+- oluŸturma zamann muhafaza et (sadece LFN iŸlevleri);
+- sadece byk k‡k harflerle alakal yeniden adlandrmalar tan;
+- ”znitelik iŸlevleri i‡in taŸmay do§ru olarak temizle;
++ Linux Rock-Ridge CD'leri i‡in ilkel destek;
+* ba§lant tablosunu sadece yeni bir CD okundu§unda ykle (VSN tarafndan
+  tespit edildi§i zere);
+- YanlŸ kodlanmŸ Joliet birim etiketlerinden sondaki boŸluklar kaldr;
+- Dosya mevcut de§ilse LFN truename (Int21/AX=7160/CL=2) i‡in arabelle§e yazma;
+- Ge‡erli src bir CD oldu§unda yazlabilir cihazlara izin ver;
+* Joliet Ba§lant Tablosu (.JLT) dosya bi‡imi de§iŸtirildi (dosya ismi etiket
+  yerine Birim Seri Numarasn kullanr; TYPE bunu g”sterir);
+- MKLINK: boŸ dizinlerin daha iyi haritalanmas;
+- MKLINK: Joliet birim etiketleri ile potansiyel bir sorun giderildi;
++ MKLINK: ba§lantlar "elle" oluŸturmak i‡in se‡enek;
+- CP437UNI.TBL: "mikro" simgesinin (æ) ‡evirisi dzeltildi.
+
+Srm 0.32o, ikici jh srm (10/2003)
+- Joker ba§lant kaldrma iŸlevini kullanrken hata kodunu ayarla;
+- joker ba§lant kaldrma i‡in dosya bulmada bir hata giderildi.
+
+Srm 0.32o, ‡nc jh srm (12/2003, ama tarih olarak 10/2003 kullanld)
+- bir CD'yi silmek hata 5 (eriŸim reddedildi) geri g”nderir, 2 (dosya
+  bulunamad) de§il);
+- CeQuadrat'n ba§lant tablolar artk ‡alŸyor.
+
+Srm 0.33 (07/2004)
+
+Kullanc:
+
++ zaman d”nŸtrme iŸlevleri (NTFSDOS artk DIR ile do§ru zaman g”sterecektir)
++ saat dilimini belirtmek veya TZ ortam de§iŸkenini okumak i‡in o anahtar
+* istatistik saya‡lar 7 basamak olarak de§iŸtirildi (DWORDs)
++ durum, kullanlan y§n boyutu ve saat dilimini i‡erir
++ XP tarafndan oluŸturulan k‡k harfli isimleri oku
+- src de§iŸtirmeden evvel kirli sekt”rleri boŸalt
+- "yol bulunamad" mesajnn "dosya bulunamad" olmas gerekti§i hata
+  dzeltildi
+- DBCS kullanlmyorsa DBCS tablolarnn yklenmesine mani ol
+- daha iyi fallback kip deste§i (a§ srcleri ve Joliet olmayan CD'ler):
+  - de§iŸtirme zamann almak/ayarlamak ‡alŸyor; tm di§erleri baŸarsz
+    oluyor, hatal bir Ÿekilde baŸarl olmuyorlar
+  - jokerleri sil
+  - Birim Bilgisi (71A0) bilinmeyen dosya sistemi ("?") d”ndryor
+- belle§i bozan rename komut hatas dzeltildi (COMMAND.COM ‡”kyordu)
+- ge‡ersiz attrib/truename/alias/time i‡in hata 1 (ge‡ersiz alt iŸlev) d”ndr
+- cihazlar i‡in tm ”znitelik iŸlevlerini baŸarszl§a u§rat
+- E§er bir Rock-Ridge CD'si ykleniyorsa ”nceki tabloyu serbest brak
+- bellek atama boyutu (y§n doldurmak DOS'un ‡”kmesine yol a‡yordu) ve
+  g”rnt dzeltildi
+- oluŸturmak i‡in SFN (ksa ad), ama kullanmak i‡in LFN (uzun ad) (mesela:
+  SFN MkDir, LFN ChDir, DOSLFN yeni dizini g”rmyordu); hƒlƒ Create Temporary
+  File (5A) (Ge‡ici Dosya OluŸtur) ile sorunlar mevcut olabilir
+- Birim Bilgisi uygunsa "FAT32" d”ndryor
+- bir dizin geniŸletilemedi§inde oluŸturulan gizli dosyay kaldr
+* boŸ alann tekrar hesaplanmas gerekmesini engelle (DOSLFNMS)
+
+Kaynak:
+
++ koŸullu derlemeler:
+
+    USEOLDDOS	DOS bulma iŸlevlerinde LFN filtrelemesini etkinleŸtir
+    USEWINTIME	hakiki Win <-> DOS dosya zaman d”nŸtrmelerini etkinleŸtir
+    USEXP	XP k‡k harfli 8.3 dosya isimlerini okumay etkinleŸtir
+    USEFREESPC	DPB boŸ kme saysn ayarlamay etkinleŸtir
+    PROFILE	profil oluŸturmay etkinleŸtir (Pentium gerektirir ve varsayar)
+    PROFILECACHE fastopen arabelle§inin profilini oluŸturmay etkinleŸtir
+                 (yukardakine de ihtiya‡ duyar)
+    PATHLOOK	neyin arabelle§e alnp alnmad§n g”r
+
+* DT_BIGDOS kaldrld, DT_FAT12 eklendi ve DT_FAT16/32 konumlar de§iŸtirildi
+  (DT_FAT?? unsur baŸna d”rtl saysdr - boyut iyileŸtirmesi);
+  DT_DrvPar artk sadece CD tarafndan kullanlyor (Rock-Ridge Joliet ayrm
+  yapyor)
+* baz yorumlar dzeltildi, baz yorumlu kodlar kaldrld
+* ksa isim unsurunu do§rudan kur (PF_Install_Short)
+* Ÿunlar i‡eren boyut iyileŸtirmeleri:
+  * Cd kodunun ekseriyetinin CD deste§i gerekmiyorsa artk zerine yazlr
+  * sadece geniŸletilmiŸ veya standart DPB/disk iŸlevlerini kullan
+  * alias saylarnn (hem DOSLFN hem de SHSUCDX) < 2560 oldu§unu farz et
+  * kodu do§rudan yamala, TEST etmek yerine [ctrl]
+* her defada 4 FAT sekt”r oku (2K tampon)
+* yeni fastopen tamponu (16 dizin ve 16 ismi tampona al, tm srclerde)
+* al/ayarla ”zniteli§i dizin unsuru kullanr (DOS kullanmndan daha hzl)
+* CD'ler daima 16. sekt”r birim baŸlangc olarak kullanr (bu, SHSUCDX'in
+  tm yapt§dr)
+- imzal saylarda printf hatas dzeltildi (CX kullanlyordu, ECX de§il)
++ profil verilerini g”rntlemek i‡in p anahtar
++ profil verilerini sfrlamak i‡in pr anahtar
++ profil zamanlamasn kalibre etmek i‡in pc anahtar (bu de§erle tekrar
+  derleyin)
+* bir dosyay dizin olarak kullanma teŸebbs derhal baŸarsz olacaktr (bu,
+  FindFirst ”znitelik denemesinin yerine ge‡er)
+* bayt boyutlu atamalar kullanmak i‡in y§n de§iŸtirildi, atama 1, 2 veya 3
+  bayt kaldysa geniŸletilir; atama stratejisi kaldrld
+* Alloc_Cluster kendi dizin unsurunu oluŸturur
+
+Srm 0.33a (07/2004)
+- k”k dizinin ”zniteli§ini al
+
+Srm 0.33b (07/2004)
+- tm jokerleri sil, sadece birincisini de§il
+
+Srm 0.34 (11/2004) (MSCDEX)
+- -r dzeltildi
+- 2560 say snr kaldrld
+* CD: birim etiketi girilen yoldan ba§msz olarak bulunacaktr
+* CD: SHUCDX kodu kaldrld
+* CD: Rock Ridge deste§i kaldrld
+
+Srm 0.40 (11/2004) (SHSUCDX v3)
+* CD: bu srm, Joliet deste§i i‡in  SHSUCDX v3'e ihtiya‡ duyar!
+* CD: Rock Ridge deste§i iyileŸtirildi ("LINUX sistem kimli§i artk gereksinim
+      de§il)
++ CD: uzun ISO isim deste§i eklendi
+* CD: -r se‡ene§i varsaylan olarak SHSUCDX ile ayn de§eri kullanr
+
+Srm 0.40a (03/2005)
+- ”znitelik iŸlevlerinde tampon sorunu dzeltildi (FreeDOS hatas 1818)
+- TASM 5.3 ile derleme sorunlar dzeltildi
+- CD eriŸiminden hemen sonra FAT mkdir/rename/del dzeltildi
++ SHSUCDX 3.01 i‡in Joliet deste§i eklendi
+- L: Windows zerinde dir ile ilgili sorun dzeltildi
+
+Srm 0.40b (10/2005)
+- y§n dŸk oldu§unda ‡”kmeye sebep olan tampon dzeltildi (MPXPLAY ile ”zel
+  bir sorun)
+- CD sorunlar dzeltildi (CD'den kurulan baz programlar ‡alŸmyordu)
+
+Srm 0.40c (11/2005)
+- dosya oluŸturuldu§unda oluŸturma tarihini ayarlama sorunu dzeltildi
+- CD problemleri dzeltildi (yanlŸ kodlanan dizin boyutlar, yol bulma, CD
+  mevcutken /c- se‡ene§i)
+- dizin unsurunda depolanan NUL'lar sebebiyle dosya bulamama dzeltildi
+* CD: uzun ISO isimlerinin tannmas iyileŸtirildi
+
+Srm 0.40d (09/2006)
+* okuma/yazma ve salt yazma i‡in a‡lŸ sadece okuma/yazma olarak de§iŸtir
+  (Win9x/DOS uyumsuzlu§u - DOS Navigator sorununu atlamak i‡in)
+* mevcut dosyay salt okuma i‡in a‡ma esnasnda ”zniteli§i de§iŸtir (DR-DOS
+  7.03 uyumsuzlu§u - sistem dosyalar a‡lmyordu, pipe'lara engel oluyordu)
+- LFN'leri SFN bulma iŸlevinden szerken IF'i muhafaza et
+* bilinmeyen bir iŸlevde Int21 iŸleyicisini ekle (UDO'nun DR-DOS 64-bit
+  iŸlevleri)
++ FAT+ deste§i (bulma verilerinde dosya boyutunun yksek dword'n ayarla)
+
+Srm 0.40e (10/2006)
+- DR-DOS uyumsuzlu§undan oluŸan FreeDOS uyumsuzlu§u dzeltildi.
+
+Srm 0.41 (12/2011)
+- ksa bir isim alnd§nda sekt”r ge‡ersiz kl (COPY'den sonra DIR komutunu
+  dzeltir)
+- ksa isim oluŸturmasn dzelt (Japheth'e teŸekkrler)
+- DBCS sonundaki baytlarn artmasna mani ol
+* FASTOPEN tamponunu kullanmaya son ver durdur (ama onunla tekrar derlenebilir)
+* .com boyutu dŸrld (standart ‡a§rlar daha iyi tanmlayarak)
++ DBCS kod sayfalarn depolamak i‡in XMS kullan
++ cp860uni.tbl eklendi (Portekizce)
+
+Srm 0.41a (1/2012)
+- komut satr de§iŸkenler tarafndan bozuluyordu (-z'nin ‡alŸmasna engel
+  oluyordu)
+
+Srm 0.41b (2/2012)
+- -z'nin DBCS dosyasn yerleŸik oldu§unda XMS'e yklemesi dzeltildi
++ fallback kipini devre dŸ brakmak i‡in -f- eklendi, yerine ”nceki LFN
+  y”neticisi kullanlr (NTFSDOS veya Paraton IFS'in kendi LFN iŸlevlerini
+  kullanmalarna izin verir)
+
+Srm 0.41c (11/2012)
+- a‡k‡a carry ayarla (baŸarszlk varsay) zincirlemeden ”nce (DOS7 ”ncesi
+  i‡in djgpp 2.04 sorunu atlama)
+
+Srm 0.41d (12/2021)
++ Franszca ve Trk‡e tercmeler (teŸekkrler Berki Yenign)
+* ˜svi‡re artk varsaylan olarak Almanca kullanmyor
+- Ofset olmadan TZ (saat dilimi) de§iŸkenini okuma dzeltildi
++ ˜spanyolca belgeleme (FreeDOS toplulu§undan Parodper'e teŸekkrler)
+
+Srm 0.41e (3/2022)
+- baz durumlarda dizinlerin geniŸletilmesini dzelt
+
+Srm 0.41f (4/2022)
+- daha fazla dizin geniŸletme dzeltmeleri
+* temel bir srm denetimi ekle (farklysa kurulmamŸ gibi yap)
+
+Srm 0.41g (6/2022)
+- Joliet tablolarna kalan referanslar kaldr
+* baz mesajlar tekrar dzenlendi
+* Almanca (teŸekkrler Wilhelm Spiegl) ve Trk‡e (fd-nls'den bitigchi'ye
+  teŸekkrler) tercmeler gncellendi
++ -l kaldrld, de§iŸken olarak kullanlan %LANG%; mesajlar bir NLS
+   dizinindeki dosyalardan okunur
+
+
+Kalan bilinen hatalar:
+- "son eriŸim" tarihi ayarlanamyor/gncellenemiyor
+- FCB iŸlevleri ‡a§rld§nda LFN DirEnt'ler ayarlanamyor/kaldrlamyor
+- VCACHE.386 hatas, Windows 3.11 zerinde dosya eriŸimini devre dŸ
+  brakmalsnz
+- LFN SšRšCšSš YšKLEME SIRASI hatas - NTFSDOS, DOSLFN'den sonra yklenmelidir
+- TRUENAME cihazlar do§ru bir Ÿekilde ele almyor
+- 512 baytlk bir kmede *hakikaten* uzun bir isim oluŸturmak (ikinci bir kme
+  atama baŸarsz olacaktr; di§er kme boyutlarnda daima kafi alan olacaktr)
+- devre dŸ brakmak CD'lerin gncel dizinlerini ge‡ersiz klabilir (bu,
+  baŸka bir disk yerleŸtirmekle eŸde§erdir).
+- NIOS'un dahili komutlar ‡alŸmaz (bu, NIOS ve MS-DOS 7'de bir sorundur).
+  Sorunu atlama: PATH de§iŸkenine ge‡ersiz bir src ekleyin.
+- bir dosya isminden sonra ters e§ri ‡izgi eklemek o dosyay bulamaz (fakat bu
+  bir dizin i‡in sorun oluŸturmaz).
+- NTFSDOS bazen yanlŸ zamanlar bildirir - bu, NTFSDOS'da bir hatadr.
+
+
+e-posta:	  jadoxa@yahoo.com.au
+˜ndirme: http://adoxa.altervista.org/doslfn/
+
