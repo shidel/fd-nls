@@ -8,7 +8,7 @@ from shutil import copy
 
 import codec_mazovia
 
-PROJECTS = (
+KITTEN_PROGS = (
     "append",
     "assign",
     "blocek",
@@ -75,6 +75,8 @@ PROJECTS = (
     "xdel",
 )
 
+HELP = KITTEN_PROGS
+
 LANGUAGES = {
     "en": "CP437",
     "br": "CP850",  # Only CTMOUSE uses 'br' for Brazilian Portuguese
@@ -118,17 +120,10 @@ HDR = """\
 """
 
 
-class Kitten(unittest.TestCase):
+class Common(unittest.TestCase):
 
-    top = Path('.')
-
-    def _dotest(self, tipo, prg, lng):
-
-        indir = self.top / prg / tipo
-        if not indir.is_dir():
-            self.skipTest("'%s' not found" % str(indir))
-
-        outdir = output / prg / tipo
+    def _dotest(self, tipo, prg, lng, indir):
+        outdir = output / prg / indir.name
         outdir.mkdir(parents=True, exist_ok=True)
 
         # Hack for Brazilian (.ptBR -> .ptb)
@@ -155,7 +150,7 @@ class Kitten(unittest.TestCase):
         if have_utf:
             # Convert to output codepade
             try:
-                hdr = HDR if tipo == 'nls' else HDR.replace('#', ';')
+                hdr = HDR if tipo == 'kitten' else HDR.replace('#', ';')
                 tgt.write_text(hdr + txt, encoding=LANGUAGES[lng], newline='\r\n')
             except UnicodeEncodeError as e:
                 msg = "invalid character for target codepage ('%s')" % e
@@ -182,29 +177,33 @@ class Kitten(unittest.TestCase):
                 self.skipTest("'%s' not found" % lng)
 
 
-def generate_kitten_tests():
-    def create_test(test):
-        def do_test(self):
-            self._dotest(*test)
+def create_test(test):
+    def do_test(self):
+        self._dotest(*test)
 
-        docstring = """Kitten %s (%s) [%s]""" % (test[0].upper(), test[1], test[2].upper())
-        setattr(do_test, '__doc__', docstring)
-        return do_test
+    docstring = """%s (%s) [%s]""" % (test[0].capitalize(), test[1], test[2].upper())
+    setattr(do_test, '__doc__', docstring)
+    return do_test
 
+
+def generate_help_tests():
     # Insert each test into the testcase
-    tests = []
-    for p in PROJECTS:
+    for p in HELP:
+        for l in LANGUAGES.keys():
+            hlp = Path(p) / 'help'
+            if hlp.is_dir():
+                test = ('help', p, l, hlp)
+                setattr(Common, 'test_%s_%s_%s' % test[0:3], create_test(test))
+
+
+def generate_kitten_tests():
+    # Insert each test into the testcase
+    for p in KITTEN_PROGS:
         for l in LANGUAGES.keys():
             nls = Path(p) / 'nls'
             if nls.is_dir():
-                tests.append(('nls', p, l))
-
-            hlp = Path(p) / 'help'
-            if hlp.is_dir():
-                tests.append(('help', p, l))
-
-    for test in tests:
-        setattr(Kitten, 'test_%s_%s_%s' % test, create_test(test))
+                test = ('kitten', p, l, nls)
+                setattr(Common, 'test_%s_%s_%s' % test[0:3], create_test(test))
 
 
 class MyTestResult(unittest.TextTestResult):
@@ -218,6 +217,7 @@ class MyTestRunner(unittest.TextTestRunner):
 
 
 if __name__ == '__main__':
+    generate_help_tests()
     generate_kitten_tests()
 
     unittest.main(testRunner=MyTestRunner, verbosity=2)
