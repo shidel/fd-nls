@@ -134,8 +134,12 @@ class Kitten(unittest.TestCase):
         # Hack for Brazilian (.ptBR -> .ptb)
         tgt = outdir / (prg + "." + lng[0:4].lower())
 
-        src_utf = indir / (prg + "." + lng + ".UTF-8")
         src_cpg = indir / (prg + "." + lng)
+        src_utf = indir / (prg + "." + lng + ".UTF-8")
+        bad_utf = indir / (prg + "." + lng + "-UTF-8")
+        if bad_utf.exists():
+            msg = "non standard UTF-8 suffix ('%s')" % bad_utf.suffix
+            raise self.failureException(msg)
 
         # Ensure UTF-8 source is valid if it exists
         have_utf = False
