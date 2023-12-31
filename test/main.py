@@ -27,7 +27,6 @@ KITTEN_PROGS = (
     "fdhelper",
     "fdi",
     "fdimples",
-    "fdisk",
     "fdi-x86",
     "fdnet",
     "fdnpkg",
@@ -75,7 +74,9 @@ KITTEN_PROGS = (
     "xdel",
 )
 
-HELP = KITTEN_PROGS
+SVARLANG_PROGS = ('fdisk',)
+
+HELP = KITTEN_PROGS + SVARLANG_PROGS
 
 LANGUAGES = {
     "en": "CP437",
@@ -177,6 +178,33 @@ class Common(unittest.TestCase):
                 self.skipTest("'%s' not found" % lng)
 
 
+class Svarlang(unittest.TestCase):
+
+    def _dotest(self, tipo, prg, lng, indir):
+        # Svarlang input files are tested only for ability to convert from
+        # their UTF-8 to the target codepage, and any output is thrown away
+        # as user update of strings is not done.
+
+        src = indir / (lng + "_utf8.txt")
+        # Ensure UTF-8 source is valid if it exists
+        try:
+            txt = src.read_text(encoding="UTF-8")
+        except FileNotFoundError:
+            self.skipTest("'%s' not found" % lng)
+        except UnicodeDecodeError as e:
+            msg = "invalid character in UTF-8 ('%s')" % e
+            raise self.failureException(msg) from None
+
+        tgt = output / "target.txt"
+        try:
+            tgt.write_text(txt, encoding=LANGUAGES[lng], newline='\r\n')
+        except UnicodeEncodeError as e:
+            msg = "invalid character for target codepage ('%s')" % e
+            raise self.failureException(msg) from None
+
+        tgt.unlink()
+
+
 def create_test(test):
     def do_test(self):
         self._dotest(*test)
@@ -206,6 +234,16 @@ def generate_kitten_tests():
                 setattr(Common, 'test_%s_%s_%s' % test[0:3], create_test(test))
 
 
+def generate_svarlang_tests():
+    # Insert each test into the testcase
+    for p in SVARLANG_PROGS:
+        for l in LANGUAGES.keys():
+            nls = Path(p) / 'nls'
+            if nls.is_dir():
+                test = ('svarlang', p, l, nls)
+                setattr(Svarlang, 'test_%s_%s_%s' % test[0:3], create_test(test))
+
+
 class MyTestResult(unittest.TextTestResult):
 
     def getDescription(self, test):
@@ -219,5 +257,6 @@ class MyTestRunner(unittest.TextTestRunner):
 if __name__ == '__main__':
     generate_help_tests()
     generate_kitten_tests()
+    generate_svarlang_tests()
 
     unittest.main(testRunner=MyTestRunner, verbosity=2)
