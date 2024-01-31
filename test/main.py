@@ -40,6 +40,7 @@ PROJECTS = (
     "gcdrom",
     "help-legacy",
     "htmlhelp",
+    "kittenc",
     "label",
     "localize",
     "md5sum",
