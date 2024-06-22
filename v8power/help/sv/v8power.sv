@@ -1,6 +1,6 @@
 *******************************************************************************
 V8Power Tools
-Copyright 2015-2021 Jerome Shidel
+Copyright 2015-2024 Jerome Shidel
 Sl„ppt under licensen GPL v2.0.
 *******************************************************************************
 
@@ -23,7 +23,7 @@ Att kompilera V8Power Tools
         8086-processor eller b„ttre.
         EGA-grafikkort eller b„ttre.
         FreeDOS(TM) 1.1 (http://www.freedos.org) eller senare
-        NASM f”r DOS version 2.14.02 (http://wwww.nasm.us) eller nyare
+        NASM f”r DOS version 2.16.01 (http://wwww.nasm.us) eller nyare
 
     Kompilering:
 
