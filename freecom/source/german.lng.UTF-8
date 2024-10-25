@@ -8,7 +8,7 @@
 #   1121 "Dienstrogramm", 1395 "richtung", 1405 "double space",
 #   1456 "Standart" by W. Spiegl.
 #   modified the line breaks of command, del, dir, erase, history, if,
-#   lh, loadhigh, set.
+#   lh, loadhigh, set and memory (second fixes by W. Spiegl: 2024-10-13)
 #   Added a lot of test: TEXT_ERROR_PERMISSION_DENIED, TEXT_ERROR_NO_SUCH_FILE,
 #   TEXT_ERROR_UNKNOWN_ERROR, TEST_MSG_LFNFOR_STATE, TEST_MSG_LFNFOR_COMPLETE_STATE,
 #   PROMPT_APPEND_FILE, TEXT_SHOWCMD_FEATURE_LONG_FILENAMES, TEXT_CMDHELP_LFNFOR,
@@ -288,7 +288,7 @@ DO fehlt in der FOR-Anweisung.
 FOR-Anweisung: Kein Befehl nach DO.
 .
 
-:TEXT_ERROR_REDIRECT_FROM_FIL#0%E
+:TEXT_ERROR_REDIRECT_FROM_FILE#0%
 Kann Eingabe von Datei '%s' nicht umleiten.
 .
 
@@ -410,7 +410,7 @@ Optionen werden ignoriert.
 :TEXT_INIT_FULLY_QUALIFIED#1%
 Der Pfad zur COMMAND.COM muss vollständig angegeben werden.
 Das heißt mit Laufwerksbuchstabe und führendem Backslash.
-Zum Beispiel: C:\\FDOS
+Zum Beispiel: C:\\FREEDOS
 
 COMMAND.COM geht von folgendem Pfad aus:
 %s
@@ -886,7 +886,7 @@ Prozess manuell.\r
 :TEXT_MSG_FREECOM_NOT_FOUND#1
 Ausführbare FreeCOM Datei nicht gefunden.
 Sie müssen den vollen Pfad zur COMMAND.COM als ersten
-Parameter von COMMAND angeben, z.B. C:\\FDOS
+Parameter von COMMAND angeben, z.B. C:\\FREEDOS
 .
 
 
@@ -900,22 +900,22 @@ Kontext-Segment      : max %5u Bytes; frei %5u Bytes
 Heap                 : frei %5lu Bytes
 .
 :TEXT_MEMORY_CTXT_ALIAS#1%
-\tAliase         : Grenze %5u Bytes, momentan %5u Bytes, %5u Elemente
+\tAliase       : Grenze %5u Bytes, momentan %5u Bytes, %5u Elemente
 .
 :TEXT_MEMORY_CTXT_HISTORY#1%
-\tHistory        : Grenze %5u Bytes, momentan %5u Bytes, %5u Elemente
+\tHistory      : Grenze %5u Bytes, momentan %5u Bytes, %5u Elemente
 .
 :TEXT_MEMORY_CTXT_DIRSTACK#1%
-\tDateiverzeichnis-Stack: Grenze %5u Bytes, momentan %5u Bytes, %5u Elemente
+\tDateivz-Stack: Grenze %5u Bytes, momentan %5u Bytes, %5u Elemente
 .
 :TEXT_MEMORY_CTXT_LASTDIR#1%
-\tVorheriges-Verzeichnis-Cache: gebraucht  %5u Bytes, %5u Elemente
+\tVorheriger-Verz-Cache : gebraucht  %5u Bytes, %5u Elemente
 .
 :TEXT_MEMORY_CTXT_BATCH#1%
-\tStapel-Verschachtelung      : gebraucht  %5u Bytes, %5u Elemente
+\tStapel-Verschachtelung: gebraucht  %5u Bytes, %5u Elemente
 .
 :TEXT_MEMORY_CTXT_SWAPINFO#1%
-\tSwapinfo                    : gebraucht  %5u Bytes, %5u Elemente
+\tSwapinfo              : gebraucht  %5u Bytes, %5u Elemente
 .
 
 
@@ -1005,8 +1005,8 @@ CDD[..]
 
 Falls Laufwerk: angegeben ist, wird das aktuelle Arbeitslaufwerk gewechselt;
 dies ist der einzige Unterschied zu "CHDIR".
-Geben Sie CDD ohne Parameter ein, um das aktuelle Laufwerk und
-Verzeichnis anzuzeigen.
+Geben Sie CDD ohne Parameter ein, um das aktuelle Laufwerk und Verzeichnis
+anzuzeigen.
 .
 
 :TEXT_CMDHELP_CHCP
@@ -1030,23 +1030,24 @@ CLS
 Startet eine neue Instanz der FreeDOS Command Shell.
 COMMAND [[Laufwerk:]Pfad] [Gerät] [/E:nnnnn] [/L:nnnn] [/U:nnn] [/P] [/MSG]
         [/LOW] [/Y [/[C|K] Befehl]]
-  [Laufwerk:]Pfad  Spezifiziert das Verzeichnis, das die COMMAND.COM enthält.
-  Gerät            Spezifiziert das für die Befehls - Ein- und Ausgabe zu
-                   benutzende Gerät.
-  /E:nnnnn         Setzt die anfängiche Umgebungsgröße auf nnnnn Bytes.
-                   (nnnnn sollte eine Zahl zwischen 256 und 32.768 sein.)
-  /L:nnnn          Spezifiziert die Größe der internen Puffer (braucht /P).
-                   (nnnn sollte eine Zahl zwischen 128 und 1.024 sein.)
-  /U:nnn           Spezifiziert die Eingabepuffergröße (erfordert ebenso /P).
-                   (nnn sollte eine Zahl zwischen 128 und 255 sein.)
-  /P               Richtet die neue Command Shell Instanz dauerhaft ein
-                   (kann nicht beendet werden).
-  /MSG             Speichert alle Fehlermeldungen im Speicher (braucht /P).
-  /LOW             Zwingt Command Shell, bleibende Daten im LoMem zu speichern.
-  /Y               Arbeitet schrittweise die durch /C oder /K spezifizierten
-                   Stapelverarbeitungsdateien ab.
-  /C Befehl        Führt den spezifizierten Befehl aus und kehrt zurück.
-  /K Befehl        Führt den spezifizierten Befehl aus und läuft weiter.
+  [Laufwerk:]Pfad
+               Spezifiziert das Verzeichnis, das die COMMAND.COM enthält.
+  Gerät        Spezifiziert das für die Befehls - Ein- und Ausgabe zu
+               benutzende Gerät.
+  /E:nnnnn     Setzt die anfängiche Umgebungsgröße auf nnnnn Bytes.
+               (nnnnn sollte eine Zahl zwischen 256 und 32.768 sein.)
+  /L:nnnn      Spezifiziert die Größe der internen Puffer (braucht /P).
+               (nnnn sollte eine Zahl zwischen 128 und 1.024 sein.)
+  /U:nnn       Spezifiziert die Eingabepuffergröße (erfordert ebenso /P).
+               (nnn sollte eine Zahl zwischen 128 und 255 sein.)
+  /P           Richtet die neue Command Shell Instanz dauerhaft ein
+               (kann nicht beendet werden).
+  /MSG         Speichert alle Fehlermeldungen im Speicher (braucht /P).
+  /LOW         Zwingt Command Shell, bleibende Daten im LoMem zu speichern.
+  /Y           Arbeitet schrittweise die durch /C oder /K spezifizierten
+               Stapelverarbeitungsdateien ab.
+  /C Befehl    Führt den spezifizierten Befehl aus und kehrt zurück.
+  /K Befehl    Führt den spezifizierten Befehl aus und läuft weiter.
 .
 
 :TEXT_CMDHELP_COPY
@@ -1100,12 +1101,11 @@ Löscht eine oder mehrere Dateien.
 DEL [Laufwerk:][Pfad]Dateiname [/P] [/V]
 ERASE [Laufwerk:][Pfad]Dateiname [/P] [/V]
 
-  [Laufwerk:][Pfad]Dateiname  Spezifiziert die zu löschende(n) Datei(en).
-                              Benutzen Sie Wildcards, um mehrere Dateien
-                              anzugeben.
-  /P                          Fragt für jede zu löschende Datei nach
-                              Bestätigung.
-  /V                          Zeigt alle gelöschten Dateien an.
+  [Laufwerk:][Pfad]Dateiname
+                   Spezifiziert die zu löschende(n) Datei(en).
+                   Benutzen Sie Wildcards, um mehrere Dateien anzugeben.
+  /P               Fragt für jede zu löschende Datei nach Bestätigung.
+  /V               Zeigt alle gelöschten Dateien an.
 .
 
 :TEXT_CMDHELP_DIR#4
@@ -1151,14 +1151,14 @@ Grundeinstellungen können durch das Voranstellen eines - (Bindestrich)
 
 :TEXT_CMDHELP_DOSKEY#1
 Das externe DOSKey Dienstprogramm wurde in FreeCOM eingebunden.
-Benutzen Sie die Pfeiltasten HOCH und RUNTER, um die Befehls-History abzurufen
-und durch HISTORY anzeigen zu lassen.
-Benutzen Sie LINKS und RECHTS und die ENDE und POS1 Tasten, um innerhalb der
-Befehlszeile zu navigieren und schalten Sie mit der EINFG-Taste zwischen dem
-Überschreibe- und Einfüge-Modus hin und her.
+Benutzen Sie die Pfeiltasten HOCH und RUNTER, um die Befehls-History
+abzurufen und durch HISTORY anzeigen zu lassen.
+Benutzen Sie LINKS und RECHTS und die ENDE und POS1 Tasten, um innerhalb
+der Befehlszeile zu navigieren und schalten Sie mit der EINFG-Taste
+zwischen dem Überschreibe- und Einfüge-Modus hin und her.
 Benutzen Sie die Tabulatortaste, um das aktuelle Wort als Dateinamen zu
-vervollständigen; drücken Sie sie zweimal, um alle möglichen Treffer anzu-
-zeigen.
+vervollständigen; drücken Sie sie zweimal, um alle möglichen Treffer
+anzuzeigen.
 .
 
 :TEXT_CMDHELP_ORIGINAL_DOSKEY#1
@@ -1231,7 +1231,7 @@ FOR %%Variable IN (Dateisatz) DO Befehl [Befehlsparameter]
 Um den FOR-Befehl in einem Stapelprogramm zu benutzen, geben Sie %%%%Variable
 anstelle von %%Variable an.
 Zum Beispiel:
-  FOR %%f IN (---Start--- a*.* ---Ende---) DO ECHO - %%f -
+  FOR %%%%f IN (---Start--- a*.* ---Ende---) DO ECHO - %%%%f -
 .
 
 :TEXT_CMDHELP_GOTO
@@ -1243,7 +1243,8 @@ GOTO Sprungmarke
   Sprungmarke  Spezifiziert eine Zeichenkette, die in einem Stapelprogramm
                als Sprungmarke verwendet wird.
 
-Geben Sie in eine extra Zeile einen Doppelpunkt gefolgt von der Sprungmarke ein.
+Geben Sie in eine extra Zeile einen Doppelpunkt gefolgt von der Sprungmarke
+ein.
 .
 
 :TEXT_CMDHELP_HISTORY#1
@@ -1251,8 +1252,8 @@ History-Befehl.
 
 HISTORY [Größe]
 
-Ohne "Größe" wird der aktuelle Inhalt des Befehlszeilen-History-Puffers
-angezeigt. Bei Angabe einer Größe wird die Größe des History-Puffers geändert.
+Ohne "Größe" wird der aktuelle Inhalt des Befehlszeilen-History-Puffers an-
+gezeigt. Bei Angabe einer Größe wird die Größe des History-Puffers geändert.
 .
 
 :TEXT_CMDHELP_IF
@@ -1264,11 +1265,11 @@ IF [NOT] EXIST Dateiname Befehl
 
   NOT                Gibt an, dass der Interpreter den Befehl nur dann
                      ausführen soll, wenn die Bedingung nicht zutrifft.
-  ERRORLEVEL Nummer  Ergibt eine wahre Bedingung, falls das zuletzt
-                     ausgeführte Programm einen Ausgangscode zurückgegeben hat,
+  ERRORLEVEL Nummer  Ergibt eine wahre Bedingung, falls das zuletzt ausge-
+                     führte Programm einen Ausgangscode zurückgegeben hat,
                      der gleich oder größer als die spezifizierte Nummer ist.
-  Befehl             Spezifiziert den bei zutreffender Bedingung auszuführenden
-                     Befehl.
+  Befehl             Spezifiziert den bei zutreffender Bedingung auszuführen-
+                     den Befehl.
   Zeichenkette1==Zeichenkette2
                      Ergibt eine wahre Bedingung, falls die spezifizierten
                      Zeichenketten übereinstimmen.
@@ -1295,18 +1296,18 @@ LOADHIGH [/L:Region1[,minGröße1][;Region2[,minGröße2]...] [/S]]
          [Laufwerk:][Pfad]Dateiname [Parameter]
 
 /L:Region1[,minGröße1][;Region2[,minGröße2]]...
-            Spezifiziert die Speicherregionen, in die das Programm geladen
-            werden soll.  Region1 spezifiziert die Nummer der ersten
-            Speicherregion; minGröße1 spezifiziert, falls vorhanden, die
-            minimale Größe für Region1. Region2 und minGröße2 spezifizieren,
-            falls erforderlich, Nummer und minimale Größe für die zweite
-            Region. Sie können beliebig viele Regionen spezifizieren.
+          Spezifiziert die Speicherregionen, in die das Programm geladen
+          werden soll.  Region1 spezifiziert die Nummer der ersten
+          Speicherregion; minGröße1 spezifiziert, falls vorhanden, die
+          minimale Größe für Region1. Region2 und minGröße2 spezifizieren,
+          falls erforderlich, Nummer und minimale Größe für die zweite
+          Region. Sie können beliebig viele Regionen spezifizieren.
 
-/S          Schrumpft ein UMB auf seine Minimalgröße während das Programm
-            geladen wird.
+/S        Schrumpft ein UMB auf seine Minimalgröße während das Programm
+          geladen wird.
 
 [Laufwerk:][Pfad]Dateiname
-            Spezifiziert Pfad und Namen des zu ladenden Programms.
+          Spezifiziert Pfad und Namen des zu ladenden Programms.
 .
 
 :TEXT_CMDHELP_LOADFIX
@@ -1314,9 +1315,9 @@ Lädt ein Programm nach den ersten 64K des Speichers und führt es aus.
 
 LOADFIX [Laufwerk:][Pfad]Dateiname
 
-Benutzen Sie LOADFIX um ein Programm zu laden, wenn Ihnen beim Versuch, es im
-LoMem zu laden, die Nachricht "Packed file corrupt" (Gepackte Datei beschädigt)
-angezeigt wurde.
+Benutzen Sie LOADFIX um ein Programm zu laden, wenn Ihnen beim Versuch, es
+im LoMem zu laden, die Nachricht "Packed file corrupt" (Gepackte Datei
+beschädigt) angezeigt wurde.
 .
 
 :TEXT_CMDHELP_MD
@@ -1427,26 +1428,19 @@ SET [/C] [/P] [/E] [/U] [Variable[=[Zeichenkette]]]]
   Variable      Spezifiziert den Namen der Umgebungsvariable.
   Zeichenkette  Spezifiziert eine Zeichenkette, die der Variable
                 zugewiesen werden soll.
-
-* Falls keine Zeichenkette spezifiziert wird, wird die Variable aus der
-Umgebung gelöscht.
-
-Geben Sie SET ohne Parameter ein, um die aktuellen Umgebungsvariablen
-anzuzeigen.
-Geben Sie SET VAR ein, um den Wert von VAR anzuzeigen.
-
-/C erzwingt die Einhaltung der Groß-/Kleinschreibung der Variable; die
-Voreinstellung ist, die Variable in Großbuchstaben zu übernehmen, falls
-sie nicht bereits in der Umgebung vorhanden ist. Andernfalls wird die
-Groß-/Kleinschreibung beibehalten.
-
-/P Fragt Benutzer nach einer Zeichenkette und weist die Benutzereingabe
-der Variablen zu.
-
+*   Falls keine Zeichenkette spezifiziert wird, wird die Variable aus der
+    Umgebung gelöscht.
+    Geben Sie SET ohne Parameter ein, um die aktuellen Umgebungsvariablen
+    anzuzeigen. Geben Sie SET VAR ein, um den Wert von VAR anzuzeigen.
+/C  Erzwingt die Einhaltung der Groß-/Kleinschreibung der Variable; die
+    Voreinstellung ist, die Variable in Großbuchstaben zu übernehmen,
+    falls sie nicht bereits in der Umgebung vorhanden ist. Andernfalls
+    wird die Groß-/Kleinschreibung beibehalten.
+/P  Fragt Benutzer nach einer Zeichenkette und weist die Benutzereingabe
+    der Variablen zu.
 /E  Es wird ein Befehl ausgeführt und die erste Zeile der Ausgabe 
-des Befehls wird in einer Variablen gespeichert.
-
-/U Wandelt den Wert einer Variablen in Großbuchstaben um.
+    des Befehls wird in einer Variablen gespeichert.
+/U  Wandelt den Wert einer Variablen in Großbuchstaben um.
 .
 
 :TEXT_CMDHELP_SHIFT#1

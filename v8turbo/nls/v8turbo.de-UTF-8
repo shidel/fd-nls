@@ -56,7 +56,7 @@
 00,0002=850,858
 
 ; Optional, translation file author text. Uncomment it if you want it displayed.
-00,0005=Deutsche Übersetzung von W. Spiegl.
+; 00,0005=Deutsche Übersetzung von W. Spiegl.
 
 ; These are additional lower case characters that can be made uppercase under
 ; the proper codepage. Only non-standard (English) characters need to be
@@ -75,7 +75,7 @@
 ; This message is displayed for most commands that I have not yet full
 ; MS-DOS/FreeDOS compatibility or options. Eventually, this message will be
 ; removed.
-00,0099=Notice: Momentan ist dieser Befehl nur teilweise implementiert. Es gibt andere Dinge, die im Moment dringender sind. Ich werde die Entwicklung dieses Befehls zu einem späteren Zeitpunkt fortsetzen.
+00,0099=Achtung: Momentan ist dieser Befehl nur teilweise implementiert. Es gibt andere Dinge, die im Moment dringender sind. Ich werde die Entwicklung dieses Befehls zu einem späteren Zeitpunkt fortsetzen.
 
 ; Version information, Copyright and License
 01,0000=%0 Command Shell, Version %1
@@ -120,9 +120,6 @@
 
 ; help for a command is not available
 02,000a=Die für "%0" angeforderte Hilfe ist nicht verfügbar.
-
-; extra message when macro expansion fails
-02,000b=Konnte das Makro "%0" nicht vergrößern
 
 ; Extra messages for when make or remove dir fails
 03,0000=Erstellen des Verzeichnisses "%0" fehlgeschlagen
@@ -297,15 +294,16 @@
 ; Buffer types for 0f,0007 %0
 0f,0010=Maus Strings
 0f,0011=History Liste
-0f,0012=Makro Liste
+0f,0012=Alias Liste
 0f,0013=Mime Liste
 0f,0014=Verzeichnisstapel
 0f,0015=Schriftart anzeigen
 0f,0016=Aktive NLS
 0f,0017=Verbale NLS
-; this is other additional miscellaneous data, it does not need to be
-; called 'Miscellaneous', other, additional or whatever makes sense. :-)
-0f,0030=Andere Daten
+; Hierbei handelt es sich um weitere zusätzliche sonstige Daten; sie
+; müssen nicht "Verschiedenes", "andere", "zusätzlich" oder wie auch
+; immer genannt werden. :-)
+0f,0030=Verschiedene Daten
 
 ; This string is appended to stack string 0f,0003 only when the shell is
 ; compiled with STACK_CHECK enabled. Other than debugging and development
@@ -314,10 +312,6 @@
 
 ; LANG command to display language (id code(s))
 10,0000=Die aktuelle Sprache ist %0 (%1).
-
-; CHCP messages
-11,0000=Die aktive Codepage ist %0.
-11,0001=Die Systemcodepage ist %0.
 
 ; Shell startup information messages, these messages (50,*) are temporary for
 ; the development stage of V8Turbo. Most likely most or all will be removed at
@@ -415,17 +409,12 @@
 
 ; specific error for only V8Micro when command is not available with V8Micro
 21,e401=nicht unterstützt, V8Turbo erforderlich
-
 ; specific error when a parameter has values that have not been provided
-21,e501=Fehlender Parameter
+21,e501=Erforderlicher Parameter fehlt
 
 ; specific error that could be returned by date/time commands when attempt to
 ; set the clock fails.
 21,e505=Uhr konnte nicht eingestellt werden
-
-; specific error that could be returned by chcp command when attempt to
-; set the active codepage fails.
-21,e025=Codepage konnte nicht geändert werden.
 
 ; specific error when shell was unable to locate an NLS file for a requested
 ; language.
@@ -434,7 +423,6 @@
 ; specific error that will occur when an NLS file format is invalid, probably
 ; caused by improper modification of the NLS index (like index "ec,e102=").
 21,e302=Fehlerhaftes oder beschädigtes NLS-Dateiformat
-
 ; Or a bad UPPER/LOWER character case mapping entry (00,0010 & 00,0011).
 21,e402=Ungültige NLS-Zeichenzuordnung
 
@@ -445,15 +433,9 @@
 ; general error for when there is insufficient buffer space for the shell to
 ; perform a task. For example, command line environment variable expansion.
 21,e008=Unzureichender Pufferspeicher
-
 ; directory stack specific errors
 21,e601=Verzeichnisstack ist leer
 21,e608=Verzeichnisstack ist voll
-
-; doskey macro specific errors
-21,e701=Unbekannter Doskey Makroname
-21,e702=Unbekanntes Zeichen im Makronamen
-21,e708=Doskey Makroliste ist voll
 
 ; general error for when the user aborts an operation before it is completed.
 21,e026=Vom Benutzer abgebrochene Dateioperation
@@ -543,7 +525,7 @@
 42,0400=Aufruf einer Batch-Datei aus einer anderen.
 
 ; 05, Chdir, cd
-42,0500=Das aktuelle Verzeichnis anzeigen oder wechseln.
+42,0500=Das aktuelle Verzeichnis wechseln oder anzeigen.
 42,0501=
 42,0502=Befehle CHDIR und CD.
 42,0503=
@@ -556,7 +538,7 @@
 42,050a=Geben Sie CD ein, um das aktuelle Verzeichnis anzuzeigen.
 
 ; 35, Cdd
-42,3500=Das aktuelle Laufwerk und Verzeichnis anzeigen oder wechseln.
+42,3500=Das aktuelle Verzeichnis wechseln oder anzeigen.
 42,3501=
 42,3502=  CDD [%0D][Laufw:][Pfad]   Wechselt das aktuelle Laufwerk und Verzeichnis.
 42,3503=  CDD [..]                 Wechselt ins übergeordnete Verzeichnis.
@@ -569,10 +551,6 @@
 
 ; 06, Chcp
 42,0600=Zeigt oder ändert die aktive Codepage.
-42,0601=
-42,0602=  CHCP nnn     Wechselt zu einer angegebenen Codepage.
-42,0603=
-42,0604=CHCP ohne Parameter zeigt die aktuelle Codepageinformation an.
 
 ; 07, Cls
 42,0700=Löscht die Bildschirmanzeigen.
@@ -582,7 +560,7 @@
 ; 08, Commands, ?
 42,0800=Zeigt Liste der internen Befehle mit einer kurzen Beschreibung.
 42,0801=
-42,0802=  COMMANDS
+42,0802=  BEFEHLE
 
 ; 09, Copy
 42,0900=Kopiert einzelne oder mehrere Dateien.
@@ -639,29 +617,10 @@
 42,0e02=  DIRS
 
 ; 0f, Doskey
-; Reminder %% means to display the percent symbol and is not a parameter itself
-42,0f00=Zeigt oder ändert die Tastatureinstellungen und Makros.
+42,0f00=Zeigt oder ändert die Tastatureinstellungen.
 42,0f01=
 42,0f02=  DOSKEY %0INSERT        um den Texteinfügemodus zu aktivieren (Standard).
 42,0f03=  DOSKEY %0OVERSTRIKE    um den Texteinfügemodus zu deaktivieren.
-42,0f04=  DOSKEY %0CLEAR         um alle aktuellen Makros zu löschen.
-42,0f05=  DOSKEY %0MACROS        um die aktuellen Makros anzuzeigen.
-42,0f06=
-42,0f07=  DOSKEY macro[=][Wert] zeige, ändere, entferne oder füge ein Makro hinzu
-42,0f08=
-42,0f09=Um ein Makro zu erstellen/zu ändern, weisen Sie ihm einfach einen Wert zu.
-42,0f0a=Wenn der zugewiesene Wert leer ist, wird das Makro entfernt. Bei einem Makro-
-42,0f0b=namen ohne irgendeinen Wert wird das Makro angezeigt.
-42,0f0c=
-42,0f0d=Ein Makro kann Parameter unterstützen, die einen speziellen Code verwenden:
-42,0f0e=
-42,0f0f=$0      Der Name des Makros wird aufgerufen.
-42,0f10=$1-$9   Entspricht der Verwendung von %%1-%%9 in einer Batchdatei.
-42,0f11=$*      Alle Parameter, entsprechend der Verwendung aller $1-$9 Parameter.
-42,0f12=$$      Verwenden Sie das $ Symbol in der Kommandozeile.
-42,0f13=
-42,0f14=Wenn in der Makrodefinition keine Parameter verwendet werden, wird nach dem
-42,0f15=definierten Makrotext $* angenommen.
 
 ; 10, Echo
 42,1000=Zeigt eine Meldung an oder schaltet das Befehlsecho ein oder aus.
@@ -724,21 +683,49 @@
 42,1700=Zeigt oder ändert die Kommandozeilen-Historie.
 42,1701=
 42,1702=  HISTORY %0CLEAR      Löscht die aktuelle Kommandozeilenhistorie.
-;42,1703=  HISTORY %0SIZE n     Ändert die verwendete History-Speichergröße.
-;42,1704=
-;42,1705=  HISTORY Dateiname     Setzt Dateiname für LOAD, SAVE und AUTO Operationen.
-;42,1706=  HISTORY %0SAVE       Speichert die aktuelle Historie in einer Datei.
-;42,1707=  HISTORY %0LOAD       Lädt frühere Historie aus einer Datei.
-;42,1708=  HISTORY %0AUTO[= EIN | AUS]       Speichert neue Verlaufsdaten autom. in einer Datei.
+42,1703=  HISTORY %0SIZE n     Ändert die verwendete Speichergröße.
+42,1704=
+42,1705=  HISTORY Dateiname     Setzt Dateiname für LOAD, SAVE und AUTO Operationen.
+42,1706=  HISTORY %0SAVE       Speichert die aktuelle Historie in einer Datei.
+42,1707=  HISTORY %0LOAD       Lädt frühere Historie aus einer Datei.
+42,1708=  HISTORY %0AUTO[= ON | OFF]  Speichert neue Verlaufsdaten autom. in Datei.
 42,1709=
-42,170a=HISTORY-Befehlszeilenparameter werden der Reihe nach verarbeitet. Das heißt,
-42,170b="%0LOAD myhist.hst" verhält sich anders als "myhist.hst %0LOAD".
+42,170a=HISTORY-Befehlszeilenparameter werden der Reihe nach verarbeitet. D.h.,
+42,170b="%0LOAD myhist.hst" verhält sich anders als "myhist.hst %0LOAD"".
 42,170c=
-42,170d=Um die HISTORY-Größe zu ändern geben Sie SIZE 1 bis 32 (=KB) Speichergröße
-42,170e=an. Die Größenänderung ist nicht destruktiv. Jedoch können alte Objekte
-42,170f=beim Schrumpfen wegfallen.
+42,170d=Um die Größe der HISTORY zu ändern, geben Sie die SIZE als Wert zwischen
+42,170e=1 und 32 (=KB) an. Die Größenänderung ist zerstörungsfrei. Allerdings
+42,170f=können alte Einträge beim Schrumpfen gelöscht werden.
 42,1710=
 42,1711=Geben Sie HISTORY ohne Parameter ein um die aktuelle Historie anzuzeigen.
+
+; 32, Lang
+;
+; Basically...
+;
+; The /RELOAD option is for you, the translator. When working on a translation
+; or custom font. you can simple type 'LANG /RELOAD' to view your changes.
+;
+; The /N option is to prevent loading a custom NLS font. There are really only
+; three reasons for that. Some sort of compatibility issue. Or, on a system
+; when you only want to use the normal codepage font system. Or, if you are
+; using a custom font other than those provided with the shell.
+;
+; Finally, the /Q option is batch developers. They may want to switch languages
+; (like in the FreeDOS installer) without displaying the language information.
+42,3200=Spracheinstellungen anzeigen oder ändern.
+42,3201=
+42,3202=  LANG [%0Q][%0N] lang_id   Ändert die Sprache, lädt neue NLS-Übersetzung.
+42,3203=  LANG [%0Q][%0N] %0RELOAD   Lädt (erneut) die aktuelle NLS-Übersetzung.
+42,3204=
+42,3205=%0Q Unterdrückt die Anzeige von Übersetzungsinformationen.
+42,3206=
+42,3207=Verwenden Sie %0N, um das Laden einer transienten NLS-Schrift zu verhindern.
+42,3208=Diese Option "klebt" an allen nachfolgenden %0RELOAD-Operationen. Sie wird
+42,3209=nur beim Laden einer NLS-Schrift über ihre Spracherkennung deaktiviert.
+42,320a=Der Schriftartwechsel ist nur bei EGA- oder besseren Grafikkarten verfügbar.
+42,320b=
+42,320c=LANG ohne Parameter zeigt aktuelle Übersetzungsinformationen an.
 
 ; 18, Lfnfor
 
@@ -756,21 +743,22 @@
 42,1c01=
 42,1c02=  MEMORY
 42,1c03=
-42,1c04=Der MEMORY Befehl zeigt nur den von der Shell aktuell verwendeten Speicher
-42,1c05=an. Das ist nicht die Speichermenge, die von der Shell bei der Ausführung
-42,1c06=externer Programme oder Befehle belegt wird.
-
+42,1c04=Der MEMORY Befehl zeigt nur den von der Shell aktuell verwendeten Speicher an.
+42,1c05=Dabei handelt es sich nicht um den Speicher, den die Shell bei der Ausführung
+42,1c06=von externen Programmen oder Befehlen belegt.
 ; 1d, Mkdir, md
 42,1d00=Erstellt ein Verzeichnis.
 42,1d01=
 42,1d02=Befehle MKDIR und MD.
 42,1d03=
-42,1d04=  MD [Laufw:] Pfad
+42,1d04=  MD [Laufw:]Pfad
 ;42,1d04=  MD [%0P] [Laufw:]Pfad
 ;42,1d05=
 ;42,1d06=Verwenden Sie den Schalter %0P, um automatisch alle erforderlichen überge-
 ;42,1d07=ordneten Verzeichnisse zu erstellen.
 
+; 34, Mime
+42,3400=Zeige oder ändere MIME Inhaltstypen.
 ; 1e, Path
 42,1e00=Zeigt oder ändert den Systemsuchpfad für ausführbare Dateien.
 42,1e01=
@@ -789,10 +777,10 @@
 42,1f04=Wenn PAUSE nicht mit einer Meldung versehen wird, wird eine Standardmeldung
 42,1f05=angezeigt. Wahrscheinlich wird irgendwann eine Timeout-Funktion hinzugefügt.
 
+; 31, PowerNap
+42,3100=Zeige oder ändere PowerNap Einstellungen.
 ; 20, Popd
 42,2000=Holt ein Verzeichnis aus dem Verzeichnisstapel und kehrt zu ihm zurück.
-42,2001=
-42,2002=  POPD
 
 ; 21, Prompt
 42,2100=Ändert die Anzeige des Befehlsprompts (nicht implementiert).
@@ -803,12 +791,6 @@
 
 ; 22, Pushd
 42,2200=Schiebt das aktuelle Verzeichnis auf den Verzeichnisstapel.
-42,2201=
-42,2202=  PUSHD [Laufw:] [Pfad]
-42,2203=
-42,2204=PUSHD speichert das aktuelle Verzeichnis auf dem Verzeichnisstapel. Wenn
-42,2205=irgendwelche Parameter bereitgestellt werden, ändert es sich ebenfalls zu dem
-42,2206=angegebenen Pfad. PUSHD unterstützt die gleichen Optionen wie der CDD-Befehl.
 
 ; 23, Remark, rem
 42,2300=Batch-Datei Kommentar oder Notiz.
@@ -818,6 +800,8 @@
 42,2304=  REM [Kommentar]
 42,2305=
 42,2306=Ein Text hinter dem REM Befehl wird nicht ausgeführt.
+; 33, Return
+42,3300=Rückkehr aus einer Batch-Unterfunktion.
 
 ; 24, Rename, ren
 42,2400=Benennt eine Datei oder ein Verzeichnis um.
@@ -859,7 +843,7 @@
 42,2807=Geben Sie TIME ohne Parameter ein, um die aktuelle Zeit anzuzeigen/zu ändern.
 
 ; 29, Textmode, Tm
-42,2900=Zeigt, ändert oder listet den aktuellen Textmodus auf.
+42,2900=Anzeige, Auflistung oder Änderung des aktuellen Textmodus.
 42,2901=
 42,2902=Befehle TEXTMODE und TM.
 42,2903=
@@ -915,44 +899,6 @@
 
 ; 30, Which
 42,3000=Zeigt die ausführbare Datei für einen Befehl an.
-
-; 31, PowerNap
-42,3100=Zeigt oder ändert PowerNap-Einstellungen.
-
-; 32, Lang
-;
-; Basically...
-;
-; The /RELOAD option is for you, the translator. When working on a translation
-; or custom font. you can simple type 'LANG /RELOAD' to view your changes.
-;
-; The /N option is to prevent loading a custom NLS font. There are really only
-; three reasons for that. Some sort of compatibility issue. Or, on a system
-; when you only want to use the normal codepage font system. Or, if you are
-; using a custom font other than those provided with the shell.
-;
-; Finally, the /Q option is batch developers. They may want to switch languages
-; (like in the FreeDOS installer) without displaying the language information.
-42,3200=Zeigt oder ändert die Spracheinstellungen.
-42,3201=
-42,3202=  LANG [%0Q][%0N] lang_id    Ändere Sprachen und lade neue NLS-Übersetzungen.
-42,3203=  LANG [%0Q][%0N] %0RELOAD    Lade die aktuelle NLS-Übersetzung (erneut).
-42,3204=
-42,3205=Verwende %0Q zum Unterdrücken der Anzeige von NLS-Übersetzungsinformationen.
-42,3206=
-42,3207=Verwenden Sie %0N, um das Laden einer alten NLS-Schrift zu verhindern. Diese
-42,3208=Option ist für alle nachfolgenden %0RELOAD-Operationen "sticky". Sie wird nur
-42,3209=deaktiviert, wenn eine NLS-Schrift über ihre Sprachkennung geladen wird. Die
-42,320a=Unterstützung für Schriftartwechsel ist nur auf Systemen mit EGA- oder
-42,320b=besseren Grafikkarten verfügbar.
-42,320c=Geben Sie LANG ohne Parameter ein, um aktuelle Übersetzungsinformationen
-42,320d=anzuzeigen.
-
-; 33, Return
-42,3300=Rückkehr von einer Batch-Unterfunktion.
-
-; 34, Mime
-42,3400=Zeigt oder ändert MIME Inhaltstypen.
 
 ; 36, ?
 42,3600=Zeigt Befehle oder führt sie optional aus.

@@ -1,0 +1,95 @@
+vtest [Optionen]
+
+Ein Zustandsprüfer. Er kann verschiedene Prüfungen durchführen, die auf
+WAHR oder FALSCH heruntergebrochen werden können. Das Ergebnis wird als
+ERRORLEVEL ausgegeben. Wenn die Antwort WAHR ist, wird eine NULL ausge-
+geben. Wenn die Antwort FALSCH ist, eine EINS. Bei einer falschen Syntax
+oder anderen Fehlern wird der Errorlevel (exit code) 100 ausgegeben.
+
+Tests:
+
+  Wert1 /eq Wert2    Werte sind gleich
+  Wert1 /ne Wert2    Werte sind nicht gleich
+  Wert1 /ge Wert2    Wert1 ist größer oder gleich Wert2
+  Wert1 /le Wert2    Wert1 ist kleiner oder gleich Wert2
+  Wert1 /gt Wert2    Wert1 ist größer als Wert2
+  Wert1 /lt Wert2    Wert1 ist kleiner als Wert2
+  string             Zeichenfolge ist nicht null
+  /n string          Zeichenfolge ist nicht null
+  /z string          Zeichenfolge ist null
+  /v number          Nummer ist gültig
+  /f file            Datei existiert
+  /d dir             Pfad existiert
+  /e file or dir     Jede Art von Verzeichniseintrag
+
+Ausdrucksoperatoren:
+
+  /c expression      Erzwingt die Behandlung eines Wertes als Zeichenkette
+                     und führt einen fallspezifischen Vergleich durch.
+  /i expression      Erzwingt die Behandlung eines Werts als Zeichenkette
+                     und führt einen nicht fallspezifischen Vergleich durch
+  exp1 /and exp2     Beide Ausdrücke müssen WAHR sein.
+  exp1 /or /exp2     Jeder Ausdruck kann WAHR sein.
+  /not expression    Kehrt das Ergebnis eines Ausdrucks um.
+
+Andere Optionen:
+
+  /tf                Zeige am Ende WAHR oder FALSCH an.
+
+Standardmäßig basiert der Vergleich von Werten auf ihrem Typ. Wenn beide
+Werte eine Zahl sind (dezimal oder hexadezimal), wird der Vergleich
+mathematisch durchgeführt. Andernfalls wird ein nicht fallspezifischer
+alphabetischer Vergleich durchgeführt. Die Verwendung der Optionen /c
+oder /i erzwingt einen textbasierten Vergleich, unabhängig vom Datentyp
+des Wertes. Ein leerer WERT hat keinen keinen numerischen Wert und
+erzwingt den Vergleich der beiden Elemente als Zeichenketten.
+
+Grundlegende Beispiele:
+
+Eine Datei namens TEST.TXT existiert:        vtest /f TEST.TXT
+Eine Datei namens TEST.TXT existiert nicht:  vtest /not /f TEST.TXT
+Entweder Datei A.TXT oder B.TXT existiert:   vtest /f A.TXT /or /f B.TXT
+Weder Datei A.TXT noch B.TXT existiert:      vtest /not /f A.TXT /and
+                                                   /not /f B.TXT
+%1 ist eine Zahl:                            vtest /v %1
+%1 ist eine Zahl zwischen 1 und 10:          vtest /v %1 /and 1 /le %1
+                                                   /le 10
+
+Während die Optionen /f, /d und /e nach Datei- oder Verzeichniseinträgen
+suchen, können sie Ausdrucksmodifikatoren wie /not, /c und /i verwenden
+und unterstützen auch Wildcards. Sobald das Dateisystem auf das Vorhan-
+densein eines passenden Eintrags geprüft wurde, werden sie zum Wert des
+ersten passenden Dateisystemeintrags und können wie Werte behandelt
+werden. Wird kein passender Eintrag gefunden, wird der Wert zu null und
+führt höchstwahrscheinlich dazu, dass ein Ausdruck als falsch ausgewertet
+wird.
+
+Beim Vergleich zweier Werte wird der Vergleich numerisch durchgeführt,
+wenn jeder Wert eine gültige Zahl (dezimal oder hexadezimal) enthält.
+Wenn einer der beiden Werte keine Zahl ist, wird er alphabetisch ver-
+glichen. Obwohl es möglich ist, Datentypen in einer Reihe von Vergleichen
+zu mischen, kann das Ergebnis schwer vorhersehbar sein, weshalb es im
+Allgemeinen nicht empfohlen wird.
+
+Anführungszeichen werden NICHT für Zeichenketten mit Leerzeichen verwendet.
+Anführungszeichen werden immer wie normale Textzeichen behandelt. Der
+Befehlszeilenparser trennt Zeichenketten nur, wenn ein SWITCH_CHAR
+(normalerweise /) erkannt wird. Dies ist ein akzeptables Beispiel:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Die Verwendung eines Anführungszeichens zur einfachen Umschließung von
+Zeichenketten führt zu fehlerhaften Ergebnissen. Das folgende Beispiel
+wird unabhängig vom Wert von %1 IMMER WAHR ergeben:
+
+vtest /n "%1"
+
+Wenn eine Zeichenkette das SWITCH_CHAR enthält, wird der Teil nach dem
+SWITCH_CHAR als Programmoption interpretiert, es sei denn, er wird durch
+Einfügen eines zusätzlichen SWITCH_CHAR maskiert. Zum Beispiel würde „Y/N“
+als String „Y“ und dann als Option „/N“ interpretiert werden. Um beides
+als String zu interpretieren, müsste es „Y//N“ heißen.
+
+Zum Beispiel:
+
+vtest /n y//n
