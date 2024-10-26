@@ -1,3 +1,6 @@
+# Language: Russian (CP866)
+# Translated by: unknown
+
 2.0:Неверный параметр\r\n
 0.0:    SORT [/R] [/+num] [/A] [/?] [файл]\r\n
 0.1:    /R    Обратный порядок\r\n
