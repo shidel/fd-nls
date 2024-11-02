@@ -50,6 +50,7 @@ PROJECTS = (
     "mode",
     "more",
     "move",
+    "mysysinf",
     "nlsfunc",
     "packages",
     "password",
