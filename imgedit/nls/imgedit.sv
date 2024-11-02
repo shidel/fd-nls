@@ -86,7 +86,7 @@ ERROR.DRIVER.FIND=kan inte hitta %0-drivrutin
 ERROR.DRIVER.INIT=kan inte initiera %0-drivrutin
 ERROR.DRIVER.MODE=”ppnar grafikdrivrutin %0 l„ge %1
 
-ERROR.NOHELP=hj„lp inte tillg„nlig
+ERROR.NOHELP=hj„lp inte tillg„nglig
 ERROR.FORMAT=kunde inte identifiera format f”r fil %0
 
 ERROR.TOOBIG=bild ”verskrider storleksbegr„nsning om %0 x %1 bildpunkter
