@@ -41,7 +41,7 @@ ERROR.DRIVER.FIND=kan inte hitta %0-drivrutin
 ERROR.DRIVER.INIT=kan inte initiera %0-drivrutin
 ERROR.DRIVER.MODE=”ppnar grafikdrivrutin %0 l„ge %1
 
-ERROR.NOHELP=hj„lp inte tillg„nlig
+ERROR.NOHELP=hj„lp inte tillg„nglig
 ERROR.FORMAT=kunde inte identifiera format i fil %0
 
 ; there are numerous other error message/codes possible. But those should
