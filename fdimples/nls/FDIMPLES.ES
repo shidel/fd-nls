@@ -45,7 +45,7 @@
 36:Cancelar
 
 {M s texto de la barra de estado}
-39:T¡tulo
+37:T¡tulo
 38:versi¢n
 39:uso:
 40:[opciones]
