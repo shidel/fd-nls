@@ -142,18 +142,3 @@ the source code for the $OS_NAME$ packages. You can find the source code
 via the $OS_NAME$ website ($OS_DOWNLOAD$) or from
 the other release media, like the USB or CD-ROM installer.
 
-
--------------------------------------------------------------------------------
-		Support note regarding the Floppy-Only Edition
--------------------------------------------------------------------------------
-
-As of $OS_TITLE_SHORT$, the CPU level detection algorithms in V8Power Tools
-for DOS (used in the installer) need to be improved. Some systems may be
-incorrectly reported to the installer as only having an 80186 CPU. When in
-fact they might have a '286 or better processor. This will affect the software
-installed by the $OS_NAME$ Floppy-Only Edition.
-
-For this release, the installer will assume that the hardware has a '386 CPU
-or better. When launching the SETUP.BAT installer, you can override CPU
-detection by adding an option (like 8086, 186, 286, 386, 486, 586, 686, EMU,
-QEMU, VBX, VMW or DBX) to force a specific CPU level to support.
