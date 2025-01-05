@@ -1,7 +1,7 @@
 #!/bin/bash
 
 url_main=http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/repositories/latest/listing.csv
-url_aux=http://fd.lod.bz/repos/current/listing.csv
+url_aux=https://fd.lod.bz/repos/current/listing.csv
 
 INDENTING=''
 DEBUG=
