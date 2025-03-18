@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: build and test
       run:  python3 ./test/main.py
@@ -29,7 +29,7 @@ jobs:
     - name: upload
       if: github.repository == 'shidel/fd-nls' &&
         (github.event_name == 'push' || github.event.pull_request.merged == true)
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ steps.snapshotname.outputs.fname }}
         path: _output/*
