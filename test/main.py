@@ -32,6 +32,7 @@ PROJECTS = (
     "fdnet",
     "fdnpkg",
     "fdpkg",
+    "fdrepo",
     "fdshell",
     "fdtui",
     "find",
