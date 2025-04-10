@@ -71,7 +71,7 @@ THE SWITCHES EXPLAINED:
 ~ (tilde usage): By default, Win9x adds a "~1" designator to the alias of
   any long file name, "~2" if there is a clash, and so on.
   Therefore, these long file names in plain DOS cannot address the alias.
-  This behaviour seems to be built in due to erraneous behaviour of
+  This behaviour seems to be built in due to erroneous behaviour of
   some tested software. (I guess, it was some old Microsoft software.)
 
   For normal DOS & Win users, this is impractical. Plain DOS is able to
@@ -85,7 +85,7 @@ THE SWITCHES EXPLAINED:
 	REGEDIT4
 	[HKEY_LOCAL_MACHINE\System\CurrentControlSet\control\FileSystem]
 	"NameNumericTail"=hex:00
-  Then you have to restart Windows. (Dont't forget to hold down the "shift"
+  Then you have to restart Windows. (Don't forget to hold down the "shift"
   key when you confirm selecting "restart"; it is not necessary to reboot.)
   
   You may also refer the WWW with keyword "NameNumericTail".
@@ -137,7 +137,7 @@ z DOSLFN must convert Unicode to local code page, and this is locale
   this table must be delivered to DOSLFN.
   Nineteen Unicode translation tables, e.g. for 437 (Standard IBM, for
   resetting purpose), 850 (Western Europe), 852 (Eastern Europe), 866
-  (cyrillic), and two for Greek are now bundled with DOSLFN.
+  (Cyrillic), and two for Greek are now bundled with DOSLFN.
   A code page can be loaded/changed even while DOSLFN is resident.
   Most European users use umlauts very seldom (due to known problems
   with bad-coded software[*] around the world), therefore, a forgotten
@@ -145,7 +145,7 @@ z DOSLFN must convert Unicode to local code page, and this is locale
   unexpected underlines, you should load the code table.
   (DOSLFN does simply convert non-convertible unicodes to "_", without
    any notification on now equal file names.)
-  Hint: DOSLFN loads the "right" unicode table automatically on startup,
+  Hint: DOSLFN loads the "right" Unicode table automatically on startup,
   therefore, you don't need this switch even in East European countries.
   Furthermore, DOSLFN loads a table automatically if you change the code
   page using DOS' NLSFUNC, but you may have to reserve extra heap
@@ -153,7 +153,7 @@ z DOSLFN must convert Unicode to local code page, and this is locale
 
   [*] Often, it is wicked Unix software (e.g. "tar") that kills umlauts.
   Unix is internally more a 7 bit OS rather than 32 bit, and this limitation
-  is spreaded into world until recent (brain-dead UTF-7, MIME codings...)
+  has spread into the world recently (brain-dead UTF-7, MIME codes...)
 
 m DOSLFN needs an internal heap for storing data; mostly, for Find Handles.
   The size of this data area defaults to 1000 Bytes.
@@ -345,7 +345,7 @@ Version 0.31 (04/01)
 + better support for Windows NT (now useless)
 + timeout solution for keeping data for removable media
 + Automatically locking volumes on DOS7 before Write access
-* twiddeling with PKZIP 2.50 support - no final solution
+* twiddling with PKZIP 2.50 support - no final solution
 * ISR terminates with IRET instead of RETF 2, for work with single-stepping
   debuggers
 
@@ -359,7 +359,7 @@ Version 0.32 (09/01)
 - A little-bit deflamed readme file
 
 Version 0.32a (10/01)
-- erraneous root directory of some FAT32 drives
+- erroneous root directory of some FAT32 drives
   (this bug was constantly reported but doesn't occur at me until now)
 - misbehaviour when DOSLFN started from FAT32 drive
   (this bug was programmed in at Version 0.32)
@@ -371,14 +371,14 @@ Version 0.32a (10/01)
 Version 0.32b (10/01)
 - invalid AX on INT21/4E&4F, reported by claude.caillet@free.fr
   (Behaviour was not documented in Ralf Brown list 03/99)
-- some english text missing in DOSLFN.TXT (time zone, test conditions)
+- some English text missing in DOSLFN.TXT (time zone, test conditions)
   reported by Wu Yongwei <adah@sh163.net>
 - CP850UNI.TBL was wrong, copied to CP858UNI.TBL (this was one containing the
   Euro sign, CP850 does not contain Euro. (by <ldzip@ldzip.freeservers.com>)
 + MKLINK is added, although output link table file is useless yet
 
 Version 0.32c (11/01)
-- in some occations, *. doesn't work (e.g. failure on "copy *. tmp")
+- in some occasions, *. doesn't work (e.g. failure on "copy *. tmp")
 - FindFirst of character devices does return error but should not
   (failure on "copy con xx"), both reported by wengierwu@sohu.com
 * reduced default heap size, CD sectors are not yet inside
@@ -386,12 +386,12 @@ Version 0.32c (11/01)
 
 Version 0.32d (06/02)
 - complete failure on SUBSTed drives modified to no-lfn-support
-- right-align of numeric tail inserting underlines was erraneous (caillet)
+- right-align of numeric tail inserting underlines was erroneous (caillet)
 * MKLINK modified to check validity of CeQuadrat link table
 - MKLINK can now handle multi-session and EasyCdCreator disks
 
 Version 0.32e (06/02)
-* re-arranged source, more english in declaration area
+* re-arranged source, more English in declaration area
 + use of InDOS flag (user-presettable)
 - VolumeStart delivered by MSCDEX was wrong, IOCTL-based routine inserted
 * removed "checksum linkage" and "LoSA" switch, "LoSA" will be moved into VxD
@@ -399,7 +399,7 @@ Version 0.32e (06/02)
 * changed default settings (tilde usage set to ON)
 + DOSLFN can now load MKLINK-generated files (i.e. support all Joliet CDROMs)
 + LastError report feature
-- minor bugfix in MKLINK (InSTab comparred LowWord instead of LongInt)
+- minor bugfix in MKLINK (InSTab compared LowWord instead of LongInt)
 * (known) root directory link included in *.JLT, MKLINK changed again
 * MKLINK changed internally, using an object, added "tree order check"
 
@@ -440,7 +440,7 @@ Version 0.32h (12/02)
 
 Version 0.32i (12/02)
 - crash starting DOSLFN with CDROM as current drive
-- incorrrect handling and uselessness of /p switch
+- incorrect handling and uselessness of /p switch
 - taking wrong directory for auto-loading Unicode table
 
 Version 0.32j (12/02 - Xmas)
@@ -451,7 +451,7 @@ Version 0.32j (12/02 - Xmas)
 + LastError report feature now functional with five messages
 + automatic heap size calculation based on largest .JLT file
 + functional /c switch
-+ shrinked memory consumption in FAT-ONLY mode (ie. no CDROM support)
++ shrank memory consumption in FAT-ONLY mode (ie. no CDROM support)
   PLEASE INCLUDE /c+ SWITCH IF YOU LOAD DOSLFN BEFORE MSCDEX AND WANT JOLIET
 - loading CeQuadrat LT from CDROM if multi-session
 - at least three bugs around directory enlargement
@@ -462,7 +462,7 @@ Version 0.32j (12/02 - Xmas)
 * setjmp/longjmp or Catch/Throw alike error handling simplifies source
 + tunnel effect (preserves long name for old editors etc.)
 - cannot create file/directory with same name as volume label
-- incompatible acception of trailing backslash tends to failure of PKUNZIP
+- incompatible acceptation of trailing backslash tends to failure of PKUNZIP
 + functional /t switch - now all switches are functional
 - bug in Joliet CDROM listing on root directory (files become directories)
 + DBCS support prepared
@@ -486,7 +486,7 @@ Version 0.32k (01/03)
 
 Version 0.32l (01/03)
 - DBCS support doesn't work at all (multiple bugs), checked with TechWay SCS
-- erraneous messages when loading DBCS without CDROM support
+- erroneous messages when loading DBCS without CDROM support
 - partially overwritten DBCS table
 * more strict "critical initialization code" section
 + automatic heap size calculation extended to include .TBL file
@@ -494,17 +494,17 @@ Version 0.32l (01/03)
 
 Version 0.32m (01/03)
 - query help with /? or -h crashes DOS  since 0.32l  (oops!)
-- erraneous return value for DEL command  since 0.32fá
+- erroneous return value for DEL command  since 0.32fá
 * slightly improved performance for creating short-name, all-uppercase files
 - CP950UNI.TBL was in wrong (outdated) format
 + fourth DBCS Unicode table, CP949UNI (Korean) added, but I need feedback!
 
 Version 0.32n (01/03)
 + fifth CP936UNI.GBK is a Unicode table for full-range Simplified Chinese
-- fails to auto-load unicode table on CHCP command
+- fails to auto-load Unicode table on CHCP command
 - command line overwrite error (couldn't enter longer paths),
   variable area re-arranged completely
-+ handling UNC names as FallBack mode (not throrougly tested)
++ handling UNC names as FallBack mode (not thoroughly tested)
 - truename error on SUBSTed drives
 - file/directory creation error in FallBack mode
 + checking for ";?" (?=1..9) at end of ISO/Joliet file names rather than
