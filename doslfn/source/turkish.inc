@@ -1,4 +1,4 @@
-;Trk‡e ‡eviriler:	;(DOS CP857)
+;Texte_tuerkisch:	;(DOS CP857)
 dz	10							;0
 dz    "yksek"							;1
 dz    "%u bayt kullanarak yklendi."				;2
