@@ -225,7 +225,7 @@ function process_line () {
 	# echo "?? ${line}"
 
     local index=0
-    local id sha field
+    local id sha field crc
     local data storage finished piece xpiece
     unset data
     local data
@@ -271,6 +271,8 @@ function process_line () {
             fi
         elif [[ "${CSV_FIELD[${index}]}" == 'sha' ]] ; then
             sha="${field//[![:xdigit]]}"
+        elif [[ "${CSV_FIELD[${index}]}" == 'crc' ]] ; then
+            crc="${field//[![:xdigit]]}"
         fi
 
         data[${index}]="${field}"
@@ -285,8 +287,12 @@ function process_line () {
         echo "warning: field count ${index}/${CSV_FIELDS} missmatch for \`${id}'" | errorlog
     fi;
 
-    if [[ ! ${#sha} -eq 64 ]] ; then
+    if [[ ${#sha} -ne 0 ]] && [[ ${#sha} -ne 42 ]] && [[ ${#sha} -ne 64 ]] ; then # n/a, sha1, sha256
         echo "error: invalid sha hash for \`${id}', entry excluded" | errorlog
+        return 0
+    fi
+    if [[ ${#crc} -ne 0 ]] && [[ ${#crc} -ne 8 ]]  ; then # n/a, crc
+        echo "error: invalid crc hash for \`${id}', entry excluded" | errorlog
         return 0
     fi
 
