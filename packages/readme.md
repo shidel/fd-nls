@@ -14,21 +14,20 @@ http://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/repositories/latest/list
 If you wish to provide an new language translation, or updates to an existing
 translation, you should use (or at least review) the latest English version to
 include any new software packages. Simply translate the Description, Summary
-and Keyword fields. Other fields, like TITLE do not get or use multi-language
-translations.
+and Keyword fields. Other fields, like TITLE generally do not get translated.
 
-To assist in translating, the status.sh script can be used. It will retrieve
+To assist in translating, the update.sh script can be used. It will retrieve
 the latest listing.csv files from the on-line repositories and generate
-a master.csv. It will also examine each language translation listing.csv and
-create two additional files. A missing.csv that contains only the entries that
-have not been translated. Also created is a mixed.csv that contains the current
-translated entries and those marked in their "new" field.
+a master.csv. It will also examine each language translation listing.csv files
+a create a new mixed.csv file. The mixed.csv will contain the current
+translated entries and plus untranslated entries marked in their "new" field.
 
-Generally, you should work on translating the "new" items in the "mixed.csv"
-file. When complete, submit it as the new "listing.csv" file.
+When complete, submit updated "mixed.csv" as the new "listing.csv" file.
 
 Please note, you will need place the CSV for your language in a language
-subdirectory and probably a Codepage & UTF-8 subdirectory under that. See the
-existing translations for languages like FR & TR for examples on the subdirectory
-layout.
+subdirectory. Also, probably a Codepage & UTF-8 version of the listing.csv as well.
+See the existing translations for languages like FR & TR for examples.
 
+Note: The CSV update utility will choose either the CODE PAGE version or the UTF-8
+version of the listing.csv file based of the on which is newer. It will then replace
+the older of the two automatically.
