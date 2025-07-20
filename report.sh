@@ -953,7 +953,7 @@ function create_report () {
 
 function html_intro () {
 echo '<body>
-<h1 id="fd-nls-freedos-translation-project">fd-nls <a href="https://shidel.github.io/fd-nls">FreeDOS Translation Project</a></h1>
+<h1 id="fd-nls-freedos-translation-project">fd-nls <a href="https://github.com/shidel/fd-nls/">FreeDOS Translation Project</a></h1>
 
 <p>This project contains language contributions and other submissions
 for software related to <a href="https://www.freedos.org">FreeDOS&trade;</a>.</p>
