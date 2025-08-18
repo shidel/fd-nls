@@ -2,7 +2,7 @@ De§iŸiklikler kt§ i‡in dosya sonuna bakn.
 
 +----------------------------------------------------------------------+
 | DOSLFN - DOS zerinde uzun dosya isimleri i‡in ger‡ek kip srcs,  |
-|	       DBCS ile Unicode'u tamamen destekler!                       |
+|	   DBCS ile Unicode'u tamamen destekler!		       |
 +----------------------------------------------------------------------+
 
 
@@ -211,8 +211,11 @@ TZ Saat dilimi ortam de§iŸkeni - FAT zaman damgasn Win32 zaman bi‡imine
 
 LANG ortam de§iŸkeni. DOSLFN ‡ok dillidir; otomatik olarak lke koduna veya bu
   de§iŸkene dayal bir lisan se‡er. Mesajlar NLS dizinindeki dosyalardan
-  okunur, ki bu dizin ikili dosya ile ayn dizinde veya yakn bir dizinde
-  bulunabilir.
+  okunur (%LANG% unsurunun ilk ‡ karakteri uzant olarak kullanlarak),
+  ki bu dizin ikili dosya ile ayn dizinde veya yakn bir dizinde bulunabilir.
+  š‡nc konumdaki bir alt tire veya tire atlanacak ve e§er mevcut de§ilse
+  sadece iki karakter ile denenecektir (mesela LANG=pt_BR => DOSLFN.ptB =>
+  DOSLFN.pt).
 
 ** E§er profil oluŸturma etkinse **
 
@@ -570,9 +573,9 @@ Srm 0.32o (05/2003)
 - Tnel efekti ile SFN dosyas oluŸtururken Readonly ”zniteli§ini ayarlama
 * Sekt”rlere eriŸim (belgelendirilmemiŸ) SmartDrive arabelle§inden ge‡iyor,
   performans C: srcsnden dosyalar kopyalarken Ÿu Ÿekilde iyileŸmiŸ:
-  DOSLFN olmadan    25 s A: srcsne kopyala		7 s A:'dan sil
-  DOSLFN 0.32n ile	78 s A: srcsne kopyala		12 s A:'dan sil
-  DOSLFN 0.32o ile	43 s A: srcsne kopyala		7 s A:'dan sil
+  DOSLFN olmadan	25 s A: srcsne kopyala	7 s A:'dan sil
+  DOSLFN 0.32n ile	78 s A: srcsne kopyala	12 s A:'dan sil
+  DOSLFN 0.32o ile	43 s A: srcsne kopyala	7 s A:'dan sil
 * MKLINK artk 64 KB'den byk dizinleri y”netebilir (nadir, denenmemiŸ)
 * MKLINK.PAS, daha fazla bellek kullanm i‡in bir DPMI srm olarak
   derlenebilir (denenmiŸ)
@@ -768,13 +771,18 @@ Srm 0.41f (4/2022)
 - daha fazla dizin geniŸletme dzeltmeleri
 * temel bir srm denetimi ekle (farklysa kurulmamŸ gibi yap)
 
-Srm 0.41g (6/2022)
+Srm 0.42 (8/2025)
+- cihazlar i‡in daima kontrol et (mesela "con.*" bir cihazdr)
 - Joliet tablolarna kalan referanslar kaldr
+- belgelendirilmemiŸ SETALC komutunu de§iŸtir (baz klonlarda desteklenmez)
+- LFN oluŸturmadan srcy sfrla (bir FreeDOS FDNPKG hatasn dzeltir)
 * baz mesajlar tekrar dzenlendi
 * Almanca (teŸekkrler Wilhelm Spiegl) ve Trk‡e (fd-nls'den bitigchi'ye
   teŸekkrler) tercmeler gncellendi
-+ -l kaldrld, de§iŸken olarak kullanlan %LANG%; mesajlar bir NLS
++ -l kaldrld, de§iŸken olarak %LANG% kullanlr; mesajlar bir NLS
    dizinindeki dosyalardan okunur
+* 386 varsay (386 talimatlar testten evvel kullanlyordu, kimse Ÿikayet
+  etmedi)
 
 
 Kalan bilinen hatalar:
@@ -795,6 +803,6 @@ Kalan bilinen hatalar:
 - NTFSDOS bazen yanlŸ zamanlar bildirir - bu, NTFSDOS'da bir hatadr.
 
 
-e-posta:	  jadoxa@yahoo.com.au
+e-posta: jadoxa@yahoo.com.au
 ˜ndirme: http://adoxa.altervista.org/doslfn/
-
+	 https://www-user.tu-chemnitz.de/~heha/hsn/dos/doslfn/

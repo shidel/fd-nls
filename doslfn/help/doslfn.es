@@ -1,5 +1,3 @@
-Ÿ Para el texto en alem n consulte DOSLFN.DE (para v0.32o).
-Ÿ Para el texto en ingl‚s consulte DOSLFN.TXT.
 Ÿ Para el registro de cambios baje al final del archivo.
 
 +---------------------------------------------------------------+
@@ -126,7 +124,7 @@ c (Compatibilidad con CD-ROM): Activa la compatibilidad con CD-ROM, esto hace
   acceder al CDROM. Esto cambia los valores por omisi¢n est‚ SHSUCDX v3.01
   cargado o no (esta versi¢n de DOSLFN no funciona con MSCDEX o versiones m s
   antiguas de SHSUCDX). Tiene que usar la opci¢n c+ si carga DOSLFN antes de
-  SHSUCDX, ­y si quiere nombres largos en los CDROM! 
+  SHSUCDX, ­y si quiere nombres largos en los CDROM!
 
 i (uso en InDOS): Los programas residentes que usen NAL necesitan saber si
   DOSLFN est  en ejecuci¢n. Para m s inri usar nombres cortos puede corromper
@@ -136,7 +134,7 @@ i (uso en InDOS): Los programas residentes que usen NAL necesitan saber si
   conozco ninguna forma mejor para que InDOS no valga 0 _y_ llamar a DOS. Est 
   encendida por omisi¢n, pero si te causa problemas prueba a desactivarla.
 
-z DOSLFN tiene que convertir Unicode a la p gina de codificaci¢n local, y esto 
+z DOSLFN tiene que convertir Unicode a la p gina de codificaci¢n local, y esto
   depende del idioma del sistema. Puesto que DOS (o NLSFUNC) no tiene la tabla
   de conversi¢n necesaria es necesario tener una en DOSLFN. En en estos momentos
   DOSLFN tiene 19 tablas de conversi¢n Unicode: para 437 (IBM normalizado, para
@@ -700,5 +698,5 @@ Problemas que quedan sin arreglar:
 
 
 correo-e:  jadoxa@yahoo.com.au
-Descargar: http://doslfn.adoxa.vze.com/
+Descargar: http://adoxa.altervista.org/doslfn/
 	   https://www-user.tu-chemnitz.de/~heha/hsn/dos/doslfn/

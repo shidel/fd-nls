@@ -1,5 +1,3 @@
-* Pour le texte en allemand cf. DOSLFN.DE (pour v0.32o).
-* Pour le texte en anglais cf. DOSLFN.TXT.
 * Pour le journal des modifications, voyez la fin du fichier.
 
 +----------------------------------------------------------------------+
@@ -186,22 +184,11 @@ m[sln] Sp‚cifier la taille maximale du chemin de nom court (80), du chemin de
   donc la valeur par d‚faut de 80 pourrait ˆtre insuffisant. Cf. MVALUES
   ci-dessous.
 
-l DOSLFN est multilingue. S'il d‚tecte un r‚glage d'Autriche ou d'Allemagne
-  il utilisera par d‚faut l'allemand ; s'il s'agit de la France ou du Canada
-  francophone, le fran‡ais sera utilis‚ par d‚faut ; le turc pour la Turquie ;
-  l'anglais sinon. Pour remplacer la langue, utilisez "ld" pour l'allemand,
-  "le" pour l'anglais, "lf" pour le fran‡ais ou "lt" pour le turc. Par exemple
-  pour obtenir l'aide en anglais en Autriche, utilisez "doslfn -le -h" ou
-  "doslfn leh".
-  (Comme vous le voyez, DOSLFN ignore les pr‚fixes des commutateurs et les
-  espaces. Une espace de n'est n‚cessaire que pour la commande z.)
-  Lorsque DOSLFN est r‚sident, outrepasser la langue est permanent.
-
 o D‚calage du fuseau horaire. Si aucun fuseau horaire n'est entr‚, TZ sera
   relu. Voyez ci-dessous.
 
 TZ Variable d'environnement de fuseau horaire - pour convertir l'horodatage FAT
-  au format horaire de Win32 (un Int64 en 100 ns passe devant 1.1.1601).
+  au format horaire de Win32 (un Int64 en ‚tapes de 100 ns aprŠs 1.1.1601).
   Le format est [NOM]H[:MM] o— NOM est une abr‚viation facultative, H est
   l'heure et MM sont les minutes facultatives. Le nombre exprime la distance
   de GMT (Greenwich) - positif si en arriŠre, n‚gatif si en avant.
@@ -229,6 +216,16 @@ TZ Variable d'environnement de fuseau horaire - pour convertir l'horodatage FAT
   temps FAT (=toujours local) correct - donc il est pr‚f‚rable de proc‚d‚r par
   ‚tapes de fa‡on interne via le format de temps Win32.
 
+LANG variable d'environnement pour s‚lectionner la langue. DOSLFN est
+  plurilingue ; il choisit une langue automatiquement en se fondant sur le code
+  de pays ou sur cette variable. Les messages sont lus depuis des fichiers dans
+  le r‚pertoire NLS (en utilisant les trois premiers caractŠres de %LANG%
+  en tant qu'extension), qui peut se trouver dans le mˆme r‚pertoire que le
+  binaire ou bien dans un r‚pertoire proche. Un tiret bas ou un tiret … la
+  troisiŠme position sera ignor‚ et s'il n'est pas prŠsent un essai sera
+  effectu‚ avec seulement deux caractŠres (par exemple LANG=pt_BR =>
+  DOSLFN.ptB => DOSLFN.pt).
+
 ** Si le profilage est activ‚ **
 
 p Afficher les donn‚es de profil - nombre d'appels, temps en secondes,
@@ -242,6 +239,8 @@ pc Calibrer la constante de votre profil de timing. Le profilage utilise
   du Pentium pour le timing. Sauf si vous avez un P4 2.6 Ghz, vous aurez
   besoin de recompiler DOSLFN avec votre constante.
 
+DOSLFN ignore les pr‚fixes des commutateurs et les espaces. Une espace n'est
+n‚cessaire que pour la commande z.
 
 ACTIONS :
 
@@ -345,6 +344,7 @@ vice versa lors d'une ‚criture.
 Grƒce … la disponibilit‚ d'un utilisateur de Chine continentale (et … moi qui
 comprend le japonais), les tests futurs sont limit‚s … CP932 et CP936. (CP950
 fonctionnerait encore, quant … elle.)
+
 Notez qu'il existe de bien meilleurs outils pour remplacer PDOS95.BAT, j'avais
 le programme/pilote "TechWay SCS V3.2" disponible (merci …  wengier) qui
 fonctionne sous DOS6 en allemand ‚galement. L'un de ses avantages est la
@@ -364,7 +364,7 @@ avec FreeDOS) et possŠde certaines fonctionnalit‚s pour r‚duire sa taille :
 - ne gŠre pas les jeux de caractŠres … double octet.
 
 MVALUES peut ˆtre utilis‚ pour analyser vos lecteurs afin de trouver les
-tailles optimales pour les commutateurs m. Cela peut ‚conomiser au-del… d'un Ko
+tailles optimales pour les commutateurs m. Cela peut ‚conomiser au-del… d'¬ Ko
 de la taille r‚sidente. Il n'accepte qu'un seul paramŠtre, qui est une chaŒne
 des lecteurs … analyser (la valeur par d‚faut est C).
 
@@ -376,10 +376,10 @@ LOWDMA : cf. LOWDMA.TXT
 ----------------------------------------------------------------------------
 Change.LOG: (+ ajout, - correction de bug, * modification)
 
-Version 0.30 (01/01)
+Version 0.30 (01/2001)
   Version initiale
 
-Version 0.31 (04/01)
+Version 0.31 (04/2001)
 + meilleure prise en charge de Windows NT (d‚sormais inutile)
 + solution de d‚passement de d‚lai d'attente pour conserver les donn‚es pour
   les supports amovibles
@@ -388,8 +388,8 @@ Version 0.31 (04/01)
 * ISR quitte avec IRET au lieu de RETF 2, pour le travail avec les d‚bogueurs
   single-stepping
 
-Version 0.32 (09/01)
-- fonctionne avec les p‚riph‚riques internes tels que NUL,CON,LPT...
+Version 0.32 (09/2001)
+- fonctionne avec les p‚riph‚riques internes tels que NUL, CON, LPT...
 * le code source a une option pour r‚gler l'indicateur InDOS
 + taille de heap variable prise en charge ; la consommation de m‚moire de
   DOSLFN d‚pend de l'utilisateur
@@ -398,7 +398,7 @@ Version 0.32 (09/01)
 + quatre tables de traduction de code incluses avec le paquet zip
 - R‚duction des "flames" du fichier readme (lisez-moi)
 
-Version 0.32a (10/01)
+Version 0.32a (10/2001)
 - r‚pertoire racine erron‚ de certains lecteurs FAT32 (ce bug ‚tait rapport‚
   constamment mais je ne pouvais le reproduire jusqu'… cette date)
 - comportement erron‚ lors du d‚marrage de DOSLFN depuis un lecteur FAT32
@@ -410,7 +410,7 @@ Version 0.32a (10/01)
   0.33 actuellement en d‚veloppement. Il s'agit l… plut“t d'une version de
   correction de bugs.
 
-Version 0.32b (10/01)
+Version 0.32b (10/2001)
 - AX invalide sur INT21/4E&4F, rapport par claude.caillet@free.fr
   (le comportement n'‚tait pas document‚ dans la liste de Ralf Brown en 03/99)
 - du texte en anglais manquant dans DOSLFN.TXT (fuseau horaire, conditions de
@@ -420,15 +420,15 @@ Version 0.32b (10/01)
 + MKLINK est ajout‚, bien que la table de liens de sortie ne serve … rien pour
   l'instant
 
-Version 0.32c (11/01)
+Version 0.32c (11/2001)
 - dans certains cas, *. ne fonctionne pas (par exemple ‚chec de "copy *. tmp")
 - FindFirst du caractŠre des p‚riph‚riques retourne une erreur mais ne devrait
   pas (‚chec de "copy con xx"), les deux rapport‚s par wengierwu@sohu.com
 * r‚duction de la taille du heap par d‚faut, les secteurs des CD ne sont pas
   encore … l'int‚rieur
-* la taille de la table de liens interne a ‚t‚ ‚tendu … 32 bits
+* la taille de la table de liens interne a ‚t‚ ‚tendue … 32 bits
 
-Version 0.32d (06/02)
+Version 0.32d (06/2002)
 - ‚chec complet sur les lecteurs sur lesquels la commande SUBST a ‚t‚ utilis‚e
   et qui ont ‚t‚ modifi‚s pour ne pas prendre en charge les noms longs
 - L'alignement droit des soulignements d'insertion de la fin num‚rique ‚tait
@@ -436,7 +436,7 @@ Version 0.32d (06/02)
 * MKLINK modifi‚ pour v‚rifier la validit‚ de la table de liens CeQuadrat
 - MKLINK peut d‚sormais g‚rer les disques multi-sessions et EasyCdCreator
 
-Version 0.32e (06/02)
+Version 0.32e (06/2002)
 * r‚arrangement du code source, plus d'anglais dans la zone de d‚claration
 + utilisation de l'indicateur InDOS (pr‚-r‚glable par l'utilisateur)
 - VolumeStart livr‚ par MSCDEX ‚tait faux, routine fond‚e sur IOCTL ins‚r‚e
@@ -453,40 +453,40 @@ Version 0.32e (06/02)
 * MKLINK modifi‚ de fa‡on interne, en utilisant un objet, ajout de "tree order
   check" ("v‚rification de l'ordre de l'arborescence")
 
-Version 0.32f… (09/02)
+Version 0.32f… (09/2002)
 - Retourner la valeur CX … LFN_FindFirst/FindNext
 * appel interne de Extended Open/Create(6C) (ouvrir/cr‚er ‚tendu) au lieu de
   Creat(3C)
 - reconnaŒtre les CD amor‡ables aussi (MKLINK pas encore)
 * pr‚paration de l'effet tunnel
-Version 0.32f  (10/02)
+Version 0.32f  (10/2002)
 - ouverture/cr‚ation ‚tendues (bug depuis 0.32f…)
 - LFN_DirEnt enlev‚ pour lfn_rmdir (le bug ‚tait toujours pr‚sent)
 * plus d'appels Int21 r‚cursifs (sauf pour l'accŠs .JLT)
 * pas de r‚cursion vers sfn_unlink pour lfn_unlink (plus rapide)
 + effacer avec les jokers (non test‚ ; pas encore pour le mode de repli)
-Version 0.32fƒ (11/02)
+Version 0.32fƒ (11/2002)
 - interpr‚tation de l'‚tiquette de volume en tant que composant du chemin
-Version 0.32fÆ (12/02)
+Version 0.32fÆ (12/2002)
 - la plupart (avec un peu de chance tous) les bugs d'EDIT.COM corrig‚s
 - Un bug laid d'‚criture sur mauvais segment corrig‚ (introduit dans la version
   0.32e)
-Version 0.32f„ (12/02)
+Version 0.32f„ (12/2002)
 + L'effacement avec les jokers d‚sormais impl‚ment‚, au moins pour les lecteurs
   FAT
-Version 0.32f (12/02) - derniŠre version "f"
+Version 0.32f (12/2002) - derniŠre version "f"
 - cr‚er un r‚pertoire d‚j… existant retourne "file not found" ("fichier
   introuvable") [wengier]
 - la commande rename oublie ou d‚truit parfois un autre LFN (deux bugs)
 
-Version 0.32g (12/02)
+Version 0.32g (12/2002)
 - Bug VC Alt+F7 (la barre oblique invers‚e … la fin sur les appels lfn_name
   ‚taient enlev‚e)
 - Bug d'effacement r‚cursif VC et bug de cr‚ation r‚cursive PKZIP (bug
   FastOpenCache)
 * arrˆt du d‚veloppement de la version 0.33
 
-Version 0.32h (12/02)
+Version 0.32h (12/2002)
 - AccŠs SFN avec des espaces (de fa‡on surprenante, cette correction r‚duit la
   taille du code)
 - Corrections mineures dans MKLINK : option de verbosit‚, arrangement de la
@@ -497,13 +497,13 @@ Version 0.32h (12/02)
 - la commande "cd" avec une barre oblique invers‚e … la fin ‚tait d‚sactiv‚e
   par la correction du bug VC Alt+F7
 
-Version 0.32i (12/02)
+Version 0.32i (12/2002)
 - plantage au d‚marrage de DOSLFN avec un CD-ROM en tant que lecteur actuel
 - gestion incorrecte et inutilit‚ de l'option /p
 - utilisation d'un mauvais r‚pertoire pour le chargement automatique de la
   table Unicode
 
-Version 0.32j (12/02 - Xmas)
+Version 0.32j (12/2002 - Xmas)
 + ‚criture de LFNXLAT.386 - une API en mode prot‚g‚ pour Windows et ses
   "boŒtes" DOS
 + Interface Int2F pour le chargement de VxD (Win3) ou sa d‚sactivation (Win95+)
@@ -538,7 +538,7 @@ Version 0.32j (12/02 - Xmas)
   deviennent des r‚pertoires)
 + pr‚paration de la prise en charge de DBCS
 
-Version 0.32k (01/03)
+Version 0.32k (01/2003)
 - "dir makefile" n'affiche pas makefile
   (ce petit bug a n‚cessit‚ la r‚‚criture d'une grande partie de DOSLFN)
 * Sans .TBL, DOSLFN utilise d‚sormais par d‚faut ISO-Latin1 au lieu de CP437.
@@ -561,7 +561,7 @@ Version 0.32k (01/03)
   peuvent apparaŒtre
 - l'option /z switch ne fonctionne plus depuis 0.32j
 
-Version 0.32l (01/03)
+Version 0.32l (01/2003)
 - La prise en charge de DBCS ne fonctionne pas du tout (bugs multiples),
   v‚rifi‚ avec TechWay SCS
 - messages erron‚s lors du chargement de DBCS sans prise en charge des CD-ROM
@@ -570,7 +570,7 @@ Version 0.32l (01/03)
 + calcul automatique de la taille du tas ‚tendu pour inclure le fichier .TBL
   Les utilisateurs de CJK n'ont plus besoin de basculer
 
-Version 0.32m (01/03)
+Version 0.32m (01/2003)
 - l'interrogation de l'aide avec /? ou -h fait planter DOS depuis 0.32l (oups !)
 - valeur de retour erron‚e pour la commande DEL  depuis 0.32f 
 * performance l‚gŠrement am‚lior‚e pour la cr‚ation de fichiers aux noms courts
@@ -579,7 +579,7 @@ Version 0.32m (01/03)
 + quatriŠme table Unicode DBCS Unicode, CP949UNI (cor‚en) ajout‚, mais j'ai
   besoin de retours !
 
-Version 0.32n (01/03)
+Version 0.32n (01/2003)
 + le cinquiŠme CP936UNI.GBK est une table Unicode pour le chinois simplifi‚
   complet
 - ‚chec du chargement automatique de la table Unicode avec la commande CHCP
@@ -604,7 +604,7 @@ Version 0.32n (01/03)
 - les tailles de r‚pertoire non modulo 2048 peuvent faire planter MKLINK
   (pas un standard ISO)
 
-Version 0.32o (05/03)
+Version 0.32o (05/2003)
 - l'option /? fait encore planter le systŠme
 + Les chaŒnes de texte en russe sont disponibles mais pas encore impl‚ment‚es
  Les modifications et corrections de bugs suivantes sont inspir‚s par
@@ -624,7 +624,7 @@ Version 0.32o (05/03)
 
 Les versions suivantes sont toutes de Jason Hood :
 
-Version 0.32o, premiŠre version jh (10/03)
+Version 0.32o, premiŠre version jh (10/2003)
 * diverses optimisations de taille ;
 * modification de la g‚n‚ration des noms courts des CD, g‚n‚ration de tilde
   SHSUCDX 2.0 ;
@@ -650,18 +650,18 @@ Version 0.32o, premiŠre version jh (10/03)
 + MKLINK : option pour cr‚er "manuellement" les liens ;
 - CP437UNI.TBL: correction de la translation du symbole "micro" (æ).
 
-Version 0.32o, seconde version jh (10/03)
+Version 0.32o, seconde version jh (10/2003)
 - d‚finir le code d'erreur lors de l'utilisation de la fonction enlŠvement du
   lien du joker ;
 - correction d'un bug pour trouver des fichiers lors de l'enlŠvement du lien
   du joker (wildcard unlink).
 
-Version 0.32o, troisiŠme version jh (12/03, mais dat‚e du 10/03)
+Version 0.32o, troisiŠme version jh (12/2003, mais dat‚e du 10/2003)
 - l'effacement sur un CD retournera l'erreur 5 (accŠs refus‚), et non 2
   fichier introuvable) ;
 - Les tables de liens de CeQuadrat fonctionnent d‚sormais.
 
-Version 0.33 (07/04)
+Version 0.33 (07/2004)
 
 Utilisateur :
 
@@ -744,27 +744,27 @@ Source :
   strat‚gie d'allocation
 * Alloc_Cluster cr‚‚ son propre ‚l‚ment de r‚pertoire
 
-Version 0.33a (07/04)
+Version 0.33a (07/2004)
 - obtenir l'attribut du r‚pertoire racine
 
-Version 0.33b (07/04)
+Version 0.33b (07/2004)
 - effacer tous les jokers, pas seulement le premier
 
-Version 0.34 (11/04) (MSCDEX)
+Version 0.34 (11/2004) (MSCDEX)
 - correction de -r
 - suppression de la limite de 2560
 * CD : l'‚tiquette de volume sera trouv‚e ind‚pendamment du chemin donn‚
 * CD : suppression du code de SHSUCDX
 * CD : suppression de la prise en charge de Rock Ridge
 
-Version 0.40 (11/04) (SHSUCDX v3)
+Version 0.40 (11/2004) (SHSUCDX v3)
 * CD : cette version n‚cessite SHSUCDX v3 pour la prise en charge de Joliet !
 * CD : am‚lioration de la prise en charge de Rock Ridge (ne n‚cessite plus l'ID
        systŠme "LINUX")
 + CD : ajout de la prise en charge des noms longs ISO
 * CD : -r bascule aux mˆme valeurs par d‚faut que SHSUCDX
 
-Version 0.40a (03/05)
+Version 0.40a (03/2005)
 - correction d'un problŠme de tampon avec les fonctions d'attribut (bug FreeDOS
   1818)
 - correction de problŠmes de compilation avec TASM 5.3
@@ -772,13 +772,13 @@ Version 0.40a (03/05)
 + ajout de la prise en charge de Joliet pour SHSUCDX 3.01
 - L : correction d'un problŠme avec dir sous Windows
 
-Version 0.40b (10/05)
+Version 0.40b (10/2005)
 - correction du tampon provoquant un plantage lorsque le tas ‚tait trop petit
   (problŠme particulier avec MPXPLAY)
 - correction de problŠmes du CD (certains programmes ne fonctionnaient pas
   aprŠs l'installation depuis un CD)
 
-Version 0.40c (11/05)
+Version 0.40c (11/2005)
 - correction de la d‚finition du temps de cr‚ation lorsqu'un fichier ‚tait cr‚‚
 - correction de davantage de problŠmes de CD (tailles des r‚pertoires cod‚s
   incorrectement, recherche de chemin, option /c- lorsque le CD ‚tait
@@ -787,7 +787,7 @@ Version 0.40c (11/05)
   l'entr‚e de r‚pertoire
 * CD : am‚lioration de la reconnaissance de noms longs ISO
 
-Version 0.40d (09/06)
+Version 0.40d (09/2006)
 * modification de l'ouverture en lecture/‚criture et en lecture seule en
   simplement lecture/‚criture (contournement d'une incompatibilit‚ avec
   Win9X/DOS - DOS Navigator)
@@ -801,7 +801,7 @@ Version 0.40d (09/06)
 + prise en charge de FAT+ (d‚finir le dword haut de la taille de fichier dans
   les donn‚es de recherche)
 
-Version 0.40e (10/06)
+Version 0.40e (10/2006)
 - correction d'une incompatibilit‚ avec FreeDOS g‚n‚r‚ par une incompatibilit‚
   avec DR-DOS.
 
@@ -835,6 +835,30 @@ Version 0.41d (12/2021)
 + traductions en fran‡ais et en turc (merci … Berki Yenign)
 * la Suisse n'est plus en allemand par d‚faut
 - correction de la lecture de la variable TZ sans d‚calage (offset)
++ documentation traduite en espagnol (merci … Parodper de FreeDOS)
+
+Version 0.41e (3/2022)
+- correction de l'extension d'un r‚pertoire dans certaines circonstances
+
+Version 0.41f (4/2022)
+- davantage de corrections d'extension de r‚pertoires
+* ajout d'une v‚rification de base de la version (si diff‚rente, on fait comme
+  si elle n'‚tait pas install‚e)
+
+Version 0.42 (8/2025)
+- toujours v‚rifier si un p‚riph‚rique est pr‚sent (par exemple "con.*"
+  est toujours un p‚riph‚rique)
+- suppression des r‚f‚rences restantes aux tables Joliet
+- remplacement de l'instruction SETALC non document‚e (non prise en charge
+  sur certains clones)
+* ajustement de certains messages
+* mise … jour des traductions allemande (merci … Wilhelm Spiegl) et turque
+  (merci … bitigchi de fd-nls)
++ suppression de -l, utilisation de %LANG%; les messages sont lus depuis des
+  fichiers dans un r‚pertoire NLS
+* assumer 386 (les instructions 386 ont ‚t‚ utilis‚es avant le test, personne
+  ne s'est plaint)
+
 
 Bugs connus restants :
 - pas de d‚finition/mise … jour de la date du "dernier accŠs"
@@ -844,8 +868,6 @@ Bugs connus restants :
   Windows 3.11
 - bug du l'ordre du chargement du pilote LFN - NTFSDOS doit ˆtre charg‚ aprŠs
   DOSLFN
-- pas de v‚rification des versions - comportement ‚trange lors de l'utilisation
-  de diff‚rentes versions de DOSLFN
 - TRUENAME ne gŠre pas les p‚riph‚riques correctement
 - la cr‚ation d'un nom *vraiment* long sur un cluster de 512 octets (allouer un
   second cluster ‚chouera ; les autres tailles de cluster auront toujours
@@ -860,7 +882,6 @@ Bugs connus restants :
 - NTFSDOS retourne parfois des horodatages erron‚s - c'est un bug dans NTFSDOS.
 
 
-e-mail :	 <jadoxa@yahoo.com.au>
-T‚l‚chargement : http://doslfn.adoxa.vze.com/
+courriel :	 <jadoxa@yahoo.com.au>
+T‚l‚chargement : http://adoxa.altervista.org/doslfn/
 		 https://www-user.tu-chemnitz.de/~heha/hsn/dos/doslfn/
-
