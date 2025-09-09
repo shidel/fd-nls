@@ -2,6 +2,8 @@
 ; will be removed from this project and moved to the FD-NLS translation project.
 ; Translations or corrections are welcome. However, they will not will be
 ; accepted directly into source code development of this project.
+; country=sv (Sweden), CP=858, ONE_TIME_NOTICE_0 till 9 translated by
+; Google Gemini! Added by W. Spiegl.
 
 VERSION=%0 (version %1)
 LICENSE=3-klausulers BSD-licens
@@ -24,6 +26,18 @@ PAUSE=spel pausat
 START=klicka f”r att starta
 DEATH=aj, prova igen
 GAMEOVER=spelet ”ver
+
+; ONE_TIME_NOTICE is limited to 255 characters maximum!
+ONE_TIME_NOTICE_0=Det h„r „r inte Tetris!
+ONE_TIME_NOTICE_1=\n
+ONE_TIME_NOTICE_2=Blocken faller bara. Du kan
+ONE_TIME_NOTICE_3=inte flytta dem. N„r de har landat,
+ONE_TIME_NOTICE_4=klicka p† grupper med 3 eller fler
+ONE_TIME_NOTICE_5=likadana block f”r att f”rst”ra dem.
+ONE_TIME_NOTICE_6=\n
+ONE_TIME_NOTICE_7=Om det g†r f”r l†ngsamt, anv„nd +/- tangenterna
+ONE_TIME_NOTICE_8=f”r en konstgjord hastighets”kning.
+ONE_TIME_NOTICE_9=
 
 ERROR.MOUSE=kan inte hitta musen. den „r n”dv„ndig.
 ERROR.VIDEO=kan inte hitta n†gon l„mplig grafikdrivrutin
