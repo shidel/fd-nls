@@ -35,14 +35,13 @@ ONE_TIME_NOTICE_0=­Esto no es Tetris!
 ONE_TIME_NOTICE_1=\n
 ONE_TIME_NOTICE_2=Los bloques simplemente caen.
 ONE_TIME_NOTICE_3=No puedes moverlos. Una vez que
-ONE_TIME_NOTICE_4=aterrizan, haz clic en grupos de
-ONE_TIME_NOTICE_5=3 o m s bloques iguales para
+ONE_TIME_NOTICE_4=aterrizan, haz clic en grupos
+ONE_TIME_NOTICE_5=de 3 o m sb loques iguales para
 ONE_TIME_NOTICE_6=destruirlos.
 ONE_TIME_NOTICE_7=\n
-ONE_TIME_NOTICE_8=Si es demasiado lento, usa las
+ONE_TIME_NOTICE_8=Si es demasiado lento, usa las 
 ONE_TIME_NOTICE_9=teclas +/- para un aumento
 ONE_TIME_NOTICE_10=artificial de velocidad.
-ONE_TIME_NOTICE_11=\n
 
 ERROR.MOUSE=no se pudo encontrar el rat¢n. es realmente necesario.
 ERROR.VIDEO=no se pudo encontrar ning£n controlador gr fico adecuado

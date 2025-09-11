@@ -33,14 +33,14 @@ GAMEOVER=koniec gry
 ; ONE_TIME_NOTICE is limited to 255 characters maximum!
 ONE_TIME_NOTICE_0=To nie jest Tetris!
 ONE_TIME_NOTICE_1=\n
-ONE_TIME_NOTICE_2=Bloki po prostu spadaj¥. Nie mo¾esz
-ONE_TIME_NOTICE_3=ich przesuwa†. Gdy wyl¥duj¥,
-ONE_TIME_NOTICE_4=kliknij na grupy 3 lub wi©cej
-ONE_TIME_NOTICE_5=takich samych blok¢w, aby je zniszczy†.
-ONE_TIME_NOTICE_6=\n
-ONE_TIME_NOTICE_7=Je˜li jest za wolno, u¾yj klawiszy + -
-ONE_TIME_NOTICE_8=do sztucznego zwi©kszenia pr©dko˜ci.
-ONE_TIME_NOTICE_9=
+ONE_TIME_NOTICE_2=Bloki po prostu spadaj¥. Nie
+ONE_TIME_NOTICE_3=mo¾esz ich przesuwa†. Gdy
+ONE_TIME_NOTICE_4=wyl¥duj¥, kliknij na grupy 3
+ONE_TIME_NOTICE_5=lub wi©cej takich samych 
+ONE_TIME_NOTICE_6=blok¢w, aby je zniszczy†.
+ONE_TIME_NOTICE_7=Je˜li jest za wolno, u¾yj
+ONE_TIME_NOTICE_8=klawiszy +/- do sztucznego
+ONE_TIME_NOTICE_9=zwi©kszenia pr©dko˜ci.
 
 ERROR.MOUSE=nie mo¾na znale«† myszy. jest naprawd© konieczna.
 ERROR.VIDEO=nie mo¾na znale«† ¾adnego odpowiedniego sterownika graficznego

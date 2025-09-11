@@ -33,14 +33,16 @@ GAMEOVER=игра окончена
 ; ONE_TIME_NOTICE is limited to 255 characters maximum!
 ONE_TIME_NOTICE_0=Это не Тетрис!
 ONE_TIME_NOTICE_1=\n
-ONE_TIME_NOTICE_2=Блоки просто падают. Вы не можете
-ONE_TIME_NOTICE_3=их двигать. Как только они приземлятся,
-ONE_TIME_NOTICE_4=нажмите на группы из 3 или более
-ONE_TIME_NOTICE_5=одинаковых блоков, чтобы их уничтожить.
-ONE_TIME_NOTICE_6=\n
-ONE_TIME_NOTICE_7=Если слишком медленно, используйте клавиши +/-
-ONE_TIME_NOTICE_8=для искусственного увеличения скорости.
-ONE_TIME_NOTICE_9=
+ONE_TIME_NOTICE_2=Блоки просто падают. Вы не
+ONE_TIME_NOTICE_3=можете их двигать. Как только
+ONE_TIME_NOTICE_4=они приземлятся, нажмите на
+ONE_TIME_NOTICE_5=группы из 3 или более
+ONE_TIME_NOTICE_6=одинаковых блоков, чтобы их
+ONE_TIME_NOTICE_7=уничтожить.
+ONE_TIME_NOTICE_8=Если слишком медленно,
+ONE_TIME_NOTICE_9=используйте клавиши +/- для
+ONE_TIME_NOTICE_10=искусственного увеличения
+ONE_TIME_NOTICE_11=скорости.
 
 ERROR.MOUSE=не удалось найти мышь. она действительно необходима.
 ERROR.VIDEO=не удалось найти подходящий графический драйвер

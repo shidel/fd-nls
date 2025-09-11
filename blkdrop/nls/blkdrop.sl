@@ -33,14 +33,14 @@ GAMEOVER=konec igre
 ; ONE_TIME_NOTICE is limited to 255 characters maximum!
 ONE_TIME_NOTICE_0=To ni Tetris!
 ONE_TIME_NOTICE_1=\n
-ONE_TIME_NOTICE_2=Bloki preprosto padajo. Ne morete
-ONE_TIME_NOTICE_3=jih premikati. Ko pristanejo,
-ONE_TIME_NOTICE_4=kliknite na skupine 3 ali veü
-ONE_TIME_NOTICE_5=enakih blokov, da jih uniüite.
-ONE_TIME_NOTICE_6=\n
-ONE_TIME_NOTICE_7=¨e je prepoüasi, uporabite tipke +/-
-ONE_TIME_NOTICE_8=za umetno poveüanje hitrosti.
-ONE_TIME_NOTICE_9=
+ONE_TIME_NOTICE_2=Bloki preprosto padajo. Ne
+ONE_TIME_NOTICE_3=morete jih premikati. Ko
+ONE_TIME_NOTICE_4=pristanejo, kliknite na skupine
+ONE_TIME_NOTICE_5=3 ali veü enakih blokov, da jih
+ONE_TIME_NOTICE_6=uniüite.
+ONE_TIME_NOTICE_7=¨e je prepoüasi, uporabite
+ONE_TIME_NOTICE_8=tipke +/- za umetno poveüanje
+ONE_TIME_NOTICE_9=hitrosti.
 
 ERROR.MOUSE=ne morem najti miÁke. res je potrebna.
 ERROR.VIDEO=ne morem najti primernega grafiünega gonilnika
