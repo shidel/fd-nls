@@ -836,7 +836,7 @@ function special_freecom () {
             "slovenian") 	l='sl';;
             "ukrainian") 	l='uk';;
             "ukr") 		l='uk';;
-            "pt_br") 		l='ptbr';;
+            "pt_br") 		l='ptb';;
             # per - https://www.loc.gov/standards/iso639-2/php/code_list.php
             "dutch")		l='nl';;
             "serbian")		l='sr';;
