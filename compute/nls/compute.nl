@@ -4,7 +4,7 @@ Geschreven door Laaca onder GNU/GPL licentie. Gebruik de gangbare notatie op
 computers. Machten kunnen worden opgegeven met de "^" operator.
 Voer een wiskundige uitdrukking in:
 Deze functies worden ondersteund
-U kunt ook deze bitoperatoren gebruiken: EN, OF, XOR
+U kunt ook deze bitoperatoren gebruiken: AND, OR, XOR
 fout op pos. nr.
 delen door nul
 ongeldig argument in wortel
