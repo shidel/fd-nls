@@ -26,6 +26,7 @@ Allm„nt systeminformationsverktyg.
                   102 - QEMU.
                   103 - VirtualBox.
                   104 - VMware.
+                  105 - Bochs.
                   200 - Annan emulator identifierad.
     /P          Samma som /M, men exkluderar tester f”r virtuella maskiner.
     /E n        Genoms”k fysisk h†rddisk #n (1, 2, etc) efter MBR-status
@@ -35,7 +36,7 @@ Allm„nt systeminformationsverktyg.
                   101 - Ett fel intr„ffade
 
 Fler flaggor som mest „r anv„ndbara f”r programmerare och utveckling. De
-har funnits ett tag, men „r inte (enligt mig) officiellt en del av 
+har funnits ett tag, men „r inte (enligt mig) officiellt en del av
 V8Power Tools API och kan „ndras eller tas bort n„r som helst. Men eftersom
 jag anv„nder dem kanske de flyttas till egna verktyg.
 
