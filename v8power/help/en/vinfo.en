@@ -3,7 +3,7 @@ General system information utility.
     [none]      Does nothing.
     /V          Verbose Mode.
     /D a        Test drive status.
-                Returns these error codes:
+                Returns these exit codes:
                    15 - Not Present
                     5 - Not Formatted (for DOS)
                     4 - Network Drive (untested)
@@ -25,13 +25,26 @@ General system information utility.
                   103 - VirtualBox.
                   104 - VMware.
                   105 - Bochs.
-                  200 - General, other emulator detected.
     /P          Same as /M switch. However, excludes test for virtual machine.
+    /T		    Same as /M switch. However, includes general emulator test.
+                  200 - General, other emulator detected.
     /E n        Probe physical Hard Disk #n (1, 2, etc) for MBR status
                     0 - MBR is completely empty
                     5 - MBR only contains partition information
                    10 - MBR contains a boot code
                   101 - Error Occurred
+    /G          Graphics
+                    0 - Unknown
+                    1 - MDA
+                    2 - HGC
+                    3 - HGCPlus
+                    4 - InColor
+                    5 - CGA
+                    6 - EGA
+                    7 - MCGA
+                    8 - VGA
+                    9 - VESA/SuperVGA
+
 More options that are mostly only useful for programmers and R&D. They have
 been available for a while. But are not officially (by me) part of the
 V8Power Tools API and may change or be removed at anytime. But since I use
