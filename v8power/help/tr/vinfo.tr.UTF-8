@@ -1,11 +1,9 @@
 vinfo [seçenekler]
-
 Genel sistem bilgisi izlencesi.
-
     [boş]       Hiçbir şey yapmaz.
     /V          Ayrıntılı kip.
     /D a        Sürücü durumunu sına.
-                Şu hata kodlarını döndürür:
+                Şu çıktı kodlarını geri gönderir:
                     15 - Mevcut değil
                      5 - Biçimlendirilmemiş (DOS için)
                      4 - Ağ sürücüsü (denenmemiştir)
@@ -13,8 +11,8 @@ Genel sistem bilgisi izlencesi.
                      2 - Çıkarılabilir ortam (disket gibi)
                      1 - (Ayrılmış)
                      0 - Özel koşul yok
-    /M          Makine türünü döndür (ileride değişebilir)
-                Şu çıkış kodlarını döndürür:
+    /M          Makine türünü geri gönderir (ileride değişebilir)
+                Şu çıkış kodlarını geri gönderir:
                     0 - Bilinmeyen, normal veya doğrudan 8086 donanımı.
                     1 - 80186
                     2 - 80286
@@ -27,20 +25,30 @@ Genel sistem bilgisi izlencesi.
                   103 - VirtualBox.
                   104 - VMware.
                   105 - Bochs.
+    /P          /M seçeneği ile aynıdır, fakat sanal makine testini hariç tutar.
+    /T		    /M seçeneği ile aynıdır, fakat genel öykünücü testini içerir.
                   200 - Genel, başka bir öykünücü tespit edildi.
-    /P          /M anahtarı ile aynıdır. Ancak sonuçları dışlar ve sanal makine
-                sonuçları için test etmez.
-
     /E n        Fiziki sabit disk #n (1, 2, vs.)'yi MBR (Ana Önyükleme Kaydı)
                 durumu için incele
                     0  - MBR tamamen boş
                     5  - MBR sadece bölüm verileri içeriyor
                     10 - MBR ön başlatma kodu içeriyor
                     101 - Hata meydana geldi
+    /G          Grafikler
+                    0 - Bilinmiyor
+                    1 - MDA
+                    2 - HGC
+                    3 - HGCPlus
+                    4 - InColor
+                    5 - CGA
+                    6 - EGA
+                    7 - MCGA
+                    8 - VGA
+                    9 - VESA/SuperVGA
 
 Bilhassa programcılar ve Ar-Ge için faydalı olan daha fazla seçenekleri aşağıda
 bulabilirsiniz. Bu seçenekler bir süredir mevcut, ancak resmi olarak V8 Power
-Tools API'nın bir parçası değildirler ve ileride kaldırılabilir veya değiştiri-
+Tools API'sının bir parçası değildirler ve ileride kaldırılabilir veya değiştiri-
 lebilir. Bu araçların bazılarını kullandığımdan belki ileride ayrı bir izlence
 olarak yayımlanabilirler.
 
@@ -57,4 +65,4 @@ olarak yayımlanabilirler.
     			bulunamadıysa 0 geri gönderilir.
     /K pos *	/J ile aynıdır fakat önce büyük harf olarak değiştirilir.
 
-             (Henüz geliştirilme aşamasındadır, daha fazla bilgi eklenecektir.)
+             (Hâlâ geliştirilme aşamasındadır, daha fazla bilgi eklenecektir.)
