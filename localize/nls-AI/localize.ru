@@ -1,0 +1,9 @@
+# Language: russian / russisch
+# File ending: ru
+# Codepage: 866
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the FreeDOS group
+# to improve it.
+99.0:Выводит локализованное сообщение (из localize.)
+99.1:Выводит сообщение номер x.y или, если недоступно, текст после @@@\r\n(и, наконец, повторяет [и т.д.], если есть)
+99.2:Errorlevel: 0, если все в порядке, 1, если не найден localize. или нет сообщения x.y внутри.
