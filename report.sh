@@ -1,8 +1,8 @@
 #!/bin/bash
 
-EXCEPT=';packages;fdi;htmlhelp;'
-SPECIAL=';pgme;danger;freecom;blocek;v8power;'
-EXCLUDE=';txt;docinfo;htm;html;inc;'
+EXCEPT=';packages;fdi;htmlhelp;danger;'
+SPECIAL=';pgme;freecom;blocek;v8power;'
+EXCLUDE=';txt;docinfo;htm;html;inc;asm;'
 
 LANGUAGES=''
 APPLANGS=''
@@ -835,8 +835,8 @@ function special_freecom () {
             "slovene") 		l='sl';;
             "slovenian") 	l='sl';;
             "ukrainian") 	l='uk';;
-            "ukr") 		l='uk';;
-            "pt_br") 		l='ptb';;
+            "ukr")   		l='uk';;
+            "brazil") 		l='pb';;
             # per - https://www.loc.gov/standards/iso639-2/php/code_list.php
             "dutch")		l='nl';;
             "serbian")		l='sr';;
