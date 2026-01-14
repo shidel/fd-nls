@@ -31,6 +31,7 @@ PROJECTS = (
     "fdi-x86",
     "fdnet",
     "fdnpkg",
+    "fdnpkg16",
     "fdpkg",
     "fdrepo",
     "fdshell",
