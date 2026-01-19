@@ -1,9 +1,11 @@
 # FreeDOS Language Codes
 
-This document contains a list of the language codes used by programs in [FreeDOS](http://www.freedos.org). In gerneral, 
-the two letter codes try to conform with [ISO 639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) standards.
-However, some languages are not listed in that specification. Furthermore, some letter codes may deviate from the ones
-in the ISO standard for legacy reasons. 
+This document contains a list of the language codes used by programs in 
+[FreeDOS](http://www.freedos.org). In general, the two letter codes try 
+to conform with the _**ISO 639-1 Specification**_ as listed on the
+[ISO 639-2](https://www.loc.gov/standards/iso639-2/php/code_list.php) 
+page. However, some languages are not listed and others deviate for 
+legacy reasons from the original _**ISO 639-1 Specification**_. 
 
 ## Current FreeDOS language codes
 
