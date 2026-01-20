@@ -1,6 +1,6 @@
 # Language: brazilian / brasilianisch
 # File ending: pb (= new, old = ptb or ptbr)
-# Codepage: 860
+# Codepage: 858
 # Translation made by Google Gemini
 # This translation was made by Google AI, please help the FreeDOS group
 # to improve it.

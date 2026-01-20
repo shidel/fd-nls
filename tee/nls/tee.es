@@ -1,4 +1,4 @@
-# Archivo de idioma para TEE en EspaÂ¤ol CP850
+# Archivo de idioma para TEE en Espa¤ol CP850 es
 # basado en el archivo tee.en
 # Traducido por Lorenzo del Toro Saravia
 #
@@ -8,7 +8,7 @@
 0.4:Agregar el ARCHIVO(s) dado(s)
 0.5:Ignorar las interrupciones generadas por el usuario
 0.6:Muestra este menasje de ayuda
-1.0:OpciÂ¢n desconocida
+1.0:Opci¢n desconocida
 1.1:Error al asignar espacio para identificador(es) de archivo
 1.2:Error al abrir el archivo de salida
 1.3:Error al escribir el archivo

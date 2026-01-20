@@ -11,3 +11,10 @@ argumento inv lido en la ra¡z
 argumento de punto flotante en operaci¢n bit
 resultado demasiado grande en la operaci¢n matem tica
 logaritmo cero o negativo
+
+
+#
+# Language spanish / apanisch
+# Codepage: 850/858
+# Language ending: es
+#

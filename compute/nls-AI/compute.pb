@@ -1,21 +1,21 @@
-vers„o
-Este utilit rio pode avaliar uma dada express„o matem tica
-Escrito por Laaca sob licen‡a GNU/GPL. Use a nota‡„o comum utilizada em
+versÆo
+Este utilit rio pode avaliar uma dada expressÆo matem tica
+Escrito por Laaca sob licen‡a GNU/GPL. Use a nota‡Æo comum utilizada em
 computadores. Potˆncias podem ser especificadas pelo operador "^".
-Digite uma express„o matem tica:
-Estas fun‡”es s„o suportadas
+Digite uma expressÆo matem tica:
+Estas fun‡äes sÆo suportadas
 Vocˆ tamb‚m pode usar estes operadores de bit: AND, OR, XOR
 erro na pos. n.
-divis„o por zero
+divisÆo por zero
 argumento inv lido na raiz
-argumento de ponto flutuante em opera‡„o de bit
-resultado muito grande em opera‡„o matem tica
-resultado muito pequeno em opera‡„o matem tica
+argumento de ponto flutuante em opera‡Æo de bit
+resultado muito grande em opera‡Æo matem tica
+resultado muito pequeno em opera‡Æo matem tica
 logaritmo zero ou negativo
 #
 # country: Brazil / Brasilien
-# file ending: br
-# codepage: 860
+# file ending: pb (new:pb, old: ptb)
+# codepage: 850/858
 # Translation made by Google Gemini
 # This translation was made by AI, por favor ajude o grupo FreeDOS
 # a melhor -la.

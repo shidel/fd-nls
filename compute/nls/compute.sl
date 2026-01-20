@@ -12,3 +12,6 @@ necelo Átevilo v bitni operaciji
 prevelik rezultat v matematiüni operaciji
 premajhen rezultat v matematiüni operaciji
 niüeln oz. negativen logaritem
+
+
+# slovenian, sl, cp852

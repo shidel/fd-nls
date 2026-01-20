@@ -1,4 +1,4 @@
-# TEE Kitten-fil f”r SVenska
+# TEE Kitten-fil f”r SVenska, sv, cp858
 0.0:Sparar en kopia av indata till en fil och skriv ut den.
 0.1:Anv„ndning
 0.3:FIL(er)

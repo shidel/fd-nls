@@ -1,0 +1,17 @@
+# Language: brazil
+# File ending: pb
+# Codepage: 858
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the FreeDOS group
+# to improve it.
+0,0: Ol† a todos\n
+1,0:KITTENC - Compilador KITTEN\n
+1,1:uso\n
+1,2:KITTENC program.exe ATTACH NLS\\program.??\n
+1,3:KITTENC program.exe ATTACH NLS\\program.DE\n
+1,4:KITTENC program.exe ATTACH NLS\\program.DE NLS\\program.fr\n
+1,5:KITTENC program.exe INFO     : mostrar informaá‰es sobre recursos de idioma\n
+1,6:KITTENC program.exe DUMP     : recriar recursos de idioma\n
+1,7:KITTENC program.exe TRUNCATE : excluir recursos anexados\n
+2,1:O arquivo <%s> n∆o pode ser aberto. porque <%s>\n
+2,2:%s: arquivo inexistente\n

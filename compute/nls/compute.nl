@@ -15,7 +15,7 @@ nul of negatieve logaritme
 #
 # This country is: Netherlands / Niederlande
 # This file ending is: nl
-# Used codepage should be: 858
+# Used codepage should be: 850/858
 # Translation made by Google Gemini
 # This translation was made by AI, help alstublieft de FreeDOS groep
 #om het te verbeteren.

@@ -1,0 +1,22 @@
+# spanish, es, cp850/858
+
+0.0:LABEL Versi¢n %s\n
+0.1:Crea, cambia o elimina la etiqueta de volumen de un disco.\n
+0.2:Sintaxis: LABEL [unidad:][etiqueta] [/?]\n
+0.3: [unidad:] Especifica la unidad que desea etiquetar\n
+0.4: [etiqueta] Especifica la nueva etiqueta para la unidad\n
+0.5: /? Muestra este mensaje de ayuda\n
+1.0:¨Eliminar la etiqueta de volumen actual (S/N)?
+1.1:Etiqueta de volumen (11 caracteres, INTRO para ninguna)?
+1.2:El volumen de la unidad %c no tiene etiqueta\n
+1.3:El volumen de la unidad %c es %s\n
+1.4:El n£mero de serie del volumen es %04X-%04X\n
+2.0:Par metro no v lido - /%c\n
+2.1:La etiqueta es demasiado larga. La etiqueta debe\ntener 11 caracteres o menos.\n
+2.2:Etiqueta de volumen no v lida\n
+2.3:Se han mencionado varias unidades.\nPor favor, seleccione solo una unidad a la vez.\n
+2.4:Etiqueta no v lida\n
+2.5:No es una unidad v lida\n
+2.6:No se puede etiquetar una unidad de red\n
+2.7:No se puede etiquetar una unidad que ha sido\nasignada (ASSIGN), unida (JOIN) o sustituida (SUBST).\n
+2.8:Unidad no v lida\n
