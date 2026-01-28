@@ -89,9 +89,9 @@ PROJECTS = (
 
 NON_PROJECTS = (
     "danger",
-    "fd-nls",
-    "zzz-notes-and-misc-items",
+    "non-dos",
     "test",
+    "zzz-notes-and-misc-items",
 )
 
 LANGUAGES = {
