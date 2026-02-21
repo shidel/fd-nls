@@ -1,0 +1,134 @@
+
+     ASSIGN (1)                  08 ao–t 1995                  ASSIGN (1)
+
+
+
+     NOM
+          assign - Attribuer une lettre de lecteur … un lecteur diff‚rent
+
+
+     SYNOPSIS
+          assign [/m] [/shadow] /?
+          assign [/m] [/shadow] /status
+          assign [/m] [/shadow] /u
+          assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+     DESCRIPTION
+          Assign attribue une lettre de lecteur … un lecteur diff‚rent.
+          Ce mappage affecte seulement la lettre du lecteur et pas le
+          chemin, ce qui rend Assign diff‚rent de Subst, par exemple :
+          Avec les r‚pertoires de travail actuel C:\FREEDOS" et "B:\TEMP"
+          suite aux commandes "assign B=C" et "cd C:\", le chemin "B:"
+          pointe ‚galement au r‚pertoire "C:\".
+          Tandis que suite aux commandes "subst B: ." et "cd C:\", le
+          chemin "B:" pointe encore sur "C:\FREEDOS".
+
+          Comme ce programme n'est pas un TSR, ne le chargez pas avec
+          les commandes "LOADHIGH" ou "LH".
+
+     OPTIONS
+
+       /? Affiche un ‚cran d'aide.
+
+       /SHADOW Cette option cache la partie r‚sidente d'Assign et la
+          rend difficilement d‚tectable. Cela comprend :
+          1) Le bloc de m‚moire la partie r‚sidente est marqu‚ comme
+          partie int‚grante du systŠme.
+          2) L'interruption de v‚rification d'installation retourne
+          "Pas install‚, mais non autoris‚ pour l'installation" au
+          lie de "Install‚" ou bien "Pas install‚".
+
+          Si la partie r‚sidente est install‚e avec cette option, mais
+          les invocations suivantes sont effectu‚es sans, un avertissement
+          apparaŒt, cependant l'action est effectu‚e.
+
+          L'option peut ˆtre abr‚g‚e en /SH.
+
+       /STATUS Affiche toutes les lettres de lecteur attribu‚es sous
+          la forme : dr1: => dr2:
+          o— dr1  est la lettre de lecteur attribu‚e et dr2 ets le lecteur,
+          vers lequel dr1 pointe.
+
+          S'il n'y a aucune attribution, aucune sortie ne sera affich‚e.
+
+          Cette option empˆche le chargement de la partie r‚sidente,
+          si elle n'a pas d‚j… ‚t‚ install‚e.
+
+          L'option peut ˆtre abr‚g‚e en /S.
+
+       /u D‚sinstaller un Assign pr‚c‚demment install‚.
+
+
+
+                                      -1-
+
+
+     ASSIGN (1)          all letters point to themselves in result.        08 ao–t 1995                  ASSIGN (1)
+
+
+       dr1[:]=dr2[:] Cela d‚finit une attribution de lettre de lecteur,
+          o— dr1 doit pointer vers dr2. Les deux-points ":" sont
+          optionnels. Aucun espace n'est autoris‚e entre les lettres,
+          seuls les deux-points et le signe d'‚galit‚ '=' sont
+          autoris‚s.
+
+          Si la partie r‚sidente n'est pas d‚j… charg‚e, elle sera
+          charg‚e sans avertissement suppl‚mentaire.
+
+       /m D‚placer la partie r‚sidente dans l'espace UMB, si possible.
+          Cette option est ignor‚e lorsque la partie r‚sidente est d‚j…
+          install‚e.
+
+       aucune option Si ni /STATUS, ni /u et ni une attribution n'est
+          sp‚cifi‚e sur la ligne de commande, toutes les attributions
+          existantes sont bris‚es, toutes les lettres pointant vers
+          elles-mˆmes.
+
+     BUGS CONNUS
+
+       o  Comme Assign n'est pas un TSR en lui-mˆme, un chargement avec
+          les commandes "LOADHIGH" ou "LH" peut ‚chouer. Si vous voulez
+          charger la partie r‚sidente en m‚moire haute, vous devez
+          sp‚cifier l'option /m.
+
+       o  Les options /STATUS et /SHADOW ne suivent pas les standards des
+          options pour des raisons de compatibilit‚ avec l'Assign original.
+
+       o  Les TSR install‚s par la suite ou un shell de commandes
+          secondaires empˆchent la plupart du temps le processus de
+          d‚sinstallation. Dans ce cas, Assign n'est pas suspendu, mais
+          reste actif en m‚moire. Utilisez ASSIGN sans aucune option afin
+          d'effacer le tableau d'attributions.
+
+       o  Certains shells empˆchent ASSIGN de trouver sa copie r‚sidente
+          en m‚moire, si ASSIGN est install‚ depuis une copie secondaire
+          du shell.
+
+     VOIR GALEMENT
+          Subst, Join
+
+     CONTRIBUTEURS
+                                 Steffen Kaiser
+                             Mittelstrass 112/B115
+                         53757 Sankt Augustin - Menden
+                                  Allemagne
+
+                    e-mail: Steffen.Kaiser@FH-Rhein-Sieg.DE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                      -2-
+

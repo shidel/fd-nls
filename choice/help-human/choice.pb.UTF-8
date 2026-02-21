@@ -1,0 +1,55 @@
+NOME
+
+   CHOICE - Espera o usuário apertar uma tecla, de uma lista de opções
+
+SYNOPSIS
+
+   CHOICE [/B] [/C[:]choices] [/N] [/S] [/T[:]c,nn] [text]
+
+OPTIONS
+
+ /B
+    Emite um alerta (bipe) no prompt.
+
+ /C[:]choices
+    Especifica as teclas permitidas no prompt. Quando exibido, as
+    chaves serão separadas por vírgulas, aparecerão entre colchetes
+    ([]), e serão seguidas por um sinal de interrogação. Se você não
+    especificar a opção /C, CHOICE usará YN como padrão. O dois-pontos
+    é opcional.
+
+ /N
+   Faz com que CHOICE não exiba o prompt. Porém, o texto anterior ao
+   prompt ainda é exibido. Se você especificar o /N, as chaves
+   especificadas ainda são válidas.
+
+ /S
+   Faz com que CHOICE aja sensível ao caso. Se a opção /S não é
+   especificada, CHOICE aceitará tanto caso maiúsculo quanto minúsculo
+   das chaves que o usuário especificar.
+
+ /T[:]c,nn
+     Faz com que CHOICE pause por um númerp especificado de segundos
+     antes de usar uma chave como padrão. Os valores da opção /T são
+     como se segue:
+
+       c   Especifica o caractere a ser exibido após nn segundos. O
+           caractere deve estar no conjunto de escolhas especificado
+           pela opção /C.
+
+       nn  Especifica o número de segundos pausado. Valores aceitáveis
+           vão de 0 a 99. Se 0 é especificado, não haverá pausa antes
+           da inserção da chave padrão.
+
+   texto
+     Texto a ser exibido como prompt.
+
+VALOR DE RETORNO
+
+   ERRORLEVEL recebe o posicionamento (offset) da opção que o usuário
+   selecionou.
+
+AUTOR
+
+   Jim Hall, jhall@freedos.org
+
