@@ -1,0 +1,35 @@
+# Language: polish
+# File ending: pl
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the 
+# FreeDOS group to improve it.
+
+
+FreeDOS APPEND. Pozwala programom otwiera† pliki danych w okre˜lonych
+katalogach tak, jakby znajdowaˆy si© w bie¾¥cym katalogu.
+(C) 2004-2006 Eduardo Casino, na warunkach licencji GNU GPL, wersja 2
+
+Skˆadnia:
+
+APPEND [[dysk:]˜cie¾ka[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+APPEND ;
+
+[dysk:]˜cie¾ka   Dysk i katalog do doˆ¥czenia.
+/X[:ON]          Rozszerz APPEND o wyszukiwanie i wykonywanie poleceä.
+/X:OFF           APPEND dotyczy tylko ¾¥daä otwarcia plik¢w.
+                 Domy˜lnie /X:OFF.
+/PATH:ON         Przeszukuje doˆ¥czone katalogi dla ¾¥daä, kt¢re ju¾
+                 zawieraj¥ ˜cie¾ku. To jest ustawienie domy˜lne.
+/PATH:OFF        Wyˆ¥cza opcj© /PATH:ON.
+/E               Przechowuje list© doˆ¥czonych katalog¢w w ˜rodowisku.
+                 /E mo¾e by† u¾yte tylko przy pierwszym wywoˆaniu.
+                 Nie mo¾na podawa† ˜cie¾ek w tej samej linii co /E.
+
+APPEND ; czy˜ci list© doˆ¥czonych katalog¢w.
+APPEND bez parametr¢w wy˜wietla list© doˆ¥czonych katalog¢w.
+
+Uwaga:
+
+APPEND instaluje si© jako komenda wewn©trzna po pierwszym uruchomieniu.
+Kolejne wywoˆania MUSZ¤ by† bez ˜cie¾ki dost©pu i rozszerzenia pliku.

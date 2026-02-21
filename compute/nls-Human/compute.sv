@@ -13,5 +13,5 @@ f”r stort resultat i matteoperation
 f”r litet resultat i matteoperation
 noll eller negativ logaritm
 
-
 # swedish, sv, cp850/858
+

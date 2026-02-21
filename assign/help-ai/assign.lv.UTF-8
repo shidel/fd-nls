@@ -1,0 +1,105 @@
+# Language: latvian
+# File ending: lv
+# Codepage: 775
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  1995. gada 08. augusts           ASSIGN (1)
+
+
+
+ NOSAUKUMS
+      assign - Piešķirt diska burtu citam diskam
+
+
+ SINTAKSE
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ APRAKSTS
+      Assign piesaista diska burtu citam diskam. Šī piesaiste
+      ietekmē tikai diska burtu, bet ne ceļu (path), ar ko
+      Assign atšķiras no Subst, piemēram:
+      Ja pašreizējie darba ceļi ir "C:\FREEDOS" un "B:\TEMP", tad
+      pēc komandām "assign B=C" un "cd C:\" ceļš "B:" arī norādīs
+      uz mapi "C:\".
+      Turpretī pēc komandām "subst B: ." un "cd C:\" ceļš "B:"
+      joprojām norādīs uz "C:\FREEDOS".
+
+      Tā kā šī programma nav TSR, neielādējiet to ar "LOADHIGH"
+      vai "LH" komandām.
+
+ OPCIJAS
+
+   /? Parādīt palīdzības ekrānu.
+
+   /SHADOW Šī opcija paslēpj Assign rezidento daļu no vieglas
+      atklāšanas. Tas ietver:
+      1) Atmiņas bloks ar rezidento daļu tiek atzīmēts kā sistēmas daļa.
+      2) Instalācijas pārbaude atgriež "Nav instalēts, bet nav
+      atļauts instalēt", nevis "Instalēts" vai "Nav instalēts".
+
+      Ja rezidentā daļa ir instalēta ar šo opciju, bet turpmākie
+      izsaukumi ir bez tās, parādās brīdinājums, bet darbība tiek
+      veikta.
+
+      Opciju var saīsināt līdz /SH.
+
+   /STATUS Parādīt visus piešķirtos diska burtus formā:
+      dr1: => dr2:
+      kur dr1 ir piešķirtais burts un dr2 ir disks, uz kuru dr1 norāda.
+
+      Ja piešķīrumu nav, nekas netiek parādīts.
+
+      Šī opcija neļauj ielādēt rezidento daļu, ja tā vēl nav
+      instalēta.
+
+      Opciju var saīsināt līdz /S.
+
+   /u Atinstalēt iepriekš instalētu Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  1995. gada 08. augusts           ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Definē diska burta piešķīrumu, kur dr1 norādīs
+      uz dr2. Koli ":" nav obligāti. Atstarpes starp burtiem,
+      koliem un vienādības zīmi "=" nav atļautas.
+
+      Ja rezidentā daļa vēl nav ielādēta, tā tiks ielādēta bez
+      brīdinājuma.
+
+   /m Pārvietot rezidento daļu uz UMB apgabalu, ja iespējams.
+      Šī opcija tiek ignorēta, ja rezidentā daļa juba ir instalēta.
+
+   bez opcijām Ja komandrindā nav norādīts /STATUS, /u vai
+      piešķīrums, visi esošie piešķīrumi tiek pārtraukti.
+
+ ZINĀMĀS KĻŪDAS
+
+   o  Tā kā Assign nav TSR, ielāde ar "LOADHIGH" vai "LH" var
+      neizdoties. Izmantojiet /m, lai ielādētu augšējā atmiņā.
+
+   o  Opcijas /STATUS un /SHADOW neatbilst standartam saderības
+      dēļ ar oriģinālo Assign.
+
+   o  Vēlāk instalēti TSR vai sekundārie komandu procesori (shell)
+      bieži traucē atinstalēšanu. Izmantojiet ASSIGN bez opcijām,
+      lai notīrītu tabulu.
+
+ SKATĪT ARĪ
+      Subst, Join
+
+ AUTORI
+                             Steffen Kaiser
+
+
+                                  -2-

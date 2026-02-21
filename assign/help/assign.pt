@@ -1,0 +1,103 @@
+# Language: portuguese
+# File ending: pt
+# Codepage: 860
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08 de Agosto de 1995             ASSIGN (1)
+
+
+
+ NOME
+      assign - Atribui uma letra de unidade a uma unidade diferente
+
+
+ SINOPSE
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ un1[:]=un2[:] }]
+
+
+ DESCRI€O
+      Assign mapeia uma letra de unidade para uma unidade diferente.
+      Este mapeamento afeta apenas a letra da unidade, n„o o
+      caminho, o que torna o Assign diferente do Subst, ex.:
+      Com os caminhos atuais "C:\FREEDOS" e "B:\TEMP", ap¢s os
+      comandos "assign B=C" e "cd C:\", o caminho "B:" tamb‚m
+      apontar  para o diret¢rio "C:\".
+      Considerando que ap¢s "subst B: ." e "cd C:\", o caminho "B:"
+      continuaria a apontar para "C:\FREEDOS".
+
+      Como este programa n„o ‚ um TSR, n„o o carregue via os
+      comandos "LOADHIGH" ou "LH".
+
+ OP€™ES
+
+   /? Exibe um pequeno ecr„ de ajuda.
+
+   /SHADOW Esta op‡„o oculta a parte residente do Assign para
+      evitar que seja detetada facilmente. Isso inclui:
+      1) O bloco de mem¢ria que cont‚m a parte residente ‚ marcado
+      como parte do sistema.
+      2) A interrup‡„o de verifica‡„o de instala‡„o retorna "N„o
+      instalado, mas n„o permitido instalar" em vez de "Instalado".
+
+      Se a parte residente for instalada com esta op‡„o, mas as
+      invoca‡”es subsequentes forem feitas sem ela, um aviso
+      aparece, mas a a‡„o ‚ executada.
+
+      A op‡„o pode ser abreviada para /SH.
+
+   /STATUS Exibe todas as letras de unidade atribu¡das na forma:
+      un1: => un2:
+      onde un1 ‚ a letra atribu¡da e un2 a unidade de destino.
+
+      Se n„o houver nenhuma atribui‡„o, nada ser  exibido.
+
+      Esta op‡„o impede o carregamento da parte residente se esta
+      ainda n„o estiver instalada.
+
+      A op‡„o pode ser abreviada para /S.
+
+   /u Desinstala um Assign previamente instalado.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08 de Agosto de 1995             ASSIGN (1)
+
+
+   un1[:]=un2[:] Define uma atribui‡„o onde un1 deve apontar para
+      un2. Os dois pontos ":" s„o opcionais. N„o s„o permitidos
+      espa‡os entre as letras, os dois pontos e o sinal '='.
+
+      Se a parte residente ainda n„o estiver carregada, ser 
+      carregada sem aviso pr‚vio.
+
+   /m Move a parte residente para a  rea UMB, se poss¡vel. Esta
+      op‡„o ‚ ignorada se a parte residente j  estiver instalada.
+
+   sem op‡„o Se nem /STATUS nem /u nem uma atribui‡„o forem
+      especificados, todas as atribui‡”es existentes s„o removidas.
+
+ ERROS CONHECIDOS
+
+   o  Como o Assign n„o ‚ um TSR, carregar com "LOADHIGH" ou "LH"
+      pode falhar. Use /m para carregar na mem¢ria alta.
+
+   o  As op‡”es /STATUS e /SHADOW n„o seguem o padr„o devido …
+      compatibilidade com o Assign original.
+
+   o  TSRs instalados posteriormente ou uma shell secund ria podem
+      impedir a desinstala‡„o. Use ASSIGN sem op‡”es para limpar
+      a tabela.
+
+ VER TAMBM
+      Subst, Join
+
+ COLABORADORES
+                             Steffen Kaiser

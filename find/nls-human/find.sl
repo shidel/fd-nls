@@ -1,4 +1,4 @@
-# Language: Slovenian (CP852)
+# Language: Slovenian (CP852), sl
 # Translated by Matej Horvat (http://matejhorvat.si/), last update 2013-04-29
 
 0.0:Izpiçe vse vrstice datoteke, ki vsebujejo niz.

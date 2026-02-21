@@ -1,5 +1,5 @@
 FreeDOS APPEND. L†ter program ”ppna datafiler i angivna kataloger som om filerna
-                fanns i den aktuella katalogen.
+                fanns i den aktuella katalogen. sv, cp850
 (C) 2004-2006 Eduardo Casino, under villkoren f”r GNU GPL, Version 2
 
 

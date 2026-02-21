@@ -1,0 +1,2099 @@
+
+
+
+# Language: czechian
+# File ending: cz
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. srpna 1995                   ASSIGN (1)
+
+
+
+ JMÉNO
+      assign - Přiřadí písmeno jednotky jiné jednotce
+
+
+ SYNTAXE
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ POPIS
+      Assign mapuje písmeno jednotky na jinou jednotku. Toto mapování
+      ovlivňuje pouze písmeno jednotky, nikoli cestu, což odlišuje
+      Assign od Subst, např.:
+      S aktuálními pracovními cestami "C:\FREEDOS" a "B:\TEMP" po
+      příkazech "assign B=C" a "cd C:\" bude cesta "B:" také ukazovat
+      do adresáře "C:\".
+      Zatímco po příkazech "subst B: ." a "cd C:\" bude cesta "B:"
+      stále ukazovat do "C:\FREEDOS".
+
+      Protože tento program není TSR, nezavádějte jej pomocí příkazů
+      "LOADHIGH" nebo "LH".
+
+ VOLBY
+
+   /? Zobrazí stručnou nápovědu.
+
+   /SHADOW Tato volba skryje rezidentní část Assign před snadnou
+      detekcí. To zahrnuje:
+      1) Paměťový blok obsahující rezidentní část je označen jako
+      součást systému.
+      2) Kontrola instalace vrací "Nenainstalováno, ale instalace
+      nepovolena" místo "Nainstalováno" nebo "Nenainstalováno".
+
+      Pokud je rezidentní část nainstalována s touto volbou, ale
+      následná volání jsou provedena bez ní, zobrazí se varování,
+      ale akce je provedena.
+
+      Volbu lze zkrátit na /SH.
+
+   /STATUS Zobrazí všechna přiřazení písmen jednotek ve formátu:
+      dr1: => dr2:
+      kde dr1 je přiřazené písmeno a dr2 je jednotka, kam dr1 ukazuje.
+
+      Pokud neexistuje žádné přiřazení, nezobrazí se žádný výstup.
+
+      Tato volba zabrání načtení rezidentní části, pokud již nebyla
+      nainstalována.
+
+      Volbu lze zkrátit na /S.
+
+   /u Odinstaluje dříve nainstalovaný Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. srpna 1995                   ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Definuje přiřazení jednotky, kde dr1 má ukazovat na
+      dr2. Dvojtečky ":" jsou volitelné. Mezi písmeny jednotek,
+      dvojtečkami a rovnítkem "=" nejsou povoleny mezery.
+
+      Pokud rezidentní část ještě není načtena, načte se bez
+      dalšího upozornění.
+
+   /m Přesune rezidentní část do oblasti UMB, pokud je to možné.
+      Tato volba je ignorována, pokud je rezidentní část již
+      nainstalována.
+
+   žádná volba Pokud na příkazové řádce není zadáno /STATUS, /u ani
+      přiřazení, všechna stávající přiřazení jsou zrušena.
+
+ ZNÁMÉ CHYBY
+
+   o  Protože Assign není sám o sobě TSR, načtení pomocí "LOADHIGH"
+      nebo "LH" může selhat. Chcete-li načíst rezidentní část vysoko,
+      musíte zadat volbu /m.
+
+   o  Volby /STATUS a /SHADOW neodpovídají standardu voleb z důvodu
+      kompatibility s původním příkazem Assign.
+
+   o  Později nainstalované programy TSR nebo sekundární příkazový
+      procesor (shell) většinou brání procesu odinstalace. V takovém
+      případě zůstane Assign aktivní v paměti. Místo toho použijte
+      ASSIGN bez voleb k vymazání tabulky přiřazení.
+
+ VIZ TAKÉ
+      Subst, Join
+
+ PŘISPĚVATELÉ
+                             Steffen Kaiser
+
+
+                                  -2-
+
+
+
+
+
+# Language: danish
+# File ending: dk
+# Codepage: 865
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. august 1995                  ASSIGN (1)
+
+
+
+ NAVN
+      assign - Tildel et drevbogstav til et andet drev
+
+
+ SYNOPSIS
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ BESKRIVELSE
+      Assign knytter et drevbogstav til et andet drev. Denne
+      tilknytning påvirker kun drevbogstavet, men ikke stien,
+      hvilket gør Assign forskellig fra Subst, f.eks.:
+      Med de nuværende arbejdsstier "C:\FREEDOS" og "B:\TEMP" vil
+      stien "B:" efter kommandoerne "assign B=C" og "cd C:\" også
+      pege på mappen "C:\".
+      Hvorimod stien "B:" efter kommandoerne "subst B: ." og
+      "cd C:\" stadig peger på "C:\FREEDOS".
+
+      Da dette program ikke er en TSR, må det ikke indlæses via
+      "LOADHIGH" eller "LH" kommandoen.
+
+ INDSTILLINGER
+
+   /? Vis en lille hjælpeskærm.
+
+   /SHADOW Denne indstilling skjuler den residente del af Assign for
+      nem detektering. Det inkluderer:
+      1) Hukommelsesblokken med den residente del markeres som system.
+      2) Installationskontrollen returnerer "Ikke installeret, men
+      må ikke installeres" i stedet for "Installeret" eller "Ikke
+      installeret".
+
+      Hvis den residente del installeres med denne indstilling, men
+      efterfølgende kørsler sker uden, vises en advarsel, men
+      handlingen udføres.
+
+      Indstillingen kan forkortes til /SH.
+
+   /STATUS Vis alle tildelte drevbogstaver i formen:
+      dr1: => dr2:
+      hvor dr1 er det tildelte bogstav og dr2 er drevet, som dr1
+      peger på.
+
+      Hvis der slet ingen tildelinger er, vises ingen output.
+
+      Denne indstilling forhindrer indlæsning af den residente del,
+      hvis den ikke allerede er installeret.
+
+      Indstillingen kan forkortes til /S.
+
+   /u Afinstaller en tidligere installeret Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. august 1995                  ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Dette definerer en tildeling, hvor dr1 skal pege
+      på dr2. Kolon ":" er valgfri. Der må ikke være mellemrum
+      mellem drevbogstaverne, kolonerne og lighedstegnet '='.
+
+      Hvis den residente del ikke allerede er indlæst, indlæses den
+      uden varsel.
+
+   /m Flyt den residente del til UMB-området, hvis muligt.
+      Denne indstilling ignoreres, hvis den residente del allerede
+      er installeret.
+
+   ingen indstilling Hvis hverken /STATUS, /u eller en tildeling er
+      angivet, ophæves alle eksisterende tildelinger.
+
+ KENDTE FEJL
+
+   o  Da Assign ikke selv er en TSR, kan indlæsning med "LOADHIGH"
+      eller "LH" fejle. Brug /m for at indlæse den højt.
+
+   o  Indstillingerne /STATUS og /SHADOW følger ikke standarden
+      pga. kompatibilitet med den originale Assign.
+
+   o  Senere installerede TSR'er eller en sekundær shell forhindrer
+      ofte afinstallation. Brug ASSIGN uden indstillinger for at
+      rydde tabellen i stedet.
+
+ SE OGSÅ
+      Subst, Join
+
+ BIDRAGYDERE
+                             Steffen Kaiser
+
+
+                                  -2-
+
+
+
+
+
+; Language: esperanto
+; File ending: eo
+; Codepage: 853
+; This translation was made by Google Gemini,
+; please help the FreeDOS group to improve it.
+
+     ASSIGN (1)                  08 Aŭgusto 1995                 ASSIGN (1)
+
+     NOMO
+          assign - Ligi diskoliteron al alia disko
+
+     SINOPSO
+          assign [/m] [/shadow] /?
+          assign [/m] [/shadow] /status
+          assign [/m] [/shadow] /u
+          assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+     PRISKRIBO
+          Assign ligas diskoliteron al alia disko. Ĉi tiu mapado 
+          efikas nur la diskoliteron, sed ne la vojon, kio igas 
+          Assign malsama al Subst, ekz.:
+          Kun la aktualaj vojo "C:\FREEDOS" kaj "B:\TEMP", post la 
+          komandoj "assign B=C" kaj "cd C:\", la vojo "B:" ankaŭ 
+          montras al la dosierujo "C:\".
+          Tamen post la komandoj "subst B: ." kaj "cd C:\", la 
+          vojo "B:" ankoraŭ montras al "C:\FREEDOS".
+
+          Ĉar ĉi tiu programo mem ne estas TSR, ne ŝarĝu ĝin per 
+          la komandoj "LOADHIGH" aŭ "LH".
+
+     OPCIOJ
+
+       /? Montras helpekranon.
+
+       /SHADOW Ĉi tiu opcio kaŝas la rezidentan parton de Assign por 
+          ke ĝi ne estu facile detektebla. Tio inkluzivas:
+          1) La memorbloko enhavanta la rezidentan parton estas 
+          markita kiel parto de la sistemo.
+          2) La instalo-kontrolira interrompo redonas "Ne instalita, 
+          sed ne permesite instali" anstataŭ "Instalita" aŭ "Ne 
+          instalita".
+
+          Se la rezidenta parto estas instalita kun ĉi tiu opcio, sed 
+          postaj vokoj okazas sen ĝi, averto aperas, sed la ago 
+          estas plenumata.
+
+          La opcio povas esti mallongigita al /SH.
+
+       /STATUS Montras ĉiujn asignitajn diskoliterojn en la formo:
+          dr1: => dr2:
+          kie dr1 estas la asignita diskolitero kaj dr2 la disko, 
+          al kiu dr1 montras.
+
+          Se tute ne ekzistas asignoj, neniu eligo estos montrata.
+
+          Ĉi tiu opcio malhelpas la ŝarĝon de la rezidenta parto, se 
+          ĝi ankoraŭ ne estis instalita.
+
+          La opcio povas esti mallongigita al /S.
+
+       /u Malinstalas antaŭe instalitan Assign.
+
+                                      -1-
+
+     ASSIGN (1)                  08 Aŭgusto 1995                 ASSIGN (1)
+
+       dr1[:]=dr2[:] Ĉi tio difinas diskoligan asignon, kie dr1 
+          montru al dr2. La dupunktoj ":" estas laŭvolaj. Neniuj 
+          spacetoj estas permesataj inter la diskoliteroj, la 
+          dupunktoj kaj la egalsigno '='.
+
+          Se la rezidenta parto ankoraŭ ne estas ŝarĝita, ĝi estos 
+          ŝarĝata sen plia avizo.
+
+       /m Movas la rezidentan parton en la UMB-areon, se eble. 
+          Ĉi tiu opcio estas ignorata, se la rezidenta parto jam 
+          estas instalita.
+
+       neniu opcio Se estas nek /STATUS nek /u nek asigno 
+          specifita en la komandlinio, ĉiuj ekzistantaj asignoj estas 
+          nuligitaj, tiel ke ĉiuj literoj montras al si mem.
+
+     KONATAJ ERAROJ
+
+       o  Ĉar Assign mem ne estas TSR, ŝarĝo per la komandoj 
+          "LOADHIGH" aŭ "LH" povas malsukcesi. Se vi volas ŝarĝi 
+          la rezidentan parton alte, vi devas uzi la opcion /m.
+
+       o  La opcioj /STATUS kaj /SHADOW ne sekvas la normon de 
+          opcioj pro kunteksteblo kun la originala Assign.
+
+       o  Poste instalitaj TSR-oj aŭ dua komandinterpretiulo (ŝelo) 
+          plej ofte malhelpas la malinstalan procezon. En tiu kazo, 
+          Assign ne estas ĉesigita, sed restas aktiva en memoro. 
+          Uzu ASSIGN sen iu ajn opcio por viŝi la asignotabelon 
+          anstataŭe.
+
+       o  Iuj ŝeloj malhelpas ke ASSIGN trovu sian rezidentan kopion 
+          en memoro, se ASSIGN estas instalita el dua kopio de la ŝelo.
+
+     VIDU ANKAŬ
+          Subst, Join
+
+     KONTRIBUANTOJ
+                                 Steffen Kaiser
+                             Mittelstraáe 112/B115
+                         53757 Sankt Augustin - Menden
+                             Germanio - Germany
+
+                    retpoŝto: Steffen.Kaiser@FH-Rhein-Sieg.DE
+
+                                      -2-
+
+
+
+
+
+# Language: estonian
+# File ending: et
+# Codepage: 775
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. august 1995                  ASSIGN (1)
+
+
+
+ NIMI
+      assign - Määra draivi täht teisele draivile
+
+
+ SÜNOPSIS
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ KIRJELDUS
+      Assign seob draivi tähe teise draiviga. See seos mõjutab ainult
+      draivi tähte, mitte teed, mis eristab Assigni Subst-ist, nt:
+      Praeguste tööteedega "C:\FREEDOS" ja "B:\TEMP" pärast käske
+      "assign B=C" ja "cd C:\" viitab tee "B:" samuti kataloogile "C:\".
+      Kusjuures pärast käske "subst B: ." ja "cd C:\" viitab tee "B:"
+      ikka kataloogile "C:\FREEDOS".
+
+      Kuna see programm pole TSR, ärge laadige seda "LOADHIGH" või
+      "LH" käskudega.
+
+ VALIKUD
+
+   /? Kuva väike abiteave.
+
+   /SHADOW See valik peidab Assigni residendist osa tuvastamise eest.
+      See hõlmab:
+      1) Mälublokk residendist osaga märgitakse süsteemi osaks.
+      2) Installikontroll tagastab "Pole installitud, aga pole lubatud
+      installida" asemel "Installitud".
+
+      Kui residendist osa installitakse selle valikuga, aga hilisemad
+      kutsed on ilma selleta, kuvatakse hoiatus, kuid tegevus tehakse.
+
+      Valiku saab lühendada kujule /SH.
+
+   /STATUS Kuva kõik määratud draivi tähed kujul:
+      dr1: => dr2:
+      kus dr1 on määratud täht ja dr2 on sihtdraiv.
+
+      Kui määramisi pole, väljundit ei kuvata.
+
+      See valik takistab residendist osa laadimist, kui seda pole veel
+      installitud.
+
+      Valiku saab lühendada kujule /S.
+
+   /u Eemalda varem installitud Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. august 1995                  ASSIGN (1)
+
+
+   dr1[:]=dr2[:] See määrab draivi seose, kus dr1 viitab dr2-le.
+      Koolonid ":" on valikulised. Tühikud draivi tähtede, koolonite ja
+      võrdusmärgi vahel pole lubatud.
+
+      Kui residendist osa pole veel laaditud, laaditakse see ilma ette
+      teatamata.
+
+   /m Teisalda residendist osa UMB alasse, kui võimalik. Seda valikut
+      ignoreeritakse, kui see on juba installitud.
+
+   valikuta Kui käsureal pole /STATUS, /u ega määramist, siis kõik
+      seosed tühistatakse ja tähed viitavad iseendale.
+
+ TEADAOLEVAD VEAD
+
+   o  Kuna Assign pole TSR, võib laadimine "LOADHIGH"-iga nurjuda.
+      Kasutage /m valikut residendist osa kõrgele laadimiseks.
+
+   o  Valikud /STATUS ja /SHADOW ei järgi standardit ühilduvuse tõttu
+      algse Assign-iga.
+
+   o  Hiljem installitud TSR-id või teine kest takistavad sageli
+      eemaldamist. Kasutage ASSIGN-i ilma valikuteta tabeli
+      tühjendamiseks.
+
+ VAATA KA
+      Subst, Join
+
+ AUTORID
+                             Steffen Kaiser
+
+
+                                  -2-
+
+
+
+
+
+# Language: finnish
+# File ending: fi
+# Codepage: 865
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. elokuuta 1995                ASSIGN (1)
+
+
+
+ NIMI
+      assign - Määritä aseman kirjain toiselle asemalle
+
+
+ SYNOPSIS
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ as1[:]=as2[:] }]
+
+
+ KUVAUS
+      Assign yhdistää asemakirjaimen toiseen asemaan. Tämä vaikuttaa
+      vain asemakirjaimeen, ei polkuun, mikä erottaa Assignin
+      Subst-komennosta, esim.:
+      Nykyisillä poluilla "C:\FREEDOS" ja "B:\TEMP" komentojen
+      "assign B=C" ja "cd C:\" jälkeen polku "B:" osoittaa myös
+      hakemistoon "C:\".
+      Kun taas komentojen "subst B: ." ja "cd C:\" jälkeen polku
+      "B:" osoittaa edelleen hakemistoon "C:\FREEDOS".
+
+      Koska tämä ohjelma ei ole TSR, älä lataa sitä "LOADHIGH"-
+      tai "LH"-komennolla.
+
+ VALITSIMET
+
+   /? Näytä lyhyt ohje.
+
+   /SHADOW Tämä valitsin piilottaa Assignin pysyvän osan helpolta
+      tunnistamiselta. Tämä sisältää:
+      1) Pysyvän osan sisältävä muistilohko merkitään järjestelmän
+      osaksi.
+      2) Asennustarkistus palauttaa "Ei asennettu, mutta ei lupaa
+      asentaa" sijaan "Asennettu" tai "Ei asennettu".
+
+      Jos pysyvä osa asennetaan tällä valitsimella, mutta myöhemmin
+      käytetään ilman sitä, näytetään varoitus, mutta toiminto
+      suoritetaan.
+
+      Valitsin voidaan lyhentää muotoon /SH.
+
+   /STATUS Näytä kaikki määritetyt asemat muodossa:
+      as1: => as2:
+      jossa as1 on määritetty kirjain ja as2 on asema, johon se
+      osoittaa.
+
+      Jos määrityksiä ei ole, mitään ei näytetä.
+
+      Tämä estää pysyvän osan lataamisen, jos sitä ei ole jo
+      asennettu.
+
+      Valitsin voidaan lyhentää muotoon /S.
+
+   /u Poista aiemmin asennettu Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. elokuuta 1995                ASSIGN (1)
+
+
+   as1[:]=as2[:] Määrittää asemakirjaimen osoittamaan toiseen
+      asemaan. Kaksoispisteet ":" ovat valinnaisia. Välimerkkejä
+      ei sallita kirjainten, kaksoispisteiden ja '='-merkin välillä.
+
+      Jos pysyvää osaa ei ole ladattu, se ladataan ilman eri
+      ilmoitusta.
+
+   /m Siirrä pysyvä osa UMB-alueelle, jos mahdollista.
+      Tämä ohitetaan, jos pysyvä osa on jo asennettu.
+
+   ei valitsinta Jos mitään valitsinta ei anneta, kaikki
+      määritykset poistetaan ja asemat osoittavat itseensä.
+
+ TUNNETUT VIRHEET
+
+   o  Koska Assign ei ole TSR, lataus "LOADHIGH"-komennolla voi
+      epäonnistua. Käytä /m-valitsinta ladataksesi sen ylämuistiin.
+
+   o  Valitsimet /STATUS ja /SHADOW eivät noudata standardia
+      yhteensopivuuden vuoksi alkuperäisen Assignin kanssa.
+
+   o  Myöhemmin asennetut TSR-ohjelmat tai toinen komentotulkki
+      estävät usein poistamisen. Käytä ASSIGN-komentoa ilman
+      valitsimia tyhjentääksesi taulukon.
+
+ KATSO MYÖS
+      Subst, Join
+
+ TEKIJÄT
+                             Steffen Kaiser
+
+
+                                  -2-
+
+
+
+
+
+# Language: hungarian
+# File ending: hu
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  1995. augusztus 08.              ASSIGN (1)
+
+
+
+ NÉV
+      assign - Meghajtóbetűjel hozzárendelése egy másik meghajtóhoz
+
+
+ SZINTAKSIS
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ m1[:]=m2[:] }]
+
+
+ LEÍRÁS
+      Az Assign egy meghajtóbetűjelet egy másik meghajtóhoz rendel. Ez a
+      leképezés csak a betűjelet érinti, az útvonalat nem, ami
+      megkülönbözteti az Assign-t a Subst-tól, pl.:
+      A "C:\FREEDOS" és "B:\TEMP" munkakönyvtárak mellett az
+      "assign B=C" és "cd C:\" parancsok után a "B:" is a "C:\"
+      gyökérkönyvtárra fog mutatni.
+      Ezzel szemben a "subst B: ." és "cd C:\" parancsok után a "B:"
+      továbbra is a "C:\FREEDOS" könyvtárra mutat.
+
+      Mivel ez a program nem TSR, ne töltse be a "LOADHIGH" vagy
+      az "LH" parancsokkal.
+
+ OPCIÓK
+
+   /? Kis súgóképernyő megjelenítése.
+
+   /SHADOW Ez az opció elrejti az Assign rezidens részét a könnyű
+      észlelés elől. Ez magában foglalja:
+      1) A rezidens részt tartalmazó memóriablokk rendszerelemként
+      lesz megjelölve.
+      2) Az installációs ellenőrzés a "Nincs telepítve, de nem is
+      engedélyezett" választ adja a "Telepítve" helyett.
+
+      Ha a rezidens részt ezzel az opcióval telepítették, de a
+      későbbi hívások nélküle történnek, figyelmeztetés jelenik meg,
+      de a művelet végrehajtódik.
+
+      Az opció /SH formára rövidíthető.
+
+   /STATUS Megjeleníti az összes hozzárendelést az alábbi formában:
+      m1: => m2:
+      ahol m1 a hozzárendelt betűjel, m2 pedig a célmeghajtó.
+
+      Ha nincs hozzárendelés, nem jelenik meg kimenet.
+
+      Ez az opció megakadályozza a rezidens rész betöltését, ha az
+      még nincs telepítve.
+
+      Az opció /S formára rövidíthető.
+
+   /u Eltávolítja a korábban telepített Assign-t.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  1995. augusztus 08.              ASSIGN (1)
+
+
+   m1[:]=m2[:] Meghajtó-hozzárendelés definiálása, ahol m1 az m2-re
+      mutat. A kettőspontok ":" opcionálisak. Szóköz nem megengedett
+      a betűk, kettőspontok és az egyenlőségjel '=' között.
+
+      Ha a rezidens rész még nincs betöltve, külön értesítés nélkül
+      betöltődik.
+
+   /m A rezidens részt az UMB területre mozgatja, ha lehetséges.
+      Ez az opció figyelmen kívül marad, ha már telepítve van.
+
+   nincs opció Ha sem /STATUS, sem /u, sem hozzárendelés nincs
+      megadva, minden meglévő hozzárendelés megszűnik.
+
+ ISMERT HIBÁK
+
+   o  Mivel az Assign nem TSR, a "LOADHIGH" vagy "LH" hívás
+      sikertelen lehet. Használja az /m opciót a felső memóriába
+      töltéshez.
+
+   o  A /STATUS és /SHADOW opciók nem követik a szabványt az eredeti
+      Assign-nal való kompatibilitás miatt.
+
+   o  A később telepített TSR-ek vagy egy másodlagos shell gyakran
+      megakadályozzák az eltávolítást. Ekkor használja az ASSIGN-t
+      opciók nélkül a táblázat törléséhez.
+
+ LÁSD MÉG
+      Subst, Join
+
+ KÖZREMŰKÖDŐK
+                             Steffen Kaiser
+
+
+                                  -2-
+
+
+
+
+
+# Language: icelandic
+# File ending: is
+# Codepage: 861
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. ágúst 1995                   ASSIGN (1)
+
+
+
+ NAFN
+      assign - Úthluta drifstaf á annað drif
+
+
+ SAMANTEKT
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ LÝSING
+      Assign tengir drifstaf við annað drif. Þessi tenging hefur
+      aðeins áhrif á drifstafinn, en ekki slóðina, sem gerir
+      Assign frábrugðið Subst, t.d.:
+      Með núverandi vinnuslóðir "C:\FREEDOS" og "B:\TEMP", eftir
+      skipanirnar "assign B=C" og "cd C:\" mun slóðin "B:" einnig
+      vísa á möppuna "C:\".
+      En eftir skipanirnar "subst B: ." og "cd C:\" mun slóðin "B:"
+      ennþá vísa á möppuna "C:\FREEDOS".
+
+      Þar som þetta forrit er ekki TSR, ekki hlaða því með
+      "LOADHIGH" eða "LH" skipunum.
+
+ VALKOSTIR
+
+   /? Birta hjálparskjá.
+
+   /SHADOW Þessi valkostur felur vistahluta Assign svo hann finnist
+      ekki auðveldlega. Það innifelur:
+      1) Minnisblokkin með vistahlutanum er merkt sem kerfishluti.
+      2) Uppsetningarskoðun skilar "Ekki uppsett, en ekki leyfilegt
+      að setja upp" í stað "Uppsett".
+
+      Ef vistahlutinn er settur upp með þessum valkosti, en síðari
+      keyrslur eru án hans, birtist viðvörun en aðgerðin fer fram.
+
+      Valkostinn má stytta í /SH.
+
+   /STATUS Birta alla úthlutaða drifstafi á forminu:
+      dr1: => dr2:
+      þar sem dr1 er úthlutaði stafurinn og dr2 er drifið sem dr1
+      vísar á.
+
+      Ef engar úthlutanir eru til, birtist enginn úttak.
+
+      Þessi valkostur kemur í veg fyrir hleðslu vistahlutans ef
+      hann hefur ekki þegar verið settur upp.
+
+      Valkostinn má stytta í /S.
+
+   /u Fjarlægja áður uppsett Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. ágúst 1995                   ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Þetta skilgreinir drifstafatengingu þar sem dr1
+      skal vísa á dr2. Tvípunktar ":" eru valfrjálsir. Engin bil eru
+      leyfð milli drifstafa, tvípunkta og jafnaðarmerkis '='.
+
+      Ef vistahlutinn er ekki þegar hlaðinn, verður hann hlaðinn
+      án frekari tilkynninga.
+
+   /m Flytja vistahlutann í UMB svæðið ef mögulegt er.
+      Þessi valkostur er hunsaður ef vistahlutinn er þegar
+      uppsettur.
+
+   enginn valkostur Ef hvorki /STATUS né /u né tenging er tilgreind,
+      eru allar núverandi tengingar rofnar.
+
+ ÞEKKTIR GALLAR
+
+   o  Þar sem Assign er ekki TSR sjálft, getur hleðsla með
+      "LOADHIGH" eða "LH" mistekist. Notaðu /m til að hlaða hátt.
+
+   o  Valkostirnir /STATUS og /SHADOW fylgja ekki staðli vegna
+      samhæfni við upprunalega Assign forritið.
+
+   o  TSR sem sett eru upp síðar eða aukaskel (shell) koma oft í veg
+      fyrir fjarlægingu. Notaðu ASSIGN án valkosta til að hreinsa
+      töfluna í staðinn.
+
+ SJÁ EINNIG
+      Subst, Join
+
+ KONTRIBUANTAR
+                             Steffen Kaiser
+
+
+                                  -2-
+
+
+
+
+
+# Language: italian
+# File ending: it
+# Codepage: 858
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08 agosto 1995                   ASSIGN (1)
+
+
+
+ NOME
+      assign - Assegna una lettera di unità a un'altra unità
+
+
+ SINTASSI
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ un1[:]=un2[:] }]
+
+
+ DESCRIZIONE
+      Assign mappa una lettera di unità su un'unità diversa. Questa
+      mappatura influisce solo sulla lettera dell'unità, ma non sul
+      percorso, il che differenzia Assign da Subst, ad esempio:
+      Con i percorsi di lavoro correnti "C:\FREEDOS" e "B:\TEMP",
+      dopo i comandi "assign B=C" e "cd C:\", anche il percorso "B:"
+      punta alla directory "C:\".
+      Mentre dopo i comandi "subst B: ." e "cd C:\", il percorso
+      "B:" punta ancora a "C:\FREEDOS".
+
+      Poiché questo programma non è un TSR, non caricarlo tramite i
+      comandi "LOADHIGH" o "LH".
+
+ OPZIONI
+
+   /? Visualizza una breve schermata di aiuto.
+
+   /SHADOW Questa opzione nasconde la parte residente di Assign per
+      evitare che venga rilevata facilmente. Ciò include:
+      1) Il blocco di memoria contenente la parte residente è
+      contrassegnato come parte del sistema.
+      2) Il controllo di installazione restituisce "Non installato,
+      ma non autorizzato a installare" invece di "Installato".
+
+      Se la parte residente è installata con questa opzione, ma le
+      chiamate successive avvengono senza di essa, appare un avviso,
+      ma l'azione viene eseguita.
+
+      L'opzione può essere abbreviata in /SH.
+
+   /STATUS Visualizza tutte le lettere di unità assegnate nella forma:
+      un1: => un2:
+      dove un1 è la lettera assegnata e un2 l'unità di destinazione.
+
+      Se non ci sono assegnazioni, non viene visualizzato nulla.
+
+      Questa opzione impedisce il caricamento della parte residente
+      se non è già stata installata.
+
+      L'opzione può essere abbreviata in /S.
+
+   /u Rimuove un'istanza di Assign precedentemente installata.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08 agosto 1995                   ASSIGN (1)
+
+
+   un1[:]=un2[:] Definisce un'assegnazione di unità, dove un1 deve
+      puntare a un2. I due punti ":" sono opzionali. Non sono ammessi
+      spazi tra le lettere, i due punti e il segno uguale '='.
+
+      Se la parte residente non è già caricata, verrà caricata
+      automaticamente.
+
+   /m Sposta la parte residente nell'area UMB, se possibile.
+      Ignorato se la parte residente è già installata.
+
+   nessuna opzione Se non vengono specificati /STATUS, /u o una
+      assegnazione, tutte le assegnazioni esistenti vengono rimosse.
+
+ BUG NOTI
+
+   o  Poiché Assign non è un TSR, il caricamento con "LOADHIGH" o
+      "LH" potrebbe fallire. Usare /m per caricarlo in memoria alta.
+
+   o  Le opzioni /STATUS e /SHADOW non seguono lo standard per
+      compatibilità con l'Assign originale.
+
+   o  TSR installati successivamente o shell secondarie possono
+      impedire la disinstallazione. Usare ASSIGN senza opzioni per
+      svuotare la tabella.
+
+ VEDI ANCHE
+      Subst, Join
+
+ CONTRIBUTORI
+                             Steffen Kaiser
+
+
+                                  -2-
+
+
+
+
+
+# Language: latvian
+# File ending: lv
+# Codepage: 775
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  1995. gada 08. augusts           ASSIGN (1)
+
+
+
+ NOSAUKUMS
+      assign - Piešķirt diska burtu citam diskam
+
+
+ SINTAKSE
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ APRAKSTS
+      Assign piesaista diska burtu citam diskam. Šī piesaiste
+      ietekmē tikai diska burtu, bet ne ceļu (path), ar ko
+      Assign atšķiras no Subst, piemēram:
+      Ja pašreizējie darba ceļi ir "C:\FREEDOS" un "B:\TEMP", tad
+      pēc komandām "assign B=C" un "cd C:\" ceļš "B:" arī norādīs
+      uz mapi "C:\".
+      Turpretī pēc komandām "subst B: ." un "cd C:\" ceļš "B:"
+      joprojām norādīs uz "C:\FREEDOS".
+
+      Tā kā šī programma nav TSR, neielādējiet to ar "LOADHIGH"
+      vai "LH" komandām.
+
+ OPCIJAS
+
+   /? Parādīt palīdzības ekrānu.
+
+   /SHADOW Šī opcija paslēpj Assign rezidento daļu no vieglas
+      atklāšanas. Tas ietver:
+      1) Atmiņas bloks ar rezidento daļu tiek atzīmēts kā sistēmas daļa.
+      2) Instalācijas pārbaude atgriež "Nav instalēts, bet nav
+      atļauts instalēt", nevis "Instalēts" vai "Nav instalēts".
+
+      Ja rezidentā daļa ir instalēta ar šo opciju, bet turpmākie
+      izsaukumi ir bez tās, parādās brīdinājums, bet darbība tiek
+      veikta.
+
+      Opciju var saīsināt līdz /SH.
+
+   /STATUS Parādīt visus piešķirtos diska burtus formā:
+      dr1: => dr2:
+      kur dr1 ir piešķirtais burts un dr2 ir disks, uz kuru dr1 norāda.
+
+      Ja piešķīrumu nav, nekas netiek parādīts.
+
+      Šī opcija neļauj ielādēt rezidento daļu, ja tā vēl nav
+      instalēta.
+
+      Opciju var saīsināt līdz /S.
+
+   /u Atinstalēt iepriekš instalētu Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  1995. gada 08. augusts           ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Definē diska burta piešķīrumu, kur dr1 norādīs
+      uz dr2. Koli ":" nav obligāti. Atstarpes starp burtiem,
+      koliem un vienādības zīmi "=" nav atļautas.
+
+      Ja rezidentā daļa vēl nav ielādēta, tā tiks ielādēta bez
+      brīdinājuma.
+
+   /m Pārvietot rezidento daļu uz UMB apgabalu, ja iespējams.
+      Šī opcija tiek ignorēta, ja rezidentā daļa juba ir instalēta.
+
+   bez opcijām Ja komandrindā nav norādīts /STATUS, /u vai
+      piešķīrums, visi esošie piešķīrumi tiek pārtraukti.
+
+ ZINĀMĀS KĻŪDAS
+
+   o  Tā kā Assign nav TSR, ielāde ar "LOADHIGH" vai "LH" var
+      neizdoties. Izmantojiet /m, lai ielādētu augšējā atmiņā.
+
+   o  Opcijas /STATUS un /SHADOW neatbilst standartam saderības
+      dēļ ar oriģinālo Assign.
+
+   o  Vēlāk instalēti TSR vai sekundārie komandu procesori (shell)
+      bieži traucē atinstalēšanu. Izmantojiet ASSIGN bez opcijām,
+      lai notīrītu tabulu.
+
+ SKATĪT ARĪ
+      Subst, Join
+
+ AUTORI
+                             Steffen Kaiser
+
+
+                                  -2-
+
+
+
+
+
+# Language: lithuanian
+# File ending: lt
+# Codepage: 775
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  1995 m. rugpjūčio 08 d.          ASSIGN (1)
+
+
+
+ PAVADINIMAS
+      assign - Priskirti disko raidę kitam diskui
+
+
+ SANTRAUKA
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ APRAŠYMAS
+      Assign susieja disko raidę su kitu disku. Šis susiejimas
+      paveikia tik disko raidę, bet ne kelią (path), kuo Assign
+      skiriasi nuo Subst, pvz.:
+      Esant dabartiniams darbiniams keliams "C:\FREEDOS" ir
+      "B:\TEMP", po komandų "assign B=C" ir "cd C:\" kelias "B:"
+      taip pat rodys į katalogą "C:\".
+      Tuo tarpu po komandų "subst B: ." ir "cd C:\" kelias "B:"
+      vis dar rodys į "C:\FREEDOS".
+
+      Kadangi ši programa nėra TSR, nekraukite jos per "LOADHIGH"
+      arba "LH" komandas.
+
+ PARINKTYS
+
+   /? Rodyti pagalbos ekraną.
+
+   /SHADOW Ši parinktis paslepia rezidentinę Assign dalį nuo lengvo
+      aptikimo. Tai apima:
+      1) Atminties blokas su rezidentine dalimi pažymimas kaip
+      sistemos dalis.
+      2) Instaliacijos patikra grąžina "Neįdiegta, bet neleidžiama
+      įdiegti", o ne "Įdiegta" arba "Neįdiegta".
+
+      Jei rezidentinė dalis įdiegiama su šia parinktimi, bet vėliau
+      kviečiama be jos, pasirodo įspėjimas, bet veiksmas atliekamas.
+
+      Parinktį galima sutrumpinti iki /SH.
+
+   /STATUS Rodyti visas priskirtas disko raides forma:
+      dr1: => dr2:
+      kur dr1 yra priskirta raidė, o dr2 yra diskas, į kurį dr1 rodo.
+
+      Jei priskirtų raidžių nėra, nieko nebus rodoma.
+
+      Ši parinktis neleidžia įkrauti rezidentinės dalies, jei ji
+      dar nėra įdiegta.
+
+      Parinktį galima sutrumpinti iki /S.
+
+   /u Pašalinti anksčiau įdiegtą Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  1995 m. rugpjūčio 08 d.          ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Apibrėžia disko raidės priskyrimą, kur dr1 turi
+      rodyti į dr2. Dvitaškiai ":" yra nebūtini. Tarp raidžių,
+      dvitaškių ir lygybės ženklo "=" tarpai neleidžiami.
+
+      Jei rezidentinė dalis dar nėra įkrauta, ji bus įkrauta be
+      atskiro pranešimo.
+
+   /m Perkelti rezidentinę dalį į UMB sritį, jei įmanoma.
+      Ši parinktis ignoruojama, jei rezidentinė dalis jau įdiegta.
+
+   be parinkčių Jei komandų eilutėje nenurodyta nei /STATUS, nei
+      /u, nei priskyrimas, visi esami priskyrimai panaikinami.
+
+ ŽINOMOS KLAIDOS
+
+   o  Kadangi Assign nėra TSR, įkėlimas su "LOADHIGH" arba "LH" gali
+      nepavykti. Naudokite /m parinktį įkėlimui į aukštąją atmintį.
+
+   o  Parinktys /STATUS ir /SHADOW neatitinka standarto dėl
+      suderinamumo su originaliu Assign.
+
+   o  Vėliau įdiegtos TSR programos arba antrinis apvalkalas (shell)
+      dažniausiai trukdo pašalinimui. Naudokite ASSIGN be parinkčių
+      lentelei išvalyti.
+
+ TAIP PAT ŽIŪRĖKITE
+      Subst, Join
+
+ AUTORIAI
+                             Steffen Kaiser
+
+
+                                  -2-
+                                  
+                                  
+                                  
+                                  
+                                  
+
+
+
+
+
+
+
+
+# Language: netherlands
+# File ending: nl
+# Codepage: 858
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08 augustus 1995                 ASSIGN (1)
+
+
+
+ NAAM
+      assign - Koppel een schijfletter aan een andere schijf
+
+
+ SYNOPSIS
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ BESCHRIJVING
+      Assign koppelt een schijfletter aan een andere schijf. Deze
+      koppeling heeft alleen betrekking op de schijfletter, niet op
+      het pad, wat Assign anders maakt dan Subst, bijv.:
+      Met de huidige paden "C:\FREEDOS" en "B:\TEMP" zal na de
+      commando's "assign B=C" en "cd C:\" het pad "B:" ook naar
+      de map "C:\" wijzen.
+      Terwijl na de commando's "subst B: ." en "cd C:\" het pad "B:"
+      nog steeds naar "C:\FREEDOS" wijst.
+
+      Omdat dit programma geen TSR is, mag het niet via de commando's
+      "LOADHIGH" of "LH" geladen worden.
+
+ OPTIES
+
+   /? Toon een kort helpscherm.
+
+   /SHADOW Deze optie verbergt het residente deel van Assign voor
+      eenvoudige detectie. Dit omvat:
+      1) Het geheugenblok met het residente deel wordt gemarkeerd
+      als onderdeel van het systeem.
+      2) De installatiecontrole geeft "Niet geïnstalleerd, maar niet
+      toegestaan om te installeren" terug in plaats van
+      "Geïnstalleerd".
+
+      Als het residente deel met deze optie is geïnstalleerd, maar
+      volgende aanroepen zonder gebeuren, verschijnt er een
+      waarschuwing, maar de actie wordt uitgevoerd.
+
+      De optie kan worden afgekort tot /SH.
+
+   /STATUS Toon alle gekoppelde schijfletters in de vorm:
+      dr1: => dr2:
+      waarbij dr1 de gekoppelde letter is en dr2 de schijf waar dr1
+      naar wijst.
+
+      Als er geen koppelingen zijn, wordt er niets weergegeven.
+
+      Deze optie voorkomt het laden van het residente deel als het
+      nog niet is geïnstalleerd.
+
+      De optie kan worden afgekort tot /S.
+
+   /u Deïnstalleer een eerder geïnstalleerde Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08 augustus 1995                 ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Dit definieert een koppeling waarbij dr1 naar dr2
+      moet wijzen. De dubbele punten ":" zijn optioneel. Er zijn
+      geen spaties toegestaan tussen de schijfletters, de dubbele
+      punten en het isgelijkteken '='.
+
+      Als het residente deel nog niet is geladen, wordt het zonder
+      verdere melding geladen.
+
+   /m Verplaats het residente deel naar het UMB-gebied, indien mogelijk.
+      Deze optie wordt genegeerd als het residente deel al is
+      geïnstalleerd.
+
+   geen optie Als er geen /STATUS, /u of koppeling is opgegeven,
+      worden alle bestaande koppelingen verbroken.
+
+ BEKENDE BUGS
+
+   o  Omdat Assign zelf geen TSR is, kan laden met "LOADHIGH" of
+      "LH" mislukken. Gebruik /m om hoog te laden.
+
+   o  De opties /STATUS en /SHADOW volgen de standaard niet vanwege
+      compatibiliteit met de originele Assign.
+
+   o  Later geïnstalleerde TSR's of een secundaire shell verhinderen
+      vaak de-installatie. Gebruik ASSIGN zonder opties om de tabel
+      leeg te maken.
+
+ ZIE OOK
+      Subst, Join
+
+ MEDEWERKERS
+                             Steffen Kaiser
+
+
+
+
+# Language: norwegian
+# File ending: no
+# Codepage: 865
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. august 1995                  ASSIGN (1)
+
+
+
+ NAVN
+      assign - Tilordne en stasjonsbokstav til en annen stasjon
+
+
+ SYNOPSIS
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ BESKRIVELSE
+      Assign knytter en stasjonsbokstav til en annen stasjon. Denne
+      tilordningen påvirker kun stasjonsbokstaven, ikke stien, noe
+      som skiller Assign fra Subst, f.eks.:
+      Med gjeldende arbeidstier "C:\FREEDOS" og "B:\TEMP", vil
+      stien "B:" etter kommandoene "assign B=C" og "cd C:\" også
+      peke til katalogen "C:\".
+      Mens etter kommandoene "subst B: ." og "cd C:\" vil stien "B:"
+      fortsatt peke til "C:\FREEDOS".
+
+      Siden dette programmet ikke er en TSR, må det ikke lastes via
+      "LOADHIGH" eller "LH"-kommandoen.
+
+ ALTERNATIVER
+
+   /? Vis en enkel hjelpeskjerm.
+
+   /SHADOW Dette valget skjuler den residente delen av Assign fra å
+      bli oppdaget enkelt. Dette inkluderer:
+      1) Minneblokken som inneholder den residente delen merkes
+      som en del av systemet.
+      2) Installasjonskontrollen returnerer "Ikke installert, men
+      ikke tillatt å installere" i stedet for "Installert".
+
+      Hvis den residente delen er installert med dette valget, men
+      senere kjøringer gjøres uten, vises en advarsel, men
+      handlingen utføres.
+
+      Valget kan forkortes til /SH.
+
+   /STATUS Vis alle tilordnede stasjonsbokstaver i formen:
+      dr1: => dr2:
+      der dr1 er den tilordnede bokstaven og dr2 er stasjonen som
+      dr1 peker på.
+
+      Hvis det ikke finnes noen tilordninger, vises ingen utdata.
+
+      Dette valget forhindrer lasting av den residente delen hvis den
+      ikke allerede er installert.
+
+      Valget kan forkortes til /S.
+
+   /u Avinstaller en tidligere installert Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. august 1995                  ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Dette definerer en stasjonstilordning der dr1 skal
+      peke til dr2. Kolon ":" er valgfritt. Det er ikke tillatt med
+      mellomrom mellom stasjonsbokstavene, kolonene og likhetstegnet.
+
+      Hvis den residente delen ikke allerede er lastet, vil den bli
+      lastet uten ytterligere varsel.
+
+   /m Flytt den residente delen til UMB-området hvis mulig. Valget
+      ignoreres hvis den residente delen allerede er installert.
+
+   ingen valg Hvis verken /STATUS, /u eller en tilordning er oppgitt,
+      vil alle eksisterende tilordninger bli slettet.
+
+ KJENTE FEIL
+
+   o  Siden Assign ikke er en TSR i seg selv, kan lasting med
+      "LOADHIGH" eller "LH" feile. Bruk /m for å laste høyt.
+
+   o  Valgene /STATUS og /SHADOW følger ikke standarden på grunn
+      av kompatibilitet med den originale Assign.
+
+   o  TSR-er som installeres senere eller et sekundært skall (shell)
+      hindrer ofte avinstallering. Bruk ASSIGN uten valg for å
+      tømme tabellen i stedet.
+
+ SE OGSÅ
+      Subst, Join
+
+ BIDRAGSYTERE
+                             Steffen Kaiser
+
+
+
+
+# Language: polish
+# File ending: pl
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08 sierpnia 1995                 ASSIGN (1)
+
+
+
+ NAZWA
+      assign - Przypisuje literę napędu do innego napędu
+
+
+ SKŁADNIA
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ OPIS
+      Assign mapuje literę napędu na inny napęd. To mapowanie wpływa
+      tylko na literę napędu, a nie na ścieżkę, co odróżnia Assign
+      od Subst, np.:
+      Przy bieżących ścieżkach roboczych "C:\FREEDOS" i "B:\TEMP",
+      po wydaniu poleceń "assign B=C" i "cd C:\", ścieżka "B:"
+      również wskazuje na katalog "C:\".
+      Natomiast po komendach "subst B: ." i "cd C:\", ścieżka "B:"
+      nadal wskazuje na "C:\FREEDOS".
+
+      Ponieważ ten program nie jest rezydentny (TSR), nie należy go
+      ładować poleceniami "LOADHIGH" lub "LH".
+
+ OPCJE
+
+   /? Wyświetla krótki ekran pomocy.
+
+   /SHADOW Ta opcja ukrywa część rezydentną Assign przed łatwym
+      wykryciem. Obejmuje to:
+      1) Blok pamięci zawierający część rezydentną jest oznaczony
+      jako część systemu.
+      2) Przerwanie sprawdzające instalację zwraca "Nie zainstalowano,
+      ale instalacja niedozwolona" zamiast "Zainstalowano".
+
+      Jeśli część rezydentna zostanie zainstalowana z tą opcją, ale
+      kolejne wywołania będą bez niej, pojawi się ostrzeżenie, ale
+      akcja zostanie wykonana.
+
+      Opcję można skrócić do /SH.
+
+   /STATUS Wyświetla wszystkie przypisane litery napędów w formie:
+      dr1: => dr2:
+      gdzie dr1 to przypisana litera, a dr2 to napęd docelowy.
+
+      Jeśli nie ma żadnych przypisań, nic nie zostanie wyświetlone.
+
+      Ta opcja zapobiega ładowaniu części rezydentnej, jeśli nie
+      została ona jeszcze zainstalowana.
+
+      Opcję można skrócić do /S.
+
+   /u Odinstalowuje wcześniej zainstalowany Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08 sierpnia 1995                 ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Definiuje przypisanie litery napędu, gdzie dr1 ma
+      wskazywać na dr2. Dwukropki ":" są opcjonalne. Spacje nie są
+      dozwolone między literami, dwukropkami i znakiem równości.
+
+      Jeśli część rezydentna nie jest jeszcze załadowana, zostanie
+      załadowana bez powiadomienia.
+
+   /m Przenosi część rezydentną do obszaru UMB, jeśli to możliwe.
+      Opcja ignorowana, jeśli Assign jest już zainstalowany.
+
+   brak opcji Jeśli nie podano /STATUS, /u ani przypisania, wszystkie
+      istniejące przypisania zostają usunięte.
+
+ ZNANE BŁĘDY
+
+   o  Ponieważ Assign nie jest typowym TSR, ładowanie przez "LH" może
+      się nie udać. Aby załadować wysoko, należy użyć opcji /m.
+
+   o  Opcje /STATUS i /SHADOW nie są zgodne ze standardem ze względu
+      na kompatybilność z oryginalnym programem Assign.
+
+   o  Później zainstalowane programy TSR lub inne powłoki (shell)
+      często uniemożliwiają odinstalowanie. Użyj ASSIGN bez opcji,
+      aby wyczyścić tabelę.
+
+ ZOBACZ TAKŻE
+      Subst, Join
+
+ AUTORZY
+                             Steffen Kaiser
+
+
+
+
+# Language: portuguese
+# File ending: pt
+# Codepage: 860
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08 de Agosto de 1995             ASSIGN (1)
+
+
+
+ NOME
+      assign - Atribui uma letra de unidade a uma unidade diferente
+
+
+ SINOPSE
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ un1[:]=un2[:] }]
+
+
+ DESCRIÇÃO
+      Assign mapeia uma letra de unidade para uma unidade diferente.
+      Este mapeamento afeta apenas a letra da unidade, não o
+      caminho, o que torna o Assign diferente do Subst, ex.:
+      Com os caminhos atuais "C:\FREEDOS" e "B:\TEMP", após os
+      comandos "assign B=C" e "cd C:\", o caminho "B:" também
+      apontará para o diretório "C:\".
+      Considerando que após "subst B: ." e "cd C:\", o caminho "B:"
+      continuaria a apontar para "C:\FREEDOS".
+
+      Como este programa não é um TSR, não o carregue via os
+      comandos "LOADHIGH" ou "LH".
+
+ OPÇÕES
+
+   /? Exibe um pequeno ecrã de ajuda.
+
+   /SHADOW Esta opção oculta a parte residente do Assign para
+      evitar que seja detetada facilmente. Isso inclui:
+      1) O bloco de memória que contém a parte residente é marcado
+      como parte do sistema.
+      2) A interrupção de verificação de instalação retorna "Não
+      instalado, mas não permitido instalar" em vez de "Instalado".
+
+      Se a parte residente for instalada com esta opção, mas as
+      invocações subsequentes forem feitas sem ela, um aviso
+      aparece, mas a ação é executada.
+
+      A opção pode ser abreviada para /SH.
+
+   /STATUS Exibe todas as letras de unidade atribuídas na forma:
+      un1: => un2:
+      onde un1 é a letra atribuída e un2 a unidade de destino.
+
+      Se não houver nenhuma atribuição, nada será exibido.
+
+      Esta opção impede o carregamento da parte residente se esta
+      ainda não estiver instalada.
+
+      A opção pode ser abreviada para /S.
+
+   /u Desinstala um Assign previamente instalado.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08 de Agosto de 1995             ASSIGN (1)
+
+
+   un1[:]=un2[:] Define uma atribuição onde un1 deve apontar para
+      un2. Os dois pontos ":" são opcionais. Não são permitidos
+      espaços entre as letras, os dois pontos e o sinal '='.
+
+      Se a parte residente ainda não estiver carregada, será
+      carregada sem aviso prévio.
+
+   /m Move a parte residente para a área UMB, se possível. Esta
+      opção é ignorada se a parte residente já estiver instalada.
+
+   sem opção Se nem /STATUS nem /u nem uma atribuição forem
+      especificados, todas as atribuições existentes são removidas.
+
+ ERROS CONHECIDOS
+
+   o  Como o Assign não é um TSR, carregar com "LOADHIGH" ou "LH"
+      pode falhar. Use /m para carregar na memória alta.
+
+   o  As opções /STATUS e /SHADOW não seguem o padrão devido à
+      compatibilidade com o Assign original.
+
+   o  TSRs instalados posteriormente ou uma shell secundária podem
+      impedir a desinstalação. Use ASSIGN sem opções para limpar
+      a tabela.
+
+ VER TAMBÉM
+      Subst, Join
+
+ COLABORADORES
+                             Steffen Kaiser
+
+
+
+
+# Language: russian
+# File ending: ru
+# Codepage: 866
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08 августа 1995                  ASSIGN (1)
+
+
+
+ ИМЯ
+      assign - Назначает букву диска другому диску
+
+
+ СИНТАКСИС
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ д1[:]=д2[:] }]
+
+
+ ОПИСАНИЕ
+      Assign сопоставляет букву диска другому диску. Это
+      влияет только на букву диска, но не на путь, что отличает
+      Assign от Subst, например:
+      При текущих путях "C:\FREEDOS" и "B:\TEMP" после команд
+      "assign B=C" и "cd C:\" путь "B:" также указывает на
+      каталог "C:\".
+      В то время как после команд "subst B: ." и "cd C:\" путь
+      "B:" все еще указывает на "C:\FREEDOS".
+
+      Поскольку эта программа не является TSR, не загружайте ее
+      через команды "LOADHIGH" или "LH".
+
+ ПАРАМЕТРЫ
+
+   /? Вывести краткую справку.
+
+   /SHADOW Скрывает резидентную часть Assign от простого
+      обнаружения. Это включает:
+      1) Блок памяти с резидентной частью помечается как системный.
+      2) Проверка установки возвращает "Не установлен, но установка
+      запрещена" вместо "Установлен".
+
+      Если резидентная часть установлена с этим параметром, а
+      последующие вызовы делаются без него, выводится
+      предупреждение, но действие выполняется.
+
+      Параметр можно сократить до /SH.
+
+   /STATUS Показать все назначенные буквы дисков в виде:
+      д1: => д2:
+      где д1 - назначенная буква, а д2 - целевой диск.
+
+      Если назначений нет, ничего не выводится.
+
+      Этот параметр предотвращает загрузку резидентной части,
+      если она еще не была установлена.
+
+      Параметр можно сократить до /S.
+
+   /u Удалить ранее установленный Assign из памяти.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08 августа 1995                  ASSIGN (1)
+
+
+   д1[:]=д2[:] Определяет назначение, где д1 должен указывать на
+      д2. Двоеточия ":" необязательны. Пробелы между буквами,
+      двоеточиями и знаком равенства "=" не допускаются.
+
+      Если резидентная часть еще не загружена, она будет загружена
+      без уведомления.
+
+   /m Переместить резидентную часть в область UMB, если возможно.
+      Игнорируется, если резидентная часть уже установлена.
+
+   без параметров Если в командной строке не указаны ни /STATUS,
+      ни /u, ни назначение, все существующие назначения отменяются.
+
+ ИЗВЕСТНЫЕ ОШИБКИ
+
+   o  Поскольку Assign не является TSR, загрузка через "LOADHIGH"
+      может не сработать. Используйте /m для загрузки в UMB.
+
+   o  Параметры /STATUS и /SHADOW не следуют стандарту из-за
+      совместимости с оригинальным Assign.
+
+   o  Позже установленные TSR или вторичные оболочки (shell) часто
+      мешают удалению. Используйте ASSIGN без параметров, чтобы
+      очистить таблицу.
+
+ СМ. ТАКЖЕ
+      Subst, Join
+
+ АВТОРЫ
+
+
+
+
+# Language: slovakian
+# File ending: sk
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. augusta 1995                 ASSIGN (1)
+
+
+
+ MENO
+      assign - Priradí písmeno jednotky inej jednotke
+
+
+ SYNTAX
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ j1[:]=j2[:] }]
+
+
+ POPIS
+      Assign mapuje písmeno jednotky na inú jednotku. Toto mapovanie
+      ovplyvňuje iba písmeno jednotky, nie cestu, čo odlišuje Assign
+      od príkazu Subst, napr.:
+      S aktuálnymi pracovnými cestami "C:\FREEDOS" a "B:\TEMP" po
+      príkazoch "assign B=C" a "cd C:\" bude cesta "B:" tiež
+      ukazovať do adresára "C:\".
+      Zatiaľ čo po príkazoch "subst B: ." a "cd C:\" bude cesta "B:"
+      stále ukazovať do "C:\FREEDOS".
+
+      Pretože tento program nie je TSR, nezavádzajte ho pomocou
+      príkazov "LOADHIGH" alebo "LH".
+
+ VOĽBY
+
+   /? Zobrazí stručnú nápovedu.
+
+   /SHADOW Táto voľba skryje rezidentnú časť Assign pred ľahkou
+      detekciou. To zahŕňa:
+      1) Pamäťový blok obsahujúci rezidentnú časť je označený ako
+      súčasť systému.
+      2) Kontrola inštalácie vracia "Nenainštalované, ale inštalácia
+      nepovolená" namiesto "Nainštalované".
+
+      Ak je rezidentná časť nainštalovaná s touto voľbou, ale
+      následné volania sú bez nej, zobrazí sa varovanie, ale akcia
+      sa vykoná.
+
+      Voľbu je možné skrátiť na /SH.
+
+   /STATUS Zobrazí všetky priradené písmená jednotiek vo formáte:
+      j1: => j2:
+      kde j1 je priradené písmeno a j2 je jednotka, kam j1 ukazuje.
+
+      Ak neexistujú žiadne priradenia, nezobrazí sa žiadny výstup.
+
+      Táto voľba zabráni načítaniu rezidentnej časti, ak ešte nebola
+      nainštalovaná.
+
+      Voľbu je možné skrátiť na /S.
+
+   /u Odinštaluje predtým nainštalovaný Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. augusta 1995                 ASSIGN (1)
+
+
+   j1[:]=j2[:] Definuje priradenie jednotky, kde j1 má ukazovať na
+      j2. Dvojbodky ":" sú voliteľné. Medzi písmenami, dvojbodkami
+      a znakom rovnosti "=" nie sú povolené medzery.
+
+      Ak rezidentná časť ešte nie je načítaná, načíta sa bez
+      ďalšieho upozornenia.
+
+   /m Presunie rezidentnú časť do oblasti UMB, ak je to možné.
+      Táto voľba sa ignoruje, ak je už Assign nainštalovaný.
+
+   žiadna voľba Ak na príkazovom riadku nie je zadané /STATUS, /u
+      ani priradenie, všetky existujúce priradenia sa zrušia.
+
+ ZNÁME CHYBY
+
+   o  Pretože Assign nie je sám o sebe TSR, načítanie pomocou
+      "LOADHIGH" alebo "LH" môže zlyhať. Pre načítanie vysoko
+      musíte použiť voľbu /m.
+
+   o  Voľby /STATUS a /SHADOW nezodpovedajú štandardu kvôli
+      kompatibilite s pôvodným programom Assign.
+
+   o  Neskôr nainštalované TSR programy alebo sekundárny shell môžu
+      zabrániť odinštalácii. V tom prípade použite ASSIGN bez
+      volieb na vymazanie tabuľky.
+
+ POZRI TIEŽ
+      Subst, Join
+
+ PRISPIEVATELIA
+                             Steffen Kaiser
+
+
+
+
+# Language: slovenian
+# File ending: sl
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+
+ASSIGN (1)                  08. avgust 1995                  ASSIGN (1)
+
+
+
+ IME
+      assign - Dodeli črko pogona drugemu pogonu
+
+
+ POVZETEK
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ p1[:]=p2[:] }]
+
+
+ OPIS
+      Assign preslika črko pogona na drug pogon. Ta preslikava
+      vpliva le na črko pogona, ne pa na pot, kar razlikuje Assign
+      od ukaza Subst, npr.:
+      S trenutnimi delovnimi potmi "C:\FREEDOS" in "B:\TEMP" bo po
+      ukazih "assign B=C" in "cd C:\" pot "B:" prav tako kazala na
+      imenik "C:\".
+      Medtem ko po ukazih "subst B: ." in "cd C:\" pot "B:" še
+      vedno kaže na "C:\FREEDOS".
+
+      Ker ta program ni TSR, ga ne nalagajte z ukazoma "LOADHIGH"
+      ali "LH".
+
+ MOŽNOSTI
+
+   /? Prikaži kratek zaslon s pomočjo.
+
+   /SHADOW Ta možnost skrije rezidentni del Assign pred enostavnim
+      odkritjem. To vključuje:
+      1) Pomnilniški blok z rezidentnim delom je označen kot del
+      sistema.
+      2) Preverjanje namestitve vrne "Ni nameščeno, vendar ni
+      dovoljeno namestiti" namesto "Nameščeno".
+
+      Če je rezidentni del nameščen s to možnostjo, kasnejši klici
+      pa so brez nje, se pojavi opozorilo, vendar se dejanje izvede.
+
+      Možnost se lahko skrajša na /SH.
+
+   /STATUS Prikaži vse dodeljene črke pogonov v obliki:
+      p1: => p2:
+      kjer je p1 dodeljena črka in p2 pogon, na katerega p1 kaže.
+
+      Če ni nobene dodelitve, se ne prikaže noben izhod.
+
+      Ta možnost prepreči nalaganje rezidentnega dela, če ta še ni
+      bil nameščen.
+
+      Možnost se lahko skrajša na /S.
+
+   /u Odstrani predhodno nameščen Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. avgust 1995                  ASSIGN (1)
+
+
+   p1[:]=p2[:] Določi dodelitev pogona, kjer naj p1 kaže na p2.
+      Dvopičja ":" so neobvezna. Presledki med črkami pogonov,
+      dvopičji in enačajem '=' niso dovoljeni.
+
+      Če rezidentni del še ni naložen, se bo naložil brez
+      nadaljnjega obvestila.
+
+   /m Premakni rezidentni del v območje UMB, če je mogoče. Ta
+      možnost se prezre, če je rezidentni del že nameščen.
+
+   brez možnosti Če v ukazni vrstici ni navedeno /STATUS, /u ali
+      dodelitev, se vse obstoječe dodelitve prekličejo.
+
+ ZNANE NAPAKE
+
+   o  Ker Assign sam po sebi ni TSR, nalaganje z ukazoma "LOADHIGH"
+      ali "LH" morda ne bo uspelo. Za visoko nalaganje uporabite /m.
+
+   o  Možnosti /STATUS in /SHADOW ne sledita standardu zaradi
+      združljivosti z izvirnim programom Assign.
+
+   o  Kasneje nameščeni programi TSR ali sekundarna lupina pogosto
+      preprečijo odstranitev. Uporabite ASSIGN brez možnosti, da
+      počistite tabelo.
+
+ GLEJ TUDI
+      Subst, Join
+
+ SODELAVCI
+                             Steffen Kaiser
+
+
+
+
+# Language: Serbian (српски)
+# File ending: sr
+# Codepage: 855
+# Translation made by Google Gemini
+# This translation was made by AI, please help the FreeDOS group
+# to improve it.
+
+     ASSIGN (1)                  08. август 1995.                ASSIGN (1)
+
+
+
+     ИМЕ
+          assign - Додељује слово диска другом диску
+
+
+     СИНТАКСА
+          assign [/m] [/shadow] /?
+          assign [/m] [/shadow] /status
+          assign [/m] [/shadow] /u
+          assign [/m] [/shadow] [{ д1[:]=д2[:] }]
+
+
+     ОПИС
+          Assign мапира слово диска на други диск. Ово мапирање утиче
+          само на слово диска, али не и на путању, што чини Assign
+          различитим од команде Subst, нпр.:
+          Са тренутним путањама "C:\FREEDOS" и "B:\TEMP", након
+          команди "assign B=C" и "cd C:\", путања "B:" такође
+          показује на директоријум "C:\".
+          Док након команди "subst B: ." и "cd C:\", путања "B:" и
+          даље показује на "C:\FREEDOS".
+
+          Пошто овај програм није TSR, немојте га учитавати путем
+          команди "LOADHIGH" или "LH".
+
+     ОПЦИЈЕ
+
+       /? Приказује кратак екран помоћи.
+
+       /SHADOW Ова опција скрива резидентни део програма Assign од
+          једноставног откривања. То укључује:
+          1) Меморијски блок који садржи резидентни део означава се
+          као део система.
+          2) Провера инсталације враћа "Није инсталирано, али није
+          дозвољено инсталирати" уместо "Инсталирано".
+
+          Ако је резидентни део инсталиран са овом опцијом, али се
+          каснији позиви врше без ње, појавиће се упозорење, али
+          ће акција бити извршена.
+
+          Опција се може скратити на /SH.
+
+       /STATUS Приказује сва додељена слова дискова у облику:
+          д1: => д2:
+          где је д1 додељено слово диска, а д2 диск на који
+          д1 показује.
+
+          Ако нема никаквих додела, неће бити приказан никакав излаз.
+
+          Ова опција спречава учитавање резидентног дела ако он
+          већ није инсталиран.
+
+          Опција се може скратити на /S.
+
+       /u Уклања претходно инсталирани Assign.
+
+
+
+                                      -1-
+
+
+     ASSIGN (1)                  08. август 1995.                ASSIGN (1)
+
+
+       д1[:]=д2[:] Дефинише доделу слова диска, где д1 треба да
+          показује на д2. Двотачке ":" су опционе. Размаци нису
+          дозвољени између слова дискова, двотачака и знака
+          једнакости "=".
+
+          Ако резидентни део већ није учитан, биће учитан без
+          даљег обавештења.
+
+       /m Премешта резидентни део у UMB област меморије, ако је могуће.
+          Ова опција се игнорише ако је резидентни део већ
+          инсталиран.
+
+       без опције Ако се на командној линији не наведу ни /STATUS ни
+          /u ни додела, све постојеће доделе се поништавају.
+
+     ПОЗНАТЕ ГРЕШКЕ
+
+       - Пошто Assign сам по себи није TSR, учитавање командама
+         "LOADHIGH" или "LH" може отказати. Ако желите да учитате
+         резидентни део у високу меморију, морате навести опцију /m.
+
+       - Опције /STATUS и /SHADOW не прате стандард опција због
+         компатибилности са оригиналним програмом Assign.
+
+       - Касније инсталирани TSR програми или секундарни командни
+         процесори (shell) углавном спречавају процес деинсталације.
+         У том случају користите ASSIGN без опција да бисте
+         очистили табелу додела.
+
+     ПОГЛЕДАЈТЕ ТАКОЂЕ
+          Subst, Join
+
+     САРАДНИЦИ
+                                 Steffen Kaiser
+
+
+
+
+
+# Language: Ukrainian (українська)
+# File ending: uk
+# Codepage: 1125
+# Translation made by Google Gemini
+# This translation was made by AI, please help the FreeDOS group
+# to improve it.
+
+     ASSIGN (1)                  08 серпня 1995                  ASSIGN (1)
+
+
+
+     ІМ'Я
+          assign - Призначає букву диска іншому диску
+
+
+     СИНТАКСИС
+          assign [/m] [/shadow] /?
+          assign [/m] [/shadow] /status
+          assign [/m] [/shadow] /u
+          assign [/m] [/shadow] [{ д1[:]=д2[:] }]
+
+
+     ОПИС
+          Assign зіставляє букву диска з іншим диском. Це зіставлення
+          впливає лише na букву диска, але не na шлях, що відрізняє
+          Assign від Subst, наприклад:
+          При поточних робочих шляхах "C:\FREEDOS" та "B:\TEMP" після
+          команд "assign B=C" та "cd C:\", шлях "B:" також вказуватиме
+          na каталог "C:\".
+          Тоді як після команд "subst B: ." та "cd C:\", шлях "B:" все
+          ще вказуватиме na "C:\FREEDOS".
+
+          Оскільки ця програма не є TSR, не завантажуйте її за
+          допомогою команд "LOADHIGH" або "LH".
+
+     ПАРАМЕТРИ
+
+       /? Вивести короткий екран довідки.
+
+       /SHADOW Цей параметр приховує резидентну частину Assign від
+          легкого виявлення. Це включає:
+          1) Блок пам'яті з резидентною частиною позначається як
+          частина системи.
+          2) Перевірка встановлення повертає "Не встановлено, але не
+          дозволено встановлювати" замість "Встановлено".
+
+          Якщо резидентна частина встановлена з цим параметром, але
+          наступні виклики робляться без нього, з'явиться
+          попередження, але дія буде виконана.
+
+          Параметр можна скоротити до /SH.
+
+       /STATUS Показати всі призначені букви дисків у вигляді:
+          д1: => д2:
+          де д1 - призначена буква, а д2 - диск, na який вказує д1.
+
+          Якщо призначень немає, нічого не відображатиметься.
+
+          Цей параметр запобігає завантаженню резидентної частини,
+          якщо вона ще не була встановлена.
+
+          Параметр можна скоротити до /S.
+
+       /u Видалити раніше встановлений Assign.
+
+
+
+                                      -1-
+
+
+     ASSIGN (1)                  08 серпня 1995                  ASSIGN (1)
+
+
+       д1[:]=д2[:] Визначає призначення диска, де д1 має вказувати na
+          д2. Двокрапки ":" є необов'язковими. Пробіли між буквами,
+          двокрапками та знаком рівності "=" не допускаються.
+
+          Якщо резидентна частина ще не завантажена, вона буде
+          завантажена без додаткового повідомлення.
+
+       /m Перемістити резидентну частину в область UMB, якщо можливо.
+          Параметр ігнорується, якщо резидентна частина вже
+          встановлена.
+
+       без параметра Якщо в командному рядку не вказано ні /STATUS, ні
+          /u, ні призначення, всі існуючі призначення скасовуються.
+
+ ВІДОМІ ПОМИЛКИ
+
+   -  Оскільки Assign не є TSR, завантаження через "LOADHIGH" або
+      "LH" може не спрацювати. Для завантаження у високу пам'ять
+      використовуйте /m.
+
+   -  Параметри /STATUS та /SHADOW не відповідають стандарту через
+      сумісність з оригінальним Assign.
+
+   -  Пізніше встановлені TSR або вторинні оболонки (shell) часто
+      заважають видаленню. Використовуйте ASSIGN без параметрів,
+      щоб очистити таблицю призначень.
+
+ ДИВ. ТАКОЖ
+      Subst, Join
+
+ АВТОРИ
+                             Steffen Kaiser

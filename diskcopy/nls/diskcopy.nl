@@ -1,4 +1,4 @@
-#### gereserveerd voor conditie bijvoorbeeld ja, nee, sluiten   ####
+#### gereserveerd voor conditie bijvoorbeeld ja, nee, sluiten, nl, CP850/858   ####
 0.0:J
 0.1:N
 #### Plaats gereserveerd voor bestand diskcopy.c                ####

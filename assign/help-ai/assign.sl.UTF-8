@@ -1,0 +1,103 @@
+# Language: slovenian
+# File ending: sl
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+
+ASSIGN (1)                  08. avgust 1995                  ASSIGN (1)
+
+
+
+ IME
+      assign - Dodeli črko pogona drugemu pogonu
+
+
+ POVZETEK
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ p1[:]=p2[:] }]
+
+
+ OPIS
+      Assign preslika črko pogona na drug pogon. Ta preslikava
+      vpliva le na črko pogona, ne pa na pot, kar razlikuje Assign
+      od ukaza Subst, npr.:
+      S trenutnimi delovnimi potmi "C:\FREEDOS" in "B:\TEMP" bo po
+      ukazih "assign B=C" in "cd C:\" pot "B:" prav tako kazala na
+      imenik "C:\".
+      Medtem ko po ukazih "subst B: ." in "cd C:\" pot "B:" še
+      vedno kaže na "C:\FREEDOS".
+
+      Ker ta program ni TSR, ga ne nalagajte z ukazoma "LOADHIGH"
+      ali "LH".
+
+ MOŽNOSTI
+
+   /? Prikaži kratek zaslon s pomočjo.
+
+   /SHADOW Ta možnost skrije rezidentni del Assign pred enostavnim
+      odkritjem. To vključuje:
+      1) Pomnilniški blok z rezidentnim delom je označen kot del
+      sistema.
+      2) Preverjanje namestitve vrne "Ni nameščeno, vendar ni
+      dovoljeno namestiti" namesto "Nameščeno".
+
+      Če je rezidentni del nameščen s to možnostjo, kasnejši klici
+      pa so brez nje, se pojavi opozorilo, vendar se dejanje izvede.
+
+      Možnost se lahko skrajša na /SH.
+
+   /STATUS Prikaži vse dodeljene črke pogonov v obliki:
+      p1: => p2:
+      kjer je p1 dodeljena črka in p2 pogon, na katerega p1 kaže.
+
+      Če ni nobene dodelitve, se ne prikaže noben izhod.
+
+      Ta možnost prepreči nalaganje rezidentnega dela, če ta še ni
+      bil nameščen.
+
+      Možnost se lahko skrajša na /S.
+
+   /u Odstrani predhodno nameščen Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. avgust 1995                  ASSIGN (1)
+
+
+   p1[:]=p2[:] Določi dodelitev pogona, kjer naj p1 kaže na p2.
+      Dvopičja ":" so neobvezna. Presledki med črkami pogonov,
+      dvopičji in enačajem '=' niso dovoljeni.
+
+      Če rezidentni del še ni naložen, se bo naložil brez
+      nadaljnjega obvestila.
+
+   /m Premakni rezidentni del v območje UMB, če je mogoče. Ta
+      možnost se prezre, če je rezidentni del že nameščen.
+
+   brez možnosti Če v ukazni vrstici ni navedeno /STATUS, /u ali
+      dodelitev, se vse obstoječe dodelitve prekličejo.
+
+ ZNANE NAPAKE
+
+   o  Ker Assign sam po sebi ni TSR, nalaganje z ukazoma "LOADHIGH"
+      ali "LH" morda ne bo uspelo. Za visoko nalaganje uporabite /m.
+
+   o  Možnosti /STATUS in /SHADOW ne sledita standardu zaradi
+      združljivosti z izvirnim programom Assign.
+
+   o  Kasneje nameščeni programi TSR ali sekundarna lupina pogosto
+      preprečijo odstranitev. Uporabite ASSIGN brez možnosti, da
+      počistite tabelo.
+
+ GLEJ TUDI
+      Subst, Join
+
+ SODELAVCI
+                             Steffen Kaiser

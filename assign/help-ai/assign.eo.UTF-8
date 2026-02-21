@@ -1,0 +1,112 @@
+; Language: esperanto
+; File ending: eo
+; Codepage: 853
+; This translation was made by Google Gemini,
+; please help the FreeDOS group to improve it.
+
+     ASSIGN (1)                  08 Aŭgusto 1995                 ASSIGN (1)
+
+     NOMO
+          assign - Ligi diskoliteron al alia disko
+
+     SINOPSO
+          assign [/m] [/shadow] /?
+          assign [/m] [/shadow] /status
+          assign [/m] [/shadow] /u
+          assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+     PRISKRIBO
+          Assign ligas diskoliteron al alia disko. Ĉi tiu mapado 
+          efikas nur la diskoliteron, sed ne la vojon, kio igas 
+          Assign malsama al Subst, ekz.:
+          Kun la aktualaj vojo "C:\FREEDOS" kaj "B:\TEMP", post la 
+          komandoj "assign B=C" kaj "cd C:\", la vojo "B:" ankaŭ 
+          montras al la dosierujo "C:\".
+          Tamen post la komandoj "subst B: ." kaj "cd C:\", la 
+          vojo "B:" ankoraŭ montras al "C:\FREEDOS".
+
+          Ĉar ĉi tiu programo mem ne estas TSR, ne ŝarĝu ĝin per 
+          la komandoj "LOADHIGH" aŭ "LH".
+
+     OPCIOJ
+
+       /? Montras helpekranon.
+
+       /SHADOW Ĉi tiu opcio kaŝas la rezidentan parton de Assign por 
+          ke ĝi ne estu facile detektebla. Tio inkluzivas:
+          1) La memorbloko enhavanta la rezidentan parton estas 
+          markita kiel parto de la sistemo.
+          2) La instalo-kontrolira interrompo redonas "Ne instalita, 
+          sed ne permesite instali" anstataŭ "Instalita" aŭ "Ne 
+          instalita".
+
+          Se la rezidenta parto estas instalita kun ĉi tiu opcio, sed 
+          postaj vokoj okazas sen ĝi, averto aperas, sed la ago 
+          estas plenumata.
+
+          La opcio povas esti mallongigita al /SH.
+
+       /STATUS Montras ĉiujn asignitajn diskoliterojn en la formo:
+          dr1: => dr2:
+          kie dr1 estas la asignita diskolitero kaj dr2 la disko, 
+          al kiu dr1 montras.
+
+          Se tute ne ekzistas asignoj, neniu eligo estos montrata.
+
+          Ĉi tiu opcio malhelpas la ŝarĝon de la rezidenta parto, se 
+          ĝi ankoraŭ ne estis instalita.
+
+          La opcio povas esti mallongigita al /S.
+
+       /u Malinstalas antaŭe instalitan Assign.
+
+                                      -1-
+
+     ASSIGN (1)                  08 Aŭgusto 1995                 ASSIGN (1)
+
+       dr1[:]=dr2[:] Ĉi tio difinas diskoligan asignon, kie dr1 
+          montru al dr2. La dupunktoj ":" estas laŭvolaj. Neniuj 
+          spacetoj estas permesataj inter la diskoliteroj, la 
+          dupunktoj kaj la egalsigno '='.
+
+          Se la rezidenta parto ankoraŭ ne estas ŝarĝita, ĝi estos 
+          ŝarĝata sen plia avizo.
+
+       /m Movas la rezidentan parton en la UMB-areon, se eble. 
+          Ĉi tiu opcio estas ignorata, se la rezidenta parto jam 
+          estas instalita.
+
+       neniu opcio Se estas nek /STATUS nek /u nek asigno 
+          specifita en la komandlinio, ĉiuj ekzistantaj asignoj estas 
+          nuligitaj, tiel ke ĉiuj literoj montras al si mem.
+
+     KONATAJ ERAROJ
+
+       o  Ĉar Assign mem ne estas TSR, ŝarĝo per la komandoj 
+          "LOADHIGH" aŭ "LH" povas malsukcesi. Se vi volas ŝarĝi 
+          la rezidentan parton alte, vi devas uzi la opcion /m.
+
+       o  La opcioj /STATUS kaj /SHADOW ne sekvas la normon de 
+          opcioj pro kunteksteblo kun la originala Assign.
+
+       o  Poste instalitaj TSR-oj aŭ dua komandinterpretiulo (ŝelo) 
+          plej ofte malhelpas la malinstalan procezon. En tiu kazo, 
+          Assign ne estas ĉesigita, sed restas aktiva en memoro. 
+          Uzu ASSIGN sen iu ajn opcio por viŝi la asignotabelon 
+          anstataŭe.
+
+       o  Iuj ŝeloj malhelpas ke ASSIGN trovu sian rezidentan kopion 
+          en memoro, se ASSIGN estas instalita el dua kopio de la ŝelo.
+
+     VIDU ANKAŬ
+          Subst, Join
+
+     KONTRIBUANTOJ
+                                 Steffen Kaiser
+                             Mittelstraáe 112/B115
+                         53757 Sankt Augustin - Menden
+                             Germanio - Germany
+
+                    retpoŝto: Steffen.Kaiser@FH-Rhein-Sieg.DE
+
+                                      -2-

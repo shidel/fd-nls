@@ -1,0 +1,34 @@
+# Language: finnish
+# File ending: fi
+# Codepage: 865
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the 
+# FreeDOS group to improve it.
+
+FreeDOS APPEND. Mahdollistaa tiedostojen avaamisen määritetyistä
+hakemistoista kuin ne olisivat nykyisessä hakemistossa.
+(C) 2004-2006 Eduardo Casino, GNU GPL -lisenssin version 2 mukaisesti
+
+Syntaksi:
+
+APPEND [[asema:]polku[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+APPEND ;
+
+[asema:]polku    Lisättävä asema ja hakemisto.
+/X[:ON]          Laajenna APPEND hakuihin ja komentojen suorittamiseen.
+/X:OFF           Käytä APPENDia vain tiedostojen avaamispyyntöihin.
+                 Oletus on /X:OFF.
+/PATH:ON         Etsii lisätyistä hakemistoista tiedostoja, joiden
+                 pyyntö sisältää jo polun. Tämä on oletusasetus.
+/PATH:OFF        Kytkee /PATH:ON-asetuksen pois päältä.
+/E               Tallentaa lisätyt hakemistot ympäristömuuttujiin.
+                 /E-vipua voi käyttää vain APPENDin ensimmäisellä
+                 kerralla. Samalla rivillä ei voi antaa polkuja.
+
+APPEND ; tyhjentää lisättyjen hakemistojen listan.
+APPEND ilman parametreja näyttää lisätyt hakemistot.
+
+Huomautus:
+
+APPEND asentuu sisäiseksi komennoksi ensimmäisen suorituksen jälkeen.
+Seuraavista komennoista TÄYTYY jättää tiedostopolku ja pääte pois.

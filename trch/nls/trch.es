@@ -1,4 +1,4 @@
-# Archivo de idioma Espa¤ol CP850
+# Archivo de idioma Espanol CP850/858
 # Basado en el archivo trch.en
 # Traducido por Lorenzo del Toro Saravia
 #

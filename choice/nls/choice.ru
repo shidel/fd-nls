@@ -1,8 +1,8 @@
-#FreeDOS 1.2 Choice Russian Translation.
-#Provided by: Petr Akhlamov, ru, cp866
-#Contact Email: petr-akhlamov@yandex.ru
-#Created/Modified: 11/oct/2017
-#Released Under GPL v2.0 License.
+# FreeDOS 1.2 Choice Russian Translation.
+# Provided by: Petr Akhlamov, ru, cp866
+# Contact Email: petr-akhlamov@yandex.ru
+# Created/Modified: 11/oct/2017
+# Released Under GPL v2.0 License.
 
 0.0:Ждет, пока пользователь не выберет дн з указанных в спске симвлв
 0.1:симвлы

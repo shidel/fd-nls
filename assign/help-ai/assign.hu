@@ -1,0 +1,107 @@
+# Language: hungarian
+# File ending: hu
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  1995. augusztus 08.              ASSIGN (1)
+
+
+
+ NV
+      assign - Meghajt¢betûjel hozz rendel‚se egy m sik meghajt¢hoz
+
+
+ SZINTAKSIS
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ m1[:]=m2[:] }]
+
+
+ LEÖRµS
+      Az Assign egy meghajt¢betûjelet egy m sik meghajt¢hoz rendel. Ez a
+      lek‚pez‚s csak a betûjelet ‚rinti, az £tvonalat nem, ami
+      megkl”nb”zteti az Assign-t a Subst-t¢l, pl.:
+      A "C:\FREEDOS" ‚s "B:\TEMP" munkak”nyvt rak mellett az
+      "assign B=C" ‚s "cd C:\" parancsok ut n a "B:" is a "C:\"
+      gy”k‚rk”nyvt rra fog mutatni.
+      Ezzel szemben a "subst B: ." ‚s "cd C:\" parancsok ut n a "B:"
+      tov bbra is a "C:\FREEDOS" k”nyvt rra mutat.
+
+      Mivel ez a program nem TSR, ne t”ltse be a "LOADHIGH" vagy
+      az "LH" parancsokkal.
+
+ OPCIàK
+
+   /? Kis s£g¢k‚perny‹ megjelen¡t‚se.
+
+   /SHADOW Ez az opci¢ elrejti az Assign rezidens r‚sz‚t a k”nnyû
+      ‚szlel‚s el‹l. Ez mag ban foglalja:
+      1) A rezidens r‚szt tartalmaz¢ mem¢riablokk rendszerelemk‚nt
+      lesz megjel”lve.
+      2) Az install ci¢s ellen‹rz‚s a "Nincs telep¡tve, de nem is
+      enged‚lyezett" v laszt adja a "Telep¡tve" helyett.
+
+      Ha a rezidens r‚szt ezzel az opci¢val telep¡tett‚k, de a
+      k‚s‹bbi h¡v sok n‚lkle t”rt‚nnek, figyelmeztet‚s jelenik meg,
+      de a mûvelet v‚grehajt¢dik.
+
+      Az opci¢ /SH form ra r”vid¡thet‹.
+
+   /STATUS Megjelen¡ti az ”sszes hozz rendel‚st az al bbi form ban:
+      m1: => m2:
+      ahol m1 a hozz rendelt betûjel, m2 pedig a c‚lmeghajt¢.
+
+      Ha nincs hozz rendel‚s, nem jelenik meg kimenet.
+
+      Ez az opci¢ megakad lyozza a rezidens r‚sz bet”lt‚s‚t, ha az
+      m‚g nincs telep¡tve.
+
+      Az opci¢ /S form ra r”vid¡thet‹.
+
+   /u Elt vol¡tja a kor bban telep¡tett Assign-t.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  1995. augusztus 08.              ASSIGN (1)
+
+
+   m1[:]=m2[:] Meghajt¢-hozz rendel‚s defini l sa, ahol m1 az m2-re
+      mutat. A kett‹spontok ":" opcion lisak. Sz¢k”z nem megengedett
+      a betûk, kett‹spontok ‚s az egyenl‹s‚gjel '=' k”z”tt.
+
+      Ha a rezidens r‚sz m‚g nincs bet”ltve, kl”n ‚rtes¡t‚s n‚lkl
+      bet”lt‹dik.
+
+   /m A rezidens r‚szt az UMB terletre mozgatja, ha lehets‚ges.
+      Ez az opci¢ figyelmen k¡vl marad, ha m r telep¡tve van.
+
+   nincs opci¢ Ha sem /STATUS, sem /u, sem hozz rendel‚s nincs
+      megadva, minden megl‚v‹ hozz rendel‚s megszûnik.
+
+ ISMERT HIBµK
+
+   o  Mivel az Assign nem TSR, a "LOADHIGH" vagy "LH" h¡v s
+      sikertelen lehet. Haszn lja az /m opci¢t a fels‹ mem¢ri ba
+      t”lt‚shez.
+
+   o  A /STATUS ‚s /SHADOW opci¢k nem k”vetik a szabv nyt az eredeti
+      Assign-nal val¢ kompatibilit s miatt.
+
+   o  A k‚s‹bb telep¡tett TSR-ek vagy egy m sodlagos shell gyakran
+      megakad lyozz k az elt vol¡t st. Ekkor haszn lja az ASSIGN-t
+      opci¢k n‚lkl a t bl zat t”rl‚s‚hez.
+
+ LµSD MG
+      Subst, Join
+
+ K™ZREMëK™DŠK
+                             Steffen Kaiser
+
+
+                                  -2-

@@ -1,0 +1,104 @@
+# Language: norwegian
+# File ending: no
+# Codepage: 865
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. august 1995                  ASSIGN (1)
+
+
+
+ NAVN
+      assign - Tilordne en stasjonsbokstav til en annen stasjon
+
+
+ SYNOPSIS
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ BESKRIVELSE
+      Assign knytter en stasjonsbokstav til en annen stasjon. Denne
+      tilordningen pÜvirker kun stasjonsbokstaven, ikke stien, noe
+      som skiller Assign fra Subst, f.eks.:
+      Med gjeldende arbeidstier "C:\FREEDOS" og "B:\TEMP", vil
+      stien "B:" etter kommandoene "assign B=C" og "cd C:\" ogsÜ
+      peke til katalogen "C:\".
+      Mens etter kommandoene "subst B: ." og "cd C:\" vil stien "B:"
+      fortsatt peke til "C:\FREEDOS".
+
+      Siden dette programmet ikke er en TSR, mÜ det ikke lastes via
+      "LOADHIGH" eller "LH"-kommandoen.
+
+ ALTERNATIVER
+
+   /? Vis en enkel hjelpeskjerm.
+
+   /SHADOW Dette valget skjuler den residente delen av Assign fra Ü
+      bli oppdaget enkelt. Dette inkluderer:
+      1) Minneblokken som inneholder den residente delen merkes
+      som en del av systemet.
+      2) Installasjonskontrollen returnerer "Ikke installert, men
+      ikke tillatt Ü installere" i stedet for "Installert".
+
+      Hvis den residente delen er installert med dette valget, men
+      senere kjõringer gjõres uten, vises en advarsel, men
+      handlingen utfõres.
+
+      Valget kan forkortes til /SH.
+
+   /STATUS Vis alle tilordnede stasjonsbokstaver i formen:
+      dr1: => dr2:
+      der dr1 er den tilordnede bokstaven og dr2 er stasjonen som
+      dr1 peker pÜ.
+
+      Hvis det ikke finnes noen tilordninger, vises ingen utdata.
+
+      Dette valget forhindrer lasting av den residente delen hvis den
+      ikke allerede er installert.
+
+      Valget kan forkortes til /S.
+
+   /u Avinstaller en tidligere installert Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. august 1995                  ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Dette definerer en stasjonstilordning der dr1 skal
+      peke til dr2. Kolon ":" er valgfritt. Det er ikke tillatt med
+      mellomrom mellom stasjonsbokstavene, kolonene og likhetstegnet.
+
+      Hvis den residente delen ikke allerede er lastet, vil den bli
+      lastet uten ytterligere varsel.
+
+   /m Flytt den residente delen til UMB-omrÜdet hvis mulig. Valget
+      ignoreres hvis den residente delen allerede er installert.
+
+   ingen valg Hvis verken /STATUS, /u eller en tilordning er oppgitt,
+      vil alle eksisterende tilordninger bli slettet.
+
+ KJENTE FEIL
+
+   o  Siden Assign ikke er en TSR i seg selv, kan lasting med
+      "LOADHIGH" eller "LH" feile. Bruk /m for Ü laste hõyt.
+
+   o  Valgene /STATUS og /SHADOW fõlger ikke standarden pÜ grunn
+      av kompatibilitet med den originale Assign.
+
+   o  TSR-er som installeres senere eller et sekundërt skall (shell)
+      hindrer ofte avinstallering. Bruk ASSIGN uten valg for Ü
+      tõmme tabellen i stedet.
+
+ SE OGSè
+      Subst, Join
+
+ BIDRAGSYTERE
+                             Steffen Kaiser

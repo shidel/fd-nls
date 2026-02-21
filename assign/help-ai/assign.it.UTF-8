@@ -1,0 +1,106 @@
+# Language: italian
+# File ending: it
+# Codepage: 858
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08 agosto 1995                   ASSIGN (1)
+
+
+
+ NOME
+      assign - Assegna una lettera di unità a un'altra unità
+
+
+ SINTASSI
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ un1[:]=un2[:] }]
+
+
+ DESCRIZIONE
+      Assign mappa una lettera di unità su un'unità diversa. Questa
+      mappatura influisce solo sulla lettera dell'unità, ma non sul
+      percorso, il che differenzia Assign da Subst, ad esempio:
+      Con i percorsi di lavoro correnti "C:\FREEDOS" e "B:\TEMP",
+      dopo i comandi "assign B=C" e "cd C:\", anche il percorso "B:"
+      punta alla directory "C:\".
+      Mentre dopo i comandi "subst B: ." e "cd C:\", il percorso
+      "B:" punta ancora a "C:\FREEDOS".
+
+      Poiché questo programma non è un TSR, non caricarlo tramite i
+      comandi "LOADHIGH" o "LH".
+
+ OPZIONI
+
+   /? Visualizza una breve schermata di aiuto.
+
+   /SHADOW Questa opzione nasconde la parte residente di Assign per
+      evitare che venga rilevata facilmente. Ciò include:
+      1) Il blocco di memoria contenente la parte residente è
+      contrassegnato come parte del sistema.
+      2) Il controllo di installazione restituisce "Non installato,
+      ma non autorizzato a installare" invece di "Installato".
+
+      Se la parte residente è installata con questa opzione, ma le
+      chiamate successive avvengono senza di essa, appare un avviso,
+      ma l'azione viene eseguita.
+
+      L'opzione può essere abbreviata in /SH.
+
+   /STATUS Visualizza tutte le lettere di unità assegnate nella forma:
+      un1: => un2:
+      dove un1 è la lettera assegnata e un2 l'unità di destinazione.
+
+      Se non ci sono assegnazioni, non viene visualizzato nulla.
+
+      Questa opzione impedisce il caricamento della parte residente
+      se non è già stata installata.
+
+      L'opzione può essere abbreviata in /S.
+
+   /u Rimuove un'istanza di Assign precedentemente installata.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08 agosto 1995                   ASSIGN (1)
+
+
+   un1[:]=un2[:] Definisce un'assegnazione di unità, dove un1 deve
+      puntare a un2. I due punti ":" sono opzionali. Non sono ammessi
+      spazi tra le lettere, i due punti e il segno uguale '='.
+
+      Se la parte residente non è già caricata, verrà caricata
+      automaticamente.
+
+   /m Sposta la parte residente nell'area UMB, se possibile.
+      Ignorato se la parte residente è già installata.
+
+   nessuna opzione Se non vengono specificati /STATUS, /u o una
+      assegnazione, tutte le assegnazioni esistenti vengono rimosse.
+
+ BUG NOTI
+
+   o  Poiché Assign non è un TSR, il caricamento con "LOADHIGH" o
+      "LH" potrebbe fallire. Usare /m per caricarlo in memoria alta.
+
+   o  Le opzioni /STATUS e /SHADOW non seguono lo standard per
+      compatibilità con l'Assign originale.
+
+   o  TSR installati successivamente o shell secondarie possono
+      impedire la disinstallazione. Usare ASSIGN senza opzioni per
+      svuotare la tabella.
+
+ VEDI ANCHE
+      Subst, Join
+
+ CONTRIBUTORI
+                             Steffen Kaiser
+
+
+                                  -2-

@@ -1,0 +1,109 @@
+# Language: czechian
+# File ending: cz
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. srpna 1995                   ASSIGN (1)
+
+
+
+ JMNO
+      assign - Pıiıad¡ p¡smeno jednotky jin‚ jednotce
+
+
+ SYNTAXE
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ POPIS
+      Assign mapuje p¡smeno jednotky na jinou jednotku. Toto mapov n¡
+      ovlivåuje pouze p¡smeno jednotky, nikoli cestu, co§ odliçuje
+      Assign od Subst, napı.:
+      S aktu ln¡mi pracovn¡mi cestami "C:\FREEDOS" a "B:\TEMP" po
+      pı¡kazech "assign B=C" a "cd C:\" bude cesta "B:" tak‚ ukazovat
+      do adres ıe "C:\".
+      Zat¡mco po pı¡kazech "subst B: ." a "cd C:\" bude cesta "B:"
+      st le ukazovat do "C:\FREEDOS".
+
+      Proto§e tento program nen¡ TSR, nezav dØjte jej pomoc¡ pı¡kaz…
+      "LOADHIGH" nebo "LH".
+
+ VOLBY
+
+   /? Zobraz¡ struŸnou n povØdu.
+
+   /SHADOW Tato volba skryje rezidentn¡ Ÿ st Assign pıed snadnou
+      detekc¡. To zahrnuje:
+      1) PamØœovì blok obsahuj¡c¡ rezidentn¡ Ÿ st je oznaŸen jako
+      souŸ st syst‚mu.
+      2) Kontrola instalace vrac¡ "Nenainstalov no, ale instalace
+      nepovolena" m¡sto "Nainstalov no" nebo "Nenainstalov no".
+
+      Pokud je rezidentn¡ Ÿ st nainstalov na s touto volbou, ale
+      n sledn  vol n¡ jsou provedena bez n¡, zobraz¡ se varov n¡,
+      ale akce je provedena.
+
+      Volbu lze zkr tit na /SH.
+
+   /STATUS Zobraz¡ vçechna pıiıazen¡ p¡smen jednotek ve form tu:
+      dr1: => dr2:
+      kde dr1 je pıiıazen‚ p¡smeno a dr2 je jednotka, kam dr1 ukazuje.
+
+      Pokud neexistuje § dn‚ pıiıazen¡, nezobraz¡ se § dnì vìstup.
+
+      Tato volba zabr n¡ naŸten¡ rezidentn¡ Ÿ sti, pokud ji§ nebyla
+      nainstalov na.
+
+      Volbu lze zkr tit na /S.
+
+   /u Odinstaluje dı¡ve nainstalovanì Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. srpna 1995                   ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Definuje pıiıazen¡ jednotky, kde dr1 m  ukazovat na
+      dr2. DvojteŸky ":" jsou voliteln‚. Mezi p¡smeny jednotek,
+      dvojteŸkami a rovn¡tkem "=" nejsou povoleny mezery.
+
+      Pokud rezidentn¡ Ÿ st jeçtØ nen¡ naŸtena, naŸte se bez
+      dalç¡ho upozornØn¡.
+
+   /m Pıesune rezidentn¡ Ÿ st do oblasti UMB, pokud je to mo§n‚.
+      Tato volba je ignorov na, pokud je rezidentn¡ Ÿ st ji§
+      nainstalov na.
+
+   § dn  volba Pokud na pı¡kazov‚ ı dce nen¡ zad no /STATUS, /u ani
+      pıiıazen¡, vçechna st vaj¡c¡ pıiıazen¡ jsou zruçena.
+
+ ZNµM CHYBY
+
+   o  Proto§e Assign nen¡ s m o sobØ TSR, naŸten¡ pomoc¡ "LOADHIGH"
+      nebo "LH" m…§e selhat. Chcete-li naŸ¡st rezidentn¡ Ÿ st vysoko,
+      mus¡te zadat volbu /m.
+
+   o  Volby /STATUS a /SHADOW neodpov¡daj¡ standardu voleb z d…vodu
+      kompatibility s p…vodn¡m pı¡kazem Assign.
+
+   o  PozdØji nainstalovan‚ programy TSR nebo sekund rn¡ pı¡kazovì
+      procesor (shell) vØtçinou br n¡ procesu odinstalace. V takov‚m
+      pı¡padØ z…stane Assign aktivn¡ v pamØti. M¡sto toho pou§ijte
+      ASSIGN bez voleb k vymaz n¡ tabulky pıiıazen¡.
+
+ VIZ TAK
+      Subst, Join
+
+ PüISP·VATEL
+                             Steffen Kaiser
+
+
+                                  -2-

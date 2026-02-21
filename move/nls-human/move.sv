@@ -1,4 +1,5 @@
-# Hj„lpmeddelanden
+# Hj„lpmeddelanden, svedish, sv, cp850/858
+# 1.30 added by Google AI
 
 0.0:Move
 0.1:Flytter en fil/katalog till en annan plats.
@@ -50,6 +51,7 @@
 1.27:Skrivfel vid destinationsfil
 1.28:Kan inte skapa katalog
 1.29:Otillr„ckligt diskutrymme i destinationss”kv„g
+1.30:Otillr„ckligt minne
 
 # J/N/Alla/Inga; Enkla meddelanden
 

@@ -1,5 +1,5 @@
 FreeDOS APPEND. Permite que los programas abran archivos de cualquier carpeta
-                como si estuvieran en el directorio actual
+                como si estuvieran en el directorio actual, es, cp850/858
 (C) 2004-2006 Eduardo Casino, bajo las condiciones de la GNU GPL, Versi¢n 2
 
 Sintaxis:

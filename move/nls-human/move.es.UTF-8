@@ -2,6 +2,7 @@
 # Basado en el archivo move.en
 # Traducido por Lorenzo del Toro Saravia
 # some adjustments and corrections with the help of Google Translate
+# 1.30 added by Google AI
 
 0.0:Move
 0.1:Mueve un fichero/directorio a otro lugar.
@@ -53,6 +54,7 @@
 1.27:Error de escritura en el fichero destino
 1.28:Incapaz de crear directorio
 1.29:Espacio en disco insuficiente en la ruta de destino
+1.30:Memoria insuficiente
 
 # S/N/Todo(s)/Ninguno; Mensajes sencillos
 

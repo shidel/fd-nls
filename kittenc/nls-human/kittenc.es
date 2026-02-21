@@ -13,3 +13,4 @@
 
 2,1: El archivo <%s> no se puede abrir porque <%s>\n
 2,2: %s: no existe el archivo\n
+

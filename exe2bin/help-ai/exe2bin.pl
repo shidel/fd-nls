@@ -1,0 +1,16 @@
+# Language: polish
+# File ending: pl
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+Konwerter Open Watcom EXE na binarny Wersja 1.5
+Kod «r¢dˆowy dost©pny na Sybase Open Watcom Public License.
+EXE2BIN [opcje] plik_exe[.exe] [plik_bin]
+Opcje:
+        /Q ukryj komunikaty informacyjne
+        /H poka¾ nagˆ¢wek exe
+        /R poka¾ relokacje
+        /L=<seg> relokuj plik_exe do segmentu <seg>
+        /X rozszerzone dziaˆanie, np. pliki > 64KB

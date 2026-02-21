@@ -1,0 +1,34 @@
+# Language: norwegian
+# File ending: no
+# Codepage: 865
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the 
+# FreeDOS group to improve it.
+
+FreeDOS APPEND. Lar programmer åpne datafiler i angitte mapper som om
+filene lå i den gjeldende mappen.
+(C) 2004-2006 Eduardo Casino, under vilkårene i GNU GPL, versjon 2
+
+Syntaks:
+
+APPEND [[stasjon:]sti[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+APPEND ;
+
+[stasjon:]sti    Stasjon og mappe som skal legges til.
+/X[:ON]          Utvid APPEND til søk og kjøring av kommandoer.
+/X:OFF           APPEND gjelder kun for forespørsler om å åpne filer.
+                 Standard er /X:OFF.
+/PATH:ON         Søker i tilføyde mapper etter filforespørsler som
+                 allerede inneholder en sti. Dette er standard.
+/PATH:OFF        Slår av /PATH:ON.
+/E               Lagrer listen over tilføyde mapper i miljøet (env).
+                 /E kan bare brukes ved første kjøring af APPEND. Du
+                 kan ikke inkludere stier på samme linje som /E.
+
+APPEND ; tømmer listen over tilføyde mapper.
+APPEND uten parametere viser listen over tilføyde mapper.
+
+Merk:
+
+APPEND installerer seg som en intern kommando etter første kjøring.
+Senere kjøringer MÅ ekskludere filsti og utvidelse.

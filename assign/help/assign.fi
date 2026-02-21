@@ -1,0 +1,107 @@
+# Language: finnish
+# File ending: fi
+# Codepage: 865
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. elokuuta 1995                ASSIGN (1)
+
+
+
+ NIMI
+      assign - M„„rit„ aseman kirjain toiselle asemalle
+
+
+ SYNOPSIS
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ as1[:]=as2[:] }]
+
+
+ KUVAUS
+      Assign yhdist„„ asemakirjaimen toiseen asemaan. T„m„ vaikuttaa
+      vain asemakirjaimeen, ei polkuun, mik„ erottaa Assignin
+      Subst-komennosta, esim.:
+      Nykyisill„ poluilla "C:\FREEDOS" ja "B:\TEMP" komentojen
+      "assign B=C" ja "cd C:\" j„lkeen polku "B:" osoittaa my”s
+      hakemistoon "C:\".
+      Kun taas komentojen "subst B: ." ja "cd C:\" j„lkeen polku
+      "B:" osoittaa edelleen hakemistoon "C:\FREEDOS".
+
+      Koska t„m„ ohjelma ei ole TSR, „l„ lataa sit„ "LOADHIGH"-
+      tai "LH"-komennolla.
+
+ VALITSIMET
+
+   /? N„yt„ lyhyt ohje.
+
+   /SHADOW T„m„ valitsin piilottaa Assignin pysyv„n osan helpolta
+      tunnistamiselta. T„m„ sis„lt„„:
+      1) Pysyv„n osan sis„lt„v„ muistilohko merkit„„n j„rjestelm„n
+      osaksi.
+      2) Asennustarkistus palauttaa "Ei asennettu, mutta ei lupaa
+      asentaa" sijaan "Asennettu" tai "Ei asennettu".
+
+      Jos pysyv„ osa asennetaan t„ll„ valitsimella, mutta my”hemmin
+      k„ytet„„n ilman sit„, n„ytet„„n varoitus, mutta toiminto
+      suoritetaan.
+
+      Valitsin voidaan lyhent„„ muotoon /SH.
+
+   /STATUS N„yt„ kaikki m„„ritetyt asemat muodossa:
+      as1: => as2:
+      jossa as1 on m„„ritetty kirjain ja as2 on asema, johon se
+      osoittaa.
+
+      Jos m„„rityksi„ ei ole, mit„„n ei n„ytet„.
+
+      T„m„ est„„ pysyv„n osan lataamisen, jos sit„ ei ole jo
+      asennettu.
+
+      Valitsin voidaan lyhent„„ muotoon /S.
+
+   /u Poista aiemmin asennettu Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. elokuuta 1995                ASSIGN (1)
+
+
+   as1[:]=as2[:] M„„ritt„„ asemakirjaimen osoittamaan toiseen
+      asemaan. Kaksoispisteet ":" ovat valinnaisia. V„limerkkej„
+      ei sallita kirjainten, kaksoispisteiden ja '='-merkin v„lill„.
+
+      Jos pysyv„„ osaa ei ole ladattu, se ladataan ilman eri
+      ilmoitusta.
+
+   /m Siirr„ pysyv„ osa UMB-alueelle, jos mahdollista.
+      T„m„ ohitetaan, jos pysyv„ osa on jo asennettu.
+
+   ei valitsinta Jos mit„„n valitsinta ei anneta, kaikki
+      m„„ritykset poistetaan ja asemat osoittavat itseens„.
+
+ TUNNETUT VIRHEET
+
+   o  Koska Assign ei ole TSR, lataus "LOADHIGH"-komennolla voi
+      ep„onnistua. K„yt„ /m-valitsinta ladataksesi sen yl„muistiin.
+
+   o  Valitsimet /STATUS ja /SHADOW eiv„t noudata standardia
+      yhteensopivuuden vuoksi alkuper„isen Assignin kanssa.
+
+   o  My”hemmin asennetut TSR-ohjelmat tai toinen komentotulkki
+      est„v„t usein poistamisen. K„yt„ ASSIGN-komentoa ilman
+      valitsimia tyhjent„„ksesi taulukon.
+
+ KATSO MY™S
+      Subst, Join
+
+ TEKIJŽT
+                             Steffen Kaiser
+
+
+                                  -2-

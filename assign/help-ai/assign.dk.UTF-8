@@ -1,0 +1,108 @@
+# Language: danish
+# File ending: dk
+# Codepage: 865
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. august 1995                  ASSIGN (1)
+
+
+
+ NAVN
+      assign - Tildel et drevbogstav til et andet drev
+
+
+ SYNOPSIS
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ BESKRIVELSE
+      Assign knytter et drevbogstav til et andet drev. Denne
+      tilknytning påvirker kun drevbogstavet, men ikke stien,
+      hvilket gør Assign forskellig fra Subst, f.eks.:
+      Med de nuværende arbejdsstier "C:\FREEDOS" og "B:\TEMP" vil
+      stien "B:" efter kommandoerne "assign B=C" og "cd C:\" også
+      pege på mappen "C:\".
+      Hvorimod stien "B:" efter kommandoerne "subst B: ." og
+      "cd C:\" stadig peger på "C:\FREEDOS".
+
+      Da dette program ikke er en TSR, må det ikke indlæses via
+      "LOADHIGH" eller "LH" kommandoen.
+
+ INDSTILLINGER
+
+   /? Vis en lille hjælpeskærm.
+
+   /SHADOW Denne indstilling skjuler den residente del af Assign for
+      nem detektering. Det inkluderer:
+      1) Hukommelsesblokken med den residente del markeres som system.
+      2) Installationskontrollen returnerer "Ikke installeret, men
+      må ikke installeres" i stedet for "Installeret" eller "Ikke
+      installeret".
+
+      Hvis den residente del installeres med denne indstilling, men
+      efterfølgende kørsler sker uden, vises en advarsel, men
+      handlingen udføres.
+
+      Indstillingen kan forkortes til /SH.
+
+   /STATUS Vis alle tildelte drevbogstaver i formen:
+      dr1: => dr2:
+      hvor dr1 er det tildelte bogstav og dr2 er drevet, som dr1
+      peger på.
+
+      Hvis der slet ingen tildelinger er, vises ingen output.
+
+      Denne indstilling forhindrer indlæsning af den residente del,
+      hvis den ikke allerede er installeret.
+
+      Indstillingen kan forkortes til /S.
+
+   /u Afinstaller en tidligere installeret Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. august 1995                  ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Dette definerer en tildeling, hvor dr1 skal pege
+      på dr2. Kolon ":" er valgfri. Der må ikke være mellemrum
+      mellem drevbogstaverne, kolonerne og lighedstegnet '='.
+
+      Hvis den residente del ikke allerede er indlæst, indlæses den
+      uden varsel.
+
+   /m Flyt den residente del til UMB-området, hvis muligt.
+      Denne indstilling ignoreres, hvis den residente del allerede
+      er installeret.
+
+   ingen indstilling Hvis hverken /STATUS, /u eller en tildeling er
+      angivet, ophæves alle eksisterende tildelinger.
+
+ KENDTE FEJL
+
+   o  Da Assign ikke selv er en TSR, kan indlæsning med "LOADHIGH"
+      eller "LH" fejle. Brug /m for at indlæse den højt.
+
+   o  Indstillingerne /STATUS og /SHADOW følger ikke standarden
+      pga. kompatibilitet med den originale Assign.
+
+   o  Senere installerede TSR'er eller en sekundær shell forhindrer
+      ofte afinstallation. Brug ASSIGN uden indstillinger for at
+      rydde tabellen i stedet.
+
+ SE OGSÅ
+      Subst, Join
+
+ BIDRAGYDERE
+                             Steffen Kaiser
+
+
+                                  -2-

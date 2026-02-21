@@ -1,4 +1,4 @@
-#### reserved to condition for example yes, no, quit     ####
+#### reserved to condition for example yes, no, quit, sv, CP850/858     ####
 0.0:J
 0.1:N
 #### Space reserved to file diskcopy.c                   ####

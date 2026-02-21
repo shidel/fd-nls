@@ -1,5 +1,5 @@
 # Translated by Matej Horvat (http://matejhorvat.si/), last update 2013-11-30
-
+# sl, cp852
 # Messages used by pdTree v1 and FreeDOS tree 3.6
 # Each line is limited to 159 characters unless MAXLINE is changed,
 # but if possible should be limited to 79 per line, with a \n

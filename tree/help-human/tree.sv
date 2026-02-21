@@ -1,4 +1,4 @@
-Detta „r readme:n f”r FreeDOS-programmet TREE
+Detta „r readme:n f”r FreeDOS-programmet TREE, sv, cp850/858
 
 Visar katalogstrukturen f”r en enhet eller en s”kv„g.
 

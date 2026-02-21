@@ -1,0 +1,127 @@
+# es, cp850/858
+     ASSIGN (1)                  08 agosto 1995                  ASSIGN (1)
+
+
+
+     NOMBRE
+          assign - Cambia la letra asignada a una unidad
+
+
+     SINOPSIS
+          assign [/m] [/shadow] /?
+          assign [/m] [/shadow] /status
+          assign [/m] [/shadow] /u
+          assign [/m] [/shadow] [{ ud1[:]=ud2[:] }]
+
+
+     DESCRIPCIÓN
+          Assign cambia la unidad  asignada  a una letra. A diferencia
+          de Subst esto solo cambia la letra, no la ruta. Por ejemplo:
+          Teniendo las rutas  «C:\FREEDOS» y «B:\TEMP»,  tras ejecutar
+          «assign B=C» y  «cd C:\» la  ruta  «B:»  también apunta a la
+          ruta «C:\»; mientras  que  tras   los comando «subst B: .» y
+          «cd C:\» la ruta «B:» aún apunta a «C:\FREEDOS».
+
+          Puesto que este programa no se mantiene tras  terminar no lo
+          cargue mediante los comandos «LOADHIGH» o «LH».
+
+     OPCIONES
+
+       /? Muestra un pequeño texto de ayuda.
+
+       /SHADOW Esta opción impide que la  porción de memoria residente
+          sea detectable. Esto implica:
+          1) El bloque de memoria que  contiene  la parte residente se
+          marca como parte del sistema.
+          2) La interrupción que  comprueba  la  instalación  devuelve
+          «No está ni se permite instalar»  en lugar de «Instalado»  o
+          «No instalado».
+
+          Si la parte residente se  instala  con esta opción, pero las
+          siguientes llamadas no usan la opción saltará un aviso, pero
+          de todas maneras se realizará la acción.
+
+          Esta opción puede abreviarse a /SH.
+
+       /STATUS Mostrar todas las unidades asignadas con el formato:
+          ud1: => ud2:
+          ud1 es la letra asignada y ud2 es la unidad a la que  apunta
+          ud1.
+
+          Si no hay nada asignado no se mostrará nada.
+
+          Esta opción  impide que se cargue la parte residente, si  no
+          había sido cargada.
+
+          Esta opción puede abreviarse a /S
+
+       /u Desinstalar un Assign previamente instalado.
+
+
+
+                                      -1-
+
+
+     ASSIGN (1)                  08 agosto 1995                  ASSIGN (1)
+
+
+       ud1[:]=ud2[:] Esto define la  asignación  de letras y unidades,
+          de la forma que ud1 apunte a ud2.  Los dos puntos «:» no son
+          obligatorios. No puede haber espacios  entre las letras, las
+          unidades, los dos puntos y el igual «=».
+
+          Si la  parte  residente  no estaba  cargada  se  cargará sin
+          avisar.
+
+       /m Mover la parte residente al area de  memoria superior, si se
+          puede. Esta opción se ignorará si ya está instalada la parte
+          residente.
+
+       nada Si se ejecuta el programa sin ningún parámetro se borrarán
+          todas las asignaciones: cada letra apuntará a si misma.
+
+     PROBLEMAS
+
+       o  Puesto que Assign no se matiene residente por si mismo puede
+          que falle el cargarlo con «LOADHIGH» o «LH». Si quiere cargar la parte residente en la memoria alta use la opción /m.
+
+       o  Las opciones  /STATUS y /SHADOW  no  son opciones normativas
+          por compatibilidad con el Assign original.
+
+       o  El  proceso de  desinstalación puede  prevenirse  instalando
+          otros «TSR» más  tarde, o  usando un  intérprete de comandos
+          secundario.  En estos  casos  Assign  no  se  suspende y  se
+          mantiene activo  en  memoria. Use ASSIGN sin parámetros para
+          borrar la lista de letras asignadas.
+
+       o  Algunos  intérpretes de  comandos, si ASSIGN  fue  instalado
+          desde una copia secundaria de los mismos, evitan  que ASSIGN
+          pueda encontrar su copia residente en memoria.
+
+     RELACIONADOS
+          Subst, Join
+
+     CONTRIBUYENTES
+                                 Steffen Kaiser
+                             Mittelstraße 112/B115
+                         53757 Sankt Augustin - Menden
+                             Deutschland - Alemania
+
+                    correo-e: Steffen.Kaiser@FH-Rhein-Sieg.DE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                      -2-
+

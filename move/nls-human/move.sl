@@ -1,6 +1,6 @@
-# Language: Slovenian (CP852)
+# Language: Slovenian, sl, (CP852)
 # Translated by Matej Horvat (http://matejhorvat.si/), last update 2013-05-28
-
+# 1.30 added by Google AI
 # Help Message
 
 0.0:Move
@@ -53,6 +53,7 @@
 1.27:Napaka pri zapisovanju ciljne datoteke
 1.28:Ni mogoüe ustvariti imenika
 1.29:Ni dovolj prostora na disku za cilj
+1.30:Nezadostno pomnilnika
 
 # Y/N/All/None; Simple messages
 

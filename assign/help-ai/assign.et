@@ -1,0 +1,102 @@
+# Language: estonian
+# File ending: et
+# Codepage: 775
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. august 1995                  ASSIGN (1)
+
+
+
+ NIMI
+      assign - M„„ra draivi t„ht teisele draivile
+
+
+ SšNOPSIS
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ KIRJELDUS
+      Assign seob draivi t„he teise draiviga. See seos mäjutab ainult
+      draivi t„hte, mitte teed, mis eristab Assigni Subst-ist, nt:
+      Praeguste t””teedega "C:\FREEDOS" ja "B:\TEMP" p„rast k„ske
+      "assign B=C" ja "cd C:\" viitab tee "B:" samuti kataloogile "C:\".
+      Kusjuures p„rast k„ske "subst B: ." ja "cd C:\" viitab tee "B:"
+      ikka kataloogile "C:\FREEDOS".
+
+      Kuna see programm pole TSR, „rge laadige seda "LOADHIGH" väi
+      "LH" k„skudega.
+
+ VALIKUD
+
+   /? Kuva v„ike abiteave.
+
+   /SHADOW See valik peidab Assigni residendist osa tuvastamise eest.
+      See hälmab:
+      1) M„lublokk residendist osaga m„rgitakse ssteemi osaks.
+      2) Installikontroll tagastab "Pole installitud, aga pole lubatud
+      installida" asemel "Installitud".
+
+      Kui residendist osa installitakse selle valikuga, aga hilisemad
+      kutsed on ilma selleta, kuvatakse hoiatus, kuid tegevus tehakse.
+
+      Valiku saab lhendada kujule /SH.
+
+   /STATUS Kuva käik m„„ratud draivi t„hed kujul:
+      dr1: => dr2:
+      kus dr1 on m„„ratud t„ht ja dr2 on sihtdraiv.
+
+      Kui m„„ramisi pole, v„ljundit ei kuvata.
+
+      See valik takistab residendist osa laadimist, kui seda pole veel
+      installitud.
+
+      Valiku saab lhendada kujule /S.
+
+   /u Eemalda varem installitud Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. august 1995                  ASSIGN (1)
+
+
+   dr1[:]=dr2[:] See m„„rab draivi seose, kus dr1 viitab dr2-le.
+      Koolonid ":" on valikulised. Thikud draivi t„htede, koolonite ja
+      värdusm„rgi vahel pole lubatud.
+
+      Kui residendist osa pole veel laaditud, laaditakse see ilma ette
+      teatamata.
+
+   /m Teisalda residendist osa UMB alasse, kui väimalik. Seda valikut
+      ignoreeritakse, kui see on juba installitud.
+
+   valikuta Kui k„sureal pole /STATUS, /u ega m„„ramist, siis käik
+      seosed thistatakse ja t„hed viitavad iseendale.
+
+ TEADAOLEVAD VEAD
+
+   o  Kuna Assign pole TSR, väib laadimine "LOADHIGH"-iga nurjuda.
+      Kasutage /m valikut residendist osa kärgele laadimiseks.
+
+   o  Valikud /STATUS ja /SHADOW ei j„rgi standardit hilduvuse tättu
+      algse Assign-iga.
+
+   o  Hiljem installitud TSR-id väi teine kest takistavad sageli
+      eemaldamist. Kasutage ASSIGN-i ilma valikuteta tabeli
+      thjendamiseks.
+
+ VAATA KA
+      Subst, Join
+
+ AUTORID
+                             Steffen Kaiser
+
+
+                                  -2-

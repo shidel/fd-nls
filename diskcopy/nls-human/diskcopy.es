@@ -1,4 +1,4 @@
-#### reserved to condition for example yes, no, quit     ####
+#### reserved to condition for example yes, no, quit, es, cp850/858     ####
 0.0:S
 0.1:N
 #### Space reserved to file diskcopy.c                   ####
@@ -86,7 +86,7 @@
 7.6:No hay memoria suficiente.
 7.7:Error en el medio al leer sector
 7.8:Error en el medio al escribir sector
-7.9:¨Desea copiar otro disco (y/n)?
+7.9:¨Desea copiar otro disco (s/n)?
 8.0:Introduzca un disco con la capacidad adecuada en la unidad
 8.1:o
 8.2:o presione CTRL-C para cancelar.

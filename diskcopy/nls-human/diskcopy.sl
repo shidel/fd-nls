@@ -1,4 +1,4 @@
-# Language: Slovenian (CP852)
+# Language: Slovenian sl, (CP852)
 # Translated by Matej Horvat (http://matejhorvat.si/), last update 2013-06-04
 
 #### reserved to condition for example yes, no, quit     ####

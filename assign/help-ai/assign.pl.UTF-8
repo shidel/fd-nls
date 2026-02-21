@@ -1,0 +1,103 @@
+# Language: polish
+# File ending: pl
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08 sierpnia 1995                 ASSIGN (1)
+
+
+
+ NAZWA
+      assign - Przypisuje literę napędu do innego napędu
+
+
+ SKŁADNIA
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ OPIS
+      Assign mapuje literę napędu na inny napęd. To mapowanie wpływa
+      tylko na literę napędu, a nie na ścieżkę, co odróżnia Assign
+      od Subst, np.:
+      Przy bieżących ścieżkach roboczych "C:\FREEDOS" i "B:\TEMP",
+      po wydaniu poleceń "assign B=C" i "cd C:\", ścieżka "B:"
+      również wskazuje na katalog "C:\".
+      Natomiast po komendach "subst B: ." i "cd C:\", ścieżka "B:"
+      nadal wskazuje na "C:\FREEDOS".
+
+      Ponieważ ten program nie jest rezydentny (TSR), nie należy go
+      ładować poleceniami "LOADHIGH" lub "LH".
+
+ OPCJE
+
+   /? Wyświetla krótki ekran pomocy.
+
+   /SHADOW Ta opcja ukrywa część rezydentną Assign przed łatwym
+      wykryciem. Obejmuje to:
+      1) Blok pamięci zawierający część rezydentną jest oznaczony
+      jako część systemu.
+      2) Przerwanie sprawdzające instalację zwraca "Nie zainstalowano,
+      ale instalacja niedozwolona" zamiast "Zainstalowano".
+
+      Jeśli część rezydentna zostanie zainstalowana z tą opcją, ale
+      kolejne wywołania będą bez niej, pojawi się ostrzeżenie, ale
+      akcja zostanie wykonana.
+
+      Opcję można skrócić do /SH.
+
+   /STATUS Wyświetla wszystkie przypisane litery napędów w formie:
+      dr1: => dr2:
+      gdzie dr1 to przypisana litera, a dr2 to napęd docelowy.
+
+      Jeśli nie ma żadnych przypisań, nic nie zostanie wyświetlone.
+
+      Ta opcja zapobiega ładowaniu części rezydentnej, jeśli nie
+      została ona jeszcze zainstalowana.
+
+      Opcję można skrócić do /S.
+
+   /u Odinstalowuje wcześniej zainstalowany Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08 sierpnia 1995                 ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Definiuje przypisanie litery napędu, gdzie dr1 ma
+      wskazywać na dr2. Dwukropki ":" są opcjonalne. Spacje nie są
+      dozwolone między literami, dwukropkami i znakiem równości.
+
+      Jeśli część rezydentna nie jest jeszcze załadowana, zostanie
+      załadowana bez powiadomienia.
+
+   /m Przenosi część rezydentną do obszaru UMB, jeśli to możliwe.
+      Opcja ignorowana, jeśli Assign jest już zainstalowany.
+
+   brak opcji Jeśli nie podano /STATUS, /u ani przypisania, wszystkie
+      istniejące przypisania zostają usunięte.
+
+ ZNANE BŁĘDY
+
+   o  Ponieważ Assign nie jest typowym TSR, ładowanie przez "LH" może
+      się nie udać. Aby załadować wysoko, należy użyć opcji /m.
+
+   o  Opcje /STATUS i /SHADOW nie są zgodne ze standardem ze względu
+      na kompatybilność z oryginalnym programem Assign.
+
+   o  Później zainstalowane programy TSR lub inne powłoki (shell)
+      często uniemożliwiają odinstalowanie. Użyj ASSIGN bez opcji,
+      aby wyczyścić tabelę.
+
+ ZOBACZ TAKŻE
+      Subst, Join
+
+ AUTORZY
+                             Steffen Kaiser

@@ -1,0 +1,107 @@
+# Language: netherlands
+# File ending: nl
+# Codepage: 858
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08 augustus 1995                 ASSIGN (1)
+
+
+
+ NAAM
+      assign - Koppel een schijfletter aan een andere schijf
+
+
+ SYNOPSIS
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ dr1[:]=dr2[:] }]
+
+
+ BESCHRIJVING
+      Assign koppelt een schijfletter aan een andere schijf. Deze
+      koppeling heeft alleen betrekking op de schijfletter, niet op
+      het pad, wat Assign anders maakt dan Subst, bijv.:
+      Met de huidige paden "C:\FREEDOS" en "B:\TEMP" zal na de
+      commando's "assign B=C" en "cd C:\" het pad "B:" ook naar
+      de map "C:\" wijzen.
+      Terwijl na de commando's "subst B: ." en "cd C:\" het pad "B:"
+      nog steeds naar "C:\FREEDOS" wijst.
+
+      Omdat dit programma geen TSR is, mag het niet via de commando's
+      "LOADHIGH" of "LH" geladen worden.
+
+ OPTIES
+
+   /? Toon een kort helpscherm.
+
+   /SHADOW Deze optie verbergt het residente deel van Assign voor
+      eenvoudige detectie. Dit omvat:
+      1) Het geheugenblok met het residente deel wordt gemarkeerd
+      als onderdeel van het systeem.
+      2) De installatiecontrole geeft "Niet ge‹nstalleerd, maar niet
+      toegestaan om te installeren" terug in plaats van
+      "Ge‹nstalleerd".
+
+      Als het residente deel met deze optie is ge‹nstalleerd, maar
+      volgende aanroepen zonder gebeuren, verschijnt er een
+      waarschuwing, maar de actie wordt uitgevoerd.
+
+      De optie kan worden afgekort tot /SH.
+
+   /STATUS Toon alle gekoppelde schijfletters in de vorm:
+      dr1: => dr2:
+      waarbij dr1 de gekoppelde letter is en dr2 de schijf waar dr1
+      naar wijst.
+
+      Als er geen koppelingen zijn, wordt er niets weergegeven.
+
+      Deze optie voorkomt het laden van het residente deel als het
+      nog niet is ge‹nstalleerd.
+
+      De optie kan worden afgekort tot /S.
+
+   /u De‹nstalleer een eerder ge‹nstalleerde Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08 augustus 1995                 ASSIGN (1)
+
+
+   dr1[:]=dr2[:] Dit definieert een koppeling waarbij dr1 naar dr2
+      moet wijzen. De dubbele punten ":" zijn optioneel. Er zijn
+      geen spaties toegestaan tussen de schijfletters, de dubbele
+      punten en het isgelijkteken '='.
+
+      Als het residente deel nog niet is geladen, wordt het zonder
+      verdere melding geladen.
+
+   /m Verplaats het residente deel naar het UMB-gebied, indien mogelijk.
+      Deze optie wordt genegeerd als het residente deel al is
+      ge‹nstalleerd.
+
+   geen optie Als er geen /STATUS, /u of koppeling is opgegeven,
+      worden alle bestaande koppelingen verbroken.
+
+ BEKENDE BUGS
+
+   o  Omdat Assign zelf geen TSR is, kan laden met "LOADHIGH" of
+      "LH" mislukken. Gebruik /m om hoog te laden.
+
+   o  De opties /STATUS en /SHADOW volgen de standaard niet vanwege
+      compatibiliteit met de originele Assign.
+
+   o  Later ge‹nstalleerde TSR's of een secundaire shell verhinderen
+      vaak de-installatie. Gebruik ASSIGN zonder opties om de tabel
+      leeg te maken.
+
+ ZIE OOK
+      Subst, Join
+
+ MEDEWERKERS
+                             Steffen Kaiser

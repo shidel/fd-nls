@@ -17,4 +17,3 @@ logaritmo cero o negativo
 # Language spanish / apanisch
 # Codepage: 850/858
 # Language ending: es
-#

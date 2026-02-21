@@ -1,0 +1,104 @@
+# Language: slovakian
+# File ending: sk
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+ASSIGN (1)                  08. augusta 1995                 ASSIGN (1)
+
+
+
+ MENO
+      assign - Priradí písmeno jednotky inej jednotke
+
+
+ SYNTAX
+      assign [/m] [/shadow] /?
+      assign [/m] [/shadow] /status
+      assign [/m] [/shadow] /u
+      assign [/m] [/shadow] [{ j1[:]=j2[:] }]
+
+
+ POPIS
+      Assign mapuje písmeno jednotky na inú jednotku. Toto mapovanie
+      ovplyvňuje iba písmeno jednotky, nie cestu, čo odlišuje Assign
+      od príkazu Subst, napr.:
+      S aktuálnymi pracovnými cestami "C:\FREEDOS" a "B:\TEMP" po
+      príkazoch "assign B=C" a "cd C:\" bude cesta "B:" tiež
+      ukazovať do adresára "C:\".
+      Zatiaľ čo po príkazoch "subst B: ." a "cd C:\" bude cesta "B:"
+      stále ukazovať do "C:\FREEDOS".
+
+      Pretože tento program nie je TSR, nezavádzajte ho pomocou
+      príkazov "LOADHIGH" alebo "LH".
+
+ VOĽBY
+
+   /? Zobrazí stručnú nápovedu.
+
+   /SHADOW Táto voľba skryje rezidentnú časť Assign pred ľahkou
+      detekciou. To zahŕňa:
+      1) Pamäťový blok obsahujúci rezidentnú časť je označený ako
+      súčasť systému.
+      2) Kontrola inštalácie vracia "Nenainštalované, ale inštalácia
+      nepovolená" namiesto "Nainštalované".
+
+      Ak je rezidentná časť nainštalovaná s touto voľbou, ale
+      následné volania sú bez nej, zobrazí sa varovanie, ale akcia
+      sa vykoná.
+
+      Voľbu je možné skrátiť na /SH.
+
+   /STATUS Zobrazí všetky priradené písmená jednotiek vo formáte:
+      j1: => j2:
+      kde j1 je priradené písmeno a j2 je jednotka, kam j1 ukazuje.
+
+      Ak neexistujú žiadne priradenia, nezobrazí sa žiadny výstup.
+
+      Táto voľba zabráni načítaniu rezidentnej časti, ak ešte nebola
+      nainštalovaná.
+
+      Voľbu je možné skrátiť na /S.
+
+   /u Odinštaluje predtým nainštalovaný Assign.
+
+
+
+                                  -1-
+
+
+ ASSIGN (1)                  08. augusta 1995                 ASSIGN (1)
+
+
+   j1[:]=j2[:] Definuje priradenie jednotky, kde j1 má ukazovať na
+      j2. Dvojbodky ":" sú voliteľné. Medzi písmenami, dvojbodkami
+      a znakom rovnosti "=" nie sú povolené medzery.
+
+      Ak rezidentná časť ešte nie je načítaná, načíta sa bez
+      ďalšieho upozornenia.
+
+   /m Presunie rezidentnú časť do oblasti UMB, ak je to možné.
+      Táto voľba sa ignoruje, ak je už Assign nainštalovaný.
+
+   žiadna voľba Ak na príkazovom riadku nie je zadané /STATUS, /u
+      ani priradenie, všetky existujúce priradenia sa zrušia.
+
+ ZNÁME CHYBY
+
+   o  Pretože Assign nie je sám o sebe TSR, načítanie pomocou
+      "LOADHIGH" alebo "LH" môže zlyhať. Pre načítanie vysoko
+      musíte použiť voľbu /m.
+
+   o  Voľby /STATUS a /SHADOW nezodpovedajú štandardu kvôli
+      kompatibilite s pôvodným programom Assign.
+
+   o  Neskôr nainštalované TSR programy alebo sekundárny shell môžu
+      zabrániť odinštalácii. V tom prípade použite ASSIGN bez
+      volieb na vymazanie tabuľky.
+
+ POZRI TIEŽ
+      Subst, Join
+
+ PRISPIEVATELIA
+                             Steffen Kaiser

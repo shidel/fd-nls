@@ -1,5 +1,5 @@
 FreeDOS APPEND. Habilita os programas a abrir arquivos em diret¢rios espec°ficos
-                como se os arquivos estivessem no diret¢rio corrente.
+                como se os arquivos estivessem no diret¢rio corrente.  pb, cp850
 (C) 2004-2006 Eduardo Casino, sob os termos da licenáa GNU GPL vers∆o 2
 
 Sintaxe:

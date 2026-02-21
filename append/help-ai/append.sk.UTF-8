@@ -1,0 +1,34 @@
+# Language: slovakian
+# File ending: sk
+# Codepage: 852
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the 
+# FreeDOS group to improve it.
+
+FreeDOS APPEND. Umožňuje programom otvárať dátové súbory v zadaných
+adresároch, akoby boli v aktuálnom adresári.
+(C) 2004-2006 Eduardo Casino, pod podmienkami GNU GPL, verzia 2
+
+Syntax:
+
+APPEND [[jednotka:]cesta[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+APPEND ;
+
+[jednotka:]cesta Jednotka a adresár na pripojenie.
+/X[:ON]          Rozšíri APPEND na vyhľadávanie a spúšťanie príkazov.
+/X:OFF           APPEND sa použije len pri otváraní súborov.
+                 Predvolené je /X:OFF.
+/PATH:ON         Hľadá v pripojených adresároch požadavky, ktoré už
+                 obsahujú cestu. Toto je predvolené nastavenie.
+/PATH:OFF        Vypne voľbu /PATH:ON.
+/E               Uloží zoznam pripojených adresárov do prostredia.
+                 /E sa smie použiť len pri prvom volaní APPEND.
+                 Na tej istej príkazovej riadke s /E nesmú byť cesty.
+
+APPEND ; vymaže zoznam pripojených adresárov.
+APPEND bez parametrov zobrazí zoznam pripojených adresárov.
+
+Poznámka:
+
+APPEND sa po prvom spustení nainštaluje ako interný príkaz.
+Druhé a ďalšie volania MUSIA byť bez cesty k súboru a prípony.

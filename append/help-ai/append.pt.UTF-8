@@ -1,0 +1,34 @@
+# Language: portuguese
+# File ending: pt
+# Codepage: 860
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the 
+# FreeDOS group to improve it.
+
+FreeDOS APPEND. Permite que programas abram ficheiros de dados em
+diretórios especificados como se estivessem no atual.
+(C) 2004-2006 Eduardo Casino, sob os termos da GNU GPL, Versão 2
+
+Sintaxe:
+
+APPEND [[unidade:]caminho[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+APPEND ;
+
+[unid:]caminho   Unidade e diretório a anexar.
+/X[:ON]          Estende o APPEND a pesquisas e execução de comandos.
+/X:OFF           Aplica o APPEND apenas a pedidos de abertura de ficheiros.
+                 O padrão é /X:OFF.
+/PATH:ON         Procura nos diretórios anexados pedidos de ficheiros que
+                 já incluam um caminho. Esta é a definição padrão.
+/PATH:OFF        Desliga o /PATH:ON.
+/E               Armazena a lista de diretórios anexados no ambiente.
+                 /E só pode ser usado na primeira execução do APPEND.
+                 Não pode incluir caminhos na mesma linha que /E.
+
+APPEND ; limpa a lista de diretórios anexados.
+APPEND sem parâmetros exibe a lista de diretórios anexados.
+
+Nota:
+
+O APPEND instala-se como um comando interno após a primeira execução.
+As chamadas seguintes DEVEM excluir o caminho do ficheiro e a extensão.

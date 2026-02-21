@@ -1,4 +1,4 @@
-#FreeDOS 1.2 Trch Russian Translation.
+#FreeDOS 1.2 Trch Russian Translation, ru, cp866
 #Provided by: Petr Akhlamov
 #Contact Email: petr-akhlamov@yandex.ru
 #Created/Modified: 11/oct/2017

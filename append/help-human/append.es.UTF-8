@@ -1,0 +1,28 @@
+FreeDOS APPEND. Permite que los programas abran archivos de cualquier carpeta
+                como si estuvieran en el directorio actual, es, cp850/858
+(C) 2004-2006 Eduardo Casino, bajo las condiciones de la GNU GPL, Versión 2
+
+Sintaxis:
+
+  APPEND [[unidad:]ruta[;...]] [/X[:ON|:OFF]] [/PATH:ON|/PATH:OFF] [/E]
+  APPEND ;
+
+    [unidad:]ruta Unidad y directorio a anexar.
+    /X[:ON]       Usar APPEND en las búsquedas y en la ejecución de comandos.
+    /X:OFF        Usar APPEND solo al abrir ficheros.
+                  Se usa /X:OFF por omisión.
+    /PATH:ON      Al recibir peticiones de archivos que incluyan una ruta se
+                  anexarán las carpetas indicadas. Opción por omisión.
+    /PATH:OFF     Desactiva /PATH:ON.
+    /E            Se guarda la lista de carpetas anexadas en la variable APPEND
+                  del entorno. /E solo se puede usar la primera vez que se
+                  use APPEND. No se pueden incluir directorios y /E a la vez.
+
+  APPEND ; borra la lista de directorios anexados.
+  APPEND sin parámetros muestra los directorios anexados
+
+Aviso:                                                               
+
+  APPEND se transforma en un comando interno tras su primera ejecución
+  Sus sucesivas ejecuciones deberán prescindir de la ruta y extensión
+  del ejecutable.
