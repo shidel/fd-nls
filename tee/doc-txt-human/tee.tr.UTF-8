@@ -1,0 +1,30 @@
+tee
+
+TEE standart girdinin (STDIN) bir kopyasını bir veya daha fazla
+dosyaya kaydeder ve görüntüler.
+Kullanım:
+
+tee [seçenekler] [d:][yol]dosya [[d:][yol]dosya2] ...
+Seçenekler:
+
+/A   Dosyalara ekle: onları ezmek yerine çıktı dosyalarına ilave eder.
+
+/I   Kesintileri (interrupts) görmezden gelir: kullanıcı tarafından yapılan
+     kesme girişimini yok sayar.
+
+[d:][yol]dosya [[d:][yol]dosya2] ...   Çıktı dosyalarını belirtir.
+Örnekler:
+
+echo "Merhaba dünya!" | tee merhaba.txt
+"Merhaba dünya!" metnini ekranda görüntüler ve merhaba.txt dosyasına kaydeder.
+
+tee log.txt diger_log.txt < girdi.txt
+girdi.txt dosyasının içeriığini görüntüler ve log.txt ile diger_log.txt
+dosyalarına kaydeder.
+
+catdoc mektup.doc | tee /I mektup.txt | wc
+mektup.txt dosyasına kaydeder ve bunu kelimelerin sayılması için wc programına
+aktarır.
+Kullanıcının kesintilerine izin vermez.
+
+Bu dosya FreeDOS HTML Yardımı'nın bir parçasıdır ve GNU FDL kapsamındadır.

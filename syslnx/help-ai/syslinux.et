@@ -1,0 +1,32 @@
+# Language: Estonian
+# File ending: ET
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+SYSLINUX
+
+SYSLINUX on alglaadurite (bootloaders) kogumik
+
+Installimine:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+KÑivitamisel, kui kuvatakse kÑsurida, trÅkkige
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Alternatiivina looge SYSLINUX.CFG, lugege selleks hoolikalt dokumentatsiooni!
+(alltoodud nÑites kataloog "CONTENTS", selle sees kataloog ISOLINUX,
+selle sees CD-ROM alglaadur ISOLINUX.BIN - mitte-emulatsiooni stiilis.
+palun jÑlgige, et kasutaksite "/" ja "\" tÑpselt nii nagu allpool!
+
+MEMDISK-i ja ISOLINUX-i kohta lugege palun hoolikalt dokumentatsiooni!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso
+  contents
+
+Alternatiivid CDRECORD-ile (mis sisaldab MKISOFS-i) on XORRISO ja CDRKIT
+(vaata DOS-i pordi jaoks http://sites.google.com/site/blairdude/cdrkit)
+

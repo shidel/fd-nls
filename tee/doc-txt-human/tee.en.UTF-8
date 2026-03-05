@@ -1,0 +1,30 @@
+tee
+
+Save a copy of the input (STDIN) to one or more files and print it.
+Usage:
+
+tee [options] [d:][path]file [[d:][path]file2] ...
+Options:
+
+/A   Append to given file(s): Append to the output file(s) instead of
+     overwriting.
+
+/I   Ignore interruptions: ignores interruption attempts by a user.
+
+[d:][path]file [[d:][path]file2] ...   Specifies the output file(s).
+Examples:
+
+echo "Hello, World!" | tee hello.txt
+Display "Hello, World!" on the screen and save it to hello.txt.
+
+tee log.txt another_log.txt < input.txt
+Display the contents of input.txt and save them to log.txt and another_log.txt.
+
+catdoc letter.doc | tee /I letter.txt | wc
+Save the contents of letter.doc as processed by catdoc to letter.txt and pass
+them to wc to count the words.
+Don't allow interruptions by a user.
+
+This file forms part of The FreeDOS HTML Help Documentation, and is covered
+under the terms of the GNU FDL.
+

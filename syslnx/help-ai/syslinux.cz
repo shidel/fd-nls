@@ -1,0 +1,32 @@
+# Language: Czech
+# File ending: CZ
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+SYSLINUX
+
+SYSLINUX je kolekce zavadØŸ… (bootloaders)
+
+Instalace:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+Pýi spouçtØn¡, kdy§ se zobraz¡ pý¡kazovì ý dek, napiçte
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Pý¡padnØ vytvoýte soubor SYSLINUX.CFG, k tomu si pozornØ pýeŸtØte dokumentaci!
+(v n¡§e uveden‚m pý¡kladu adres ý "CONTENTS", v nØm adres ý ISOLINUX,
+v nØm zavadØŸ CD-ROM ISOLINUX.BIN - re§im bez emulace.
+dbejte na to, abyste pou§¡vali "/" a "\" pýesnØ tak, jak je uvedeno n¡§e!
+
+U MEMDISK a ISOLINUX si pros¡m pozornØ pýeŸtØte dokumentaci!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso
+  contents
+
+Alternativy k CDRECORD (kterì obsahuje MKISOFS) jsou XORRISO a CDRKIT
+(viz http://sites.google.com/site/blairdude/cdrkit pro DOS port)
+

@@ -1,0 +1,30 @@
+tee
+
+Spara en kopia av indata (STDIN) till en eller flera filer och skriv ut
+den.
+
+Användning:
+tee [flaggor] [d:][sökväg]fil [[d:][sökväg]fil2] ...
+
+Flaggor:
+/A Lägg till en given fil(er): Lägg till till utdatafilen(erna) istället
+för
+   att skriva över.
+/I Hoppa över avbrott: ignorera avbrottsförsök från användaren.
+[d:][sökväg]fil [[d:][sökväg]fil2] ... Anger utdatafilen(erna).
+
+Exempel:
+echo "Hejsan världen!" | tee hejsan.txt
+Visa "Hejsan världen!" på skärmen och spara det till hejsan.txt.
+
+tee logg.txt annan_logg.txt < indata.txt
+Visa innehållet från indata.txt och spara det till logg.txt och
+annan_logg.txt.
+
+catdoc brev.doc | tee /I brev.txt | wc
+Spara innehållet i brev.doc efter att det behandlats av catdoc till
+brev.txt och passa vidare till wc för att räkna antalet ord.
+Tillåt inte avbrott från användaren.
+
+Denna fil utgör en del av FreeDOS HTML Hjälpdokumentation och täcks av
+GNU FDL:s villkor.

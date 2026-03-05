@@ -1,0 +1,32 @@
+# Language: Serbian
+# File ending: SR
+# Codepage: 855
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+SYSLINUX
+
+SYSLINUX је колекција системских покретача (bootloaders)
+
+Инсталација:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+Приликом покретања, када се појави командна линија, укуцајте
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Алтернативно, креирајте SYSLINUX.CFG, за шта пажљиво прочитајте документацију!
+(у примеру испод, директоријум "CONTENTS" са директоријумом ISOLINUX унутар
+њега, у коме се налази ISOLINUX.BIN CDROM покретач - режим без емулације.
+молимо вас да користите "/" и "\" тачно онако како је наведено испод!
+
+За MEMDISK и ISOLINUX, молимо вас да пажљиво прочитате документацију!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso
+  contents
+
+Алтернативе за CDRECORD (који укључује MKISOFS) су XORRISO и CDRKIT
+(погледајте http://sites.google.com/site/blairdude/cdrkit за DOS верзију)
+

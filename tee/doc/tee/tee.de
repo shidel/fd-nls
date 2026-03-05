@@ -1,0 +1,33 @@
+tee
+
+Eine Kopie der Eingabe (STDIN) in eine oder mehrere Dateien speichern und
+sie auf dem Bildschirm ausgeben.
+
+Aufruf:
+
+tee [Optionen] [d:][Pfad]Datei [[d:][Pfad]Datei2] ...
+Optionen:
+
+/A   An Datei(en) anhÑngen: Die Eingabe an die Ausgabe-Datei(en) hÑngen
+     anstatt sie zu Åberschreiben.
+
+/I   Unterbrechungen ignorieren: Unterbrechungsversuche eines Benutzers
+     ignorieren.
+
+[d:][Pfad]Datei [[d:][Pfad]Datei2] ...   Die Ausgabe-Datei(en)
+Beispiele:
+
+echo "Hello, World!" | tee hello.txt
+"Hello, World!" auf dem Bildschirm anzeigen und in hello.txt speichern.
+
+tee log.txt weiterer_log.txt < input.txt
+Den Inhalt von input.txt anzeigen und ihn in log.txt und weiterer_log.txt
+speichern.
+
+catdoc brief.doc | tee /I brief.txt | wc
+Den durch catdoc verarbeiteten Inhalt von brief.doc in brief.txt speichern
+und an wc weitergeben, um die Wîrter zu zÑhlen.
+Keine Unterbrechungen durch einen Benutzers erlauben.
+
+Diese Datei ist Teil der FreeDOS HTML Hilfe und unterliegt den Bestimmungen
+der GNU FDL.

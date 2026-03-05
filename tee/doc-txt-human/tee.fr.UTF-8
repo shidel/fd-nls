@@ -1,0 +1,49 @@
+Commande : tee
+
+  TEE enregistre une copie de l'entrée (STDIN) dans un ou plusieurs
+  fichiers et l'affiche.
+
+Syntaxe :
+
+  tee [options] [d:][chemin]fichier [[d:][chemin]fichier2] ...
+      [d:][chemin]fichier [[d:][chemin]fichier2]  Spécifie les fichiers
+      de sortie.
+
+Options :
+
+  /A  Ajouter aux fichiers donnés : ajouter aux fichiers de sortie au
+      lieu de les écraser.
+  /I  Ignorer les interruptions: ignore les tentatives d'interruption
+      par un utilisateur.
+
+Commentaires :
+
+  TEE lit les données depuis l'entrée standard et écrit sur la sortie
+  standard ainsi que tous les fichiers spécifiés par l'utilisateur..
+  TEE est livré avec deux versions par défaut. TEE.EXE est compilé avec
+  la prise de charge de kitten. _TEE.EXE est compilé sans kitten.
+
+Exemples :
+
+  echo "Bonjour, le monde !" | tee bonjour.txt
+    Affiche "Bonjour, le monde !" sur l'écran et l'enregistre dans
+    bonjour.txt.
+  tee log.txt autre_log.txt < input.txt
+    Affiche le contenu d'input.txt et l'enregistre dans log.txt et
+    autre_log.txt.
+  catdoc lettre.doc | tee /I lettre.txt | wc
+    Enregistre le contenu de lettre.doc tel que traité par catdoc dans
+    lettre.txt et le transmet à wc pour compter les mots.
+    N'autorise pas les interruptions par un utilisateur.
+
+Voir également :
+
+  more
+  undelete
+
+  Copyright © 2008 W. Spiegl.
+  Traduit en 2020 par Berki Yenigün.
+
+  Ce fichier est dérivé de FreeDOS Spec Command HOWTO.
+  Voyez le fichier H2Cpying pour les conditions de copie.
+

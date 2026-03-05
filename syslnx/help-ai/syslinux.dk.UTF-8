@@ -1,0 +1,32 @@
+# Language: Danish
+# File ending: DK
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+SYSLINUX
+
+SYSLINUX er en samling af bootloadere
+
+Installation:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+Når du booter og ser kommandolinjen, skal du skrive
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Alternativt kan du oprette en SYSLINUX.CFG, læs dokumentationen grundigt!
+(i nedenstående eksempel en "CONTENTS"-mappe med en ISOLINUX-mappe indeni,
+med ISOLINUX.BIN CDROM-bootloaderen indeni - ikke-emuleringstilstand.
+vær opmærksom på at bruge "/" og "\" præcis som nedenfor!
+
+For MEMDISK og ISOLINUX, læs venligst dokumentationen grundigt!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso
+  contents
+
+Alternativer til CDRECORD (som inkluderer MKISOFS) er XORRISO og CDRKIT
+(se http://sites.google.com/site/blairdude/cdrkit for DOS-port)
+

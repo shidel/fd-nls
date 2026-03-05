@@ -1,0 +1,33 @@
+# Language: Latvian
+# File ending: LV
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+SYSLINUX
+
+SYSLINUX ir sāknēšanas ielādētāju (bootloaders) kolekcija
+
+Instalēšana:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+Sāknējoties, kad parādās komandrinda, ierakstiet
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Alternatīvi izveidojiet SYSLINUX.CFG, uzmanīgi izlasiet dokumentāciju par to!
+(zemāk esošajā piemērā direktorija "CONTENTS", kurā atrodas ISOLINUX
+direktorija, kurā atrodas ISOLINUX.BIN CD-ROM sāknēšanas ielādētājs -
+ne-emulācijas stils.
+lūdzu, ievērojiet, ka "/" un "\" jāizmanto tieši tā, kā norādīts zemāk!
+
+Par MEMDISK un ISOLINUX, lūdzu, uzmanīgi izlasiet dokumentāciju!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso
+contents
+
+CDRECORD (kas ietver MKISOFS) alternatīvas ir XORRISO un CDRKIT
+(skatiet http://sites.google.com/site/blairdude/cdrkit DOS portam)
+
