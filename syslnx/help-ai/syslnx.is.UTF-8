@@ -1,0 +1,32 @@
+# Language: Icelandic
+# File ending: IS
+# Codepage: 861
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+SYSLINUX
+
+SYSLINUX er safn af ræsiforritum (bootloaders)
+
+Uppsetning:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+Þegar þú ræsir og sérð skipanalínuna, skrifaðu
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Einnig má búa til SYSLINUX.CFG, lestu leiðbeiningarnar vandlega fyrir það!
+(í dæminu hér að neðan, "CONTENTS" mappa með ISOLINUX möppu inni í henni,
+með ISOLINUX.BIN CDROM ræsiforritinu inni í henni - "non-emulation" stíll.
+vinsamlegast gættu þess að nota "/" og "\" nákvæmlega eins og að neðan!
+
+Fyrir MEMDISK og ISOLINUX, vinsamlegast lestu leiðbeiningarnar vandlega!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso
+  contents
+
+Valkostir við CDRECORD (sem inniheldur MKISOFS) eru XORRISO og CDRKIT
+(sjá http://sites.google.com/site/blairdude/cdrkit fyrir DOS útgáfu)
+

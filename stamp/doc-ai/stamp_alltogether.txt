@@ -1,0 +1,2630 @@
+
+
+# Language: Estonian
+# File ending: ET
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Sisu
+----
+
+	1. Funktsioonid
+	2. Veatasemed (Errorlevels)
+	3. Tehaasjad (Todo)
+	4. Ajalugu
+	5. Autor
+
+
+1. Funktsioonid
+---------------
+
+- failide kuupäeva/kellaaja muutmine
+- failide ja kataloogide atribuutide muutmine
+- failide ja kataloogide kuupäeva/kellaaja ning atribuutide võrdlemine
+- kuupäeva/kellaaja valikud võimaldavad võtta väärtusi praegusest ja faili
+  kuupäevast/kellaajast üheaegselt koos selgesõnaliste numbritega
+- keeruline kuupäeva/kellaaja võrdlus praeguse kuupäeva/kellaajaga, samuti
+  failiga
+- kuupäev/kellaaeg vormingutes, mis vastavad COUNTRY seadetele
+- UNC ja NetWare teed on lubatud
+- mitu sihtmärki ühel käsureal
+- laiendatud metamärgid: nimed võivad sisaldada suvalist arvu '*', samuti '?';
+  "nimi" tähendab "nimi.", aga "*" tähendab "*.*"
+- valiku märgi ('/' või '-') automaatne tuvastamine
+- valik kaasata kataloogide nimed metamärkide otsingusse
+- valik töödelda faile ja katalooge kõigis sihtmärgi alamkataloogides
+- valik töödelda faili sihtmärkide loendiga; puuduv argument tähendab
+  standardset sisendit
+
+
+2. Veatasemed (Errorlevels)
+---------------------------
+
+0   - kuupäeva/kellaaja ja atribuutide seadistamine või võrdlemine õnnestus
+1   - võrdlemine (üks neist) ebaõnnestus
+2   - viga failile juurdepääsul või faili kuupäeva/kellaaja/atribuutide
+      määramisel
+128 - vigane või dubleeritud valik
+129 - ühildumatud valikud, sihtmärgid puuduvad või vigased argumendid
+130 - sisemine viga (pole piisavalt mälu või liiga sügav kataloog)
+
+
+3. Tehaasjad (Todo)
+-------------------
+
+- töödeldud failide loendite kuvamine
+- kuupäeva/kellaaja/atribuutide võrdlemine/kopeerimine failist failidesse
+- kuupäeva/kellaaja väljade suurendamine/vähendamine
+- atribuutide suurem/väiksem võrdlus
+
+
+4. Ajalugu
+----------
+
+	1.0 [16.02.98]
++ Esimene väljaanne
+
+	1.1 [19.02.98]
++ Nüüd aktsepteerib kuupäeva/kellaaega vormingutes, mis vastavad COUNTRY
+  seadetele
+
+	1.2 [21.02.98]
+* Veidi parandatud välja jäetud väljade ja argumentide tõlgendamist
+* Vähendatud käivitatava faili suurust
++ Lisatud -a valik failide ja kataloogide atribuutide muutmiseks
+
+	1.3 [21.02.98]
++ Nüüd aktsepteeritakse mitut sihtmärki ühel käsureal
++ -a valikut saab nüüd kasutada võrdluses
+
+	1.4 [26.02.98]
+# Nüüd ei peatu täitmine failivea leidmisel, vaid jätkub järgmiste
+  sihtmärkidega
+# Väljundit ei dubleerita konsooli, kui see on suunatud faili
+* -@ valik nimetati ümber -c-ks
++ Võrdluses saab nüüd kontrollida ka kataloogide kuupäeva/kellaaega
++ Nüüd aktsepteeritakse sihtmärkide metamärke
++ -r võimaldab kataloogide töötlemist metamärkide abil
+
+	1.41 [28.02.98]
++ Valikute märk valitakse automaatselt esimese '/' või '-' esinemise järgi
++ Üksik valikute märkide paar ("--" või "//") peatab järgmiste valikute
+  otsimise
++ Üksik valiku märk tähendab standardset sisendit
+- Valiku märgi lisamine nime ette, mis algab sama märgiga nime argumendina
+  lubamiseks, põhjustab nüüd veateate; suvaliste nimede edastamiseks sisestage
+  enne üksik valikute märkide paar
+
+	1.5 [14.03.98]
+# Veaparandus: teatud tingimustel lükati selgesõnaliselt edastatud õiged
+  päeva väärtused 30 ja 31 tagasi
+# Veaparandus: sihtmärkide nimed on nüüd suurtähtedega vastavalt COUNTRY
+# seadetele
++ /s töötleb faile ja katalooge ka kõigis sihtmärgi alamkataloogides
+
+	2.0 [14.04.98]
+# Veaparandus: kaotati sekundite kõige olulisem bitt faili aja lugemisel
++ /@ faili töötlemiseks sihtmärkide loendiga
+* Üksik valiku märk määrab nüüd standardse sisendi ainult /@ valiku
+  argumendina
+* Vähendatud käivitatava faili suurust
++ DIET on kasutatud käivitatava faili tihendamiseks
+
+
+5. Autor
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+
+
+
+
+
+# Language: Icelandic
+# File ending: IS
+# Codepage: 861
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Innihald
+--------
+
+	1. Eiginleikar
+	2. Villustig (Errorlevels)
+	3. Verkefni (Todo)
+	4. Saga
+	5. Höfundur
+
+
+1. Eiginleikar
+--------------
+
+- breyta dagsetningu/tíma fyrir skrár
+- breyta eigindum fyrir skrár og möppur
+- bera saman dagsetningu/tíma og eigindi fyrir skrár og möppur
+- valkostir dagsetningar/tíma leyfa að sækja gildi frá núverandi og skráar
+  dagsetningu/tíma samtímis með skýrum tölum
+- flókinn dagsetningar/tíma samanburður við núverandi tíma, sömuleiðis við
+  skrá
+- dagsetning/tími í sniðum sem samræmast COUNTRY stillingum
+- UNC og NetWare slóðir leyfðar
+- margir áfangastaðir í einni skipanalínu
+- útvíkkuð algildi (wildcards): nöfn geta innihaldið hvaða fjölda sem er af
+  '*', einnig '?'; "nafn" þýðir "nafn.", en "*" þýðir "*.*"
+- sjálfvirk greining á valstaf ('/' eða '-')
+- valkostur til að láta möppunöfn fylgja með í leit með algildum
+- valkostur til að vinna úr skrám og möppum í öllum undirmöppum áfangastaðar
+- valkostur til að vinna úr skrá með lista yfir áfangastaði; ef rök vantar
+  þýðir það staðlað inntak (stdin)
+
+
+2. Villustig (Errorlevels)
+--------------------------
+
+0   - stilling eða samanburður á dagsetningu/tíma og eigindum tókst
+1   - samanburður (einn af) tókst ekki
+2   - villa við aðgang að skrá eða stillingu dagsetningar/tíma/eiginda
+128 - ógildur eða tvítekin valkostur
+129 - ósamrýmanlegir valkostir, engir áfangastaðir eða ógild rök
+130 - innri villa (ekki nóg minni eða of djúp mappa)
+
+
+3. Verkefni (Todo)
+------------------
+
+- sýna lista yfir unnar skrár
+- bera saman/afrita dagsetningu/tíma/eigindi skrá-í-skrár
+- hækkun/lækkun fyrir dagsetningar- og tímareiti
+- samanburður á meira/minna fyrir eigindi
+
+
+4. Saga
+-------
+
+	1.0 [16.02.98]
++ Fyrsta útgáfa
+
+	1.1 [19.02.98]
++ Tekur nú við dagsetningu/tíma í sniðum sem samræmast COUNTRY stillingum
+
+	1.2 [21.02.98]
+* Örlítið bætt túlkun á reitum og rökum sem sleppt er
+* Minnkaði stærð keyrsluskrárinnar
++ Bætti við -a valkosti til að breyta eigindum skráa og mappna
+
+	1.3 [21.02.98]
++ Tekur nú við mörgum áfangastöðum í einni skipanalínu
++ Nú er hægt að nota -a valkostinn í samanburði
+
+	1.4 [26.02.98]
+# Keyrsla stöðvast nú ekki þegar villa finnst í skrá, heldur heldur áfram
+  fyrir næstu áfangastaði
+# Úttak er nú ekki tvítekið á skjá þegar því er beint í skrá
+* -@ valkostur endurnefndur í -c
++ Nú er einnig hægt að athuga dagsetningu/tíma mappna í samanburði
++ Nú er tekið við algildum (wildcards) fyrir áfangastaði
++ -r gerir kleift að vinna úr möppum með algildum
+
+	1.41 [28.02.98]
++ Valstafur fyrir valkosti valinn sjálfvirkt við fyrsta tilfelli '/' eða '-'
++ Eitt par af valstöfum ("--" eða "//") stöðvar leit að næstu valkostum
++ Einn valstafur þýðir staðlað inntak (stdin)
+- Að bæta valstaf fyrir framan nafn sem byrjar á sama staf til að virkja slíkt
+  nafn sem rök veldur nú villuskilaboðum; til að senda handahófskennd nöfn
+  skal setja eitt par af valstöfum á undan
+
+	1.5 [14.03.98]
+# Villuleiðrétting: við ákveðnar aðstæður var réttum dagsetningum 30 og 31
+  sem voru sendar beint hafnað
+# Villuleiðrétting: nöfn áfangastaða nú með hástöfum samkvæmt COUNTRY
+# stillingum
++ /s vinnur úr skrám og möppum einnig í öllum undirmöppum áfangastaðar
+
+	2.0 [14.04.98]
+# Villuleiðrétting: týndi mikilvægasta bita sekúndna þegar skráartími var
+# lesinn
++ /@ til að vinna úr skrá með lista yfir áfangastaði
+* Einn valstafur tilgreinir nú staðlað inntak aðeins sem rök fyrir /@ valkost
+* Minnkaði stærð keyrsluskrárinnar
++ DIET notað til að þjappa keyrsluskránni
+
+
+5. Höfundur
+-----------
+					Arkady Belousov
+					Netfang: ark@mos.ru
+
+
+
+
+
+# Language: Lithuanian
+# File ending: LT
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Turinys
+-------
+
+	1. Funkcijos
+	2. Klaidų lygiai (Errorlevels)
+	3. Darbai (Todo)
+	4. Istorija
+	5. Autorius
+
+
+1. Funkcijos
+------------
+
+- keisti failų datą ir laiką
+- keisti failų ir katalogų atributus
+- lyginti failų ir katalogų datą/laiką bei atributus
+- datos/laiko parinktys leidžia gauti reikšmes iš dabartinės ir failo datos/
+  laiko simultaniškai su nurodytais skaičiais
+- sudėtingas datos/laiko palyginimas su dabartine data/laiku, taip pat ir su
+  failu
+- data/laikas formatais, atitinkančiais COUNTRY nustatymus
+- leidžiami UNC ir NetWare keliai
+- keli tikslai vienoje komandų eilutėje
+- išplėstiniai pakaitos simboliai: pavadinimuose gali būti bet koks skaičius
+  '*', taip pat '?'; „pavadinimas“ reiškia „pavadinimas.“, bet „*“ reiškia
+  „*.*“
+- automatinis parinkties simbolio ('/' arba '-') atpažinimas
+- parinktis įtraukti katalogų pavadinimus į paiešką pagal pakaitos simbolius
+- parinktis apdoroti failus ir katalogus visuose tikslo pakatalogiuose
+- parinktis apdoroti failą su tikslų sąrašu; praleistas argumentas reiškia
+  standartinę įvestį (stdin)
+
+
+2. Klaidų lygiai (Errorlevels)
+-----------------------------
+
+0   - datos/laiko ir atributų nustatymas arba palyginimas sėkmingas
+1   - palyginimas (bent vienas) nesėkmingas
+2   - klaida pasiekiant failą arba nustatant failo datą/laiką/atributus
+128 - neteisinga arba dubliuota parinktis
+129 - nesuderinamos parinktys, nėra tikslų arba neteisingi argumentai
+130 - vidinė klaida (nepakanka atminties arba per gilus katalogas)
+
+
+3. Darbai (Todo)
+----------------
+
+- rodyti apdorotų failų sąrašus
+- lyginti/kopijuoti datą/laiką/atributus tarp failų
+- datos/laiko laukų didinimas/mažinimas
+- atributų palyginimas (daugiau/mažiau)
+
+
+4. Istorija
+-----------
+
+	1.0 [16.02.98]
++ Pirmasis leidimas
+
+	1.1 [19.02.98]
++ Dabar priima datą/laiką formatais, atitinkančiais COUNTRY nustatymus
+
+	1.2 [21.02.98]
+* Šiek tiek patobulintas praleistų laukų ir argumentų interpretavimas
+* Sumažintas vykdomojo failo dydis
++ Pridėta -a parinktis failų ir katalogų atributams keisti
+
+	1.3 [21.02.98]
++ Dabar priimami keli tikslai vienoje komandų eilutėje
++ -a parinktis dabar gali būti naudojama lyginant
+
+	1.4 [26.02.98]
+# Dabar vykdymas nesustoja radus failo klaidą, bet tęsiamas kitiems tikslams
+# Išvestis nebedubliuojama konsolėje, kai ji nukreipiama į failą
+* -@ parinktis pervardyta į -c
++ Katalogų datą/laiką dabar taip pat galima patikrinti lyginant
++ Dabar priimami pakaitos simboliai tikslams
++ -r įgalina katalogų apdorojimą pagal pakaitos simbolius
+
+	1.41 [28.02.98]
++ Parinkčių simbolis pasirenkamas automatiškai pagal pirmąjį „/“ arba „-“
++ Atskira parinkčių simbolių pora („--“ arba „//“) sustabdo kitų parinkčių
+  paiešką
++ Atskiras parinkties simbolis reiškia standartinę įvestį
+- Parinkties simbolio pridėjimas prieš pavadinimą, prasidedantį tuo pačiu
+  simboliu, kad būtų įgalintas toks pavadinimas kaip argumentas, dabar
+  sukelia klaidos pranešimą; norėdami perduoti bet kokius pavadinimus, prieš
+  tai įterpkite atskirą parinkčių simbolių porą
+
+	1.5 [14.03.98]
+# Pataisyta klaida: tam tikromis sąlygomis nurodytos teisingos dienos reikšmės
+  30 ir 31 buvo atmetamos
+# Pataisyta klaida: tikslų pavadinimai dabar rašomi didžiosiomis raidėmis
+  pagal COUNTRY nustatymus
++ /s apdoroja failus ir katalogus taip pat visuose tikslo pakatalogiuose
+
+	2.0 [14.04.98]
+# Pataisyta klaida: prarastas svarbiausias sekundžių bitas skaitant failo
+# laiką
++ /@ apdoroti failą su tikslų sąrašu
+* Atskiras parinkties simbolis dabar nurodo standartinę įvestį tik kaip /@
+  parinkties argumentą
+* Sumažintas vykdomojo failo dydis
++ Vykdomajam failui suspausti naudotas DIET
+
+
+5. Autorius
+-----------
+					Arkady Belousov
+
+
+
+
+
+# Language: Latvian
+# File ending: LV
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Saturs
+------
+
+	1. Iespējas
+	2. Kļūdu līmeņi (Errorlevels)
+	3. Darāmo darbu saraksts (Todo)
+	4. Vēsture
+	5. Autors
+
+
+1. Iespējas
+-----------
+
+- mainīt failu datumu/laiku
+- mainīt failu un direktoriju atribūtus
+- salīdzināt failu un direktoriju datumu/laiku un atribūtus
+- datuma/laika opcijas ļauj iegūt vērtības no pašreizējā un faila datuma/laika
+  vienlaikus ar precīziem skaitļiem
+- sarežģīta datuma/laika salīdzināšana ar pašreizējo datumu/laiku, tāpat arī
+  ar failu
+- datums/laiks formātos, kas atbilst COUNTRY iestatījumiem
+- atļauti UNC un NetWare ceļi
+- vairāki mērķi vienā komandrindā
+- paplašinātas aizstājējzīmes: nosaukumi var saturēt jebkuru skaitu '*',
+  kā arī '?';
+  "vārds" nozīmē "vārds.", bet "*" nozīmē "*.*"
+- opcijas rakstzīmes ('/' vai '-') automātiskā noteikšana
+- opcija iekļaut direktoriju nosaukumus aizstājējzīmju meklēšanā
+- opcija apstrādāt failus un direktorijus visās mērķa apakšdirektorijās
+- opcija apstrādāt failu ar mērķu sarakstu; izlaists arguments nozīmē
+  standarta ievadi (stdin)
+
+
+2. Kļūdu līmeņi (Errorlevels)
+-----------------------------
+
+0   - datuma/laika un atribūtu iestatīšana vai salīdzināšana veiksmīga
+1   - salīdzināšana (viena no tām) neveiksmīga
+2   - kļūda piekļūstot failam vai iestatot faila datumu/laiku/atribūtus
+128 - nederīga vai dublēta opcija
+129 - nesaderīgas opcijas, nav mērķu vai nederīgi argumenti
+130 - iekšējā kļūda (nepietiek atmiņas vai pārāk dziļa direktorija)
+
+
+3. Darāmo darbu saraksts (Todo)
+------------------------------
+
+- rādīt apstrādāto failu sarakstus
+- salīdzināt/kopēt datumu/laiku/atribūtus starp failiem
+- datuma/laika lauku palielināšana/samazināšana
+- atribūtu salīdzināšana (lielāks/mazāks)
+
+
+4. Vēsture
+----------
+
+	1.0 [16.02.98]
++ Pirmais izdevums
+
+	1.1 [19.02.98]
++ Tagad pieņem datumu/laiku formātos, kas atbilst COUNTRY iestatījumiem
+
+	1.2 [21.02.98]
+* Nedaudz uzlabota izlaisto lauku un argumentu interpretācija
+* Samazināts izpildāmā faila izmērs
++ Pievienota opcija -a failu un direktoriju atribūtu mainīšanai
+
+	1.3 [21.02.98]
++ Tagad pieņem vairākus mērķus vienā komandrindā
++ Opciju -a tagad var izmantot salīdzināšanā
+
+	1.4 [26.02.98]
+# Tagad izpilde neapstājas, ja tiek atrasta kļūda failam, bet turpinās
+  nākamajiem mērķiem
+# Izvade vairs netiek dublēta konsolē, ja tā ir novirzīta uz failu
+* Opcija -@ pārdēvēta par -c
++ Salīdzināšanā tagad var pārbaudīt arī direktoriju datumu/laiku
++ Tagad tiek pieņemtas aizstājējzīmes mērķiem
++ -r iespējo direktoriju apstrādi ar aizstājējzīmēm
+
+	1.41 [28.02.98]
++ Opciju rakstzīme tiek automātiski izvēlēta pēc pirmās '/' vai '-'
+  sastopamības
++ Atsevišķs opciju rakstzīmju pāris ("--" vai "//") aptur nākamo opciju
+  meklēšanu
++ Atsevišķa opcijas rakstzīme nozīmē standarta ievadi
+- Opcijas rakstzīmes pievienošana pirms nosaukuma, kas sākas ar to pašu
+  rakstzīmi, lai iespējotu šādu nosaukumu kā argumentu, tagad izraisa kļūdas
+  ziņojumu; lai nodotu patvaļīgus nosaukumus, pirms tiem ievietojiet
+  atsevišķu opciju rakstzīmju pāri
+
+	1.5 [14.03.98]
+# Kļūdu labojums: dažos apstākļos tieši nodotas pareizas dienu vērtības 30
+  un 31 tika noraidītas
+# Kļūdu labojums: mērķu nosaukumi tagad ir ar lielajiem burtiem atbilstoši
+  COUNTRY iestatījumiem
++ /s apstrādā failus un direktorijus arī visās mērķa apakšdirektorijās
+
+	2.0 [14.04.98]
+# Kļūdu labojums: pazaudēts sekunžu svarīgākais bits, lasot faila laiku
++ /@ lai apstrādātu failu ar mērķu sarakstu
+* Atsevišķa opcijas rakstzīme tagad norāda standarta ievadi tikai kā /@
+  opcijas argumentu
+* Samazināts izpildāmā faila izmērs
++ Izpildāmā faila saspiešanai izmantots DIET
+
+
+5. Autors
+---------
+					Arkady Belousov
+					E-pasts: ark@mos.ru
+
+
+
+
+
+# Language: Portuguese
+# File ending: PT
+# Codepage: 860
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Conteúdo
+--------
+
+	1. Funcionalidades
+	2. Níveis de erro (Errorlevels)
+	3. Tarefas pendentes (Todo)
+	4. Histórico
+	5. Autor
+
+
+1. Funcionalidades
+------------------
+
+- alterar data/hora de ficheiros
+- alterar atributos de ficheiros e diretórios
+- comparar data/hora e atributos de ficheiros e diretórios
+- opções de data/hora permitem obter valores da data/hora atual e do ficheiro
+  simultaneamente com números explícitos
+- comparação complexa de data/hora com a data/hora atual, tal como com o
+  ficheiro
+- data/hora em formatos que respeitam as definições de PAÍS (COUNTRY)
+- permitidos caminhos UNC e NetWare
+- múltiplos alvos numa única linha de comandos
+- caracteres universais (wildcards) estendidos: os nomes podem conter qualquer
+  número de '*', bem como '?'; "nome" significa "nome.", mas "*" significa
+  "*.*"
+- deteção automática do carácter de opção ('/' ou '-')
+- opção para incluir nomes de diretórios na pesquisa por caracteres universais
+- opção para processar ficheiros e diretórios em todos os subdiretórios do
+  alvo
+- opção para processar ficheiro com lista de alvos; a falta de argumento
+  significa entrada padrão (stdin)
+
+
+2. Níveis de erro (Errorlevels)
+-------------------------------
+
+0   - definição ou comparação de data/hora e atributos bem-sucedida
+1   - comparação (uma delas) mal-sucedida
+2   - erro no acesso ao ficheiro ou na definição de data/hora/atributos
+128 - opção inválida ou duplicada
+129 - opções incompatíveis, nenhum alvo ou argumentos inválidos
+130 - erro interno (memória insuficiente ou diretório demasiado profundo)
+
+
+3. Tarefas pendentes (Todo)
+---------------------------
+
+- mostrar listas de ficheiros processados
+- comparar/copiar data/hora/atributos de ficheiro para ficheiros
+- incremento/decremento para campos de data/hora
+- comparação de maior/menor para atributos
+
+
+4. Histórico
+------------
+
+	1.0 [16.02.98]
++ Primeira edição
+
+	1.1 [19.02.98]
++ Agora aceita data/hora em formatos que respeitam as definições de PAÍS
+  (COUNTRY)
+
+	1.2 [21.02.98]
+* Interpretação ligeiramente melhorada de campos e argumentos omitidos
+* Redução do tamanho do ficheiro executável
++ Adicionada opção -a para modificar atributos de ficheiros e diretórios
+
+	1.3 [21.02.98]
++ Agora aceita múltiplos alvos numa única linha de comandos
++ A opção -a pode agora ser usada em comparações
+
+	1.4 [26.02.98]
+# A execução não para quando é encontrado um erro num ficheiro, mas
+  continua para os próximos alvos
+# A saída não é duplicada na consola quando redirecionada para um ficheiro
+* Opção -@ renomeada para -c
++ A data/hora de diretórios também pode agora ser verificada em comparações
++ Aceites caracteres universais para os alvos
++ -r permite o processamento de diretórios por caracteres universais
+
+	1.41 [28.02.98]
++ Carácter para opções selecionado automaticamente pela primeira ocorrência
+  de '/' ou '-'
++ Um par isolado de caracteres de opção ("--" ou "//") para a procura de
+  opções seguintes
++ Carácter de opção isolado significa entrada padrão (stdin)
+- Adicionar um carácter de opção antes de um nome que comece pelo mesmo
+  carácter para ativar tal nome como argumento causa agora uma mensagem de
+  erro; para passar nomes arbitrários, insira um par isolado de caracteres
+  de opção antes
+
+	1.5 [14.03.98]
+# Correção de erro: em certas condições, valores de dia 30 e 31 passados
+  explicitamente eram rejeitados
+# Correção de erro: nomes de alvos agora em maiúsculas conforme as definições
+  de PAÍS
++ /s processa ficheiros e diretórios também em todos os subdiretórios do alvo
+
+	2.0 [14.04.98]
+# Correção de erro: perda do bit mais significativo dos segundos ao ler a
+# hora do ficheiro
++ /@ para processar ficheiro com lista de alvos
+* Carácter de opção isolado agora especifica a entrada padrão apenas como
+  argumento da opção /@
+* Redução do tamanho do ficheiro executável
++ DIET utilizado para compressão do ficheiro executável
+
+
+5. Autor
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+
+
+
+
+
+# Language: Portuguese (Brazil)
+# File ending: PB
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Conteúdo
+--------
+
+	1. Funcionalidades
+	2. Níveis de erro (Errorlevels)
+	3. Tarefas pendentes (Todo)
+	4. Histórico
+	5. Autor
+
+
+1. Funcionalidades
+------------------
+
+- alterar data/hora de arquivos
+- alterar atributos de arquivos e diretórios
+- comparar data/hora e atributos de arquivos e diretórios
+- opções de data/hora permitem obter valores da data/hora atual e do arquivo
+  simultaneamente com números explícitos
+- comparação complexa de data/hora com a data/hora atual, bem como com o
+  arquivo
+- data/hora em formatos que seguem as configurações de PAÍS (COUNTRY)
+- permitidos caminhos UNC e NetWare
+- múltiplos alvos em uma única linha de comando
+- caracteres curinga (wildcards) estendidos: nomes podem conter qualquer
+  número de '*', bem como '?'; "nome" significa "nome.", mas "*" significa
+  "*.*"
+- detecção automática do caractere de opção ('/' ou '-')
+- opção para incluir nomes de diretórios na busca por caracteres curinga
+- opção para processar arquivos e diretórios em todos os subdiretórios do
+  alvo
+- opção para processar arquivo com lista de alvos; a falta de argumento
+  significa entrada padrão (stdin)
+
+
+2. Níveis de erro (Errorlevels)
+-------------------------------
+
+0   - definição ou comparação de data/hora e atributos bem-sucedida
+1   - comparação (uma delas) mal-sucedida
+2   - erro no acesso ao arquivo ou na definição de data/hora/atributos
+128 - opção inválida ou duplicada
+129 - opções incompatíveis, nenhum alvo ou argumentos inválidos
+130 - erro interno (memória insuficiente ou diretório muito profundo)
+
+
+3. Tarefas pendentes (Todo)
+---------------------------
+
+- mostrar listas de arquivos processados
+- comparar/copiar data/hora/atributos de arquivo para arquivos
+- incremento/decremento para campos de data/hora
+- comparação de maior/menor para atributos
+
+
+4. Histórico
+------------
+
+	1.0 [16.02.98]
++ Primeira edição
+
+	1.1 [19.02.98]
++ Agora aceita data/hora em formatos que seguem as configurações de PAÍS
+  (COUNTRY)
+
+	1.2 [21.02.98]
+* Interpretação ligeiramente melhorada de campos e argumentos omitidos
+* Redução do tamanho do arquivo executável
++ Adicionada opção -a para modificar atributos de arquivos e diretórios
+
+	1.3 [21.02.98]
++ Agora aceita múltiplos alvos em uma única linha de comando
++ A opção -a pode agora ser usada em comparações
+
+	1.4 [26.02.98]
+# A execução não para quando é encontrado um erro em um arquivo, mas
+  continua para os próximos alvos
+# A saída não é duplicada no console quando redirecionada para um arquivo
+* Opção -@ renomeada para -c
++ A data/hora de diretórios também pode agora ser verificada em comparações
++ Aceitos caracteres curinga para os alvos
++ -r permite o processamento de diretórios por caracteres curinga
+
+	1.41 [28.02.98]
++ Caractere para opções selecionado automaticamente pela primeira ocorrência
+  de '/' ou '-'
++ Um par isolado de caracteres de opção ("--" ou "//") para a busca de opções
+  seguintes
++ Caractere de opção isolado significa entrada padrão (stdin)
+- Adicionar um caractere de opção antes de um nome que comece pelo mesmo
+  caractere para habilitar tal nome como argumento causa agora uma mensagem
+  de erro; para passar nomes arbitrários, insira um par isolado de caracteres
+  de opção antes
+
+	1.5 [14.03.98]
+# Correção de erro: em certas condições, valores de dia 30 e 31 passados
+  explicitamente eram rejeitados
+# Correção de erro: nomes de alvos agora em maiúsculas conforme as
+# configurações de PAÍS
++ /s processa arquivos e diretórios também em todos os subdiretórios do alvo
+
+	2.0 [14.04.98]
+# Correção de erro: perda do bit mais significativo dos segundos ao ler a
+# hora do arquivo
++ /@ para processar arquivo com lista de alvos
+* Caractere de opção isolado agora especifica a entrada padrão apenas como
+  argumento da opção /@
+* Redução do tamanho do arquivo executável
++ DIET utilizado para compressão do arquivo executável
+
+
+5. Autor
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+
+
+
+
+
+# Language: Esperanto
+# File ending: EO
+# Codepage: 853
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Enhavo
+------
+
+	1. Trajtoj
+	2. Erarostatoj (Errorlevels)
+	3. Farendaĵoj (Todo)
+	4. Historio
+	5. Aŭtoro
+
+
+1. Trajtoj
+----------
+
+- ŝanĝi daton/horon por dosieroj
+- ŝanĝi atributojn por dosieroj kaj dosierujoj
+- kompari daton/horon kaj atributojn por dosieroj kaj dosierujoj
+- dato/horo-opcioj permesas ricevi valorojn el la nuna kaj dosiera dato/horo
+  samtempe kun eksplicitaj nombroj
+- kompleksa dato/horo-komparo kun nuna dato/horo, same kun dosiero
+- dato/horo en formatoj, kiuj konformas al la agordoj de LANDO (COUNTRY)
+- UNC kaj NetWare vojoj estas permesitaj
+- pluraj celoj en unu komandlinio
+- etenditaj dezirosignoj (wildcards): nomoj povas enhavi ajnan nombron da
+  '*', ankaŭ kiel '?';
+  "nomo" signifas "nomo.", sed "*" signifas "*.*"
+- aŭtomata detekto de opcia signo ('/' aŭ '-')
+- opcio inkluzivi dosierujnomojn en dezirosigna serĉo
+- opcio prilabori dosierojn kaj dosierujojn en ĉiuj subdosierujoj de la celo
+- opcio prilabori dosieron kun listo de celoj; mankanta argumento signifas
+  norman enigon (stdin)
+
+
+2. Erarostatoj (Errorlevels)
+----------------------------
+
+0   - agordo aŭ komparo de dato/horo kaj atributoj sukcesis
+1   - komparo (unu el ili) malsukcesis
+2   - eraro dum dosiera aliro aŭ agordo de dato/horo/atributoj
+128 - nevalida aŭ duobligita opcio
+129 - malkongruaj opcioj, neniuj celoj aŭ nevalidaj argumentoj
+130 - interna eraro (ne sufiĉe da memoro aŭ tro profunda dosierujo)
+
+
+3. Farendaĵoj (Todo)
+--------------------
+
+- montri listojn de prilaboritaj dosieroj
+- kompari/kopii daton/horon/atributojn de dosiero al dosieroj
+- pliigo/malpliigo por dato/horo-kampoj
+- pli-ol/malpli-ol komparo por atributoj
+
+
+4. Historio
+-----------
+
+	1.0 [16.02.98]
++ Unua eldono
+
+	1.1 [19.02.98]
++ Nun akceptas daton/horon en formatoj, kiuj konformas al la agordoj de
+  LANDO (COUNTRY)
+
+	1.2 [21.02.98]
+* Iomete plibonigita interpreto de ellasitaj kampoj kaj argumentoj
+* Reduktita grandeco de la plenumebla dosiero
++ Aldonita -a opcio por modifi atributojn de dosieroj kaj dosierujoj
+
+	1.3 [21.02.98]
++ Nun akceptas plurajn celojn en unu komandlinio
++ -a opcio nun povas esti uzata en komparo
+
+	1.4 [26.02.98]
+# Plenumo ne ĉesas kiam eraro por dosiero estas trovita, sed daŭras por
+# venontaj celoj
+# Eligo nun ne estas duobligita al la konzolo kiam ĝi estas redirektita al
+  dosiero
+* -@ opcio renomita al -c
++ Dato/horo de dosierujoj nun ankaŭ povas esti kontrolita en komparo
++ Nun dezirosignoj por celoj estas akceptataj
++ -r ebligas dosierujan prilaboron per dezirosignoj
+
+	1.41 [28.02.98]
++ Signo por opcioj estas aŭtomate elektita laŭ la unua apero de '/' aŭ '-'
++ Sola paro da opciaj signoj ("--" aŭ "//") ĉesigas serĉon de pliaj opcioj
++ Sola opcia signo signifas norman enigon (stdin)
+- Aldono de opcia signo antaŭ nomo, kiu komenciĝas per la sama signo por
+  ebligi tian nomon kiel argumenton nun kaŭzas erarmesaĝon; por pasi
+  arbitrajn nomojn enmetu solan paron da opciaj signoj antaŭe
+
+	1.5 [14.03.98]
+# Erarriparo: por iuj kondiĉoj eksplicite pasigitaj ĝustaj tagvaloroj 30
+  kaj 31 estis malakceptitaj
+# Erarriparo: celnomoj nun estas majuskligitaj laŭ la agordoj de LANDO
++ /s prilaboras dosierojn kaj dosierujojn ankaŭ en ĉiuj subdosierujoj de
+  la celo
+
+	2.0 [14.04.98]
+# Erarriparo: perdita la plej signifa bito de sekundoj kiam oni legas
+# dosieran horon
++ /@ por prilabori dosieron kun listo de celoj
+* Sola opcia signo nun specifas norman enigon nur kiel argumento por /@ opcio
+* Reduktita grandeco de la plenumebla dosiero
++ DIET uzata por kunpremi la plenumeblan dosieron
+
+
+5. Aŭtoro
+---------
+					Arkady Belousov
+					Retpoŝto: ark@mos.ru
+
+
+
+
+
+# Language: Czech
+# File ending: CZ
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Obsah
+-----
+
+	1. Funkce
+	2. Chybové úrovně (Errorlevels)
+	3. Úkoly (Todo)
+	4. Historie
+	5. Autor
+
+
+1. Funkce
+---------
+
+- změna data a času souborů
+- změna atributů souborů a adresářů
+- porovnání data/času a atributů souborů a adresářů
+- volby data/času umožňují získat hodnoty z aktuálního data/času a data/času
+  souboru současně s explicitními čísly
+- složité porovnání data/času s aktuálním datem/časem, stejně tak se souborem
+- datum/čas ve formátech, které odpovídají nastavení COUNTRY
+- povoleny cesty UNC a NetWare
+- více cílů v jednom příkazovém řádku
+- rozšířené zástupné znaky (wildcards): názvy mohou obsahovat libovolný počet
+  '*',
+  stejně jako '?'; "název" znamená "název.", ale "*" znamená "*.*"
+- automatická detekce znaku volby ('/' nebo '-')
+- volba pro zahrnutí názvů adresářů do vyhledávání pomocí zástupných znaků
+- volba pro zpracování souborů a adresářů ve všech podadresářích cíle
+- volba pro zpracování souboru se seznamem cílů; chybějící argument znamená
+  standardní vstup (stdin)
+
+
+2. Chybové úrovně (Errorlevels)
+------------------------------
+
+0   - nastavení nebo porovnání data/času a atributů bylo úspěšné
+1   - porovnání (jedno z nich) je neúspěšné
+2   - chyba přístupu k souboru nebo nastavení data/času/atributů souboru
+128 - neplatná nebo duplicitní volba
+129 - nekompatibilní volby, žádné cíle nebo neplatné argumenty
+130 - interní chyba (nedostatek paměti nebo příliš hluboký adresář)
+
+
+3. Úkoly (Todo)
+---------------
+
+- zobrazit seznamy zpracovaných souborů
+- porovnat/kopírovat datum/čas/atributy mezi soubory
+- inkrementace/dekrementace polí data/času
+- porovnání atributů (větší/menší)
+
+
+4. Historie
+-----------
+
+	1.0 [16.02.98]
++ První vydání
+
+	1.1 [19.02.98]
++ Nyní přijímá datum/čas ve formátech, které odpovídají nastavení COUNTRY
+
+	1.2 [21.02.98]
+* Mírně vylepšená interpretace vynechaných polí a argumentů
+* Zmenšena velikost spustitelného souboru
++ Přidána volba -a pro úpravu atributů souborů a adresářů
+
+	1.3 [21.02.98]
++ Nyní přijímá více cílů v jednom příkazovém řádku
++ Volba -a nyní může být použita při porovnávání
+
+	1.4 [26.02.98]
+# Provádění se nyní nezastaví při nalezení chyby u souboru, ale pokračuje
+  u dalších cílů
+# Výstup se nyní neduplikuje na konzoli, pokud je přesměrován do souboru
+* Volba -@ přejmenována na -c
++ Datum/čas adresářů lze nyní také kontrolovat při porovnávání
++ Nyní jsou přijímány zástupné znaky pro cíle
++ -r umožňuje zpracování adresářů pomocí zástupných znaků
+
+	1.41 [28.02.98]
++ Znak pro volby se automaticky vybere podle prvního výskytu '/' nebo '-'
++ Samostatná dvojice znaků voleb ("--" nebo "//") zastaví hledání dalších
+  voleb
++ Samostatný znak volby znamená standardní vstup
+- Přidání znaku volby před název začínající stejným znakem pro umožnění
+  takového názvu jako argumentu nyní způsobí chybovou zprávu; pro předání
+  libovolných názvů vložte před ně samostatnou dvojici znaků voleb
+
+	1.5 [14.03.98]
+# Oprava chyby: za určitých podmínek byly odmítnuty explicitně předané správné
+  hodnoty dne 30 a 31
+# Oprava chyby: názvy cílů jsou nyní převedeny na velká písmena podle
+# nastavení COUNTRY
++ /s zpracovává soubory a adresáře také ve všech podadresářích cíle
+
+	2.0 [14.04.98]
+# Oprava chyby: ztracen nejvýznamnější bit sekund při čtení času souboru
++ /@ pro zpracování souboru se seznamem cílů
+* Samostatný znak volby nyní určuje standardní vstup pouze jako argument
+  volby /@
+* Zmenšena velikost spustitelného souboru
++ Pro zmenšení spustitelného souboru použit DIET
+
+
+5. Autor
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+
+
+
+
+
+# Language: Hungarian
+# File ending: HU
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Tartalom
+--------
+
+	1. Funkciók
+	2. Hibaszintek (Errorlevels)
+	3. Teendők (Todo)
+	4. Előzmények
+	5. Szerző
+
+
+1. Funkciók
+-----------
+
+- fájlok dátumának/időpontjának módosítása
+- fájlok és könyvtárak attribútumainak módosítása
+- fájlok és könyvtárak dátumának/időpontjának és attribútumainak
+  összehasonlítása
+- a dátum/idő opciók lehetővé teszik az értékek átvételét a jelenlegi és
+  a fájl
+  dátumából/időpontjából egyidejűleg, explicit számokkal
+- összetett dátum/idő összehasonlítás a jelenlegi idővel, ugyanígy a fájllal
+- dátum/idő formátumok, amelyek megfelelnek a COUNTRY (ország) beállításoknak
+- UNC és NetWare útvonalak engedélyezettek
+- több célpont egyetlen parancssorban
+- kiterjesztett helyettesítő karakterek: a nevek tetszőleges számú '*'
+  karaktert
+  tartalmazhatnak, valamint '?' karaktert is; a "név" jelentése "név.",
+  de a "*" jelentése "*.*"
+- az opció karakter ('/' vagy '-') automatikus felismerése
+- opció a könyvtárnevek bevonására a helyettesítő karakteres keresésbe
+- opció a fájlok és könyvtárak feldolgozására a célpont összes alkönyvtárában
+- opció fájl feldolgozására célpontok listájával; a hiányzó argumentum a
+  szabványos bemenetet (stdin) jelenti
+
+
+2. Hibaszintek (Errorlevels)
+----------------------------
+
+0   - a dátum/idő és attribútumok beállítása vagy összehasonlítása sikeres
+1   - az összehasonlítás (legalább egy) sikertelen
+2   - hiba a fájl elérésekor vagy a fájl dátumának/időpontjának/
+      attribútumainak beállításakor
+128 - érvénytelen vagy duplikált opció
+129 - inkompatibilis opciók, nincsenek célpontok vagy érvénytelen
+      argumentumok
+130 - belső hiba (nincs elég memória vagy túl mély könyvtárstruktúra)
+
+
+3. Teendők (Todo)
+-----------------
+
+- a feldolgozott fájlok listájának megjelenítése
+- dátum/idő/attribútumok összehasonlítása/másolása fájlok között
+- növelés/csökkentés dátum/idő mezőkhöz
+- kisebb/nagyobb összehasonlítás attribútumokhoz
+
+
+4. Előzmények
+-------------
+
+	1.0 [16.02.98]
++ Első kiadás
+
+	1.1 [19.02.98]
++ Most már elfogadja a dátumot/időt a COUNTRY beállításoknak megfelelő
+  formátumokban
+
+	1.2 [21.02.98]
+* Kicsit javított értelmezés az elhagyott mezőknél és argumentumoknál
+* Csökkentett végrehajtható fájlméret
++ -a opció hozzáadva a fájlok és könyvtárak attribútumainak módosításához
+
+	1.3 [21.02.98]
++ Most már több célpontot is elfogad egyetlen parancssorban
++ Az -a opció most már használható összehasonlításban is
+
+	1.4 [26.02.98]
+# A végrehajtás most már nem áll le, ha hibát talál egy fájlnál, hanem
+# folytatódik a következő célpontokkal
+# A kimenet most már nem duplikálódik a konzolra, ha fájlba van irányítva
+* Az -@ opció átnevezve -c-re
++ A könyvtárak dátuma/időpontja most már szintén ellenőrizhető az
+  összehasonlításban
++ Most már elfogad helyettesítő karaktereket a célpontokhoz
++ Az -r engedélyezi a könyvtárak feldolgozását helyettesítő karakterekkel
+
+	1.41 [28.02.98]
++ Az opciók karaktere automatikusan választódik ki az első '/' vagy '-'
+  előfordulás alapján
++ Egy magányos opciókarakter-pár ("--" vagy "//") leállítja a további
+  opciók keresését
++ Egy magányos opciókarakter a szabványos bemenetet jelenti
+- Opciókarakter hozzáadása egy olyan név elé, amely ugyanazzal a karakterrel
+  kezdődik (hogy a nevet argumentumként engedélyezze), most már hibaüzenetet
+  vált ki; tetszőleges nevek átadásához illesszen elé egy magányos
+  opciókarakter-párt
+
+	1.5 [14.03.98]
+# Hibajavítás: bizonyos körülmények között a pontosan átadott 30 és 31
+# napértékeket elutasította a program
+# Hibajavítás: a célpontnevek most már nagybetűsek a COUNTRY beállításoknak
+# megfelelően
++ /s feldolgozza a fájlokat és könyvtárakat a célpont összes alkönyvtárában
+  is
+
+	2.0 [14.04.98]
+# Hibajavítás: elveszett a másodpercek legértékesebb bitje a fájl
+# időpontjának olvasásakor
++ /@ fájl feldolgozásához célpontok listájával
+* A magányos opciókarakter most már csak a /@ opció argumentumaként
+  határozza meg a szabványos bemenetet
+* Csökkentett végrehajtható fájlméret
++ DIET használatával tömörített végrehajtható fájl
+
+
+5. Szerző
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+
+
+
+
+
+# Language: Polish
+# File ending: PL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Spis treści
+------------
+
+	1. Możliwości
+	2. Poziomy błędów (Errorlevels)
+	3. Do zrobienia (Todo)
+	4. Historia
+	5. Autor
+
+
+1. Możliwości
+-------------
+
+- zmiana daty/godziny plików
+- zmiana atrybutów plików i katalogów
+- porównywanie daty/godziny oraz atrybutów plików i katalogów
+- opcje daty/godziny pozwalają pobierać wartości z aktualnej daty/godziny
+  oraz
+  daty/godziny pliku jednocześnie z jawnymi liczbami
+- złożone porównywanie daty/godziny z aktualną datą/godziną, jak również z
+  plikiem
+- data/godzina w formatach zgodnych z ustawieniami KRAJU (COUNTRY)
+- dozwolone ścieżki UNC i NetWare
+- wiele celów w jednym wierszu poleceń
+- rozszerzone symbole wieloznaczne (wildcards): nazwy mogą zawierać dowolną
+  liczbę '*',
+  a także '?'; "nazwa" oznacza "nazwa.", ale "*" oznacza "*.*"
+- automatyczne wykrywanie znaku opcji ('/' lub '-')
+- opcja uwzględniania nazw katalogów w wyszukiwaniu za pomocą symboli
+  wieloznacznych
+- opcja przetwarzania plików i katalogów we wszystkich podkatalogach celu
+- opcja przetwarzania pliku z listą celów; brak argumentu oznacza
+  standardowe wejście (stdin)
+
+
+2. Poziomy błędów (Errorlevels)
+-------------------------------
+
+0   - ustawienie lub porównanie daty/godziny i atrybutów powiodło się
+1   - porównanie (jedno z nich) nie powiodło się
+2   - błąd dostępu do pliku lub ustawienia daty/godziny/atrybutów pliku
+128 - nieprawidłowa lub powielona opcja
+129 - niezgodne opcje, brak celów lub nieprawidłowe argumenty
+130 - błąd wewnętrzny (brak pamięci lub zbyt głęboka struktura katalogów)
+
+
+3. Do zrobienia (Todo)
+----------------------
+
+- wyświetlanie list przetworzonych plików
+- porównywanie/kopiowanie daty/godziny/atrybutów między plikami
+- zwiększanie/zmniejszanie pól daty/godziny
+- porównywanie atrybutów (większy/mniejszy)
+
+
+4. Historia
+-----------
+
+	1.0 [16.02.98]
++ Pierwsze wydanie
+
+	1.1 [19.02.98]
++ Teraz akceptuje datę/godzinę w formatach zgodnych z ustawieniami KRAJU
+  (COUNTRY)
+
+	1.2 [21.02.98]
+* Nieco ulepszona interpretacja pominiętych pól i argumentów
+* Zmniejszony rozmiar pliku wykonywalnego
++ Dodano opcję -a do modyfikacji atrybutów plików i katalogów
+
+	1.3 [21.02.98]
++ Teraz akceptuje wiele celów w jednym wierszu poleceń
++ Opcja -a może być teraz używana w porównaniach
+
+	1.4 [26.02.98]
+# Wykonywanie nie zatrzymuje się po znalezieniu błędu dla pliku, ale jest
+  kontynuowane dla następnych celów
+# Dane wyjściowe nie są duplikowane na konsoli, gdy są przekierowane do pliku
+* Opcja -@ zmieniona na -c
++ Data/godzina katalogów może być teraz również sprawdzana w porównaniach
++ Teraz akceptowane są symbole wieloznaczne dla celów
++ -r umożliwia przetwarzanie katalogów za pomocą symboli wieloznacznych
+
+	1.41 [28.02.98]
++ Znak opcji wybierany automatycznie przy pierwszym wystąpieniu '/' lub '-'
++ Pojedyncza para znaków opcji ("--" lub "//") zatrzymuje dalsze wyszukiwanie
+  opcji
++ Samodzielny znak opcji oznacza standardowe wejście
+- Dodanie znaku opcji przed nazwą zaczynającą się od tego samego znaku, aby
+  umożliwić taką nazwę jako argument, powoduje teraz komunikat o błędzie;
+  aby przekazać dowolne nazwy, wstaw wcześniej pojedynczą parę znaków opcji
+
+	1.5 [14.03.98]
+# Poprawka: w niektórych warunkach jawnie przekazane poprawne wartości dni 30
+# i 31 były odrzucane
+# Poprawka: nazwy celów są teraz pisane wielkimi literami zgodnie z
+# ustawieniami KRAJU
++ /s przetwarza pliki i katalogi również we wszystkich podkatalogach celu
+
+	2.0 [14.04.98]
+# Poprawka: utracony najstarszy bit sekund podczas odczytu czasu pliku
++ /@ do przetwarzania pliku z listą celów
+* Samodzielny znak opcji określa teraz standardowe wejście tylko jako
+  argument opcji /@
+* Zmniejszony rozmiar pliku wykonywalnego
++ Do zmniejszenia rozmiaru pliku wykonywalnego użyto DIET
+
+
+5. Autor
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+
+
+
+
+
+# Language: Slovenian
+# File ending: SL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Vsebina
+-------
+
+	1. Funkcije
+	2. Nivoji napak (Errorlevels)
+	3. Seznam opravil (Todo)
+	4. Zgodovina
+	5. Avtor
+
+
+1. Funkcije
+-----------
+
+- spreminjanje datuma/časa za datoteke
+- spreminjanje atributov za datoteke in direktorije
+- primerjava datuma/časa in atributov za datoteke in direktorije
+- možnosti datuma/časa omogočajo istočasno pridobivanje vrednosti iz
+  trenutnega
+  in datotečnega datuma/časa z eksplicitnimi številkami
+- kompleksna primerjava datuma/časa s trenutnim datumom/časom, prav tako
+  z datoteko
+- datum/čas v oblikah, ki ustrezajo nastavitvam COUNTRY
+- dovoljene poti UNC in NetWare
+- več ciljev v eni ukazni vrstici
+- razširjeni nadomestni znaki (wildcards): imena lahko vsebujejo poljubno
+  število '*',
+  tudi kot '?'; "ime" pomeni "ime.", medtem ko "*" pomeni "*.*"
+- samodejno zaznavanje znaka za možnosti ('/' ali '-')
+- možnost vključitve imen direktorijev v iskanje z nadomestnimi znaki
+- možnost obdelave datotek in direktorijev v vseh poddirektorijih cilja
+- možnost obdelave datoteke s seznamom ciljev; manjkajoči argument pomeni
+  standardni vhod (stdin)
+
+
+2. Nivoji napak (Errorlevels)
+-----------------------------
+
+0   - nastavitev ali primerjava datuma/časa in atributov uspešna
+1   - primerjava (ena od njih) neuspešna
+2   - napaka pri dostopu do datoteke ali nastavitvi datuma/časa/atributov
+      datoteke
+128 - neveljavna ali podvojena možnost
+129 - nezdružljive možnosti, ni ciljev ali neveljavni argumenti
+130 - notranja napaka (ni dovolj pomnilnika ali preglobok direktorij)
+
+
+3. Seznam opravil (Todo)
+-----------------------
+
+- prikaz seznamov obdelanih datotek
+- primerjava/kopiranje datuma/časa/atributov med datotekami
+- povečanje/zmanjšanje za polja datuma/časa
+- primerjava večje/manjše za atribute
+
+
+4. Zgodovina
+------------
+
+	1.0 [16.02.98]
++ Prva izdaja
+
+	1.1 [19.02.98]
++ Zdaj sprejema datum/čas v oblikah, ki ustrezajo nastavitvam COUNTRY
+
+	1.2 [21.02.98]
+* Nekoliko izboljšana interpretacija izpuščenih polj in argumentov
+* Zmanjšana velikost izvršljive datoteke
++ Dodana možnost -a za spreminjanje atributov datotek in direktorijev
+
+	1.3 [21.02.98]
++ Zdaj sprejema več ciljev v eni ukazni vrstici
++ Možnost -a se zdaj lahko uporablja v primerjavi
+
+	1.4 [26.02.98]
+# Izvajanje se zdaj ne ustavi, ko je najdena napaka pri datoteki, temveč se
+  nadaljuje za naslednje cilje
+# Izhod se zdaj ne podvaja na konzoli, ko je preusmerjen v datoteko
+* Možnost -@ preimenovana v -c
++ Datum/čas direktorijev se zdaj lahko preveri tudi v primerjavi
++ Zdaj so sprejeti nadomestni znaki za cilje
++ -r omogoča obdelavo direktorijev z nadomestnimi znaki
+
+	1.41 [28.02.98]
++ Znak za možnosti se samodejno izbere ob prvem pojavu '/' ali '-'
++ Samostojen par znakov za možnosti ("--" ali "//") ustavi iskanje
+  naslednjih možnosti
++ Samostojen znak za možnosti pomeni standardni vhod
+- Dodajanje znaka za možnosti pred ime, ki se začne z istim znakom, da se
+  omogoči takšno ime kot argument, zdaj povzroči napako; za podajanje
+  poljubnih imen pred njih vstavite samostojen par znakov za možnosti
+
+	1.5 [14.03.98]
+# Popravek napake: pod določenimi pogoji so bile eksplicitno podane pravilne
+  vrednosti dneva 30 in 31 zavrnjene
+# Popravek napake: imena ciljev so zdaj z velikimi začetnicami glede na
+# nastavitve COUNTRY
++ /s obdeluje datoteke in direktorije tudi v vseh poddirektorijih cilja
+
+	2.0 [14.04.98]
+# Popravek napake: izgubljen najpomembnejši bit sekund pri branju časa
+# datoteke
++ /@ za obdelavo datoteke s seznamom ciljev
+* Samostojen znak za možnosti zdaj določa standardni vhod le kot argument
+  možnosti /@
+* Zmanjšana velikost izvršljive datoteke
++ DIET uporabljen za stiskanje izvršljive datoteke
+
+
+5. Avtor
+---------
+					Arkady Belousov
+					E-pošta: ark@mos.ru
+
+
+
+
+
+# Language: Slovak
+# File ending: SK
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Obsah
+-----
+
+	1. Funkcie
+	2. Chybové úrovne (Errorlevels)
+	3. Úlohy (Todo)
+	4. História
+	5. Autor
+
+
+1. Funkcie
+----------
+
+- zmena dátumu/času súborov
+- zmena atribútov súborov a adresárov
+- porovnanie dátumu/času a atribútov súborov a adresárov
+- voľby dátumu/času umožňujú získať hodnoty z aktuálneho a súborového
+  dátumu/času súčasne s explicitnými číslami
+- komplexné porovnanie dátumu/času s aktuálnym dátumom/časom, rovnako so
+  súborom
+- dátum/čas vo formátoch, ktoré zodpovedajú nastaveniam COUNTRY
+- povolené cesty UNC a NetWare
+- viacero cieľov v jednom príkazovom riadku
+- rozšírené zástupné znaky (wildcards): názvy môžu obsahovať ľubovoľný
+  počet '*',
+  aj ako '?'; "názov" znamená "názov.", ale "*" znamená "*.*"
+- automatická detekcia znaku voľby ('/' ali '-')
+- voľba na zahrnutie názvov adresárov do vyhľadávania pomocou zástupných
+  znakov
+- voľba na spracovanie súborov a adresárov vo všetkých podadresároch cieľa
+- voľba na spracovanie súboru so zoznamom cieľov; chýbajúci argument znamená
+  štandardný vstup (stdin)
+
+
+2. Chybové úrovne (Errorlevels)
+------------------------------
+
+0   - nastavenie alebo porovnanie dátumu/času a atribútov úspešné
+1   - porovnanie (jedno z nich) je neúspešné
+2   - chyba prístupu k súboru alebo nastavenia dátumu/času/atribútov súboru
+128 - neplatná alebo duplicitná voľba
+129 - nekompatibilné voľby, žiadne ciele alebo neplatné argumenty
+130 - interná chyba (nedostatok pamäte alebo príliš hlboký adresár)
+
+
+3. Úlohy (Todo)
+---------------
+
+- zobraziť zoznamy spracovaných súborov
+- porovnať/kopírovať dátum/čas/atribúty medzi súbormi
+- inkrementácia/dekrementácia polí dátumu/času
+- porovnanie atribútov (väčší/menší)
+
+
+4. História
+-----------
+
+	1.0 [16.02.98]
++ Prvé vydanie
+
+	1.1 [19.02.98]
++ Teraz prijíma dátum/čas vo formátoch, ktoré zodpovedajú nastaveniam
+  COUNTRY
+
+	1.2 [21.02.98]
+* Mierne vylepšená interpretácia vynechaných polí a argumentov
+* Zmenšená veľkosť spustiteľného súboru
++ Pridaná voľba -a na úpravu atribútov súborov a adresárov
+
+	1.3 [21.02.98]
++ Teraz prijíma viacero cieľov v jednom príkazovom riadku
++ Voľba -a sa teraz môže použiť pri porovnávaní
+
+	1.4 [26.02.98]
+# Vykonávanie sa teraz nezastaví pri nájdení chyby u súboru, ale pokračuje
+  u ďalších cieľov
+# Výstup sa teraz neduplikuje na konzole, ak je presmerovaný do súboru
+* Voľba -@ premenovaná na -c
++ Dátum/čas adresárov sa teraz môže kontrolovať aj pri porovnávaní
++ Teraz sú prijímané zástupné znaky pre ciele
++ -r umožňuje spracovanie adresárov pomocou zástupných znakov
+
+	1.41 [28.02.98]
++ Znak pre voľby sa automaticky vyberie podľa prvého výskytu '/' alebo '-'
++ Samostatná dvojica znakov volieb ("--" alebo "//") zastaví hľadanie
+  ďalších volieb
++ Samostatný znak voľby znamená štandardný vstup
+- Pridanie znaku voľby pred názov začínajúci rovnakým znakom na umožnenie
+  takého názvu ako argumentu teraz spôsobí chybovú správu; na odovzdanie
+  ľubovoľných názvov vložte pred ne samostatnú dvojicu znakov volieb
+
+	1.5 [14.03.98]
+# Oprava chyby: za určitých podmienok boli explicitne odovzdané správne
+  hodnoty dňa 30 a 31 odmietnuté
+# Oprava chyby: názvy cieľov sú teraz veľkými písmenami podľa nastavení
+# COUNTRY
++ /s spracováva súbory a adresáre aj vo všetkých podadresároch cieľa
+
+	2.0 [14.04.98]
+# Oprava chyby: stratený najvýznamnejší bit sekúnd pri čítaní času súboru
++ /@ na spracovanie súboru so zoznamom cieľov
+* Samostatný znak voľby teraz určuje štandardný vstup iba ako argument
+  voľby /@
+* Zmenšená veľkosť spustiteľného súboru
++ Pre zmenšenie spustiteľného súboru použitý DIET
+
+
+5. Autor
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+
+
+
+
+
+# Language: Norwegian
+# File ending: NO
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Innhold
+-------
+
+	1. Funksjoner
+	2. Feilnivåer (Errorlevels)
+	3. Oppgaver (Todo)
+	4. Historie
+	5. Forfatter
+
+
+1. Funksjoner
+-------------
+
+- endre dato/klokkeslett for filer
+- endre attributter for filer og mapper
+- sammenligne dato/klokkeslett og attributter for filer og mapper
+- dato/tid-alternativer lar deg hente verdier fra nåværende og filens
+  dato/tid samtidig med eksplisitte tall
+- kompleks sammenligning av dato/tid med nåværende dato/tid, på samme måte
+  med fil
+- dato/tid i formater som samsvarer med LAND (COUNTRY) innstillinger
+- UNC- og NetWare-baner er tillatt
+- flere mål i én kommandolinje
+- utvidede jokertegn (wildcards): navn kan inneholde et ubegrenset antall
+  '*', også som '?'; "navn" betyr "navn.", mens "*" betyr "*.*"
+- automatisk gjenkjenning av alternativtegn ('/' eller '-')
+- alternativ for å inkludere mappenavn i søk med jokertegn
+- alternativ for å behandle filer og mapper i alle undermapper av målet
+- alternativ for å behandle fil med liste over mål; manglende argument betyr
+  standard inndata (stdin)
+
+
+2. Feilnivåer (Errorlevels)
+---------------------------
+
+0   - innstilling eller sammenligning av dato/tid og attributter var vellykket
+1   - sammenligning (en av dem) er mislykket
+2   - feil ved filtilgang eller innstilling av fildato/tid/attributter
+128 - ugyldig eller duplisert alternativ
+129 - inkompatible alternativer, ingen mål eller ugyldige argumenter
+130 - intern feil (ikke nok minne eller for dyp mappestruktur)
+
+
+3. Oppgaver (Todo)
+------------------
+
+- vis lister over behandlede filer
+- sammenlign/kopier dato/tid/attributter fra fil-til-filer
+- inkrement/dekrement for dato/tid-felt
+- større enn/mindre enn sammenligning for attributter
+
+
+4. Historie
+-----------
+
+	1.0 [16.02.98]
++ Første utgave
+
+	1.1 [19.02.98]
++ Godtar nå dato/tid i formater som samsvarer med LAND (COUNTRY)
+  innstillinger
+
+	1.2 [21.02.98]
+* Litt forbedret tolkning av utelatte felt og argumenter
+* Redusert størrelse på kjørbar fil
++ Lagt til -a alternativ for å endre attributter for filer og mapper
+
+	1.3 [21.02.98]
++ Godtar nå flere mål i én kommandolinje
++ -a alternativet kan nå brukes i sammenligninger
+
+	1.4 [26.02.98]
+# Utførelsen stopper nå ikke når det finnes en feil for en fil, men
+  fortsetter for neste mål
+# Utdata blir nå ikke duplisert til konsollen når de omdirigeres til fil
+* -@ alternativet omdøpt til -c
++ Dato/tid for mapper kan nå også sjekkes i sammenligninger
++ Jokertegn for mål godtas nå
++ -r aktiverer mappebehandling med jokertegn
+
+	1.41 [28.02.98]
++ Tegn for alternativer velges automatisk ved første forekomst av '/'
+  eller '-'
++ Et enslig par med alternativtegn ("--" or "//") stopper søk etter neste
+  alternativer
++ Et enslig alternativtegn betyr standard inndata (stdin)
+- Å legge til et alternativtegn foran et navn som starter med samme tegn
+  for å aktivere et slikt navn som argument fører nå til en feilmelding;
+  for å sende vilkårlige navn sett inn et enslig par med alternativtegn
+  foran
+
+	1.5 [14.03.98]
+# Feilretting: Under visse forhold ble eksplisitt angitte korrekte
+  dagsverdier 30 og 31 avvist
+# Feilretting: Målnavn er nå i store bokstaver i samsvar med LAND-
+# innstillinger
++ /s behandler filer og mapper også i alle undermapper av målet
+
+	2.0 [14.04.98]
+# Feilretting: Mistet den mest signifikante biten av sekunder ved lesing
+# av filtid
++ /@ for å behandle fil med liste over mål
+* Et enslig alternativtegn spesifiserer nå standard inndata kun som argument
+# for /@
+* Redusert størrelse på kjørbar fil
++ DIET brukt til komprimering av kjørbar fil
+
+
+5. Forfatter
+------------
+					Arkady Belousov
+					E-post: ark@mos.ru
+
+
+
+
+
+14. Finnisch (FI)
+
+
+# Language: Finnish
+# File ending: FI
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Sisältö
+-------
+
+	1. Ominaisuudet
+	2. Virhetasot (Errorlevels)
+	3. Tehtävälista (Todo)
+	4. Historia
+	5. Tekijä
+
+
+1. Ominaisuudet
+---------------
+
+- muuta tiedostojen päivämäärää/aikaa
+- muuta tiedostojen ja hakemistojen attribuutteja
+- vertaa tiedostojen ja hakemistojen päivämäärää/aikaa sekä attribuutteja
+- päivämäärä/aika-asetukset mahdollistavat arvojen ottamisen nykyisestä ja
+  tiedoston päivämäärästä/ajasta samanaikaisesti eksplisiittisillä numeroilla
+- monimutkainen päivämäärän/ajan vertailu nykyiseen aikaan, samoin tiedostoon
+- päivämäärä/aika muodoissa, jotka vastaavat COUNTRY-asetuksia
+- UNC- ja NetWare-polut sallittu
+- useita kohteita yhdellä komentorivillä
+- laajennetut jokerimerkit (wildcards): nimet voivat sisältää minkä tahansa
+  määrän '*'-merkkejä, myös '?'-merkkejä; "nimi" tarkoittaa "nimi.", mutta
+  "*" tarkoittaa "*.*"
+- optio-merkin ('/' tai '-') automaattinen tunnistus
+- optio hakemistonimien sisällyttämiseksi jokerimerkkihakuun
+- optio tiedostojen ja hakemistojen käsittelemiseksi kaikissa kohteen
+  alihakemistoissa
+- optio tiedoston käsittelemiseksi kohdelistalla; puuttuva argumentti
+  tarkoittaa standardisyötettä (stdin)
+
+
+2. Virhetasot (Errorlevels)
+---------------------------
+
+0   - päivämäärän/ajan ja attribuuttien asetus tai vertailu onnistui
+1   - vertailu (yksi niistä) epäonnistui
+2   - virhe tiedostoon pääsyssä tai tiedoston päivämäärän/ajan/attribuuttien
+      asetuksessa
+128 - virheellinen tai kahteen kertaan annettu optio
+129 - yhteensopimattomat optiot, ei kohteita tai virheelliset argumentit
+130 - sisäinen virhe (ei tarpeeksi muistia tai liian syvä hakemistorakenne)
+
+
+3. Tehtävälista (Todo)
+----------------------
+
+- näytä listat käsitellyistä tiedostoista
+- vertaa/kopioi päivämäärä/aika/attribuutit tiedostosta tiedostoihin
+- päivämäärä- ja aikakenttien kasvattaminen/vähentäminen
+- attribuuttien vertailu (suurempi/pienempi)
+
+
+4. Historia
+-----------
+
+	1.0 [16.02.98]
++ Ensimmäinen painos
+
+	1.1 [19.02.98]
++ Hyväksyy nyt päivämäärän/ajan muodoissa, jotka vastaavat COUNTRY-asetuksia
+
+	1.2 [21.02.98]
+* Hieman parannettu puuttuvien kenttien ja argumenttien tulkintaa
+* Pienennetty suoritettavan tiedoston kokoa
++ Lisätty -a optio tiedostojen ja hakemistojen attribuuttien muuttamiseksi
+
+	1.3 [21.02.98]
++ Hyväksyy nyt useita kohteita yhdellä komentorivillä
++ -a optiota voidaan nyt käyttää vertailussa
+
+	1.4 [26.02.98]
+# Suoritus ei nyt pysähdy, kun tiedostovirhe löytyy, vaan jatkuu seuraaviin
+  kohteisiin
+# Tulostetta ei nyt monisteta konsoliin, kun se on ohjattu tiedostoon
+* -@ optio nimetty uudelleen -c:ksi
++ Hakemistojen päivämäärä/aika voidaan nyt myös tarkistaa vertailussa
++ Jokerimerkit kohteille hyväksytään nyt
++ -r mahdollistaa hakemistojen käsittelyn jokerimerkeillä
+
+	1.41 [28.02.98]
++ Optio-merkki valitaan automaattisesti ensimmäisen '/' tai '-' esiintymän
+  mukaan
++ Yksittäinen optio-merkkipari ("--" tai "//") pysäyttää seuraavien
+  optioiden etsinnän
++ Yksittäinen optio-merkki tarkoittaa standardisyötettä (stdin)
+- Optio-merkin lisääminen ennen nimeä, joka alkaa samalla merkillä nimen
+  käyttöönottamiseksi argumenttina, aiheuttaa nyt virheilmoituksen;
+  mielivaltaisten nimien välittämiseksi aseta eteen yksittäinen optio-
+  merkkipari
+
+	1.5 [14.03.98]
+# Bugikorjaus: tietyissä olosuhteissa eksplisiittisesti annetut oikeat
+  päivän arvot 30 ja 31 hylättiin
+# Bugikorjaus: kohdenimet nyt suuraakkosina COUNTRY-asetusten mukaisesti
++ /s käsittelee tiedostot ja hakemistot myös kaikissa kohteen
+  alihakemistoissa
+
+	2.0 [14.04.98]
+# Bugikorjaus: sekuntien merkittävin bitti menetettiin tiedoston aikaa
+# luettaessa
++ /@ tiedoston käsittelemiseksi kohdelistalla
+* Yksittäinen optio-merkki määrittää nyt standardisyötteen vain /@ option
+  argumenttina
+* Pienennetty suoritettavan tiedoston kokoa
++ DIET-ohjelmaa käytetty suoritettavan tiedoston tiivistämiseen
+
+
+5. Tekijä
+---------
+					Arkady Belousov
+					Sähköposti: ark@mos.ru
+
+
+
+
+
+# Language: Danish
+# File ending: DK
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Indhold
+-------
+
+	1. Funktioner
+	2. Fejlniveauer (Errorlevels)
+	3. Huskeliste (Todo)
+	4. Historik
+	5. Forfatter
+
+
+1. Funktioner
+-------------
+
+- ændre dato/tid for filer
+- ændre attributter for filer og mapper
+- sammenligne dato/tid og attributter for filer og mapper
+- dato/tid-indstillinger gør det muligt at hente værdier fra nuværende og
+  filens dato/tid samtidigt med eksplicitte tal
+- kompleks dato/tid-sammenligning med nuværende dato/tid, ligeledes med fil
+- dato/tid i formater, der overholder LAND (COUNTRY) indstillinger
+- UNC- og NetWare-stier tilladt
+- flere mål i én kommandolinje
+- udvidede jokertegn (wildcards): navne kan indeholde et vilkårligt antal '*',
+  også som '?'; "navn" betyder "navn.", men "*" betyder "*.*"
+- automatisk registrering af indstillingstegn ('/' eller '-')
+- mulighed for at inkludere mappenavne i jokertegnsøgning
+- mulighed for at behandle filer og mapper i alle målets undermapper
+- mulighed for at behandle fil med liste over mål; manglende argument betyder
+  standardinddata (stdin)
+
+
+2. Fejlniveauer (Errorlevels)
+-----------------------------
+
+0   - indstilling eller sammenligning af dato/tid og attributter lykkedes
+1   - sammenligning (en af dem) mislykkedes
+2   - fejl ved filadgang eller indstilling af fildato/tid/attributter
+128 - ugyldig eller duplikeret indstilling
+129 - inkompatible indstillinger, ingen mål eller ugyldige argumenter
+130 - intern fejl (ikke nok hukommelse eller for dyb mappe)
+
+
+3. Huskeliste (Todo)
+--------------------
+
+- vis lister over behandlede filer
+- sammenlign/kopier dato/tid/attributter fra fil-til-filer
+- inkrement/dekrement for dato/tid-felter
+- større end/mindre end sammenligning for attributter
+
+
+4. Historik
+-----------
+
+	1.0 [16.02.98]
++ Første udgave
+
+	1.1 [19.02.98]
++ Accepterer nu dato/tid i formater, der overholder LAND (COUNTRY)
+  indstillinger
+
+	1.2 [21.02.98]
+* Lidt forbedret fortolkning af udeladte felter og argumenter
+* Reduceret størrelse på eksekverbar fil
++ Tilføjet -a indstilling til at ændre fil- og mappeattributter
+
+	1.3 [21.02.98]
++ Accepterer nu flere mål i én kommandolinje
++ -a indstilling kan nu bruges i sammenligning
+
+	1.4 [26.02.98]
+# Udførelse stopper nu ikke, når der findes en fejl for en fil, men
+  fortsætter for næste mål
+# Output duplikeres nu ikke til konsollen, når det omdirigeres til fil
+* -@ indstilling omdøbt til -c
++ Dato/tid for mapper kan nu også kontrolleres i sammenligning
++ Jokertegn for mål accepteres nu
++ -r muliggør mappebehandling med jokertegn
+
+	1.41 [28.02.98]
++ Tegn for indstillinger vælges automatisk ved første forekomst af '/'
+  eller '-'
++ Et par af indstillingstegn alene ("--" eller "//") stopper søgning efter
+  næste indstillinger
++ Et indstillingstegn alene betyder standardinddata (stdin)
+- Tilføjelse af indstillingstegn før navn med samme tegn i starten for at
+  aktivere et sådant navn som argument forårsager nu en fejlmeddelelse; for
+  at sende vilkårlige navne indsættes et par af indstillingstegn alene før
+
+	1.5 [14.03.98]
+# Fejlrettelse: Under visse omstændigheder blev eksplicit angivne korrekte
+  dagsværdier 30 og 31 afvist
+# Fejlrettelse: Målnavne er nu med store bogstaver i overensstemmelse med
+  LAND-indstillinger
++ /s behandler filer og mapper også i alle målets undermapper
+
+	2.0 [14.04.98]
+# Fejlrettelse: Mistede den mest betydningsfulde bit af sekunder ved læsning
+  af filtid
++ /@ til at behandle fil med liste over mål
+* Et indstillingstegn alene angiver nu kun standardinddata som argument
+  til /@
+* Reduceret størrelse på eksekverbar fil
++ DIET brugt til komprimering af eksekverbar fil
+
+
+5. Forfatter
+------------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+
+
+
+
+
+
+
+# Language: Russian
+# File ending: RU
+# Codepage: 866
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Содержание
+----------
+
+	1. Возможности
+	2. Коды возврата (Errorlevels)
+	3. Планы (Todo)
+	4. История изменений
+	5. Автор
+
+
+1. Возможности
+--------------
+
+- изменение даты/времени файлов
+- изменение атрибутов файлов и каталогов
+- сравнение даты/времени и атрибутов файлов и каталогов
+- опции даты/времени позволяют получать значения из текущей и файловой
+  даты/времени одновременно с явными числами
+- сложное сравнение даты/времени с текущим временем, а также с файлом
+- дата/время в форматах, соответствующих настройкам COUNTRY
+- разрешены пути UNC и NetWare
+- несколько целей в одной командной строке
+- расширенные маски (wildcards): имена могут содержать любое количество '*',
+  а также '?'; "имя" означает "имя.", а "*" означает "*.*"
+- автоопределение символа опции ('/' или '-')
+- опция включения имен каталогов в поиск по маскам
+- опция обработки файлов и каталогов во всех подкаталогах цели
+- опция обработки файла со списком целей; отсутствие аргумента означает
+  стандартный ввод (stdin)
+
+
+2. Коды возврата (Errorlevels)
+------------------------------
+
+0   - установка или сравнение даты/времени и атрибутов успешно
+1   - сравнение (одно из) неуспешно
+2   - ошибка доступа к файлу или установки даты/времени/атрибутов файла
+128 - неверная или дублированная опция
+129 - несовместимые опции, отсутствие целей или неверные аргументы
+130 - внутренняя ошибка (недостаточно памяти или слишком глубокий каталог)
+
+
+3. Планы (Todo)
+---------------
+
+- показывать списки обработанных файлов
+- сравнение/копирование даты/времени/атрибутов файл-в-файлы
+- инкремент/декремент полей даты/времени
+- сравнение атрибутов на больше/меньше
+
+
+4. История изменений
+--------------------
+
+	1.0 [16.02.98]
++ Первое издание
+
+	1.1 [19.02.98]
++ Теперь принимает дату/время в форматах, соответствующих настройкам COUNTRY
+
+	1.2 [21.02.98]
+* Немного улучшена интерпретация пропущенных полей и аргументов
+* Уменьшен размер исполняемого файла
++ Добавлена опция -a для изменения атрибутов файлов и каталогов
+
+	1.3 [21.02.98]
++ Теперь принимается несколько целей в одной командной строке
++ Опция -a теперь может использоваться при сравнении
+
+	1.4 [26.02.98]
+# Выполнение теперь не останавливается при ошибке файла, а продолжается
+  для следующих целей
+# Вывод теперь не дублируется на консоль при перенаправлении в файл
+* Опция -@ переименована в -c
++ Дату/время каталогов теперь также можно проверять при сравнении
++ Теперь принимаются маски для целей
++ -r включает обработку каталогов по маскам
+
+	1.41 [28.02.98]
++ Символ для опций выбирается автоматически по первому вхождению '/' или '-'
++ Одиночная пара символов опций ("--" или "//") прекращает поиск следующих
+  опций
++ Одиночный символ опции означает стандартный ввод
+- Добавление символа опции перед именем, начинающимся с того же символа,
+  для включения такого имени как аргумента теперь вызывает ошибку; для
+  передачи произвольных имен вставьте перед ними одиночную пару символов
+  опций
+
+	1.5 [14.03.98]
+# Исправление ошибки: при некоторых условиях явно переданные корректные
+  значения дня 30 и 31 отклонялись
+# Исправление ошибки: имена целей теперь переводятся в верхний регистр
+# согласно COUNTRY
++ /s обрабатывает файлы и каталоги также во всех подкаталогах цели
+
+	2.0 [14.04.98]
+# Исправление ошибки: потерян старший бит секунд при чтении времени файла
++ /@ для обработки файла со списком целей
+* Одиночный символ опции теперь указывает на стандартный ввод только как
+  аргумент /@
+* Уменьшен размер исполняемого файла
++ Использован DIET для сжатия исполняемого файла
+
+
+5. Автор
+--------
+					Аркадий Белоусов
+					E-mail: ark@mos.ru
+
+
+
+
+
+# Language: Ukrainian
+# File ending: UK
+# Codepage: 1125
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Зміст
+-----
+
+	1. Особливості
+	2. Коди помилок (Errorlevels)
+	3. Плани (Todo)
+	4. Історія
+	5. Автор
+
+
+1. Особливості
+--------------
+
+- зміна дати/часу для файлів
+- зміна атрибутів для файлів та каталогів
+- порівняння дати/часу та атрибутів для файлів та каталогів
+- параметри дати/часу дозволяють отримувати значення з поточної дати/часу
+  та дати/часу файлу одночасно з явними числами
+- складне порівняння дати/часу з поточним часом, аналогічно з файлом
+- дата/час у форматах, що відповідають налаштуванням COUNTRY
+- дозволені шляхи UNC та NetWare
+- кілька цілей в одному командному рядку
+- розширені маски (wildcards): імена можуть містити будь-яку кількість '*',
+  також як '?'; "ім'я" означає "ім'я.", але "*" означає "*.*"
+- автовизначення символу параметра ('/' або '-')
+- параметр для включення імен каталогів у пошук за масками
+- параметр для обробки файлів та каталогів у всіх підкаталогах цілі
+- параметр для обробки файлу зі списком цілей; відсутність аргументу означає
+  стандартне введення (stdin)
+
+
+2. Коди помилок (Errorlevels)
+-----------------------------
+
+0   - встановлення або порівняння дати/часу та атрибутів успішне
+1   - порівняння (одне з них) неуспішне
+2   - помилка доступу до файлу або встановлення дати/часу/атрибутів файлу
+128 - невірна або дубльована опція
+129 - несумісні опції, відсутність цілей або невірні аргументи
+130 - внутрішня помилка (недостатньо пам'яті або занадто глибокий каталог)
+
+
+3. Плани (Todo)
+---------------
+
+- показувати списки оброблених файлів
+- порівняння/копіювання дати/часу/атрибутів файл-у-файли
+- інкремент/декремент полів дати/часу
+- порівняння атрибутів на більше/менше
+
+
+4. Історія
+----------
+
+	1.0 [16.02.98]
++ Перше видання
+
+	1.1 [19.02.98]
++ Тепер приймає дату/час у форматах, що відповідають налаштуванням COUNTRY
+
+	1.2 [21.02.98]
+* Трохи покращено інтерпретацію пропущених полів та аргументів
+* Зменшено розмір виконуваного файлу
++ Додано параметр -a для зміни атрибутів файлів та каталогів
+
+	1.3 [21.02.98]
++ Тепер приймається кілька цілей в одному командному рядku
++ Параметр -a тепер може використовуватися при порівнянні
+
+	1.4 [26.02.98]
+# Виконання тепер не зупиняється при помилці файлу, а продовжується
+  для наступних цілей
+# Виведення тепер не дублюється на консоль при перенаправленні у файл
+* Параметр -@ перейменовано на -c
++ Дату/час каталогів тепер також можна перевіряти при порівнянні
++ Тепер приймаються маски для цілей
++ -r вмикає обробку каталогів за масками
+
+	1.41 [28.02.98]
++ Символ для параметрів вибирається автоматично за першою появою '/'
+  або '-'
++ Окрема пара символів параметрів ("--" або "//") зупиняє пошук наступних
+  параметрів
++ Окремий символ параметра означає стандартне введення
+- Додавання символу параметра перед ім'ям, що починається з того самого
+  символу, для ввімкнення такого імені як аргументу тепер викликає
+  повідомлення про помилку; для передачі довільних імен вставте перед ними
+  окрему пару символів параметрів
+
+	1.5 [14.03.98]
+# Виправлення помилки: за певних умов явно передані коректні значення дня 30
+  та 31 відхилялися
+# Виправлення помилки: назви цілей тепер переведені у верхній регістр
+# згідно з COUNTRY
++ /s обробляє файли та каталоги також у всіх підкаталогах цілі
+
+	2.0 [14.04.98]
+# Виправлення помилки: втрачено старший біт секунд при читанні часу файлу
++ /@ для обробки файлу зі списком цілей
+* Окремий символ параметра тепер вказує на стандартне введення лише як
+  аргумент /@
+* Зменшено розмір виконуваного файлу
++ Використано DIET для стиснення виконуваного файлу
+
+
+5. Автор
+--------
+					Аркадій Бєлоусов
+					E-mail: ark@mos.ru
+
+
+
+
+
+# Language: Serbian
+# File ending: SR
+# Codepage: 855
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Садржај
+-------
+
+	1. Могућности
+	2. Кодови грешака (Errorlevels)
+	3. Планови (Todo)
+	4. Историја
+	5. Аутор
+
+
+1. Могућности
+-------------
+
+- промена датума/времена за датотеке
+- промена атрибута за датотеке и директоријуме
+- поређење датума/времена и атрибута за датотеке и директоријуме
+- опције датума/времена омогућавају преузимање вредности из тренутног и 
+  датума/времена датотеке истовремено са експлицитним бројевима
+- сложено поређење датума/времена са тренутним временом, као и са датотеком
+- датум/време у форматима који су у складу са подешавањима ЗЕМЉЕ (COUNTRY)
+- дозвољене UNC и NetWare путање
+- више циљева у једној командној линији
+- проширени џокер знакови (wildcards): имена могу да садрже било који број
+  '*', као и '?'; "име" значи "име.", али "*" значи "*.*"
+- аутоматско препознавање знака опције ('/' или '-')
+- опција за укључивање имена директоријума у претрагу џокер знаковима
+- опција за обраду датотека и директоријума у свим поддиректоријумима циља
+- опција за обраду датотеке са листом циљева; недостајући аргумент значи 
+  стандардни улаз (stdin)
+
+
+2. Кодови грешака (Errorlevels)
+-------------------------------
+
+0   - успешно подешавање или поређење датума/времена и атрибута
+1   - поређење (једно од њих) је неуспешно
+2   - грешка при приступу датотеци или подешавању датума/времена/атрибута
+128 - неважећа или дуплирана опција
+129 - некомпатибилне опције, нема циљева или неважећи аргументи
+130 - интерна грешка (недовољно меморије или предубок директоријум)
+
+
+3. Планови (Todo)
+-----------------
+
+- приказ листа обрађених датотека
+- поређење/копирање датума/времена/атрибута између датотека
+- повећање/смањење за поља датума/времена
+- поређење атрибута на веће/мање
+
+
+4. Историја
+-----------
+
+	1.0 [16.02.98]
++ Прво издање
+
+	1.1 [19.02.98]
++ Сада прихвата датум/време у форматима који су у складу са COUNTRY
+  подешавањима
+
+	1.2 [21.02.98]
+* Благо побољшано тумачење изостављених поља и аргумената
+* Смањена величина извршне датотеке
++ Додата -a опција за модификовање атрибута датотека и директоријума
+
+	1.3 [21.02.98]
++ Сада се прихвата више циљева у једној командној линији
++ -a опција се сада може користити у поређењу
+
+	1.4 [26.02.98]
+# Извршавање се сада не зауставља када се пронађе грешка за датотеку, већ
+# се наставља за следеће циљеве
+# Излаз се сада не дуплира на конзоли када је преусмерен у датотеку
+* -@ опција преименована у -c
++ Датум/време директоријума сада се такође могу проверити у поређењу
++ Сада се прихватају џокер знакови за циљеве
++ -r омогућава обраду директоријума помоћу џокер знакова
+
+	1.41 [28.02.98]
++ Знак за опције се аутоматски бира према првом појављивању '/' или '-'
++ Усамљени пар знакова опција ("--" или "//") зауставља даљу претрагу опција
++ Усамљени знак опције значи стандардни улаз (stdin)
+- Додавање знака опције испред имена које почиње истим знаком ради 
+  омогућавања таквог имена као аргумента сада изазива поруку о грешци; за
+  слање произвољних имена уметните усамљени пар знакова опција пре њих
+
+	1.5 [14.03.98]
+# Исправка грешке: под одређеним условима експлицитно прослеђене исправне 
+  вредности дана 30 и 31 су одбијене
+# Исправка грешке: имена циљева су сада написана великим словима према
+  COUNTRY подешавањима
++ /s обрађује датотеке и директоријуме такође у свим поддиректоријумима циља
+
+	2.0 [14.04.98]
+# Исправка грешке: изгубљен најзначајнији бит секунди при читању времена
+  датотеке
++ /@ за обраду датотеке са листом циљева
+* Усамљени знак опције сада специфицира стандардни улаз само као аргумент /@
+  опције
+* Смањена величина извршне датотеке
++ DIET коришћен за сажимање извршне датотеке
+
+
+5. Аутор
+--------
+					Аркадиј Белоусов
+					Е-пошта: ark@mos.ru
+
+
+
+
+
+
+# Language: Italian
+# File ending: IT
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Indice
+------
+
+	1. Funzionalità
+	2. Livelli di errore (Errorlevels)
+	3. Cose da fare (Todo)
+	4. Cronologia
+	5. Autore
+
+
+1. Funzionalità
+----------------
+
+- modifica data/ora per i file
+- modifica attributi per file e directory
+- confronta data/ora e attributi per file e directory
+- le opzioni data/ora consentono di ottenere valori dalla data/ora corrente
+  e da quella del file simultaneamente con numeri espliciti
+- confronto complesso di data/ora con la data/ora corrente, così come con
+  il file
+- data/ora in formati conformi alle impostazioni COUNTRY
+- consentiti percorsi UNC e NetWare
+- bersagli multipli in una singola riga di comando
+- caratteri jolly (wildcards) estesi: i nomi possono contenere qualsiasi
+  numero di '*', così come '?'; "nome" significa "nome.", ma "*" significa
+  "*.*"
+- rilevamento automatico del carattere opzione ('/' o '-')
+- opzione per includere i nomi delle directory nella ricerca con caratteri
+  jolly
+- opzione per elaborare file e directory in tutte le sottodirectory del
+  bersaglio
+- opzione per elaborare un file con un elenco di bersagli; l'argomento
+  mancante indica lo standard input (stdin)
+
+
+2. Livelli di errore (Errorlevels)
+----------------------------------
+
+0   - impostazione o confronto di data/ora e attributi riuscito
+1   - il confronto (uno di essi) non è riuscito
+2   - errore di accesso al file o nell'impostazione di data/ora/attributi
+      del file
+128 - opzione non valida o duplicata
+129 - opzioni incompatibili, nessun bersaglio o argomenti non validi
+130 - errore interno (memoria insufficiente o directory troppo profonda)
+
+
+3. Cose da fare (Todo)
+----------------------
+
+- mostra elenchi di file elaborati
+- confronta/copia data/ora/attributi da file a file
+- incremento/decremento per i campi data/ora
+- confronto maggiore/minore per gli attributi
+
+
+4. Cronologia
+-------------
+
+	1.0 [16.02.98]
++ Prima edizione
+
+	1.1 [19.02.98]
++ Ora accetta data/ora in formati conformi alle impostazioni COUNTRY
+
+	1.2 [21.02.98]
+* Interpretazione dei campi e degli argomenti omessi leggermente migliorata
+* Ridotta la dimensione del file eseguibile
++ Aggiunta l'opzione -a per modificare gli attributi di file e directory
+
+	1.3 [21.02.98]
++ Ora accettati bersagli multipli in una singola riga di comando
++ L'opzione -a può ora essere utilizzata nel confronto
+
+	1.4 [26.02.98]
+# L'esecuzione ora non si ferma quando viene trovato un errore per un file,
+  ma continua per i bersagli successivi
+# L'output ora non viene duplicato sulla console quando viene reindirizzato
+# su file
+* Opzione -@ rinominata in -c
++ La data/ora delle directory ora può essere controllata anche nel confronto
++ Ora accettati i caratteri jolly per i bersagli
++ -r abilita l'elaborazione delle directory tramite caratteri jolly
+
+	1.41 [28.02.98]
++ Carattere per le opzioni selezionato automaticamente alla prima occorrenza
+  di '/' o '-'
++ Una coppia isolata di caratteri opzione ("--" o "//") interrompe la ricerca
+  delle opzioni successive
++ Un carattere opzione isolato indica lo standard input (stdin)
+- L'aggiunta di un carattere opzione prima di un nome con lo stesso carattere
+  all'inizio
+  per abilitare tale nome come argomento ora causa un messaggio di errore;
+  per passare
+  nomi arbitrari inserire prima una coppia isolata di caratteri opzione
+
+	1.5 [14.03.98]
+# Correzione bug: in alcune condizioni i valori dei giorni 30 e 31 passati
+  esplicitamente in modo corretto venivano rifiutati
+# Correzione bug: i nomi dei bersagli ora sono in maiuscolo secondo le
+  impostazioni COUNTRY
++ /s elabora file e directory anche in tutte le sottodirectory del bersaglio
+
+	2.0 [14.04.98]
+# Correzione bug: perso il bit più significativo dei secondi durante la
+# lettura dell'ora del file
++ /@ per elaborare il file con l'elenco dei bersagli
+* Il carattere opzione isolato ora specifica lo standard input solo come
+  argomento dell'opzione /@
+* Ridotta la dimensione del file eseguibile
++ Utilizzato DIET per la compressione del file eseguibile
+
+
+5. Autore
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+
+
+
+
+
+# Language: Dutch
+# File ending: NL
+# Codepage: 850
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Inhoud
+------
+
+	1. Mogelijkheden
+	2. Foutniveaus (Errorlevels)
+	3. Te doen (Todo)
+	4. Geschiedenis
+	5. Auteur
+
+
+1. Mogelijkheden
+----------------
+
+- wijzig datum/tijd voor bestanden
+- wijzig attributen voor bestanden en mappen
+- vergelijk datum/tijd en attributen voor bestanden en mappen
+- datum/tijd-opties maken het mogelijk om gelijktijdig waarden van de huidige
+  en de bestandsdatum/-tijd te verkrijgen met expliciete getallen
+- complexe datum/tijd-vergelijking met huidige tijd, evenals met bestand
+- datum/tijd in formaten die voldoen aan COUNTRY-instellingen
+- UNC- en NetWare-paden toegestaan
+- meerdere doelen in één commandoregel
+- uitgebreide jokertekens (wildcards): namen kunnen elk aantal '*' bevatten,
+  evenals '?'; "naam" betekent "naam.", maar "*" betekent "*.*"
+- automatische detectie van optie-teken ('/' of '-')
+- optie om mapnamen op te nemen in zoekopdrachten met jokertekens
+- optie om bestanden en mappen in alle submappen van het doel te verwerken
+- optie om bestand met lijst van doelen te verwerken; ontbrekend argument
+  betekent standaard invoer (stdin)
+
+
+2. Foutniveaus (Errorlevels)
+----------------------------
+
+0   - instellen of vergelijken van datum/tijd en attributen succesvol
+1   - vergelijking (één van de) is niet succesvol
+2   - fout bij bestandstoegang of instellen van bestandsdatum/-tijd/
+    -attributen
+128 - ongeldige of gedupliceerde optie
+129 - incompatibele opties, geen doelen of ongeldige argumenten
+130 - interne fout (onvoldoende geheugen of mapstructuur te diep)
+
+
+3. Te doen (Todo)
+-----------------
+
+- tonen van lijsten met verwerkte bestanden
+- vergelijken/kopiëren datum/tijd/attributen van bestand-naar-bestanden
+- verhogen/verlagen voor datum/tijd-velden
+- groter dan/kleiner dan vergelijking voor attributen
+
+
+4. Geschiedenis
+---------------
+
+	1.0 [16.02.98]
++ Eerste editie
+
+	1.1 [19.02.98]
++ Accepteert nu datum/tijd in formaten die voldoen aan COUNTRY-instellingen
+
+	1.2 [21.02.98]
+* Interpretatie van weggelaten velden en argumenten iets verbeterd
+* Grootte van uitvoerbaar bestand verkleind
++ -a optie toegevoegd om attributen van bestanden en mappen te wijzigen
+
+	1.3 [21.02.98]
++ Accepteert nu meerdere doelen in één commandoregel
++ -a optie kan nu worden gebruikt bij vergelijking
+
+	1.4 [26.02.98]
+# Uitvoering stopt nu niet wanneer een fout voor een bestand wordt gevonden,
+  maar gaat door voor de volgende doelen
+# Uitvoer wordt nu niet gedupliceerd naar console wanneer deze naar bestand
+  is omgeleid
+* -@ optie hernoemd naar -c
++ Datum/tijd van mappen kan nu ook worden gecontroleerd in vergelijking
++ Jokertekens voor doelen nu geaccepteerd
++ -r maakt verwerking van mappen met jokertekens mogelijk
+
+	1.41 [28.02.98]
++ Teken voor opties automatisch geselecteerd bij eerste voorkomen van '/'
+  of '-'
++ Alleenstaand paar optie-tekens ("--" of "//") stopt zoeken naar volgende
+  opties
++ Alleenstaand optie-teken betekent standaard invoer (stdin)
+- Toevoegen van optie-teken voor naam met hetzelfde teken aan het begin om
+  een dergelijke naam als argument mogelijk te maken, veroorzaakt nu een 
+  foutmelding; om willekeurige namen door te geven, plaats eerst een
+  alleenstaand paar optie-tekens
+
+	1.5 [14.03.98]
+# Bugfix: onder bepaalde voorwaarden werden expliciet doorgegeven correcte
+  dagwaarden 30 en 31 geweigerd
+# Bugfix: namen van doelen nu in hoofdletters volgens COUNTRY-instellingen
++ /s verwerkt bestanden en mappen ook in alle submappen van het doel
+
+	2.0 [14.04.98]
+# Bugfix: meest significante bit van seconden verloren bij het lezen van
+# bestandstijd
++ /@ om bestand met lijst van doelen te verwerken
+* Alleenstaand optie-teken specificeert nu standaard invoer alleen als
+  argument voor /@ optie
+* Grootte van uitvoerbaar bestand verkleind
++ DIET gebruikt voor het comprimeren van uitvoerbaar bestand
+
+
+5. Auteur
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+
+
+
+# Language: Swedish
+# File ending: SV
+# Codepage: 850
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Innehåll
+--------
+
+	1. Funktioner
+	2. Felnivåer (Errorlevels)
+	3. Att göra (Todo)
+	4. Historik
+	5. Författare
+
+
+1. Funktioner
+-------------
+
+- ändra datum/tid för filer
+- ändra attribut för filer och kataloger
+- jämföra datum/tid och attribut för filer och kataloger
+- datum/tid-alternativ gör det möjligt att hämta värden från nuvarande och
+  filens datum/tid samtidigt med explicita tal
+- komplex datum/tid-jämförelse med nuvarande tid, likaså med fil
+- datum/tid i format som följer COUNTRY-inställningarna
+- UNC- och NetWare-sökvägar tillåtna
+- flera mål i en enda kommandorad
+- utökade jokertecken (wildcards): namn kan innehålla valfritt antal '*',
+  liksom '?'; "namn" betyder "namn.", men "*" betyder "*.*"
+- automatisk identifiering av alternativtecken ('/' eller '-')
+- alternativ för att inkludera katalognamn i sökning med jokertecken
+- alternativ för att bearbeta filer och kataloger i alla målets underkataloger
+- alternativ för att bearbeta fil med en lista över mål; saknat argument
+  innebär standardinmatning (stdin)
+
+
+2. Felnivåer (Errorlevels)
+--------------------------
+
+0   - inställning eller jämförelse av datum/tid och attribut lyckades
+1   - jämförelsen (en av dem) misslyckades
+2   - fel vid filåtkomst eller inställning av fildatum/tid/attribut
+128 - ogiltigt eller duplicerat alternativ
+129 - inkompatibla alternativ, inga mål eller ogiltiga argument
+130 - internt fel (för lite minne eller för djup katalogstruktur)
+
+
+3. Att göra (Todo)
+------------------
+
+- visa listor över bearbetade filer
+- jämföra/kopiera datum/tid/attribut från fil-till-filer
+- öka/minska fält för datum/tid
+- jämförelse av större/mindre för attribut
+
+
+4. Historik
+-----------
+
+	1.0 [16.02.98]
++ Första utgåvan
+
+	1.1 [19.02.98]
++ Accepterar nu datum/tid i format som följer COUNTRY-inställningarna
+
+	1.2 [21.02.98]
+* Något förbättrad tolkning av utelämnade fält och argument
+* Minskad storlek på den körbara filen
++ Lade till alternativet -a för att ändra fil- och katalogattribut
+
+	1.3 [21.02.98]
++ Nu accepteras flera mål i en kommandorad
++ Alternativet -a kan nu användas vid jämförelse
+
+	1.4 [26.02.98]
+# Exekveringen stoppar nu inte när ett fel för en fil hittas, utan fortsätter
+  för nästa mål
+# Utdata dupliceras nu inte till konsolen när de omdirigeras till fil
+* Alternativet -@ döptes om till -c
++ Katalogers datum/tid kan nu också kontrolleras vid jämförelse
++ Jokertecken för mål accepteras nu
++ -r möjliggör katalogbearbetning med jokertecken
+
+	1.41 [28.02.98]
++ Tecken för alternativ väljs automatiskt vid första förekomsten av '/'
+  eller '-'
++ Ett ensamt par av alternativtecken ("--" eller "//") stoppar sökning efter
+  nästa alternativ
++ Ett ensamt alternativtecken innebär standardinmatning (stdin)
+- Att lägga till ett alternativtecken före ett namn som börjar med samma
+  tecken för att möjliggöra ett sådant namn som argument orsakar nu ett
+  felmeddelande; för att skicka valfria namn, infoga ett ensamt par av
+  alternativtecken före
+
+	1.5 [14.03.98]
+# Buggfix: Under vissa förhållanden avvisades korrekt angivna dagvärden 30
+# och 31
+# Buggfix: Målnamn skrivs nu med stora bokstäver enligt COUNTRY-
+# inställningarna
++ /s bearbetar filer och kataloger även i alla målets underkataloger
+
+	2.0 [14.04.98]
+# Buggfix: Förlorade den mest signifikanta biten av sekunder vid läsning av
+# filtid
++ /@ för att bearbeta fil med en lista över mål
+* Ensamt alternativtecken anger nu standardinmatning endast som argument
+  till alternativet /@
+* Minskad storlek på den körbara filen
++ DIET har använts för att komprimera den körbara filen
+
+
+5. Författare
+-------------
+					Arkady Belousov
+					E-post: ark@mos.ru
+

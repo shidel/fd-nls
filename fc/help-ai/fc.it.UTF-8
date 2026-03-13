@@ -1,0 +1,87 @@
+# Language: italian
+# File ending: it
+# Codepage: 858
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC confronta due file o insiemi di file, in modalità testo o binaria, e
+visualizza le differenze tra di loro.
+
+FC implementa l'algoritmo di Paul Heckel dalle Communications of the
+Association for Computing Machinery, Aprile 1978, p264 - p268,
+"A Technique for Isolating Differences Between Files".
+
+Questo algoritmo ha il vantaggio rispetto agli algoritmi di confronto più
+comuni di essere veloce e di poter rilevare differenze di un numero arbitrario
+di linee. Per la maggior parte delle applicazioni, l'algoritmo isola le
+differenze in modo simile alla sottosequenza comune più lunga.
+
+La sintassi è la seguente:
+
+FC [opzioni] [disco1:][percorso1]file1 [disco2][percorso2]file2 [opzioni]
+
+ /A    Mostra solo la prima e l'ultima riga per ogni set di differenze
+ /B    Esegue un confronto binario
+ /C    Ignora la distinzione tra maiuscole e minuscole
+ /L    Confronta i file come testo ASCII
+ /LBn  Imposta a n il numero massimo di righe ASCII differenti consecutive
+ /Mn   Imposta a n byte le differenze massime nel confronto binario
+ /N    Visualizza i numeri di riga in un confronto testuale
+ /Q    Non mostrare l'elenco delle differenze
+ /R    Mostra un breve rapporto finale (sempre attivo quando si usa /S)
+ /S    Estende la scansione ai file nelle sottodirectory
+ /T    Non espandere i tabulatori in spazi
+ /U    Mostra i nomi dei file senza un corrispondente
+ /W    Comprime gli spazi bianchi (tab e spazi) per il confronto testuale
+ /X    Non mostrare le righe di contesto nel confronto testuale
+ /nnn  Imposta a nnn il numero minimo di righe corrispondenti consecutive
+       per la risincronizzazione del confronto
+
+Il programma supporta i nomi lunghi (LFN) e li usa automaticamente se il
+sistema operativo li supporta.
+
+FC usa predefinitamente la modalità binaria per i file .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL e .LIB.
+
+In modalità binaria FC mostra l'offset nel file dei byte differenti, il loro
+valore in esadecimale e, se sono caratteri ASCII stampabili, il carattere.
+
+Per impostazione predefinita, il confronto binario si ferma dopo 20 differenze
+ma tale valore può essere modificato tramite l'opzione /M. /M0 significa
+"differenze illimitate". /M è interpretato come /M0.
+
+Un limite di progettazione è che, nel confronto in modalità testo, vengono
+confrontate solo le prime 32765 righe; le restanti righe vengono ignorate.
+La lunghezza della riga è virtualmente illimitata.
+
+FC supporta i caratteri jolly (wildcards) nelle specifiche dei file:
+- specificare una directory equivale a specificare tutti i file ("*.*").
+  Esempio: "FC C:\ A:" è uguale a "FC C:\*.* A:*.*"
+- se non viene inserito file2, viene assunto "." (la directory corrente).
+  Esempio: "FC C:\TEST.TXT" è uguale a "FC C:\TEST.TXT .\*.*"
+- se file1 ha i caratteri jolly ma file2 no, tutti i file corrispondenti a
+  file1 vengono confrontati con lo stesso file2.
+- se file1 ha i caratteri jolly e file2 è un percorso seguito da "*.*", tutti
+  i file corrispondenti a file1 vengono confrontati con i file con lo stesso
+  nome ma nel percorso specificato da file2.
+- se entrambi hanno caratteri jolly, i file nel percorso di file1 vengono
+  confrontati con il relativo file in quello di file2.
+  Esempio: "FC *.TXT VECCHI\*.BAK"
+È più facile a farsi che a dirsi. Se vuoi confrontare ogni file in una
+directory con tutti i file in un'altra: FC *.* MIADIR\????????.???
+
+L'opzione /S itera lo stesso modello di ricerca nelle sottodirectory con
+lo stesso nome in entrambi i percorsi.
+  Esempio: "FC /S C:*.TXT D:*.BAK"
+  Assumendo l'esistenza delle sottodirectory C:LIBRO e D:LIBRO, questo comando
+  confronta tutti i file *.TXT nelle directory correnti e anche tutti i file
+  BOOK\*.TXT con le loro copie di backup BOOK\*.BAK.
+
+I codici di uscita per ERRORLEVEL sono i seguenti:
+	0	Tutti i file corrispondono
+	1	Almeno una coppia di file differisce
+	2	Parametro non valido sulla riga di comando
+	3	File non trovato
+	4	Errore nell'apertura dei file

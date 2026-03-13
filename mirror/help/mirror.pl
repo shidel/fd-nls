@@ -1,0 +1,20 @@
+# Language: Polish
+# File ending: PL
+# Codepage: 852
+# This translation was made by MS Copilot.
+# Please help the FreeDOS group to improve it.
+
+Pomoc:
+
+Ten program zapisuje informacje o poˆo¾eniu plik¢w w celu ich ewentualnego
+odzyskania za pomoc¥ UNFORMAT.
+
+Skˆadnia:
+
+MIRROR [dysk:]
+MIRROR [/PARTN]
+
+  /PARTN    Zapisuje kopi© zapasow¥ tablic partycji w pliku PARTNSAV.FIL na
+            dyskietce w nap©dzie A:. Tablice partycji mo¾na odzyska†
+            programem UNFORMAT w wersji 0.8.
+

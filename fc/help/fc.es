@@ -1,4 +1,4 @@
-FC v. 3.03 (c) 2004 Maurizio Spagni
+FC v. 3.03 (c) 2004 Maurizio Spagni, es, cp850/858
 
 FC compara dos archivos, o conjuntos de archivos, tanto en modo texto como en
 modo binario; y muestra las diferencias entre ellos.

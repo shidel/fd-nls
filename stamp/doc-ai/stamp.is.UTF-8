@@ -1,0 +1,117 @@
+# Language: Icelandic
+# File ending: IS
+# Codepage: 861
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Innihald
+--------
+
+	1. Eiginleikar
+	2. Villustig (Errorlevels)
+	3. Verkefni (Todo)
+	4. Saga
+	5. Höfundur
+
+
+1. Eiginleikar
+--------------
+
+- breyta dagsetningu/tíma fyrir skrár
+- breyta eigindum fyrir skrár og möppur
+- bera saman dagsetningu/tíma og eigindi fyrir skrár og möppur
+- valkostir dagsetningar/tíma leyfa að sækja gildi frá núverandi og skráar
+  dagsetningu/tíma samtímis með skýrum tölum
+- flókinn dagsetningar/tíma samanburður við núverandi tíma, sömuleiðis við
+  skrá
+- dagsetning/tími í sniðum sem samræmast COUNTRY stillingum
+- UNC og NetWare slóðir leyfðar
+- margir áfangastaðir í einni skipanalínu
+- útvíkkuð algildi (wildcards): nöfn geta innihaldið hvaða fjölda sem er af
+  '*', einnig '?'; "nafn" þýðir "nafn.", en "*" þýðir "*.*"
+- sjálfvirk greining á valstaf ('/' eða '-')
+- valkostur til að láta möppunöfn fylgja með í leit með algildum
+- valkostur til að vinna úr skrám og möppum í öllum undirmöppum áfangastaðar
+- valkostur til að vinna úr skrá með lista yfir áfangastaði; ef rök vantar
+  þýðir það staðlað inntak (stdin)
+
+
+2. Villustig (Errorlevels)
+--------------------------
+
+0   - stilling eða samanburður á dagsetningu/tíma og eigindum tókst
+1   - samanburður (einn af) tókst ekki
+2   - villa við aðgang að skrá eða stillingu dagsetningar/tíma/eiginda
+128 - ógildur eða tvítekin valkostur
+129 - ósamrýmanlegir valkostir, engir áfangastaðir eða ógild rök
+130 - innri villa (ekki nóg minni eða of djúp mappa)
+
+
+3. Verkefni (Todo)
+------------------
+
+- sýna lista yfir unnar skrár
+- bera saman/afrita dagsetningu/tíma/eigindi skrá-í-skrár
+- hækkun/lækkun fyrir dagsetningar- og tímareiti
+- samanburður á meira/minna fyrir eigindi
+
+
+4. Saga
+-------
+
+	1.0 [16.02.98]
++ Fyrsta útgáfa
+
+	1.1 [19.02.98]
++ Tekur nú við dagsetningu/tíma í sniðum sem samræmast COUNTRY stillingum
+
+	1.2 [21.02.98]
+* Örlítið bætt túlkun á reitum og rökum sem sleppt er
+* Minnkaði stærð keyrsluskrárinnar
++ Bætti við -a valkosti til að breyta eigindum skráa og mappna
+
+	1.3 [21.02.98]
++ Tekur nú við mörgum áfangastöðum í einni skipanalínu
++ Nú er hægt að nota -a valkostinn í samanburði
+
+	1.4 [26.02.98]
+# Keyrsla stöðvast nú ekki þegar villa finnst í skrá, heldur heldur áfram
+  fyrir næstu áfangastaði
+# Úttak er nú ekki tvítekið á skjá þegar því er beint í skrá
+* -@ valkostur endurnefndur í -c
++ Nú er einnig hægt að athuga dagsetningu/tíma mappna í samanburði
++ Nú er tekið við algildum (wildcards) fyrir áfangastaði
++ -r gerir kleift að vinna úr möppum með algildum
+
+	1.41 [28.02.98]
++ Valstafur fyrir valkosti valinn sjálfvirkt við fyrsta tilfelli '/' eða '-'
++ Eitt par af valstöfum ("--" eða "//") stöðvar leit að næstu valkostum
++ Einn valstafur þýðir staðlað inntak (stdin)
+- Að bæta valstaf fyrir framan nafn sem byrjar á sama staf til að virkja slíkt
+  nafn sem rök veldur nú villuskilaboðum; til að senda handahófskennd nöfn
+  skal setja eitt par af valstöfum á undan
+
+	1.5 [14.03.98]
+# Villuleiðrétting: við ákveðnar aðstæður var réttum dagsetningum 30 og 31
+  sem voru sendar beint hafnað
+# Villuleiðrétting: nöfn áfangastaða nú með hástöfum samkvæmt COUNTRY
+# stillingum
++ /s vinnur úr skrám og möppum einnig í öllum undirmöppum áfangastaðar
+
+	2.0 [14.04.98]
+# Villuleiðrétting: týndi mikilvægasta bita sekúndna þegar skráartími var
+# lesinn
++ /@ til að vinna úr skrá með lista yfir áfangastaði
+* Einn valstafur tilgreinir nú staðlað inntak aðeins sem rök fyrir /@ valkost
+* Minnkaði stærð keyrsluskrárinnar
++ DIET notað til að þjappa keyrsluskránni
+
+
+5. Höfundur
+-----------
+					Arkady Belousov
+					Netfang: ark@mos.ru
+

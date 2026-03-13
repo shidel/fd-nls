@@ -1,4 +1,4 @@
-FC v. 3.03 (c) 2004 Maurizio Spagni
+FC v. 3.03 (c) 2004 Maurizio Spagni, sv, cp850/858
 
 FC j„mf”r tv† filer eller upps„ttningar filer i text- eller bin„rl„ge,
 och visar skillnaderna mellan dem.

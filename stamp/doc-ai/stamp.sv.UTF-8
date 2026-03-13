@@ -1,0 +1,120 @@
+# Language: Swedish
+# File ending: SV
+# Codepage: 850
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Innehåll
+--------
+
+	1. Funktioner
+	2. Felnivåer (Errorlevels)
+	3. Att göra (Todo)
+	4. Historik
+	5. Författare
+
+
+1. Funktioner
+-------------
+
+- ändra datum/tid för filer
+- ändra attribut för filer och kataloger
+- jämföra datum/tid och attribut för filer och kataloger
+- datum/tid-alternativ gör det möjligt att hämta värden från nuvarande och
+  filens datum/tid samtidigt med explicita tal
+- komplex datum/tid-jämförelse med nuvarande tid, likaså med fil
+- datum/tid i format som följer COUNTRY-inställningarna
+- UNC- och NetWare-sökvägar tillåtna
+- flera mål i en enda kommandorad
+- utökade jokertecken (wildcards): namn kan innehålla valfritt antal '*',
+  liksom '?'; "namn" betyder "namn.", men "*" betyder "*.*"
+- automatisk identifiering av alternativtecken ('/' eller '-')
+- alternativ för att inkludera katalognamn i sökning med jokertecken
+- alternativ för att bearbeta filer och kataloger i alla målets underkataloger
+- alternativ för att bearbeta fil med en lista över mål; saknat argument
+  innebär standardinmatning (stdin)
+
+
+2. Felnivåer (Errorlevels)
+--------------------------
+
+0   - inställning eller jämförelse av datum/tid och attribut lyckades
+1   - jämförelsen (en av dem) misslyckades
+2   - fel vid filåtkomst eller inställning av fildatum/tid/attribut
+128 - ogiltigt eller duplicerat alternativ
+129 - inkompatibla alternativ, inga mål eller ogiltiga argument
+130 - internt fel (för lite minne eller för djup katalogstruktur)
+
+
+3. Att göra (Todo)
+------------------
+
+- visa listor över bearbetade filer
+- jämföra/kopiera datum/tid/attribut från fil-till-filer
+- öka/minska fält för datum/tid
+- jämförelse av större/mindre för attribut
+
+
+4. Historik
+-----------
+
+	1.0 [16.02.98]
++ Första utgåvan
+
+	1.1 [19.02.98]
++ Accepterar nu datum/tid i format som följer COUNTRY-inställningarna
+
+	1.2 [21.02.98]
+* Något förbättrad tolkning av utelämnade fält och argument
+* Minskad storlek på den körbara filen
++ Lade till alternativet -a för att ändra fil- och katalogattribut
+
+	1.3 [21.02.98]
++ Nu accepteras flera mål i en kommandorad
++ Alternativet -a kan nu användas vid jämförelse
+
+	1.4 [26.02.98]
+# Exekveringen stoppar nu inte när ett fel för en fil hittas, utan fortsätter
+  för nästa mål
+# Utdata dupliceras nu inte till konsolen när de omdirigeras till fil
+* Alternativet -@ döptes om till -c
++ Katalogers datum/tid kan nu också kontrolleras vid jämförelse
++ Jokertecken för mål accepteras nu
++ -r möjliggör katalogbearbetning med jokertecken
+
+	1.41 [28.02.98]
++ Tecken för alternativ väljs automatiskt vid första förekomsten av '/'
+  eller '-'
++ Ett ensamt par av alternativtecken ("--" eller "//") stoppar sökning efter
+  nästa alternativ
++ Ett ensamt alternativtecken innebär standardinmatning (stdin)
+- Att lägga till ett alternativtecken före ett namn som börjar med samma
+  tecken för att möjliggöra ett sådant namn som argument orsakar nu ett
+  felmeddelande; för att skicka valfria namn, infoga ett ensamt par av
+  alternativtecken före
+
+	1.5 [14.03.98]
+# Buggfix: Under vissa förhållanden avvisades korrekt angivna dagvärden 30
+# och 31
+# Buggfix: Målnamn skrivs nu med stora bokstäver enligt COUNTRY-
+# inställningarna
++ /s bearbetar filer och kataloger även i alla målets underkataloger
+
+	2.0 [14.04.98]
+# Buggfix: Förlorade den mest signifikanta biten av sekunder vid läsning av
+# filtid
++ /@ för att bearbeta fil med en lista över mål
+* Ensamt alternativtecken anger nu standardinmatning endast som argument
+  till alternativet /@
+* Minskad storlek på den körbara filen
++ DIET har använts för att komprimera den körbara filen
+
+
+5. Författare
+-------------
+					Arkady Belousov
+					E-post: ark@mos.ru
+

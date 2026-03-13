@@ -1,0 +1,21 @@
+# Language: Language: russian
+# File ending: ru
+# Codepage: 866
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+Это файл справки для MORE:
+
+MORE: Отображает содержимое текстового файла по одному экрану за раз
+Это свободное программное обеспечение, вы можете распространять его
+согласно GNU GPL; подробности см. в файле COPYING.
+
+Использование:
+команда | MORE
+MORE файл..
+MORE < файл
+
+Доступные клавиши (при просмотре файла):
+N n = Следующий файл
+Q q = Выход из программы
+

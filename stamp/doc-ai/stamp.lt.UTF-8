@@ -1,0 +1,119 @@
+# Language: Lithuanian
+# File ending: LT
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Turinys
+-------
+
+	1. Funkcijos
+	2. Klaidų lygiai (Errorlevels)
+	3. Darbai (Todo)
+	4. Istorija
+	5. Autorius
+
+
+1. Funkcijos
+------------
+
+- keisti failų datą ir laiką
+- keisti failų ir katalogų atributus
+- lyginti failų ir katalogų datą/laiką bei atributus
+- datos/laiko parinktys leidžia gauti reikšmes iš dabartinės ir failo datos/
+  laiko simultaniškai su nurodytais skaičiais
+- sudėtingas datos/laiko palyginimas su dabartine data/laiku, taip pat ir su
+  failu
+- data/laikas formatais, atitinkančiais COUNTRY nustatymus
+- leidžiami UNC ir NetWare keliai
+- keli tikslai vienoje komandų eilutėje
+- išplėstiniai pakaitos simboliai: pavadinimuose gali būti bet koks skaičius
+  '*', taip pat '?'; „pavadinimas“ reiškia „pavadinimas.“, bet „*“ reiškia
+  „*.*“
+- automatinis parinkties simbolio ('/' arba '-') atpažinimas
+- parinktis įtraukti katalogų pavadinimus į paiešką pagal pakaitos simbolius
+- parinktis apdoroti failus ir katalogus visuose tikslo pakatalogiuose
+- parinktis apdoroti failą su tikslų sąrašu; praleistas argumentas reiškia
+  standartinę įvestį (stdin)
+
+
+2. Klaidų lygiai (Errorlevels)
+-----------------------------
+
+0   - datos/laiko ir atributų nustatymas arba palyginimas sėkmingas
+1   - palyginimas (bent vienas) nesėkmingas
+2   - klaida pasiekiant failą arba nustatant failo datą/laiką/atributus
+128 - neteisinga arba dubliuota parinktis
+129 - nesuderinamos parinktys, nėra tikslų arba neteisingi argumentai
+130 - vidinė klaida (nepakanka atminties arba per gilus katalogas)
+
+
+3. Darbai (Todo)
+----------------
+
+- rodyti apdorotų failų sąrašus
+- lyginti/kopijuoti datą/laiką/atributus tarp failų
+- datos/laiko laukų didinimas/mažinimas
+- atributų palyginimas (daugiau/mažiau)
+
+
+4. Istorija
+-----------
+
+	1.0 [16.02.98]
++ Pirmasis leidimas
+
+	1.1 [19.02.98]
++ Dabar priima datą/laiką formatais, atitinkančiais COUNTRY nustatymus
+
+	1.2 [21.02.98]
+* Šiek tiek patobulintas praleistų laukų ir argumentų interpretavimas
+* Sumažintas vykdomojo failo dydis
++ Pridėta -a parinktis failų ir katalogų atributams keisti
+
+	1.3 [21.02.98]
++ Dabar priimami keli tikslai vienoje komandų eilutėje
++ -a parinktis dabar gali būti naudojama lyginant
+
+	1.4 [26.02.98]
+# Dabar vykdymas nesustoja radus failo klaidą, bet tęsiamas kitiems tikslams
+# Išvestis nebedubliuojama konsolėje, kai ji nukreipiama į failą
+* -@ parinktis pervardyta į -c
++ Katalogų datą/laiką dabar taip pat galima patikrinti lyginant
++ Dabar priimami pakaitos simboliai tikslams
++ -r įgalina katalogų apdorojimą pagal pakaitos simbolius
+
+	1.41 [28.02.98]
++ Parinkčių simbolis pasirenkamas automatiškai pagal pirmąjį „/“ arba „-“
++ Atskira parinkčių simbolių pora („--“ arba „//“) sustabdo kitų parinkčių
+  paiešką
++ Atskiras parinkties simbolis reiškia standartinę įvestį
+- Parinkties simbolio pridėjimas prieš pavadinimą, prasidedantį tuo pačiu
+  simboliu, kad būtų įgalintas toks pavadinimas kaip argumentas, dabar
+  sukelia klaidos pranešimą; norėdami perduoti bet kokius pavadinimus, prieš
+  tai įterpkite atskirą parinkčių simbolių porą
+
+	1.5 [14.03.98]
+# Pataisyta klaida: tam tikromis sąlygomis nurodytos teisingos dienos reikšmės
+  30 ir 31 buvo atmetamos
+# Pataisyta klaida: tikslų pavadinimai dabar rašomi didžiosiomis raidėmis
+  pagal COUNTRY nustatymus
++ /s apdoroja failus ir katalogus taip pat visuose tikslo pakatalogiuose
+
+	2.0 [14.04.98]
+# Pataisyta klaida: prarastas svarbiausias sekundžių bitas skaitant failo
+# laiką
++ /@ apdoroti failą su tikslų sąrašu
+* Atskiras parinkties simbolis dabar nurodo standartinę įvestį tik kaip /@
+  parinkties argumentą
+* Sumažintas vykdomojo failo dydis
++ Vykdomajam failui suspausti naudotas DIET
+
+
+5. Autorius
+-----------
+					Arkady Belousov
+

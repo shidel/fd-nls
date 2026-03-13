@@ -1,3 +1,4 @@
+# help, es, cp850/858
 0.0:Muestra un tema de ayuda
 0.1:Uso:
 0.2:tema

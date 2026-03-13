@@ -1,0 +1,87 @@
+# Language: czechian
+# File ending: cz
+# Codepage: 852
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC porovn v  dva soubory nebo sady soubor… v textov‚m nebo bin rn¡m re§imu
+a zobrazuje rozd¡ly mezi nimi.
+
+FC implementuje algoritmus Paula Heckela z Communications of the
+Association for Computing Machinery, duben 1978, s. 264 - 268,
+"Technika pro izolaci rozd¡l… mezi soubory".
+
+Tento algoritmus m  oproti bØ§nØjç¡m porovn vac¡m algoritm…m vìhodu v tom,
+§e je rychlì a dok §e detekovat rozd¡ly v libovoln‚m poŸtu ý dk…. Pro vØtçinu
+aplikac¡ algoritmus izoluje rozd¡ly podobn‚ tØm, kter‚ izoluje nejdelç¡
+spoleŸn  podposloupnost.
+
+Syntaxe je n sleduj¡c¡:
+
+FC [pýep¡naŸe] [jednotka1:][cesta1]soubor1 [jednotka2:][cesta2]soubor2
+
+ /A    Zobrazit pouze prvn¡ a posledn¡ ý dek pro ka§dou sadu rozd¡l…
+ /B    Prov‚st bin rn¡ porovn n¡
+ /C    Ignorovat velikost p¡smen
+ /L    Porovnat soubory jako text ASCII
+ /LBn  Nastavit maxim ln¡ poŸet po sobØ jdouc¡ch rozd¡lnìch ASCII ý dk… na n
+ /Mn   Nastavit maxim ln¡ poŸet rozd¡l… v bin rn¡m porovn n¡ na n bajt…
+ /N    Zobrazit Ÿ¡sla ý dk… pýi textov‚m porovn n¡
+ /Q    Nezobrazovat seznam rozd¡l…
+ /R    Zobrazit struŸnou z vØreŸnou zpr vu (v§dy aktivn¡ pýi pou§it¡ /S)
+ /S    Rozç¡ýit skenov n¡ na soubory v podadres ý¡ch
+ /T    Nepýev dØt tabul tory na mezery
+ /U    Zobrazit n zvy soubor…, kter‚ nemaj¡ protØjçek
+ /W    Zkomprimovat pr zdn‚ znaky (tabul tory a mezery) pro porovn n¡ textu
+ /X    Nezobrazovat kontextov‚ ý dky pýi textov‚m porovn n¡
+ /nnn  Nastavit minim ln¡ poŸet po sobØ jdouc¡ch shodnìch ý dk… na nnn
+       pro opØtovnou synchronizaci porovn n¡
+
+Program podporuje dlouh  jm‚na soubor… (LFN) a pou§¡v  je automaticky,
+pokud je operaŸn¡ syst‚m podporuje.
+
+FC se automaticky pýepne do bin rn¡ho re§imu u soubor… .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL a .LIB.
+
+V bin rn¡m re§imu FC zobrazuje offset odliçnìch bajt… v souboru, jejich
+hodnotu v çestn ctkov‚ soustavØ a (pokud jsou tisknuteln‚) jejich znak ASCII.
+
+Ve vìchoz¡m nastaven¡ se bin rn¡ porovn n¡ zastav¡ po 20 rozd¡lech, ale tuto
+hodnotu lze zmØnit pomoc¡ pýep¡naŸe /M. /M0 znamen  "neomezenì poŸet rozd¡l…".
+/M je interpretov no jako /M0.
+
+Omezen¡m n vrhu tohoto programu je, §e v textov‚m re§imu se porovn v  pouze
+prvn¡ch 32765 ý dk…; zbìvaj¡c¡ ý dky jsou ignorov ny. D‚lka ý dku je
+prakticky neomezen .
+
+FC podporuje z stupn‚ znaky (wildcards). P r slov k tomu:
+- urŸen¡ adres ýe je stejn‚ jako urŸen¡ vçech soubor… v nØm ("*.*").
+  Pý¡klad: "FC C:\ A:" je tot‚§ jako "FC C:\*.* A:*.*"
+- pokud nen¡ zad n soubor2, pýedpokl d  se "." (aktu ln¡ adres ý).
+  Pý¡klad: "FC C:\SOUBOR.TXT" je tot‚§ jako "FC C:\SOUBOR.TXT .\*.*"
+- m -li soubor1 z stupn‚ znaky, ale soubor2 nikoliv, jsou s t¡mto souborem
+  porovn ny vçechny soubory odpov¡daj¡c¡ souboru1.
+  Pý¡klad: "FC SOUBOR.BK? SOUBOR.TXT"
+- m -li soubor1 z stupn‚ znaky a soubor2 je cesta n sledovan  "*.*", pak jsou
+  vçechny soubory odpov¡daj¡c¡ souboru1 porovn ny se soubory stejn‚ho jm‚na
+  v cestØ soubor2. Pý¡klad: "FC *.* A:*.*" (nebo "FC . A:") porovn  vçechny
+  soubory v aktu ln¡m adres ýi s jejich kopiemi na A:
+- maj¡-li oba soubory z stupn‚ znaky, porovnaj¡ se soubory v cestØ souboru1
+  s pý¡sluçnìm souborem v cestØ souboru2. Pý¡klad: "FC *.TXT STARE\*.BAK"
+L‚pe se to prov d¡, ne§ vysvØtluje. Pokud chcete porovnat ka§dì soubor
+v adres ýi se vçemi v jin‚m, pou§ijte: FC *.* MUJADR\????????.???
+
+Volba /S opakuje stejnì vzor hled n¡ v podadres ý¡ch se stejnìm n zvem.
+  Pý¡klad: "FC /S C:*.TXT D:*.BAK"
+  Pokud existuj¡ napý. adres ýe C:\KNIHA a D:\KNIHA, tento pý¡kaz porovn 
+  vçechny *.TXT v aktu ln¡ch adres ý¡ch a tak‚ vçechny KNIHA\*.TXT se
+  soubory KNIHA\*.BAK.
+
+N vratov‚ k¢dy ERRORLEVEL jsou n sleduj¡c¡:
+	0	Vçechny soubory se shoduj¡
+	1	Alespoå jeden p r soubor… se liç¡
+	2	Neplatnì parametr na pý¡kazov‚ ý dce
+	3	Soubor nenalezen
+	4	Chyba pýi otev¡r n¡ souboru (soubor…)

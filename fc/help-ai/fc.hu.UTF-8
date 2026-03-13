@@ -1,0 +1,84 @@
+# Language: hungarian
+# File ending: hu
+# Codepage: 852
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+Az FC két fájlt vagy fájlkészletet hasonlít össze szöveges vagy bináris
+módban, és megjeleníti a köztük lévő különbségeket.
+
+Az FC Paul Heckel algoritmusát alkalmazza (Communications of the
+Association for Computing Machinery, 1978. április, 264-268. o.,
+"A Technique for Isolating Differences Between Files").
+
+Ennek az algoritmusnak az előnye a gyakrabban használt algoritmusokkal
+szemben a gyorsasága és az, hogy tetszőleges számú sor különbségét képes
+érzékelni. A legtöbb alkalmazásnál az algoritmus hasonló különbségeket
+izolál, mint a leghosszabb közös részsorozat módszer.
+
+A szintaxis a következő:
+
+FC [kapcsolók] [megh1:][út1]fájl1 [megh2:][út2]fájl2 [kapcsolók]
+
+ /A    Csak az első és utolsó sort jeleníti meg minden különbségnél
+ /B    Bináris összehasonlítás végrehajtása
+ /C    Kis- és nagybetűk megkülönböztetésének mellőzése
+ /L    Fájlok összehasonlítása ASCII szövegként
+ /LBn  Egymást követő eltérő ASCII sorok max. száma n
+ /Mn   Maximális különbség bináris összehasonlításnál n bájt
+ /N    Sorok számának megjelenítése szöveges összehasonlításnál
+ /Q    Különbségek listájának elrejtése
+ /R    Rövid zárójelentés megjelenítése (mindig aktív /S esetén)
+ /S    Keresés kiterjesztése az alkönyvtárakban lévő fájlokra
+ /T    Tabulátorok szóközökké alakításának mellőzése
+ /U    Gegenpár nélküli fájlok neveinek megjelenítése
+ /W    Szóközök és tabulátorok összevonása szöveges összehasonlításhoz
+ /X    Kontextussorok elrejtése szöveges összehasonlításnál
+ /nnn  Egymást követő egyező sorok min. száma nnn
+       az összehasonlítás újraszinkronizálásához
+
+A program kezeli a hosszú fájlneveket (LFN), és automatikusan használja
+őket, ha az operációs rendszer támogatja.
+
+Az FC alapértelmezés szerint bináris módot használ az .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL és .LIB kiterjesztésű fájloknál.
+
+Bináris módban az FC megjeleníti az eltérő bájtok eltolását (offset),
+hexadecimális értéküket, és (nyomtatható karakterek esetén) az ASCII jelet.
+
+Alapértelmezés szerint a bináris összehasonlítás 20 különbség után leáll,
+de ez az érték módosítható az /M kapcsolóval. Az /M0 jelentése: "korlátlan".
+Az /M kapcsolót az /M0-val azonosnak tekinti.
+
+Tervezési korlát, hogy szöveges módban csak az első 32765 sort hasonlítja
+össze; a többi sort figyelmen kívül hagyja. A sorhossz gyakorlatilag végtelen.
+
+Az FC támogatja a helyettesítő karaktereket (wildcards):
+- könyvtár megadása megegyezik az összes fájl megadásával ("*.*").
+  Példa: "FC C:\ A:" ugyanaz, mint az "FC C:\*.* A:*.*"
+- ha nincs megadva fájl2, akkor a "." (aktuális könyvtár) értendő.
+  Példa: "FC C:\FÁJL.TXT" ugyanaz, mint az "FC C:\FÁJL.TXT .\*.*"
+- ha a fájl1 tartalmaz helyettesítőt, de a fájl2 nem, akkor a fájl1-re
+  illeszkedő összes fájlt ugyanazzal a fájl2-vel hasonlítja össze.
+- ha a fájl1 tartalmaz helyettesítőt, és a fájl2 egy elérési út, amit a
+  "*.*" követ, akkor a fájl1-re illeszkedő összes fájlt a fájl2 útvonalán
+  lévő, azonos nevű fájlokkal hasonlítja össze.
+- ha mindkettő tartalmaz helyettesítőt, akkor a fájl1 útvonalán lévő fájlokat
+  a fájl2 útvonalán lévő megfelelő fájlokkal hasonlítja össze.
+Egyszerűbb megtenni, mint elmondani. Ha egy könyvtár minden fájlját egy
+másik minden fájljával össze akarja vetni: FC *.* MEGH\????????.???
+
+Az /S kapcsoló megismétli a keresési mintát az azonos nevű alkönyvtárakban.
+  Példa: "FC /S C:*.TXT D:*.BAK"
+  Ha létezik például a C:\KONYV és a D:\KONYV könyvtár, ez a parancs
+  összeveti az összes *.TXT fájlt a *.BAK másolattal az aktuális és a
+  KONYV alkönyvtárakban is.
+
+Az ERRORLEVEL kilépési kódjai:
+	0	Minden fájl megegyezik
+	1	Legalább egy fájlpár eltér
+	2	Érvénytelen paraméter a parancssorban
+	3	Fájl nem található
+	4	Hiba a fájl(ok) megnyitásakor

@@ -5,7 +5,7 @@ MORE: Toont de inhoud van een tekstbestand een scherm per keer.
   onder de voorwaarden van de GNU GPL; zie het bestand COPYING voor meer informatie.
 
 Gebruik:
-  opdracht Â¦ MORE
+  opdracht Ý MORE
   MORE bestand..
   MORE < bestand
 

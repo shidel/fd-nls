@@ -1,0 +1,32 @@
+# Language: Slovak
+# File ending: SK
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+SYSLINUX
+
+SYSLINUX je kolekcia zavádzačov (bootloaders)
+
+Inštalácia:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+Pri spúšťaní, keď sa zobrazí príkazový riadok, napíšte
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Prípadne vytvorte súbor SYSLINUX.CFG, k tomu si pozorne prečítajte
+dokumentáciu! (v nižšie uvedenom príklade adresár "CONTENTS", v ňom adresár
+ISOLINUX, v ňom zavádzač CD-ROM ISOLINUX.BIN - režim bez emulácie.
+dbajte na to, aby ste používali "/" a "\" presne tak, ako je uvedené nižšie!
+
+Pre MEMDISK a ISOLINUX si prosím pozorne prečítajte dokumentáciu!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso
+  contents
+
+Alternatívy k CDRECORD (ktorý obsahuje MKISOFS) sú XORRISO a CDRKIT
+(pozri http://sites.google.com/site/blairdude/cdrkit pre DOS port)
+

@@ -8,5 +8,6 @@ Syntax:
 MIRROR [station:]
 MIRROR [/PARTN]
 
-  /PARTN    Bewaart een reservekopie van de partitietabel in een PARTNSAV.FIL op de 
-            diskette in station A:. De partitietabel kan hersteld worden met UNFORMAT versie 0.8.
+  /PARTN    Bewaart een reservekopie van de partitietabel in een PARTNSAV.FIL
+            op de diskette in station A:. De partitietabel kan hersteld worden
+            met UNFORMAT versie 0.8.

@@ -1,0 +1,81 @@
+# Language: portuguese
+# File ending: pt
+# Codepage: 860
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+O FC compara dois ficheiros ou conjuntos de ficheiros, em modo texto ou
+bin†rio, e mostra as diferenáas entre eles.
+
+O FC implementa o algoritmo de Paul Heckel das Communications of the
+Association for Computing Machinery, Abril de 1978, p264 - p268,
+"A Technique for Isolating Differences Between Files".
+
+Este algoritmo tem a vantagem de ser r†pido e detetar diferenáas num
+n£mero arbitr†rio de linhas. Para a maioria das aplicaáîes, o algoritmo
+isola diferenáas semelhantes Ös da subsequància comum mais longa.
+
+A sintaxe Ç a seguinte:
+
+FC [opáîes] [unid1:][caminho1]fich1 [unid2:][caminho2]fich2 [opáîes]
+
+ /A    Mostrar apenas a primeira e £ltima linha de cada grupo de diferenáas
+ /B    Efetuar uma comparaáÑo bin†ria
+ /C    Ignorar a diferenáa entre mai£sculas e min£sculas
+ /L    Comparar ficheiros como texto ASCII
+ /LBn  Definir o n£mero m†ximo de linhas ASCII consecutivas diferentes para n
+ /Mn   Definir o m†ximo de diferenáas na comparaáÑo bin†ria para n bytes
+ /N    Mostrar os n£meros de linha numa comparaáÑo de texto
+ /Q    NÑo mostrar a lista de diferenáas
+ /R    Mostrar um relat¢rio final breve (sempre ativo ao usar /S)
+ /S    Estender a procura aos ficheiros em subdiret¢rios
+ /T    NÑo expandir tabulaáîes para espaáos
+ /U    Mostrar os nomes dos ficheiros sem um correspondente
+ /W    Compactar espaáos em branco (tabs e espaáos) para comparaáÑo de texto
+ /X    NÑo mostrar linhas de contexto na comparaáÑo de texto
+ /nnn  Definir o n£mero m°nimo de linhas consecutivas iguais para nnn
+       para a ressincronizaáÑo da comparaáÑo
+
+O programa reconhece nomes longos (LFN) e usa-os automaticamente se o sistema
+operativo os suportar.
+
+O FC assume o modo bin†rio para ficheiros .EXE, .COM, .SYS, .OBJ, .BIN, .DLL
+e .LIB.
+
+No modo bin†rio, o FC mostra o offset dos bytes divergentes, o seu valor em
+hexadecimal e o caractere ASCII (se for imprim°vel).
+
+Por padrÑo, a comparaáÑo bin†ria para ap¢s 20 diferenáas, mas o valor pode
+ser alterado com /M. /M0 significa "ilimitado". /M Ç lido como /M0.
+
+Uma limitaáÑo Ç que, no modo texto, apenas as primeiras 32765 linhas sÑo
+comparadas; as restantes sÑo ignoradas. O tamanho da linha Ç ilimitado.
+
+O FC suporta wildcards (caracteres genÇricos). Algumas notas:
+- especificar um diret¢rio Ç o mesmo que especificar "*.*".
+  Exemplo: "FC C:\ A:" Ç o mesmo que "FC C:\*.* A:*.*"
+- se fich2 for omitido, assume-se "." (diret¢rio atual).
+  Exemplo: "FC C:\FICH.TXT" Ç o mesmo que "FC C:\FICH.TXT .\*.*"
+- se fich1 tem wildcards mas fich2 nÑo, todos os ficheiros de fich1 sÑo
+  comparados com o mesmo fich2.
+- se fich1 tem wildcards e fich2 Ç um caminho com "*.*", os ficheiros de
+  fich1 sÑo comparados com os de mesmo nome no caminho fich2.
+- se ambos tiverem wildcards, os ficheiros no caminho de fich1 sÑo
+  comparados com os ficheiros relevantes no caminho de fich2.
+  Exemplo: "FC *.TXT VELHOS\*.BAK"
+ê mais f†cil fazer do que dizer. Para comparar cada ficheiro de um diret¢rio
+com todos os de outro: FC *.* MEUDIR\????????.???
+
+A opáÑo /S repete o padrÑo de busca em subdiret¢rios com o mesmo nome.
+  Exemplo: "FC /S C:*.TXT D:*.BAK"
+  Se existirem C:\LIVRO e D:\LIVRO, este comando compara os *.TXT nos
+  diret¢rios atuais e tambÇm em LIVRO\*.TXT com as c¢pias *.BAK.
+
+Os c¢digos de sa°da para ERRORLEVEL sÑo:
+	0	Todos os ficheiros coincidem
+	1	Pelo menos um par de ficheiros Ç diferente
+	2	ParÉmetro inv†lido na linha de comando
+	3	Ficheiro nÑo encontrado
+	4	Erro ao abrir ficheiro(s)

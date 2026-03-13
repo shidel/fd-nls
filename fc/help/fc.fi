@@ -1,0 +1,85 @@
+
+# Language: finnish
+# File ending: fi
+# Codepage: 865
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC vertaa kahta tiedostoa tai tiedostojoukkoa teksti- tai binaaritilassa
+ja n„ytt„„ niiden v„liset erot.
+
+FC toteuttaa Paul Heckelin algoritmin julkaisusta Communications of the
+Association for Computing Machinery, huhtikuu 1978, s. 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+T„m„n algoritmin etu yleisemmin k„ytettyihin vertailualgoritmeihin on sen
+nopeus ja kyky havaita erot mielivaltaisella rivim„„r„ll„. Useimmissa
+sovelluksissa algoritmi erist„„ erot samalla tavalla kuin pisin yhteinen
+alijono -menetelm„.
+
+Syntaksi on seuraava:
+
+FC [valitsimet] [asema1:][polku1]tiedosto1 [asema2:][polku2]tiedosto2
+
+ /A    N„yt„ vain ensimm„inen ja viimeinen rivi jokaisesta eroavuudesta
+ /B    Suorita binaarivertailu
+ /C    Žl„ huomioi kirjainkokoa
+ /L    Vertaa tiedostoja ASCII-tekstin„
+ /LBn  Aseta per„kk„isten erilaisten ASCII-rivien enimm„ism„„r„ksi n
+ /Mn   Aseta binaarivertailun suurin sallittu ero n tavuun
+ /N    N„yt„ rivinumerot tekstivertailussa
+ /Q    Žl„ n„yt„ erolistaa
+ /R    N„yt„ lyhyt loppuraportti (aina k„yt”ss„ valitsimen /S kanssa)
+ /S    Laajenna haku alihakemistojen tiedostoihin
+ /T    Žl„ muunna sarkaimia v„lily”nneiksi
+ /U    N„yt„ tiedostojen nimet, joilla ei ole vastinetta
+ /W    Tiivist„ tyhj„ tila (sarkaimet ja v„lily”nnit) tekstivertailuun
+ /X    Žl„ n„yt„ kontekstirivej„ tekstivertailussa
+ /nnn  Aseta per„kk„isten t„sm„„vien rivien v„himm„ism„„r„ksi nnn
+       vertailun uudelleensynkronointia varten
+
+Ohjelma tukee pitki„ tiedostonimi„ (LFN) ja k„ytt„„ niit„ automaattisesti,
+jos k„ytt”j„rjestelm„ tukee niit„.
+
+FC k„ytt„„ oletuksena binaaritilaa tiedostoille .EXE, .COM, .SYS, .OBJ,
+.BIN, .DLL ja .LIB.
+
+Binaaritilassa FC n„ytt„„ poikkeavien tavujen sijainnin, niiden arvon
+heksadesimaalina ja ASCII-merkin, jos se on tulostettavissa.
+
+Oletuksena binaarivertailu pys„htyy 20 eron j„lkeen, mutta arvoa voidaan
+muuttaa /M-valitsimella. /M0 tarkoittaa "rajoittamaton m„„r„ eroja".
+/M tulkitaan samaksi kuin /M0.
+
+Ohjelman rajoitus on, ett„ tekstivertailussa vain ensimm„iset 32765 rivi„
+verrataan; loput rivit ohitetaan. Rivin pituus on l„hes rajoittamaton.
+
+FC tukee jokerimerkkej„ tiedostom„„rityksiss„:
+- hakemiston m„„ritt„minen vastaa kaikkien tiedostojen valintaa ("*.*").
+  Esimerkki: "FC C:\ A:" on sama kuin "FC C:\*.* A:*.*"
+- jos tiedostoa2 ei anneta, oletuksena on "." (nykyinen hakemisto).
+  Esimerkki: "FC C:\TIED.TXT" on sama kuin "FC C:\TIED.TXT .\*.*"
+- jos tiedostossa1 on jokerimerkkej„ mutta tiedostossa2 ei, kaikki hakuun
+  sopivat tiedostot verrataan samaan tiedostoon2.
+- jos tiedostossa1 on jokerimerkkej„ ja tiedosto2 on polku ja "*.*", hakuun
+  sopivat tiedostot verrataan samannimisiin tiedostoihin polussa2.
+- jos molemmissa on jokerimerkkej„, polun 1 tiedostoja verrataan vastaaviin
+  tiedostoihin polussa 2. Esimerkki: "FC *.TXT VANHAT\*.BAK" vertaa kaikkia
+  nykyisen hakemiston .TXT-tiedostoja niiden varmuuskopioihin alikansiossa.
+Se on helpompi tehd„ kuin selitt„„. Jos haluat verrata kaikkia hakemiston
+tiedostoja toisen hakemiston kaikkiin tiedostoihin, k„yt„ muotoa:
+FC *.* MUNHAK\????????.???
+
+Valitsin /S toistaa saman hakukuvion alihakemistoissa, joilla on sama nimi.
+  Esimerkki: "FC /S C:*.TXT D:*.BAK"
+  Jos alihakemistot C:\KIRJA ja D:\KIRJA ovat olemassa, komento vertaa
+  kaikkia nykyisen hakemiston ja alihakemiston KIRJA tiedostoja kesken„„n.
+
+ERRORLEVEL-paluukoodit ovat:
+	0	Kaikki tiedostot t„sm„„v„t
+	1	V„hint„„n yksi tiedostopari eroaa
+	2	Virheellinen parametri komentorivill„
+	3	Tiedostoa ei l”ydy
+	4	Virhe avattaessa tiedostoa

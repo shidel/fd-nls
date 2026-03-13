@@ -1,5 +1,6 @@
 # Translation courtesy of Bernd Blaauw <bblnews@hotmail.com>
 # Needs translation for 1.16, 1.17, 1.18, 2.15, 3.0, 3.1, 3.2, 3.3
+# Fixed by W. Spiegl with Google AI, nl, CP850/858
 #### Help        ####
 1.0:Vergelijkt twee bestanden of verzamelingen van bestanden en toont de verschillen.
 1.1:FC [opties] [schijf1:][pad1]bestandsnaam1 [schijf2][pad2]bestandsnaam [opties]
@@ -17,9 +18,16 @@
 1.13: /LBn  Stelt het maximaal aantal opeenvolgende verschillende ASCII regels in op n
 1.14: /nnn  Stelt het minimaal aantal regels dat opeenvolgend en overeenkomend moet zijn in op nnn
 1.15:       zijn in op nnn
-1.16: /R    Show a brief final report (always active when using /S)
-1.17: /Q    Don't show the list of differences
-1.18: /U    Show the filenames of the files without a correspondent
+
+# Translation by Google AI:
+1.16: /R Toon een beknopt eindrapport (altijd actief bij gebruik van /S)
+1.17: /Q Toon de lijst met verschillen niet
+1.18: /U Toon de bestandsnamen van de bestanden zonder tegenhanger
+
+# Original text:
+# 1.16: /R    Show a brief final report (always active when using /S)
+# 1.17: /Q    Don't show the list of differences
+# 1.18: /U    Show the filenames of the files without a correspondent
 #### Messages    ####
 2.0:Ongeldige schakeloptie: %s
 2.1:Te veel bestanden opgegeven
@@ -36,9 +44,22 @@
 2.12:Hersynchronisatie mislukt: de bestanden zijn te verschillend
 2.13:De bestanden zijn van verschillende grootte
 2.14:De bestanden zijn te verschillend
-2.15:File %s has no correspondent (%s)
+
+# Translation by Google AI:
+2.15: Bestand %s heeft geen tegenhanger (%s)
+
+# Original text:
+# 2.15:File %s has no correspondent (%s)
 #### Report text ####
-3.0:Compared %d files
-3.1: in %d directories
-3.2:%d files match, %d files are different
-3.3:%d files have no correspondent
+
+# Translation by Google AI:
+3.0: %d bestanden vergeleken
+3.1: in %d mappen
+3.2: %d bestanden komen overeen, %d bestanden zijn verschillend
+3.3: %d bestanden hebben geen tegenhanger
+
+# Original text:
+# 3.0:Compared %d files
+# 3.1: in %d directories
+# 3.2:%d files match, %d files are different
+# 3.3:%d files have no correspondent

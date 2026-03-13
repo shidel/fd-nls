@@ -1,0 +1,83 @@
+# Language: slovakian
+# File ending: sk
+# Codepage: 852
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC porovnáva dva súbory alebo sady súborov v textovom alebo binárnom režime
+a zobrazuje rozdiely medzi nimi.
+
+FC implementuje algoritmus Paula Heckela z Communications of the
+Association for Computing Machinery, apríl 1978, s. 264 - 268,
+"Technika na izoláciu rozdielov medzi súbormi".
+
+Tento algoritmus má oproti bežnejším porovnávacím algoritmom výhodu v tom,
+že je rýchly a dokáže detegovať rozdiely v ľubovoľnom počte riadkov. Vo
+väčšine aplikácií algoritmus izoluje rozdiely podobne ako metóda najdlhšej
+spoločnej podpostupnosti.
+
+Syntax je nasledovná:
+
+FC [prepínače] [jednotka1:][cesta1]súbor1 [jednotka2:][cesta2]súbor2
+
+ /A    Zobraziť iba prvý a posledný riadok pre každú sadu rozdielov
+ /B    Vykonať binárne porovnanie
+ /C    Ignorovať veľkosť písmen
+ /L    Porovnať súbory ako text ASCII
+ /LBn  Nastaviť max. počet po sebe idúcich rozdielnych ASCII riadkov na n
+ /Mn   Nastaviť maximálny počet rozdielov v binárnom porovnaní na n bajtov
+ /N    Zobraziť čísla riadkov pri textovom porovnaní
+ /Q    Nezobrazovať zoznam rozdielov
+ /R    Zobraziť stručnú záverečnú správu (vždy aktívne pri použití /S)
+ /S    Rozšíriť skenovanie na súbory v podadresároch
+ /T    Neprevádzať tabulátory na medzery
+ /U    Zobraziť názvy súborov, ktoré nemajú náprotivok
+ /W    Zkomprimovať biele znaky (tabulátory a medzery) pre porovnanie textu
+ /X    Nezobrazovať kontextové riadky pri textovom porovnaní
+ /nnn  Nastaviť min. počet po sebe idúcich zhodných riadkov na nnn
+       pre opätovnú synchronizáciu porovnania
+
+Program podporuje dlhé názvy súborov (LFN) a používa ich automaticky, ak
+ich operačný systém podporuje.
+
+FC sa predvolene prepne do binárneho režimu pri súboroch .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL a .LIB.
+
+V binárnom režime FC zobrazuje offset rozdielnych bajtov v súbore, ich
+hexadecimálnu hodnotu a (ak sú tlačiteľné) ich znak ASCII.
+
+Predvolene sa binárne porovnávanie zastaví po 20 rozdieloch, ale túto
+hodnotu možno zmeniť prepínačom /M. /M0 znamená "neobmedzene".
+/M sa interpretuje ako /M0.
+
+Obmedzením programu je, že v textovom režime sa porovnáva iba prvých
+32765 riadkov; zvyšné riadky sú ignorované. Dĺžka riadka je prakticky
+neobmedzená.
+
+FC podporuje zástupné znaky (wildcards). Pár slov k tomu:
+- určenie adresára je rovnaké ako určenie všetkých súborov v ňom ("*.*").
+  Príklad: "FC C:\ A:" je to isté ako "FC C:\*.* A:*.*"
+- ak nie je zadaný súbor2, predpokladá sa "." (aktuálny adresár).
+  Príklad: "FC C:\SUBOR.TXT" je to isté ako "FC C:\SUBOR.TXT .\*.*"
+- ak má súbor1 zástupné znaky, ale súbor2 nie, všetky súbory zodpovedajúce
+  súboru1 sa porovnajú s tým istým súborom2.
+- ak má súbor1 zástupné znaky a súbor2 je cesta s "*.*", všetky súbory
+  zodpovedajúce súboru1 sa porovnajú so súbormi rovnakého mena v ceste súbor2.
+- ak majú oba súbory zástupné znaky, porovnajú sa súbory v ceste súboru1
+  s príslušným súborom v ceste súboru2. Príklad: "FC *.TXT STARE\*.BAK"
+Je to jednoduchšie urobiť ako vysvetliť. Ak chcete porovnať každý súbor
+v adresári so všetkými v inom: FC *.* MOJADR\????????.???
+
+Voľba /S opakuje rovnaký vzor hľadania v podadresároch s rovnakým názvom.
+  Príklad: "FC /S C:*.TXT D:*.BAK"
+  Ak existujú adresáre C:\KNIHA a D:\KNIHA, tento príkaz porovná všetky
+  *.TXT v aktuálnych adresároch a tiež všetky KNIHA\*.TXT.
+
+Návratové kódy ERRORLEVEL sú nasledovné:
+	0	Všetky súbory sa zhodujú
+	1	Aspoň jeden pár súborov sa líši
+	2	Neplatný parameter na príkazovom riadku
+	3	Súbor sa nenašiel
+	4	Chyba pri otváraní súboru (súborov)

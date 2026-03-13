@@ -1,0 +1,82 @@
+# Language: slovenian
+# File ending: sl
+# Codepage: 852
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC primerja dve datoteki ali niza datotek v tekstovnem ali binarnem načinu
+ter prikaže razlike med njima.
+
+FC uporablja algoritem Paula Heckla iz Communications of the Association
+for Computing Machinery, april 1978, str. 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+Ta algoritem je hitrejši od običajnih algoritmov in lahko zazna razlike
+pri poljubnem številu vrstic. V večini primerov algoritem izolira razlike
+podobno kot metoda najdaljšega skupnega podzaporedja.
+
+Sintaksa je naslednja:
+
+FC [možnosti] [pogon1:][pot1]datoteka1 [pogon2:][pot2]datoteka2 [možnosti]
+
+ /A    Prikaži le prvo in zadnjo vrstico za vsak sklop razlik
+ /B    Izvedi binarno primerjavo
+ /C    Prezri razlikovanje med velikimi in malimi črkami
+ /L    Primerjaj datoteke kot besedilo ASCII
+ /LBn  Nastavi maks. število zaporednih različnih vrstic ASCII na n
+ /Mn   Nastavi maks. število razlik v binarni primerjavi na n bajtov
+ /N    Prikaži številke vrstic pri tekstovni primerjavi
+ /Q    Ne prikaži seznama razlik
+ /R    Prikaži kratko končno poročilo (vedno aktivno pri uporabi /S)
+ /S    Razširi iskanje na datoteke v podimenikih
+ /T    Ne razširi tabulatorjev v presledke
+ /U    Prikaži imena datotek brez ustrezne datoteke na drugi strani
+ /W    Strni prazne prostore (tabulatorje in presledke) za primerjavo
+ /X    Ne prikaži kontekstnih vrstic pri tekstovni primerjavi
+ /nnn  Nastavi min. število zaporednih ujemajočih se vrstic na nnn
+       za ponovno sinhronizacijo primerjave
+
+Program podpira dolga imena datotek (LFN) in jih uporablja samodejno, če
+jih operacijski sistem podpira.
+
+FC privzeto uporablja binarni način za datoteke .EXE, .COM, .SYS, .OBJ,
+.BIN, .DLL in .LIB.
+
+V binarnem načinu FC prikaže odmik (offset) v datoteki za različne bajte,
+njihovo šestnajstiško vrednost in znak ASCII (če ga je mogoče natisniti).
+
+Privzeto se binarna primerjava ustavi po 20 razlikah, vendar lahko to
+vrednost spremenite s stikalom /M. /M0 pomeni "neomejeno".
+/M se obravnava kot /M0.
+
+Omejitev programa je, da se v tekstovnem načinu primerja le prvih 32765
+vrstic; ostale vrstice so prezrte. Dolžina vrstice je neomejena.
+
+FC podpira nadomestne znake (wildcards). Nekaj pojasnil:
+- navedba imenika je isto kot navedba vseh datotek v njem ("*.*").
+  Primer: "FC C:\ A:" je enako kot "FC C:\*.* A:*.*"
+- če datoteka2 ni vnesena, se privzame "." (trenutni imenik).
+  Primer: "FC C:\TEST.TXT" je enako kot "FC C:\TEST.TXT .\*.*"
+- če ima datoteka1 nadomestne znake, datoteka2 pa ne, se vse datoteke,
+  ki ustrezajo datoteki1, primerjajo z isto datoteko2.
+- če ima datoteka1 nadomestne znake, datoteka2 pa je pot z "*.*", se
+  datoteke iz datoteka1 primerjajo z datotekami z istim imenom na poti2.
+- če imata obe nadomestne znake, se datoteke na poti datoteka1 primerjajo
+  z ustreznimi datotekami na poti datoteka2.
+  Primer: "FC *.TXT STARE\*.BAK"
+To je lažje storiti kot razložiti. Če želite primerjati vsako datoteko v
+imeniku z vsemi v drugem: FC *.* MOJDIR\????????.???
+
+Možnost /S ponovi isti vzorec iskanja v podimenikih z istim imenom.
+  Primer: "FC /S C:*.TXT D:*.BAK"
+  Če obstajata npr. C:\KNJIGA in D:\KNJIGA, ta ukaz primerja vse *.TXT
+  v trenutnih imenikih in tudi v podimenikih KNJIGA.
+
+Izhodne kode ERRORLEVEL so:
+	0	Vse datoteke se ujemajo
+	1	Vsaj en par datotek se razlikuje
+	2	Neveljaven parameter v ukazni vrstici
+	3	Datoteka ni bila najdena
+	4	Napaka pri odpiranju datotek

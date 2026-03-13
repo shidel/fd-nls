@@ -1,3 +1,4 @@
+# nl,cp858
 0.0:Geef een onderwerp weer
 0.1:Gebruik:
 0.2:onderwerp

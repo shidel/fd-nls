@@ -1,0 +1,121 @@
+# Language: Dutch
+# File ending: NL
+# Codepage: 850
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Inhoud
+------
+
+	1. Mogelijkheden
+	2. Foutniveaus (Errorlevels)
+	3. Te doen (Todo)
+	4. Geschiedenis
+	5. Auteur
+
+
+1. Mogelijkheden
+----------------
+
+- wijzig datum/tijd voor bestanden
+- wijzig attributen voor bestanden en mappen
+- vergelijk datum/tijd en attributen voor bestanden en mappen
+- datum/tijd-opties maken het mogelijk om gelijktijdig waarden van de huidige
+  en de bestandsdatum/-tijd te verkrijgen met expliciete getallen
+- complexe datum/tijd-vergelijking met huidige tijd, evenals met bestand
+- datum/tijd in formaten die voldoen aan COUNTRY-instellingen
+- UNC- en NetWare-paden toegestaan
+- meerdere doelen in ‚‚n commandoregel
+- uitgebreide jokertekens (wildcards): namen kunnen elk aantal '*' bevatten,
+  evenals '?'; "naam" betekent "naam.", maar "*" betekent "*.*"
+- automatische detectie van optie-teken ('/' of '-')
+- optie om mapnamen op te nemen in zoekopdrachten met jokertekens
+- optie om bestanden en mappen in alle submappen van het doel te verwerken
+- optie om bestand met lijst van doelen te verwerken; ontbrekend argument
+  betekent standaard invoer (stdin)
+
+
+2. Foutniveaus (Errorlevels)
+----------------------------
+
+0   - instellen of vergelijken van datum/tijd en attributen succesvol
+1   - vergelijking (‚‚n van de) is niet succesvol
+2   - fout bij bestandstoegang of instellen van bestandsdatum/-tijd/
+    -attributen
+128 - ongeldige of gedupliceerde optie
+129 - incompatibele opties, geen doelen of ongeldige argumenten
+130 - interne fout (onvoldoende geheugen of mapstructuur te diep)
+
+
+3. Te doen (Todo)
+-----------------
+
+- tonen van lijsten met verwerkte bestanden
+- vergelijken/kopi‰ren datum/tijd/attributen van bestand-naar-bestanden
+- verhogen/verlagen voor datum/tijd-velden
+- groter dan/kleiner dan vergelijking voor attributen
+
+
+4. Geschiedenis
+---------------
+
+	1.0 [16.02.98]
++ Eerste editie
+
+	1.1 [19.02.98]
++ Accepteert nu datum/tijd in formaten die voldoen aan COUNTRY-instellingen
+
+	1.2 [21.02.98]
+* Interpretatie van weggelaten velden en argumenten iets verbeterd
+* Grootte van uitvoerbaar bestand verkleind
++ -a optie toegevoegd om attributen van bestanden en mappen te wijzigen
+
+	1.3 [21.02.98]
++ Accepteert nu meerdere doelen in ‚‚n commandoregel
++ -a optie kan nu worden gebruikt bij vergelijking
+
+	1.4 [26.02.98]
+# Uitvoering stopt nu niet wanneer een fout voor een bestand wordt gevonden,
+  maar gaat door voor de volgende doelen
+# Uitvoer wordt nu niet gedupliceerd naar console wanneer deze naar bestand
+  is omgeleid
+* -@ optie hernoemd naar -c
++ Datum/tijd van mappen kan nu ook worden gecontroleerd in vergelijking
++ Jokertekens voor doelen nu geaccepteerd
++ -r maakt verwerking van mappen met jokertekens mogelijk
+
+	1.41 [28.02.98]
++ Teken voor opties automatisch geselecteerd bij eerste voorkomen van '/'
+  of '-'
++ Alleenstaand paar optie-tekens ("--" of "//") stopt zoeken naar volgende
+  opties
++ Alleenstaand optie-teken betekent standaard invoer (stdin)
+- Toevoegen van optie-teken voor naam met hetzelfde teken aan het begin om
+  een dergelijke naam als argument mogelijk te maken, veroorzaakt nu een 
+  foutmelding; om willekeurige namen door te geven, plaats eerst een
+  alleenstaand paar optie-tekens
+
+	1.5 [14.03.98]
+# Bugfix: onder bepaalde voorwaarden werden expliciet doorgegeven correcte
+  dagwaarden 30 en 31 geweigerd
+# Bugfix: namen van doelen nu in hoofdletters volgens COUNTRY-instellingen
++ /s verwerkt bestanden en mappen ook in alle submappen van het doel
+
+	2.0 [14.04.98]
+# Bugfix: meest significante bit van seconden verloren bij het lezen van
+# bestandstijd
++ /@ om bestand met lijst van doelen te verwerken
+* Alleenstaand optie-teken specificeert nu standaard invoer alleen als
+  argument voor /@ optie
+* Grootte van uitvoerbaar bestand verkleind
++ DIET gebruikt voor het comprimeren van uitvoerbaar bestand
+
+
+5. Auteur
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+

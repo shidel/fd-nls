@@ -1,0 +1,34 @@
+# Language: Spanish
+# File ending: ES
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+SYSLINUX
+
+SYSLINUX es una colecci¢n de cargadores de arranque
+
+Instalaci¢n:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+Al arrancar y aparecer la l¡nea de comandos, escriba
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Alternativamente, cree un SYSLINUX.CFG, ­lea atentamente la documentaci¢n para
+ello! (en el siguiente ejemplo, un directorio "CONTENTS" con un directorio
+ISOLINUX dentro, y dentro de este, el cargador de arranque de CDROM
+ISOLINUX.BIN - estilo sin emulaci¢n. ­por favor, aseg£rese de usar "/" y "\"
+exactamente como se muestra abajo!
+
+Para MEMDISK e ISOLINUX, ­lea atentamente la documentaci¢n!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso
+  contents
+
+Las alternativas para CDRECORD (que incluye MKISOFS) son XORRISO y CDRKIT
+(consulte http://sites.google.com/site/blairdude/cdrkit para la versi¢n
+de DOS)
+

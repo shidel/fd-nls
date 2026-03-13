@@ -1,0 +1,85 @@
+# Language: icelandic
+# File ending: is
+# Codepage: 861
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC ber saman tvær skrár eða skráasett, í texta- eða tvíundarham, og
+sýnir muninn á þeim.
+
+FC notar reiknirit Paul Heckel úr Communications of the Association for
+Computing Machinery, apríl 1978, bls. 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+Þetta reiknirit hefur þann kost yfir algengari samanburðaraðferðir að vera
+hratt og geta fundið mun á hvaða línufjölda sem er. Í flestum tilfellum
+einangrar reikniritið mun á svipaðan hátt og "longest common subsequence".
+
+Málfræðin (syntax) er eftirfarandi:
+
+FC [rofar] [drif1:][slóð1]skrá1 [drif2:][slóð2]skrá2 [rofar]
+
+ /A    Sýna aðeins fyrstu og síðustu línur fyrir hvern mismun
+ /B    Framkvæma tvíundarsamanburð (binary)
+ /C    Hunsa hástafi og lágstafi
+ /L    Bera saman skrár sem ASCII texta
+ /LBn  Setja hámarksfjölda samfelldra mismunandi ASCII lína við n
+ /Mn   Setja hámarksmismun í tvíundarsamanburði við n bæti
+ /N    Sýna línunúmer við textasamanburð
+ /Q    Ekki sýna lista yfir mismun
+ /R    Sýna stutta lokaskýrslu (alltaf virkt þegar /S er notað)
+ /S    Leita einnig í undirmöppum
+ /T    Ekki breyta dálksmerkjum (tabs) í bil
+ /U    Sýna skráarnöfn þeirra skráa sem eiga sér ekki samsvörun
+ /W    Þjappa hvítum bilum (tabs/bil) fyrir textasamanburð
+ /X    Ekki sýna samhengislínur í textasamanburði
+ /nnn  Setja lágmarksfjölda samfelldra eins lína við nnn
+       fyrir endursamstillingu samanburðar
+
+Forritið styður löng skráarnöfn (LFN) og notar þau sjálfkrafa ef
+stýrikerfið styður þau.
+
+FC notar sjálfgefið tvíundarham fyrir skrár af gerðinni .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL og .LIB.
+
+Í tvíundarham sýnir FC hliðrun (offset) í skránni fyrir bætin sem eru ólík,
+gildi þeirra í sextándakerfi og, ef þau eru prentanleg, ASCII tákn þeirra.
+
+Sjálfgefið stöðvast tvíundarsamanburður eftir 20 mismuni, en því gildi má
+breyta með /M rofanum. /M0 þýðir "ótakmarkaður mismunur".
+/M er túlkað sem /M0.
+
+Hönnunartakmörkun á þessu forriti er að í textasamanburði eru aðeins fyrstu
+32765 línurnar bornar saman; afgangurinn er hunsaður. Línulengd er nánast
+ótakmörkuð.
+
+FC styður algildisstafi (wildcards). Nokkur orð um það:
+- að tilgreina möppu er það sama og að tilgreina allar skrár í henni ("*.*").
+  Dæmi: "FC C:\ A:" er það sama og "FC C:\*.* A:*.*"
+- ef skrá2 er ekki slegin inn er gert ráð fyrir "." (núverandi mappa).
+  Dæmi: "FC C:\SKRA.TXT" er það sama og "FC C:\SKRA.TXT .\*.*"
+- ef skrá1 hefur algildisstafi en skrá2 ekki, þá eru allar skrár sem passa
+  við skrá1 bornar saman við sömu skrá2.
+- ef skrá1 hefur algildisstafi og skrá2 er slóð sem endar á "*.*", þá eru
+  allar skrár sem passa við skrá1 bornar saman við skrár með sama nafni
+  í slóðinni sem skrá2 tilgreinir.
+- ef báðar hafa algildisstafi, þá eru skrár í slóð1 bornar saman við
+  viðeigandi skrár í slóð2. Dæmi: "FC *.TXT OLD\*.BAK" ber saman allar
+  .TXT skrár við bakvinnsluafrit þeirra í undirmöppunni OLD.
+Það er auðveldara að gera það en segja það. Ef þú vilt bera saman hverja
+skrá í möppu við allar skrár í annarri skaltu nota:
+FC *.* MYDIR\????????.???
+
+Rofinn /S endurtekur sama leitarmynstur í undirmöppum með sama nafni.
+  Dæmi: "FC /S C:*.TXT D:*.BAK"
+  Ef t.d. undirmöppurnar C:\BOK og D:\BOK eru til, ber þessi skipun saman
+  allar *.TXT skrár í núverandi möppum og líka allar BOK\*.TXT skrár.
+
+Útgöngukóðar fyrir ERRORLEVEL eru eftirfarandi:
+	0	Allar skrár eru eins
+	1	Að minnsta kosti eitt skráapar er ólíkt
+	2	Ógild breyta í skipanalínu
+	3	Skrá fannst ekki
+	4	Villa við að opna skrá(r)

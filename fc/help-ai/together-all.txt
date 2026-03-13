@@ -1,0 +1,1780 @@
+# Language: brazilian
+# File ending: pb
+# Codepage: 858
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+O FC compara dois arquivos ou conjuntos de arquivos, em modo texto ou binário,
+e exibe as diferenças entre eles.
+
+O FC implementa o algoritmo de Paul Heckel das Communications of the
+Association for Computing Machinery, Abril de 1978, p264 - p268,
+"A Technique for Isolating Differences Between Files".
+
+Este algoritmo tem a vantagem sobre algoritmos de comparação comuns de ser
+rápido e detectar diferenças de um número arbitrário de linhas. Na maioria
+das aplicações, o algoritmo isola diferenças similares às isoladas pela
+subsequência comum mais longa.
+
+A sintaxe é a seguinte:
+
+FC [opções] [unid1:][caminho1]arquivo1 [unid2:][caminho2]arquivo2 [opções]
+
+ /A    Exibir apenas a primeira e última linha de cada conjunto de diferenças
+ /B    Realizar uma comparação binária
+ /C    Desconsiderar maiúsculas/minúsculas
+ /L    Comparar arquivos como texto ASCII
+ /LBn  Definir o número máximo de linhas ASCII consecutivas diferentes para n
+ /Mn   Definir o máximo de diferenças na comparação binária para n bytes
+ /N    Exibir os números de linha em uma comparação de texto
+ /Q    Não exibir a lista de diferenças
+ /R    Mostrar um relatório final breve (sempre ativo ao usar /S)
+ /S    Estender a busca para arquivos em subdiretórios
+ /T    Não expandir tabs para espaços
+ /U    Exibir nomes de arquivos sem um correspondente
+ /W    Compactar espaços (tabs e espaços) para comparação de texto
+ /X    Não exibir linhas de contexto na comparação de texto
+ /nnn  Definir o número mínimo de linhas consecutivas iguais para nnn
+       para ressincronização da comparação
+
+O programa reconhece nomes longos de arquivos (LFN) e os usa automaticamente
+se o sistema operacional suportar.
+
+O FC assume modo binário para arquivos .EXE, .COM, .SYS, .OBJ, .BIN, .DLL
+e .LIB.
+
+No modo binário, o FC mostra o deslocamento (offset) dos bytes divergentes,
+seu valor em hexadecimal e, se forem caracteres imprimíveis, o caractere ASCII.
+
+Por padrão, a comparação binária para após 20 diferenças, mas esse valor pode
+ser modificado com a opção /M. /M0 significa "diferenças ilimitadas".
+/M é interpretado como /M0.
+
+Uma limitação de design é que, na comparação de modo texto, apenas as primeiras
+32765 linhas são comparadas; as linhas restantes são ignoradas. O comprimento
+da linha é virtualmente ilimitado.
+
+O FC suporta wildcards (coringas). Algumas observações:
+- especificar um diretório é o mesmo que especificar todos os arquivos dele
+  (ou seja, "*.*"). Exemplo: "FC C:\ A:" é o mesmo que "FC C:\*.* A:*.*"
+- se nenhum arquivo2 for inserido, assume-se "." (o diretório atual).
+  Exemplo: "FC C:\ARQ.TXT" é o mesmo que "FC C:\ARQ.TXT .\*.*"
+- se arquivo1 tem coringas mas arquivo2 não, todos os arquivos que coincidem
+  com arquivo1 são comparados com o mesmo arquivo2.
+  Exemplo: "FC ARQ.BK? ARQ.TXT"
+- se arquivo1 tem coringas e arquivo2 é um caminho seguido por "*.*", todos
+  os arquivos que coincidem com arquivo1 são comparados com os arquivos de
+  mesmo nome no caminho arquivo2.
+  Exemplo: "FC *.* A:*.*" compara arquivos locais com suas cópias em A:
+- se arquivo1 e arquivo2 possuem coringas, os arquivos de arquivo1 são
+  comparados com os arquivos relevantes em arquivo2.
+  Exemplo: "FC *.TXT VELHOS\*.BAK"
+É mais fácil fazer do que dizer. Se quiser comparar cada arquivo de um
+diretório com todos os arquivos de outro, use: FC *.* MEUDIR\????????.???
+
+A opção /S itera o mesmo padrão de busca em subdiretórios com o mesmo nome
+em ambos os caminhos.
+  Exemplo: "FC /S C:*.TXT D:*.BAK"
+  Assumindo subdiretórios C:\LIVRO e D:\LIVRO, este comando compara todos os
+  *.TXT locais com *.BAK e também LIVRO\*.TXT com LIVRO\*.BAK.
+
+Os códigos de saída para ERRORLEVEL são:
+	0	Todos os arquivos coincidem
+	1	Pelo menos um par de arquivos é diferente
+	2	Parâmetro inválido na linha de comando
+	3	Arquivo não encontrado
+	4	Erro ao abrir arquivo(s)
+
+
+
+
+# Language: czechian
+# File ending: cz
+# Codepage: 852
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC porovnává dva soubory nebo sady souborů v textovém nebo binárním režimu
+a zobrazuje rozdíly mezi nimi.
+
+FC implementuje algoritmus Paula Heckela z Communications of the
+Association for Computing Machinery, duben 1978, s. 264 - 268,
+"Technika pro izolaci rozdílů mezi soubory".
+
+Tento algoritmus má oproti běžnějším porovnávacím algoritmům výhodu v tom,
+že je rychlý a dokáže detekovat rozdíly v libovolném počtu řádků. Pro většinu
+aplikací algoritmus izoluje rozdíly podobné těm, které izoluje nejdelší
+společná podposloupnost.
+
+Syntaxe je následující:
+
+FC [přepínače] [jednotka1:][cesta1]soubor1 [jednotka2:][cesta2]soubor2
+
+ /A    Zobrazit pouze první a poslední řádek pro každou sadu rozdílů
+ /B    Provést binární porovnání
+ /C    Ignorovat velikost písmen
+ /L    Porovnat soubory jako text ASCII
+ /LBn  Nastavit maximální počet po sobě jdoucích rozdílných ASCII řádků na n
+ /Mn   Nastavit maximální počet rozdílů v binárním porovnání na n bajtů
+ /N    Zobrazit čísla řádků při textovém porovnání
+ /Q    Nezobrazovat seznam rozdílů
+ /R    Zobrazit stručnou závěrečnou zprávu (vždy aktivní při použití /S)
+ /S    Rozšířit skenování na soubory v podadresářích
+ /T    Nepřevádět tabulátory na mezery
+ /U    Zobrazit názvy souborů, které nemají protějšek
+ /W    Zkomprimovat prázdné znaky (tabulátory a mezery) pro porovnání textu
+ /X    Nezobrazovat kontextové řádky při textovém porovnání
+ /nnn  Nastavit minimální počet po sobě jdoucích shodných řádků na nnn
+       pro opětovnou synchronizaci porovnání
+
+Program podporuje dlouhá jména souborů (LFN) a používá je automaticky,
+pokud je operační systém podporuje.
+
+FC se automaticky přepne do binárního režimu u souborů .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL a .LIB.
+
+V binárním režimu FC zobrazuje offset odlišných bajtů v souboru, jejich
+hodnotu v šestnáctkové soustavě a (pokud jsou tisknutelné) jejich znak ASCII.
+
+Ve výchozím nastavení se binární porovnání zastaví po 20 rozdílech, ale tuto
+hodnotu lze změnit pomocí přepínače /M. /M0 znamená "neomezený počet rozdílů".
+/M je interpretováno jako /M0.
+
+Omezením návrhu tohoto programu je, že v textovém režimu se porovnává pouze
+prvních 32765 řádků; zbývající řádky jsou ignorovány. Délka řádku je
+prakticky neomezená.
+
+FC podporuje zástupné znaky (wildcards). Pár slov k tomu:
+- určení adresáře je stejné jako určení všech souborů v něm ("*.*").
+  Příklad: "FC C:\ A:" je totéž jako "FC C:\*.* A:*.*"
+- pokud není zadán soubor2, předpokládá se "." (aktuální adresář).
+  Příklad: "FC C:\SOUBOR.TXT" je totéž jako "FC C:\SOUBOR.TXT .\*.*"
+- má-li soubor1 zástupné znaky, ale soubor2 nikoliv, jsou s tímto souborem
+  porovnány všechny soubory odpovídající souboru1.
+  Příklad: "FC SOUBOR.BK? SOUBOR.TXT"
+- má-li soubor1 zástupné znaky a soubor2 je cesta následovaná "*.*", pak jsou
+  všechny soubory odpovídající souboru1 porovnány se soubory stejného jména
+  v cestě soubor2. Příklad: "FC *.* A:*.*" (nebo "FC . A:") porovná všechny
+  soubory v aktuálním adresáři s jejich kopiemi na A:
+- mají-li oba soubory zástupné znaky, porovnají se soubory v cestě souboru1
+  s příslušným souborem v cestě souboru2. Příklad: "FC *.TXT STARE\*.BAK"
+Lépe se to provádí, než vysvětluje. Pokud chcete porovnat každý soubor
+v adresáři se všemi v jiném, použijte: FC *.* MUJADR\????????.???
+
+Volba /S opakuje stejný vzor hledání v podadresářích se stejným názvem.
+  Příklad: "FC /S C:*.TXT D:*.BAK"
+  Pokud existují např. adresáře C:\KNIHA a D:\KNIHA, tento příkaz porovná
+  všechny *.TXT v aktuálních adresářích a také všechny KNIHA\*.TXT se
+  soubory KNIHA\*.BAK.
+
+Návratové kódy ERRORLEVEL jsou následující:
+	0	Všechny soubory se shodují
+	1	Alespoň jeden pár souborů se liší
+	2	Neplatný parametr na příkazové řádce
+	3	Soubor nenalezen
+	4	Chyba při otevírání souboru (souborů)
+
+
+
+
+# Language: danish
+# File ending: dk
+# Codepage: 865
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC sammenligner to filer eller sæt af filer, i tekst- eller binær tilstand,
+og viser forskellene mellem dem.
+
+FC implementerer Paul Heckels algoritme fra Communications of the
+Association for Computing Machinery, april 1978, s264 - s268,
+"A Technique for Isolating Differences Between Files".
+
+Denne algoritme har den fordel i forhold til mere almindeligt anvendte
+algoritmer, at den er hurtig og kan finde forskelle i et vilkårligt antal
+linjer. For de fleste formål isolerer algoritmen forskelle svarende til
+"longest common subsequence".
+
+Syntaksen er som følger:
+
+FC [valg] [drev1:][sti1]filnavn1 [drev2:][sti2]filnavn2 [valg]
+
+ /A    Vis kun første og sidste linje for hvert sæt af forskelle
+ /B    Udfør en binær sammenligning
+ /C    Ignorer forskel på store og små bogstaver
+ /L    Sammenlign filer som ASCII-tekst
+ /LBn  Sæt det maksimale antal på hinanden følgende forskellige ASCII-linjer til n
+ /Mn   Sæt de maksimale forskelle i binær sammenligning til n byte
+ /N    Vis linjenumre ved en tekstsammenligning
+ /Q    Vis ikke listen over forskelle
+ /R    Vis en kort slutrapport (altid aktiv ved brug af /S)
+ /S    Udvid scanningen til filer i undermapper
+ /T    Udvid ikke tabulatorer til mellemrum
+ /U    Vis filnavne på de filer, der ikke har en modpart
+ /W    Pak hvide mellemrum (tabs og mellemrum) til tekstsammenligning
+ /X    Vis ikke kontekstlinjer i tekstsammenligning
+ /nnn  Sæt det mindste antal på hinanden følgende matchende linjer til nnn
+       for gensynkronisering af sammenligning
+
+Programmet understøtter lange filnavne (LFN) og bruger dem automatisk, hvis
+operativsystemet understøtter det.
+
+FC bruger som standard binær tilstand for filerne .EXE, .COM, .SYS, .OBJ,
+.BIN, .DLL og .LIB.
+
+I binær tilstand viser FC positionen i filen for de afvigende bytes, deres
+værdi i hexadecimal og, hvis det er printbare ASCII-tegn, deres ASCII-tegn.
+
+Som standard stopper den binære sammenligning efter 20 forskelle, men den
+værdi kan ændres via /M-valget. /M0 betyder "ubegrænsede forskelle".
+/M fortolkes som /M0.
+
+En designbegrænsning i dette program er, at der i teksttilstand kun
+sammenlignes de første 32765 linjer; de resterende linjer ignoreres.
+Linjelængden er praktisk talt ubegrænset.
+
+FC understøtter jokertegn (wildcards) i filspecifikationerne:
+- angivelse af en mappe er det samme som at angive alle filer i den ("*.*").
+  Eksempel: "FC C:\ A:" er det samme som "FC C:\*.* A:*.*"
+- hvis intet filnavn2 er angivet, antages "." (den aktuelle mappe).
+  Eksempel: "FC C:\TEST.TXT" er det samme som "FC C:\TEST.TXT .\*.*"
+- hvis filnavn1 har jokertegn, men filnavn2 ikke har, sammenlignes alle filer,
+  der matcher filnavn1, med den samme filnavn2.
+  Eksempel: "FC TEST.BK? TEST.TXT"
+- hvis filnavn1 har jokertegn, og filnavn2 er en sti efterfulgt af "*.*", så
+  sammenlignes alle filer, der matcher filnavn1, med filerne med samme navn
+  i stien angivet ved filnavn2. Eksempel: "FC *.* A:*.*"
+- hvis filnavn1 har jokertegn og filnavn2 også har, sammenlignes alle filer
+  i stien for filnavn1 med den relevante fil i stien for filnavn2.
+  Eksempel: "FC *.TXT GAMLE\*.BAK"
+Det er nemmere gjort end sagt. Hvis du vil sammenligne hver fil i en mappe
+med alle filer i en anden, kan du bruge formen: FC *.* MINDIR\????????.???
+
+Valget /S gentager det samme søgemønster i undermapper med samme navn.
+  Eksempel: "FC /S C:*.TXT D:*.BAK"
+  Hvis der findes undermapper C:\BOG og D:\BOG, sammenligner denne kommando
+  alle *.TXT-filer i de aktuelle mapper og alle BOG\*.TXT-filer.
+
+Exit-koder for ERRORLEVEL er som følger:
+	0	Alle filer matcher
+	1	Mindst ét par filer er forskellige
+	2	Ugyldig parameter på kommandolinjen
+	3	Fil ikke fundet
+	4	Fejl ved åbning af fil(er)
+
+
+
+
+# Language: esperanto
+# File ending: eo
+# Codepage: 853
+# This translation was made by Google Gemini,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC komparas du dosierojn aŭ arojn de dosieroj, en teksta aŭ duuma reĝimo,
+kaj montras la diferencojn inter ili.
+
+FC efektivigas la algoritmon de Paul Heckel el la Communications of the
+Association for Computing Machinery, aprilo 1978, p264 - p268,
+"Tekniko por izoli diferencojn inter dosieroj".
+
+Ĉi tiu algoritmo havas la avantaĝon super pli ofte uzataj kompar-algoritmoj,
+ke ĝi estas rapida kaj povas detekti diferencojn de arbitra nombro da linioj.
+Por la plej multaj aplikoj, la algoritmo izolas diferencojn similajn al tiuj
+izolitaj de la plej longa komuna subsekvenco.
+
+La sintakso estas jena:
+
+FC [ŝaltiloj] [disko1:][vojo1]dosiernomo1 [disko2][vojo2]dosiernomo2 [ŝaltiloj]
+
+ /A    Montri nur unuan kaj lastan liniojn por ĉiu aro de diferencoj
+ /B    Plenumi duuman komparon
+ /C    Ignori la usklecon de literoj (majuskloj/minuskloj)
+ /L    Kompari dosierojn kiel ASCII-tekston
+ /LBn  Agordi la maksimuman nombron da sinsekvaj malsamaj ASCII-linioj al n
+ /Mn   Agordi la maksimumajn diferencojn en duuma komparo al n bajtoj
+ /N    Montri la linionombrojn dum teksta komparo
+ /Q    Ne montri la liston de diferencoj
+ /R    Montri mallongan finan raporton (ĉiam aktiva kiam oni uzas /S)
+ /S    Etendi la skanadon al la dosieroj en subdosierujoj
+ /T    Ne konverti tabojn al spacoj
+ /U    Montri la dosiernomojn de la dosieroj sen korespondaĵo
+ /W    Kompakti blankspacon (taboj kaj spacoj) por teksta komparo
+ /X    Ne montri kuntekstajn liniojn en teksta komparo
+ /nnn  Agordi la minimuman nombron da sinsekvaj kongruaj linioj al nnn
+       por resinkronigado de la komparo
+
+La programo subtenas longajn dosiernomojn (LFN) kaj uzas ilin aŭtomate se la
+operaciumo subtenas ilin.
+
+FC defaŭlte uzas duuman reĝimon por dosieroj .EXE, .COM, .SYS, .OBJ, .BIN,
+.DLL kaj .LIB.
+
+En duuma reĝimo, FC montras la deŝovon (offset) en la dosiero de la malsamaj
+bajtoj, ilian valoron deksesume kaj, se ili estas ASCII-preteblaj signoj,
+ilian ASCII-signon.
+
+Defaŭlte la duuma komparo ĉesas post 20 diferencoj, sed tiu valoro povas
+esti ŝanĝita per la ŝaltilo /M. /M0 signifas "senlimaj diferencoj".
+/M estas interpretata kiel /M0.
+
+Projekta limigo de ĉi tiu programo estas ke, en la teksta reĝimo, nur la
+unuaj 32765 linioj estas komparataj; la ceteraj linioj estas ignorataj.
+La linilongo estas praktike senlima.
+
+FC subtenas ĵokerojn en la dosier-specifoj. Kelkaj vortoj pri tio:
+- Specifi dosierujon estas same kiel specifi ĉiujn dosierojn en tiu
+  dosierujo (t.e. "*.*").
+  Ekzemplo: "FC C:\ A:" estas same kiel "FC C:\*.* A:*.*"
+- Se neniu dosiernomo2 estas enigita, tiam "." (la aktuala dosierujo)
+  estas supozata.
+  Ekzemplo: "FC C:\LIBRO.TXT" estas same kiel "FC C:\LIBRO.TXT .\*.*"
+- Se dosiernomo1 havas ĵokerojn sed dosiernomo2 ne, tiam ĉiuj dosieroj
+  kongruaj al dosiernomo1 estas komparataj kun la sama dosiero dosiernomo2.
+- Se dosiernomo1 havas ĵokerojn kaj dosiernomo2 estas vojo sekvata de "*.*",
+  tiam ĉiuj dosieroj kongruaj al dosiernomo1 estas komparataj kun la dosieroj
+  kun la sama nomo sed en la vojo specifita de dosiernomo2.
+- Se ambaŭ havas ĵokerojn, tiam ĉiuj dosieroj en la vojo de dosiernomo1
+  kongruaj al dosiernomo1 estas komparataj kun la rilata dosiero kongrua
+  al dosiernomo2 en la vojo specifita de dosiernomo2.
+
+La opcio /S ripetas la saman serĉ-ŝablonon en la subdosierujoj kun la
+sama nomo en ambaŭ vojoj.
+
+La elirkodoj por ERRORLEVEL estas jenaj:
+	0	Ĉiuj dosieroj kongruas
+	1	Almenaŭ unu paro da dosieroj diferencas
+	2	Nevalida parametro en la komandlinio
+	3	Dosiero ne trovita
+	4	Eraro dum malfermo de dosiero(j)
+	
+
+
+
+
+# Language: estonian
+# File ending: et
+# Codepage: 775
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC võrdleb kahte faili või failikomplekti teksti- või binaarrežiimis ning
+kuvab nendevahelised erinevused.
+
+FC rakendab Paul Heckeli algoritmi väljaandest Communications of the
+Association for Computing Machinery, aprill 1978, lk 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+Selle algoritmi eelis tavalisemalt kasutatavate võrdlusalgoritmide ees on
+kiirus ja võime tuvastada erinevusi suvalise arvu ridade lõikes. Enamiku
+rakenduste puhul leiab algoritm sarnaseid erinevusi nagu "longest common
+subsequence" meetod.
+
+Süntaks on järgmine:
+
+FC [lülitid] [ketas1:][tee1]failinimi1 [ketas2:][tee2]failinimi2 [lülitid]
+
+ /A    Kuva iga erinevuste komplekti kohta ainult esimene ja viimane rida
+ /B    Teosta binaarne võrdlus
+ /C    Eira tähtede tõstutundlikkust
+ /L    Võrdle faile kui ASCII-teksti
+ /LBn  Määra maksimaalne järjestikuste erinevate ASCII-ridade arv n-ni
+ /Mn   Määra maksimaalne erinevuste arv binaarses võrdluses n baiti
+ /N    Kuva tekstivõrdlusel reanumbrid
+ /Q    Ära näita erinevuste loendit
+ /R    Näita lühikest lõpparuannet (alati aktiivne lüliti /S kasutamisel)
+ /S    Laienda skannimist alamkataloogides asuvatele failidele
+ /T    Ära asenda tabulaatoreid tühikutega
+ /U    Kuva ilma vasteta failide nimed
+ /W    Tihenda tühikud (tabulaatorid ja tühikud) tekstivõrdluse jaoks
+ /X    Ära näita tekstivõrdluses kontekstiridu
+ /nnn  Määra minimaalne järjestikuste kattuvate ridade arv nnn-ni
+       võrdluse resünkroonimiseks
+
+Programm toetab pikki failinimesid (LFN) ja kasutab neid automaatselt, kui
+operatsioonisüsteem seda võimaldab.
+
+FC kasutab vaikimisi binaarrežiimi faililaiendite .EXE, .COM, .SYS, .OBJ,
+.BIN, .DLL ja .LIB puhul.
+
+Binaarrežiimis näitab FC erinevate baitide nihet failis, nende väärtust
+kuueteistkümnendsüsteemis ja (prinditavate sümbolite puhul) nende ASCII-märki.
+
+Vaikimisi peatub binaarne võrdlus pärast 20 erinevust, kuid seda väärtust
+saab muuta lülitiga /M. /M0 tähendab "piiramatult erinevusi".
+/M tõlgendatakse kui /M0.
+
+Programmi piirang on see, et tekstirežiimis võrreldakse ainult esimesi 32765
+rida; ülejäänud ridu eiratakse. Rea pikkus on praktiliselt piiramatu.
+
+FC toetab failide määramisel asendusmärke (wildcards):
+- kataloogi määramine on võrdne kõigi selles kataloogis olevate failide
+  määramisega ("*.*"). Näide: "FC C:\ A:" on sama mis "FC C:\*.* A:*.*"
+- kui failinimi2 puudub, eeldatakse "." (praegune kataloog).
+  Näide: "FC C:\TEST.TXT" on sama mis "FC C:\TEST.TXT .\*.*"
+- kui failinimi1 sisaldab asendusmärke, aga failinimi2 mitte, võrreldakse
+  kõiki failinimi1-ga klappivaid faile sama failiga failinimi2.
+  Näide: "FC FOO.BK? FOO.TXT"
+- kui failinimi1 sisaldab asendusmärke ja failinimi2 on tee, millele järgneb
+  "*.*", võrreldakse kõiki failinimi1-ga klappivaid faile sama nimega
+  failidega failinimi2 määratud asukohas. Näide: "FC *.* A:*.*"
+- kui nii failinimi1 kui failinimi2 sisaldavad asendusmärke, võrreldakse tee1
+  faile vastavate failidega tee2 asukohas.
+  Näide: "FC *.TXT VANAD\*.BAK"
+Seda on lihtsam teha kui selgitada. Kui soovite võrrelda kataloogi iga faili
+teise kataloogi kõigi failidega, kasutage kuju: FC *.* MINUDIR\????????.???
+
+Lüliti /S kordab sama otsingumustrit mõlema tee samanimelistes
+alamkataloogides.
+  Näide: "FC /S C:*.TXT D:*.BAK"
+  Eeldades näiteks alamkataloogide C:\RAAMAT ja D:\RAAMAT olemasolu, võrdleb
+  see käsk kõiki praeguste kataloogide *.TXT faile ja ka kõiki kataloogis
+  RAAMAT\*.TXT asuvaid faile vastavate *.BAK koopiatega.
+
+ERRORLEVEL väljumiskoodid on järgmised:
+	0	Kõik failid klapivad
+	1	Vähemalt üks paar faile on erinevad
+	2	Vigane parameeter käsureal
+	3	Faili ei leitud
+	4	Viga faili(de) avamisel
+
+
+
+
+# Language: finnish
+# File ending: fi
+# Codepage: 865
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC vertaa kahta tiedostoa tai tiedostojoukkoa teksti- tai binaaritilassa
+ja näyttää niiden väliset erot.
+
+FC toteuttaa Paul Heckelin algoritmin julkaisusta Communications of the
+Association for Computing Machinery, huhtikuu 1978, s. 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+Tämän algoritmin etu yleisemmin käytettyihin vertailualgoritmeihin on sen
+nopeus ja kyky havaita erot mielivaltaisella rivimäärällä. Useimmissa
+sovelluksissa algoritmi eristää erot samalla tavalla kuin pisin yhteinen
+alijono -menetelmä.
+
+Syntaksi on seuraava:
+
+FC [valitsimet] [asema1:][polku1]tiedosto1 [asema2:][polku2]tiedosto2
+
+ /A    Näytä vain ensimmäinen ja viimeinen rivi jokaisesta eroavuudesta
+ /B    Suorita binaarivertailu
+ /C    Älä huomioi kirjainkokoa
+ /L    Vertaa tiedostoja ASCII-tekstinä
+ /LBn  Aseta peräkkäisten erilaisten ASCII-rivien enimmäismääräksi n
+ /Mn   Aseta binaarivertailun suurin sallittu ero n tavuun
+ /N    Näytä rivinumerot tekstivertailussa
+ /Q    Älä näytä erolistaa
+ /R    Näytä lyhyt loppuraportti (aina käytössä valitsimen /S kanssa)
+ /S    Laajenna haku alihakemistojen tiedostoihin
+ /T    Älä muunna sarkaimia välilyönneiksi
+ /U    Näytä tiedostojen nimet, joilla ei ole vastinetta
+ /W    Tiivistä tyhjä tila (sarkaimet ja välilyönnit) tekstivertailuun
+ /X    Älä näytä kontekstirivejä tekstivertailussa
+ /nnn  Aseta peräkkäisten täsmäävien rivien vähimmäismääräksi nnn
+       vertailun uudelleensynkronointia varten
+
+Ohjelma tukee pitkiä tiedostonimiä (LFN) ja käyttää niitä automaattisesti,
+jos käyttöjärjestelmä tukee niitä.
+
+FC käyttää oletuksena binaaritilaa tiedostoille .EXE, .COM, .SYS, .OBJ,
+.BIN, .DLL ja .LIB.
+
+Binaaritilassa FC näyttää poikkeavien tavujen sijainnin, niiden arvon
+heksadesimaalina ja ASCII-merkin, jos se on tulostettavissa.
+
+Oletuksena binaarivertailu pysähtyy 20 eron jälkeen, mutta arvoa voidaan
+muuttaa /M-valitsimella. /M0 tarkoittaa "rajoittamaton määrä eroja".
+/M tulkitaan samaksi kuin /M0.
+
+Ohjelman rajoitus on, että tekstivertailussa vain ensimmäiset 32765 riviä
+verrataan; loput rivit ohitetaan. Rivin pituus on lähes rajoittamaton.
+
+FC tukee jokerimerkkejä tiedostomäärityksissä:
+- hakemiston määrittäminen vastaa kaikkien tiedostojen valintaa ("*.*").
+  Esimerkki: "FC C:\ A:" on sama kuin "FC C:\*.* A:*.*"
+- jos tiedostoa2 ei anneta, oletuksena on "." (nykyinen hakemisto).
+  Esimerkki: "FC C:\TIED.TXT" on sama kuin "FC C:\TIED.TXT .\*.*"
+- jos tiedostossa1 on jokerimerkkejä mutta tiedostossa2 ei, kaikki hakuun
+  sopivat tiedostot verrataan samaan tiedostoon2.
+- jos tiedostossa1 on jokerimerkkejä ja tiedosto2 on polku ja "*.*", hakuun
+  sopivat tiedostot verrataan samannimisiin tiedostoihin polussa2.
+- jos molemmissa on jokerimerkkejä, polun 1 tiedostoja verrataan vastaaviin
+  tiedostoihin polussa 2. Esimerkki: "FC *.TXT VANHAT\*.BAK" vertaa kaikkia
+  nykyisen hakemiston .TXT-tiedostoja niiden varmuuskopioihin alikansiossa.
+Se on helpompi tehdä kuin selittää. Jos haluat verrata kaikkia hakemiston
+tiedostoja toisen hakemiston kaikkiin tiedostoihin, käytä muotoa:
+FC *.* MUNHAK\????????.???
+
+Valitsin /S toistaa saman hakukuvion alihakemistoissa, joilla on sama nimi.
+  Esimerkki: "FC /S C:*.TXT D:*.BAK"
+  Jos alihakemistot C:\KIRJA ja D:\KIRJA ovat olemassa, komento vertaa
+  kaikkia nykyisen hakemiston ja alihakemiston KIRJA tiedostoja keskenään.
+
+ERRORLEVEL-paluukoodit ovat:
+	0	Kaikki tiedostot täsmäävät
+	1	Vähintään yksi tiedostopari eroaa
+	2	Virheellinen parametri komentorivillä
+	3	Tiedostoa ei löydy
+	4	Virhe avattaessa tiedostoa
+
+
+
+
+
+# Language: hungarian
+# File ending: hu
+# Codepage: 852
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+Az FC két fájlt vagy fájlkészletet hasonlít össze szöveges vagy bináris
+módban, és megjeleníti a köztük lévő különbségeket.
+
+Az FC Paul Heckel algoritmusát alkalmazza (Communications of the
+Association for Computing Machinery, 1978. április, 264-268. o.,
+"A Technique for Isolating Differences Between Files").
+
+Ennek az algoritmusnak az előnye a gyakrabban használt algoritmusokkal
+szemben a gyorsasága és az, hogy tetszőleges számú sor különbségét képes
+érzékelni. A legtöbb alkalmazásnál az algoritmus hasonló különbségeket
+izolál, mint a leghosszabb közös részsorozat módszer.
+
+A szintaxis a következő:
+
+FC [kapcsolók] [megh1:][út1]fájl1 [megh2:][út2]fájl2 [kapcsolók]
+
+ /A    Csak az első és utolsó sort jeleníti meg minden különbségnél
+ /B    Bináris összehasonlítás végrehajtása
+ /C    Kis- és nagybetűk megkülönböztetésének mellőzése
+ /L    Fájlok összehasonlítása ASCII szövegként
+ /LBn  Egymást követő eltérő ASCII sorok max. száma n
+ /Mn   Maximális különbség bináris összehasonlításnál n bájt
+ /N    Sorok számának megjelenítése szöveges összehasonlításnál
+ /Q    Különbségek listájának elrejtése
+ /R    Rövid zárójelentés megjelenítése (mindig aktív /S esetén)
+ /S    Keresés kiterjesztése az alkönyvtárakban lévő fájlokra
+ /T    Tabulátorok szóközökké alakításának mellőzése
+ /U    Gegenpár nélküli fájlok neveinek megjelenítése
+ /W    Szóközök és tabulátorok összevonása szöveges összehasonlításhoz
+ /X    Kontextussorok elrejtése szöveges összehasonlításnál
+ /nnn  Egymást követő egyező sorok min. száma nnn
+       az összehasonlítás újraszinkronizálásához
+
+A program kezeli a hosszú fájlneveket (LFN), és automatikusan használja
+őket, ha az operációs rendszer támogatja.
+
+Az FC alapértelmezés szerint bináris módot használ az .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL és .LIB kiterjesztésű fájloknál.
+
+Bináris módban az FC megjeleníti az eltérő bájtok eltolását (offset),
+hexadecimális értéküket, és (nyomtatható karakterek esetén) az ASCII jelet.
+
+Alapértelmezés szerint a bináris összehasonlítás 20 különbség után leáll,
+de ez az érték módosítható az /M kapcsolóval. Az /M0 jelentése: "korlátlan".
+Az /M kapcsolót az /M0-val azonosnak tekinti.
+
+Tervezési korlát, hogy szöveges módban csak az első 32765 sort hasonlítja
+össze; a többi sort figyelmen kívül hagyja. A sorhossz gyakorlatilag végtelen.
+
+Az FC támogatja a helyettesítő karaktereket (wildcards):
+- könyvtár megadása megegyezik az összes fájl megadásával ("*.*").
+  Példa: "FC C:\ A:" ugyanaz, mint az "FC C:\*.* A:*.*"
+- ha nincs megadva fájl2, akkor a "." (aktuális könyvtár) értendő.
+  Példa: "FC C:\FÁJL.TXT" ugyanaz, mint az "FC C:\FÁJL.TXT .\*.*"
+- ha a fájl1 tartalmaz helyettesítőt, de a fájl2 nem, akkor a fájl1-re
+  illeszkedő összes fájlt ugyanazzal a fájl2-vel hasonlítja össze.
+- ha a fájl1 tartalmaz helyettesítőt, és a fájl2 egy elérési út, amit a
+  "*.*" követ, akkor a fájl1-re illeszkedő összes fájlt a fájl2 útvonalán
+  lévő, azonos nevű fájlokkal hasonlítja össze.
+- ha mindkettő tartalmaz helyettesítőt, akkor a fájl1 útvonalán lévő fájlokat
+  a fájl2 útvonalán lévő megfelelő fájlokkal hasonlítja össze.
+Egyszerűbb megtenni, mint elmondani. Ha egy könyvtár minden fájlját egy
+másik minden fájljával össze akarja vetni: FC *.* MEGH\????????.???
+
+Az /S kapcsoló megismétli a keresési mintát az azonos nevű alkönyvtárakban.
+  Példa: "FC /S C:*.TXT D:*.BAK"
+  Ha létezik például a C:\KONYV és a D:\KONYV könyvtár, ez a parancs
+  összeveti az összes *.TXT fájlt a *.BAK másolattal az aktuális és a
+  KONYV alkönyvtárakban is.
+
+Az ERRORLEVEL kilépési kódjai:
+	0	Minden fájl megegyezik
+	1	Legalább egy fájlpár eltér
+	2	Érvénytelen paraméter a parancssorban
+	3	Fájl nem található
+	4	Hiba a fájl(ok) megnyitásakor
+
+
+
+
+# Language: icelandic
+# File ending: is
+# Codepage: 861
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC ber saman tvær skrár eða skráasett, í texta- eða tvíundarham, og
+sýnir muninn á þeim.
+
+FC notar reiknirit Paul Heckel úr Communications of the Association for
+Computing Machinery, apríl 1978, bls. 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+Þetta reiknirit hefur þann kost yfir algengari samanburðaraðferðir að vera
+hratt og geta fundið mun á hvaða línufjölda sem er. Í flestum tilfellum
+einangrar reikniritið mun á svipaðan hátt og "longest common subsequence".
+
+Málfræðin (syntax) er eftirfarandi:
+
+FC [rofar] [drif1:][slóð1]skrá1 [drif2:][slóð2]skrá2 [rofar]
+
+ /A    Sýna aðeins fyrstu og síðustu línur fyrir hvern mismun
+ /B    Framkvæma tvíundarsamanburð (binary)
+ /C    Hunsa hástafi og lágstafi
+ /L    Bera saman skrár sem ASCII texta
+ /LBn  Setja hámarksfjölda samfelldra mismunandi ASCII lína við n
+ /Mn   Setja hámarksmismun í tvíundarsamanburði við n bæti
+ /N    Sýna línunúmer við textasamanburð
+ /Q    Ekki sýna lista yfir mismun
+ /R    Sýna stutta lokaskýrslu (alltaf virkt þegar /S er notað)
+ /S    Leita einnig í undirmöppum
+ /T    Ekki breyta dálksmerkjum (tabs) í bil
+ /U    Sýna skráarnöfn þeirra skráa sem eiga sér ekki samsvörun
+ /W    Þjappa hvítum bilum (tabs/bil) fyrir textasamanburð
+ /X    Ekki sýna samhengislínur í textasamanburði
+ /nnn  Setja lágmarksfjölda samfelldra eins lína við nnn
+       fyrir endursamstillingu samanburðar
+
+Forritið styður löng skráarnöfn (LFN) og notar þau sjálfkrafa ef
+stýrikerfið styður þau.
+
+FC notar sjálfgefið tvíundarham fyrir skrár af gerðinni .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL og .LIB.
+
+Í tvíundarham sýnir FC hliðrun (offset) í skránni fyrir bætin sem eru ólík,
+gildi þeirra í sextándakerfi og, ef þau eru prentanleg, ASCII tákn þeirra.
+
+Sjálfgefið stöðvast tvíundarsamanburður eftir 20 mismuni, en því gildi má
+breyta með /M rofanum. /M0 þýðir "ótakmarkaður mismunur".
+/M er túlkað sem /M0.
+
+Hönnunartakmörkun á þessu forriti er að í textasamanburði eru aðeins fyrstu
+32765 línurnar bornar saman; afgangurinn er hunsaður. Línulengd er nánast
+ótakmörkuð.
+
+FC styður algildisstafi (wildcards). Nokkur orð um það:
+- að tilgreina möppu er það sama og að tilgreina allar skrár í henni ("*.*").
+  Dæmi: "FC C:\ A:" er það sama og "FC C:\*.* A:*.*"
+- ef skrá2 er ekki slegin inn er gert ráð fyrir "." (núverandi mappa).
+  Dæmi: "FC C:\SKRA.TXT" er það sama og "FC C:\SKRA.TXT .\*.*"
+- ef skrá1 hefur algildisstafi en skrá2 ekki, þá eru allar skrár sem passa
+  við skrá1 bornar saman við sömu skrá2.
+- ef skrá1 hefur algildisstafi og skrá2 er slóð sem endar á "*.*", þá eru
+  allar skrár sem passa við skrá1 bornar saman við skrár með sama nafni
+  í slóðinni sem skrá2 tilgreinir.
+- ef báðar hafa algildisstafi, þá eru skrár í slóð1 bornar saman við
+  viðeigandi skrár í slóð2. Dæmi: "FC *.TXT OLD\*.BAK" ber saman allar
+  .TXT skrár við bakvinnsluafrit þeirra í undirmöppunni OLD.
+Það er auðveldara að gera það en segja það. Ef þú vilt bera saman hverja
+skrá í möppu við allar skrár í annarri skaltu nota:
+FC *.* MYDIR\????????.???
+
+Rofinn /S endurtekur sama leitarmynstur í undirmöppum með sama nafni.
+  Dæmi: "FC /S C:*.TXT D:*.BAK"
+  Ef t.d. undirmöppurnar C:\BOK og D:\BOK eru til, ber þessi skipun saman
+  allar *.TXT skrár í núverandi möppum og líka allar BOK\*.TXT skrár.
+
+Útgöngukóðar fyrir ERRORLEVEL eru eftirfarandi:
+	0	Allar skrár eru eins
+	1	Að minnsta kosti eitt skráapar er ólíkt
+	2	Ógild breyta í skipanalínu
+	3	Skrá fannst ekki
+	4	Villa við að opna skrá(r)
+
+
+
+
+
+# Language: lithuanian
+# File ending: lt
+# Codepage: 775
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC palygina du failus arba failų rinkinius tekstiniu arba dvejetainiu
+režimu ir parodo skirtumus tarp jų.
+
+FC naudoja Paul Heckel algoritmą iš Communications of the Association for
+Computing Machinery, 1978 m. balandis, p. 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+Šis algoritmas yra greitesnis už įprastus palyginimo algoritmus ir gali
+aptikti skirtumus tarp bet kokio eilučių skaičiaus. Daugumai programų šis
+algoritmas nustato skirtumus panašiai kaip ilgiausios bendrosios
+posekio (LCS) metodas.
+
+Sintaksė yra tokia:
+
+FC [parinktys] [diskas1:][kelias1]failas1 [diskas2:][kelias2]failas2
+
+ /A    Rodyti tik pirmą ir paskutinę eilutes kiekvienam skirtumų blokui
+ /B    Atlikti dvejetainį palyginimą
+ /C    Nepaisyti raidžių registro
+ /L    Lyginti failus kaip ASCII tekstą
+ /LBn  Nustatyti maksimalų iš eilės einančių skirtingų ASCII eilučių skaičių n
+ /Mn   Nustatyti maksimalų skirtumų kiekį dvejetainiame palyginime n baitais
+ /N    Rodyti eilučių numerius tekstiniame palyginime
+ /Q    Nerodyti skirtumų sąrašo
+ /R    Rodyti trumpą galutinę ataskaitą (visada aktyvu naudojant /S)
+ /S    Išplėsti paiešką į failus poaplankiuose
+ /T    Neišplėsti tabuliacijos ženklų į tarpus
+ /U    Rodyti failų vardus, kurie neturi atitikmens
+ /W    Sutraukti tuščius tarpus (tabuliacijas ir tarpus) tekstiniam lyginimui
+ /X    Nerodyti kontekstinių eilučių tekstiniame palyginime
+ /nnn  Nustatyti minimalų iš eilės einančių sutampančių eilučių skaičių nnn
+       palyginimo resinchronizacijai
+
+Programa palaiko ilgus failų vardus (LFN) ir naudoja juos automatiškai, jei
+operacinė sistema tai leidžia.
+
+FC pagal numatytuosius nustatymus naudoja dvejetainį režimą failams .EXE,
+.COM, .SYS, .OBJ, .BIN, .DLL ir .LIB.
+
+Dvejetainiu režimu FC rodo besiskiriančių baitų poslinkį (offset) faile, jų
+šešioliktainę vertę ir, jei tai spausdinami simboliai, jų ASCII simbolį.
+
+Pagal numatytuosius nustatymus dvejetainis palyginimas sustoja po 20
+skirtumų, tačiau šią vertę galima pakeisti /M parinktimi. /M0 reiškia
+"neribotas skirtumų kiekis". /M interpretuojama kaip /M0.
+
+Programos apribojimas yra tas, kad tekstiniu režimu lyginamos tik pirmosios
+32765 eilutės; likusios eilutės ignoruojamos. Eilutės ilgis praktiškai
+yra neribotas.
+
+FC palaiko pakaitos ženklus (wildcards) failų specifikacijose:
+- katalogo nurodymas yra tas pats, kas nurodyti visus jame esančius
+  failus ("*.*"). Pavyzdys: "FC C:\ A:" yra tas pats, kas "FC C:\*.* A:*.*"
+- jei neįvestas failas2, laikoma "." (dabartinis katalogas).
+  Pavyzdys: "FC C:\FAILAS.TXT" yra tas pats, kas "FC C:\FAILAS.TXT .\*.*"
+- jei failas1 turi pakaitos ženklus, o failas2 neturi, visi failas1
+  atitinkantys failai lyginami su tuo pačiu failas2.
+- jei failas1 turi pakaitos ženklus, o failas2 yra kelias su pabaiga "*.*",
+  visi failas1 atitinkantys failai lyginami su failais tuo pačiu vardu
+  kelyje, nurodytame failas2.
+- jei abu turi pakaitos ženklus, tada failai kelyje1 lyginami su
+  atitinkamais failais kelyje2. Pavyzdys: "FC *.TXT SENI\*.BAK" palygina
+  visus .TXT failus su jų .BAK kopijomis pakatalogyje SENI.
+Tai lengviau padaryti nei pasakyti. Jei norite palyginti kiekvieną katalogo
+failą su visais kito katalogo failais, naudokite:
+FC *.* MANODIR\????????.???
+
+Parinktis /S kartoja tą patį paieškos šabloną pakatalogiuose su tuo pačiu
+pavadinimu abiejuose keliuose.
+  Pavyzdys: "FC /S C:*.TXT D:*.BAK"
+  Darant prielaidą, kad egzistuoja pakatalogiai C:\KNYGA ir D:\KNYGA, ši
+  komanda palygina visus *.TXT failus dabartiniuose kataloguose ir visus
+  KNYGA\*.TXT failus su jų atsarginėmis kopijomis.
+
+ERRORLEVEL išėjimo kodai yra šie:
+	0	Visi failai sutampa
+	1	Bent viena failų pora skiriasi
+	2	Neteisingas parametras komandų eilutėje
+	3	Failas nerastas
+	4	Klaida atidarant failą (-us)
+
+
+
+
+# Language: norwegian
+# File ending: no
+# Codepage: 865
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC sammenligner to filer eller sett med filer, i tekst- eller binærmodus,
+og viser forskjellene mellom dem.
+
+FC implementerer Paul Heckels algoritme fra Communications of the
+Association for Computing Machinery, april 1978, s264 - s268,
+"A Technique for Isolating Differences Between Files".
+
+Denne algoritmen har fordelen fremfor mer vanlig brukte algoritmer ved at
+den er rask og kan oppdage forskjeller på et vilkårlig antall linjer. For
+de fleste bruksområder isolerer algoritmen forskjeller som ligner på de
+som finnes ved "longest common subsequence".
+
+Syntaksen er som følger:
+
+FC [valg] [stasjon1:][sti1]filnavn1 [stasjon2:][sti2]filnavn2 [valg]
+
+ /A    Vis bare første og siste linje for hvert sett med forskjeller
+ /B    Utfør en binær sammenligning
+ /C    Ignorer om det er store eller små bokstaver
+ /L    Sammenlign filer som ASCII-tekst
+ /LBn  Sett maks antall påfølgende forskjellige ASCII-linjer til n
+ /Mn   Sett maksimalt antall forskjeller i binær sammenligning til n byte
+ /N    Vis linjenumre ved en tekstsammenligning
+ /Q    Ikke vis listen over forskjeller
+ /R    Vis en kort sluttrapport (alltid aktiv ved bruk av /S)
+ /S    Utvid skanningen til filer i undermapper
+ /T    Ikke utvid tabulatorer til mellomrom
+ /U    Vis filnavnene til de filene som ikke har en motpart
+ /W    Pakk sammen tomrom (tabulatorer og mellomrom) for tekstsammenligning
+ /X    Ikke vis kontekstlinjer i tekstsammenligning
+ /nnn  Sett minimum antall påfølgende samsvarende linjer til nnn
+       for resynkronisering av sammenligning
+
+Programmet støtter lange filnavn (LFN) og bruker dem automatisk hvis
+operativsystemet støtter det.
+
+FC bruker binærmodus som standard for filene .EXE, .COM, .SYS, .OBJ, .BIN,
+.DLL og .LIB.
+
+I binærmodus viser FC posisjonen (offset) i filen for de avvikende bytene,
+deres verdi i heksadesimal og, hvis de er skrivbare tegn, deres ASCII-tegn.
+
+Som standard stopper binærsammenligningen etter 20 forskjeller, men den
+verdien kan endres med /M-valget. /M0 betyr "ubegrensede forskjeller".
+/M tolkes som /M0.
+
+En designbegrensning i dette programmet er at i tekstmodus sammenlignes bare
+de første 32765 linjene; de resterende linjene ignoreres. Linjelengden er
+praktisk talt ubegrenset.
+
+FC støtter jokertegn (wildcards) i filspesifikasjonene:
+- å angi en mappe er det samme som å angi alle filene i den ("*.*").
+  Eksempel: "FC C:\ A:" er det samme som "FC C:\*.* A:*.*"
+- hvis ingen filnavn2 er angitt, antas "." (gjeldende mappe).
+  Eksempel: "FC C:\TEST.TXT" er det samme som "FC C:\TEST.TXT .\*.*"
+- hvis filnavn1 har jokertegn, men filnavn2 ikke har, blir alle filer som
+  samsvarer med filnavn1 sammenlignet med den samme filnavn2.
+- hvis filnavn1 har jokertegn og filnavn2 er en sti etterfulgt av "*.*", blir
+  alle filer som samsvarer med filnavn1 sammenlignet med filene med samme
+  navn i stien angitt av filnavn2. Eksempel: "FC *.* A:*.*"
+- hvis både filnavn1 og filnavn2 har jokertegn, sammenlignes filene i sti1
+  med de relevante filene i sti2. Eksempel: "FC *.TXT OLD\*.BAK"
+Det er enklere gjort enn sagt. Hvis du vil sammenligne hver fil i en mappe
+med alle filer i en annen, bruk formen: FC *.* MINMAPPE\????????.???
+
+Valget /S gjentar det samme søkemønsteret i undermapper med samme navn.
+  Eksempel: "FC /S C:*.TXT D:*.BAK"
+  Antatt for eksempel eksistensen av undermappene C:\BOK og D:\BOK, vil
+  denne kommandoen sammenligne alle *.TXT-filer i gjeldende mapper og også
+  alle BOK\*.TXT-filer med deres sikkerhetskopier.
+
+Exit-kodene for ERRORLEVEL er som følger:
+	0	Alle filer samsvarer
+	1	Minst ett par filer er forskjellige
+	2	Ugyldig parameter på kommandolinjen
+	3	Fil ikke funnet
+	4	Feil ved åpning av fil(er)
+    
+
+
+    
+# Language: polish
+# File ending: pl
+# Codepage: 852
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC porównuje dwa pliki lub zestawy plików, w trybie tekstowym lub binarnym,
+i wyświetla różnice między nimi.
+
+FC implementuje algorytm Paula Heckela z Communications of the
+Association for Computing Machinery, kwiecień 1978, str. 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+Ten algorytm ma tę przewagę nad powszechnie stosowanymi algorytmami, że
+jest szybki i wykrywa różnice przy dowolnej liczbie linii. W większości
+zastosowań izoluje różnice podobnie do algorytmu najdłuższego wspólnego
+podciągu.
+
+Składnia jest następująca:
+
+FC [opcje] [dysk1:][ścieżka1]plik1 [dysk2:][ścieżka2]plik2 [opcje]
+
+ /A    Wyświetl tylko pierwszą i ostatnią linię dla każdego zestawu różnic
+ /B    Wykonaj porównanie binarne
+ /C    Ignoruj wielkość liter
+ /L    Porównuj pliki jako tekst ASCII
+ /LBn  Ustaw maks. liczbę kolejnych różnych linii ASCII na n
+ /Mn   Ustaw maks. liczbę różnic w porównaniu binarnym na n bajtów
+ /N    Wyświetlaj numery linii przy porównaniu tekstowym
+ /Q    Nie pokazuj listy różnic
+ /R    Pokaż krótki raport końcowy (zawsze aktywny przy użyciu /S)
+ /S    Rozszerz skanowanie na pliki w podkatalogach
+ /T    Nie zamieniaj tabulatorów na spacje
+ /U    Pokaż nazwy plików bez odpowiednika
+ /W    Kompresuj białe znaki (tabulacje i spacje) przy porównaniu tekstowym
+ /X    Nie pokazuj linii kontekstowych w porównaniu tekstowym
+ /nnn  Ustaw min. liczbę kolejnych pasujących linii na nnn
+       dla resynchronizacji porównania
+
+Program obsługuje długie nazwy plików (LFN) i używa ich automatycznie,
+jeśli system operacyjny je wspiera.
+
+FC domyślnie używa trybu binarnego dla plików .EXE, .COM, .SYS, .OBJ,
+.BIN, .DLL i .LIB.
+
+W trybie binarnym FC pokazuje offset w pliku dla różniących się bajtów,
+ich wartość szesnastkową oraz znak ASCII (jeśli jest drukowalny).
+
+Domyślnie porównanie binarne kończy się po 20 różnicach, ale można to
+zmienić opcją /M. /M0 oznacza "brak limitu". /M jest traktowane jako /M0.
+
+Ograniczeniem programu w trybie tekstowym jest porównywanie tylko
+pierwszych 32765 linii; pozostałe są ignorowane. Długość linii jest
+praktycznie nieograniczona.
+
+FC obsługuje symbole wieloznaczne (wildcards). Kilka uwag:
+- podanie katalogu jest tożsame z wybraniem wszystkich plików ("*.*").
+  Przykład: "FC C:\ A:" to samo co "FC C:\*.* A:*.*"
+- brak pliku2 oznacza "." (bieżący katalog).
+  Przykład: "FC C:\PLIK.TXT" to samo co "FC C:\PLIK.TXT .\*.*"
+- jeśli plik1 ma symbole wieloznaczne, a plik2 nie, pliki pasujące do
+  plik1 są porównywane z tym samym plikiem2.
+- jeśli plik1 ma symbole wieloznaczne, a plik2 to ścieżka z "*.*", pliki
+  z plik1 są porównywane z plikami o tej samej nazwie w ścieżce plik2.
+- jeśli oba mają symbole wieloznaczne, pliki ze ścieżki plik1 są
+  porównywane z odpowiednimi plikami w ścieżce plik2.
+  Przykład: "FC *.TXT STARE\*.BAK"
+To prostsze w działaniu niż w opisie. Aby porównać każdy plik w katalogu
+z wszystkimi w innym: FC *.* MOJKAT\????????.???
+
+Opcja /S powtarza ten sam wzorzec wyszukiwania w podkatalogach o tej samej
+nazwie w obu ścieżkach.
+  Przykład: "FC /S C:*.TXT D:*.BAK"
+  Przy istnieniu katalogów C:\KSIAZKA i D:\KSIAZKA, polecenie porówna
+  pliki *.TXT w bieżących katalogach oraz w podkatalogach KSIAZKA.
+
+Kody wyjścia ERRORLEVEL:
+	0	Wszystkie pliki są zgodne
+	1	Co najmniej jedna para plików różni się
+	2	Nieprawidłowy parametr w linii poleceń
+	3	Nie znaleziono pliku
+	4	Błąd podczas otwierania plików
+
+
+
+
+
+# Language: portuguese
+# File ending: pt
+# Codepage: 860
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+O FC compara dois ficheiros ou conjuntos de ficheiros, em modo texto ou
+binário, e mostra as diferenças entre eles.
+
+O FC implementa o algoritmo de Paul Heckel das Communications of the
+Association for Computing Machinery, Abril de 1978, p264 - p268,
+"A Technique for Isolating Differences Between Files".
+
+Este algoritmo tem a vantagem de ser rápido e detetar diferenças num
+número arbitrário de linhas. Para a maioria das aplicações, o algoritmo
+isola diferenças semelhantes às da subsequência comum mais longa.
+
+A sintaxe é a seguinte:
+
+FC [opções] [unid1:][caminho1]fich1 [unid2:][caminho2]fich2 [opções]
+
+ /A    Mostrar apenas a primeira e última linha de cada grupo de diferenças
+ /B    Efetuar uma comparação binária
+ /C    Ignorar a diferença entre maiúsculas e minúsculas
+ /L    Comparar ficheiros como texto ASCII
+ /LBn  Definir o número máximo de linhas ASCII consecutivas diferentes para n
+ /Mn   Definir o máximo de diferenças na comparação binária para n bytes
+ /N    Mostrar os números de linha numa comparação de texto
+ /Q    Não mostrar a lista de diferenças
+ /R    Mostrar um relatório final breve (sempre ativo ao usar /S)
+ /S    Estender a procura aos ficheiros em subdiretórios
+ /T    Não expandir tabulações para espaços
+ /U    Mostrar os nomes dos ficheiros sem um correspondente
+ /W    Compactar espaços em branco (tabs e espaços) para comparação de texto
+ /X    Não mostrar linhas de contexto na comparação de texto
+ /nnn  Definir o número mínimo de linhas consecutivas iguais para nnn
+       para a ressincronização da comparação
+
+O programa reconhece nomes longos (LFN) e usa-os automaticamente se o sistema
+operativo os suportar.
+
+O FC assume o modo binário para ficheiros .EXE, .COM, .SYS, .OBJ, .BIN, .DLL
+e .LIB.
+
+No modo binário, o FC mostra o offset dos bytes divergentes, o seu valor em
+hexadecimal e o caractere ASCII (se for imprimível).
+
+Por padrão, a comparação binária para após 20 diferenças, mas o valor pode
+ser alterado com /M. /M0 significa "ilimitado". /M é lido como /M0.
+
+Uma limitação é que, no modo texto, apenas as primeiras 32765 linhas são
+comparadas; as restantes são ignoradas. O tamanho da linha é ilimitado.
+
+O FC suporta wildcards (caracteres genéricos). Algumas notas:
+- especificar um diretório é o mesmo que especificar "*.*".
+  Exemplo: "FC C:\ A:" é o mesmo que "FC C:\*.* A:*.*"
+- se fich2 for omitido, assume-se "." (diretório atual).
+  Exemplo: "FC C:\FICH.TXT" é o mesmo que "FC C:\FICH.TXT .\*.*"
+- se fich1 tem wildcards mas fich2 não, todos os ficheiros de fich1 são
+  comparados com o mesmo fich2.
+- se fich1 tem wildcards e fich2 é um caminho com "*.*", os ficheiros de
+  fich1 são comparados com os de mesmo nome no caminho fich2.
+- se ambos tiverem wildcards, os ficheiros no caminho de fich1 são
+  comparados com os ficheiros relevantes no caminho de fich2.
+  Exemplo: "FC *.TXT VELHOS\*.BAK"
+É mais fácil fazer do que dizer. Para comparar cada ficheiro de um diretório
+com todos os de outro: FC *.* MEUDIR\????????.???
+
+A opção /S repete o padrão de busca em subdiretórios com o mesmo nome.
+  Exemplo: "FC /S C:*.TXT D:*.BAK"
+  Se existirem C:\LIVRO e D:\LIVRO, este comando compara os *.TXT nos
+  diretórios atuais e também em LIVRO\*.TXT com as cópias *.BAK.
+
+Os códigos de saída para ERRORLEVEL são:
+	0	Todos os ficheiros coincidem
+	1	Pelo menos um par de ficheiros é diferente
+	2	Parâmetro inválido na linha de comando
+	3	Ficheiro não encontrado
+	4	Erro ao abrir ficheiro(s)
+
+
+
+
+
+# Language: slovakian
+# File ending: sk
+# Codepage: 852
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC porovnáva dva súbory alebo sady súborov v textovom alebo binárnom režime
+a zobrazuje rozdiely medzi nimi.
+
+FC implementuje algoritmus Paula Heckela z Communications of the
+Association for Computing Machinery, apríl 1978, s. 264 - 268,
+"Technika na izoláciu rozdielov medzi súbormi".
+
+Tento algoritmus má oproti bežnejším porovnávacím algoritmom výhodu v tom,
+že je rýchly a dokáže detegovať rozdiely v ľubovoľnom počte riadkov. Vo
+väčšine aplikácií algoritmus izoluje rozdiely podobne ako metóda najdlhšej
+spoločnej podpostupnosti.
+
+Syntax je nasledovná:
+
+FC [prepínače] [jednotka1:][cesta1]súbor1 [jednotka2:][cesta2]súbor2
+
+ /A    Zobraziť iba prvý a posledný riadok pre každú sadu rozdielov
+ /B    Vykonať binárne porovnanie
+ /C    Ignorovať veľkosť písmen
+ /L    Porovnať súbory ako text ASCII
+ /LBn  Nastaviť max. počet po sebe idúcich rozdielnych ASCII riadkov na n
+ /Mn   Nastaviť maximálny počet rozdielov v binárnom porovnaní na n bajtov
+ /N    Zobraziť čísla riadkov pri textovom porovnaní
+ /Q    Nezobrazovať zoznam rozdielov
+ /R    Zobraziť stručnú záverečnú správu (vždy aktívne pri použití /S)
+ /S    Rozšíriť skenovanie na súbory v podadresároch
+ /T    Neprevádzať tabulátory na medzery
+ /U    Zobraziť názvy súborov, ktoré nemajú náprotivok
+ /W    Zkomprimovať biele znaky (tabulátory a medzery) pre porovnanie textu
+ /X    Nezobrazovať kontextové riadky pri textovom porovnaní
+ /nnn  Nastaviť min. počet po sebe idúcich zhodných riadkov na nnn
+       pre opätovnú synchronizáciu porovnania
+
+Program podporuje dlhé názvy súborov (LFN) a používa ich automaticky, ak
+ich operačný systém podporuje.
+
+FC sa predvolene prepne do binárneho režimu pri súboroch .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL a .LIB.
+
+V binárnom režime FC zobrazuje offset rozdielnych bajtov v súbore, ich
+hexadecimálnu hodnotu a (ak sú tlačiteľné) ich znak ASCII.
+
+Predvolene sa binárne porovnávanie zastaví po 20 rozdieloch, ale túto
+hodnotu možno zmeniť prepínačom /M. /M0 znamená "neobmedzene".
+/M sa interpretuje ako /M0.
+
+Obmedzením programu je, že v textovom režime sa porovnáva iba prvých
+32765 riadkov; zvyšné riadky sú ignorované. Dĺžka riadka je prakticky
+neobmedzená.
+
+FC podporuje zástupné znaky (wildcards). Pár slov k tomu:
+- určenie adresára je rovnaké ako určenie všetkých súborov v ňom ("*.*").
+  Príklad: "FC C:\ A:" je to isté ako "FC C:\*.* A:*.*"
+- ak nie je zadaný súbor2, predpokladá sa "." (aktuálny adresár).
+  Príklad: "FC C:\SUBOR.TXT" je to isté ako "FC C:\SUBOR.TXT .\*.*"
+- ak má súbor1 zástupné znaky, ale súbor2 nie, všetky súbory zodpovedajúce
+  súboru1 sa porovnajú s tým istým súborom2.
+- ak má súbor1 zástupné znaky a súbor2 je cesta s "*.*", všetky súbory
+  zodpovedajúce súboru1 sa porovnajú so súbormi rovnakého mena v ceste súbor2.
+- ak majú oba súbory zástupné znaky, porovnajú sa súbory v ceste súboru1
+  s príslušným súborom v ceste súboru2. Príklad: "FC *.TXT STARE\*.BAK"
+Je to jednoduchšie urobiť ako vysvetliť. Ak chcete porovnať každý súbor
+v adresári so všetkými v inom: FC *.* MOJADR\????????.???
+
+Voľba /S opakuje rovnaký vzor hľadania v podadresároch s rovnakým názvom.
+  Príklad: "FC /S C:*.TXT D:*.BAK"
+  Ak existujú adresáre C:\KNIHA a D:\KNIHA, tento príkaz porovná všetky
+  *.TXT v aktuálnych adresároch a tiež všetky KNIHA\*.TXT.
+
+Návratové kódy ERRORLEVEL sú nasledovné:
+	0	Všetky súbory sa zhodujú
+	1	Aspoň jeden pár súborov sa líši
+	2	Neplatný parameter na príkazovom riadku
+	3	Súbor sa nenašiel
+	4	Chyba pri otváraní súboru (súborov)
+
+
+
+
+
+# Language: slovenian
+# File ending: sl
+# Codepage: 852
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC primerja dve datoteki ali niza datotek v tekstovnem ali binarnem načinu
+ter prikaže razlike med njima.
+
+FC uporablja algoritem Paula Heckla iz Communications of the Association
+for Computing Machinery, april 1978, str. 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+Ta algoritem je hitrejši od običajnih algoritmov in lahko zazna razlike
+pri poljubnem številu vrstic. V večini primerov algoritem izolira razlike
+podobno kot metoda najdaljšega skupnega podzaporedja.
+
+Sintaksa je naslednja:
+
+FC [možnosti] [pogon1:][pot1]datoteka1 [pogon2:][pot2]datoteka2 [možnosti]
+
+ /A    Prikaži le prvo in zadnjo vrstico za vsak sklop razlik
+ /B    Izvedi binarno primerjavo
+ /C    Prezri razlikovanje med velikimi in malimi črkami
+ /L    Primerjaj datoteke kot besedilo ASCII
+ /LBn  Nastavi maks. število zaporednih različnih vrstic ASCII na n
+ /Mn   Nastavi maks. število razlik v binarni primerjavi na n bajtov
+ /N    Prikaži številke vrstic pri tekstovni primerjavi
+ /Q    Ne prikaži seznama razlik
+ /R    Prikaži kratko končno poročilo (vedno aktivno pri uporabi /S)
+ /S    Razširi iskanje na datoteke v podimenikih
+ /T    Ne razširi tabulatorjev v presledke
+ /U    Prikaži imena datotek brez ustrezne datoteke na drugi strani
+ /W    Strni prazne prostore (tabulatorje in presledke) za primerjavo
+ /X    Ne prikaži kontekstnih vrstic pri tekstovni primerjavi
+ /nnn  Nastavi min. število zaporednih ujemajočih se vrstic na nnn
+       za ponovno sinhronizacijo primerjave
+
+Program podpira dolga imena datotek (LFN) in jih uporablja samodejno, če
+jih operacijski sistem podpira.
+
+FC privzeto uporablja binarni način za datoteke .EXE, .COM, .SYS, .OBJ,
+.BIN, .DLL in .LIB.
+
+V binarnem načinu FC prikaže odmik (offset) v datoteki za različne bajte,
+njihovo šestnajstiško vrednost in znak ASCII (če ga je mogoče natisniti).
+
+Privzeto se binarna primerjava ustavi po 20 razlikah, vendar lahko to
+vrednost spremenite s stikalom /M. /M0 pomeni "neomejeno".
+/M se obravnava kot /M0.
+
+Omejitev programa je, da se v tekstovnem načinu primerja le prvih 32765
+vrstic; ostale vrstice so prezrte. Dolžina vrstice je neomejena.
+
+FC podpira nadomestne znake (wildcards). Nekaj pojasnil:
+- navedba imenika je isto kot navedba vseh datotek v njem ("*.*").
+  Primer: "FC C:\ A:" je enako kot "FC C:\*.* A:*.*"
+- če datoteka2 ni vnesena, se privzame "." (trenutni imenik).
+  Primer: "FC C:\TEST.TXT" je enako kot "FC C:\TEST.TXT .\*.*"
+- če ima datoteka1 nadomestne znake, datoteka2 pa ne, se vse datoteke,
+  ki ustrezajo datoteki1, primerjajo z isto datoteko2.
+- če ima datoteka1 nadomestne znake, datoteka2 pa je pot z "*.*", se
+  datoteke iz datoteka1 primerjajo z datotekami z istim imenom na poti2.
+- če imata obe nadomestne znake, se datoteke na poti datoteka1 primerjajo
+  z ustreznimi datotekami na poti datoteka2.
+  Primer: "FC *.TXT STARE\*.BAK"
+To je lažje storiti kot razložiti. Če želite primerjati vsako datoteko v
+imeniku z vsemi v drugem: FC *.* MOJDIR\????????.???
+
+Možnost /S ponovi isti vzorec iskanja v podimenikih z istim imenom.
+  Primer: "FC /S C:*.TXT D:*.BAK"
+  Če obstajata npr. C:\KNJIGA in D:\KNJIGA, ta ukaz primerja vse *.TXT
+  v trenutnih imenikih in tudi v podimenikih KNJIGA.
+
+Izhodne kode ERRORLEVEL so:
+	0	Vse datoteke se ujemajo
+	1	Vsaj en par datotek se razlikuje
+	2	Neveljaven parameter v ukazni vrstici
+	3	Datoteka ni bila najdena
+	4	Napaka pri odpiranju datotek
+
+
+
+
+
+# Language: serbian
+# File ending: sr
+# Codepage: 855
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC пореди две датотеке или скупове датотека, у текстуалном или бинарном
+режиму, и приказује разлике између њих.
+
+FC примењује алгоритам Паула Хекела из Communications of the Association
+for Computing Machinery, април 1978, стр. 264 - 268,
+"Техника за изоловање разлика између датотека".
+
+Овај алгоритам има предност над уобичајеним алгоритмима јер је брз и може
+да открије разлике код произвољног броја линија. У већини случајева
+алгоритам изолује разлике слично методи најдуже заједничке подниске.
+
+Синтакса је следећа:
+
+FC [опције] [диск1:][путања1]фајл1 [диск2:][путања2]фајл2 [опције]
+
+ /A    Прикажи само прву и последњу линију за сваки скуп разлика
+ /B    Изврши бинарно поређење
+ /C    Занемари разлику између великих и малих слова
+ /L    Пореди датотеке као ASCII текст
+ /LBn  Постави макс. број узастопних различитих ASCII линија на n
+ /Mn   Постави макс. број разлика у бинарном поређењу на n бајтова
+ /N    Прикажи бројеве линија при текстуалном поређењу
+ /Q    Не приказуј листу разлика
+ /R    Прикажи кратак завршни извештај (увек активно уз /S)
+ /S    Прошири скенирање на датотеке у поддиректоријумима
+ /T    Не претварај табулаторе у размаке
+ /U    Прикажи имена датотека без пара на другој страни
+ /W    Сажми празан простор (табове и размаке) за текстуално поређење
+ /X    Не приказуј контекстне линије у текстуалном поређењу
+ /nnn  Постави мин. број узастопних подударних линија на nnn
+       за ресинхронизацију поређења
+
+Програм подржава дуга имена датотека (LFN) и користи их аутоматски ако
+их оперативни систем подржава.
+
+FC подразумевано користи бинарни режим за датотеке .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL и .LIB.
+
+У бинарном режиму FC приказује офсет у датотеци за различите бајтове,
+њихову хексадецималну вредност и ASCII знак (ако се може штампати).
+
+Подразумевано се бинарно поређење зауставља након 20 разлика, али се то
+може изменити опцијом /M. /M0 значи "неограничено". /M се тумачи као /M0.
+
+Ограничење програма је да се у текстуалном режиму пореди само првих 32765
+линија; остале линије се игноришу. Дужина линије је практично неограничена.
+
+FC подржава џокере (wildcards). Неколико напомена:
+- навођење директоријума је исто што и навођење свих датотека ("*.*").
+  Пример: "FC C:\ A:" је исто што и "FC C:\*.* A:*.*"
+- ако фајл2 није унет, подразумева се "." (текући директоријум).
+  Пример: "FC C:\TEST.TXT" је исто што и "FC C:\TEST.TXT .\*.*"
+- ако фајл1 има џокере а фајл2 нема, све датотеке које одговарају фајлу1
+  се пореде са истим фајлом2.
+- ако фајл1 има џокере а фајл2 је путања са "*.*", датотеке из фајл1 се
+  пореде са датотекама истог имена на путањи фајл2.
+- ако оба имају џокере, датотеке на путањи фајл1 се пореде са одговарајућим
+  датотекама на путањи фајл2. Пример: "FC *.TXT STARE\*.BAK"
+То је лакше урадити него објаснити. Ако желите да поредите сваки фајл у
+директоријуму са свим фајловима у другом: FC *.* MOJDIR\????????.???
+
+Опција /S понавља исти образац претраге у поддиректоријумима са истим
+именом на обе путање.
+  Пример: "FC /S C:*.TXT D:*.BAK"
+  Ако постоје нпр. C:\KNJIGA и D:\KNJIGA, ова команда пореди све *.TXT
+  у текућим директоријумима и такође у поддиректоријумима KNJIGA.
+
+Излазни кодови за ERRORLEVEL су:
+	0	Све датотеке се подударају
+	1	Барем један пар датотека се разликује
+	2	Неисправан параметар у линији команди
+	3	Датотека није пронађена
+	4	Грешка при отварању датотека
+
+
+
+
+
+# Language: ukrainian
+# File ending: uk
+# Codepage: 1125
+# This translation was made by Google Gemini,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC порівнює два файли або набори файлів у текстовому чи бінарному режимі
+та відображає відмінності між ними.
+
+FC реалізує алгоритм Пола Геккеля з Communications of the Association
+for Computing Machinery, квітень 1978, стор. 264-268,
+"Техніка ізоляції відмінностей між файлами".
+
+Цей алгоритм має перевагу над поширеними алгоритмами порівняння в тому,
+що він швидкий і може виявляти відмінності у довільній кількості рядків.
+Для більшості застосувань алгоритм ізолює відмінності подібно до тих,
+що виділяються методом найдовшої спільної підпослідовності.
+
+Синтаксис:
+
+FC [параметри] [диск1:][шлях1]файл1 [диск2][шлях2]файл2 [параметри]
+
+ /A    Показувати лише перший і останній рядки для кожної групи відмінностей
+ /B    Виконати бінарне порівняння
+ /C    Ігнорувати регістр літер (великі/малі)
+ /L    Порівнювати файли як ASCII-текст
+ /LBn  Встановити макс. кількість послідовних відмінних ASCII-рядків у n
+ /Mn   Встановити макс. кількість відмінностей у бінарному порівнянні у n байт
+ /N    Відображати номери рядків при текстовому порівнянні
+ /Q    Не показувати список відмінностей
+ /R    Показати короткий фінальний звіт (завжди активно при використанні /S)
+ /S    Поширити сканування на файли у піддиректоріях
+ /T    Не замінювати табуляцію пробілами
+ /U    Показувати назви файлів без відповідної пари
+ /W    Стискати пробіли (табуляцію та пробіли) для текстового порівняння
+ /X    Не показувати контекстні рядки при текстовому порівнянні
+ /nnn  Встановити мін. кількість послідовних співпадаючих рядків у nnn
+       для ресинхронізації порівняння
+
+Програма підтримує довгі імена файлів (LFN) і використовує їх автоматично,
+якщо операційна система їх підтримує.
+
+FC стандартно використовує бінарний режим для файлів .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL та .LIB.
+
+У бінарному режимі FC показує зміщення (offset) у файлі для відмінних байтів,
+їхнє значення у шістнадцятковому форматі та, якщо це друковані символи
+ASCII, їхній ASCII-символ.
+
+За замовчуванням бінарне порівняння зупиняється після 20 відмінностей, але
+це значення можна змінити за допомогою параметра /M. /M0 означає
+"необмежена кількість відмінностей". /M трактується як /M0.
+
+Обмеженням програми є те, що в текстовому режимі порівнюються лише
+перші 32765 рядків; решта рядків ігноруються. Довжина рядка практично
+необмежена.
+
+FC підтримує підстановочні знаки (wildcards). Кілька приміток:
+- вказівка директорії еквівалентна вказівці всіх файлів у ній (тобто "*.*").
+  Приклад: "FC C:\ A:" те саме, що "FC C:\*.* A:*.*"
+- якщо назва файлу2 не введена, припускається "." (поточна директорія).
+  Приклад: "FC C:\FOO.TXT" те саме, що "FC C:\FOO.TXT .\*.*"
+- якщо файл1 має підстановочні знаки, а файл2 ні, то всі файли, що
+  відповідають файлу1, порівнюються з одним і тим самим файлом2.
+- якщо файл1 має підстановочні знаки, а файл2 є шляхом, що закінчується
+  на "*.*", то всі файли, що відповідають файлу1, порівнюються з файлами
+  з таким самим іменем, але за шляхом, вказаним у файл2.
+- якщо обидва мають підстановочні знаки, то файли за шляхом файлу1, що
+  відповідають масці, порівнюються з відповідними файлами за шляхом файлу2.
+
+Опція /S ітерує той самий шаблон пошуку в піддиректоріях з однаковими
+назвами в обох шляхах.
+
+Коди виходу для ERRORLEVEL:
+	0	Усі файли співпадають
+	1	Принаймні одна пара файлів відрізняється
+	2	Невірний параметр у командному рядку
+	3	Файл не знайдено
+	4	Помилка відкриття файлу(ів)
+	
+    
+    
+    
+# Language: italian
+# File ending: it
+# Codepage: 858
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC confronta due file o insiemi di file, in modalità testo o binaria, e
+visualizza le differenze tra di loro.
+
+FC implementa l'algoritmo di Paul Heckel dalle Communications of the
+Association for Computing Machinery, Aprile 1978, p264 - p268,
+"A Technique for Isolating Differences Between Files".
+
+Questo algoritmo ha il vantaggio rispetto agli algoritmi di confronto più
+comuni di essere veloce e di poter rilevare differenze di un numero arbitrario
+di linee. Per la maggior parte delle applicazioni, l'algoritmo isola le
+differenze in modo simile alla sottosequenza comune più lunga.
+
+La sintassi è la seguente:
+
+FC [opzioni] [disco1:][percorso1]file1 [disco2][percorso2]file2 [opzioni]
+
+ /A    Mostra solo la prima e l'ultima riga per ogni set di differenze
+ /B    Esegue un confronto binario
+ /C    Ignora la distinzione tra maiuscole e minuscole
+ /L    Confronta i file come testo ASCII
+ /LBn  Imposta a n il numero massimo di righe ASCII differenti consecutive
+ /Mn   Imposta a n byte le differenze massime nel confronto binario
+ /N    Visualizza i numeri di riga in un confronto testuale
+ /Q    Non mostrare l'elenco delle differenze
+ /R    Mostra un breve rapporto finale (sempre attivo quando si usa /S)
+ /S    Estende la scansione ai file nelle sottodirectory
+ /T    Non espandere i tabulatori in spazi
+ /U    Mostra i nomi dei file senza un corrispondente
+ /W    Comprime gli spazi bianchi (tab e spazi) per il confronto testuale
+ /X    Non mostrare le righe di contesto nel confronto testuale
+ /nnn  Imposta a nnn il numero minimo di righe corrispondenti consecutive
+       per la risincronizzazione del confronto
+
+Il programma supporta i nomi lunghi (LFN) e li usa automaticamente se il
+sistema operativo li supporta.
+
+FC usa predefinitamente la modalità binaria per i file .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL e .LIB.
+
+In modalità binaria FC mostra l'offset nel file dei byte differenti, il loro
+valore in esadecimale e, se sono caratteri ASCII stampabili, il carattere.
+
+Per impostazione predefinita, il confronto binario si ferma dopo 20 differenze
+ma tale valore può essere modificato tramite l'opzione /M. /M0 significa
+"differenze illimitate". /M è interpretato come /M0.
+
+Un limite di progettazione è che, nel confronto in modalità testo, vengono
+confrontate solo le prime 32765 righe; le restanti righe vengono ignorate.
+La lunghezza della riga è virtualmente illimitata.
+
+FC supporta i caratteri jolly (wildcards) nelle specifiche dei file:
+- specificare una directory equivale a specificare tutti i file ("*.*").
+  Esempio: "FC C:\ A:" è uguale a "FC C:\*.* A:*.*"
+- se non viene inserito file2, viene assunto "." (la directory corrente).
+  Esempio: "FC C:\TEST.TXT" è uguale a "FC C:\TEST.TXT .\*.*"
+- se file1 ha i caratteri jolly ma file2 no, tutti i file corrispondenti a
+  file1 vengono confrontati con lo stesso file2.
+- se file1 ha i caratteri jolly e file2 è un percorso seguito da "*.*", tutti
+  i file corrispondenti a file1 vengono confrontati con i file con lo stesso
+  nome ma nel percorso specificato da file2.
+- se entrambi hanno caratteri jolly, i file nel percorso di file1 vengono
+  confrontati con il relativo file in quello di file2.
+  Esempio: "FC *.TXT VECCHI\*.BAK"
+È più facile a farsi che a dirsi. Se vuoi confrontare ogni file in una
+directory con tutti i file in un'altra: FC *.* MIADIR\????????.???
+
+L'opzione /S itera lo stesso modello di ricerca nelle sottodirectory con
+lo stesso nome in entrambi i percorsi.
+  Esempio: "FC /S C:*.TXT D:*.BAK"
+  Assumendo l'esistenza delle sottodirectory C:LIBRO e D:LIBRO, questo comando
+  confronta tutti i file *.TXT nelle directory correnti e anche tutti i file
+  BOOK\*.TXT con le loro copie di backup BOOK\*.BAK.
+
+I codici di uscita per ERRORLEVEL sono i seguenti:
+	0	Tutti i file corrispondono
+	1	Almeno una coppia di file differisce
+	2	Parametro non valido sulla riga di comando
+	3	File non trovato
+	4	Errore nell'apertura dei file
+
+
+
+
+
+# Language: latvian
+# File ending: lv
+# Codepage: 775
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC salīdzina divus failus vai failu kopas teksta vai binārajā režīmā un
+parāda atšķirības starp tiem.
+
+FC izmanto Pola Hekela algoritmu no Communications of the Association for
+Computing Machinery, 1978. gada aprīlis, 264. - 268. lpp.,
+"A Technique for Isolating Differences Between Files".
+
+Šim algoritmam ir priekšrocība salīdzinājumā ar biežāk izmantotajiem
+algoritmiem – tas ir ātrs un spēj noteikt atšķirības patvaļīgam rindu
+skaitam. Lielākajai daļai lietojumu algoritms izolē atšķirības līdzīgi kā
+garākās kopīgās apakšsekvences metode.
+
+Sintakse ir šāda:
+
+FC [slēdži] [disks1:][ceļš1]fails1 [disks2][ceļš2]fails2 [slēdži]
+
+ /A    Rādīt tikai pirmo un pēdējo rindu katrai atšķirību kopai
+ /B    Veikt bināro salīdzināšanu
+ /C    Ignorēt burtu reģistru
+ /L    Salīdzināt failus kā ASCII tekstu
+ /LBn  Iestatīt maksimālo secīgo atšķirīgo ASCII rindu skaitu uz n
+ /Mn   Iestatīt maksimālo atšķirību skaitu binārajā salīdzināšanā uz n baitiem
+ /N    Rādīt rindu numurus teksta salīdzināšanā
+ /Q    Nerādīt atšķirību sarakstu
+ /R    Rādīt īsu gala ziņojumu (vienmēr aktīvs, izmantojot /S)
+ /S    Paplašināt skenēšanu uz failiem apakšdirektorijos
+ /T    Nepārveidot tabulācijas par atstarpēm
+ /U    Rādīt failu nosaukumus failiem bez atbilstības
+ /W    Saspiest tukšumzīmes (tabulācijas un atstarpes) teksta salīdzināšanai
+ /X    Nerādīt konteksta rindas teksta salīdzināšanā
+ /nnn  Iestatīt minimālo secīgo sakrītošo rindu skaitu uz nnn
+       salīdzināšanas resinhronizācijai
+
+Programma atpazīst garos failu nosaukumus (LFN) un izmanto tos automātiski,
+ja operētājsistēma tos atbalsta.
+
+FC pēc noklusējuma izmanto bināro režīmu failiem .EXE, .COM, .SYS, .OBJ,
+.BIN, .DLL un .LIB.
+
+Binārajā režīmā FC parāda atšķirīgo baitu nobīdi failā, to vērtību
+heksadecimālajā sistēmā un, ja tie ir ASCII simboli, to rakstzīmi.
+
+Pēc noklusējuma binārā salīdzināšana apstājas pēc 20 atšķirībām, bet šo
+vērtību var mainīt ar /M slēdzi. /M0 nozīmē "neierobežotas atšķirības".
+/M tiek interpretēts kā /M0.
+
+Projektēšanas ierobežojums ir tāds, ka teksta režīma salīdzināšanā tiek
+salīdzinātas tikai pirmās 32765 rindas; pārējās rindas tiek ignorētas.
+Rindas garums ir praktiski neierobežots.
+
+FC atbalsta aizstājējzīmes (wildcards). Daži paskaidrojumi:
+- direktorija norādīšana ir tas pats, kas norādīt visus failus tajā ("*.*").
+  Piemērs: "FC C:\ A:" ir tas pats, kas "FC C:\*.* A:*.*"
+- ja fails2 nav ievadīts, tiek pieņemts "." (pašreizējais direktorijs).
+  Piemērs: "FC C:\FOO.TXT" ir tas pats, kas "FC C:\FOO.TXT .\*.*"
+- ja fails1 satur aizstājējzīmes, bet fails2 nē, visi faili, kas atbilst
+  fails1, tiek salīdzināti ar to pašu fails2.
+- ja fails1 satur aizstājējzīmes un fails2 ir ceļš, kam seko "*.*", visi
+  faili, kas atbilst fails1, tiek salīdzināti ar failiem ar tādu pašu
+  nosaukumu fails2 norādītajā ceļā.
+- ja abiem ir aizstājējzīmes, faili ceļā1 tiek salīdzināti ar atbilstošajiem
+  failiem ceļā2. Piemērs: "FC *.TXT OLDS\*.BAK"
+Tas ir izdarāms vieglāk, nekā izstāstāms. Ja vēlaties salīdzināt katru failu
+vienā direktorijā ar visiem failiem citā: FC *.* MYDIR\????????.???
+
+Opcija /S atkārto to pašu meklēšanas paraugu apakšdirektorijos ar tādu pašu
+nosaukumu abos ceļos.
+  Piemērs: "FC /S C:*.TXT D:*.BAK"
+  Pieņemot, ka eksistē apakšdirektoriji C:GRAMATA un D:GRAMATA, šī komanda
+  salīdzinās visus *.TXT failus pašreizējos direktorijos un arī visus
+  GRAMATA\*.TXT failus ar to dublējumkopijām GRAMATA\*.BAK.
+
+ERRORLEVEL izejas kodi ir šādi:
+	0	Visi faili sakrīt
+	1	Vismaz viens failu pāris atšķiras
+	2	Nederīgs parametrs komandrindā
+	3	Fails nav atrasts
+	4	Kļūda, atverot failu(s)
+
+
+
+
+# Language: netherlands
+# File ending: nl
+# Codepage: 858
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC vergelijkt twee bestanden of sets bestanden, in tekst- of binaire modus,
+en toont de verschillen tussen beide.
+
+FC implementeert het algoritme van Paul Heckel uit de Communications of the
+Association for Computing Machinery, april 1978, p264 - p268,
+"A Technique for Isolating Differences Between Files".
+
+Dit algoritme heeft het voordeel boven meer gebruikelijke algoritmen dat
+het snel is en verschillen in een willekeurig aantal regels kan detecteren.
+Voor de meeste toepassingen isoleert het algoritme verschillen vergelijkbaar
+met die van de "longest common subsequence".
+
+De syntaxis is als volgt:
+
+FC [opties] [schijf1:][pad1]bestand1 [schijf2][pad2]bestand2 [opties]
+
+ /A    Toon alleen de eerste en laatste regel voor elke set verschillen
+ /B    Voer een binaire vergelijking uit
+ /C    Negeer het verschil tussen hoofdletters en kleine letters
+ /L    Vergelijk bestanden als ASCII-tekst
+ /LBn  Stel het max. aantal opeenvolgende verschillende ASCII-regels in op n
+ /Mn   Stel de max. verschillen in binaire vergelijking in op n bytes
+ /N    Toon de regelnummers bij een tekstvergelijking
+ /Q    Toon de lijst met verschillen niet
+ /R    Toon een kort eindverslag (altijd actief bij gebruik van /S)
+ /S    Breid de scan uit naar de bestanden in submappen
+ /T    Tablatoren niet omzetten naar spaties
+ /U    Toon de bestandsnamen van de bestanden zonder tegenhanger
+ /W    Spaties en tabs samenvoegen voor tekstvergelijking
+ /X    Toon geen contextregels bij tekstvergelijking
+ /nnn  Stel het min. aantal opeenvolgende overeenkomende regels in op nnn
+       voor resynchronisatie van de vergelijking
+
+Het programma is LFN-bewust en gebruikt deze automatisch als het
+besturingssysteem lange bestandsnamen ondersteunt.
+
+FC gebruikt standaard de binaire modus voor bestanden .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL en .LIB.
+
+In binaire modus toont FC de offset in het bestand van de afwijkende bytes,
+hun waarde in hexadecimaal en, als het ASCII-tekens zijn, het teken zelf.
+
+Standaard stopt de binaire vergelijking na 20 verschillen, maar die waarde
+kan worden gewijzigd met de /M-optie. /M0 betekent "onbeperkt aantal".
+/M wordt geïnterpreteerd als /M0.
+
+Een ontwerpbeperking is dat in de tekstmodusvergelijking alleen de eerste
+32765 regels worden vergeleken; de overige regels worden genegeerd. De
+regellengte is vrijwel onbeperkt.
+
+FC ondersteunt wildcards in de bestandsspecificaties:
+- het opgeven van een map is hetzelfde als het opgeven van alle bestanden
+  in die map (bijv. "*.*"). Voorbeeld: "FC C:\ A:" is gelijk aan "FC C:\*.* A:*.*"
+- als er geen bestand2 is ingevoerd, wordt "." (de huidige map) aangenomen.
+  Voorbeeld: "FC C:\FOO.TXT" is hetzelfde als "FC C:\FOO.TXT .\*.*"
+- als bestand1 wildcards heeft maar bestand2 niet, dan worden alle bestanden
+  die overeenkomen met bestand1 vergeleken met hetzelfde bestand2.
+- als bestand1 wildcards heeft en bestand2 een pad is gevolgd door "*.*",
+  worden alle bestanden die overeenkomen met bestand1 vergeleken met de
+  bestanden met dezelfde naam in het pad van bestand2.
+- als beide wildcards hebben, worden bestanden in het pad van bestand1
+  vergeleken met het relevante bestand in het pad van bestand2.
+  Voorbeeld: "FC *.TXT OLDS\*.BAK"
+Het is makkelijker gedaan dan gezegd. Als u elk bestand in een map wilt
+vergelijken met alle bestanden in een andere: FC *.* MIJNDIR\????????.???
+
+De /S-optie herhaalt hetzelfde zoekpatroon in de submappen met dezelfde
+naam in beide paden.
+  Voorbeeld: "FC /S C:*.TXT D:*.BAK"
+  Uitgaande van het bestaan van de submappen C:BOEK en D:BOEK, vergelijkt dit
+  commando alle *.TXT bestanden in de huidige mappen en ook alle
+  BOEK\*.TXT bestanden met hun reservekopieën BOEK\*.BAK.
+
+De exit-codes voor ERRORLEVEL zijn als volgt:
+	0	Alle bestanden komen overeen
+	1	Ten minste één paar bestanden verschilt
+	2	Ongeldige parameter op de opdrachtregel
+	3	Bestand niet gevonden
+	4	Fout bij het openen van bestand(en)
+
+
+
+
+# Language: russian
+# File ending: ru
+# Codepage: 866
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC сравнивает два файла или набора файлов в текстовом или двоичном режиме
+и отображает различия между ними.
+
+FC реализует алгоритм Пола Хекеля из Communications of the Association
+for Computing Machinery, апрель 1978, стр. 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+Этот алгоритм имеет преимущество перед более распространенными алгоритмами
+сравнения: он быстр и может обнаруживать различия в произвольном количестве
+строк. В большинстве случаев алгоритм изолирует различия, аналогичные
+методу поиска самой длинной общей подпоследовательности.
+
+Синтаксис следующий:
+
+FC [ключи] [диск1:][путь1]файл1 [диск2][путь2]файл2 [ключи]
+
+ /A    Показывать только первую и последнюю строки для каждого набора различий
+ /B    Выполнить двоичное сравнение
+ /C    Игнорировать регистр букв
+ /L    Сравнивать файлы как текст ASCII
+ /LBn  Установить макс. число последовательных различных строк ASCII равным n
+ /Mn   Установить макс. число различий при двоичном сравнении n байт
+ /N    Отображать номера строк при текстовом сравнении
+ /Q    Не показывать список различий
+ /R    Показать краткий итоговый отчет (всегда активен при использовании /S)
+ /S    Распространить сканирование на файлы в подкаталогах
+ /T    Не заменять табуляцию пробелами
+ /U    Показывать имена файлов, не имеющих соответствия
+ /W    Сжимать пробелы (табуляцию и пробелы) для текстового сравнения
+ /X    Не показывать строки контекста при текстовом сравнении
+ /nnn  Установить мин. число последовательных совпадающих строк равным nnn
+       для ресинхронизации сравнения
+
+Программа учитывает длинные имена файлов (LFN) и использует их автоматически,
+если операционная система их поддерживает.
+
+FC по умолчанию использует двоичный режим для файлов .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL и .LIB.
+
+В двоичном режиме FC показывает смещение (offset) различающихся байт, их
+значение в шестнадцатеричном виде и, если это печатные символы, знак ASCII.
+
+По умолчанию двоичное сравнение останавливается после 20 различий, но это
+значение можно изменить ключом /M. /M0 означает "неограниченно".
+/M интерпретируется как /M0.
+
+Ограничение программы: при текстовом сравнении сравниваются только первые
+32765 строк; остальные строки игнорируются. Длина строки практически
+не ограничена.
+
+FC поддерживает маски (wildcards). Несколько пояснений:
+- указание каталога эквивалентно указанию всех файлов в нем ("*.*").
+  Пример: "FC C:\ A:" то же самое, что и "FC C:\*.* A:*.*"
+- если файл2 не введен, подразумевается "." (текущий каталог).
+  Пример: "FC C:\FOO.TXT" то же самое, что и "FC C:\FOO.TXT .\*.*"
+- если файл1 содержит маски, а файл2 - нет, все файлы, соответствующие
+  файл1, сравниваются с одним и тем же файлом2.
+- если файл1 содержит маски, а файл2 - это путь с "*.*", все файлы,
+  соответствующие файл1, сравниваются с файлами с тем же именем в пути2.
+- если оба содержат маски, файлы в пути1 сравниваются с соответствующими
+  файлами в пути2. Пример: "FC *.TXT OLDS\*.BAK"
+Это проще сделать, чем объяснить. Если вы хотите сравнить каждый файл в
+каталоге со всеми файлами в другом: FC *.* MYDIR\????????.???
+
+Ключ /S повторяет тот же шаблон поиска в подкаталогах с одинаковыми
+именами в обоих путях.
+  Пример: "FC /S C:*.TXT D:*.BAK"
+  Предполагая существование подкаталогов C:BOOK и D:BOOK, эта команда
+  сравнит все файлы *.TXT в текущих каталогах, а также все файлы
+  BOOK\*.TXT с их резервными копиями BOOK\*.BAK.
+
+Коды выхода для ERRORLEVEL следующие:
+	0	Все файлы совпадают
+	1	Хотя бы одна пара файлов различается
+	2	Неверный параметр в командной строке
+	3	Файл не найден
+	4	Ошибка при открытии файла(ов)

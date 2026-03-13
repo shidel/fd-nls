@@ -1,0 +1,86 @@
+# Language: latvian
+# File ending: lv
+# Codepage: 775
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC salŒdzina divus failus vai failu kopas teksta vai binƒrajƒ reØŒmƒ un
+parƒda atÕéirŒbas starp tiem.
+
+FC izmanto Pola Hekela algoritmu no Communications of the Association for
+Computing Machinery, 1978. gada aprŒlis, 264. - 268. lpp.,
+"A Technique for Isolating Differences Between Files".
+
+¾im algoritmam ir priekÕrocŒba salŒdzinƒjumƒ ar bieØƒk izmantotajiem
+algoritmiem - tas ir ƒtrs un sp‰j noteikt atÕéirŒbas patvaëŒgam rindu
+skaitam. Lielƒkajai daëai lietojumu algoritms izol‰ atÕéirŒbas lŒdzŒgi kƒ
+garƒkƒs kopŒgƒs apakÕsekvences metode.
+
+Sintakse ir Õƒda:
+
+FC [sl‰dØi] [disks1:][ceëÕ1]fails1 [disks2][ceëÕ2]fails2 [sl‰dØi]
+
+ /A    RƒdŒt tikai pirmo un p‰d‰jo rindu katrai atÕéirŒbu kopai
+ /B    Veikt binƒro salŒdzinƒÕanu
+ /C    Ignor‰t burtu re…istru
+ /L    SalŒdzinƒt failus kƒ ASCII tekstu
+ /LBn  IestatŒt maksimƒlo secŒgo atÕéirŒgo ASCII rindu skaitu uz n
+ /Mn   IestatŒt maksimƒlo atÕéirŒbu skaitu binƒrajƒ salŒdzinƒÕanƒ uz n baitiem
+ /N    RƒdŒt rindu numurus teksta salŒdzinƒÕanƒ
+ /Q    NerƒdŒt atÕéirŒbu sarakstu
+ /R    RƒdŒt Œsu gala ziìojumu (vienm‰r aktŒvs, izmantojot /S)
+ /S    PaplaÕinƒt sken‰Õanu uz failiem apakÕdirektorijos
+ /T    Nepƒrveidot tabulƒcijas par atstarp‰m
+ /U    RƒdŒt failu nosaukumus failiem bez atbilstŒbas
+ /W    Saspiest tukÕumzŒmes (tabulƒcijas un atstarpes) teksta salŒdzinƒÕanai
+ /X    NerƒdŒt konteksta rindas teksta salŒdzinƒÕanƒ
+ /nnn  IestatŒt minimƒlo secŒgo sakrŒtoÕo rindu skaitu uz nnn
+       salŒdzinƒÕanas resinhronizƒcijai
+
+Programma atpazŒst garos failu nosaukumus (LFN) un izmanto tos automƒtiski,
+ja oper‰tƒjsist‰ma tos atbalsta.
+
+FC p‰c noklus‰juma izmanto binƒro reØŒmu failiem .EXE, .COM, .SYS, .OBJ,
+.BIN, .DLL un .LIB.
+
+Binƒrajƒ reØŒmƒ FC parƒda atÕéirŒgo baitu nobŒdi failƒ, to v‰rtŒbu
+heksadecimƒlajƒ sist‰mƒ un, ja tie ir ASCII simboli, to rakstzŒmi.
+
+P‰c noklus‰juma binƒrƒ salŒdzinƒÕana apstƒjas p‰c 20 atÕéirŒbƒm, bet Õo
+v‰rtŒbu var mainŒt ar /M sl‰dzi. /M0 nozŒm‰ "neierobeØotas atÕéirŒbas".
+/M tiek interpret‰ts kƒ /M0.
+
+Projekt‰Õanas ierobeØojums ir tƒds, ka teksta reØŒma salŒdzinƒÕanƒ tiek
+salŒdzinƒtas tikai pirmƒs 32765 rindas; pƒr‰jƒs rindas tiek ignor‰tas.
+Rindas garums ir praktiski neierobeØots.
+
+FC atbalsta aizstƒj‰jzŒmes (wildcards). DaØi paskaidrojumi:
+- direktorija norƒdŒÕana ir tas pats, kas norƒdŒt visus failus tajƒ ("*.*").
+  Piem‰rs: "FC C:\ A:" ir tas pats, kas "FC C:\*.* A:*.*"
+- ja fails2 nav ievadŒts, tiek pieìemts "." (paÕreiz‰jais direktorijs).
+  Piem‰rs: "FC C:\FOO.TXT" ir tas pats, kas "FC C:\FOO.TXT .\*.*"
+- ja fails1 satur aizstƒj‰jzŒmes, bet fails2 n‰, visi faili, kas atbilst
+  fails1, tiek salŒdzinƒti ar to paÕu fails2.
+- ja fails1 satur aizstƒj‰jzŒmes un fails2 ir ceëÕ, kam seko "*.*", visi
+  faili, kas atbilst fails1, tiek salŒdzinƒti ar failiem ar tƒdu paÕu
+  nosaukumu fails2 norƒdŒtajƒ ceëƒ.
+- ja abiem ir aizstƒj‰jzŒmes, faili ceëƒ1 tiek salŒdzinƒti ar atbilstoÕajiem
+  failiem ceëƒ2. Piem‰rs: "FC *.TXT OLDS\*.BAK"
+Tas ir izdarƒms vieglƒk, nekƒ izstƒstƒms. Ja v‰laties salŒdzinƒt katru failu
+vienƒ direktorijƒ ar visiem failiem citƒ: FC *.* MYDIR\????????.???
+
+Opcija /S atkƒrto to paÕu mekl‰Õanas paraugu apakÕdirektorijos ar tƒdu paÕu
+nosaukumu abos ceëos.
+  Piem‰rs: "FC /S C:*.TXT D:*.BAK"
+  Pieìemot, ka eksist‰ apakÕdirektoriji C:GRAMATA un D:GRAMATA, ÕŒ komanda
+  salŒdzinƒs visus *.TXT failus paÕreiz‰jos direktorijos un arŒ visus
+  GRAMATA\*.TXT failus ar to dubl‰jumkopijƒm GRAMATA\*.BAK.
+
+ERRORLEVEL izejas kodi ir Õƒdi:
+	0	Visi faili sakrŒt
+	1	Vismaz viens failu pƒris atÕéiras
+	2	NederŒgs parametrs komandrindƒ
+	3	Fails nav atrasts
+	4	Kë×da, atverot failu(s)

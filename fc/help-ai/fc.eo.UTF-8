@@ -1,0 +1,84 @@
+# Language: esperanto
+# File ending: eo
+# Codepage: 853
+# This translation was made by Google Gemini,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC komparas du dosierojn aŭ arojn de dosieroj, en teksta aŭ duuma reĝimo,
+kaj montras la diferencojn inter ili.
+
+FC efektivigas la algoritmon de Paul Heckel el la Communications of the
+Association for Computing Machinery, aprilo 1978, p264 - p268,
+"Tekniko por izoli diferencojn inter dosieroj".
+
+Ĉi tiu algoritmo havas la avantaĝon super pli ofte uzataj kompar-algoritmoj,
+ke ĝi estas rapida kaj povas detekti diferencojn de arbitra nombro da linioj.
+Por la plej multaj aplikoj, la algoritmo izolas diferencojn similajn al tiuj
+izolitaj de la plej longa komuna subsekvenco.
+
+La sintakso estas jena:
+
+FC [ŝaltiloj] [disko1:][vojo1]dosiernomo1 [disko2][vojo2]dosiernomo2 [ŝaltiloj]
+
+ /A    Montri nur unuan kaj lastan liniojn por ĉiu aro de diferencoj
+ /B    Plenumi duuman komparon
+ /C    Ignori la usklecon de literoj (majuskloj/minuskloj)
+ /L    Kompari dosierojn kiel ASCII-tekston
+ /LBn  Agordi la maksimuman nombron da sinsekvaj malsamaj ASCII-linioj al n
+ /Mn   Agordi la maksimumajn diferencojn en duuma komparo al n bajtoj
+ /N    Montri la linionombrojn dum teksta komparo
+ /Q    Ne montri la liston de diferencoj
+ /R    Montri mallongan finan raporton (ĉiam aktiva kiam oni uzas /S)
+ /S    Etendi la skanadon al la dosieroj en subdosierujoj
+ /T    Ne konverti tabojn al spacoj
+ /U    Montri la dosiernomojn de la dosieroj sen korespondaĵo
+ /W    Kompakti blankspacon (taboj kaj spacoj) por teksta komparo
+ /X    Ne montri kuntekstajn liniojn en teksta komparo
+ /nnn  Agordi la minimuman nombron da sinsekvaj kongruaj linioj al nnn
+       por resinkronigado de la komparo
+
+La programo subtenas longajn dosiernomojn (LFN) kaj uzas ilin aŭtomate se la
+operaciumo subtenas ilin.
+
+FC defaŭlte uzas duuman reĝimon por dosieroj .EXE, .COM, .SYS, .OBJ, .BIN,
+.DLL kaj .LIB.
+
+En duuma reĝimo, FC montras la deŝovon (offset) en la dosiero de la malsamaj
+bajtoj, ilian valoron deksesume kaj, se ili estas ASCII-preteblaj signoj,
+ilian ASCII-signon.
+
+Defaŭlte la duuma komparo ĉesas post 20 diferencoj, sed tiu valoro povas
+esti ŝanĝita per la ŝaltilo /M. /M0 signifas "senlimaj diferencoj".
+/M estas interpretata kiel /M0.
+
+Projekta limigo de ĉi tiu programo estas ke, en la teksta reĝimo, nur la
+unuaj 32765 linioj estas komparataj; la ceteraj linioj estas ignorataj.
+La linilongo estas praktike senlima.
+
+FC subtenas ĵokerojn en la dosier-specifoj. Kelkaj vortoj pri tio:
+- Specifi dosierujon estas same kiel specifi ĉiujn dosierojn en tiu
+  dosierujo (t.e. "*.*").
+  Ekzemplo: "FC C:\ A:" estas same kiel "FC C:\*.* A:*.*"
+- Se neniu dosiernomo2 estas enigita, tiam "." (la aktuala dosierujo)
+  estas supozata.
+  Ekzemplo: "FC C:\LIBRO.TXT" estas same kiel "FC C:\LIBRO.TXT .\*.*"
+- Se dosiernomo1 havas ĵokerojn sed dosiernomo2 ne, tiam ĉiuj dosieroj
+  kongruaj al dosiernomo1 estas komparataj kun la sama dosiero dosiernomo2.
+- Se dosiernomo1 havas ĵokerojn kaj dosiernomo2 estas vojo sekvata de "*.*",
+  tiam ĉiuj dosieroj kongruaj al dosiernomo1 estas komparataj kun la dosieroj
+  kun la sama nomo sed en la vojo specifita de dosiernomo2.
+- Se ambaŭ havas ĵokerojn, tiam ĉiuj dosieroj en la vojo de dosiernomo1
+  kongruaj al dosiernomo1 estas komparataj kun la rilata dosiero kongrua
+  al dosiernomo2 en la vojo specifita de dosiernomo2.
+
+La opcio /S ripetas la saman serĉ-ŝablonon en la subdosierujoj kun la
+sama nomo en ambaŭ vojoj.
+
+La elirkodoj por ERRORLEVEL estas jenaj:
+	0	Ĉiuj dosieroj kongruas
+	1	Almenaŭ unu paro da dosieroj diferencas
+	2	Nevalida parametro en la komandlinio
+	3	Dosiero ne trovita
+	4	Eraro dum malfermo de dosiero(j)

@@ -1,4 +1,4 @@
-DOSUSB
+DOSUSB, nl, cp850/858
 
 DOSUSB is een open source stuurprogramma voor sommige USB controllers.
 Op dit ogenblik ondersteunt het alleen UHCI controllers, dus USB 1.1

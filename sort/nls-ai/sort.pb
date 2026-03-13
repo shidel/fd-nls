@@ -1,0 +1,19 @@
+# Language: Portuguese (Brazil)
+# File ending: PB
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+2.0:Parƒmetro inv lido\r\n
+0.0:    SORT [/R] [/+num] [/A] [/?] [arquivo]\r\n
+0.1:    /R    Ordem inversa\r\n
+0.2:    /A    Usar ASCII em vez da ordem de classifica‡Æo COUNTRY\r\n
+0.3:    /+num inicia a classifica‡Æo com o n£mero da coluna, base 1\r\n
+0.4:    /?    ajuda\r\n
+2.1:Erro ao ler a tabela de ordena‡Æo NLS\r\n
+2.2:Usando a ordem de classifica‡Æo ASCII (versÆo antiga do DOS).\r\n
+2.3:SORT: NÆo ‚ poss¡vel abrir o arquivo 
+2.4: para leitura\r\n
+2.5:SORT: mem¢ria insuficiente\r\n
+2.6:SORT: o n£mero de registros excede o m ximo\r\n
+

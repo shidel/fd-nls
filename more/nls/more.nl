@@ -1,3 +1,5 @@
+# netherlands, nl, cp850/858
+
 0.0:Toont de inhoud van een tekstbestand met 1 scherm per keer
 0.1:Gebruikswijze
 0.2:opdracht

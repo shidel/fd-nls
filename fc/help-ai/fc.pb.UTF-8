@@ -1,0 +1,88 @@
+# Language: brazilian
+# File ending: pb
+# Codepage: 858
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+O FC compara dois arquivos ou conjuntos de arquivos, em modo texto ou binário,
+e exibe as diferenças entre eles.
+
+O FC implementa o algoritmo de Paul Heckel das Communications of the
+Association for Computing Machinery, Abril de 1978, p264 - p268,
+"A Technique for Isolating Differences Between Files".
+
+Este algoritmo tem a vantagem sobre algoritmos de comparação comuns de ser
+rápido e detectar diferenças de um número arbitrário de linhas. Na maioria
+das aplicações, o algoritmo isola diferenças similares às isoladas pela
+subsequência comum mais longa.
+
+A sintaxe é a seguinte:
+
+FC [opções] [unid1:][caminho1]arquivo1 [unid2:][caminho2]arquivo2 [opções]
+
+ /A    Exibir apenas a primeira e última linha de cada conjunto de diferenças
+ /B    Realizar uma comparação binária
+ /C    Desconsiderar maiúsculas/minúsculas
+ /L    Comparar arquivos como texto ASCII
+ /LBn  Definir o número máximo de linhas ASCII consecutivas diferentes para n
+ /Mn   Definir o máximo de diferenças na comparação binária para n bytes
+ /N    Exibir os números de linha em uma comparação de texto
+ /Q    Não exibir a lista de diferenças
+ /R    Mostrar um relatório final breve (sempre ativo ao usar /S)
+ /S    Estender a busca para arquivos em subdiretórios
+ /T    Não expandir tabs para espaços
+ /U    Exibir nomes de arquivos sem um correspondente
+ /W    Compactar espaços (tabs e espaços) para comparação de texto
+ /X    Não exibir linhas de contexto na comparação de texto
+ /nnn  Definir o número mínimo de linhas consecutivas iguais para nnn
+       para ressincronização da comparação
+
+O programa reconhece nomes longos de arquivos (LFN) e os usa automaticamente
+se o sistema operacional suportar.
+
+O FC assume modo binário para arquivos .EXE, .COM, .SYS, .OBJ, .BIN, .DLL
+e .LIB.
+
+No modo binário, o FC mostra o deslocamento (offset) dos bytes divergentes,
+seu valor em hexadecimal e, se forem caracteres imprimíveis, o caractere ASCII.
+
+Por padrão, a comparação binária para após 20 diferenças, mas esse valor pode
+ser modificado com a opção /M. /M0 significa "diferenças ilimitadas".
+/M é interpretado como /M0.
+
+Uma limitação de design é que, na comparação de modo texto, apenas as primeiras
+32765 linhas são comparadas; as linhas restantes são ignoradas. O comprimento
+da linha é virtualmente ilimitado.
+
+O FC suporta wildcards (coringas). Algumas observações:
+- especificar um diretório é o mesmo que especificar todos os arquivos dele
+  (ou seja, "*.*"). Exemplo: "FC C:\ A:" é o mesmo que "FC C:\*.* A:*.*"
+- se nenhum arquivo2 for inserido, assume-se "." (o diretório atual).
+  Exemplo: "FC C:\ARQ.TXT" é o mesmo que "FC C:\ARQ.TXT .\*.*"
+- se arquivo1 tem coringas mas arquivo2 não, todos os arquivos que coincidem
+  com arquivo1 são comparados com o mesmo arquivo2.
+  Exemplo: "FC ARQ.BK? ARQ.TXT"
+- se arquivo1 tem coringas e arquivo2 é um caminho seguido por "*.*", todos
+  os arquivos que coincidem com arquivo1 são comparados com os arquivos de
+  mesmo nome no caminho arquivo2.
+  Exemplo: "FC *.* A:*.*" compara arquivos locais com suas cópias em A:
+- se arquivo1 e arquivo2 possuem coringas, os arquivos de arquivo1 são
+  comparados com os arquivos relevantes em arquivo2.
+  Exemplo: "FC *.TXT VELHOS\*.BAK"
+É mais fácil fazer do que dizer. Se quiser comparar cada arquivo de um
+diretório com todos os arquivos de outro, use: FC *.* MEUDIR\????????.???
+
+A opção /S itera o mesmo padrão de busca em subdiretórios com o mesmo nome
+em ambos os caminhos.
+  Exemplo: "FC /S C:*.TXT D:*.BAK"
+  Assumindo subdiretórios C:\LIVRO e D:\LIVRO, este comando compara todos os
+  *.TXT locais com *.BAK e também LIVRO\*.TXT com LIVRO\*.BAK.
+
+Os códigos de saída para ERRORLEVEL são:
+	0	Todos os arquivos coincidem
+	1	Pelo menos um par de arquivos é diferente
+	2	Parâmetro inválido na linha de comando
+	3	Arquivo não encontrado
+	4	Erro ao abrir arquivo(s)

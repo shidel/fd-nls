@@ -1,0 +1,86 @@
+# Language: danish
+# File ending: dk
+# Codepage: 865
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC sammenligner to filer eller sæt af filer, i tekst- eller binær tilstand,
+og viser forskellene mellem dem.
+
+FC implementerer Paul Heckels algoritme fra Communications of the
+Association for Computing Machinery, april 1978, s264 - s268,
+"A Technique for Isolating Differences Between Files".
+
+Denne algoritme har den fordel i forhold til mere almindeligt anvendte
+algoritmer, at den er hurtig og kan finde forskelle i et vilkårligt antal
+linjer. For de fleste formål isolerer algoritmen forskelle svarende til
+"longest common subsequence".
+
+Syntaksen er som følger:
+
+FC [valg] [drev1:][sti1]filnavn1 [drev2:][sti2]filnavn2 [valg]
+
+ /A    Vis kun første og sidste linje for hvert sæt af forskelle
+ /B    Udfør en binær sammenligning
+ /C    Ignorer forskel på store og små bogstaver
+ /L    Sammenlign filer som ASCII-tekst
+ /LBn  Sæt det maksimale antal på hinanden følgende forskellige ASCII-linjer til n
+ /Mn   Sæt de maksimale forskelle i binær sammenligning til n byte
+ /N    Vis linjenumre ved en tekstsammenligning
+ /Q    Vis ikke listen over forskelle
+ /R    Vis en kort slutrapport (altid aktiv ved brug af /S)
+ /S    Udvid scanningen til filer i undermapper
+ /T    Udvid ikke tabulatorer til mellemrum
+ /U    Vis filnavne på de filer, der ikke har en modpart
+ /W    Pak hvide mellemrum (tabs og mellemrum) til tekstsammenligning
+ /X    Vis ikke kontekstlinjer i tekstsammenligning
+ /nnn  Sæt det mindste antal på hinanden følgende matchende linjer til nnn
+       for gensynkronisering af sammenligning
+
+Programmet understøtter lange filnavne (LFN) og bruger dem automatisk, hvis
+operativsystemet understøtter det.
+
+FC bruger som standard binær tilstand for filerne .EXE, .COM, .SYS, .OBJ,
+.BIN, .DLL og .LIB.
+
+I binær tilstand viser FC positionen i filen for de afvigende bytes, deres
+værdi i hexadecimal og, hvis det er printbare ASCII-tegn, deres ASCII-tegn.
+
+Som standard stopper den binære sammenligning efter 20 forskelle, men den
+værdi kan ændres via /M-valget. /M0 betyder "ubegrænsede forskelle".
+/M fortolkes som /M0.
+
+En designbegrænsning i dette program er, at der i teksttilstand kun
+sammenlignes de første 32765 linjer; de resterende linjer ignoreres.
+Linjelængden er praktisk talt ubegrænset.
+
+FC understøtter jokertegn (wildcards) i filspecifikationerne:
+- angivelse af en mappe er det samme som at angive alle filer i den ("*.*").
+  Eksempel: "FC C:\ A:" er det samme som "FC C:\*.* A:*.*"
+- hvis intet filnavn2 er angivet, antages "." (den aktuelle mappe).
+  Eksempel: "FC C:\TEST.TXT" er det samme som "FC C:\TEST.TXT .\*.*"
+- hvis filnavn1 har jokertegn, men filnavn2 ikke har, sammenlignes alle filer,
+  der matcher filnavn1, med den samme filnavn2.
+  Eksempel: "FC TEST.BK? TEST.TXT"
+- hvis filnavn1 har jokertegn, og filnavn2 er en sti efterfulgt af "*.*", så
+  sammenlignes alle filer, der matcher filnavn1, med filerne med samme navn
+  i stien angivet ved filnavn2. Eksempel: "FC *.* A:*.*"
+- hvis filnavn1 har jokertegn og filnavn2 også har, sammenlignes alle filer
+  i stien for filnavn1 med den relevante fil i stien for filnavn2.
+  Eksempel: "FC *.TXT GAMLE\*.BAK"
+Det er nemmere gjort end sagt. Hvis du vil sammenligne hver fil i en mappe
+med alle filer i en anden, kan du bruge formen: FC *.* MINDIR\????????.???
+
+Valget /S gentager det samme søgemønster i undermapper med samme navn.
+  Eksempel: "FC /S C:*.TXT D:*.BAK"
+  Hvis der findes undermapper C:\BOG og D:\BOG, sammenligner denne kommando
+  alle *.TXT-filer i de aktuelle mapper og alle BOG\*.TXT-filer.
+
+Exit-koder for ERRORLEVEL er som følger:
+	0	Alle filer matcher
+	1	Mindst ét par filer er forskellige
+	2	Ugyldig parameter på kommandolinjen
+	3	Fil ikke fundet
+	4	Fejl ved åbning af fil(er)

@@ -1,0 +1,32 @@
+# Language: Finnish
+# File ending: FI
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+SYSLINUX
+
+SYSLINUX on kokoelma alkulatausohjelmia (bootloaders)
+
+Asennus:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+Kun käynnistät ja näet komentorivin, kirjoita
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Vaihtoehtoisesti voit luoda SYSLINUX.CFG-tiedoston, lue ohjeet huolellisesti!
+(alla olevassa esimerkissä "CONTENTS"-hakemisto, jonka sisällä on ISOLINUX-
+hakemisto, jossa on ISOLINUX.BIN CD-ROM-alkulatausohjelma - ei-emulaatiotyyli.
+käytä "/" ja "\" -merkkejä täsmälleen alla olevan esimerkin mukaisesti!
+
+Lue MEMDISKiä ja ISOLINUXia koskevat ohjeet huolellisesti!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents 
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso
+  contents
+
+Vaihtoehtoja CDRECORDille (joka sisältää MKISOFSin) ovat XORRISO ja CDRKIT
+(katso http://sites.google.com/site/blairdude/cdrkit DOS-versiota varten)
+

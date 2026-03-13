@@ -1,0 +1,85 @@
+# Language: icelandic
+# File ending: is
+# Codepage: 861
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC ber saman tvër skr†r eåa skr†asett, ° texta- eåa tv°undarham, og
+sònir muninn † ïeim.
+
+FC notar reiknirit Paul Heckel £r Communications of the Association for
+Computing Machinery, apr°l 1978, bls. 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+çetta reiknirit hefur ïann kost yfir algengari samanburåaraåferåir aå vera
+hratt og geta fundiå mun † hvaåa l°nufjîlda sem er. • flestum tilfellum
+einangrar reikniritiå mun † svipaåan h†tt og "longest common subsequence".
+
+M†lfrëåin (syntax) er eftirfarandi:
+
+FC [rofar] [drif1:][sl¢å1]skr†1 [drif2:][sl¢å2]skr†2 [rofar]
+
+ /A    Sòna aåeins fyrstu og s°åustu l°nur fyrir hvern mismun
+ /B    Framkvëma tv°undarsamanburå (binary)
+ /C    Hunsa h†stafi og l†gstafi
+ /L    Bera saman skr†r sem ASCII texta
+ /LBn  Setja h†marksfjîlda samfelldra mismunandi ASCII l°na viå n
+ /Mn   Setja h†marksmismun ° tv°undarsamanburåi viå n bëti
+ /N    Sòna l°nun£mer viå textasamanburå
+ /Q    Ekki sòna lista yfir mismun
+ /R    Sòna stutta lokaskòrslu (alltaf virkt ïegar /S er notaå)
+ /S    Leita einnig ° undirmîppum
+ /T    Ekki breyta d†lksmerkjum (tabs) ° bil
+ /U    Sòna skr†arnîfn ïeirra skr†a sem eiga sÇr ekki samsvîrun
+ /W    çjappa hv°tum bilum (tabs/bil) fyrir textasamanburå
+ /X    Ekki sòna samhengisl°nur ° textasamanburåi
+ /nnn  Setja l†gmarksfjîlda samfelldra eins l°na viå nnn
+       fyrir endursamstillingu samanburåar
+
+Forritiå styåur lîng skr†arnîfn (LFN) og notar ïau sj†lfkrafa ef
+stòrikerfiå styåur ïau.
+
+FC notar sj†lfgefiå tv°undarham fyrir skr†r af geråinni .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL og .LIB.
+
+• tv°undarham sònir FC hliårun (offset) ° skr†nni fyrir bëtin sem eru ¢l°k,
+gildi ïeirra ° sext†ndakerfi og, ef ïau eru prentanleg, ASCII t†kn ïeirra.
+
+Sj†lfgefiå stîåvast tv°undarsamanburåur eftir 20 mismuni, en ïv° gildi m†
+breyta meå /M rofanum. /M0 ïòåir "¢takmarkaåur mismunur".
+/M er t£lkaå sem /M0.
+
+Hînnunartakmîrkun † ïessu forriti er aå ° textasamanburåi eru aåeins fyrstu
+32765 l°nurnar bornar saman; afgangurinn er hunsaåur. L°nulengd er n†nast
+¢takmîrkuå.
+
+FC styåur algildisstafi (wildcards). Nokkur orå um ïaå:
+- aå tilgreina mîppu er ïaå sama og aå tilgreina allar skr†r ° henni ("*.*").
+  Dëmi: "FC C:\ A:" er ïaå sama og "FC C:\*.* A:*.*"
+- ef skr†2 er ekki slegin inn er gert r†å fyrir "." (n£verandi mappa).
+  Dëmi: "FC C:\SKRA.TXT" er ïaå sama og "FC C:\SKRA.TXT .\*.*"
+- ef skr†1 hefur algildisstafi en skr†2 ekki, ï† eru allar skr†r sem passa
+  viå skr†1 bornar saman viå sîmu skr†2.
+- ef skr†1 hefur algildisstafi og skr†2 er sl¢å sem endar † "*.*", ï† eru
+  allar skr†r sem passa viå skr†1 bornar saman viå skr†r meå sama nafni
+  ° sl¢åinni sem skr†2 tilgreinir.
+- ef b†åar hafa algildisstafi, ï† eru skr†r ° sl¢å1 bornar saman viå
+  viåeigandi skr†r ° sl¢å2. Dëmi: "FC *.TXT OLD\*.BAK" ber saman allar
+  .TXT skr†r viå bakvinnsluafrit ïeirra ° undirmîppunni OLD.
+çaå er auåveldara aå gera ïaå en segja ïaå. Ef ï£ vilt bera saman hverja
+skr† ° mîppu viå allar skr†r ° annarri skaltu nota:
+FC *.* MYDIR\????????.???
+
+Rofinn /S endurtekur sama leitarmynstur ° undirmîppum meå sama nafni.
+  Dëmi: "FC /S C:*.TXT D:*.BAK"
+  Ef t.d. undirmîppurnar C:\BOK og D:\BOK eru til, ber ïessi skipun saman
+  allar *.TXT skr†r ° n£verandi mîppum og l°ka allar BOK\*.TXT skr†r.
+
+ßtgînguk¢åar fyrir ERRORLEVEL eru eftirfarandi:
+	0	Allar skr†r eru eins
+	1	Aå minnsta kosti eitt skr†apar er ¢l°kt
+	2	¶gild breyta ° skipanal°nu
+	3	Skr† fannst ekki
+	4	Villa viå aå opna skr†(r)

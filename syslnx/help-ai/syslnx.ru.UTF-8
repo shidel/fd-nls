@@ -1,0 +1,32 @@
+# Language: Russian
+# File ending: RU
+# Codepage: 866
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+SYSLINUX
+
+SYSLINUX - это набор системных загрузчиков
+
+Установка:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+При загрузке, когда появится командная строка, введите
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Или создайте SYSLINUX.CFG, внимательно прочитав для этого документацию!
+(в примере ниже: каталог "CONTENTS", внутри него каталог ISOLINUX,
+в котором находится загрузчик CDROM ISOLINUX.BIN - режим без эмуляции.
+пожалуйста, используйте "/" и "\" точно так же, как показано ниже!
+
+Для MEMDISK и ISOLINUX, пожалуйста, внимательно прочтите документацию!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso
+  contents
+
+Альтернативами для CDRECORD (включающего MKISOFS) являются XORRISO и CDRKIT
+(см. http://sites.google.com/site/blairdude/cdrkit для порта под DOS)
+

@@ -1,0 +1,129 @@
+# Language: Hungarian
+# File ending: HU
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Tartalom
+--------
+
+	1. Funkciók
+	2. Hibaszintek (Errorlevels)
+	3. Teendők (Todo)
+	4. Előzmények
+	5. Szerző
+
+
+1. Funkciók
+-----------
+
+- fájlok dátumának/időpontjának módosítása
+- fájlok és könyvtárak attribútumainak módosítása
+- fájlok és könyvtárak dátumának/időpontjának és attribútumainak
+  összehasonlítása
+- a dátum/idő opciók lehetővé teszik az értékek átvételét a jelenlegi és
+  a fájl
+  dátumából/időpontjából egyidejűleg, explicit számokkal
+- összetett dátum/idő összehasonlítás a jelenlegi idővel, ugyanígy a fájllal
+- dátum/idő formátumok, amelyek megfelelnek a COUNTRY (ország) beállításoknak
+- UNC és NetWare útvonalak engedélyezettek
+- több célpont egyetlen parancssorban
+- kiterjesztett helyettesítő karakterek: a nevek tetszőleges számú '*'
+  karaktert
+  tartalmazhatnak, valamint '?' karaktert is; a "név" jelentése "név.",
+  de a "*" jelentése "*.*"
+- az opció karakter ('/' vagy '-') automatikus felismerése
+- opció a könyvtárnevek bevonására a helyettesítő karakteres keresésbe
+- opció a fájlok és könyvtárak feldolgozására a célpont összes alkönyvtárában
+- opció fájl feldolgozására célpontok listájával; a hiányzó argumentum a
+  szabványos bemenetet (stdin) jelenti
+
+
+2. Hibaszintek (Errorlevels)
+----------------------------
+
+0   - a dátum/idő és attribútumok beállítása vagy összehasonlítása sikeres
+1   - az összehasonlítás (legalább egy) sikertelen
+2   - hiba a fájl elérésekor vagy a fájl dátumának/időpontjának/
+      attribútumainak beállításakor
+128 - érvénytelen vagy duplikált opció
+129 - inkompatibilis opciók, nincsenek célpontok vagy érvénytelen
+      argumentumok
+130 - belső hiba (nincs elég memória vagy túl mély könyvtárstruktúra)
+
+
+3. Teendők (Todo)
+-----------------
+
+- a feldolgozott fájlok listájának megjelenítése
+- dátum/idő/attribútumok összehasonlítása/másolása fájlok között
+- növelés/csökkentés dátum/idő mezőkhöz
+- kisebb/nagyobb összehasonlítás attribútumokhoz
+
+
+4. Előzmények
+-------------
+
+	1.0 [16.02.98]
++ Első kiadás
+
+	1.1 [19.02.98]
++ Most már elfogadja a dátumot/időt a COUNTRY beállításoknak megfelelő
+  formátumokban
+
+	1.2 [21.02.98]
+* Kicsit javított értelmezés az elhagyott mezőknél és argumentumoknál
+* Csökkentett végrehajtható fájlméret
++ -a opció hozzáadva a fájlok és könyvtárak attribútumainak módosításához
+
+	1.3 [21.02.98]
++ Most már több célpontot is elfogad egyetlen parancssorban
++ Az -a opció most már használható összehasonlításban is
+
+	1.4 [26.02.98]
+# A végrehajtás most már nem áll le, ha hibát talál egy fájlnál, hanem
+# folytatódik a következő célpontokkal
+# A kimenet most már nem duplikálódik a konzolra, ha fájlba van irányítva
+* Az -@ opció átnevezve -c-re
++ A könyvtárak dátuma/időpontja most már szintén ellenőrizhető az
+  összehasonlításban
++ Most már elfogad helyettesítő karaktereket a célpontokhoz
++ Az -r engedélyezi a könyvtárak feldolgozását helyettesítő karakterekkel
+
+	1.41 [28.02.98]
++ Az opciók karaktere automatikusan választódik ki az első '/' vagy '-'
+  előfordulás alapján
++ Egy magányos opciókarakter-pár ("--" vagy "//") leállítja a további
+  opciók keresését
++ Egy magányos opciókarakter a szabványos bemenetet jelenti
+- Opciókarakter hozzáadása egy olyan név elé, amely ugyanazzal a karakterrel
+  kezdődik (hogy a nevet argumentumként engedélyezze), most már hibaüzenetet
+  vált ki; tetszőleges nevek átadásához illesszen elé egy magányos
+  opciókarakter-párt
+
+	1.5 [14.03.98]
+# Hibajavítás: bizonyos körülmények között a pontosan átadott 30 és 31
+# napértékeket elutasította a program
+# Hibajavítás: a célpontnevek most már nagybetűsek a COUNTRY beállításoknak
+# megfelelően
++ /s feldolgozza a fájlokat és könyvtárakat a célpont összes alkönyvtárában
+  is
+
+	2.0 [14.04.98]
+# Hibajavítás: elveszett a másodpercek legértékesebb bitje a fájl
+# időpontjának olvasásakor
++ /@ fájl feldolgozásához célpontok listájával
+* A magányos opciókarakter most már csak a /@ opció argumentumaként
+  határozza meg a szabványos bemenetet
+* Csökkentett végrehajtható fájlméret
++ DIET használatával tömörített végrehajtható fájl
+
+
+5. Szerző
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+

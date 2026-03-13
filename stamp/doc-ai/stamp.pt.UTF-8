@@ -1,0 +1,125 @@
+# Language: Portuguese
+# File ending: PT
+# Codepage: 860
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Conteúdo
+--------
+
+	1. Funcionalidades
+	2. Níveis de erro (Errorlevels)
+	3. Tarefas pendentes (Todo)
+	4. Histórico
+	5. Autor
+
+
+1. Funcionalidades
+------------------
+
+- alterar data/hora de ficheiros
+- alterar atributos de ficheiros e diretórios
+- comparar data/hora e atributos de ficheiros e diretórios
+- opções de data/hora permitem obter valores da data/hora atual e do ficheiro
+  simultaneamente com números explícitos
+- comparação complexa de data/hora com a data/hora atual, tal como com o
+  ficheiro
+- data/hora em formatos que respeitam as definições de PAÍS (COUNTRY)
+- permitidos caminhos UNC e NetWare
+- múltiplos alvos numa única linha de comandos
+- caracteres universais (wildcards) estendidos: os nomes podem conter qualquer
+  número de '*', bem como '?'; "nome" significa "nome.", mas "*" significa
+  "*.*"
+- deteção automática do carácter de opção ('/' ou '-')
+- opção para incluir nomes de diretórios na pesquisa por caracteres universais
+- opção para processar ficheiros e diretórios em todos os subdiretórios do
+  alvo
+- opção para processar ficheiro com lista de alvos; a falta de argumento
+  significa entrada padrão (stdin)
+
+
+2. Níveis de erro (Errorlevels)
+-------------------------------
+
+0   - definição ou comparação de data/hora e atributos bem-sucedida
+1   - comparação (uma delas) mal-sucedida
+2   - erro no acesso ao ficheiro ou na definição de data/hora/atributos
+128 - opção inválida ou duplicada
+129 - opções incompatíveis, nenhum alvo ou argumentos inválidos
+130 - erro interno (memória insuficiente ou diretório demasiado profundo)
+
+
+3. Tarefas pendentes (Todo)
+---------------------------
+
+- mostrar listas de ficheiros processados
+- comparar/copiar data/hora/atributos de ficheiro para ficheiros
+- incremento/decremento para campos de data/hora
+- comparação de maior/menor para atributos
+
+
+4. Histórico
+------------
+
+	1.0 [16.02.98]
++ Primeira edição
+
+	1.1 [19.02.98]
++ Agora aceita data/hora em formatos que respeitam as definições de PAÍS
+  (COUNTRY)
+
+	1.2 [21.02.98]
+* Interpretação ligeiramente melhorada de campos e argumentos omitidos
+* Redução do tamanho do ficheiro executável
++ Adicionada opção -a para modificar atributos de ficheiros e diretórios
+
+	1.3 [21.02.98]
++ Agora aceita múltiplos alvos numa única linha de comandos
++ A opção -a pode agora ser usada em comparações
+
+	1.4 [26.02.98]
+# A execução não para quando é encontrado um erro num ficheiro, mas
+  continua para os próximos alvos
+# A saída não é duplicada na consola quando redirecionada para um ficheiro
+* Opção -@ renomeada para -c
++ A data/hora de diretórios também pode agora ser verificada em comparações
++ Aceites caracteres universais para os alvos
++ -r permite o processamento de diretórios por caracteres universais
+
+	1.41 [28.02.98]
++ Carácter para opções selecionado automaticamente pela primeira ocorrência
+  de '/' ou '-'
++ Um par isolado de caracteres de opção ("--" ou "//") para a procura de
+  opções seguintes
++ Carácter de opção isolado significa entrada padrão (stdin)
+- Adicionar um carácter de opção antes de um nome que comece pelo mesmo
+  carácter para ativar tal nome como argumento causa agora uma mensagem de
+  erro; para passar nomes arbitrários, insira um par isolado de caracteres
+  de opção antes
+
+	1.5 [14.03.98]
+# Correção de erro: em certas condições, valores de dia 30 e 31 passados
+  explicitamente eram rejeitados
+# Correção de erro: nomes de alvos agora em maiúsculas conforme as definições
+  de PAÍS
++ /s processa ficheiros e diretórios também em todos os subdiretórios do alvo
+
+	2.0 [14.04.98]
+# Correção de erro: perda do bit mais significativo dos segundos ao ler a
+# hora do ficheiro
++ /@ para processar ficheiro com lista de alvos
+* Carácter de opção isolado agora especifica a entrada padrão apenas como
+  argumento da opção /@
+* Redução do tamanho do ficheiro executável
++ DIET utilizado para compressão do ficheiro executável
+
+
+5. Autor
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+
+

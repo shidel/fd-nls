@@ -1,0 +1,12 @@
+# Language: Russian
+# File ending: RU
+# Codepage: 866
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+FDSHELL
+
+FDSHELL - это версия графического интерфейса пользователя DOSSHELL от
+Microsoft с открытым исходным кодом.
+При необходимости отредактируйте DOSSHELL.INI.
+

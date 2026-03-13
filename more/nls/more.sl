@@ -1,4 +1,4 @@
-# Language: Slovenian (CP852)
+# Language: Slovenian, sl, (CP852)
 # Translated by Matej Horvat (http://matejhorvat.si/), last update 2013-04-29
 
 0.0:Prika§e vsebino datoteke z besedilom po en zaslon naenkrat.

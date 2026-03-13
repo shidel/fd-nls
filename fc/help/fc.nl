@@ -1,0 +1,87 @@
+# Language: netherlands
+# File ending: nl
+# Codepage: 858
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC vergelijkt twee bestanden of sets bestanden, in tekst- of binaire modus,
+en toont de verschillen tussen beide.
+
+FC implementeert het algoritme van Paul Heckel uit de Communications of the
+Association for Computing Machinery, april 1978, p264 - p268,
+"A Technique for Isolating Differences Between Files".
+
+Dit algoritme heeft het voordeel boven meer gebruikelijke algoritmen dat
+het snel is en verschillen in een willekeurig aantal regels kan detecteren.
+Voor de meeste toepassingen isoleert het algoritme verschillen vergelijkbaar
+met die van de "longest common subsequence".
+
+De syntaxis is als volgt:
+
+FC [opties] [schijf1:][pad1]bestand1 [schijf2][pad2]bestand2 [opties]
+
+ /A    Toon alleen de eerste en laatste regel voor elke set verschillen
+ /B    Voer een binaire vergelijking uit
+ /C    Negeer het verschil tussen hoofdletters en kleine letters
+ /L    Vergelijk bestanden als ASCII-tekst
+ /LBn  Stel het max. aantal opeenvolgende verschillende ASCII-regels in op n
+ /Mn   Stel de max. verschillen in binaire vergelijking in op n bytes
+ /N    Toon de regelnummers bij een tekstvergelijking
+ /Q    Toon de lijst met verschillen niet
+ /R    Toon een kort eindverslag (altijd actief bij gebruik van /S)
+ /S    Breid de scan uit naar de bestanden in submappen
+ /T    Tablatoren niet omzetten naar spaties
+ /U    Toon de bestandsnamen van de bestanden zonder tegenhanger
+ /W    Spaties en tabs samenvoegen voor tekstvergelijking
+ /X    Toon geen contextregels bij tekstvergelijking
+ /nnn  Stel het min. aantal opeenvolgende overeenkomende regels in op nnn
+       voor resynchronisatie van de vergelijking
+
+Het programma is LFN-bewust en gebruikt deze automatisch als het
+besturingssysteem lange bestandsnamen ondersteunt.
+
+FC gebruikt standaard de binaire modus voor bestanden .EXE, .COM, .SYS,
+.OBJ, .BIN, .DLL en .LIB.
+
+In binaire modus toont FC de offset in het bestand van de afwijkende bytes,
+hun waarde in hexadecimaal en, als het ASCII-tekens zijn, het teken zelf.
+
+Standaard stopt de binaire vergelijking na 20 verschillen, maar die waarde
+kan worden gewijzigd met de /M-optie. /M0 betekent "onbeperkt aantal".
+/M wordt ge‹nterpreteerd als /M0.
+
+Een ontwerpbeperking is dat in de tekstmodusvergelijking alleen de eerste
+32765 regels worden vergeleken; de overige regels worden genegeerd. De
+regellengte is vrijwel onbeperkt.
+
+FC ondersteunt wildcards in de bestandsspecificaties:
+- het opgeven van een map is hetzelfde als het opgeven van alle bestanden
+  in die map (bijv. "*.*"). Voorbeeld: "FC C:\ A:" is gelijk aan "FC C:\*.* A:*.*"
+- als er geen bestand2 is ingevoerd, wordt "." (de huidige map) aangenomen.
+  Voorbeeld: "FC C:\FOO.TXT" is hetzelfde als "FC C:\FOO.TXT .\*.*"
+- als bestand1 wildcards heeft maar bestand2 niet, dan worden alle bestanden
+  die overeenkomen met bestand1 vergeleken met hetzelfde bestand2.
+- als bestand1 wildcards heeft en bestand2 een pad is gevolgd door "*.*",
+  worden alle bestanden die overeenkomen met bestand1 vergeleken met de
+  bestanden met dezelfde naam in het pad van bestand2.
+- als beide wildcards hebben, worden bestanden in het pad van bestand1
+  vergeleken met het relevante bestand in het pad van bestand2.
+  Voorbeeld: "FC *.TXT OLDS\*.BAK"
+Het is makkelijker gedaan dan gezegd. Als u elk bestand in een map wilt
+vergelijken met alle bestanden in een andere: FC *.* MIJNDIR\????????.???
+
+De /S-optie herhaalt hetzelfde zoekpatroon in de submappen met dezelfde
+naam in beide paden.
+  Voorbeeld: "FC /S C:*.TXT D:*.BAK"
+  Uitgaande van het bestaan van de submappen C:BOEK en D:BOEK, vergelijkt dit
+  commando alle *.TXT bestanden in de huidige mappen en ook alle
+  BOEK\*.TXT bestanden met hun reservekopie‰n BOEK\*.BAK.
+
+De exit-codes voor ERRORLEVEL zijn als volgt:
+	0	Alle bestanden komen overeen
+	1	Ten minste ‚‚n paar bestanden verschilt
+	2	Ongeldige parameter op de opdrachtregel
+	3	Bestand niet gevonden
+	4	Fout bij het openen van bestand(en)

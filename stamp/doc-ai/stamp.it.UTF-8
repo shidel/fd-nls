@@ -1,0 +1,127 @@
+# Language: Italian
+# File ending: IT
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Indice
+------
+
+	1. Funzionalità
+	2. Livelli di errore (Errorlevels)
+	3. Cose da fare (Todo)
+	4. Cronologia
+	5. Autore
+
+
+1. Funzionalità
+----------------
+
+- modifica data/ora per i file
+- modifica attributi per file e directory
+- confronta data/ora e attributi per file e directory
+- le opzioni data/ora consentono di ottenere valori dalla data/ora corrente
+  e da quella del file simultaneamente con numeri espliciti
+- confronto complesso di data/ora con la data/ora corrente, così come con
+  il file
+- data/ora in formati conformi alle impostazioni COUNTRY
+- consentiti percorsi UNC e NetWare
+- bersagli multipli in una singola riga di comando
+- caratteri jolly (wildcards) estesi: i nomi possono contenere qualsiasi
+  numero di '*', così come '?'; "nome" significa "nome.", ma "*" significa
+  "*.*"
+- rilevamento automatico del carattere opzione ('/' o '-')
+- opzione per includere i nomi delle directory nella ricerca con caratteri
+  jolly
+- opzione per elaborare file e directory in tutte le sottodirectory del
+  bersaglio
+- opzione per elaborare un file con un elenco di bersagli; l'argomento
+  mancante indica lo standard input (stdin)
+
+
+2. Livelli di errore (Errorlevels)
+----------------------------------
+
+0   - impostazione o confronto di data/ora e attributi riuscito
+1   - il confronto (uno di essi) non è riuscito
+2   - errore di accesso al file o nell'impostazione di data/ora/attributi
+      del file
+128 - opzione non valida o duplicata
+129 - opzioni incompatibili, nessun bersaglio o argomenti non validi
+130 - errore interno (memoria insufficiente o directory troppo profonda)
+
+
+3. Cose da fare (Todo)
+----------------------
+
+- mostra elenchi di file elaborati
+- confronta/copia data/ora/attributi da file a file
+- incremento/decremento per i campi data/ora
+- confronto maggiore/minore per gli attributi
+
+
+4. Cronologia
+-------------
+
+	1.0 [16.02.98]
++ Prima edizione
+
+	1.1 [19.02.98]
++ Ora accetta data/ora in formati conformi alle impostazioni COUNTRY
+
+	1.2 [21.02.98]
+* Interpretazione dei campi e degli argomenti omessi leggermente migliorata
+* Ridotta la dimensione del file eseguibile
++ Aggiunta l'opzione -a per modificare gli attributi di file e directory
+
+	1.3 [21.02.98]
++ Ora accettati bersagli multipli in una singola riga di comando
++ L'opzione -a può ora essere utilizzata nel confronto
+
+	1.4 [26.02.98]
+# L'esecuzione ora non si ferma quando viene trovato un errore per un file,
+  ma continua per i bersagli successivi
+# L'output ora non viene duplicato sulla console quando viene reindirizzato
+# su file
+* Opzione -@ rinominata in -c
++ La data/ora delle directory ora può essere controllata anche nel confronto
++ Ora accettati i caratteri jolly per i bersagli
++ -r abilita l'elaborazione delle directory tramite caratteri jolly
+
+	1.41 [28.02.98]
++ Carattere per le opzioni selezionato automaticamente alla prima occorrenza
+  di '/' o '-'
++ Una coppia isolata di caratteri opzione ("--" o "//") interrompe la ricerca
+  delle opzioni successive
++ Un carattere opzione isolato indica lo standard input (stdin)
+- L'aggiunta di un carattere opzione prima di un nome con lo stesso carattere
+  all'inizio
+  per abilitare tale nome come argomento ora causa un messaggio di errore;
+  per passare
+  nomi arbitrari inserire prima una coppia isolata di caratteri opzione
+
+	1.5 [14.03.98]
+# Correzione bug: in alcune condizioni i valori dei giorni 30 e 31 passati
+  esplicitamente in modo corretto venivano rifiutati
+# Correzione bug: i nomi dei bersagli ora sono in maiuscolo secondo le
+  impostazioni COUNTRY
++ /s elabora file e directory anche in tutte le sottodirectory del bersaglio
+
+	2.0 [14.04.98]
+# Correzione bug: perso il bit più significativo dei secondi durante la
+# lettura dell'ora del file
++ /@ per elaborare il file con l'elenco dei bersagli
+* Il carattere opzione isolato ora specifica lo standard input solo come
+  argomento dell'opzione /@
+* Ridotta la dimensione del file eseguibile
++ Utilizzato DIET per la compressione del file eseguibile
+
+
+5. Autore
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+

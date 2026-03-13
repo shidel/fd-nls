@@ -1,0 +1,121 @@
+# Language: Slovak
+# File ending: SK
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Obsah
+-----
+
+	1. Funkcie
+	2. Chybov‚ £rovne (Errorlevels)
+	3. élohy (Todo)
+	4. Hist¢ria
+	5. Autor
+
+
+1. Funkcie
+----------
+
+- zmena d tumu/Ÿasu s£borov
+- zmena atrib£tov s£borov a adres rov
+- porovnanie d tumu/Ÿasu a atrib£tov s£borov a adres rov
+- vo–by d tumu/Ÿasu umo§åuj£ z¡skaœ hodnoty z aktu lneho a s£borov‚ho
+  d tumu/Ÿasu s£Ÿasne s explicitnìmi Ÿ¡slami
+- komplexn‚ porovnanie d tumu/Ÿasu s aktu lnym d tumom/Ÿasom, rovnako so
+  s£borom
+- d tum/Ÿas vo form toch, ktor‚ zodpovedaj£ nastaveniam COUNTRY
+- povolen‚ cesty UNC a NetWare
+- viacero cie–ov v jednom pr¡kazovom riadku
+- rozç¡ren‚ z stupn‚ znaky (wildcards): n zvy m“§u obsahovaœ –ubovo–nì
+  poŸet '*',
+  aj ako '?'; "n zov" znamen  "n zov.", ale "*" znamen  "*.*"
+- automatick  detekcia znaku vo–by ('/' ali '-')
+- vo–ba na zahrnutie n zvov adres rov do vyh–ad vania pomocou z stupnìch
+  znakov
+- vo–ba na spracovanie s£borov a adres rov vo vçetkìch podadres roch cie–a
+- vo–ba na spracovanie s£boru so zoznamom cie–ov; chìbaj£ci argument znamen 
+  çtandardnì vstup (stdin)
+
+
+2. Chybov‚ £rovne (Errorlevels)
+------------------------------
+
+0   - nastavenie alebo porovnanie d tumu/Ÿasu a atrib£tov £speçn‚
+1   - porovnanie (jedno z nich) je ne£speçn‚
+2   - chyba pr¡stupu k s£boru alebo nastavenia d tumu/Ÿasu/atrib£tov s£boru
+128 - neplatn  alebo duplicitn  vo–ba
+129 - nekompatibiln‚ vo–by, §iadne ciele alebo neplatn‚ argumenty
+130 - intern  chyba (nedostatok pam„te alebo pr¡liç hlbokì adres r)
+
+
+3. élohy (Todo)
+---------------
+
+- zobraziœ zoznamy spracovanìch s£borov
+- porovnaœ/kop¡rovaœ d tum/Ÿas/atrib£ty medzi s£bormi
+- inkrement cia/dekrement cia pol¡ d tumu/Ÿasu
+- porovnanie atrib£tov (v„Ÿç¡/menç¡)
+
+
+4. Hist¢ria
+-----------
+
+	1.0 [16.02.98]
++ Prv‚ vydanie
+
+	1.1 [19.02.98]
++ Teraz prij¡ma d tum/Ÿas vo form toch, ktor‚ zodpovedaj£ nastaveniam
+  COUNTRY
+
+	1.2 [21.02.98]
+* Mierne vylepçen  interpret cia vynechanìch pol¡ a argumentov
+* Zmençen  ve–kosœ spustite–n‚ho s£boru
++ Pridan  vo–ba -a na £pravu atrib£tov s£borov a adres rov
+
+	1.3 [21.02.98]
++ Teraz prij¡ma viacero cie–ov v jednom pr¡kazovom riadku
++ Vo–ba -a sa teraz m“§e pou§iœ pri porovn van¡
+
+	1.4 [26.02.98]
+# Vykon vanie sa teraz nezastav¡ pri n jden¡ chyby u s£boru, ale pokraŸuje
+  u Ôalç¡ch cie–ov
+# Vìstup sa teraz neduplikuje na konzole, ak je presmerovanì do s£boru
+* Vo–ba -@ premenovan  na -c
++ D tum/Ÿas adres rov sa teraz m“§e kontrolovaœ aj pri porovn van¡
++ Teraz s£ prij¡man‚ z stupn‚ znaky pre ciele
++ -r umo§åuje spracovanie adres rov pomocou z stupnìch znakov
+
+	1.41 [28.02.98]
++ Znak pre vo–by sa automaticky vyberie pod–a prv‚ho vìskytu '/' alebo '-'
++ Samostatn  dvojica znakov volieb ("--" alebo "//") zastav¡ h–adanie
+  Ôalç¡ch volieb
++ Samostatnì znak vo–by znamen  çtandardnì vstup
+- Pridanie znaku vo–by pred n zov zaŸ¡naj£ci rovnakìm znakom na umo§nenie
+  tak‚ho n zvu ako argumentu teraz sp“sob¡ chybov£ spr vu; na odovzdanie
+  –ubovo–nìch n zvov vlo§te pred ne samostatn£ dvojicu znakov volieb
+
+	1.5 [14.03.98]
+# Oprava chyby: za urŸitìch podmienok boli explicitne odovzdan‚ spr vne
+  hodnoty dåa 30 a 31 odmietnut‚
+# Oprava chyby: n zvy cie–ov s£ teraz ve–kìmi p¡smenami pod–a nastaven¡
+# COUNTRY
++ /s spracov va s£bory a adres re aj vo vçetkìch podadres roch cie–a
+
+	2.0 [14.04.98]
+# Oprava chyby: stratenì najvìznamnejç¡ bit sek£nd pri Ÿ¡tan¡ Ÿasu s£boru
++ /@ na spracovanie s£boru so zoznamom cie–ov
+* Samostatnì znak vo–by teraz urŸuje çtandardnì vstup iba ako argument
+  vo–by /@
+* Zmençen  ve–kosœ spustite–n‚ho s£boru
++ Pre zmençenie spustite–n‚ho s£boru pou§itì DIET
+
+
+5. Autor
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+

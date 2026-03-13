@@ -1,0 +1,124 @@
+# Language: Portuguese (Brazil)
+# File ending: PB
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Conte£do
+--------
+
+	1. Funcionalidades
+	2. N°veis de erro (Errorlevels)
+	3. Tarefas pendentes (Todo)
+	4. Hist¢rico
+	5. Autor
+
+
+1. Funcionalidades
+------------------
+
+- alterar data/hora de arquivos
+- alterar atributos de arquivos e diret¢rios
+- comparar data/hora e atributos de arquivos e diret¢rios
+- opá‰es de data/hora permitem obter valores da data/hora atual e do arquivo
+  simultaneamente com n£meros expl°citos
+- comparaá∆o complexa de data/hora com a data/hora atual, bem como com o
+  arquivo
+- data/hora em formatos que seguem as configuraá‰es de PA÷S (COUNTRY)
+- permitidos caminhos UNC e NetWare
+- m£ltiplos alvos em uma £nica linha de comando
+- caracteres curinga (wildcards) estendidos: nomes podem conter qualquer
+  n£mero de '*', bem como '?'; "nome" significa "nome.", mas "*" significa
+  "*.*"
+- detecá∆o autom†tica do caractere de opá∆o ('/' ou '-')
+- opá∆o para incluir nomes de diret¢rios na busca por caracteres curinga
+- opá∆o para processar arquivos e diret¢rios em todos os subdiret¢rios do
+  alvo
+- opá∆o para processar arquivo com lista de alvos; a falta de argumento
+  significa entrada padr∆o (stdin)
+
+
+2. N°veis de erro (Errorlevels)
+-------------------------------
+
+0   - definiá∆o ou comparaá∆o de data/hora e atributos bem-sucedida
+1   - comparaá∆o (uma delas) mal-sucedida
+2   - erro no acesso ao arquivo ou na definiá∆o de data/hora/atributos
+128 - opá∆o inv†lida ou duplicada
+129 - opá‰es incompat°veis, nenhum alvo ou argumentos inv†lidos
+130 - erro interno (mem¢ria insuficiente ou diret¢rio muito profundo)
+
+
+3. Tarefas pendentes (Todo)
+---------------------------
+
+- mostrar listas de arquivos processados
+- comparar/copiar data/hora/atributos de arquivo para arquivos
+- incremento/decremento para campos de data/hora
+- comparaá∆o de maior/menor para atributos
+
+
+4. Hist¢rico
+------------
+
+	1.0 [16.02.98]
++ Primeira ediá∆o
+
+	1.1 [19.02.98]
++ Agora aceita data/hora em formatos que seguem as configuraá‰es de PA÷S
+  (COUNTRY)
+
+	1.2 [21.02.98]
+* Interpretaá∆o ligeiramente melhorada de campos e argumentos omitidos
+* Reduá∆o do tamanho do arquivo execut†vel
++ Adicionada opá∆o -a para modificar atributos de arquivos e diret¢rios
+
+	1.3 [21.02.98]
++ Agora aceita m£ltiplos alvos em uma £nica linha de comando
++ A opá∆o -a pode agora ser usada em comparaá‰es
+
+	1.4 [26.02.98]
+# A execuá∆o n∆o para quando Ç encontrado um erro em um arquivo, mas
+  continua para os pr¢ximos alvos
+# A sa°da n∆o Ç duplicada no console quando redirecionada para um arquivo
+* Opá∆o -@ renomeada para -c
++ A data/hora de diret¢rios tambÇm pode agora ser verificada em comparaá‰es
++ Aceitos caracteres curinga para os alvos
++ -r permite o processamento de diret¢rios por caracteres curinga
+
+	1.41 [28.02.98]
++ Caractere para opá‰es selecionado automaticamente pela primeira ocorrància
+  de '/' ou '-'
++ Um par isolado de caracteres de opá∆o ("--" ou "//") para a busca de opá‰es
+  seguintes
++ Caractere de opá∆o isolado significa entrada padr∆o (stdin)
+- Adicionar um caractere de opá∆o antes de um nome que comece pelo mesmo
+  caractere para habilitar tal nome como argumento causa agora uma mensagem
+  de erro; para passar nomes arbitr†rios, insira um par isolado de caracteres
+  de opá∆o antes
+
+	1.5 [14.03.98]
+# Correá∆o de erro: em certas condiá‰es, valores de dia 30 e 31 passados
+  explicitamente eram rejeitados
+# Correá∆o de erro: nomes de alvos agora em mai£sculas conforme as
+# configuraá‰es de PA÷S
++ /s processa arquivos e diret¢rios tambÇm em todos os subdiret¢rios do alvo
+
+	2.0 [14.04.98]
+# Correá∆o de erro: perda do bit mais significativo dos segundos ao ler a
+# hora do arquivo
++ /@ para processar arquivo com lista de alvos
+* Caractere de opá∆o isolado agora especifica a entrada padr∆o apenas como
+  argumento da opá∆o /@
+* Reduá∆o do tamanho do arquivo execut†vel
++ DIET utilizado para compress∆o do arquivo execut†vel
+
+
+5. Autor
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+

@@ -1,0 +1,26 @@
+# Language: Brazilian Portuguese (brasilianisch)
+# File ending: pb
+# Codepage: 858
+# Translation made by Google Gemini
+# This translation was made by Google AI, please help the
+#  FreeDOS group to improve it.
+
+
+0.0:Exibe o conte£do de um arquivo de texto uma tela por vez
+0.1:Uso
+0.2:comando
+0.3:arquivo
+0.4:Teclas dispon°veis
+0.5:Nn
+0.6:Pr¢ximo arquivo
+0.7:Qq
+0.8:Sair do programa
+0.9:Espaáo
+0.10:Pr¢xima p†gina
+1.0:Opá∆o n∆o reconhecida
+1.1:Arquivo n∆o encontrado
+1.2:N∆o Ç poss°vel abrir o arquivo
+2.0:Mais
+2.1:<STDIN>
+
+1.3:opá∆o /Tabs deve ser /T1..9 (padr∆o 4)

@@ -1,0 +1,122 @@
+# Language: Polish
+# File ending: PL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Spis tre˜ci
+------------
+
+	1. Mo¾liwo˜ci
+	2. Poziomy bˆ©d¢w (Errorlevels)
+	3. Do zrobienia (Todo)
+	4. Historia
+	5. Autor
+
+
+1. Mo¾liwo˜ci
+-------------
+
+- zmiana daty/godziny plik¢w
+- zmiana atrybut¢w plik¢w i katalog¢w
+- por¢wnywanie daty/godziny oraz atrybut¢w plik¢w i katalog¢w
+- opcje daty/godziny pozwalaj¥ pobiera† warto˜ci z aktualnej daty/godziny
+  oraz
+  daty/godziny pliku jednocze˜nie z jawnymi liczbami
+- zˆo¾one por¢wnywanie daty/godziny z aktualn¥ dat¥/godzin¥, jak r¢wnie¾ z
+  plikiem
+- data/godzina w formatach zgodnych z ustawieniami KRAJU (COUNTRY)
+- dozwolone ˜cie¾ki UNC i NetWare
+- wiele cel¢w w jednym wierszu poleceä
+- rozszerzone symbole wieloznaczne (wildcards): nazwy mog¥ zawiera† dowoln¥
+  liczb© '*',
+  a tak¾e '?'; "nazwa" oznacza "nazwa.", ale "*" oznacza "*.*"
+- automatyczne wykrywanie znaku opcji ('/' lub '-')
+- opcja uwzgl©dniania nazw katalog¢w w wyszukiwaniu za pomoc¥ symboli
+  wieloznacznych
+- opcja przetwarzania plik¢w i katalog¢w we wszystkich podkatalogach celu
+- opcja przetwarzania pliku z list¥ cel¢w; brak argumentu oznacza
+  standardowe wej˜cie (stdin)
+
+
+2. Poziomy bˆ©d¢w (Errorlevels)
+-------------------------------
+
+0   - ustawienie lub por¢wnanie daty/godziny i atrybut¢w powiodˆo si©
+1   - por¢wnanie (jedno z nich) nie powiodˆo si©
+2   - bˆ¥d dost©pu do pliku lub ustawienia daty/godziny/atrybut¢w pliku
+128 - nieprawidˆowa lub powielona opcja
+129 - niezgodne opcje, brak cel¢w lub nieprawidˆowe argumenty
+130 - bˆ¥d wewn©trzny (brak pami©ci lub zbyt gˆ©boka struktura katalog¢w)
+
+
+3. Do zrobienia (Todo)
+----------------------
+
+- wy˜wietlanie list przetworzonych plik¢w
+- por¢wnywanie/kopiowanie daty/godziny/atrybut¢w mi©dzy plikami
+- zwi©kszanie/zmniejszanie p¢l daty/godziny
+- por¢wnywanie atrybut¢w (wi©kszy/mniejszy)
+
+
+4. Historia
+-----------
+
+	1.0 [16.02.98]
++ Pierwsze wydanie
+
+	1.1 [19.02.98]
++ Teraz akceptuje dat©/godzin© w formatach zgodnych z ustawieniami KRAJU
+  (COUNTRY)
+
+	1.2 [21.02.98]
+* Nieco ulepszona interpretacja pomini©tych p¢l i argument¢w
+* Zmniejszony rozmiar pliku wykonywalnego
++ Dodano opcj© -a do modyfikacji atrybut¢w plik¢w i katalog¢w
+
+	1.3 [21.02.98]
++ Teraz akceptuje wiele cel¢w w jednym wierszu poleceä
++ Opcja -a mo¾e by† teraz u¾ywana w por¢wnaniach
+
+	1.4 [26.02.98]
+# Wykonywanie nie zatrzymuje si© po znalezieniu bˆ©du dla pliku, ale jest
+  kontynuowane dla nast©pnych cel¢w
+# Dane wyj˜ciowe nie s¥ duplikowane na konsoli, gdy s¥ przekierowane do pliku
+* Opcja -@ zmieniona na -c
++ Data/godzina katalog¢w mo¾e by† teraz r¢wnie¾ sprawdzana w por¢wnaniach
++ Teraz akceptowane s¥ symbole wieloznaczne dla cel¢w
++ -r umo¾liwia przetwarzanie katalog¢w za pomoc¥ symboli wieloznacznych
+
+	1.41 [28.02.98]
++ Znak opcji wybierany automatycznie przy pierwszym wyst¥pieniu '/' lub '-'
++ Pojedyncza para znak¢w opcji ("--" lub "//") zatrzymuje dalsze wyszukiwanie
+  opcji
++ Samodzielny znak opcji oznacza standardowe wej˜cie
+- Dodanie znaku opcji przed nazw¥ zaczynaj¥c¥ si© od tego samego znaku, aby
+  umo¾liwi† tak¥ nazw© jako argument, powoduje teraz komunikat o bˆ©dzie;
+  aby przekaza† dowolne nazwy, wstaw wcze˜niej pojedyncz¥ par© znak¢w opcji
+
+	1.5 [14.03.98]
+# Poprawka: w niekt¢rych warunkach jawnie przekazane poprawne warto˜ci dni 30
+# i 31 byˆy odrzucane
+# Poprawka: nazwy cel¢w s¥ teraz pisane wielkimi literami zgodnie z
+# ustawieniami KRAJU
++ /s przetwarza pliki i katalogi r¢wnie¾ we wszystkich podkatalogach celu
+
+	2.0 [14.04.98]
+# Poprawka: utracony najstarszy bit sekund podczas odczytu czasu pliku
++ /@ do przetwarzania pliku z list¥ cel¢w
+* Samodzielny znak opcji okre˜la teraz standardowe wej˜cie tylko jako
+  argument opcji /@
+* Zmniejszony rozmiar pliku wykonywalnego
++ Do zmniejszenia rozmiaru pliku wykonywalnego u¾yto DIET
+
+
+5. Autor
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+

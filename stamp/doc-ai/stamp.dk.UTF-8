@@ -1,0 +1,120 @@
+# Language: Danish
+# File ending: DK
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Indhold
+-------
+
+	1. Funktioner
+	2. Fejlniveauer (Errorlevels)
+	3. Huskeliste (Todo)
+	4. Historik
+	5. Forfatter
+
+
+1. Funktioner
+-------------
+
+- ændre dato/tid for filer
+- ændre attributter for filer og mapper
+- sammenligne dato/tid og attributter for filer og mapper
+- dato/tid-indstillinger gør det muligt at hente værdier fra nuværende og
+  filens dato/tid samtidigt med eksplicitte tal
+- kompleks dato/tid-sammenligning med nuværende dato/tid, ligeledes med fil
+- dato/tid i formater, der overholder LAND (COUNTRY) indstillinger
+- UNC- og NetWare-stier tilladt
+- flere mål i én kommandolinje
+- udvidede jokertegn (wildcards): navne kan indeholde et vilkårligt antal '*',
+  også som '?'; "navn" betyder "navn.", men "*" betyder "*.*"
+- automatisk registrering af indstillingstegn ('/' eller '-')
+- mulighed for at inkludere mappenavne i jokertegnsøgning
+- mulighed for at behandle filer og mapper i alle målets undermapper
+- mulighed for at behandle fil med liste over mål; manglende argument betyder
+  standardinddata (stdin)
+
+
+2. Fejlniveauer (Errorlevels)
+-----------------------------
+
+0   - indstilling eller sammenligning af dato/tid og attributter lykkedes
+1   - sammenligning (en af dem) mislykkedes
+2   - fejl ved filadgang eller indstilling af fildato/tid/attributter
+128 - ugyldig eller duplikeret indstilling
+129 - inkompatible indstillinger, ingen mål eller ugyldige argumenter
+130 - intern fejl (ikke nok hukommelse eller for dyb mappe)
+
+
+3. Huskeliste (Todo)
+--------------------
+
+- vis lister over behandlede filer
+- sammenlign/kopier dato/tid/attributter fra fil-til-filer
+- inkrement/dekrement for dato/tid-felter
+- større end/mindre end sammenligning for attributter
+
+
+4. Historik
+-----------
+
+	1.0 [16.02.98]
++ Første udgave
+
+	1.1 [19.02.98]
++ Accepterer nu dato/tid i formater, der overholder LAND (COUNTRY)
+  indstillinger
+
+	1.2 [21.02.98]
+* Lidt forbedret fortolkning af udeladte felter og argumenter
+* Reduceret størrelse på eksekverbar fil
++ Tilføjet -a indstilling til at ændre fil- og mappeattributter
+
+	1.3 [21.02.98]
++ Accepterer nu flere mål i én kommandolinje
++ -a indstilling kan nu bruges i sammenligning
+
+	1.4 [26.02.98]
+# Udførelse stopper nu ikke, når der findes en fejl for en fil, men
+  fortsætter for næste mål
+# Output duplikeres nu ikke til konsollen, når det omdirigeres til fil
+* -@ indstilling omdøbt til -c
++ Dato/tid for mapper kan nu også kontrolleres i sammenligning
++ Jokertegn for mål accepteres nu
++ -r muliggør mappebehandling med jokertegn
+
+	1.41 [28.02.98]
++ Tegn for indstillinger vælges automatisk ved første forekomst af '/'
+  eller '-'
++ Et par af indstillingstegn alene ("--" eller "//") stopper søgning efter
+  næste indstillinger
++ Et indstillingstegn alene betyder standardinddata (stdin)
+- Tilføjelse af indstillingstegn før navn med samme tegn i starten for at
+  aktivere et sådant navn som argument forårsager nu en fejlmeddelelse; for
+  at sende vilkårlige navne indsættes et par af indstillingstegn alene før
+
+	1.5 [14.03.98]
+# Fejlrettelse: Under visse omstændigheder blev eksplicit angivne korrekte
+  dagsværdier 30 og 31 afvist
+# Fejlrettelse: Målnavne er nu med store bogstaver i overensstemmelse med
+  LAND-indstillinger
++ /s behandler filer og mapper også i alle målets undermapper
+
+	2.0 [14.04.98]
+# Fejlrettelse: Mistede den mest betydningsfulde bit af sekunder ved læsning
+  af filtid
++ /@ til at behandle fil med liste over mål
+* Et indstillingstegn alene angiver nu kun standardinddata som argument
+  til /@
+* Reduceret størrelse på eksekverbar fil
++ DIET brugt til komprimering af eksekverbar fil
+
+
+5. Forfatter
+------------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+

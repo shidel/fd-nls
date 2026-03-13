@@ -1,0 +1,123 @@
+# Language: Finnish
+# File ending: FI
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Sisältö
+-------
+
+	1. Ominaisuudet
+	2. Virhetasot (Errorlevels)
+	3. Tehtävälista (Todo)
+	4. Historia
+	5. Tekijä
+
+
+1. Ominaisuudet
+---------------
+
+- muuta tiedostojen päivämäärää/aikaa
+- muuta tiedostojen ja hakemistojen attribuutteja
+- vertaa tiedostojen ja hakemistojen päivämäärää/aikaa sekä attribuutteja
+- päivämäärä/aika-asetukset mahdollistavat arvojen ottamisen nykyisestä ja
+  tiedoston päivämäärästä/ajasta samanaikaisesti eksplisiittisillä numeroilla
+- monimutkainen päivämäärän/ajan vertailu nykyiseen aikaan, samoin tiedostoon
+- päivämäärä/aika muodoissa, jotka vastaavat COUNTRY-asetuksia
+- UNC- ja NetWare-polut sallittu
+- useita kohteita yhdellä komentorivillä
+- laajennetut jokerimerkit (wildcards): nimet voivat sisältää minkä tahansa
+  määrän '*'-merkkejä, myös '?'-merkkejä; "nimi" tarkoittaa "nimi.", mutta
+  "*" tarkoittaa "*.*"
+- optio-merkin ('/' tai '-') automaattinen tunnistus
+- optio hakemistonimien sisällyttämiseksi jokerimerkkihakuun
+- optio tiedostojen ja hakemistojen käsittelemiseksi kaikissa kohteen
+  alihakemistoissa
+- optio tiedoston käsittelemiseksi kohdelistalla; puuttuva argumentti
+  tarkoittaa standardisyötettä (stdin)
+
+
+2. Virhetasot (Errorlevels)
+---------------------------
+
+0   - päivämäärän/ajan ja attribuuttien asetus tai vertailu onnistui
+1   - vertailu (yksi niistä) epäonnistui
+2   - virhe tiedostoon pääsyssä tai tiedoston päivämäärän/ajan/attribuuttien
+      asetuksessa
+128 - virheellinen tai kahteen kertaan annettu optio
+129 - yhteensopimattomat optiot, ei kohteita tai virheelliset argumentit
+130 - sisäinen virhe (ei tarpeeksi muistia tai liian syvä hakemistorakenne)
+
+
+3. Tehtävälista (Todo)
+----------------------
+
+- näytä listat käsitellyistä tiedostoista
+- vertaa/kopioi päivämäärä/aika/attribuutit tiedostosta tiedostoihin
+- päivämäärä- ja aikakenttien kasvattaminen/vähentäminen
+- attribuuttien vertailu (suurempi/pienempi)
+
+
+4. Historia
+-----------
+
+	1.0 [16.02.98]
++ Ensimmäinen painos
+
+	1.1 [19.02.98]
++ Hyväksyy nyt päivämäärän/ajan muodoissa, jotka vastaavat COUNTRY-asetuksia
+
+	1.2 [21.02.98]
+* Hieman parannettu puuttuvien kenttien ja argumenttien tulkintaa
+* Pienennetty suoritettavan tiedoston kokoa
++ Lisätty -a optio tiedostojen ja hakemistojen attribuuttien muuttamiseksi
+
+	1.3 [21.02.98]
++ Hyväksyy nyt useita kohteita yhdellä komentorivillä
++ -a optiota voidaan nyt käyttää vertailussa
+
+	1.4 [26.02.98]
+# Suoritus ei nyt pysähdy, kun tiedostovirhe löytyy, vaan jatkuu seuraaviin
+  kohteisiin
+# Tulostetta ei nyt monisteta konsoliin, kun se on ohjattu tiedostoon
+* -@ optio nimetty uudelleen -c:ksi
++ Hakemistojen päivämäärä/aika voidaan nyt myös tarkistaa vertailussa
++ Jokerimerkit kohteille hyväksytään nyt
++ -r mahdollistaa hakemistojen käsittelyn jokerimerkeillä
+
+	1.41 [28.02.98]
++ Optio-merkki valitaan automaattisesti ensimmäisen '/' tai '-' esiintymän
+  mukaan
++ Yksittäinen optio-merkkipari ("--" tai "//") pysäyttää seuraavien
+  optioiden etsinnän
++ Yksittäinen optio-merkki tarkoittaa standardisyötettä (stdin)
+- Optio-merkin lisääminen ennen nimeä, joka alkaa samalla merkillä nimen
+  käyttöönottamiseksi argumenttina, aiheuttaa nyt virheilmoituksen;
+  mielivaltaisten nimien välittämiseksi aseta eteen yksittäinen optio-
+  merkkipari
+
+	1.5 [14.03.98]
+# Bugikorjaus: tietyissä olosuhteissa eksplisiittisesti annetut oikeat
+  päivän arvot 30 ja 31 hylättiin
+# Bugikorjaus: kohdenimet nyt suuraakkosina COUNTRY-asetusten mukaisesti
++ /s käsittelee tiedostot ja hakemistot myös kaikissa kohteen
+  alihakemistoissa
+
+	2.0 [14.04.98]
+# Bugikorjaus: sekuntien merkittävin bitti menetettiin tiedoston aikaa
+# luettaessa
++ /@ tiedoston käsittelemiseksi kohdelistalla
+* Yksittäinen optio-merkki määrittää nyt standardisyötteen vain /@ option
+  argumenttina
+* Pienennetty suoritettavan tiedoston kokoa
++ DIET-ohjelmaa käytetty suoritettavan tiedoston tiivistämiseen
+
+
+5. Tekijä
+---------
+					Arkady Belousov
+					Sähköposti: ark@mos.ru
+

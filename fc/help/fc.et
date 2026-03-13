@@ -1,0 +1,87 @@
+# Language: estonian
+# File ending: et
+# Codepage: 775
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC värdleb kahte faili väi failikomplekti teksti- väi binaarreØiimis ning
+kuvab nendevahelised erinevused.
+
+FC rakendab Paul Heckeli algoritmi v„ljaandest Communications of the
+Association for Computing Machinery, aprill 1978, lk 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+Selle algoritmi eelis tavalisemalt kasutatavate värdlusalgoritmide ees on
+kiirus ja väime tuvastada erinevusi suvalise arvu ridade läikes. Enamiku
+rakenduste puhul leiab algoritm sarnaseid erinevusi nagu "longest common
+subsequence" meetod.
+
+Sntaks on j„rgmine:
+
+FC [llitid] [ketas1:][tee1]failinimi1 [ketas2:][tee2]failinimi2 [llitid]
+
+ /A    Kuva iga erinevuste komplekti kohta ainult esimene ja viimane rida
+ /B    Teosta binaarne värdlus
+ /C    Eira t„htede tästutundlikkust
+ /L    Värdle faile kui ASCII-teksti
+ /LBn  M„„ra maksimaalne j„rjestikuste erinevate ASCII-ridade arv n-ni
+ /Mn   M„„ra maksimaalne erinevuste arv binaarses värdluses n baiti
+ /N    Kuva tekstivärdlusel reanumbrid
+ /Q    ra n„ita erinevuste loendit
+ /R    N„ita lhikest läpparuannet (alati aktiivne lliti /S kasutamisel)
+ /S    Laienda skannimist alamkataloogides asuvatele failidele
+ /T    ra asenda tabulaatoreid thikutega
+ /U    Kuva ilma vasteta failide nimed
+ /W    Tihenda thikud (tabulaatorid ja thikud) tekstivärdluse jaoks
+ /X    ra n„ita tekstivärdluses kontekstiridu
+ /nnn  M„„ra minimaalne j„rjestikuste kattuvate ridade arv nnn-ni
+       värdluse resnkroonimiseks
+
+Programm toetab pikki failinimesid (LFN) ja kasutab neid automaatselt, kui
+operatsioonissteem seda väimaldab.
+
+FC kasutab vaikimisi binaarreØiimi faililaiendite .EXE, .COM, .SYS, .OBJ,
+.BIN, .DLL ja .LIB puhul.
+
+BinaarreØiimis n„itab FC erinevate baitide nihet failis, nende v„„rtust
+kuueteistkmnendssteemis ja (prinditavate smbolite puhul) nende ASCII-m„rki.
+
+Vaikimisi peatub binaarne värdlus p„rast 20 erinevust, kuid seda v„„rtust
+saab muuta llitiga /M. /M0 t„hendab "piiramatult erinevusi".
+/M tälgendatakse kui /M0.
+
+Programmi piirang on see, et tekstireØiimis värreldakse ainult esimesi 32765
+rida; lej„„nud ridu eiratakse. Rea pikkus on praktiliselt piiramatu.
+
+FC toetab failide m„„ramisel asendusm„rke (wildcards):
+- kataloogi m„„ramine on värdne käigi selles kataloogis olevate failide
+  m„„ramisega ("*.*"). N„ide: "FC C:\ A:" on sama mis "FC C:\*.* A:*.*"
+- kui failinimi2 puudub, eeldatakse "." (praegune kataloog).
+  N„ide: "FC C:\TEST.TXT" on sama mis "FC C:\TEST.TXT .\*.*"
+- kui failinimi1 sisaldab asendusm„rke, aga failinimi2 mitte, värreldakse
+  käiki failinimi1-ga klappivaid faile sama failiga failinimi2.
+  N„ide: "FC FOO.BK? FOO.TXT"
+- kui failinimi1 sisaldab asendusm„rke ja failinimi2 on tee, millele j„rgneb
+  "*.*", värreldakse käiki failinimi1-ga klappivaid faile sama nimega
+  failidega failinimi2 m„„ratud asukohas. N„ide: "FC *.* A:*.*"
+- kui nii failinimi1 kui failinimi2 sisaldavad asendusm„rke, värreldakse tee1
+  faile vastavate failidega tee2 asukohas.
+  N„ide: "FC *.TXT VANAD\*.BAK"
+Seda on lihtsam teha kui selgitada. Kui soovite värrelda kataloogi iga faili
+teise kataloogi käigi failidega, kasutage kuju: FC *.* MINUDIR\????????.???
+
+Lliti /S kordab sama otsingumustrit mälema tee samanimelistes
+alamkataloogides.
+  N„ide: "FC /S C:*.TXT D:*.BAK"
+  Eeldades n„iteks alamkataloogide C:\RAAMAT ja D:\RAAMAT olemasolu, värdleb
+  see k„sk käiki praeguste kataloogide *.TXT faile ja ka käiki kataloogis
+  RAAMAT\*.TXT asuvaid faile vastavate *.BAK koopiatega.
+
+ERRORLEVEL v„ljumiskoodid on j„rgmised:
+	0	Käik failid klapivad
+	1	V„hemalt ks paar faile on erinevad
+	2	Vigane parameeter k„sureal
+	3	Faili ei leitud
+	4	Viga faili(de) avamisel

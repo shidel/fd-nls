@@ -1,0 +1,122 @@
+# Language: Slovenian
+# File ending: SL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Vsebina
+-------
+
+	1. Funkcije
+	2. Nivoji napak (Errorlevels)
+	3. Seznam opravil (Todo)
+	4. Zgodovina
+	5. Avtor
+
+
+1. Funkcije
+-----------
+
+- spreminjanje datuma/časa za datoteke
+- spreminjanje atributov za datoteke in direktorije
+- primerjava datuma/časa in atributov za datoteke in direktorije
+- možnosti datuma/časa omogočajo istočasno pridobivanje vrednosti iz
+  trenutnega
+  in datotečnega datuma/časa z eksplicitnimi številkami
+- kompleksna primerjava datuma/časa s trenutnim datumom/časom, prav tako
+  z datoteko
+- datum/čas v oblikah, ki ustrezajo nastavitvam COUNTRY
+- dovoljene poti UNC in NetWare
+- več ciljev v eni ukazni vrstici
+- razširjeni nadomestni znaki (wildcards): imena lahko vsebujejo poljubno
+  število '*',
+  tudi kot '?'; "ime" pomeni "ime.", medtem ko "*" pomeni "*.*"
+- samodejno zaznavanje znaka za možnosti ('/' ali '-')
+- možnost vključitve imen direktorijev v iskanje z nadomestnimi znaki
+- možnost obdelave datotek in direktorijev v vseh poddirektorijih cilja
+- možnost obdelave datoteke s seznamom ciljev; manjkajoči argument pomeni
+  standardni vhod (stdin)
+
+
+2. Nivoji napak (Errorlevels)
+-----------------------------
+
+0   - nastavitev ali primerjava datuma/časa in atributov uspešna
+1   - primerjava (ena od njih) neuspešna
+2   - napaka pri dostopu do datoteke ali nastavitvi datuma/časa/atributov
+      datoteke
+128 - neveljavna ali podvojena možnost
+129 - nezdružljive možnosti, ni ciljev ali neveljavni argumenti
+130 - notranja napaka (ni dovolj pomnilnika ali preglobok direktorij)
+
+
+3. Seznam opravil (Todo)
+-----------------------
+
+- prikaz seznamov obdelanih datotek
+- primerjava/kopiranje datuma/časa/atributov med datotekami
+- povečanje/zmanjšanje za polja datuma/časa
+- primerjava večje/manjše za atribute
+
+
+4. Zgodovina
+------------
+
+	1.0 [16.02.98]
++ Prva izdaja
+
+	1.1 [19.02.98]
++ Zdaj sprejema datum/čas v oblikah, ki ustrezajo nastavitvam COUNTRY
+
+	1.2 [21.02.98]
+* Nekoliko izboljšana interpretacija izpuščenih polj in argumentov
+* Zmanjšana velikost izvršljive datoteke
++ Dodana možnost -a za spreminjanje atributov datotek in direktorijev
+
+	1.3 [21.02.98]
++ Zdaj sprejema več ciljev v eni ukazni vrstici
++ Možnost -a se zdaj lahko uporablja v primerjavi
+
+	1.4 [26.02.98]
+# Izvajanje se zdaj ne ustavi, ko je najdena napaka pri datoteki, temveč se
+  nadaljuje za naslednje cilje
+# Izhod se zdaj ne podvaja na konzoli, ko je preusmerjen v datoteko
+* Možnost -@ preimenovana v -c
++ Datum/čas direktorijev se zdaj lahko preveri tudi v primerjavi
++ Zdaj so sprejeti nadomestni znaki za cilje
++ -r omogoča obdelavo direktorijev z nadomestnimi znaki
+
+	1.41 [28.02.98]
++ Znak za možnosti se samodejno izbere ob prvem pojavu '/' ali '-'
++ Samostojen par znakov za možnosti ("--" ali "//") ustavi iskanje
+  naslednjih možnosti
++ Samostojen znak za možnosti pomeni standardni vhod
+- Dodajanje znaka za možnosti pred ime, ki se začne z istim znakom, da se
+  omogoči takšno ime kot argument, zdaj povzroči napako; za podajanje
+  poljubnih imen pred njih vstavite samostojen par znakov za možnosti
+
+	1.5 [14.03.98]
+# Popravek napake: pod določenimi pogoji so bile eksplicitno podane pravilne
+  vrednosti dneva 30 in 31 zavrnjene
+# Popravek napake: imena ciljev so zdaj z velikimi začetnicami glede na
+# nastavitve COUNTRY
++ /s obdeluje datoteke in direktorije tudi v vseh poddirektorijih cilja
+
+	2.0 [14.04.98]
+# Popravek napake: izgubljen najpomembnejši bit sekund pri branju časa
+# datoteke
++ /@ za obdelavo datoteke s seznamom ciljev
+* Samostojen znak za možnosti zdaj določa standardni vhod le kot argument
+  možnosti /@
+* Zmanjšana velikost izvršljive datoteke
++ DIET uporabljen za stiskanje izvršljive datoteke
+
+
+5. Avtor
+---------
+					Arkady Belousov
+					E-pošta: ark@mos.ru
+

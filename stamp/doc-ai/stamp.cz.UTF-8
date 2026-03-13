@@ -1,0 +1,118 @@
+# Language: Czech
+# File ending: CZ
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Obsah
+-----
+
+	1. Funkce
+	2. Chybové úrovně (Errorlevels)
+	3. Úkoly (Todo)
+	4. Historie
+	5. Autor
+
+
+1. Funkce
+---------
+
+- změna data a času souborů
+- změna atributů souborů a adresářů
+- porovnání data/času a atributů souborů a adresářů
+- volby data/času umožňují získat hodnoty z aktuálního data/času a data/času
+  souboru současně s explicitními čísly
+- složité porovnání data/času s aktuálním datem/časem, stejně tak se souborem
+- datum/čas ve formátech, které odpovídají nastavení COUNTRY
+- povoleny cesty UNC a NetWare
+- více cílů v jednom příkazovém řádku
+- rozšířené zástupné znaky (wildcards): názvy mohou obsahovat libovolný počet
+  '*',
+  stejně jako '?'; "název" znamená "název.", ale "*" znamená "*.*"
+- automatická detekce znaku volby ('/' nebo '-')
+- volba pro zahrnutí názvů adresářů do vyhledávání pomocí zástupných znaků
+- volba pro zpracování souborů a adresářů ve všech podadresářích cíle
+- volba pro zpracování souboru se seznamem cílů; chybějící argument znamená
+  standardní vstup (stdin)
+
+
+2. Chybové úrovně (Errorlevels)
+------------------------------
+
+0   - nastavení nebo porovnání data/času a atributů bylo úspěšné
+1   - porovnání (jedno z nich) je neúspěšné
+2   - chyba přístupu k souboru nebo nastavení data/času/atributů souboru
+128 - neplatná nebo duplicitní volba
+129 - nekompatibilní volby, žádné cíle nebo neplatné argumenty
+130 - interní chyba (nedostatek paměti nebo příliš hluboký adresář)
+
+
+3. Úkoly (Todo)
+---------------
+
+- zobrazit seznamy zpracovaných souborů
+- porovnat/kopírovat datum/čas/atributy mezi soubory
+- inkrementace/dekrementace polí data/času
+- porovnání atributů (větší/menší)
+
+
+4. Historie
+-----------
+
+	1.0 [16.02.98]
++ První vydání
+
+	1.1 [19.02.98]
++ Nyní přijímá datum/čas ve formátech, které odpovídají nastavení COUNTRY
+
+	1.2 [21.02.98]
+* Mírně vylepšená interpretace vynechaných polí a argumentů
+* Zmenšena velikost spustitelného souboru
++ Přidána volba -a pro úpravu atributů souborů a adresářů
+
+	1.3 [21.02.98]
++ Nyní přijímá více cílů v jednom příkazovém řádku
++ Volba -a nyní může být použita při porovnávání
+
+	1.4 [26.02.98]
+# Provádění se nyní nezastaví při nalezení chyby u souboru, ale pokračuje
+  u dalších cílů
+# Výstup se nyní neduplikuje na konzoli, pokud je přesměrován do souboru
+* Volba -@ přejmenována na -c
++ Datum/čas adresářů lze nyní také kontrolovat při porovnávání
++ Nyní jsou přijímány zástupné znaky pro cíle
++ -r umožňuje zpracování adresářů pomocí zástupných znaků
+
+	1.41 [28.02.98]
++ Znak pro volby se automaticky vybere podle prvního výskytu '/' nebo '-'
++ Samostatná dvojice znaků voleb ("--" nebo "//") zastaví hledání dalších
+  voleb
++ Samostatný znak volby znamená standardní vstup
+- Přidání znaku volby před název začínající stejným znakem pro umožnění
+  takového názvu jako argumentu nyní způsobí chybovou zprávu; pro předání
+  libovolných názvů vložte před ně samostatnou dvojici znaků voleb
+
+	1.5 [14.03.98]
+# Oprava chyby: za určitých podmínek byly odmítnuty explicitně předané správné
+  hodnoty dne 30 a 31
+# Oprava chyby: názvy cílů jsou nyní převedeny na velká písmena podle
+# nastavení COUNTRY
++ /s zpracovává soubory a adresáře také ve všech podadresářích cíle
+
+	2.0 [14.04.98]
+# Oprava chyby: ztracen nejvýznamnější bit sekund při čtení času souboru
++ /@ pro zpracování souboru se seznamem cílů
+* Samostatný znak volby nyní určuje standardní vstup pouze jako argument
+  volby /@
+* Zmenšena velikost spustitelného souboru
++ Pro zmenšení spustitelného souboru použit DIET
+
+
+5. Autor
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+

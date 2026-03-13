@@ -1,0 +1,88 @@
+# Language: lithuanian
+# File ending: lt
+# Codepage: 775
+# This translation was made by Google AI,
+# please help the FreeDOS group to improve it.
+
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC palygina du failus arba fail÷ rinkinius tekstiniu arba dvejetainiu
+reÿimu ir parodo skirtumus tarp j÷.
+
+FC naudoja Paul Heckel algoritm– i’ Communications of the Association for
+Computing Machinery, 1978 m. balandis, p. 264 - 268,
+"A Technique for Isolating Differences Between Files".
+
+æis algoritmas yra greitesnis uÿ ‘prastus palyginimo algoritmus ir gali
+aptikti skirtumus tarp bet kokio eilu—i÷ skai—iaus. Daugumai program÷ ’is
+algoritmas nustato skirtumus pana’iai kaip ilgiausios bendrosios
+posekio (LCS) metodas.
+
+Sintaks” yra tokia:
+
+FC [parinktys] [diskas1:][kelias1]failas1 [diskas2:][kelias2]failas2
+
+ /A    Rodyti tik pirm– ir paskutin“ eilutes kiekvienam skirtum÷ blokui
+ /B    Atlikti dvejetain‘ palyginim–
+ /C    Nepaisyti raidÿi÷ registro
+ /L    Lyginti failus kaip ASCII tekst–
+ /LBn  Nustatyti maksimal÷ i’ eil”s einan—i÷ skirting÷ ASCII eilu—i÷ skai—i÷ n
+ /Mn   Nustatyti maksimal÷ skirtum÷ kiek‘ dvejetainiame palyginime n baitais
+ /N    Rodyti eilu—i÷ numerius tekstiniame palyginime
+ /Q    Nerodyti skirtum÷ s–ra’o
+ /R    Rodyti trump– galutin“ ataskait– (visada aktyvu naudojant /S)
+ /S    I’pl”sti paie’k– ‘ failus poaplankiuose
+ /T    Nei’pl”sti tabuliacijos ÿenkl÷ ‘ tarpus
+ /U    Rodyti fail÷ vardus, kurie neturi atitikmens
+ /W    Sutraukti tu’—ius tarpus (tabuliacijas ir tarpus) tekstiniam lyginimui
+ /X    Nerodyti kontekstini÷ eilu—i÷ tekstiniame palyginime
+ /nnn  Nustatyti minimal÷ i’ eil”s einan—i÷ sutampan—i÷ eilu—i÷ skai—i÷ nnn
+       palyginimo resinchronizacijai
+
+Programa palaiko ilgus fail÷ vardus (LFN) ir naudoja juos automati’kai, jei
+operacin” sistema tai leidÿia.
+
+FC pagal numatytuosius nustatymus naudoja dvejetain‘ reÿim– failams .EXE,
+.COM, .SYS, .OBJ, .BIN, .DLL ir .LIB.
+
+Dvejetainiu reÿimu FC rodo besiskirian—i÷ bait÷ poslink‘ (offset) faile, j÷
+’e’ioliktain“ vert“ ir, jei tai spausdinami simboliai, j÷ ASCII simbol‘.
+
+Pagal numatytuosius nustatymus dvejetainis palyginimas sustoja po 20
+skirtum÷, ta—iau ’i– vert“ galima pakeisti /M parinktimi. /M0 rei’kia
+"neribotas skirtum÷ kiekis". /M interpretuojama kaip /M0.
+
+Programos apribojimas yra tas, kad tekstiniu reÿimu lyginamos tik pirmosios
+32765 eilut”s; likusios eilut”s ignoruojamos. Eilut”s ilgis prakti’kai
+yra neribotas.
+
+FC palaiko pakaitos ÿenklus (wildcards) fail÷ specifikacijose:
+- katalogo nurodymas yra tas pats, kas nurodyti visus jame esan—ius
+  failus ("*.*"). Pavyzdys: "FC C:\ A:" yra tas pats, kas "FC C:\*.* A:*.*"
+- jei ne‘vestas failas2, laikoma "." (dabartinis katalogas).
+  Pavyzdys: "FC C:\FAILAS.TXT" yra tas pats, kas "FC C:\FAILAS.TXT .\*.*"
+- jei failas1 turi pakaitos ÿenklus, o failas2 neturi, visi failas1
+  atitinkantys failai lyginami su tuo pa—iu failas2.
+- jei failas1 turi pakaitos ÿenklus, o failas2 yra kelias su pabaiga "*.*",
+  visi failas1 atitinkantys failai lyginami su failais tuo pa—iu vardu
+  kelyje, nurodytame failas2.
+- jei abu turi pakaitos ÿenklus, tada failai kelyje1 lyginami su
+  atitinkamais failais kelyje2. Pavyzdys: "FC *.TXT SENI\*.BAK" palygina
+  visus .TXT failus su j÷ .BAK kopijomis pakatalogyje SENI.
+Tai lengviau padaryti nei pasakyti. Jei norite palyginti kiekvien– katalogo
+fail– su visais kito katalogo failais, naudokite:
+FC *.* MANODIR\????????.???
+
+Parinktis /S kartoja t– pat‘ paie’kos ’ablon– pakatalogiuose su tuo pa—iu
+pavadinimu abiejuose keliuose.
+  Pavyzdys: "FC /S C:*.TXT D:*.BAK"
+  Darant prielaid–, kad egzistuoja pakatalogiai C:\KNYGA ir D:\KNYGA, ’i
+  komanda palygina visus *.TXT failus dabartiniuose kataloguose ir visus
+  KNYGA\*.TXT failus su j÷ atsargin”mis kopijomis.
+
+ERRORLEVEL i’”jimo kodai yra ’ie:
+	0	Visi failai sutampa
+	1	Bent viena fail÷ pora skiriasi
+	2	Neteisingas parametras komand÷ eilut”je
+	3	Failas nerastas
+	4	Klaida atidarant fail– (-us)

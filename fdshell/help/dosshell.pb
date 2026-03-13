@@ -1,4 +1,4 @@
 FDSHELL
 
-FDSHELL √© uma vers√£o de c√≥digo aberto da interface gr√°fica DOSSHELL da Microsoft
-Modifique DOSSHELL.INI se necess√°rio
+FDSHELL Ç uma vers∆o de c¢digo aberto da interface gr†fica DOSSHELL da Microsoft
+Modifique DOSSHELL.INI se necess†rio

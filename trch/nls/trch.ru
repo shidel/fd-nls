@@ -3,7 +3,6 @@
 #Contact Email: petr-akhlamov@yandex.ru
 #Created/Modified: 11/oct/2017
 #Released Under GPL v2.0 License.
-
 0.0:Преобразовывает символы
 0.1:Использование:
 1.0:Недостаточно аргументов

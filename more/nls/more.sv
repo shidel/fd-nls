@@ -1,4 +1,4 @@
-# Language: Swedish (CP850)
+# Language: Swedish, sv, (CP850/858)
 # Translation by Martin Str”mberg <ams@ludd.luth.se>.
 0.0:Visa inneh†llet i en textfil en sk„rm i taget
 0.1:Anv„ndning

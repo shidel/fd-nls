@@ -1,0 +1,32 @@
+# Language: Norwegian
+# File ending: NO
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+SYSLINUX
+
+SYSLINUX er en samling av bootloadere
+
+Installasjon:
+SYSLINUX C:
+COPY MEMDISK C:\
+COPY CHAIN.C32 C:\
+COPY MENU.C32 C:\
+
+Når du booter og ser kommandolinjen, skriv
+CHAIN.C32 FREEDOS=KERNEL.SYS
+
+Alternativt kan du opprette en SYSLINUX.CFG, les dokumentasjonen nøye for
+det! (i eksemplet nedenfor, en "CONTENTS"-mappe med en ISOLINUX-mappe inni,
+med ISOLINUX.BIN CDROM-bootloaderen inni - ikke-emuleringsstil.
+vær nøye med å bruke "/" og "\" nøyaktig som nedenfor!
+
+For MEMDISK og ISOLINUX, vennligst les dokumentasjonen nøye!:
+* mkisofs -b isolinux/freedos.img -o c:\cdtest\cd1.iso contents
+* mkisofs -no-emul-boot -b isolinux/isolinux.bin -o c:\cdtest\cd1.iso
+  contents
+
+Alternativer for CDRECORD (som inkluderer MKISOFS) er XORRISO og CDRKIT
+(se http://sites.google.com/site/blairdude/cdrkit for DOS-versjon)
+

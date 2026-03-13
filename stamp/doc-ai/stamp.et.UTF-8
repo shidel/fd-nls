@@ -1,0 +1,120 @@
+# Language: Estonian
+# File ending: ET
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+			STAMP 2.0
+
+
+Sisu
+----
+
+	1. Funktsioonid
+	2. Veatasemed (Errorlevels)
+	3. Tehaasjad (Todo)
+	4. Ajalugu
+	5. Autor
+
+
+1. Funktsioonid
+---------------
+
+- failide kuupäeva/kellaaja muutmine
+- failide ja kataloogide atribuutide muutmine
+- failide ja kataloogide kuupäeva/kellaaja ning atribuutide võrdlemine
+- kuupäeva/kellaaja valikud võimaldavad võtta väärtusi praegusest ja faili
+  kuupäevast/kellaajast üheaegselt koos selgesõnaliste numbritega
+- keeruline kuupäeva/kellaaja võrdlus praeguse kuupäeva/kellaajaga, samuti
+  failiga
+- kuupäev/kellaaeg vormingutes, mis vastavad COUNTRY seadetele
+- UNC ja NetWare teed on lubatud
+- mitu sihtmärki ühel käsureal
+- laiendatud metamärgid: nimed võivad sisaldada suvalist arvu '*', samuti '?';
+  "nimi" tähendab "nimi.", aga "*" tähendab "*.*"
+- valiku märgi ('/' või '-') automaatne tuvastamine
+- valik kaasata kataloogide nimed metamärkide otsingusse
+- valik töödelda faile ja katalooge kõigis sihtmärgi alamkataloogides
+- valik töödelda faili sihtmärkide loendiga; puuduv argument tähendab
+  standardset sisendit
+
+
+2. Veatasemed (Errorlevels)
+---------------------------
+
+0   - kuupäeva/kellaaja ja atribuutide seadistamine või võrdlemine õnnestus
+1   - võrdlemine (üks neist) ebaõnnestus
+2   - viga failile juurdepääsul või faili kuupäeva/kellaaja/atribuutide
+      määramisel
+128 - vigane või dubleeritud valik
+129 - ühildumatud valikud, sihtmärgid puuduvad või vigased argumendid
+130 - sisemine viga (pole piisavalt mälu või liiga sügav kataloog)
+
+
+3. Tehaasjad (Todo)
+-------------------
+
+- töödeldud failide loendite kuvamine
+- kuupäeva/kellaaja/atribuutide võrdlemine/kopeerimine failist failidesse
+- kuupäeva/kellaaja väljade suurendamine/vähendamine
+- atribuutide suurem/väiksem võrdlus
+
+
+4. Ajalugu
+----------
+
+	1.0 [16.02.98]
++ Esimene väljaanne
+
+	1.1 [19.02.98]
++ Nüüd aktsepteerib kuupäeva/kellaaega vormingutes, mis vastavad COUNTRY
+  seadetele
+
+	1.2 [21.02.98]
+* Veidi parandatud välja jäetud väljade ja argumentide tõlgendamist
+* Vähendatud käivitatava faili suurust
++ Lisatud -a valik failide ja kataloogide atribuutide muutmiseks
+
+	1.3 [21.02.98]
++ Nüüd aktsepteeritakse mitut sihtmärki ühel käsureal
++ -a valikut saab nüüd kasutada võrdluses
+
+	1.4 [26.02.98]
+# Nüüd ei peatu täitmine failivea leidmisel, vaid jätkub järgmiste
+  sihtmärkidega
+# Väljundit ei dubleerita konsooli, kui see on suunatud faili
+* -@ valik nimetati ümber -c-ks
++ Võrdluses saab nüüd kontrollida ka kataloogide kuupäeva/kellaaega
++ Nüüd aktsepteeritakse sihtmärkide metamärke
++ -r võimaldab kataloogide töötlemist metamärkide abil
+
+	1.41 [28.02.98]
++ Valikute märk valitakse automaatselt esimese '/' või '-' esinemise järgi
++ Üksik valikute märkide paar ("--" või "//") peatab järgmiste valikute
+  otsimise
++ Üksik valiku märk tähendab standardset sisendit
+- Valiku märgi lisamine nime ette, mis algab sama märgiga nime argumendina
+  lubamiseks, põhjustab nüüd veateate; suvaliste nimede edastamiseks sisestage
+  enne üksik valikute märkide paar
+
+	1.5 [14.03.98]
+# Veaparandus: teatud tingimustel lükati selgesõnaliselt edastatud õiged
+  päeva väärtused 30 ja 31 tagasi
+# Veaparandus: sihtmärkide nimed on nüüd suurtähtedega vastavalt COUNTRY
+# seadetele
++ /s töötleb faile ja katalooge ka kõigis sihtmärgi alamkataloogides
+
+	2.0 [14.04.98]
+# Veaparandus: kaotati sekundite kõige olulisem bitt faili aja lugemisel
++ /@ faili töötlemiseks sihtmärkide loendiga
+* Üksik valiku märk määrab nüüd standardse sisendi ainult /@ valiku
+  argumendina
+* Vähendatud käivitatava faili suurust
++ DIET on kasutatud käivitatava faili tihendamiseks
+
+
+5. Autor
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru
+

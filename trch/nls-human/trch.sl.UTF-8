@@ -1,6 +1,5 @@
 # Language: Slovenian, sl, (CP852)
 # Translated by Matej Horvat (http://matejhorvat.si/), last update 2013-06-04
-
 0.0:Prevaja znake.
 0.1:Uporaba:
 1.0:Premalo argumentov
