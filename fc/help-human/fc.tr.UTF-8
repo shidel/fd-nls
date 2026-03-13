@@ -1,0 +1,97 @@
+FC v. 3.03 (c) 2004 Maurizio Spagni
+FC iki dosyayı veya dosya kümesini metin veya ikili kipte karşılaştırır ve
+aralarındaki farkları görüntüler.
+
+FC, Paul Heckel'in Communications of the for Computing Machinery, Nisan 1978,
+s264 - s268, yayınında "A Technique for Isolating Differences Between Files",
+yani "Dosyalar Arasındaki Farkları Ayırma Tekniği" adlı makalesindeki
+algoritmayı uygular.
+
+Bu algoritmanın daha yaygın kullanılan karşılaştırma algoritmalarına göre hızlı
+olması ve sınırı olmayan sayıda satır arasında farkları tespit edebilmesi gibi
+avantajları vardır. Çoğu uygulama için algoritma, en uzun ortak alt dizi
+tarafından ayrılan farklara benzer farkları ayırır.
+
+Sözdizim aşağıdaki gibidir:
+
+FC [anahtarlar] [sürücü1:][yol1]dosyaadı1 [sürücü2][yol2]dosyaadı2 [anahtarlar]
+
+ /A    Her farklılık grubu için sadece ilk ve son satırları görüntüle
+ /B    İkili karşılaştırma yap
+ /C    BÜYÜK/küçük harf duyarsız karşılaştır
+ /L    Dosyaları ASCII metin olarak karşılaştır
+ /LBn  Ortalama ardışık farklı ASCII satır sayısını n olarak ayarla
+ /Mn   İkili karşılaştırmada ortalama farklılıkları n bayt olarak ayarla
+ /N    Metin karşılaştırmasında satır sayılarını görüntüle
+ /Q    Farklılıkların listesini görüntüleme
+ /R    Kısa bir son rapor göster (/S kullanıldığında daima etkindir)
+ /S    Taramayı alt dizinlerdeki dosyalara genişlet
+ /T    Sekmeleri boşluklar olarak genişletme
+ /U    Karşılıkları olmayan dosyaların dosya adlarını göster
+ /W    Metin karşılaştırmasında beyaz boşlukları (sekme ve boşluklar) grupla
+ /X    Metin karşılaştırmasında bağlam satırlarını gösterme
+ /nnn  Karşılaştırma yeniden eşleşmesi için asgari ardışık eşleşen satır
+       sayısını nnn olarak ayarla
+
+Bu programın LFN desteği bulunmaktadır ve işletim sistemi uzun dosya adlarını
+destekliyorsa bunu otomatik olarak kullanır.
+
+FC, .EXE, .COM, .SYS, .OBJ, .BIN, .DLL ve .LIB dosyaları için varsayılan
+karşılaştırma kipi olarak ikili kipi kullanır.
+
+İkili kipte FC, farklı baytların dosyasındaki kaymayı (ofset), onların
+onaltılık değerini ve eğer yazdırılabilir ASCII karakterleri iseler ASCII
+karakterlerini gösterir.
+
+Varsayılan değer olarak ikili karşılaştırma 20 eşleşme sonrasında durur fakat
+bu değer /M anahtarı ile değiştirilebilir. /M0  "sınırsız farklılıklar"
+anlamına gelir. /M anahtarı /M0 olarak yorumlanır.
+
+Bu programın bir tasarım sınırlaması, metin kipi karşılaştırmasında yalnızca
+ilk 32765 satırın kıyaslanacak olmasıdır; kalan satırlar görmezden gelinir.
+Satır uzunluğu neredeyse sınırsızdır.
+
+FC, dosya belirtimlerinde joker karakterleri destekler. Bunun hakkında birkaç
+söz:
+- Bir dizin belirtmek, dizinin içindeki tüm dosyaları belirtmekle aynı anlama
+  gelir (yani "*.*").
+  Örnek: "FC C:\ A:" dizesi "FC C:\*.* A:*.*" ile aynı anlama gelir.
+- Eğer dosyaadı2 girilmemişse "." (geçerli dizin) varsayılır.
+  Örnek: "FC C:\FOO.TXT" dizesi "FC C:\FOO.TXT .\*.*" ile aynı anlama gelir.
+- Eğer dosyaadı1 joker karakter içeriyorsa ama dosyaadı2 içermiyorsa dosyaadı1
+  ile eşleşen tüm dosyalar dosyaadı2 dosyasıyla karşılaştırılacaktır.
+  Örnek: "FC FOO.BK? FOO.TXT"
+	   Tüm FOO.BK? dosyaları FOO.TXT ile karşılaştırılır.
+- Eğer dosyaadı1 joker içeriyorsa ve dosyaadı2 "*.*" ile takip edilen bir
+  yolsa dosyaadı1 ile eşleşen tüm dosyalar, dosyaadı2 tarafından belirtilen
+  yolda bulunan aynı adlı tüm dosyalar ile karşılaştırılacaktır (tabii ki
+  dosyaadı2 dosyası mevcutsa).
+  Örnek: "FC *.* A:*.*" ya da daha kısa olarak "FC . A:"
+	   Geçerli dizindeki tüm dosyalar A: üzerindeki kopyalarıyla
+	   karşılaştırılacaktır.
+- EEğer dosyaadı1 joker içeriyorsa ve bu dosyaadı2 için de geçerliyse
+  dosyaadı1 yolunda bulunan ve dosyaadı1 ile eşleşen tüm dosyalar, dosyaadı2
+  tarafından belirtilen yolda dosyaadı2 ile eşleşen ilgili dosya ile
+  karşılaştırılacaktır (tabii ki dosyaadı2 mevcutsa).
+  Örnek: "FC *.TXT OLDS\*.BAK"
+	   Geçerli dizindeki tüm dosyalar, OLDS alt dizininde .BAK olarak
+	   yeniden adlandırılmış yedekleme kopyalarıyla karşılaştırılır.
+Yapması, söylemesinden daha kolaydır.
+Eğer gerçekten bir dizindeki her dosyayı başka bir dizindeki tüm dosyalar ile
+karşılaştırmak istiyorsanız, şu biçimi kullanabilirsiniz:
+FC *.* MYDIR\????????.???
+
+/S seçeneği her iki yolda da aynı ada sahip alt dizinlerde aynı arama modelini
+yineler.
+  Örnek: "FC /S C:*.TXT D:*.BAK"
+	   Mesela C:BOOK ve D:BOOK alt dizinlerinin mevcut olduklarını varsayar
+	   isek bu komut, geçerli dizinlerde tüm *.TXT dosyalarını *.BAK
+	   yedekleme kopyalarıyla karşılaştırır ve ayrıca tüm BOOK\*.TXT
+	   dosyalarını da BOOK\*.BAK yedekleme kopyaları ile karşılaştırır.
+
+ERRORLEVEL (hata düzeyi) için çıkış kodları aşağıdaki gibidir:
+	0	Tüm dosyalar eşleşiyor
+	1	En az bir çift dosya farklılık gösteriyor
+	2	Komut satırında geçersiz parametre
+	3	Dosya bulunamadı
+	4	Dosyaların veya dosyanın açılışında hata

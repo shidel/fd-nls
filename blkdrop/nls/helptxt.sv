@@ -1,3 +1,5 @@
+sv, cp850/858
+
 anv„ndning: BLKDROP.EXE [flaggor]
 
     [flaggor]      S„kert, som om du du verkligen beh”ver en flagga

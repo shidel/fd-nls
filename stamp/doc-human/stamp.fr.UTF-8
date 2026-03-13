@@ -1,0 +1,120 @@
+
+			STAMP 2.0
+
+
+Contenus
+--------
+
+	1. Fonctionnalités
+	2. Niveaux d'erreur
+	3. À faire
+	4. Historique
+	5. Auteur
+
+
+1. Fonctionnalités
+------------------
+
+- modifier l'horodatage des fichiers
+- modifier les attributs des fichiers et répertoires
+- comparer l'horodatage et les attributs des fichiers et répertoires
+- les options d'horodatage permettent d'obtenir les valeurs d'horodatage des
+  valeurs actuelles ou des fichiers simultanément avec des nombres explicites
+- comparaison d'horodatage complexe avec la date actuelle et celle des fichiers
+- horodatage dans des formats qui se conforment aux réglages COUNTRY
+- Les chemins UNC et NetWare sont autorisés
+- multiples cibles en une seule ligne de commande
+- jokers étendus : les noms peuvent contenir n'importe quel nombre de '*' et de
+  '?' ; "nom" signifie "nom.", mais "*" signifie "*.*"
+- détection automatique du caractère d'option  ('/' ou '-')
+- option pour inclure les noms des dossiers dans les recherches avec des jokers
+- option pour traiter les fichiers et dossiers dans tous les sous-dossiers de
+  la cible
+- option pour traiter un fichier avec une liste de cibles ; un argument
+  manquant signifie entrée standard
+
+
+2. Niveaux d'erreur
+-------------------
+
+0   - réglage ou comparaison de l'horodatage ou des attributs effectué avec
+      succès
+1   - l'une des comparaisons est un échec
+2   - erreur d'accès au fichier ou du réglage des attributs ou de l'horodatage
+128 - option invalide ou dupliquée
+129 - options incompatibles, aucune cible ou arguments invalides
+130 - erreur interne (pas assez de mémoire ou répertoire trop profond)
+
+
+3. À faire
+----------
+
+- afficher la liste des fichiers traités
+- comparer/copier l'horodatage/les attributs d'un fichier vers d'autres fichiers
+- incrémenter/décrémenter les champs d'horodatage
+- comparaison supérieur à/inférieur à pour les attributs
+
+
+4. History
+----------
+
+	1.0 [16.02.98]
++ Première édition
+
+	1.1 [19.02.98]
++ Accepte désormais la date et l'heure dans des formats conformes à COUNTRY
+
+	1.2 [21.02.98]
+* Interprétation légèrement améliorée des champs et arguments omis
+* La taille du fichier exécutable a été diminuée
++ Ajout d'une option -a pour modifier les attributs des fichiers et répertoires
+
+	1.3 [21.02.98]
++ Accepte désormais des cibles multiples sur une seule ligne de commande
++ l'option -a peut désormais être utilisée dans les comparaisons
+
+	1.4 [26.02.98]
+# L'exécution ne s'arrête désormais plus lors de la détection d'une erreur pour
+  un fichier mais continue sur les cibles suivantes
+# La sortie n'est désormais plus dupliquée vers la console lors d'une
+  redirection vers un fichier
+* l'option -@ a été renommée en -c
++ L'horodatage des répertoires peut désormais être vérifié lors d'une
+  comparaison
++ Les jokers pour les cibles sont désormais acceptés
++ -r active le traitement des répertoires par des caractères génériques (jokers)
+
+	1.41 [28.02.98]
++ Le caractère pour les options est sélectionné par la première occurrence de
+  '/' ou de '-'
++ Une paire de caractères d'option ("--" ou "//") arrête la recherche d'options
+  suivantes
++ Un caractère d'option seul signifie entrée standard
+- L'ajout d'un caractère d'option avant le nom avec le même caractère au début
+  pour activer un tel nom en tant qu'argument provoque un message d'erreur ;
+  pour transmettre des noms arbitraires insérez une paire de caractères
+  d'option auparavant
+
+	1.5 [14.03.98]
+# Correction de bug : dans certaines conditions les valeurs de jour 30 et 31
+  transmises correctement étaient rejetées
+# Correction de bug : le nom de la cible est désormais en majuscules
+  conformément aux réglages COUNTRY
++ /s traite aussi les fichiers et dossiers dans tous les sous-dossiers de la
+  cible
+
+	2.0 [14.04.98]
+# Correction de bug : perte du bit du signe des secondes lors de la lecture de
+  l'heure du fichier
++ /@ pour traiter un fichier avec une liste de cibles
+* Un caractère d'option seul spécifie désormais l'entrée standard uniquement en
+  tant qu'argument de l'option /@
+  argument
+* Diminution de la taille du fichier exécutable
++ DIET utilisé pour réduire la taille du fichier exécutable
+
+
+5. Auteur
+---------
+					Arkady Belousov
+					E-mail: ark@mos.ru

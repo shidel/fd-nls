@@ -1,0 +1,61 @@
+# Language: dutch
+# File ending: nl
+# Codepage: cp850
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+NAME
+
+CHOICE - Wacht tot de gebruiker een toets indrukt, uit een lijst met keuzes
+
+SYNOPSIS
+
+CHOICE [/B] [/C[:]keuzes] [/N] [/S] [/T[:]c,nn] [tekst]
+
+OPTIONS
+
+/B
+Geeft een geluidssignaal (piep) bij de prompt.
+
+/C[:]keuzes
+Specificeert de toegestane toetsen in de prompt. Wanneer weergegeven,
+worden de toetsen gescheiden door komma's, verschijnen ze tussen
+vierkante haken ([]) en worden ze gevolgd door een vraagteken. Als u de
+/C-schakelaar niet opgeeft, gebruikt CHOICE standaard JN. De dubbele punt (:)
+is optioneel.
+
+/N
+Zorgt ervoor dat CHOICE de prompt niet weergeeft. De tekst vóór de prompt
+wordt echter nog steeds weergegeven. Als u de /N-schakelaar opgeeft,
+zijn de gespecificeerde toetsen nog steeds geldig.
+
+/S
+Zorgt ervoor dat CHOICE hoofdlettergevoelig is. Als de /S-schakelaar niet
+is opgegeven, accepteert CHOICE zowel hoofdletters als kleine letters
+van de toetsen die de gebruiker opgeeft.
+
+/T[:]c,nn
+Zorgt ervoor dat CHOICE een bepaald aantal seconden pauzeert voordat
+er standaard een opgegeven toets wordt gekozen. De waarden voor de
+/T-schakelaar zijn als volgt:
+
+   c   Specificeert het teken dat na nn seconden standaard wordt gekozen.
+       Het teken moet in de set met keuzes staan die is opgegeven door
+       de /C-schakelaar.
+
+   nn  Specificeert het aantal seconden dat moet worden gepauzeerd.
+       Aanvaardbare waarden zijn van 0 tot 99. Als 0 wordt opgegeven,
+       is er geen pauze voor de standaardkeuze.
+
+tekst
+De tekst die als prompt moet worden weergegeven
+
+RETURN VALUE
+
+ERRORLEVEL wordt ingesteld op de index van de toets die de gebruiker indrukt
+in de keuzes.
+
+AUTHOR
+
+Jim Hall, jhall@freedos.org
+

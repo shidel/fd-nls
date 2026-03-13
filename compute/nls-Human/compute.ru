@@ -1,9 +1,3 @@
-#FreeDOS 1.2 Compute Russian Translation.
-#Provided by: Petr Akhlamov
-#Contact Email: petr-akhlamov@yandex.ru
-#Created/Modified: 11/oct/2017, russian, ru, cp 866
-#Released Under GPL v2.0 License.
-
 версия
 Данная утилита поможет вам вычислять математические выражения.
 Написал Laaca под свободной лицензией GNU/GPL.
@@ -18,3 +12,10 @@
 результат слишком большой
 результат слишком маленький
 нулевой или отрицательный логарифм
+
+#FreeDOS 1.2 Compute Russian Translation.
+#Provided by: Petr Akhlamov
+#Contact Email: petr-akhlamov@yandex.ru
+#Created/Modified: 11/oct/2017, russian, ru, cp 866
+#Released Under GPL v2.0 License.
+

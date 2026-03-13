@@ -1,3 +1,5 @@
+es, cp850/858
+
 NOMBRE
 
    CHOICE - Espera a que el usuario escoja una tecla de entre una lista

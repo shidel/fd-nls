@@ -1,0 +1,92 @@
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC jämför två filer eller uppsättningar filer i text- eller binärläge,
+och visar skillnaderna mellan dem.
+
+FC implementerar Paul Heckels algoritm från Communications of the
+Association for Computing Machinery, April 1978, s264 - s268,
+"A Technique for Isolating Differences Between Files".
+
+Denna algoritm har fördelen över andra vanligen använda jämförelsealgoritmer
+att den är snatt och kan identifiera skillnader på godtyckligt många rader.
+För de flesta applikationer isolerar algoritmer skillnader på liknande sätt
+som de som isoleras av längsta gemensamma delsekvens.
+
+Syntaxen är som följer:
+
+FC [flaggor] [enhet1:][sökväg1]filnamn1 [enhet2][sökväg2]filnamn2 [flaggor]
+
+ /A    Visa endast första och sista raderna för varje uppsättning skillnader
+ /B    Utför en binär jämförelse
+ /C    Ignorera skiftläge för bokstäver
+ /L    Jämför filer som ASCII-text
+ /LBn  Sätt maximalt antal konsekutiva olika ASCII-rader till n
+ /Mn   Sätt maximalt antal skillnader i binärjämförelser till n byte
+ /N    Visa radnumren vid en textjämförelse
+ /Q    Visa inte listan över skillnader
+ /R    Visa en kort slutrapport (alltid aktiv när /S används)
+ /S    Utöka genomsökning till filer i underkataloger
+ /T    Expandera inte tabbar till blanksteg
+ /U    Visa filnamnen för filer utan motsvarighet
+ /W    Packa tomrum (tabbar och blanksteg) för textjämförelse
+ /X    Visa inte kontextrader i textjämförelse
+ /nnn  Sätt minimalt antal konsekutiva matchande rader till nnn
+       för omsynkronisering vid jämförelse
+
+Programmet har LFN-stöd och använder dem automatiskt om operativsystemet
+har stöd för långa filnamn.
+
+FC använder binärläge som standard för filer vars namn slutar på .EXE, .COM,
+.SYS, .OBJ, .BIN, .DLL och .LIB.
+
+I binärläge visar FC positionen i filen där bytear skiljer sig, deras
+hexadecimala värden och, om de är utskrivbara, deras ASCII-tecken.
+
+Som standard avslutas binärjämförelsen efter 20 skillnader men det värdet kan
+modifieras via flaggan /M. /M0 innebär "obegränsade skillnader". /M tolkas som
+/M0.
+
+En designbegränsning för detta program är att i filjämförelser i textläget så
+jämförs endast de första 32765 raderna; de återstående raderna hoppas över.
+Radlängden är i princip obegränsad.
+
+FC har stöd för jokertecken i filspecifikationer. Ett par ord om detta:
+- angivelse av en katalog är detsamma som att ange alla filerna i den
+  katalogen (d.v.s. "*.*").
+  Exempel: "FC C:\ A:" är det samma som "FC C:\*.* A:*.*"
+- om inget filnamn2 anges antas "." (aktuell katalog).
+  Exempel: "FC C:\FOO.TXT" är detsamma som "FC C:\FOO.TXT .\*.*"
+- om filnamn1 har jokertecken men filnamn2 inte har det så kommer alla filer som
+  matchar filnamn1 att jämföras med samma fil filnamn2.
+  Exempel: "FC FOO.BK? FOO.TXT"
+           Alla filerna FOO.BK? jämförs med FOO.TXT
+- om filnamn1 har jokertecken och filnamn2 är en sökväg åtföljd av "*.*" så
+  jämförs alla filerna som matchar filnamn1 med filerna med samma namn men in
+  sökvägen som anges av filnamn2 (om den filen existerar).
+  Exempel: "FC *.* A:*.*" eller kortare "FC . A:"
+           Alla filerna i den aktuella katalogen jämförs med deras kopia i A:.
+- om både filnamn1 och filnamn2 har jokertecken då kommer alla filerna i
+  sökvägen filnamn1 och som matchar filnamn1 att jämföras med relevant fil
+  matchandes filnamn2 i sökvägen angiven av filnamn2 (om den filen existerar).
+  Exempel: "FC *.TXT OLDS\*.BAK"
+           Alla filerna i den aktuella katalogen jämförs med deras
+	   säkerhetskopia omnamnad till .BAK i underkatalogen OLDS.
+Det är enklare gjort än sagt.
+Om det du faktiskt vill göra är att jämföra varje fil i en katalog med alla
+filerna i en annan kan du alltid använda formen:
+FC *.* MINKAT\????????.???
+
+Flaggan /S itererar samma sökmönster i underkatalogerna med samma namn i båda
+sökvägarna.
+  Exempel: "FC /S C:*.TXT D:*.BAK"
+           Under antagandet att det finns underkataloger C:OOK och D:BOK, jämför
+	   detta kommando alla *.TXT-filer med deras säkerhetskopior *.BAK i
+	   aktuella kataloger och också alla BOK\*.TXT-filer med deras
+	   säkerhetskopior BOK\*.BAK.
+
+Avslutningskoder för ERRORLEVEL är som följer:
+	0	Alla filerer matchar
+	1	Åtminstone ett par filer skiljer sig
+	2	Ogiltig parameter på kommandoradern
+	3	Fil hittades ej
+	4	Fel vid öppning av fil(er)

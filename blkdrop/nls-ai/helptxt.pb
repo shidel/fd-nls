@@ -1,0 +1,68 @@
+# Language: Portuguese (Brazil)
+# File ending: PB
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+uso: BLKDROP.EXE [opá‰es]
+
+    [opá‰es]      Claro, como se vocà realmente precisasse de uma opá∆o
+
+BlockDrop requer um mouse e um computador 386 ou superior com gr†ficos VGA.
+Ainda n∆o tive tempo de adicionar som. Algum dia.
+
+A ideia b†sica do jogo n∆o Ç muito complicada. Dependendo do n°vel, h† um
+n£mero de blocos coloridos e especiais colocados aleatoriamente em um
+alimentador de blocos.
+
+H† uma visualizaá∆o prÇvia do alimentador no canto inferior direito da tela.
+Ela mostra as pr¢ximas 20 fileiras de blocos. Quando um bloco chega ao fundo do
+alimentador, ele Ç exibido em detalhes acima da zona de queda.
+
+Ao contr†rio de outros jogos, os blocos acima da zona de queda caem reto e n∆o
+podem ser movidos. Eventualmente, eles pousam em uma pilha. AtÇ que pousem,
+eles s∆o imunes a qualquer interaá∆o.
+
+N∆o deixe os blocos acumularem muito alto. Eles v∆o travar o alimentador e
+vocà perder† uma vida, foráando-o a recomeáar o n°vel.
+
+Mas n∆o se preocupe, uma vez que os blocos estejam na pilha, h† v†rias maneiras
+de removà-los e tornar a pilha mais curta. Geralmente, um grupo de tràs ou mais
+blocos pode ser clicado para ser removido. Quanto mais blocos nesse grupo,
+mais pontos.
+
+Existem blocos duros (parecem um X vermelho), que n∆o podem ser clicados para
+serem removidos, n∆o importa quantos estejam encostados uns nos outros. Vocà s¢
+pode se livrar deles detonando uma bomba padr∆o por perto. Fazer isso remove
+todos os blocos nas proximidades imediatas da bomba.
+
+TambÇm existem blocos de bomba de cor especiais que remover∆o todos os blocos
+da mesma cor da pilha. E outros tipos de blocos de tarefas especiais.
+
+Quando os blocos s∆o removidos da pilha, os blocos que est∆o caindo hesitam
+intencionalmente um pouco para permitir que a pilha colapse totalmente antes
+de pousar.
+
+Ah... Se vocà atingir um n°vel alto o suficiente e vir uma caveira com ossos
+cruzados, n∆o clique nela. ê morte instantÉnea. ê o £nico bloco em que vocà
+nunca vai querer clicar.
+
+Durante o jogo, vocà pode usar -/+ para Ös vezes desacelerar ou acelerar o jogo.
+Isso n∆o afeta sua pontuaá∆o e Ç voltado para jogadores experientes que podem
+ficar entediados nos n°veis iniciais mais lentos.
+
+No in°cio de um n°vel, vocà pode pressionar tab para pular esse n°vel. Mas
+esteja avisado, os n°veis s¢ ficam mais r†pidos e dif°ceis.
+
+Atualmente, quando os blocos s∆o removidos da pilha, eles apenas colapsam para
+baixo. No entanto, estou considerando fazà-los mover-se para dentro para
+preencher colunas vazias tambÇm. AlÇm disso, acho que o jogo pode ficar dif°cil
+r†pido demais. Alguns ajustes na taxa de dificuldade podem ser necess†rios.
+Ent∆o, em vez de sempre ficar mais r†pido, posso aumentar o n£mero de blocos
+que caem simultaneamente. Mas, por enquanto, vou esperar e ver o que os
+usu†rios acham do jogo atÇ agora.
+
+Tenho certeza de que vocà consegue descobrir o resto.
+
+:-)
+

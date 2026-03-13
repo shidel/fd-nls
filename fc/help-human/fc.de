@@ -1,0 +1,112 @@
+FC v. 3.03 (c) 2004 Maurizio Spagni
+
+FC vergleicht zwei Dateien oder Dateis„tze im Text- oder Bin„rmodus und
+zeigt die Unterschiede zwischen ihnen.
+
+FC implementiert Paul Heckels Algorithmus aus der Communications of the
+Association for Computing Machinery, April 1978, S. 264 - S. 268,
+"Eine Technik zum Isolieren von Unterschieden zwischen Dateien".
+
+Dieser Algorithmus hat den Vorteil gegenber h„ufiger verwendeten
+Vergleichsalgorithmen dass er schnell ist und Unterschiede einer
+beliebigen Anzahl von Zeilen erkennen kann.
+Fr die meisten Anwendungen isoliert der Algorithmus Unterschiede „hnlich
+zu denjenigen die durch die l„ngste gemeinsame Teilsequenz isoliert sind.
+
+Die Syntax lautet wie folgt:
+
+FC [Schalter] [Laufw1:][Pfad1]Dateiname1 [Laufw2][Pfad2]Dateiname2 [Schalter]
+
+ /A    Zeige nur die erste und letzte Zeile von mehreren Abweichungen
+       in Folge
+ /B    Bin„ren Vergleich durchfhren
+ /C    Groá- und Kleinschreibung nicht bercksichtigen
+ /L    Dateien als ASCII Text vergleichen
+ /LBn  Anzeige der zusammenh„ngenden Unterschiede auf n Textzeilen
+       beschr„nken
+ /Mn   Anzeige auf n Bytes bei bin„rem Vergleich beschr„nken
+       (Standard = %d, 0 = unbegrenzt, /M = /M0)
+ /N    Zeilennummern beim Textvergleich anzeigen
+ /Q    Zeige die Liste der Unterschiede nicht an
+ /R    Zeige einen genauen Bericht am Ende an (immer aktiv wenn /S benutzt)
+ /S    Dateien in Unterverzeichnissen mit einbeziehen
+ /T    Tabulatoren nicht durch Leerzeichen ersetzen
+ /U    Zeige die Namen der Dateien, die kein Gegenstck haben
+ /W    Tabulatoren und Leerzeichen beim Textvergleich komprimieren
+ /X    Umgebungszeilen beim Textvergleich nicht anzeigen
+ /nnn  Mindestanzahl der zusammenh„ngenden šbereinstimmungen auf nnn
+       Zeilen fr die Resynchronisation des Vergleichs festlegen
+
+Das Programm ist LFN-f„hig und verwendet diese automatisch, wenn das
+Betriebssystem die langen Dateinamen untersttzt.
+
+FC verwendet standardm„áig fr Dateien .EXE, .COM, .SYS, .OBJ, .BIN,
+.DLL und .LIB den Bin„rmodus.
+
+Im Bin„rmodus zeigt FC den Offset der abweichenden Bytes in der Datei,
+deren Wert in hexadezimaler Form und, wenn es sich um druckbare
+ASCII-Zeichen handelt, deren ASCII-Zeichen.
+
+Standardm„áig stoppt der bin„re Vergleich nach 20 Unterschieden, aber
+dieser Wert kann ber den Schalter /M ge„ndert werden. /M0 bedeutet
+"unbegrenzte Unterschiede". /M wird als /M0 interpretiert.
+
+Eine Designeinschr„nkung dieses Programms besteht darin, dass im
+Textmodusdateivergleich nur die ersten 32.765 Zeilen verglichen werden;
+die restlichen Zeilen werden ignoriert. Die Zeilenl„nge ist praktisch
+unbegrenzt.
+
+FC untersttzt bei den Dateispezifizierungen Wildcards. Einige Worte
+hierzu:
+- Die Angabe eines Verzeichnisses entspricht der Angabe aller darin
+  enthaltenen Dateien im Verzeichnis (d. h. "*.*").
+  Beispiel: "FC C:\ A:" entspricht "FC C:\*.* A:*.*"
+- Wenn kein Dateiname2 eingegeben wird, dann wird "." (das aktuelle
+  Verzeichnis) angenommen.
+  Beispiel: "FC C:\FOO.TXT" entspricht "FC C:\FOO.TXT .\*.*"
+- Wenn Dateiname1 Wildcards hat, Dateiname2 jedoch nicht, dann werden
+  alle bereinstimmenden Dateinamen1 mit derselben Datei Dateiname2
+  verglichen.
+  Beispiel: "FC FOO.BK? FOO.TXT"
+              Alle Dateien FOO.BK? werden mit FOO.TXT verglichen.
+- Wenn Dateiname1 Wildcards hat und Dateiname2 ein Pfad ist, dem "*.*"
+  folgt, dann werden alle Dateien, die mit Dateiname1 bereinstimmen
+  verglichen mit den Dateien mit gleichem Namen aber im Pfad der mit
+  Dateiname2 angegeben ist (natrlich nur, wenn diese Datei existiert).
+  Beispiel: "FC *.* A:*.*" oder kurz "FC . A:"
+            Alle Dateien im aktuellen Verzeichnis werden mit ihre Kopie
+            auf A: verglichen.
+- Wenn Dateiname1 Wildcards hat und Dateiname2 auch, dann werden alle
+  Dateien im Pfad von Dateiname1 und dem passenden Dateiname1 verglichen
+  mit der bereinstimmenden Datei mit Dateiname2 im von Dateiname2
+  angegebenen Pfad (natrlich nur, wenn diese Datei existiert).
+  Beispiel: "FC *.TXT OLDS\*.BAK"
+            Alle Dateien im aktuellen Verzeichnis werden mit ihren
+            Sicherungskopie verglichen, die im Unterverzeichnis OLDS in
+            .BAK umbenannt ist.
+Es ist leichter getan als gesagt.
+Wenn Sie wirklich jede Datei in einem Verzeichnis mit allen in einem
+anderen Verzeichnis vergleichen m”chten, k”nnen Sie jederzeit folgende
+Eingabe verwenden:
+FC *.* MEINVERZEICHNIS\?????????.???
+
+Die Option /S wiederholt das gleiche Suchmuster in den Unterverzeich-
+nissen mit dem gleichen Namen in beiden Pfaden.
+  Beispiel: "FC /S C:*.TXT D:*.BAK"
+            Angenommen es existieren z.B. die Unterverzeichnisse c:\BOOK
+            und D:\BOOK, vergleicht dieser Befehl alle *.TXT-Dateien mit
+            ihren Sicherungskopien *.BAK in den aktuellen Verzeichnissen
+            und auch alle BOOK\*.TXT-Dateien mit ihren Sicherungskopien
+            BOOK\*.BAK.
+  
+Angenommen zum Beispiel die Existenz der Unterverzeichnisse C:\BOOK
+und D:\BOOK vergleicht dieser Befehl alle *.TXT-Dateien mit ihren
+Sicherungskopien *.BAK in die aktuellen Verzeichnisse und auch alle
+BOOK\*.TXT-Dateien mit ihren Sicherungskopien BOOK\*.BAK.
+
+Die Exitcodes fr ERRORLEVEL lauten wie folgt:
+        0       Alle Dateien stimmen berein
+        1       Mindestens ein Paar Dateien unterscheidet sich
+        2       Ungltiger Parameter in der Kommandozeile
+        3       Datei nicht gefunden
+        4       Fehler beim ™ffnen der Datei(en)

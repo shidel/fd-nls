@@ -1,0 +1,57 @@
+# Language: czech
+# File ending: cz
+# Codepage: cp852
+# This translation was made by Google AI, please help the
+# FreeDOS group to improve it.
+
+NAME
+
+CHOICE - Ceká, až uživatel stiskne klávesu ze seznamu voleb
+
+SYNOPSIS
+
+CHOICE [/B] [/C[:]volby] [/N] [/S] [/T[:]c,nn] [text]
+
+OPTIONS
+
+/B
+Vydá zvukové upozornení (pípnutí) pri výzve.
+
+/C[:]volby
+Urcuje povolené klávesy ve výzve. Pri zobrazení budou klávesy
+oddeleny cárkami, zobrazeny v hranatých závorkách ([]) a následovány
+otazníkem. Pokud nezadáte prepínac /C, CHOICE použije jako výchozí AN.
+Dvojtecka (:) je volitelná.
+
+/N
+Zpusobí, že CHOICE nezobrazí výzvu. Text pred výzvou se však stále
+zobrazí. Pokud zadáte prepínac /N, zadané klávesy jsou stále platné.
+
+/S
+Zpusobí, že CHOICE bude rozlišovat velikost písmen. Pokud prepínac /S
+není zadán, CHOICE prijme velká i malá písmena kláves zadaných
+uživatelem.
+
+/T[:]c,nn
+Zpusobí, že CHOICE pocká zadaný pocet sekund, než se automaticky
+zvolí zadaná klávesa. Hodnoty pro prepínac /T jsou následující:
+
+   c   Urcuje znak, který se má automaticky zvolit po nn sekundách.
+       Znak musí být v sade voleb urcené prepínacem /C.
+
+   nn  Urcuje pocet sekund cekání. Prípustné hodnoty jsou od 0 do 99.
+       Pokud je zadáno 0, nedojde k žádnému cekání pred automatickou
+       volbou.
+
+text
+Text, který se má zobrazit jako výzva
+
+RETURN VALUE
+
+ERRORLEVEL je nastaven na index klávesy, kterou uživatel stiskl ve volbách.
+
+AUTHOR
+
+Jim Hall, jhall@freedos.org
+
+

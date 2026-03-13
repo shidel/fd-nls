@@ -1,0 +1,58 @@
+# Language: Slovenian
+# File ending: SL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+IME
+
+   CHOICE - PoŸaka, da uporabnik pritisne tipko s seznama izbir
+
+POVZETEK
+
+   CHOICE [/B] [/C[:]izbire] [/N] [/S] [/T[:]c,nn] [besedilo]
+
+MO¦NOSTI
+
+ /B
+    Ob pozivu odda zvoŸni signal (pisk).
+
+ /C[:]izbire
+    DoloŸi dovoljene tipke v pozivu. Pri prikazu bodo tipke loŸene z
+    vejicami, pojavile se bodo v oglatih oklepajih ([]) in sledil jim
+    bo vpraçaj. ¬e stikala /C ne doloŸite, choice privzeto uporabi YN.
+    DvopiŸje (:) je neobvezno.
+
+ /N
+   PovzroŸi, da choice ne prika§e poziva. Besedilo pred pozivom se
+   vendarle prika§e. ¬e doloŸite stikalo /N, so doloŸene tipke çe
+   vedno veljavne.
+
+ /S
+   PovzroŸi, da choice razlikuje med velikimi in malimi Ÿrkami. ¬e
+   stikalo /S ni doloŸeno, choice sprejme tako velike kot male Ÿrke
+   tipk, ki jih doloŸi uporabnik.
+
+ /T[:]c,nn
+     PovzroŸi, da choice poŸaka doloŸeno çtevilo sekund, preden
+     izbere privzeto doloŸeno tipko. Vrednosti za stikalo /T so
+     naslednje:
+
+       c   DoloŸi znak, ki se prika§e po nn sekundah. Znak mora
+           biti v naboru izbir, doloŸenih s stikalom /C.
+
+       nn  DoloŸi çtevilo sekund za premor. Sprejemljive vrednosti
+           so od 0 do 99. ¬e je doloŸeno 0, pred izbiro privzete
+           tipke ne bo premora.
+
+   besedilo
+     Niz poziva za prikaz
+
+POVRATNA VREDNOST
+
+   ERRORLEVEL se nastavi na odmik tipke, ki jo uporabnik pritisne v izbirah.
+
+AVTOR
+
+   Jim Hall, jhall@freedos.org
+
