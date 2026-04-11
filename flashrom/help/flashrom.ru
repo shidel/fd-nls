@@ -1,0 +1,12 @@
+# Language: Russian
+# File ending: RU
+# Codepage: 866
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+FLASHROM
+
+FLASHROM - это универсальный инструмент для резервного копирования и
+обновления системного BIOS.
+Используйте с крайней осторожностью, так как это может нанести непоправимый
+ущерб вашей системе.

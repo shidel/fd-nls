@@ -1,0 +1,12 @@
+# Language: Slovenian
+# File ending: SL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+FLASHROM
+
+FLASHROM je univerzalno orodje za varnostno kopiranje in posodabljanje
+sistemskega BIOS-a.
+Uporabljajte z izjemno previdnostjo, saj lahko nepopravljivo poçkoduje
+vaç sistem.

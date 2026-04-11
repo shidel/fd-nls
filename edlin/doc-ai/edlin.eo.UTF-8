@@ -1,0 +1,174 @@
+# Language: Esperanto
+# File ending: EO
+# Codepage: 853
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+
+La programo edlin estas malgranda liniredaktilo, verkita por FreeDOS kiel
+funkcia klono de la malnova MS-DOS-programo edlin. Ĝi diferencas de MS
+edlin pro tio, ke unue, ĝi estas libera programaro, kaj due, la uzantinterfaco
+estas iomete malsama en kelkaj lokoj. La kialo de la diferenco estas por
+ke la uzanto ne devu tajpi stirsignojn postulatajn de la sintakso de MS edlin.
+
+VOKI EDLIN-ON
+
+La programo edlin estas vokata aŭ per si mem:
+
+  edlin
+
+aŭ kun dosiernomo kiu estas komence legata:
+
+  edlin dosiero
+
+INTERNAJ KOMANDOJ DE EDLIN
+
+En la sekvaj komandolistoj, krampoj reprezentas laŭvolajn konstruojn. La
+simbolo # reprezentas linian numeron, kiu estas aŭ vico de ciferoj, punkto
+(.) reprezentanta la nunan linion, dolarsigno ($) reprezentanta la lastan
+linion en la dosiero, aŭ linia numero adiciita aŭ subtrahita de alia linia
+numero, tiel ke
+
+  .,.+1p
+
+presas la nunan linion kaj la sekvan linion.
+
+Dolarsigno en la sekvaj listoj reprezentas signoĉenon. Ili povas esti
+ĉirkaŭitaj de aŭ unuopaj aŭ duoblaj citiloj kaj povas enhavi la sekvajn
+stirsencojn (escape sequences):
+
+  \a - alarmo (alert)
+  \b - malantaŭenŝovo (backspace)
+  \e - eskapo (escape)
+  \f - paĝofaligo (formfeed)
+  \t - horizontala tabo
+  \v - vertikala tabo
+  \" - duobla citilo
+  \' - unuopa citilo
+  \. - punkto
+  \\ - deklivo (backslash)
+  \xXX kie X estas deksesuma cifero (0-9, a-f) - deksesuma konstanto
+  \dddd kie d estas dekuma cifero (0-9) - dekuma konstanto
+  \OOO kie O estas okuma cifero (0-7) - okuma konstanto
+  \^C - stirsigno (control character)
+
+La programo edlin subtenas la sekvan sintakson:
+
+# - REDAKTI UNUNURAN LINION
+
+La programo edlin montras la ununuran linion indikitan de la numero, kaj
+la sekva enmetita linio anstataŭigas la montritan linion en la dosiero.
+
+a - POSTALDONI (APPEND)
+
+Ĉi tiu komando estas ekvivalenta al $+1i .
+
+[#],[#],#,[#]c - KOPII LINIO-INTERVALON
+
+Ĉi tiu komando kopias blokon de sinsekvaj linioj al alia loko en la bufro.
+La parametroj estas:
+
+  * La unua linio kiun vi volas kopii (defaŭlte = nuna linio)
+  * La lasta linio kiun vi volas kopii (defaŭlte = nuna linio)
+  * La linio antaŭ kiu vi volas enmeti la blokon de linioj
+  * La nombro da fojoj kiujn vi volas kopii la blokon (defaŭlte = 1)
+
+Post kiam edlin kopias liniojn, vi povas uzi la komandon l (listigi) por
+vidi la ĝuste re-numeritajn liniojn.
+
+[#][,#]d - FORVIŜI BLOKON DE LINIOJ
+
+Ĉi tiu komando forviŝas blokon de sinsekvaj linioj. La parametroj estas la
+unua kaj lasta linio de la bloko forviŝenda.
+
+Se vi preterlasas la duan parametron, ĝi forviŝas nur la linion specifitan
+en la unua parametro. Se vi preterlasas la unuan parametron, ĝi forviŝas la
+blokon de la nuna linio ĝis la linio specifita en la dua parametro (nepre
+inkluzivu la komon). Preterlaso de ambaŭ parametroj kaŭzas la forviŝon de la
+nuna linio.
+
+e dosiernomo - KONSERVI KAJ ELIRI
+
+Ĉi tiu komando estas ekvivalenta al
+
+  w dosiernomo
+
+sekvata de
+
+  q
+
+[#]i - ENMETA REĜIMO (INSERT)
+
+Ĉi tiu komando eniras la enmetan reĝimon. Ĝia parametro estas la linia numero
+antaŭ kiu vi volas enmeti liniojn.
+
+Dum enmetado, stirsencoj kiel tiuj supre estas permesitaj. Por eliri el la
+enmeta reĝimo, tajpu punkton (.) sur alie malplena linio (se vi bezonas linion
+kun nur punkto, eskapu ĝin per deklivo).
+
+Post eliro el la enmeta reĝimo, la linio post la enmetita teksto fariĝas la
+nuna linio krom se la enmeto estis postaldonita al la fino de la teksto, en
+kiu kazo la lasta linio de la teksto fariĝas la nova nuna linio.
+
+[#][,#]l - LISTIGI LINIOJN
+
+Ĉi tiu komando listigas liniojn de teksto sur la ekrano. Se vi preterlasas
+la unuan parametron, la komando komencas montri tekston ekde 11 linioj antaŭ
+la nuna linio. Preterlaso de la dua parametro montras paĝon de teksto ekde
+la linio specifita en la unua parametro. Preterlaso de ambaŭ montras unu
+paĝon de teksto ekde 11 linioj antaŭ la nuna linio. En ĉiuj kazoj, se la
+nombro da linioj estas pli granda ol la nombro da linioj en paĝo, la programo
+petos konfirmon post ĉiu paĝo.
+
+[#],[#],#m - MOVI BLOKON
+
+Ĉi tiu komando movas blokon de teksto al la linio antaŭ la numero specifita
+en la tria parametro. Ĝi estas simila al kopiado, poste forviŝado de la
+originala bloko.
+
+[#][,#]p - PAĜO (PAGE)
+
+Ĉi tio estas simila al l krom ke la defaŭlta paĝo komenciĝas per la nuna
+linio anstataŭ 11 linioj antaŭe.
+
+q - ELIRI (QUIT)
+
+Memklarigebla. Eliras sen plu konservi.
+
+[#][,#][?]r$,$ - ANSTATAŬIGI SIGNOĈENON
+
+Ĉi tiu komando anstataŭigas ĉiujn aperojn de la unua signoĉeno per la dua
+inter la du linioj specifitaj. Preterlasita unua parametro komencas la
+anstataŭigon ĉe la linio post la nuna linio; preterlasita dua parametro
+haltigas la anstataŭigon ĉe la lasta linio de la dosiero.
+
+La demandosigno sendas konfirman mesaĝon antaŭ la anstataŭigo.
+
+[#][,#][?]s$ - SERĈI SUBĈENON
+
+Ĉi tiu komando serĉas la unuan linion enhavantan la specifitan subĉenon.
+Preterlaso de la unua parametro kaŭzas ke la serĉo komenciĝas ĉe la nuna
+linio; preterlaso de la dua haltigas la serĉon ĉe la fino de la dosiero.
+
+La demandosigno igas la serĉon sendi konfirman mesaĝon. Diri "N" (Ne) al la
+konfirma mesaĝo daŭrigas la serĉon; diri "J" (Jes) finas ĝin.
+
+La nuna linio estos restarigita al la linio kie la serĉo finiĝis se ĝi estis
+sukcesa.
+
+[#]t dosiernomo - TRANSDONI DOSIERON
+
+Ĉi tiu komando igas la enhavon de la dosiero esti enmetita antaŭ la linia
+numero specifita. Se la linia numero estas preterlasita, la defaŭlto estas
+la nuna linio.
+
+[#]w dosiernomo - SKRIBI DOSIERON
+
+Ĉi tiu komando igas la unuan nombron da linioj specifitaj per la parametro
+esti skribitaj al la dosiero specifita. Se la parametro estas preterlasita,
+ĝi skribos ĉiujn liniojn en la bufro al la dosiero.
+
+AŬTORO/ZORGISTO
+
+Gregory Pietsch, gpietsch@comcast.net

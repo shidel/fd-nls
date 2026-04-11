@@ -1,0 +1,159 @@
+# Language: Portuguese
+# File ending: PT
+# Codepage: 860
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+
+O programa edlin é um pequeno editor de linhas, escrito para o FreeDOS como
+um clone funcional do antigo programa edlin do MS-DOS. Difere do MS-edlin
+porque, primeiro, é software livre e, segundo, a interface do utilizador é
+ligeiramente diferente em alguns pontos. O motivo da diferença é evitar que
+o utilizador tenha de digitar caracteres de controlo exigidos pela sintaxe
+do MS-edlin.
+
+INVOCAÇÃO DO EDLIN
+
+O programa edlin é invocado ou sozinho:
+
+  edlin
+
+ou com um nome de arquivo que é lido inicialmente:
+
+  edlin arquivo
+
+COMANDOS INTERNOS DO EDLIN
+
+Nas seguintes listas de comandos, os parênteses representam elementos
+opcionais. O símbolo # representa um número de linha, que pode ser uma
+sequência de dígitos, um ponto (.) representando a linha atual, um cifrão
+($) representando a última linha do arquivo, ou um número somado ou
+subtraído de outro, de modo que:
+
+  .,.+1p
+
+imprime a linha atual e a linha seguinte.
+
+Um cifrão nas listas seguintes representa uma cadeia de caracteres. Podem
+estar entre aspas simples ou duplas e conter as seguintes sequências de
+escape:
+
+  \a - alerta (bipe)
+  \b - backspace
+  \e - escape
+  \f - alimentação de formulário
+  \t - tabulação horizontal
+  \v - tabulação vertical
+  \" - aspas duplas
+  \' - aspa simples
+  \. - ponto
+  \\ - barra invertida
+  \xXX (X é dígito hexa 0-9, a-f) - constante hexadecimal
+  \dddd (d é dígito decimal 0-9) - constante decimal
+  \OOO (O é dígito octal 0-7) - constante octal
+  \^C - caractere de controlo
+
+O programa edlin suporta a seguinte sintaxe:
+
+# - EDITAR UMA LINHA ÚNICA
+
+O edlin exibe a linha indicada pelo número, e a linha seguinte introduzida
+substitui a linha exibida no arquivo.
+
+a - ANEXAR (APPEND)
+
+Este comando é equivalente a $+1i .
+
+[#],[#],#,[#]c - COPIAR UM INTERVALO DE LINHAS
+
+Copia um bloco de linhas consecutivas para outro local no buffer. Os
+parâmetros são:
+
+  * A primeira linha a copiar (padrão = linha atual)
+  * A última linha a copiar (padrão = linha atual)
+  * A linha antes da qual inserir o bloco de linhas
+  * O número de vezes que deseja copiar o bloco (padrão = 1)
+
+Após copiar, pode usar o comando l (list) para ver as linhas renumeradas.
+
+[#][,#]d - EXCLUIR UM BLOCO DE LINHAS
+
+Exclui um bloco de linhas consecutivas. Os parâmetros são a primeira e a
+última linha do bloco a ser excluído.
+
+Se omitir o segundo parâmetro, exclui apenas a linha especificada no
+primeiro. Se omitir o primeiro, exclui desde a linha atual até à linha do
+segundo parâmetro (inclua a vírgula). Omitir ambos exclui a linha atual.
+
+e nomearquivo - SALVAR E SAIR
+
+Equivale a:
+
+  w nomearquivo
+  q
+
+[#]i - MODO DE INSERÇÃO
+
+Entra no modo de inserção. O parâmetro é o número da linha antes da qual
+deseja inserir texto.
+
+Ao inserir, as sequências de escape são válidas. Para sair, digite um ponto
+(.) numa linha vazia (se precisar de uma linha apenas com um ponto, use um
+caractere de escape).
+
+Após sair, a linha depois do texto inserido torna-se a linha atual, exceto
+se a inserção foi anexada ao fim; nesse caso, a última linha torna-se a
+nova linha atual.
+
+[#][,#]l - LISTAR LINHAS
+
+Exibe linhas de texto no ecrã. Sem o primeiro parâmetro, começa 11 linhas
+antes da atual. Sem o segundo, mostra uma página. Sem ambos, mostra uma
+página desde 11 linhas antes da atual. Se o número de linhas for superior a
+uma página, o programa fará uma pausa após cada ecrã.
+
+[#],[#],#m - MOVER BLOCO
+
+Move um bloco de texto para antes da linha indicada no terceiro parâmetro.
+É como copiar e depois excluir o bloco original.
+
+[#][,#]p - PÁGINA
+
+Semelhante a l, mas a página padrão começa na linha atual em vez de 11
+linhas antes.
+
+q - SAIR (QUIT)
+
+Sai sem salvar mais alterações.
+
+[#][,#][?]r$,$ - SUBSTITUIR CADEIA
+
+Substitui a primeira cadeia pela segunda entre as linhas indicadas. Sem o
+primeiro parâmetro, começa após a linha atual; sem o segundo, para na
+última linha do arquivo.
+
+O ponto de interrogação (?) pede confirmação antes de cada substituição.
+
+[#][,#][?]s$ - PROCURAR CADEIA
+
+Procura a primeira linha que contém a cadeia indicada. Sem o primeiro
+parâmetro, procura a partir da atual; sem o segundo, procura até ao fim.
+
+O ponto de interrogação (?) ativa a confirmação. Responder "N" (Não)
+continua a busca; "S" (Sim) encerra-a. Se for bem-sucedido, a linha atual
+será definida onde a busca terminou.
+
+[#]t nomearquivo - TRANSFERIR ARQUIVO
+
+Insere o conteúdo de um arquivo externo antes da linha indicada. Por
+padrão, é a linha atual.
+
+[#]w nomearquivo - GRAVAR ARQUIVO
+
+Grava o número de linhas indicado no arquivo. Sem parâmetro, grava todo o
+buffer.
+
+AUTOR/MANUTENÇÃO
+
+Gregory Pietsch, gpietsch@comcast.net

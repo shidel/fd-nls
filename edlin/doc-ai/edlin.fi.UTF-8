@@ -1,0 +1,166 @@
+# Language: Finnish
+# File ending: FI
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+
+edlin-ohjelma on pieni rivieditori, joka on kirjoitettu FreeDOS-käyttöjärjestelmälle
+vanhan MS-DOS edlin -ohjelman toiminnalliseksi kopioksi. Se eroaa MS-edlinistä
+siinä, että se on ensinnäkin vapaa ohjelmisto ja toiseksi sen käyttöliittymä
+on muutamissa kohdissa hieman erilainen. Syynä eroihin on se, ettei käyttäjän
+tarvitse kirjoittaa MS-edlinin syntaksin edellyttämiä ohjausmerkkejä.
+
+EDLININ KÄYNNISTÄMINEN
+
+edlin-ohjelma käynnistetään joko yksinään:
+
+  edlin
+
+tai tiedostonimen kanssa, joka luetaan sisään käynnistyksen yhteydessä:
+
+  edlin tiedosto
+
+EDLININ SISÄISET KOMENNOT
+
+Seuraavissa komentoluetteloissa hakasulkeet edustavat valinnaisia rakenteita.
+#-symboli tarkoittaa rivinumeroa, joka on joko numerosarja, nykyistä riviä
+edustava piste (.), viimeistä riviä edustava dollarimerkki ($) tai rivinumero,
+johon on lisätty tai josta on vähennetty toinen rivinumero, jolloin esimerkiksi:
+
+  .,.+1p
+
+tulostaa nykyisen rivin ja sitä seuraavan rivin.
+
+Seuraavien luetteloiden dollarimerkki edustaa merkkijonoa. Ne voidaan sulkea
+joko yksinkertaisiin tai kaksinkertaisiin lainausmerkkeihin ja ne voivat
+sisältää seuraavia ohjauskoodeja (escape sequences):
+
+  \a - hälytys (alert)
+  \b - askelpalautin (backspace)
+  \e - escape
+  \f - sivunvaihto (formfeed)
+  \t - vaakasuuntainen sarkain
+  \v - pystysuuntainen sarkain
+  \" - kaksinkertainen lainausmerkki
+  \' - yksinkertainen lainausmerkki
+  \. - piste
+  \\ - kenoviiva
+  \xXX (missä X on heksadesimaali 0-9, a-f) - heksadesimaalivakio
+  \dddd (missä d on desimaalinumero 0-9) - desimaalivakio
+  \OOO (missä O on oktaalinumero 0-7) - oktaalivakio
+  \^C - ohjausmerkki (control character)
+
+edlin tukee seuraavaa syntaksia:
+
+# - MUOKKAA YKSITTÄISTÄ RIVIÄ
+
+edlin tulostaa numeron osoittaman yksittäisen rivin, ja seuraava syötetty
+rivi korvaa tiedostossa olevan tulostetun rivin.
+
+a - LISÄÄ LOPPUUN (APPEND)
+
+Tämä komento vastaa komentoa $+1i .
+
+[#],[#],#,[#]c - KOPIOI RIVIVÄLI
+
+Tämä komento kopioi peräkkäisten rivien lohkon toiseen paikkaan puskurissa.
+Parametrit ovat:
+
+  * Ensimmäinen kopioitava rivi (oletus = nykyinen rivi)
+  * Viimeinen kopioitava rivi (oletus = nykyinen rivi)
+  * Rivi, jota ennen rivilohko halutaan lisätä
+  * Lohkon kopiointikertojen määrä (oletus = 1)
+
+Kopioinnin jälkeen voit käyttää l-komentoa (list) nähdäksesi oikein
+uudelleennumeroidut rivit.
+
+[#][,#]d - POISTA RIVILOHKO
+
+Tämä komento poistaa peräkkäisten rivien lohkon. Parametrit ovat poistettavan
+lohkon ensimmäinen ja viimeinen rivi.
+
+Jos jätät toisen parametrin pois, se poistaa vain ensimmäisessä parametrissa
+määritetyn rivin. Jos jätät ensimmäisen parametrin pois, se poistaa lohkon
+nykyisestä rivistä toisessa parametrissa määritettyyn riviin asti (muista
+pilkku). Molempien parametrien jättäminen pois poistaa nykyisen rivin.
+
+e tiedostonimi - TALLENNA JA LOPETA
+
+Tämä komento vastaa komentoja:
+
+  w tiedostonimi
+  q
+
+[#]i - LISÄYSTILA (INSERT)
+
+Tämä komento siirtyy lisäystilaan. Sen parametri on rivinumero, jota ennen
+rivit halutaan lisätä.
+
+Lisäyksen aikana yllä mainitut ohjauskoodit ovat sallittuja. Poistuaksesi
+lisäystilasta kirjoita piste (.) muuten tyhjälle riville (jos tarvitset
+rivin, jolla on vain piste, käytä ohjauskoodia).
+
+Lisäystilasta poistumisen jälkeen lisätyn tekstin jälkeisestä rivistä tulee
+nykyinen rivi, paitsi jos lisäys tehtiin tekstin loppuun, jolloin tekstin
+viimeisestä rivistä tulee uusi nykyinen rivi.
+
+[#][,#]l - LUETTELE RIVIT
+
+Tämä komento luettelee tekstirivit näytöllä. Jos jätät ensimmäisen parametrin
+pois, komento aloittaa tekstin näyttämisen 11 riviä ennen nykyistä riviä.
+Toisen parametrin pois jättäminen näyttää sivun tekstiä alkaen ensimmäisessä
+parametrissa määritetystä rivistä. Molempien pois jättäminen näyttää sivun
+tekstiä alkaen 11 riviä ennen nykyistä riviä. Kaikissa tapauksissa, jos
+rivien määrä on suurempi kuin sivun rivimäärä, ohjelma kysyy jatkoa kunkin
+sivun jälkeen.
+
+[#],[#],#m - SIIRRÄ LOHKO
+
+Tämä komento siirtää tekstilohkon kolmannessa parametrissa määritettyä numeroa
+edeltävälle riville. Se vastaa kopioimista ja alkuperäisen lohkon poistamista.
+
+[#][,#]p - SIVU (PAGE)
+
+Tämä on samanlainen kuin l-komento, paitsi että oletussivu alkaa nykyisestä
+rivistä 11 riviä edeltävän sijaan.
+
+q - LOPETA (QUIT)
+
+Selittää itsensä. Lopettaa tallentamatta.
+
+[#][,#][?]r$,$ - KORVAA MERKKIJONO
+
+Tämä komento korvaa kaikki ensimmäisen merkkijonon esiintymät toisella
+määritettyjen rivien välillä. Ensimmäisen parametrin pois jättäminen aloittaa
+korvaamisen nykyistä riviä seuraavalta riviltä; toisen pois jättäminen
+lopettaa korvaamisen tiedoston viimeiselle riville.
+
+Kysymysmerkki lähettää vahvistusviestin ennen korvaamista.
+
+[#][,#][?]s$ - ETSI MERKKIJONOA
+
+Tämä komento etsii ensimmäistä riviä, joka sisältää määritetyn merkkijonon.
+Ensimmäisen parametrin pois jättäminen aloittaa etsinnän nykyiseltä riviltä;
+toisen pois jättäminen lopettaa etsinnän tiedoston loppuun.
+
+Kysymysmerkki saa etsinnän lähettämään vahvistusviestin. Vastaamalla "E" (Ei)
+vahvistukseen etsintä jatkuu; vastaamalla "K" (Kyllä) se lopetetaan.
+
+Nykyinen rivi nollataan riville, johon etsintä päättyi, jos se onnistui.
+
+[#]t tiedostonimi - SIIRRÄ TIEDOSTOSTA
+
+Tämä komento saa tiedoston sisällön lisättäväksi määritetyn rivinumeron edelle.
+Jos rivinumero jätetään pois, oletusarvona on nykyinen rivi.
+
+[#]w tiedostonimi - KIRJOITA TIEDOSTOON
+
+Tämä komento saa parametrilla määritetyn määrän rivejä kirjoitettavaksi
+määritettyyn tiedostoon. Jos parametri jätetään pois, se kirjoittaa kaikki
+puskurissa olevat rivit tiedostoon.
+
+TEKIJÄ/YLLÄPITÄJÄ
+
+Gregory Pietsch, gpietsch@comcast.net

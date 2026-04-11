@@ -1,0 +1,36 @@
+; Language: Polish
+; File ending: PL
+; Codepage: 852
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; Miscellaneous DISPLAY loading error messages
+errAlready       DB     "DISPLAY jest ju¾ zaˆadowany", 0dH, 0aH, "$"
+errNoDRDOS       DB     "FD-DISPLAY jest niekompatybilny z t¥ wersj¥ DR-KEYB", 0dH, 0aH, "$"
+sMemAllocatedBuffers
+                 DB     "Przydzielone bufory: $"
+sInTPA           DB     " w TPA, $"
+sInXMS           DB     " w XMS$"
+
+; Hardware-driver specific messages
+errAcient        DB     "DISPLAY: dla tego typu sprz©tu wymagany jest co najmniej adapter EGA", 0dH, 0aH, "$"
+errNoCGA         DB     "DISPLAY: nie znaleziono adaptera CGA", 0dH, 0aH, "$"
+errDrvSpecific   DB     "DISPLAY: Krytyczny bˆ¥d specyficzny dla sterownika", 0dH, 0aH, "$"
+
+; Command line parsing error messages
+SyntaxErrorStr:         DB      "Bˆ¥d skˆadni ($"
+SES_ParamRequired       DB      ") Brak wymaganego parametru", 0dH, 0aH, "$"
+SES_UnexpectedEOL       DB      ") Nieoczekiwany koniec linii", 0dH, 0aH, "$"
+SES_IllegalChar         DB      ") Niedozwolony znak", 0dH, 0aH, "$"
+SES_NameTooLong         DB      ") Nazwa sterownika urz¥dzenia jest zbyt dˆuga", 0dH, 0aH, "$"
+SES_OpenBrExpected      DB      ") Oczekiwano (", 0dH, 0aH, "$"
+SES_WrongHwName         DB      ") Nieznana nazwa urz¥dzenia sprz©towego", 0dH, 0aH, "$"
+SES_CommaExpected       DB      ") Oczekiwano ,", 0dH, 0aH, "$"
+SES_CloseBrExpected     DB      ") Oczekiwano )", 0dH, 0aH, "$"
+SES_WrongNumberPars     DB      ") Nieprawidˆowa liczba parametr¢w", 0dH, 0aH, "$"
+SES_TooManyPools        DB      ") Zbyt wiele programowych stron kodowych (MAX=5)", 0dH, 0aH, "$"
+SES_ListTooLong         DB      ") Lista jest zbyt dˆuga", 0dH, 0aH, "$"
+SES_TooManyHWPools      DB      ") Zbyt wiele sprz©towych stron kodowych", 0dh, 0ah, "$"
+SES_NoAllocatedBufs     DB      ") Niewystarczaj¥ca ilo˜† pami©ci, aby przydzieli† bufor", 0dH, 0aH, "$"
+SES_InvalidParameter    DB      ") Nieprawidˆowy parametr", 0dh, 0ah, "$"
+

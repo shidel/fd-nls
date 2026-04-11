@@ -1,0 +1,258 @@
+# Language: Hungarian
+# File ending: HU
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Programhasználati dokumentáció a Free-DOS MODE programhoz
+
+	(c) Copyright 1994-1995 K. Heidenstrom.
+
+	Módosítva:
+
+	KH.19941231.001  (MODE 1.0.0)  Első verzió
+	KH.19950116.002  (MODE 1.0.2)  Switchar dokumentáció hozzáadva
+	KH.19950520.003  (MODE 1.0.3)  Nincs változás a funkciókban
+	KH.19950805.004  (MODE 1.0.4)  Módosító (shift-state) opciók hozzáadva
+
+
+1.  JOGI TUDNIVALÓK
+
+	A program szerzői joga (Copyright 1994-1995) K. Heidenstrom tulajdona.
+	Kifejezetten a Free-DOS projekthez készült. A szerző elérhető a
+	kheidens@actrix.gen.nz címen vagy postai úton:
+	K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	Ez a program szabad szoftver. Terjesztheti a forráskódot és a
+	futtatható fájlt, és/vagy módosíthatja a programot a Free Software
+	Foundation által közzétett GNU General Public License feltételei
+	szerint; a licenc 2. verziója vagy (tetszés szerint) bármely későbbi
+	verzió alapján.
+
+	Ezt a programot abban a reményben terjesztjük, hogy hasznos lesz, de
+	"ahogy van" (as-is), garancia nélkül, beleértve az eladhatóságra
+	vagy egy adott célra való alkalmasságra vonatkozó vélelmezett
+	garanciát is. A szerző semmilyen esetben sem felelős a program
+	használatával kapcsolatos károkért. További részletekért lásd a
+	GNU General Public License-t.
+
+	A programmal együtt meg kellett kapnia a GNU General Public License
+	másolatát; ha nem, írjon a Free Software Foundation, Inc., 675 Mass
+	Ave, Cambridge, MA 02139, USA címre.
+
+2.  FUNKCIÓK ÉS HASZNÁLATI SZINTAKSIS
+
+	A MODE program hat különálló funkciót lát el, amelyeket alább külön
+	ismertetünk.
+
+2.1.  VIDEÓMÓD ÉS A KÉPERNYŐSOROK SZÁMÁNAK BEÁLLÍTÁSA
+
+	A MODE lehetővé teszi a videómód beállítását öt mód egyikére. A
+	szintaxis:
+
+	MODE Videómód[,Sorok]
+
+	A módok:
+
+	MONO	Monokróm mód, az MDA és Hercules kártyákhoz használatos,
+		valamint EGA és VGA kártyákon is emulálható. Ez az egyetlen
+		mód, amely alapértelmezés szerint képes a karakterek
+		aláhúzására a képernyőn. Ez a mód nem választható CGA
+		videokártyán.
+
+	BW40	40 oszlopos, szín nélküli mód. Ez a mód a CGA kártyákra
+		jellemző, 40 oszlopos és 25 soros megjelenítést biztosít. A
+		színinformáció ki van kapcsolva, így kompozit monitoron
+		fekete-fehérben, tizenhat szürkeárnyalattal jelenik meg.
+		EGA vagy VGA kártyán, illetve nem televízióra kötött CGA
+		kártyán ugyanúgy jelenik meg, mint a CO40 mód. Nem
+		választható MDA és Hercules kártyákon.
+
+	BW80	80 oszlopos, szín nélküli mód. Szintén CGA-specifikus, ugyanaz,
+		mint a BW40, de 80 oszloppal. MDA és Hercules kártyákon nem
+		választható.
+
+	CO40	40 oszlopos színes mód. 40 oszlopos és 25 soros színes
+		megjelenítést ad. CGA, EGA és VGA kártyák támogatják, MDA és
+		Hercules kártyák nem.
+
+	CO80	80 oszlopos színes mód. 80 oszlopos és 25 soros megjelenítést
+		ad, ez a normál mód CGA, EGA és VGA kártyákon. Nem támogatott
+		MDA és Hercules kártyákon. EGA kártyákon támogatja a
+		43 soros változatot, VGA kártyákon pedig a 43 és 50 soros
+		változatot is.
+
+		A 43 és 50 soros mód a CO80 után írt ",43" vagy ",50"
+		megadásával választható ki. Ha nincs megadva, az alapértelmezett
+		25 sor lesz érvényben.
+
+	A videómód érvényben marad, amíg egy MODE parancs vagy egy program meg
+	nem változtatja. A mód nincs tartósan zárolva.
+
+2.2.  SOROS PORT PARAMÉTEREINEK KONFIGURÁLÁSA
+
+	A MODE lehetővé teszi a soros port kommunikációs paramétereinek
+	beállítását. A szintaxis:
+
+	MODE COMn:r,p,d,s
+
+	n	A konfigurálandó soros port száma (1-4). Ha a port nem
+		létezik, a MODE hibát jelez.
+
+	r	Az átviteli sebesség (baud rate) bit/másodpercben:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 és 115200.
+
+		Az 1200, 2400, 4800 és 9600 rövidíthető 12, 24, 48 és 96
+		értékekre. A nagyobb sebességek az első két vagy három
+		számjegyükre rövidíthetők. A 115200 rövidítése 115 vagy 1152.
+
+	p	A paritás típusa:
+
+		E = Páros (Even)
+		O = Páratlan (Odd)
+		N = Nincs paritás (None)
+
+	d	Az adatbitek száma: 5, 6, 7 vagy 8.
+
+	s	A stopbitek száma: 1 vagy 2. 5 adatbit és 2 stopbit esetén
+		a port valójában 1 1/2 stopbitet generál.
+
+	A beállítások érvényben maradnak a következő módosításig.
+
+2.3.  PÁRHUZAMOS PORT ÁTIRÁNYÍTÁSA ÉS VÉGTELEN ÚJRAPRÓBÁLKOZÁS
+
+	A MODE lehetővé teszi a párhuzamos (LPT) port kimenetének átirányítását
+	soros (COM) portra vagy NUL-ra (sehova), valamint végtelen
+	újrapróbálkozást, ha az eszköz nem válaszol.
+
+	Ezeket a funkciókat a MODE memóriában maradó (rezidens) része végzi,
+	amely automatikusan települ szükség esetén.
+
+	Szintaxis:
+
+	MODE LPTn:P		Végtelen időtúllépés a párhuzamos porton
+	MODE LPTn:=COMx		Nyomtató kimenet átirányítása COM portra
+	MODE LPTn:=NUL:		Nyomtató kimenet átirányítása NUL-ra
+	MODE LPTn:		Átirányítás és időtúllépés törlése
+
+	Az LPTn:P végtelen újrapróbálkozást jelent. Ha be van kapcsolva, a
+	MODE folyamatosan próbálkozik, ha a nyomtató nem válaszol. Egyébként
+	kb. fél perc után hibaüzenetet kapunk.
+
+	Az átirányítás hasznos soros nyomtatók esetén, vagy ha nincs
+	nyomtatónk, és el akarjuk kerülni a gép lefagyását egy nyomtatási
+	kísérletnél. A MODE LPTn: visszaállítja a port normál működését.
+
+2.4.  MEREVLEMEZ PARKOLÁSI FUNKCIÓK (PARK)
+
+	A MODE leparkolja a merevlemezek író-olvasó fejeit (az első két
+	fizikai lemezt), azonnal vagy egy bizonyos tétlenség után.
+
+	Szintaxis:
+
+	MODE PARK			Parkolás most
+	MODE PARK,perc[:másodperc]	Parkolás tétlenség után
+
+	A PARK azonnal leparkolja a fejeket és vár a gép kikapcsolására (vagy
+	Ctrl-C a kilépéshez). Az időzített parkolás csak újraindítással
+	távolítható el. A modern meghajtók kikapcsoláskor ezt automatikusan
+	megteszik, a funkció régi gépekhez hasznos.
+
+2.5.  TYPEMATIC FUNKCIÓK (BILLENTYŰISMÉTLÉS)
+
+	A MODE lehetővé teszi a billentyűismétlés késleltetésének és
+	sebességének beállítását, valamint ezek zárolását.
+
+	Szintaxis:
+
+	MODE DELAY=d RATE=r		Paraméterek beállítása
+	MODE DELAY=d RATE=r LOCK	Beállítás és zárolás
+
+	d	Kezdeti késleltetés (1-4): 1/4 másodperctől (1) egy
+		másodpercig (4).
+
+	r	Ismétlési sebesség (1-32): másodpercenkénti kettőtől (1)
+		harmincig (32).
+
+	LOCK	Zárolja a paramétereket, így más programok nem tudják
+		megváltoztatni azokat engedély nélkül. Nem feltörhetetlen,
+		de hasznos védelem.
+
+	Mindkét paramétert (DELAY és RATE) meg kell adni. A MODE akkor is
+	elfogadja a parancsot, ha a gép nem támogatja azt.
+
+2.6.  SWITCHAR FUNKCIÓK
+
+	A MODE képes megjeleníteni és beállítani a DOS kapcsolókarakterét
+	(switchar). Az alapértelmezett a perjel, '/'. Ez jelzi a parancsok
+	opcióinak kezdetét (pl. /P a DIR parancsnál). Általában kötőjelre '-'
+	módosítják. Ez egy nem dokumentált DOS funkció, kevés program kezeli
+	helyesen.
+
+	Szintaxis:
+
+	MODE SWITCHAR			Jelenlegi karakter mutatása
+	MODE SWITCHAR=x			Beállítás x karakterre
+	MODE SWITCHAR=n			Beállítás n ASCII értékre
+
+2.7.  MÓDOSÍTÓ (SHIFT STATE) FUNKCIÓK
+
+	A MODE képes váltani a Caps Lock, Num Lock és Scroll Lock állapotát.
+	Ne használja eredeti PC vagy XT billentyűzeteken, mert a LED-ek nem
+	vezérelhetők szoftveresen, így eltérhetnek a gép tényleges állapotától.
+
+	Opciók:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Bármely nem ellentmondásos kombináció használható. A SCRLOCK helyett
+	a SCROLLLOCK is írható.
+
+3.  ÁLTALÁNOS TUDNIVALÓK
+
+	A paraméterek nem kis- és nagybetű érzékenyek. A MODE egy hívással
+	csak egy feladatot végez el. A hibaüzenetek a StdErr-re, az
+	információk a szabványos kimenetre mennek (átirányítható NUL-ra).
+
+	A MODE által visszaadott hibakódok (Errorlevels):
+
+	0	Nincs hiba
+	115	A soros port nem létezik
+	117	Nem található merevlemez a parkoláshoz
+	118	A videómód nem támogatott ezen a gépen
+	162	Kevés a memória (kb. 6K szükséges)
+	241	Paraméter tartományon kívül
+	242	A 43/50 soros mód csak CO80 esetén lehetséges
+	243	Ismeretlen átviteli sebesség
+	244	A DELAY= és a RATE= megadása is kötelező
+	246	Több parancsot vagy típust adott meg
+	255	Hibás szintaxis
+
+	A MODE egy rezidens (TSR) program. Ha hibát talál, értesítse a szerzőt
+	(adatok az 1. pontban).
+
+4.  HASZNÁLATI PÉLDÁK
+
+	Példa az AUTOEXEC.BAT fájlban:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	Ez a sorozat beállítja a 43 soros színes módot, konfigurálja a COM1-3
+	portokat, átirányítja az LPT1-et a COM2-re, beállítja a parkolást
+	30 mp után, beállítja a billentyűzetet és a switchart '-'-re módosítja.
+
+				   ----//----

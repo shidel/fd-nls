@@ -1,0 +1,181 @@
+EDLIN 2.14
+
+EDLIN ist ein kleiner Zeileneditor, der als funktioneller Clone des alten
+MS-DOS Programmes EDLIN für FreeDOS erstellt wurde. Sein Unterschied
+zu MS EDLIN ist erstens, daß er freie Sofware ist, zweitens, daß die
+Benutzeroberfläche bei einigen Punkten geringfügig abweicht.
+Der Grund für den Unterschied ist, daß der Benutzer keine Steuerungs-
+zeichen eintippen muß, da diese von EDLIN's Syntax verwaltet werden.
+
+EDLIN STARTEN
+
+Das edlin Programm wird entweder durch sich selbst gestartet:
+
+  edlin
+
+oder mit einem zusätzlich angegebenem Dateinamen:
+
+  edlin Datei(name)
+
+EDLIN'S INTERNE BEFEHLE
+
+Bei den folgenden Befehlszeilen repräsentieren eckige Klammern [ ]
+optionale Möglichkeiten. Das # Symbol repräsentiert eine Zeilennummer,
+die aus einer Zahlenkette besteht; ein Punkt repräsentiert die
+gegenwärtige Zeile; ein Dollarzeichen ($) repräsentiert die letzte
+Zeile in der Datei. Es kann auch eine Zeilennummer zu einer anderen
+addiert bzw. subtrahiert werden, so daß
+
+  .,.+1p
+
+die aktuelle und die folgende Zeile ausdruckt.
+
+Ein Dollarzeichen in der folgenden Liste steht für eine Zeichenfolge.
+Sie können entweder in einfache oder doppelte Anführungszeichen gesetzt
+werden und enthalten die folgenden Escape-Sequenzen:
+
+  \a              Warnung (Piepston)
+  \b              Zurücktaste
+  \e              Escape
+  \f              Seitenvorschub
+  \t              Horizontaler Tabulator
+  \v              Vertikaler Tabulator
+  \"              Doppeltes Anführungszeichen
+  \'              Einzelnes Anführungszeichen
+  \.              Punkt
+  \\              Backslash (\)
+  \xXX            wobei X eine Hexzahl ist (0-9, a-f, A-F) - hexadezimale
+                  Konstante
+  \OOO            wobei O eine oktale Zahl ist (0-7) - oktale Konstante
+  \^C             Steuerzeichen
+
+Das edlin Programm unterstützt dei folgende Syntax:
+
+# - EINE EINZELNE ZEILE EDITIEREN
+
+Das Edlin Programm gibt die mit der Nummer angegebene einzelne Zeile aus
+und die nächste eingegebene Zeile ersetzt in der Datei die ausgegebene
+Zeile.
+
+a - ZEILE ANHÄNGEN
+
+Dieser Befehl entspricht dem Befehl: $+1i .
+
+[#],[#],#,[#]c - EINE ANZAHL BLÖCKE KOPIEREN
+
+Dieser Befehl kopiert einen Block fortlaufender Zeilen an eine andere
+Stelle im Puffer. Die Parameter sind:
+  * Die erste Zeile, die Sie kopieren wollen (Standard = aktuelle Zeile)
+  * Die letzte Zeile, die Sie kopieren wollen (Standard = aktuelle
+    Zeile)
+  * Die Zeile, vor der Sie den Zeilenblock einfügen wollen,
+  * Die Anzahl, wie oft Sie den Block kopieren wollen (Standard = 1)
+Nachdem Edlin die Zeilen kopiert hat, können Sie den l (list)-Befehl
+verwenden, um die Zeilen auf Richtigkeit zu überprüfen.
+
+[#][,#]d - EINE ANZAHL BLÖCKE LÖSCHEN
+
+Dieser Befehl löscht einen Block fortlaufender Zeilen. Die Parameter
+sind die erste und die letzte Zeile des zu löschenden Blocks.
+
+Wenn Sie den zweiten Parameter weglassen, wird nur die im ersten
+Parameter angegebene Zeile gelöscht. Wenn Sie den ersten Parameter
+weglassen, wird der Block von der aktuellen Zeile bis zu der im zweiten
+Parameter angegebenen Zeile gelöscht (stellen Sie sicher, daß das
+Komma voransteht!). Wenn Sie beide Parameter weglassen, wird die
+aktuelle Zeile gelöscht.
+
+e Dateiname - ENDE (SPEICHERN UND VERLASSEN)
+
+Dieser Befehl entspricht den Befehlen:
+
+  w Dateiname
+
+gefolgt von:
+
+  q
+
+[#]i - EINFÜGEMODUS
+
+Mit diesem Befehl geht Edlin in den Einfügemodus. Der Parameter gibt
+die Zeilennummer an, vor der Sie Zeilen einfügen möchten.
+
+Während des Einfügemodus können die oben angeführten Escape-Sequenzen
+eingegeben werden. Um aus dem Einfügemodus herauszukommen, tippen Sie
+einen Punkt (.) in eine ansonsten leere Zeile (wenn Sie eine Zeile nur
+mit einem Punkt brauchen, '\.').
+
+Nach Beendigung des Einfügemodus wird die Zeile nach dem eingefügten
+Text die aktuelle Zeile, es sei denn, die Einfügung wurde am Ende des
+Textes angehängt; in diesem Fall wird die letzte Zeile des Textes die
+neue aktuelle Zeile.
+
+[#][,#]l - ZEILEN AUFLISTEN
+
+Dieser Befehl listet Textzeilen auf dem Bildschirm auf. Wenn Sie den
+ersten Parameter weglassen, beginnt der Befehl 11 Zeilen vor der
+aktuellen Zeile mit der Anzeige von Text. Wenn Sie den zweiten Parame-
+ter weglassen, wird eine Textseite angezeigt, die mit der im ersten
+Parameter angegebenen Zeile anfängt. Wenn Sie beide Parameter
+weglassen, wird eine Textseite angezeigt, die 11 Zeilen vor der
+aktuellen Zeile anfängt.
+In allen Fällen, in denen die Gesamtzeilenzahl größer als die
+Zeilenzahl auf einer Seite ist, wird das Programm nach jeder angezeigten
+Textseite eine Eingabeaufforderung anzeigen.
+
+[#],[#],#m - BLOCK VERSCHIEBEN
+
+Dieser Befehl verschiebt einen Textblock an die Zeile vor der im dritten
+Parameter angegebenen Nummer. Er ist vergleichbar mit dem Kopieren
+und dem anschließenden Löschen des Originalblocks.
+
+[#][,#]p - SEITE (BLÄTTERN)
+
+Dieser Befehl ist vergleichbar mit l mit der Ausnahme, daß die Ausgabe-
+seite mit der aktuellen Seite beginnt, anstatt 11 Zeilen zuvor.
+
+q - BEENDEN
+
+Selbsterklärend.
+
+[#][,#][?]r$,$ - ZEICHENFOLGE (STRING) ERSETZEN
+
+Dieser Befehl ersetzt zwischen den angegebenen zwei Zeilen alle
+Vorkommnisse des ersten Strings mit dem zweiten String. Ohne den ersten
+Parameter startet der Ersetzvorgang eine Zeile nach der aktuellen Zeile;
+ohne den zweiten Parameter endet der Ersetzvorgang in der letzten Zeile
+der Datei.
+
+Das Fragezeichen gibt vor dem Ersetzen eine Bestätigungsmeldung aus.
+
+[#][,#][?]s$ - SUCHEN NACH EINER TEILZEICHENFOLGE (SUBSTRING)
+
+Dieser Befehl sucht nach der ersten Zeile, die die angegebene Teilzeichen-
+folge entält. Ohne den ersten Parameter wird mit der Suche in
+der aktuellen Zeile begonnen; ohne den zweiten Parameter läuft die
+Suche bis zum Ende der Datei durch.
+
+Das Fragezeichen veranlasst die Suche dazu, eine Bestätigungsmeldung
+auszugeben. Wenn Sie bei der Bestätigung 'no - nein' sagen, wird die Suche
+fortgesetzt; wenn Sie 'yes - ja' sagen, endet die Suche.
+
+Die aktuelle Zeile wird auf die Zeile gesetzt, auf der die erfolgreiche
+Suche endete.
+
+[#]t Dateiname - DATEI TRANSFERIEREN
+
+Dieser Befehl sorgt dafür, daß der Inhalt der Datei vor der ange-
+gebenen Zeile (in einer anderen Datei) eingefügt wird. Wenn die
+Zeilennummer weggelassen wird, ist die aktuelle Zeile der Standardwert.
+
+[#]w Dateiname - DATEI SPEICHERN
+
+Dieser Befehl sorgt dafür, daß der Text von der ersten bis zu der vom
+Parameter angegebenen Zeilennummer in die gewählte Datei geschrieben
+wird. Wenn der Parameter weggelassen wird, werden alle Zeilen im Puffer
+in die Datei geschrieben.
+
+AUTHOR/MAINTAINER
+
+Gregory Pietsch, gpietsch@comcast.net
+

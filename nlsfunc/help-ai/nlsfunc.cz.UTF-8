@@ -1,0 +1,30 @@
+# Language: Czech
+# File ending: CZ
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+FreeDOS NLSFUNC. Přidává funkčnost NLS (National Language Support).
+(C) 2004 Eduardo Casino, under the terms of the GNU GPL, Version 2
+
+  NLSFUNC [/Y|/?] [[D:][PATH]SOUBOR]
+
+  [D:][PATH]SOUBOR Cesta k souboru obsahujícímu NLS
+  /Y               Načte (volitelnou) tabulku ANO/NE
+  /?               Vypíše použití
+
+Příklad:
+
+  CONFIG.SYS
+     COUNTRY=34,858,C:\COUNTRY.SYS
+
+  AUTOEXEC.BAT
+     LH DISPLAY CON=(EGA,858,2)
+     MODE CON CP PREP=((850) C:\CPI\EGA.CPI)
+     MODE CON CP PREP=((,437) C:\CPI\EGA.CPI)
+     LH NLSFUNC /Y
+
+Poté přepněte kódové stránky pomocí příkazu CHCP systému FreeCOM.
+
+Pokud nepotřebujete měnit kódové stránky, řádky MODE prostě vynechte.
+

@@ -1,0 +1,271 @@
+# Language: Latvian
+# File ending: LV
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Free-DOS MODE programmas lietoÕanas dokumentƒcija
+
+	(c) Copyright 1994-1995 K. Heidenstrom.
+
+	Izmaiìas:
+
+	KH.19941231.001  (MODE 1.0.0)  Pirmƒ versija
+	KH.19950116.002  (MODE 1.0.2)  Pievienota switchar dokumentƒcija
+	KH.19950520.003  (MODE 1.0.3)  Nav funkcionƒlu izmaiìu
+	KH.19950805.004  (MODE 1.0.4)  Pievienotas modifikatoru (shift-state)
+	opcijas
+
+
+1.  JURIDISK  INFORM CIJA
+
+	¾Œs programmas autortiesŒbas (Copyright 1994-1995) pieder K. Heidenstrom.
+	Tƒ tika uzrakstŒta ŒpaÕi Free-DOS projektam. Ar autoru var sazinƒties
+	pa e-pastu kheidens@actrix.gen.nz vai pa pastu: K. Heidenstrom
+	c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	¾Œ programma ir brŒva programmat×ra. J×s drŒkstat izplatŒt tƒs pirmkodu
+	un izpildƒmo failu un/vai modific‰t programmu saskaìƒ ar GNU General
+	Public License noteikumiem, ko public‰jusi Free Software Foundation;
+	izmantojot licences 2. versiju vai (p‰c j×su izv‰les) jebkuru v‰lƒku
+	versiju.
+
+	¾Œ programma tiek izplatŒta ar cerŒbu, ka tƒ b×s noderŒga, bet bez
+	jebkƒdas garantijas, pat bez netieÕas garantijas par tƒs pƒrdoÕanas
+	iesp‰jƒm vai piem‰rotŒbu konkr‰tam m‰réim. Autors nekƒdƒ gadŒjumƒ
+	neb×s atbildŒgs par jebkƒdiem zaud‰jumiem, kas saistŒti ar ÕŒs
+	programmas lietoÕanu. SŒkƒku informƒciju skatiet GNU General Public
+	License.
+
+	Jums vajadz‰ja saìemt GNU General Public License kopiju kopƒ ar Õo
+	programmu; ja neesat to saì‰mis, rakstiet Free Software Foundation,
+	Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  FUNKCIJAS UN LIETO¾ANAS SINTAKSE
+
+	MODE programma veic seÕas atseviÕéas funkcijas, kas aprakstŒtas tƒlƒk.
+
+2.1.  VIDEO REÏ¡MA UN EKR NA RINDU SKAITA IESTAT¡¾ANA
+
+	MODE ëauj iestatŒt video reØŒmu vienƒ no pieciem reØŒmiem. Sintakse:
+
+	MODE VideoreØŒms[,Rindas]
+
+	ReØŒmi ir:
+
+	MONO	Monohromais reØŒms, ko izmanto ar MDA un Hercules kart‰m, un
+		kas tiek emul‰ts arŒ EGA un VGA kart‰s. ¾is ir vienŒgais
+		reØŒms, kuram p‰c noklus‰juma ir iesp‰ja pasvŒtrot rakstzŒmes
+		uz ekrƒna. ¾o reØŒmu nevar izv‰l‰ties CGA video kart‰.
+
+	BW40	40 kolonnu reØŒms ar atsl‰gtu krƒsu. ¾is reØims ir specifisks
+		CGA adapterim un nodroÕina 40 kolonnu un 25 rindu displeju.
+		Krƒsu informƒcija no CGA kartes kompozŒtƒ video signƒla tiek
+		izsl‰gta, tƒp‰c att‰ls uz kompozŒtƒ krƒsu monitora ir melnbalts
+		ar seÕpadsmit pel‰kuma toìiem.
+		Ja Õis reØŒms tiek izv‰l‰ts EGA vai VGA kart‰ vai CGA kart‰,
+		kas nav pievienota televizoram vai monitoram, tas izskatŒsies
+		tƒpat kƒ CO40 reØŒms. ¾o reØŒmu nevar izv‰l‰ties MDA un
+		Hercules video kart‰s.
+
+	BW80	80 kolonnu reØŒms ar atsl‰gtu krƒsu. ¾is reØŒms arŒ ir
+		specifisks CGA adapterim un ir tƒds pats kƒ BW40, izìemot to,
+		ka ir 80 kolonnas. ¾o reØŒmu nevar izv‰l‰ties MDA un
+		Hercules kart‰s.
+
+	CO40	40 kolonnu krƒsu reØŒms. NodroÕina 40 kolonnu un 25 rindu krƒsu
+		displeju. To atbalsta CGA, EGA un VGA adapteri, bet ne MDA un
+		Hercules kartes.
+
+	CO80	80 kolonnu krƒsu reØŒms. NodroÕina 80 kolonnu un 25 rindu
+		displeju un ir parastais displeja reØŒms CGA, EGA un VGA
+		kart‰m. To neatbalsta MDA un Hercules kartes. EGA kart‰s Õis
+		reØŒms atbalsta arŒ 43 rindu variantu, bet VGA kart‰s tiek
+		atbalstŒti 43 rindu un 50 rindu varianti.
+
+		43 un 50 rindu reØŒmus var izv‰l‰ties, norƒdot ",43" vai ",50"
+		p‰c CO80 MODE komandrindƒ. Ja Õis parametrs netiek norƒdŒts,
+		tiek izmantots noklus‰jums 25 rindas.
+
+	IestatŒtais video reØŒms paliek sp‰kƒ, lŒdz to nomaina ar MODE komandu
+	vai programmu. Video reØŒms nav bloé‰ts pastƒvŒgi - programmas var
+	brŒvi mainŒt video reØŒmus p‰c nepiecieÕamŒbas.
+
+2.2.  VIRKNES PORTA PARAMETRU KONFIGURí¾ANA
+
+	MODE ëauj konfigur‰t virknes porta (COM) sakaru parametrus. Sintakse:
+
+	MODE COMn:r,p,d,s
+
+	n	Norƒda, kurÕ virknes ports jƒkonfigur‰ (no 1 lŒdz 4). Ja
+		ports neeksist‰, MODE ziìos par kë×du.
+
+	r	Norƒda bodu ƒtrumu (baud rate) bitos sekund‰. V‰rtŒbas ir:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 un 115200.
+
+		V‰rtŒbas 1200, 2400, 4800 un 9600 var saŒsinƒt attiecŒgi lŒdz
+		12, 24, 48 un 96. Lielƒkus ƒtrumus var saŒsinƒt lŒdz to
+		pirmajiem diviem vai trim cipariem. 115200 var saŒsinƒt lŒdz
+		115 vai 1152.
+
+	p	Norƒda paritƒtes (parity) veidu. V‰rtŒbas ir:
+
+		E = Pƒra (Even)
+		O = Nepƒra (Odd)
+		N = Bez paritƒtes (None)
+
+	d	Norƒda datu bitu skaitu. Atëautƒs v‰rtŒbas ir 5, 6, 7 un 8.
+
+	s	Norƒda stopbitu skaitu. Tas var b×t 1 vai 2. Ja 5 datu bitiem
+		izmanto 2 stopbitus, ports faktiski …ener‰s un pƒrbaudŒs 1 1/2
+		stopbitu.
+
+	IestatŒtie virknes porta parametri paliek sp‰kƒ, lŒdz tos nomaina.
+
+2.3.  PARALíL  PORTA P RADRES CIJA UN BEZGAL¡GI Mí•IN JUMI
+
+	MODE ëauj pƒradres‰t paral‰lƒ porta (LPT) izvadi uz virknes (COM)
+	portu vai uz NUL (nekur), kƒ arŒ var bezgalŒgi m‰…inƒt s×tŒt datus,
+	ja perif‰rijas ierŒce neatbild.
+
+	¾Œs funkcijas veic MODE rezidentƒ daëa, kas vajadzŒbas gadŒjumƒ tiek
+	instal‰ta automƒtiski.
+
+	Sintakse:
+
+	MODE LPTn:P		BezgalŒgs noildzes laiks paral‰lajam portam
+	MODE LPTn:=COMx		Pƒradres‰t printera izvadi uz COM portu
+	MODE LPTn:=NUL:		Pƒradres‰t printera izvadi uz NUL
+	MODE LPTn:		Noìemt pƒradresƒciju un bezgalŒgo noildzi
+
+	LPTn:P funkcija norƒda bezgalŒgus m‰…inƒjumus noildzes gadŒjumƒ. Ja
+	tƒ ir iesp‰jota, MODE nepƒrtraukti m‰…inƒs s×tŒt datus, ja printeris
+	neatbild. Ja nav iesp‰jota un printeris neatbild noteiktu laiku
+	(parasti ap pusmin×ti), tiks ziìots par rakstŒÕanas kë×du.
+
+	Pƒradresƒcija ir noderŒga, ja jums ir virknes printeris vai ja jums
+	nav printera un v‰laties izvairŒties no datora sasalÕanas, kad kƒda
+	programma m‰…ina drukƒt. Komanda MODE LPTn: atgrieØ portu normƒlƒ
+	darba reØŒmƒ.
+
+2.4.  CIET  DISKA NOVIETO¾ANAS FUNKCIJAS (PARK)
+
+	MODE novieto cietƒ diska galviìas (tikai pirmajiem diviem fiziskajiem
+	diskiem), vai nu nekav‰joties, vai p‰c dŒkstƒves perioda.
+
+	Laika novietoÕanu veic MODE rezidentƒ daëa.
+
+	Sintakse:
+
+	MODE PARK			Novietot t×lŒt
+	MODE PARK,min×tes[:sekundes]	Novietot p‰c diska dŒkstƒves
+
+	PARK funkcija novieto diskus nekav‰joties un gaida, lŒdz izsl‰gsiet
+	datoru. Varat nospiest Ctrl-C, lai atgrieztos DOS.
+
+	Laika novietoÕanu nevar izsl‰gt - lai to noìemtu, dators ir
+	jƒpƒrstart‰. ¾Œs funkcijas noder galvenokƒrt vecƒkƒm maÕŒnƒm.
+	M×sdienu diski novietojas automƒtiski, kad tiek izsl‰gti.
+
+2.5.  TYPEMATIC FUNKCIJAS (TASTATÇRAS ATK RTO¾ANA)
+
+	MODE ëauj iestatŒt tastat×ras atkƒrtoÕanas (auto-repeat) sƒkotn‰jo
+	aizkavi un atkƒrtoÕanas ƒtrumu, kƒ arŒ p‰c izv‰les tos bloé‰t.
+
+	Bloé‰Õanu veic MODE rezidentƒ daëa.
+
+	Sintakse:
+
+	MODE DELAY=d RATE=r		IestatŒt parametrus
+	MODE DELAY=d RATE=r LOCK	IestatŒt un bloé‰t parametrus
+
+	d	Norƒda sƒkotn‰jo aizkavi (no 1 lŒdz 4), no 1/4 sekundes (1)
+		lŒdz vienai sekundei (4).
+
+	r	Norƒda atkƒrtoÕanas ƒtrumu (no 1 lŒdz 32), no diviem
+		atkƒrtojumiem sekund‰ (1) lŒdz 30 atkƒrtojumiem sekund‰ (32).
+
+	LOCK	Norƒda, ka parametri ir jƒbloé‰. P‰c tam tos var mainŒt tikai
+		ar MODE komandu, bet ne ar citƒm programmƒm. Tas ir noderŒgi,
+		jo daØas programmas maina iestatŒjumus bez atëaujas.
+
+	Ir jƒnorƒda abi parametri - DELAY un RATE. MODE pieìem komandas
+	neatkarŒgi no tƒ, vai maÕŒna tƒs faktiski atbalsta.
+
+2.6.  SWITCHAR FUNKCIJAS
+
+	MODE var parƒdŒt un iestatŒt DOS sl‰dØa rakstzŒmi (switchar).
+	Noklus‰juma rakstzŒme ir slŒpsvŒtra "/". Tƒ ir rakstzŒme, kas norƒda
+	komandas opcijas sƒkumu, piem‰ram, /P komandai DIR. Parasti to var
+	nomainŒt uz domuzŒmi "-". ¾Œ ir nedokument‰ta DOS funkcija, ko pareizi
+	atbalsta maz programmu.
+
+	Sintakse:
+
+	MODE SWITCHAR			ParƒdŒt paÕreiz‰jo switchar
+	MODE SWITCHAR=x			IestatŒt switchar uz rakstzŒmi x
+	MODE SWITCHAR=n			IestatŒt switchar uz ASCII v‰rtŒbu n
+
+2.7.  MODIFIKATORU (SHIFT STATE) FUNKCIJAS
+
+	MODE var mainŒt Caps Lock, Num Lock un Scroll Lock stƒvokëus. ¾o
+	funkciju nevajadz‰tu izmantot ori…inƒlajos PC vai XT datoros, jo to
+	tastat×ru indikatorus nevar vadŒt no datora un tie var nesakrist ar
+	datora stƒvokli.
+
+	Opcijas ir:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Var izmantot jebkuru kombinƒciju, kas nav pretrunŒga. SCRLOCK vietƒ
+	var rakstŒt arŒ SCROLLLOCK.
+
+3.  VISP R¡GA INFORM CIJA
+
+	MODE parametri nav jutŒgi pret re…istru. MODE vienƒ izsaukumƒ apstrƒdƒ
+	tikai vienu komandu.
+
+	Kë×du ziìojumi tiek s×tŒti uz StdErr. InformatŒvie ziìojumi tiek s×tŒti
+	uz standarta izvadi (var pƒradres‰t uz NUL:).
+
+	MODE atgrieztie Errorlevels:
+
+	0	Nav kë×du
+	115	Virknes ports neeksist‰
+	117	Netika atrasts neviens cietais disks novietoÕanai
+	118	Video reØŒms Õajƒ maÕŒnƒ netiek atbalstŒts
+	162	Nepietiek atmiìas (nepiecieÕami apm‰ram 6K)
+	241	Parametrs ƒrpus diapazona
+	242	43 vai 50 rindu reØŒmi iesp‰jami tikai ar CO80
+	243	Nezinƒms bodu ƒtrums
+	244	Jƒnorƒda gan DELAY=, gan RATE=
+	246	Tika norƒdŒta vairƒk nekƒ viena komanda vai tips
+	255	Nepareiza sintakse
+
+	Ja atrodat kë×du, sazinieties ar autoru (dati 1. sadaëƒ).
+
+4.  LIETO¾ANAS PIEMíRI
+
+	Piem‰rs failƒ AUTOEXEC.BAT:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	¾Œ secŒba iestata 43 rindu krƒsu reØŒmu, konfigur‰ portus COM1-3,
+	pƒradres‰ LPT1 uz COM2, iestata laika novietoÕanu p‰c 30 s,
+	konfigur‰ tastat×ru un nomaina switchar uz "-".
+
+				   ----//----

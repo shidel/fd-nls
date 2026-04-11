@@ -1,0 +1,68 @@
+# Language: Polish
+# File ending: PL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+Informacje dotycz¥ce tˆumaczenia j©zykowego dla EDICT
+
+Uwaga: informacje o zmiennych wyst©puj¥ w kilku typach i w okre˜lonej kolejno˜ci,
+kt¢rej nie mo¾na zmieni† (na razie). Wielokrotne biaˆe znaki s¥ automatycznie
+skracane do pojedynczej spacji, chyba ¾e znajduj¥ si© w cudzysˆowie. Aby
+wy˜wietli† cudzysˆ¢w, musi on zosta† uj©ty w inny typ cudzysˆowu. Wreszcie, ¾adne
+spacje nie s¥ wstawiane automatycznie przed ani po ¾adnej zmiennej.
+
+Przetˆumaczony plik j©zykowy powinien zosta† dostarczony w formacie UTF-8 wraz z
+wersj¥ dla strony kodowej DOS, aby zapobiec ewentualnym bˆ©dom konwersji stron
+kodowych. Na przykˆad pliki tureckie to EDICT.TR dla wersji DOS i
+EDICT.TR.UTF-8 dla wersji UTF-8.
+
+Wi©cej informacji na temat kod¢w j©zyk¢w i kraj¢w mo¾na znale«† na stronie
+https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes.
+
+U¾yj jednego z istniej¥cych plik¢w tˆumaczeä, np. EDICT.EN, jako punktu
+wyj˜cia dla swojego tˆumaczenia. W ten spos¢b nie zabraknie ¾adnego
+potrzebnego tekstu.
+
+Zmienne:
+
+    %_          Pojedynczy znak spacji
+    %%          Pojedynczy symbol procenta
+    %r          CRLF (znak koäca linii)
+
+    %c          Wstaw zmienn¥ pojedynczego znaku
+    %s          Wstaw zmienn¥ ci¥gu tekstowego
+    %b          Wstaw zmienn¥ warto˜ci szesnastkowej bajtu
+    %w          Wstaw zmienn¥ warto˜ci szesnastkowej sˆowa (nieu¾ywana)
+    %i          Wstaw zmienn¥ liczby caˆkowitej
+    %I          Wstaw zmienn¥ (liczba caˆkowita + 1)
+
+
+TITLE to tytuˆ programu.
+COPYRIGHT to moja wiadomo˜† o prawach autorskich.
+
+LANGUAGE nie znajduje si© w domy˜lnym tˆumaczeniu i prawdopodobnie powinien
+by† w j©zyku tˆumaczenia. Mo¾esz poda† co˜ takiego jak jeden z poni¾szych:
+
+LANGUAGE=Polskie tˆumaczenie: [Imi©]
+
+HELP_* to tekst ekranu pomocy. Ka¾dy wpis jest wy˜wietlany w oddzielnej linii.
+Gdy program po raz pierwszy napotka brakuj¥cy element, wy˜wietlanie pomocy
+zostaje przerwane. Obsˆugiwane jest do 0xff (255) wpis¢w.
+
+INVALID jest u¾ywane, gdy podany zostanie nierozpoznany przeˆ¥cznik wiersza poleceä.
+
+BAD_INT jest u¾ywane, gdy wyst¥pi bˆ¥d podczas analizowania liczby z wiersza poleceä.
+BAD_VAL jest u¾ywane, gdy liczba znajduje si© poza zakresem.
+
+BErr_* to komunikaty o bˆ©dach BIOS-u.
+DErr_* to komunikaty o bˆ©dach DOS-u.
+
+Po niewielkiej modyfikacji, teksty komunikat¢w o bˆ©dach BIOS i DOS w domy˜lnej
+zewn©trznej wersji angielskiej s¥ uproszczon¥ wersj¥ tych dost©pnych online
+w ˜wietnym «r¢dle wiedzy o DOS i ASM pod adresem:
+
+    http://stanislavs.org/helppc/idx_interrupt.html
+
+Chocia¾ mog© je zmieni† na mniej monotonne, spersonalizowane komunikaty o bˆ©dach.
+

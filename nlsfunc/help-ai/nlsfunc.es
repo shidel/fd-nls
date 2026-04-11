@@ -1,0 +1,30 @@
+# Language: Spanish
+# File ending: ES
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+FreeDOS NLSFUNC. A¤ade funcionalidad NLS (National Language Support).
+(C) 2004 Eduardo Casino, under the terms of the GNU GPL, Version 2
+
+  NLSFUNC [/Y|/?] [[D:][PATH]ARCHIVO]
+
+  [D:][PATH]ARCHIVO  Ruta a un archivo que contiene el NLS
+  /Y               Carga la tabla SÖ/NO (opcional)
+  /?               Muestra el uso
+
+Ejemplo:
+
+  CONFIG.SYS
+     COUNTRY=34,858,C:\COUNTRY.SYS
+
+  AUTOEXEC.BAT
+     LH DISPLAY CON=(EGA,858,2)
+     MODE CON CP PREP=((850) C:\CPI\EGA.CPI)
+     MODE CON CP PREP=((,437) C:\CPI\EGA.CPI)
+     LH NLSFUNC /Y
+
+Luego cambie las p ginas de c¢digos usando el comando CHCP de FreeCOM.
+
+Si no necesita cambiar las p ginas de c¢digos, simplemente omita las
+l¡neas MODE.

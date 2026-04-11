@@ -1,0 +1,160 @@
+# Language: Italian
+# File ending: IT
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+
+Il programma edlin è un piccolo editor di righe, scritto per FreeDOS come
+clone funzionale del vecchio programma MS-DOS edlin. Si differenzia dalla
+versione MS perché, in primo luogo, è software libero e, in secondo luogo,
+l'interfaccia utente è leggermente diversa in alcuni punti. Il motivo della
+differenza è evitare che l'utente debba digitare caratteri di controllo
+richiesti dalla sintassi di MS-edlin.
+
+AVVIO DI EDLIN
+
+Il programma edlin viene avviato da solo:
+
+  edlin
+
+o con un nome di file che viene caricato inizialmente:
+
+  edlin file
+
+COMANDI INTERNI DI EDLIN
+
+Nelle seguenti liste di comandi, le parentesi quadre rappresentano elementi
+opzionali. Il simbolo # rappresenta un numero di riga, che può essere una
+stringa di cifre, un punto (.) per la riga corrente, un segno di dollaro ($)
+per l'ultima riga del file, o un numero aggiunto o sottratto a un altro,
+cosicché:
+
+  .,.+1p
+
+stampa la riga corrente e la riga successiva.
+
+Un segno di dollaro nelle liste rappresenta una stringa di caratteri. Esse
+possono essere racchiuse tra virgolette singole o doppie e contenere le
+seguenti sequenze di escape:
+
+  \a - segnale acustico (alert)
+  \b - backspace
+  \e - escape
+  \f - formfeed
+  \t - tabulazione orizzontale
+  \v - tabulazione verticale
+  \" - virgolette doppie
+  \' - virgolette singole
+  \. - punto
+  \\ - backslash
+  \xXX (X è cifra esadecimale) - costante esadecimale
+  \dddd (d è cifra decimale) - costante decimale
+  \OOO (O è cifra ottale) - costante ottale
+  \^C - carattere di controllo
+
+Il programma edlin supporta la seguente sintassi:
+
+# - MODIFICA UNA SINGOLA RIGA
+
+edlin visualizza la riga indicata dal numero, e la riga successiva inserita
+sostituisce quella visualizzata nel file.
+
+a - AGGIUNGI (APPEND)
+
+Questo comando è equivalente a $+1i .
+
+[#],[#],#,[#]c - COPIA UN INTERVALLO DI RIGHE
+
+Copia un blocco di righe consecutive in un'altra posizione del buffer. I
+parametri sono:
+
+  * La prima riga da copiare (predefinito = riga corrente)
+  * L'ultima riga da copiare (predefinito = riga corrente)
+  * La riga prima della quale inserire il blocco
+  * Il numero di volte che si desidera copiare il blocco (predefinito = 1)
+
+Dopo la copia, è possibile usare il comando l (list) per vedere le righe
+rinumerate.
+
+[#][,#]d - ELIMINA UN BLOCCO DI RIGHE
+
+Elimina un blocco di righe consecutive. I parametri sono la prima e l'ultima
+riga del blocco da eliminare.
+
+Se si omette il secondo parametro, elimina solo la riga del primo. Se si
+omette il primo, elimina dalla riga corrente a quella del secondo (includere
+la virgola). Se si omettono entrambi, viene eliminata la riga corrente.
+
+e nomefile - SALVA ED ESCI
+
+Equivale a:
+
+  w nomefile
+  q
+
+[#]i - MODALITÀ INSERIMENTO
+
+Attiva la modalità inserimento. Il parametro è il numero di riga prima della
+quale inserire il testo.
+
+Durante l'inserimento, le sequenze di escape sono valide. Per uscire,
+digitare un punto (.) su una riga vuota (per una riga con solo un punto,
+usare un carattere di escape).
+
+Dopo l'uscita, la riga successiva al testo inserito diventa la corrente, a
+meno che l'inserimento non sia avvenuto alla fine, nel qual caso l'ultima
+riga diventa la nuova riga corrente.
+
+[#][,#]l - ELENCA RIGHE
+
+Visualizza le righe a schermo. Senza primo parametro, inizia 11 righe prima
+della corrente. Senza secondo, mostra una pagina. Senza entrambi, mostra
+una pagina da 11 righe prima della corrente. Se le righe superano una
+pagina, il programma chiederà conferma dopo ogni schermata.
+
+[#],[#],#m - SPOSTA BLOCCO
+
+Sposta un blocco di testo prima della riga indicata nel terzo parametro. È
+come copiare e poi eliminare il blocco originale.
+
+[#][,#]p - PAGINA
+
+Simile a l, ma la pagina predefinita inizia dalla riga corrente invece di
+11 righe prima.
+
+q - ESCI (QUIT)
+
+Esce senza salvare ulteriori modifiche.
+
+[#][,#][?]r$,$ - SOSTITUISCI STRINGA
+
+Sostituisce la prima stringa con la seconda tra le righe indicate. Senza
+primo parametro, inizia dopo la riga corrente; senza secondo, termina
+all'ultima riga del file.
+
+Il punto interrogativo (?) chiede conferma prima di ogni sostituzione.
+
+[#][,#][?]s$ - CERCA SOTTOSTRINGA
+
+Cerca la prima riga contenente la stringa indicata. Senza primo parametro,
+cerca dalla riga corrente; senza secondo, cerca fino alla fine del file.
+
+Il punto interrogativo (?) attiva la conferma. Rispondere "N" (No) continua
+la ricerca; "S" (Sì) la interrompe. Se riuscita, la riga corrente viene
+impostata dove è terminata la ricerca.
+
+[#]t nomefile - TRASFERISCI FILE
+
+Inserisce il contenuto di un file esterno prima della riga indicata. Se
+omessa, viene usata la riga corrente.
+
+[#]w nomefile - SCRIVI FILE
+
+Scrive il numero di righe indicato nel file. Senza parametro, scrive tutto
+il buffer nel file.
+
+AUTORE/MANUTENZIONE
+
+Gregory Pietsch, gpietsch@comcast.net

@@ -1,0 +1,313 @@
+# Language: French
+# File ending: FR
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Documentation d'utilisation du programme MODE pour Free-DOS
+
+	(c) Copyright 1994-1995 par K. Heidenstrom.
+
+	Modifi‚ :
+
+	KH.19941231.001  (MODE 1.0.0)  PremiŠre version
+	KH.19950116.002  (MODE 1.0.2)  Ajout de la documentation switchar
+	KH.19950520.003  (MODE 1.0.3)  Aucun changement de fonctionnalit‚
+	KH.19950805.004  (MODE 1.0.4)  Ajout des options de modificateurs
+	(shift-state)
+
+
+1.  MENTIONS LGALES
+
+	Ce programme est Copyright 1994-1995 par K. Heidenstrom. Il a ‚t‚
+	‚crit sp‚cifiquement pour le projet Free-DOS. L'auteur peut ˆtre
+	contact‚ … kheidens@actrix.gen.nz sur Internet ou par courrier postal :
+	K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	Ce programme est un logiciel libre. Vous pouvez redistribuer le code
+	source et l'ex‚cutable et/ou modifier le programme selon les termes
+	de la GNU General Public License telle que publi‚e par la Free Software
+	Foundation ; soit la version 2 de la licence, ou (… votre choix)
+	toute version ult‚rieure.
+
+	Ce programme est distribu‚ dans l'espoir qu'il sera utile, mais il
+	est fourni "tel quel", sans aucune garantie d'aucune sorte, y compris
+	la garantie implicite de qualit‚ marchande ou d'ad‚quation … un usage
+	particulier. En aucun cas l'auteur ne sera responsable des dommages
+	de toute nature li‚s … l'utilisation de ce programme. Voir la
+	GNU General Public License pour plus de d‚tails.
+
+	Vous devriez avoir re‡u une copie de la GNU General Public License avec
+	ce programme ; sinon, ‚crivez … la Free Software Foundation, Inc.,
+	675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  FONCTIONS ET SYNTAXE D'UTILISATION
+
+	Le programme MODE remplit six fonctions distinctes, d‚crites
+	s‚par‚ment ci-dessous.
+
+2.1.  RGLER LE MODE VIDO ET LE NOMBRE DE LIGNES D'CRAN
+
+	MODE permet de r‚gler le mode vid‚o sur l'un des cinq modes suivants.
+	La syntaxe est :
+
+	MODE Modvid‚o[,Lignes]
+
+	Les modes sont :
+
+	MONO	Mode monochrome, tel qu'utilis‚ avec les cartes MDA et Hercules,
+		et ‚galement ‚mul‚ sur les cartes EGA et VGA. Ce mode est le
+		seul capable de souligner les caractŠres … l'‚cran par
+		d‚faut. Ce mode ne peut pas ˆtre s‚lectionn‚ sur la carte CGA.
+
+	BW40	Mode 40 colonnes avec couleur supprim‚e. Ce mode est sp‚cifique
+		… l'adaptateur CGA et donne un affichage de 40 colonnes par 25
+		lignes. L'information de couleur du signal vid‚o composite de
+		la carte CGA est d‚sactiv‚e, de sorte que l'affichage est en
+		noir et blanc sur un moniteur couleur composite, avec seize
+		nuances de gris.
+		Si ce mode est s‚lectionn‚ sur une carte EGA ou VGA, ou une
+		carte CGA non connect‚e … un t‚l‚viseur ou un moniteur couleur
+		composite, il apparaŒtra identique au mode CO40 (c'est-…-dire
+		que la couleur ne sera pas supprim‚e). Ce mode ne peut pas
+		ˆtre s‚lectionn‚ sur les cartes MDA et Hercules.
+
+	BW80	Mode 80 colonnes avec couleur supprim‚e. Ce mode est ‚galement
+		sp‚cifique … l'adaptateur CGA et est identique au BW40, sauf
+		qu'il y a 80 colonnes.
+		Si ce mode est s‚lectionn‚ sur une carte EGA ou VGA, ou une
+		carte CGA non connect‚e … un t‚l‚viseur ou un moniteur couleur
+		composite, il apparaŒtra identique au mode CO80 (c'est-…-dire
+		que la couleur ne sera pas supprim‚e). Ce mode ne peut pas
+		ˆtre s‚lectionn‚ sur les cartes MDA et Hercules.
+
+	CO40	Mode couleur 40 colonnes. Ce mode donne un affichage couleur
+		de 40 colonnes par 25 lignes. Il est support‚ par les
+		adaptateurs CGA, EGA et VGA mais pas par les cartes MDA et
+		Hercules.
+
+	CO80	Mode couleur 80 colonnes. Ce mode donne un affichage de 80
+		colonnes par 25 lignes et constitue le mode d'affichage normal
+		pour les cartes CGA, EGA et VGA. Il n'est pas support‚ par les
+		cartes MDA et Hercules. Sur les cartes EGA, ce mode supporte
+		‚galement une variante … 43 lignes, et sur les cartes VGA, la
+		variante … 43 lignes et une variante … 50 lignes sont support‚es.
+
+		Les modes 43 lignes et 50 lignes peuvent ˆtre s‚lectionn‚s en
+		sp‚cifiant ",43" ou ",50" aprŠs le CO80 sur la ligne de
+		commande MODE. Si ce paramŠtre n'est pas sp‚cifi‚, la valeur par
+		d‚faut de 25 lignes sera utilis‚e.
+
+	Une fois r‚gl‚, le mode vid‚o reste en vigueur jusqu'… ce qu'il soit
+	chang‚ par une commande MODE ou par un programme. Le mode vid‚o n'est
+	pas verrouill‚ en permanence - les programmes sont libres de changer
+	de mode vid‚o selon leurs besoins.
+
+2.2.  CONFIGURER LES PARAMÔTRES DU PORT SRIE
+
+	MODE permet de configurer les paramŠtres de communication d'un port
+	s‚rie. La syntaxe est :
+
+	MODE COMn:r,p,d,s
+
+	n	Sp‚cifie le port s‚rie … configurer, de 1 … 4. Si le port
+		s‚rie n'existe pas, MODE signalera une erreur.
+
+	r	Sp‚cifie le d‚bit en bauds en bits par seconde. Les valeurs
+		sont : 50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 et 115200.
+
+		1200, 2400, 4800 et 9600 peuvent ˆtre abr‚g‚s respectivement
+		en 12, 24, 48 et 96. 14400, 19200, 28800, 38400 et 57600
+		peuvent ˆtre abr‚g‚s en leurs deux ou trois premiers chiffres.
+		115200 peut ˆtre abr‚g‚ en 115 ou 1152.
+
+	p	Sp‚cifie le type de parit‚ g‚n‚r‚ et v‚rifi‚ sur les octets
+		de donn‚es. Les valeurs sont :
+
+		E = Parit‚ paire (Even)
+		O = Parit‚ impaire (Odd)
+		N = Pas de parit‚ (None)
+
+	d	Sp‚cifie le nombre de bits de donn‚es qui seront transmis
+		et re‡us. Les valeurs autoris‚es sont 5, 6, 7 et 8.
+
+	s	Sp‚cifie le nombre de bits d'arrˆt qui seront transmis et
+		attendus. Cela peut ˆtre 1 ou 2. Si 2 bits d'arrˆt sont
+		utilis‚s avec 5 bits de donn‚es, le port s‚rie g‚n‚rera et
+		v‚rifiera en r‚alit‚ 1 1/2 bits d'arrˆt.
+
+	Une fois r‚gl‚s, les paramŠtres du port s‚rie restent en vigueur
+	jusqu'… ce qu'ils soient modifi‚s par une commande MODE ou par un
+	programme. Les r‚glages du port s‚rie ne sont pas verrouill‚s en
+	permanence.
+
+2.3.  REDIRECTION DU PORT PARALLÔLE ET TENTATIVES INFINIES
+
+	MODE permet de rediriger la sortie d'un port parallŠle (LPT) vers un
+	port s‚rie (COM), vers NUL (c'est-…-dire rien), et peut ‚galement
+	r‚essayer ind‚finiment si le p‚riph‚rique ne r‚pond pas.
+
+	Ces fonctions sont ex‚cut‚es par la partie r‚sidente de MODE, qui sera
+	automatiquement install‚e si n‚cessaire lors de la demande.
+
+	La syntaxe est :
+
+	MODE LPTn:P		D‚lai d'attente infini sur le port parallŠle
+	MODE LPTn:=COMx		Rediriger la sortie imprimante vers le port COM
+	MODE LPTn:=NUL:		Redirections la sortie imprimante vers NUL
+	MODE LPTn:		Supprimer la redirection et le d‚lai infini
+
+	La fonction LPTn:P sp‚cifie des tentatives infinies en cas de d‚lai
+	d'attente d‚pass‚. Si activ‚, MODE r‚essayera continuellement si
+	l'imprimante ne r‚pond pas. Sinon, une erreur d'‚criture sera
+	signal‚e aprŠs un certain temps (environ une demi-minute).
+
+	Les fonctions LPTn:=COMx et LPTn:=NUL: sp‚cifient la redirection de
+	la sortie imprimante. Tout port parallŠle (qu'il existe ou non) peut
+	ˆtre redirig‚ vers n'importe quel port s‚rie existant ou vers NUL.
+	Plusieurs ports parallŠles peuvent ˆtre redirig‚s vers le mˆme port
+	s‚rie. Ces fonctions sont utiles pour les imprimantes s‚rie ou pour
+	‚viter le blocage de l'ordinateur si un programme tente d'imprimer
+	sans imprimante connect‚e.
+
+	La fonction LPTn: supprime toute redirection et d‚lai infini pour le
+	port sp‚cifi‚ et le ramŠne … son fonctionnement normal.
+
+2.4.  FONCTIONS DE PARKAGE DU DISQUE DUR (PARK)
+
+	MODE permet de parquer les tˆtes du disque dur ou des disques (seuls
+	les deux premiers disques physiques du systŠme), soit imm‚diatement,
+	soit aprŠs une p‚riode d'inactivit‚.
+
+	La fonction de parkage temporis‚ est ex‚cut‚e par la partie r‚sidente
+	de MODE.
+
+	La syntaxe est :
+
+	MODE PARK			Parquer maintenant
+	MODE PARK,minutes[:secondes]	Parquer aprŠs inactivit‚ du disque
+
+	La fonction PARK parque le(s) disque(s) imm‚diatement et attend que
+	vous ‚teigniez l'ordinateur. Vous pouvez ‚galement appuyer sur Ctrl-C
+	pour quitter et revenir au DOS.
+
+	La fonction PARK,minutes[:secondes] provoque le parkage du/des disque(s)
+	aprŠs une certaine p‚riode d'inactivit‚ (jusqu'… 50 minutes). Si vous
+	avez deux disques physiques, ils sont g‚r‚s s‚par‚ment.
+
+	Le parkage temporis‚ ne peut pas ˆtre d‚sactiv‚ - vous devez red‚marrer
+	pour le supprimer. Ces fonctions sont g‚n‚ralement utiles pour les
+	anciennes machines. Les disques modernes se parquent automatiquement
+	lors de la mise hors tension.
+
+2.5.  FONCTIONS TYPMATIQUES (RPTITION DU CLAVIER)
+
+	MODE permet de r‚gler le d‚lai de r‚p‚tition initial et la vitesse
+	de r‚p‚tition (typematic), et ‚ventuellement de les verrouiller.
+
+	La fonction de verrouillage est ex‚cut‚e par la partie r‚sidente de
+	MODE.
+
+	La syntaxe est :
+
+	MODE DELAY=d RATE=r		R‚gler les paramŠtres typ‚matiques
+	MODE DELAY=d RATE=r LOCK	R‚gler et verrouiller les paramŠtres
+
+	d	Sp‚cifie le d‚lai initial, la plage est de 1 … 4 et le
+		d‚lai est compris entre 1/4 de seconde (1) et une seconde (4).
+
+	r	Sp‚cifie la vitesse de r‚p‚tition automatique. La plage est de
+		1 … 32 et la vitesse est comprise entre deux r‚p‚titions par
+		seconde (1) et 30 r‚p‚titions par seconde (32).
+
+	LOCK	Sp‚cifie que les paramŠtres typ‚matiques doivent ˆtre
+		verrouill‚s. Une fois cela fait, ils peuvent ˆtre modifi‚s par
+		MODE, mais pas par la plupart des autres programmes. C'est
+		utile car certains programmes modifient ces r‚glages sans
+		votre permission. Ce n'est cependant pas infaillible.
+
+	Notez que DELAY et RATE doivent tous deux ˆtre sp‚cifi‚s. MODE acceptera
+	les commandes mˆme si la machine ne les supporte pas r‚ellement.
+
+2.6.  FONCTIONS SWITCHAR
+
+	MODE peut afficher et r‚gler le caractŠre de bascule (switchar) du DOS.
+	Le caractŠre par d‚faut est la barre oblique, '/'. C'est le caractŠre
+	utilis‚ pour indiquer le d‚but d'une option de commande, par exemple
+	l'option /P pour la commande DIR. Typiquement, il peut ˆtre chang‚ en
+	tiret '-'. Switchar est une fonction non document‚e du DOS support‚e
+	correctement par peu de programmes.
+
+	La syntaxe est :
+
+	MODE SWITCHAR			Afficher le switchar actuel
+	MODE SWITCHAR=x			R‚gler le switchar sur le caractŠre x
+	MODE SWITCHAR=n			R‚gler le switchar sur la valeur ASCII n
+
+2.7.  FONCTIONS DE MODIFICATEURS (TATS DE SHIFT)
+
+	MODE peut modifier les trois ‚tats de verrouillage (caps lock, numlock
+	et scroll lock). Cette fonction ne doit pas ˆtre utilis‚e sur les
+	machines avec des claviers PC ou XT originaux, car les voyants LED ne
+	peuvent pas ˆtre contr“l‚s par l'ordinateur et se d‚synchroniseraient.
+	Sur les AT et machines ult‚rieures, il n'y a pas de problŠme.
+
+	La syntaxe des paramŠtres pour cette commande est la suivante :
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Toute combinaison non conflictuelle est autoris‚e. SCRLOCK peut ˆtre
+	‚tendu en SCROLLLOCK.
+
+3.  GNRALITS
+
+	Les paramŠtres de MODE ne sont pas sensibles … la casse. MODE ne peut
+	traiter qu'une seule commande par appel.
+
+	Les messages d'erreur sont envoy‚s … StdErr. Les messages d'information
+	sont envoy‚s … la sortie standard (peuvent ˆtre redirig‚s vers NUL:).
+
+	Les Errorlevels renvoy‚s par MODE sont les suivants :
+
+	0	Aucune erreur
+	115	Le port s‚rie n'existe pas
+	117	Aucun disque dur trouv‚ pour le parkage
+	118	Le mode vid‚o sp‚cifi‚ n'est pas support‚ sur cette machine
+	162	M‚moire insuffisante (MODE n‚cessite environ 6 Ko)
+	241	ParamŠtre hors plage (ex : valeur de temps, num‚ro LPT)
+	242	Modes 43 ou 50 lignes possibles uniquement avec CO80
+	243	D‚bit en bauds inconnu
+	244	Doit sp‚cifier … la fois DELAY= et RATE=
+	246	Plus d'une commande ou type de commande a ‚t‚ donn‚
+	255	Syntaxe d'utilisation incorrecte
+
+	MODE est un programme TSR. Si vous trouvez un bogue, veuillez en
+	informer l'auteur (d‚tails … la section 1).
+
+4.  EXEMPLES D'UTILISATION
+
+	Exemple d'utilisation de MODE dans AUTOEXEC.BAT :
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	Cette s‚quence s‚lectionne d'abord l'affichage 43 lignes, configure
+	les ports COM1-3, redirige LPT1 vers COM2, installe un parkage
+	temporis‚ aprŠs 30s d'inactivit‚, rŠgle le clavier et d‚finit le
+	switchar sur un tiret ('-').
+
+				   ----//----
+				   

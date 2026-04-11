@@ -1,0 +1,174 @@
+# Language: Polish
+# File ending: PL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+
+Program edlin to maày edytor liniowy, napisany dla systemu FreeDOS jako
+funkcjonalny klon starego programu edlin z systemu MS-DOS. R¢æni si© on od
+wersji MS edlin tym, æe po pierwsze jest wolnym oprogramowaniem, a po drugie
+jego interfejs uæytkownika jest nieco inny w kilku miejscach. Przyczyn• tych
+r¢ænic jest ch©Ü unikni©cia koniecznoòci wpisywania przez uæytkownika znak¢w
+steruj•cych wymaganych przez skàadni© MS edlin.
+
+WYWOùYWANIE PROGRAMU EDLIN
+
+Program edlin wywoàuje si© albo samodzielnie:
+
+  edlin
+
+albo z nazw• pliku, kt¢ry ma zostaÜ wczytany na pocz•tku:
+
+  edlin plik
+
+WEWN®TRZNE POLECENIA PROGRAMU EDLIN
+
+W poniæszych listach polece‰ nawiasy kwadratowe reprezentuj• konstrukcje
+opcjonalne. Symbol # reprezentuje numer linii, kt¢ry jest albo ci•giem cyfr,
+kropk• (.) reprezentuj•c• bieæ•c• lini©, znakiem dolara ($) reprezentuj•cym
+ostatni• lini© w pliku, albo numerem linii dodanym lub odj©tym od innego
+numeru linii, tak æe:
+
+  .,.+1p
+
+wyòwietla bieæ•c• lini© i lini© nast©pn•.
+
+Znak dolara w poniæszych listach reprezentuje ci•g znak¢w. Mog• one byÜ
+uj©te w pojedynczy lub podw¢jny cudzysà¢w i mog• zawieraÜ nast©puj•ce
+sekwencje steruj•ce (escape sequences):
+
+  \a - alarm (beeper)
+  \b - cofni©cie (backspace)
+  \e - escape
+  \f - wysuni©cie strony (formfeed)
+  \t - tabulacja pozioma
+  \v - tabulacja pionowa
+  \" - cudzysà¢w
+  \' - apostrof
+  \. - kropka
+  \\ - ukoònik wsteczny (backslash)
+  \xXX gdzie X to cyfra szesnastkowa (0-9, a-f) - staàa szesnastkowa
+  \dddd gdzie d to cyfra dziesi©tna (0-9) - staàa dziesi©tna
+  \OOO gdzie O to cyfra ¢semkowa (0-7) - staàa ¢semkowa
+  \^C - znak steruj•cy (control character)
+
+Program edlin obsàuguje nast©puj•c• skàadni©:
+
+# - EDYCJA POJEDYNCZEJ LINII
+
+Program edlin wyòwietla pojedyncz• lini© wskazan• przez numer, a nast©pna
+wpisana linia zast©puje t© wyòwietlon• w pliku.
+
+a - DOPIZYWANIE (APPEND)
+
+To polecenie jest r¢wnowaæne $+1i .
+
+[#],[#],#,[#]c - KOPIOWANIE ZAKRESU LINII
+
+To polecenie kopiuje blok kolejnych linii w inne miejsce w buforze. Parametry
+to:
+
+  * Pierwsza linia, kt¢r• chcesz skopiowaÜ (domyòlnie = bieæ•ca linia)
+  * Ostatnia linia, kt¢r• chcesz skopiowaÜ (domyòlnie = bieæ•ca linia)
+  * Linia, przed kt¢r• chcesz wstawiÜ blok linii
+  * Liczba kopii bloku (domyòlnie = 1)
+
+Po skopiowaniu linii przez edlin, moæesz uæyÜ polecenia l (list), aby
+zobaczyÜ poprawnie przenumerowane linie.
+
+[#][,#]d - USUWANIE BLOKU LINII
+
+To polecenie usuwa blok kolejnych linii. Parametry to pierwsza i ostatnia
+linia bloku do usuni©cia.
+
+Jeòli pominiesz drugi parametr, usuwana jest tylko linia okreòlona w
+pierwszym parametrze. Jeòli pominiesz pierwszy parametr, usuwany jest blok
+od bieæ•cej linii do linii okreòlonej w drugim parametrze (pami©taj o
+przecinku). Pomini©cie obu parametr¢w powoduje usuni©cie bieæ•cej linii.
+
+e nazwa_pliku - ZAPISZ I WYJDç
+
+To polecenie jest r¢wnowaæne:
+
+  w nazwa_pliku
+
+po kt¢rym nast©puje:
+
+  q
+
+[#]i - TRYB WSTAWIANIA (INSERT)
+
+To polecenie uruchamia tryb wstawiania. Jego parametrem jest numer linii,
+przed kt¢r• chcesz wstawiÜ linie.
+
+Podczas wstawiania dozwolone jest wpisywanie sekwencji steruj•cych, takich
+jak te powyæej. Aby wyjòÜ z trybu wstawiania, wpisz kropk© (.) w pustej
+linii (jeòli potrzebujesz linii zawieraj•cej tylko kropk©, uæyj ukoònika).
+
+Po wyjòciu z trybu wstawiania, linia po wstawionym tekòcie staje si© lini•
+bieæ•c•, chyba æe wstawianie nast•piào na ko‰cu tekstu; w takim przypadku
+ostatnia linia tekstu staje si© now• lini• bieæ•c•.
+
+[#][,#]l - LISTOWANIE LINII
+
+To polecenie wyòwietla linie tekstu na ekranie. Jeòli pominiesz pierwszy
+parametr, polecenie zaczyna wyòwietlaÜ tekst od 11 linii przed bieæ•c•
+lini•. Pomini©cie drugiego parametru wyòwietla stron© tekstu zaczynaj•c•
+si© od linii okreòlonej w pierwszym parametrze. Pomini©cie obu wyòwietla
+jedn• stron© tekstu zaczynaj•c od 11 linii przed bieæ•c•. W kaædym przypadku,
+jeòli liczba linii jest wi©ksza niæ liczba linii na stronie, program zapyta
+o kontynuacj© po kaædej stronie.
+
+[#],[#],#m - PRZENOSZENIE BLOKU (MOVE)
+
+To polecenie przenosi blok tekstu przed lini© o numerze okreòlonym w trzecim
+parametrze. Jest to podobne do kopiowania, a nast©pnie usuwania oryginalnego
+bloku.
+
+[#][,#]p - STRONA (PAGE)
+
+Jest to polecenie podobne do l, z t• r¢ænic•, æe domyòlna strona zaczyna si©
+od bieæ•cej linii zamiast 11 linii wczeòniej.
+
+q - WYJDç (QUIT)
+
+Oczywiste. Ko‰czy prac© bez dalszego zapisywania.
+
+[#][,#][?]r$,$ - ZAMIE„ CI§G ZNAK‡W
+
+To polecenie zast©puje wszystkie wyst•pienia pierwszego ci•gu znak¢w drugim
+ci•giem pomi©dzy dwiema okreòlonymi liniami. Pomini©ty pierwszy parametr
+powoduje rozpocz©cie zast©powania od linii po bieæ•cej; pomini©ty drugi
+parametr zatrzymuje zast©powanie na ostatniej linii pliku.
+
+Znak zapytania powoduje wysàanie proòby o potwierdzenie przed zamian•.
+
+[#][,#][?]s$ - SZUKAJ PODCI§GU
+
+To polecenie wyszukuje pierwsz• lini© zawieraj•c• okreòlony podci•g.
+Pomini©cie pierwszego parametru powoduje rozpocz©cie wyszukiwania od
+bieæ•cej linii; pomini©cie drugiego powoduje zatrzymanje wyszukiwania na
+ko‰cu pliku.
+
+Znak zapytania powoduje wyòwietlenie proòby o potwierdzenie. Odpowied´ "N"
+(Nie) na potwierdzenie kontynuuje wyszukiwanie; odpowied´ "T" (Tak) ko‰czy je.
+
+Bieæ•ca linia zostanie ustawiona na lini©, na kt¢rej zako‰czyào si©
+wyszukiwanie, jeòli zako‰czyào si© ono sukcesem.
+
+[#]t nazwa_pliku - TRANSFER PLIKU
+
+To polecenie powoduje wstawienie zawartoòci pliku przed okreòlonym numerem
+linii. Jeòli numer linii zostanie pomini©ty, domyòlnie jest to bieæ•ca linia.
+
+[#]w nazwa_pliku - ZAPISZ PLIK (WRITE)
+
+To polecenie powoduje zapisanie okreòlonej przez parametr liczby linii do
+wskazanego pliku. Jeòli parametr zostanie pomini©ty, do pliku zostan•
+zapisane wszystkie linie znajduj•ce se w buforze.
+
+AUTOR/OPIEKUN
+
+Gregory Pietsch, gpietsch@comcast.net

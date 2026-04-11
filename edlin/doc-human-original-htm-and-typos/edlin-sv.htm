@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>edlin</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h3>EDLIN 2.14</h3>
+<pre>
+Programmet edlin är en liten textredigerare skrivet för FreeDOS
+som en klon av det gamla MS-DOS-programmet edlin. Det skiljer sig från
+MS edlin dels genom att det är fri programvara och dels genom att
+användargränssnittet är något annorlunda på ett par platser. Anledningen
+till skillnaden är att användare inte ska vara tvungen att mata in
+de kontrolltecken som krävs av MS edlin:s syntax.
+</pre>
+<h3>STARTA EDLIN</h3>
+<pre>
+
+Programmet edlin startas antingen ensamt:
+
+  edlin
+
+eller med ett filnamn som läses in inledningsvis:
+
+  edlin fil
+</pre>
+<h3>EDLIN:S INTERNA KOMMANDON</h3>
+<pre>
+I följande kommandolista representerar klamrar valfria konstruktioner.
+Brädgårdssymbolen (#) representerar ett radnummer, vilket antingen är en
+sträng av siffror, en punkt som representerar den aktuella raden, ett
+dollartecken ($) som representerar den sista raden i filen, eller ett
+radnummer adderar till eller subtraherat från ett annat radnummer, så t.ex.
+
+  .,.+1p
+
+skriver ut den aktuella och nästföljande raden.
+
+Ett dollartecken i följande lista representerar en sträng av tecken. De kan
+omgärdas av antingen enkla eller dubbla citattecken och kan innehålla
+följande kontrollsekvenser:
+
+  \a - alert
+  \b - backstegstecken
+  \e - escape
+  \f - sidmatning
+  \t - horisontell tabb
+  \v - vertikal tabb
+  \" - dubbelt citattecken
+  \' - enkelt citattecken
+  \. - punkt
+  \\ - omvänt snedstreck
+  \xXX där X är en hexsiffra (0-9, a-f, A-F) - hexadecimal konstant
+  \dddd där d är en decimal siffra (0-9) - decimal konstant
+  \OOO där O är en oktal siffra (0-7) - oktal konstant
+  \^C - kontrolltecken
+
+Programmet edlin har stöd för följande syntax:
+</pre>
+<h3># - REDIGERA EN ENSTAKA RAD</h3>
+<pre>
+Programmet edlin matar ut raden som indikeras av numret och påföljande
+rad som matas in ersätter raden från filen som skrevs ut.
+</pre>
+<h3>a - LÄGG TILL</h3>
+<pre>
+Detta kommando är ekvivalent med $+1i .
+</pre>
+<h3>[#],[#],#,[#]c - KOPIERA ETT RADINTERVALL</h3>
+<pre>
+Detta kommando kopierar ett block av konsekutiva rader till en annan plats
+i bufferten. Parametrarna är:
+
+  * Den första raden du vill kopiera (standardvärde = aktuell rad)
+  * Den sista raden du vill kopiera (standardvärde = aktuell rad)
+  * Raden före vilken du vill infoga blocket av rader
+  * Antalet gånger du vill kopiera blocket (standardvärde = 1)
+
+Efter att edlin kopierat raderna vill du nog använda kommandot l (lista)
+för att se de korrekt om-numrerade raderna.
+</pre>
+<h3>[#][,#]d - TA BORT ETT BLOCK RADER</h3>
+<pre>
+Detta kommando tar bort ett block konsekutiva rader. Parametrarna är de
+första och sista raderna i blocket som ska tas bort.
+
+Om du utelämnar den andra parameter kommer bara den rad som pekas ut av
+den första parametern att tas bort. Om du utelämnar den första parametern
+kommer blocket från aktuell rad till raden som anges i andra parametern (se
+till att du anger ett kommatecken) att tas bort. Om båda parametrarna
+utelämnas kommer den aktuella raden att tas bort.
+</pre>
+<h3>e filnamn - SPARA OCH AVSLUTA</h3>
+<pre>
+Detta kommando är ekvivalent med
+
+  w filnamn
+
+följt av
+
+  q
+</pre>
+<h3>[#]i - INFOGNINGSLÄGE</h3>
+<pre>
+Detta kommando aktiverar infogningsläget. Dess parameter är radnumret före
+vilket du vill infoga rader.
+
+Under infogning är kontrollsekvenser så som de ovan möjliga att mata in.
+För att avsluta infogningsläge, skriv en punkt (.) på en i övrigt tom rad
+(om du måste infoga en rad med enbart en punkt, använd en kontrollsekvens
+för den).
+
+Efter att att infogningsläget avslutats kommer raden efter den infogade
+texten att bli den aktuella raden, om inte infogningen lades till i slutet
+av texten, i vilket fall den sista raden i texten kommer att bli den nya
+aktuella raden.
+</pre>
+<h3>[#][,#]l - LISTA RADER</h3>
+<pre>
+Detta kommando listar rader av text på skärmen. Om du utelämnar den första
+parameter kommer kommandot att visa text som börjar 11 rader före texten på
+aktuell rad. Om du utelämnar den andra parameter visas en sida av text med
+början på raden som anges i den första parametern. Om båda parametrarna
+utelämnar visas en sida av text som börjar 11 rader innan aktuell rad.
+Oavsett fall, om antalet rader är större än antalet rader på en sida kommer
+programmet att skriva ut en sträng och pausa efter varje sida med text.
+</pre>
+<h3>[#],[#],#m - FLYTTA BLOCK</h3>
+<pre>
+Detta kommando flyttar ett block av text till raden innan numret angivet i
+den tredje parametern. Det motsvarar att kopiera och sedan ta bort original
+blocker.
+</pre>
+<h3>[#][,#]p - SIDA</h3>
+<pre>
+Detta liknar l förutom att standardsidan börjar med den aktuella raden
+istället för 11 rader innan.
+</pre>
+<h3>q - AVSLUTA</h3>
+<pre>
+Självförklarande.
+</pre>
+<h3>[#][,#][?]r$,$ - ERSÄTT STRÄNG</h3>
+<pre>
+Detta kommando ersätter alla förekomster av den första strängen med den
+andra mellan de två rader som anges. Om den första parametern utelämnar
+börjar ersättning på raden efter aktuell rad; om de andra parametern
+utelämnar slutar ersättning på sista raden i filen.
+
+Frågetecknet orsakar att ett bekräftelsemeddelande visas innan ersättning.
+</pre>
+<h3>[#][,#][?]s$ - SÖK EFTER DELSTRÄNG</h3>
+<pre>
+Detta kommando söker efter den första raden som innehåller den angivna
+delsträngen. Om den första parameter utelämnas kommer sökningen att börja
+på den aktuella raden; om den andra parametern utelämnas kommer sökningen
+att avslutas vid filslutet.
+
+Frågetecknet orsakar att sökningen visar ett bekräftelsemeddelande. Om du
+säger nej till bekräftelsemeddelandet fortsätter sökningen; om du säger ja
+avslutas den.
+
+Den aktuella rader kommer att återställas till raden där sökningen
+avslutades om den var framgångrik.
+</pre>
+<h3>[#]t filnamn - ÖVERFÖR FIL</h3>
+<pre>
+Detta kommando kommer att överföra innehållet från filen till bufferten så
+att det infogas innan det angivna radnumret. Om radnumret utelämnar är
+standardvärdet den aktuella raden.
+</pre>
+<h3>[#]w filnamn - SPARA FIL</h3>
+<pre>
+Detta kommando orsakar att antalet rader som anges i första parametern
+sparas till den specificerade filen. Om parametern utelämnar kommer alla
+raderna i bufferten att sparas till filen.
+</pre>
+<h3>UPPHOVSMAN</h3>
+<pre>
+Gregory Pietsch, gpietsch@comcast.net
+<BR><BR>
+</pre>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>edlin</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h3>EDLIN 2.14</h3>
+<pre>
+The edlin program is a small line editor, written for FreeDOS as a
+functional clone of the old MS-DOS program edlin. It differs from MS edlin
+in that first, it's free software, and second, the user interface is
+slightly different in a few places. The reason for the difference is
+so that the user does not have to type in control characters mandated by
+MS edlin's syntax.
+</pre>
+<h3>INVOKING EDLIN</h3>
+<pre>
+
+The edlin program is invoked either by itself:
+
+  edlin
+
+or with a filename that's initially read in:
+
+  edlin file
+</pre>
+<h3>EDLIN'S INTERNAL COMMANDS</h3>
+<pre>
+In the following command lists, brackets represent optional constructs.
+The # symbol represents a line number, which is either a string of digits,
+a period representing the current line, a dollar sign ($) representing
+the last line in the file, or a line number added or subtracted from
+another line number, so that
+
+  .,.+1p
+
+prints the current line and the succeeding line.
+
+A dollar sign in the following lists represents a string of characters.
+They may be enclosed in either single or double quotes and may contain
+the following escape sequences:  
+
+  \a - alert
+  \b - backspace
+  \e - escape
+  \f - formfeed
+  \t - horizontal tab
+  \v - vertical tab
+  \" - double quote
+  \' - single quote
+  \. - period
+  \\ - backslash
+  \xXX where X is a hex digit (0-9, a-f, A-F) - hexadecimal constant
+  \dddd where d is a decimal digit (0-9) - decimal constant
+  \OOO where O is an octal digit (0-7) - octal constant
+  \^C - control character
+
+The edlin program supports the following syntax:
+</pre>
+<h3># - EDIT A SINGLE LINE</h3>
+<pre>
+The edlin program outputs the single line indicated by the number, and
+the next inputted line replaces the outputted line in the file.
+</pre>
+<h3>a - APPEND</h3>
+<pre>
+This command is equivalent to $+1i .
+</pre>
+<h3>[#],[#],#,[#]c - COPY A RANGE OF LINES</h3>
+<pre>
+This command copies a block of consecutive lines to another location in
+the buffer. The parameters are:
+
+  * The first line you want to copy (default = current line)
+  * The last line you want to copy (default = current line)
+  * The line before which you want to insert the block of lines
+  * The number of times you want to copy the block (default = 1)
+
+After edlin copies lines, you may use the l (list) command to see the
+correctly renumbered lines.
+</pre>
+<h3>[#][,#]d - DELETE A BLOCK OF LINES</h3>
+<pre>
+This command deletes a block of consecutive lines. The parameters are the
+first and last line of the block to be deleted.
+
+If you omit the second parameter, it deletes only the line specified in
+the first parameter. If you omit the first parameter, it deletes the
+block from the current line to the line specified in the second parameter
+(be sure to include the comma). Omitting both parameters causes the
+current line to be deleted.
+</pre>
+<h3>e filename - SAVE AND QUIT</h3>
+<pre>
+This command is equivalent to
+
+  w filename
+
+followed by
+
+  q
+</pre>
+<h3>[#]i - INSERT MODE</h3>
+<pre>
+This command enters insert mode. Its parameter is the line number before
+which you want to insert lines.
+
+While inserting, escape sequences such as those above are legal to type
+in. To exit insert mode, type a period (.) on an otherwise blank line (if
+you need a line with just a period, escape it).
+
+After exiting insert mode, the line after the inserted text becomes the
+current line unless the insertion was appended to the end of the text, in
+which case the last line of the text becomes the new current line.
+</pre>
+<h3>[#][,#]l - LIST LINES</h3>
+<pre>
+This command lists lines of text on the screen. If you omit the first
+parameter, the command starts showing text beginning with 11 lines of
+text before the current line. Omitting the second parameter shows a page
+of text beginning with the line specified in the first parameter.
+Omitting both shows one page of text starting at 11 lines before the
+current line. In all cases, if the number of lines is larger than the
+number of lines in a page, the program will prompt after each page of
+lines.
+</pre>
+<h3>[#],[#],#m - MOVE BLOCK</h3>
+<pre>
+This command moves a block of text to the line before the number specified
+in the third parameter. It is similar to copying, then deleting the
+original block.
+</pre>
+<h3>[#][,#]p - PAGE</h3>
+<pre>
+This is similar to l except that the default page starts with the current
+line instead of 11 lines before.
+</pre>
+<h3>q - QUIT</h3>
+<pre>
+Self-explanatory.
+</pre>
+<h3>[#][,#][?]r$,$ - REPLACE STRING</h3>
+<pre>
+This command replaces all occurrences of the first string with the second
+between the two lines specified. An omitted first parameter starts the
+replacing at the line after the current line; an omitted second parameter
+stops the replacing at the last line of the file.
+
+The question mark sends a confirmation message before replacement.
+</pre>
+<h3>[#][,#][?]s$ - SEARCH FOR SUBSTRING</h3>
+<pre>
+This command searches for the first line containing the substring
+specified. Omitting the first parameter causes the search to start on the
+current line; omitting the second causes the search to stop at the end of
+the file.
+
+The question mark causes the search to send a confirmation message. Saying
+no to the confirmation message continues the search; saying yes ends it.
+
+The current line will be reset to the line where the search ended if it
+was successful.
+</pre>
+<h3>[#]t filename - TRANSFER FILE</h3>
+<pre>
+This command causes the contents of the file to be inserted before the
+line number specified. If the line number is omitted, the default is the
+current line.
+</pre>
+<h3>[#]w filename - WRITE FILE</h3>
+<pre>
+This command causes the first number of lines specified by the parameter
+to be written to the file specified. If the parameter is omitted, it
+will write all the lines in the buffer to the file.
+</pre>
+<h3>AUTHOR/MAINTAINER</h3>
+<pre>
+Gregory Pietsch, gpietsch@comcast.net
+<BR><BR>
+</pre>
+</body>
+</html>

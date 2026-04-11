@@ -1,0 +1,169 @@
+# Language: Slovak
+# File ending: SK
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+
+Program edlin je malý riadkový editor, napísaný pre FreeDOS ako funkčný klon
+starého programu edlin z MS-DOS. Od MS edlin sa líši tým, že po prvé je to
+slobodný softvér a po druhé, užívateľské rozhranie je na niekoľkých miestach
+mierne odlišné. Dôvodom rozdielu je, aby užívateľ nemusel zadávať riadiace
+znaky vyžadované syntaxou MS edlin.
+
+SPÚŠŤANIE PROGRAMU EDLIN
+
+Program edlin sa spúšťa buď samostatne:
+
+  edlin
+
+alebo s názvom súboru, ktorý sa má načítať pri štarte:
+
+  edlin súbor
+
+INTERNÉ PRÍKAZY PROGRAMU EDLIN
+
+V nasledujúcich zoznamoch príkazov predstavujú hranaté zátvorky voliteľné
+časti. Symbol # predstavuje číslo riadku, čo je buď reťazec číslic, bodka (.)
+predstavujúca aktuálny riadok, znak dolára ($) predstavujúci posledný riadok v
+súbore, alebo číslo riadku pripočítané alebo odpočítané od iného čísla riadku,
+takže
+
+  .,.+1p
+
+vypíše aktuálny riadok a nasledujúci riadok.
+
+Znak dolára v nasledujúcich zoznamoch predstavuje reťazec znakov. Tie môžu byť
+uzavreté v jednoduchých alebo dvojitých úvodzovkách a môžu obsahovať
+nasledujúce escape sekvencie:
+
+  \a - výstraha (pípnutie)
+  \b - backspace (návrat o znak)
+  \e - escape
+  \f - odriadkovanie stránky (formfeed)
+  \t - horizontálny tabulátor
+  \v - vertikálny tabulátor
+  \" - dvojitá úvodzovka
+  \' - jednoduchá úvodzovka
+  \. - bodka
+  \\ - spätné lomka
+  \xXX (kde X je hex číslica 0-9, a-f) - hexadecimálna konštanta
+  \dddd (kde d je dekadická číslica 0-9) - decimálna konštanta
+  \OOO (kde O je oktálová číslica 0-7) - oktálová konštanta
+  \^C - riadiaci znak (control character)
+
+Program edlin podporuje nasledujúcu syntax:
+
+# - ÚPRAVA JEDNÉHO RIADKU
+
+Program edlin vypíše jeden riadok určený číslom a ďalší zadaný riadok nahradí
+tento vypísaný riadok v súbore.
+
+a - PRIPOJENIE (APPEND)
+
+Tento príkaz je ekvivalentný k $+1i .
+
+[#],[#],#,[#]c - KOPÍROVANIE ROZSAHU RIADKOV
+
+Tento príkaz skopíruje blok po sebe idúcich riadkov na iné miesto v pamäti.
+Parametre sú:
+
+  * Prvý riadok, ktorý chcete kopírovať (predvolené = aktuálny riadok)
+  * Posledný riadok, ktorý chcete kopírovať (predvolené = aktuálny riadok)
+  * Riadok, pred ktorý chcete vložiť blok riadkov
+  * Počet kópií bloku (predvolené = 1)
+
+Po skopírovaní riadkov môžete použiť príkaz l (list) na zobrazenie správne
+prečíslovaných riadkov.
+
+[#][,#]d - VYMAZANIE BLOKU RIADKOV
+
+Tento príkaz vymaže blok po sebe idúcich riadkov. Parametre sú prvý a
+posledný riadok bloku, ktorý má byť vymazaný.
+
+Ak vynecháte druhý parameter, vymaže sa iba riadok určený prvým parametrom.
+Ak vynecháte prvý parameter, vymaže sa blok od aktuálneho riadku po riadok
+určený druhým parametrom (nezabudnite uviesť čiarku). Vynechanie oboch
+parametrov spôsobí vymazanie aktuálneho riadku.
+
+e súbor - ULOŽIŤ A UKONČIŤ
+
+Tento príkaz je ekvivalentný s
+
+  w súbor
+
+nasledovaným
+
+  q
+
+[#]i - REŽIM VKLADANIA
+
+Tento príkaz aktivuje režim vkladania. Jeho parametrom je číslo riadku, pred
+ktorý chcete vkladať riadky.
+
+Počas vkladania sú prípustné escape sekvencie uvedené vyššie. Režim vkladania
+ukončíte zadaním bodky (.) na samostatnom prázdnom riadku (ak potrebujete
+riadok obsahujúci iba bodku, použite escape sekvenciu).
+
+Po ukončení režimu vkladania sa riadok za vloženým textom stane aktuálnym
+riadkom, pokiaľ vkladanie nebolo vykonané na koniec textu - v tom prípade sa
+novým aktuálnym riadkom stane posledný riadok textu.
+
+[#][,#]l - VÝPIS RIADKOV
+
+Tento príkaz vypíše riadky textu na obrazovku. Ak vynecháte prvý parameter,
+príkaz začne zobrazovať text od 11 riadkov pred aktuálnym riadkom. Vynechanie
+druhého parametra zobrazí stránku textu začínajúcu riadkom určeným v prvom
+parametri. Vynechanie oboch parametrov zobrazí jednu stránku textu začínajúcu
+11 riadkov pred aktuálnym riadkom. Ak je riadkov viac, než sa zmestí na
+stránku, program sa po každej stránke zastaví.
+
+[#],[#],#m - PRESUN BLOKU
+
+Tento príkaz presunie blok textu pred riadok určený v treťom parametri. Je to
+podobné kopírovaniu s následným vymazaním pôvodného bloku.
+
+[#][,#]p - STRÁNKOVANIE (PAGE)
+
+Podobné ako l s tým rozdielom, že predvolená stránka začína aktuálnym riadkom
+namiesto 11 riadkov pred ním.
+
+q - UKONČIŤ (QUIT)
+
+Zrozumiteľné samo o sebe. Ukončí bez ďalšieho ukladania.
+
+[#][,#][?]r$,$ - NAHRADIŤ REŤAZEC
+
+Tento príkaz nahradí všetky výskyty prvého reťazca druhým reťazcom medzi
+dvoma určenými riadkami. Vynechaný prvý parameter spustí nahradzovanie na
+riadku za aktuálnym riadkom; vynechaný druhý parameter zastaví nahradzovanie
+na poslednom riadku súboru.
+
+Otáznik (?) pred nahradením odošle potvrdzujúcu správu.
+
+[#][,#][?]s$ - HĽADAŤ PODREŤAZEC
+
+Tento príkaz hľadá prvý riadok obsahujúci zadaný podreťazec. Vynechanie prvého
+parametra spôsobí zahájenie hľadania na aktuálnom riadku; vynechanie druhého
+spôsobí zastavenie hľadania na konci súboru.
+
+Otáznik (?) spôsobí, že hľadanie odošle potvrdzujúcu správu. Odpoveď "N" (Nie)
+v hľadaní pokračuje; odpoveď "A" (Áno) ho ukončí.
+
+Aktuálny riadok bude v prípade úspechu nastavený na riadok, kde hľadanie
+skončilo.
+
+[#]t súbor - PRENIESŤ SÚBOR
+
+Tento príkaz vloží obsah súboru pred zadané číslo riadku. Ak je číslo riadku
+vynechané, predvolenou hodnotou je aktuálny riadok.
+
+[#]w súbor - ZAPÍSAŤ SÚBOR
+
+Tento príkaz zapíše prvých niekoľko riadkov určených parametrom do zadaného
+súboru. Ak je parameter vynechaný, zapíše do súboru všetky riadky v pamäti.
+
+AUTOR/SPRÁVCA
+
+Gregory Pietsch, gpietsch@comcast.net

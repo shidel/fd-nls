@@ -1,0 +1,140 @@
+EDLIN 2.14
+edlin programı küçük bir satır düzenleyicisidir ve FreeDOS için eski
+MS-DOS edlin programının işlevsel bir klonu olarak yazılmıştır. MS edlin
+programından farkı, ilk olarak özgür bir yazılım olması, ikinci olarak da
+kullanıcı arayüzünün bazı yerlerde hafif farklılıklar göstermesidir. Bu
+farkın sebebi, kullanıcının MS edlin'in söz diziminin ihtiyaç duyduğu
+denetim karakterlerini yazmasının mecburi olmamasıdır.
+
+EDLIN'İN BAŞLATILMASI
+Edlin programı adı yazılarak başlatılabilir: 
+  edlin
+
+veya başlangıçta okunacak bir dosya adı ile de başlatılabilir: 
+  edlin dosya
+
+EDLIN'İN DAHİLİ KOMUTLARI
+Aşağıdaki komut listesinde köşeli parantezler seçime dayalı yapıları
+temsil eder. # simgesi ya sayı zinciri ya güncel satırı temsil eden bir
+nokta ya dosyada son satırı temsil eden dolar simgesi ($) ya da başka
+bir satır sayısına eklenen veya ondan çıkarılan bir satır numarasını
+temsil eden bir satır sayısıdır, böylece 
+  .,.+1p
+
+güncel satırla bir sonraki satırı görüntüler.
+
+Aşağıdaki listelerde dolar simgesi bir karakter dizesini temsil eder.
+Tek veya çift tırnak imleri arasında olabilir ve aşağıdaki kaçış 
+dizelerini bulundurabilirler: 
+  \a - alarm
+  \b - geri düğmesi
+  \e - kaçış
+  \f - boş sayfa
+  \t - yatay sekme
+  \v - düşey sekme
+  \" - çift tırnak imi
+  \' - tek tırnak imi
+  \. - nokta
+  \\ - ters eğik çizgi
+  \xXX burada X bir onaltılık sayıdır (0-9, a-f, A-F) - onaltılık sabit
+  \dddd burada d ondalık bir sayıdır (0-9) - ondalık sabit
+  \OOO burada O sekizlik bir sayıdır (0-7) - sekizlik sabit
+  \^C - denetim karakteri
+
+Edlin programı aşağıdaki söz dizimini destekler:
+
+# - TEK BİR SATIR DšZENLE
+Edlin programı sayı ile belirtilen satırı görüntüler ve girilen sonraki
+satır görüntülenen satırın dosyada yerine geçer.
+
+a - İLİŞTİR (EKLE)
+Bu komut $+1i ile eşdeğerdir.
+
+[#],[#],#,[#]c - BİR SATIR ALANINI KOPYALA
+Bu komut bir ardışık satırlar blokunu tamponda başka bir konuma kopyalar.
+Parametreleri şu şekildedir:
+  * Kopyalamak istediğiniz ilk satır (varsayılan = güncel satır)
+  * Kopyalamak istediğiniz son satır (varsayılan = güncel satır)
+  * Öncesinde satırlar blokunu eklemek istediğiniz satır
+  * Bloku kopyalamak istediğiniz kez (varsayılan = 1)
+
+Edlin satırları kopyaladıktan sonra doğru bir şekilde yeniden numaralanan
+satırları görmek için l (listele) komutunu kullanabilirsiniz.
+
+[#][,#]d - BİR SATIR BLOKUNU SİL
+Bu komut bir ardışık satırlar blokunu siler. Parametreleri silinecek ilk
+ve son satırlardır.
+
+Şayet ikinci parametreyi girmezseniz sadece ilk parametrede belirtilen
+satır silinir. Eğer ikinci parametreyi girmezseniz güncel satırdan ikinci
+parametrede belirtilen satıra dek olan blok silinir (virgülü unutmayın).
+İki parametreyi de girmezseniz, güncel satır silinir.
+
+e dosyaadı - KAYDET VE ÇIK
+Bu komut aşağıdaki ile eşdeğerdir
+
+  w dosyaadı
+
+ki bunu şu komut takip eder:
+
+  q
+
+[#]i - EKLEME KİPİ
+Bu komut, ekleme kipini etkinleştirir. Parametresi öncesine eklemede
+bulunmak istediğiniz satır numarasıdır. 
+Ekleme sırasında, yukarıda gösterilen kaçış dizelerinin girilmesine izin
+verilir. Ekleme kipinden çıkmak için boş bir satıra bir nokta (.) girin
+(eğer tek bir nokta içeren bir satıra ihtiyacınız varsa, kaçış kullanın). 
+Ekleme kipinden çıktıktan sonra, eklenen metinden sonraki satır güncel
+satır olur, buna istisna eklemenin metnin sonunda yapılmış olmasıdır, bu
+durumda metnin son satırı güncel satır olur.
+
+[#][,#]l - SATIRLARI LİSTELE
+Bu komut, metin satırlarını ekranda listeler. Eğer ilk parametreyi
+girmezseniz komut, güncel satırdan 11 satır önce başlayan metni
+görüntülemeye başlar. İkinci parametreyi girmezseniz, ilk parametrede
+belirtilen satırla başlayan metin sayfası görüntülenir. İki parametreyi de
+girmezseniz, güncel satırdan 11 satır önce başlayan metin sayfası
+görüntülenir. Her durumda, eğer satır sayısı bir sayfadaki satır
+sayısından daha büyükse, program her sayfa sonunda bir istem sunacaktır.
+
+[#],[#],#m - BLOK TAŞI
+Bu komut, bir metin blokunu üçüncü parametrede belirtilen satır öncesine
+taşır. Blok için kopyalama ve ardından silme işlemine benzer.
+
+[#][,#]p - SAYFA
+Bu, l komutuna benzer fakat varsayılan sayfa güncel satırla başlar, 11
+satır önce değil.
+
+q - ÇIK
+Açıklanması gereken bir şey yok.
+
+[#][,#][?]r$,$ - DİZENİN YERİNE YENİSİNİ KOY
+Bu komut, belirtilen iki satır arasında ilk dizenin tüm oluşumlarını
+ikinciyle değiştirir. Şayet ilk parametre girilmezse, yerine koyma güncel
+satırdan sonraki satıdan başlar; eğer ikinci parametre girilmezse, yerine
+koyma dosyanın son satırında son bulur.
+
+Soru imi yerine koymadan önce bir doğrulama iletisi gönderir.
+
+[#][,#][?]s$ - ALT DİZEYİ ARA
+Bu komut, belirtilen alt dizeyi içeren ilk satırı arar. İlk parametreyi
+girmezseniz arama güncel satırda başlar; ikinci parametrenin girilmemesi
+aramanın dosya sonunda durmasını sağlar.
+
+Soru işareti aramanın bir doğrulama iletisi göndermesini sağlar. Doğrulama
+iletisine hayır demek aramayı sürdürür, evet sonlandırır. 
+Arama başarılı olduysa güncel satır, aramanın bittiği satır olur.
+
+[#]t dosyaadı - DOSYA AKTARIMI
+Bu komut, dosyanın içeriğinin belirtilen satır numarasından önce
+eklenmesini sağlar. Eğer satır numarası girilmemişse varsayılan güncel
+satırdır.
+
+[#]w dosyaadı - DOSYA YAZ
+Bu komut, parametreyle belirtilen ilk satırların belirtilen dosyaya
+yazılmalarını sağlar. Şayet parametre eksikse, tampondaki tüm satırlar
+dosyaya yazılır.
+
+GELİŞTİRİCİ/BAKIMCI
+Gregory Pietsch, gpietsch@comcast.net

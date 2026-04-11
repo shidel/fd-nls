@@ -1,0 +1,145 @@
+# Language: Turkish
+# File ending: TR
+# Codepage: 857
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+edlin programı küçük bir satır düzenleyicisidir ve FreeDOS için eski
+MS-DOS edlin programının işlevsel bir klonu olarak yazılmıştır. MS edlin
+programından farkı, ilk olarak özgür bir yazılım olması, ikinci olarak da
+kullanıcı arayüzünün bazı yerlerde hafif farklılıklar göstermesidir. Bu
+farkın sebebi, kullanıcının MS edlin'in söz diziminin ihtiyaç duyduğu
+denetim karakterlerini yazmasının mecburi olmamasıdır.
+
+EDLIN'İN BAŞLATILMASI
+Edlin programı adı yazılarak başlatılabilir:
+  edlin
+
+veya başlangıçta okunacak bir dosya adı ile de başlatılabilir:
+  edlin dosya
+
+EDLIN'İN DAHİLİ KOMUTLARI
+Aşağıdaki komut listesinde köşeli parantezler seçime dayalı yapıları
+temsil eder. # simgesi; ya bir sayı dizisini, ya geçerli satırı temsil eden bir
+noktayı (.), ya dosyadaki son satırı temsil eden dolar simgesini ($) ya da başka
+bir satır sayısına eklenen veya ondan çıkarılan bir satır numarasını
+temsil eder; böylece
+  .,.+1p
+
+geçerli satırla bir sonraki satırı görüntüler.
+
+Aşağıdaki listelerde dolar simgesi ($) bir karakter dizesini temsil eder.
+Bunlar tek veya çift tırnak içinde olabilir ve aşağıdaki kaçış
+dizilerini içerebilirler:
+  \a - alarm (bip)
+  \b - geri silme (backspace)
+  \e - escape (kaçış)
+  \f - sayfa besleme (formfeed)
+  \t - yatay sekme (tab)
+  \v - dikey sekme
+  \" - çift tırnak imi
+  \' - tek tırnak imi
+  \. - nokta
+  \\ - ters eğik çizgi
+  \xXX (burada X bir onaltılık sayıdır 0-9, a-f) - onaltılık sabit
+  \dddd (burada d bir ondalık sayıdır 0-9) - ondalık sabit
+  \OOO (burada O bir sekizlik sayıdır 0-7) - sekizlik sabit
+  \^C - denetim karakteri (Control)
+
+Edlin programı aşağıdaki söz dizimini destekler:
+
+# - TEK BİR SATIRI DÜZENLE
+Edlin programı sayı ile belirtilen satırı görüntüler ve girilen sonraki
+satır, görüntülenen satırın dosyada yerine geçer.
+
+a - İLİŞTİR (EKLE)
+Bu komut $+1i ile eşdeğerdir.
+
+[#],[#],#,[#]c - BİR SATIR ARALIĞINI KOPYALA
+Bu komut ardışık satırlardan oluşan bir bloğu tamponda başka bir konuma kopyalar.
+Parametreleri şunlardır:
+  * Kopyalamak istediğiniz ilk satır (varsayılan = geçerli satır)
+  * Kopyalamak istediğiniz son satır (varsayılan = geçerli satır)
+  * Öncesine satır bloğunu eklemek istediğiniz satır
+  * Bloğu kopyalamak istediğiniz sayı (varsayılan = 1)
+
+Edlin satırları kopyaladıktan sonra, doğru bir şekilde yeniden numaralanan
+satırları görmek için l (listele) komutunu kullanabilirsiniz.
+
+[#][,#]d - BİR SATIR BLOĞUNU SİL
+Bu komut ardışık satırlardan oluşan bir bloğu siler. Parametreleri silinecek
+ilk ve son satırlardır.
+
+Şayet ikinci parametreyi girmezseniz sadece ilk parametrede belirtilen
+satır silinir. Eğer ilk parametreyi girmezseniz, geçerli satırdan ikinci
+parametrede belirtilen satıra kadar olan blok silinir (virgülü eklemeyi
+unutmayın). İki parametreyi de girmezseniz, geçerli satır silinir.
+
+e dosya_adı - KAYDET VE ÇIK
+Bu komut şu sıraya eşdeğerdir:
+
+  w dosya_adı
+  q
+
+[#]i - EKLEME KİPİ (INSERT)
+Bu komut ekleme kipini etkinleştirir. Parametresi, öncesine ekleme yapmak
+istediğiniz satır numarasıdır.
+
+Ekleme sırasında, yukarıda gösterilen kaçış dizelerinin kullanımına izin
+verilir. Ekleme kipinden çıkmak için boş bir satıra bir nokta (.) girin
+(eğer sadece nokta içeren bir satıra ihtiyacınız varsa, onu ters eğik çizgi
+ile kaçırın).
+
+Ekleme kipinden çıktıktan sonra, ekleme metnin sonuna yapılmadığı sürece
+eklenen metinden sonraki satır geçerli satır olur; metnin sonuna ekleme
+yapıldıysa son satır yeni geçerli satır olur.
+
+[#][,#]l - SATIRLARI LİSTELE
+Bu komut metin satırlarını ekranda listeler. Eğer ilk parametreyi
+girmezseniz komut, geçerli satırdan 11 satır öncesinden başlayarak metni
+görüntülemeye başlar. İkinci parametreyi girmezseniz, ilk parametrede
+belirtilen satırla başlayan bir sayfa metin görüntülenir. İki parametreyi de
+girmezseniz, geçerli satırın 11 satır öncesinden başlayan bir sayfa
+görüntülenir. Satır sayısı bir sayfadan fazlaysa, program her sayfadan sonra
+duraklar.
+
+[#],[#],#m - BLOĞU TAŞI
+Bu komut bir metin bloğunu üçüncü parametrede belirtilen satır numarasının
+önüne taşır. Bu, bloğu kopyalamaya ve ardından orijinalini silmeye benzer.
+
+[#][,#]p - SAYFA (PAGE)
+l komutuna benzer, ancak varsayılan sayfa 11 satır öncesi yerine geçerli
+satırla başlar.
+
+q - ÇIK (QUIT)
+Kendinden açıklamalıdır. Daha fazla kaydetmeden çıkar.
+
+[#][,#][?]r$,$ - DİZEYİ DEĞİŞTİR (REPLACE)
+Bu komut belirtilen iki satır arasında ilk dizenin tüm oluşumlarını
+ikincisiyle değiştirir. İlk parametrenin girilmemesi değiştirmeyi geçerli
+satırdan sonraki satırda başlatır; ikinci parametrenin girilmemesi ise
+değiştirmeyi dosyanın son satırında durdurur.
+
+Soru işareti (?) değiştirmeden önce bir doğrulama iletisi gönderir.
+
+[#][,#][?]s$ - ALT DİZEYİ ARA (SEARCH)
+Bu komut belirtilen alt dizeyi içeren ilk satırı arar. İlk parametreyi
+girmezseniz arama geçerli satırda başlar; ikinci parametrenin girilmemesi
+aramanın dosya sonunda durmasını sağlar.
+
+Soru işareti (?) aramanın bir doğrulama iletisi göndermesini sağlar. Doğrulama
+iletisine "H" (Hayır) demek aramayı sürdürür, "E" (Evet) demek sonlandırır.
+
+Arama başarılı olduysa, geçerli satır aramanın bittiği satıra sıfırlanır.
+
+[#]t dosya_adı - DOSYA AKTARIMI (TRANSFER)
+Bu komut dosya içeriğinin belirtilen satır numarasından önce eklenmesini
+sağlar. Eğer satır numarası girilmemişse varsayılan geçerli satırdır.
+
+[#]w dosya_adı - DOSYAYA YAZ (WRITE)
+Bu komut parametreyle belirtilen ilk satır sayısının dosyaya yazılmasını
+sağlar. Parametre eksikse tamponun tamamı dosyaya yazılır.
+
+GELİŞTİRİCİ/BAKIMCI
+Gregory Pietsch, gpietsch@comcast.net

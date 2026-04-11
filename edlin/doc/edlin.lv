@@ -1,0 +1,158 @@
+# Language: Latvian
+# File ending: LV
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+
+Programma edlin ir kompakts rindu redaktors, kas izstrƒdƒts FreeDOS kƒ
+funkcionƒls vecƒs MS-DOS programmas edlin klons. Tas atÕéiras no MS-edlin
+ar to, ka, pirmkƒrt, tƒ ir brŒvƒ programmat×ra, un, otrkƒrt, lietotƒja
+saskarne daØviet ir nedaudz optimiz‰ta. ¾o izmaiìu m‰réis ir pasargƒt
+lietotƒju no nepiecieÕamŒbas ievadŒt sareØ…Œtas vadŒbas rakstzŒmes, ko
+pieprasŒja MS-edlin sintakse.
+
+EDLIN IZSAUK¾ANA
+
+Programmu edlin izsauc vai nu vienu paÕu:
+
+  edlin
+
+vai norƒdot faila nosaukumu, kas tiek ielƒd‰ts sƒkumƒ:
+
+  edlin fails
+
+EDLIN IEK¾íJ S KOMANDAS
+
+Turpmƒkajos komandu sarakstos kvadrƒtiekavas apzŒm‰ izv‰les elementus.
+Simbols # apzŒm‰ rindas numuru, kas var b×t ciparu virkne, punkts (.), kas
+apzŒm‰ paÕreiz‰jo rindu, dolƒra zŒme ($), kas apzŒm‰ faila p‰d‰jo rindu,
+vai rindas numurs, kuram pieskaitŒts vai atìemts cits numurs, tƒ ka:
+
+  .,.+1p
+
+izvada paÕreiz‰jo rindu un nƒkamo rindu.
+
+Dolƒra zŒme sarakstos apzŒm‰ rakstzŒmju virkni. Tƒs var ietvert vienp‰diìƒs
+vai dubultp‰diìƒs un tƒs var satur‰t Õƒdas vadŒbas secŒbas (escape sequences):
+
+  \a - brŒdinƒjuma signƒls (alert)
+  \b - atkƒpe (backspace)
+  \e - escape
+  \f - lapas padeve (formfeed)
+  \t - horizontƒlƒ tabulƒcija
+  \v - vertikƒlƒ tabulƒcija
+  \" - dubultp‰diìas
+  \' - vienp‰diìa
+  \. - punkts
+  \\ - pretvŒte (backslash)
+  \xXX (kur X ir hex cipars 0-9, a-f) - heksadecimƒlƒ konstante
+  \dddd (kur d ir decimƒlais cipars 0-9) - decimƒlƒ konstante
+  \OOO (kur O ir oktƒlais cipars 0-7) - oktƒlƒ konstante
+  \^C - vadŒbas rakstzŒme (control character)
+
+Programma edlin atbalsta Õƒdu sintaksi:
+
+# - REDI•íT VIENU RINDU
+
+edlin izvada ar numuru norƒdŒto rindu, un nƒkamƒ ievadŒtƒ rinda aizstƒj
+izvadŒto rindu failƒ.
+
+a - PIEVIENOT (APPEND)
+
+¾Œ komanda ir ekvivalenta $+1i .
+
+[#],[#],#,[#]c - KOPIíT RINDU DIAPAZONU
+
+Kop‰ secŒgu rindu bloku uz citu vietu buferŒ. Parametri ir:
+
+  * Pirmƒ kop‰jamƒ rinda (noklus‰jums = paÕreiz‰jƒ rinda)
+  * P‰d‰jƒ kop‰jamƒ rinda (noklus‰jums = paÕreiz‰jƒ rinda)
+  * Rinda, pirms kuras ievietot bloku
+  * Bloka kop‰Õanas reiØu skaits (noklus‰jums = 1)
+
+P‰c kop‰Õanas varat izmantot l (list) komandu, lai redz‰tu pareizi
+pƒrnumur‰tƒs rindas.
+
+[#][,#]d - DZíST RINDU BLOKU
+
+Izdz‰Õ secŒgu rindu bloku. Parametri norƒda dz‰Õamƒ bloka pirmo un p‰d‰jo
+rindu.
+
+Ja izlaiØat otro parametru, tiek dz‰sta tikai pirmajƒ parametrƒ norƒdŒtƒ
+rinda. Ja izlaiØat pirmo, tiek dz‰sts bloks no paÕreiz‰jƒs rindas lŒdz
+otrajƒ parametrƒ norƒdŒtajai (neaizmirstiet komatu). IzlaiØot abus, tiek
+dz‰sta paÕreiz‰jƒ rinda.
+
+e faila_nosaukums - SAGLAB T UN IZST TIES
+
+¾Œ komanda ir ekvivalenta:
+
+  w faila_nosaukums
+  q
+
+[#]i - IEVIETO¾ANAS REÏ¡MS (INSERT)
+
+Aktiviz‰ ievietoÕanas reØŒmu. Parametrs ir rindas numurs, pirms kura v‰laties
+ievietot jaunu tekstu.
+
+IevietoÕanas laikƒ ir atëautas iepriekÕ min‰tƒs vadŒbas secŒbas. Lai izietu
+no reØŒma, ierakstiet punktu (.) tukÕƒ rindƒ (ja nepiecieÕama rinda tikai ar
+punktu, izmantojiet vadŒbas rakstzŒmi).
+
+P‰c izieÕanas rinda aiz ievietotƒ teksta kë×st par paÕreiz‰jo rindu, ja vien
+teksts netika pievienots beigƒs; tƒdƒ gadŒjumƒ p‰d‰jƒ rinda kë×st par jauno
+paÕreiz‰jo rindu.
+
+[#][,#]l - UZSKAIT¡T RINDAS (LIST)
+
+Izvada teksta rindas ekrƒnƒ. Bez pirmƒ parametra rƒdŒÕana sƒkas 11 rindas
+pirms paÕreiz‰jƒs. Bez otrƒ parametra tiek rƒdŒta viena lapa teksta. Bez
+abiem tiek rƒdŒta lapa no 11 rindas pirms paÕreiz‰jƒs. Ja rindu skaits
+pƒrsniedz lapu, programma apstƒsies p‰c katras ekrƒna lapas.
+
+[#],[#],#m - P RVIETOT BLOKU (MOVE)
+
+Pƒrvieto teksta bloku pirms treÕajƒ parametrƒ norƒdŒtƒs rindas. Tas darbojas
+lŒdzŒgi kƒ kop‰Õana, kam seko ori…inƒlƒ bloka dz‰Õana.
+
+[#][,#]p - LAPA (PAGE)
+
+LŒdzŒgi kƒ l, bet noklus‰juma lapa sƒkas ar paÕreiz‰jo rindu, nevis 11 rindas
+pirms tƒs.
+
+q - IZST TIES (QUIT)
+
+PaÕsaprotami. Iziet bez turpmƒkas saglabƒÕanas.
+
+[#][,#][?]r$,$ - AIZST T VIRKNI (REPLACE)
+
+Aizstƒj visus pirmƒs virknes gadŒjumus ar otro norƒdŒtajƒ diapazonƒ. Bez
+pirmƒ parametra aizstƒÕana sƒkas p‰c paÕreiz‰jƒs rindas; bez otrƒ - beidzas
+faila beigƒs.
+
+Jautƒjuma zŒme (?) pieprasa apstiprinƒjumu pirms katras aizstƒÕanas.
+
+[#][,#][?]s$ - MEKLíT VIRKNI (SEARCH)
+
+Mekl‰ pirmo rindu, kurƒ ir norƒdŒtƒ apakÕvirkne. Bez pirmƒ parametra mekl‰ no
+paÕreiz‰jƒs rindas, bez otrƒ - lŒdz galam.
+
+Jautƒjuma zŒme (?) aktiviz‰ apstiprinƒjumu. Atbilde "N" (N‰) turpina mekl‰Õanu,
+atbilde "J" (Jƒ) to pƒrtrauc. Veiksmes gadŒjumƒ paÕreiz‰jƒ rinda tiek
+iestatŒta tur, kur mekl‰Õana beidzƒs.
+
+[#]t faila_nosaukums - P RSÇT¡T FAILU (TRANSFER)
+
+Ievieto ƒr‰ja faila saturu pirms norƒdŒtƒ rindas numura. Ja nav norƒdŒts,
+tiek izmantota paÕreiz‰jƒ rinda.
+
+[#]w faila_nosaukums - RAKST¡T FAIL  (WRITE)
+
+Ieraksta norƒdŒto rindu skaitu failƒ. Bez parametriem tiek ierakstŒts viss
+bufera saturs.
+
+AUTORS/UZTURíT JS
+
+Gregory Pietsch, gpietsch@comcast.net

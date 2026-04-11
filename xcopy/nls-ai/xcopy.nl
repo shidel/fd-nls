@@ -1,0 +1,84 @@
+# Language: Dutch
+# File ending: NL
+# Codepage: 850
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# meldingen en foutmeldingen
+1.1:Ongeldig aantal parameters
+1.2:Ongeldige datum
+1.3:Ongeldige optie
+1.4:Bronpad te lang
+1.5:Ongeldige aanduiding van bronstation
+1.6:Bronpad niet gevonden
+1.7:Bronpad te lang
+1.8:Doelpad te lang
+1.9:Ongeldige aanduiding van doelstation
+1.10:Duidt
+1.11:een bestandsnaam
+1.12:of een mapnaam op het doel aan
+1.13:Bestand
+1.14:Map
+1.15:Doelpad te lang
+1.16:Kan geen cyclische kopie uitvoeren
+1.17:Druk op enter om door te gaan...
+1.18:Bestand niet gevonden
+
+# het helpbericht
+2.1:Kopieert bestanden en mappenstructuren.
+2.2:XCOPY bron [doel] [/opties]
+2.3:  bron         Specificeert de map en/of bestandsnaam om te kopi‰ren.
+2.4:  doel         Specificeert de locatie en/of naam van nieuwe bestanden.
+2.5:  /A           Kopieert alleen bestanden met het archiefattribuut ingesteld
+2.6:               en wijzigt het attribuut niet.
+2.7:  /C           Gaat door met kopi‰ren, zelfs als er fouten optreden.
+2.8:  /D[:M/D/J]   Kopieert alleen bestanden die zijn gewijzigd op of na de
+2.9:               opgegeven datum. Zonder datum worden alleen bestanden
+2.10:              gekopieerd die nieuwer zijn dan de bestaande doelbestanden.
+2.11:  /E           Kopieert alle submappen, ook als ze leeg zijn.
+2.12:  /F           Toont volledige bron- en doelnaam.
+2.13:  /H           Kopieert verborgen- en systeembestanden, ook onbeveiligde.
+2.14:  /I           Als doel niet bestaat en er meer dan ‚‚n bestand wordt
+2.15:               gekopieerd, wordt aangenomen dat het doel een map is.
+2.16:  /L           Lijst met bestanden tonen zonder te kopi‰ren (simulatie).
+2.17:  /M           Kopieert alleen bestanden mit archiefattribuut en schakelt
+2.18:               het attribuut na het kopi‰ren uit.
+2.19:  /N           Onderdrukt de vraag om bevestiging bij overschrijven en
+2.20:               slaat deze bestanden over.
+2.21:  /P           Vraagt om bevestiging voor elk nieuw doelbestand.
+2.22:  /Q           Stille modus, toont geen namen van gekopieerde bestanden.
+2.23:  /R           Overschrijft alleen-lezen bestanden en onbeveiligde bestanden.
+2.24:  /S           Kopieert mappen en submappen, behalve lege mappen.
+2.25:  /T           Maakt een mappenstructuur aan zonder bestanden te kopi‰ren.
+2.26:               Lege mappen worden overgeslagen, tenzij /E wordt gebruikt.
+2.27:  /V           Controleert elk nieuw bestand.
+2.28:  /W           Wacht op een toetsaanslag voor het begin.
+2.29:  /Y           Onderdrukt de vraag om bevestiging bij overschrijven en
+2.30:               overschrijft deze bestanden direct.
+2.31:  /-Y          Vraagt altijd om bevestiging bij overschrijven.
+2.32:
+2.33:De optie /Y of /N kan worden ingesteld in de COPYCMD variabele.
+2.34:Dit kan worden genegeerd met /-Y op de opdrachtregel.
+2.35:druk op enter voor meer
+
+# meer meldingen
+1.19:bestand(en) gekopieerd
+1.20:Kan map niet aanmaken
+1.21:Bestand kan niet naar zichzelf worden gekopieerd
+1.22:Leestoegang geweigerd
+1.23:Onvoldoende schijfruimte op het doelpad
+1.24:Schrijftoegang geweigerd
+1.25:Onvoldoende schijfruimte op het doelpad
+1.26:Kopi‰ren
+
+# de volgende drie worden gebruikt in shared.inc:
+25.0:Kan bronbestand niet openen
+25.1:Kan doel niet aanmaken
+25.2:Schrijffout op doel
+
+# bevestigingsmeldingen:
+3.1:Overschrijven
+3.2:Ja
+3.3:Nee
+3.4:Alles
+3.5:Alles overslaan

@@ -1,0 +1,46 @@
+# Language: Brazil Port.
+# File ending: PB
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+1.0:Ss
+1.1:\040:\040
+1.2:O.K.?\040
+1.3:Erro de entrada
+1.4:%s: %lu linha lida\n
+1.5:%s: %lu linhas lidas\n
+1.6:%s: %lu linha gravada\n
+1.7:%s: %lu linhas gravadas\n
+1.8:%lu:%c%s\n
+1.9:Pressione <Enter> para continuar
+1.10:%lu:\040
+1.11:NÆo encontrado
+1.12:%lu: %s\n
+1.13:\nedlin tem os seguintes subcomandos:\n
+1.14:#                 editar uma £nica linha   [#],[#],#m        mover
+1.15:a                 anexar                   [#][,#]p          p gina
+1.16:[#],[#],#,[#]c    copiar                   q                 sair
+1.17:[#][,#]d          excluir                  [#][,#][?]r$,$    substituir
+1.18:e<>               fim (gravar e sair)      [#][,#][?]s$      procurar
+1.19:[#]i              inserir                  [#]t<>            transferir
+1.20:[#][,#]l          listar                   [#]w<>            gravar\n
+1.21:onde $ acima ‚ uma string, <> ‚ um nome de arquivo,
+1.22:# ‚ um n£mero (que pode ser . = linha atual, $ = £ltima linha,
+1.23:ou qualquer n£mero + ou - outro n£mero).\n
+1.24:, copyright (c) 2003 Gregory Pietsch
+1.25:This program comes with ABSOLUTELY NO WARRANTY.
+1.26:It is free software, and you are welcome to redistribute it
+1.27:under the terms of the GNU General Public License -- either
+1.28:version 2 of the license, or, at your option, any later
+1.29:version.\n
+1.30:Mem¢ria insuficiente
+1.31:Erro de comprimento de string
+1.32:Erro de posi‡Æo de string
+1.33:Entrada de usu rio inv lida, use ? para ajuda.
+1.34:Sem nome de arquivo
+1.35:Buffer muito grande
+1.36:Posi‡Æo de buffer inv lida
+1.37:ERRO: %s\n
+
+# END OF FILE

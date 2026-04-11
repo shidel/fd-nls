@@ -1,0 +1,309 @@
+# Language: Esperanto
+# File ending: EO
+# Codepage: 853
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Programuza dokumentaro por la Free-DOS MODE programo
+
+	(c) Copyright 1994-1995 de K. Heidenstrom.
+
+	Modifita:
+
+	KH.19941231.001  (MODE 1.0.0)  Unua versio
+	KH.19950116.002  (MODE 1.0.2)  Aldonis switchar-dokumentaron
+	KH.19950520.003  (MODE 1.0.3)  Neniuj «anõoj al funkcieco
+	KH.19950805.004  (MODE 1.0.4)  Aldonis modifilajn (shift-state) erojn
+
+
+1.  LEùA
+
+	èi tiu programo estas Copyright 1994-1995 de K. Heidenstrom. ùi estis
+	skribita specife por la Free-DOS projekto. La aÌtoro estas atingebla
+	Üe kheidens@actrix.gen.nz per Interreto aÌ per po«to:
+	K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	èi tiu programo estas libera programaro. Vi povas redistribui la fonton
+	kaj plenumeblon kaj/aÌ modifi la programon sub la kondiÜoj de la GNU
+	General Public License kiel publikigita de la Free Software Foundation;
+	aÌ versio 2 de la Licenco, aÌ (laÌ via elekto) iu ajn posta versio.
+
+	èi tiu programo estas distribuata en la espero ke õi estos utila, sed
+	õi estas provizata "kiel õi estas", sen ia ajn garantio, inkluzive de la
+	implica garantio de komercebleco aÌ taÌgeco por aparta celo. En neniu
+	okazo la aÌtoro respondecos pri iuj damaõoj rilataj al la uzo de Üi tiu
+	programo. Vidu la GNU General Public License por pliaj detaloj.
+
+	Vi devus esti ricevinta kopion de la GNU General Public License kune
+	kun Üi tiu programo; se ne, skribu al la Free Software Foundation,
+	Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  FUNKCIO KAJ UZ-SINTAKSO
+
+	La MODE programo plenumas ses apartajn funkciojn, kiuj estas
+	priskribitaj mallonge sube.
+
+2.1.  AGORDI VIDEOMODON KAJ NOMBRON DA EKRANLINIOJ
+
+	MODE permesas agordi la videomodon al unu el kvin modoj. La sintakso
+	estas:
+
+	MODE Videomodo[,Linioj]
+
+	La modoj estas:
+
+	MONO	Unukolora modo, kiel uzata kun MDA kaj Hercules kartoj, kaj
+		ankaÌ emulata Üe EGA kaj VGA kartoj. èi tiu modo estas la
+		sola, kiu havas la kapablon substreki signojn sur la ekrano
+		defaÌlte. èi tiu modo ne povas esti elektita Üe CGA karto.
+
+	BW40	40-kolumna kolorsubpremita modo. èi tiu modo estas specifa
+		por la CGA adaptilo, kaj donas ekranon de 40 kolumnoj por 25
+		linioj. La kolora informo de la video-signalo de la CGA karto
+		estas mal«altita, tiel ke la ekrano estas nigrablanka Üe
+		kolora monitoro, kun dek ses nuancoj de grizo.
+		Se Üi tiu modo estas elektita Üe EGA aÌ VGA karto, aÌ CGA karto
+		kiu ne estas konektita al televidilo, õi aperos kiel la modo
+		CO40 (t.e. la koloro ne estos subpremita). èi tiu modo ne povas
+		esti elektita Üe MDA kaj Hercules kartoj.
+
+	BW80	80-kolumna kolorsubpremita modo. èi tiu modo estas ankaÌ specifa
+		por la CGA adaptilo kaj estas la sama kiel BW40 krom ke estas
+		80 kolumnoj.
+		Se Üi tiu modo estas elektita Üe EGA aÌ VGA karto, aÌ CGA karto
+		kiu ne estas konektita al televidilo, õi aperos kiel la modo
+		CO80 (t.e. la koloro ne estos subpremita). èi tiu modo ne povas
+		esti elektita Üe MDA kaj Hercules kartoj.
+
+	CO40	40-kolumna kolora modo. èi tiu modo donas 40 kolumnojn por 25
+		liniojn de kolora ekrano. ùi estas subtenata de CGA, EGA, kaj
+		VGA adaptiloj sed ne de MDA kaj Hercules kartoj.
+
+	CO80	80-kolumna kolora modo. èi tiu modo donas 80 kolumnojn por 25
+		liniojn de ekrano kaj estas la normala modo por CGA, EGA kaj
+		VGA kartoj. ùi ne estas subtenata de MDA kaj Hercules kartoj.
+		èe EGA kartoj, Üi tiu modo ankaÌ subtenas 43-linian varianton,
+		kaj Üe VGA kartoj, la 43-linia varianto kaj 50-linia varianto
+		estas subtenataj.
+
+		La 43-linia kaj 50-linia modoj povas esti elektitaj specife per
+		",43" aÌ ",50" post CO80 en la MODE komandlinio. Se Üi tiu
+		parametro ne estas indikita, la defaÌlto de 25 linioj estos uzata.
+
+	Unufoje agordita, la videomodo restos valida õis «anõita per MODE-komando
+	aÌ per programo. La videomodo ne estas blokita konstante - programoj
+	povas libere «anõi videomodojn laÌnecese.
+
+2.2.  AGORDI PARAMETROJN DE SERIA PORTO
+
+	MODE permesas agordi la komunikajn parametrojn de seria porto. La
+	sintakso estas:
+
+	MODE COMn:r,p,d,s
+
+	n	Indikas kiun serian porton agordi, en la intervalo 1 õis 4.
+		Se la seria porto ne ekzistas, MODE raportos eraron.
+
+	r	Indikas la rapidon (baud rate) en bitoj sekunde. Valoroj estas:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600, kaj 115200.
+
+		1200, 2400, 4800, kaj 9600 povas esti mallongigitaj al 12, 24,
+		48 kaj 96 respektive. 14400, 19200, 28800, 38400, kaj 57600
+		povas esti mallongigitaj al iliaj unuaj du aÌ tri ciferoj.
+		115200 povas esti mallongigita al 115 aÌ 1152.
+
+	p	Indikas la specon de pareco (parity). Valoroj estas:
+
+		E = Para (Even)
+		O = Nepara (Odd)
+		N = Neniu (No parity)
+
+	d	Indikas la nombron de datumbitoj. Permesataj valoroj estas
+		5, 6, 7, kaj 8.
+
+	s	Indikas la nombron de haltaj bitoj. èi tio povas esti 1 aÌ 2.
+		Se 2 haltaj bitoj estas uzataj kun 5 datumbitoj, la seria porto
+		fakte generos kaj kontrolos 1 1/2 haltajn bitojn.
+
+	Unufoje agorditaj, la parametroj de seria porto restos validaj õis
+	«anõitaj per MODE-komando aÌ per programo. La agordoj ne estas blokitaj
+	konstante - programoj povas libere «anõi ilin laÌnecese.
+
+2.3.  PARALELA PORTO REDIREKTADO KAJ SENFINAJ REPROVOJ
+
+	MODE permesas redirekti la eliron de paralela (LPT) porto al seria
+	(COM) porto, al NUL (t.e. nenio), kaj ankaÌ povas reprovi senfine se
+	la eksterilo malsukcesas respondi.
+
+	èi tiuj funkcioj estas plenumataj de la rezida parto de MODE, kiu estos
+	aÌtomate instalita se necese.
+
+	La sintakso estas:
+
+	MODE LPTn:P		Senfina tempolimo Üe paralela porto
+	MODE LPTn:=COMx		Redirekti printilan eliron al COM-porto
+	MODE LPTn:=NUL:		Redirekti printilan eliron al NUL
+	MODE LPTn:		Forigi redirektadon kaj senfinan tempolimon
+
+	LPTn:P specifas senfinajn reprovojn Üe tempolimo. Se tio estas
+	ebligita, MODE reprovos kontinue se la printilo ne respondas. Se tio
+	ne estas ebligita, kaj la printilo ne respondas ene de certa tempo
+	(tipe ÜirkaÌ duonminuto), skriberaro estos raportita.
+
+	LPTn:=COMx kaj LPTn:=NUL: specifas redirektadon de printila eliro.
+	Iu ajn paralela porto (Üu õi ekzistas aÌ ne) povas esti redirektita
+	al iu ajn ekzistanta seria porto, aÌ al NUL. Pli ol unu paralela porto
+	povas esti redirektita al la sama seria porto. èi tio estas utila se
+	vi havas serian printilon, aÌ se vi ne havas printilon kaj volas eviti
+	la blokadon de la komputilo se programo provas printi.
+
+	LPTn: forigas Üian redirektadon kaj revenigas normalan funkciadon.
+
+2.4.  DISK-PARKUMAJ FUNKCIOJ (PARK)
+
+	MODE parkumos la durdiskon aÌ durdiskojn (nur la unuajn du fizikajn
+	durdiskojn en la sistemo), aÌ tuj, aÌ post kiam la disko estis
+	senokupa dum iom da tempo.
+
+	La temp-parkuma funkcio estas plenumata de la rezida parto de MODE,
+	kiu estos aÌtomate instalita se necese.
+
+	La sintakso estas:
+
+	MODE PARK			Parkumi nun
+	MODE PARK,minutoj[:sekundoj]	Parkumi post kiam la disko estis
+	neaktiva
+
+	PARK parkumas la durdisko(j)n tuj kaj atendas ke vi mal«altu la
+	komputilon. Vi ankaÌ povas premi Ctrl-C por Üesi kaj reveni al DOS.
+
+	La funkcio PARK,minutoj[:sekundoj] parkumas la durdisko(j)n post certa
+	tempo de neaktiveco (õis 50 minutoj). Se vi havas du fizikajn
+	durdiskojn, ambaÌ estas traktataj aparte.
+
+	Unufoje agordita, vi povas «anõi la tempon per reekzekuto de la komando.
+	La temp-parkuma funkcio ne povas esti mal«altita - vi devas restartigi
+	por forigi õin.
+
+	èi tiuj funkcioj estas õenerale utilaj nur por malnovaj ma«inoj.
+	Modernaj durdiskoj parkumas sin aÌtomate kiam ili mal«altiõas.
+
+2.5.  KLAVAR-REPETO (TYPEMATIC)
+
+	MODE permesas agordi la klavaran prokraston kaj repet-rapidon, kaj
+	opcie bloki ilin.
+
+	La bloka funkcio estas plenumata de la rezida parto de MODE, kiu estos
+	aÌtomate instalita se necese.
+
+	La sintakso estas:
+
+	MODE DELAY=d RATE=r		Agordi parametrojn
+	MODE DELAY=d RATE=r LOCK	Agordi kaj bloki parametrojn
+
+	d	Specifas la komencan prokraston (1 õis 4), de 1/4 sekundo
+		(1) õis unu sekundo (4).
+
+	r	Specifas la repet-rapidon (1 õis 32), de du repetoj sekunde
+		(1) õis 30 repetoj sekunde (32).
+
+	LOCK	Specifas ke la parametroj estu blokitaj. Post kiam tio estas
+		farita, la parametroj povas esti «anõitaj per MODE, sed ne
+		per la plej multaj aliaj programoj. èi tio estas utila Üar
+		kelkaj programoj «anõas agordojn sen permeso. ùi ne estas
+		tamen tute nevenkebla.
+
+	Rimarku ke ambaÌ DELAY kaj RATE devas esti specifitaj por Üi tiuj
+	funkcioj.
+
+	MODE ne provas konfirmi Üu la agordo estas disponebla Üe la ma«ino.
+	ùi akceptos Üiujn komandojn, Üu la ma«ino subtenas ilin aÌ ne.
+
+2.6.  SWITCHAR FUNKCIOJ
+
+	MODE povas montri kaj agordi la DOS-«alt-signon (switchar). La defaÌlta
+	signo estas la oblikvo, '/'. ùi estas la signo uzata por indiki la
+	komencon de elekto-«altilo, ekz. /P Üe la komando DIR. Tipe, õi povas
+	esti «anõita al '-'. Switchar estas nedokumentita DOS-funkcio kiun
+	malmultaj programoj subtenas õuste.
+
+	La sintakso estas:
+
+	MODE SWITCHAR			Montri nunan switchar
+	MODE SWITCHAR=x			Agordi switchar al signo x
+	MODE SWITCHAR=n			Agordi switchar al ASCII-valoro n
+
+	La nuda parametro SWITCHAR montras la nunan signon. La uzo de
+	SWITCHAR= agordas õin. ùi povas esti indikita kiel signo (ekz. 'MODE
+	SWITCHAR=/') aÌ kiel numero (ekz. 'MODE SWITCHAR=45').
+
+2.7.  MODIFILAERAJ (SHIFT STATE) FUNKCIOJ
+
+	MODE povas «anõi Caps Lock, Num Lock, kaj Scroll Lock. èi tiu funkcio
+	ne devus esti uzata Üe ma«inoj kun originalaj PC aÌ XT klavaroj,
+	Üar la indikaj lumetoj ne estas kontroleblaj de la komputilo kaj
+	perdos sinkronigon kun la komputila stato. MODE ne detektas Üi tiujn
+	ma«inojn. èe AT kaj postaj ma«inoj, ne estas problemo.
+
+	La parametra sintakso konsistas el:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Iu ajn ne-konflikta kombino estas permesata. SCRLOCK povas esti
+	skribita kiel SCROLLLOCK.
+
+3.  ùENERALA
+
+	Parametroj ne estas uskle-sentemaj.
+
+	MODE povas procesi nur unu komandon po fojo. Se vi volas redirekti
+	plurajn LPT portojn, vi devas uzi apartan MODE komandon por Üiu.
+
+	Erarmesaõoj Üiam iras al StdErr. Informaj mesaõoj iras al la norma
+	elirejo kaj povas esti redirektitaj al NUL:.
+
+	Errorlevels liverataj de MODE estas:
+
+	0	Neniu eraro
+	115	Seria porto ne ekzistas
+	117	Neniu durdisko trovita por parkumi
+	118	Videomodo ne subtenata Üe Üi tiu ma«ino
+	162	NesufiÜa memoro (MODE bezonas ÜirkaÌ 6K)
+	241	Parametro ekster intervalo
+	242	43-linia aÌ 50-linia modoj eblas nur kun CO80
+	243	Nekonata rapid-valoro (baud rate)
+	244	Bezonas kaj DELAY= kaj RATE= por klavara agordo
+	246	Pli ol unu komando aÌ speco estis donita
+	255	Malõusta uzo-sintakso
+
+	MODE estas TSR programo. Se necese, õi instalas rezidan parton en la
+	memoro. Tiu parto zorgas pri printila redirektado, disk-parkumo, kaj
+	klavara blokado, kaj ne povas esti forigita sen restartigo.
+
+	Vidu sekcion 1 por kontakto kun la aÌtoro se vi trovas cimon.
+
+4.  UZ-EKZEMPLOJ
+
+	Jen ekzemplo de MODE-uzo en AUTOEXEC.BAT:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	èi tiu sekvenco elektas 43-linian ekranon, agordas COM1-3, redirektas
+	LPT1 al COM2, metas temp-parkumon de 30 sekundoj, agordas klavaron
+	kaj metas switchar al '-'.
+
+				   ----//----

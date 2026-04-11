@@ -1,0 +1,277 @@
+# Language: Lithuanian
+# File ending: LT
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Free-DOS MODE programos naudojimo dokumentacija
+
+	(c) Copyright 1994-1995 K. Heidenstrom.
+
+	Pakeitimai:
+
+	KH.19941231.001  (MODE 1.0.0)  Pirmoji versija
+	KH.19950116.002  (MODE 1.0.2)  Pridėta switchar dokumentacija
+	KH.19950520.003  (MODE 1.0.3)  Funkcionalumo pakeitimų nėra
+	KH.19950805.004  (MODE 1.0.4)  Pridėtos modifikatorių (shift-state)
+	parinktys
+
+
+1.  TEISINĖ INFORMACIJA
+
+	Šios programos autorių teisės (Copyright 1994-1995) priklauso
+	K. Heidenstrom. Ji buvo parašyta specialiai Free-DOS projektui. Su
+	autoriumi galima susisiekti adresu kheidens@actrix.gen.nz internete
+	arba paštu: K. Heidenstrom c/- P.O. Box 27-103, Wellington,
+	New Zealand.
+
+	Ši programa yra laisvoji programinė įranga. Galite platinti jos pirminį
+	kodą ir vykdomąjį failą bei (arba) modifikuoti programą pagal GNU
+	General Public License sąlygas, kurias paskelbė Free Software
+	Foundation; pagal litsencijos 2 versiją arba (savo pasirinkimu) bet
+	kurią vėlesnę versiją.
+
+	Ši programa platinama tikintis, kad ji bus naudinga, tačiau be jokios
+	garantijos, įskaitant numanomą tinkamumo parduoti arba tinkamumo
+	konkrečiam tikslui garantiją. Autorius jokiu būdu neatsako už jokią
+	žalą, susijusią su šios programos naudojimu. Išsamesnę informaciją rasite
+	GNU General Public License.
+
+	Su šia programa turėjote gauti GNU General Public License kopiją; jei
+	negavote, rašykite adresu Free Software Foundation, Inc., 675 Mass
+	Ave, Cambridge, MA 02139, USA.
+
+2.  FUNKCIJOS IR NAUDOJIMO SINTAKSĖ
+
+	MODE programa atlieka šešias atskiras funkcijas, kurios aprašytos žemiau.
+
+2.1.  VAIZDO REŽIMO IR EKRANO EILUČIŲ SKAIČIAUS NUSTATYMAS
+
+	MODE leidžia nustatyti vaizdo režimą į vieną iš penkių režimų.
+	Sintaksė:
+
+	MODE Vaizdorežimas[,Eilutės]
+
+	Režimai yra:
+
+	MONO	Monochrominis režimas, naudojamas su MDA ir Hercules plokštėmis,
+		taip pat emuliuojamas EGA ir VGA plokštėse. Tai vienintelis
+		režimas, kuris pagal nutylėjimą gali pabraukti simbolius ekrane.
+		Šio režimo negalima pasirinkti CGA vaizdo plokštėje.
+
+	BW40	40 stulpelių režimas be spalvų. Šis režimas būdingas CGA
+		adapteriui ir suteikia 40 stulpelių ir 25 eilučių vaizdą. CGA
+		plokštės sudėtinio vaizdo signalo spalvų informacija išjungiama,
+		todėl vaizdas sudėtiniame spalvotame monitoriuje yra juodai
+		baltas su šešiolika pilkos atspalvių.
+		Jei šis režimas pasirenkamas EGA arba VGA plokštėje arba CGA
+		plokštėje, kuri neprijungta prie televizoriaus ar spalvoto
+		monitoriaus, jis atrodys taip pat kaip CO40 režimas (t. y.
+		spalvos nebus slopinamos). Šio režimo negalima pasirinkti MDA ir
+		Hercules vaizdo plokštėse.
+
+	BW80	80 stulpelių režimas be spalvų. Šis režimas taip pat būdingas CGA
+		adapteriui ir yra toks pat kaip BW40, išskyrus tai, kad yra 80
+		stulpelių. Šio režimo negalima pasirinkti MDA ir Hercules plokštėse.
+
+	CO40	40 stulpelių spalvotas režimas. Šis režimas suteikia spalvotą
+		vaizdą su 40 stulpelių ir 25 eilutėmis. Jį palaiko CGA, EGA ir
+		VGA adapteriai, bet nepalaiko MDA ir Hercules plokštės.
+
+	CO80	80 stulpelių spalvotas režimas. Šis režimas suteikia 80 stulpelių
+		ir 25 eilučių vaizdą ir yra įprastas CGA, EGA ir VGA plokščių
+		režimas. MDA ir Hercules plokštės jo nepalaiko. EGA plokštėse
+		šis režimas taip pat palaiko 43 eilučių variantą, o VGA
+		plokštėse palaikomi 43 ir 50 eilučių variantai.
+
+		43 ir 50 eilučių režimus galima pasirinkti nurodant ",43" arba
+		",50" po CO80 MODE komandų eilutėje. Jei šis parametras
+		nenurodytas, naudojamos numatytosios 25 eilutės.
+
+	Nustatytas vaizdo režimas galios tol, kol bus pakeistas MODE komanda
+	arba programos. Vaizdo režimas nėra užrakintas visam laikui - programos
+	gali keisti vaizdo režimus pagal poreikį.
+
+2.2.  NUOSEKLIOJO PRIEVADO PARAMETRŲ KONFIGŪRAVIMAS
+
+	MODE leidžia konfigūruoti nuosekliojo prievado ryšio parametrus.
+	Sintaksė:
+
+	MODE COMn:r,p,d,s
+
+	n	Nurodo, kurį nuoseklųjį prievadą konfigūruoti (nuo 1 iki 4).
+		Jei prievado nėra, MODE praneš apie klaidą.
+
+	r	Nurodo bodų greitį (baud rate) bitais per sekundę. Vertės yra:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 ir 115200.
+
+		Vertes 1200, 2400, 4800 ir 9600 galima sutrumpinti atitinkamai
+		iki 12, 24, 48 ir 96. Didesnius greičius galima sutrumpinti iki
+		jų pirmų dviejų ar trijų skaitmenų. 115200 galima sutrumpinti
+		iki 115 arba 1152.
+
+	p	Nurodo duomenų baitų pariteto (parity) tipą. Vertės yra:
+
+		E = Lyginis paritetas (Even)
+		O = Nelyginis paritetas (Odd)
+		N = Nėra pariteto (None)
+
+	d	Nurodo perduodamų ir priimamų duomenų bitų skaičių. Leidžiamos
+		vertės yra 5, 6, 7 ir 8.
+
+	s	Nurodo siunčiamų ir laukiamų sustojimo bitų skaičių. Tai gali
+		būti 1 arba 2. Jei naudojami 2 sustojimo bitai su 5 duomenų
+		bitais, prievadas faktiškai sugeneruos ir patikrins 1 1/2
+		sustojimo bito.
+
+	Nustatyti nuosekliojo prievado parametrai galios tol, kol bus pakeisti.
+
+2.3.  LYGIAGRETUSIO PRIEVADO PERADRESAVIMAS IR BEGALINIAI BANDYMAI
+
+	MODE leidžia peradresuoti lygiagretųjį (LPT) prievadą į nuoseklųjį (COM)
+	prievadą, į NUL (t. y. niekur) ir gali begalinai kartoti bandymus, jei
+	įrenginys neatsako.
+
+	Šias funkcijas atlieka rezidentinė MODE programos dalis, kuri prireikus
+	įdiegiama automatiškai.
+
+	Sintaksė:
+
+	MODE LPTn:P		Begalinė laiko baigtis lygiagrečiam prievadui
+	MODE LPTn:=COMx		Nukreipti spausdintuvo išvestį į COM prievadą
+	MODE LPTn:=NUL:		Nukreipti spausdintuvo išvestį į NUL
+	MODE LPTn:		Pašalinti peradresavimą ir begalinę laiko baigtį
+
+	LPTn:P funkcija nurodo begalinius bandymus pasibaigus laikui. Jei tai
+	įjungta, MODE nuolat bandys iš naujo, jei spausdintuvas neatsako. Jei
+	tai neįjungta ir spausdintuvas neatsako per tam tikrą laiką (paprastai
+	apie pusę minutės), pranešama apie rašymo klaidą.
+
+	Peradresavimas naudingas, jei turite nuoseklųjį spausdintuvą arba jei
+	spausdintuvo neturite ir norite išvengti kompiuterio pakibimo programai
+	bandant spausdinti į nesantį įrenginį. Komanda MODE LPTn: grąžina
+	prievadą į įprastą darbą.
+
+2.4.  KIETOJO DISKO PARKAVIMO FUNKCIJOS (PARK)
+
+	MODE priparkuoja kietąjį diską arba diskus (tik pirmuosius du fizinius
+	diskus sistemoje) arba iš karto, arba po tam tikro neveiklumo laiko.
+
+	Laikinį parkavimą atlieka rezidentinė MODE programos dalis.
+
+	Sintaksė:
+
+	MODE PARK			Priparkuoti dabar
+	MODE PARK,minutės[:sekundės]	Priparkuoti po disko neveiklumo
+
+	PARK funkcija priparkuoja diskus iš karto ir laukia, kol išjungsite
+	kompiuterį. Taip pat galite paspausti Ctrl-C, kad grįžtumėte į DOS.
+
+	Laikinio parkavimo negalima išjungti - norėdami jį pašalinti, turite
+	perkrauti kompiuterį. Šios funkcijos naudingos tik senesniems
+	kompiuteriams. Šiuolaikiniai diskai išsijungdami prisiparkuoja patys.
+
+2.5.  TYPEMATIC FUNKCIJOS (KLAVIATŪROS KARTOJIMAS)
+
+	MODE leidžia nustatyti klaviatūros kartojimo pradinį delsą ir kartojimo
+	dažnį bei pasirinktinai juos užrakinti.
+
+	Užrakinimą atlieka rezidentinė MODE programos dalis.
+
+	Sintaksė:
+
+	MODE DELAY=d RATE=r		Nustatyti parametrus
+	MODE DELAY=d RATE=r LOCK	Nustatyti ir užrakinti parametrus
+
+	d	Nurodo pradinį delsą (nuo 1 iki 4), nuo 1/4 sekundės (1) iki
+		vienos sekundės (4).
+
+	r	Nurodo kartojimo dažnį (nuo 1 iki 32), nuo dviejų kartojimų per
+		sekundę (1) iki 30 kartojimų per sekundę (32).
+
+	LOCK	Nurodo, kad parametrai turi būti užrakinti. Tada juos bus
+		galima pakeisti tik MODE komanda, bet ne kitomis programomis.
+		Tai naudinga, nes kai kurios programos keičia nustatymus be
+		leidimo.
+
+	Turi būti nurodyti abu parametrai DELAY ir RATE. MODE priima komandas
+	nepriklausomai nuo to, ar įrenginis jas palaiko.
+
+2.6.  SWITCHAR FUNKCIJOS
+
+	MODE gali rodyti ir nustatyti DOS parametrų skyriklio simbolį
+	(switchar). Numatytasis simbolis yra įstrižas brūkšnys „/“. Tai
+	simbolis, kuris nurodo komandos parinkties pradžią, pvz., /P DIR
+	komandoje. Paprastai jis gali būti pakeistas į brūkšnelį „-“.
+	Switchar yra nedokumentuota DOS funkcija, kurią teisingai palaiko mažai
+	programų.
+
+	Sintaksė:
+
+	MODE SWITCHAR			Rodyti dabartinį switchar
+	MODE SWITCHAR=x			Nustatyti switchar į simbolį x
+	MODE SWITCHAR=n			Nustatyti switchar į ASCII vertę n
+
+2.7.  MODIFIKATORIŲ (SHIFT STATE) FUNKCIJOS
+
+	MODE gali keisti Caps Lock, Num Lock ir Scroll Lock būsenas. Šios
+	funkcijos nereikėtų naudoti kompiuteriuose su originaliomis PC arba XT
+	klaviatūromis, nes jų indikatorių negalima valdyti iš kompiuterio ir jie
+	neatitiks kompiuterio būsenos.
+
+	Parinktys yra:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Galima naudoti bet kokį neprieštaringą derinį. Vietoj SCRLOCK galima
+	rašyti ir SCROLLLOCK.
+
+3.  BENDROJI INFORMACIJA
+
+	MODE parametrai neskiria didžiųjų ir mažųjų raidžių. MODE vienu metu
+	apdoroja tik vieną komandą.
+
+	Klaidų pranešimai siunčiami į StdErr. Informaciniai pranešimai siunčiami
+	į standartinę išvestį (galima nukreipti į NUL:).
+
+	MODE grąžinami klaidų kodai (Errorlevels):
+
+	0	Klaidų nėra
+	115	Nuosekliojo prievado nėra
+	117	Nerasta jokių kietųjų diskų parkavimui
+	118	Vaizdo režimas šiame kompiuteryje nepalaikomas
+	162	Nepakanka atminties (MODE reikia apie 6K)
+	241	Parametras už ribų
+	242	43 arba 50 eilučių režimai galimi tik su CO80
+	243	Nežinomas bodų greitis
+	244	Turi būti nurodyti ir DELAY=, ir RATE=
+	246	Pateikta daugiau nei viena komanda arba tipas
+	255	Neteisinga sintaksė
+
+	Jei radote klaidą, susisiekite su autoriumi (duomenys 1 skyriuje).
+
+4.  NAUDOJIMO PAVYZDŽIAI
+
+	Pavyzdys AUTOEXEC.BAT faile:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	Ši seka pasirenka 43 eilučių spalvotą režimą, sukonfigūruoja COM1-3,
+	nukreipia LPT1 į COM2, nustato laikinį parkavimą po 30 s, nustato
+	klaviatūrą ir pakeičia switchar į „-“.
+
+				   ----//----

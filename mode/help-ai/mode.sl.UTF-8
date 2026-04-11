@@ -1,0 +1,280 @@
+# Language: Slovenian
+# File ending: SL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Dokumentacija za uporabo programa Free-DOS MODE
+
+	(c) Copyright 1994-1995 K. Heidenstrom.
+
+	Spremenjeno:
+
+	KH.19941231.001  (MODE 1.0.0)  Prva različica
+	KH.19950116.002  (MODE 1.0.2)  Dodana dokumentacija za switchar
+	KH.19950520.003  (MODE 1.0.3)  Brez sprememb v funkcionalnosti
+	KH.19950805.004  (MODE 1.0.4)  Dodane možnosti modifikatorjev
+	(shift-state)
+
+
+1.  PRAVNA OBVESTILA
+
+	Ta program je Copyright 1994-1995 K. Heidenstrom. Napisan je bil
+	posebej za projekt Free-DOS. Avtorja lahko kontaktirate na naslovu
+	kheidens@actrix.gen.nz na internetu ali po pošti:
+	K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	Ta program je prosta programska oprema. Virno kodo in izvršljivo
+	datoteko lahko razširjate in/ali spreminjate pod pogoji licence GNU
+	General Public License, kot jo je objavila Free Software Foundation;
+	različice 2 ali (po vaši izbiri) katere koli poznejše različice.
+
+	Ta program se razširja v upanju, da bo uporaben, vendar brez kakršne
+	koli garancije, vključno z implicitno garancijo o prodajnosti ali
+	primernosti za določen namen. Avtor v nobenem primeru ne bo
+	odgovoren za kakršno koli škodo, povezano z uporabo tega programa.
+	Za več podrobnosti glejte licenco GNU General Public License.
+
+	S tem programom bi morali prejeti kopijo licence GNU General Public
+	License; če je niste, pišite na naslov Free Software Foundation,
+	Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  FUNKCIJE IN SINTAKSA UPORABE
+
+	Program MODE opravlja šest ločenih funkcij, ki so opisane spodaj.
+
+2.1.  NASTAVITEV VIDEO NAČINA IN ŠTEVILA ZASLONSKIH VRSTIC
+
+	MODE omogoča nastavitev video načina na enega od petih načinov.
+	Sintaksa je:
+
+	MODE Videonačin[,Vrstice]
+
+	Načini so:
+
+	MONO	Monokromatski način, kot se uporablja pri karticah MDA in
+		Hercules, emuliran pa je tudi na karticah EGA in VGA. Ta
+		način je edini, ki privzeto omogoča podčrtovanje znakov
+		na zaslonu. Tega načina ni mogoče izbrati na grafični kartici CGA.
+
+	BW40	40-stolpčni način z zatrto barvo. Ta način je specifičen za
+		kartice CGA in omogoča prikaz 40 stolpcev in 25 vrstic.
+		Informacije o barvah v kompozitnem video signalu s kartice CGA
+		so izklopljene, tako da je prikaz črno-bel na kompozitnem
+		barvnem monitorju s šestnajstimi odtenki sive.
+		Če je ta način izbran na kartici EGA ali VGA ali na kartici
+		CGA, ki ni priključena na televizor ali kompozitni monitor,
+		bo videti enako kot način CO40 (barva ne bo zatrta). Tega
+		načina ni mogoče izbrati na karticah MDA in Hercules.
+
+	BW80	80-stolpčni način z zatrto barvo. Ta način je prav tako
+		specifičen za kartice CGA in je enak kot BW40, le da ima 80
+		stolpcev. Tega načina ni mogoče izbrati na karticah MDA in Hercules.
+
+	CO40	40-stolpčni barvni način. Ta način omogoča barvni prikaz s 40
+		stolpci in 25 vrsticami. Podpirajo ga adapterji CGA, EGA in
+		VGA, ne pa tudi kartice MDA in Hercules.
+
+	CO80	80-stolpčni barvni način. Ta način omogoča prikaz z 80 stolpci
+		in 25 vrsticami in je običajen način prikaza za kartice CGA,
+		EGA in VGA. Kartice MDA in Hercules ga ne podpirajo. Na
+		karticah EGA ta način podpira tudi različico s 43 vrsticami,
+		na karticah VGA pa sta podprti različici s 43 in 50 vrsticami.
+
+		Načina s 43 in 50 vrsticami lahko izberete tako, da v ukazni
+		vrstici MODE za CO80 navedete ",43" ali ",50". Če ta parameter
+		ni naveden, bo uporabljena privzeta vrednost 25 vrstic.
+
+	Ko je video način nastavljen, ostane v veljavi, dokler ga ne spremeni
+	ukaz MODE ali program. Video način ni trajno zaklenjen - programi
+	lahko poljubno spreminjajo video načine.
+
+2.2.  KONFIGURACIJA PARAMETROV SERIJSKIH VRAT
+
+	MODE omogoča konfiguracijo komunikacijskih parametrov serijskih vrat.
+	Sintaksa je:
+
+	MODE COMn:r,p,d,s
+
+	n	Določa, katera serijska vrata naj bodo konfigurirana, v
+		obsegu od 1 do 4. Če serijska vrata ne obstajajo, MODE
+		javi napako.
+
+	r	Določa hitrost v bitih na sekundo (baud rate). Vrednosti so:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 in 115200.
+
+		Vrednosti 1200, 2400, 4800 in 9600 lahko skrajšate na 12, 24,
+		48 oziroma 96. Višje hitrosti lahko skrajšate na njihovi prvi
+		dve ali tri številke. 115200 lahko skrajšate na 115 ali 1152.
+
+	p	Določa vrsto paritete. Vrednosti so:
+
+		E = Soda pariteta (Even)
+		O = Liha pariteta (Odd)
+		N = Brez paritete (None)
+
+	d	Določa število podatkovnih bitov. Dovoljene vrednosti so 5, 6, 7
+	in 8.
+
+	s	Določa število stop bitov. To je lahko 1 ali 2. Če se uporabita
+		2 stop bita s 5 podatkovnimi biti, bodo serijska vrata
+		dejansko generirala in preverjala 1 1/2 stop bita.
+
+	Nastavitve serijskih vrat ostanejo v veljavi, dokler jih ne spremeni
+	ukaz MODE ali program. Nastavitve niso trajno zaklenjene.
+
+2.3.  PREUSMERITEV VZPOREDNIH VRAT IN NESKONČNE PONOVITVE
+
+	MODE omogoča preusmeritev izhoda vzporednih (LPT) vrat na serijska
+	(COM) vrata, na NUL (tj. nikamor), in lahko tudi neskončno ponavlja
+	poskuse, če se periferna naprava ne odziva.
+
+	Te funkcije izvaja rezidenčni del programa MODE, ki se po potrebi
+	samodejno namesti.
+
+	Sintaksa je:
+
+	MODE LPTn:P		Neskončna časovna omejitev na vzporednih vratih
+	MODE LPTn:=COMx		Preusmeritev izhoda tiskalnika na vrata COM
+	MODE LPTn:=NUL:		Preusmeritev izhoda tiskalnika na NUL
+	MODE LPTn:		Prekliči preusmeritev in neskončno omejitev
+
+	Funkcija LPTn:P določa neskončno ponavljanje ob časovni omejitvi. Če
+	je omogočena, bo MODE nenehno poskušal poslati podatke, če se
+	tiskalnik ne odziva. Sicer bo po določenem času (približno pol minute)
+	javljena napaka pri pisanju.
+
+	Funkciji LPTn:=COMx in LPTn:=NUL: določata preusmeritev izhoda tiskalnika.
+	Katera koli vzporedna vrata (tudi neobstoječa) se lahko preusmerijo na
+	katera koli obstoječa serijska vrata ali na NUL. To je uporabno, če
+	imate serijski tiskalnik ali če tiskalnika nimate in želite preprečiti
+	zamrznitev računalnika ob poskusu tiskanja.
+
+	Ukaz MODE LPTn: prekliče preusmeritev in vrne vrata v normalno stanje.
+
+2.4.  PARKIRANJE TRDEGA DISKA (PARK)
+
+	MODE parkira trdi disk ali diske (le prva dva fizična diska v sistemu),
+	bodisi takoj bodisi po določenem času neaktivnosti.
+
+	Časovno parkiranje izvaja rezidenčni del programa MODE.
+
+	Sintaksa je:
+
+	MODE PARK			Parkiraj zdaj
+	MODE PARK,minute[:sekunde]	Parkiraj po neaktivnosti diska
+
+	Funkcija PARK takoj parkira diske in počaka, da izklopite računalnik.
+	Lahko pritisnete tudi Ctrl-C za vrnitev v DOS.
+
+	Funkcija PARK,minute[:sekunde] parkira diske po določenem času
+	neaktivnosti (do 50 minut). Če imate dva fizična diska, se oba
+	obravnavata ločeno.
+
+	Časovno parkiranje ni mogoče izklopiti - za odstranitev morate
+	ponovno zagnati računalnik. Ta funkcija je uporabna predvsem za
+	starejše stroje. Sodobni diski se ob izklopu parkirajo samodejno.
+
+2.5.  FUNKCIJE TYPEMATIC (PONAVLJANJE TIPKOVNICE)
+
+	MODE omogoča nastavitev začetne zakasnitve in hitrosti ponavljanja
+	tipk ter njihovo poljubno zaklepanje.
+
+	Zaklepanje izvaja rezidenčni del programa MODE.
+
+	Sintaksa je:
+
+	MODE DELAY=d RATE=r		Nastavi parametre
+	MODE DELAY=d RATE=r LOCK	Nastavi in zakleni parametre
+
+	d	Določa začetno zakasnitev (1 do 4), od 1/4 sekunde (1) do
+		ene sekunde (4).
+
+	r	Določa hitrost ponavljanja (1 do 32), od dveh ponovitev na
+		sekundo (1) do 30 ponovitev na sekundo (32).
+
+	LOCK	Določa, da morajo biti parametri zaklenjeni. Nato jih je
+		mogoče spremeniti le z ukazom MODE, ne pa z drugimi programi.
+		To je uporabno, ker nekateri programi spreminjajo nastavitve
+		brez dovoljenja.
+
+	Navesti je treba oba parametra DELAY in RATE. MODE sprejme ukaze
+	ne glede na to, ali jih stroj dejansko podpira.
+
+2.6.  FUNKCIJE SWITCHAR
+
+	MODE lahko prikaže in nastavi znak za stikalo DOS (switchar). Privzeti
+	znak je poševnica '/'. To je znak, ki uvaja parametre ukazov, npr. /P
+	pri ukazu DIR. Običajno se switchar lahko spremeni v vezaj '-'.
+	Switchar je nedokumentirana funkcija DOS, ki jo pravilno podpira le
+	malo programov.
+
+	Sintaksa je:
+
+	MODE SWITCHAR			Prikaži trenutni switchar
+	MODE SWITCHAR=x			Nastavi switchar na znak x
+	MODE SWITCHAR=n			Nastavi switchar na vrednost ASCII n
+
+2.7.  FUNKCIJE MODIFIKATORJEV (SHIFT STATE)
+
+	MODE lahko spreminja stanja Caps Lock, Num Lock in Scroll Lock. Te
+	funkcije ne smete uporabljati na strojih z originalnimi tipkovnicami
+	PC ali XT, ker indikatorskih lučk na njih ni mogoče nadzorovati iz
+	računalnika in bi prišlo do neskladja s stanjem v računalniku.
+
+	Možnosti so:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Uporabite lahko katero koli kombinacijo, ki ni v konfliktu. SCRLOCK
+	se lahko zapiše tudi kot SCROLLLOCK.
+
+3.  SPLOŠNE INFORMACIJE
+
+	Parametri MODE ne razlikujejo med velikimi in malimi črkami. MODE
+	v enem klicu obdela le en ukaz.
+
+	Sporočila o napakah se pošiljajo na StdErr. Informativna sporočila
+	na standardni izhod (lahko se preusmerijo na NUL:).
+
+	Errorlevels, ki jih vrača program MODE:
+
+	0	Brez napake
+	115	Serijska vrata ne obstajajo
+	117	Ni najden noben trdi disk za parkiranje
+	118	Video način na tem stroju ni podprt
+	162	Ni dovolj pomnilnika (MODE potrebuje približno 6K)
+	241	Parameter zunaj obsega
+	242	Načina s 43 ali 50 vrsticami sta možna le s CO80
+	243	Neznana hitrost prenosa
+	244	Navesti je treba tako DELAY= kot RATE=
+	246	Podanih je bilo več ukazov ali vrst ukazov
+	255	Napačna sintaksa
+
+	Če najdete napako, kontaktirajte avtorja (podatki v razdelku 1).
+
+4.  PRIMERI UPORABE
+
+	Primer v AUTOEXEC.BAT:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	To zaporedje nastavi 43-vrstični barvni način, konfigurira COM1-3,
+	preusmeri LPT1 na COM2, nastavi časovno parkiranje diska na 30 s,
+	nastavi tipkovnico in spremeni switchar na '-'.
+
+				   ----//----

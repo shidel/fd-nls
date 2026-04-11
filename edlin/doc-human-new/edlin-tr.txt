@@ -1,0 +1,140 @@
+EDLIN 2.14
+edlin program k‡k bir satr dzenleyicisidir ve FreeDOS i‡in eski
+MS-DOS edlin programnn iŸlevsel bir klonu olarak yazlmŸtr. MS edlin
+programndan fark, ilk olarak ”zgr bir yazlm olmas, ikinci olarak da
+kullanc arayznn baz yerlerde hafif farkllklar g”stermesidir. Bu
+farkn sebebi, kullancnn MS edlin'in s”z diziminin ihtiya‡ duydu§u
+denetim karakterlerini yazmasnn mecburi olmamasdr.
+
+EDLIN'˜N BALATILMASI
+Edlin program ad yazlarak baŸlatlabilir:
+  edlin
+
+veya baŸlang‡ta okunacak bir dosya ad ile de baŸlatlabilir:
+  edlin dosya
+
+EDLIN'˜N DAH˜L˜ KOMUTLARI
+AŸa§daki komut listesinde k”Ÿeli parantezler se‡ime dayal yaplar
+temsil eder. # simgesi ya say zinciri ya gncel satr temsil eden bir
+nokta ya dosyada son satr temsil eden dolar simgesi ($) ya da baŸka
+bir satr saysna eklenen veya ondan ‡karlan bir satr numarasn
+temsil eden bir satr saysdr, b”ylece
+  .,.+1p
+
+gncel satrla bir sonraki satr g”rntler.
+
+AŸa§daki listelerde dolar simgesi bir karakter dizesini temsil eder.
+Tek veya ‡ift trnak imleri arasnda olabilir ve aŸa§daki ka‡Ÿ
+dizelerini bulundurabilirler:
+  \a - alarm
+  \b - geri d§mesi
+  \e - ka‡Ÿ
+  \f - boŸ sayfa
+  \t - yatay sekme
+  \v - dŸey sekme
+  \" - ‡ift trnak imi
+  \' - tek trnak imi
+  \. - nokta
+  \\ - ters e§ik ‡izgi
+  \xXX burada X bir onaltlk saydr (0-9, a-f, A-F) - onaltlk sabit
+  \dddd burada d ondalk bir saydr (0-9) - ondalk sabit
+  \OOO burada O sekizlik bir saydr (0-7) - sekizlik sabit
+  \^C - denetim karakteri
+
+Edlin program aŸa§daki s”z dizimini destekler:
+
+# - TEK B˜R SATIR DSZENLE
+Edlin program say ile belirtilen satr g”rntler ve girilen sonraki
+satr g”rntlenen satrn dosyada yerine ge‡er.
+
+a - ˜L˜T˜R (EKLE)
+Bu komut $+1i ile eŸde§erdir.
+
+[#],[#],#,[#]c - B˜R SATIR ALANINI KOPYALA
+Bu komut bir ardŸk satrlar blokunu tamponda baŸka bir konuma kopyalar.
+Parametreleri Ÿu Ÿekildedir:
+  * Kopyalamak istedi§iniz ilk satr (varsaylan = gncel satr)
+  * Kopyalamak istedi§iniz son satr (varsaylan = gncel satr)
+  * ™ncesinde satrlar blokunu eklemek istedi§iniz satr
+  * Bloku kopyalamak istedi§iniz kez (varsaylan = 1)
+
+Edlin satrlar kopyaladktan sonra do§ru bir Ÿekilde yeniden numaralanan
+satrlar g”rmek i‡in l (listele) komutunu kullanabilirsiniz.
+
+[#][,#]d - B˜R SATIR BLOKUNU S˜L
+Bu komut bir ardŸk satrlar blokunu siler. Parametreleri silinecek ilk
+ve son satrlardr.
+
+ayet ikinci parametreyi girmezseniz sadece ilk parametrede belirtilen
+satr silinir. E§er ikinci parametreyi girmezseniz gncel satrdan ikinci
+parametrede belirtilen satra dek olan blok silinir (virgl unutmayn).
+˜ki parametreyi de girmezseniz, gncel satr silinir.
+
+e dosyaad - KAYDET VE €IK
+Bu komut aŸa§daki ile eŸde§erdir
+
+  w dosyaad
+
+ki bunu Ÿu komut takip eder:
+
+  q
+
+[#]i - EKLEME K˜P˜
+Bu komut, ekleme kipini etkinleŸtirir. Parametresi ”ncesine eklemede
+bulunmak istedi§iniz satr numarasdr.
+Ekleme srasnda, yukarda g”sterilen ka‡Ÿ dizelerinin girilmesine izin
+verilir. Ekleme kipinden ‡kmak i‡in boŸ bir satra bir nokta (.) girin
+(e§er tek bir nokta i‡eren bir satra ihtiyacnz varsa, ka‡Ÿ kullann).
+Ekleme kipinden ‡ktktan sonra, eklenen metinden sonraki satr gncel
+satr olur, buna istisna eklemenin metnin sonunda yaplmŸ olmasdr, bu
+durumda metnin son satr gncel satr olur.
+
+[#][,#]l - SATIRLARI L˜STELE
+Bu komut, metin satrlarn ekranda listeler. E§er ilk parametreyi
+girmezseniz komut, gncel satrdan 11 satr ”nce baŸlayan metni
+g”rntlemeye baŸlar. ˜kinci parametreyi girmezseniz, ilk parametrede
+belirtilen satrla baŸlayan metin sayfas g”rntlenir. ˜ki parametreyi de
+girmezseniz, gncel satrdan 11 satr ”nce baŸlayan metin sayfas
+g”rntlenir. Her durumda, e§er satr says bir sayfadaki satr
+saysndan daha bykse, program her sayfa sonunda bir istem sunacaktr.
+
+[#],[#],#m - BLOK TAI
+Bu komut, bir metin blokunu ‡nc parametrede belirtilen satr ”ncesine
+taŸr. Blok i‡in kopyalama ve ardndan silme iŸlemine benzer.
+
+[#][,#]p - SAYFA
+Bu, l komutuna benzer fakat varsaylan sayfa gncel satrla baŸlar, 11
+satr ”nce de§il.
+
+q - €IK
+A‡klanmas gereken bir Ÿey yok.
+
+[#][,#][?]r$,$ - D˜ZEN˜N YER˜NE YEN˜S˜N˜ KOY
+Bu komut, belirtilen iki satr arasnda ilk dizenin tm oluŸumlarn
+ikinciyle de§iŸtirir. ayet ilk parametre girilmezse, yerine koyma gncel
+satrdan sonraki satdan baŸlar; e§er ikinci parametre girilmezse, yerine
+koyma dosyann son satrnda son bulur.
+
+Soru imi yerine koymadan ”nce bir do§rulama iletisi g”nderir.
+
+[#][,#][?]s$ - ALT D˜ZEY˜ ARA
+Bu komut, belirtilen alt dizeyi i‡eren ilk satr arar. ˜lk parametreyi
+girmezseniz arama gncel satrda baŸlar; ikinci parametrenin girilmemesi
+aramann dosya sonunda durmasn sa§lar.
+
+Soru iŸareti aramann bir do§rulama iletisi g”ndermesini sa§lar. Do§rulama
+iletisine hayr demek aramay srdrr, evet sonlandrr.
+Arama baŸarl olduysa gncel satr, aramann bitti§i satr olur.
+
+[#]t dosyaad - DOSYA AKTARIMI
+Bu komut, dosyann i‡eri§inin belirtilen satr numarasndan ”nce
+eklenmesini sa§lar. E§er satr numaras girilmemiŸse varsaylan gncel
+satrdr.
+
+[#]w dosyaad - DOSYA YAZ
+Bu komut, parametreyle belirtilen ilk satrlarn belirtilen dosyaya
+yazlmalarn sa§lar. ayet parametre eksikse, tampondaki tm satrlar
+dosyaya yazlr.
+
+GEL˜T˜R˜C˜/BAKIMCI
+Gregory Pietsch, gpietsch@comcast.net

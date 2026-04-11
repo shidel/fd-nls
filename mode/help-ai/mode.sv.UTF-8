@@ -1,0 +1,355 @@
+# Language: Swedish
+# File ending: SV
+# Codepage: 850
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Programanvändardokumentation för Free-DOS MODE-programmet
+
+	(c) Copyright 1994-1995 av K. Heidenstrom.
+
+	Modifierad:
+
+	KH.19941231.001  (MODE 1.0.0)  Första versionen
+	KH.19950116.002  (MODE 1.0.2)  Lade till dokumentation för switchar
+	KH.19950520.003  (MODE 1.0.3)  Inga ändringar i funktionalitet
+	KH.19950805.004  (MODE 1.0.4)  Lade till modifieringsalternativ
+	(shift-state)
+
+
+1.  JURIDIK
+
+	Detta program är Copyright 1994-1995 av K. Heidenstrom. Det skrevs
+	specifikt för Free-DOS-projektet. Författaren kan nås på
+	kheidens@actrix.gen.nz via Internet eller via vanlig post:
+	K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	Detta program är fri programvara. Du får distribuera källkoden och den
+	körbara filen och/eller modifiera programmet enligt villkoren i GNU
+	General Public License som publicerats av Free Software Foundation;
+	antingen version 2 av licensen eller (efter eget val) någon senare
+	version.
+
+	Detta program distribueras i hopp om att det ska vara användbart,
+	men tillhandahålls "i befintligt skick" (as-is), utan någon garanti av
+	något slag, inklusive den underförstådda garantin om säljbarhet eller
+	lämplighet för ett visst ändamål. Under inga omständigheter ska
+	författaren hållas ansvarig för några skador av något slag relaterade
+	till användningen av detta program. Se GNU General Public License för
+	mer information.
+
+	Du bör ha fått en kopia av GNU General Public License tillsammans
+	med detta program; om inte, skriv till Free Software Foundation,
+	Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  FUNKTION OCH ANVÄNDNINGSSYNTAX
+
+	MODE-programmet utför sex separata funktioner, som beskrivs separat
+	nedan.
+
+2.1.  STÄLL IN VIDEOLÄGE OCH ANTAL SKÄRMRADER
+
+	MODE tillåter att videoläget ställs in till ett av fem lägen. Syntaxen
+	är:
+
+	MODE Videoläge[,Rader]
+
+	Lägena är:
+
+	MONO	Monokromt läge, som används med MDA- och Hercules-grafikkort,
+		och som även emuleras på EGA- och VGA-kort. Detta läge är det
+		enda läget som har förmågan att understryka tecken på skärmen
+		som standard. Detta läge kan inte väljas på CGA-grafikkort.
+
+	BW40	40-kolumners färgsublimerat läge. Detta läge är specifikt för
+		CGA-adaptern och ger en visning på 40 kolumner gånger 25 rader.
+		Färginformationen i den sammansatta videosignalen från CGA-kortet
+		stängs av, så att visningen sker i svartvitt på en sammansatt
+		färgskärm, med sexton gråskalor.
+		Om detta läge väljs på ett EGA- eller VGA-kort, eller ett CGA-
+		kort som inte är anslutet till en TV-apparat eller en sammansatt
+		färgskärm, kommer det att se likadant ut som CO40-läget (dvs.
+		färgen kommer inte att sublimeras). Detta läge kan inte väljas
+		på MDA- och Hercules-grafikkort.
+
+	BW80	80-kolumners färgsublimerat läge. Detta läge är också specifikt
+		för CGA-adaptern och är detsamma som BW40 förutom att det är
+		80 kolumner.
+		Om detta läge väljs på ett EGA- eller VGA-kort, eller ett CGA-
+		kort som inte är anslutet till en TV-apparat eller en sammansatt
+		färgskärm, kommer det att se likadant ut som CO80-läget (dvs.
+		färgen kommer inte att sublimeras). Detta läge kan inte väljas
+		på MDA- och Hercules-grafikkort.
+
+	CO40	40-kolumners färgläge. Detta läge ger 40 kolumner gånger 25
+		rader i färg. Det stöds av CGA-, EGA- och VGA-adaptrar men inte
+		av MDA-och Hercules-kort.
+
+	CO80	80-kolumners färgläge. Detta läge ger 80 kolumner gånger 25
+		rader och är det normala visningsläget för CGA-, EGA- och VGA-kort.
+		Det stöds inte av MDA- och Hercules-kort. På EGA-kort stöder
+		detta läge även en 43-raders variant, och på VGA-kort stöds
+		43-raders varianten och en 50-raders variant.
+
+		43-raders och 50-raders lägen kan väljas genom att ange ",43"
+		eller ",50" efter CO80 på MODE-kommandoraden. Om denna parameter
+		inte anges kommer standardvärdet 25 rader att användas.
+
+	När det väl är inställt kommer videoläget att förbli i kraft tills det
+	ändras av ett MODE-kommando eller av ett program. Videoläget är inte
+	permanent låst - program är fria att ändra videolägen efter behov.
+
+2.2.  KONFIGURERA PARAMETRAR FÖR SERIEPORT
+
+	MODE tillåter att kommunikationsparametrarna för en serieport
+	konfigureras. Syntaxen är:
+
+	MODE COMn:r,p,d,s
+
+	n	Anger vilken serieport som ska konfigureras, i intervallet
+		1 till 4. Om serieporten inte existerar kommer MODE att
+		rapportera ett fel.
+
+	r	Anger baud-hastigheten i bitar per sekund. Värdena är:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 och 115200.
+
+		1200, 2400, 4800 och 9600 kan förkortas till 12, 24, 48
+		respektive 96. 14400, 19200, 28800, 38400 och 57600 kan
+		förkortas till sina första två eller tre siffror. 115200 kan
+		förkortas till 115 eller 1152.
+
+	p	Anger typen av paritet som genereras och kontrolleras för
+		databyten. Värdena är:
+
+		E = Jämn paritet (Even)
+		O = Udda paritet (Odd)
+		N = Ingen paritet (No parity)
+
+	d	Anger antalet databitar som ska sändas och tas emot. De
+		tillåtna värdena är 5, 6, 7 och 8.
+
+	s	Anger antalet stoppbitar som ska sändas och förväntas. Detta
+		kan vara 1 eller 2. Om 2 stoppbitar används i kombination med
+		5 databitar kommer serieporten faktiskt att generera och
+		kontrollera 1 1/2 stoppbitar.
+
+	När de väl är inställda kommer serieportsparametrarna att förbli i
+	kraft tills de ändras av ett MODE-kommando eller av ett program.
+	Serieportsinställningarna är inte permanent låsta - program är fria
+	att ändra dem efter behov.
+
+2.3.  OMDIRIGERING AV PARALLELLPORT OCH OÄNDLIGA FÖRSÖK
+
+	MODE tillåter att utdata från parallellport (LPT) omdirigeras till
+	en serieport (COM), till NUL (dvs. ingenting), och kan även försöka
+	oändligt om kringutrustningen inte svarar.
+
+	Dessa funktioner utförs av den residenta delen av MODE, som kommer
+	att installeras automatiskt om nödvändigt när funktionen begärs.
+
+	Syntaxen är:
+
+	MODE LPTn:P		Oändlig timeout på parallellport
+	MODE LPTn:=COMx		Omdirigera skrivarutdata till COM-port
+	MODE LPTn:=NUL:		Omdirigera skrivarutdata till NUL
+	MODE LPTn:		Ta bort omdirigering och oändlig timeout
+
+	LPTn:P-funktionen anger oändliga försök vid timeout. Om detta är
+	aktiverat kommer MODE att försöka kontinuerligt om skrivaren inte
+	svarar. Om detta inte är aktiverat, och skrivaren inte svarar inom en
+	viss tid (vanligtvis cirka en halv minut), kommer ett skrivfel att
+	rapporteras.
+
+	LPTn:=COMx och LPTn:=NUL:-funktionerna anger omdirigering av
+	skrivarutdata. Vilken parallellport som helst (oavsett om den existerar
+	eller inte) kan omdirigeras till vilken befintlig serieport som helst,
+	eller till NUL. Mer än en parallellport kan omdirigeras till samma
+	serieport eller till NUL. Dessa funktioner är användbara om du har en
+	serieskrivare, eller om du inte har någon skrivare och vill undvika
+	att datorn låser sig om ett program försöker skriva ut till en icke-
+	existerande skrivare.
+
+	LPTn:-funktionen tar bort all omdirigering och oändlig timeout som kan
+	vara konfigurerad för den angivna porten och återställer den till
+	normal drift.
+
+2.4.  PARKERINGSFUNKTIONER FÖR HÅRDDISK (PARK)
+
+	MODE kommer att parkera hårddisken eller hårddiskarna (endast de första
+	två fysiska hårddiskarna i systemet), antingen omedelbart eller efter
+	att disken har varit inaktiv under en viss tid.
+
+	Den tidsstyrda parkeringsfunktionen utförs av den residenta delen av
+	MODE, som installeras automatiskt om nödvändigt när funktionen begärs.
+
+	Syntaxen är:
+
+	MODE PARK			Parkera nu
+	MODE PARK,minuter[:sekunder]	Parkera efter att hårddisken varit
+	inaktiv
+
+	PARK-funktionen parkerar hårddisken/hårddiskarna omedelbart och väntar
+	på att du stänger av datorn. Du kan också trycka på Ctrl-C för att
+	avsluta och återgå till DOS.
+
+	Funktionen PARK,minuter[:sekunder] gör att hårddisken/hårddiskarna
+	parkeras efter en viss tids inaktivitet, vilket kan vara upp till 50
+	minuter. Om du har två fysiska hårddiskar hanteras de båda separat.
+
+	När det väl är inställt kan du ändra tidsperioden genom att köra
+	kommandot igen med ett annat tidsvärde. Den tidsstyrda parkerings-
+	funktionen kan inte stängas av - du måste starta om för att ta bort
+	den.
+
+	Dessa funktioner är i allmänhet endast användbara för äldre maskiner.
+	Moderna hårddiskar parkerar sig själva automatiskt när de stängs av.
+
+2.5.  TYPEMATIC-FUNKTIONER (TANGENTBORDSREPETITION)
+
+	MODE tillåter att parametrarna för typematic (auto-repetition) initial
+	repetitionsfördröjning och repetitionsfrekvens ställs in, och
+	valfritt låses.
+
+	Den typematic-låsningsfunktionen utförs av den residenta delen av MODE,
+	som installeras automatiskt om nödvändigt när funktionen begärs.
+
+	Syntaxen är:
+
+	MODE DELAY=d RATE=r		Ställ in typematic-parametrar
+	MODE DELAY=d RATE=r LOCK	Ställ in och lås typematic-parametrar
+
+	d	Anger den initiala fördröjningen, intervallet är 1 till 4 och
+		fördröjningen är mellan 1/4 sekund (1) och en sekund (4).
+
+	r	Anger auto-repetitionsfrekvensen. Intervallet är 1 till 32 och
+		frekvensen är mellan två repetitioner per sekund (1) och 30
+		repetitionerna per sekund (32).
+
+	LOCK	Anger att typematic-parametrarna ska låsas. När detta är gjort
+		kan typematic-parametrarna ändras genom att köra MODE igen, men
+		de kan inte ändras av de flesta andra program. Detta kan vara
+		användbart, eftersom vissa program ändrar typematic-parametrarna
+		utan ditt tillstånd. Det är dock inte helt idiotsäkert.
+
+	Observera att både DELAY och RATE måste anges för dessa funktioner.
+
+	MODE försöker inte bekräfta att typematic-inställning är tillgänglig
+	på maskinen. MODE kommer att acceptera alla typematic-kommandon,
+	oavsett om maskinen faktiskt stöder dem eller inte.
+
+2.6.  SWITCHAR-FUNKTIONER
+
+	MODE kan visa och ställa in DOS-växeltecknet (switchar). Standard-
+	switchar är snedstreck, '/'. Switchar är tecknet som används för att
+	indikera början på en alternativväxel, t.ex. /P-växeln till DIR-
+	kommandot. Vanligtvis kan switchar ändras till '-'. Switchar är en
+	odokumenterad DOS-funktion som stöds korrekt av få program.
+
+	Syntaxen är:
+
+	MODE SWITCHAR			Visa nuvarande switchar
+	MODE SWITCHAR=x			Ställ in switchar till tecknet x
+	MODE SWITCHAR=n			Ställ in switchar till ASCII-värdet n
+
+	SWITCHAR-parametern i sig själv gör att MODE visar nuvarande switchar.
+	SWITCHAR=-användningen ställer in switchar. Den nya switchar kan anges
+	som ett tecken (t.ex. 'MODE SWITCHAR=/') eller som ett nummer (t.ex.
+	'MODE SWITCHAR=45').
+
+2.7.  MODIFIERINGSFUNKTIONER (SHIFT-STATUS)
+
+	MODE kan ändra de tre låsbara shift-statusarna (caps lock, numlock och
+	scroll lock). Denna funktion bör inte användas på maskiner med
+	original-PC- eller XT-tangentbord, eftersom indikeringslamporna på
+	dessa tangentbord inte kan styras från datorn, och kommer att hamna
+	i otakt med datorns shift-statusar. MODE upptäcker dock inte dessa
+	maskiner. På AT:er och senare maskiner är det inga problem.
+
+	Parametersyntaxen för detta kommando består av följande alternativ:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Vilken icke-konfliktfylld och icke-duplicerad kombination som helst av
+	dessa alternativ är tillåten. Dessutom kan SCRLOCK expanderas till
+	SCROLLLOCK.
+
+3.  ALLMÄNT
+
+	Parametrar till MODE är inte skiftlägeskänsliga.
+
+	MODE kan endast bearbeta ett kommando vid varje anrop. Om du vill
+	omdirigera flera LPT-portar måste du använda ett separat MODE-kommando
+	för varje. Kommandon av olika typer kan inte kombineras på kommandoraden.
+
+	Felmeddelanden skickas alltid till StdErr. Informationsmeddelanden
+	skickas till standard ut (stdout) och kan omdirigeras till NUL: för
+	"tyst" drift.
+
+	Errorlevels som returneras av MODE är följande:
+
+	0	Inget fel
+	115	Serieporten existerar inte (antingen för COMn: eller LPTn:=COMx)
+	117	Inga hårddiskar hittades att parkera
+	118	Angivet videoläge stöds inte på denna maskin
+	162	Otillräckligt minne (MODE kräver cirka 6K minne)
+	241	Parameter utanför intervallet (t.ex. tidsvärde, LPT-portnummer etc)
+	242	Kan inte ha 43-raders eller 50-raders lägen med andra lägen än CO80
+	243	Okänd baud-hastighet
+	244	Måste ange både DELAY= och RATE= för typematic-inställning
+	246	Mer än ett kommando eller kommandotyp angavs
+	255	Felaktig användningssyntax (alla syntaxfel vid användning)
+
+	MODE är ett TSR-program. Om nödvändigt kommer MODE att installera en
+	del av sig själv resident i datorns minne. Denna residenta del utför
+	skrivaromdirigering och timeout-hantering, automatisk parkering av
+	hårddisken och låsning av typematic-parametrarna, och kan inte tas bort
+	utan omstart (om inte programmen MARK och RELEASE används). Om
+	ytterligare residenta funktioner krävs och den residenta delen är
+	installerad, kommer MODE att aktivera dessa funktioner i den residenta
+	delen snarare än att installera en till resident del.
+
+	Eftersom MODE är ett TSR kan det vara inkompatibelt med applikationer
+	eller andra TSR:er du använder. Om problem uppstår, försök att
+	fastställa vilka program som är i konflikt. Det kan vara möjligt att
+	undvika problemet genom att installera programmen i en annan ordning.
+
+	Om du hittar ett fel i MODE, vänligen informera författaren. Kontakt-
+	uppgifterna finns i avsnitt 1 i detta dokument.
+
+4.  ANVÄNDNINGSEXEMPEL
+
+	Här är ett exempel på MODE-användning i AUTOEXEC.BAT som visar alla
+	funktioner:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	Denna sekvens väljer först 43-raders färgvisningsläge, konfigurerar
+	sedan serieportsparametrarna för COM1, COM2 och COM3 (9600, 19200
+	respektive 2400 bps, utan paritet, åtta databitar och en stoppbit).
+	Dessa serieportsparametrar är inte permanent låsta, och ett annat
+	MODE-kommando eller ett annat program kan ändra dessa när som helst.
+	Sedan omdirigeras LPT1-utdata till COM2, så allt som skrivs ut till
+	LPT1 skickas till COM2 istället, i 19200 bps (till exempel till en
+	seriell laserskrivare), och LPT2 och LPT3 omdirigeras till NUL så att
+	allt som skickas till dem inte hamnar någonstans.
+	Sedan installeras en tidsstyrd hårddiskparkering, som parkerar
+	hårddisken/hårddiskarna efter 30 sekunder utan hårddiskaktivitet.
+	Slutligen väljs och låses den kortaste fördröjningen och snabbaste
+	frekvensen för tangentbordets typematic-funktion, och DOS switchar
+	ställs in till ett bindestreck ('-').
+
+				   ----//----

@@ -1,0 +1,168 @@
+# Language: Czech
+# File ending: CZ
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+
+Program edlin je malý řádkový editor napsaný pro FreeDOS jako funkční klon
+starého programu edlin z MS-DOS. Od MS edlin se liší tím, že je zaprvé šířen
+jako svobodný software a zadruhé, že se jeho uživatelské rozhraní na několika
+místech mírně liší. Důvodem rozdílu je snaha ušetřit uživatele nutnosti
+zapisovat řídicí znaky vyžadované syntaxí MS edlin.
+
+SPOUŠTĚNÍ PROGRAMU EDLIN
+
+Program edlin se spouští buď samostatně:
+
+  edlin
+
+nebo s názvem souboru, který se má načíst při spuštění:
+
+  edlin soubor
+
+INTERNÍ PŘÍKAZY PROGRAMU EDLIN
+
+V následujících seznamech příkazů představují hranaté závorky volitelné části.
+Symbol # představuje číslo řádku, což je buď řetězec číslic, tečka (.)
+představující aktuální řádek, znak dolaru ($) představující poslední řádek v
+souboru, nebo číslo řádku přičtené či odečtené od jiného čísla řádku, takže
+
+  .,.+1p
+
+vypíše aktuální a následující řádek.
+
+Znak dolaru v následujících seznamech představuje řetězec znaků. Ty mohou být
+uzavřeny v jednoduchých nebo dvojitých uvozovkách a mohou obsahovat
+následující escape sekvence:
+
+  \a - výstraha (pípnutí)
+  \b - backspace (návrat o znak)
+  \e - escape
+  \f - odřádkování stránky (formfeed)
+  \t - horizontální tabulátor
+  \v - vertikální tabulátor
+  \" - dvojitá uvozovka
+  \' - jednoduchá uvozovka
+  \. - tečka
+  \\ - zpětné lomítko
+  \xXX (kde X je hex číslice 0-9, a-f) - šestnáctková konstanta
+  \dddd (kde d je dekadická číslice 0-9) - desítková konstanta
+  \OOO (kde O je oktalová číslice 0-7) - osmičková konstanta
+  \^C - řídicí znak (control character)
+
+Program edlin podporuje následující syntaxi:
+
+# - ÚPRAVA JEDNOHO ŘÁDKU
+
+Program edlin vypíše jeden řádek určený číslem a další zadaný řádek nahradí
+tento vypsaný řádek v souboru.
+
+a - PŘIPOJENÍ (APPEND)
+
+Tento příkaz je ekvivalentní k $+1i .
+
+[#],[#],#,[#]c - KOPÍROVÁNÍ ROZSAHU ŘÁDKŮ
+
+Tento příkaz zkopíruje blok po sobě jdoucích řádků na jiné místo v paměti.
+Parametry jsou:
+
+  * První řádek, který chcete kopírovat (výchozí = aktuální řádek)
+  * Poslední řádek, který chcete kopírovat (výchozí = aktuální řádek)
+  * Řádek, před který chcete vložit blok řádků
+  * Počet kopií bloku (výchozí = 1)
+
+Poté, co edlin zkopíruje řádky, můžete použít příkaz l (list) pro zobrazení
+správně přečíslovaných řádků.
+
+[#][,#]d - SMAZÁNÍ BLOKU ŘÁDKŮ
+
+Tento příkaz smaže blok po sobě jdoucích řádků. Parametry jsou první a
+poslední řádek bloku, který má být smazán.
+
+Pokud vynecháte druhý parametr, smaže se pouze řádek určený prvním parametrem.
+Pokud vynecháte první parametr, smaže se blok od aktuálního řádku po řádek
+určený druhým parametrem (nezapomeňte uvést čárku). Vynechání obou parametrů
+způsobí smazání aktuálního řádku.
+
+e název_souboru - ULOŽIT A UKONČIT
+
+Tento příkaz je ekvivalentní s
+
+  w název_souboru
+
+následovaným
+
+  q
+
+[#]i - REŽIM VKLÁDÁNÍ
+
+Tímto příkazem vstoupíte do režimu vkládání. Jeho parametrem je číslo řádku,
+před který chcete vkládat řádky.
+
+Během vkládání jsou přípustné escape sekvence uvedené výše. Režim vkládání
+ukončíte zadáním tečky (.) na samostatném prázdném řádku (pokud potřebujete
+řádek obsahující pouze tečku, použijte escape sekvenci).
+
+Po ukončení režimu vkládání se řádek za vloženým textem stane aktuálním
+řádkem, pokud vkládání nebylo provedeno na konec textu - v tom případě se
+novým aktuálním řádkem stane poslední řádek textu.
+
+[#][,#]l - VÝPIS ŘÁDKŮ
+
+Tento příkaz vypíše řádky textu na obrazovku. Pokud vynecháte první parametr,
+příkaz začne zobrazovat text od 11 řádků před aktuálním řádkem. Vynechání
+druhého parametru zobrazí stránku textu začínající řádkem určeným v prvním
+parametru. Vynechání obou parametrů zobrazí jednu stránku textu začínající 11
+řádků před aktuálním řádkem. Pokud je řádků více, než se vejde na stránku,
+program se po každé stránce zastaví.
+
+[#],[#],#m - PŘESUN BLOKU
+
+Tento příkaz přesune blok textu před řádek určený ve třetím parametru. Je to
+podobné kopírování s následným smazáním původního bloku.
+
+[#][,#]p - STRÁNKOVÁNÍ (PAGE)
+
+Podobné jako l s tím rozdílem, že výchozí stránka začíná aktuálním řádkem
+namísto 11 řádků před ním.
+
+q - UKONČIT (QUIT)
+
+Srozumitelné samo o sobě. Ukončí bez dalšího ukládání.
+
+[#][,#][?]r$,$ - NAHRADIT ŘETĚZEC
+
+Tento příkaz nahradí všechny výskyty prvního řetězce druhým řetězcem mezi
+dvěma určenými řádky. Vynechaný první parametr spustí nahrazování na řádku za
+aktuálním řádkem; vynechaný druhý parametr zastaví nahrazování na posledním
+řádku souboru.
+
+Otazník (?) před nahrazením odešle potvrzovací zprávu.
+
+[#][,#][?]s$ - HLEDAT PODŘETĚZEC
+
+Tento příkaz hledá první řádek obsahující zadaný podřetězec. Vynechání prvního
+parametru způsobí zahájení hledání na aktuálním řádku; vynechání druhého
+způsobí zastavení hledání na konci souboru.
+
+Otazník (?) způsobí, že hledání odešle potvrzovací zprávu. Odpověď "N" (Ne)
+v hledání pokračuje; odpověď "A" (Ano) jej ukončí.
+
+Aktuální řádek bude v případě úspěchu nastaven na řádek, kde hledání skončilo.
+
+[#]t název_souboru - PŘENÉST SOUBOR
+
+Tento příkaz vloží obsah souboru před zadané číslo řádku. Pokud je číslo řádku
+vynecháno, výchozí hodnotou je aktuální řádek.
+
+[#]w název_souboru - ZAPSAT SOUBOR
+
+Tento příkaz zapíše prvních několik řádků určených parametrem do zadaného
+souboru. Pokud je parametr vynechán, zapíše do souboru všechny řádky v paměti.
+
+AUTOR/SPRÁVCE
+
+Gregory Pietsch, gpietsch@comcast.net
+

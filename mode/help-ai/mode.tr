@@ -1,0 +1,283 @@
+# Language: Turkish
+# File ending: TR
+# Codepage: 857
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Free-DOS MODE programç kullançm belgeleri
+
+	(c) Telif Hakkç 1994-1995, K. Heidenstrom.
+
+	Deßiüiklikler:
+
+	KH.19941231.001  (MODE 1.0.0)  òlk sÅrÅm
+	KH.19950116.002  (MODE 1.0.2)  Switchar belgelendirmesi eklendi
+	KH.19950520.003  (MODE 1.0.3)  òülevsellikte deßiüiklik yok
+	KH.19950805.004  (MODE 1.0.4)  Deßiütirici (shift-state) seáenekleri
+	eklendi
+
+
+1.  YASAL
+
+	Bu programçn telif hakkç (Copyright 1994-1995) K. Heidenstrom'a aittir.
+	ôzellikle Free-DOS projesi iáin yazçlmçütçr. Yazara ònternet Åzerinden
+	kheidens@actrix.gen.nz adresinden veya posta yoluyla ulaüçlabilir:
+	K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	Bu program îzgÅr bir yazçlçmdçr. Kaynak kodunu ve yÅrÅtÅlebilir dosyayç
+	Free Software Foundation tarafçndan yayçnlanan GNU General Public
+	License üartlarç altçnda yeniden daßçtabilir ve/veya deßiütirebilirsiniz;
+	lisansçn 2. sÅrÅmÅ veya (isteßinize baßlç olarak) daha sonraki herhangi
+	bir sÅrÅm geáerlidir.
+
+	Bu program yararlç olmasç umuduyla daßçtçlmaktadçr, ancak herhangi bir
+	garanti verilmeksizin "oldußu gibi" (as-is) sunulmaktadçr. Buna ticari
+	olarak satçlabilirlik veya belirli bir amaca uygunluk gibi zçmni
+	garantiler de dahildir. Yazar, bu programçn kullançmçyla ilgili hiábir
+	hasardan sorumlu tutulamaz. Daha fazla ayrçntç iáin GNU General Public
+	License belgesine bakçn.
+
+	Bu programla birlikte GNU General Public License belgesinin bir
+	kopyasçnç almçü olmalçsçnçz; almadçysançz Free Software Foundation,
+	Inc., 675 Mass Ave, Cambridge, MA 02139, USA adresine yazçn.
+
+2.  òûLEV VE KULLANIM SôZDòZòMò
+
+	MODE programç aüaßçda ayrç ayrç aáçklanan altç farklç iülevi yerine
+	getirir.
+
+2.1.  VòDEO MODUNU VE EKRAN SATIR SAYISINI AYARLAMA
+
+	MODE, video modunun beü moddan birine ayarlanmasçna izin verir.
+	Sîzdizimi üîyledir:
+
+	MODE Videomodu[,Satçrlar]
+
+	Modlar üunlardçr:
+
+	MONO	MDA ve Hercules adaptîr kartlarçyla kullançlan ve ayrçca EGA ve
+		VGA kartlarçnda emÅle edilen monokrom mod. Bu mod, varsayçlan
+		olarak ekrandaki karakterlerin altçnç áizme yeteneßine sahip
+		tek moddur. Bu mod CGA video kartçnda seáilemez.
+
+	BW40	40 sÅtunlu renk bastçrçlmçü mod. Bu mod CGA adaptîrÅne îzgÅdÅr
+		ve 40 sÅtun x 25 satçrlçk bir ekran sunar. CGA kartçndan gelen
+		kompozit video sinyalinin renk bilgisi kapatçlçr, bîylece ekran
+		kompozit bir renkli monitîrde on altç gri tonuyla siyah beyaz
+		gîrÅnÅr.
+		Bu mod bir EGA veya VGA kartçnda veya bir televizyona baßlç
+		olmayan bir CGA kartçnda seáilirse, CO40 moduyla aynç gîrÅnÅr
+		(yani renk bastçrçlmaz). Bu mod MDA ve Hercules kartlarçnda
+		seáilemez.
+
+	BW80	80 sÅtunlu renk bastçrçlmçü mod. Bu mod da CGA adaptîrÅne
+		îzgÅdÅr ve 80 sÅtun olmasç dçüçnda BW40 ile aynçdçr. MDA ve
+		Hercules kartlarçnda seáilemez.
+
+	CO40	40 sÅtunlu renkli mod. Bu mod 40 sÅtun x 25 satçrlçk renkli
+		ekran saßlar. CGA, EGA ve VGA adaptîrleri tarafçndan
+		desteklenir ancak MDA ve Hercules kartlarç tarafçndan
+		desteklenmez.
+
+	CO80	80 sÅtunlu renkli mod. Bu mod 80 sÅtun x 25 satçrlçk bir ekran
+		saßlar ve CGA, EGA ve VGA kartlarç iáin normal ekran modudur.
+		MDA ve Hercules kartlarç tarafçndan desteklenmez. EGA
+		kartlarçnda bu mod 43 satçrlçk bir varyantç da destekler ve
+		VGA kartlarçnda 43 satçrlçk varyant ile 50 satçrlçk bir
+		varyant desteklenir.
+
+		43 satçrlç ve 50 satçrlç modlar, MODE komut satçrçnda CO80'den
+		sonra ",43" veya ",50" belirtilerek seáilebilir. Bu parametre
+		belirtilmezse varsayçlan deßer olan 25 satçr kullançlçr.
+
+	Ayarlandçktan sonra video modu, bir MODE komutu veya bir program
+	tarafçndan deßiütirilene kadar yÅrÅrlÅkte kalçr. Video modu kalçcç
+	olarak kilitlenmez; programlar video modlarçnç gereksinimlerine gîre
+	deßiütirmekte îzgÅrdÅr.
+
+2.2.  SERò PORT PARAMETRELERòNò YAPILANDIRMA
+
+	MODE, bir seri portun iletiüim parametrelerinin yapçlandçrçlmasçna
+	izin verir. Sîzdizimi üîyledir:
+
+	MODE COMn:r,p,d,s
+
+	n	Hangi seri portun yapçlandçrçlacaßçnç belirtir (1 ile 4
+		arasçnda). Seri port mevcut deßilse, MODE hata bildirir.
+
+	r	Saniye baüçna bit cinsinden baud hçzçnç belirtir. Deßerler:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 ve 115200.
+
+		1200, 2400, 4800 ve 9600 sçrasçyla 12, 24, 48 ve 96 olarak
+		kçsaltçlabilir. Daha yÅksek hçzlar ilk iki veya Åá hanesine
+		kçsaltçlabilir. 115200, 115 veya 1152 olarak kçsaltçlabilir.
+
+	p	Veri baytlarç Åzerinde oluüturulan ve kontrol edilen eülik
+		(parity) tÅrÅnÅ belirtir. Deßerler üunlardçr:
+
+		E = Äift eülik (Even)
+		O = Tek eülik (Odd)
+		N = Eülik yok (None)
+
+	d	òletilecek ve alçnacak veri biti sayçsçnç belirtir. òzin
+		verilen deßerler 5, 6, 7 ve 8'dir.
+
+	s	òletilecek ve beklenecek durdurma (stop) biti sayçsçnç
+		belirtir. Bu 1 veya 2 olabilir. 5 veri biti ile birlikte 2
+		durma biti kullançlçrsa, seri port aslçnda 1 1/2 durma biti
+		oluüturur ve kontrol eder.
+
+	Ayarlanan seri port parametreleri, deßiütirilene kadar yÅrÅrlÅkte kalçr.
+
+2.3.  PARALEL PORT YôNLENDòRME VE SONSUZ YENòDEN DENEME
+
+	MODE, paralel (LPT) port áçkçüçnçn bir seri (COM) porta veya NUL'a
+	(yani hiábir yere) yînlendirilmesine izin verir ve ayrçca áevre birimi
+	yançt vermezse sonsuz kez yeniden deneyebilir.
+
+	Bu iülevler, MODE'un yerleüik (resident) kçsmç tarafçndan yerine
+	getirilir ve iülev istendißinde gerekirse otomatik olarak yÅklenir.
+
+	Sîzdizimi üîyledir:
+
+	MODE LPTn:P		Paralel portta sonsuz zaman aüçmç
+	MODE LPTn:=COMx		Yazçcç áçkçüçnç COM portuna yînlendir
+	MODE LPTn:=NUL:		Yazçcç áçkçüçnç NUL'a yînlendir
+	MODE LPTn:		Yînlendirmeyi ve sonsuz zaman aüçmçnç kaldçr
+
+	LPTn:P iülevi, zaman aüçmçnda sonsuz yeniden denemeyi belirtir. Bu
+	etkinleütirilirse, yazçcç yançt vermezse MODE sÅrekli olarak yeniden
+	dener. Etkinleütirilmezse ve yazçcç belirli bir sÅre (genellikle
+	yaklaüçk yarçm dakika) iáinde yançt vermezse, bir yazma hatasç
+	bildirilir.
+
+	Yînlendirme, seri bir yazçcçnçz varsa veya hiá yazçcçnçz yoksa ve bir
+	program olmayan bir yazçcçya yazdçrmaya áalçütçßçnda bilgisayarçn
+	donmasçnç înlemek istiyorsançz yararlçdçr. MODE LPTn: komutu portu
+	normal áalçümasçna dîndÅrÅr.
+
+2.4.  SABòT DòSK PARK òûLEVLERò (PARK)
+
+	MODE, sabit diski veya diskleri (sistemdeki yalnçzca ilk iki fiziksel
+	sabit disk), hemen veya disk bir sÅre boüta kaldçktan sonra park eder.
+
+	Zamanlç park iülevi MODE'un yerleüik kçsmç tarafçndan geráekleütirilir.
+
+	Sîzdizimi üîyledir:
+
+	MODE PARK			ûimdi park et
+	MODE PARK,dakika[:saniye]	Sabit disk boüta kaldçktan sonra park et
+
+	PARK iülevi sabit diskleri hemen park eder ve bilgisayarç kapatmançzç
+	bekler. Äçkmak ve DOS'a dînmek iáin Ctrl-C tuülarçna da basabilirsiniz.
+
+	Zamanlç park iülevi kapatçlamaz; kaldçrmak iáin yeniden baülatmançz
+	gerekir. Bu iülevler genellikle sadece eski makineler iáin yararlçdçr.
+	Modern sÅrÅcÅler kapatçldçßçnda kendilerini otomatik olarak park eder.
+
+2.5.  TYPEMATIC òûLEVLERò (KLAVYE TEKRARI)
+
+	MODE, typematic (otomatik tekrar) baülangçá gecikmesi ve tekrar hçzç
+	parametrelerinin ayarlanmasçna ve isteße baßlç olarak kilitlenmesine
+	izin verir.
+
+	Kilitleme iülevi MODE'un yerleüik kçsmç tarafçndan geráekleütirilir.
+
+	Sîzdizimi üîyledir:
+
+	MODE DELAY=d RATE=r		Parametreleri ayarla
+	MODE DELAY=d RATE=r LOCK	Parametreleri ayarla ve kilitle
+
+	d	Baülangçá gecikmesini belirtir (1 ile 4 arasç), 1/4 saniye (1)
+		ile bir saniye (4) arasçndadçr.
+
+	r	Otomatik tekrar hçzçnç belirtir (1 ile 32 arasç), saniyede
+		iki tekrardan (1) saniyede 30 tekrara (32) kadardçr.
+
+	LOCK	Parametrelerin kilitlenmesi gerektißini belirtir. Bu
+		yapçldçktan sonra parametreler sadece MODE ile deßiütirilebilir,
+		dißer programlar tarafçndan deßiütirilemez.
+
+	DELAY ve RATE parametrelerinin her ikisi de belirtilmelidir. MODE,
+	makine bunlarç geráekten desteklese de desteklemese de komutlarç kabul
+	eder.
+
+2.6.  SWITCHAR òûLEVLERò
+
+	MODE, DOS anahtar karakterini (switchar) gîrÅntÅleyebilir ve
+	ayarlayabilir. Varsayçlan karakter eßik áizgi '/' karakteridir. Bu,
+	bir seáenek anahtarçnçn baülangçcçnç belirtmek iáin kullançlan
+	karakterdir (îrneßin DIR komutuna verilen /P anahtarç). Genellikle
+	anahtar karakteri '-' olarak deßiütirilebilir. Switchar, az sayçda
+	program tarafçndan doßru üekilde desteklenen belgelenmemiü bir DOS
+	îzellißidir.
+
+	Sîzdizimi üîyledir:
+
+	MODE SWITCHAR			Mevcut switchar'ç gîrÅntÅle
+	MODE SWITCHAR=x			Switchar'ç x karakterine ayarla
+	MODE SWITCHAR=n			Switchar'ç n ASCII deßerine ayarla
+
+2.7.  DE¶òûTòRòCò (SHIFT STATE) òûLEVLERò
+
+	MODE; Caps Lock, Num Lock ve Scroll Lock durumlarçnç deßiütirebilir.
+	Bu iülev orijinal PC veya XT klavyeli makinelerde kullançlmamalçdçr
+	áÅnkÅ bu klavyelerdeki gîsterge LED'leri bilgisayardan kontrol edilemez
+	ve bilgisayarçn durumuyla uyumsuz hale gelir.
+
+	Seáenekler üunlardçr:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Äeliümeyen herhangi bir kombinasyon kullançlabilir. SCRLOCK yerine
+	SCROLLLOCK da yazçlabilir.
+
+3.  GENEL
+
+	MODE parametreleri bÅyÅk/kÅáÅk harfe duyarlç deßildir. MODE her
+	áaßrçda yalnçzca bir komutu iüleyebilir.
+
+	Hata mesajlarç her zaman StdErr'ye gînderilir. Bilgi mesajlarç
+	standart áçktçya gînderilir (sessiz áalçüma iáin NUL'a yînlendirilebilir).
+
+	MODE tarafçndan dîndÅrÅlen Errorlevels (Hata Seviyeleri):
+
+	0	Hata yok
+	115	Seri port mevcut deßil
+	117	Park edilecek sabit disk bulunamadç
+	118	Belirtilen video modu bu makinede desteklenmiyor
+	162	Yetersiz bellek (MODE yaklaüçk 6K bellek gerektirir)
+	241	Parametre aralçk dçüçnda
+	242	43 veya 50 satçrlç modlar sadece CO80 ile mÅmkÅndÅr
+	243	Bilinmeyen baud hçzç
+	244	Typematic ayarç iáin hem DELAY= hem de RATE= belirtilmelidir
+	246	Birden fazla komut veya komut tÅrÅ verildi
+	255	Yanlçü kullançm sîzdizimi
+
+	Bir hata bulursançz lÅtfen yazara bildirin (iletiüim bilgileri bîlÅm 1).
+
+4.  KULLANIM ôRNEKLERò
+
+	AUTOEXEC.BAT dosyasçnda bir îrnek:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	Bu dizi înce 43 satçrlç renkli modu seáer, COM1-3 portlarçnç
+	yapçlandçrçr, LPT1'i COM2'ye yînlendirir, 30 saniye sonra park etmeyi
+	ayarlar, klavyeyi ayarlar ve switchar karakterini '-' yapar.
+
+				   ----//----

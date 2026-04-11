@@ -1,0 +1,30 @@
+# Language: Norwegian
+# File ending: NO
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+FreeDOS NLSFUNC. Legger til NLS (National Language Support) funksjonalitet.
+(C) 2004 Eduardo Casino, under the terms of the GNU GPL, Version 2
+
+  NLSFUNC [/Y|/?] [[D:][PATH]FIL]
+
+  [D:][PATH]FIL    Bane til en fil som inneholder NLS
+  /Y               Laster (valgfri) JA/NEI-tabell
+  /?               Viser bruk
+
+Eksempel:
+
+  CONFIG.SYS
+     COUNTRY=34,858,C:\COUNTRY.SYS
+
+  AUTOEXEC.BAT
+     LH DISPLAY CON=(EGA,858,2)
+     MODE CON CP PREP=((850) C:\CPI\EGA.CPI)
+     MODE CON CP PREP=((,437) C:\CPI\EGA.CPI)
+     LH NLSFUNC /Y
+
+Bytt deretter kodesider ved å bruke FreeCOMs CHCP-kommando.
+
+Hvis du ikke trenger å endre kodesider, er det bare å utelate MODE-
+linjene.

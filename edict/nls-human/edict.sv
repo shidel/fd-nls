@@ -1,0 +1,100 @@
+TITLE=Enhanced Disk Image Creation Tool, Version %_ %s
+COPYRIGHT=Copyright (c) 2018, Jerome Shidel
+
+HELP_00="EDICT flagginformation: "
+HELP_01=
+HELP_02="  /d <enhet>     ange enhetsbokstav"
+HELP_03="  /f <filnamn>   ange filnamn"
+HELP_04="  /p <grÑns>     îvre grÑns fîr antal ytterligare pass"
+HELP_05=
+HELP_06="  /t <typ>       ÜsidosÑtt bios och vÑlj instÑllningar fîr disktyp"
+HELP_07="                 (0=360Kib, 1=1.2Mib, 2=720Kib, 3=1.44Mib, a=auto)"
+HELP_08=
+HELP_09="  /c <nummer>    ÜsidosÑtt antal cylindrar/spÜr (0-1023)"
+HELP_0a="  /r <nummer>    ÜsidosÑtt antal sidor/huvud per spÜr (0-255)"
+HELP_0b="  /s <nummer>    ÜsidosÑtt antal sektorer per sida (0-63)"
+HELP_0c="  /b <nummer>    ÜsidosÑtt antal byte per sektor (1-8192)"
+HELP_0d=
+HELP_0e="  /h             skriv ut hjÑlpinformation"
+
+; Possible future additions to EDICT should be translated as well
+
+HELP_??="  /T             testa endast lÑsning"
+HELP_??="  /w             skriv avbildning till diskett"
+HELP_??="  /v             verifiera diskett"
+HELP_??="  /i             endast information"
+HELP_??="  /o             endast en sektor"
+HELP_??="  /q             tyst lÑge"
+HELP_??="  /e             forsÑtt frÜn existerande avbildningsfil"
+HELP_??="  /m <filnamn>   montera avbildningsfil"
+HELP_??="  /u             avmontera avbildningsfil"
+HELP_??="  /l             lista disktyper"
+
+INVALID=%r "Ogiltigt kommando: `" %s "'"
+BAD_INT="Ogiltigt numeriskt vÑrde."
+BAD_VAL="VÑrde utanfîr intervall."
+
+DRIVE=Drive %_ %c: (ID 0x %b ) %_
+DRIVE_TYPE=%_ (ID 0x %b )
+DRIVE_TYPE_00=okÑnd enhetstyp
+DRIVE_TYPE_01='5.25"' 360Kib-enhet
+DRIVE_TYPE_02='5.25"' 1.2Mib-enhet
+DRIVE_TYPE_03='3.5"' 720Kib-enhet
+DRIVE_TYPE_04='3.5"' 1.44Mib-enhet
+DRIVE_TYPE_05=annan enhetstyp
+
+DRIVE_SPEC=%i %_ byte, %_ %I %_ sektorer, %_ %I %_ spÜr, %_ %I %_ sidor
+
+PASS_LIMIT=Upp till %_ %i %_ extra pass tillÜtna fîr att lÑsa diskett
+BUFFERS=%i %_ byte diskettbuffert, %_ %i %_ byte resultatbuffert fîr spÜr
+
+PASS=LÑspass # %i fîr diskett. %_ %i %_ sektor(er) ÜterstÜr.
+
+READ_FAST=LéS SPèR: %_ %i, HUVUD: %_ %i
+READ_SLOW=LéS SPèR: %_ %i, HUVUD: %_ %i, SEKTOR: %_ %i
+
+FAILED=Avbildningsprocess misslyckades.
+ABORTED=Avbildningsprocess avbruten.
+COMPLETED=Avbildningsprocess avslutad.
+
+; With a little modification, these BIOS and DOS error message texts are a
+; slimmed down version of those available online from a great DOS and ASM
+; resource at http://stanislavs.org/helppc/idx_interrupt.html
+
+BErr=%r "BIOS felkod: 0x" %b %_ --> %_
+BErr_01=felaktigt kommando skickat till drivrutin
+BErr_02=adressmarkering hittades ej eller trasig sektor
+BErr_03=diskett skriv-skyddad
+BErr_04=sektor hittades ej
+BErr_05=ÜterstÑllning av hÜrddisk misslyckades
+BErr_06=diskett utbytt eller borttagen
+BErr_07=trasig parametertabell fîr hÜrddisk
+BErr_08=DMA-îverspill
+BErr_09=DMA-Ütkomst îver 64k-grÑns
+BErr_0a=trasig sektorflagga fîr hÜrddisk
+BErr_0b=trasig cylinder fîr hÜrddisk
+BErr_0c=spÜr stîds ej
+BErr_0d=ogiltigt antar sektorer fîr hÜrddisk-format
+BErr_0e=hÜrddiskstyrd data-adressmarkering identifierad
+BErr_0f=DMA-arbitreringsnivÜ fîr hÜrddisk utanfîr intervall
+BErr_10=ECC/CRC-fel vid disklÑsning
+BErr_11=ÜterhÑmningsbart datafel pÜ hÜrddisk, data fixad med hjÑlp av ECC
+BErr_20=kontrollerfel
+BErr_40=sîkfel
+BErr_80=enhet inte redo
+BErr_aa=hÜrddisk inte redo
+BErr_bb=odefinierat hÜrddiskfel
+BErr_cc=skrivfel pÜ vald hÜrddisk enhet
+BErr_e0=statusfel fîr hÜrddisk
+BErr_ff=identifieringsÜtgÑrd misslyckades
+
+DErr=%r "DOS felkod: 0x" %b %_ --> %_
+DErr_01=Ogiltigt funktionsnummer
+DErr_02=Fil hittades ej
+DErr_03=SîkvÑg hittades ej
+DErr_04=Fîr mÜnga îppna filer
+DErr_05=ètkomst nekad
+DErr_06=Ogiltigt handtag
+DErr_08=OtillrÑckligt minne
+DErr_0f=Ogiltig enhet angiven
+DErr_15=Enhet inte redo

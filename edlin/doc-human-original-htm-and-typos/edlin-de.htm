@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>edlin</title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+</head>
+<body>
+<h3>EDLIN 2.14</h3>
+<pre>
+EDLIN ist ein kleiner Zeileneditor, der als funktioneller Clone des alten
+MS-DOS Programmes EDLIN f&uuml;r FreeDOS erstellt wurde. Sein Unterschied
+zu MS EDLIN ist erstens, da&szlig; er freie Sofware ist, zweitens, da&szlig; die
+Benutzeroberfl&auml;che bei einigen Punkten geringf&uuml;gig abweicht.
+Der Grund f&uuml;r den Unterschied ist, da&szlig; der Benutzer keine Steuerungs-
+zeichen eintippen mu&szlig;, da diese von EDLIN's Syntax verwaltet werden.
+</pre>
+<h3>EDLIN STARTEN</h3>
+<pre>
+Das edlin Programm wird entweder durch sich selbst gestartet:
+
+  edlin
+
+oder mit einem zus&auml;tzlich angegebenem Dateinamen:
+
+  edlin Datei(name)
+</pre>
+<h3>EDLIN'S INTERNE BEFEHLE</h3>
+<pre>
+Bei den folgenden Befehlszeilen repr&auml;sentieren eckige Klammern [ ] 
+optionale M&ouml;glichkeiten. Das # Symbol repr&auml;sentiert eine Zeilennummer,
+die aus einer Zahlenkette besteht; ein Punkt repr&auml;sentiert die 
+gegenw&auml;rtige Zeile; ein Dollarzeichen ($) repr&auml;sentiert die letzte
+Zeile in der Datei. Es kann auch eine Zeilennummer zu einer anderen
+addiert bzw. subtrahiert werden, so da&szlig;
+
+  .,.+1p
+
+die aktuelle und die folgende Zeile ausdruckt.
+
+Ein Dollarzeichen in der folgenden Liste steht f&uuml;r eine Zeichenfolge.
+Sie k&ouml;nnen entweder in einfache oder doppelte Anf&uuml;hrungszeichen gesetzt
+werden und enthalten die folgenden Escape-Sequenzen:
+
+  \a              Warnung (Piepston)
+  \b              Zur&uuml;cktaste
+  \e              Escape
+  \f              Seitenvorschub
+  \t              Horizontaler Tabulator
+  \v              Vertikaler Tabulator
+  \"              Doppeltes Anf&uuml;hrungszeichen
+  \'              Einzelnes Anf&uuml;hrungszeichen
+  \.              Punkt
+  \\              Backslash (\)
+  \xXX            wobei X eine Hexzahl ist (0-9, a-f, A-F) - hexadezimale
+                  Konstante
+  \OOO            wobei O eine oktale Zahl ist (0-7) - oktale Konstante
+  \^C             Steuerzeichen
+
+Das edlin Programm unterst&uuml;tzt dei folgende Syntax:
+</pre>
+<h3># - EINE EINZELNE ZEILE EDITIEREN</h3>
+<pre>
+Das Edlin Programm gibt die mit der Nummer angegebene einzelne Zeile aus
+und die n&auml;chste eingegebene Zeile ersetzt in der Datei die ausgegebene
+Zeile.
+</pre>
+<h3>a - ZEILE ANH&Auml;NGEN</h3>
+<pre>
+Dieser Befehl entspricht dem Befehl: $+1i .
+</pre>
+<h3>[#],[#],#,[#]c - EINE ANZAHL BL&Ouml;CKE KOPIEREN</h3>
+<pre>
+Dieser Befehl kopiert einen Block fortlaufender Zeilen an eine andere
+Stelle im Puffer. Die Parameter sind:
+  * Die erste Zeile, die Sie kopieren wollen (Standard = aktuelle Zeile)
+  * Die letzte Zeile, die Sie kopieren wollen (Standard = aktuelle
+    Zeile)
+  * Die Zeile, vor der Sie den Zeilenblock einf&uuml;gen wollen,
+  * Die Anzahl, wie oft Sie den Block kopieren wollen (Standard = 1)
+Nachdem Edlin die Zeilen kopiert hat, k&ouml;nnen Sie den l (list)-Befehl
+verwenden, um die Zeilen auf Richtigkeit zu &uuml;berpr&uuml;fen.
+</pre>
+<h3>[#][,#]d - EINE ANZAHL BL&Ouml;CKE L&Ouml;SCHEN</h3>
+<pre>
+Dieser Befehl l&ouml;scht einen Block fortlaufender Zeilen. Die Parameter
+sind die erste und die letzte Zeile des zu l&ouml;schenden Blocks.
+
+Wenn Sie den zweiten Parameter weglassen, wird nur die im ersten 
+Parameter angegebene Zeile gel&ouml;scht. Wenn Sie den ersten Parameter
+weglassen, wird der Block von der aktuellen Zeile bis zu der im zweiten
+Parameter angegebenen Zeile gel&ouml;scht (stellen Sie sicher, da&szlig; das 
+Komma voransteht!). Wenn Sie beide Parameter weglassen, wird die
+aktuelle Zeile gel&ouml;scht.
+</pre>
+<h3>e Dateiname - ENDE (SPEICHERN UND VERLASSEN)</h3>
+<pre>
+Dieser Befehl entspricht den Befehlen:
+
+  w Dateiname
+
+gefolgt von:
+
+  q
+</pre>
+<h3>[#]i - EINF&Uuml;GEMODUS</h3>
+<pre>
+Mit diesem Befehl geht Edlin in den Einf&uuml;gemodus. Der Parameter gibt
+die Zeilennummer an, vor der Sie Zeilen einf&uuml;gen m&ouml;chten.
+
+W&auml;hrend des Einf&uuml;gemodus k&ouml;nnen die oben angef&uuml;hrten Escape-Sequenzen
+eingegeben werden. Um aus dem Einf&uuml;gemodus herauszukommen, tippen Sie
+einen Punkt (.) in eine ansonsten leere Zeile (wenn Sie eine Zeile nur
+mit einem Punkt brauchen, '\.').
+
+Nach Beendigung des Einf&uuml;gemodus wird die Zeile nach dem eingef&uuml;gten
+Text die aktuelle Zeile, es sei denn, die Einf&uuml;gung wurde am Ende des
+Textes angeh&auml;ngt; in diesem Fall wird die letzte Zeile des Textes die
+neue aktuelle Zeile.
+</pre>
+<h3>[#][,#]l - ZEILEN AUFLISTEN</h3>
+<pre>
+Dieser Befehl listet Textzeilen auf dem Bildschirm auf. Wenn Sie den
+ersten Parameter weglassen, beginnt der Befehl 11 Zeilen vor der
+aktuellen Zeile mit der Anzeige von Text. Wenn Sie den zweiten Parame-
+ter weglassen, wird eine Textseite angezeigt, die mit der im ersten
+Parameter angegebenen Zeile anf&auml;ngt. Wenn Sie beide Parameter
+weglassen, wird eine Textseite angezeigt, die 11 Zeilen vor der
+aktuellen Zeile anf&auml;ngt.
+In allen F&auml;llen, in denen die Gesamtzeilenzahl gr&ouml;&szlig;er als die
+Zeilenzahl auf einer Seite ist, wird das Programm nach jeder angezeigten
+Textseite eine Eingabeaufforderung anzeigen.
+</pre>
+<h3>[#],[#],#m - BLOCK VERSCHIEBEN</h3>
+<pre>
+Dieser Befehl verschiebt einen Textblock an die Zeile vor der im dritten
+Parameter angegebenen Nummer. Er ist vergleichbar mit dem Kopieren 
+und dem anschlie&szlig;enden L&ouml;schen des Originalblocks.
+</pre>
+<h3>[#][,#]p - SEITE (BL&Auml;TTERN)</h3>
+<pre>
+Dieser Befehl ist vergleichbar mit l mit der Ausnahme, da&szlig; die Ausgabe-
+seite mit der aktuellen Seite beginnt, anstatt 11 Zeilen zuvor.
+</pre>
+<h3>q - BEENDEN</h3>
+<pre>
+Selbsterkl&auml;rend.
+</pre>
+<h3>[#][,#][?]r$,$ - ZEICHENFOLGE (STRING) ERSETZEN</h3>
+<pre>
+Dieser Befehl ersetzt zwischen den angegebenen zwei Zeilen alle
+Vorkommnisse des ersten Strings mit dem zweiten String. Ohne den ersten
+Parameter startet der Ersetzvorgang eine Zeile nach der aktuellen Zeile;
+ohne den zweiten Parameter endet der Ersetzvorgang in der letzten Zeile
+der Datei.
+
+Das Fragezeichen gibt vor dem Ersetzen eine Best&auml;tigungsmeldung aus.
+</pre>
+<h3>[#][,#][?]s$ - SUCHEN NACH EINER TEILZEICHENFOLGE (SUBSTRING)</h3>
+<pre>
+Dieser Befehl sucht nach der ersten Zeile, die die angegebene Teilzeichen-
+folge ent&auml;lt. Ohne den ersten Parameter wird mit der Suche in 
+der aktuellen Zeile begonnen; ohne den zweiten Parameter l&auml;uft die
+Suche bis zum Ende der Datei durch.
+
+Das Fragezeichen veranlasst die Suche dazu, eine Best&auml;tigungsmeldung
+auszugeben. Wenn Sie bei der Best&auml;tigung 'no - nein' sagen, wird die Suche
+fortgesetzt; wenn Sie 'yes - ja' sagen, endet die Suche.
+
+Die aktuelle Zeile wird auf die Zeile gesetzt, auf der die erfolgreiche
+Suche endete.
+</pre>
+<h3>[#]t Dateiname - DATEI TRANSFERIEREN</h3>
+<pre>
+Dieser Befehl sorgt daf&uuml;r, da&szlig; der Inhalt der Datei vor der ange-
+gebenen Zeile (in einer anderen Datei) eingef&uuml;gt wird. Wenn die
+Zeilennummer weggelassen wird, ist die aktuelle Zeile der Standardwert.
+</pre>
+<h3>[#]w Dateiname - DATEI SPEICHERN</h3>
+<pre>
+Dieser Befehl sorgt daf&uuml;r, da&szlig; der Text von der ersten bis zu der vom
+Parameter angegebenen Zeilennummer in die gew&auml;hlte Datei geschrieben
+wird. Wenn der Parameter weggelassen wird, werden alle Zeilen im Puffer
+in die Datei geschrieben.
+</pre>
+<h3>AUTHOR/MAINTAINER</h3>
+<pre>
+Gregory Pietsch, gpietsch@comcast.net
+
+</pre>
+</body>
+</html>

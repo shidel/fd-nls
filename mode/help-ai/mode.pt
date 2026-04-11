@@ -1,0 +1,365 @@
+# Language: Portuguese
+# File ending: PT
+# Codepage: 860
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Documenta‡„o de utiliza‡„o do programa Free-DOS MODE
+
+	(c) Copyright 1994-1995 por K. Heidenstrom.
+
+	Modificado:
+
+	KH.19941231.001  (MODE 1.0.0)  Primeira vers„o
+	KH.19950116.002  (MODE 1.0.2)  Adicionada documenta‡„o do switchar
+	KH.19950520.003  (MODE 1.0.3)  Sem altera‡”es na funcionalidade
+	KH.19950805.004  (MODE 1.0.4)  Adicionadas op‡”es de modificadores
+	(shift-state)
+
+
+1.  ASPECTOS LEGAIS
+
+	Este programa ‚ Copyright 1994-1995 por K. Heidenstrom. Foi escrito
+	especificamente para o projecto Free-DOS. O autor pode ser contactado
+	em kheidens@actrix.gen.nz na Internet ou por correio normal:
+	K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	Este programa ‚ software livre. Pode redistribuir o c¢digo fonte e o
+	execut vel e/ou modificar o programa sob os termos da GNU General
+	 Public License conforme publicada pela Free Software Foundation;
+	tanto a vers„o 2 da Licen‡a, ou (… sua escolha) qualquer vers„o
+	posterior.
+
+	Este programa ‚ distribu¡do na esperan‡a de que seja £til, mas ‚
+	fornecido "tal como est ", sem qualquer garantia de qualquer tipo,
+	incluindo a garantia impl¡cita de comercializa‡„o ou adequa‡„o a um
+	fim espec¡fico. Em caso algum o autor ser  respons vel por quaisquer
+	danos de qualquer tipo relacionados com a utiliza‡„o deste programa.
+	Consulte a GNU General Public License para mais detalhes.
+
+	Dever  ter recebido uma c¢pia da GNU General Public License juntamente
+	com este programa; caso contr rio, escreva para a Free Software
+	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  FUN€ŽO E SINTAXE DE UTILIZA€ŽO
+
+	O programa MODE executa seis fun‡”es distintas, que s„o descritas
+	separadamente abaixo.
+
+2.1.  DEFINIR MODO DE V‹DEO E N–MERO DE LINHAS DE ECRŽ
+
+	O MODE permite que o modo de v¡deo seja definido para um de cinco
+	modos.
+	A sintaxe ‚:
+
+	MODE Modovideo[,Linhas]
+
+	Os modos s„o:
+
+	MONO	Modo monocrom tico, tal como utilizado com as placas MDA e
+		Hercules, e tamb‚m emulado em placas EGA e VGA. Este modo
+		‚ o £nico que tem a capacidade de sublinhar caracteres no
+		ecr„ por predefini‡„o. Este modo n„o pode ser selecionado
+		na placa de v¡deo CGA.
+
+	BW40	Modo de 40 colunas com cor suprimida. Este modo ‚ espec¡fico
+		do adaptador CGA, e oferece uma exibi‡„o de 40 colunas por 25
+		linhas. A informa‡„o de cor do sinal de v¡deo composto da
+		placa CGA ‚ desligada, para que a exibi‡„o seja a preto e
+		branco num monitor de cor composto, com dezasseis tons de cinza.
+		Se este modo for selecionado numa placa EGA ou VGA, ou numa
+		placa CGA que n„o esteja ligada a um televisor ou a um monitor
+		de cor composto, aparecer  igual ao modo CO40 (ou seja, a cor
+		n„o ser  suprimida). Este modo n„o pode ser selecionado em
+		placas de v¡deo MDA e Hercules.
+
+	BW80	Modo de 80 colunas com cor suprimida. Este modo tamb‚m ‚
+		espec¡fico do adaptador CGA e ‚ o mesmo que BW40, excepto
+		que existem 80 colunas.
+		Se este modo for selecionado numa placa EGA ou VGA, ou numa
+		placa CGA que n„o esteja ligada a um televisor ou a um monitor
+		de cor composto, aparecer  igual ao modo CO80 (ou seja, a cor
+		n„o ser  suprimida). Este modo n„o pode ser selecionado em
+		placas de v¡deo MDA e Hercules.
+
+	CO40	Modo de cor de 40 colunas. Este modo oferece uma exibi‡„o a
+		cores de 40 colunas por 25 linhas.  suportado por adaptadores
+		CGA, EGA e VGA, mas n„o por placas MDA e Hercules.
+
+	CO80	Modo de cor de 80 colunas. Este modo oferece uma exibi‡„o de
+		80 colunas por 25 linhas e ‚ o modo de exibi‡„o normal para placas
+		CGA, EGA e VGA. N„o ‚ suportado por placas MDA e Hercules. Em
+		placas EGA, este modo tamb‚m suporta uma variante de 43 linhas,
+		e em placas VGA, a variante de 43 linhas e uma variante de 50
+		linhas s„o suportadas.
+
+		Os modos de 43 e 50 linhas podem ser selecionados especificando
+		",43" ou ",50" ap¢s o CO80 na linha de comandos do MODE. Se
+		este parƒmetro n„o for especificado, ser  utilizada a
+		predefini‡„o de 25 linhas.
+
+	Uma vez definido, o modo de v¡deo permanecer  em vigor at‚ ser
+	alterado por um comando MODE ou por um programa. O modo de v¡deo
+	n„o est  bloqueado permanentemente - os programas s„o livres de
+	alterar os modos de v¡deo conforme necessitarem.
+
+2.2.  CONFIGURAR PARMETROS DA PORTA SRIE
+
+	O MODE permite que os parƒmetros de comunica‡„o de uma porta s‚rie
+	sejam configurados. A sintaxe ‚:
+
+	MODE COMn:r,p,d,s
+
+	n	Especifica qual a porta s‚rie a configurar, no intervalo de
+		1 a 4. Se a porta s‚rie n„o existir, o MODE reportar  um erro.
+
+	r	Especifica a taxa de baud em bits por segundo. Os valores s„o:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 e 115200.
+
+		1200, 2400, 4800 e 9600 podem ser abreviados para 12, 24,
+		48 e 96, respectivamente. 14400, 19200, 28800, 38400 e
+		57600 podem ser abreviados para os seus primeiros dois ou
+		trˆs d¡gitos. 115200 pode ser abreviado para 115 ou 1152.
+
+	p	Especifica o tipo de paridade gerada e verificada nos bytes
+		de dados. Os valores s„o:
+
+		E = Paridade par (Even)
+		O = Paridade ¡mpar (Odd)
+		N = Nenhuma paridade (No parity)
+
+	d	Especifica o n£mero de bits de dados que ser„o transmitidos e
+		recebidos. Os valores permitidos s„o 5, 6, 7 e 8.
+
+	s	Especifica o n£mero de bits de paragem (stop bits) que ser„o
+		transmitidos e esperados. Pode ser 1 ou 2. Se forem usados
+		2 stop bits em conjunto com 5 bits de dados, a porta s‚rie ir 
+		efectivamente gerar e verificar 1 1/2 stop bits.
+
+	Uma vez definidos, os parƒmetros da porta s‚rie permanecer„o em vigor
+	at‚ serem alterados por um comando MODE ou por um programa. As
+	defini‡”es da porta s‚rie n„o est„o bloqueadas permanentemente - os
+	programas s„o livres de as alterar conforme necessitarem.
+
+2.3.  REDIRECIONAMENTO DA PORTA PARALELA E TENTATIVAS INFINITAS
+
+	O MODE permite que a sa¡da da porta paralela (LPT) seja redirecionada
+	para uma porta s‚rie (COM), para NUL (ou seja, nada), e tamb‚m pode
+	tentar indefinidamente se o perif‚rico n„o responder.
+
+	Estas fun‡”es s„o executadas pela parte residente do MODE, que ser 
+	automaticamente instalada, se necess rio, quando a fun‡„o for
+	solicitada.
+
+	A sintaxe ‚:
+
+	MODE LPTn:P		Tempo de espera infinito na porta paralela
+	MODE LPTn:=COMx		Redirecionar sa¡da da impressora para porta COM
+	MODE LPTn:=NUL:		Redirecionar sa¡da da impressora para NUL
+	MODE LPTn:		Remover redirecionamento e tempo de espera infinito
+
+	A fun‡„o LPTn:P especifica tentativas infinitas em caso de tempo de
+	espera (timeout). Se estiver activada, o MODE tentar  continuamente
+	se a impressora n„o responder. Se n„o estiver activada, e a impressora
+	n„o responder dentro de um certo per¡odo de tempo (normalmente cerca
+	de meio minuto), ser  reportado um erro de falha de escrita.
+
+	As fun‡”es LPTn:=COMx e LPTn:=NUL: especificam o redirecionamento da
+	sa¡da da impressora. Qualquer porta paralela (existente ou n„o) pode
+	ser redirecionada para qualquer porta s‚rie existente, ou para NUL.
+	Mais do que uma porta paralela pode ser redirecionada para a mesma
+	porta s‚rie ou para NUL. Estas fun‡”es s„o £teis se tiver uma impressora
+	s‚rie, ou se n„o tiver impressora e quiser evitar que o computador
+	bloqueie se um programa tentar imprimir numa impressora inexistente.
+
+	A fun‡„o LPTn: remove qualquer redirecionamento e tempo de espera
+	infinito que possa estar configurado para a porta especificada, e
+	devolve-a ao funcionamento normal.
+
+2.4.  FUN€™ES DE ESTACIONAMENTO DE DISCO R‹GIDO (PARK)
+
+	O MODE ir  estacionar o disco r¡gido ou discos r¡gidos (apenas os dois
+	primeiros discos r¡gidos f¡sicos no sistema), imediatamente ou ap¢s
+	o disco estar inactivo por um per¡odo de tempo.
+
+	A fun‡„o de estacionamento temporizado ‚ executada pela parte residente
+	do MODE, que ser  automaticamente instalada se necess rio.
+
+	A sintaxe ‚:
+
+	MODE PARK			Estacionar agora (Park)
+	MODE PARK,minutos[:segundos]	Estacionar ap¢s o disco estar inactivo
+
+	A fun‡„o PARK estaciona o(s) disco(s) r¡gido(s) imediatamente e aguarda
+	que desligue o computador. Tamb‚m pode premir Ctrl-C para sair e
+	voltar ao DOS.
+
+	A fun‡„o PARK,minutos[:segundos] faz com que o(s) disco(s) r¡gido(s)
+	sejam estacionados ap¢s um certo per¡odo de inactividade, que pode
+	ser de at‚ 50 minutos. Se tiver dois discos r¡gidos f¡sicos, ambos
+	s„o tratados separadamente.
+
+	Uma vez definido, pode alterar o per¡odo de tempo executando o comando
+	novamente com um valor de tempo diferente. A fun‡„o de estacionamento
+	temporizado n„o pode ser desligada - deve reiniciar para a remover.
+
+	Estas fun‡”es s„o geralmente £teis apenas para m quinas antigas.
+	Os discos r¡gidos modernos estacionam-se automaticamente ao serem
+	desligados.
+
+2.5.  FUN€™ES TYPEMATIC (REPETI€ŽO DE TECLADO)
+
+	O MODE permite que os parƒmetros de atraso inicial de repeti‡„o e taxa
+	de repeti‡„o (typematic) sejam definidos e, opcionalmente, bloqueados.
+
+	A fun‡„o de bloqueio de typematic ‚ executada pela parte residente do
+	MODE, que ser  automaticamente instalada se necess rio quando a
+	fun‡„o for solicitada.
+
+	A sintaxe ‚:
+
+	MODE DELAY=d RATE=r		Definir parƒmetros typematic
+	MODE DELAY=d RATE=r LOCK	Definir e bloquear parƒmetros typematic
+
+	d	Especifica o atraso inicial, o intervalo ‚ de 1 a 4 e o
+		atraso ‚ entre 1/4 de segundo (1) e um segundo (4).
+
+	r	Especifica a taxa de auto-repeti‡„o. O intervalo ‚ de 1 a 32
+		e a taxa ‚ entre duas repeti‡”es por segundo (1) e 30
+		repeti‡”es por segundo (32).
+
+	LOCK	Especifica que os parƒmetros typematic devem ser bloqueados.
+		Uma vez feito isto, os parƒmetros typematic podem ser
+		alterados executando o MODE novamente, mas n„o podem ser
+		alterados pela maioria dos outros programas. Isto pode ser
+		£til, j  que alguns programas alteram os parƒmetros sem a
+		sua permiss„o. N„o ‚, no entanto, completamente infal¡vel.
+
+	Note que tanto DELAY como RATE devem ser especificados para estas
+	fun‡”es.
+
+	O MODE n„o tenta confirmar se a defini‡„o typematic est  dispon¡vel
+	na m quina. O MODE aceitar  todos os comandos typematic, quer a
+	m quina os suporte ou n„o.
+
+2.6.  FUN€™ES SWITCHAR
+
+	O MODE pode exibir e definir o car cter de op‡„o do DOS (switchar).
+	A predefini‡„o do switchar ‚ a barra, '/'. O switchar ‚ o car cter que
+	‚ usado para indicar o in¡cio de uma op‡„o, por exemplo, a op‡„o /P no
+	comando DIR. Tipicamente, o switchar pode ser alterado para '-'. O
+	switchar ‚ uma funcionalidade n„o documentada do DOS que ‚ suportada
+	devidamente por poucos programas.
+
+	A sintaxe ‚:
+
+	MODE SWITCHAR			Exibir switchar actual
+	MODE SWITCHAR=x			Definir switchar para o car cter x
+	MODE SWITCHAR=n			Definir switchar para o valor ASCII n
+
+	O parƒmetro SWITCHAR por si s¢ faz com que o MODE exiba o switchar
+	actual. A utiliza‡„o de SWITCHAR= define o switchar. O novo switchar
+	pode ser especificado como um car cter (ex: 'MODE SWITCHAR=/') ou
+	como um n£mero (ex: 'MODE SWITCHAR=45').
+
+2.7.  FUN€™ES DE MODIFICADOR (ESTADO DE SHIFT)
+
+	O MODE pode alterar os trˆs estados de alternƒncia (caps lock, numlock
+	e scroll lock). Esta fun‡„o n„o deve ser usada em m quinas com
+	teclados originais de PC ou XT, porque os LEDs indicadores nestes
+	teclados n„o podem ser controlados pelo computador, e ficar„o
+	dessincronizados com os estados do computador. O MODE n„o detecta
+	estas m quinas, no entanto. Em ATs e m quinas posteriores, n„o h 
+	problema.
+
+	A sintaxe de parƒmetros para este comando consiste nas seguintes
+	op‡”es:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Qualquer combina‡„o n„o conflituosa e n„o duplicada destas op‡”es
+	‚ permitida. Al‚m disso, SCRLOCK pode ser expandido para SCROLLLOCK.
+
+3.  GERAL
+
+	Os parƒmetros para o MODE n„o distinguem mai£sculas de min£sculas.
+
+	O MODE s¢ pode processar um comando em cada invoca‡„o. Se pretender
+	redirecionar v rias portas LPT, deve usar um comando MODE separado
+	para cada uma. Comandos de tipos diferentes n„o podem ser combinados
+	na linha de comandos.
+
+	As mensagens de erro s„o sempre enviadas para StdErr. Mensagens de
+	informa‡„o s„o enviadas para a sa¡da padr„o, e podem ser redirecionadas
+	para NUL: para uma opera‡„o silenciosa.
+
+	Os Errorlevels retornados pelo MODE s„o os seguintes:
+
+	0	Sem erro
+	115	A porta s‚rie n„o existe (para COMn: ou LPTn:=COMx)
+	117	Nenhum disco r¡gido encontrado para estacionar
+	118	O modo de v¡deo especificado n„o ‚ suportado nesta m quina
+	162	Mem¢ria insuficiente (o MODE requer cerca de 6K de mem¢ria)
+	241	Parƒmetro fora do intervalo (ex: valor de tempo, n£mero LPT)
+	242	N„o ‚ poss¡vel ter modos de 43 ou 50 linhas com modos sem ser CO80
+	243	Taxa de baud desconhecida
+	244	Deve especificar ambos DELAY= e RATE= para defini‡„o typematic
+	246	Foi dado mais do que um comando ou tipo de comando
+	255	Sintaxe de utiliza‡„o incorrecta (todos os erros de sintaxe)
+
+	O MODE ‚ um programa TSR. Se necess rio, o MODE instalar  parte de si
+	residente na mem¢ria do computador. Esta parte residente executa o
+	redirecionamento da impressora e tratamento de timeouts, estacionamento
+	autom tico do disco r¡gido e bloqueio dos parƒmetros typematic, e n„o
+	pode ser removida sem reiniciar (a menos que sejam usados os programas
+	MARK e RELEASE). Se forem solicitadas fun‡”es residentes adicionais e
+	a parte residente j  estiver instalada, o MODE activar  essas fun‡”es
+	na parte residente em vez de instalar outra.
+
+	Como o MODE ‚ um TSR, pode ser incompat¡vel com aplica‡”es ou outros
+	TSRs que esteja a utilizar. Se ocorrerem problemas, tente estabelecer
+	quais os programas em conflito. Poder  ser poss¡vel evitar o problema
+	instalando os programas numa ordem diferente.
+
+	Se encontrar um erro no MODE, por favor informe o autor. Os detalhes de
+	contacto s„o fornecidos na sec‡„o 1 deste documento.
+
+4.  EXEMPLOS DE UTILIZA€ŽO
+
+	Aqui est  um exemplo da utiliza‡„o do MODE no AUTOEXEC.BAT,
+	demonstrando todas as funcionalidades:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	Esta sequˆncia primeiro seleciona o modo de exibi‡„o a cores de 43
+	linhas, depois configura os parƒmetros da porta s‚rie para COM1,
+	COM2 e COM3 (9600, 19200 e 2400 bps respectivamente, sem paridade,
+	oito bits de dados e um bit de paragem). Estes parƒmetros da porta
+	s‚rie n„o est„o bloqueados permanentemente, e outro comando MODE ou
+	outro programa pode alter -los a qualquer momento.
+	Depois, a sa¡da da LPT1 ‚ redirecionada para a COM2, por isso qualquer
+	coisa que seja impressa na LPT1 ser  enviada para a COM2, a 19200 bps
+	(por exemplo, para uma impressora laser s‚rie), e LPT2 e LPT3 s„o
+	redirecionados para NUL para que qualquer coisa enviada para eles
+	n„o v  para lado nenhum.
+	Depois ‚ instalado um estacionamento de disco r¡gido temporizado, que
+	estacionar  o(s) disco(s) ap¢s 30 segundos de inactividade.
+	Finalmente, o atraso mais curto e a taxa mais r pida para a fun‡„o
+	typematic do teclado s„o selecionados e bloqueados, e o switchar
+	do DOS ‚ definido como um h¡fen ('-').
+
+				   ----//----

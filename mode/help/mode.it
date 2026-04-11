@@ -1,0 +1,373 @@
+# Language: Italian
+# File ending: IT
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Documentazione d'uso del programma Free-DOS MODE
+
+	(c) Copyright 1994-1995 di K. Heidenstrom.
+
+	Modifiche:
+
+	KH.19941231.001  (MODE 1.0.0)  Prima versione
+	KH.19950116.002  (MODE 1.0.2)  Aggiunta documentazione switchar
+	KH.19950520.003  (MODE 1.0.3)  Nessuna modifica alla funzionalit…
+	KH.19950805.004  (MODE 1.0.4)  Aggiunte opzioni modificatori
+	(shift-state)
+
+
+1.  NOTE LEGALI
+
+	Questo programma Š Copyright 1994-1995 di K. Heidenstrom. Ô stato
+	scritto specificamente per il progetto Free-DOS. L'autore pu• essere
+	contattato all'indirizzo kheidens@actrix.gen.nz su Internet o per posta
+	ordinaria: K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	Questo programma Š software libero. Ô possibile ridistribuire il codice
+	sorgente e l'eseguibile e/o modificare il programma secondo i termini
+	della GNU General Public License pubblicata dalla Free Software
+	Foundation; sia la versione 2 della licenza, o (a propria scelta)
+	qualsiasi versione successiva.
+
+	Questo programma Š distribuito nella speranza che sia utile, ma viene
+	fornito "cos com'Š", senza alcuna garanzia di alcun tipo, inclusa la
+	garanzia implicita di commerciabilit… o idoneit… per uno scopo
+	particolare. In nessun caso l'autore sar… responsabile per danni di
+	qualsiasi tipo legati all'uso di questo programma. Vedere la GNU General
+	Public License per ulteriori dettagli.
+
+	Dovreste aver ricevuto una copia della GNU General Public License
+	insieme a questo programma; in caso contrario, scrivete alla Free
+	Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  FUNZIONI E SINTASSI D'USO
+
+	Il programma MODE esegue sei funzioni distinte, descritte separatamente
+	di seguito.
+
+2.1.  IMPOSTAZIONE MODALIT· VIDEO E NUMERO DI RIGHE DELLO SCHERMO
+
+	MODE consente di impostare la modalit… video su una di cinque modalit….
+	La sintassi Š:
+
+	MODE Modalit…video[,Righe]
+
+	Le modalit… sono:
+
+	MONO	Modalit… monocromatica, come utilizzata con le schede MDA e
+		Hercules, ed emulata anche su schede EGA e VGA. Questa modalit…
+		Š l'unica che ha la capacit… di sottolineare i caratteri sullo
+		schermo per impostazione predefinita. Questa modalit… non pu•
+		essere selezionata sulla scheda video CGA.
+
+	BW40	Modalit… a 40 colonne con colore soppresso. Questa modalit… Š
+		specifica per l'adattatore CGA e offre una visualizzazione di 40
+		colonne per 25 righe. L'informazione del colore del segnale video
+		composito dalla scheda CGA viene disattivata, in modo che la
+		visualizzazione sia in bianco e nero su un monitor a colori
+		composito, con sedici sfumature di grigio.
+		Se questa modalit… viene selezionata su una scheda EGA o VGA, o
+		su una scheda CGA non collegata a un televisore o a un monitor
+		a colori composito, apparir… identica alla modalit… CO40 (cioŠ
+		il colore non verr… soppresso). Questa modalit… non pu• essere
+		selezionata su schede video MDA e Hercules.
+
+	BW80	Modalit… a 80 colonne con colore soppresso. Anche questa
+		modalit… Š specifica per l'adattatore CGA ed Š uguale a BW40
+		eccetto che ci sono 80 colonne.
+		Se questa modalit… viene selezionata su una scheda EGA o VGA, o
+		su una scheda CGA non collegata a un televisore o a un monitor
+		a colori composito, apparir… identica alla modalit… CO80 (cioŠ
+		il colore non verr… soppresso). Questa modalit… non pu• essere
+		selezionata su schede video MDA e Hercules.
+
+	CO40	Modalit… a colori a 40 colonne. Questa modalit… offre una
+		visualizzazione a colori di 40 colonne per 25 righe. Ô
+		supportata dagli adattatori CGA, EGA e VGA ma non dalle schede
+		MDA e Hercules.
+
+	CO80	Modalit… a colori a 80 colonne. Questa modalit… offre una
+		visualizzazione a 80 colonne per 25 righe ed Š la normale
+		modalit… di visualizzazione per le schede CGA, EGA e VGA. Non Š
+		supportata dalle schede MDA e Hercules. Sulle schede EGA, questa
+		modalit… supporta anche una variante a 43 righe, e sulle schede
+		VGA sono supportate la variante a 43 righe e una a 50 righe.
+
+		Le modalit… a 43 e 50 righe possono essere selezionate
+		specificando ",43" o ",50" dopo CO80 nella riga di comando di
+		MODE. Se questo parametro non viene specificato, verr…
+		utilizzato il valore predefinito di 25 righe.
+
+	Una volta impostata, la modalit… video rimarr… attiva finch‚ non verr…
+	modificata da un comando MODE o da un programma. La modalit… video non
+	 Š bloccata in modo permanente - i programmi sono liberi di cambiare le
+	modalit… video secondo le loro necessit….
+
+2.2.  CONFIGURAZIONE PARAMETRI PORTA SERIALE
+
+	MODE consente di configurare i parametri di comunicazione di una porta
+	seriale. La sintassi Š:
+
+	MODE COMn:r,p,d,s
+
+	n	Specifica quale porta seriale configurare, nell'intervallo da 1
+		a 4. Se la porta seriale non esiste, MODE riporter… un errore.
+
+	r	Specifica il baud rate in bit al secondo. I valori sono: 50,
+		110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200,
+		28800, 38400, 57600 e 115200.
+
+		1200, 2400, 4800 e 9600 possono essere abbreviati rispettivamente
+		in 12, 24, 48 e 96. 14400, 19200, 28800, 38400 e 57600 possono
+		essere abbreviati alle loro prime due o tre cifre. 115200 pu•
+		essere abbreviato in 115 o 1152.
+
+	p	Specifica il tipo di parit… generata e controllata sui byte di
+		dati. I valori sono:
+
+		E = Parit… pari (Even)
+		O = Parit… dispari (Odd)
+		N = Nessuna parit… (No parity)
+
+	d	Specifica il numero di bit di dati che verranno trasmessi e
+		ricevuti. I valori consentiti sono 5, 6, 7 e 8.
+
+	s	Specifica il numero di stop bit che verranno trasmessi e
+		attesi. Pu• essere 1 o 2. Se vengono utilizzati 2 stop bit in
+		combinazione con 5 bit di dati, la porta seriale generer… e
+		controller… effettivamente 1 1/2 stop bit.
+
+	Una volta impostati, i parametri della porta seriale rimarranno attivi
+	finch‚ non verranno modificati da un comando MODE o da un programma.
+	Le impostazioni della porta seriale non sono bloccate in modo permanente
+	- i programmi sono liberi di cambiarle secondo le loro necessit….
+
+2.3.  RIDIRIGIMENTO PORTA PARALLELA E TENTATIVI INFINITI
+
+	MODE consente di ridirigere l'output della porta parallela (LPT) su una
+	porta seriale (COM), su NUL (cioŠ nulla), e pu• anche riprovare
+	indefinitamente se la periferica non risponde.
+
+	Queste funzioni sono eseguite dalla parte residente di MODE, che verr…
+	installata automaticamente se necessario quando la funzione viene
+	richiesta.
+
+	La sintassi Š:
+
+	MODE LPTn:P		Timeout infinito sulla porta parallela
+	MODE LPTn:=COMx		Ridirige l'output della stampante alla porta COM
+	MODE LPTn:=NUL:		Ridirige l'output della stampante a NUL
+	MODE LPTn:		Rimuove ridirigimento e timeout infinito
+
+	La funzione LPTn:P specifica tentativi infiniti in caso di timeout. Se
+	abilitata, MODE riprover… continuamente se la stampante non risponde.
+	Se non abilitata, e la stampante non risponde entro un certo lasso di
+	tempo (tipicamente circa mezzo minuto), verr… segnalato un errore di
+	scrittura (write fault).
+
+	Le funzioni LPTn:=COMx e LPTn:=NUL: specificano il ridirigimento
+	dell'output della stampante. Qualsiasi porta parallela (che esista o
+	meno) pu• essere ridiretta su qualsiasi porta seriale esistente, o su
+	NUL. Pi— di una porta parallela pu• essere ridiretta sulla stessa porta
+	seriale o su NUL. Queste funzioni sono utili se si dispone di una
+	stampante seriale, o se non si ha alcuna stampante e si vuole evitare
+	il blocco del computer se un programma tenta di stampare su una
+	stampante inesistente.
+
+	La funzione LPTn: rimuove qualsiasi ridirigimento e timeout infinito
+	che potrebbero essere configurati per la porta specificata, e la
+	riporta al normale funzionamento.
+
+2.4.  FUNZIONI DI PARCHEGGIO DISCO RIGIDO (PARK)
+
+	MODE parchegger… il disco rigido o i dischi rigidi (solo i primi due
+	dischi rigidi fisici nel sistema), immediatamente o dopo che il disco
+	Š rimasto inattivo per un periodo di tempo.
+
+	La funzione di parcheggio a tempo Š eseguita dalla parte residente di
+	MODE, che verr… installata automaticamente se necessario quando la
+	funzione viene richiesta.
+
+	La sintassi Š:
+
+	MODE PARK			Parcheggia ora
+	MODE PARK,minuti[:secondi]	Parcheggia dopo inattivit… del disco
+
+	La funzione PARK parcheggia immediatamente i dischi rigidi e attende
+	lo spegnimento del computer. Ô anche possibile premere Ctrl-C per
+	uscire e tornare al DOS.
+
+	La funzione PARK,minuti[:secondi] causa il parcheggio dei dischi rigidi
+	dopo un certo periodo di inattivit…, che pu• arrivare fino a 50
+	minuti. Se si dispone di due dischi rigidi fisici, vengono gestiti
+	entrambi separatamente.
+
+	Una volta impostato, Š possibile modificare il periodo di tempo
+	eseguendo nuovamente il comando con un valore di tempo diverso. La
+	funzione di parcheggio a tempo non pu• essere disattivata - Š
+	necessario riavviare per rimuoverla.
+
+	Queste funzioni sono generalmente utili solo per macchine pi— vecchie.
+	I dischi rigidi moderni si parcheggiano automaticamente allo
+	spegnimento.
+
+2.5.  FUNZIONI TYPEMATIC (RIPETIZIONE TASTIERA)
+
+	MODE consente di impostare i parametri di ritardo iniziale di
+	ripetizione e la velocit… di ripetizione (typematic), e opzionalmente
+	di bloccarli.
+
+	La funzione di blocco typematic Š eseguita dalla parte residente di
+	MODE, che verr… installata automaticamente se necessario quando la
+	funzione viene richiesta.
+
+	La sintassi Š:
+
+	MODE DELAY=d RATE=r		Imposta i parametri typematic
+	MODE DELAY=d RATE=r LOCK	Imposta e blocca i parametri typematic
+
+	d	Specifica il ritardo iniziale, l'intervallo Š da 1 a 4 e il
+		ritardo Š compreso tra 1/4 di secondo (1) e un secondo (4).
+
+	r	Specifica la velocit… di autoripetizione. L'intervallo Š da 1
+		a 32 e la velocit… Š compresa tra due ripetizioni al secondo
+		(1) e 30 ripetizioni al secondo (32).
+
+	LOCK	Specifica che i parametri typematic devono essere bloccati.
+    	Una volta fatto ci•, i parametri possono essere modificati
+		eseguendo nuovamente MODE, ma non possono essere modificati
+		dalla maggior parte degli altri programmi. Questo pu• essere
+		utile, poich‚ alcuni programmi cambiano i parametri typematic
+		senza autorizzazione. Non Š comunque completamente infallibile.
+
+	Si noti che sia DELAY che RATE devono essere specificati per queste
+	funzioni.
+
+	MODE non tenta di confermare se l'impostazione typematic Š disponibile
+	sulla macchina. MODE accetter… tutti i comandi typematic, indipen-
+	dentemente dal fatto che la macchina li supporti effettivamente.
+
+2.6.  FUNZIONI SWITCHAR
+
+	MODE pu• visualizzare e impostare il carattere di switch del DOS
+	(switchar). Lo switchar predefinito Š la barra in avanti, '/'. Lo
+	switchar Š il carattere utilizzato per indicare l'inizio di uno switch
+	di opzione, ad esempio lo switch /P per il comando DIR. In genere, lo
+	switchar pu• essere cambiato in '-'. Lo switchar Š una funzione non
+	documentata del DOS che Š correttamente supportata da pochi programmi.
+
+	La sintassi Š:
+
+	MODE SWITCHAR			Visualizza lo switchar corrente
+	MODE SWITCHAR=x			Imposta lo switchar al carattere x
+	MODE SWITCHAR=n			Imposta lo switchar al valore ASCII n
+
+	Il parametro SWITCHAR da solo fa s che MODE visualizzi lo switchar
+	corrente. L'uso di SWITCHAR= imposta lo switchar. Il nuovo switchar pu•
+	essere specificato come un carattere (es. 'MODE SWITCHAR=/') o come un
+	numero (es. 'MODE SWITCHAR=45').
+
+2.7.  FUNZIONI MODIFICATORE (STATO DI SHIFT)
+
+	MODE pu• modificare i tre stati di shift bloccabili (caps lock, numlock
+	e scroll lock). Questa funzione non dovrebbe essere utilizzata su
+	macchine con tastiere originali PC o XT, perch‚ i LED indicatori su
+	queste tastiere non possono essere controllati dal computer e diven-
+	teranno non sincronizzati con gli stati di shift del computer. MODE
+	non rileva tuttavia queste macchine. Su AT e macchine successive,
+	non c'Š problema.
+
+	La sintassi dei parametri per questo comando consiste nelle seguenti
+	opzioni:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Ô consentita qualsiasi combinazione non conflittuale e non duplicata di
+	queste opzioni. Inoltre, SCRLOCK pu• essere esteso a SCROLLLOCK.
+
+3.  GENERALE
+
+	I parametri di MODE non fanno distinzione tra maiuscole e minuscole.
+
+	MODE pu• elaborare solo un comando per ogni chiamata. Se si desidera
+	ridirigere pi— porte LPT, Š necessario utilizzare un comando MODE
+	separato per ciascuna. Comandi di diverso tipo non possono essere
+	combinati sulla riga di comando.
+
+	I messaggi di errore vengono sempre inviati a StdErr. I messaggi
+	informativi vengono inviati allo standard output e possono essere
+	ridiretti su NUL: per un funzionamento "silenzioso".
+
+	Gli Errorlevel restituiti da MODE sono i seguenti:
+
+	0	Nessun errore
+	115	La porta seriale non esiste (sia per COMn: che per LPTn:=COMx)
+	117	Nessun disco rigido trovato da parcheggiare
+	118	La modalit… video specificata non Š supportata su questa macchina
+	162	Memoria insufficiente (MODE richiede circa 6K di memoria)
+	241	Parametro fuori intervallo (es. valore di tempo, numero porta LPT)
+	242	Impossibile avere modalit… a 43 o 50 righe con modalit… diverse
+    	da CO80
+	243	Baud rate sconosciuto
+	244	Ô necessario specificare sia DELAY= che RATE= per l'impostazione
+	    typematic
+	246	Ô stato fornito pi— di un comando o tipo di comando
+	255	Sintassi d'uso errata (tutti gli errori di sintassi d'uso)
+
+	MODE Š un programma TSR. Se necessario, MODE installer… parte di se
+	stesso residente nella memoria del computer. Questa parte residente
+	esegue il ridirigimento della stampante e la gestione dei timeout, il
+	parcheggio automatico del disco rigido e il blocco dei parametri
+	typematic, e non pu• essere rimossa senza riavviare (a meno che non
+	vengano utilizzati i programmi di pubblico dominio MARK e RELEASE). Se
+	sono richieste funzioni residenti aggiuntive e la parte residente Š
+	installata, MODE abiliter… tali funzioni nella parte residente invece
+	di installarne un'altra.
+
+	Poich‚ MODE Š un TSR, potrebbe essere incompatibile con applicazioni o
+	altri TSR in uso. Se si verificano problemi, provare a stabilire quali
+	programmi sono in conflitto. Potrebbe essere possibile evitare il
+	problema installando i programmi in un ordine diverso.
+
+	Se trovi un bug in MODE, informa l'autore. I dettagli di contatto sono
+	forniti nella sezione 1 di questo documento.
+
+4.  ESEMPI D'USO
+
+	Ecco un esempio dell'uso di MODE in AUTOEXEC.BAT, che mostra tutte le
+	funzionalit…:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	Questa sequenza seleziona prima la modalit… di visualizzazione a colori
+	a 43 righe, quindi configura i parametri della porta seriale per COM1,
+	COM2 e COM3 (rispettivamente 9600, 19200 e 2400 bps, senza parit…, otto
+	bit di dati e un bit di stop). Questi parametri della porta seriale non
+	sono bloccati in modo permanente e un altro comando MODE o un altro
+	programma pu• modificarli in qualsiasi momento.
+	Quindi, l'output di LPT1 viene ridiretto su COM2, quindi tutto ci• che
+	viene stampato su LPT1 verr… inviato invece su COM2, a 19200 bps (ad
+	esempio, a una stampante laser seriale), e LPT2 e LPT3 vengono
+	ridiretti su NUL in modo che tutto ci• che viene inviato a loro non
+	vada da nessuna parte.
+	Quindi viene installato un parcheggio temporizzato del disco rigido,
+	che parchegger… i dischi rigidi dopo 30 secondi di assenza di attivit….
+	Infine, viene selezionato e bloccato il ritardo pi— breve e la velocit…
+	pi— rapida per la funzione typematic della tastiera, e lo switchar del
+	DOS viene impostato su un trattino ('-').
+
+				   ----//----

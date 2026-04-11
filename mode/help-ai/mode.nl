@@ -1,0 +1,373 @@
+# Language: Dutch
+# File ending: NL
+# Codepage: 850
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Documentatie voor het gebruik van het programma Free-DOS MODE
+
+	(c) Copyright 1994-1995 door K. Heidenstrom.
+
+	Gewijzigd:
+
+	KH.19941231.001  (MODE 1.0.0)  Eerste versie
+	KH.19950116.002  (MODE 1.0.2)  Switchar-documentatie toegevoegd
+	KH.19950520.003  (MODE 1.0.3)  Geen wijzigingen in functionaliteit
+	KH.19950805.004  (MODE 1.0.4)  Modifier (shift-status) opties toegevoegd
+
+
+1.  JURIDISCH
+
+	Op dit programma rust Copyright 1994-1995 door K. Heidenstrom. Het is
+	specifiek geschreven voor het Free-DOS project. De auteur is bereikbaar
+	via kheidens@actrix.gen.nz op het Internet of per post:
+	K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	Dit programma is vrije software. U mag de broncode en het uitvoerbare
+	bestand herdistribueren en/of het programma wijzigen onder de
+	voorwaarden van de GNU General Public License zoals gepubliceerd door
+	de Free Software Foundation; ofwel versie 2 van de licentie, of
+	(naar uw keuze) een latere versie.
+
+	Dit programma wordt gedistribueerd in de hoop dat het nuttig zal zijn,
+	maar wordt geleverd "as-is", zonder enige garantie van welke aard dan
+	ook, inclusief de impliciete garantie van verkoopbaarheid of
+	geschiktheid voor een bepaald doel. In geen geval is de auteur
+	aansprakelijk voor enige schade van welke aard dan ook die verband houdt
+	met het gebruik van dit programma. Zie de GNU General Public License
+	voor meer details.
+
+	U zou een kopie van de GNU General Public License bij dit programma
+	ontvangen moeten hebben; zo niet, schrijf dan naar de Free Software
+	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  FUNCTIE EN GEBRUIKSSYNTAXIS
+
+	Het MODE-programma voert zes afzonderlijke functies uit, die hieronder
+	afzonderlijk worden beschreven.
+
+2.1.  VIDEOMODUS EN AANTAL SCHERMREGELS INSTELLEN
+
+	MODE maakt het mogelijk de videomodus in te stellen op een van de vijf
+	modi. De syntaxis is:
+
+	MODE Videomodus[,Regels]
+
+	De modi zijn:
+
+	MONO	Monochrome modus, zoals gebruikt met de MDA- en
+		Hercules-adapterkaarten, en ook ge‰muleerd op EGA- en VGA-kaarten.
+		Deze modus is de enige modus die standaard de mogelijkheid heeft
+		om tekens op het scherm te onderstrepen. Deze modus kan niet
+		worden geselecteerd op de CGA-videokaart.
+
+	BW40	40-koloms modus met kleuronderdrukking. Deze modus is specifiek
+		voor de CGA-adapter en geeft een weergave van 40 kolommen bij
+		25 regels. De kleurinformatie van het samengestelde videosignaal
+		van de CGA-kaart wordt uitgeschakeld, zodat de weergave in
+		zwart-wit is op een samengestelde kleurmonitor, met zestien
+		grijstinten.
+		Als deze modus wordt geselecteerd op een EGA- of VGA-kaart, of
+		een CGA-kaart die niet is aangesloten op een televisietoestel of
+		een samengestelde kleurmonitor, zal deze er hetzelfde uitzien
+		als de CO40-modus (d.w.z. de kleur wordt niet onderdrukt). Deze
+		modus kan niet worden geselecteerd op MDA- en Hercules-kaarten.
+
+	BW80	80-koloms modus met kleuronderdrukking. Deze modus is ook
+		specifiek voor de CGA-adapter en is hetzelfde als BW40, behalve
+		dat er 80 kolommen zijn.
+		Als deze modus wordt geselecteerd op een EGA- of VGA-kaart, of
+		een CGA-kaart die niet is aangesloten op een televisietoestel of
+		een samengestelde kleurmonitor, zal deze er hetzelfde uitzien
+		als de CO80-modus (d.w.z. de kleur wordt niet onderdrukt). Deze
+		modus kan niet worden geselecteerd op MDA- en Hercules-kaarten.
+
+	CO40	40-koloms kleurmodus. Deze modus geeft een kleurweergave van
+		40 kolommen bij 25 regels. Het wordt ondersteund door CGA-, EGA-
+		en VGA-adapters, maar niet door MDA- en Hercules-kaarten.
+
+	CO80	80-koloms kleurmodus. Deze modus geeft een weergave van 80
+		kolommen bij 25 regels en is de normale weergavemodus voor CGA-,
+		EGA- en VGA-kaarten. Het wordt niet ondersteund door MDA- en
+		Hercules-kaarten. Op EGA-kaarten ondersteunt deze modus ook
+		een variant met 43 regels, en op VGA-kaarten worden de variant
+		met 43 regels en een variant met 50 regels ondersteund.
+
+		De 43-regels- en 50-regels-modi kunnen worden geselecteerd door
+		",43" of ",50" op te geven na de CO80 op de MODE-opdrachtregel.
+		Als deze parameter niet wordt opgegeven, wordt de standaardwaarde
+		van 25 regels gebruikt.
+
+	Eenmaal ingesteld, blijft de videomodus van kracht totdat deze wordt
+	gewijzigd door een MODE-opdracht of door een programma. De videomodus
+	is niet permanent vergrendeld - programma's zijn vrij om de videomodus
+	 naar behoefte te wijzigen.
+
+2.2.  SERIÓLE POORTPARAMETERS CONFIGUREREN
+
+	MODE maakt het mogelijk de communicatieparameters van een seri‰le poort
+	te configureren. De syntaxis is:
+
+	MODE COMn:r,p,d,s
+
+	n	Specificeert welke seri‰le poort moet worden geconfigureerd, in
+		het bereik van 1 tot 4. Als de seri‰le poort niet bestaat, zal
+		MODE een fout melden.
+
+	r	Specificeert de baudrate in bits per seconde. Waarden zijn:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 en 115200.
+
+		1200, 2400, 4800 en 9600 kunnen respectievelijk worden afgekort
+		tot 12, 24, 48 en 96. 14400, 19200, 28800, 38400 en 57600
+		kunnen worden afgekort tot hun eerste twee of drie cijfers.
+		115200 kan worden afgekort tot 115 of 1152.
+
+	p	Specificeert het type pariteit dat wordt gegenereerd en
+		gecontroleerd op de databytes. Waarden zijn:
+
+		E = Even pariteit
+		O = Oneven pariteit (Odd)
+		N = Geen pariteit (None)
+
+	d	Specificeert het aantal databits dat wordt verzonden en
+		ontvangen. De toegestane waarden zijn 5, 6, 7 en 8.
+
+	s	Specificeert het aantal stopbits dat wordt verzonden en
+		verwacht. Dit kan 1 of 2 zijn. Als er 2 stopbits worden gebruikt
+		in combinatie met 5 databits, zal de seri‰le poort feitelijk
+		1 1/2 stopbit genereren en controleren.
+
+	Eenmaal ingesteld, blijven de seri‰le poortparameters van kracht totdat
+	ze worden gewijzigd door een MODE-opdracht of door een programma. De
+	instellingen van de seri‰le poort zijn niet permanent vergrendeld -
+	programma's zijn vrij om ze naar behoefte te wijzigen.
+
+2.3.  PARALLELLE POORT OMLEIDING EN ONEINDIGE HERHALINGEN
+
+	MODE maakt het mogelijk de uitvoer van de parallelle (LPT) poort om te
+	leiden naar een seri‰le (COM) poort, naar NUL (d.w.z. niets), en kan
+	ook oneindig herhalen als de randapparatuur niet reageert.
+
+	Deze functies worden uitgevoerd door het residente gedeelte van MODE,
+	dat automatisch indien nodig wordt ge‹nstalleerd wanneer de functie
+	wordt aangevraagd.
+
+	De syntaxis is:
+
+	MODE LPTn:P		Oneindige timeout op parallelle poort
+	MODE LPTn:=COMx		Printeruitvoer omleiden naar COM-poort
+	MODE LPTn:=NUL:		Printeruitvoer omleiden naar NUL
+	MODE LPTn:		Omleiding en oneindige timeout verwijderen
+
+	De LPTn:P functie specificeert oneindige herhalingen bij timeout. Als
+	dit is ingeschakeld, zal MODE continu proberen als de printer niet
+	reageert. Als dit niet is ingeschakeld en de printer niet reageert
+	binnen een bepaalde tijd (meestal ongeveer een halve minuut), zal er
+	een schrijfdefectfout worden gemeld.
+
+	De LPTn:=COMx en LPTn:=NUL: functies specificeren omleiding van de
+	printeruitvoer. Elke parallelle poort (of deze nu bestaat of niet) kan
+	worden omgeleid naar elke bestaande seri‰le poort, of naar NUL. Meer
+	dan ‚‚n parallelle poort kan naar dezelfde seri‰le poort of naar NUL
+	worden omgeleid. Deze functies zijn handig als u een seri‰le printer
+	hebt, of als u geen printer hebt en wilt voorkomen dat de computer
+	vastloopt als een programma probeert af te drukken naar een niet-
+	bestaande printer.
+
+	De LPTn: functie verwijdert elke omleiding en oneindige timeout die is
+	geconfigureerd voor de opgegeven poort, en herstelt de normale werking.
+
+2.4.  HARDE SCHIJF PARKEERFUNCTIES (PARK)
+
+	MODE zal de harde schijf of harde schijven parkeren (alleen de eerste
+	twee fysieke harde schijven in het systeem), ofwel onmiddellijk, of
+	nadat de schijf gedurende een bepaalde tijd inactief is geweest.
+
+	De getimede parkeerfunctie wordt uitgevoerd door het residente gedeelte
+	van MODE, dat automatisch indien nodig wordt ge‹nstalleerd.
+
+	De syntaxis is:
+
+	MODE PARK			Nu parkeren
+	MODE PARK,minuten[:seconden]	Parkeren nadat harde schijf inactief
+	was
+
+	De PARK-functie parkeert de harde schijf of schijven onmiddellijk en
+	wacht tot u de computer uitschakelt. U kunt ook op Ctrl-C drukken om
+	af te sluiten en terug te keren naar DOS.
+
+	De PARK,minuten[:seconden] functie zorgt ervoor dat de harde schijf of
+	schijven worden geparkeerd na een bepaalde periode van inactiviteit,
+	die maximaal 50 minuten kan bedragen. Als u twee fysieke harde
+	schijven hebt, worden ze beide afzonderlijk afgehandeld.
+
+	Eenmaal ingesteld, kunt u de tijdsperiode wijzigen door de opdracht
+	opnieuw uit te voeren met een andere tijdwaarde. De getimede parkeer-
+	functie kan niet worden uitgeschakeld - u moet herstarten om deze te
+	verwijderen.
+
+	Deze functies zijn over het algemeen alleen nuttig voor oudere
+	machines. Moderne harde schijven parkeren zichzelf automatisch wanneer
+	ze worden uitgeschakeld.
+
+2.5.  TYPEMATIC FUNCTIES (TOETSHERHALING)
+
+	MODE maakt het mogelijk de typematic (auto-herhaling) parameters voor
+	de initi‰le herhalingsvertraging en herhalsnelheid in te stellen en
+	optioneel te vergrendelen.
+
+	De typematic vergrendelingsfunctie wordt uitgevoerd door het residente
+	gedeelte van MODE, dat automatisch indien nodig wordt ge‹nstalleerd.
+
+	De syntaxis is:
+
+	MODE DELAY=d RATE=r		Typematic-parameters instellen
+	MODE DELAY=d RATE=r LOCK	Parameters instellen en vergrendelen
+
+	d	Specificeert de initi‰le vertraging, het bereik is 1 tot 4 en de
+		vertraging ligt tussen 1/4 seconde (1) en ‚‚n seconde (4).
+
+	r	Specificeert de auto-herhalsnelheid. Het bereik is 1 tot 32 en
+		de snelheid ligt tussen twee herhalingen per seconde (1) en 30
+		herhalingen per seconde (32).
+
+	LOCK	Specificeert dat de typematic-parameters moeten worden
+		vergrendeld. Zodra dit is gebeurd, kunnen de parameters worden
+		gewijzigd door MODE opnieuw uit te voeren, maar kunnen ze niet
+		worden gewijzigd door de meeste andere programma's. Dit kan
+		handig zijn, omdat sommige programma's de typematic-parameters
+		zonder uw toestemming wijzigen. Het is echter niet volledig
+		onfeilbaar.
+
+	Merk op dat zowel DELAY als RATE moeten worden opgegeven voor deze
+	functies.
+
+	MODE probeert niet te bevestigen of de typematic-instelling beschikbaar
+	is op de machine. MODE accepteert alle typematic-opdrachten, of de
+	machine ze nu daadwerkelijk ondersteunt of niet.
+
+2.6.  SWITCHAR FUNCTIES
+
+	MODE kan het DOS-schakelteken (switchar) weergeven en instellen.
+	De standaard switchar is de schuine streep naar voren, '/'. De switchar
+	is het teken dat wordt gebruikt om het begin van een optieschakelaar
+	aan te geven, bijv. de /P schakelaar bij de opdracht DIR. Gewoonlijk
+	kan de switchar worden gewijzigd in '-'. De switchar is een niet-
+	gedocumenteerde DOS-functie die door weinig programma's goed wordt
+	ondersteund.
+
+	De syntaxis is:
+
+	MODE SWITCHAR			Huidige switchar weergeven
+	MODE SWITCHAR=x			Switchar instellen op teken x
+	MODE SWITCHAR=n			Switchar instellen op ASCII-waarde n
+
+	De parameter SWITCHAR op zichzelf zorgt ervoor dat MODE de huidige
+	switchar weergeeft. Het gebruik van SWITCHAR= stelt de switchar in. De
+	nieuwe switchar kan worden opgegeven als een teken (bijv. 'MODE
+	SWITCHAR=/') of als een getal (bijv. 'MODE SWITCHAR=45').
+
+2.7.  MODIFIER (SHIFT STATUS) FUNCTIES
+
+	MODE kan de drie vergrendelbare shift-statussen wijzigen (caps lock,
+	numlock en scroll lock). Deze functie mag niet worden gebruikt op
+	machines met originele PC- of XT-toetsenborden, omdat de indicatie-
+	leds op deze toetsenborden niet door de computer kunnen worden
+	aangestuurd en uit de pas zullen lopen met de shift-statussen van de
+	computer. MODE detecteert deze machines echter niet. Op AT's en
+	nieuwere machines is er geen probleem.
+
+	De parametersyntaxis voor deze opdracht bestaat uit de volgende opties:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Elke niet-conflicterende en niet-gedupliceerde combinatie van deze
+	opties is toegestaan. Ook kan SCRLOCK worden uitgebreid tot SCROLLLOCK.
+
+3.  ALGEMEEN
+
+	Parameters voor MODE zijn niet hoofdlettergevoelig.
+
+	MODE kan slechts ‚‚n opdracht per aanroep verwerken. Als u meerdere
+	LPT-poorten wilt omleiden, moet u voor elke poort een afzonderlijke
+	MODE-opdracht gebruiken. Opdrachten van verschillende typen kunnen niet
+	worden gecombineerd op de opdrachtregel.
+
+	Foutmeldingen worden altijd verzonden naar StdErr. Informatieve
+	berichten worden verzonden naar de standaarduitvoer en kunnen worden
+	omgeleid naar NUL: voor een stille werking.
+
+	Errorlevels die door MODE worden geretourneerd, zijn als volgt:
+
+	0	Geen fout
+	115	Seri‰le poort bestaat niet (voor COMn: of LPTn:=COMx)
+	117	Geen harde schijf/schijven gevonden om te parkeren
+	118	Gespecificeerde videomodus wordt niet ondersteund op deze machine
+	162	Onvoldoende geheugen (MODE vereist ongeveer 6K geheugen)
+	241	Parameter buiten bereik (bijv. tijdwaarde, LPT-poortnummer enz.)
+	242	Kan geen 43-regels- of 50-regels-modi hebben met andere modi dan
+	CO80
+	243	Onbekende baudrate
+	244	Moet zowel DELAY= als RATE= opgeven voor typematic-instelling
+	246	Er is meer dan ‚‚n opdracht of opdrachttype opgegeven
+	255	Onjuiste gebruikssyntaxis (alle syntaxis-fouten)
+
+	MODE is een TSR-programma. Indien nodig installeert MODE een deel van
+	zichzelf resident in het geheugen van de computer. Dit residente deel
+	voert printeromleiding en timeout-afhandeling uit, evenals automatisch
+	parkeren van de harde schijf en het vergrendelen van typematic-
+	parameters. Het kan niet worden verwijderd zonder te herstarten
+	(tenzij de public domain programma's MARK en RELEASE worden gebruikt).
+	Als extra residente functies vereist zijn en het residente deel is
+	ge‹nstalleerd, zal MODE die functies in het residente deel inschakelen
+	in plaats van een ander resident deel te installeren.
+
+	Omdat MODE een TSR is, kan het incompatibel zijn met toepassingen of
+	andere TSR's die u gebruikt. Als er problemen optreden, probeer dan vast
+	te stellen welke programma's conflicteren. Het kan mogelijk zijn om het
+	probleem te vermijden door de programma's in een andere volgorde te
+	installeren.
+
+	Als u een fout in MODE vindt, informeer dan de auteur. De contact-
+	gegevens staan in sectie 1 van dit document.
+
+4.  GEBRUIKSVOORBEELDEN
+
+	Hier is een voorbeeld van het gebruik van MODE in AUTOEXEC.BAT, waarbij
+	alle functies worden getoond:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	Deze reeks selecteert eerst de 43-regels kleurweergavemodus, en
+	configureert vervolgens de seri‰le poortparameters voor COM1, COM2 en
+	COM3 (respectievelijk 9600, 19200 en 2400 bps, zonder pariteit, acht
+	databits en ‚‚n stopbit). Deze seri‰le poortparameters zijn niet
+	permanent vergrendeld, en een andere MODE-opdracht of een ander
+	programma kan deze op elk moment wijzigen.
+	Vervolgens wordt de LPT1-uitvoer omgeleid naar COM2, dus alles wat naar
+	LPT1 wordt afgedrukt, wordt in plaats daarvan via COM2 verzonden met
+	19200 bps (bijvoorbeeld naar een seri‰le laserprinter), en LPT2 en LPT3
+	worden omgeleid naar NUL zodat alles wat naar hen wordt verzonden
+	nergens heen gaat.
+	Vervolgens wordt een getimede harde schijf parkeerfunctie ge‹nstalleerd,
+	die de harde schijf of schijven parkeert na 30 seconden geen harde-
+	schijfactiviteit.
+	Ten slotte wordt de kortste vertraging en de hoogste snelheid voor de
+	typematic-toetsenbordfunctie geselecteerd en vergrendeld, en de DOS
+	switchar wordt ingesteld op een koppelteken ('-').
+
+				   ----//----

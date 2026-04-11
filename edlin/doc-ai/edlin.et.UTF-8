@@ -1,0 +1,156 @@
+# Language: Estonian
+# File ending: ET
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+
+Programm edlin on väike reatoimeti, mis on loodud FreeDOS-i jaoks vana
+MS-DOS-i programmi edlin funktsionaalse kloonina. See erineb MS edlinist
+selle poolest, et esiteks on see vaba tarkvara ja teiseks on kasutajaliides
+mõnes kohas veidi teistsugune. Erinevuse põhjuseks on see, et kasutaja ei
+peagi trükkima MS edlini süntaksi poolt nõutavaid juhtmarke.
+
+EDLINI KÄIVITAMINE
+
+Programmi edlin käivitatakse kas iseseisvalt:
+
+  edlin
+
+või koos failinimega, mis loetakse alguses sisse:
+
+  edlin failinimi
+
+EDLINI SISEKÄSUD
+
+Järgmistes käsuloendites tähistavad nurksulud valikulisi osi. Sümbol #
+tähistab rea numbrit, mis on kas numbrite jada, punkt (.) tähistamas praegust
+rida, dollarimärk ($) tähistamas faili viimast rida või rea number, millele
+on liidetud või lahutatud teine rea number, nii et
+
+  .,.+1p
+
+väljastab praeguse rea ja sellele järgneva rea.
+
+Dollarimärk järgmistes loendites tähistab märgijada (stringi). Need võivad
+olla ümbritsetud kas ühekordsete või kahekordsete jutumärkidega ja võivad
+sisaldada järgmisi koodijadasid (escape sequences):
+
+  \a - helisignaal (alert)
+  \b - tagasilükkeklahv (backspace)
+  \e - escape
+  \f - lehevahetus (formfeed)
+  \t - horisontaalne tabulaator
+  \v - vertikaalne tabulaator
+  \" - jutumärk
+  \' - ülakoma
+  \. - punkt
+  \\ - kurakaldkriips (backslash)
+  \xXX (kus X on kuueteistkümnendsüsteemi number 0-9, a-f) - hex-konstant
+  \dddd (kus d on kümnendsüsteemi number 0-9) - detsimaalkonstant
+  \OOO (kus O on kaheksandsüsteemi number 0-7) - oktalkonstant
+  \^C - juhtmark (control character)
+
+Programm edlin toetab järgmist süntaksit:
+
+# - ÜHE REA MUUTMINE
+
+edlin väljastab numbriga tähistatud rea ja järgmine sisestatud rida asendab
+failis väljastatud rea.
+
+a - LISA (APPEND)
+
+See käsk on samaväärne käsuga $+1i .
+
+[#],[#],#,[#]c - REAVAHEMIKU KOPEERIMINE
+
+See käsk kopeerib järjestikuste ridade ploki teise kohta puhvris.
+Parameetrid on:
+
+  * Esimene rida, mida kopeerida (vaikimisi = praegune rida)
+  * Viimane rida, mida kopeerida (vaikimisi = praegune rida)
+  * Rida, mille ette soovitakse plokk lisada
+  * Mitu korda plokk kopeeritakse (vaikimisi = 1)
+
+Pärast kopeerimist saab kasutada käsku l (list), et näha uue
+numeratsiooniga ridu.
+
+[#][,#]d - REAPLOKI KUSTUTAMINE
+
+See käsk kustutab järjestikuste ridade ploki. Parameetrid on kustutatava
+ploki esimene ja viimane rida.
+
+Kui jätate teise parameetri ära, kustutatakse ainult esimese parameetriga
+määratud rida. Kui jätate esimese ära, kustutatakse plokk praegusest reast
+kuni teise parameetrini (lisage kindlasti koma). Mõlema parameetri puudumisel
+kustutatakse praegune rida.
+
+e failinimi - SALVESTA JA VÄLJU
+
+See käsk on samaväärne järgnevaga:
+
+  w failinimi
+  q
+
+[#]i - SISESTUSREŽIIM
+
+See käsk lülitab sisse sisestusrežiimi. Parameeter on rea number, mille ette
+soovitakse ridu lisada.
+
+Sisestamise ajal on lubatud kasutada ülaltoodud koodijadasid. Režiimist
+väljumiseks trükkige punkt (.) tühjale reale (kui vajate rida, mis sisaldab
+ainult punkti, kasutage escape-koodi).
+
+Pärast väljumist saab praeguseks reaks lisatud teksti järgne rida, v.a juhul
+kui tekst lisati lõppu; sel juhul saab praeguseks reaks viimane rida.
+
+[#][,#]l - RIDADE LOETLEMINE
+
+Kuvab tekstiridu ekraanil. Ilma esimese parameetrita alustatakse kuvamist 11
+rida enne praegust rida. Ilma teise parameetrita kuvatakse lehekülg teksti.
+Mõlema puudumisel kuvatakse lehekülg alates 11 rida enne praegust. Kui ridade
+arv on suurem kui ekraanitäis, peatub programm pärast iga lehekülge.
+
+[#],[#],#m - PLOKI LIIGUTAMINE
+
+Liigutab tekstiploki kolmandas parameetris määratud rea ette. See toimib nagu
+kopeerimine koos algse ploki kustutamisega.
+
+[#][,#]p - LEHEKÜLG (PAGE)
+
+Sarnane käsuga l, kuid vaikimisi lehekülg algab praegusest reast (mitte 11
+rida varem).
+
+q - VÄLJU (QUIT)
+
+Enesestmõistetav. Väljub ilma täiendava salvestamiseta.
+
+[#][,#][?]r$,$ - SÕNE ASENDAMINE
+
+Asendab kõik esimese sõne esinemised teisega valitud vahemikus. Ilma esimese
+parameetrita algab asendamine pärast praegust rida; ilma teiseta lõpeb see
+faili lõpus.
+
+Küsimärk (?) küsib enne asendamist kinnitust.
+
+[#][,#][?]s$ - ALAMSÕNE OTSIMINE
+
+Otsib esimest rida, mis sisaldab määratud sõnet. Ilma esimese parameetrita
+algab otsing praegusest reast, ilma teiseta kestab faili lõpuni.
+
+Küsimärk (?) aktiveerib kinnituse. Vastus "E" (Ei) jätkab otsingut, vastus
+"J" (Jah) lõpetab selle. Edu korral seatakse praeguseks reaks leitud asukoht.
+
+[#]t failinimi - FAILI ÜLEKANDMINE
+
+Lisab välise faili sisu määratud rea ette. Vaikimisi on selleks praegune rida.
+
+[#]w failinimi - FAILI KIRJUTAMINE
+
+Kirjutab määratud arvu ridu faili. Ilma parameetrita kirjutatakse kogu puhvri
+sisu faili.
+
+AUTOR/HALDAJA
+
+Gregory Pietsch, gpietsch@comcast.net

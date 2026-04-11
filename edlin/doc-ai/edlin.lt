@@ -1,0 +1,159 @@
+# Language: Lithuanian
+# File ending: LT
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+
+Programa edlin yra nedidel” eilu—i÷ redagavimo priemon”, sukurta FreeDOS
+sistemai kaip senosios MS-DOS edlin programos funkcinis klonas. Ji skiriasi
+nuo MS edlin tuo, kad, pirma, tai yra laisvoji programin” ‘ranga, ir, antra,
+vartotojo s–saja keliose vietose yra ’iek tiek kitokia. æie skirtumai sukurti
+tam, kad vartotojui nereik”t÷ ‘vedin”ti valdymo simboli÷, kuri÷ reikalauja
+MS edlin sintaks”.
+
+EDLIN PALEIDIMAS
+
+Programa edlin paleidÿiamas arba viena:
+
+  edlin
+
+arba su failo vardu, kuris nuskaitomas paleidimo metu:
+
+  edlin failas
+
+EDLIN VIDIN∏S KOMANDOS
+
+Toliau pateiktuose komand÷ s–ra’uose lauÿtiniai skliaustai nurodo pasirinktines
+dalis. Simbolis # rei’kia eilut”s numer‘, kuris gali b◊ti skaitmen÷ eilut”,
+ta’kas (.), nurodantis dabartin“ eilut“, dolerio ÿenklas ($), nurodantis
+paskutin“ failo eilut“, arba eilut”s numeris, prie kurio pridedamas arba
+atimamas kitas eilut”s numeris, pavyzdÿiui:
+
+  .,.+1p
+
+i’veda dabartin“ eilut“ ir po jos einan—i– eilut“.
+
+Dolerio ÿenklas s–ra’uose rei’kia simboli÷ eilut“. Jos gali b◊ti ra’omos
+viengubose arba dvigubose kabut”se ir gali tur”ti ’ias valdymo sekas
+(escape sequences):
+
+  \a - signalas (alert)
+  \b - gr‘ÿimo klavi’as (backspace)
+  \e - escape
+  \f - puslapio post◊mis (formfeed)
+  \t - horizontalus tabuliavimas
+  \v - vertikalus tabuliavimas
+  \" - dvigubos kabut”s
+  \' - vienguba kabut”
+  \. - ta’kas
+  \\ - atvirk’tinis pasvirasis br◊k’nys
+  \xXX (kur X yra ’e’ioliktainis skaitmuo 0-9, a-f) - ’e’ioliktain” konstanta
+  \dddd (kur d yra de’imtainis skaitmuo 0-9) - de’imtain” konstanta
+  \OOO (kur O yra a’tuntainis skaitmuo 0-7) - a’tuntain” konstanta
+  \^C - valdymo simbolis (control character)
+
+Programa edlin palaiko ’i– sintaks“:
+
+# - VIENOS EILUT∏S REDAGAVIMAS
+
+edlin i’veda numeriu nurodyt– eilut“, o kita ‘vesta eilut” pakei—ia i’vest–j–
+eilut“ faile.
+
+a - PRID∏TI (APPEND)
+
+æi komanda yra ekvivalenti $+1i .
+
+[#],[#],#,[#]c - EILU∂I∆ DIAPAZONO KOPIJAVIMAS
+
+æi komanda nukopijuoja gretim÷ eilu—i÷ blok– ‘ kit– buferio viet–. Parametrai:
+
+  * Pirmoji kopijuojama eilut” (numatytoji = dabartin” eilut”)
+  * Paskutin” kopijuojama eilut” (numatytoji = dabartin” eilut”)
+  * Eilut”, prie’ kuri– norite ‘terpti blok–
+  * Bloko kopijavimo kart÷ skai—ius (numatytasis = 1)
+
+Nukopijav“ eilutes, galite naudoti komand– l (list), kad pamatytum”te teisingai
+pernumeruotas eilutes.
+
+[#][,#]d - EILU∂I∆ BLOKO IæTRYNIMAS
+
+æi komanda i’trina gretim÷ eilu—i÷ blok–. Parametrai yra pirmoji ir paskutin”
+trinamo bloko eilut”s.
+
+Jei praleisite antr–j‘ parametr–, bus i’trinta tik pirmajame nurodyta eilut”.
+Jei praleisite pirm–j‘, bus i’trintas blokas nuo dabartin”s iki antrajame
+parametre nurodytos eilut”s (nepamir’kite kablelio). Praleidus abu parametrus,
+i’trinama dabartin” eilut”.
+
+e failas - IæSAUGOTI IR IæEITI
+
+æi komanda yra ekvivalenti sekai:
+
+  w failas
+  q
+
+[#]i - ΩTERPIMO REœIMAS (INSERT)
+
+æi komanda ‘jungia ‘terpimo reÿim–. Parametras yra eilut”s numeris, prie’
+kur‘ norite ‘terpti nauj– tekst–.
+
+Ωterpimo metu leidÿiama naudoti auk’—iau nurodytas valdymo sekas. Nor”dami
+i’eiti i’ reÿimo, ‘ra’ykite ta’k– (.) tu’—ioje eilut”je (jei reikia eilut”s
+tik su ta’ku, naudokite valdymo simbol‘).
+
+I’”jus i’ reÿimo, eilut” po ‘terpto teksto tampa dabartine eilute, nebent
+tekstas buvo prid”tas gale; tokiu atveju paskutin” eilut” tampa dabartine.
+
+[#][,#]l - IæVARDINTI EILUTES (LIST)
+
+I’veda teksto eilutes ekrane. Be pirmojo parametro rodymas pradedamas 11
+eilu—i÷ prie’ dabartin“. Be antrojo parametro rodomas puslapis teksto nuo
+pradÿios ta’ko. Be abiej÷ parametr÷ rodomas puslapis nuo 11 eilu—i÷ prie’
+dabartin“. Jei eilu—i÷ yra daugiau nei ekrane, programa sustos po kiekvieno
+puslapio.
+
+[#],[#],#m - PERKELTI BLOKµ (MOVE)
+
+Perkelia teksto blok– prie’ tre—iajame parametre nurodyt– eilut“. Tai veikia
+kaip kopijavimas ir v”lesnis originalo i’trynimas.
+
+[#][,#]p - PUSLAPIS (PAGE)
+
+Pana’u ‘ l, ta—iau numatytasis puslapis pradedamas nuo dabartin”s eilut”s, o
+ne 11 eilu—i÷ prie’ j–.
+
+q - IæEITI (QUIT)
+
+Savaime suprantama. I’eina nei’saugojus papildom÷ pakeitim÷.
+
+[#][,#][?]r$,$ - PAKEISTI EILUT∑ (REPLACE)
+
+Pakei—ia visus pirmosios eilut”s pasikartojimus antr–ja nurodytame diapazone.
+Be pirmojo parametro pradedama po dabartin”s eilut”s; be antrojo - baigiama
+failo gale.
+
+Klaustukas (?) reikalauja patvirtinimo prie’ kiekvien– pakeitim–.
+
+[#][,#][?]s$ - IEæKOTI EILUT∏S (SEARCH)
+
+Ie’ko pirmosios eilut”s, kurioje yra nurodyta seka. Be pirmojo parametro
+ie’koma nuo dabartin”s eilut”s, be antrojo - iki galo.
+
+Klaustukas (?) ‘jungia patvirtinim–. Atsakius ˜NÚ (Ne), paie’ka t“siama;
+atsakius ˜TÚ (Taip), ji nutraukiama. S”km”s atveju dabartin” eilut”
+nustatoma ties radimo vieta.
+
+[#]t failas - PERKELTI FAILµ (TRANSFER)
+
+Ωterpia i’orinio failo turin‘ prie’ nurodyt– eilut“. Jei nenurodyta,
+naudojama dabartin” eilut”.
+
+[#]w failas - ΩRAæYTI FAILµ (WRITE)
+
+Ωra’o nurodyt– eilu—i÷ skai—i÷ ‘ fail–. Be parametr÷ ‘ra’omas visas buferis.
+
+AUTORIUS/PRIœI«R∏TOJAS
+
+Gregory Pietsch, gpietsch@comcast.net

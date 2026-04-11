@@ -1,0 +1,36 @@
+; Language: Russian
+; File ending: RU
+; Codepage: 866
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; Miscellaneous DISPLAY loading error messages
+errAlready       DB     "DISPLAY уже загружен", 0dH, 0aH, "$"
+errNoDRDOS       DB     "FD-DISPLAY несовместим с этой версией DR-KEYB", 0dH, 0aH, "$"
+sMemAllocatedBuffers
+                 DB     "Выделено буферов: $"
+sInTPA           DB     " в TPA, $"
+sInXMS           DB     " в XMS$"
+
+; Hardware-driver specific messages
+errAcient        DB     "DISPLAY: для этого типа оборудования требуется как минимум адаптер EGA", 0dH, 0aH, "$"
+errNoCGA         DB     "DISPLAY: адаптер CGA не найден", 0dH, 0aH, "$"
+errDrvSpecific   DB     "DISPLAY: Критическая ошибка драйвера", 0dH, 0aH, "$"
+
+; Command line parsing error messages
+SyntaxErrorStr:         DB      "Синтаксическая ошибка ($"
+SES_ParamRequired       DB      ") Отсутствует обязательный параметр", 0dH, 0aH, "$"
+SES_UnexpectedEOL       DB      ") Неожиданный конец строки", 0dH, 0aH, "$"
+SES_IllegalChar         DB      ") Недопустимый символ", 0dH, 0aH, "$"
+SES_NameTooLong         DB      ") Слишком длинное имя драйвера устройства", 0dH, 0aH, "$"
+SES_OpenBrExpected      DB      ") ожидается (", 0dH, 0aH, "$"
+SES_WrongHwName         DB      ") Неизвестное имя устройства", 0dH, 0aH, "$"
+SES_CommaExpected       DB      ") ожидается ,", 0dH, 0aH, "$"
+SES_CloseBrExpected     DB      ") ожидается )", 0dH, 0aH, "$"
+SES_WrongNumberPars     DB      ") Неверное количество параметров", 0dH, 0aH, "$"
+SES_TooManyPools        DB      ") Слишком много программных кодовых страниц (МАКС=5)", 0dH, 0aH, "$"
+SES_ListTooLong         DB      ") Список слишком длинный", 0dH, 0aH, "$"
+SES_TooManyHWPools      DB      ") Слишком много аппаратных кодовых страниц", 0dh, 0ah, "$"
+SES_NoAllocatedBufs     DB      ") Недостаточно памяти для выделения буфера", 0dH, 0aH, "$"
+SES_InvalidParameter    DB      ") Неверный параметр", 0dh, 0ah, "$"
+

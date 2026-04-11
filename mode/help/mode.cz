@@ -1,0 +1,288 @@
+# Language: Czech
+# File ending: CZ
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Dokumentace k pou§it¡ programu Free-DOS MODE
+
+	(c) Copyright 1994-1995 K. Heidenstrom.
+
+	Upraveno:
+
+	KH.19941231.001  (MODE 1.0.0)  Prvn¡ verze
+	KH.19950116.002  (MODE 1.0.2)  Pıid na dokumentace ke switchar
+	KH.19950520.003  (MODE 1.0.3)  ¦ dn‚ zmØny ve funkŸnosti
+	KH.19950805.004  (MODE 1.0.4)  Pıid ny volby modifik tor… (shift-state)
+
+
+1.  PRµVNÖ INFORMACE
+
+	Tento program je Copyright 1994-1995 K. Heidenstrom. Byl naps n
+	speci lnØ pro projekt Free-DOS. Autora lze kontaktovat na adrese
+	kheidens@actrix.gen.nz na Internetu nebo poçtou:
+	K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	Tento program je svobodnì software. M…§ete redistribuovat zdrojovì
+	k¢d a spustitelnì soubor a/nebo program upravovat podle podm¡nek
+	GNU General Public License, jak byla zveıejnØna Free Software
+	Foundation; buÔ verze 2 t‚to licence, nebo (dle vaç¡ volby)
+	kter‚koli pozdØjç¡ verze.
+
+	Tento program je ç¡ıen v nadØji, §e bude u§iteŸnì, ale je
+	poskytov n "tak, jak je", bez jak‚koli z ruky, vŸetnØ
+	pıedpokl dan‚ z ruky prodejnosti nebo vhodnosti pro konkr‚tn¡ £Ÿel.
+	V § dn‚m pı¡padØ nebude autor odpovØdnì za jak‚koli çkody
+	souvisej¡c¡ s pou§¡v n¡m tohoto programu. Dalç¡ podrobnosti
+	naleznete v GNU General Public License.
+
+	Kopii GNU General Public License byste mØli obdr§et spolu s t¡mto
+	programem; pokud ne, napiçte na adresu Free Software Foundation,
+	Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  FUNKCE A SYNTAXE POU¦ITÖ
+
+	Program MODE vykon v  çest samostatnìch funkc¡, kter‚ jsou pops ny
+	n¡§e.
+
+2.1.  NASTAVENÖ VIDEO RE¦IMU A PO¬TU üµDKŞ OBRAZOVKY
+
+	MODE umo§åuje nastavit video re§im na jeden z pØti re§im….
+	Syntaxe je:
+
+	MODE Videore§im[,ü dky]
+
+	Re§imy jsou:
+
+	MONO	Monochromatickì re§im, pou§¡vanì s kartami MDA a Hercules, a
+		tak‚ emulovanì na kart ch EGA a VGA. Tento re§im je jedinì,
+		kterì m  ve vìchoz¡m nastaven¡ schopnost podtrh vat znaky
+		na obrazovce. Tento re§im nelze zvolit na grafick‚ kartØ CGA.
+
+	BW40	Re§im se 40 sloupci a potlaŸenou barvou. Tento re§im je
+		specifickì pro adapt‚r CGA a poskytuje zobrazen¡ 40 sloupc…
+		na 25 ı dk…. Informace o barvØ v kompozitn¡m video sign lu z
+		karty CGA je vypnuta, tak§e zobrazen¡ je Ÿernob¡l‚ na
+		kompozitn¡m barevn‚m monitoru se çestn cti odst¡ny çedi.
+		Pokud je tento re§im vybr n na kartØ EGA nebo VGA, nebo na
+		kartØ CGA, kter  nen¡ pıipojena k televizi nebo
+		kompozitn¡mu monitoru, bude vypadat stejnØ jako re§im CO40
+		(barva nebude potlaŸena). Tento re§im nelze zvolit na
+		kart ch MDA a Hercules.
+
+	BW80	Re§im se 80 sloupci a potlaŸenou barvou. Tento re§im je tak‚
+		specifickì pro adapt‚r CGA a je stejnì jako BW40, kromØ toho,
+		§e m  80 sloupc….
+		Pokud je tento re§im vybr n na kartØ EGA nebo VGA, nebo na
+		kartØ CGA, kter  nen¡ pıipojena k televizi nebo monitoru,
+		bude vypadat stejnØ jako re§im CO80. Tento re§im nelze
+		zvolit na kart ch MDA a Hercules.
+
+	CO40	Barevnì re§im se 40 sloupci. Tento re§im poskytuje barevn‚
+		zobrazen¡ 40 sloupc… na 25 ı dk…. Je podporov n adapt‚ry
+		CGA, EGA a VGA, ale ne kartami MDA a Hercules.
+
+	CO80	Barevnì re§im se 80 sloupci. Tento re§im poskytuje zobrazen¡
+		80 sloupc… na 25 ı dk… a je to bØ§nì re§im pro karty CGA,
+		EGA a VGA. Nen¡ podporov n kartami MDA a Hercules. Na
+		kart ch EGA tento re§im podporuje tak‚ 43-ı dkovou variantu
+		a na kart ch VGA je podporov na 43-ı dkov  a 50-ı dkov 
+		varianta.
+
+		Re§imy se 43 a 50 ı dky lze zvolit zad n¡m ",43" nebo ",50"
+		za CO80 v pı¡kazov‚m ı dku MODE. Pokud tento parametr nen¡
+		zad n, pou§ije se vìchoz¡ch 25 ı dk….
+
+	Jednou nastavenì video re§im z…stane v platnosti, dokud nebude
+	zmØnØn pı¡kazem MODE nebo programem. Video re§im nen¡ trvale
+	uzamŸen - programy mohou mØnit video re§imy podle potıeby.
+
+2.2.  KONFIGURACE PARAMETRŞ SRIOVHO PORTU
+
+	MODE umo§åuje konfigurovat komunikaŸn¡ parametry s‚riov‚ho portu.
+	Syntaxe je:
+
+	MODE COMn:r,p,d,s
+
+	n	UrŸuje, kterì s‚riovì port m  bìt konfigurov n, v rozsahu
+		1 a§ 4. Pokud s‚riovì port neexistuje, MODE nahl s¡ chybu.
+
+	r	UrŸuje pıenosovou rychlost (baud rate) v bitech za sekundu.
+		Hodnoty jsou: 50, 110, 150, 300, 600, 1200, 2400, 4800,
+		9600, 14400, 19200, 28800, 38400, 57600 a 115200.
+
+		1200, 2400, 4800 a 9600 lze zkr tit na 12, 24, 48 a 96. Vyçç¡
+		rychlosti lze zkr tit na jejich prvn¡ dvØ nebo tıi Ÿ¡slice.
+		115200 lze zkr tit na 115 nebo 1152.
+
+	p	UrŸuje typ parity. Hodnoty jsou:
+
+		E = Sud  parita (Even)
+		O = Lich  parita (Odd)
+		N = ¦ dn  parita (None)
+
+	d	UrŸuje poŸet datovìch bit…. Povolen‚ hodnoty jsou 5, 6, 7 a 8.
+
+	s	UrŸuje poŸet stop bit…. To m…§e bìt 1 nebo 2. Pokud se pou§ij¡
+		2 stop bity s 5 datovìmi bity, s‚riovì port ve skuteŸnosti
+		vygeneruje a zkontroluje 1 1/2 stop bitu.
+
+	Nastaven¡ s‚riov‚ho portu z…stane v platnosti, dokud nebude zmØnØno
+	pı¡kazem MODE nebo programem. Nastaven¡ nejsou trvale uzamŸena.
+
+2.3.  PüESM·ROVµNÖ PARALELNÖHO PORTU A NEKONE¬N OPAKOVµNÖ
+
+	MODE umo§åuje pıesmØrovat vìstup paraleln¡ho (LPT) portu na s‚riovì
+	(COM) port, na NUL (tj. nikam) a tak‚ m…§e nekoneŸnØ opakovat
+	pokusy, pokud periferie neodpov¡d .
+
+	Tyto funkce prov d¡ rezidentn¡ Ÿ st programu MODE, kter  bude v
+	pı¡padØ potıeby automaticky instalov na.
+
+	Syntaxe je:
+
+	MODE LPTn:P		NekoneŸnì timeout na paraleln¡m portu
+	MODE LPTn:=COMx		PıesmØrovat vìstup tisk rny na port COM
+	MODE LPTn:=NUL:		PıesmØrovat vìstup tisk rny na NUL
+	MODE LPTn:		Zruçit pıesmØrov n¡ a nekoneŸnì timeout
+
+	Funkce LPTn:P urŸuje nekoneŸn‚ opakov n¡ pıi timeoutu. Pokud je
+	povolena, MODE bude neust le zkouçet odeslat data, pokud tisk rna
+	neodpov¡d . Jinak bude po urŸit‚ dobØ (asi p…l minuty) nahl çena
+	chyba z pisu.
+
+	Funkce LPTn:=COMx a LPTn:=NUL: urŸuj¡ pıesmØrov n¡ vìstupu tisk rny.
+	Jakìkoli paraleln¡ port (i neexistuj¡c¡) lze pıesmØrovat na jakìkoli
+	existuj¡c¡ s‚riovì port nebo na NUL. To je u§iteŸn‚, pokud m te
+	s‚riovou tisk rnu nebo pokud tisk rnu nem te a chcete zabr nit
+	zatuhnut¡ poŸ¡taŸe pıi pokusu o tisk.
+
+	Pı¡kaz MODE LPTn: zruç¡ pıesmØrov n¡ a vr t¡ port do norm ln¡ho stavu.
+
+2.4.  PARKOVµNÖ PEVNHO DISKU (PARK)
+
+	MODE zaparkuje pevnì disk nebo disky (pouze prvn¡ dva fyzick‚ disky
+	v syst‚mu), buÔ okam§itØ, nebo po urŸit‚ dobØ neŸinnosti.
+
+	¬asovan‚ parkov n¡ prov d¡ rezidentn¡ Ÿ st programu MODE.
+
+	Syntaxe je:
+
+	MODE PARK			Zaparkovat hned
+	MODE PARK,minuty[:sekundy]	Zaparkovat po neŸinnosti disku
+
+	Funkce PARK zaparkuje disky okam§itØ a Ÿek , a§ vypnete poŸ¡taŸ.
+	M…§ete tak‚ stisknout Ctrl-C pro n vrat do DOSu.
+
+	Funkce PARK,minuty[:sekundy] zaparkuje disky po urŸit‚ dobØ
+	neaktivity (a§ 50 minut). Pokud m te dva fyzick‚ disky, oba jsou
+	obsluhov ny samostatnØ.
+
+	¬asovan‚ parkov n¡ nelze vypnout - pro jeho odstranØn¡ mus¡te
+	restartovat poŸ¡taŸ. Tato funkce je u§iteŸn  hlavnØ pro starç¡
+	stroje. Modern¡ disky se parkuj¡ automaticky pıi vypnut¡.
+
+2.5.  FUNKCE TYPEMATIC (OPAKOVµNÖ KLµVESNICE)
+
+	MODE umo§åuje nastavit poŸ teŸn¡ zpo§dØn¡ a rychlost opakov n¡
+	kl ves a volitelnØ je uzamknout.
+
+	UzamŸen¡ prov d¡ rezidentn¡ Ÿ st programu MODE.
+
+	Syntaxe je:
+
+	MODE DELAY=d RATE=r		Nastavit parametry
+	MODE DELAY=d RATE=r LOCK	Nastavit a uzamknout parametry
+
+	d	UrŸuje poŸ teŸn¡ zpo§dØn¡ (1 a§ 4), od 1/4 sekundy (1) do
+		jedn‚ sekundy (4).
+
+	r	UrŸuje rychlost opakov n¡ (1 a§ 32), od dvou opakov n¡ za
+		sekundu (1) do 30 opakov n¡ za sekundu (32).
+
+	LOCK	UrŸuje, §e parametry maj¡ bìt uzamŸeny. Pak je lze zmØnit
+		pouze pı¡kazem MODE, ale ne jinìmi programy. To je u§iteŸn‚,
+		proto§e nØkter‚ programy mØn¡ nastaven¡ bez dovolen¡.
+
+	Mus¡ bìt zad ny oba parametry DELAY i RATE. MODE pıijme pı¡kazy
+	bez ohledu na to, zda je stroj skuteŸnØ podporuje.
+
+2.6.  FUNKCE SWITCHAR
+
+	MODE m…§e zobrazit a nastavit znak pıep¡naŸe DOSu (switchar).
+	Vìchoz¡m znakem je lom¡tko '/'. Je to znak, kterì uvozuje parametry
+	pı¡kaz…, napı. /P u pı¡kazu DIR. Obvykle lze switchar zmØnit na
+	pomlŸku '-'. Switchar je nezdokumentovan  funkce DOSu, kterou
+	podporuje spr vnØ jen m lo program….
+
+	Syntaxe je:
+
+	MODE SWITCHAR			Zobrazit aktu ln¡ switchar
+	MODE SWITCHAR=x			Nastavit switchar na znak x
+	MODE SWITCHAR=n			Nastavit switchar na ASCII hodnotu n
+
+	Samotnì parametr SWITCHAR zobraz¡ aktu ln¡ znak. Novì znak lze
+	zadat jako znak (napı. 'MODE SWITCHAR=/') nebo jako Ÿ¡slo.
+
+2.7.  FUNKCE MODIFIKµTORŞ (SHIFT STATE)
+
+	MODE m…§e mØnit stavy Caps Lock, Num Lock a Scroll Lock. Tato
+	funkce by se nemØla pou§¡vat na stroj¡ch s p…vodn¡mi kl vesnicemi PC
+	nebo XT, proto§e kontrolky na nich nelze ovl dat z poŸ¡taŸe a
+	dostaly by se do nesouladu se stavem v poŸ¡taŸi.
+
+	Volby jsou:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Lze pou§¡t jakoukoli nekoliduj¡c¡ kombinaci. SCRLOCK lze napsat i
+	jako SCROLLLOCK.
+
+3.  OBECN INFORMACE
+
+	Parametry MODE nerozliçuj¡ velk  a mal  p¡smena. MODE zpracuje v
+	jednom vol n¡ v§dy jen jeden pı¡kaz.
+
+	Chybov‚ zpr vy jsou zas¡l ny na StdErr. InformaŸn¡ zpr vy na
+	standardn¡ vìstup (lze pıesmØrovat na NUL:).
+
+	Errorlevels vracen‚ programem MODE:
+
+	0	Bez chyby
+	115	S‚riovì port neexistuje
+	117	Nenalezen § dnì pevnì disk k zaparkov n¡
+	118	Video re§im nen¡ na tomto stroji podporov n
+	162	Nedostatek pamØti (MODE vy§aduje asi 6K)
+	241	Parametr mimo rozsah
+	242	Re§imy se 43 nebo 50 ı dky lze m¡t jen s CO80
+	243	Nezn m  pıenosov  rychlost
+	244	Mus¡ bìt zad no DELAY= i RATE=
+	246	Bylo zad no v¡ce ne§ jeden pı¡kaz nebo typ
+	255	Nespr vn  syntaxe
+
+	Pokud najdete chybu, kontaktujte autora (£daje v sekci 1).
+
+4.  PüÖKLADY POU¦ITÖ
+
+	Pı¡klad v AUTOEXEC.BAT:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	Tato sekvence nastav¡ 43-ı dkovì barevnì re§im, konfiguruje COM1-3,
+	pıesmØruje LPT1 na COM2, nastav¡ Ÿasovan‚ parkov n¡ disku na 30 s,
+	nastav¡ kl vesnici a zmØn¡ switchar na '-'.
+
+				   ----//----

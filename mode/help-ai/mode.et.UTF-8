@@ -1,0 +1,278 @@
+# Language: Estonian
+# File ending: ET
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Free-DOS MODE programmi kasutusjuhend
+
+	(c) Copyright 1994-1995 K. Heidenstrom.
+
+	Muudetud:
+
+	KH.19941231.001  (MODE 1.0.0)  Esimene versioon
+	KH.19950116.002  (MODE 1.0.2)  Lisatud switchar-i dokumentatsioon
+	KH.19950520.003  (MODE 1.0.3)  Funktsionaalsust pole muudetud
+	KH.19950805.004  (MODE 1.0.4)  Lisatud modifikaatorite (shift-state)
+	valikud
+
+
+1.  ÕIGUSTEAVE
+
+	Selle programmi autoriõigused (Copyright 1994-1995) kuuluvad
+	K. Heidenstromile. See on kirjutatud spetsiaalselt Free-DOS projekti
+	jaoks. Autoriga saab ühendust aadressil kheidens@actrix.gen.nz
+	Internetis või posti teel: K. Heidenstrom c/- P.O. Box 27-103,
+	Wellington, New Zealand.
+
+	See programm on vaba tarkvara. Te võite lähtekoodi ja täitmis-
+	faili edasi levitada ja/või programmi muuta vastavalt GNU General
+	Public License'i tingimustele, nagu need on avaldatud Free Software
+	Foundationi poolt; kas litsentsi versiooni 2 või (teie valikul)
+	mõne hilisema versiooni järgi.
+
+	Seda programmi levitatakse lootuses, et see on kasulik, kuid ilma
+	igasuguse garantiita, sealhulgas kaudse garantiita turustatavuse
+	või konkreetseks otstarbeks sobivuse kohta. Autor ei vastuta mingil
+	juhul selle programmi kasutamisega seotud kahjude eest. Täpsema teabe
+	saamiseks vaadake GNU General Public License'i.
+
+	Te peaksite olema saanud koos selle programmiga GNU General Public
+	License'i koopia; kui mitte, kirjutage aadressil Free Software
+	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  FUNKTSIOONID JA KASUTAMISE SÜNTAKS
+
+	Programm MODE täidab kuut eraldi funktsiooni, mida kirjeldatakse
+	eraldi allpool.
+
+2.1.  VIDEOREŽIIMI JA EKRAANIRIDADE ARVU MÄÄRAMINE
+
+	MODE võimaldab määrata videorežiimi ühele viiest režiimist.
+	Süntaks on:
+
+	MODE Videorežiim[,Read]
+
+	Režiimid on:
+
+	MONO	Monokroomne režiim, mida kasutatakse MDA ja Hercules
+		adapterikaartidega ning mida emuleeritakse ka EGA ja VGA
+		kaartidel. See on ainus režiim, millel on vaikimisi võime
+		märke ekraanil alla joonida. Seda režiimi ei saa valida
+		CGA videokaardil.
+
+	BW40	40-veeruline värvideta režiim. See režiim on omane CGA
+		adapterile ja annab 40 veeru ja 25 reaga ekraani. CGA kaardi
+		liitvideosignaali värviinfo lülitatakse välja, nii et ekraan
+		on liitvärvimonitoril mustvalge kuueteistkümne halltoniga.
+		Kui see režiim valitakse EGA või VGA kaardil või CGA kaardil,
+		mis pole ühendatud teleri või liitvärvimonitoriga, paistab see
+		samasugune nagu CO40 režiim (st värvi ei suruta maha). Seda
+		režiimi ei saa valida MDA ja Hercules videokaartidel.
+
+	BW80	80-veeruline värvideta režiim. See režiim on samuti omane CGA
+		adapterile ja on sama mis BW40, välja arvatud see, et on 80
+		veergu. Seda režiimi ei saa valida MDA ja Hercules kaartidel.
+
+	CO40	40-veeruline värvirežiim. See režiim annab 40 veeru ja 25 reaga
+		värvilise ekraani. Seda toetavad CGA, EGA ja VGA adapterid,
+		kuid mitte MDA ja Hercules kaardid.
+
+	CO80	80-veeruline värvirežiim. See režiim annab 80 veeru ja 25 reaga
+		ekraani ning on tavaline režiim CGA, EGA ja VGA kaartide jaoks.
+		Seda ei toeta MDA ja Hercules kaardid. EGA kaartidel toetab see
+		režiim ka 43-realist varianti ning VGA kaartidel on toetatud
+		43-realine ja 50-realine variant.
+
+		43-realist ja 50-realist režiimi saab valida, määrates ",43"
+		või ",50" pärast CO80 programmi MODE käsureal. Kui seda
+		parameetrit ei määrata, kasutatakse vaikimisi 25 rida.
+
+	Kui videorežiim on määratud, jääb see jõusse kuni selle muutmiseni
+	MODE käsu või programmi poolt. Videorežiim pole püsivalt lukustatud
+	- programmid võivad videorežiime vastavalt vajadusele muuta.
+
+2.2.  JADAPORDI PARAMEETRITE SEADISTAMINE
+
+	MODE võimaldab seadistada jadapordi sideparameetreid.
+	Süntaks on:
+
+	MODE COMn:r,p,d,s
+
+	n	Määrab, millist jadaporti seadistada (vahemikus 1 kuni 4).
+		Kui jadaporti pole olemas, teatab MODE veast.
+
+	r	Määrab bodikiiruse (baud rate) bittides sekundis. Väärtused on:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 ja 115200.
+
+		Väärtusi 1200, 2400, 4800 ja 9600 saab lühendada vastavalt
+		12, 24, 48 ja 96. Suuremaid kiirusi saab lühendada nende
+		esimese kahe või kolme numbrini. 115200 saab lühendada
+		vormile 115 või 1152.
+
+	p	Määrab andmebaitidel tekitatava ja kontrollitava paarsuse
+		(parity) tüübi. Väärtused on:
+
+		E = Paarispaarsus (Even)
+		O = Paaritu paarsus (Odd)
+		N = Paarsus puudub (None)
+
+	d	Määrab edastatavate ja vastuvõetavate andmebittide arvu.
+		Lubatud väärtused on 5, 6, 7 ja 8.
+
+	s	Määrab edastatavate ja oodatavate stopp-bittide arvu. See
+		võib olla 1 või 2. Kui 5 andmebitiga kasutatakse 2 stopp-bitti,
+		siis jadaport tekitab ja kontrollib tegelikult 1 1/2 stopp-bitti.
+
+	Seadistatud jadapordi parameetrid jäävad jõusse kuni nende muutmiseni.
+
+2.3.  RÖÖPPORDI ÜMBERSUUNAMINE JA LÕPUTUD KORDUSKATSED
+
+	MODE võimaldab suunata rööpporti (LPT) väljundit jadaporti (COM) või
+	seadmesse NUL (st mitte kuhugi) ning võib teha lõputult korduskatseid,
+	kui seade ei vasta.
+
+	Neid funktsioone täidab programmi MODE residentne osa, mis
+	installeeritakse vajadusel automaatselt.
+
+	Süntaks on:
+
+	MODE LPTn:P		Lõputu aegumine rööppordil
+	MODE LPTn:=COMx		Suuna printeri väljund COM-porti
+	MODE LPTn:=NUL:		Suuna printeri väljund seadmesse NUL
+	MODE LPTn:		Eemalda ümbersuunamine ja lõputu aegumine
+
+	Funktsioon LPTn:P määrab lõputud korduskatsed aegumisel. Kui see on
+	lubatud, proovib MODE pidevalt uuesti, kui printer ei vasta. Kui see
+	pole lubatud ja printer ei vasta teatud aja jooksul (tavaliselt u
+	pool minutit), teatatakse kirjutamisveast.
+
+	Ümbersuunamine on kasulik, kui teil on jadaprinter või kui teil
+	printerit pole ja soovite vältida arvuti hangumist programmi katsel
+	printida olemasolematusse printerisse. Käsk MODE LPTn: taastab
+	pordi normaalse töö.
+
+2.4.  KÕVAKETTA PARKIMISFUNKTSIOONID (PARK)
+
+	MODE pargib kõvaketta või -kettad (ainult süsteemi kaks esimest
+	füüsilist kõvaketast) kas kohe või pärast seda, kui ketas on olnud
+	teatud aja jõude.
+
+	Ajastatud parkimist teostab programmi MODE residentne osa.
+
+	Süntaks on:
+
+	MODE PARK			Pargi kohe
+	MODE PARK,minutid[:sekundid]	Pangi pärast ketta jõudeolekut
+
+	Funktsioon PARK pargib kettad kohe ja jääb ootama arvuti välja-
+	lülitamist. Võite vajutada ka Ctrl-C, et naasta DOS-i.
+
+	Ajastatud parkimist ei saa välja lülitada - selle eemaldamiseks
+	peate arvuti taaskäivitama. Need funktsioonid on kasulikud peamiselt
+	vanemate masinate puhul. Kaasaegsed kettad pargivad end ise.
+
+2.5.  TYPEMATIC FUNKTSIOONID (KLAVIATUURI KORDUS)
+
+	MODE võimaldab määrata klaviatuuri korduse algset viivitust ja
+	kordussagedust ning neid soovi korral lukustada.
+
+	Lukustamist teostab programmi MODE residentne osa.
+
+	Süntaks on:
+
+	MODE DELAY=d RATE=r		Määra parameetrid
+	MODE DELAY=d RATE=r LOCK	Määra ja lukusta parameetrid
+
+	d	Määrab algse viivituse (1 kuni 4), vahemikus 1/4 sekundit
+		(1) kuni üks sekund (4).
+
+	r	Määrab kordussageduse (1 kuni 32), vahemikus kaks kordust
+		sekundis (1) kuni 30 kordust sekundis (32).
+
+	LOCK	Määrab, et parameetrid tuleb lukustada. Seejärel saab neid
+		muuta ainult käsu MODE abil, kuid mitte teiste programmide
+		poolt. See on kasulik, kuna mõned programmid muudavad seadeid
+		loata.
+
+	Määrata tuleb mõlemad parameetrid DELAY ja RATE. MODE aktsepteerib
+	käske sõltumata sellest, kas masin neid tegelikult toetab.
+
+2.6.  SWITCHAR FUNKTSIOONID
+
+	MODE saab kuvada ja määrata DOS-i lülitusmärki (switchar). Vaikimisi
+	on märigiks kaldkriips '/'. See on märk, mis tähistab käsu valiku-
+	lüliti algust, nt /P käsu DIR puhul. Tavaliselt saab selle muuta
+	sidekriipsuks '-'. Switchar on dokumenteerimata DOS-i funktsioon,
+	mida vähesed programmid õigesti toetavad.
+
+	Süntaks on:
+
+	MODE SWITCHAR			Kuva praegune switchar
+	MODE SWITCHAR=x			Määra switchar märgiks x
+	MODE SWITCHAR=n			Määra switchar ASCII-väärtuseks n
+
+2.7.  MODIFIKAATORITE (SHIFT STATE) FUNKTSIOONID
+
+	MODE saab muuta Caps Locki, Num Locki ja Scroll Locki olekut. Seda
+	funktsiooni ei tohiks kasutada algsete PC või XT klaviatuuridega
+	masinatel, sest nende märgutulesid ei saa arvutist juhtida ja need
+	lähevad arvuti olekuga nihkesse.
+
+	Valikud on:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Kasutada võib mis tahes mittevastuolulist kombinatsiooni. SCRLOCK
+	asemel võib kirjutada ka SCROLLLOCK.
+
+3.  ÜLDINE TEAVE
+
+	MODE parameetrid ei ole tõstutundlikud. MODE töötleb ühe kutsega
+	ainult ühte käsku.
+
+	Veateated saadetakse StdErr-i. Teateteated saadetakse standard-
+	väljundisse (saab suunata seadmesse NUL:).
+
+	Programmi MODE tagastatavad veakoodid (Errorlevels):
+
+	0	Viga puudub
+	115	Jadaporti pole olemas
+	117	Ei leitud parkimiseks kõvaketast
+	118	Videorežiimi ei toetata selles masinas
+	162	Mälu on vähe (MODE vajab u 6K mälu)
+	241	Parameeter on vahemikust väljas
+	242	43- või 50-realine režiim on võimalik vaid CO80 režiimis
+	243	Tundmatu bodikiirus
+	244	Määrata tuleb nii DELAY= kui ka RATE=
+	246	Anti rohkem kui üks käsk või käsu tüüp
+	255	Vale süntaks
+
+	Vea leidmisel võtke ühendust autoriga (andmed 1. jaotises).
+
+4.  KASUTUSNÄITED
+
+	Näide failis AUTOEXEC.BAT:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	See jada valib 43-realise värvirežiimi, seadistab portid COM1-3,
+	suunab LPT1 porti COM2, määrate ajastatud parkimise 30 sekundi
+	järel, seadistab klaviatuuri ja muudab switchar-i märigks '-'.
+
+				   ----//----
+

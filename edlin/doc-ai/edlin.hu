@@ -1,0 +1,160 @@
+# Language: Hungarian
+# File ending: HU
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+
+Az edlin program egy kism‚retû sororient lt sz”vegszerkeszt‹, amely a FreeDOS
+sz m ra k‚szlt a r‚gi MS-DOS edlin program funkcion lis kl¢njak‚nt. K‚t
+pontban t‚r el az MS edlint‹l: el‹sz”r is, ez szabad szoftver, m sodszor pedig
+a felhaszn l¢i fellet n‚h ny helyen n‚mileg elt‚r. Az elt‚r‚s oka, hogy a
+felhaszn l¢nak ne kelljen az MS edlin szintaxisa  ltal megk”vetelt
+vez‚rl‹karaktereket g‚pelnie.
+
+AZ EDLIN MEGHÖVµSA
+
+Az edlin program megh¡vhat¢ ”nmag ban:
+
+  edlin
+
+vagy egy f jln‚vvel, amely a program indul sakor beolvas sra kerl:
+
+  edlin f jln‚v
+
+AZ EDLIN BELSŠ PARANCSAI
+
+A k”vetkez‹ parancslist kban a sz”gletes z r¢jelek opcion lis r‚szeket
+jel”lnek. A # szimb¢lum egy sorsz mot jel”l, amely lehet sz mjegyek sorozata,
+az aktu lis sort jel”l‹ pont (.), az utols¢ sort jel”l‹ doll rjel ($), vagy
+egy m sik sorsz mb¢l hozz adott vagy kivont ‚rt‚k, ¡gy p‚ld ul a
+
+  .,.+1p
+
+parancs megjelen¡ti az aktu lis sort ‚s az azt k”vet‹ sort.
+
+A list kban szerepl‹ doll rjel karakterl ncot jel”l. Ezeket egyszeres vagy
+k‚tszeres id‚z‹jelek k”z‚ lehet z rni, ‚s a k”vetkez‹ escape-sorozatokat
+tartalmazhatj k:
+
+  \a - riaszt s (alert)
+  \b - visszat”rl‚s (backspace)
+  \e - escape
+  \f - lapdob s (formfeed)
+  \t - v¡zszintes tabul tor
+  \v - fgg‹leges tabul tor
+  \" - dupla id‚z‹jel
+  \' - szimpla id‚z‹jel
+  \. - pont
+  \\ - visszaper jel (backslash)
+  \xXX (ahol X hexadecim lis sz mjegy 0-9, a-f) - hexadecim lis konstans
+  \dddd (ahol d decim lis sz mjegy 0-9) - decim lis konstans
+  \OOO (ahol O okt lis sz mjegy 0-7) - okt lis konstans
+  \^C - vez‚rl‹karakter (control character)
+
+Az edlin program a k”vetkez‹ szintaxist t mogatja:
+
+# - EGYETLEN SOR SZERKESZTSE
+
+Az edlin megjelen¡ti a sz mmal jel”lt sort, majd a k”vetkez‹ bevitt sor
+helyettes¡ti a f jlban az eredeti sort.
+
+a - HOZZµFëZS (APPEND)
+
+Ez a parancs megegyezik a $+1i paranccsal.
+
+[#],[#],#,[#]c - SORTARTOMµNY MµSOLµSA
+
+Ez a parancs egy egym st k”vet‹ sorokb¢l  ll¢ blokkot m sol a puffer egy
+m sik hely‚re. A param‚terek:
+
+  * Az els‹ m soland¢ sor (alap‚rtelmez‚s = aktu lis sor)
+  * Az utols¢ m soland¢ sor (alap‚rtelmez‚s = aktu lis sor)
+  * A sor, amely el‚ a blokkot be k¡v nja sz£rni
+  * A m sol sok sz ma (alap‚rtelmez‚s = 1)
+
+A m sol s ut n az l (list) parancs seg¡ts‚g‚vel megtekintheti a helyesen
+£jrasz mozott sorokat.
+
+[#][,#]d - SORBLOKK T™RLSE
+
+Ez a parancs egym st k”vet‹ sorokb¢l  ll¢ blokkot t”r”l. A param‚terek a
+t”rlend‹ blokk els‹ ‚s utols¢ sor t hat rozz k meg.
+
+Ha elhagyja a m sodik param‚tert, csak az els‹ben megadott sor t”rl‹dik. Ha az
+els‹t hagyja el, az aktu lis sort¢l a m sodikban megadottig t”r”l (a vessz‹t
+ki kell tenni). Mindk‚t param‚ter elhagy sa eset‚n az aktu lis sor t”rl‹dik.
+
+e f jln‚v - MENTS S KILPS
+
+Ez a parancs megegyezik a k”vetkez‹vel:
+
+  w f jln‚v
+  q
+
+[#]i - BESZéRµS MàD
+
+Ezzel a paranccsal besz£r si m¢dba l‚phet. A param‚ter az a sorsz m, amely
+el‚ a sorokat be k¡v nja sz£rni.
+
+Besz£r s k”zben a fent eml¡tett escape-sorozatok haszn lhat¢ak. A kil‚p‚shez
+¡rjon egy pontot (.) egy res sorba (ha olyan sort szeretne, amely csak egy
+pontot tartalmaz, haszn lja az escape-karaktert).
+
+A kil‚p‚s ut n a besz£rt sz”veg ut ni sor lesz az aktu lis sor, kiv‚ve, ha a
+besz£r s a sz”veg v‚g‚re t”rt‚nt; ebben az esetben az utols¢ sor lesz az £j
+aktu lis sor.
+
+[#][,#]l - SOROK LISTµZµSA
+
+Megjelen¡ti a sorokat a k‚perny‹n. Az els‹ param‚ter n‚lkl az aktu lis sor
+el‹tti 11. sorn l kezd‹dik a lista. A m sodik param‚ter n‚lkl egy oldalnyi
+sz”veget mutat az els‹ param‚tert‹l kezdve. Mindkett‹ elhagy sa eset‚n egy
+oldalnyi sz”veg jelenik meg az aktu lis sor el‹tti 11. sorn l kezd‹d‹en. Ha a
+sorok sz ma t”bb, mint egy k‚perny‹oldal, a program minden oldal ut n meg ll.
+
+[#],[#],#m - BLOKK MOZGATµSA
+
+Egy sz”vegblokkot mozgat a harmadik param‚terben megadott sorsz m el‚. Olyan,
+mintha m soln , majd t”r”ln‚ az eredeti blokkot.
+
+[#][,#]p - OLDAL (PAGE)
+
+Hasonl¢ az l parancshoz, de az alap‚rtelmezett oldal az aktu lis sorral
+kezd‹dik, nem 11 sorral el‹tte.
+
+q - KILPS (QUIT)
+
+Kil‚p ment‚s n‚lkl.
+
+[#][,#][?]r$,$ - KARAKTERLµNC CSERJE
+
+Kicser‚li az els‹ karakterl nc ”sszes el‹fordul s t a m sodikra a megadott
+sorok k”z”tt. Az els‹ param‚ter elhagy s val a csere az aktu lis sor ut n
+kezd‹dik; a m sodik elhagy s val a f jl v‚g‚ig tart.
+
+A k‚rd‹jel (?) meger‹s¡t‚st k‚r minden csere el‹tt.
+
+[#][,#][?]s$ - KERESS
+
+Megkeresi az els‹ olyan sort, amely tartalmazza a megadott r‚szletet. Az els‹
+param‚ter elhagy s val a keres‚s az aktu lis sort¢l indul, a m sodik n‚lkl
+a f jl v‚g‚ig tart.
+
+A k‚rd‹jel (?) meger‹s¡t‚st k‚r. "N" (Nem) v lasz eset‚n a keres‚s folytat¢dik,
+"I" (Igen) v lasz eset‚n v‚get ‚r. Siker eset‚n az aktu lis sor a tal lat
+hely‚re kerl.
+
+[#]t f jln‚v - FµJL µTVITELE
+
+Egy kls‹ f jl tartalm t sz£rja be a megadott sorsz m el‚. Alapesetben ez az
+aktu lis sor.
+
+[#]w f jln‚v - FµJL ÖRµSA
+
+A megadott sz m£ sort ¡rja a f jlba. Param‚ter n‚lkl a teljes puffert menti.
+
+SZERZŠ/KARBANTARTà
+
+Gregory Pietsch, gpietsch@comcast.net

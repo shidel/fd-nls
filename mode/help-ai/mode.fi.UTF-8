@@ -1,0 +1,340 @@
+# Language: Finnish
+# File ending: FI
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Free-DOS MODE-ohjelman käyttöohjeistus
+
+	(c) Copyright 1994-1995 K. Heidenstrom.
+
+	Muutokset:
+
+	KH.19941231.001  (MODE 1.0.0)  Ensimmäinen versio
+	KH.19950116.002  (MODE 1.0.2)  Lisätty switchar-dokumentaatio
+	KH.19950520.003  (MODE 1.0.3)  Ei muutoksia toiminnallisuuteen
+	KH.19950805.004  (MODE 1.0.4)  Lisätty muunnosrekisterien (shift-state)
+	asetukset
+
+
+1.  OIKEUDELLISET ASIAT
+
+	Tämä ohjelma on Copyright 1994-1995 K. Heidenstrom. Se on kirjoitettu
+	erityisesti Free-DOS-projektia varten. Kirjoittajan tavoittaa
+	osoitteesta kheidens@actrix.gen.nz Internetissä tai postitse:
+	K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	Tämä ohjelma on vapaa ohjelmisto. Voit levittää lähdekoodia ja
+	suoritettavaa tiedostoa ja/tai muokata ohjelmaa Free Software
+	Foundationin julkaiseman GNU General Public License -lisenssin ehtojen
+	mukaisesti; joko lisenssin version 2 tai (valintasi mukaan) minkä
+	tahansa myöhemmän version mukaisesti.
+
+	Tätä ohjelmaa levitetään siinä toivossa, että se olisi hyödyllinen,
+	mutta se toimitetaan "sellaisenaan", ilman minkäänlaista takuuta,
+	mukaan lukien oletettu takuu kaupallisesta hyödynnettävyydestä tai
+	soveltuvuudesta tiettyyn tarkoitukseen. Kirjoittaja ei ole missään
+	tapauksessa vastuussa mistään vahingoista, jotka liittyvät tämän
+	ohjelman käyttöön. Katso GNU General Public License lisätietoja varten.
+
+	Sinun olisi pitänyt saada kopio GNU General Public License -lisenssistä
+	tämän ohjelman mukana; jos et ole saanut sitä, kirjoita osoitteeseen:
+	Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  TOIMINTA JA KÄYTTÖSYNTAKSI
+
+	MODE-ohjelma suorittaa kuusi erillistä toimintoa, jotka on kuvattu
+	erikseen alla.
+
+2.1.  VIDEOTILAN JA RUUDUN RIVIMÄÄRÄN ASETTAMINEN
+
+	MODE mahdollistaa videotilan asettamisen johonkin viidestä tilasta.
+	Syntaksi on:
+
+	MODE Videotila[,Rivit]
+
+	Tilat ovat:
+
+	MONO	Mustavalkotila (monokromi), jota käytetään MDA- ja Hercules-
+		ohjainten kanssa ja jota emuloidaan myös EGA- ja VGA-korteilla.
+		Tämä on ainoa tila, joka kykenee alleviivaamaan merkkejä
+		ruudulla oletusarvoisesti. Tätä tilaa ei voi valita CGA-
+		videokortilla.
+
+	BW40	40-sarakkeinen väritön tila. Tämä tila on ominainen CGA-
+		ohjaimelle ja antaa 40 sarakkeen ja 25 rivin näytön. CGA-kortin
+		yhdistelmävideosignaalin väritiedot kytketään pois päältä,
+		jolloin näyttö on mustavalkoinen yhdistelmävärimonitorilla
+		kuudellatoista harmaasävyllä.
+		Jos tämä tila valitaan EGA- tai VGA-kortilla tai CGA-kortilla,
+		jota ei ole kytketty televisioon tai yhdistelmävärimonitoriin,
+		se näkyy samalla tavalla kuin CO40-tila (eli värejä ei
+		poisteta). Tätä tilaa ei voi valita MDA- ja Hercules-korteilla.
+
+	BW80	80-sarakkeinen väritön tila. Tämä tila on myös ominainen CGA-
+		ohjaimelle ja on sama kuin BW40, paitsi sarakkeita on 80.
+		Jos tämä tila valitaan EGA- tai VGA-kortilla tai CGA-kortilla,
+		jota ei ole kytketty televisioon tai yhdistelmävärimonitoriin,
+		se näkyy samalla tavalla kuin CO80-tila (eli värejä ei
+		poisteta). Tätä tilaa ei voi valita MDA- ja Hercules-korteilla.
+
+	CO40	40-sarakkeinen väritila. Tämä tila antaa 40 sarakkeen ja
+		25 rivin värinäytön. Se on tuettu CGA-, EGA- ja VGA-ohjaimilla,
+		mutta ei MDA- ja Hercules-korteilla.
+
+	CO80	80-sarakkeinen väritila. Tämä tila antaa 80 sarakkeen ja
+		25 rivin näytön ja on normaali näyttötila CGA-, EGA- ja VGA-
+		korteille. Se ei ole tuettu MDA- ja Hercules-korteilla. EGA-
+		korteilla tämä tila tukee myös 43-rivistä vaihtoehtoa, ja VGA-
+		korteilla tuetaan 43-rivistä ja 50-rivistä vaihtoehtoa.
+
+		43- ja 50-riviset tilat voidaan valita määrittämällä ",43" tai
+		",50" CO80-määritteen jälkeen MODE-komentorivillä. Jos tätä
+		parametria ei määritetä, käytetään oletusarvoa 25 riviä.
+
+	Kun videotila on asetettu, se pysyy voimassa, kunnes se muutetaan
+	MODE-komennolla tai ohjelmalla. Videotilaa ei ole lukittu pysyvästi
+	- ohjelmat voivat vaihtaa videotiloja tarpeen mukaan.
+
+2.2.  SARJAPORTIN PARAMETRIEN MÄÄRITTÄMINEN
+
+	MODE mahdollistaa sarjaportin tiedonsiirtoparametrien määrittämisen.
+	Syntaksi on:
+
+	MODE COMn:r,p,d,s
+
+	n	Määrittää konfiguroitavan sarjaportin välillä 1-4. Jos
+		sarjaporttia ei ole olemassa, MODE ilmoittaa virheestä.
+
+	r	Määrittää baudinopeuden bitteinä sekunnissa. Arvot ovat:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 ja 115200.
+
+		Arvot 1200, 2400, 4800 ja 9600 voidaan lyhentää muotoon 12,
+		24, 48 ja 96. Suuremmat nopeudet voidaan lyhentää niiden
+		ensimmäisiin numeroihin. 115200 voidaan lyhentää muotoon 115
+		tai 1152.
+
+	p	Määrittää datatavuille luotavan ja tarkistettavan pariteetin.
+		Arvot ovat:
+
+		E = Parillinen pariteetti (Even)
+		O = Pariton pariteetti (Odd)
+		N = Ei pariteettia (None)
+
+	d	Määrittää lähetettävien ja vastaanotettavien databittien
+		määrän. Sallitut arvot ovat 5, 6, 7 ja 8.
+
+	s	Määrittää lähetettävien ja odotettavien pysäytysbittien määrän.
+		Tämä voi olla 1 tai 2. Jos käytetään 2 pysäytysbittiä 5 databitin
+		kanssa, sarjaportti luo ja tarkistaa todellisuudessa
+		1 1/2 pysäytysbittiä.
+
+	Asetetut sarjaportin parametrit pysyvät voimassa, kunnes ne muutetaan
+	MODE-komennolla tai ohjelmalla. Sarjaportin asetuksia ei ole lukittu
+	pysyvästi - ohjelmat voivat muuttaa niitä tarpeen mukaan.
+
+2.3.  RINNAKKAISPORTIN UUDELLEENOHJAUS JA LOPUTTOMAT YRITYKSET
+
+	MODE mahdollistaa rinnakkaisportin (LPT) tulosteen ohjaamisen
+	sarjaporttiin (COM) tai tyhjään (NUL) sekä loputtomat yritykset,
+	jos oheislaite ei vastaa.
+
+	Nämä toiminnot suorittaa MODEn muistiin jäävä osa, joka asennetaan
+	automaattisesti tarvittaessa toimintoa pyydettäessä.
+
+	Syntaksi on:
+
+	MODE LPTn:P		Loputon aikakatkaisu rinnakkaisportille
+	MODE LPTn:=COMx		Ohjaa tulostuksen sarjaporttiin
+	MODE LPTn:=NUL:		Ohjaa tulostuksen tyhjään (NUL)
+	MODE LPTn:		Poistaa uudelleenohjauksen ja aikakatkaisun
+
+	LPTn:P-toiminto määrittää loputtomat yritykset aikakatkaisun sijaan.
+	Jos tämä on käytössä, MODE yrittää jatkuvasti, jos tulostin ei
+	vastaa. Jos tämä ei ole käytössä ja tulostin ei vastaa tietyn ajan
+	kuluessa (yleensä noin puoli minuuttia), ilmoitetaan virheestä.
+
+	LPTn:=COMx ja LPTn:=NUL: toiminnot määrittävät tulostuksen
+	uudelleenohjauksen. Mikä tahansa rinnakkaisportti (oli se olemassa
+	tai ei) voidaan ohjata mihin tahansa olemassa olevaan sarjaporttiin
+	tai NUL-laitteeseen. Useampi rinnakkaisportti voidaan ohjata samaan
+	sarjaporttiin. Nämä toiminnot ovat hyödyllisiä, jos käytössä on
+	sarjatulostin tai jos tulostinta ei ole lainkaan ja halutaan välttää
+	tietokoneen jäätyminen ohjelman yrittäessä tulostaa.
+
+	LPTn:-toiminto poistaa kaikki määritetylle portille asetetut
+	uudelleenohjaukset ja loputtomat yritykset palauttaen normaalin
+	toiminnan.
+
+2.4.  KIINTOLEVYN PYSÄKÖINTITOIMINNOT (PARK)
+
+	MODE pysäköi kiintolevyn tai kiintolevyt (vain järjestelmän kaksi
+	ensimmäistä fyysistä kiintolevyä) joko välittömästi tai sen jälkeen,
+	kun levy on ollut käyttämättömänä tietyn ajan.
+
+	Ajastetun pysäköintitoiminnon suorittaa MODEn muistiin jäävä osa,
+	joka asennetaan tarvittaessa automaattisesti.
+
+	Syntaksi on:
+
+	MODE PARK			Pysäköi heti
+	MODE PARK,minuutit[:sekunnit]	Pysäköi levyn oltua käyttämättä
+
+	PARK-toiminto pysäköi kiintolevyt välittömästi ja jää odottamaan
+	tietokoneen sammuttamista. Voit myös painaa Ctrl-C lopettaaksesi ja
+	palataksesi DOS-tilaan.
+
+	Toiminto PARK,minuutit[:sekunnit] saa kiintolevyt pysäköitymään tietyn
+	käyttämättömyysajan jälkeen, joka voi olla enintään 50 minuuttia. Jos
+	käytössä on kaksi fyysistä kiintolevyä, molempia käsitellään erikseen.
+
+	Kun asetus on tehty, voit muuttaa aikaa suorittamalla komennon
+	uudelleen eri arvolla. Ajastettua pysäköintiä ei voi kytkeä pois
+	päältä - se vaatii uudelleenkäynnistyksen poistuakseen.
+
+	Nämä toiminnot ovat yleensä hyödyllisiä vain vanhemmille koneille.
+	Nykyaikaiset kiintolevyt pysäköivät itsensä automaattisesti virran
+	katketessa.
+
+2.5.  NÄPPÄIMISTÖN TOISTOTOIMINNOT (TYPEMATIC)
+
+	MODE mahdollistaa näppäimistön toiston (auto-repeat) alkuviiveen ja
+	toistonopeuden asettamisen sekä valinnaisen lukitsemisen.
+
+	Lukitustoiminnon suorittaa MODEn muistiin jäävä osa, joka asennetaan
+	tarvittaessa automaattisesti.
+
+	Syntaksi on:
+
+	MODE DELAY=d RATE=r		Aseta toistoparametrit
+	MODE DELAY=d RATE=r LOCK	Aseta ja lukitse toistoparametrit
+
+	d	Määrittää alkuviiveen, välillä 1-4. Viive on välillä
+		1/4 sekuntia (1) ja yksi sekunti (4).
+
+	r	Määrittää toistonopeuden, välillä 1-32. Nopeus on välillä
+		kaksi toistoa sekunnissa (1) ja 30 toistoa sekunnissa (32).
+
+	LOCK	Määrittää, että toistoparametrit tulee lukita. Tämän jälkeen
+		parametreja voi muuttaa vain ajamalla MODEn uudelleen, mutta
+		useimmat muut ohjelmat eivät voi niitä muuttaa. Tämä on
+		hyödyllistä, koska jotkut ohjelmat muuttavat asetuksia ilman
+		lupaa. Se ei kuitenkaan ole täysin aukoton suoja.
+
+	Huomaa, että molemmat arvot DELAY ja RATE on määritettävä.
+
+	MODE ei yritä vahvistaa, onko toiston asettaminen mahdollista kyseisellä
+	koneella. MODE hyväksyy kaikki komennot riippumatta siitä, tukeeko
+	kone niitä todellisuudessa.
+
+2.6.  VALITSINMERKKI (SWITCHAR)
+
+	MODE voi näyttää ja asettaa DOS-valitsinmerkin (switchar). Oletusmerkki
+	on vinoviiva "/". Valitsinmerkki on merkki, jota käytetään ilmaisemaan
+	asetusvalinnan alkua, esimerkiksi DIR-komennon /P-valitsin. Yleensä
+	merkki voidaan vaihtaa tavuviivaksi "-". Tämä on dokumentoimaton
+	DOS-ominaisuus, jota harvat ohjelmat tukevat oikein.
+
+	Syntaksi on:
+
+	MODE SWITCHAR			Näytä nykyinen valitsinmerkki
+	MODE SWITCHAR=x			Aseta valitsinmerkiksi merkki x
+	MODE SWITCHAR=n			Aseta valitsinmerkiksi ASCII-arvo n
+
+	Käyttö muotoa SWITCHAR ilman parametreja näyttää nykyisen merkin.
+	Uusi merkki voidaan antaa merkkinä (esim. "MODE SWITCHAR=/") tai
+	numerona (esim. "MODE SWITCHAR=45").
+
+2.7.  MUUNNOSREKISTERIT (SHIFT STATE)
+
+	MODE voi muuttaa kolmea lukittuvaa tilaa (Caps Lock, Num Lock ja
+	Scroll Lock). Tätä toimintoa ei tule käyttää alkuperäisillä PC- tai
+	XT-näppäimistöillä, koska niiden merkkivaloja ei voi ohjata
+	tietokoneesta, jolloin valot ja tietokoneen tila menevät eri tahtiin.
+	MODE ei tunnista näitä koneita automaattisesti. AT- ja uudemmissa
+	koneissa ongelmaa ei ole.
+
+	Syntaksi koostuu seuraavista valinnoista:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Mikä tahansa yhdistelmä, joka ei ole ristiriitainen, on sallittu.
+	SCRLOCK voidaan kirjoittaa myös muodossa SCROLLLOCK.
+
+3.  YLEISTÄ
+
+	MODE-parametrit eivät ole herkkiä kirjainkoolle.
+
+	MODE voi käsitellä vain yhden komennon kerrallaan. Jos haluat ohjata
+	useita LPT-portteja, sinun on käytettävä erillistä MODE-komentoa
+	jokaiselle. Eri tyyppisiä komentoja ei voi yhdistää samalle riville.
+
+	Virheilmoitukset lähetetään aina StdErr-virtaan. Tiedotusviestit
+	lähetetään normaaliin tulosteeseen, ja ne voidaan ohjata NUL-laitteeseen
+	hiljaista käyttöä varten.
+
+	MODEn palauttamat virhekoodit (Errorlevels) ovat:
+
+	0	Ei virhettä
+	115	Sarjaporttia ei ole olemassa
+	117	Pysäköitäviä kiintolevyjä ei löytynyt
+	118	Määritettyä videotilaa ei tueta tällä koneella
+	162	Muisti ei riitä (MODE vaatii noin 6 kt muistia)
+	241	Parametri alueen ulkopuolella (esim. aikayksikkö, LPT-numero)
+	242	43- tai 50-riviset tilat vain CO80-tilassa
+	243	Tuntematon baudinopeus
+	244	Sekä DELAY että RATE on määritettävä näppäimistöasetuksissa
+	246	Annettu useampi kuin yksi komento tai tyyppi
+	255	Virheellinen syntaksi
+
+	MODE on TSR-ohjelma. Tarvittaessa se jättää osan itsestään tietokoneen
+	muistiin. Tämä osa hoitaa tulostuksen uudelleenohjausta, aikakatkaisuja,
+	kiintolevyn automaattista pysäköintiä ja näppäimistöasetusten lukitusta.
+	Sitä ei voi poistaa ilman uudelleenkäynnistystä (ellei käytetä erillisiä
+	MARK- ja RELEASE-ohjelmia). Jos muistiin asennuksen jälkeen pyydetään
+	uusia toimintoja, ne aktivoidaan jo olemassa olevassa osassa.
+
+	Koska MODE on TSR, se voi olla yhteensopimaton muiden ohjelmien kanssa.
+	Jos ongelmia ilmenee, kokeile asentaa ohjelmat eri järjestyksessä.
+
+	Jos löydät virheen MODEsta, ilmoita siitä kirjoittajalle. Yhteystiedot
+	löytyvät tämän asiakirjan osasta 1.
+
+4.  KÄYTTÖESIMERKKEJÄ
+
+	Tässä on esimerkki MODEn käytöstä AUTOEXEC.BAT-tiedostossa:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	Tämä sarja valitsee ensin 43-rivisen värinäytön ja konfiguroi
+	sarjaportit COM1, COM2 ja COM3 (9600, 19200 ja 2400 bps, ei
+	pariteettia, kahdeksan databittiä ja yksi pysäytysbitti).
+	Sitten LPT1-tuloste ohjataan COM2-porttiin, jolloin kaikki LPT1:lle
+	tulostettu menee COM2:n kautta 19200 bps nopeudella (esim.
+	sarjamuotoiselle lasertulostimelle). LPT2 ja LPT3 ohjataan tyhjään.
+	Sitten asetetaan ajastettu levyn pysäköinti 30 sekunnin
+	käyttämättömyyden jälkeen.
+	Lopuksi asetetaan näppäimistön nopein toisto ja lukitaan se, sekä
+	asetetaan DOS-valitsinmerkiksi tavuviiva ("-").
+
+				   ----//----
+
+
+
+
+
+

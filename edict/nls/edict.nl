@@ -1,0 +1,101 @@
+# Language: Dutch
+# File ending: NL
+# Codepage: 850
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+TITLE=Enhanced Disk Image Creation Tool, Versie %_ %s
+COPYRIGHT=Copyright (c) 2018, Jerome Shidel
+
+HELP_00="EDICT optie informatie: "
+HELP_01=
+HELP_02="  /d <station>   geef stationsletter op"
+HELP_03="  /f <bestandsnaam> geef bestandsnaam op"
+HELP_04="  /p <limiet>    beperk maximaal aantal extra doorgangen"
+HELP_05=
+HELP_06="  /t <soort>     negeer bios en selecteer instellingen voor schijftype"
+HELP_07="                 (0=360Kib, 1=1.2Mib, 2=720Kib, 3=1.44Mib, a=auto)"
+HELP_08=
+HELP_09="  /c <nummer>    negeer aantal cilinders/tracks (0-1023)"
+HELP_0a="  /r <nummer>    negeer aantal zijden/koppen per track (0-255)"
+HELP_0b="  /s <nummer>    negeer aantal sectoren per zijde (0-63)"
+HELP_0c="  /b <nummer>    negeer aantal bytes per sector (1-8192)"
+HELP_0d=
+HELP_0e="  /h             toon help-informatie"
+
+HELP_??="  /T             alleen testlezen"
+HELP_??="  /w             schrijf image naar diskette"
+HELP_??="  /v             verifieer diskette"
+HELP_??="  /i             alleen informatie"
+HELP_??="  /o             slechts ‚‚n sector"
+HELP_??="  /q             stille modus"
+HELP_??="  /e             ga verder met bestaand imagebestand"
+HELP_??="  /m <bestandsnaam> koppel imagebestand"
+HELP_??="  /u             ontkoppel imagebestand"
+HELP_??="  /l             toon lijst met schijftypes"
+
+INVALID=%r "Ongeldig commando: `" %s "'"
+BAD_INT="Ongeldige numerieke waarde."
+BAD_VAL="Waarde buiten bereik."
+
+DRIVE=Station %_ %c: (ID 0x %b ) %_
+DRIVE_TYPE=%_ (ID 0x %b )
+DRIVE_TYPE_00=onbekend stationstype
+DRIVE_TYPE_01='5.25"' 360Kib station
+DRIVE_TYPE_02='5.25"' 1.2Mib station
+DRIVE_TYPE_03='3.5"' 720Kib station
+DRIVE_TYPE_04='3.5"' 1.44Mib station
+DRIVE_TYPE_05=ander stationstype
+
+DRIVE_SPEC=%i %_ bytes, %_ %I %_ sectoren, %_ %I %_ tracks, %_ %I %_ zijde(n)
+
+PASS_LIMIT=Tot %_ %i %_ extra doorgangen toegestaan om diskette te lezen
+BUFFERS=%i %_ byte diskettebuffer, %_ %i %_ byte trackresultaatbuffer
+
+PASS=Floppy leesdoorgang # %i. %_ %i %_ sector(en) overgebleven.
+
+READ_FAST=LEES TRACK: %_ %i, KOP: %_ %i
+READ_SLOW=LEES TRACK: %_ %i, KOP: %_ %i, SECTOR: %_ %i
+
+FAILED=Image-proces mislukt.
+ABORTED=Image-proces afgebroken.
+COMPLETED=Image-proces voltooid.
+
+BErr=%r "BIOS-foutcode: 0x" %b %_ --> %_
+BErr_01=foutief commando doorgegeven aan stuurprogramma
+BErr_02=adresmarkering niet gevonden of slechte sector
+BErr_03=diskette schrijfbeveiligingsfout
+BErr_04=sector niet gevonden
+BErr_05=vaste schijf reset mislukt
+BErr_06=diskette gewijzigd of verwijderd
+BErr_07=slechte vaste schijf parametertabel
+BErr_08=DMA-overrun
+BErr_09=DMA-toegang over 64k grens
+BErr_0a=slechte vaste schijf sectorvlag
+BErr_0b=slechte vaste schijf cilinder
+BErr_0c=niet-ondersteunde track
+BErr_0d=ongeldig aantal sectoren op vaste schijf formaat
+BErr_0e=vaste schijf gecontroleerde data-adresmarkering gedetecteerd
+BErr_0f=vaste schijf DMA-arbitrageniveau buiten bereik
+BErr_10=ECC/CRC-fout bij lezen van schijf
+BErr_11=herstelbare vaste schijf datafout, data hersteld door ECC
+BErr_20=controllerfout
+BErr_40=zoekfout (seek failure)
+BErr_80=station niet gereed
+BErr_aa=vaste schijf station niet gereed
+BErr_bb=vaste schijf ongedefinieerde fout
+BErr_cc=vaste schijf schrijffout op geselecteerd station
+BErr_e0=vaste schijf statusfout
+BErr_ff=detectie-operatie (sense) mislukt
+
+DErr=%r "DOS-foutcode: 0x" %b %_ --> %_
+DErr_01=Ongeldig functienummer
+DErr_02=Bestand niet gevonden
+DErr_03=Pad niet gevonden
+DErr_04=Te veel open bestanden
+DErr_05=Toegang geweigerd
+DErr_06=Ongeldige handle
+DErr_08=Onvoldoende geheugen
+DErr_0f=Ongeldig station opgegeven
+DErr_15=Station niet gereed
+

@@ -1,0 +1,333 @@
+# Language: Icelandic
+# File ending: IS
+# Codepage: 861
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Notkunarleiðbeiningar fyrir Free-DOS MODE forritið
+
+	(c) Copyright 1994-1995 eftir K. Heidenstrom.
+
+	Breytingar:
+
+	KH.19941231.001  (MODE 1.0.0)  Fyrsta útgáfa
+	KH.19950116.002  (MODE 1.0.2)  Bætti við leiðbeiningum fyrir switchar
+	KH.19950520.003  (MODE 1.0.3)  Engar breytingar á virkni
+	KH.19950805.004  (MODE 1.0.4)  Bætti við modifier (shift-state)
+	möguleikum
+
+
+1.  LAGALEGT
+
+	Þetta forrit er Copyright 1994-1995 eftir K. Heidenstrom. Það var
+	skrifað sérstaklega fyrir Free-DOS verkefnið. Hægt er að ná í
+	höfundinn á kheidens@actrix.gen.nz á Netinu eða með bréfpósti:
+	K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	Þetta forrit er frjáls hugbúnaður. Þú mátt endurdreifa frumkóðanum og
+	keyrsluskránni og/eða breyta forritinu samkvæmt skilmálum GNU
+	General Public License eins og hún er gefin út af Free Software
+	Foundation; annaðhvort útgáfu 2 af leyfinu, eða (að þínu vali)
+	hvaða síðari útgáfu sem er.
+
+	Þessu forriti er dreift í þeirri von að það verði gagnlegt, en það er
+	veitt "eins og það er", án nokkurrar ábyrgðar af neinu tagi, þar með
+	talinni óbeinni ábyrgð á söluhæfni eða hæfni til ákveðins tilgangs.
+	Undir engum kringumstæðum ber höfundur ábyrgð á tjóni af neinu tagi
+	sem tengist notkun þessa forrits. Sjá GNU General Public License fyrir
+	frekari upplýsingar.
+
+	Þú ættir að hafa fengið afrit af GNU General Public License ásamt
+	þessu forriti; ef ekki, skrifaðu til Free Software Foundation,
+	Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  VIRKNI OG NOTKUNARREGLUR
+
+	MODE forritið framkvæmir sex aðskilin verkefni, sem lýst er sérstaklega
+	hér á eftir.
+
+2.1.  STILLA SKJÁHAM OG FJÖLDA SKJÁLÍNA
+
+	MODE leyfir að skjáhamur sé stilltur á einn af fimm hami.
+	Setningafræðin er:
+
+	MODE Videomode[,Lines]
+
+	Hamirnir eru:
+
+	MONO	Svarthvítur hamur (monochrome), eins og hann er notaður með
+		MDA og Hercules skjákortum, og einnig eftirlíktur á EGA og
+		VGA kortum. Þessi hamur er sá eini sem hefur getu til að
+		undirstrika stafi á skjánum sjálfgefið. Ekki er hægt að
+		velja þennan ham á CGA skjákorti.
+
+	BW40	40-dálka litlaus hamur. Þessi hamur er sértækur fyrir CGA
+		skjákort og gefur skjá með 40 dálkum og 25 línum. Litaupp-
+		lýsingar í merkinu frá CGA kortinu eru slökkt, þannig að
+		skjárinn birtist í svarthvítu á litaskjá, með sextán
+		grátónum.
+		Ef þessi hamur er valinn á EGA eða VGA korti, eða CGA korti
+		sem er ekki tengt við sjónvarp eða litaskjá, mun hann birtast
+		eins og CO40 hamur (þ.e. liturinn verður ekki fjarlægður).
+		Ekki er hægt að velja þennan ham á MDA og Hercules skjákortum.
+
+	BW80	80-dálka litlaus hamur. Þessi hamur er einnig sértækur fyrir
+		CGA skjákort og er eins og BW40 nema hvað það eru 80 dálkar.
+		Ef þessi hamur er valinn á EGA eða VGA korti, eða CGA korti
+		sem er ekki tengt við sjónvarp eða litaskjá, mun hann birtast
+		eins og CO80 hamur (þ.e. liturinn verður ekki fjarlægður).
+		Ekki er hægt að velja þennan ham á MDA og Hercules skjákortum.
+
+	CO40	40-dálka litahamur. Þessi hamur gefur 40 dálka og 25 línu
+		litaskjá. Hann er studdur af CGA, EGA og VGA skjákortum en
+		ekki af MDA og Hercules kortum.
+
+	CO80	80-dálka litahamur. Þessi hamur gefur 80 dálka og 25 línu
+		skjá og er venjulegur skjáhamur fyrir CGA, EGA og VGA kort.
+		Hann er ekki studdur af MDA og Hercules kortum. Á EGA kortum
+		styður þessi hamur einnig 43-línu útgáfu, og á VGA kortum er
+		43-línu útgáfan og 50-línu útgáfan studd.
+
+		Hægt er að velja 43-línu og 50-línu haminn með því að til-
+		greina ",43" eða ",50" á eftir CO80 á MODE skipanalínunni.
+		Ef þessi breyta er ekki tilgreind verður sjálfgefna gildið
+		25 línur notað.
+
+	Þegar skjáhamur hefur verið stilltur mun hann haldast þar til honum
+	er breytt með MODE skipun eða forriti. Skjáhamurinn er ekki læstur
+	varanlega - forrit geta breytt skjáham eftir þörfum.
+
+2.2.  STILLA RAÐTENGI (SERIAL PORT)
+
+	MODE leyfir að stilla samskiptabreytur raðtengis.
+	Setningafræðin er:
+
+	MODE COMn:r,p,d,s
+
+	n	Tilgreinir hvaða raðtengi á að stilla, á bilinu 1 til 4. Ef
+		raðtengið er ekki til mun MODE tilkynna villu.
+
+	r	Tilgreinir hraðann (baud rate) í bitum á sekúndu. Gildin eru:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 og 115200.
+
+		Hægt er að stytta 1200, 2400, 4800 og 9600 í 12, 24, 48 og 96.
+		Hægt er að stytta hærri hraða í fyrstu tvo eða þrjá tölustafina.
+		115200 má stytta í 115 eða 1152.
+
+	p	Tilgreinir gerð jafnaðar (parity) sem er mynduð og athuguð.
+		Gildin eru:
+
+		E = Jafn (Even parity)
+		O = Odda (Odd parity)
+		N = Enginn (No parity)
+
+	d	Tilgreinir fjölda gagnabita (data bits) sem verða sendir og
+		mótteknir. Leyfileg gildi eru 5, 6, 7 og 8.
+
+	s	Tilgreinir fjölda stöðvunarbita (stop bits) sem verða sendir
+		og vænst. Þetta getur verið 1 eða 2. Ef 2 stöðvunarbitar eru
+		notaðir með 5 gagnabitum mun raðtengið í raun búa til og
+		athuga 1 1/2 stöðvunarbita.
+
+	Þegar þær hafa verið stilltar munu breytur raðtengisins haldast þar til
+	þeim er breytt með MODE skipun eða forriti. Stillingarnar eru ekki
+	læstar varanlega - forrit geta breytt þeim eftir þörfum.
+
+2.3.  ENDURSTÝRING HLIDTENGI (LPT) OG ÓTAKMARKAÐAR TILRAUNIR
+
+	MODE leyfir að endurstýra úttaki hliðtengis (LPT) yfir á raðtengi
+	(COM), á NUL (þ.e. ekki neitt), og getur einnig reynt aftur ótakmarkað
+	ef jaðartæki svarar ekki.
+
+	Þessi verkefni eru framkvæmd af þeim hluta MODE sem situr í minni
+	(resident portion), sem verður sjálfkrafa settur upp ef þörf krefur.
+
+	Setningafræðin er:
+
+	MODE LPTn:P		Ótakmarkað tímamörk (timeout) á hliðtengi
+	MODE LPTn:=COMx		Endurstýra prentun á COM tengi
+	MODE LPTn:=NUL:		Endurstýra prentun á NUL
+	MODE LPTn:		Fjarlægja endurstýringu og tímamörk
+
+	LPTn:P virknin tilgreinir ótakmarkaðar tilraunir við tímamörk. Ef
+	þetta er virkt mun MODE reyna stöðugt aftur ef prentarinn svarar
+	ekki. Ef þetta er ekki virkt og prentarinn svarar ekki innan ákveðins
+	tíma (venjulega um hálf mínúta), verður tilkynnt um villu.
+
+	LPTn:=COMx og LPTn:=NUL: virknin tilgreinir endurstýringu á úttaki
+	prentara. Hvaða hliðtengi sem er (hvort sem það er til eða ekki)
+	má endurstýra á hvaða raðtengi sem er, eða á NUL. Hægt er að
+	endurstýra fleiri en einu hliðtengi á sama raðtengið. Þetta er
+	gagnlegt ef þú ert með raðprentara, eða ef þú ert ekki með neinn
+	prentara og vilt koma í veg fyrir að tölvan læsist ef forrit
+	reynir að prenta á prentara sem er ekki til.
+
+	skipunin MODE LPTn: fjarlægir alla endurstýringu og ótakmörkuð
+	tímamörk fyrir tilgreinda tengið og færir það í eðlilegan rekstur.
+
+2.4.  LEGJA HARÐA DISKNUM (PARK)
+
+	MODE getur lagt harða disknum eða diskunum (aðeins fyrstu tveimur
+	eðlisfræðilegu diskunum í kerfinu), annaðhvort strax eða eftir
+	að diskurinn hefur verið óvirkur í ákveðinn tíma.
+
+	Tímastillta park-virknin er framkvæmd af þeim hluta MODE sem situr
+	í minni, sem verður sjálfkrafa settur upp ef þörf krefur.
+
+	Setningafræðin er:
+
+	MODE PARK			Leggja disknum núna
+	MODE PARK,mínútur[:sekúndur]	Leggja eftir að diskur hefur verið
+	óvirkur
+
+	PARK virknin leggur disknum/diskunum strax og bíður eftir að þú
+	slökkvir á tölvunni. Þú getur líka ýtt á Ctrl-C til að hætta og
+	fara aftur í DOS.
+
+	PARK,mínútur[:sekúndur] virknin veldur því að disknum/diskunum
+	verður lagt eftir ákveðinn tíma af óvirkni, sem getur verið allt
+	að 50 mínútur. Ef þú ert með tvo eðlisfræðilega diska er tekið
+	á þeim báðum sérstaklega.
+
+	Þegar þetta hefur verið stillt geturðu breytt tímanum með því að
+	keyra skipunina aftur með nýju tímagildi. Ekki er hægt að slökkva
+	á tímastilltu park-virkninni - þú verður að endurræsa tölvuna til
+	að fjarlægja hana.
+
+	Þessi virkni er yfirleitt aðeins gagnleg fyrir eldri vélar.
+	Nútíma harðir diskar leggja sér sjálfkrafa þegar slökkt er á þeim.
+
+2.5.  HRAÐRITUN (TYPEMATIC)
+
+	MODE leyfir að stilla biðtíma (delay) og hraða (rate) á sjálfvirkri
+	endurtekningu lyklaborðs, og valfrjálst að læsa þeim.
+
+	Læsingin er framkvæmd af þeim hluta MODE sem situr í minni, sem
+	verður sjálfkrafa settur upp ef þörf krefur.
+
+	Setningafræðin er:
+
+	MODE DELAY=d RATE=r		Stilla breytur
+	MODE DELAY=d RATE=r LOCK	Stilla og læsa breytum
+
+	d	Tilgreinir upphafsbið, bilið er 1 til 4 og biðin er á
+		milli 1/4 úr sekúndu (1) og einnar sekúndu (4).
+
+	r	Tilgreinir hraða endurtekningar. Bilið er 1 til 32 og
+		hraðinn er á milli tveggja endurtekninga á sekúndu (1)
+		og 30 endurtekninga á sekúndu (32).
+
+	LOCK	Tilgreinir að breyturnar eigi að læsa. Þegar það hefur
+		verið gert er hægt að breyta þeim með því að keyra MODE
+		aftur, en flest önnur forrit geta ekki breytt þeim. Þetta
+		getur verið gagnlegt þar sem sum forrit breyta þessu án
+		leyfis. Þetta er samt ekki alveg óbrjótanlegt.
+
+	Athugið að tilgreina verður bæði DELAY og RATE fyrir þessa virkni.
+
+	MODE reynir ekki að staðfesta hvort þessi virkni sé í boði á vélinni.
+	MODE mun samþykkja allar skipanir hvort sem vélin styður þær eða ekki.
+
+2.6.  SWITCHAR VIRKNI
+
+	MODE getur sýnt og stillt DOS skipanamerkið (switchar). Sjálfgefið
+	merki er skástrik, '/'. Switchar er merkið sem er notað til að
+	gefa til kynna upphaf valmöguleika, t.d. /P í DIR skipuninni.
+	Venjulega er hægt að breyta switchar í '-'. Switchar er óskráður
+	eiginleiki í DOS sem fá forrit styðja almennilega.
+
+	Setningafræðin er:
+
+	MODE SWITCHAR			Sýna núverandi switchar
+	MODE SWITCHAR=x			Stilla á staf x
+	MODE SWITCHAR=n			Stilla á ASCII gildi n
+
+	SWITCHAR breytan ein og sér veldur því að MODE sýnir núverandi
+	merki. Nýja merkið má tilgreina sem staf (t.d. 'MODE SWITCHAR=/')
+	eða sem tölu (t.d. 'MODE SWITCHAR=45').
+
+2.7.  MODIFIER (SHIFT STATE) VIRKNI
+
+	MODE getur breytt stöðunni á Caps Lock, Num Lock og Scroll Lock.
+	Ekki ætti að nota þessa virkni á vélum með upprunaleg PC eða XT
+	lyklaborð, vegna þess að ljósin á þeim lyklaborðum er ekki hægt
+	að stjórna frá tölvunni og þau munu lenda í ósamræmi við stöðuna
+	í tölvunni. MODE greinir ekki þessar vélar. Á AT og nýrri vélum
+	er þetta ekkert vandamál.
+
+	Breyturnar fyrir þessa skipun eru:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Hægt er að nota hvaða samsetningu sem er sem ekki er í mótsögn við
+	sjálfa sig. Einnig má skrifa SCROLLLOCK í stað SCRLOCK.
+
+3.  ALMENNT
+
+	Breyturnar í MODE eru ekki hástafa- eða lágstafaháðar.
+
+	MODE getur aðeins unnið úr einni skipun í hvert skipti. Ef þú vilt
+	endurstýra mörgum LPT tengjum verður þú að nota sérstaka skipun
+	fyrir hvert. Ekki er hægt að blanda ólíkum skipunum saman á línunni.
+
+	Villuboð eru alltaf send á StdErr. Upplýsingaboð eru send á
+	staðlað úttak (stdout) og má endurstýra á NUL: fyrir hljóðláta
+	notkun.
+
+	Errorlevels sem MODE skilar eru:
+
+	0	Engin villa
+	115	Raðtengi er ekki til (annaðhvort fyrir COMn: eða LPTn:=COMx)
+	117	Engir harðir diskar fundust til að leggja
+	118	Tilgreindur skjáhamur er ekki studdur á þessari vél
+	162	Ekki nóg minni (MODE þarf um 6K af minni)
+	241	Breyta utan marka (t.d. tímagildi, LPT númer o.fl.)
+	242	Ekki hægt að hafa 43 eða 50 línur nema í CO80 ham
+	243	Óþekktur hraði (baud rate)
+	244	Verður að tilgreina bæði DELAY= og RATE=
+	246	Meira en ein skipun eða skipanategund var gefin
+	255	Röng setningafræði (allar málfræðivillur)
+
+	MODE er TSR forrit. Ef þörf krefur mun MODE setja hluta af sjálfu
+	sér í minni tölvunnar. Þessi hluti sér um endurstýringu prentara,
+	park-virknina og læsingu á lyklaborðsstillingum. Hann verður ekki
+	fjarlægður nema með endurræsingu (nema MARK og RELEASE forrit séu
+	notuð). Ef frekari virkni er beðið um síðar mun MODE virkja hana
+	í þeim hluta sem þegar er í minni frekar en að setja nýjan upp.
+
+	Vegna þess að MODE er TSR getur það verið ósamhæft öðrum forritum
+	eða TSR forritum sem þú notar. Ef vandamál koma upp skaltu reyna
+	að setja forritin upp í annarri röð.
+
+	Ef þú finnur villu í MODE, vinsamlegast láttu höfundinn vita.
+	Samskiptaupplýsingar eru í hluta 1 í þessu skjali.
+
+4.  DÆMI UM NOTKUN
+
+	Hér er dæmi um notkun MODE í AUTOEXEC.BAT:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	Þessi röð velur fyrst 43-línu litaskjá, stillir svo raðtengi COM1,
+	COM2 og COM3. Síðan er LPT1 endurstýrt á COM2, þannig að allt sem
+	er prentað á LPT1 fer á COM2 í staðinn á 19200 hraða. LPT2 og LPT3
+	er endurstýrt á NUL þannig að það sem fer þangað hverfur.
+	Svo er sett upp tímastillt park sem leggur disknum eftir 30 sekúndna
+	kyrrstöðu. Loks er lyklaborðið stillt á mesta hraða og læst, og
+	switchar stilltur á bandstrik ('-').
+
+				   ----//----

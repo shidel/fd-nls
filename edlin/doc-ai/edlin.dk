@@ -1,0 +1,161 @@
+# Language: Danish
+# File ending: DK
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+EDLIN 2.14
+
+Programmet edlin er en kompakt linjeeditor, skrevet til FreeDOS som en
+funktionel klon af det gamle MS-DOS-program edlin. Det adskiller sig fra
+MS-edlin ved for det fõrste at vëre fri software, og for det andet ved at
+brugergrënsefladen er en smule anderledes pÜ visse punkter. èrsagen til
+forskellen er at spare brugeren for at skulle indtaste de kontroltegn, som
+krëves af syntaxen i MS-edlin.
+
+OPSTART AF EDLIN
+
+Programmet edlin startes enten alene:
+
+  edlin
+
+eller med et filnavn, som indlëses ved start:
+
+  edlin fil
+
+EDLINS INTERNE KOMMANDOER
+
+I de fõlgende kommandolister reprësenterer firkantede parenteser valgfrie
+dele. Symbolet # stÜr for et linjenummer, som kan vëre en talrëkke, et punkt
+(.) for den aktuelle linje, et dollartegn ($) for den sidste linje i filen,
+eller et linjenummer plus eller minus et andet linjenummer, sÜledes at:
+
+  .,.+1p
+
+udskriver den aktuelle linje og den efterfõlgende linje.
+
+Et dollartegn ($) i listerne reprësenterer en tekststreng. Disse kan
+omgives af enten enkelte eller dobbelte anfõrselstegn og indeholde fõlgende
+escape-sekvenser:
+
+  \a - alarm (bip)
+  \b - slet tilbage (backspace)
+  \e - escape
+  \f - sideskift (formfeed)
+  \t - horisontal tabulator
+  \v - vertikal tabulator
+  \" - dobbelt anfõrselstegn
+  \' - enkelt anfõrselstegn
+  \. - punktum
+  \\ - omvendt skrÜstreg (backslash)
+  \xXX (hvor X er hex-ciffer 0-9, a-f) - hexadecimal konstant
+  \dddd (hvor d er decimalt ciffer 0-9) - decimal konstant
+  \OOO (hvor O er oktalt ciffer 0-7) - oktal konstant
+  \^C - kontroltegn (control character)
+
+Programmet edlin understõtter fõlgende syntax:
+
+# - REDIGER EN ENKELT LINJE
+
+edlin viser den linje, der angives af nummeret, og den nëste linje der
+indtastes erstatter den viste linje i filen.
+
+a - TILFùJ (APPEND)
+
+Denne kommando svarer til at indtaste $+1i .
+
+[#],[#],#,[#]c - KOPIER LINJEINTERVAL
+
+Kopierer en blok af sammenhëngende linjer til en anden placering i
+bufferen. Parametrene er:
+
+  * Fõrste linje der skal kopieres (standard = aktuel linje)
+  * Sidste linje der skal kopieres (standard = aktuel linje)
+  * Linjen fõr hvilken blokken skal indsëttes
+  * Antal gange blokken skal kopieres (standard = 1)
+
+Efter kopiering kan du bruge l (list) kommandoen til at se de korrekt
+omnummererede linjer.
+
+[#][,#]d - SLET LINJEBLOK
+
+Sletter en blok af sammenhëngende linjer. Parametrene angiver fõrste og
+sidste linje i den blok, der skal slettes.
+
+Hvis du udelader den anden parameter, slettes kun linjen i den fõrste
+parameter. Hvis du udelader den fõrste, slettes blokken fra aktuel linje til
+linjen i den anden parameter (husk kommaet). Udeladelse af begge parametre
+medfõrer at den aktuelle linje slettes.
+
+e filnavn - GEM OG AFSLUT
+
+Dette svarer til kommandofõlgen:
+
+  w filnavn
+  q
+
+[#]i - INDSíTTELSESTILSTAND (INSERT)
+
+Aktiverer indsëttelsestilstand. Parameteren er linjenummeret fõr hvilket der
+skal indsëttes tekst.
+
+Under indsëttelse er escape-sekvenser tilladte. For at afslutte tilstanden
+skrives et punktum (.) pÜ en ellers tom linje (hvis du har brug for en linje
+med kun et punktum, skal det escapes).
+
+Efter afslutning bliver linjen efter den indsatte tekst den aktuelle linje,
+medmindre teksten blev tilfõjet i slutningen; i sÜ fald bliver den sidste
+linje den nye aktuelle linje.
+
+[#][,#]l - LIST LINJER
+
+Viser tekstlinjer pÜ skërmen. Uden fõrste parameter starter visningen 11
+linjer fõr den aktuelle linje. Uden anden parameter vises en hel side. Uden
+begge vises en side fra 11 linjer fõr den aktuelle. Hvis antallet af linjer
+overstiger en skërmside, vil programmet pause efter hver side.
+
+[#],[#],#m - FLYT BLOK (MOVE)
+
+Flytter en tekstblok til positionen fõr linjenummeret i den tredje
+parameter. Det fungerer som en kopiering efterfulgt af sletning af
+originalen.
+
+[#][,#]p - SIDE (PAGE)
+
+Svarer til l, men standardvisningen starter ved den aktuelle linje i stedet
+for 11 linjer fõr.
+
+q - AFSLUT (QUIT)
+
+Afslutter programmet uden at gemme yderligere ëndringer.
+
+[#][,#][?]r$,$ - ERSTAT STRENG (REPLACE)
+
+Erstatter alle forekomster af den fõrste streng med den anden inden for det
+valgte interval. Uden fõrste parameter starter erstatningen efter aktuel
+linje; uden anden slutter den ved filens sidste linje.
+
+SpõrgsmÜlstegnet (?) beder om bekrëftelse fõr hver erstatning.
+
+[#][,#][?]s$ - SùG EFTER STRENG (SEARCH)
+
+Sõger efter den fõrste linje, der indeholder den angivne streng. Uden fõrste
+parameter sõges fra aktuel linje, uden anden til slutningen af filen.
+
+SpõrgsmÜlstegnet (?) aktiverer bekrëftelse. Ved "N" (Nej) fortsëtter
+sõgningen, ved "J" (Ja) afsluttes den. Ved succes sëttes den aktuelle linje
+til det sted, hvor sõgningen sluttede.
+
+[#]t filnavn - OVERFùR FIL (TRANSFER)
+
+Indsëtter indholdet af en ekstern fil fõr det angivne linjenummer. Hvis intet
+angives, bruges den aktuelle linje.
+
+[#]w filnavn - SKRIV FIL (WRITE)
+
+Skriver det angivne antal linjer til filen. Uden parameter skrives hele
+bufferens indhold til filen.
+
+FORFATTER/VEDLIGEHOLDELSE
+
+Gregory Pietsch, gpietsch@comcast.net

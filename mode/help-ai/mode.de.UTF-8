@@ -1,0 +1,372 @@
+# Language: Deutsch
+# File ending: DE
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+	Programmnutzungs-Dokumentation für das Free-DOS MODE Programm
+
+	(c) Copyright 1994-1995 von K. Heidenstrom.
+
+	Modifiziert:
+
+	KH.19941231.001  (MODE 1.0.0)  Erste Version
+	KH.19950116.002  (MODE 1.0.2)  Dokumentation für switchar hinzugefügt
+	KH.19950520.003  (MODE 1.0.3)  Keine Änderungen an der Funktionalität
+	KH.19950805.004  (MODE 1.0.4)  Modifier-Optionen (Shift-Status) hinzu-
+	gefügt
+
+
+1.  RECHTLICHES (LEGAL)
+
+	Dieses Programm ist Copyright 1994-1995 von K. Heidenstrom. Es wurde
+	speziell für das Free-DOS Projekt geschrieben. Der Autor ist über
+	kheidens@actrix.gen.nz im Internet oder per Post erreichbar:
+	K. Heidenstrom c/- P.O. Box 27-103, Wellington, New Zealand.
+
+	Dieses Programm ist freie Software. Sie dürfen den Quellcode und die
+	ausführbare Datei unter den Bedingungen der GNU General Public License,
+	wie von der Free Software Foundation veröffentlicht, weiterverteilen
+	und/oder modifizieren; entweder gemäß Version 2 der Lizenz oder
+	(nach Ihrer Option) jeder späteren Version.
+
+	Dieses Programm wird in der Hoffnung verteilt, dass es nützlich sein
+	wird, aber es wird "wie besehen" (as-is) bereitgestellt, ohne jede
+	Gewährleistung jeglicher Art, einschließlich der impliziten Garantie
+	der Marktgängigkeit oder der Eignung für einen bestimmten Zweck.
+	In keinem Fall haftet der Autor für Schäden jeglicher Art, die im
+	Zusammenhang mit der Verwendung dieses Programms stehen. Weitere
+	Details entnehmen Sie bitte der GNU General Public License.
+
+	Sie sollten eine Kopie der GNU General Public License zusammen mit
+	diesem Programm erhalten haben; falls nicht, schreiben Sie an die
+	Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+2.  FUNKTION UND SYNTAX
+
+	Das MODE Programm führt sechs separate Funktionen aus, die unten
+	einzeln beschrieben werden.
+
+2.1.  VIDEOMODUS UND ANZAHL DER BILDSCHIRMZEILEN EINSTELLEN
+
+	MODE erlaubt es, den Videomodus auf einen von fünf Modi einzustellen.
+	Die Syntax lautet:
+
+	MODE Videomodus[,Zeilen]
+
+	Die Modi sind:
+
+	MONO	Monochrom-Modus, wie er mit MDA- und Hercules-Grafikkarten
+		verwendet und auch auf EGA- und VGA-Karten emuliert wird.
+		Dieser Modus ist der einzige, der standardmäßig Zeichen auf
+		dem Bildschirm unterstreichen kann. Dieser Modus kann auf
+		einer CGA-Karte nicht ausgewählt werden.
+
+	BW40	40-Spalten-Modus mit unterdrückter Farbe. Dieser Modus ist
+		spezifisch für den CGA-Adapter und bietet eine Anzeige von
+		40 Spalten mal 25 Zeilen. Die Farbinformation des Composite-
+		Videosignals der CGA-Karte wird abgeschaltet, sodass die
+		Anzeige auf einem Composite-Farbmonitor in Schwarzweiß mit
+		sechzehn Graustufen erfolgt.
+		Wenn dieser Modus auf einer EGA- oder VGA-Karte oder einer
+		CGA-Karte ausgewählt wird, die nicht an ein Fernsehgerät
+		oder einen Composite-Farbmonitor angeschlossen ist, erscheint
+		er identisch zum CO40-Modus (d.h. die Farbe wird nicht
+		unterdrückt). Dieser Modus kann auf MDA- und Hercules-Karten
+		nicht ausgewählt werden.
+
+	BW80	80-Spalten-Modus mit unterdrückter Farbe. Dieser Modus ist
+		ebenfalls spezifisch für den CGA-Adapter und entspricht BW40,
+		außer dass 80 Spalten verwendet werden.
+		Wenn dieser Modus auf einer EGA- oder VGA-Karte oder einer
+		CGA-Karte ausgewählt wird, die nicht an ein Fernsehgerät
+		oder einen Composite-Farbmonitor angeschlossen ist, erscheint
+		er identisch zum CO80-Modus (d.h. die Farbe wird nicht
+		unterdrückt). Dieser Modus kann auf MDA- und Hercules-Karten
+		nicht ausgewählt werden.
+
+	CO40	40-Spalten-Farbmodus. Dieser Modus bietet eine Farbanzeige
+		mit 40 Spalten mal 25 Zeilen. Er wird von CGA-, EGA- und
+		VGA-Adaptern unterstützt, jedoch nicht von MDA- oder
+		Hercules-Karten.
+
+	CO80	80-Spalten-Farbmodus. Dieser Modus bietet eine Anzeige von
+		80 Spalten mal 25 Zeilen und ist der normale Anzeigemodus
+		für CGA-, EGA- und VGA-Karten. Er wird von MDA- und
+		Hercules-Karten nicht unterstützt. Auf EGA-Karten
+		unterstützt dieser Modus auch eine 43-Zeilen-Variante,
+		und auf VGA-Karten werden die 43-Zeilen-Variante sowie eine
+		50-Zeilen-Variante unterstützt.
+
+		Die 43-Zeilen- und 50-Zeilen-Modi können durch Angabe von
+		",43" oder ",50" nach dem CO80 in der MODE-Befehlszeile
+		ausgewählt werden. Wenn dieser Parameter nicht angegeben
+		wird, wird der Standardwert von 25 Zeilen verwendet.
+
+	Einmal eingestellt, bleibt der Videomodus in Kraft, bis er durch
+	einen MODE-Befehl oder durch ein Programm geändert wird. Der
+	Videomodus ist nicht dauerhaft gesperrt - Programme können den
+	Modus frei nach Bedarf ändern.
+	
+
+2.2.  PARAMETER DER SERIELLEN SCHNITTSTELLE KONFIGURIEREN
+
+	MODE erlaubt es, die Kommunikationsparameter einer seriellen
+	Schnittstelle zu konfigurieren. Die Syntax lautet:
+
+	MODE COMn:r,p,d,s
+
+	n	Gibt an, welche serielle Schnittstelle konfiguriert werden
+		soll, im Bereich von 1 bis 4. Wenn die Schnittstelle nicht
+		existiert, meldet MODE einen Fehler.
+
+	r	Gibt die Baudrate in Bits pro Sekunde an. Werte sind:
+		50, 110, 150, 300, 600, 1200, 2400, 4800, 9600, 14400,
+		19200, 28800, 38400, 57600 und 115200.
+
+		1200, 2400, 4800 und 9600 können auf 12, 24, 48 bzw. 96
+		abgekürzt werden. 14400, 19200, 28800, 38400 und 57600
+		können auf ihre ersten zwei oder drei Ziffern abgekürzt
+		werden. 115200 kann auf 115 oder 1152 abgekürzt werden.
+
+	p	Gibt die Art der Parität an, die für die Datenbytes erzeugt
+		und geprüft wird. Werte sind:
+
+		E = Gerade Parität (Even)
+		O = Ungerade Parität (Odd)
+		N = Keine Parität (No)
+
+	d	Gibt die Anzahl der Datenbits an, die gesendet und empfangen
+		werden. Zulässige Werte sind 5, 6, 7 und 8.
+
+	s	Gibt die Anzahl der Stoppbits an, die gesendet und erwartet
+		werden. Dies kann 1 oder 2 sein. Wenn 2 Stoppbits in
+		Verbindung mit 5 Datenbits verwendet werden, erzeugt und
+		prüft die serielle Schnittstelle tatsächlich 1 1/2 Stoppbits.
+
+	Einmal eingestellt, bleiben die Parameter der seriellen Schnittstelle
+	in Kraft, bis sie durch einen MODE-Befehl oder ein Programm geändert
+	werden. Die Einstellungen sind nicht dauerhaft gesperrt - Programme
+	können sie frei nach Bedarf ändern.
+
+2.3.  PARALLELPORT-UMLEITUNG UND UNENDLICHE WIEDERHOLVERSUCHE
+
+	MODE erlaubt es, die Ausgabe des Parallelports (LPT) auf einen
+	seriellen Port (COM) oder auf NUL (d.h. nichts) umzuleiten. Zudem
+	können unendliche Wiederholversuche eingestellt werden, falls das
+	Peripheriegerät nicht antwortet.
+
+	Diese Funktionen werden vom residenten Teil von MODE ausgeführt, der
+	bei Bedarf automatisch installiert wird, wenn die Funktion
+	angefordert wird.
+
+	Die Syntax lautet:
+
+	MODE LPTn:P		Unendliches Timeout am Parallelport
+	MODE LPTn:=COMx		Druckerausgabe auf COM-Port umleiten
+	MODE LPTn:=NUL:		Druckerausgabe auf NUL umleiten
+	MODE LPTn:		Umleitung und unendliches Timeout aufheben
+
+	Die Funktion LPTn:P legt unendliche Wiederholversuche bei einem
+	Timeout fest. Wenn dies aktiviert ist, versucht MODE kontinuierlich
+	erneut zu senden, wenn der Drucker nicht antwortet. Wenn dies nicht
+	aktiviert ist und der Drucker innerhalb einer bestimmten Zeit
+	(typischerweise etwa eine halbe Minute) nicht antwortet, wird ein
+	Schreibfehler (write fault) gemeldet.
+
+	Die Funktionen LPTn:=COMx und LPTn:=NUL: legen die Umleitung der
+	Druckerausgabe fest. Jeder Parallelport (unabhängig davon, ob er
+	existiert oder nicht) kann auf jeden existierenden seriellen Port
+	oder auf NUL umgeleitet werden. Mehr als ein Parallelport kann auf
+	denselben seriellen Port oder auf NUL umgeleitet werden. Diese
+	Funktionen sind nützlich, wenn Sie einen Seriell-Drucker haben oder
+	wenn Sie keinen Drucker besitzen und verhindern wollen, dass der
+	Computer einfriert, wenn ein Programm versucht, auf einem nicht
+	vorhandenen Drucker zu drucken.
+
+	Der Befehl MODE LPTn: entfernt jegliche Umleitung und unendliche
+	Timeouts, die für den angegebenen Port konfiguriert sind, und kehrt
+	zum Normalbetrieb zurück.
+
+2.4.  FESTPLATTEN-PARKFUNKTIONEN (PARK)
+
+	MODE parkt die Festplatte oder Festplatten (nur die ersten beiden
+	physischen Festplatten im System), entweder sofort oder nachdem die
+	Festplatte für eine gewisse Zeit inaktiv war.
+
+	Die zeitgesteuerte Parkfunktion wird vom residenten Teil von MODE
+	ausgeführt, der bei Bedarf automatisch installiert wird.
+
+	Die Syntax lautet:
+
+	MODE PARK			Jetzt parken
+	MODE PARK,Minuten[:Sekunden]	Parken nach Inaktivität der Festplatte
+
+	Die PARK-Funktion parkt die Festplatte(n) sofort und wartet darauf,
+	dass Sie den Computer ausschalten. Sie können auch Strg-C drücken,
+	um das Programm zu beenden und zu DOS zurückzukehren.
+
+	Die Funktion PARK,Minuten[:Sekunden] bewirkt, dass die Festplatte(n)
+	nach einer gewissen Zeit der Inaktivität (bis zu 50 Minuten) geparkt
+	werden. Wenn Sie zwei physische Festplatten haben, werden beide
+	separat behandelt.
+
+	Einmal eingestellt, können Sie den Zeitraum ändern, indem Sie den
+	Befehl erneut mit einem anderen Zeitwert ausführen. Die zeitgesteuerte
+	Parkfunktion kann nicht abgeschaltet werden - Sie müssen neu starten,
+	um sie zu entfernen.
+
+	Diese Funktionen sind im Allgemeinen nur für ältere Rechner nützlich.
+	Moderne Festplatten parken sich beim Ausschalten automatisch selbst.
+
+2.5.  TYPEMATIC-FUNKTIONEN (TASTATURWIEDERHOLUNG)
+
+	MODE erlaubt es, die Typematic-Parameter (Auto-Wiederholung) für die
+	Anfangsverzögerung und die Wiederholrate einzustellen und optional
+	zu sperren.
+
+	Die Typematic-Sperrfunktion wird vom residenten Teil von MODE
+	ausgeführt, der bei Bedarf automatisch installiert wird.
+
+	Die Syntax lautet:
+
+	MODE DELAY=d RATE=r		Typematic-Parameter einstellen
+	MODE DELAY=d RATE=r LOCK	Parameter einstellen und sperren
+
+	d	Gibt die Anfangsverzögerung an. Der Bereich ist 1 bis 4,
+		wobei die Verzögerung zwischen 1/4 Sekunde (1) und einer
+		Sekunde (4) liegt.
+
+	r	Gibt die Auto-Wiederholrate an. Der Bereich ist 1 bis 32,
+		wobei die Rate zwischen zwei Wiederholungen pro Sekunde (1)
+		und 30 Wiederholungen pro Sekunde (32) liegt.
+
+	LOCK	Gibt an, dass die Typematic-Parameter gesperrt werden sollen.
+		Sobald dies geschehen ist, können die Parameter zwar durch
+		erneutes Ausführen von MODE geändert werden, aber nicht mehr
+		durch die meisten anderen Programme. Dies kann nützlich sein,
+		da einige Programme die Typematic-Parameter ohne Erlaubnis
+		ändern. Es ist jedoch nicht völlig manipulationssicher.
+
+	Beachten Sie, dass für diese Funktionen sowohl DELAY als auch RATE
+	angegeben werden müssen.
+
+	MODE versucht nicht zu bestätigen, ob Typematic-Einstellungen auf
+	dem Rechner verfügbar sind. MODE akzeptiert alle Typematic-Befehle,
+	unabhängig davon, ob der Rechner sie tatsächlich unterstützt.
+
+2.6.  SWITCHAR-FUNKTIONEN
+
+	MODE kann das DOS-Schalter-Zeichen (switchar) anzeigen und setzen.
+	Der Standard-Switchar ist der Vorwärts-Schrägstrich "/". Der Switchar
+	ist das Zeichen, das verwendet wird, um den Beginn eines Options-
+	schalters anzuzeigen, z.B. der Schalter /P beim DIR-Befehl.
+	Typischerweise kann der Switchar auf "-" geändert werden. Der
+	Switchar ist eine undokumentierte DOS-Funktion, die von wenigen
+	Programmen korrekt unterstützt wird.
+
+	Die Syntax lautet:
+
+	MODE SWITCHAR			Aktuellen Switchar anzeigen
+	MODE SWITCHAR=x			Switchar auf Zeichen x setzen
+	MODE SWITCHAR=n			Switchar auf ASCII-Wert n setzen
+
+	Der Parameter SWITCHAR allein bewirkt, dass MODE den aktuellen
+	Switchar anzeigt. Die Verwendung von SWITCHAR= setzt den Switchar.
+	Der neue Switchar kann als Zeichen (z.B. "MODE SWITCHAR=/") oder
+	als Zahl (z.B. "MODE SWITCHAR=45") angegeben werden.
+
+2.7.  MODIFIER-FUNKTIONEN (UMSCHALTZUSTÄNDE)
+
+	MODE kann die drei feststellbaren Umschaltzustände (Caps Lock,
+	Num Lock und Scroll Lock) ändern. Diese Funktion sollte nicht auf
+	Rechnern mit originalen PC- oder XT-Tastaturen verwendet werden, da
+	die Anzeige-LEDs an diesen Tastaturen nicht vom Computer gesteuert
+	werden können und asynchron zu den Zuständen des Computers werden.
+	Auf ATs und neueren Rechnern gibt es kein Problem.
+
+	Die Syntax für diesen Befehl besteht aus den folgenden Optionen:
+
+		CAPSLOCK=ON	CAPSLOCK=OFF
+		NUMLOCK=ON	NUMLOCK=OFF
+		SCRLOCK=ON	SCRLOCK=OFF
+
+	Jede nicht widersprüchliche und nicht doppelte Kombination dieser
+	Optionen ist zulässig. SCRLOCK kann auch als SCROLLLOCK
+	ausgeschrieben werden.
+
+3.  ALLGEMEINES
+
+	Parameter für MODE unterscheiden nicht zwischen Groß- und
+	Kleinschreibung.
+
+	MODE kann pro Aufruf nur einen Befehl verarbeiten. Wenn Sie mehrere
+	LPT-Ports umleiten wollen, müssen Sie für jeden einen separaten
+	MODE-Befehl verwenden. Befehle unterschiedlicher Typen können nicht
+	auf der Befehlszeile kombiniert werden.
+
+	Fehlermeldungen werden immer an StdErr gesendet. Informations-
+	meldungen werden an die Standardausgabe gesendet und können für
+	einen "stummen" Betrieb nach NUL: umgeleitet werden.
+
+	Die von MODE zurückgegebenen Errorlevels sind wie folgt:
+
+	0	Kein Fehler
+	115	Serieller Port existiert nicht
+	117	Keine Festplatte(n) zum Parken gefunden
+	118	Angegebener Videomodus wird auf diesem Rechner nicht unterstützt
+	162	Nicht genügend Speicher (MODE benötigt etwa 6 KB Speicher)
+	241	Parameter außerhalb des Bereichs (z.B. Zeitwert, LPT-Nummer etc.)
+	242	43- oder 50-Zeilen-Modus nur mit CO80 möglich
+	243	Unbekannte Baudrate
+	244	Sowohl DELAY= als auch RATE= müssen für Typematic angegeben werden
+	246	Mehr als ein Befehl oder Befehlstyp wurde angegeben
+	255	Falsche Syntax (alle Syntaxfehler)
+
+	MODE ist ein TSR-Programm. Bei Bedarf installiert MODE einen Teil von
+	sich selbst resident im Arbeitsspeicher des Computers. Dieser Teil
+	übernimmt die Druckerumleitung, das Timeout-Handling, das
+	automatische Parken der Festplatte und das Sperren der Typematic-
+	Parameter. Er kann ohne Neustart nicht entfernt werden (außer bei
+	Verwendung von MARK und RELEASE). Wenn zusätzliche residente
+	Funktionen angefordert werden, aktiviert MODE diese im bereits
+	vorhandenen residenten Teil.
+
+	Da MODE ein TSR ist, kann es inkompatibel mit anderen Anwendungen
+	oder TSRs sein. Bei Problemen versuchen Sie, die Reihenfolge der
+	Installation zu ändern.
+
+	Wenn Sie einen Fehler in MODE finden, informieren Sie bitte den
+	Autor. Die Kontaktdaten finden Sie in Abschnitt 1 dieses Dokuments.
+
+4.  ANWENDUNGSBEISPIELE
+
+	Hier ist ein Beispiel für die Verwendung von MODE in der AUTOEXEC.BAT,
+	das alle Funktionen demonstriert:
+
+	mode co80,43			>nul:
+	mode com1:96,n,8,1		>nul:
+	mode com2:19,n,8,1		>nul:
+	mode com3:24,n,8,1		>nul:
+	mode lpt1:=com2			>nul:
+	mode lpt1:p			>nul:
+	mode lpt2:=nul:			>nul:
+	mode lpt3:=nul:			>nul:
+	mode park,0:30			>nul:
+	mode delay=1 rate=32 lock	>nul:
+	mode switchar=-			>nul:
+	mode numlock=off		>nul:
+
+	Diese Sequenz wählt zuerst den 43-Zeilen-Farbmodus aus und
+	konfiguriert dann die seriellen Ports COM1, COM2 und COM3.
+	Danach wird die Ausgabe von LPT1 auf COM2 umgeleitet (z.B. für einen
+	seriellen Laserdrucker), während LPT2 und LPT3 auf NUL umgeleitet
+	werden.
+	Anschließend wird ein zeitgesteuertes Parken der Festplatte
+	eingerichtet (nach 30 Sekunden Inaktivität).
+	Zuletzt wird die schnellste Wiederholrate für die Tastatur
+	ausgewählt und gesperrt, und der DOS-Switchar wird auf einen
+	Bindestrich ("-") gesetzt.
+
+				   ----//----
+				   
