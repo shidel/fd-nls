@@ -1,0 +1,143 @@
+# Language: Danish
+# File ending: DK
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Velkommen til" /fLightGreen %1 /fCyan %2 /fGray "installationsprogrammet."
+WELCOME_ADV="Velkommen til den" /fLightRed "avancerede" /fGray "installatør for" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen %1 /fGray "er et komplet operativsystem. Hvis du vælger at installere dette" /p "på din computer, kan du " /fLightRed /BlinkOn "overskrive" /BlinkOff /fGray "det nuværende operativsystem" /p "(for eksempel Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Hvis dette ikke er din hensigt, skal du stoppe NU!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Ønsker du at fortsætte" /c32
+REBOOT=/p "Ønsker du at genstarte nu" /c32
+
+AUTO_YES="[J,N]?" /fWhite "J" /fGray
+AUTO_NO="[J,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[F,H,N]?" /fWhite "H" /fGray
+
+PROMPT_YESNO=/s JN
+PROMPT_FMT=/s HSN
+
+ABORTED=/fLightRed "Installationen af" %1 %2 "er blevet afbrudt." /e /fGray /bBlack
+
+PARTITION_AUTO="Partitionér automatisk drev" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "BEMÆRK:" /fGray "FAT16-partition under 2Gb er nødvendig for KERNL86."
+PARTITION_MBR="Opdatér Master Boot Record på drev" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Indstil drev" /fWhite %1 /fGray "partition som aktiv."
+PARTITION_DONE=/p "Du skal genstarte din computer, før det nye partitionsskema træder i kraft."
+
+FORMAT="Drev" /fWhite %1 /fGray "ser ikke ud til at være formateret."
+FORMAT_DEF="Ønsker du at formatere dit drev" /c32
+FORMAT_ADV="Hvordan ønsker du at formatere dit drev" /s- /c32 ( /fWhite "F" /fGray "uld," /c32 /fWhite "H" /fGray "urtig," /c32 /fWhite "N" /fGray "ej)" /c32
+
+FILESYSTEM_TEST="Tester filsystem på drev" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Indsæt diskette" /fWhite #%1 /fGray (%2) "i" /fWhite %3 /fGray "."
+PRESS_KEY="Tryk på en tast for at fortsætte."
+
+TARGET_ASK="Hvor ønsker du at installere" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Ugyldigt drev valgt. Kan ikke installere på diskette."
+
+CHANGE_PATH="Stien" /fWhite %1 /fGray "eksisterer allerede." /p "Ønsker du at ændre installationsmappen" /c32
+
+BACKUP_OLD="Et tidligere operativsystem blev fundet på drev" /fWhite %1 /fGray /s- . /s+ /p "Vil du tage backup af de gamle filer før installation" /c32
+BACKUP_ASK="Hvor ønsker du at placere backup-filerne?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Ugyldig destination valgt. Kan ikke tage backup til den placering." /fGray
+
+DELETE_OLD="De eksisterende filer i" /fWhite %1 /fGray "kan bare overskrives." /p "Ønsker du at slette den gamle mappe helt før installation" /c32
+
+FORCE_MBR="Gennemtving opdatering af Master Boot Record på drev" /fWhite %1 /fGray /c32
+SYS_FILES="Installér nye system-bootfiler på drev" /fWhite %1 /fGray /c32
+CFG_FILES="Erstat systemkonfigurationsfiler på drev" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Installationsindstillinger:" /p
+STATUS_CPU=/r4/c32 "Platform (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Installér fra" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Destinationsdrev" /fWhite %1 /fGray (disk %2, partition %3)
+STATUS_DOS=/r4/c32 "Installationssti" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Backup af tidl. OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Tidligere OS-mappe" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Installér ny MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopiér systemfiler" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopiér konfig-filer" /fWhite %1 /fGray
+
+INSTALL_NOW="Vi er nu klar til at installere" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Filudpakning af" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Opdatér pakkelistefiler." /p
+
+DO_BACKUP="Opretter backup af tidligere OS-filer til" /fWhite %1 /fGray /s- .
+DO_ERASE="Slet gammel" /fWhite %1 /fGray "mappe og filer."
+DO_SYSFILES="Overfør nye systemfiler til drev" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Gennemtving opdatering af MBR på drev" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Indstil aktiv boot-partition på disk" /fWhite %1 /fGray "til partition" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Overfør nye konfigurationsfiler til drev" /fWhite %1 /fGray /s- .
+DO_PREPARE="Forbereder installation af eksekverbare filer og værktøjer."
+DO_INSTALL="Installér" /fLightGreen %1 /fGray "filer til" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Installationen af" /fLightGreen %1 /fCyan %2 /fGray "er fuldført."
+REBOOT_NOW="Ønsker du at genstarte nu" /c32
+
+REMOVE_MEDIA="Du bør fjerne alle disketter og CD-medier."
+
+SUCCESS=/fLightGreen "Succes." /fGray
+FAILED=/fLightRed "Fejlet." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Installatør (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Udgivet under GPL v2.0-licens."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS er et varemærke tilhørende Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="brug: SETUP.BAT [indstillinger] [mål]"
+HELP_1=""
+HELP_2="  [ingen indst]   udfør setup med standardværdier"
+HELP_3=
+HELP_4="  adv             start setup i avanceret tilstand (flere spørgsmål)"
+HELP_5=
+HELP_6="  auto            udfør fuldautomatisk installation uden spørgsmål." /p/r18/c32 "dette anbefales ikke og bør kun bruges på hardware" /p/r18/c32 "uden et eksisterende operativsystem."
+HELP_7=
+HELP_8="  [mål]           indstil på forhånd et drev og/eller sti til installationen"
+HELP_9=
+HELP_10="  info            vis installatørens konfigurationsindstillinger og afslut"
+HELP_11=
+HELP_12="  mbr             gennemtving en opdatering af MBR og afslut"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITISK fejl:" /fGray /c32
+ERROR_NoHDD="Kunne ikke finde et partitioneret og formateret harddiskdrev."
+ERROR_MINOR=/fLightRed "fejl:" /fGray /c32
+ERROR_Option="Ukendt eller ugyldig kommandolinjeindstilling" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Kunne ikke bestemme grundlæggende systemkonfiguration og stier."
+ERROR_NotFreeCOM="Denne batchfil kræver FreeCOM eller en kompatibel shell til FreeDOS."
+ERROR_MissingFreeCOM="Kunne ikke finde FreeDOS' command shell FreeCOM."
+ERROR_MissingAUTOEXEC="Kunne ikke finde FreeDOS' opstartsfil FDAUTO.BAT."
+ERROR_MakeDir="Kunne ikke oprette mappe" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Kunne ikke tage backup af boot- og/eller konfigurationsfiler."
+ERROR_BackupOS="Kunne ikke tage backup af filer i målmappen."
+ERROR_Partition="Der opstod en partitioneringsfejl. En harddisk er muligvis ikke" /p "tilstede eller er usynlig for det nuværende operativsystem." /p /p "En anden partitioneringsmetode er påkrævet."
+ERROR_NoPartition="Kunne ikke finde BIOS-partitionen til" /fWhite %1 /fGray /s- . /s+ /p "Manuel installation (eller avanceret tilstand uden tvungen MBR) anbefales."
+ERROR_Format="Der opstod en fejl under forsøg på at formatere drev" /fWhite %1 /fGray /s- . /s+ /p /p "En anden proces vil være påkrævet for at formatere det."
+ERROR_FileSystem="Kunne ikke initialisere midlertidig plads på drev" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Kunne ikke konfigurere backup-mappe."
+ERROR_MBRBackup="Kunne ikke oprette backup af Master Boot Record for drev" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Kunne ikke kopiere systemfiler til drev" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Kunne ikke opdatere bootsektor for drev" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Kunne ikke opdatere Master Boot Record for drev" /fWhite %1 /fGray /s- .
+ERROR_Activate="Kunne ikke indstille drev" /fWhite %1 /fGray "til boot-partition" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Kunne ikke installere nye konfigurationsfiler på drev" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Kunne ikke duplikere påkrævet installationsfil til" /fWhite %1 /fGray /s- .
+ERROR_SAF="Der opstod et problem under udpakning af" /fWhite %1 /fGray "arkiv."
+ERROR_WTF="Ukendt og usandsynlig fejl opstod under en simpel operation."
+

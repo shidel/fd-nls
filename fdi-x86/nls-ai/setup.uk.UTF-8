@@ -1,0 +1,143 @@
+# Language: Ukrainian
+# File ending: UK
+# Codepage: 1125
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Ласкаво просимо до програми встановлення" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Ласкаво просимо до" /fLightRed "розширеної" /fGray "програми встановлення" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "- це повноцінна операційна система. Якщо ви вирішите встановити її" /p "на свій комп'ютер, ви можете " /fLightRed /BlinkOn "перезаписати" /BlinkOff /fGray "операційну систему, яка у вас" /p "є зараз (наприклад, Windows.)" /fGray /p
+WELCOME_2=/fGray /c32 "Якщо це не є вашим наміром, будь ласка," /fLightRed "зупиніться ЗАРАЗ!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Бажаєте продовжити" /c32
+REBOOT=/p "Бажаєте перезавантажити зараз" /c32
+
+AUTO_YES="[Y,N]?" /fWhite "Y" /fGray
+AUTO_NO="[Y,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[F,Q,N]?" /fWhite "Q" /fGray
+
+PROMPT_YESNO=/s YN
+PROMPT_FMT=/s FQN
+
+ABORTED=/fLightRed "Встановлення" %1 %2 "було перервано." /e /fGray /bBlack
+
+PARTITION_AUTO="Автоматично розмітити диск" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "ПРИМІТКА:" /fGray "Для KERNL86 потрібен розділ FAT16 розміром менше 2Гб."
+PARTITION_MBR="Оновити Master Boot Record на диску" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Встановити розділ диска" /fWhite %1 /fGray "як активний."
+PARTITION_DONE=/p "Ви повинні перезавантажити комп'ютер, щоб нова розмітка диска набрала чинності."
+
+FORMAT="Диск" /fWhite %1 /fGray "не виглядає відформатованим."
+FORMAT_DEF="Бажаєте відформатувати ваш диск" /c32
+FORMAT_ADV="Як ви бажаєте відформатувати ваш диск" /s- /c32 ( /fWhite "П" /fGray "овно," /c32 /fWhite "Ш" /fGray "видко," /c32 /fWhite "Н" /fGray "і)" /c32
+
+FILESYSTEM_TEST="Перевірка файлової системи на диску" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Вставте дискету" /fWhite #%1 /fGray (%2) "у" /fWhite %3 /fGray "."
+PRESS_KEY="Натисніть будь-яку клавішу для продовження."
+
+TARGET_ASK="Куди ви бажаєте встановити" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Запитано недійсний диск. Неможливо встановити на дискету."
+
+CHANGE_PATH="Шлях" /fWhite %1 /fGray "вже існує." /p "Бажаєте змінити каталог встановлення" /c32
+
+BACKUP_OLD="На диску" /fWhite %1 /fGray "виявлено попередню операційну систему." /s+ /p "Бажаєте створити резервну копію старих файлів перед встановленням" /c32
+BACKUP_ASK="Куди ви бажаєте помістити файли резервної копії?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Запитано недійсне призначення. Неможливо створити резервну копію в цьому місці." /fGray
+
+DELETE_OLD="Наявні файли в" /fWhite %1 /fGray "можуть бути просто перезаписані." /p "Бажаєте повністю стерти старий каталог перед встановленням" /c32
+
+FORCE_MBR="Примусово оновити Master Boot Record на диску" /fWhite %1 /fGray /c32
+SYS_FILES="Встановити нові завантажувальні файли системи на диск" /fWhite %1 /fGray /c32
+CFG_FILES="Замінити файли конфігурації системи на диску" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Налаштування встановлення:" /p
+STATUS_CPU=/r4/c32 "Платформа (ЦП)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Встановити з" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Цільовий диск" /fWhite %1 /fGray (диск %2, розділ %3)
+STATUS_DOS=/r4/c32 "Шлях встановлення DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Бекап попередньої ОС" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Каталог попередньої ОС" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Встановити новий MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Копіювати системні файли" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Копіювати конфігураційні файли" /fWhite %1 /fGray
+
+INSTALL_NOW="Тепер ми готові до встановлення" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Видобування файлів" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Оновити файли списку пакетів." /p
+
+DO_BACKUP="Створення резервної копії файлів попередньої ОС до" /fWhite %1 /fGray /s- .
+DO_ERASE="Видалити старий" /fWhite %1 /fGray " каталог та файли."
+DO_SYSFILES="Перенесення нових системних файлів на диск" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Примусове оновлення MBR на диску" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Встановити активний завантажувальний розділ на диску" /fWhite %1 /fGray "для розділу" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Перенесення нових файлів конфігурації на диск" /fWhite %1 /fGray /s- .
+DO_PREPARE="Підготовка до встановлення виконуваних файлів та утиліт."
+DO_INSTALL="Встановити" /fLightGreen %1 /fGray "файли для" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Встановлення" /fLightGreen %1 /fCyan %2 /fGray "завершено."
+REBOOT_NOW="Бажаєте перезавантажити зараз" /c32
+
+REMOVE_MEDIA="Ви повинні вийняти всі дискети та CD-носії."
+
+SUCCESS=/fLightGreen "Успішно." /fGray
+FAILED=/fLightRed "Помилка." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Програма встановлення (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Випущено за ліцензією GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS є торговою маркою Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="використання: SETUP.BAT [опції] [ціль]"
+HELP_1=""
+HELP_2="  [без опцій]    виконати встановлення за замовчуванням"
+HELP_3=
+HELP_4="  adv             запустити встановлення в розширеному режимі (більше запитів)"
+HELP_5=
+HELP_6="  auto            виконати повністю автоматичне встановлення без запитів." /p/r18/c32 "це не рекомендується і має використовуватися лише на залізі" /p/r18/c32 "без попередньо встановленої операційної системи."
+HELP_7=
+HELP_8="  [ціль]          заздалегідь встановити диск та/або шлях для встановлення"
+HELP_9=
+HELP_10="  info            показати конфігурацію програми встановлення та вийти"
+HELP_11=
+HELP_12="  mbr             примусово оновити MBR та вийти"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "КРИТИЧНА помилка:" /fGray /c32
+ERROR_NoHDD="Не вдалося знайти розмічений та відформатований жорсткий диск."
+ERROR_MINOR=/fLightRed "помилка:" /fGray /c32
+ERROR_Option="Невідома або недійсна опція командного рядка" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Не вдалося визначити основну конфігурацію системи та налаштування шляхів."
+ERROR_NotFreeCOM="Цей пакетний файл потребує FreeCOM або сумісну оболонку для FreeDOS."
+ERROR_MissingFreeCOM="Не вдалося знайти командну оболонку FreeDOS FreeCOM."
+ERROR_MissingAUTOEXEC="Не вдалося знайти файл автозапуску FreeDOS FDAUTO.BAT."
+ERROR_MakeDir="Не вдалося створити каталог" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Не вдалося створити резервну копію завантажувальних та/або конфігураційних файлів."
+ERROR_BackupOS="Не вдалося створити резервну копію файлів у цільовому каталозі."
+ERROR_Partition="Виникла помилка розмітки диска. Жорсткий диск може бути відсутнім" /p "або бути невидимим для поточної операційної системи." /p /p "Потрібен інший метод розмітки диска."
+ERROR_NoPartition="Не вдалося знайти розділ BIOS для" /fWhite %1 /fGray /s- . /s+ /p "Рекомендується ручне встановлення (або розширений режим без примусового MBR)."
+ERROR_Format="Виникла помилка під час спроби відформатувати диск" /fWhite %1 /fGray /s- . /s+ /p /p "Для його форматування знадобиться інший процес."
+ERROR_FileSystem="Не вдалося ініціалізувати тимчасовий простір на диску" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Не вдалося налаштувати каталог резервного копіювання."
+ERROR_MBRBackup="Не вдалося створити резервну копію Master Boot Record для диска" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Не вдалося скопіювати системні файли на диск" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Не вдалося оновити завантажувальний сектор для диска" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Не вдалося оновити MBR для диска" /fWhite %1 /fGray /s- .
+ERROR_Activate="Не вдалося встановити диск" /fWhite %1 /fGray "як завантажувальний розділ" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Не вдалося встановити нові файли конфігурації на диск" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Не вдалося продублювати необхідний файл програми встановлення до" /fWhite %1 /fGray /s- .
+ERROR_SAF="Під час видобування архіву" /fWhite %1 /fGray " виникла проблема."
+ERROR_WTF="Сталася невідома та малоймовірна помилка під час простої операції."
+

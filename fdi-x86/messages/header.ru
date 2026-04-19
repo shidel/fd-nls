@@ -1,0 +1,15 @@
+# Language: Russian
+# File ending: RU
+# Codepage: 866
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+$OS_NAME$ $OS_VERSION$ Floppy Diskette Edition
+
+Ядро FreeDOS и большинство программ в этом дистрибутиве
+подпадают под действие различных версий General Public
+License (GPL) и других лицензий с открытым исходным кодом.
+Для получения дополнительной информации посетите веб-сайт
+проекта FreeDOS по адресу $URL$
+
+FreeDOS is a trademark of Jim Hall, 2001-$YEAR$

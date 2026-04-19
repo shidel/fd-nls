@@ -1,0 +1,7 @@
+# Language: Russian
+# File ending: RU
+# Codepage: 866
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+Исходные коды для этого выпуска $OS_NAME$ и включенного программного обеспечения доступны на носителях CD-ROM и USB. Также их можно получить через веб-сайт проекта $OS_NAME$ по адресу $URL$.

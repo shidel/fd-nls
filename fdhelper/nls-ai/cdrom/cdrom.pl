@@ -1,0 +1,20 @@
+# Language: Polish
+# File ending: PL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+CD.INIT=Inicjalizacja CD-ROM.
+CD.GIVEUP=/p /fLightRed "nie mo¾na zaˆadowa† odpowiedniego sterownika CD/DVD" /fGrey
+CD.ERROR=, /fGrey bˆ¥d "#%1" - /fLightRed niepowodzenie /fGrey /p
+CD.NO_DRVR= /fGrey nie mo¾na zlokalizowa† sterownika CD /fYellow "%1" /fGrey - /fLightRed niepowodzenie /fGrey
+CD.TRY_DRVR= /g pr¢ba u¾ycia sterownika CD /fYellow "%1" /fGrey
+CD.TRY_CACHE= /g pr¢ba zaˆadowania /fYellow "%1" /fGrey dla buforowania
+CD.TRY_EXT= pr¢ba zaˆadowania rozszerzeä CD /fYellow "%1" /fGrey
+CD.SUCCESS=, /fLightGreen sukces /fGrey
+CD.STATUS=pomy˜lnie uruchomiono sterownik i rozszerzenia CD dla nap©du /fLightGreen "%1" /fDarkGrey (%2) /fGrey
+
+CD.DRIVE=CD-ROM skonfigurowany jako nap©d /fLightGreen %1 /fGrey /fDarkGrey (%2) /fGrey
+CD.NONE=/fLightRed CD-ROM nie jest skonfigurowany /fGrey
+
+NO_HELP=nie mo¾na zlokalizowa† pliku pomocy

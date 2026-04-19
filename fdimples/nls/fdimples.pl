@@ -1,0 +1,111 @@
+{
+Language: Polish
+File ending: PL
+Codepage: 852
+This translation was made by Google Gemini.
+Please help the FreeDOS group to improve it.
+
+FDIMPLES Language Translation File
+
+Note -- English translations are also built-in to the program. This file is not
+required at runtime. However if it is present, settings in here will override
+their built-in values.
+
+}
+
+0:PL
+1:nieprawidˆowy parametr
+2:Prosz© czeka†...
+3:Czekanie
+4:Naci˜nij klawisz...
+5:Grupa
+6:Nie znaleziono no˜nika pakiet¢w!
+7:Widoczne s¥ tylko zainstalowane pakiety.
+8:nie mo¾na zlokalizowa† mened¾era pakiet¢w FDINST.
+9:Zmienna ˜rodowiskowa TEMP nie jest ustawiona.
+10:nieznany
+11:zainstalowany
+12:Brak informacji
+13:ZABLOKOWANY
+14:Pakiet
+15:nie znaleziono w
+16:Oczekuj¥ce zmiany pakiet¢w:
+17:usuä
+18:zainstaluj
+19:Brak zmian.
+
+{ Plural String Values }
+20:zmiany
+21:zmiana
+22:bajty
+23:bajt
+24:Kbajty
+25:Kbajt
+26:Mbajty
+27:Mbajt
+28:pliki
+29:plik
+30:pliki «r¢dˆowe
+31:plik «r¢dˆowy
+
+{ Basic Load and save stuff }
+32:Uwzgl©dnij usuwanie pakiet¢w.
+33:Wczytaj modyfikacje listy pakiet¢w:
+34:Zapisz modyfikacje listy pakiet¢w:
+
+{ Buttons }
+35:OK
+36:Anuluj
+
+{ More Status Bar Text }
+37:Tytuˆ
+38:wersja
+39:u¾ycie:
+40:[opcje]
+
+{ Help Messages and such }
+50:Wydano na licencji GNU General Public License, wersja 2.0
+51:Copyright 2016-2024 Jerome Shidel
+52:FDIMPLES zapewnia ˆatwy w u¾yciu tekstowy interfejs u¾ytkownika dla narz©dzia wiersza poleceä mened¾era pakiet¢w FDINST.
+
+53:Poka¾ ten ekran pomocy.
+54:Poka¾ list© plik¢w w opisie pakietu.
+55:[NIE] Wybieraj automatycznie aktualizowalnych pakiet¢w.
+56:Utw¢rz pliki listy pakiet¢w do u¾ytku z narz©dziem budowania FDI.
+57:Ponownie skonfiguruj listy pakiet¢w BASE i ALL instalatora FDI.
+
+58:Komendy klawiaturowe interfejsu u¾ytkownika:
+59:Przeˆ¥cz zaznaczenie.
+60:Zmieä aktywn¥ sekcj© lub przycisk.
+61:Przesuä fokus w g¢r© lub w d¢ˆ, tak¾e Page Up/Down.
+62:Wyjd« bez wprowadzania lub zapisywania zmian.
+63:Wy˜wietl ekran pomocy.
+64:Przeˆ¥cz status wszystkich aktualizowalnych pakiet¢w w grupie.
+65:Przeˆ¥cz status wszystkich aktualizowalnych pakiet¢w.
+66:Wy˜wietl oczekuj¥ce zmiany.
+67:Wyczy˜† wszystkie oczekuj¥ce zmiany.
+68:Zapisz plik modyfikacji listy pakiet¢w zawieraj¥cy zmiany.
+69:Wczytaj plik modyfikacji listy pakiet¢w i zastosuj zmiany.
+70:U˜pij procesor w stanie bezczynno˜ci.
+71:Okre˜l nap©d lub ˜cie¾k© jako «r¢dˆo repozytorium.
+
+{ Package ID's Are all 100 }
+100:=Zainstalowano!
+100:BASE=FreeDOS Base
+100:ARCHIVER=Archiwizatory
+100:BOOT=Narz©dzia startowe
+100:DEVEL=Programowanie
+100:EDIT=Edytory
+100:EMULATOR=Emulatory
+100:GAMES=Gry
+100:GUI=Pulpity graficzne
+100:NET=Sie†
+100:SOUND=Narz©dzia d«wi©kowe
+100:UNIXLIKE=Narz©dzia typu Unix
+100:UTIL=Narz©dzia
+100:UNIX=Narz©dzia typu Unix
+100:OBSOLETE=Przestarzaˆe pakiety
+100:APPS=Aplikacje
+100:DRIVERS=Sterowniki urz¥dzeä
+100:TOOLS=Podstawowe narz©dzia
+100:DISK=Narz©dzia dyskowe

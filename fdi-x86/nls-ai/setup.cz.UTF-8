@@ -1,0 +1,142 @@
+# Language: Czech
+# File ending: CZ
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Vítejte v instalačním programu systému" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Vítejte v" /fLightRed "pokročilé" /fGray "instalaci systému" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "je kompletní operační systém. Pokud se jej rozhodnete nainstalovat" /p "na svůj počítač, můžete " /fLightRed /BlinkOn "přepsat" /BlinkOff /fGray "stávající operační systém" /p "(například Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Pokud to není váš záměr, prosím" /fLightRed "zastavte HNED TEĎ!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Chcete pokračovat" /c32
+REBOOT=/p "Chcete nyní restartovat" /c32
+
+AUTO_YES="[A,N]?" /fWhite "A" /fGray
+AUTO_NO="[A,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[U,R,N]?" /fWhite "R" /fGray
+
+PROMPT_YESNO=/s AN
+PROMPT_FMT=/s URN
+
+ABORTED=/fLightRed "Instalace systému" %1 %2 "byla přerušena." /e /fGray /bBlack
+
+PARTITION_AUTO="Automaticky rozdělit disk" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "UPOZORNĚNÍ:" /fGray "Pro KERNL86 je vyžadován oddíl FAT16 menší než 2 GB."
+PARTITION_MBR="Aktualizovat Master Boot Record na disku" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Nastavit oddíl disku" /fWhite %1 /fGray "jako aktivní."
+PARTITION_DONE=/p "Pro aktivaci nového rozdělení disku musíte restartovat počítač."
+
+FORMAT="Disk" /fWhite %1 /fGray "se nezdá být naformátován."
+FORMAT_DEF="Chcete disk naformátovat" /c32
+FORMAT_ADV="Jak chcete disk naformátovat" /s- /c32 ( /fWhite "Ú" /fGray "plné," /c32 /fWhite "R" /fGray "ychlé," /c32 /fWhite "N" /fGray "e)" /c32
+
+FILESYSTEM_TEST="Testování souborového systému na disku" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Vložte disketu" /fWhite #%1 /fGray (%2) "do" /fWhite %3 /fGray "."
+PRESS_KEY="Pokračujte stisknutím klávesy."
+
+TARGET_ASK="Kam si přejete nainstalovat" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Požadován neplatný disk. Nelze instalovat na disketu."
+
+CHANGE_PATH="Cesta" /fWhite %1 /fGray "již existuje." /p "Přejete si změnit instalační adresář" /c32
+
+BACKUP_OLD="Na disku" /fWhite %1 /fGray "byl nalezen předchozí operační systém." /s+ /p "Chcete před instalací zálohovat staré soubory" /c32
+BACKUP_ASK="Kam si přejete umístit záložní soubory?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Požadován neplatný cíl. Zálohu na toto místo nelze provést." /fGray
+
+DELETE_OLD="Stávající soubory v" /fWhite %1 /fGray "mohou být jednoduše přepsány." /p "Chcete před instalací kompletně vymazat starý adresář" /c32
+
+FORCE_MBR="Vynutit aktualizaci Master Boot Record na disku" /fWhite %1 /fGray /c32
+SYS_FILES="Instalovat nové soubory zavádění systému na disk" /fWhite %1 /fGray /c32
+CFG_FILES="Nahradit konfigurační soubory systému na disku" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Nastavení instalace:" /p
+STATUS_CPU=/r4/c32 "Platforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Instalovat z" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Cílový disk" /fWhite %1 /fGray (disk %2, oddíl %3)
+STATUS_DOS=/r4/c32 "Instalační cesta DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Zálohovat předchozí OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Adresář předchozího OS" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Instalovat nový MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopírovat systémové soubory" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopírovat konfig. soubory" /fWhite %1 /fGray
+
+INSTALL_NOW="Nyní jsme připraveni k instalaci systému" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Rozbalování souborů systému" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Aktualizace seznamu balíčků." /p
+
+DO_BACKUP="Vytváření zálohy souborů předchozího OS do" /fWhite %1 /fGray /s- .
+DO_ERASE="Mazání starého adresáře" /fWhite %1 /fGray " a souborů."
+DO_SYSFILES="Přenos nových systémových souborů na disk" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Vynucená aktualizace MBR na disku" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Nastavení aktivního zaváděcího oddílu na disku" /fWhite %1 /fGray "na oddíl" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Přenos nových konfiguračních souborů na disk" /fWhite %1 /fGray /s- .
+DO_PREPARE="Příprava k instalaci spustitelných souborů a nástrojů."
+DO_INSTALL="Instalace souborů" /fLightGreen %1 /fGray "pro" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Instalace systému" /fLightGreen %1 /fCyan %2 /fGray "byla dokončena."
+REBOOT_NOW="Chcete nyní restartovat" /c32
+
+REMOVE_MEDIA="Měli byste vyjmout všechny diskety a CD média."
+
+SUCCESS=/fLightGreen "Úspěch." /fGray
+FAILED=/fLightRed "Selhalo." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Instalátor (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Vydáno pod licencí GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS je ochranná známka Jima Halla," 2001-2022
+
+# Help screen
+HELP_0="použití: SETUP.BAT [volby] [cíl]"
+HELP_1=""
+HELP_2="  [bez voleb]     provést instalaci s výchozími hodnotami"
+HELP_3=
+HELP_4="  adv             spustit instalaci v pokročilém režimu (více dotazů)"
+HELP_5=
+HELP_6="  auto            provést plně automatickou instalaci bez dotazů." /p/r18/c32 "nedoporučuje se a mělo by být použito pouze na hardwaru" /p/r18/c32 "bez předchozího operačního systému."
+HELP_7=
+HELP_8="  [cíl]           přednastavit disk a/nebo cestu pro cílovou instalaci"
+HELP_9=
+HELP_10="  info            zobrazit nastavení instalátoru a ukončit"
+HELP_11=
+HELP_12="  mbr             vynutit aktualizaci MBR a ukončit"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITICKÁ chyba:" /fGray /c32
+ERROR_NoHDD="Nelze nalézt rozdělený a naformátovaný pevný disk."
+ERROR_MINOR=/fLightRed "chyba:" /fGray /c32
+ERROR_Option="Neznámá nebo neplatná volba příkazového řádku" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Nelze určit základní konfiguraci systému a nastavení cest."
+ERROR_NotFreeCOM="Tento dávkový soubor vyžaduje FreeCOM nebo kompatibilní shell pro FreeDOS."
+ERROR_MissingFreeCOM="Nelze nalézt příkazový shell FreeDOSu FreeCOM."
+ERROR_MissingAUTOEXEC="Nelze nalézt spouštěcí dávkový soubor FreeDOSu FDAUTO.BAT."
+ERROR_MakeDir="Nelze vytvořit adresář" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Nelze zálohovat zaváděcí a/nebo konfigurační soubory."
+ERROR_BackupOS="Nelze zálohovat soubory v cílovém adresáři."
+ERROR_Partition="Došlo k chybě při rozdělování disku. Pevný disk nemusí být přítomen" /p "nebo může být pro aktuální operační systém neviditelný." /p /p "Je vyžadována jiná metoda rozdělení disku."
+ERROR_NoPartition="Nelze nalézt BIOS oddíl pro" /fWhite %1 /fGray /s- . /s+ /p "Doporučuje se ruční instalace (nebo pokročilý režim bez vynuceného MBR)."
+ERROR_Format="Při pokusu o formátování disku" /fWhite %1 /fGray /s- " došlo k chybě." /s+ /p /p "K formátování bude vyžadován jiný postup."
+ERROR_FileSystem="Nelze inicializovat dočasný prostor na disku" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Nelze konfigurovat záložní adresář."
+ERROR_MBRBackup="Nelze vytvořit zálohu Master Boot Record pro disk" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Nelze zkopírovat systémové soubory na disk" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Nelze aktualizovat boot sektor disku" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Nelze aktualizovat MBR disku" /fWhite %1 /fGray /s- .
+ERROR_Activate="Nelze nastavit disk" /fWhite %1 /fGray "na zaváděcí oddíl" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Nelze nainstalovat nové konfigurační soubory na disk" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Nelze duplikovat vyžadovaný soubor instalátoru do" /fWhite %1 /fGray /s- .
+ERROR_SAF="Při rozbalování archivu" /fWhite %1 /fGray " došlo k problému."
+ERROR_WTF="Během jednoduché operace došlo k neznámé a nepravděpodobné chybě."

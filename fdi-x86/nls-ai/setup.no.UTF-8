@@ -1,0 +1,142 @@
+# Language: Norwegian
+# File ending: NO
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Velkommen til installasjonsprogrammet for" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Velkommen til den" /fLightRed "avanserte" /fGray "installatøren for" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen %1 /fGray "er et komplett operativsystem. Hvis du velger å installere dette" /p "på datamaskinen din, kan du " /fLightRed /BlinkOn "overskrive" /BlinkOff /fGray "det nåværende operativsystemet" /p "(for eksempel Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Hvis dette ikke er din intensjon, vennligst stopp NÅ!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Ønsker du å fortsette" /c32
+REBOOT=/p "Ønsker du å starte på nytt nå" /c32
+
+AUTO_YES="[J,N]?" /fWhite "J" /fGray
+AUTO_NO="[J,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[F,H,N]?" /fWhite "H" /fGray
+
+PROMPT_YESNO=/s JN
+PROMPT_FMT=/s FHN
+
+ABORTED=/fLightRed "Installasjonen av" %1 %2 "har blitt avbrutt." /e /fGray /bBlack
+
+PARTITION_AUTO="Partisjoner stasjonen automatisk" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "MERKNAD:" /fGray "FAT16-partisjon under 2Gb er nødvendig for KERNL86."
+PARTITION_MBR="Oppdater Master Boot Record på stasjonen" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Sett stasjon" /fWhite %1 /fGray "partisjon som aktiv."
+PARTITION_DONE=/p "Du må starte datamaskinen på nytt for at det nye partisjonsskjemaet skal tre i kraft."
+
+FORMAT="Stasjonen" /fWhite %1 /fGray "ser ikke ut til å være formatert."
+FORMAT_DEF="Ønsker du å formatere stasjonen" /c32
+FORMAT_ADV="Hvordan ønsker du å formatere stasjonen" /s- /c32 ( /fWhite "F" /fGray "ull," /c32 /fWhite "H" /fGray "urtig," /c32 /fWhite "N" /fGray "ei)" /c32
+
+FILESYSTEM_TEST="Tester filsystem på stasjonen" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Sett inn disketten" /fWhite #%1 /fGray (%2) "i" /fWhite %3 /fGray "."
+PRESS_KEY="Trykk på en tast for å fortsette."
+
+TARGET_ASK="Hvor ønsker du å installere" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Ugyldig stasjon valgt. Kan ikke installere til diskett."
+
+CHANGE_PATH="Stien" /fWhite %1 /fGray "eksisterer allerede." /p "Ønsker du å endre installasjonsmappen" /c32
+
+BACKUP_OLD="Et tidligere operativsystem ble funnet på stasjon" /fWhite %1 /fGray /s- . /s+ /p "Vil du ta sikkerhetskopi av de gamle filene før installasjon" /c32
+BACKUP_ASK="Hvor ønsker du å plassere sikkerhetskopifilene?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Ugyldig destinasjon valgt. Kan ikke ta sikkerhetskopi til den plasseringen." /fGray
+
+DELETE_OLD="De eksisterende filene i" /fWhite %1 /fGray "kan bare overskrives." /p "Ønsker du å slette den gamle mappen helt før installasjon" /c32
+
+FORCE_MBR="Tving en oppdatering av Master Boot Record på stasjonen" /fWhite %1 /fGray /c32
+SYS_FILES="Installer nye systemoppstartfiler på stasjonen" /fWhite %1 /fGray /c32
+CFG_FILES="Erstatt systemkonfigurasjonsfiler på stasjonen" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Installasjonsinnstillinger:" /p
+STATUS_CPU=/r4/c32 "Plattform (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Installer fra" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Målstasjon" /fWhite %1 /fGray (disk %2, partisjon %3)
+STATUS_DOS=/r4/c32 "Installasjonssti" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Sikkerhetskopier tidl. OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Mappe for tidl. OS" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Installer ny MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopier systemfiler" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopier konfig-filer" /fWhite %1 /fGray
+
+INSTALL_NOW="Vi er nå klare til å installere" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Filutpakking av" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Oppdater pakkelistefiler." /p
+
+DO_BACKUP="Oppretter sikkerhetskopi av tidligere OS-filer til" /fWhite %1 /fGray /s- .
+DO_ERASE="Slett gammel" /fWhite %1 /fGray "mappe og filer."
+DO_SYSFILES="Overfør nye systemfiler til stasjonen" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Tving oppdatering av MBR på stasjonen" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Sett aktiv oppstartspartisjon på disk" /fWhite %1 /fGray "til partisjon" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Overfør nye konfigurasjonsfiler til stasjonen" /fWhite %1 /fGray /s- .
+DO_PREPARE="Forbereder installasjon av kjørbare filer og verktøy."
+DO_INSTALL="Installer" /fLightGreen %1 /fGray "filer for" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Installasjonen av" /fLightGreen %1 /fCyan %2 /fGray "er fullført."
+REBOOT_NOW="Ønsker du å starte på nytt nå" /c32
+
+REMOVE_MEDIA="Du bør fjerne alle disketter og CD-medier."
+
+SUCCESS=/fLightGreen "Vellykket." /fGray
+FAILED=/fLightRed "Mislyktes." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Installatør (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Utgitt under GPL v2.0-lisens."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS er et varemerke som tilhører Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="bruk: SETUP.BAT [valg] [mål]"
+HELP_1=""
+HELP_2="  [ingen valg]    utfør setup med standardverdier"
+HELP_3=
+HELP_4="  adv             start setup i avansert modus (flere spørsmål)"
+HELP_5=
+HELP_6="  auto            utfør helautomatisk installasjon uten spørsmål." /p/r18/c32 "dette anbefales ikke og bør bare brukes på maskinvare" /p/r18/c32 "uten et eksisterende operativsystem."
+HELP_7=
+HELP_8="  [mål]           forhåndsinnstill en stasjon og/eller sti for installasjonen"
+HELP_9=
+HELP_10="  info            vis installatørens konfigurasjonsinnstillinger og avslutt"
+HELP_11=
+HELP_12="  mbr             tving en oppdatering av MBR og avslutt"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITISK feil:" /fGray /c32
+ERROR_NoHDD="Kunne ikke finne en partisjonert og formatert harddisk."
+ERROR_MINOR=/fLightRed "feil:" /fGray /c32
+ERROR_Option="Ukjent eller ugyldig kommandolinjevalg" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Kunne ikke fastslå grunnleggende systemkonfigurasjon og stier."
+ERROR_NotFreeCOM="Denne batchfilen krever FreeCOM eller en kompatibel shell for FreeDOS."
+ERROR_MissingFreeCOM="Kunne ikke finne FreeDOS' kommandoshell FreeCOM."
+ERROR_MissingAUTOEXEC="Kunne ikke finne FreeDOS' oppstartsfil FDAUTO.BAT."
+ERROR_MakeDir="Kunne ikke opprette mappe" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Kunne ikke ta sikkerhetskopi av oppstart- og/eller konfigurasjonsfiler."
+ERROR_BackupOS="Kunne ikke ta sikkerhetskopi av filer i målmappen."
+ERROR_Partition="Det oppsto en partisjoneringsfeil. En harddisk er kanskje ikke" /p "tilstede eller er usynlig for det nåværende operativsystemet." /p /p "En annen partisjoneringsmetode er nødvendig."
+ERROR_NoPartition="Kunne ikke finne BIOS-partisjonen for" /fWhite %1 /fGray /s- . /s+ /p "Manuell installasjon (eller avansert modus uten tvungen MBR) anbefales."
+ERROR_Format="Det oppsto en feil under forsøk på å formatere stasjonen" /fWhite %1 /fGray /s- . /s+ /p /p "En annen prosess vil kreves for å formatere den."
+ERROR_FileSystem="Kunne ikke initialisere midlertidig plass på stasjonen" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Kunne ikke konfigurere sikkerhetskopimappe."
+ERROR_MBRBackup="Kunne ikke opprette sikkerhetskopi av Master Boot Record for stasjon" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Kunne ikke kopiere systemfiler til stasjon" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Kunne ikke oppdatere oppstartssektor for stasjon" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Kunne ikke oppdatere Master Boot Record for stasjon" /fWhite %1 /fGray /s- .
+ERROR_Activate="Kunne ikke sette stasjon" /fWhite %1 /fGray "til oppstartspartisjon" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Kunne ikke installere nye konfigurasjonsfiler på stasjonen" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Kunne ikke duplisere nødvendig installasjonsfil til" /fWhite %1 /fGray /s- .
+ERROR_SAF="Det oppsto et problem under utpakking av" /fWhite %1 /fGray "arkiv."
+ERROR_WTF="En ukjent og usannsynlig feil oppsto under en enkel operasjon."

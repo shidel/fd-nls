@@ -1,0 +1,20 @@
+# Language: Russian
+# File ending: RU
+# Codepage: 866
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+CD.INIT=Инициализация CD-ROM.
+CD.GIVEUP=/p /fLightRed "не удалось загрузить подходящий драйвер CD/DVD" /fGrey
+CD.ERROR=, /fGrey ошибка "#%1" - /fLightRed сбой /fGrey /p
+CD.NO_DRVR= /fGrey не удалось найти CD-драйвер /fYellow "%1" /fGrey - /fLightRed сбой /fGrey
+CD.TRY_DRVR= /g попытка использовать CD-драйвер /fYellow "%1" /fGrey
+CD.TRY_CACHE= /g попытка загрузить /fYellow "%1" /fGrey для кэширования
+CD.TRY_EXT= попытка загрузить расширения CD /fYellow "%1" /fGrey
+CD.SUCCESS=, /fLightGreen успешно /fGrey
+CD.STATUS=драйвер CD и расширения для диска /fLightGreen "%1" /fDarkGrey (%2) /fGrey успешно запущены
+
+CD.DRIVE=CD-ROM настроен как диск /fLightGreen %1 /fGrey /fDarkGrey (%2) /fGrey
+CD.NONE=/fLightRed CD-ROM не настроен /fGrey
+
+NO_HELP=не удалось найти файл справки

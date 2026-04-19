@@ -1,0 +1,143 @@
+# Language: Lithuanian
+# File ending: LT
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Sveiki atvykę į" /fLightGreen %1 /fCyan %2 /fGray "diegimo programą!"
+WELCOME_ADV="Sveiki atvykę į" /fLightRed "išplėstinę" /fGray "diegimo programą sistemai" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "yra pilna operacinė sistema. Jei pasirinksite ją diegti į" /p "savo kompiuterį, galite " /fLightRed /BlinkOn "perrašyti" /BlinkOff /fGray "šiuo metu turimą operacinę sistemą" /p "(pavyzdžiui, Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Jei tai ne jūsų ketinimas, prašome" /fLightRed "sustoti DABAR!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Ar norite tęsti" /c32
+REBOOT=/p "Ar norite dabar paleisti iš naujo" /c32
+
+AUTO_YES="[T,N]?" /fWhite "T" /fGray
+AUTO_NO="[T,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[V,S,N]?" /fWhite "S" /fGray
+
+PROMPT_YESNO=/s TN
+PROMPT_FMT=/s VSN
+
+ABORTED=/fLightRed "Sistemos" %1 %2 "diegimas buvo nutrauktas." /e /fGray /bBlack
+
+PARTITION_AUTO="Automatiškai skaidyti diską" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "PASTABA:" /fGray "Sistemai KERNL86 reikalingas mažesnis nei 2GB FAT16 skaidinys."
+PARTITION_MBR="Atnaujinti Master Boot Record diske" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Nustatyti disko" /fWhite %1 /fGray "skaidinį kaip aktyvų."
+PARTITION_DONE=/p "Turite iš naujo paleisti kompiuterį, kad naujas skaidymas įsigaliotų."
+
+FORMAT="Diskas" /fWhite %1 /fGray "atrodo nesuformatuotas."
+FORMAT_DEF="Ar norite suformatuoti savo diską" /c32
+FORMAT_ADV="Kaip norite suformatuoti savo diską" /s- /c32 ( /fWhite "V" /fGray "isa," /c32 /fWhite "S" /fGray "parti," /c32 /fWhite "N" /fGray "e)" /c32
+
+FILESYSTEM_TEST="Tikrinama failų sistema diske" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Įdėkite diskelį" /fWhite #%1 /fGray (%2) "į" /fWhite %3 /fGray "."
+PRESS_KEY="Paspauskite bet kurį klavišą, kad tęstumėte."
+
+TARGET_ASK="Kur norite įdiegti" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Pasirinktas neteisingas diskas. Negalima diegti į lankstųjį diskelį."
+
+CHANGE_PATH="Kelias" /fWhite %1 /fGray "jau egzistuoja." /p "Ar norite pakeisti diegimo katalogą" /c32
+
+BACKUP_OLD="Diske" /fWhite %1 /fGray "aptikta ankstesnė operacinė sistema." /s+ /p "Ar norite padaryti senų failų atsarginę kopiją prieš diegimą" /c32
+BACKUP_ASK="Kur norite patalpinti atsarginių kopijų failus?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Pasirinkta neteisinga vieta. Negalima sukurti atsarginės kopijos šioje vietoje." /fGray
+
+DELETE_OLD="Esami failai" /fWhite %1 /fGray "kataloge gali būti tiesiog perrašyti." /p "Ar norite visiškai ištrinti seną katalogą prieš diegimą" /c32
+
+FORCE_MBR="Priverstinai atnaujinti Master Boot Record diske" /fWhite %1 /fGray /c32
+SYS_FILES="Įdiegti naujus sistemos paleidimo failus diske" /fWhite %1 /fGray /c32
+CFG_FILES="Pakeisti sistemos konfigūracijos failus diske" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Diegimo nustatymai:" /p
+STATUS_CPU=/r4/c32 "Platforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Diegti iš" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Tikslinis diskas" /fWhite %1 /fGray (diskas %2, skaidinys %3)
+STATUS_DOS=/r4/c32 "DOS diegimo kelias" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Atsarginė senos OS kopija" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Senos OS katalogas" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Įdiegti naują MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopijuoti sistemos failus" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopijuoti konfigūracijos failus" /fWhite %1 /fGray
+
+INSTALL_NOW="Esame pasiruošę diegti" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Sistemos" /fLightGreen %1 /fCyan %2 /fGray "failų išpakavimas."
+UPDATE_LST="Atnaujinti paketų sąrašo failus." /p
+
+DO_BACKUP="Kuriama ankstesnės OS failų atsarginė kopija į" /fWhite %1 /fGray /s- .
+DO_ERASE="Ištrinti seną" /fWhite %1 /fGray " katalogą ir failus."
+DO_SYSFILES="Perkelti naujus sistemos failus į diską" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Priverstinai atnaujinti MBR diske" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Nustatyti aktyvų paleidimo skaidinį diske" /fWhite %1 /fGray "skaidiniui" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Perkelti naujus konfigūracijos failus į diską" /fWhite %1 /fGray /s- .
+DO_PREPARE="Ruošiamasi diegti vykdomuosius failus ir paslaugų programas."
+DO_INSTALL="Įdiegti" /fLightGreen %1 /fGray "failus sistemai" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Sistemos" /fLightGreen %1 /fCyan %2 /fGray "diegimas baigtas."
+REBOOT_NOW="Ar norite dabar paleisti iš naujo" /c32
+
+REMOVE_MEDIA="Turėtumėte išimti visus diskelius ir CD laikmenas."
+
+SUCCESS=/fLightGreen "Sėkmingai." /fGray
+FAILED=/fLightRed "Nepavyko." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Diegimo programa (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Išleista pagal GPL v2.0 licenciją."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS yra Jim Hall prekės ženklas," 2001-2022
+
+# Help screen
+HELP_0="naudojimas: SETUP.BAT [parinktys] [tikslas]"
+HELP_1=""
+HELP_2="  [be parinkčių]  atlikti diegimą naudojant numatytuosius nustatymus"
+HELP_3=
+HELP_4="  adv             pradėti diegimą išplėstiniu režimu (daugiau užklausų)"
+HELP_5=
+HELP_6="  auto            atlikti pilnai automatizuotą diegimą be jokių užklausų." /p/r18/c32 "tai nerekomenduojama ir turėtų būti naudojama tik įrangoje" /p/r18/c32 "be iš anksto esančios operacinės sistemos."
+HELP_7=
+HELP_8="  [tikslas]       iš anksto nustatyti diską ir (arba) kelią diegimui"
+HELP_9=
+HELP_10="  info            parodyti diegimo programos konfigūraciją ir išeiti"
+HELP_11=
+HELP_12="  mbr             priverstinai atnaujinti MBR ir išeiti"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITINĖ klaida:" /fGray /c32
+ERROR_NoHDD="Nepavyko rasti suformuoto ir suskaidyto standžiojo disko."
+ERROR_MINOR=/fLightRed "klaida:" /fGray /c32
+ERROR_Option="Nežinoma arba neteisinga komandų eilutės parinktis" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Nepavyko nustatyti pagrindinės sistemos konfigūracijos ir kelio nustatymų."
+ERROR_NotFreeCOM="Šiam batch failui reikalinga FreeCOM arba suderinama FreeDOS aplinka."
+ERROR_MissingFreeCOM="Nepavyko rasti FreeDOS komandų aplinkos FreeCOM."
+ERROR_MissingAUTOEXEC="Nepavyko rasti FreeDOS paleidimo failo FDAUTO.BAT."
+ERROR_MakeDir="Nepavyko sukurti katalogo" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Nepavyko padaryti paleidimo ir (arba) konfigūracijos failų atsarginės kopijos."
+ERROR_BackupOS="Nepavyko padaryti failų atsarginės kopijos tiksliniame kataloge."
+ERROR_Partition="Įvyko skaidymo klaida. Standusis diskas gali būti neprijungtas" /p "arba nematomas dabartinei operacinei sistemai." /p /p "Reikalingas kitas skaidymo metodas."
+ERROR_NoPartition="Nepavyko rasti BIOS skaidinio diskui" /fWhite %1 /fGray /s- . /s+ /p "Rekomenduojamas rankinis diegimas (arba išplėstinis režimas be priverstinio MBR)."
+ERROR_Format="Bandant suformatuoti diską" /fWhite %1 /fGray /s- " įvyko klaida." /s+ /p /p "Formatavimui prireiks kito proceso."
+ERROR_FileSystem="Nepavyko inicijuoti laikiną vietą diske" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Nepavyko sukonfigūruoti atsarginių kopijų katalogo."
+ERROR_MBRBackup="Nepavyko sukurti Master Boot Record atsarginės kopijos diskui" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Nepavyko nukopijuoti sistemos failų į diską" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Nepavyko atnaujinti disko" /fWhite %1 /fGray /s- " paleidimo sektoriaus."
+ERROR_MBRUpdate="Nepavyko atnaujinti disko" /fWhite %1 /fGray /s- " Master Boot Record."
+ERROR_Activate="Nepavyko nustatyti disko" /fWhite %1 /fGray " kaip paleidimo skaidinio" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Nepavyko įdiegti naujų konfigūracijos failų diske" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Nepavyko nukopijuoti reikiamo diegimo failo į" /fWhite %1 /fGray /s- .
+ERROR_SAF="Išpakuojant" /fWhite %1 /fGray " archyvą iškilo problema."
+ERROR_WTF="Atliekant paprastą operaciją įvyko nežinoma ir neįtikėtina klaida."
+

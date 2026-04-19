@@ -1,0 +1,143 @@
+# Language: Icelandic
+# File ending: IS
+# Codepage: 861
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Velkomin í" /fLightGreen %1 /fCyan %2 /fGray "uppsetningarforritið."
+WELCOME_ADV="Velkomin í" /fLightRed "ítarlega" /fGray "uppsetningu fyrir" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "er fullbúið stýrikerfi. Ef þú velur að setja þetta upp á" /p "tölvunni þinni, gætir þú " /fLightRed /BlinkOn "skrifað yfir" /BlinkOff /fGray "stýrikerfið sem fyrir er" /p "(til dæmis Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Ef þetta er ekki ætlun þín, vinsamlegast" /fLightRed "hættu NÚNA!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Viltu halda áfram" /c32
+REBOOT=/p "Viltu endurræsa núna" /c32
+
+AUTO_YES="[J,N]?" /fWhite "J" /fGray
+AUTO_NO="[J,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[F,S,N]?" /fWhite "S" /fGray
+
+PROMPT_YESNO=/s JN
+PROMPT_FMT=/s FSN
+
+ABORTED=/fLightRed "Hætt hefur verið við uppsetningu á" %1 %2 "." /e /fGray /bBlack
+
+PARTITION_AUTO="Skipta sjálfkrafa drifi" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "ATHUGIÐ:" /fGray "FAT16 sneið undir 2Gb er nauðsynleg fyrir KERNL86."
+PARTITION_MBR="Uppfæra Master Boot Record á drifi" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Stilla drif" /fWhite %1 /fGray "sneið sem virka."
+PARTITION_DONE=/p "Þú verður að endurræsa tölvuna svo nýja skiptingin taki gildi."
+
+FORMAT="Drif" /fWhite %1 /fGray "virðist ekki vera sniðið (formatted)."
+FORMAT_DEF="Viltu sníða drifið þitt" /c32
+FORMAT_ADV="Hvernig viltu sníða drifið þitt" /s- /c32 ( /fWhite "F" /fGray "ullt," /c32 /fWhite "S" /fGray "nöggt," /c32 /fWhite "N" /fGray "ei)" /c32
+
+FILESYSTEM_TEST="Prófa skráarkerfi á drifi" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Settu diskling" /fWhite #%1 /fGray (%2) "í" /fWhite %3 /fGray "."
+PRESS_KEY="Ýttu á lykil til að halda áfram."
+
+TARGET_ASK="Hvar viltu setja upp" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Ógilt drif valið. Get ekki sett upp á diskling."
+
+CHANGE_PATH="Slóðin" /fWhite %1 /fGray "er þegar til." /p "Viltu breyta uppsetningarmöppunni" /c32
+
+BACKUP_OLD="Fyrra stýrikerfi fannst á drifi" /fWhite %1 /fGray /s- . /s+ /p "Viltu taka öryggisafrit af gömlu skránum fyrir uppsetningu" /c32
+BACKUP_ASK="Hvar viltu geyma öryggisafritin?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Ógildur áfangastaður. Get ekki búið til öryggisafrit á þessum stað." /fGray
+
+DELETE_OLD="Hægt er að skrifa yfir skrárnar í" /fWhite %1 /fGray /s- . /s+ /p "Viltu eyða gömlu möppunni alveg fyrir uppsetningu" /c32
+
+FORCE_MBR="Þvinga uppfærslu á Master Boot Record á drifi" /fWhite %1 /fGray /c32
+SYS_FILES="Setja upp nýjar ræsiskrár kerfis á drifi" /fWhite %1 /fGray /c32
+CFG_FILES="Skipta út kerfisstillingarskrám á drifi" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Uppsetningarstillingar:" /p
+STATUS_CPU=/r4/c32 "Vélbúnaður (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Setja upp frá" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Áfangadrif" /fWhite %1 /fGray (diskur %2, sneið %3)
+STATUS_DOS=/r4/c32 "DOS slóð" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Afrita fyrra OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Mappa fyrra OS" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Setja upp nýtt MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Afrita kerfisskrár" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Afrita stillingarskrár" /fWhite %1 /fGray
+
+INSTALL_NOW="Við erum nú tilbúin að setja upp" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Afþjöppun skráa úr" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Uppfæra pakkalista." /p
+
+DO_BACKUP="Bý til öryggisafrit af fyrra OS í" /fWhite %1 /fGray /s- .
+DO_ERASE="Eyða gamalli" /fWhite %1 /fGray "möppu og skrám."
+DO_SYSFILES="Flytja nýjar kerfisskrár á drif" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Þvinga uppfærslu á MBR á drifi" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Setja virka ræsingsneið á disk" /fWhite %1 /fGray "á sneið" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Flytja nýjar stillingarskrár á drif" /fWhite %1 /fGray /s- .
+DO_PREPARE="Undirbý uppsetningu á keyrsluskrám og tólum."
+DO_INSTALL="Setja upp" /fLightGreen %1 /fGray "skrár fyrir" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Uppsetningu á" /fLightGreen %1 /fCyan %2 /fGray "er lokið."
+REBOOT_NOW="Viltu endurræsa núna" /c32
+
+REMOVE_MEDIA="Þú ættir að fjarlægja alla disklinga og CD miðla."
+
+SUCCESS=/fLightGreen "Tókst." /fGray
+FAILED=/fLightRed "Mistókst." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Uppsetning (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Gefið út undir GPL v2.0 leyfi."/p "Höfundarréttur" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS er vörumerki Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="notkun: SETUP.BAT [valkostir] [áfangastaður]"
+HELP_1=""
+HELP_2="  [engir valk]    framkvæma uppsetningu með sjálfgefnum gildum"
+HELP_3=
+HELP_4="  adv             ræsa uppsetningu í ítarlegum ham (fleiri spurningar)"
+HELP_5=
+HELP_6="  auto            fullsjálfvirk uppsetning án nokkurra spurninga." /p/r18/c32 "ekki mælt með þessu nema á vélbúnaði þar sem ekkert" /p/r18/c32 "stýrikerfi er fyrir."
+HELP_7=
+HELP_8="  [target]        forstilla drif og/eða slóð fyrir uppsetningu"
+HELP_9=
+HELP_10="  info            sýna stillingar uppsetningarforrits og hætta"
+HELP_11=
+HELP_12="  mbr             þvinga uppfærslu á MBR og hætta"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "ALVARLEG villa:" /fGray /c32
+ERROR_NoHDD="Gat ekki fundið skiptan og sniðinn harðan disk."
+ERROR_MINOR=/fLightRed "villa:" /fGray /c32
+ERROR_Option="Óþekktur eða ógildur valkostur" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Gat ekki ákvarðað grunnstillingar kerfis og slóðir."
+ERROR_NotFreeCOM="Þessi skipanaskrá krefst FreeCOM eða samhæfðrar skeljar fyrir FreeDOS."
+ERROR_MissingFreeCOM="Gat ekki fundið FreeCOM skipanaskelina."
+ERROR_MissingAUTOEXEC="Gat ekki fundið FDAUTO.BAT ræsiskrána."
+ERROR_MakeDir="Gat ekki búið til möppuna" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Gat ekki tekið öryggisafrit af ræsi- eða stillingarskrám."
+ERROR_BackupOS="Gat ekki tekið öryggisafrit af skrám í áfangamöppu."
+ERROR_Partition="Villa kom upp við skiptingu. Harður diskur er kannski ekki" /p "til staðar eða er ósýnilegur núverandi stýrikerfi." /p /p "Önnur aðferð við skiptingu er nauðsynleg."
+ERROR_NoPartition="Gat ekki fundið BIOS sneið fyrir" /fWhite %1 /fGray /s- . /s+ /p "Mælt er með handvirkri uppsetningu (eða ítarlegum ham án MBR þvingunar)."
+ERROR_Format="Villa kom upp við að reyna að sníða drif" /fWhite %1 /fGray /s- . /s+ /p /p "Önnur aðferð er nauðsynleg til að sníða það."
+ERROR_FileSystem="Gat ekki undirbúið tímabundið svæði á drifi" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Gat ekki stillt öryggisafritsmöppu."
+ERROR_MBRBackup="Gat ekki búið til öryggisafrit af Master Boot Record fyrir drif" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Gat ekki afritað kerfisskrár á drif" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Gat ekki uppfært ræsigeira á drifi" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Gat ekki uppfært ræsigeira á drifi" /fWhite %1 /fGray /s- .
+ERROR_Activate="Gat ekki stillt drif" /fWhite %1 /fGray "á ræsingsneið" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Gat ekki sett upp nýjar stillingarskrár á drif" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Gat ekki afritað nauðsynlega uppsetningarskrá til" /fWhite %1 /fGray /s- .
+ERROR_SAF="Villa kom upp við afþjöppun á" /fWhite %1 /fGray "safnskrá."
+ERROR_WTF="Óþekkt og ólíkleg villa kom upp við einfalda aðgerð."
+

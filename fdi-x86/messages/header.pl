@@ -1,0 +1,14 @@
+# Language: Polish
+# File ending: PL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+$OS_NAME$ $OS_VERSION$ Floppy Diskette Edition
+
+J¥dro FreeDOS oraz wi©kszo˜† program¢w w tej dystrybucji
+podlegaj¥ r¢¾nym wersjom licencji General Public License
+(GPL) oraz innym licencjom open source. Wi©cej informacji
+mo¾na znale«† na stronie projektu FreeDOS pod adresem $URL$
+
+FreeDOS is a trademark of Jim Hall, 2001-$YEAR$

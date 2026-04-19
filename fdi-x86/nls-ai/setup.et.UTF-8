@@ -1,0 +1,143 @@
+# Language: Estonian
+# File ending: ET
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Tere tulemast süsteemi" /fLightGreen %1 /fCyan %2 /fGray "installiprogrammi!"
+WELCOME_ADV="Tere tulemast süsteemi" /fLightRed "täiustatud" /fGray "installijasse" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "on täielik operatsioonisüsteem. Kui valite selle installimise" /p "oma arvutisse, võite " /fLightRed /BlinkOn "üle kirjutada" /BlinkOff /fGray "praeguse operatsioonisüsteemi" /p "(näiteks Windowsi.)" /fGray
+WELCOME_2=/fGray /c32 "Kui see pole teie soov, palun" /fLightRed "peatage KOHE!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Kas soovite jätkata" /c32
+REBOOT=/p "Kas soovite kohe taaskäivitada" /c32
+
+AUTO_YES="[J,E]?" /fWhite "J" /fGray
+AUTO_NO="[J,E]?" /fWhite "E" /fGray
+AUTO_FMT=/s- "[T,K,E]?" /fWhite "K" /fGray
+
+PROMPT_YESNO=/s JE
+PROMPT_FMT=/s TKE
+
+ABORTED=/fLightRed "Süsteemi" %1 %2 "installimine on katkestatud." /e /fGray /bBlack
+
+PARTITION_AUTO="Partitsioneeri ketas" /fWhite %1 /s- /fGray " automaatselt."
+PARTITION_WARN=/fYellow "MÄRKUS:" /fGray "KERNL86 jaoks on vajalik alla 2GB suurune FAT16-partitsioon."
+PARTITION_MBR="Uuenda Master Boot Record kettal" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Määra ketta" /fWhite %1 /fGray "partitsioon aktiivseks."
+PARTITION_DONE=/p "Uue partitsioonitabeli jõustumiseks peate arvuti taaskäivitama."
+
+FORMAT="Ketas" /fWhite %1 /fGray "ei tundu olevat vormindatud."
+FORMAT_DEF="Kas soovite ketast vormindada" /c32
+FORMAT_ADV="Kuidas soovite ketast vormindada" /s- /c32 ( /fWhite "T" /fGray "äielik," /c32 /fWhite "K" /fGray "iire," /c32 /fWhite "E" /fGray "ei)" /c32
+
+FILESYSTEM_TEST="Ketta" /fWhite %1 /s- /fGray " failisüsteemi kontrollimine."
+INSERT_DISKETTE="Sisestage diskett" /fWhite #%1 /fGray (%2) "seadmesse" /fWhite %3 /fGray "."
+PRESS_KEY="Jätkamiseks vajutage suvalist klahvi."
+
+TARGET_ASK="Kuhu soovite installida süsteemi" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Vigane ketas valitud. Flopile installimine pole võimalik."
+
+CHANGE_PATH="Tee" /fWhite %1 /fGray "on juba olemas." /p "Kas soovite installikataloogi muuta" /c32
+
+BACKUP_OLD="Kettalt" /fWhite %1 /fGray "tuvastati eelmine operatsioonisüsteem." /s+ /p "Kas soovite vanadest failidest enne installimist varukoopia teha" /c32
+BACKUP_ASK="Kuhu soovite varukoopiad salvestada?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Vigane sihtkoht valitud. Varukoopiat ei saa sellesse asukohta teha." /fGray
+
+DELETE_OLD="Asukohas" /fWhite %1 /fGray "olevad failid võidakse lihtsalt üle kirjutada." /p "Kas soovite vana kataloogi enne installimist täielikult kustutada" /c32
+
+FORCE_MBR="Sunni Master Boot Recordi uuendamine kettal" /fWhite %1 /fGray /c32
+SYS_FILES="Installi uued süsteemi käivitusfailid kettale" /fWhite %1 /fGray /c32
+CFG_FILES="Asenda süsteemi konfiguratsioonifailid kettal" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Installi seaded:" /p
+STATUS_CPU=/r4/c32 "Platvorm (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Installi allikas" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Sihtketas" /fWhite %1 /fGray (ketas %2, partitsioon %3)
+STATUS_DOS=/r4/c32 "DOS-i installitee" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Varunda eelmine OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Eelmise OS-i kataloog" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Installi uus MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopeeri süsteemifailid" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopeeri konf. failid" /fWhite %1 /fGray
+
+INSTALL_NOW="Oleme valmis installima süsteemi" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Süsteemi" /fLightGreen %1 /fCyan %2 /fGray "failide lahtipakkimine."
+UPDATE_LST="Uuenda pakettide nimekirja faile." /p
+
+DO_BACKUP="Eelmise OS-i failide varundamine asukohta" /fWhite %1 /fGray /s- .
+DO_ERASE="Kustuta vana" /fWhite %1 /fGray " kataloog ja failid."
+DO_SYSFILES="Uute süsteemifailide kopeerimine kettale" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="MBR-i sunnitud uuendamine kettal" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Määra aktiivne käivituspartitsioon kettal" /fWhite %1 /fGray "partitsioonile" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Uute konfiguratsioonifailide kopeerimine kettale" /fWhite %1 /fGray /s- .
+DO_PREPARE="Ettevalmistused programmide ja utiliitide installimiseks."
+DO_INSTALL="Installi" /fLightGreen %1 /fGray "failid süsteemile" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Süsteemi" /fLightGreen %1 /fCyan %2 /fGray "installimine on lõpetatud."
+REBOOT_NOW="Kas soovite kohe taaskäivitada" /c32
+
+REMOVE_MEDIA="Eemaldage kõik disketid ja CD-plaadid."
+
+SUCCESS=/fLightGreen "Õnnestus." /fGray
+FAILED=/fLightRed "Ebaõnnestus." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Installija (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Avaldatud GPL v2.0 litsentsi all."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS on Jim Hall'i kaubamärk," 2001-2022
+
+# Help screen
+HELP_0="kasutamine: SETUP.BAT [valikud] [sihtkoht]"
+HELP_1=""
+HELP_2="  [valikuteta]    installimine vaikeväärtustega"
+HELP_3=
+HELP_4="  adv             käivita installimine täiustatud režiimis (rohkem küsimusi)"
+HELP_5=
+HELP_6="  auto            täisautomaatne installimine ilma küsimusteta." /p/r18/c32 "see pole soovitatav ja seda peaks kasutama ainult riistvaral," /p/r18/c32 "kus puudub eelnev operatsioonisüsteem."
+HELP_7=
+HELP_8="  [sihtkoht]      määra ketas ja/või tee installimiseks"
+HELP_9=
+HELP_10="  info            kuva installija seaded ja välju"
+HELP_11=
+HELP_12="  mbr             sunni MBR-i uuendamine ja välju"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRIITILINE viga:" /fGray /c32
+ERROR_NoHDD="Ei leidnud partitsioneeritud ja vormindatud kõvaketast."
+ERROR_MINOR=/fLightRed "viga:" /fGray /c32
+ERROR_Option="Tundmatu või vigane käsurea valik" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Süsteemi põhikonfiguratsiooni ja teid ei suudetud tuvastada."
+ERROR_NotFreeCOM="See batch-fail vajab FreeCOM-i või ühilduvat FreeDOS-i kesta."
+ERROR_MissingFreeCOM="FreeDOS-i käsukesta FreeCOM ei leitud."
+ERROR_MissingAUTOEXEC="FreeDOS-i käivitusfaili FDAUTO.BAT ei leitud."
+ERROR_MakeDir="Kataloogi loomine ebaõnnestus:" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Käivitus- ja/või konfiguratsioonifailide varundamine ebaõnnestus."
+ERROR_BackupOS="Failide varundamine sihtkataloogis ebaõnnestus."
+ERROR_Partition="Tekkis partitsioneerimise viga. Kõvaketas ei pruugi olla" /p "ühendatud või on praeguse süsteemi jaoks nähtamatu." /p /p "Vajalik on teistsugune partitsioneerimise meetod."
+ERROR_NoPartition="Ketta" /fWhite %1 /fGray /s- " BIOS-partitsiooni ei leitud." /s+ /p "Soovitatav on manuaalne install (või täiustatud režiim ilma sunnitud MBR-ita)."
+ERROR_Format="Viga ketta" /fWhite %1 /fGray /s- " vormindamisel." /s+ /p /p "Vormindamiseks on vajalik teistsugune protsess."
+ERROR_FileSystem="Ajutise mälu initsialiseerimine kettal" /fWhite %1 /s- /fGray " ebaõnnestus."
+ERROR_CfgBackup="Varukoopia kataloogi konfigureerimine ebaõnnestus."
+ERROR_MBRBackup="Ketta" /fWhite %1 /fGray /s- " Master Boot Recordi varundamine ebaõnnestus."
+ERROR_SysFiles="Süsteemifailide kopeerimine kettale" /fWhite %1 /fGray /s- " ebaõnnestus."
+ERROR_BootSector="Ketta" /fWhite %1 /fGray /s- " käivitussektori uuendamine ebaõnnestus."
+ERROR_MBRUpdate="Ketta" /fWhite %1 /fGray /s- " Master Boot Recordi uuendamine ebaõnnestus."
+ERROR_Activate="Ketta" /fWhite %1 /fGray " määramine käivituspartitsiooniks" /fWhite %2 /fGray /s- " ebaõnnestus."
+ERROR_CfgFiles="Uute konfiguratsioonifailide installimine kettale" /fWhite %1 /fGray /s- " ebaõnnestus."
+ERROR_XfrFiles="Vajaliku installifaili kopeerimine asukohta" /fWhite %1 /fGray /s- " ebaõnnestus."
+ERROR_SAF="Tõrge arhiivi" /fWhite %1 /fGray " lahtipakkimisel."
+ERROR_WTF="Lihtsa toimingu ajal tekkis tundmatu ja ebatõenäoline viga."
+

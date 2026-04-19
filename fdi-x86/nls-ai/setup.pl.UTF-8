@@ -1,0 +1,142 @@
+# Language: Polish
+# File ending: PL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Witaj w programie instalacyjnym systemu" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Witaj w" /fLightRed "zaawansowanym" /fGray "instalatorze systemu" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "to kompletny system operacyjny. Jeśli zdecydujesz się go" /p "zainstalować, możesz " /fLightRed /BlinkOn "nadpisać" /BlinkOff /fGray "obecny system operacyjny" /p "(na przykład Windows)." /fGray
+WELCOME_2=/fGray /c32 "Jeśli nie jest to Twoim zamiarem, proszę" /fLightRed "zatrzymaj się TERAZ!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Czy chcesz kontynuować" /c32
+REBOOT=/p "Czy chcesz teraz zrestartować komputer" /c32
+
+AUTO_YES="[T,N]?" /fWhite "T" /fGray
+AUTO_NO="[T,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[P,S,N]?" /fWhite "S" /fGray
+
+PROMPT_YESNO=/s TN
+PROMPT_FMT=/s PSN
+
+ABORTED=/fLightRed "Instalacja systemu" %1 %2 "została przerwana." /e /fGray /bBlack
+
+PARTITION_AUTO="Automatycznie partycjonuj napęd" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "UWAGA:" /fGray "Partycja FAT16 poniżej 2GB jest wymagana dla KERNL86."
+PARTITION_MBR="Aktualizuj Master Boot Record na napędzie" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Ustaw partycję napędu" /fWhite %1 /fGray "jako aktywną."
+PARTITION_DONE=/p "Musisz zrestartować komputer, aby nowy schemat partycjonowania wszedł w życie."
+
+FORMAT="Napęd" /fWhite %1 /fGray "nie wydaje się być sformatowany."
+FORMAT_DEF="Czy chcesz sformatować napęd" /c32
+FORMAT_ADV="Jak chcesz sformatować napęd" /s- /c32 ( /fWhite "P" /fGray "ełne," /c32 /fWhite "S" /fGray "zybkie," /c32 /fWhite "N" /fGray "ie)" /c32
+
+FILESYSTEM_TEST="Testowanie systemu plików na napędzie" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Włóż dyskietkę" /fWhite #%1 /fGray (%2) "do" /fWhite %3 /fGray "."
+PRESS_KEY="Naciśnij dowolny klawisz, aby kontynuować."
+
+TARGET_ASK="Gdzie chcesz zainstalować system" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Zażądano nieprawidłowego napędu. Nie można instalować na dyskietce."
+
+CHANGE_PATH="Ścieżka" /fWhite %1 /fGray "już istnieje." /p "Czy chcesz zmienić katalog instalacyjny" /c32
+
+BACKUP_OLD="Na napędzie" /fWhite %1 /fGray "wykryto poprzedni system operacyjny." /s+ /p "Czy chcesz utworzyć kopię zapasową starych plików przed instalacją" /c32
+BACKUP_ASK="Gdzie chcesz umieścić pliki kopii zapasowej?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Zażądano nieprawidłowego celu. Nie można utworzyć kopii zapasowej w tej lokalizacji." /fGray
+
+DELETE_OLD="Istniejące pliki w" /fWhite %1 /fGray "mogą zostać po prostu nadpisane." /p "Czy chcesz całkowicie skasować stary katalog przed instalacją" /c32
+
+FORCE_MBR="Wymuś aktualizację Master Boot Record na napędzie" /fWhite %1 /fGray /c32
+SYS_FILES="Zainstaluj nowe pliki startowe systemu na napędzie" /fWhite %1 /fGray /c32
+CFG_FILES="Zastąp pliki konfiguracyjne systemu na napędzie" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Ustawienia instalacji:" /p
+STATUS_CPU=/r4/c32 "Platforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Instaluj z" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Napęd docelowy" /fWhite %1 /fGray (dysk %2, partycja %3)
+STATUS_DOS=/r4/c32 "Ścieżka DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Kopia zapasowa poprzedniego OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Katalog poprzedniego OS" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Instaluj nowy MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopiuj pliki systemowe" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopiuj pliki konfig." /fWhite %1 /fGray
+
+INSTALL_NOW="Jesteśmy gotowi do instalacji systemu" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Rozpakowywanie plików systemu" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Aktualizacja list pakietów." /p
+
+DO_BACKUP="Tworzenie kopii zapasowej poprzedniego OS do" /fWhite %1 /fGray /s- .
+DO_ERASE="Usuwanie starego katalogu" /fWhite %1 /fGray " i plików."
+DO_SYSFILES="Przenoszenie nowych plików systemowych na napęd" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Wymuszona aktualizacja MBR na napędzie" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Ustawianie aktywnej partycji startowej na dysku" /fWhite %1 /fGray "dla partycji" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Przenoszenie nowych plików konfiguracyjnych na napęd" /fWhite %1 /fGray /s- .
+DO_PREPARE="Przygotowanie do instalacji plików wykonywalnych i narzędzi."
+DO_INSTALL="Instalacja plików" /fLightGreen %1 /fGray "dla" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Instalacja systemu" /fLightGreen %1 /fCyan %2 /fGray "zakończona pomyślnie."
+REBOOT_NOW="Czy chcesz teraz zrestartować komputer" /c32
+
+REMOVE_MEDIA="Powinieneś teraz wyjąć wszystkie dyskietki i płyty CD."
+
+SUCCESS=/fLightGreen "Sukces." /fGray
+FAILED=/fLightRed "Błąd." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Instalator (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Wydano na licencji GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS jest znakiem towarowym Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="użycie: SETUP.BAT [opcje] [cel]"
+HELP_1=""
+HELP_2="  [brak opcji]    wykonaj instalację domyślną"
+HELP_3=
+HELP_4="  adv             uruchom instalator w trybie zaawansowanym (więcej pytań)"
+HELP_5=
+HELP_6="  auto            wykonaj w pełni automatyczną instalację bez pytań." /p/r18/c32 "niezalecane; używać tylko na sprzęcie bez" /p/r18/c32 "istniejącego systemu operacyjnego."
+HELP_7=
+HELP_8="  [cel]           ustaw napęd i/lub ścieżkę dla instalacji docelowej"
+HELP_9=
+HELP_10="  info            wyświetl konfigurację instalatora i wyjdź"
+HELP_11=
+HELP_12="  mbr             wymuś aktualizację MBR i wyjdź"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRYTYCZNY błąd:" /fGray /c32
+ERROR_NoHDD="Nie można zlokalizować spartycjonowanego i sformatowanego dysku twardego."
+ERROR_MINOR=/fLightRed "błąd:" /fGray /c32
+ERROR_Option="Nieznana lub nieprawidłowa opcja wiersza poleceń" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Nie można określić podstawowej konfiguracji systemu i ścieżek."
+ERROR_NotFreeCOM="Ten plik wsadowy wymaga FreeCOM lub powłoki kompatybilnej z FreeDOS."
+ERROR_MissingFreeCOM="Nie można zlokalizować powłoki poleceń FreeDOS FreeCOM."
+ERROR_MissingAUTOEXEC="Nie można zlokalizować pliku startowego FreeDOS FDAUTO.BAT."
+ERROR_MakeDir="Nie można utworzyć katalogu" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Nie można utworzyć kopii zapasowej plików startowych i/lub konfiguracyjnych."
+ERROR_BackupOS="Nie można utworzyć kopii zapasowej plików w katalogu docelowym."
+ERROR_Partition="Wystąpił błąd partycjonowania. Dysk twardy może być nieobecny" /p "lub niewidoczny dla obecnego systemu operacyjnego." /p /p "Wymagana jest inna metoda partycjonowania."
+ERROR_NoPartition="Nie można zlokalizować partycji BIOS dla" /fWhite %1 /fGray /s- . /s+ /p "Zalecana jest instalacja ręczna (lub tryb zaawansowany bez wymuszania MBR)."
+ERROR_Format="Wystąpił błąd podczas próby formatowania napędu" /fWhite %1 /fGray /s- . /s+ /p /p "Wymagany będzie inny proces formatowania."
+ERROR_FileSystem="Nie można zainicjować przestrzeni tymczasowej na napędzie" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Nie można skonfigurować katalogu kopii zapasowej."
+ERROR_MBRBackup="Nie można utworzyć kopii zapasowej MBR dla napędu" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Nie można skopiować plików systemowych na napęd" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Nie można zaktualizować sektora rozruchowego napędu" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Nie można zaktualizować sektora rozruchowego napędu" /fWhite %1 /fGray /s- .
+ERROR_Activate="Nie można ustawić napędu" /fWhite %1 /fGray "na partycję startową" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Nie można zainstalować nowych plików konfiguracyjnych na napędzie" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Nie można duplikować wymaganego pliku instalatora do" /fWhite %1 /fGray /s- .
+ERROR_SAF="Wystąpił problem podczas wypakowywania archiwum" /fWhite %1 /fGray "."
+ERROR_WTF="Wystąpił nieznany i mało prawdopodobny błąd podczas prostej operacji."

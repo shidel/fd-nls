@@ -1,0 +1,142 @@
+# Language: Italian
+# File ending: IT
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Benvenuti nel programma di installazione di" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Benvenuti nell'installatore" /fLightRed "avanzato" /fGray "per" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "è un sistema operativo completo. Se scegli di installarlo sul" /p "tuo computer, potresti " /fLightRed /BlinkOn "sovrascrivere" /BlinkOff /fGray "il sistema operativo attualmente presente" /p "(ad esempio, Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Se non è questa la tua intenzione, per favore" /fLightRed "fermati ORA!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Vuoi procedere" /c32
+REBOOT=/p "Vuoi riavviare ora" /c32
+
+AUTO_YES="[S,N]?" /fWhite "S" /fGray
+AUTO_NO="[S,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[F,Q,N]?" /fWhite "Q" /fGray
+
+PROMPT_YESNO=/s SN
+PROMPT_FMT=/s FQN
+
+ABORTED=/fLightRed "L'installazione di" %1 %2 "è stata interrotta." /e /fGray /bBlack
+
+PARTITION_AUTO="Partizionamento automatico dell'unità" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "AVVISO:" /fGray "È necessaria una partizione FAT16 inferiore a 2Gb per KERNL86."
+PARTITION_MBR="Aggiorna il Master Boot Record sull'unità" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Imposta la partizione dell'unità" /fWhite %1 /fGray "come attiva."
+PARTITION_DONE=/p "È necessario riavviare il computer affinché il nuovo schema di partizionamento abbia effetto."
+
+FORMAT="L'unità" /fWhite %1 /fGray "non sembra essere formattata."
+FORMAT_DEF="Vuoi formattare l'unità" /c32
+FORMAT_ADV="Come vuoi formattare l'unità" /s- /c32 ( /fWhite "F" /fGray "ull," /c32 /fWhite "Q" /fGray "uick," /c32 /fWhite "N" /fGray "o)" /c32
+
+FILESYSTEM_TEST="Test del filesystem sull'unità" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Inserisci il dischetto" /fWhite #%1 /fGray (%2) "in" /fWhite %3 /s- /fGray .
+PRESS_KEY="Premi un tasto per continuare."
+
+TARGET_ASK="Dove desideri installare" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Unità richiesta non valida. Impossibile installare su dischetto."
+
+CHANGE_PATH="Il percorso" /fWhite %1 /fGray "esiste già." /p "Desideri cambiare la directory di installazione" /c32
+
+BACKUP_OLD="È stato rilevato un sistema operativo precedente sull'unità" /fWhite %1 /fGray /s- . /s+ /p "Vuoi eseguire il backup dei vecchi file prima dell'installazione" /c32
+BACKUP_ASK="Dove desideri posizionare i file di backup?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Destinazione richiesta non valida. Impossibile eseguire il backup in quella posizione." /fGray
+
+DELETE_OLD="I file esistenti in" /fWhite %1 /fGray "possono essere semplicemente sovrascritti." /p "Vuoi cancellare completamente la vecchia directory prima dell'installazione" /c32
+
+FORCE_MBR="Forza un aggiornamento del Master Boot Record sull'unità" /fWhite %1 /fGray /c32
+SYS_FILES="Installa i nuovi file di avvio del sistema sull'unità" /fWhite %1 /fGray /c32
+CFG_FILES="Sostituisci i file di configurazione del sistema sull'unità" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Impostazioni di installazione:" /p
+STATUS_CPU=/r4/c32 "Piattaforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Installa da" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Unità di destinazione" /fWhite %1 /fGray (disco %2, partizione %3)
+STATUS_DOS=/r4/c32 "Percorso installazione DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Backup precedente SO" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Directory precedente SO" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Installa nuovo MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Copia file di sistema" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Copia file di config" /fWhite %1 /fGray
+
+INSTALL_NOW="Siamo pronti per installare" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Estrazione file" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Aggiornamento dei file dell'elenco pacchetti." /p
+
+DO_BACKUP="Creazione del backup dei file del precedente SO in" /fWhite %1 /fGray /s- .
+DO_ERASE="Eliminazione della vecchia directory" /fWhite %1 /fGray "e dei file."
+DO_SYSFILES="Trasferimento dei nuovi file di sistema sull'unità" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Aggiornamento forzato dell'MBR sull'unità" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Imposta partizione di avvio attiva sul disco" /fWhite %1 /fGray "per la partizione" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Trasferimento dei nuovi file di configurazione sull'unità" /fWhite %1 /fGray /s- .
+DO_PREPARE="Preparazione all'installazione dei file eseguibili e delle utilità."
+DO_INSTALL="Installazione dei file" /fLightGreen %1 /fGray "per" /fWhite %2 /fGray /s- .
+
+DONE_NOW="L'installazione di" /fLightGreen %1 /fCyan %2 /fGray "è stata completata."
+REBOOT_NOW="Vuoi riavviare ora" /c32
+
+REMOVE_MEDIA="Dovresti rimuovere tutti i dischetti e i supporti CD."
+
+SUCCESS=/fLightGreen "Riuscito." /fGray
+FAILED=/fLightRed "Fallito." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Installer (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Rilasciato sotto licenza GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS è un marchio di Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="uso: SETUP.BAT [opzioni] [destinazione]"
+HELP_1=""
+HELP_2="  [nessuna opz]  esegue l'installazione usando i valori predefiniti"
+HELP_3=
+HELP_4="  adv            avvia l'installazione in modalità avanzata (più conferme)"
+HELP_5=
+HELP_6="  auto           esegue l'installazione automatica senza conferme." /p/r18/c32 "non è raccomandato e dovrebbe essere usato solo su hardware" /p/r18/c32 "senza un sistema operativo preesistente."
+HELP_7=
+HELP_8="  [destinazione] pre-imposta un'unità e/o un percorso per l'installazione"
+HELP_9=
+HELP_10="  info           visualizza le impostazioni dell'installatore ed esce"
+HELP_11=
+HELP_12="  mbr            forza un aggiornamento dell'MBR ed esce"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "Errore CRITICO:" /fGray /c32
+ERROR_NoHDD="Impossibile individuare un disco rigido partizionato e formattato."
+ERROR_MINOR=/fLightRed "errore:" /fGray /c32
+ERROR_Option="Opzione della riga di comando sconosciuta o non valida" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Impossibile determinare la configurazione di base del sistema e i percorsi."
+ERROR_NotFreeCOM="Questo file batch richiede FreeCOM o una shell compatibile per FreeDOS."
+ERROR_MissingFreeCOM="Impossibile individuare la shell dei comandi di FreeDOS (FreeCOM)."
+ERROR_MissingAUTOEXEC="Impossibile individuare il file batch di avvio di FreeDOS (FDAUTO.BAT)."
+ERROR_MakeDir="Impossibile creare la directory" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Impossibile eseguire il backup dei file di avvio 'e/o' di configurazione."
+ERROR_BackupOS="Impossibile eseguire il backup dei file nella directory di destinazione."
+ERROR_Partition="Si è verificato un errore di partizionamento. Il disco rigido potrebbe non essere" /p "presente o invisibile al sistema operativo corrente." /p /p "È richiesto un metodo di partizionamento diverso."
+ERROR_NoPartition="Impossibile individuare la partizione BIOS per" /fWhite %1 /fGray /s- . /s+ /p "Si raccomanda l'installazione manuale (o la modalità avanzata senza MBR forzato)."
+ERROR_Format="Si è verificato un errore durante il tentativo di formattare l'unità" /fWhite %1 /fGray /s- . /s+ /p /p "Sarà necessario un processo diverso per formattarla."
+ERROR_FileSystem="Impossibile inizializzare lo spazio temporaneo sull'unità" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Impossibile configurare la directory di backup."
+ERROR_MBRBackup="Impossibile creare il backup del Master Boot Record per l'unità" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Impossibile copiare i file di sistema sull'unità" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Impossibile aggiornare il settore di avvio per l'unità" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Impossibile aggiornare il Master Boot Record per l'unità" /fWhite %1 /fGray /s- .
+ERROR_Activate="Impostazione fallita: unità" /fWhite %1 /fGray "sulla partizione di avvio" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Impossibile installare i nuovi file di configurazione sull'unità" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Impossibile duplicare il file richiesto dell'installatore in" /fWhite %1 /fGray /s- .
+ERROR_SAF="Si è verificato un problema durante l'estrazione dell'archivio" /fWhite %1 /fGray "."
+ERROR_WTF="Si è verificato un errore sconosciuto e improbabile durante una semplice operazione."

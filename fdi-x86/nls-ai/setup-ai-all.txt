@@ -1,0 +1,3168 @@
+Italienisch (IT)
+(Reset: CP 858 | Tasten: S/N (Sì/No) | Reinheitsgebot aktiv)
+
+
+# Language: Italian
+# File ending: IT
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Benvenuti nel programma di installazione di" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Benvenuti nell'installatore" /fLightRed "avanzato" /fGray "per" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "è un sistema operativo completo. Se scegli di installarlo sul" /p "tuo computer, potresti " /fLightRed /BlinkOn "sovrascrivere" /BlinkOff /fGray "il sistema operativo attualmente presente" /p "(ad esempio, Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Se non è questa la tua intenzione, per favore" /fLightRed "fermati ORA!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Vuoi procedere" /c32
+REBOOT=/p "Vuoi riavviare ora" /c32
+
+AUTO_YES="[S,N]?" /fWhite "S" /fGray
+AUTO_NO="[S,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[F,Q,N]?" /fWhite "Q" /fGray
+
+PROMPT_YESNO=/s SN
+PROMPT_FMT=/s FQN
+
+ABORTED=/fLightRed "L'installazione di" %1 %2 "è stata interrotta." /e /fGray /bBlack
+
+PARTITION_AUTO="Partizionamento automatico dell'unità" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "AVVISO:" /fGray "È necessaria una partizione FAT16 inferiore a 2Gb per KERNL86."
+PARTITION_MBR="Aggiorna il Master Boot Record sull'unità" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Imposta la partizione dell'unità" /fWhite %1 /fGray "come attiva."
+PARTITION_DONE=/p "È necessario riavviare il computer affinché il nuovo schema di partizionamento abbia effetto."
+
+FORMAT="L'unità" /fWhite %1 /fGray "non sembra essere formattata."
+FORMAT_DEF="Vuoi formattare l'unità" /c32
+FORMAT_ADV="Come vuoi formattare l'unità" /s- /c32 ( /fWhite "F" /fGray "ull," /c32 /fWhite "Q" /fGray "uick," /c32 /fWhite "N" /fGray "o)" /c32
+
+FILESYSTEM_TEST="Test del filesystem sull'unità" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Inserisci il dischetto" /fWhite #%1 /fGray (%2) "in" /fWhite %3 /s- /fGray .
+PRESS_KEY="Premi un tasto per continuare."
+
+TARGET_ASK="Dove desideri installare" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Unità richiesta non valida. Impossibile installare su dischetto."
+
+CHANGE_PATH="Il percorso" /fWhite %1 /fGray "esiste già." /p "Desideri cambiare la directory di installazione" /c32
+
+BACKUP_OLD="È stato rilevato un sistema operativo precedente sull'unità" /fWhite %1 /fGray /s- . /s+ /p "Vuoi eseguire il backup dei vecchi file prima dell'installazione" /c32
+BACKUP_ASK="Dove desideri posizionare i file di backup?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Destinazione richiesta non valida. Impossibile eseguire il backup in quella posizione." /fGray
+
+DELETE_OLD="I file esistenti in" /fWhite %1 /fGray "possono essere semplicemente sovrascritti." /p "Vuoi cancellare completamente la vecchia directory prima dell'installazione" /c32
+
+FORCE_MBR="Forza un aggiornamento del Master Boot Record sull'unità" /fWhite %1 /fGray /c32
+SYS_FILES="Installa i nuovi file di avvio del sistema sull'unità" /fWhite %1 /fGray /c32
+CFG_FILES="Sostituisci i file di configurazione del sistema sull'unità" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Impostazioni di installazione:" /p
+STATUS_CPU=/r4/c32 "Piattaforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Installa da" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Unità di destinazione" /fWhite %1 /fGray (disco %2, partizione %3)
+STATUS_DOS=/r4/c32 "Percorso installazione DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Backup precedente SO" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Directory precedente SO" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Installa nuovo MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Copia file di sistema" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Copia file di config" /fWhite %1 /fGray
+
+INSTALL_NOW="Siamo pronti per installare" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Estrazione file" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Aggiornamento dei file dell'elenco pacchetti." /p
+
+DO_BACKUP="Creazione del backup dei file del precedente SO in" /fWhite %1 /fGray /s- .
+DO_ERASE="Eliminazione della vecchia directory" /fWhite %1 /fGray "e dei file."
+DO_SYSFILES="Trasferimento dei nuovi file di sistema sull'unità" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Aggiornamento forzato dell'MBR sull'unità" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Imposta partizione di avvio attiva sul disco" /fWhite %1 /fGray "per la partizione" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Trasferimento dei nuovi file di configurazione sull'unità" /fWhite %1 /fGray /s- .
+DO_PREPARE="Preparazione all'installazione dei file eseguibili e delle utilità."
+DO_INSTALL="Installazione dei file" /fLightGreen %1 /fGray "per" /fWhite %2 /fGray /s- .
+
+DONE_NOW="L'installazione di" /fLightGreen %1 /fCyan %2 /fGray "è stata completata."
+REBOOT_NOW="Vuoi riavviare ora" /c32
+
+REMOVE_MEDIA="Dovresti rimuovere tutti i dischetti e i supporti CD."
+
+SUCCESS=/fLightGreen "Riuscito." /fGray
+FAILED=/fLightRed "Fallito." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Installer (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Rilasciato sotto licenza GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS è un marchio di Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="uso: SETUP.BAT [opzioni] [destinazione]"
+HELP_1=""
+HELP_2="  [nessuna opz]  esegue l'installazione usando i valori predefiniti"
+HELP_3=
+HELP_4="  adv            avvia l'installazione in modalità avanzata (più conferme)"
+HELP_5=
+HELP_6="  auto           esegue l'installazione automatica senza conferme." /p/r18/c32 "non è raccomandato e dovrebbe essere usato solo su hardware" /p/r18/c32 "senza un sistema operativo preesistente."
+HELP_7=
+HELP_8="  [destinazione] pre-imposta un'unità e/o un percorso per l'installazione"
+HELP_9=
+HELP_10="  info           visualizza le impostazioni dell'installatore ed esce"
+HELP_11=
+HELP_12="  mbr            forza un aggiornamento dell'MBR ed esce"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "Errore CRITICO:" /fGray /c32
+ERROR_NoHDD="Impossibile individuare un disco rigido partizionato e formattato."
+ERROR_MINOR=/fLightRed "errore:" /fGray /c32
+ERROR_Option="Opzione della riga di comando sconosciuta o non valida" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Impossibile determinare la configurazione di base del sistema e i percorsi."
+ERROR_NotFreeCOM="Questo file batch richiede FreeCOM o una shell compatibile per FreeDOS."
+ERROR_MissingFreeCOM="Impossibile individuare la shell dei comandi di FreeDOS (FreeCOM)."
+ERROR_MissingAUTOEXEC="Impossibile individuare il file batch di avvio di FreeDOS (FDAUTO.BAT)."
+ERROR_MakeDir="Impossibile creare la directory" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Impossibile eseguire il backup dei file di avvio 'e/o' di configurazione."
+ERROR_BackupOS="Impossibile eseguire il backup dei file nella directory di destinazione."
+ERROR_Partition="Si è verificato un errore di partizionamento. Il disco rigido potrebbe non essere" /p "presente o invisibile al sistema operativo corrente." /p /p "È richiesto un metodo di partizionamento diverso."
+ERROR_NoPartition="Impossibile individuare la partizione BIOS per" /fWhite %1 /fGray /s- . /s+ /p "Si raccomanda l'installazione manuale (o la modalità avanzata senza MBR forzato)."
+ERROR_Format="Si è verificato un errore durante il tentativo di formattare l'unità" /fWhite %1 /fGray /s- . /s+ /p /p "Sarà necessario un processo diverso per formattarla."
+ERROR_FileSystem="Impossibile inizializzare lo spazio temporaneo sull'unità" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Impossibile configurare la directory di backup."
+ERROR_MBRBackup="Impossibile creare il backup del Master Boot Record per l'unità" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Impossibile copiare i file di sistema sull'unità" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Impossibile aggiornare il settore di avvio per l'unità" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Impossibile aggiornare il Master Boot Record per l'unità" /fWhite %1 /fGray /s- .
+ERROR_Activate="Impostazione fallita: unità" /fWhite %1 /fGray "sulla partizione di avvio" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Impossibile installare i nuovi file di configurazione sull'unità" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Impossibile duplicare il file richiesto dell'installatore in" /fWhite %1 /fGray /s- .
+ERROR_SAF="Si è verificato un problema durante l'estrazione dell'archivio" /fWhite %1 /fGray "."
+ERROR_WTF="Si è verificato un errore sconosciuto e improbabile durante una semplice operazione."
+
+
+
+
+Esperanto (EO)
+(Reset: CP 853 | Tasten: J/N (Jes/Ne) | Reinheitsgebot aktiv)
+
+
+# Language: Esperanto
+# File ending: EO
+# Codepage: 853
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Bonvenon al la instala programo de" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Bonvenon al la" /fLightRed "progresinta" /fGray "instalilo por" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "estas kompleta operaciumo. Se vi elektas instali tion sur" /p "via komputilo, vi eble " /fLightRed /BlinkOn "superkribros" /BlinkOff /fGray "la operaciumon kiun vi nun havas" /p "(ekzemple, Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Se tio ne estas via intenco, bonvolu" /fLightRed "halti NUN!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Ĉu vi volas daŭrigi" /c32
+REBOOT=/p "Ĉu vi volas fari restarton nun" /c32
+
+AUTO_YES="[J,N]?" /fWhite "J" /fGray
+AUTO_NO="[J,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[P,R,N]?" /fWhite "R" /fGray
+
+PROMPT_YESNO=/s JN
+PROMPT_FMT=/s PRN
+
+ABORTED=/fLightRed "La instalado de" %1 %2 "estis ĉesigita." /e /fGray /bBlack
+
+PARTITION_AUTO="Aŭtomate particii diskon" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "AVIZO:" /fGray "FAT16-particio malpli granda ol 2Gb estas bezonata por KERNL86."
+PARTITION_MBR="Ĝisdatigi la Master Boot Record sur disko" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Agordi la particion de disko" /fWhite %1 /fGray "kiel aktiva."
+PARTITION_DONE=/p "Vi devas restartigi vian komputilon por ke la nova particia skemo ekvalidu."
+
+FORMAT="Disko" /fWhite %1 /fGray "ŝajne ne estas formatita."
+FORMAT_DEF="Ĉu vi volas formati vian diskon" /c32
+FORMAT_ADV="Kiel vi volas formati vian diskon" /s- /c32 ( /fWhite "P" /fGray "lena," /c32 /fWhite "R" /fGray "apida," /c32 /fWhite "N" /fGray "e)" /c32
+
+FILESYSTEM_TEST="Testado de dosiersistemo sur disko" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Enmetu disketon" /fWhite #%1 /fGray (%2) "en" /fWhite %3 /s- /fGray .
+PRESS_KEY="Premu klavon por daŭrigi."
+
+TARGET_ASK="Kie vi volas instali" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Nevalida disko petita. Ne eblas instali al disketo."
+
+CHANGE_PATH="La vojo" /fWhite %1 /fGray "jam ekzistas." /p "Ĉu vi deziras ŝanĝi la instalan dosierujon" /c32
+
+BACKUP_OLD="Antaŭa operaciumo estis detektita sur disko" /fWhite %1 /fGray /s- . /s+ /p "Ĉu vi volas sekurkopii la malnovajn dosierojn antaŭ la instalado" /c32
+BACKUP_ASK="Kie vi deziras meti la sekurkopiajn dosierojn?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Nevalida celo petita. Ne eblas fari sekurkopion al tiu loko." /fGray
+
+DELETE_OLD="La ekzistantaj dosieroj en" /fWhite %1 /fGray "povas esti simple superkribritaj." /p "Ĉu vi volas tute viŝi la malnovan dosierujon antaŭ la instalado" /c32
+
+FORCE_MBR="Devigi ĝisdatigon al la Master Boot Record sur disko" /fWhite %1 /fGray /c32
+SYS_FILES="Instali novajn sistemajn lanĉdosierojn sur disko" /fWhite %1 /fGray /c32
+CFG_FILES="Anstataŭigi sistemajn agordajn dosierojn sur disko" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Instalaj agordoj:" /p
+STATUS_CPU=/r4/c32 "Platformo (ĉefprocesoro)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Instali el" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Celdisko" /fWhite %1 /fGray (disko %2, particio %3)
+STATUS_DOS=/r4/c32 "Instala DOS-vojo" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Sekurkopii antaŭan operaciumon" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Dosierujo de antaŭa operaciumo" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Instali novan MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopii sistemdosierojn" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopii agorddosierojn" /fWhite %1 /fGray
+
+INSTALL_NOW="Ni nun estas pretaj por instali" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Elpakado de dosieroj de" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Ĝisdatigo de pakaj listdosieroj." /p
+
+DO_BACKUP="Kreado de sekurkopio de antaŭaj operaciumaj dosieroj al" /fWhite %1 /fGray /s- .
+DO_ERASE="Viŝi malnovan dosierujon" /fWhite %1 /fGray "kaj dosierojn."
+DO_SYSFILES="Transkopii novajn sistemdosierojn al disko" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Devigi ĝisdatigon de la MBR sur disko" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Agordi aktivan lanĉan particion al disko" /fWhite %1 /fGray "por particio" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Transkopii novajn agordajn dosierojn al disko" /fWhite %1 /fGray /s- .
+DO_PREPARE="Prepariĝas por instali plenumeblajn dosierojn kaj servilojn."
+DO_INSTALL="Instali" /fLightGreen %1 /fGray "dosierojn por" /fWhite %2 /fGray /s- .
+
+DONE_NOW="La instalado de" /fLightGreen %1 /fCyan %2 /fGray "finiĝis."
+REBOOT_NOW="Ĉu vi volas fari restarton nun" /c32
+
+REMOVE_MEDIA="Vi devus elmeti ĉiujn disketojn kaj KD-ojn."
+
+SUCCESS=/fLightGreen "Sukceso." /fGray
+FAILED=/fLightRed "Malsukceso." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Instalilo (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Eldonita sub la permesilo GPL v2.0."/p "Kopirajto" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS estas varmarko de Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="uzado: SETUP.BAT [opcioj] [celo]"
+HELP_1=""
+HELP_2="  [neniu opcio]  plenumi instaladon uzante defaŭltojn"
+HELP_3=
+HELP_4="  adv            lanĉi instaladon en progresinta reĝimo (pli da demandoj)"
+HELP_5=
+HELP_6="  auto           plenumi tute aŭtomatan instaladon sen demandoj." /p/r18/c32 "tio ne estas rekomendinda kaj devus esti uzata nur sur aparataro" /p/r18/c32 "sen jam ekzistanta operaciumo."
+HELP_7=
+HELP_8="  [celo]         antaŭagordi diskon kaj/aŭ vojon por la celinstalo"
+HELP_9=
+HELP_10="  info           montri agordojn de la instalilo kaj eliri"
+HELP_11=
+HELP_12="  mbr            devigi ĝisdatigon al la MBR kaj eliri"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITIKA eraro:" /fGray /c32
+ERROR_NoHDD="Ne eblas trovi particiitan kaj formatitan fiksdiskon."
+ERROR_MINOR=/fLightRed "eraro:" /fGray /c32
+ERROR_Option="Nekonata aŭ nevalida komandlinia opcio" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Ne eblas determini bazan sistemagordon kaj vojagordojn."
+ERROR_NotFreeCOM="Ĉi tiu grupodosiero postulas FreeCOM aŭ kongruan ŝelon por FreeDOS."
+ERROR_MissingFreeCOM="Ne eblas trovi la komandŝelon de FreeDOS (FreeCOM)."
+ERROR_MissingAUTOEXEC="Ne eblas trovi la sistemlanĉan dosieron de FreeDOS (FDAUTO.BAT)."
+ERROR_MakeDir="Ne eblas krei dosierujon" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Ne eblas sekurkopii lanĉajn 'kaj/aŭ' agordajn dosierojn."
+ERROR_BackupOS="Ne eblas sekurkopii dosierojn en celdosierujo."
+ERROR_Partition="Eraro de particiado okazis. Fiksdisko eble ne ĉeestas aŭ" /p "estas nevidebla por la nuna operaciumo." /p /p "Malsama metodo por particiado estas bezonata."
+ERROR_NoPartition="Ne eblas trovi la BIOS-particion por" /fWhite %1 /fGray /s- . /s+ /p "Mana instalado (aŭ eble progresinta reĝimo sen deviga MBR) estas rekomendinda."
+ERROR_Format="Eraro okazis dum provo formati diskon" /fWhite %1 /fGray /s- . /s+ /p /p "Malsama procezo estos bezonata por formati ĝin."
+ERROR_FileSystem="Ne eblas pravalorizi provizoran spacon sur disko" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Ne eblas agordi sekurkopian dosierujon."
+ERROR_MBRBackup="Ne eblas krei sekurkopion de la Master Boot Record por disko" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Ne eblas kopii sistemdosierojn al disko" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Ne eblas ĝisdatigi la lanĉosektoron por disko" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Ne eblas ĝisdatigi la lanĉosektoron por disko" /fWhite %1 /fGray /s- .
+ERROR_Activate="Ne eblas agordi diskon" /fWhite %1 /fGray "al lanĉa particio" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Ne eblas instali novajn agordajn dosierojn sur disko" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Ne eblas duobligi bezonatan instalildosieron al" /fWhite %1 /fGray /s- .
+ERROR_SAF="Problemo okazis dum elpakado de arkivo" /fWhite %1 /fGray "."
+ERROR_WTF="Nekonata kaj neprobabla eraro okazis dum simpla operacio."
+
+
+
+
+Deutsch
+
+
+# Language: Deutsch
+# File ending: DE
+# Codepage: 858
+# This translation was made by W. Spiegl / Corrected by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Willkommen beim" /fLightGreen %1 /fCyan %2 /fGray "Installationsprogramm!"
+WELCOME_ADV="Willkommen beim" /fLightRed "fortgeschrittenen" /fGray "Installer von" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "ist ein vollständiges Betriebssystem. Wenn Sie dieses auf Ihrem" /p "Computer installieren möchten," /fLightRed /BlinkOn "werden Sie das aktuelle Betriebssystem" /BlinkOff /p /fLightRed /BlinkOn "ÜBERSCHREIBEN (LÖSCHEN!)" /BlinkOff /fGray " (z.B. Windows)." /fGray /p
+WELCOME_2=/fGray /c32 "Wenn Sie das nicht möchten," /fLightRed "beenden Sie bitte JETZT!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Wollen Sie wirklich weitermachen" /c32
+REBOOT=/p "Wollen Sie jetzt neu starten" /c32
+
+AUTO_YES=/s- "[J,N]?" /fWhite "J" /fGray
+AUTO_NO=/s- "[J,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[V,S,N]?" /fWhite "S" /fGray
+
+PROMPT_YESNO=/s JN
+PROMPT_FMT=/s VSN
+
+ABORTED=/fLightRed "Die Installation von %1 %2 wurde abgebrochen." /e /fGray /bBlack
+
+PARTITION_AUTO="Partitioniere automatisch Laufwerk" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "ACHTUNG:" /fGray "Für den KERNL86 wird eine FAT16-Partition kleiner als 2GB benötigt."
+PARTITION_MBR="Aktualisiere den Master Boot Record auf Laufwerk " /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Setze Laufwerk" /fWhite %1 /fGray "Partition als aktiv."
+PARTITION_DONE=/p "Sie müssen Ihren Computer neu starten, damit das neue Partitionierungsschema" /p "wirksam wird."
+
+FORMAT="Das Laufwerk" /fWhite %1 /fGray "scheint nicht formatiert zu sein."
+FORMAT_DEF="Wollen Sie Ihr Laufwerk formatieren" /c32
+FORMAT_ADV="Wie wollen Sie Ihr Laufwerk formatieren" /s- /c32 ( /fWhite "V" /fGray "oll," /c32 /fWhite "S" /fGray "chnell," /c32 /fWhite "N" /fGray "icht)?" /c32
+
+FILESYSTEM_TEST="Teste Dateisystem auf Laufwerk" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Fügen Sie eine Diskette" /fWhite #%1 /fGray "(%2) in" /fWhite %3 /fGray "."
+PRESS_KEY="Drücken Sie eine Taste, um fortzufahren."
+
+TARGET_ASK="Wohin wollen Sie installieren" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Ungültiges Laufwerk angefordert. Installation auf Diskette nicht möglich."
+
+CHANGE_PATH="Der Pfad" /fWhite %1 /fGray "existiert bereits." /p "Wollen Sie das Installationsverzeichnis ändern" /c32
+
+BACKUP_OLD="Es wurde auf Laufwerk" /fWhite %1 /fGray "ein früheres Betriebssystem gefunden." /p "Wollen Sie vor der Installation die alten Dateien sichern" /c32
+BACKUP_ASK="Wo wollen Sie die Sicherungsdateien speichern?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Ungültiges Ziel angefordert. Kann nicht an diese Stelle sichern." /fGray
+
+DELETE_OLD="Die existierenden Dateien auf" /fWhite %1 /fGray "können einfach überschrieben werden." /p "Wollen Sie vor der Installation das alte Verzeichnis komplett löschen" /c32
+
+FORCE_MBR="Erzwinge ein Update des Master Boot Records auf Laufwerk" /fWhite %1 /fGray /s- . /c32
+SYS_FILES="Installiere neue Systembootdateien auf Laufwerk" /fWhite %1 /fGray /s- . /c32
+CFG_FILES="Ersetze Systemkonfigurationsdateien auf Laufwerk" /fWhite %1 /fGray /s- . /c32
+
+STATUS_MSG="Installationseinstellungen:" /p
+STATUS_CPU=/r4/c32 "Plattform (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Installiere von" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Ziellaufwerk" /fWhite %1 /fGray (Festplatte %2, Partition %3)
+STATUS_DOS=/r4/c32 "Installiere DOS-Pfad" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Sichere vorheriges OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Vorheriges OS-Verzeichnis" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Installiere neuen MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopiere Systemdateien" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopiere Konfigurationsdateien" /fWhite %1 /fGray
+
+INSTALL_NOW="Wir sind jetzt bereit zum Installieren von" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION=/fLightGreen %1 /fCyan %2 /fGray "Dateiextraktion."
+UPDATE_LST="Aktualisiere Paketlistendateien." /p
+
+DO_BACKUP="Erstelle Backup früherer OS-Dateien nach" /fWhite %1 /fGray /s- .
+DO_ERASE="Lösche alte" /fWhite %1 /fGray "Verzeichnisse und Dateien."
+DO_SYSFILES="Übertrage neue Systemdateien auf Laufwerk" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Erzwinge Update des MBR auf Laufwerk" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Setze die aktive Bootpartition auf Platte" /fWhite %1 /fGray "Partition" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Übertrage neue Konfigurationsdateien auf Laufwerk" /fWhite %1 /fGray /s- .
+DO_PREPARE="Bereite Installation ausführbarer Dateien und Utilities vor."
+DO_INSTALL="Installiere" /fLightGreen %1 /fGray "Dateien für" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Die Installation von" /fLightGreen %1 /fCyan %2 /fGray "ist abgeschlossen."
+REBOOT_NOW="Wollen Sie jetzt neu starten" /c32
+
+REMOVE_MEDIA="Sie sollten alle Disketten und CDs entfernen."
+
+SUCCESS=/fLightGreen "Erfolg." /fGray
+FAILED=/fLightRed "Gescheitert." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Installer (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Veröffentlicht unter der GPL v2.0-Lizenz." /p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS ist eine Marke von Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="Aufruf: SETUP.BAT [Optionen] [Ziel]"
+HELP_1=""
+HELP_2="  [keine Optionen]  Setup mit Standardeinstellungen"
+HELP_3=
+HELP_4="  adv               Setup im Fortgeschrittenenmodus starten. (mehr Fragen)"
+HELP_5=
+HELP_6="  auto              Vollautomatische Installation ohne Nachfragen." /p/r18/c32 "Dies wird nicht empfohlen und sollte nur auf Hardware ohne" /p/r18/c32 "vorheriges OS verwendet werden."
+HELP_7=
+HELP_8="  [Ziel]            Voreinstellen eines Laufwerks und/oder Pfads für die Zielinstallation"
+HELP_9=
+HELP_10="  info             Zeige Konfigurationseinstellungen des Installers und beende"
+HELP_11=
+HELP_12="  mbr              Erzwinge ein Update des MBR und beende"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITISCHER Fehler:" /fGray /c32
+ERROR_NoHDD="Konnte keine partitionierte und formatierte Festplatte finden."
+ERROR_MINOR=/fLightRed "Fehler:" /fGray /c32
+ERROR_Option="Unbekannte oder ungültige Kommandozeilenoption" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Grundlegende Systemkonfiguration und Pfadeinstellungen können nicht ermittelt werden."
+ERROR_NotFreeCOM="Diese Batchdatei erfordert die FreeCOM oder eine kompatible Shell für FreeDOS."
+ERROR_MissingFreeCOM="Die Befehlsshell FreeCOM von FreeDOS kann nicht gefunden werden."
+ERROR_MissingAUTOEXEC="Die Start-Batch-Datei FDAUTO.BAT von FreeDOS kann nicht gefunden werden."
+ERROR_MakeDir="Kann Verzeichnis nicht erstellen" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Die Boot- 'und/oder' Konfigurationsdateien können nicht gesichert werden."
+ERROR_BackupOS="Dateien können im Zielverzeichnis nicht gesichert werden."
+ERROR_Partition="Ein Partitionierungsfehler ist aufgetreten. Entweder ist keine Festplatte vorhanden oder" /p "sie ist für das aktuelle Betriebssystem nicht sichtbar." /p /p "Eine andere Partitionierungsmethode ist erforderlich."
+ERROR_NoPartition="Die BIOS-Partition für" /fWhite %1 /fGray "kann nicht gefunden werden." /p "Manuelle Installation (oder evtl. erweiterter Modus ohne erzwungenen MBR) wird empfohlen."
+ERROR_Format="Beim Versuch, das Laufwerk" /fWhite %1 /fGray "zu formatieren, ist ein Fehler aufgetreten." /p /p "Zum Formatieren ist ein gesonderter Prozess erforderlich."
+ERROR_FileSystem="Auf dem Laufwerk kann kein temporärer Speicherplatz initialisiert werden" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Backup-Verzeichnis kann nicht konfiguriert werden."
+ERROR_MBRBackup="Backup des MBR für Laufwerk" /fWhite %1 /fGray "kann nicht erstellt werden."
+ERROR_SysFiles="Systemdateien können nicht auf das Laufwerk" /fWhite %1 /fGray "kopiert werden."
+ERROR_BootSector="Der Bootsektor für das Laufwerk" /fWhite %1 /fGray "kann nicht aktualisiert werden."
+ERROR_MBRUpdate="Der Bootsektor für das Laufwerk" /fWhite %1 /fGray "kann nicht aktualisiert werden."
+ERROR_Activate="Das Laufwerk" /fWhite %1 /fGray "kann nicht auf die Bootpartition" /fWhite %2 /fGray "eingestellt werden."
+ERROR_CfgFiles="Es können keine neuen Konfigurationsdateien auf dem Laufwerk" /fWhite %1 /fGray "installiert werden."
+ERROR_XfrFiles="Erforderliche Installationsdatei kann nicht nach" /fWhite %1 /fGray "dupliziert werden."
+ERROR_SAF="Beim Extrahieren des" /fWhite %1 /fGray "Archivs ist ein Problem aufgetreten."
+ERROR_WTF="Bei einem einfachen Vorgang ist ein unbekannter und unwahrscheinlicher Fehler aufgetreten."
+
+
+
+Brasilianisches Portugiesisch (PB)
+(Reset: CP 858 | Tasten: S/N (Sim/Não) | Begriffe: Arquivo, Tela)
+
+
+# Language: Portuguese (Brazil)
+# File ending: PB
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Bem-vindo ao programa de instalação do" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Bem-vindo ao instalador" /fLightRed "avançado" /fGray "do" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "é um sistema operacional completo. Se você optar por instalar em" /p "seu computador, poderá " /fLightRed /BlinkOn "sobrescrever" /BlinkOff /fGray "o sistema operacional atual" /p "(por exemplo, o Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Se esta não for sua intenção, por favor" /fLightRed "pare AGORA!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Deseja prosseguir" /c32
+REBOOT=/p "Deseja reiniciar agora" /c32
+
+AUTO_YES="[S,N]?" /fWhite "S" /fGray
+AUTO_NO="[S,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[C,R,N]?" /fWhite "R" /fGray
+
+PROMPT_YESNO=/s SN
+PROMPT_FMT=/s CRN
+
+ABORTED=/fLightRed "A instalação do" %1 %2 "foi abortada." /e /fGray /bBlack
+
+PARTITION_AUTO="Particionar automaticamente a unidade" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "AVISO:" /fGray "Partição FAT16 abaixo de 2Gb é necessária para o KERNL86."
+PARTITION_MBR="Atualizar o Master Boot Record na unidade" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Definir partição da unidade" /fWhite %1 /fGray "como ativa."
+PARTITION_DONE=/p "Você deve reiniciar o computador para que o novo esquema de particionamento entre em vigor."
+
+FORMAT="A unidade" /fWhite %1 /fGray "não parece estar formatada."
+FORMAT_DEF="Deseja formatar sua unidade" /c32
+FORMAT_ADV="Como deseja formatar sua unidade" /s- /c32 ( /fWhite "C" /fGray "ompleta," /c32 /fWhite "R" /fGray "ápida," /c32 /fWhite "N" /fGray "ão)" /c32
+
+FILESYSTEM_TEST="Testando o sistema de arquivos na unidade" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Insira o disquete" /fWhite #%1 /fGray (%2) "em" /fWhite %3 /fGray "."
+PRESS_KEY="Pressione uma tecla para continuar."
+
+TARGET_ASK="Onde você deseja instalar o" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Unidade solicitada inválida. Não é possível instalar em disquete."
+
+CHANGE_PATH="O caminho" /fWhite %1 /fGray "já existe." /p "Deseja alterar o diretório de instalação" /c32
+
+BACKUP_OLD="Um sistema operacional anterior foi detectado na unidade" /fWhite %1 /fGray /s- . /s+ /p "Deseja fazer backup dos arquivos antigos antes de instalar" /c32
+BACKUP_ASK="Onde você deseja colocar os arquivos de backup?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Destino solicitado inválido. Não é possível fazer backup neste local." /fGray
+
+DELETE_OLD="Os arquivos existentes em" /fWhite %1 /fGray "podem ser apenas sobrescritos." /p "Deseja apagar completamente o diretório antigo antes de instalar" /c32
+
+FORCE_MBR="Forçar atualização do Master Boot Record na unidade" /fWhite %1 /fGray /c32
+SYS_FILES="Instalar novos arquivos de boot do sistema na unidade" /fWhite %1 /fGray /c32
+CFG_FILES="Substituir arquivos de configuração do sistema na unidade" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Configurações de instalação:" /p
+STATUS_CPU=/r4/c32 "Plataforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Instalar de" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Unidade de destino" /fWhite %1 /fGray (disco %2, partição %3)
+STATUS_DOS=/r4/c32 "Caminho do DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Backup do SO anterior" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Diretório do SO anterior" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Instalar novo MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Copiar arquivos de sistema" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Copiar arquivos de config" /fWhite %1 /fGray
+
+INSTALL_NOW="Estamos prontos para instalar o" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Extração de arquivos do" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Atualizar arquivos de listagem de pacotes." /p
+
+DO_BACKUP="Criando backup dos arquivos do SO anterior em" /fWhite %1 /fGray /s- .
+DO_ERASE="Excluir diretório antigo" /fWhite %1 /fGray " e arquivos."
+DO_SYSFILES="Transferir novos arquivos de sistema para a unidade" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Forçar atualização do MBR na unidade" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Definir partição de boot ativa no disco" /fWhite %1 /fGray "para a partição" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Transferir novos arquivos de configuração para a unidade" /fWhite %1 /fGray /s- .
+DO_PREPARE="Preparando para instalar arquivos executáveis e utilitários."
+DO_INSTALL="Instalar arquivos do" /fLightGreen %1 /fGray "para" /fWhite %2 /fGray /s- .
+
+DONE_NOW="A instalação do" /fLightGreen %1 /fCyan %2 /fGray "foi concluída."
+REBOOT_NOW="Deseja reiniciar agora" /c32
+
+REMOVE_MEDIA="Você deve remover quaisquer disquetes e mídias de CD."
+
+SUCCESS=/fLightGreen "Sucesso." /fGray
+FAILED=/fLightRed "Falhou." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Instalador (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Lançado sob a Licença GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS é uma marca comercial de Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="uso: SETUP.BAT [opções] [destino]"
+HELP_1=""
+HELP_2="  [sem opções]    realiza a configuração usando os padrões"
+HELP_3=
+HELP_4="  adv             inicia a configuração no modo avançado (mais avisos)"
+HELP_5=
+HELP_6="  auto            realiza a instalação automatizada sem avisos." /p/r18/c32 "isso não é recomendado e deve ser usado apenas em hardware" /p/r18/c32 "sem um sistema operacional pré-existente."
+HELP_7=
+HELP_8="  [destino]       define uma unidade e/ou caminho para a instalação"
+HELP_9=
+HELP_10="  info            exibe as configurações do instalador e sai"
+HELP_11=
+HELP_12="  mbr             força uma atualização no MBR e sai"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "Erro CRÍTICO:" /fGray /c32
+ERROR_NoHDD="Não foi possível localizar uma unidade de disco rígido particionada e formatada."
+ERROR_MINOR=/fLightRed "erro:" /fGray /c32
+ERROR_Option="Opção de linha de comando desconhecida ou inválida" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Não foi possível determinar as configurações básicas do sistema e caminhos."
+ERROR_NotFreeCOM="Este arquivo batch requer o FreeCOM ou shell compatível para FreeDOS."
+ERROR_MissingFreeCOM="Não foi possível localizar o shell de comando do FreeDOS (FreeCOM)."
+ERROR_MissingAUTOEXEC="Não foi possível localizar o arquivo de inicialização do FreeDOS (FDAUTO.BAT)."
+ERROR_MakeDir="Não foi possível criar o diretório" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Não foi possível fazer backup dos arquivos de boot e/ou configuração."
+ERROR_BackupOS="Não foi possível fazer backup dos arquivos no diretório de destino."
+ERROR_Partition="Ocorreu um erro de particionamento. Um disco rígido pode não estar presente" /p "ou pode estar invisível para o sistema operacional atual." /p /p "É necessário um método diferente para o particionamento."
+ERROR_NoPartition="Não foi possível localizar a partição BIOS para" /fWhite %1 /fGray /s- . /s+ /p "Instalação manual (ou talvez modo avançado sem MBR forçado) é recomendada."
+ERROR_Format="Ocorreu um erro ao tentar formatar a unidade" /fWhite %1 /fGray /s- . /s+ /p /p "Um processo diferente será necessário para formatá-la."
+ERROR_FileSystem="Não foi possível inicializar o espaço temporário na unidade" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Não foi possível configurar o diretório de backup."
+ERROR_MBRBackup="Não foi possível criar o backup do Master Boot Record da unidade" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Não foi possível copiar os arquivos de sistema para a unidade" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Não foi possível atualizar o setor de boot da unidade" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Não foi possível atualizar o MBR da unidade" /fWhite %1 /fGray /s- .
+ERROR_Activate="Não foi possível definir a unidade" /fWhite %1 /fGray "para a partição de boot" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Não foi possível instalar novos arquivos de configuração na unidade" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Não foi possível duplicar o arquivo do instalador necessário para" /fWhite %1 /fGray /s- .
+ERROR_SAF="Ocorreu um problema ao extrair o arquivo" /fWhite %1 /fGray "."
+ERROR_WTF="Ocorreu um erro desconhecido e improvável durante uma operação simples."
+
+
+
+
+
+Portugiesisch - Portugal (PT)
+(Reset: CP 860 | Tasten: S/N (Sim/Não) | Begriffe: Ficheiro, Ecrã)
+
+
+# Language: Portuguese
+# File ending: PT
+# Codepage: 860
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Bem-vindo ao programa de instalação do" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Bem-vindo ao instalador" /fLightRed "avançado" /fGray "do" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen %1 /fGray "é um sistema operativo completo. Se optar por instalar no" /p "seu computador, poderá " /fLightRed /BlinkOn "substituir" /BlinkOff /fGray "o sistema operativo atual" /p "(por exemplo, o Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Se não for esta a sua intenção, por favor" /fLightRed "pare AGORA!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Deseja prosseguir" /c32
+REBOOT=/p "Deseja reiniciar agora" /c32
+
+AUTO_YES="[S,N]?" /fWhite "S" /fGray
+AUTO_NO="[S,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[F,R,N]?" /fWhite "R" /fGray
+
+PROMPT_YESNO=/s SN
+PROMPT_FMT=/s FRN
+
+ABORTED=/fLightRed "A instalação do" %1 %2 "foi abortada." /e /fGray /bBlack
+
+PARTITION_AUTO="Particionar automaticamente a unidade" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "AVISO:" /fGray "É necessária uma partição FAT16 inferior a 2Gb para o KERNL86."
+PARTITION_MBR="Atualizar o Master Boot Record na unidade" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Definir partição da unidade" /fWhite %1 /fGray "como ativa."
+PARTITION_DONE=/p "Deve reiniciar o computador para que o novo esquema de particionamento produza efeitos."
+
+FORMAT="A unidade" /fWhite %1 /fGray "não parece estar formatada."
+FORMAT_DEF="Deseja formatar a sua unidade" /c32
+FORMAT_ADV="Como deseja formatar a sua unidade" /s- /c32 ( /fWhite "F" /fGray "ull," /c32 /fWhite "R" /fGray "ápida," /c32 /fWhite "N" /fGray "ão)" /c32
+
+FILESYSTEM_TEST="A testar o sistema de ficheiros na unidade" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Insira a disquete" /fWhite #%1 /fGray (%2) "em" /fWhite %3 /fGray "."
+PRESS_KEY="Prima uma tecla para continuar."
+
+TARGET_ASK="Onde deseja instalar o" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Unidade pedida inválida. Não é possível instalar em disquete."
+
+CHANGE_PATH="O caminho" /fWhite %1 /fGray "já existe." /p "Deseja alterar o diretório de instalação" /c32
+
+BACKUP_OLD="Um sistema operativo anterior foi detetado na unidade" /fWhite %1 /fGray /s- . /s+ /p "Deseja fazer cópia de segurança dos ficheiros antigos antes de instalar" /c32
+BACKUP_ASK="Onde deseja colocar os ficheiros de cópia de segurança?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Destino pedido inválido. Não é possível fazer cópia de segurança nesse local." /fGray
+
+DELETE_OLD="Os ficheiros existentes em" /fWhite %1 /fGray "podem ser apenas substituídos." /p "Deseja apagar completamente o diretório antigo antes de instalar" /c32
+
+FORCE_MBR="Forçar atualização do Master Boot Record na unidade" /fWhite %1 /fGray /c32
+SYS_FILES="Instalar novos ficheiros de arranque do sistema na unidade" /fWhite %1 /fGray /c32
+CFG_FILES="Substituir ficheiros de configuração do sistema na unidade" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Definições de instalação:" /p
+STATUS_CPU=/r4/c32 "Plataforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Instalar de" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Unidade de destino" /fWhite %1 /fGray (disco %2, partição %3)
+STATUS_DOS=/r4/c32 "Caminho do DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Cópia de seg. SO anterior" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Diretório do SO anterior" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Instalar novo MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Copiar fich. de sistema" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Copiar fich. de config" /fWhite %1 /fGray
+
+INSTALL_NOW="Estamos prontos para instalar o" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Extração de ficheiros do" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Atualizar ficheiros de listagem de pacotes." /p
+
+DO_BACKUP="A criar cópia de segurança dos ficheiros do SO anterior em" /fWhite %1 /fGray /s- .
+DO_ERASE="Eliminar diretório antigo" /fWhite %1 /fGray " e ficheiros."
+DO_SYSFILES="Transferir novos ficheiros de sistema para a unidade" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Forçar atualização do MBR na unidade" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Definir partição de arranque ativa no disco" /fWhite %1 /fGray "para a partição" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Transferir novos ficheiros de configuração para a unidade" /fWhite %1 /fGray /s- .
+DO_PREPARE="A preparar para instalar ficheiros executáveis e utilitários."
+DO_INSTALL="Instalar ficheiros do" /fLightGreen %1 /fGray "para" /fWhite %2 /fGray /s- .
+
+DONE_NOW="A instalação do" /fLightGreen %1 /fCyan %2 /fGray "foi concluída."
+REBOOT_NOW="Deseja reiniciar agora" /c32
+
+REMOVE_MEDIA="Deve remover quaisquer disquetes e suportes de CD."
+
+SUCCESS=/fLightGreen "Sucesso." /fGray
+FAILED=/fLightRed "Falhou." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Instalador (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Lançado sob a Licença GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS é uma marca comercial de Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="utilização: SETUP.BAT [opções] [destino]"
+HELP_1=""
+HELP_2="  [sem opções]    realiza a configuração usando os padrões"
+HELP_3=
+HELP_4="  adv             inicia a configuração no modo avançado (mais avisos)"
+HELP_5=
+HELP_6="  auto            realiza a instalação automática sem avisos." /p/r18/c32 "não é recomendado e deve ser usado apenas em hardware" /p/r18/c32 "sem um sistema operativo pré-existente."
+HELP_7=
+HELP_8="  [destino]       define uma unidade e/ou caminho para a instalação"
+HELP_9=
+HELP_10="  info            exibe as definições do instalador e sai"
+HELP_11=
+HELP_12="  mbr             força uma atualização no MBR e sai"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "Erro CRÍTICO:" /fGray /c32
+ERROR_NoHDD="Não foi possível localizar uma unidade de disco rígido particionada e formatada."
+ERROR_MINOR=/fLightRed "erro:" /fGray /c32
+ERROR_Option="Opção de linha de comandos desconhecida ou inválida" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Não foi possível determinar as definições básicas do sistema e caminhos."
+ERROR_NotFreeCOM="Este ficheiro batch requer o FreeCOM ou shell compatível para FreeDOS."
+ERROR_MissingFreeCOM="Não foi possível localizar a shell de comandos do FreeDOS (FreeCOM)."
+ERROR_MissingAUTOEXEC="Não foi possível localizar o ficheiro de arranque do FreeDOS (FDAUTO.BAT)."
+ERROR_MakeDir="Não foi possível criar o diretório" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Não foi possível fazer cópia de segurança dos ficheiros de arranque e/ou config."
+ERROR_BackupOS="Não foi possível fazer cópia de segurança dos ficheiros no diretório de destino."
+ERROR_Partition="Ocorreu um erro de particionamento. Um disco rígido pode não estar presente" /p "ou pode estar invisível para o sistema operativo atual." /p /p "É necessário um método diferente para o particionamento."
+ERROR_NoPartition="Não foi possível localizar a partição BIOS para" /fWhite %1 /fGray /s- . /s+ /p "Instalação manual (ou talvez modo avançado sem MBR forçado) é recomendada."
+ERROR_Format="Ocorreu um erro ao tentar formatar a unidade" /fWhite %1 /fGray /s- . /s+ /p /p "Será necessário um processo diferente para a formatar."
+ERROR_FileSystem="Não foi possível inicializar o espaço temporário na unidade" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Não foi possível configurar o diretório de cópia de segurança."
+ERROR_MBRBackup="Não foi possível criar a cópia de seg. do Master Boot Record da unidade" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Não foi possível copiar os ficheiros de sistema para a unidade" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Não foi possível atualizar o setor de arranque da unidade" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Não foi possível atualizar o MBR da unidade" /fWhite %1 /fGray /s- .
+ERROR_Activate="Não foi possível definir a unidade" /fWhite %1 /fGray "para a partição de arranque" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Não foi possível instalar novos ficheiros de configuração na unidade" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Não foi possível duplicar o ficheiro do instalador necessário para" /fWhite %1 /fGray /s- .
+ERROR_SAF="Ocorreu um problema ao extrair o arquivo" /fWhite %1 /fGray "."
+ERROR_WTF="Ocorreu um erro desconhecido e improvável durante uma operação simples."
+
+
+
+
+
+Niederländisch (NL)
+(Reset: CP 850 | Tasten: J/N (Ja/Nee))
+
+
+# Language: Dutch
+# File ending: NL
+# Codepage: 850
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Welkom bij het installatieprogramma van" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Welkom bij het" /fLightRed "geavanceerde" /fGray "installatieprogramma voor" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen %1 /fGray "is een compleet besturingssysteem. Als u ervoor kiest om dit op" /p "uw computer te installeren, kunt u " /fLightRed /BlinkOn "het huidige" /BlinkOff /fGray " besturingssysteem " /fLightRed /BlinkOn "overschrijven" /BlinkOff /p "(bijvoorbeeld Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Als dit niet uw bedoeling is, stop dan NU!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Wilt u doorgaan" /c32
+REBOOT=/p "Wilt u nu herstarten" /c32
+
+AUTO_YES="[J,N]?" /fWhite "J" /fGray
+AUTO_NO="[J,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[V,S,N]?" /fWhite "S" /fGray
+
+PROMPT_YESNO=/s JN
+PROMPT_FMT=/s VSN
+
+ABORTED=/fLightRed "De installatie van" %1 %2 "is afgebroken." /e /fGray /bBlack
+
+PARTITION_AUTO="Automatisch station partitioneren" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "LET OP:" /fGray "FAT16-partitie onder 2Gb is vereist voor KERNL86."
+PARTITION_MBR="Master Boot Record op station bijwerken" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Stel station" /fWhite %1 /fGray "partitie in als actief."
+PARTITION_DONE=/p "U moet uw computer herstarten voordat het nieuwe partitioneringsschema van kracht wordt."
+
+FORMAT="Station" /fWhite %1 /fGray "lijkt niet geformatteerd te zijn."
+FORMAT_DEF="Wilt u uw station formatteren" /c32
+FORMAT_ADV="Hoe wilt u uw station formatteren" /s- /c32 ( /fWhite "V" /fGray "olledig," /c32 /fWhite "S" /fGray "nel," /c32 /fWhite "N" /fGray "ee)" /c32
+
+FILESYSTEM_TEST="Bestandssysteem op station testen" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Plaats diskette" /fWhite #%1 /fGray (%2) "in" /fWhite %3 /fGray "."
+PRESS_KEY="Druk op een toets om door te gaan."
+
+TARGET_ASK="Waar wilt u" /fLightGreen %1 /s- /fGray " installeren?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Ongeldig station opgegeven. Kan niet installeren op diskette."
+
+CHANGE_PATH="Het pad" /fWhite %1 /fGray "bestaat al." /p "Wilt u de installatiemap wijzigen" /c32
+
+BACKUP_OLD="Er is een vorig besturingssysteem gedetecteerd op station" /fWhite %1 /fGray /s- . /s+ /p "Wilt u een reservekopie maken van de oude bestanden voor installatie" /c32
+BACKUP_ASK="Waar wilt u de reservekopieën plaatsen?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Ongeldige bestemming opgegeven. Kan op die locatie geen reservekopie maken." /fGray
+
+DELETE_OLD="De bestaande bestanden in" /fWhite %1 /fGray "kunnen gewoon worden overschreven." /p "Wilt u de oude map volledig wissen voor installatie" /c32
+
+FORCE_MBR="Forceer een update van het Master Boot Record op station" /fWhite %1 /fGray /c32
+SYS_FILES="Installeer nieuwe systeemopstartbestanden op station" /fWhite %1 /fGray /c32
+CFG_FILES="Vervang systeemconfiguratiebestanden op station" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Installatie-instellingen:" /p
+STATUS_CPU=/r4/c32 "Platform (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Installeren vanaf" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Doelstation" /fWhite %1 /fGray (schijf %2, partitie %3)
+STATUS_DOS=/r4/c32 "DOS-installatiepad" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Backup vorig OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Map vorig OS" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Nieuwe MBR inst." /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Systeembestanden kop." /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Configbestanden kop." /fWhite %1 /fGray
+
+INSTALL_NOW="We zijn nu klaar om" /fLightGreen %1 /fCyan %2 /fGray "te installeren." /s- .
+EXTRACTION="Bestandsextractie van" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Pakketlijstbestanden bijwerken." /p
+
+DO_BACKUP="Reservekopie maken van vorige OS-bestanden naar" /fWhite %1 /fGray /s- .
+DO_ERASE="Oude map" /fWhite %1 /fGray " en bestanden verwijderen."
+DO_SYSFILES="Nieuwe systeembestanden overzetten naar station" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Update van MBR op station forceren" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Actieve opstartpartitie instellen op schijf" /fWhite %1 /fGray "naar partitie" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Nieuwe configuratiebestanden overzetten naar station" /fWhite %1 /fGray /s- .
+DO_PREPARE="Voorbereiden om uitvoerbare bestanden en hulpprogramma's te installeren."
+DO_INSTALL="Installeer" /fLightGreen %1 /fGray "bestanden voor" /fWhite %2 /fGray /s- .
+
+DONE_NOW="De installatie van" /fLightGreen %1 /fCyan %2 /fGray "is voltooid."
+REBOOT_NOW="Wilt u nu herstarten" /c32
+
+REMOVE_MEDIA="U dient alle diskettes en CD-media te verwijderen."
+
+SUCCESS=/fLightGreen "Geslaagd." /fGray
+FAILED=/fLightRed "Mislukt." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Installatieprogramma (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Uitgebracht onder GPL v2.0-licentie."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS is een handelsmerk van Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="gebruik: SETUP.BAT [opties] [doel]"
+HELP_1=""
+HELP_2="  [geen opties]   voer setup uit met standaardwaarden"
+HELP_3=
+HELP_4="  adv             start setup in geavanceerde modus (meer vragen)"
+HELP_5=
+HELP_6="  auto            voer volledig geautomatiseerde installatie uit." /p/r18/c32 "niet aanbevolen, alleen gebruiken op hardware zonder" /p/r18/c32 "een reeds bestaand besturingssysteem."
+HELP_7=
+HELP_8="  [doel]          stel station en/of pad in voor de doelinstallatie"
+HELP_9=
+HELP_10="  info            toon installatie-instellingen en sluit af"
+HELP_11=
+HELP_12="  mbr             forceer een update van de MBR en sluit af"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITIEKE fout:" /fGray /c32
+ERROR_NoHDD="Kan geen gepartitioneerde en geformatteerde harde schijf vinden."
+ERROR_MINOR=/fLightRed "fout:" /fGray /c32
+ERROR_Option="Onbekende of ongeldige opdrachtregeloptie" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Kan basisconfiguratie en padinstellingen van het systeem niet bepalen."
+ERROR_NotFreeCOM="Dit batchbestand vereist FreeCOM of een compatibele shell voor FreeDOS."
+ERROR_MissingFreeCOM="Kan de FreeDOS command shell FreeCOM niet vinden."
+ERROR_MissingAUTOEXEC="Kan het FreeDOS opstartbestand FDAUTO.BAT niet vinden."
+ERROR_MakeDir="Kan map niet aanmaken" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Kan geen reservekopie maken van opstart- en/of configuratiebestanden."
+ERROR_BackupOS="Kan geen reservekopie maken van bestanden in de doelmap."
+ERROR_Partition="Er is een partitioneringsfout opgetreden. Een harde schijf is mogelijk" /p "niet aanwezig of onzichtbaar voor het huidige besturingssysteem." /p /p "Een andere partitioneringsmethode is vereist."
+ERROR_NoPartition="Kan de BIOS-partitie niet vinden voor" /fWhite %1 /fGray /s- . /s+ /p "Handmatige installatie (of geavanceerde modus zonder MBR) aanbevolen."
+ERROR_Format="Er is een fout opgetreden bij het formatteren van station" /fWhite %1 /fGray /s- . /s+ /p /p "Een ander proces is vereist om dit te formatteren."
+ERROR_FileSystem="Kan tijdelijke ruimte op station niet initialiseren" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Kan reservekopie-map niet configureren."
+ERROR_MBRBackup="Kan geen reservekopie maken van de Master Boot Record voor station" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Kan systeembestanden niet naar station kopiëren" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Kan opstartsector voor station niet bijwerken" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Kan de MBR voor station niet bijwerken" /fWhite %1 /fGray /s- .
+ERROR_Activate="Kan station" /fWhite %1 /fGray "niet instellen op opstartpartitie" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Kan geen nieuwe configuratiebestanden installeren op station" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Kan vereist installatiebestand niet dupliceren naar" /fWhite %1 /fGray /s- .
+ERROR_SAF="Probleem opgetreden bij het uitpakken van" /fWhite %1 /fGray "archief."
+ERROR_WTF="Onbekende en onwaarschijnlijke fout opgetreden tijdens een eenvoudige bewerking."
+
+
+
+
+
+4. Dänisch (DK)
+(Reset: CP 865 | Tasten: J/N (Ja/Nej))
+
+
+# Language: Danish
+# File ending: DK
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Velkommen til" /fLightGreen %1 /fCyan %2 /fGray "installationsprogrammet."
+WELCOME_ADV="Velkommen til den" /fLightRed "avancerede" /fGray "installatør for" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen %1 /fGray "er et komplet operativsystem. Hvis du vælger at installere dette" /p "på din computer, kan du " /fLightRed /BlinkOn "overskrive" /BlinkOff /fGray "det nuværende operativsystem" /p "(for eksempel Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Hvis dette ikke er din hensigt, skal du stoppe NU!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Ønsker du at fortsætte" /c32
+REBOOT=/p "Ønsker du at genstarte nu" /c32
+
+AUTO_YES="[J,N]?" /fWhite "J" /fGray
+AUTO_NO="[J,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[F,H,N]?" /fWhite "H" /fGray
+
+PROMPT_YESNO=/s JN
+PROMPT_FMT=/s HSN
+
+ABORTED=/fLightRed "Installationen af" %1 %2 "er blevet afbrudt." /e /fGray /bBlack
+
+PARTITION_AUTO="Partitionér automatisk drev" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "BEMÆRK:" /fGray "FAT16-partition under 2Gb er nødvendig for KERNL86."
+PARTITION_MBR="Opdatér Master Boot Record på drev" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Indstil drev" /fWhite %1 /fGray "partition som aktiv."
+PARTITION_DONE=/p "Du skal genstarte din computer, før det nye partitionsskema træder i kraft."
+
+FORMAT="Drev" /fWhite %1 /fGray "ser ikke ud til at være formateret."
+FORMAT_DEF="Ønsker du at formatere dit drev" /c32
+FORMAT_ADV="Hvordan ønsker du at formatere dit drev" /s- /c32 ( /fWhite "F" /fGray "uld," /c32 /fWhite "H" /fGray "urtig," /c32 /fWhite "N" /fGray "ej)" /c32
+
+FILESYSTEM_TEST="Tester filsystem på drev" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Indsæt diskette" /fWhite #%1 /fGray (%2) "i" /fWhite %3 /fGray "."
+PRESS_KEY="Tryk på en tast for at fortsætte."
+
+TARGET_ASK="Hvor ønsker du at installere" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Ugyldigt drev valgt. Kan ikke installere på diskette."
+
+CHANGE_PATH="Stien" /fWhite %1 /fGray "eksisterer allerede." /p "Ønsker du at ændre installationsmappen" /c32
+
+BACKUP_OLD="Et tidligere operativsystem blev fundet på drev" /fWhite %1 /fGray /s- . /s+ /p "Vil du tage backup af de gamle filer før installation" /c32
+BACKUP_ASK="Hvor ønsker du at placere backup-filerne?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Ugyldig destination valgt. Kan ikke tage backup til den placering." /fGray
+
+DELETE_OLD="De eksisterende filer i" /fWhite %1 /fGray "kan bare overskrives." /p "Ønsker du at slette den gamle mappe helt før installation" /c32
+
+FORCE_MBR="Gennemtving opdatering af Master Boot Record på drev" /fWhite %1 /fGray /c32
+SYS_FILES="Installér nye system-bootfiler på drev" /fWhite %1 /fGray /c32
+CFG_FILES="Erstat systemkonfigurationsfiler på drev" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Installationsindstillinger:" /p
+STATUS_CPU=/r4/c32 "Platform (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Installér fra" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Destinationsdrev" /fWhite %1 /fGray (disk %2, partition %3)
+STATUS_DOS=/r4/c32 "Installationssti" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Backup af tidl. OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Tidligere OS-mappe" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Installér ny MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopiér systemfiler" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopiér konfig-filer" /fWhite %1 /fGray
+
+INSTALL_NOW="Vi er nu klar til at installere" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Filudpakning af" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Opdatér pakkelistefiler." /p
+
+DO_BACKUP="Opretter backup af tidligere OS-filer til" /fWhite %1 /fGray /s- .
+DO_ERASE="Slet gammel" /fWhite %1 /fGray "mappe og filer."
+DO_SYSFILES="Overfør nye systemfiler til drev" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Gennemtving opdatering af MBR på drev" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Indstil aktiv boot-partition på disk" /fWhite %1 /fGray "til partition" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Overfør nye konfigurationsfiler til drev" /fWhite %1 /fGray /s- .
+DO_PREPARE="Forbereder installation af eksekverbare filer og værktøjer."
+DO_INSTALL="Installér" /fLightGreen %1 /fGray "filer til" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Installationen af" /fLightGreen %1 /fCyan %2 /fGray "er fuldført."
+REBOOT_NOW="Ønsker du at genstarte nu" /c32
+
+REMOVE_MEDIA="Du bør fjerne alle disketter og CD-medier."
+
+SUCCESS=/fLightGreen "Succes." /fGray
+FAILED=/fLightRed "Fejlet." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Installatør (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Udgivet under GPL v2.0-licens."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS er et varemærke tilhørende Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="brug: SETUP.BAT [indstillinger] [mål]"
+HELP_1=""
+HELP_2="  [ingen indst]   udfør setup med standardværdier"
+HELP_3=
+HELP_4="  adv             start setup i avanceret tilstand (flere spørgsmål)"
+HELP_5=
+HELP_6="  auto            udfør fuldautomatisk installation uden spørgsmål." /p/r18/c32 "dette anbefales ikke og bør kun bruges på hardware" /p/r18/c32 "uden et eksisterende operativsystem."
+HELP_7=
+HELP_8="  [mål]           indstil på forhånd et drev og/eller sti til installationen"
+HELP_9=
+HELP_10="  info            vis installatørens konfigurationsindstillinger og afslut"
+HELP_11=
+HELP_12="  mbr             gennemtving en opdatering af MBR og afslut"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITISK fejl:" /fGray /c32
+ERROR_NoHDD="Kunne ikke finde et partitioneret og formateret harddiskdrev."
+ERROR_MINOR=/fLightRed "fejl:" /fGray /c32
+ERROR_Option="Ukendt eller ugyldig kommandolinjeindstilling" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Kunne ikke bestemme grundlæggende systemkonfiguration og stier."
+ERROR_NotFreeCOM="Denne batchfil kræver FreeCOM eller en kompatibel shell til FreeDOS."
+ERROR_MissingFreeCOM="Kunne ikke finde FreeDOS' command shell FreeCOM."
+ERROR_MissingAUTOEXEC="Kunne ikke finde FreeDOS' opstartsfil FDAUTO.BAT."
+ERROR_MakeDir="Kunne ikke oprette mappe" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Kunne ikke tage backup af boot- og/eller konfigurationsfiler."
+ERROR_BackupOS="Kunne ikke tage backup af filer i målmappen."
+ERROR_Partition="Der opstod en partitioneringsfejl. En harddisk er muligvis ikke" /p "tilstede eller er usynlig for det nuværende operativsystem." /p /p "En anden partitioneringsmetode er påkrævet."
+ERROR_NoPartition="Kunne ikke finde BIOS-partitionen til" /fWhite %1 /fGray /s- . /s+ /p "Manuel installation (eller avanceret tilstand uden tvungen MBR) anbefales."
+ERROR_Format="Der opstod en fejl under forsøg på at formatere drev" /fWhite %1 /fGray /s- . /s+ /p /p "En anden proces vil være påkrævet for at formatere det."
+ERROR_FileSystem="Kunne ikke initialisere midlertidig plads på drev" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Kunne ikke konfigurere backup-mappe."
+ERROR_MBRBackup="Kunne ikke oprette backup af Master Boot Record for drev" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Kunne ikke kopiere systemfiler til drev" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Kunne ikke opdatere bootsektor for drev" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Kunne ikke opdatere Master Boot Record for drev" /fWhite %1 /fGray /s- .
+ERROR_Activate="Kunne ikke indstille drev" /fWhite %1 /fGray "til boot-partition" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Kunne ikke installere nye konfigurationsfiler på drev" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Kunne ikke duplikere påkrævet installationsfil til" /fWhite %1 /fGray /s- .
+ERROR_SAF="Der opstod et problem under udpakning af" /fWhite %1 /fGray "arkiv."
+ERROR_WTF="Ukendt og usandsynlig fejl opstod under en simpel operation."
+
+
+
+
+
+Norwegisch (NO)
+(Reset: CP 865 | Tasten: J/N (Ja/Nei))
+
+
+# Language: Norwegian
+# File ending: NO
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Velkommen til installasjonsprogrammet for" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Velkommen til den" /fLightRed "avanserte" /fGray "installatøren for" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen %1 /fGray "er et komplett operativsystem. Hvis du velger å installere dette" /p "på datamaskinen din, kan du " /fLightRed /BlinkOn "overskrive" /BlinkOff /fGray "det nåværende operativsystemet" /p "(for eksempel Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Hvis dette ikke er din intensjon, vennligst stopp NÅ!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Ønsker du å fortsette" /c32
+REBOOT=/p "Ønsker du å starte på nytt nå" /c32
+
+AUTO_YES="[J,N]?" /fWhite "J" /fGray
+AUTO_NO="[J,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[F,H,N]?" /fWhite "H" /fGray
+
+PROMPT_YESNO=/s JN
+PROMPT_FMT=/s FHN
+
+ABORTED=/fLightRed "Installasjonen av" %1 %2 "har blitt avbrutt." /e /fGray /bBlack
+
+PARTITION_AUTO="Partisjoner stasjonen automatisk" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "MERKNAD:" /fGray "FAT16-partisjon under 2Gb er nødvendig for KERNL86."
+PARTITION_MBR="Oppdater Master Boot Record på stasjonen" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Sett stasjon" /fWhite %1 /fGray "partisjon som aktiv."
+PARTITION_DONE=/p "Du må starte datamaskinen på nytt for at det nye partisjonsskjemaet skal tre i kraft."
+
+FORMAT="Stasjonen" /fWhite %1 /fGray "ser ikke ut til å være formatert."
+FORMAT_DEF="Ønsker du å formatere stasjonen" /c32
+FORMAT_ADV="Hvordan ønsker du å formatere stasjonen" /s- /c32 ( /fWhite "F" /fGray "ull," /c32 /fWhite "H" /fGray "urtig," /c32 /fWhite "N" /fGray "ei)" /c32
+
+FILESYSTEM_TEST="Tester filsystem på stasjonen" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Sett inn disketten" /fWhite #%1 /fGray (%2) "i" /fWhite %3 /fGray "."
+PRESS_KEY="Trykk på en tast for å fortsette."
+
+TARGET_ASK="Hvor ønsker du å installere" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Ugyldig stasjon valgt. Kan ikke installere til diskett."
+
+CHANGE_PATH="Stien" /fWhite %1 /fGray "eksisterer allerede." /p "Ønsker du å endre installasjonsmappen" /c32
+
+BACKUP_OLD="Et tidligere operativsystem ble funnet på stasjon" /fWhite %1 /fGray /s- . /s+ /p "Vil du ta sikkerhetskopi av de gamle filene før installasjon" /c32
+BACKUP_ASK="Hvor ønsker du å plassere sikkerhetskopifilene?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Ugyldig destinasjon valgt. Kan ikke ta sikkerhetskopi til den plasseringen." /fGray
+
+DELETE_OLD="De eksisterende filene i" /fWhite %1 /fGray "kan bare overskrives." /p "Ønsker du å slette den gamle mappen helt før installasjon" /c32
+
+FORCE_MBR="Tving en oppdatering av Master Boot Record på stasjonen" /fWhite %1 /fGray /c32
+SYS_FILES="Installer nye systemoppstartfiler på stasjonen" /fWhite %1 /fGray /c32
+CFG_FILES="Erstatt systemkonfigurasjonsfiler på stasjonen" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Installasjonsinnstillinger:" /p
+STATUS_CPU=/r4/c32 "Plattform (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Installer fra" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Målstasjon" /fWhite %1 /fGray (disk %2, partisjon %3)
+STATUS_DOS=/r4/c32 "Installasjonssti" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Sikkerhetskopier tidl. OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Mappe for tidl. OS" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Installer ny MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopier systemfiler" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopier konfig-filer" /fWhite %1 /fGray
+
+INSTALL_NOW="Vi er nå klare til å installere" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Filutpakking av" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Oppdater pakkelistefiler." /p
+
+DO_BACKUP="Oppretter sikkerhetskopi av tidligere OS-filer til" /fWhite %1 /fGray /s- .
+DO_ERASE="Slett gammel" /fWhite %1 /fGray "mappe og filer."
+DO_SYSFILES="Overfør nye systemfiler til stasjonen" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Tving oppdatering av MBR på stasjonen" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Sett aktiv oppstartspartisjon på disk" /fWhite %1 /fGray "til partisjon" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Overfør nye konfigurasjonsfiler til stasjonen" /fWhite %1 /fGray /s- .
+DO_PREPARE="Forbereder installasjon av kjørbare filer og verktøy."
+DO_INSTALL="Installer" /fLightGreen %1 /fGray "filer for" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Installasjonen av" /fLightGreen %1 /fCyan %2 /fGray "er fullført."
+REBOOT_NOW="Ønsker du å starte på nytt nå" /c32
+
+REMOVE_MEDIA="Du bør fjerne alle disketter og CD-medier."
+
+SUCCESS=/fLightGreen "Vellykket." /fGray
+FAILED=/fLightRed "Mislyktes." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Installatør (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Utgitt under GPL v2.0-lisens."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS er et varemerke som tilhører Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="bruk: SETUP.BAT [valg] [mål]"
+HELP_1=""
+HELP_2="  [ingen valg]    utfør setup med standardverdier"
+HELP_3=
+HELP_4="  adv             start setup i avansert modus (flere spørsmål)"
+HELP_5=
+HELP_6="  auto            utfør helautomatisk installasjon uten spørsmål." /p/r18/c32 "dette anbefales ikke og bør bare brukes på maskinvare" /p/r18/c32 "uten et eksisterende operativsystem."
+HELP_7=
+HELP_8="  [mål]           forhåndsinnstill en stasjon og/eller sti for installasjonen"
+HELP_9=
+HELP_10="  info            vis installatørens konfigurasjonsinnstillinger og avslutt"
+HELP_11=
+HELP_12="  mbr             tving en oppdatering av MBR og avslutt"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITISK feil:" /fGray /c32
+ERROR_NoHDD="Kunne ikke finne en partisjonert og formatert harddisk."
+ERROR_MINOR=/fLightRed "feil:" /fGray /c32
+ERROR_Option="Ukjent eller ugyldig kommandolinjevalg" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Kunne ikke fastslå grunnleggende systemkonfigurasjon og stier."
+ERROR_NotFreeCOM="Denne batchfilen krever FreeCOM eller en kompatibel shell for FreeDOS."
+ERROR_MissingFreeCOM="Kunne ikke finne FreeDOS' kommandoshell FreeCOM."
+ERROR_MissingAUTOEXEC="Kunne ikke finne FreeDOS' oppstartsfil FDAUTO.BAT."
+ERROR_MakeDir="Kunne ikke opprette mappe" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Kunne ikke ta sikkerhetskopi av oppstart- og/eller konfigurasjonsfiler."
+ERROR_BackupOS="Kunne ikke ta sikkerhetskopi av filer i målmappen."
+ERROR_Partition="Det oppsto en partisjoneringsfeil. En harddisk er kanskje ikke" /p "tilstede eller er usynlig for det nåværende operativsystemet." /p /p "En annen partisjoneringsmetode er nødvendig."
+ERROR_NoPartition="Kunne ikke finne BIOS-partisjonen for" /fWhite %1 /fGray /s- . /s+ /p "Manuell installasjon (eller avansert modus uten tvungen MBR) anbefales."
+ERROR_Format="Det oppsto en feil under forsøk på å formatere stasjonen" /fWhite %1 /fGray /s- . /s+ /p /p "En annen prosess vil kreves for å formatere den."
+ERROR_FileSystem="Kunne ikke initialisere midlertidig plass på stasjonen" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Kunne ikke konfigurere sikkerhetskopimappe."
+ERROR_MBRBackup="Kunne ikke opprette sikkerhetskopi av Master Boot Record for stasjon" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Kunne ikke kopiere systemfiler til stasjon" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Kunne ikke oppdatere oppstartssektor for stasjon" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Kunne ikke oppdatere Master Boot Record for stasjon" /fWhite %1 /fGray /s- .
+ERROR_Activate="Kunne ikke sette stasjon" /fWhite %1 /fGray "til oppstartspartisjon" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Kunne ikke installere nye konfigurasjonsfiler på stasjonen" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Kunne ikke duplisere nødvendig installasjonsfil til" /fWhite %1 /fGray /s- .
+ERROR_SAF="Det oppsto et problem under utpakking av" /fWhite %1 /fGray "arkiv."
+ERROR_WTF="En ukjent og usannsynlig feil oppsto under en enkel operasjon."
+
+
+
+
+
+
+Isländisch (IS)
+(Reset: CP 861 | Tasten: J/N (Já/Nei) | F/S/N (Fullt/Snöggt/Nei))
+
+
+# Language: Icelandic
+# File ending: IS
+# Codepage: 861
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Velkomin í" /fLightGreen %1 /fCyan %2 /fGray "uppsetningarforritið."
+WELCOME_ADV="Velkomin í" /fLightRed "ítarlega" /fGray "uppsetningu fyrir" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "er fullbúið stýrikerfi. Ef þú velur að setja þetta upp á" /p "tölvunni þinni, gætir þú " /fLightRed /BlinkOn "skrifað yfir" /BlinkOff /fGray "stýrikerfið sem fyrir er" /p "(til dæmis Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Ef þetta er ekki ætlun þín, vinsamlegast" /fLightRed "hættu NÚNA!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Viltu halda áfram" /c32
+REBOOT=/p "Viltu endurræsa núna" /c32
+
+AUTO_YES="[J,N]?" /fWhite "J" /fGray
+AUTO_NO="[J,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[F,S,N]?" /fWhite "S" /fGray
+
+PROMPT_YESNO=/s JN
+PROMPT_FMT=/s FSN
+
+ABORTED=/fLightRed "Hætt hefur verið við uppsetningu á" %1 %2 "." /e /fGray /bBlack
+
+PARTITION_AUTO="Skipta sjálfkrafa drifi" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "ATHUGIÐ:" /fGray "FAT16 sneið undir 2Gb er nauðsynleg fyrir KERNL86."
+PARTITION_MBR="Uppfæra Master Boot Record á drifi" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Stilla drif" /fWhite %1 /fGray "sneið sem virka."
+PARTITION_DONE=/p "Þú verður að endurræsa tölvuna svo nýja skiptingin taki gildi."
+
+FORMAT="Drif" /fWhite %1 /fGray "virðist ekki vera sniðið (formatted)."
+FORMAT_DEF="Viltu sníða drifið þitt" /c32
+FORMAT_ADV="Hvernig viltu sníða drifið þitt" /s- /c32 ( /fWhite "F" /fGray "ullt," /c32 /fWhite "S" /fGray "nöggt," /c32 /fWhite "N" /fGray "ei)" /c32
+
+FILESYSTEM_TEST="Prófa skráarkerfi á drifi" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Settu diskling" /fWhite #%1 /fGray (%2) "í" /fWhite %3 /fGray "."
+PRESS_KEY="Ýttu á lykil til að halda áfram."
+
+TARGET_ASK="Hvar viltu setja upp" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Ógilt drif valið. Get ekki sett upp á diskling."
+
+CHANGE_PATH="Slóðin" /fWhite %1 /fGray "er þegar til." /p "Viltu breyta uppsetningarmöppunni" /c32
+
+BACKUP_OLD="Fyrra stýrikerfi fannst á drifi" /fWhite %1 /fGray /s- . /s+ /p "Viltu taka öryggisafrit af gömlu skránum fyrir uppsetningu" /c32
+BACKUP_ASK="Hvar viltu geyma öryggisafritin?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Ógildur áfangastaður. Get ekki búið til öryggisafrit á þessum stað." /fGray
+
+DELETE_OLD="Hægt er að skrifa yfir skrárnar í" /fWhite %1 /fGray /s- . /s+ /p "Viltu eyða gömlu möppunni alveg fyrir uppsetningu" /c32
+
+FORCE_MBR="Þvinga uppfærslu á Master Boot Record á drifi" /fWhite %1 /fGray /c32
+SYS_FILES="Setja upp nýjar ræsiskrár kerfis á drifi" /fWhite %1 /fGray /c32
+CFG_FILES="Skipta út kerfisstillingarskrám á drifi" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Uppsetningarstillingar:" /p
+STATUS_CPU=/r4/c32 "Vélbúnaður (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Setja upp frá" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Áfangadrif" /fWhite %1 /fGray (diskur %2, sneið %3)
+STATUS_DOS=/r4/c32 "DOS slóð" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Afrita fyrra OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Mappa fyrra OS" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Setja upp nýtt MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Afrita kerfisskrár" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Afrita stillingarskrár" /fWhite %1 /fGray
+
+INSTALL_NOW="Við erum nú tilbúin að setja upp" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Afþjöppun skráa úr" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Uppfæra pakkalista." /p
+
+DO_BACKUP="Bý til öryggisafrit af fyrra OS í" /fWhite %1 /fGray /s- .
+DO_ERASE="Eyða gamalli" /fWhite %1 /fGray "möppu og skrám."
+DO_SYSFILES="Flytja nýjar kerfisskrár á drif" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Þvinga uppfærslu á MBR á drifi" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Setja virka ræsingsneið á disk" /fWhite %1 /fGray "á sneið" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Flytja nýjar stillingarskrár á drif" /fWhite %1 /fGray /s- .
+DO_PREPARE="Undirbý uppsetningu á keyrsluskrám og tólum."
+DO_INSTALL="Setja upp" /fLightGreen %1 /fGray "skrár fyrir" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Uppsetningu á" /fLightGreen %1 /fCyan %2 /fGray "er lokið."
+REBOOT_NOW="Viltu endurræsa núna" /c32
+
+REMOVE_MEDIA="Þú ættir að fjarlægja alla disklinga og CD miðla."
+
+SUCCESS=/fLightGreen "Tókst." /fGray
+FAILED=/fLightRed "Mistókst." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Uppsetning (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Gefið út undir GPL v2.0 leyfi."/p "Höfundarréttur" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS er vörumerki Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="notkun: SETUP.BAT [valkostir] [áfangastaður]"
+HELP_1=""
+HELP_2="  [engir valk]    framkvæma uppsetningu með sjálfgefnum gildum"
+HELP_3=
+HELP_4="  adv             ræsa uppsetningu í ítarlegum ham (fleiri spurningar)"
+HELP_5=
+HELP_6="  auto            fullsjálfvirk uppsetning án nokkurra spurninga." /p/r18/c32 "ekki mælt með þessu nema á vélbúnaði þar sem ekkert" /p/r18/c32 "stýrikerfi er fyrir."
+HELP_7=
+HELP_8="  [target]        forstilla drif og/eða slóð fyrir uppsetningu"
+HELP_9=
+HELP_10="  info            sýna stillingar uppsetningarforrits og hætta"
+HELP_11=
+HELP_12="  mbr             þvinga uppfærslu á MBR og hætta"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "ALVARLEG villa:" /fGray /c32
+ERROR_NoHDD="Gat ekki fundið skiptan og sniðinn harðan disk."
+ERROR_MINOR=/fLightRed "villa:" /fGray /c32
+ERROR_Option="Óþekktur eða ógildur valkostur" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Gat ekki ákvarðað grunnstillingar kerfis og slóðir."
+ERROR_NotFreeCOM="Þessi skipanaskrá krefst FreeCOM eða samhæfðrar skeljar fyrir FreeDOS."
+ERROR_MissingFreeCOM="Gat ekki fundið FreeCOM skipanaskelina."
+ERROR_MissingAUTOEXEC="Gat ekki fundið FDAUTO.BAT ræsiskrána."
+ERROR_MakeDir="Gat ekki búið til möppuna" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Gat ekki tekið öryggisafrit af ræsi- eða stillingarskrám."
+ERROR_BackupOS="Gat ekki tekið öryggisafrit af skrám í áfangamöppu."
+ERROR_Partition="Villa kom upp við skiptingu. Harður diskur er kannski ekki" /p "til staðar eða er ósýnilegur núverandi stýrikerfi." /p /p "Önnur aðferð við skiptingu er nauðsynleg."
+ERROR_NoPartition="Gat ekki fundið BIOS sneið fyrir" /fWhite %1 /fGray /s- . /s+ /p "Mælt er með handvirkri uppsetningu (eða ítarlegum ham án MBR þvingunar)."
+ERROR_Format="Villa kom upp við að reyna að sníða drif" /fWhite %1 /fGray /s- . /s+ /p /p "Önnur aðferð er nauðsynleg til að sníða það."
+ERROR_FileSystem="Gat ekki undirbúið tímabundið svæði á drifi" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Gat ekki stillt öryggisafritsmöppu."
+ERROR_MBRBackup="Gat ekki búið til öryggisafrit af Master Boot Record fyrir drif" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Gat ekki afritað kerfisskrár á drif" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Gat ekki uppfært ræsigeira á drifi" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Gat ekki uppfært ræsigeira á drifi" /fWhite %1 /fGray /s- .
+ERROR_Activate="Gat ekki stillt drif" /fWhite %1 /fGray "á ræsingsneið" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Gat ekki sett upp nýjar stillingarskrár á drif" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Gat ekki afritað nauðsynlega uppsetningarskrá til" /fWhite %1 /fGray /s- .
+ERROR_SAF="Villa kom upp við afþjöppun á" /fWhite %1 /fGray "safnskrá."
+ERROR_WTF="Óþekkt og ólíkleg villa kom upp við einfalda aðgerð."
+
+
+
+
+
+Tschechisch (CZ)
+(Reset: CP 852 | Tasten: A/N (Ano/Ne) | U/R/N (Úplné/Rychlé/Ne))
+
+
+# Language: Czech
+# File ending: CZ
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Vítejte v instalačním programu systému" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Vítejte v" /fLightRed "pokročilé" /fGray "instalaci systému" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "je kompletní operační systém. Pokud se jej rozhodnete nainstalovat" /p "na svůj počítač, můžete " /fLightRed /BlinkOn "přepsat" /BlinkOff /fGray "stávající operační systém" /p "(například Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Pokud to není váš záměr, prosím" /fLightRed "zastavte HNED TEĎ!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Chcete pokračovat" /c32
+REBOOT=/p "Chcete nyní restartovat" /c32
+
+AUTO_YES="[A,N]?" /fWhite "A" /fGray
+AUTO_NO="[A,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[U,R,N]?" /fWhite "R" /fGray
+
+PROMPT_YESNO=/s AN
+PROMPT_FMT=/s URN
+
+ABORTED=/fLightRed "Instalace systému" %1 %2 "byla přerušena." /e /fGray /bBlack
+
+PARTITION_AUTO="Automaticky rozdělit disk" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "UPOZORNĚNÍ:" /fGray "Pro KERNL86 je vyžadován oddíl FAT16 menší než 2 GB."
+PARTITION_MBR="Aktualizovat Master Boot Record na disku" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Nastavit oddíl disku" /fWhite %1 /fGray "jako aktivní."
+PARTITION_DONE=/p "Pro aktivaci nového rozdělení disku musíte restartovat počítač."
+
+FORMAT="Disk" /fWhite %1 /fGray "se nezdá být naformátován."
+FORMAT_DEF="Chcete disk naformátovat" /c32
+FORMAT_ADV="Jak chcete disk naformátovat" /s- /c32 ( /fWhite "Ú" /fGray "plné," /c32 /fWhite "R" /fGray "ychlé," /c32 /fWhite "N" /fGray "e)" /c32
+
+FILESYSTEM_TEST="Testování souborového systému na disku" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Vložte disketu" /fWhite #%1 /fGray (%2) "do" /fWhite %3 /fGray "."
+PRESS_KEY="Pokračujte stisknutím klávesy."
+
+TARGET_ASK="Kam si přejete nainstalovat" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Požadován neplatný disk. Nelze instalovat na disketu."
+
+CHANGE_PATH="Cesta" /fWhite %1 /fGray "již existuje." /p "Přejete si změnit instalační adresář" /c32
+
+BACKUP_OLD="Na disku" /fWhite %1 /fGray "byl nalezen předchozí operační systém." /s+ /p "Chcete před instalací zálohovat staré soubory" /c32
+BACKUP_ASK="Kam si přejete umístit záložní soubory?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Požadován neplatný cíl. Zálohu na toto místo nelze provést." /fGray
+
+DELETE_OLD="Stávající soubory v" /fWhite %1 /fGray "mohou být jednoduše přepsány." /p "Chcete před instalací kompletně vymazat starý adresář" /c32
+
+FORCE_MBR="Vynutit aktualizaci Master Boot Record na disku" /fWhite %1 /fGray /c32
+SYS_FILES="Instalovat nové soubory zavádění systému na disk" /fWhite %1 /fGray /c32
+CFG_FILES="Nahradit konfigurační soubory systému na disku" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Nastavení instalace:" /p
+STATUS_CPU=/r4/c32 "Platforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Instalovat z" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Cílový disk" /fWhite %1 /fGray (disk %2, oddíl %3)
+STATUS_DOS=/r4/c32 "Instalační cesta DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Zálohovat předchozí OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Adresář předchozího OS" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Instalovat nový MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopírovat systémové soubory" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopírovat konfig. soubory" /fWhite %1 /fGray
+
+INSTALL_NOW="Nyní jsme připraveni k instalaci systému" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Rozbalování souborů systému" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Aktualizace seznamu balíčků." /p
+
+DO_BACKUP="Vytváření zálohy souborů předchozího OS do" /fWhite %1 /fGray /s- .
+DO_ERASE="Mazání starého adresáře" /fWhite %1 /fGray " a souborů."
+DO_SYSFILES="Přenos nových systémových souborů na disk" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Vynucená aktualizace MBR na disku" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Nastavení aktivního zaváděcího oddílu na disku" /fWhite %1 /fGray "na oddíl" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Přenos nových konfiguračních souborů na disk" /fWhite %1 /fGray /s- .
+DO_PREPARE="Příprava k instalaci spustitelných souborů a nástrojů."
+DO_INSTALL="Instalace souborů" /fLightGreen %1 /fGray "pro" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Instalace systému" /fLightGreen %1 /fCyan %2 /fGray "byla dokončena."
+REBOOT_NOW="Chcete nyní restartovat" /c32
+
+REMOVE_MEDIA="Měli byste vyjmout všechny diskety a CD média."
+
+SUCCESS=/fLightGreen "Úspěch." /fGray
+FAILED=/fLightRed "Selhalo." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Instalátor (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Vydáno pod licencí GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS je ochranná známka Jima Halla," 2001-2022
+
+# Help screen
+HELP_0="použití: SETUP.BAT [volby] [cíl]"
+HELP_1=""
+HELP_2="  [bez voleb]     provést instalaci s výchozími hodnotami"
+HELP_3=
+HELP_4="  adv             spustit instalaci v pokročilém režimu (více dotazů)"
+HELP_5=
+HELP_6="  auto            provést plně automatickou instalaci bez dotazů." /p/r18/c32 "nedoporučuje se a mělo by být použito pouze na hardwaru" /p/r18/c32 "bez předchozího operačního systému."
+HELP_7=
+HELP_8="  [cíl]           přednastavit disk a/nebo cestu pro cílovou instalaci"
+HELP_9=
+HELP_10="  info            zobrazit nastavení instalátoru a ukončit"
+HELP_11=
+HELP_12="  mbr             vynutit aktualizaci MBR a ukončit"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITICKÁ chyba:" /fGray /c32
+ERROR_NoHDD="Nelze nalézt rozdělený a naformátovaný pevný disk."
+ERROR_MINOR=/fLightRed "chyba:" /fGray /c32
+ERROR_Option="Neznámá nebo neplatná volba příkazového řádku" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Nelze určit základní konfiguraci systému a nastavení cest."
+ERROR_NotFreeCOM="Tento dávkový soubor vyžaduje FreeCOM nebo kompatibilní shell pro FreeDOS."
+ERROR_MissingFreeCOM="Nelze nalézt příkazový shell FreeDOSu FreeCOM."
+ERROR_MissingAUTOEXEC="Nelze nalézt spouštěcí dávkový soubor FreeDOSu FDAUTO.BAT."
+ERROR_MakeDir="Nelze vytvořit adresář" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Nelze zálohovat zaváděcí a/nebo konfigurační soubory."
+ERROR_BackupOS="Nelze zálohovat soubory v cílovém adresáři."
+ERROR_Partition="Došlo k chybě při rozdělování disku. Pevný disk nemusí být přítomen" /p "nebo může být pro aktuální operační systém neviditelný." /p /p "Je vyžadována jiná metoda rozdělení disku."
+ERROR_NoPartition="Nelze nalézt BIOS oddíl pro" /fWhite %1 /fGray /s- . /s+ /p "Doporučuje se ruční instalace (nebo pokročilý režim bez vynuceného MBR)."
+ERROR_Format="Při pokusu o formátování disku" /fWhite %1 /fGray /s- " došlo k chybě." /s+ /p /p "K formátování bude vyžadován jiný postup."
+ERROR_FileSystem="Nelze inicializovat dočasný prostor na disku" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Nelze konfigurovat záložní adresář."
+ERROR_MBRBackup="Nelze vytvořit zálohu Master Boot Record pro disk" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Nelze zkopírovat systémové soubory na disk" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Nelze aktualizovat boot sektor disku" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Nelze aktualizovat MBR disku" /fWhite %1 /fGray /s- .
+ERROR_Activate="Nelze nastavit disk" /fWhite %1 /fGray "na zaváděcí oddíl" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Nelze nainstalovat nové konfigurační soubory na disk" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Nelze duplikovat vyžadovaný soubor instalátoru do" /fWhite %1 /fGray /s- .
+ERROR_SAF="Při rozbalování archivu" /fWhite %1 /fGray " došlo k problému."
+ERROR_WTF="Během jednoduché operace došlo k neznámé a nepravděpodobné chybě."
+
+
+
+
+
+Polnisch (PL)
+(Reset: CP 852 | Tasten: T/N (Tak/Nie) | P/S/N (Pełne/Szybkie/Nie))
+
+
+# Language: Polish
+# File ending: PL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Witaj w programie instalacyjnym systemu" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Witaj w" /fLightRed "zaawansowanym" /fGray "instalatorze systemu" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "to kompletny system operacyjny. Jeśli zdecydujesz się go" /p "zainstalować, możesz " /fLightRed /BlinkOn "nadpisać" /BlinkOff /fGray "obecny system operacyjny" /p "(na przykład Windows)." /fGray
+WELCOME_2=/fGray /c32 "Jeśli nie jest to Twoim zamiarem, proszę" /fLightRed "zatrzymaj się TERAZ!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Czy chcesz kontynuować" /c32
+REBOOT=/p "Czy chcesz teraz zrestartować komputer" /c32
+
+AUTO_YES="[T,N]?" /fWhite "T" /fGray
+AUTO_NO="[T,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[P,S,N]?" /fWhite "S" /fGray
+
+PROMPT_YESNO=/s TN
+PROMPT_FMT=/s PSN
+
+ABORTED=/fLightRed "Instalacja systemu" %1 %2 "została przerwana." /e /fGray /bBlack
+
+PARTITION_AUTO="Automatycznie partycjonuj napęd" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "UWAGA:" /fGray "Partycja FAT16 poniżej 2GB jest wymagana dla KERNL86."
+PARTITION_MBR="Aktualizuj Master Boot Record na napędzie" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Ustaw partycję napędu" /fWhite %1 /fGray "jako aktywną."
+PARTITION_DONE=/p "Musisz zrestartować komputer, aby nowy schemat partycjonowania wszedł w życie."
+
+FORMAT="Napęd" /fWhite %1 /fGray "nie wydaje się być sformatowany."
+FORMAT_DEF="Czy chcesz sformatować napęd" /c32
+FORMAT_ADV="Jak chcesz sformatować napęd" /s- /c32 ( /fWhite "P" /fGray "ełne," /c32 /fWhite "S" /fGray "zybkie," /c32 /fWhite "N" /fGray "ie)" /c32
+
+FILESYSTEM_TEST="Testowanie systemu plików na napędzie" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Włóż dyskietkę" /fWhite #%1 /fGray (%2) "do" /fWhite %3 /fGray "."
+PRESS_KEY="Naciśnij dowolny klawisz, aby kontynuować."
+
+TARGET_ASK="Gdzie chcesz zainstalować system" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Zażądano nieprawidłowego napędu. Nie można instalować na dyskietce."
+
+CHANGE_PATH="Ścieżka" /fWhite %1 /fGray "już istnieje." /p "Czy chcesz zmienić katalog instalacyjny" /c32
+
+BACKUP_OLD="Na napędzie" /fWhite %1 /fGray "wykryto poprzedni system operacyjny." /s+ /p "Czy chcesz utworzyć kopię zapasową starych plików przed instalacją" /c32
+BACKUP_ASK="Gdzie chcesz umieścić pliki kopii zapasowej?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Zażądano nieprawidłowego celu. Nie można utworzyć kopii zapasowej w tej lokalizacji." /fGray
+
+DELETE_OLD="Istniejące pliki w" /fWhite %1 /fGray "mogą zostać po prostu nadpisane." /p "Czy chcesz całkowicie skasować stary katalog przed instalacją" /c32
+
+FORCE_MBR="Wymuś aktualizację Master Boot Record na napędzie" /fWhite %1 /fGray /c32
+SYS_FILES="Zainstaluj nowe pliki startowe systemu na napędzie" /fWhite %1 /fGray /c32
+CFG_FILES="Zastąp pliki konfiguracyjne systemu na napędzie" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Ustawienia instalacji:" /p
+STATUS_CPU=/r4/c32 "Platforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Instaluj z" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Napęd docelowy" /fWhite %1 /fGray (dysk %2, partycja %3)
+STATUS_DOS=/r4/c32 "Ścieżka DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Kopia zapasowa poprzedniego OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Katalog poprzedniego OS" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Instaluj nowy MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopiuj pliki systemowe" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopiuj pliki konfig." /fWhite %1 /fGray
+
+INSTALL_NOW="Jesteśmy gotowi do instalacji systemu" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Rozpakowywanie plików systemu" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Aktualizacja list pakietów." /p
+
+DO_BACKUP="Tworzenie kopii zapasowej poprzedniego OS do" /fWhite %1 /fGray /s- .
+DO_ERASE="Usuwanie starego katalogu" /fWhite %1 /fGray " i plików."
+DO_SYSFILES="Przenoszenie nowych plików systemowych na napęd" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Wymuszona aktualizacja MBR na napędzie" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Ustawianie aktywnej partycji startowej na dysku" /fWhite %1 /fGray "dla partycji" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Przenoszenie nowych plików konfiguracyjnych na napęd" /fWhite %1 /fGray /s- .
+DO_PREPARE="Przygotowanie do instalacji plików wykonywalnych i narzędzi."
+DO_INSTALL="Instalacja plików" /fLightGreen %1 /fGray "dla" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Instalacja systemu" /fLightGreen %1 /fCyan %2 /fGray "zakończona pomyślnie."
+REBOOT_NOW="Czy chcesz teraz zrestartować komputer" /c32
+
+REMOVE_MEDIA="Powinieneś teraz wyjąć wszystkie dyskietki i płyty CD."
+
+SUCCESS=/fLightGreen "Sukces." /fGray
+FAILED=/fLightRed "Błąd." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Instalator (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Wydano na licencji GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS jest znakiem towarowym Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="użycie: SETUP.BAT [opcje] [cel]"
+HELP_1=""
+HELP_2="  [brak opcji]    wykonaj instalację domyślną"
+HELP_3=
+HELP_4="  adv             uruchom instalator w trybie zaawansowanym (więcej pytań)"
+HELP_5=
+HELP_6="  auto            wykonaj w pełni automatyczną instalację bez pytań." /p/r18/c32 "niezalecane; używać tylko na sprzęcie bez" /p/r18/c32 "istniejącego systemu operacyjnego."
+HELP_7=
+HELP_8="  [cel]           ustaw napęd i/lub ścieżkę dla instalacji docelowej"
+HELP_9=
+HELP_10="  info            wyświetl konfigurację instalatora i wyjdź"
+HELP_11=
+HELP_12="  mbr             wymuś aktualizację MBR i wyjdź"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRYTYCZNY błąd:" /fGray /c32
+ERROR_NoHDD="Nie można zlokalizować spartycjonowanego i sformatowanego dysku twardego."
+ERROR_MINOR=/fLightRed "błąd:" /fGray /c32
+ERROR_Option="Nieznana lub nieprawidłowa opcja wiersza poleceń" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Nie można określić podstawowej konfiguracji systemu i ścieżek."
+ERROR_NotFreeCOM="Ten plik wsadowy wymaga FreeCOM lub powłoki kompatybilnej z FreeDOS."
+ERROR_MissingFreeCOM="Nie można zlokalizować powłoki poleceń FreeDOS FreeCOM."
+ERROR_MissingAUTOEXEC="Nie można zlokalizować pliku startowego FreeDOS FDAUTO.BAT."
+ERROR_MakeDir="Nie można utworzyć katalogu" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Nie można utworzyć kopii zapasowej plików startowych i/lub konfiguracyjnych."
+ERROR_BackupOS="Nie można utworzyć kopii zapasowej plików w katalogu docelowym."
+ERROR_Partition="Wystąpił błąd partycjonowania. Dysk twardy może być nieobecny" /p "lub niewidoczny dla obecnego systemu operacyjnego." /p /p "Wymagana jest inna metoda partycjonowania."
+ERROR_NoPartition="Nie można zlokalizować partycji BIOS dla" /fWhite %1 /fGray /s- . /s+ /p "Zalecana jest instalacja ręczna (lub tryb zaawansowany bez wymuszania MBR)."
+ERROR_Format="Wystąpił błąd podczas próby formatowania napędu" /fWhite %1 /fGray /s- . /s+ /p /p "Wymagany będzie inny proces formatowania."
+ERROR_FileSystem="Nie można zainicjować przestrzeni tymczasowej na napędzie" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Nie można skonfigurować katalogu kopii zapasowej."
+ERROR_MBRBackup="Nie można utworzyć kopii zapasowej MBR dla napędu" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Nie można skopiować plików systemowych na napęd" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Nie można zaktualizować sektora rozruchowego napędu" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Nie można zaktualizować sektora rozruchowego napędu" /fWhite %1 /fGray /s- .
+ERROR_Activate="Nie można ustawić napędu" /fWhite %1 /fGray "na partycję startową" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Nie można zainstalować nowych plików konfiguracyjnych na napędzie" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Nie można duplikować wymaganego pliku instalatora do" /fWhite %1 /fGray /s- .
+ERROR_SAF="Wystąpił problem podczas wypakowywania archiwum" /fWhite %1 /fGray "."
+ERROR_WTF="Wystąpił nieznany i mało prawdopodobny błąd podczas prostej operacji."
+
+
+
+
+Ungarisch (HU)
+(Reset: CP 852 | Tasten: I/N (Igen/Nem) | T/G/N (Teljes/Gyors/Nem))
+
+
+# Language: Hungarian
+# File ending: HU
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Üdvözöljük a(z)" /fLightGreen %1 /fCyan %2 /fGray "telepítőprogramjában."
+WELCOME_ADV="Üdvözöljük a(z)" /fLightRed "haladó" /fGray "telepítőben a(z)" /fLightGreen %1 /fCyan %2 /fGray "rendszerhez." /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "egy teljes értékű operációs rendszer. Ha a telepítés mellett dönt," /p "előfordulhat, hogy " /fLightRed /BlinkOn "felülírja" /BlinkOff /fGray "a jelenlegi operációs rendszerét" /p "(például a Windowst.)" /fGray
+WELCOME_2=/fGray /c32 "Ha nem ez a szándéka, kérjük," /fLightRed "állítsa le MOST!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Szeretné folytatni" /c32
+REBOOT=/p "Szeretne most újraindítani" /c32
+
+AUTO_YES="[I,N]?" /fWhite "I" /fGray
+AUTO_NO="[I,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[T,G,N]?" /fWhite "G" /fGray
+
+PROMPT_YESNO=/s IN
+PROMPT_FMT=/s TGN
+
+ABORTED=/fLightRed "A(z) %1 %2 telepítése megszakadt." /e /fGray /bBlack
+
+PARTITION_AUTO="Meghajtó automatikus particionálása:" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "MEGJEGYZÉS:" /fGray "A KERNL86-hoz 2GB alatti FAT16 partició szükséges."
+PARTITION_MBR="Master Boot Record frissítése a(z)" /fWhite %1 /fGray "meghajtón." /s-
+PARTITION_ACTIVE="A(z)" /fWhite %1 /fGray "meghajtó partíciójának beállítása aktívként."
+PARTITION_DONE=/p "Az új particionálási séma érvénybe lépéséhez újra kell indítania a számítógépet."
+
+FORMAT="A(z)" /fWhite %1 /fGray "meghajtó nem tűnik formázottnak."
+FORMAT_DEF="Szeretné formázni a meghajtót" /c32
+FORMAT_ADV="Hogyan szeretné formázni a meghajtót" /s- /c32 ( /fWhite "T" /fGray "eljes," /c32 /fWhite "G" /fGray "yors," /c32 /fWhite "N" /fGray "em)" /c32
+
+FILESYSTEM_TEST="Fájlrendszer tesztelése a(z)" /fWhite %1 /fGray "meghajtón." /s-
+INSERT_DISKETTE="Helyezze be a(z)" /fWhite #%1 /fGray "(%2) lemezt a(z)" /fWhite %3 /fGray "."
+PRESS_KEY="A folytatáshoz nyomjon meg egy billentyűt."
+
+TARGET_ASK="Hova szeretné telepíteni a(z)" /fLightGreen %1 /s- /fGray " rendszert?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Érvénytelen meghajtó. Nem lehet hajlékonylemezre telepíteni."
+
+CHANGE_PATH="A(z)" /fWhite %1 /fGray "útvonal már létezik." /p "Szeretné megváltoztatni a telepítési könyvtárat" /c32
+
+BACKUP_OLD="Egy korábbi operációs rendszer található a(z)" /fWhite %1 /fGray "meghajtón." /s+ /p "Szeretne biztonsági mentést a régi fájlokról a telepítés előtt" /c32
+BACKUP_ASK="Hova szeretné helyezni a mentett fájlokat?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Érvénytelen célhely. Nem lehet mentést készíteni erre a helyre." /fGray
+
+DELETE_OLD="A(z)" /fWhite %1 /fGray "könyvtárban lévő fájlok egyszerűen felülírhatók." /p "Szeretné teljesen törölni a régi könyvtárat a telepítés előtt" /c32
+
+FORCE_MBR="Master Boot Record frissítésének kényszerítése a(z)" /fWhite %1 /fGray "meghajtón." /c32
+SYS_FILES="Új rendszerbetöltő fájlok telepítése a(z)" /fWhite %1 /fGray "meghajtóra." /c32
+CFG_FILES="Rendszerkonfigurációs fájlok cseréje a(z)" /fWhite %1 /fGray "meghajtón." /c32
+
+STATUS_MSG="Telepítési beállítások:" /p
+STATUS_CPU=/r4/c32 "Platform (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Telepítés forrása" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Célmeghajtó" /fWhite %1 /fGray (lemez %2, partíció %3)
+STATUS_DOS=/r4/c32 "Telepítési útvonal" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Előző OS mentése" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Előző OS könyvtára" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Új MBR telepítése" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Rendszerfájlok másol." /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Konfig. fájlok másol." /fWhite %1 /fGray
+
+INSTALL_NOW="Készen állunk a(z)" /fLightGreen %1 /fCyan %2 /fGray "telepítésére." /s- .
+EXTRACTION="Fájlok kibontása a(z)" /fLightGreen %1 /fCyan %2 /fGray "rendszerből." /s- .
+UPDATE_LST="Csomaglista fájlok frissítése." /p
+
+DO_BACKUP="Biztonsági mentés készítése az előző OS fájljairól ide:" /fWhite %1 /s- /fGray .
+DO_ERASE="Régi" /fWhite %1 /fGray "könyvtár és fájlok törlése."
+DO_SYSFILES="Új rendszerfájlok átvitele a(z)" /fWhite %1 /fGray "meghajtóra." /s- .
+DO_FORCEMBR="MBR frissítés kényszerítése a(z)" /fWhite %1 /fGray "meghajtón." /s- .
+DO_ACTIVATE="Aktív rendszerpartíció beállítása a(z)" /fWhite %1 /fGray "lemezen a(z)" /fWhite %2 /fGray "partícióra." /s-
+DO_CFGFILES="Új konfigurációs fájlok átvitele a(z)" /fWhite %1 /fGray "meghajtóra." /s- .
+DO_PREPARE="Felkészülés a futtatható fájlok és segédprogramok telepítésére."
+DO_INSTALL="A(z)" /fLightGreen %1 /fGray "fájlok telepítése a(z)" /fWhite %2 /fGray "részére." /s- .
+
+DONE_NOW="A(z)" /fLightGreen %1 /fCyan %2 /fGray "telepítése befejeződött."
+REBOOT_NOW="Szeretne most újraindítani" /c32
+
+REMOVE_MEDIA="Távolítson el minden hajlékonylemezt és CD-t."
+
+SUCCESS=/fLightGreen "Sikeres." /fGray
+FAILED=/fLightRed "Sikertelen." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Telepítő (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Kiadva a GPL v2.0 licenc alatt."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="A FreeDOS a Jim Hall védjegye," 2001-2022
+
+# Help screen
+HELP_0="használat: SETUP.BAT [opciók] [célhely]"
+HELP_1=""
+HELP_2="  [nincs opció]  telepítés alapértelmezett értékekkel"
+HELP_3=
+HELP_4="  adv            telepítés indítása haladó módban (több kérdés)"
+HELP_5=
+HELP_6="  auto           teljesen automatikus telepítés kérdések nélkül." /p/r18/c32 "nem ajánlott, csak operációs rendszer nélküli" /p/r18/c32 "hardveren használja!"
+HELP_7=
+HELP_8="  [célhely]      meghajtó és/vagy útvonal előre beállítása"
+HELP_9=
+HELP_10="  info           telepítő beállításainak megjelenítése és kilépés"
+HELP_11=
+HELP_12="  mbr            MBR frissítés kényszerítése és kilépés"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITIKUS hiba:" /fGray /c32
+ERROR_NoHDD="Nem található particionált és formázott merevlemez."
+ERROR_MINOR=/fLightRed "hiba:" /fGray /c32
+ERROR_Option="Ismeretlen vagy érvénytelen parancssori opció:" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Nem határozható meg az alapvető rendszerkonfiguráció és az útvonalak."
+ERROR_NotFreeCOM="Ehhez a kötegelt fájlhoz FreeCOM vagy kompatibilis héj (shell) szükséges."
+ERROR_MissingFreeCOM="A FreeDOS FreeCOM parancssor nem található."
+ERROR_MissingAUTOEXEC="A FreeDOS FDAUTO.BAT indítófájlja nem található."
+ERROR_MakeDir="A könyvtár nem hozható létre:" /fWhite %1 /s- /fGray .
+ERROR_BackupCfg="A rendszerbetöltő és/vagy konfigurációs fájlok mentése sikertelen."
+ERROR_BackupOS="A célkönyvtár fájljainak mentése sikertelen."
+ERROR_Partition="Particionálási hiba történt. Lehet, hogy nincs merevlemez," /p "vagy az operációs rendszer nem látja." /p /p "Más particionálási módszer szükséges."
+ERROR_NoPartition="A BIOS partíció nem található a(z)" /fWhite %1 /fGray "meghajtón." /s- /s+ /p "Kézi telepítés (vagy haladó mód kényszerített MBR nélkül) ajánlott."
+ERROR_Format="Hiba történt a(z)" /fWhite %1 /fGray "meghajtó formázásakor." /s- /s+ /p /p "Más eljárás szükséges a formázáshoz."
+ERROR_FileSystem="Nem sikerült az ideiglenes terület inicializálása a(z)" /fWhite %1 /fGray "meghajtón." /s-
+ERROR_CfgBackup="A biztonsági mentési könyvtár nem konfigurálható."
+ERROR_MBRBackup="Nem sikerült mentést készíteni az MBR-ről a(z)" /fWhite %1 /fGray "meghajtón." /s-
+ERROR_SysFiles="A rendszerfájlok nem másolhatók a(z)" /fWhite %1 /fGray "meghajtóra." /s-
+ERROR_BootSector="A rendszerindító szektor nem frissíthető a(z)" /fWhite %1 /fGray "meghajtón." /s-
+ERROR_MBRUpdate="Az MBR nem frissíthető a(z)" /fWhite %1 /fGray "meghajtón." /s-
+ERROR_Activate="Nem sikerült a(z)" /fWhite %1 /fGray "meghajtót a(z)" /fWhite %2 /fGray "rendszerpartícióra állítani." /s-
+ERROR_CfgFiles="Az új konfigurációs fájlok nem telepíthetők a(z)" /fWhite %1 /fGray "meghajtóra." /s-
+ERROR_XfrFiles="A szükséges telepítőfájl nem duplikálható ide:" /fWhite %1 /s- /fGray .
+ERROR_SAF="Hiba történt a(z)" /fWhite %1 /fGray "archívum kibontásakor."
+ERROR_WTF="Ismeretlen és valószínűtlen hiba történt egy egyszerű művelet során."
+
+
+
+
+
+5. Slowakisch (SK)
+(Reset: CP 852 | Tasten: A/N (Áno/Nie) | Ú/R/N (Úplné/Rýchle/Nie) | Reinheitsgebot: „sú“, keine „ř“)
+
+
+# Language: Slovak
+# File ending: SK
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Vitajte v inštalačnom programe systému" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Vitajte v" /fLightRed "pokročilej" /fGray "inštalácii systému" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "je kompletný operačný systém. Ak sa ho rozhodnete nainštalovať" /p "na svoj počítač, môžete " /fLightRed /BlinkOn "prepísať" /BlinkOff /fGray "súčasný operačný systém" /p "(napríklad Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Ak to nie je váš zámer, prosím" /fLightRed "zastavte TERAZ!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Chcete pokračovať" /c32
+REBOOT=/p "Chcete teraz reštartovať" /c32
+
+AUTO_YES="[A,N]?" /fWhite "A" /fGray
+AUTO_NO="[A,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[U,R,N]?" /fWhite "R" /fGray
+
+PROMPT_YESNO=/s AN
+PROMPT_FMT=/s URN
+
+ABORTED=/fLightRed "Inštalácia systému" %1 %2 "bola prerušená." /e /fGray /bBlack
+
+PARTITION_AUTO="Automaticky rozdeliť disk" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "UPOZORNENIE:" /fGray "Pre KERNL86 je vyžadovaný oddiel FAT16 menší ako 2 GB."
+PARTITION_MBR="Aktualizovať Master Boot Record na disku" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Nastaviť oddiel disku" /fWhite %1 /fGray "ako aktívny."
+PARTITION_DONE=/p "Pre aktiváciu nového rozdelenia disku musíte reštartovať počítač."
+
+FORMAT="Disk" /fWhite %1 /fGray "sa nezdá byť naformátovaný."
+FORMAT_DEF="Chcete disk naformátovať" /c32
+FORMAT_ADV="Ako chcete disk naformátovať" /s- /c32 ( /fWhite "U" /fGray "plné," /c32 /fWhite "R" /fGray "ýchle," /c32 /fWhite "N" /fGray "ie)" /c32
+
+FILESYSTEM_TEST="Testovanie súborového systému na disku" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Vložte disketu" /fWhite #%1 /fGray (%2) "do" /fWhite %3 /fGray "."
+PRESS_KEY="Pokračujte stlačením klávesu."
+
+TARGET_ASK="Kam si želáte nainštalovať" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Požadovaný neplatný disk. Nemožno inštalovať na disketu."
+
+CHANGE_PATH="Cesta" /fWhite %1 /fGray "už existuje." /p "Želáte si zmeniť inštalačný adresár" /c32
+
+BACKUP_OLD="Na disku" /fWhite %1 /fGray "bol nájdený predchádzajúci operačný systém." /s+ /p "Chcete pred inštaláciou zálohovať staré súbory" /c32
+BACKUP_ASK="Kam si želáte umiestniť záložné súbory?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Požadovaný neplatný cieľ. Zálohu na toto miesto nemožno vykonať." /fGray
+
+DELETE_OLD="Existujúce súbory v" /fWhite %1 /fGray "môžu byť jednoducho prepísané." /p "Chcete pred inštaláciou kompletne vymazať starý adresár" /c32
+
+FORCE_MBR="Vynútiť aktualizáciu Master Boot Record na disku" /fWhite %1 /fGray /c32
+SYS_FILES="Inštalovať nové súbory zavádzania systému na disk" /fWhite %1 /fGray /c32
+CFG_FILES="Nahradiť konfiguračné súbory systému na disku" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Nastavenia inštalácie:" /p
+STATUS_CPU=/r4/c32 "Platforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Inštalovať z" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Cieľový disk" /fWhite %1 /fGray (disk %2, oddiel %3)
+STATUS_DOS=/r4/c32 "Inštalačná cesta DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Zálohovať predch. OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Adresár predch. OS" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Inštalovať nový MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopírovať systém. súbory" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopírovať konfig. súbory" /fWhite %1 /fGray
+
+INSTALL_NOW="Teraz sme pripravení na inštaláciu systému" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Rozbaľovanie súborov systému" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Aktualizácia zoznamu balíkov." /p
+
+DO_BACKUP="Vytváranie zálohy súborov predchádzajúceho OS do" /fWhite %1 /fGray /s- .
+DO_ERASE="Mazanie starého adresára" /fWhite %1 /fGray " a súborov."
+DO_SYSFILES="Prenos nových systémových súborov na disk" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Vynútená aktualizácia MBR na disku" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Nastavenie aktívneho zavádzacieho oddielu na disku" /fWhite %1 /fGray "na oddiel" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Prenos nových konfiguračných súborov na disk" /fWhite %1 /fGray /s- .
+DO_PREPARE="Príprava na inštaláciu spustiteľných súborov a nástrojov."
+DO_INSTALL="Inštalácia súborov" /fLightGreen %1 /fGray "pre" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Inštalácia systému" /fLightGreen %1 /fCyan %2 /fGray "bola dokončená."
+REBOOT_NOW="Chcete teraz reštartovať" /c32
+
+REMOVE_MEDIA="Mali by ste vybrať všetky diskety a CD médiá."
+
+SUCCESS=/fLightGreen "Úspech." /fGray
+FAILED=/fLightRed "Zlyhalo." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Inštalátor (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Vydané pod licenciou GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS je ochranná známka Jima Halla," 2001-2022
+
+# Help screen
+HELP_0="použitie: SETUP.BAT [voľby] [cieľ]"
+HELP_1=""
+HELP_2="  [bez volieb]    vykonať inštaláciu s predvolenými hodnotami"
+HELP_3=
+HELP_4="  adv             spustiť inštaláciu v pokročilom režime (viac otázok)"
+HELP_5=
+HELP_6="  auto            vykonať plne automatickú inštaláciu bez otázok." /p/r18/c32 "neodporúča sa a malo by sa použiť iba na hardvéri" /p/r18/c32 "bez predchádzajúceho operačného systému."
+HELP_7=
+HELP_8="  [cieľ]          prednastaviť disk a/alebo cestu pre cieľovú inštaláciu"
+HELP_9=
+HELP_10="  info            zobraziť nastavenia inštalátora a ukončiť"
+HELP_11=
+HELP_12="  mbr             vynútiť aktualizáciu MBR a ukončiť"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITICKÁ chyba:" /fGray /c32
+ERROR_NoHDD="Nemožno nájsť rozdelený a naformátovaný pevný disk."
+ERROR_MINOR=/fLightRed "chyba:" /fGray /c32
+ERROR_Option="Neznáma alebo neplatná voľba príkazového riadka" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Nemožno určiť základnú konfiguráciu systému a nastavenia ciest."
+ERROR_NotFreeCOM="Tento dávkový súbor vyžaduje FreeCOM alebo kompatibilný shell pre FreeDOS."
+ERROR_MissingFreeCOM="Nemožno nájsť príkazový shell FreeDOSu FreeCOM."
+ERROR_MissingAUTOEXEC="Nemožno nájsť spúšťací dávkový súbor FreeDOSu FDAUTO.BAT."
+ERROR_MakeDir="Nemožno vytvoriť adresár" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Nemožno zálohovať zavádzacie a/alebo konfiguračné súbory."
+ERROR_BackupOS="Nemožno zálohovať súbory v cieľovom adresári."
+ERROR_Partition="Došlo k chybe pri rozdeľovaní disku. Pevný disk nemusí byť prítomný" /p "alebo môže byť pre súčasný operačný systém neviditeľný." /p /p "Je vyžadovaná iná metóda rozdelenia disku."
+ERROR_NoPartition="Nemožno nájsť BIOS oddiel pre" /fWhite %1 /fGray /s- . /s+ /p "Odporúča sa ručná inštalácia (alebo pokročilý režim bez vynúteného MBR)."
+ERROR_Format="Pri pokuse o formátovanie disku" /fWhite %1 /fGray /s- " došlo k chybe." /s+ /p /p "Na formátovanie bude vyžadovaný iný postup."
+ERROR_FileSystem="Nemožno inicializovať dočasný priestor na disku" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Nemožno konfigurovať záložný adresár."
+ERROR_MBRBackup="Nemožno vytvoriť zálohu Master Boot Record pre disk" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Nemožno skopírovať systémové súbory na disk" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Nemožno aktualizovať boot sektor disku" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Nemožno aktualizovať MBR disku" /fWhite %1 /fGray /s- .
+ERROR_Activate="Nemožno nastaviť disk" /fWhite %1 /fGray "na zavádzací oddiel" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Nemožno nainštalovať nové konfiguračné súbory na disk" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Nemožno duplikovať vyžadovaný súbor inštalátora do" /fWhite %1 /fGray /s- .
+ERROR_SAF="Pri rozbaľovaní archívu" /fWhite %1 /fGray " došlo k problému."
+ERROR_WTF="Počas jednoduchej operácie došlo k neznámej a nepravdepodobnej chybe."
+
+
+
+
+
+Slowenisch (SL)
+(Reset: CP 852 | Tasten: D/N (Da/Ne) | P/H/N (Polno/Hitro/Ne))
+
+
+# Language: Slovenian
+# File ending: SL
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Dobrodošli v namestitvenem programu" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Dobrodošli v" /fLightRed "naprednem" /fGray "namestitvenem programu za" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "je celovit operacijski sistem. Če se odločite za namestitev na" /p "vaš računalnik, lahko " /fLightRed /BlinkOn "prepišete" /BlinkOff /fGray "trenutni operacijski sistem" /p "(na primer Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Če to ni vaš namen, prosimo" /fLightRed "ustavite ZDAJ!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Ali želite nadaljevati" /c32
+REBOOT=/p "Ali želite zdaj ponovno zagnati" /c32
+
+AUTO_YES="[D,N]?" /fWhite "D" /fGray
+AUTO_NO="[D,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[P,H,N]?" /fWhite "H" /fGray
+
+PROMPT_YESNO=/s DN
+PROMPT_FMT=/s PHN
+
+ABORTED=/fLightRed "Namestitev" %1 %2 "je bila prekinjena." /e /fGray /bBlack
+
+PARTITION_AUTO="Samodejno particioniraj pogon" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "OBVESTILO:" /fGray "Za KERNL86 je potrebna particija FAT16 pod 2Gb."
+PARTITION_MBR="Posodobi Master Boot Record na pogonu" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Nastavi particijo pogona" /fWhite %1 /fGray "kot aktivno."
+PARTITION_DONE=/p "Za uveljavitev nove sheme particioniranja morate ponovno zagnati računalnik."
+
+FORMAT="Pogon" /fWhite %1 /fGray "ni videti formatiran."
+FORMAT_DEF="Ali želite formatirati pogon" /c32
+FORMAT_ADV="Kako želite formatirati pogon" /s- /c32 ( /fWhite "P" /fGray "olno," /c32 /fWhite "H" /fGray "itro," /c32 /fWhite "N" /fGray "e)" /c32
+
+FILESYSTEM_TEST="Preverjanje datotečnega sistema na pogonu" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Vstavite disketo" /fWhite #%1 /fGray (%2) "v" /fWhite %3 /fGray "."
+PRESS_KEY="Pritisnite tipko za nadaljevanje."
+
+TARGET_ASK="Kam želite namestiti" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Zahtevan neveljaven pogon. Namestitev na disketo ni mogoča."
+
+CHANGE_PATH="Pot" /fWhite %1 /fGray "že obstaja." /p "Ali želite spremeniti namestitveni imenik" /c32
+
+BACKUP_OLD="Na pogonu" /fWhite %1 /fGray "je bil zaznan prejšnji operacijski sistem." /s+ /p "Ali želite pred namestitvijo varnostno kopirati stare datoteke" /c32
+BACKUP_ASK="Kam želite postaviti datoteke varnostne kopije?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Zahtevan neveljaven cilj. Varnostne kopije na to mesto ni mogoče narediti." /fGray
+
+DELETE_OLD="Obstoječe datoteke v" /fWhite %1 /fGray "se lahko preprosto prepišejo." /p "Ali želite pred namestitvijo popolnoma izbrisati stari imenik" /c32
+
+FORCE_MBR="Prisili posodobitev Master Boot Recorda na pogonu" /fWhite %1 /fGray /c32
+SYS_FILES="Namesti nove sistemske zagonske datoteke na pogon" /fWhite %1 /fGray /c32
+CFG_FILES="Zamenjaj sistemske konfiguracijske datoteke na pogonu" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Nastavitve namestitve:" /p
+STATUS_CPU=/r4/c32 "Platforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Namesti iz" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Ciljni pogon" /fWhite %1 /fGray (disk %2, particija %3)
+STATUS_DOS=/r4/c32 "DOS pot namestitve" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Varnostna kopija OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Imenik prejšnjega OS" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Namesti novi MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopiraj sist. datoteke" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopiraj konf. datoteke" /fWhite %1 /fGray
+
+INSTALL_NOW="Zdaj smo pripravljeni na namestitev" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Ekstrakcija datotek" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Posodobi datoteke seznama paketov." /p
+
+DO_BACKUP="Ustvarjanje varnostne kopije prejšnjega OS v" /fWhite %1 /fGray /s- .
+DO_ERASE="Izbriši stari" /fWhite %1 /fGray " imenik in datoteke."
+DO_SYSFILES="Prenos novih sistemskih datotek na pogon" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Prisili posodobitev MBR na pogonu" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Nastavi aktivno zagonsko particijo na disku" /fWhite %1 /fGray "za particijo" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Prenos novih konfiguracijskih datotek na pogon" /fWhite %1 /fGray /s- .
+DO_PREPARE="Priprava na namestitev izvršljivih datotek in pripomočkov."
+DO_INSTALL="Namesti" /fLightGreen %1 /fGray "datoteke za" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Namestitev" /fLightGreen %1 /fCyan %2 /fGray "je končana."
+REBOOT_NOW="Ali želite zdaj ponovno zagnati" /c32
+
+REMOVE_MEDIA="Odstraniti morate vse diskete in CD medije."
+
+SUCCESS=/fLightGreen "Uspešno." /fGray
+FAILED=/fLightRed "Ni uspelo." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Namestitveni program (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Izdano pod licenco GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS je blagovna znamka Jima Halla," 2001-2022
+
+# Help screen
+HELP_0="uporaba: SETUP.BAT [možnosti] [cilj]"
+HELP_1=""
+HELP_2="  [brez možnosti]  izvedi namestitev s privzetimi vrednostmi"
+HELP_3=
+HELP_4="  adv             zaženi namestitev v naprednem načinu (več vprašanj)"
+HELP_5=
+HELP_6="  auto            izvedi popolnoma samodejno namestitev brez vprašanj." /p/r18/c32 "ni priporočljivo in naj se uporablja samo na strojni opremi" /p/r18/c32 "brez obstoječega operacijskega sistema."
+HELP_7=
+HELP_8="  [cilj]          vnaprej nastavi pogon in/ali pot za ciljno namestitev"
+HELP_9=
+HELP_10="  info            prikaži nastavitve namestitvenega programa in izstopi"
+HELP_11=
+HELP_12="  mbr             prisili posodobitev MBR in izstopi"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITIČNA napaka:" /fGray /c32
+ERROR_NoHDD="Ni mogoče najti particioniranega in formatiranega trdega diska."
+ERROR_MINOR=/fLightRed "napaka:" /fGray /c32
+ERROR_Option="Neznana ali neveljavna možnost ukazne vrstice" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Ni mogoče določiti osnovne sistemske konfiguracije in nastavitev poti."
+ERROR_NotFreeCOM="Ta paketna datoteka zahteva FreeCOM ali združljivo lupino za FreeDOS."
+ERROR_MissingFreeCOM="Ni mogoče najti ukazne lupine FreeDOS FreeCOM."
+ERROR_MissingAUTOEXEC="Ni mogoče najti zagonske datoteke FreeDOS FDAUTO.BAT."
+ERROR_MakeDir="Ni mogoče ustvariti imenika" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Varnostno kopiranje zagonskih in/ali konfiguracijskih datotek ni uspelo."
+ERROR_BackupOS="Varnostno kopiranje datotek v ciljnem imeniku ni uspelo."
+ERROR_Partition="Prišlo je do napake pri particioniranju. Trdi disk morda ni prisoten" /p "ali pa je neviden trenutnemu operacijskemu sistemu." /p /p "Potrebna je druga metoda particioniranja."
+ERROR_NoPartition="Ni mogoče najti BIOS particije za" /fWhite %1 /fGray /s- . /s+ /p "Priporočljiva je ročna namestitev (ali napredni način brez prisilnega MBR)."
+ERROR_Format="Pri poskusu formatiranja pogona" /fWhite %1 /fGray /s- " je prišlo do napake." /s+ /p /p "Za formatiranje bo potreben drug postopek."
+ERROR_FileSystem="Ni mogoče inicializirati začasnega prostora na pogonu" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Imenika za varnostne kopije ni mogoče konfigurirati."
+ERROR_MBRBackup="Varnostne kopije Master Boot Recorda za pogon" /fWhite %1 /fGray /s- " ni mogoče ustvariti."
+ERROR_SysFiles="Sistemskih datotek ni mogoče kopirati na pogon" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Zagonskega sektorja za pogon" /fWhite %1 /fGray /s- " ni mogoče posodobiti."
+ERROR_MBRUpdate="Zagonskega sektorja za pogon" /fWhite %1 /fGray /s- " ni mogoče posodobiti."
+ERROR_Activate="Pogona" /fWhite %1 /fGray "ni mogoče nastaviti na zagonsko particijo" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Novih konfiguracijskih datotek ni mogoče namestiti na pogon" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Zahtevane namestitvene datoteke ni mogoče podvojiti v" /fWhite %1 /fGray /s- .
+ERROR_SAF="Pri ekstrakciji arhiva" /fWhite %1 /fGray " je prišlo do težave."
+ERROR_WTF="Pri preprosti operaciji je prišlo do neznane in neverjetne napake."
+
+
+
+
+
+
+
+Estnisch (ET)
+(Reset: CP 775 | Tasten: J/N (Jah/Ei) | K/K/N (Kiire/Kogu/Ei))
+
+
+# Language: Estonian
+# File ending: ET
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Tere tulemast süsteemi" /fLightGreen %1 /fCyan %2 /fGray "installiprogrammi!"
+WELCOME_ADV="Tere tulemast süsteemi" /fLightRed "täiustatud" /fGray "installijasse" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "on täielik operatsioonisüsteem. Kui valite selle installimise" /p "oma arvutisse, võite " /fLightRed /BlinkOn "üle kirjutada" /BlinkOff /fGray "praeguse operatsioonisüsteemi" /p "(näiteks Windowsi.)" /fGray
+WELCOME_2=/fGray /c32 "Kui see pole teie soov, palun" /fLightRed "peatage KOHE!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Kas soovite jätkata" /c32
+REBOOT=/p "Kas soovite kohe taaskäivitada" /c32
+
+AUTO_YES="[J,E]?" /fWhite "J" /fGray
+AUTO_NO="[J,E]?" /fWhite "E" /fGray
+AUTO_FMT=/s- "[T,K,E]?" /fWhite "K" /fGray
+
+PROMPT_YESNO=/s JE
+PROMPT_FMT=/s TKE
+
+ABORTED=/fLightRed "Süsteemi" %1 %2 "installimine on katkestatud." /e /fGray /bBlack
+
+PARTITION_AUTO="Partitsioneeri ketas" /fWhite %1 /s- /fGray " automaatselt."
+PARTITION_WARN=/fYellow "MÄRKUS:" /fGray "KERNL86 jaoks on vajalik alla 2GB suurune FAT16-partitsioon."
+PARTITION_MBR="Uuenda Master Boot Record kettal" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Määra ketta" /fWhite %1 /fGray "partitsioon aktiivseks."
+PARTITION_DONE=/p "Uue partitsioonitabeli jõustumiseks peate arvuti taaskäivitama."
+
+FORMAT="Ketas" /fWhite %1 /fGray "ei tundu olevat vormindatud."
+FORMAT_DEF="Kas soovite ketast vormindada" /c32
+FORMAT_ADV="Kuidas soovite ketast vormindada" /s- /c32 ( /fWhite "T" /fGray "äielik," /c32 /fWhite "K" /fGray "iire," /c32 /fWhite "E" /fGray "ei)" /c32
+
+FILESYSTEM_TEST="Ketta" /fWhite %1 /s- /fGray " failisüsteemi kontrollimine."
+INSERT_DISKETTE="Sisestage diskett" /fWhite #%1 /fGray (%2) "seadmesse" /fWhite %3 /fGray "."
+PRESS_KEY="Jätkamiseks vajutage suvalist klahvi."
+
+TARGET_ASK="Kuhu soovite installida süsteemi" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Vigane ketas valitud. Flopile installimine pole võimalik."
+
+CHANGE_PATH="Tee" /fWhite %1 /fGray "on juba olemas." /p "Kas soovite installikataloogi muuta" /c32
+
+BACKUP_OLD="Kettalt" /fWhite %1 /fGray "tuvastati eelmine operatsioonisüsteem." /s+ /p "Kas soovite vanadest failidest enne installimist varukoopia teha" /c32
+BACKUP_ASK="Kuhu soovite varukoopiad salvestada?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Vigane sihtkoht valitud. Varukoopiat ei saa sellesse asukohta teha." /fGray
+
+DELETE_OLD="Asukohas" /fWhite %1 /fGray "olevad failid võidakse lihtsalt üle kirjutada." /p "Kas soovite vana kataloogi enne installimist täielikult kustutada" /c32
+
+FORCE_MBR="Sunni Master Boot Recordi uuendamine kettal" /fWhite %1 /fGray /c32
+SYS_FILES="Installi uued süsteemi käivitusfailid kettale" /fWhite %1 /fGray /c32
+CFG_FILES="Asenda süsteemi konfiguratsioonifailid kettal" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Installi seaded:" /p
+STATUS_CPU=/r4/c32 "Platvorm (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Installi allikas" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Sihtketas" /fWhite %1 /fGray (ketas %2, partitsioon %3)
+STATUS_DOS=/r4/c32 "DOS-i installitee" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Varunda eelmine OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Eelmise OS-i kataloog" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Installi uus MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopeeri süsteemifailid" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopeeri konf. failid" /fWhite %1 /fGray
+
+INSTALL_NOW="Oleme valmis installima süsteemi" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Süsteemi" /fLightGreen %1 /fCyan %2 /fGray "failide lahtipakkimine."
+UPDATE_LST="Uuenda pakettide nimekirja faile." /p
+
+DO_BACKUP="Eelmise OS-i failide varundamine asukohta" /fWhite %1 /fGray /s- .
+DO_ERASE="Kustuta vana" /fWhite %1 /fGray " kataloog ja failid."
+DO_SYSFILES="Uute süsteemifailide kopeerimine kettale" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="MBR-i sunnitud uuendamine kettal" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Määra aktiivne käivituspartitsioon kettal" /fWhite %1 /fGray "partitsioonile" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Uute konfiguratsioonifailide kopeerimine kettale" /fWhite %1 /fGray /s- .
+DO_PREPARE="Ettevalmistused programmide ja utiliitide installimiseks."
+DO_INSTALL="Installi" /fLightGreen %1 /fGray "failid süsteemile" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Süsteemi" /fLightGreen %1 /fCyan %2 /fGray "installimine on lõpetatud."
+REBOOT_NOW="Kas soovite kohe taaskäivitada" /c32
+
+REMOVE_MEDIA="Eemaldage kõik disketid ja CD-plaadid."
+
+SUCCESS=/fLightGreen "Õnnestus." /fGray
+FAILED=/fLightRed "Ebaõnnestus." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Installija (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Avaldatud GPL v2.0 litsentsi all."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS on Jim Hall'i kaubamärk," 2001-2022
+
+# Help screen
+HELP_0="kasutamine: SETUP.BAT [valikud] [sihtkoht]"
+HELP_1=""
+HELP_2="  [valikuteta]    installimine vaikeväärtustega"
+HELP_3=
+HELP_4="  adv             käivita installimine täiustatud režiimis (rohkem küsimusi)"
+HELP_5=
+HELP_6="  auto            täisautomaatne installimine ilma küsimusteta." /p/r18/c32 "see pole soovitatav ja seda peaks kasutama ainult riistvaral," /p/r18/c32 "kus puudub eelnev operatsioonisüsteem."
+HELP_7=
+HELP_8="  [sihtkoht]      määra ketas ja/või tee installimiseks"
+HELP_9=
+HELP_10="  info            kuva installija seaded ja välju"
+HELP_11=
+HELP_12="  mbr             sunni MBR-i uuendamine ja välju"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRIITILINE viga:" /fGray /c32
+ERROR_NoHDD="Ei leidnud partitsioneeritud ja vormindatud kõvaketast."
+ERROR_MINOR=/fLightRed "viga:" /fGray /c32
+ERROR_Option="Tundmatu või vigane käsurea valik" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Süsteemi põhikonfiguratsiooni ja teid ei suudetud tuvastada."
+ERROR_NotFreeCOM="See batch-fail vajab FreeCOM-i või ühilduvat FreeDOS-i kesta."
+ERROR_MissingFreeCOM="FreeDOS-i käsukesta FreeCOM ei leitud."
+ERROR_MissingAUTOEXEC="FreeDOS-i käivitusfaili FDAUTO.BAT ei leitud."
+ERROR_MakeDir="Kataloogi loomine ebaõnnestus:" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Käivitus- ja/või konfiguratsioonifailide varundamine ebaõnnestus."
+ERROR_BackupOS="Failide varundamine sihtkataloogis ebaõnnestus."
+ERROR_Partition="Tekkis partitsioneerimise viga. Kõvaketas ei pruugi olla" /p "ühendatud või on praeguse süsteemi jaoks nähtamatu." /p /p "Vajalik on teistsugune partitsioneerimise meetod."
+ERROR_NoPartition="Ketta" /fWhite %1 /fGray /s- " BIOS-partitsiooni ei leitud." /s+ /p "Soovitatav on manuaalne install (või täiustatud režiim ilma sunnitud MBR-ita)."
+ERROR_Format="Viga ketta" /fWhite %1 /fGray /s- " vormindamisel." /s+ /p /p "Vormindamiseks on vajalik teistsugune protsess."
+ERROR_FileSystem="Ajutise mälu initsialiseerimine kettal" /fWhite %1 /s- /fGray " ebaõnnestus."
+ERROR_CfgBackup="Varukoopia kataloogi konfigureerimine ebaõnnestus."
+ERROR_MBRBackup="Ketta" /fWhite %1 /fGray /s- " Master Boot Recordi varundamine ebaõnnestus."
+ERROR_SysFiles="Süsteemifailide kopeerimine kettale" /fWhite %1 /fGray /s- " ebaõnnestus."
+ERROR_BootSector="Ketta" /fWhite %1 /fGray /s- " käivitussektori uuendamine ebaõnnestus."
+ERROR_MBRUpdate="Ketta" /fWhite %1 /fGray /s- " Master Boot Recordi uuendamine ebaõnnestus."
+ERROR_Activate="Ketta" /fWhite %1 /fGray " määramine käivituspartitsiooniks" /fWhite %2 /fGray /s- " ebaõnnestus."
+ERROR_CfgFiles="Uute konfiguratsioonifailide installimine kettale" /fWhite %1 /fGray /s- " ebaõnnestus."
+ERROR_XfrFiles="Vajaliku installifaili kopeerimine asukohta" /fWhite %1 /fGray /s- " ebaõnnestus."
+ERROR_SAF="Tõrge arhiivi" /fWhite %1 /fGray " lahtipakkimisel."
+ERROR_WTF="Lihtsa toimingu ajal tekkis tundmatu ja ebatõenäoline viga."
+
+
+
+
+
+
+
+Litauisch (LT)
+(Reset: CP 775 | Tasten: T/N (Taip/Ne) | V/S/N (Visa/Sparti/Ne))
+
+
+# Language: Lithuanian
+# File ending: LT
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Sveiki atvykę į" /fLightGreen %1 /fCyan %2 /fGray "diegimo programą!"
+WELCOME_ADV="Sveiki atvykę į" /fLightRed "išplėstinę" /fGray "diegimo programą sistemai" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "yra pilna operacinė sistema. Jei pasirinksite ją diegti į" /p "savo kompiuterį, galite " /fLightRed /BlinkOn "perrašyti" /BlinkOff /fGray "šiuo metu turimą operacinę sistemą" /p "(pavyzdžiui, Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Jei tai ne jūsų ketinimas, prašome" /fLightRed "sustoti DABAR!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Ar norite tęsti" /c32
+REBOOT=/p "Ar norite dabar paleisti iš naujo" /c32
+
+AUTO_YES="[T,N]?" /fWhite "T" /fGray
+AUTO_NO="[T,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[V,S,N]?" /fWhite "S" /fGray
+
+PROMPT_YESNO=/s TN
+PROMPT_FMT=/s VSN
+
+ABORTED=/fLightRed "Sistemos" %1 %2 "diegimas buvo nutrauktas." /e /fGray /bBlack
+
+PARTITION_AUTO="Automatiškai skaidyti diską" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "PASTABA:" /fGray "Sistemai KERNL86 reikalingas mažesnis nei 2GB FAT16 skaidinys."
+PARTITION_MBR="Atnaujinti Master Boot Record diske" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Nustatyti disko" /fWhite %1 /fGray "skaidinį kaip aktyvų."
+PARTITION_DONE=/p "Turite iš naujo paleisti kompiuterį, kad naujas skaidymas įsigaliotų."
+
+FORMAT="Diskas" /fWhite %1 /fGray "atrodo nesuformatuotas."
+FORMAT_DEF="Ar norite suformatuoti savo diską" /c32
+FORMAT_ADV="Kaip norite suformatuoti savo diską" /s- /c32 ( /fWhite "V" /fGray "isa," /c32 /fWhite "S" /fGray "parti," /c32 /fWhite "N" /fGray "e)" /c32
+
+FILESYSTEM_TEST="Tikrinama failų sistema diske" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Įdėkite diskelį" /fWhite #%1 /fGray (%2) "į" /fWhite %3 /fGray "."
+PRESS_KEY="Paspauskite bet kurį klavišą, kad tęstumėte."
+
+TARGET_ASK="Kur norite įdiegti" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Pasirinktas neteisingas diskas. Negalima diegti į lankstųjį diskelį."
+
+CHANGE_PATH="Kelias" /fWhite %1 /fGray "jau egzistuoja." /p "Ar norite pakeisti diegimo katalogą" /c32
+
+BACKUP_OLD="Diske" /fWhite %1 /fGray "aptikta ankstesnė operacinė sistema." /s+ /p "Ar norite padaryti senų failų atsarginę kopiją prieš diegimą" /c32
+BACKUP_ASK="Kur norite patalpinti atsarginių kopijų failus?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Pasirinkta neteisinga vieta. Negalima sukurti atsarginės kopijos šioje vietoje." /fGray
+
+DELETE_OLD="Esami failai" /fWhite %1 /fGray "kataloge gali būti tiesiog perrašyti." /p "Ar norite visiškai ištrinti seną katalogą prieš diegimą" /c32
+
+FORCE_MBR="Priverstinai atnaujinti Master Boot Record diske" /fWhite %1 /fGray /c32
+SYS_FILES="Įdiegti naujus sistemos paleidimo failus diske" /fWhite %1 /fGray /c32
+CFG_FILES="Pakeisti sistemos konfigūracijos failus diske" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Diegimo nustatymai:" /p
+STATUS_CPU=/r4/c32 "Platforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Diegti iš" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Tikslinis diskas" /fWhite %1 /fGray (diskas %2, skaidinys %3)
+STATUS_DOS=/r4/c32 "DOS diegimo kelias" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Atsarginė senos OS kopija" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Senos OS katalogas" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Įdiegti naują MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopijuoti sistemos failus" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopijuoti konfigūracijos failus" /fWhite %1 /fGray
+
+INSTALL_NOW="Esame pasiruošę diegti" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Sistemos" /fLightGreen %1 /fCyan %2 /fGray "failų išpakavimas."
+UPDATE_LST="Atnaujinti paketų sąrašo failus." /p
+
+DO_BACKUP="Kuriama ankstesnės OS failų atsarginė kopija į" /fWhite %1 /fGray /s- .
+DO_ERASE="Ištrinti seną" /fWhite %1 /fGray " katalogą ir failus."
+DO_SYSFILES="Perkelti naujus sistemos failus į diską" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Priverstinai atnaujinti MBR diske" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Nustatyti aktyvų paleidimo skaidinį diske" /fWhite %1 /fGray "skaidiniui" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Perkelti naujus konfigūracijos failus į diską" /fWhite %1 /fGray /s- .
+DO_PREPARE="Ruošiamasi diegti vykdomuosius failus ir paslaugų programas."
+DO_INSTALL="Įdiegti" /fLightGreen %1 /fGray "failus sistemai" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Sistemos" /fLightGreen %1 /fCyan %2 /fGray "diegimas baigtas."
+REBOOT_NOW="Ar norite dabar paleisti iš naujo" /c32
+
+REMOVE_MEDIA="Turėtumėte išimti visus diskelius ir CD laikmenas."
+
+SUCCESS=/fLightGreen "Sėkmingai." /fGray
+FAILED=/fLightRed "Nepavyko." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Diegimo programa (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Išleista pagal GPL v2.0 licenciją."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS yra Jim Hall prekės ženklas," 2001-2022
+
+# Help screen
+HELP_0="naudojimas: SETUP.BAT [parinktys] [tikslas]"
+HELP_1=""
+HELP_2="  [be parinkčių]  atlikti diegimą naudojant numatytuosius nustatymus"
+HELP_3=
+HELP_4="  adv             pradėti diegimą išplėstiniu režimu (daugiau užklausų)"
+HELP_5=
+HELP_6="  auto            atlikti pilnai automatizuotą diegimą be jokių užklausų." /p/r18/c32 "tai nerekomenduojama ir turėtų būti naudojama tik įrangoje" /p/r18/c32 "be iš anksto esančios operacinės sistemos."
+HELP_7=
+HELP_8="  [tikslas]       iš anksto nustatyti diską ir (arba) kelią diegimui"
+HELP_9=
+HELP_10="  info            parodyti diegimo programos konfigūraciją ir išeiti"
+HELP_11=
+HELP_12="  mbr             priverstinai atnaujinti MBR ir išeiti"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITINĖ klaida:" /fGray /c32
+ERROR_NoHDD="Nepavyko rasti suformuoto ir suskaidyto standžiojo disko."
+ERROR_MINOR=/fLightRed "klaida:" /fGray /c32
+ERROR_Option="Nežinoma arba neteisinga komandų eilutės parinktis" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Nepavyko nustatyti pagrindinės sistemos konfigūracijos ir kelio nustatymų."
+ERROR_NotFreeCOM="Šiam batch failui reikalinga FreeCOM arba suderinama FreeDOS aplinka."
+ERROR_MissingFreeCOM="Nepavyko rasti FreeDOS komandų aplinkos FreeCOM."
+ERROR_MissingAUTOEXEC="Nepavyko rasti FreeDOS paleidimo failo FDAUTO.BAT."
+ERROR_MakeDir="Nepavyko sukurti katalogo" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Nepavyko padaryti paleidimo ir (arba) konfigūracijos failų atsarginės kopijos."
+ERROR_BackupOS="Nepavyko padaryti failų atsarginės kopijos tiksliniame kataloge."
+ERROR_Partition="Įvyko skaidymo klaida. Standusis diskas gali būti neprijungtas" /p "arba nematomas dabartinei operacinei sistemai." /p /p "Reikalingas kitas skaidymo metodas."
+ERROR_NoPartition="Nepavyko rasti BIOS skaidinio diskui" /fWhite %1 /fGray /s- . /s+ /p "Rekomenduojamas rankinis diegimas (arba išplėstinis režimas be priverstinio MBR)."
+ERROR_Format="Bandant suformatuoti diską" /fWhite %1 /fGray /s- " įvyko klaida." /s+ /p /p "Formatavimui prireiks kito proceso."
+ERROR_FileSystem="Nepavyko inicijuoti laikiną vietą diske" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Nepavyko sukonfigūruoti atsarginių kopijų katalogo."
+ERROR_MBRBackup="Nepavyko sukurti Master Boot Record atsarginės kopijos diskui" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Nepavyko nukopijuoti sistemos failų į diską" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Nepavyko atnaujinti disko" /fWhite %1 /fGray /s- " paleidimo sektoriaus."
+ERROR_MBRUpdate="Nepavyko atnaujinti disko" /fWhite %1 /fGray /s- " Master Boot Record."
+ERROR_Activate="Nepavyko nustatyti disko" /fWhite %1 /fGray " kaip paleidimo skaidinio" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Nepavyko įdiegti naujų konfigūracijos failų diske" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Nepavyko nukopijuoti reikiamo diegimo failo į" /fWhite %1 /fGray /s- .
+ERROR_SAF="Išpakuojant" /fWhite %1 /fGray " archyvą iškilo problema."
+ERROR_WTF="Atliekant paprastą operaciją įvyko nežinoma ir neįtikėtina klaida."
+
+
+
+
+
+
+Lettisch (LV)
+(Reset: CP 775 | Tasten: J/N (Jā/Nē) | P/A/N (Pilna/Ātra/Nē))
+
+
+# Language: Latvian
+# File ending: LV
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Laipni lūdzam" /fLightGreen %1 /fCyan %2 /fGray "instalācijas programmā!"
+WELCOME_ADV="Laipni lūdzam" /fLightRed "paplašinātajā" /fGray "instalatorā priekš" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "ir pilna operētājsistēma. Ja izvēlēsieties to instalēt savā" /p "datorā, jūs varat " /fLightRed /BlinkOn "pārrakstīt" /BlinkOff /fGray "pašreizējo operētājsistēmu" /p "(piemēram, Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Ja tas nav jūsu nodoms, lūdzu," /fLightRed "apstājieties TAGAD!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Vai vēlaties turpināt" /c32
+REBOOT=/p "Vai vēlaties restartēt tagad" /c32
+
+AUTO_YES="[J,N]?" /fWhite "J" /fGray
+AUTO_NO="[J,N]?" /fWhite "N" /fGray
+AUTO_FMT=/s- "[P,A,N]?" /fWhite "A" /fGray
+
+PROMPT_YESNO=/s JN
+PROMPT_FMT=/s PAN
+
+ABORTED=/fLightRed "Sistēmas" %1 %2 "instalācija ir pārtraukta." /e /fGray /bBlack
+
+PARTITION_AUTO="Automātiski sadalīt disku" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "PIEZĪME:" /fGray "Sistēmai KERNL86 ir nepieciešama FAT16 partīcija, kas mazāka par 2GB."
+PARTITION_MBR="Atjaunināt Master Boot Record diskā" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Iestatīt diska" /fWhite %1 /fGray "partīciju kā aktīvu."
+PARTITION_DONE=/p "Jums ir jārestartē dators, lai jaunais sadalījums stātos spēkā."
+
+FORMAT="Disks" /fWhite %1 /fGray "nešķiet formatēts."
+FORMAT_DEF="Vai vēlaties formatēt disku" /c32
+FORMAT_ADV="Kā vēlaties formatēt disku" /s- /c32 ( /fWhite "P" /fGray "ilna," /c32 /fWhite "A" /fGray "tra," /c32 /fWhite "N" /fGray "ē)" /c32
+
+FILESYSTEM_TEST="Failu sistēmas pārbaude diskā" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Ievietojiet disketi" /fWhite #%1 /fGray (%2) "ierīcē" /fWhite %3 /fGray "."
+PRESS_KEY="Nospiediet jebkuru taustiņu, lai turpinātu."
+
+TARGET_ASK="Kur vēlaties instalēt" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Pieprasīts nederīgs disks. Nevar instalēt disketē."
+
+CHANGE_PATH="Ceļš" /fWhite %1 /fGray "jau eksistē." /p "Vai vēlaties mainīt instalācijas direktoriju" /c32
+
+BACKUP_OLD="Diskā" /fWhite %1 /fGray "tika atrasta iepriekšējā operētājsistēma." /s+ /p "Vai vēlaties pirms instalēšanas dublēt vecos failus" /c32
+BACKUP_ASK="Kur vēlaties novietot dublējuma failus?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Pieprasīts nederīgs mērķis. Dublējumu šajā vietā nevar izveidot." /fGray
+
+DELETE_OLD="Esošie faili" /fWhite %1 /fGray "katalogā var tikt vienkārši pārrakstīti." /p "Vai vēlaties pirms instalēšanas pilnībā izdzēst veco direktoriju" /c32
+
+FORCE_MBR="Piespiest Master Boot Record atjaunināšanu diskā" /fWhite %1 /fGray /c32
+SYS_FILES="Instalēt jaunus sistēmas sāknēšanas failus diskā" /fWhite %1 /fGray /c32
+CFG_FILES="Aizstāt sistēmas konfigurācijas failus diskā" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Instalācijas iestatījumi:" /p
+STATUS_CPU=/r4/c32 "Platforma (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Instalēt no" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Mērķa disks" /fWhite %1 /fGray (disks %2, partīcija %3)
+STATUS_DOS=/r4/c32 "DOS instalācijas ceļš" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Dublēt iepriekšējo OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Iepr. OS direktorija" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Instalēt jaunu MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopēt sistēmas failus" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopēt konfigurācijas failus" /fWhite %1 /fGray
+
+INSTALL_NOW="Tagad mēs esam gatavi instalēt" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Sistēmas" /fLightGreen %1 /fCyan %2 /fGray "failu atarhivēšana."
+UPDATE_LST="Atjaunināt pakotņu saraksta failus." /p
+
+DO_BACKUP="Tiek veidots iepriekšējās OS failu dublējums uz" /fWhite %1 /fGray /s- .
+DO_ERASE="Dzēst veco" /fWhite %1 /fGray " direktoriju un failus."
+DO_SYSFILES="Pārsūtīt jaunos sistēmas failus uz disku" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Piespiest MBR atjaunināšanu diskā" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Iestatīt aktīvo sāknēšanas partīciju diskā" /fWhite %1 /fGray "partīcijai" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Pārsūtīt jaunos konfigurācijas failus uz disku" /fWhite %1 /fGray /s- .
+DO_PREPARE="Sagatavošanās izpildāmo failu un utilītu instalēšanai."
+DO_INSTALL="Instalēt" /fLightGreen %1 /fGray "failus priekš" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Sistēmas" /fLightGreen %1 /fCyan %2 /fGray "instalācija ir pabeigta."
+REBOOT_NOW="Vai vēlaties restartēt tagad" /c32
+
+REMOVE_MEDIA="Jums vajadzētu izņemt visas disketes un CD datu nesējus."
+
+SUCCESS=/fLightGreen "Sekmīgi." /fGray
+FAILED=/fLightRed "Neizdevās." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Instalators (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Izlaists saskaņā ar GPL v2.0 licenci."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS ir Jim Hall preču zīme," 2001-2022
+
+# Help screen
+HELP_0="lietošana: SETUP.BAT [opcijas] [mērķis]"
+HELP_1=""
+HELP_2="  [bez opcijām]  veikt iestatīšanu, izmantojot noklusējuma vērtības"
+HELP_3=
+HELP_4="  adv            sākt iestatīšanu paplašinātā režīmā (vairāk jautājumu)"
+HELP_5=
+HELP_6="  auto           veikt pilnībā automatizētu instalāciju bez jautājumiem." /p/r18/c32 "tas nav ieteicams un būtu jāizmanto tikai aparatūrai" /p/r18/c32 "bez iepriekšējas operētājsistēmas."
+HELP_7=
+HELP_8="  [mērķis]       iepriekš iestatīt disku un/vai ceļu mērķa instalācijai"
+HELP_9=
+HELP_10="  info           parādīt instalatora iestatījumus un iziet"
+HELP_11=
+HELP_12="  mbr            piespiest MBR atjaunināšanu un iziet"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRITISKA kļūda:" /fGray /c32
+ERROR_NoHDD="Nevarēja atrast sadalītu un formatētu cieto disku."
+ERROR_MINOR=/fLightRed "kļūda:" /fGray /c32
+ERROR_Option="Nezināma vai nederīga komandrindas opcija" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Nevarēja noteikt pamata sistēmas konfigurāciju un ceļu iestatījumus."
+ERROR_NotFreeCOM="Šai batch failam nepieciešams FreeCOM vai saderīga FreeDOS čaula."
+ERROR_MissingFreeCOM="Nevarēja atrast FreeDOS komandu čaulu FreeCOM."
+ERROR_MissingAUTOEXEC="Nevarēja atrast FreeDOS sāknēšanas failu FDAUTO.BAT."
+ERROR_MakeDir="Nevarēja izveidot direktoriju" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Nevarēja dublēt sāknēšanas un/vai konfigurācijas failus."
+ERROR_BackupOS="Nevarēja dublēt failus mērķa direktorijā."
+ERROR_Partition="Notika sadalīšanas kļūda. Cietais disks var nebūt pieejams" /p "vai var būt neredzams pašreizējai operētājsistēmai." /p /p "Nepieciešama cita sadalīšanas metode."
+ERROR_NoPartition="Nevarēja atrast BIOS partīciju priekš" /fWhite %1 /fGray /s- . /s+ /p "Ieteicams veikt manuālu instalāciju (vai paplašināto režīmu bez piespiedu MBR)."
+ERROR_Format="Mēģinot formatēt disku" /fWhite %1 /fGray /s- " radās kļūda." /s+ /p /p "Formatēšanai būs nepieciešams cits process."
+ERROR_FileSystem="Nevarēja inicializēt pagaidu vietu diskā" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Nevarēja konfigurēt dublējuma direktoriju."
+ERROR_MBRBackup="Nevarēja izveidot Master Boot Record dublējumu diskam" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Nevarēja nokopēt sistēmas failus uz disku" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Nevarēja atjaunināt sāknēšanas sektoru diskam" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Nevarēja atjaunināt MBR diskam" /fWhite %1 /fGray /s- .
+ERROR_Activate="Nevarēja iestatīt disku" /fWhite %1 /fGray "uz sāknēšanas partīciju" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Nevarēja instalēt jaunus konfigurācijas failus diskā" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Nevarēja dublēt nepieciešamo instalatora failu uz" /fWhite %1 /fGray /s- .
+ERROR_SAF="Izvelkot" /fWhite %1 /fGray " arhīvu, radās problēma."
+ERROR_WTF="Vienkāršas darbības laikā radās nezināma un mazticama kļūda."
+
+
+
+
+
+
+
+Ukrainisch (UK)
+(Reset: CP 1125 | Tasten: Т/Н (Так/Ні) | П/Ш/Н (Повна/Швидка/Ні) | Reinheitsgebot: і, ї, є, ґ. Kein russisches „и“)
+
+
+# Language: Ukrainian
+# File ending: UK
+# Codepage: 1125
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Ласкаво просимо до програми встановлення" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Ласкаво просимо до" /fLightRed "розширеної" /fGray "програми встановлення" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "— це повноцінна операційна система. Якщо ви вирішите встановити її" /p "на свій комп'ютер, ви можете " /fLightRed /BlinkOn "перезаписати" /BlinkOff /fGray "операційну систему, яка у вас є зараз" /p "(наприклад, Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Якщо це не є вашим наміром, будь ласка," /fLightRed "зупиніться ЗАРАЗ!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Бажаєте продовжити" /c32
+REBOOT=/p "Бажаєте перезавантажити зараз" /c32
+
+AUTO_YES="[Т,Н]?" /fWhite "Т" /fGray
+AUTO_NO="[Т,Н]?" /fWhite "Н" /fGray
+AUTO_FMT=/s- "[П,Ш,Н]?" /fWhite "Ш" /fGray
+
+PROMPT_YESNO=/s ТН
+PROMPT_FMT=/s ПШН
+
+ABORTED=/fLightRed "Встановлення" %1 %2 "було перервано." /e /fGray /bBlack
+
+PARTITION_AUTO="Автоматично розмітити диск" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "ПРИМІТКА:" /fGray "Для KERNL86 потрібен розділ FAT16 розміром менше 2Гб."
+PARTITION_MBR="Оновити Master Boot Record на диску" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Встановити розділ диска" /fWhite %1 /fGray "як активний."
+PARTITION_DONE=/p "Ви повинні перезавантажити комп'ютер, щоб нова розмітка диска набрала чинності."
+
+FORMAT="Диск" /fWhite %1 /fGray "не виглядає відформатованим."
+FORMAT_DEF="Бажаєте відформатувати ваш диск" /c32
+FORMAT_ADV="Як ви бажаєте відформатувати ваш диск" /s- /c32 ( /fWhite "П" /fGray "овно," /c32 /fWhite "Ш" /fGray "видко," /c32 /fWhite "Н" /fGray "і)" /c32
+
+FILESYSTEM_TEST="Перевірка файлової системи на диску" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Вставте дискету" /fWhite #%1 /fGray (%2) "у" /fWhite %3 /fGray "."
+PRESS_KEY="Натисніть будь-яку клавішу для продовження."
+
+TARGET_ASK="Куди ви бажаєте встановити" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Запитано недійсний диск. Неможливо встановити на дискету."
+
+CHANGE_PATH="Шлях" /fWhite %1 /fGray "вже існує." /p "Бажаєте змінити каталог встановлення" /c32
+
+BACKUP_OLD="На диску" /fWhite %1 /fGray "виявлено попередню операційну систему." /s+ /p "Бажаєте створити резервну копію старих файлів перед встановленням" /c32
+BACKUP_ASK="Куди ви бажаєте помістити файли резервної копії?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Запитано недійсне призначення. Неможливо створити резервну копію в цьому місці." /fGray
+
+DELETE_OLD="Наявні файли в" /fWhite %1 /fGray "можуть бути просто перезаписані." /p "Бажаєте повністю стерти старий каталог перед встановленням" /c32
+
+FORCE_MBR="Примусово оновити Master Boot Record на диску" /fWhite %1 /fGray /c32
+SYS_FILES="Встановити нові завантажувальні файли системи на диск" /fWhite %1 /fGray /c32
+CFG_FILES="Замінити файли конфігурації системи на диску" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Налаштування встановлення:" /p
+STATUS_CPU=/r4/c32 "Платформа (ЦП)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Встановити з" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Цільовий диск" /fWhite %1 /fGray (диск %2, розділ %3)
+STATUS_DOS=/r4/c32 "Шлях встановлення DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Бекап попередньої ОС" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Каталог попередньої ОС" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Встановити новий MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Копіювати системні файли" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Копіювати конфігураційні файли" /fWhite %1 /fGray
+
+INSTALL_NOW="Тепер ми готові до встановлення" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Видобування файлів" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Оновити файли списку пакетів." /p
+
+DO_BACKUP="Створення резервної копії файлів попередньої ОС до" /fWhite %1 /fGray /s- .
+DO_ERASE="Видалити старий" /fWhite %1 /fGray " каталог та файли."
+DO_SYSFILES="Перенесення нових системних файлів на диск" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Примусове оновлення MBR на диску" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Встановити активний завантажувальний розділ на диску" /fWhite %1 /fGray "для розділу" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Перенесення нових файлів конфігурації на диск" /fWhite %1 /fGray /s- .
+DO_PREPARE="Підготовка до встановлення виконуваних файлів та утиліт."
+DO_INSTALL="Встановити" /fLightGreen %1 /fGray "файли для" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Встановлення" /fLightGreen %1 /fCyan %2 /fGray "завершено."
+REBOOT_NOW="Бажаєте перезавантажити зараз" /c32
+
+REMOVE_MEDIA="Ви повинні вийняти всі дискети та CD-носії."
+
+SUCCESS=/fLightGreen "Успішно." /fGray
+FAILED=/fLightRed "Помилка." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Програма встановлення (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Випущено за ліцензією GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS є торговою маркою Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="використання: SETUP.BAT [опції] [ціль]"
+HELP_1=""
+HELP_2="  [без опцій]    виконати встановлення за замовчуванням"
+HELP_3=
+HELP_4="  adv             запустити встановлення в розширеному режимі (більше запитів)"
+HELP_5=
+HELP_6="  auto            виконати повністю автоматичне встановлення без запитів." /p/r18/c32 "це не рекомендується і має використовуватися лише на залізі" /p/r18/c32 "без попередньо встановленої операційної системи."
+HELP_7=
+HELP_8="  [ціль]          заздалегідь встановити диск та/або шлях для встановлення"
+HELP_9=
+HELP_10="  info            показати конфігурацію програми встановлення та вийти"
+HELP_11=
+HELP_12="  mbr             примусово оновити MBR та вийти"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "КРИТИЧНА помилка:" /fGray /c32
+ERROR_NoHDD="Не вдалося знайти розмічений та відформатований жорсткий диск."
+ERROR_MINOR=/fLightRed "помилка:" /fGray /c32
+ERROR_Option="Невідома або недійсна опція командного рядка" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Не вдалося визначити основну конфігурацію системи та налаштування шляхів."
+ERROR_NotFreeCOM="Цей пакетний файл потребує FreeCOM або сумісну оболонку для FreeDOS."
+ERROR_MissingFreeCOM="Не вдалося знайти командну оболонку FreeDOS FreeCOM."
+ERROR_MissingAUTOEXEC="Не вдалося знайти файл автозапуску FreeDOS FDAUTO.BAT."
+ERROR_MakeDir="Не вдалося створити каталог" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Не вдалося створити резервну копію завантажувальних та/або конфігураційних файлів."
+ERROR_BackupOS="Не вдалося створити резервну копію файлів у цільовому каталозі."
+ERROR_Partition="Виникла помилка розмітки диска. Жорсткий диск може бути відсутнім" /p "або бути невидимим для поточної операційної системи." /p /p "Потрібен інший метод розмітки диска."
+ERROR_NoPartition="Не вдалося знайти розділ BIOS для" /fWhite %1 /fGray /s- . /s+ /p "Рекомендується ручне встановлення (або розширений режим без примусового MBR)."
+ERROR_Format="Виникла помилка під час спроби відформатувати диск" /fWhite %1 /fGray /s- . /s+ /p /p "Для його форматування знадобиться інший процес."
+ERROR_FileSystem="Не вдалося ініціалізувати тимчасовий простір на диску" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Не вдалося налаштувати каталог резервного копіювання."
+ERROR_MBRBackup="Не вдалося створити резервну копію Master Boot Record для диска" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Не вдалося скопіювати системні файли на диск" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Не вдалося оновити завантажувальний сектор для диска" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Не вдалося оновити MBR для диска" /fWhite %1 /fGray /s- .
+ERROR_Activate="Не вдалося встановити диск" /fWhite %1 /fGray "як завантажувальний розділ" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Не вдалося встановити нові файли конфігурації на диск" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Не вдалося продублювати необхідний файл програми встановлення до" /fWhite %1 /fGray /s- .
+ERROR_SAF="Під час видобування архіву" /fWhite %1 /fGray " виникла проблема."
+ERROR_WTF="Сталася невідома та малоймовірна помилка під час простої операції."
+
+
+
+
+
+
+Serbisch (SR)
+(Reset: CP 855 | Tasten: Д/Н (Да/Не) | П/Б/Н (Пун/Брз/Не) | Ausschließlich Kyrillisch)
+
+
+# Language: Serbian
+# File ending: SR
+# Codepage: 855
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Добродошли у инсталациони програм за" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Добродошли у" /fLightRed "напредни" /fGray "инсталатер за" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "је потпуни оперативни систем. Ако изаберете да га инсталирате" /p "на свој рачунар, можете " /fLightRed /BlinkOn "преписати" /BlinkOff /fGray "оперативни систем који тренутно имате" /p "(на пример, Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Ако ово није ваша намера, молимо" /fLightRed "зауставите се САДА!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Желите ли да наставите" /c32
+REBOOT=/p "Желите ли сада да поново покренете систем" /c32
+
+AUTO_YES="[Д,Н]?" /fWhite "Д" /fGray
+AUTO_NO="[Д,Н]?" /fWhite "Н" /fGray
+AUTO_FMT=/s- "[П,Б,Н]?" /fWhite "Б" /fGray
+
+PROMPT_YESNO=/s ДН
+PROMPT_FMT=/s ПБН
+
+ABORTED=/fLightRed "Инсталација система" %1 %2 "је прекинута." /e /fGray /bBlack
+
+PARTITION_AUTO="Аутоматски партициониши диск" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "ОБАВЕШТЕЊЕ:" /fGray "За KERNL86 је потребна FAT16 партиција мања од 2Гб."
+PARTITION_MBR="Ажурирај Master Boot Record на диску" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Постави партицију диска" /fWhite %1 /fGray "као активну."
+PARTITION_DONE=/p "Морате поново покренути рачунар да би нова шема партиционисања ступила на снагу."
+
+FORMAT="Изгледа да диск" /fWhite %1 /fGray "није форматиран."
+FORMAT_DEF="Желите ли да форматирате свој диск" /c32
+FORMAT_ADV="Како желите да форматирате свој диск" /s- /c32 ( /fWhite "П" /fGray "ун," /c32 /fWhite "Б" /fGray "рз," /c32 /fWhite "Н" /fGray "е)" /c32
+
+FILESYSTEM_TEST="Тестирање фајл система на диску" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Уметните дискету" /fWhite #%1 /fGray (%2) "у" /fWhite %3 /fGray "."
+PRESS_KEY="Притисните било који тастер за наставак."
+
+TARGET_ASK="Где желите да инсталирате" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Затражен је неважећи диск. Инсталација на дискету није могућа."
+
+CHANGE_PATH="Путања" /fWhite %1 /fGray "већ постоји." /p "Желите ли да промените инсталациони директоријум" /c32
+
+BACKUP_OLD="На диску" /fWhite %1 /fGray "је откривен претходни оперативни систем." /s+ /p "Желите ли да резервно копирате старе датотеке пре инсталације" /c32
+BACKUP_ASK="Где желите да поставите резервне датотеке?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Затражено је неважеће одредиште. Резервна копија се не може направити на тој локацији." /fGray
+
+DELETE_OLD="Постојеће датотеке у" /fWhite %1 /fGray "могу се једноставно преписати." /p "Желите ли да потпуно обришете стари директоријум пре инсталације" /c32
+
+FORCE_MBR="Присили ажурирање Master Boot Record-а на диску" /fWhite %1 /fGray /c32
+SYS_FILES="Инсталирај нове системске боот датотеке на диск" /fWhite %1 /fGray /c32
+CFG_FILES="Замени системске конфигурационе датотеке на диску" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Подешавања инсталације:" /p
+STATUS_CPU=/r4/c32 "Платформа (ЦПУ)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Инсталирај са" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Одредишни диск" /fWhite %1 /fGray (диск %2, партиција %3)
+STATUS_DOS=/r4/c32 "Путања за DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Резервна копија ОС-а" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Директоријум претх. ОС-а" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Инсталирај нови MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Копирај системске датотеке" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Копирај конфигурационе датотеке" /fWhite %1 /fGray
+
+INSTALL_NOW="Сада смо спремни за инсталацију система" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Распакивање датотека система" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Ажурирај датотеке листе пакета." /p
+
+DO_BACKUP="Прављење резервне копије претходног ОС-а у" /fWhite %1 /fGray /s- .
+DO_ERASE="Обриши стари" /fWhite %1 /fGray " директоријум и датотеке."
+DO_SYSFILES="Пренос нових системских датотека на диск" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Присилно ажурирање MBR-а на диску" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Постави активну боот партицију на диску" /fWhite %1 /fGray "на партицију" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Пренос нових конфигурационих датотека на диск" /fWhite %1 /fGray /s- .
+DO_PREPARE="Припрема за инсталацију извршних датотека и утилита."
+DO_INSTALL="Инсталирај" /fLightGreen %1 /fGray "датотеке за" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Инсталација система" /fLightGreen %1 /fCyan %2 /fGray "је завршена."
+REBOOT_NOW="Желите ли сада да поново покренете систем" /c32
+
+REMOVE_MEDIA="Требало би да уклоните све дискете и ЦД медије."
+
+SUCCESS=/fLightGreen "Успешно." /fGray
+FAILED=/fLightRed "Неуспешно." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Инсталатер (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Објављено под GPL v2.0 лиценцом."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS је жиг Jim Hall-а," 2001-2022
+
+# Help screen
+HELP_0="употреба: SETUP.BAT [опције] [циљ]"
+HELP_1=""
+HELP_2="  [без опција]   изврши подешавање користећи подразумевано"
+HELP_3=
+HELP_4="  adv            покрени инсталацију у напредном режиму (више питања)"
+HELP_5=
+HELP_6="  auto           изврши потпуно аутоматизовану инсталацију без питања." /p/r18/c32 "ово се не препоручује и треба га користити само на хардверу" /p/r18/c32 "без постојећег оперативног система."
+HELP_7=
+HELP_8="  [циљ]          унапред постави диск и/или путању за инсталацију"
+HELP_9=
+HELP_10="  info           прикажи подешавања инсталатера и изађи"
+HELP_11=
+HELP_12="  mbr            присили ажурирање MBR-а и изађи"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "КРИТИЧНА грешка:" /fGray /c32
+ERROR_NoHDD="Није могуће пронаћи партиционисан и форматиран чврсти диск."
+ERROR_MINOR=/fLightRed "грешка:" /fGray /c32
+ERROR_Option="Непозната или неважећа опција командне линије" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Није могуће одредити основну системску конфигурацију и путање."
+ERROR_NotFreeCOM="Ова batch датотека захтева FreeCOM или компатибилну шкољку за FreeDOS."
+ERROR_MissingFreeCOM="Није могуће пронаћи FreeDOS командну шкољку FreeCOM."
+ERROR_MissingAUTOEXEC="Није могуће пронаћи FreeDOS стартну датотеку FDAUTO.BAT."
+ERROR_MakeDir="Није могуће креирати директоријум" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Није могуће резервно копирати боот и/или конфиг датотеке."
+ERROR_BackupOS="Није могуће резервно копирати датотеке у одредишном директоријуму."
+ERROR_Partition="Дошло је до грешке при партиционисању. Чврсти диск можда није" /p "присутан или је невидљив за тренутни оперативни систем." /p /p "Потребан је другачији метод партиционисања."
+ERROR_NoPartition="Није могуће пронаћи BIOS партицију за" /fWhite %1 /fGray /s- . /s+ /p "Препоручује се ручна инсталација (или напредни режим без присилног MBR-а)."
+ERROR_Format="Дошло је до грешке при покушају форматирања диска" /fWhite %1 /fGray /s- . /s+ /p /p "Биће потребан другачији процес за форматирање."
+ERROR_FileSystem="Није могуће иницијализовати привремени простор на диску" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Није могуће конфигурисати резервни директоријум."
+ERROR_MBRBackup="Није могуће направити резервну копију MBR-а за диск" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Није могуће копирати системске датотеке на диск" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Није могуће ажурирати боот сектор за диск" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Није могуће ажурирати боот сектор за диск" /fWhite %1 /fGray /s- .
+ERROR_Activate="Није могуће поставити диск" /fWhite %1 /fGray "на боот партицију" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Није могуће инсталирати нове конфигурационе датотеке на диск" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Није могуће дуплирати потребну инсталациону датотеку у" /fWhite %1 /fGray /s- .
+ERROR_SAF="Проблем се појавио приликом распакивања" /fWhite %1 /fGray " архиве."
+ERROR_WTF="Дошло је до непознате и невероватне грешке током једноставне операције."
+
+
+
+
+
+# Language: Russian
+# File ending: RU
+# Codepage: 866
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Добро пожаловать в программу установки" /fLightGreen %1 /fCyan %2 /fGray "."
+WELCOME_ADV="Добро пожаловать в" /fLightRed "расширенный" /fGray "установщик для" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "— это полноценная операционная система. Если вы решите установить её" /p "на свой компьютер, вы можете " /fLightRed /BlinkOn "перезаписать" /BlinkOff /fGray "операционную систему, которая у вас сейчас" /p "(например, Windows.)" /fGray
+WELCOME_2=/fGray /c32 "Если это не входит в ваши намерения, пожалуйста," /fLightRed "остановитесь СЕЙЧАС!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Хотите ли вы продолжить" /c32
+REBOOT=/p "Хотите ли вы перезагрузить систему сейчас" /c32
+
+AUTO_YES="[Д,Н]?" /fWhite "Д" /fGray
+AUTO_NO="[Д,Н]?" /fWhite "Н" /fGray
+AUTO_FMT=/s- "[П,Б,Н]?" /fWhite "Б" /fGray
+
+PROMPT_YESNO=/s ДН
+PROMPT_FMT=/s ПБН
+
+ABORTED=/fLightRed "Установка %1 %2 была прервана." /e /fGray /bBlack
+
+PARTITION_AUTO="Автоматическая разметка диска" /fWhite %1 /s- /fGray .
+PARTITION_WARN=/fYellow "УВЕДОМЛЕНИЕ:" /fGray "Для KERNL86 требуется раздел FAT16 объемом менее 2 ГБ."
+PARTITION_MBR="Обновление Master Boot Record на диске" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Установить раздел диска" /fWhite %1 /fGray "как активный."
+PARTITION_DONE=/p "Вы должны перезагрузить компьютер, чтобы новая схема разметки вступила в силу."
+
+FORMAT="Диск" /fWhite %1 /fGray "не выглядит отформатированным."
+FORMAT_DEF="Хотите отформатировать ваш диск" /c32
+FORMAT_ADV="Как вы хотите отформатировать ваш диск" /s- /c32 ( /fWhite "П" /fGray "олное," /c32 /fWhite "Б" /fGray "ыстрое," /c32 /fWhite "Н" /fGray "ет)" /c32
+
+FILESYSTEM_TEST="Проверка файловой системы на диске" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Вставьте дискету" /fWhite #%1 /fGray (%2) "в" /fWhite %3 /fGray "."
+PRESS_KEY="Нажмите любую клавишу для продолжения."
+
+TARGET_ASK="Куда вы хотите установить" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Запрошен неверный диск. Невозможно установить на дискету."
+
+CHANGE_PATH="Путь" /fWhite %1 /fGray "уже существует." /p "Хотите ли вы изменить каталог установки" /c32
+
+BACKUP_OLD="На диске" /fWhite %1 /fGray "обнаружена предыдущая операционная система." /s+ /p "Хотите ли вы сделать резервную копию старых файлов перед установкой" /c32
+BACKUP_ASK="Куда вы хотите поместить файлы резервной копии?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Запрошено неверное место назначения. Невозможно сделать резервную копию в этом месте." /fGray
+
+DELETE_OLD="Существующие файлы в" /fWhite %1 /fGray "могут быть просто перезаписаны." /p "Хотите ли вы полностью стереть старый каталог перед установкой" /c32
+
+FORCE_MBR="Принудительное обновление Master Boot Record на диске" /fWhite %1 /fGray /c32
+SYS_FILES="Установить новые файлы системной загрузки на диск" /fWhite %1 /fGray /c32
+CFG_FILES="Заменить файлы конфигурации системы на диске" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Настройки установки:" /p
+STATUS_CPU=/r4/c32 "Платформа (ЦП)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Установка из" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Целевой диск" /fWhite %1 /fGray (диск %2, раздел %3)
+STATUS_DOS=/r4/c32 "Путь установки DOS" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Бекап пред. ОС" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Каталог пред. ОС" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Установить новый MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Копировать системные файлы" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Копировать конфигурационные файлы" /fWhite %1 /fGray
+
+INSTALL_NOW="Теперь мы готовы к установке" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Извлечение файлов из" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Обновление файлов списка пакетов." /p
+
+DO_BACKUP="Создание резервной копии файлов предыдущей ОС в" /fWhite %1 /fGray /s- .
+DO_ERASE="Удаление старого каталога" /fWhite %1 /fGray " и файлов."
+DO_SYSFILES="Перенос новых системных файлов на диск" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Принудительное обновление MBR на диске" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Установить активный загрузочный раздел на диске" /fWhite %1 /fGray "для раздела" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Перенос новых конфигурационных файлов на диск" /fWhite %1 /fGray /s- .
+DO_PREPARE="Подготовка к установке исполняемых файлов и утилит."
+DO_INSTALL="Установка файлов" /fLightGreen %1 /fGray "для" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Установка %1 %2 завершена."
+REBOOT_NOW="Хотите ли вы перезагрузить систему сейчас" /c32
+
+REMOVE_MEDIA="Вам следует извлечь все дискеты и CD-носители."
+
+SUCCESS=/fLightGreen "Успешно." /fGray
+FAILED=/fLightRed "Ошибка." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Установщик (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Выпущено под лицензией GPL v2.0."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS является товарным знаком Jim Hall," 2001-2022
+
+# Help screen
+HELP_0="использование: SETUP.BAT [опции] [цель]"
+HELP_1=""
+HELP_2="  [без опций]    выполнить установку по умолчанию"
+HELP_3=
+HELP_4="  adv            запустить установку в расширенном режиме (больше вопросов)"
+HELP_5=
+HELP_6="  auto           выполнить полностью автоматическую установку без вопросов." /p/r18/c32 "это не рекомендуется и должно использоваться только на железе" /p/r18/c32 "без ранее установленной операционной системы."
+HELP_7=
+HELP_8="  [цель]         заранее задать диск и/или путь для установки"
+HELP_9=
+HELP_10="  info           показать конфигурацию установщика и выйти"
+HELP_11=
+HELP_12="  mbr            принудительно обновить MBR и выйти"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "КРИТИЧЕСКАЯ ошибка:" /fGray /c32
+ERROR_NoHDD="Не удалось найти размеченный и отформатированный жесткий диск."
+ERROR_MINOR=/fLightRed "ошибка:" /fGray /c32
+ERROR_Option="Неизвестная или неверная опция командной строки" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Не удалось определить базовую конфигурацию системы и пути."
+ERROR_NotFreeCOM="Этот пакетный файл требует FreeCOM или совместимую оболочку для FreeDOS."
+ERROR_MissingFreeCOM="Не удалось найти командную оболочку FreeDOS FreeCOM."
+ERROR_MissingAUTOEXEC="Не удалось найти файл автозагрузки FreeDOS FDAUTO.BAT."
+ERROR_MakeDir="Не удалось создать каталог" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Не удалось создать резервную копию файлов загрузки и/или конфигурации."
+ERROR_BackupOS="Не удалось создать резервную копию файлов в целевом каталоге."
+ERROR_Partition="Произошла ошибка разметки. Жесткий диск может отсутствовать" /p "или быть невидимим для текущей операционной системы." /p /p "Требуется другой метод разметки диска."
+ERROR_NoPartition="Не удалось найти BIOS-раздел для" /fWhite %1 /fGray /s- . /s+ /p "Рекомендуется ручная установка (или расширенный режим без принудительного MBR)."
+ERROR_Format="Произошла ошибка при попытке отформатировать диск" /fWhite %1 /fGray /s- . /s+ /p /p "Для форматирования потребуется другой процесс."
+ERROR_FileSystem="Не удалось инициализировать временное пространство на диске" /fWhite %1 /s- /fGray .
+ERROR_CfgBackup="Не удалось настроить каталог резервного копирования."
+ERROR_MBRBackup="Не удалось создать резервную копию Master Boot Record для диска" /fWhite %1 /fGray /s- .
+ERROR_SysFiles="Не удалось скопировать системные файлы на диск" /fWhite %1 /fGray /s- .
+ERROR_BootSector="Не удалось обновить загрузочный сектор для диска" /fWhite %1 /fGray /s- .
+ERROR_MBRUpdate="Не удалось обновить Master Boot Record для диска" /fWhite %1 /fGray /s- .
+ERROR_Activate="Не удалось установить диск" /fWhite %1 /fGray "как загрузочный раздел" /fWhite %2 /fGray /s- .
+ERROR_CfgFiles="Не удалось установить новые файлы конфигурации на диск" /fWhite %1 /fGray /s- .
+ERROR_XfrFiles="Не удалось скопировать необходимый файл установщика в" /fWhite %1 /fGray /s- .
+ERROR_SAF="Проблема при извлечении архива" /fWhite %1 /fGray "."
+ERROR_WTF="Произошла неизвестная и невероятная ошибка во время простой операции."
+
+
+
+
+
+
+
+# Language: Finnish
+# File ending: FI
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+# Welcome Message
+WELCOME_DEF="Tervetuloa" /fLightGreen %1 /fCyan %2 /fGray "asennusohjelmaan."
+WELCOME_ADV="Tervetuloa ohjelman" /fLightRed "edistyneeseen" /fGray "asennukseen" /fLightGreen %1 /fCyan %2 /fGray /s- .
+WELCOME_0=/p
+WELCOME_1=/fLightGreen "%1" /fGray "on täydellinen käyttöjärjestelmä. Jos valitset sen asennuksen" /p "tietokoneellesi, saatat " /fLightRed /BlinkOn "ylikirjoittaa" /BlinkOff /fGray "nykyisen käyttöjärjestelmäsi" /p "(esimerkiksi Windowsin.)" /fGray
+WELCOME_2=/fGray /c32 "Jos tämä ei ole tarkoituksesi, ole hyvä ja" /fLightRed "lopeta NYT!" /fGray
+WELCOME_3=
+WELCOME_4=
+WELCOME_5=/fGray /p
+
+HRULE=/fDarkGray /x 0xC4 /fGray
+
+CONTINUE=/p "Haluatko jatkaa" /c32
+REBOOT=/p "Haluatko käynnistää uudelleen nyt" /c32
+
+AUTO_YES="[K,E]?" /fWhite "K" /fGray
+AUTO_NO="[K,E]?" /fWhite "E" /fGray
+AUTO_FMT=/s- "[T,P,E]?" /fWhite "P" /fGray
+
+PROMPT_YESNO=/s KE
+PROMPT_FMT=/s TPE
+
+ABORTED=/fLightRed "Ohjelman %1 %2 asennus on keskeytetty." /e /fGray /bBlack
+
+PARTITION_AUTO="Osioi asema" /fWhite %1 /s- /fGray " automaattisesti."
+PARTITION_WARN=/fYellow "HUOMAUTUS:" /fGray "KERNL86 vaatii alle 2 Gt:n FAT16-osion."
+PARTITION_MBR="Päivitä Master Boot Record asemalla" /fWhite %1 /s- /fGray .
+PARTITION_ACTIVE="Aseta aseman" /fWhite %1 /fGray "osio aktiiviseksi."
+PARTITION_DONE=/p "Tietokone on käynnistettävä uudelleen, jotta uusi osiointi tulee voimaan."
+
+FORMAT="Asemaa" /fWhite %1 /fGray "ei näytä olevan alustettu."
+FORMAT_DEF="Haluatko alustaa aseman" /c32
+FORMAT_ADV="Miten haluat alustaa aseman" /s- /c32 ( /fWhite "T" /fGray "äysi," /c32 /fWhite "P" /fGray "ika," /c32 /fWhite "E" /fGray "i)" /c32
+
+FILESYSTEM_TEST="Testataan tiedostojärjestelmää asemalla" /fWhite %1 /s- /fGray .
+INSERT_DISKETTE="Aseta levyke" /fWhite #%1 /fGray (%2) "asemaan" /fWhite %3 /fGray "."
+PRESS_KEY="Jatka painamalla jotain näppäintä."
+
+TARGET_ASK="Minne haluat asentaa ohjelman" /fLightGreen %1 /s- /fGray "?" /c32
+TARGET_PROMPT=/fWhite /bBlue %1
+TARGET_BAD=/fLightRed "Virheellinen asema. Ei voi asentaa levykkeelle."
+
+CHANGE_PATH="Polku" /fWhite %1 /fGray "on jo olemassa." /p "Haluatko vaihtaa asennushakemistoa" /c32
+
+BACKUP_OLD="Asemalta" /fWhite %1 /fGray "löytyi aiempi käyttöjärjestelmä." /s+ /p "Haluatko varmuuskopioida vanhat tiedostot ennen asennusta" /c32
+BACKUP_ASK="Minne haluat tallentaa varmuuskopiotiedostot?" /c32
+BACKUP_PROMPT=/fWhite /bBlue %1
+BACKUP_BAD=/fLightRed "Virheellinen kohde. Varmuuskopiota ei voi tehdä tähän sijaintiin." /fGray
+
+DELETE_OLD="Hakemistossa" /fWhite %1 /fGray "olevat tiedostot voidaan ylikirjoittaa." /p "Haluatko tyhjentää vanhan hakemiston kokonaan ennen asennusta" /c32
+
+FORCE_MBR="Pakota Master Boot Recordin päivitys asemalla" /fWhite %1 /fGray /c32
+SYS_FILES="Asenna uudet järjestelmän käynnistystiedostot asemalle" /fWhite %1 /fGray /c32
+CFG_FILES="Korvaa järjestelmän asetustiedostot asemalla" /fWhite %1 /fGray /c32
+
+STATUS_MSG="Asennusasetukset:" /p
+STATUS_CPU=/r4/c32 "Alusta (CPU)" /fWhite %1 /fGray (%2)
+STATUS_FROM=/r4/c32 "Asenna lähteestä" /fWhite %1 /fGray
+STATUS_DRV=/r4/c32 "Kohdeasema" /fWhite %1 /fGray (levy %2, osio %3)
+STATUS_DOS=/r4/c32 "DOS-asennuspolku" /fWhite %1 /fGray
+STATUS_BAK=/r4/c32 "Varmuuskopioi vanha OS" /fWhite %1 /fGray
+STATUS_POS=/r4/c32 "Vanhan OS:n hakemisto" /fWhite %1 /fGray
+STATUS_MBR=/r4/c32 "Asenna uusi MBR" /fWhite %1 /fGray
+STATUS_SYS=/r4/c32 "Kopioi järjestelmätiedostot" /fWhite %1 /fGray
+STATUS_CFG=/r4/c32 "Kopioi asetustiedostot" /fWhite %1 /fGray
+
+INSTALL_NOW="Olemme valmiita asentamaan ohjelman" /fLightGreen %1 /fCyan %2 /fGray /s- .
+EXTRACTION="Tiedostojen purkaminen ohjelmasta" /fLightGreen %1 /fCyan %2 /fGray /s- .
+UPDATE_LST="Päivitetään pakettiluettelot." /p
+
+DO_BACKUP="Luodaan varmuuskopio vanhan OS:n tiedostoista kohteeseen" /fWhite %1 /fGray /s- .
+DO_ERASE="Poista vanha" /fWhite %1 /fGray " hakemisto ja tiedostot."
+DO_SYSFILES="Siirrä uudet järjestelmätiedostot asemalle" /fWhite %1 /fGray /s- .
+DO_FORCEMBR="Pakota MBR:n päivitys asemalla" /fWhite %1 /fGray /s- .
+DO_ACTIVATE="Aseta aktiivinen käynnistysosio levylle" /fWhite %1 /fGray "osioon" /fWhite %2 /s- /fGray .
+DO_CFGFILES="Siirrä uudet asetustiedostot asemalle" /fWhite %1 /fGray /s- .
+DO_PREPARE="Valmistellaan suoritettavien tiedostojen ja apuohjelmien asennusta."
+DO_INSTALL="Asenna ohjelman" /fLightGreen %1 /fGray " tiedostot kohteelle" /fWhite %2 /fGray /s- .
+
+DONE_NOW="Ohjelman %1 %2 asennus on valmis."
+REBOOT_NOW="Haluatko käynnistää uudelleen nyt" /c32
+
+REMOVE_MEDIA="Sinun tulee poistaa kaikki levykkeet ja CD-levyt."
+
+SUCCESS=/fLightGreen "Onnistui." /fGray
+FAILED=/fLightRed "Epäonnistui." /fGray
+
+# Copyright and License Notices
+TITLE=/fLightGreen %1 /fLightCyan %2 /s- /fWhite + /fGray " Asennusohjelma (" /fWhite FDI-x86 /fGray ")"
+COPYRIGHT=/fDarkGray "Julkaistu GPL v2.0 -lisenssillä."/p "Copyright" 2021-2022 "Jerome Shidel." /fGray /p
+TRADEMARK="FreeDOS on Jim Hallin tavaramerkki," 2001-2022
+
+# Help screen
+HELP_0="käyttö: SETUP.BAT [valinnat] [kohde]"
+HELP_1=""
+HELP_2="  [ei valintoja]  suorita asennus oletusarvoilla"
+HELP_3=
+HELP_4="  adv             käynnistä asennus edistyneessä tilassa (enemmän kysymyksiä)"
+HELP_5=
+HELP_6="  auto            suorita täysin automaattinen asennus ilman kysymyksiä." /p/r18/c32 "tätä ei suositella, ja sitä tulisi käyttää vain laitteistossa" /p/r18/c32 "ilman aiempaa käyttöjärjestelmää."
+HELP_7=
+HELP_8="  [kohde]         määritä asema ja/tai polku asennuskohteelle"
+HELP_9=
+HELP_10="  info            näytä asennusohjelman asetukset ja lopeta"
+HELP_11=
+HELP_12="  mbr             pakota MBR:n päivitys ja lopeta"
+HELP_13=
+HELP_14=/n
+HELP_15=/n
+
+# Error Messages
+ERROR_CRITICAL=/fLightRed "KRIITTINEN virhe:" /fGray /c32
+ERROR_NoHDD="Ei löydetty osioitua ja alustettua kiintolevyä."
+ERROR_MINOR=/fLightRed "virhe:" /fGray /c32
+ERROR_Option="Tuntematon tai virheellinen komentorivivalinta" /s- "`" /fWhite %1 /fGray "'."
+ERROR_NoCfgEnv="Järjestelmän perusasetuksia ja polkuja ei voitu määrittää."
+ERROR_NotFreeCOM="Tämä komentotiedosto vaatii FreeCOM-ohjelman tai yhteensopivan komentotulkin."
+ERROR_MissingFreeCOM="FreeDOSin komentotulkkia FreeCOM ei löytynyt."
+ERROR_MissingAUTOEXEC="FreeDOSin käynnistystiedostoa FDAUTO.BAT ei löytynyt."
+ERROR_MakeDir="Hakemistoa ei voitu luoda:" /fWhite %1 /fGray /s- .
+ERROR_BackupCfg="Käynnistys- ja/tai asetustiedostojen varmuuskopiointi epäonnistui."
+ERROR_BackupOS="Kohdehakemiston tiedostojen varmuuskopiointi epäonnistui."
+ERROR_Partition="Osiointivirhe tapahtui. Kiintolevyä ei ehkä ole tai se on" /p "näkymätön nykyiselle käyttöjärjestelmälle." /p /p "Tarvitaan toinen osiointimenetelmä."
+ERROR_NoPartition="BIOS-osiota ei löytynyt kohteelle" /fWhite %1 /fGray /s- . /s+ /p "Suositellaan manuaalista asennusta (tai edistynyttä tilaa ilman pakotettua MBR:ää)."
+ERROR_Format="Virhe yritettäessä alustaa asemaa" /fWhite %1 /fGray /s- . /s+ /p /p "Alustamiseen tarvitaan toinen menetelmä."
+ERROR_FileSystem="Väliaikaistilan alustus asemalla" /fWhite %1 /s- /fGray " epäonnistui."
+ERROR_CfgBackup="Varmuuskopiohakemiston määrittäminen epäonnistui."
+ERROR_MBRBackup="Master Boot Recordin varmuuskopiointi asemalla" /fWhite %1 /fGray /s- " epäonnistui."
+ERROR_SysFiles="Järjestelmätiedostojen kopiointi asemalle" /fWhite %1 /fGray /s- " epäonnistui."
+ERROR_BootSector="Käynnistyssektorin päivitys asemalla" /fWhite %1 /fGray /s- " epäonnistui."
+ERROR_MBRUpdate="Käynnistyssektorin päivitys asemalla" /fWhite %1 /fGray /s- " epäonnistui."
+ERROR_Activate="Aseman asettaminen käynnistysosioksi" /fWhite %1 /fGray " osioon" /fWhite %2 /fGray /s- " epäonnistui."
+ERROR_CfgFiles="Uusien asetustiedostojen asennus asemalle" /fWhite %1 /fGray /s- " epäonnistui."
+ERROR_XfrFiles="Tarvittavan asennustiedoston kopiointi kohteeseen" /fWhite %1 /fGray /s- " epäonnistui."
+ERROR_SAF="Virhe purettaessa arkistoa" /fWhite %1 /fGray "."
+ERROR_WTF="Yksinkertaisen toiminnon aikana tapahtui tuntematon ja epätodennäköinen virhe."
+
+
+
+
+
