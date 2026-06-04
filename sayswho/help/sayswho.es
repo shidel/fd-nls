@@ -1,0 +1,18 @@
+# Language: Spanish (es)
+# File ending: es
+# Codepage: 858
+# This translation was created by Google AI.
+# Please help the FreeDOS group to improve it.
+
+Uso: SAYSWHO.EXE [opciones]
+
+    [opciones]      Claro, como si realmente necesitara una opci¢n
+
+Creo que este juego es mucho mejor con sonido. Sin embargo, el juego
+solo tiene soporte para el altavoz del PC. Lamentablemente, a
+diferencia de DOSBox y el hardware real, la mayor¡a de las plataformas
+de m quinas virtuales no admiten la emulaci¢n del altavoz del PC.
+
+:-)
+
+
