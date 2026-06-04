@@ -1,0 +1,80 @@
+; Language: Norwegian (no)
+; File ending: no
+; Codepage: 865
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.NO -- "Norske" XCDROM-initialiseringsmeldinger.
+; Skrevet av Jack R. Ellis, 8. feb. 2006.
+;
+; Brukere som ›nsker † "internasjonalisere" XCDROM trenger bare † endre
+; denne filen! Den nye filen kan navngis etter ›nske, for eksempel
+; XCDMSGS.FR (fransk), XCDMSGS.NO (norsk) osv. Den ›nskede filen m†
+; kopieres til XCDMSGS.TXT, og den ›nskede driveren kan deretter
+; re-assembleres med en hvilken som helst NASM-assembler (tilgjengelig
+; fra SourceForge), ved hjelp av f›lgende kommandolinje:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Merk at valget -d language f†r assembleren til † lese XCDMSGS.TXT,
+; i stedet for standardfilen XCDMSGS.ENG.
+;
+; F›lgende REGLER gjelder for endring av meldingene vist nedenfor:
+;
+;  A) Alle meldings-LABELS ("XCMsg" osv.) m† vises som vist.
+;
+;  B) Alle CR, LF og avsluttende $ bytes m† vises som vist. Kun
+;     meldingens TEKST-bytes (bokstaver, tall og tegnsetting) er †pne
+;     for endring.
+;
+;  C) Det m† v‘re minst 42 tegn fra starten av "XCMsg" til starten av
+;     "Suffix", ettersom driveren leser 40 bytes med data inn i dette
+;     omr†det (navnet p† hver enhet) og legger til en avsluttende $ f›r
+;     visning av det endelige CD-ROM drive-navnet.
+;
+;  D) Andre meldinger som ENDRES av driver-initialiseringen er:
+;
+;	1) De 8 drivernavn-bytene ved "DvrMsg1".
+;	2) De 4 kontrolleradresse-bytene ved "CtlrAdr".
+;	3) De 8 kontroller-I.D.-bytene ved "CtlrID".
+;	4) Enhetsnummer-byten ved "UMsgNo".
+;	5) De 4 UltraDMA-modusbytene ved "UDMode".
+;
+; For et eksempel p† "internasjonalisering", sammenlign filen XDMAMSGS.ENG
+; med filen XDMAMSGS.NL, som begge er inkludert i den n†v‘rende XDMA-
+; driverpakken. XDMAMSGS.NL oversetter alle XDMA-initialiseringsmeldinger
+; til det nederlandske spr†ket. Denne filen ble skrevet av Bernd Blaauw,
+; som foreslo † gj›re XDMA, og n† XCDROM, til "internasjonale" drivere.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM leverer versjon og dato!
+	db	CR,LF,'$'
+DvrMsg	db	'Drivernavnet er "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE-kontroller p† I-O-adresse '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS-initialiseringsfeil$'
+LEMsg	db	'.',CR,LF,'/L ugyldig$'
+SyEMsg	db	'.',CR,LF,'FEIL '
+SyMsg	db	'Synkroniserer I-O med XDMA-driver$'
+PRMsg	db	'Ingen 80386+ CPU'
+Suffix	db	'; GCDROM ikke lastet!',CR,LF,'$'
+UnitMsg	db	'Enhet '
+UMsgNo	db	'0:  $'
+TOMsg	db	' tidsavbrudd for enhetsvalg$'
+IDMsg	db	' Identify Device-feil$'
+NCMsg	db	' er ikke en ATAPI CD-ROM$'
+NDMsg	db	'Ingen CD-ROM drive til bruk$'
+PriMsg	db	'Prim‘r-$'
+SecMsg	db	'Sekund‘r-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO-modus$'
+CRMsg	db	'.',CR,LF,'$'

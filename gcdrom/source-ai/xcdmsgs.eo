@@ -1,0 +1,80 @@
+; Language: Esperanto (eo)
+; File ending: eo
+; Codepage: 853
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.EO -- "Esperantaj" XCDROM-pravalorizaj mesaõoj.
+; Verkita de Jack R. Ellis, 8-Feb-2006.
+;
+; Uzantoj kiuj deziras "Internaciigi" XCDROM devas «anõi nur TIUN Üi
+; dosieron! La nova dosiero povas esti nomita laÌdezire, ekzemple XCDMSGS.FR
+; (franca), XCDMSGS.EO (esperanta) ktp. La dezirata dosiero devas esti kopiita
+; al XCDMSGS.TXT, kaj la dezirata pelilo tiam povas esti re-asemblita per
+; iu ajn NASM-asemblilo (havebla Üe SourceForge), uzante la jenan
+; komandlinion:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Rimarku, ke la kondiÜo -d language igas la asemblilon legi XCDMSGS.TXT,
+; anstataÌ la defaÌltan dosieron XCDMSGS.ENG.
+;
+; La jenaj REGULOJ validas por modifi la mesaõojn montritajn sube:
+;
+;  A) èiuj mesaõ-ETIKEDOJ ("XCMsg" ktp.) devas aperi kiel montrite.
+;
+;  B) èiuj CR, LF, kaj fermaj $ bajtoj devas aperi kiel montrite. Nur la
+;     mesaõaj TEKSTO-bajtoj (literoj, ciferoj kaj interpunkcio) estas
+;     «anõeblaj.
+;
+;  C) Devas esti almenaÌ 42 signoj de la komenco de "XCMsg" õis la komenco de
+;     "Suffix", Üar la pelilo legas 40 bajtojn da datumoj en Üi tiun areon
+;     (la nomon de Üiu aparato) kaj sufiksas ferman $ antaÌ ol montri la
+;     finan KD-ROM-aparatan nomon.
+;
+;  D) Aliaj mesaõoj MODIFITAJ per pelila pravalorizo estas:
+;
+;	1) La 8 pelilo-nomaj bajtoj Üe "DvrMsg1".
+;	2) La 4 regilo-adresaj bajtoj Üe "CtlrAdr".
+;	3) La 8 regilo-I.D. bajtoj Üe "CtlrID".
+;	4) La aparata unuo-nombra bajto Üe "UMsgNo".
+;	5) La 4 UltraDMA-reõimaj bajtoj Üe "UDMode".
+;
+; Por ekzemplo de "Internaciigo", komparu la dosieron XDMAMSGS.ENG kun la
+; dosiero XDMAMSGS.NL, ambaÌ el kiuj estas inkluzivitaj en la nuna pakaüo
+; de la pelilo XDMA. XDMAMSGS.NL tradukas Üiujn XDMA-pravalorizajn mesaõojn
+; en la nederlandan lingvon. Tiu Üi dosiero estis verkita de Bernd Blaauw,
+; kiu sugestis fari XDMA, kaj nun XCDROM, en "Internaciajn" pelilojn.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM disponigas version kaj daton!
+	db	CR,LF,'$'
+DvrMsg	db	'Pelilo-nomo estas "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA-indiõena IDE-regilo Üe I-O-adreso '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, ico I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS-pravalorigeraro$'
+LEMsg	db	'.',CR,LF,'/L nevalida$'
+SyEMsg	db	'.',CR,LF,'ERARO '
+SyMsg	db	'Sinkronigado de I-O kun XDMA-pelilo$'
+PRMsg	db	'Neniu 80386+ CPU'
+Suffix	db	'; GCDROM ne «argita!',CR,LF,'$'
+UnitMsg	db	'Unuo '
+UMsgNo	db	'0:  $'
+TOMsg	db	' eltempiõo de aparat-elekto$'
+IDMsg	db	' eraro de Identify Device$'
+NCMsg	db	' ne estas ATAPI-KD-ROM$'
+NDMsg	db	'Neniu KD-ROM drive por uzi$'
+PriMsg	db	'Primara-$'
+SecMsg	db	'Sekundara-$'
+MstMsg	db	'mastro$'
+SlvMsg	db	'sklavo$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO-reõimo$'
+CRMsg	db	'.',CR,LF,'$'

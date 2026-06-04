@@ -1,6 +1,7 @@
 ;
-; XCDMSGS.ENG -- "English" XCDROM Initialization Messages.
-; Written by Jack R. Ellis, 8-Feb-2006.
+; XCDMSGS.ENG -- "Swedish" XCDROM initialiseringsmeddelanden.
+; Skrivet av Jack R. Ellis, 8-Feb-2006.
+; ™versatt av Sebastian Rasmussen, 28-Jan-2022.
 ;
 ; Users who wish to "Internationalize" XCDROM need to change only THIS
 ; file!   The new file may be named as desired, for example XCDMSGS.FR
@@ -45,31 +46,30 @@
 XCMsg	db	CR,LF,'GCDROM '
 	db	VER		;XCDROM.ASM provides version and date!
 	db	CR,LF,'$'
-DvrMsg	db	'Driver name is "'
+DvrMsg	db	'Drivrutinsnamn „r "'
 DvrMsg1	db	'        "$'
-CtlrMsg	db	'SATA Native IDE controller at I-O address '
+CtlrMsg	db	'SATA inbyggd IDE-kontroller p† I-O-adress '
 CtlrAdr0 db	'xxxxh/'
 CtlrAdr	db	'xxxxh, Chip I.D. '
 CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
-VEMsg	db	'.',CR,LF,'VDS init error$'
-LEMsg	db	'.',CR,LF,'/L Invalid$'
-SyEMsg	db	'.',CR,LF,'ERROR '
-SyMsg	db	'Synchronizing I-O with XDMA driver$'
-PRMsg	db	'No 80386+ CPU'
-Suffix	db	'; GCDROM not loaded!',CR,LF,'$'
-UnitMsg	db	'Unit '
+VEMsg	db	'.',CR,LF,'VDS initialiseringsfel$'
+LEMsg	db	'.',CR,LF,'/L ogiltig$'
+SyEMsg	db	'.',CR,LF,'FEL '
+SyMsg	db	'Synkroniserar I-O med XDMA-drivrutin$'
+PRMsg	db	'Ingen 80386+ CPU'
+Suffix	db	'; GCDROM inte inl„st!',CR,LF,'$'
+UnitMsg	db	'Enhet '
 UMsgNo	db	'0:  $'
-TOMsg	db	' device select timeout$'
-IDMsg	db	' Identify Device error$'
-NCMsg	db	' is not an ATAPI CD-ROM$'
-NDMsg	db	'No CD-ROM drive to use$'
-PriMsg	db	'Primary-$'
-SecMsg	db	'Secondary-$'
+TOMsg	db	' tidsgr„ns har l”pt ut f”r enhetsval$'
+IDMsg	db	' fel vid enhetsidentifiering$'
+NCMsg	db	' „r inte en ATAPI CD-ROM$'
+NDMsg	db	'Ingen CD-ROM-enhet finns att anv„nda$'
+PriMsg	db	'Prim„r-$'
+SecMsg	db	'Sekund„r-$'
 MstMsg	db	'master$'
-SlvMsg	db	'slave$'
+SlvMsg	db	'slav$'
 ComMsg	db	', $'
 UDMsg	db	', ATA-'
 UDMode	db	'   $'
-PIOMsg	db	', PIO mode$'
+PIOMsg	db	', PIO-l„ge$'
 CRMsg	db	'.',CR,LF,'$'
-

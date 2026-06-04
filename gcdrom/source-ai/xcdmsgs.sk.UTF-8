@@ -1,0 +1,79 @@
+; Language: Slovak (sk)
+; File ending: sk
+; Codepage: 852
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.SK -- "Slovenské" inicializačné správy XCDROM.
+; Napísal Jack R. Ellis, 8. februára 2006.
+;
+; Používatelia, ktorí si želajú "internacionalizovať" XCDROM, musia zmeniť iba TENTO
+; súbor! Nový súbor môže byť pomenovaný ľubovoľne, napríklad XCDMSGS.FR
+; (francúzština), XCDMSGS.SK (slovenčina) atď. Požadovaný súbor musí byť skopírovaný
+; do XCDMSGS.TXT a požadovaný ovládač potom môže byť znovu zostavený pomocou
+; akéhokoľvek assemblera NASM (dostupného zo SourceForge) pomocou nasledujúceho
+; príkazového riadku:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Všimnite si, že podmienené -d language spôsobí, že assembler číta
+; XCDMSGS.TXT namiesto predvoleného súboru XCDMSGS.ENG.
+;
+; Pre úpravu nižšie uvedených správ platia nasledujúce PRAVIDLÁ:
+;
+;  A) Všetky NÁVESTIA správ ("XCMsg" atď.) sa musia objaviť tak, ako je zobrazené.
+;
+;  B) Všetky bajty CR, LF a ukončovacie $ sa musia objaviť tak, ako je zobrazené.
+;     Na zmenu sú otvorené iba TEXTOVÉ bajty správy (písmená, čísla a
+;     interpunkcia).
+;
+;  C) Od začiatku "XCMsg" do začiatku "Suffix" musí byť aspoň 42 znakov,
+;     pretože ovládač načítava 40 bajtov údajov do tejto oblasti (názov každého drive)
+;     a pred zobrazením konečného názvu CD-ROM drive pridá koncový znak $.
+;
+;  D) Ďalšie správy MODIFIKOVANÉ inicializáciou ovládača sú:
+;
+;	1) 8 bajtov názvu ovládača pri "DvrMsg1".
+;	2) 4 bajty adresy radiča pri "CtlrAdr".
+;	3) 8 bajtov I.D. čipu pri "CtlrID".
+;	4) Bajt čísla jednotky drive pri "UMsgNo".
+;	5) 4 bajty režimu UltraDMA pri "UDMode".
+;
+; Ako príklad "internacionalizácie" porovnajte súbor XDMAMSGS.ENG so súborom
+; XDMAMSGS.NL, oba sú súčasťou aktuálneho balíka ovládača XDMA.
+; XDMAMSGS.NL prekladá všetky inicializačné správy XDMA do holandčiny.
+; Tento súbor napísal Bernd Blaauw, ktorý navrhol vytvoriť z XDMA a teraz aj
+; z XCDROM "medzinárodné" ovládače.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM poskytuje verziu a dátum!
+	db	CR,LF,'$'
+DvrMsg	db	'Názov ovládača je "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE radič na I-O adrese '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS chyba inicializácie$'
+LEMsg	db	'.',CR,LF,'/L neplatný$'
+SyEMsg	db	'.',CR,LF,'CHYBA '
+SyMsg	db	'Synchronizácia I-O s ovládačom XDMA$'
+PRMsg	db	'Chýba 80386+ CPU'
+Suffix	db	'; GCDROM nezavedený!',CR,LF,'$'
+UnitMsg	db	'Jednotka '
+UMsgNo	db	'0:  $'
+TOMsg	db	' časový limit výberu zariadenia vypršal$'
+IDMsg	db	' Chyba Identify Device$'
+NCMsg	db	' nie je ATAPI CD-ROM$'
+NDMsg	db	'Žiaden CD-ROM drive na použitie$'
+PriMsg	db	'Primárny-$'
+SecMsg	db	'Sekundárny-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO mód$'
+CRMsg	db	'.',CR,LF,'$'

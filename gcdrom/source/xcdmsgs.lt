@@ -1,0 +1,80 @@
+; Language: Lithuanian (lt)
+; File ending: lt
+; Codepage: 775
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.LT -- "Lietuvi’ki" XCDROM inicijavimo prane’imai.
+; Para’” Jack R. Ellis, 2006 m. vasario 8 d.
+;
+; Vartotojai, norintys ˜internacionalizuotiÚ XCDROM, turi pakeisti tik æΩ
+; fail–! Naujam failui galima suteikti bet kok‘ pavadinim–, pavyzdÿiui,
+; XCDMSGS.FR (pranc◊z÷), XCDMSGS.LT (lietuvi÷) ir t. t. Reikiamas failas
+; turi b◊ti nukopijuotas ‘ XCDMSGS.TXT, o norim– tvarkykl“ galima surinkti
+; i’ naujo naudojant bet kur‘ NASM asambler‘ (prieinam– i’ SourceForge),
+; naudojant ’i– komandin“ eilut“:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Atkreipkite d”mes‘, kad s–lyga -d language priver—ia asambler‘ skaityti
+; XCDMSGS.TXT fail–, o ne numatyt–j‘ XCDMSGS.ENG fail–.
+;
+; Toliau nurodyt÷ prane’im÷ keitimui taikomos ’ios TAISYKL∏S:
+;
+;  A) Visos prane’im÷ ETIKET∏S ("XCMsg" ir t. t.) turi likti tokios, kaip parodyta.
+;
+;  B) Visi CR, LF ir pabaigos $ baitai turi likti tokie, kaip parodyta. Tik
+;     prane’imo TEKSTO baitai (raid”s, skai—iai ir skyrybos ÿenklai) gali
+;     b◊ti kei—iami.
+;
+;  C) Nuo ˜XCMsgÚ pradÿios iki ˜SuffixÚ pradÿios turi b◊ti bent 42 simboliai,
+;     nes tvarkykl” ‘ ’i– srit‘ nuskaito 40 bait÷ duomen÷ (kiekvieno ‘renginio
+;     pavadinim–) ir prideda pabaigos simbol‘ $ prie’ rodydama galutin‘
+;     CD-ROM ‘renginio pavadinim–.
+;
+;  D) Kiti prane’imai, kuriuos PAKEI∂IA tvarkykl”s inicijavimas:
+;
+;	1) 8 tvarkykl”s pavadinimo baitai ties ˜DvrMsg1Ú.
+;	2) 4 valdiklio adreso baitai ties ˜CtlrAdrÚ.
+;	3) 8 valdiklio I.D. baitai ties ˜CtlrIDÚ.
+;	4) Ωrenginio numerio baitas ties ˜UMsgNoÚ.
+;	5) 4 UltraDMA reÿimo baitai ties ˜UDModeÚ.
+;
+; ˜InternacionalizavimoÚ pavyzd‘ rasite palygin“ fail– XDMAMSGS.ENG su failu
+; XDMAMSGS.NL, kurie abu yra ‘traukti ‘ dabartin‘ XDMA tvarkykl”s paket–.
+; XDMAMSGS.NL i’ver—ia visus XDMA inicijavimo prane’imus ‘ oland÷ kalb–.
+; æ‘ fail– para’” Bernd Blaauw, kuris pasi◊l” XDMA, o dabar ir XCDROM,
+; paversti ˜tarptautin”misÚ tvarkykl”mis.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM pateikia versij– ir dat–!
+	db	CR,LF,'$'
+DvrMsg	db	'Draiverio pavadinimas yra "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE valdiklis I-O adresu '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, lusto I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS inicijavimo klaida$'
+LEMsg	db	'.',CR,LF,'/L neteisingas$'
+SyEMsg	db	'.',CR,LF,'KLAIDA '
+SyMsg	db	'I-O sinchronizavimas su XDMA draiveriu$'
+PRMsg	db	'N”ra 80386+ CPU'
+Suffix	db	'; GCDROM ne‘keltas!',CR,LF,'$'
+UnitMsg	db	'Ωrenginys '
+UMsgNo	db	'0:  $'
+TOMsg	db	' ‘renginio parinkimo laikas baig”si$'
+IDMsg	db	' Identify Device klaida$'
+NCMsg	db	' n”ra ATAPI CD-ROM$'
+NDMsg	db	'N”ra naudojamo CD-ROM drive$'
+PriMsg	db	'Pirminis-$'
+SecMsg	db	'Antrinis-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO reÿimas$'
+CRMsg	db	'.',CR,LF,'$'

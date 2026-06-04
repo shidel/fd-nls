@@ -1,0 +1,77 @@
+; Language: Latvian (lv)
+; File ending: lv
+; Codepage: 775
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.LV -- "LatvieÕu" XCDROM inicializƒcijas ziìojumi.
+; RakstŒjis Jack R. Ellis, 2006. gada 8. februƒrŒ.
+;
+; Lietotƒjiem, kuri v‰las "internacionaliz‰t" XCDROM, ir jƒmaina tikai ¾IS
+; fails! Jaunajam failam var pieÕéirt jebkƒdu nosaukumu, piem‰ram, XCDMSGS.FR
+; (franÑu), XCDMSGS.LV (latvieÕu) utt. V‰lamais fails ir jƒnokop‰ uz
+; XCDMSGS.TXT, un p‰c tam v‰lamo draiveri var atkƒrtoti samont‰t ar jebkuru
+; NASM asambleru (pieejams no SourceForge), izmantojot Õƒdu komandrindu:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Iev‰rojiet, ka nosacŒjums -d language liek asambleram lasŒt
+; XCDMSGS.TXT, nevis noklus‰juma XCDMSGS.ENG failu.
+;
+; Uz tƒlƒk norƒdŒto ziìojumu modific‰Õanu attiecas Õƒdi NOTEIKUMI:
+;
+;  A) Visiem ziìojumu LABELS ("XCMsg" utt.) ir jƒparƒdƒs tƒ, kƒ parƒdŒts.
+;
+;  B) Visiem CR, LF un beigu $ baitiem ir jƒparƒdƒs tƒ, kƒ parƒdŒts. Tikai
+;     ziìojuma TEXT baiti (burti, cipari un pieturzŒmes) ir mainƒmi.
+;
+;  C) No "XCMsg" sƒkuma lŒdz "Suffix" sƒkumam jƒb×t vismaz 42 rakstzŒm‰m,
+;     jo draiveris Õajƒ apgabalƒ nolasa 40 datu baitus (katra drive nosaukumu)
+;     un pievieno beigu $, pirms tiek parƒdŒts galŒgais CD-ROM drive nosaukums.
+;
+;  D) Citi ziìojumi, kurus MODIFICí draivera inicializƒcija:
+;
+;	1) 8 draivera nosaukuma baiti pie "DvrMsg1".
+;	2) 4 kontrollera adreses baiti pie "CtlrAdr".
+;	3) 8 kontrollera I.D. baiti pie "CtlrID".
+;	4) Drive vienŒbas numura baits pie "UMsgNo".
+;	5) 4 UltraDMA reØŒma baiti pie "UDMode".
+;
+; "Internacionalizƒcijas" piem‰ru skatiet, salŒdzinot failu XDMAMSGS.ENG ar
+; failu XDMAMSGS.NL, abi ir iekëauti paÕreiz‰jƒ XDMA draiveru pakotn‰.
+; XDMAMSGS.NL tulko visus XDMA inicializƒcijas ziìojumus holandieÕu valodƒ.
+; ¾o failu sarakstŒja Bernd Blaauw, kurÕ ierosinƒja padarŒt XDMA un tagad arŒ
+; XCDROM par "starptautiskiem" draiveriem.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM nodroÕina versiju un datumu!
+	db	CR,LF,'$'
+DvrMsg	db	'Draivera nosaukums ir "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE kontrolleris I-O adres‰ '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, mikrosh‰mas I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS inicializƒcijas kë×da$'
+LEMsg	db	'.',CR,LF,'/L nederŒgs$'
+SyEMsg	db	'.',CR,LF,'KêÇDA '
+SyMsg	db	'I-O sinhronizƒcija ar XDMA draiveri$'
+PRMsg	db	'Nav 80386+ CPU'
+Suffix	db	'; GCDROM nav ielƒd‰ts!',CR,LF,'$'
+UnitMsg	db	'Iekƒrta '
+UMsgNo	db	'0:  $'
+TOMsg	db	' ierŒces izv‰les noilgums$'
+IDMsg	db	' Identify Device kë×da$'
+NCMsg	db	' nav ATAPI CD-ROM$'
+NDMsg	db	'Nav izmantojama CD-ROM drive$'
+PriMsg	db	'Primƒrais-$'
+SecMsg	db	'Sekundƒrais-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO reØŒms$'
+CRMsg	db	'.',CR,LF,'$'

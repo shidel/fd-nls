@@ -1,0 +1,78 @@
+; Language: Icelandic (is)
+; File ending: is
+; Codepage: 861
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.IS -- "•slenskar" upphafstilkynningar XCDROM.
+; Skrifaå af Jack R. Ellis, 8. febr£ar 2006.
+;
+; Notendur sem vilja "alïj¢åavëåa" XCDROM ïurfa aåeins aå breyta çESSARI
+; skr†! Nòja skr†in m† heita hvaå sem er, til dëmis XCDMSGS.FR (franska),
+; XCDMSGS.IS (°slenska) o.s.frv. Afrita veråur umbeåna skr† ° XCDMSGS.TXT
+; og s°åan er hëgt aå endurïòåa rekilinn meå hvaåa NASM-samsetningark¢åa
+; sem er (f†anlegur hj† SourceForge) meå eftirfarandi skipanal°nu:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Athugiå aå skilyråiå -d language fër samsetningark¢åann til aå lesa
+; XCDMSGS.TXT ° staå sj†lfgefnu XCDMSGS.ENG skr†rinnar.
+;
+; Eftirfarandi REGLUR gilda um breytingar † skilaboåunum hÇr aå neåan:
+;
+;  A) ôll skilaboåa-LABELS ("XCMsg" o.s.frv.) veråa aå birtast eins og sònt er.
+;
+;  B) ôll CR, LF og lokunarbëti $ veråa aå birtast eins og sònt er. Aåeins
+;     TEXTA-bëtum skilaboåanna (stafir, tîlustafir og greinarmerki) m† breyta.
+;
+;  C) çaå veråa aå vera aå minnstal kosti 42 stafir fr† upphafi "XCMsg"
+;     til upphafs "Suffix", ïar sem rekillinn les 40 bëti af gîgnum †
+;     ïetta svëåi (nafn hvers drifs) og bëtir viå $ ° lokin †åur en
+;     endanlegt CD-ROM drive nafn er birt.
+;
+;  D) ônnur skilaboå sem BREYTAST viå rësingu rekilsins eru:
+;
+;	1) çessi 8 bëti fyrir nafn rekils hj† "DvrMsg1".
+;	2) çessi 4 bëti fyrir vistfang stòringar hj† "CtlrAdr".
+;	3) çessi 8 bëti fyrir I.D. stòringar hj† "CtlrID".
+;	4) Bëtiå fyrir einingarn£mer drifs hj† "UMsgNo".
+;	5) çessi 4 bëti fyrir UltraDMA ham hj† "UDMode".
+;
+; Sem dëmi um "alïj¢åavëåingu" m† bera saman skr†na XDMAMSGS.ENG viå
+; skr†na XDMAMSGS.NL, sem b†åar fylgja meå n£verandi XDMA rekilpakka.
+; XDMAMSGS.NL ïòåir îll XDMA upphafsskilaboå † hollensku. çessi skr†
+; var skrifuå af Bernd Blaauw sem lagåi til aå gera XDMA, og n£
+; XCDROM, aå "alïj¢ålegum" reklum.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM gefur upp £tg†fu og dagsetningu!
+	db	CR,LF,'$'
+DvrMsg	db	'Nafn rekils er "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE stòring † I-O vistfangi '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS rësingarvilla$'
+LEMsg	db	'.',CR,LF,'/L ¢gilt$'
+SyEMsg	db	'.',CR,LF,'VILLA '
+SyMsg	db	'Samstilling I-O viå XDMA rekil$'
+PRMsg	db	'Enginn 80386+ CPU'
+Suffix	db	'; GCDROM ekki hlaåiå!',CR,LF,'$'
+UnitMsg	db	'Eining '
+UMsgNo	db	'0:  $'
+TOMsg	db	' t°mamîrk tëkjavals rann £t$'
+IDMsg	db	' Identify Device villa$'
+NCMsg	db	' er ekki ATAPI CD-ROM$'
+NDMsg	db	'Ekkert CD-ROM drive til nota$'
+PriMsg	db	'Aåal-$'
+SecMsg	db	'Auka-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO hamur$'
+CRMsg	db	'.',CR,LF,'$'

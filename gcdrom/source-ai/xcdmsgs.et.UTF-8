@@ -1,0 +1,80 @@
+; Language: Estonian (et)
+; File ending: et
+; Codepage: 775
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.ET -- "Eesti" XCDROM-i algatusteaded.
+; Kirjutanud Jack R. Ellis, 8. veebruar 2006.
+;
+; Kasutajad, kes soovivad XCDROM-i "rahvusvaheliseks muuta", peavad muutma
+; ainult SEDA faili! Uue faili võib nimetada soovikohaselt, näiteks
+; XCDMSGS.FR (prantsuse), XCDMSGS.ET (eesti) jne. Soovitud fail tuleb
+; kopeerida nimega XCDMSGS.TXT ja seejärel saab draiveri uuesti koondada
+; mis tahes NASM-assembleriga (saadaval SourceForge'is), kasutades järgmist
+; käsurida:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Pange tähele, et tingimus -d language paneb assembleri lugema faili
+; XCDMSGS.TXT, mitte vaikimisi XCDMSGS.ENG faili.
+;
+; Allpool näidatud teadete muutmisel kehtivad järgmised REEGLID:
+;
+;  A) Kõik teadete MÄRGID ("XCMsg" jne) peavad säilima näidatud kujul.
+;
+;  B) Kõik CR, LF ja lõpetavad $ baidid peavad säilima näidatud kujul.
+;     Ainult teate TEKSTI baidid (tähed, numbrid ja kirjavahemärgid)
+;     on muutmiseks avatud.
+;
+;  C) "XCMsg" algusest kuni "Suffix" alguseni peab olema vähemalt 42 märki,
+;     kuna draiver loeb sellesse kohta 40 baiti andmeid (iga seadme nime)
+;     ja lisab lõppu sümboli $, enne kui kuvatakse lõplik CD-ROM-i
+;     seadme nimi.
+;
+;  D) Muud teated, mida draiveri algatamine MUUDAB:
+;
+;	1) 8 draiveri nime baiti kohas "DvrMsg1".
+;	2) 4 kontrolleri aadressi baiti kohas "CtlrAdr".
+;	3) 8 kontrolleri I.D. baiti kohas "CtlrID".
+;	4) Seadme üksuse numbri bait kohas "UMsgNo".
+;	5) 4 UltraDMA režiimi baiti kohas "UDMode".
+;
+; "Rahvusvaheliseks muutmise" näitena võrrelge faili XDMAMSGS.ENG failiga
+; XDMAMSGS.NL, mis mõlemad on lisatud praegusesse XDMA draiveripaketti.
+; XDMAMSGS.NL tõlgib kõik XDMA algatusteaded hollandi keelde. Selle faili
+; kirjutas Bernd Blaauw, kes tegi ettepaneku muuta XDMA ja nüüd ka
+; XCDROM "rahvusvahelisteks" draiveriteks.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM väljastab versiooni ja kuupäeva!
+	db	CR,LF,'$'
+DvrMsg	db	'Draiveri nimi on "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE kontroller I-O aadressil '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, kiibi I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS algatamistõrge$'
+LEMsg	db	'.',CR,LF,'/L vigane$'
+SyEMsg	db	'.',CR,LF,'VIGA '
+SyMsg	db	'I-O sünkroonimine XDMA draiveriga$'
+PRMsg	db	'Puudub 80386+ CPU'
+Suffix	db	'; GCDROM-i ei laaditud!',CR,LF,'$'
+UnitMsg	db	'Üksus '
+UMsgNo	db	'0:  $'
+TOMsg	db	' seadme valimise ajalõpp$'
+IDMsg	db	' Identify Device tõrge$'
+NCMsg	db	' ei ole ATAPI CD-ROM$'
+NDMsg	db	'Kasutatavat CD-ROM drive-i ei leitud$'
+PriMsg	db	'Esimene-$'
+SecMsg	db	'Teine-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO režiim$'
+CRMsg	db	'.',CR,LF,'$'

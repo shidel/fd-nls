@@ -1,0 +1,80 @@
+
+; Language: Hungarian (hu)
+; File ending: hu
+; Codepage: 852
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.HU -- "Magyar" XCDROM inicializ†l†si Åzenetek.
+; ÷rta: Jack R. Ellis, 2006. febru†r 8.
+;
+; Azoknak a felhaszn†l¢knak, akik "nemzetkîzies°teni" szeretnÇk az XCDROM-ot,
+; csak EZT a f†jlt kell m¢dos°taniuk! Az £j f†jl tetszãlegesen nevezhetã el,
+; pÇld†ul XCDMSGS.FR (francia), XCDMSGS.HU (magyar) stb. A k°v†nt f†jlt az
+; XCDMSGS.TXT nÇvre kell m†solni, Çs a k°v†nt illesztãprogram ezut†n b†rmely
+; NASM assemblerrel (elÇrhetã a SourceForge-on) £jra-îssze†ll°that¢ a
+; kîvetkezã parancssorral:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Vegye figyelembe, hogy a -d language feltÇtel arra kÇszteti az assemblert,
+; hogy az XCDMSGS.TXT f†jlt olvassa be az alapÇrtelmezett XCDMSGS.ENG helyett.
+;
+; Az al†bb l†that¢ Åzenetek m¢dos°t†s†ra a kîvetkezã SZABµLYOK vonatkoznak:
+;
+;  A) Minden Åzenet C÷MKêNEK ("XCMsg" stb.) a bemutatott m¢don kell szerepelnie.
+;
+;  B) Minden CR, LF Çs lez†r¢ $ b†jtnak a bemutatott m¢don kell szerepelnie.
+;     Csak az Åzenet SZôVEG b†jtjai (bet˚k, sz†mok Çs °r†sjelek) m¢dos°that¢k.
+;
+;  C) Legal†bb 42 karakternek kell lennie az "XCMsg" kezdetÇtãl a "Suffix"
+;     kezdetÇig, mivel az illesztãprogram 40 b†jtnyi adatot olvas be erre a
+;     terÅletre (az egyes drive-ok nevÇt), Çs egy lez†r¢ $ jelet f˚z hozz†,
+;     mielãtt megjelen°tenÇ a vÇgleges CD-ROM drive nevet.
+;
+;  D) Az illesztãprogram inicializ†l†sa †ltal M‡DOS÷TOTT egyÇb Åzenetek:
+;
+;	1) A 8 illesztãprogram-nÇv b†jt a "DvrMsg1" c°mnÇl.
+;	2) A 4 vezÇrlãc°m b†jt a "CtlrAdr" c°mnÇl.
+;	3) A 8 vezÇrlã-I.D. b†jt a "CtlrID" c°mnÇl.
+;	4) A drive egysÇgsz†m b†jtja az "UMsgNo" c°mnÇl.
+;	5) A 4 UltraDMA m¢d b†jt az "UDMode" c°mnÇl.
+;
+; A "nemzetkîzies°tÇsre" pÇldakÇnt hasonl°tsa îssze az XDMAMSGS.ENG f†jlt az
+; XDMAMSGS.NL f†jllal, amelyek mindketten megtal†lhat¢k a jelenlegi XDMA
+; illesztãprogram-csomagban. Az XDMAMSGS.NL az îsszes XDMA inicializ†l†si
+; Åzenetet holland nyelvre ford°tja. Ezt a f†jlt Bernd Blaauw °rta, aki
+; javasolta az XDMA, Çs most az XCDROM "nemzetkîzivÇ" tÇtelÇt.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;Az XCDROM.ASM biztos°tja a verzi¢t Çs a d†tumot!
+	db	CR,LF,'$'
+DvrMsg	db	'Az illesztãprogram neve: "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE vezÇrlã az I-O c°men: '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS inicializ†l†si hiba$'
+LEMsg	db	'.',CR,LF,'/L ÇrvÇnytelen$'
+SyEMsg	db	'.',CR,LF,'HIBA '
+SyMsg	db	'I-O szinkroniz†l†sa az XDMA illesztãvel$'
+PRMsg	db	'Nincs 80386+ CPU'
+Suffix	db	'; GCDROM nincs betîltve!',CR,LF,'$'
+UnitMsg	db	'EgysÇg '
+UMsgNo	db	'0:  $'
+TOMsg	db	' eszkîzv†laszt†si idãt£llÇpÇs$'
+IDMsg	db	' Identify Device hiba$'
+NCMsg	db	' nem ATAPI CD-ROM$'
+NDMsg	db	'Nincs haszn†lhat¢ CD-ROM drive$'
+PriMsg	db	'Elsãdleges-$'
+SecMsg	db	'M†sodlagos-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO m¢d$'
+CRMsg	db	'.',CR,LF,'$'

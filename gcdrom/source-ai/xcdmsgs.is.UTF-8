@@ -1,0 +1,78 @@
+; Language: Icelandic (is)
+; File ending: is
+; Codepage: 861
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.IS -- "Íslenskar" upphafstilkynningar XCDROM.
+; Skrifað af Jack R. Ellis, 8. febrúar 2006.
+;
+; Notendur sem vilja "alþjóðavæða" XCDROM þurfa aðeins að breyta ÞESSARI
+; skrá! Nýja skráin má heita hvað sem er, til dæmis XCDMSGS.FR (franska),
+; XCDMSGS.IS (íslenska) o.s.frv. Afrita verður umbeðna skrá í XCDMSGS.TXT
+; og síðan er hægt að endurþýða rekilinn með hvaða NASM-samsetningarkóða
+; sem er (fáanlegur hjá SourceForge) með eftirfarandi skipanalínu:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Athugið að skilyrðið -d language fær samsetningarkóðann til að lesa
+; XCDMSGS.TXT í stað sjálfgefnu XCDMSGS.ENG skrárinnar.
+;
+; Eftirfarandi REGLUR gilda um breytingar á skilaboðunum hér að neðan:
+;
+;  A) Öll skilaboða-LABELS ("XCMsg" o.s.frv.) verða að birtast eins og sýnt er.
+;
+;  B) Öll CR, LF og lokunarbæti $ verða að birtast eins og sýnt er. Aðeins
+;     TEXTA-bætum skilaboðanna (stafir, tölustafir og greinarmerki) má breyta.
+;
+;  C) Það verða að vera að minnstal kosti 42 stafir frá upphafi "XCMsg"
+;     til upphafs "Suffix", þar sem rekillinn les 40 bæti af gögnum á
+;     þetta svæði (nafn hvers drifs) og bætir við $ í lokin áður en
+;     endanlegt CD-ROM drive nafn er birt.
+;
+;  D) Önnur skilaboð sem BREYTAST við ræsingu rekilsins eru:
+;
+;	1) Þessi 8 bæti fyrir nafn rekils hjá "DvrMsg1".
+;	2) Þessi 4 bæti fyrir vistfang stýringar hjá "CtlrAdr".
+;	3) Þessi 8 bæti fyrir I.D. stýringar hjá "CtlrID".
+;	4) Bætið fyrir einingarnúmer drifs hjá "UMsgNo".
+;	5) Þessi 4 bæti fyrir UltraDMA ham hjá "UDMode".
+;
+; Sem dæmi um "alþjóðavæðingu" má bera saman skrána XDMAMSGS.ENG við
+; skrána XDMAMSGS.NL, sem báðar fylgja með núverandi XDMA rekilpakka.
+; XDMAMSGS.NL þýðir öll XDMA upphafsskilaboð á hollensku. Þessi skrá
+; var skrifuð af Bernd Blaauw sem lagði til að gera XDMA, og nú
+; XCDROM, að "alþjóðlegum" reklum.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM gefur upp útgáfu og dagsetningu!
+	db	CR,LF,'$'
+DvrMsg	db	'Nafn rekils er "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE stýring á I-O vistfangi '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS ræsingarvilla$'
+LEMsg	db	'.',CR,LF,'/L ógilt$'
+SyEMsg	db	'.',CR,LF,'VILLA '
+SyMsg	db	'Samstilling I-O við XDMA rekil$'
+PRMsg	db	'Enginn 80386+ CPU'
+Suffix	db	'; GCDROM ekki hlaðið!',CR,LF,'$'
+UnitMsg	db	'Eining '
+UMsgNo	db	'0:  $'
+TOMsg	db	' tímamörk tækjavals rann út$'
+IDMsg	db	' Identify Device villa$'
+NCMsg	db	' er ekki ATAPI CD-ROM$'
+NDMsg	db	'Ekkert CD-ROM drive til nota$'
+PriMsg	db	'Aðal-$'
+SecMsg	db	'Auka-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO hamur$'
+CRMsg	db	'.',CR,LF,'$'

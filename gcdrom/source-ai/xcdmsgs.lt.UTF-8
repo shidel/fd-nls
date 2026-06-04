@@ -1,0 +1,80 @@
+; Language: Lithuanian (lt)
+; File ending: lt
+; Codepage: 775
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.LT -- "Lietuviški" XCDROM inicijavimo pranešimai.
+; Parašė Jack R. Ellis, 2006 m. vasario 8 d.
+;
+; Vartotojai, norintys „internacionalizuoti“ XCDROM, turi pakeisti tik ŠĮ
+; failą! Naujam failui galima suteikti bet kokį pavadinimą, pavyzdžiui,
+; XCDMSGS.FR (prancūzų), XCDMSGS.LT (lietuvių) ir t. t. Reikiamas failas
+; turi būti nukopijuotas į XCDMSGS.TXT, o norimą tvarkyklę galima surinkti
+; iš naujo naudojant bet kurį NASM asamblerį (prieinamą iš SourceForge),
+; naudojant šią komandinę eilutę:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Atkreipkite dėmesį, kad sąlyga -d language priverčia asamblerį skaityti
+; XCDMSGS.TXT failą, o ne numatytąjį XCDMSGS.ENG failą.
+;
+; Toliau nurodytų pranešimų keitimui taikomos šios TAISYKLĖS:
+;
+;  A) Visos pranešimų ETIKETĖS ("XCMsg" ir t. t.) turi likti tokios, kaip parodyta.
+;
+;  B) Visi CR, LF ir pabaigos $ baitai turi likti tokie, kaip parodyta. Tik
+;     pranešimo TEKSTO baitai (raidės, skaičiai ir skyrybos ženklai) gali
+;     būti keičiami.
+;
+;  C) Nuo „XCMsg“ pradžios iki „Suffix“ pradžios turi būti bent 42 simboliai,
+;     nes tvarkyklė į šią sritį nuskaito 40 baitų duomenų (kiekvieno įrenginio
+;     pavadinimą) ir prideda pabaigos simbolį $ prieš rodydama galutinį
+;     CD-ROM įrenginio pavadinimą.
+;
+;  D) Kiti pranešimai, kuriuos PAKEIČIA tvarkyklės inicijavimas:
+;
+;	1) 8 tvarkyklės pavadinimo baitai ties „DvrMsg1“.
+;	2) 4 valdiklio adreso baitai ties „CtlrAdr“.
+;	3) 8 valdiklio I.D. baitai ties „CtlrID“.
+;	4) Įrenginio numerio baitas ties „UMsgNo“.
+;	5) 4 UltraDMA režimo baitai ties „UDMode“.
+;
+; „Internacionalizavimo“ pavyzdį rasite palyginę failą XDMAMSGS.ENG su failu
+; XDMAMSGS.NL, kurie abu yra įtraukti į dabartinį XDMA tvarkyklės paketą.
+; XDMAMSGS.NL išverčia visus XDMA inicijavimo pranešimus į olandų kalbą.
+; Šį failą parašė Bernd Blaauw, kuris pasiūlė XDMA, o dabar ir XCDROM,
+; paversti „tarptautinėmis“ tvarkyklėmis.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM pateikia versiją ir datą!
+	db	CR,LF,'$'
+DvrMsg	db	'Draiverio pavadinimas yra "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE valdiklis I-O adresu '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, lusto I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS inicijavimo klaida$'
+LEMsg	db	'.',CR,LF,'/L neteisingas$'
+SyEMsg	db	'.',CR,LF,'KLAIDA '
+SyMsg	db	'I-O sinchronizavimas su XDMA draiveriu$'
+PRMsg	db	'Nėra 80386+ CPU'
+Suffix	db	'; GCDROM neįkeltas!',CR,LF,'$'
+UnitMsg	db	'Įrenginys '
+UMsgNo	db	'0:  $'
+TOMsg	db	' įrenginio parinkimo laikas baigėsi$'
+IDMsg	db	' Identify Device klaida$'
+NCMsg	db	' nėra ATAPI CD-ROM$'
+NDMsg	db	'Nėra naudojamo CD-ROM drive$'
+PriMsg	db	'Pirminis-$'
+SecMsg	db	'Antrinis-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO režimas$'
+CRMsg	db	'.',CR,LF,'$'

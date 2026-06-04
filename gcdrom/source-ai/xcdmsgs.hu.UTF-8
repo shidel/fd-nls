@@ -1,0 +1,80 @@
+
+; Language: Hungarian (hu)
+; File ending: hu
+; Codepage: 852
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.HU -- "Magyar" XCDROM inicializálási üzenetek.
+; Írta: Jack R. Ellis, 2006. február 8.
+;
+; Azoknak a felhasználóknak, akik "nemzetköziesíteni" szeretnék az XCDROM-ot,
+; csak EZT a fájlt kell módosítaniuk! Az új fájl tetszőlegesen nevezhető el,
+; például XCDMSGS.FR (francia), XCDMSGS.HU (magyar) stb. A kívánt fájlt az
+; XCDMSGS.TXT névre kell másolni, és a kívánt illesztőprogram ezután bármely
+; NASM assemblerrel (elérhető a SourceForge-on) újra-összeállítható a
+; következő parancssorral:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Vegye figyelembe, hogy a -d language feltétel arra készteti az assemblert,
+; hogy az XCDMSGS.TXT fájlt olvassa be az alapértelmezett XCDMSGS.ENG helyett.
+;
+; Az alább látható üzenetek módosítására a következő SZABÁLYOK vonatkoznak:
+;
+;  A) Minden üzenet CÍMKÉNEK ("XCMsg" stb.) a bemutatott módon kell szerepelnie.
+;
+;  B) Minden CR, LF és lezáró $ bájtnak a bemutatott módon kell szerepelnie.
+;     Csak az üzenet SZÖVEG bájtjai (betűk, számok és írásjelek) módosíthatók.
+;
+;  C) Legalább 42 karakternek kell lennie az "XCMsg" kezdetétől a "Suffix"
+;     kezdetéig, mivel az illesztőprogram 40 bájtnyi adatot olvas be erre a
+;     területre (az egyes drive-ok nevét), és egy lezáró $ jelet fűz hozzá,
+;     mielőtt megjelenítené a végleges CD-ROM drive nevet.
+;
+;  D) Az illesztőprogram inicializálása által MÓDOSÍTOTT egyéb üzenetek:
+;
+;	1) A 8 illesztőprogram-név bájt a "DvrMsg1" címnél.
+;	2) A 4 vezérlőcím bájt a "CtlrAdr" címnél.
+;	3) A 8 vezérlő-I.D. bájt a "CtlrID" címnél.
+;	4) A drive egységszám bájtja az "UMsgNo" címnél.
+;	5) A 4 UltraDMA mód bájt az "UDMode" címnél.
+;
+; A "nemzetköziesítésre" példaként hasonlítsa össze az XDMAMSGS.ENG fájlt az
+; XDMAMSGS.NL fájllal, amelyek mindketten megtalálhatók a jelenlegi XDMA
+; illesztőprogram-csomagban. Az XDMAMSGS.NL az összes XDMA inicializálási
+; üzenetet holland nyelvre fordítja. Ezt a fájlt Bernd Blaauw írta, aki
+; javasolta az XDMA, és most az XCDROM "nemzetközivé" tételét.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;Az XCDROM.ASM biztosítja a verziót és a dátumot!
+	db	CR,LF,'$'
+DvrMsg	db	'Az illesztőprogram neve: "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE vezérlő az I-O címen: '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS inicializálási hiba$'
+LEMsg	db	'.',CR,LF,'/L érvénytelen$'
+SyEMsg	db	'.',CR,LF,'HIBA '
+SyMsg	db	'I-O szinkronizálása az XDMA illesztővel$'
+PRMsg	db	'Nincs 80386+ CPU'
+Suffix	db	'; GCDROM nincs betöltve!',CR,LF,'$'
+UnitMsg	db	'Egység '
+UMsgNo	db	'0:  $'
+TOMsg	db	' eszközválasztási időtúllépés$'
+IDMsg	db	' Identify Device hiba$'
+NCMsg	db	' nem ATAPI CD-ROM$'
+NDMsg	db	'Nincs használható CD-ROM drive$'
+PriMsg	db	'Elsődleges-$'
+SecMsg	db	'Másodlagos-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO mód$'
+CRMsg	db	'.',CR,LF,'$'

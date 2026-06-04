@@ -1,0 +1,80 @@
+; Language: Finnish (fi)
+; File ending: fi
+; Codepage: 865
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.FI -- "Suomenkieliset" XCDROM-alustusviestit.
+; Kirjoittanut Jack R. Ellis, 8. helmikuuta 2006.
+;
+; Käyttäjien, jotka haluavat "kansainvälistää" XCDROM-ajurin, tarvitsee
+; muuttaa vain TÄMÄ tiedosto! Uusi tiedosto voidaan nimetä halutulla
+; tavalla, esimerkiksi XCDMSGS.FR (ranska), XCDMSGS.FI (suomi) jne.
+; Haluttu tiedosto on kopioitava nimelle XCDMSGS.TXT, ja haluttu ajuri
+; voidaan sitten koota uudelleen millä tahansa NASM-assemblerilla
+; (saatavilla SourceForgesta) käyttämällä seuraavaa komentoriviä:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Huomaa, kad ehto -d language saa assemblerin lukemaan tiedoston
+; XCDMSGS.TXT oletusarvoisen XCDMSGS.ENG-tiedoston sijaan.
+;
+; Seuraavat SÄÄNNÖT koskevat alla näkyvien viestien muokkaamista:
+;
+;  A) Kaikkien viestien NIMIKKEIDEN ("XCMsg" jne.) on säilytettävä muotonsa.
+;
+;  B) Kaikkien CR-, LF- ja lopettavien $-tavujen on säilyttävä muotonsa.
+;     Vain viestin TEKSTItavuja (kirjaimia, numeroita ja välimerkkejä)
+;     saa muuttaa.
+;
+;  C) "XCMsg":n alusta "Suffix":n alkuun on oltava vähintään 42 merkkiä,
+;     koska ajuri lukee 40 tavua tietoa tälle alueelle (kunkin aseman nimi)
+;     ja lisää perään lopetuskoodin $ ennen lopullisen CD-ROM-aseman
+;     nimen näyttämistä.
+;
+;  D) Muut viestit, joita ajurin alustus MUOKKAA:
+;
+;       1) 8 ajurin nimitavua kohdassa "DvrMsg1".
+;       2) 4 ohjaimen osoitetavua kohdassa "CtlrAdr".
+;       3) 8 ohjaimen I.D.-tavua kohdassa "CtlrID".
+;       4) Aseman yksikkönumerotavu kohdassa "UMsgNo".
+;       5) 4 UltraDMA-tilatavua kohdassa "UDMode".
+;
+; Katso "kansainvälistämisestä" esimerkki vertaamalla tiedostoa
+; XDMAMSGS.ENG tiedostoon XDMAMSGS.NL, jotka molemmat sisältyvät nykyiseen
+; XDMA-ajuripakettiin. XDMAMSGS.NL kääntää kaikki XDMA-alustusviestit
+; hollannin kielelle. Tämän tiedoston on kirjoittanut Bernd Blaauw, joka
+; ehdotti XDMA:n ja nyt XCDROM:in muuttamista "kansainvälisiksi" ajureiksi.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM tarjoaa version ja päivämäärän!
+	db	CR,LF,'$'
+DvrMsg	db	'Ajurin nimi on "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE -ohjain I-O-osoitteessa '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, piirin I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS-alustusvirhe$'
+LEMsg	db	'.',CR,LF,'/L virheellinen$'
+SyEMsg	db	'.',CR,LF,'VIRHE '
+SyMsg	db	'I-O:n synkronointi XDMA-ajurin kanssa$'
+PRMsg	db	'Ei 80386+ CPU:ta'
+Suffix	db	'; GCDROM-ajuria ei ladattu!',CR,LF,'$'
+UnitMsg	db	'Yksikkö '
+UMsgNo	db	'0:  $'
+TOMsg	db	' laitevalinnan aikakatkaisu$'
+IDMsg	db	' Identify Device -virhe$'
+NCMsg	db	' ei ole ATAPI CD-ROM$'
+NDMsg	db	'Ei käytettävää CD-ROM drivea$'
+PriMsg	db	'Ensisijainen-$'
+SecMsg	db	'Toissijainen-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO-tila$'
+CRMsg	db	'.',CR,LF,'$'

@@ -1,0 +1,80 @@
+; Language: Polish (pl)
+; File ending: pl
+; Codepage: 852
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.PL -- "Polskie" komunikaty inicjalizacji XCDROM.
+; Napisane przez Jacka R. Ellisa, 8 lutego 2006 r.
+;
+; Użytkownicy, którzy chcą dokonać "internacjonalizacji" XCDROM, muszą zmienić
+; tylko TEN plik! Nowy plik można nazwać dowolnie, na przykład XCDMSGS.FR
+; (francuski), XCDMSGS.PL (polski) itd. Wybrany plik należy skopiować do
+; XCDMSGS.TXT, a następnie wybrany sterownik można ponownie skompilować za
+; pomocą dowolnego asemblera NASM (dostępnego w SourceForge), używając
+; następującej linii poleceń:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Należy zauważyć, że warunek -d language powoduje, że asembler odczytuje
+; plik XCDMSGS.TXT zamiast domyślnego pliku XCDMSGS.ENG.
+;
+; Poniższe ZASADY mają zastosowanie do modyfikacji komunikatów pokazanych poniżej:
+;
+;  A) Wszystkie ETYKIETY komunikatów ("XCMsg" itp.) muszą pozostać bez zmian.
+;
+;  B) Wszystkie bajty CR, LF i końcowy bajt $ muszą pozostać bez zmian. Tylko
+;     bajty TEKSTU komunikatu (litery, cyfry i znaki interpunkcyjne) podlegają
+;     zmianom.
+;
+;  C) Muszą istnieć co najmniej 42 znaki od początku "XCMsg" do początku
+;     "Suffix", ponieważ sterownik odczytuje 40 bajtów danych do tego obszaru
+;     (nazwę każdego napędu) i dodaje końcowy znak $, przed wyświetleniem
+;     ostatecznej nazwy napędu CD-ROM.
+;
+;  D) Inne komunikaty MODYFIKOWANE podczas inicjalizacji sterownika to:
+;
+;	1) 8 bajtów nazwy sterownika w "DvrMsg1".
+;	2) 4 bajty adresu kontrolera w "CtlrAdr".
+;	3) 8 bajtów I.D. kontrolera w "CtlrID".
+;	4) Bajt numeru jednostki napędu w "UMsgNo".
+;	5) 4 bajty trybu UltraDMA w "UDMode".
+;
+; Jako przykład "internacjonalizacji" porównaj plik XDMAMSGS.ENG z plikiem
+; XDMAMSGS.NL, z których oba są dołączone do bieżącego pakietu sterowników XDMA.
+; XDMAMSGS.NL tłumaczy wszystkie komunikaty inicjalizacji XDMA na język holenderski.
+; Ten plik został napisany przez Bernda Blaauwa, który zasugerował uczynienie
+; XDMA, a teraz XCDROM, sterownikami "międzynarodowymi".
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM dostarcza wersję i datę!
+	db	CR,LF,'$'
+DvrMsg	db	'Nazwa sterownika to "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'Kontroler SATA Native IDE pod adresem I-O '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'Błąd inicjalizacji VDS$'
+LEMsg	db	'.',CR,LF,'/L Nieprawidłowy$'
+SyEMsg	db	'.',CR,LF,'BŁĄD '
+SyMsg	db	'Synchronizacja I-O ze sterownikiem XDMA$'
+PRMsg	db	'Brak procesora 80386+'
+Suffix	db	'; GCDROM nie został załadowany!',CR,LF,'$'
+UnitMsg	db	'Jednostka '
+UMsgNo	db	'0:  $'
+TOMsg	db	' limit czasu wyboru urządzenia$'
+IDMsg	db	' Błąd Identify Device$'
+NCMsg	db	' nie jest ATAPI CD-ROM$'
+NDMsg	db	'Brak napędu CD-ROM drive do użycia$'
+PriMsg	db	'Podstawowy-$'
+SecMsg	db	'Pomocniczy-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', tryb PIO$'
+CRMsg	db	'.',CR,LF,'$'

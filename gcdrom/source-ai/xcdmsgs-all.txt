@@ -1,0 +1,1719 @@
+
+; Language: Italian (it)
+; File ending: it
+; Codepage: 858
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.IT -- Messaggi di inizializzazione XCDROM in "Italiano".
+; Scritto da Jack R. Ellis, 8-Feb-2006.
+;
+; Gli utenti che desiderano "Internazionalizzare" XCDROM devono modificare
+; solo QUESTO file! Il nuovo file può essere nominato a piacere, ad esempio
+; XCDMSGS.FR (francese), XCDMSGS.IT (italiano) ecc. Il file desiderato deve
+; essere copiato in XCDMSGS.TXT, e il driver desiderato può quindi essere
+; ri-assemblato con qualsiasi assembler NASM (disponibile su SourceForge),
+; utilizzando la seguente riga di comando:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Si noti che il condizionale -d language fa sì che l'assembler legga
+; XCDMSGS.TXT, invece del file predefinito XCDMSGS.ENG.
+;
+; Le seguenti REGOLE si applicano alla modifica dei messaggi mostrati sotto:
+;
+;  A) Tutte le ETICHETTE dei messaggi ("XCMsg" ecc.) devono apparire come mostrato.
+;
+;  B) Tutti i byte CR, LF e il carattere finale $ devono apparire come mostrato.
+;     Solo i byte di TESTO del messaggio (lettere, numeri e punteggiatura)
+;     possono essere modificati.
+;
+;  C) Devono esserci almeno 42 caratteri dall'inizio di "XCMsg" all'inizio di
+;     "Suffix", poiché il driver legge 40 byte di dati in quest'area (il nome
+;     di ogni drive) e aggiunge un $ finale prima di visualizzare il nome
+;     definitivo del drive CD-ROM.
+;
+;  D) Altri messaggi MODIFICATI dall'inizializzazione del driver sono:
+;
+;       1) Gli 8 byte del nome del driver in "DvrMsg1".
+;       2) I 4 byte dell'indirizzo del controller in "CtlrAdr".
+;       3) Gli 8 byte dell'I.D. del controller in "CtlrID".
+;       4) Il byte del numero di unità del drive in "UMsgNo".
+;       5) I 4 byte della modalità UltraDMA in "UDMode".
+;
+; Per un esempio di "Internazionalizzazione", confrontate il file XDMAMSGS.ENG
+; con il file XDMAMSGS.NL, entrambi inclusi nell'attuale pacchetto del driver
+; XDMA. XDMAMSGS.NL traduce tutti i messaggi di inizializzazione XDMA in
+; lingua olandese. Questo file è stato scritto da Bernd Blaauw, che ha
+; suggerito di rendere XDMA, e ora XCDROM, dei driver "Internazionali".
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM fornisce versione e data!
+	db	CR,LF,'$'
+DvrMsg	db	'Il nome del driver è "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'Controller SATA Native IDE all''indirizzo I-O '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'Errore inizializzazione VDS$'
+LEMsg	db	'.',CR,LF,'/L non valido$'
+SyEMsg	db	'.',CR,LF,'ERRORE '
+SyMsg	db	'Sincronizzazione I-O con il driver XDMA$'
+PRMsg	db	'Nessuna CPU 80386+$'
+Suffix	db	'; GCDROM non caricato!',CR,LF,'$'
+UnitMsg	db	'Unità '
+UMsgNo	db	'0:  $'
+TOMsg	db	' timeout selezione dispositivo$'
+IDMsg	db	' errore Identify Device$'
+NCMsg	db	' non è un CD-ROM ATAPI$'
+NDMsg	db	'Nessun drive CD-ROM da usare$'
+PriMsg	db	'Primario-$'
+SecMsg	db	'Secondario-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', modalità PIO$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+; Language: Finnish (fi)
+; File ending: fi
+; Codepage: 865
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.FI -- "Suomenkieliset" XCDROM-alustusviestit.
+; Kirjoittanut Jack R. Ellis, 8. helmikuuta 2006.
+;
+; Käyttäjien, jotka haluavat "kansainvälistää" XCDROM-ajurin, tarvitsee
+; muuttaa vain TÄMÄ tiedosto! Uusi tiedosto voidaan nimetä halutulla
+; tavalla, esimerkiksi XCDMSGS.FR (ranska), XCDMSGS.FI (suomi) jne.
+; Haluttu tiedosto on kopioitava nimelle XCDMSGS.TXT, ja haluttu ajuri
+; voidaan sitten koota uudelleen millä tahansa NASM-assemblerilla
+; (saatavilla SourceForgesta) käyttämällä seuraavaa komentoriviä:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Huomaa, kad ehto -d language saa assemblerin lukemaan tiedoston
+; XCDMSGS.TXT oletusarvoisen XCDMSGS.ENG-tiedoston sijaan.
+;
+; Seuraavat SÄÄNNÖT koskevat alla näkyvien viestien muokkaamista:
+;
+;  A) Kaikkien viestien NIMIKKEIDEN ("XCMsg" jne.) on säilytettävä muotonsa.
+;
+;  B) Kaikkien CR-, LF- ja lopettavien $-tavujen on säilyttävä muotonsa.
+;     Vain viestin TEKSTItavuja (kirjaimia, numeroita ja välimerkkejä)
+;     saa muuttaa.
+;
+;  C) "XCMsg":n alusta "Suffix":n alkuun on oltava vähintään 42 merkkiä,
+;     koska ajuri lukee 40 tavua tietoa tälle alueelle (kunkin aseman nimi)
+;     ja lisää perään lopetuskoodin $ ennen lopullisen CD-ROM-aseman
+;     nimen näyttämistä.
+;
+;  D) Muut viestit, joita ajurin alustus MUOKKAA:
+;
+;       1) 8 ajurin nimitavua kohdassa "DvrMsg1".
+;       2) 4 ohjaimen osoitetavua kohdassa "CtlrAdr".
+;       3) 8 ohjaimen I.D.-tavua kohdassa "CtlrID".
+;       4) Aseman yksikkönumerotavu kohdassa "UMsgNo".
+;       5) 4 UltraDMA-tilatavua kohdassa "UDMode".
+;
+; Katso "kansainvälistämisestä" esimerkki vertaamalla tiedostoa
+; XDMAMSGS.ENG tiedostoon XDMAMSGS.NL, jotka molemmat sisältyvät nykyiseen
+; XDMA-ajuripakettiin. XDMAMSGS.NL kääntää kaikki XDMA-alustusviestit
+; hollannin kielelle. Tämän tiedoston on kirjoittanut Bernd Blaauw, joka
+; ehdotti XDMA:n ja nyt XCDROM:in muuttamista "kansainvälisiksi" ajureiksi.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM tarjoaa version ja päivämäärän!
+	db	CR,LF,'$'
+DvrMsg	db	'Ajurin nimi on "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE -ohjain I-O-osoitteessa '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, piirin I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS-alustusvirhe$'
+LEMsg	db	'.',CR,LF,'/L virheellinen$'
+SyEMsg	db	'.',CR,LF,'VIRHE '
+SyMsg	db	'I-O:n synkronointi XDMA-ajurin kanssa$'
+PRMsg	db	'Ei 80386+ CPU:ta'
+Suffix	db	'; GCDROM-ajuria ei ladattu!',CR,LF,'$'
+UnitMsg	db	'Yksikkö '
+UMsgNo	db	'0:  $'
+TOMsg	db	' laitevalinnan aikakatkaisu$'
+IDMsg	db	' Identify Device -virhe$'
+NCMsg	db	' ei ole ATAPI CD-ROM$'
+NDMsg	db	'Ei käytettävää CD-ROM drivea$'
+PriMsg	db	'Ensisijainen-$'
+SecMsg	db	'Toissijainen-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO-tila$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+; Language: Russian (ru)
+; File ending: ru
+; Codepage: 866
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+; ВНИМАНИЕ: Использование кириллицы в сообщениях драйвера допустимо только
+; при загруженном соответствующем экранном шрифте.
+
+;
+; XCDMSGS.RU -- "Русские" сообщения инициализации XCDROM.
+; Написано Джеком Р. Эллисом, 8 февраля 2006 г.
+;
+; Пользователям, желающим «интернационализировать» XCDROM, нужно изменить
+; только ЭТОТ файл! Новому файлу можно дать любое имя, например,
+; XCDMSGS.FR (французский), XCDMSGS.RU (русский) и т. д. Нужный файл
+; должен быть скопирован в XCDMSGS.TXT, и нужный драйвер может быть
+; пересобран с помощью любого ассемблера NASM (доступно на SourceForge)
+; с использованием следующей командной строки:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Обратите внимание, что условие -d language заставляет ассемблер читать
+; XCDMSGS.TXT вместо файла XCDMSGS.ENG по умолчанию.
+;
+; К изменению сообщений, показанных ниже, применяются следующие ПРАВИЛА:
+;
+;  A) Все МЕТКИ сообщений ("XCMsg" и т. д.) должны отображаться, как показано.
+;
+;  B) Все байты CR, LF и завершающий байт $ должны отображаться, как показано.
+;     Изменению подлежат только ТЕКСТОВЫЕ байты сообщения (буквы, цифры
+;     и знаки препинания).
+;
+;  C) От начала "XCMsg" до начала "Suffix" должно быть не менее 42 символов,
+;     так как драйвер считывает 40 байт данных в эту область (имя каждого
+;     накопителя) и добавляет завершающий символ $ перед отображением
+;     окончательного имени накопителя CD-ROM.
+;
+;  D) Другие сообщения, ИЗМЕНЯЕМЫЕ при инициализации драйвера:
+;
+;       1) 8 байт имени драйвера в "DvrMsg1".
+;       2) 4 байта адреса контроллера в "CtlrAdr".
+;       3) 8 байт I.D. чипа в "CtlrID".
+;       4) Байт номера устройства в "UMsgNo".
+;       5) 4 байта режима UltraDMA в "UDMode".
+;
+; В качестве примера «интернационализации» сравните файл XDMAMSGS.ENG с
+; файлом XDMAMSGS.NL, оба из которых включены в текущий пакет драйверов
+; XDMA. XDMAMSGS.NL переводит все сообщения инициализации XDMA на
+; голландский язык. Этот файл был написан Берндом Блааувом, который
+; предложил сделать XDMA, а теперь и XCDROM, «интернациональными» драйверами.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM предоставляет версию и дату!
+	db	CR,LF,'$'
+DvrMsg	db	'Имя драйвера: "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE контроллер по I-O адресу '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'Ошибка иниц. VDS$'
+LEMsg	db	'.',CR,LF,'Неверный /L$'
+SyEMsg	db	'.',CR,LF,'ОШИБКА '
+SyMsg	db	'Синхронизация I-O с драйвером XDMA$'
+PRMsg	db	'Нет процессора 80386+'
+Suffix	db	'; GCDROM не загружен!',CR,LF,'$'
+UnitMsg	db	'Устройство '
+UMsgNo	db	'0:  $'
+TOMsg	db	' таймаут выбора устройства$'
+IDMsg	db	' ошибка Identify Device$'
+NCMsg	db	' не является ATAPI CD-ROM$'
+NDMsg	db	'Нет доступных CD-ROM drive-ов$'
+PriMsg	db	'Primary-$'
+SecMsg	db	'Secondary-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO режим$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+; Language: Dutch (nl)
+; File ending: nl
+; Codepage: 850
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.NL -- "Nederlandse" XCDROM initialisatieberichten.
+; Geschreven door Jack R. Ellis, 8 feb 2006.
+;
+; Gebruikers die XCDROM willen "internationaliseren", hoeven alleen DIT
+; bestand te wijzigen! Het nieuwe bestand mag naar wens worden benoemd,
+; bijvoorbeeld XCDMSGS.FR (Frans), XCDMSGS.NL (Nederlands) enz. Het
+; gewenste bestand moet worden gekopieerd naar XCDMSGS.TXT, en het
+; gewenste stuurprogramma kan dan opnieuw worden geassembleerd met elke
+; NASM-assembler (beschikbaar via SourceForge), met de volgende opdrachtregel:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Merk op dat de voorwaarde -d language ervoor zorgt dat de assembler
+; XCDMSGS.TXT leest, in plaats van het standaard XCDMSGS.ENG bestand.
+;
+; De volgende REGELS zijn van toepassing op het wijzigen van de hieronder
+; getoonde berichten:
+;
+;  A) Alle bericht-LABELS ("XCMsg" enz.) moeten verschijnen zoals getoond.
+;
+;  B) Alle CR, LF en afsluitende $ bytes moeten verschijnen zoals getoond.
+;     Alleen de TEKST-bytes (letters, cijfers en leestekens) van het
+;     bericht kunnen worden gewijzigd.
+;
+;  C) Er moeten minstens 42 tekens zijn vanaf het begin van "XCMsg" tot
+;     het begin van "Suffix", aangezien het stuurprogramma 40 bytes aan
+;     gegevens in dit gebied leest (de naam van elk station) en een
+;     afsluitende $ toevoegt voordat de definitieve CD-ROM stationsnaam
+;     wordt weergegeven.
+;
+;  D) Andere berichten die GEWIJZIGD worden door de initialisatie van het
+;     stuurprogramma zijn:
+;
+;       1) De 8 bytes van de drivernaam bij "DvrMsg1".
+;       2) De 4 bytes van het controlleradres bij "CtlrAdr".
+;       3) De 8 bytes van de controller-ID bij "CtlrID".
+;       4) De byte van het unit-nummer van het station bij "UMsgNo".
+;       5) De 4 UltraDMA mode bytes bij "UDMode".
+;
+; Vergelijk voor een voorbeeld van "internationalisering" het bestand
+; XDMAMSGS.ENG met het bestand XDMAMSGS.NL, die beide zijn opgenomen in
+; het huidige XDMA-driverpakket. XDMAMSGS.NL vertaalt alle XDMA-
+; initialisatieberichten naar de Nederlandse taal. Dit bestand is
+; geschreven door Bernd Blaauw, die voorstelde om van XDMA, en nu
+; XCDROM, "internationale" drivers te maken.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM levert versie en datum!
+	db	CR,LF,'$'
+DvrMsg	db	'Drivernaam is "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE controller op I-O adres '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS init fout$'
+LEMsg	db	'.',CR,LF,'/L Ongeldig$'
+SyEMsg	db	'.',CR,LF,'FOUT '
+SyMsg	db	'Synchroniseren van I-O met XDMA-driver$'
+PRMsg	db	'Geen 80386+ CPU'
+Suffix	db	'; GCDROM niet geladen!',CR,LF,'$'
+UnitMsg	db	'Unit '
+UMsgNo	db	'0:  $'
+TOMsg	db	' apparaatselectie timeout$'
+IDMsg	db	' Identify Device fout$'
+NCMsg	db	' is geen ATAPI CD-ROM$'
+NDMsg	db	'Geen CD-ROM-drive om te gebruiken$'
+PriMsg	db	'Primair-$'
+SecMsg	db	'Secundair-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO-modus$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+; Language: Portuguese (pt)
+; File ending: pt
+; Codepage: 860
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.PT -- Mensagens de inicialização do XCDROM em "Português".
+; Escrito por Jack R. Ellis, 8-Fev-2006.
+;
+; Os utilizadores que desejem "Internacionalizar" o XCDROM precisam de alterar
+; apenas ESTE ficheiro! O novo ficheiro pode ser nomeado como desejado, por
+; exemplo XCDMSGS.FR (Francês), XCDMSGS.PT (Português) etc. O ficheiro desejado
+; deve ser copiado para XCDMSGS.TXT, e o driver desejado pode então ser
+; remontado com qualquer montador NASM (disponível no SourceForge), usando
+; a seguinte linha de comandos:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Note que a condicional -d language faz com que o montador leia o ficheiro
+; XCDMSGS.TXT, em vez do ficheiro padrão XCDMSGS.ENG.
+;
+; As seguintes REGRAS aplicam-se à modificação das mensagens abaixo mostradas:
+;
+;  A) Todos os RÓTULOS de mensagem ("XCMsg" etc.) devem aparecer como mostrado.
+;
+;  B) Todos os bytes CR, LF e o byte final $ devem aparecer como mostrado.
+;     Apenas os bytes de TEXTO da mensagem (letras, números e pontuação)
+;     estão abertos a alterações.
+;
+;  C) Deve haver pelo menos 42 caracteres desde o início de "XCMsg" até ao
+;     início de "Suffix", pois o driver lê 40 bytes de dados para esta área
+;     (o nome de cada drive) e acrescenta um $ final antes de exibir o
+;     nome final do drive de CD-ROM.
+;
+;  D) Outras mensagens MODIFICADAS pela inicialização do driver são:
+;
+;	1) Os 8 bytes do nome do driver em "DvrMsg1".
+;	2) Os 4 bytes do endereço do controlador em "CtlrAdr".
+;	3) Os 8 bytes do I.D. do controlador em "CtlrID".
+;	4) O byte do número da unidade do drive em "UMsgNo".
+;	5) Os 4 bytes do modo UltraDMA em "UDMode".
+;
+; Para um exemplo de "Internacionalização", compare o ficheiro XDMAMSGS.ENG
+; com o ficheiro XDMAMSGS.NL, ambos incluídos no pacote atual do driver XDMA.
+; O XDMAMSGS.NL traduz todas as mensagens de inicialização do XDMA para a
+; língua holandesa. Este ficheiro foi escrito por Bernd Blaauw, que sugeriu
+; tornar o XDMA, e agora o XCDROM, em drivers "Internacionais".
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;O XCDROM.ASM fornece a versão e a data!
+	db	CR,LF,'$'
+DvrMsg	db	'O nome do driver é "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'Controlador SATA Native IDE no endereço I-O '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'Erro de inicialização VDS$'
+LEMsg	db	'.',CR,LF,'/L Inválido$'
+SyEMsg	db	'.',CR,LF,'ERRO '
+SyMsg	db	'Sincronizando I-O com o driver XDMA$'
+PRMsg	db	'Nenhuma CPU 80386+$'
+Suffix	db	'; GCDROM não carregado!',CR,LF,'$'
+UnitMsg	db	'Unidade '
+UMsgNo	db	'0:  $'
+TOMsg	db	' tempo esgotado na seleção do dispositivo$'
+IDMsg	db	' erro de Identify Device$'
+NCMsg	db	' não é um CD-ROM ATAPI$'
+NDMsg	db	'Nenhum CD-ROM drive para usar$'
+PriMsg	db	'Primário-$'
+SecMsg	db	'Secundário-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', modo PIO$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+
+; Language: Hungarian (hu)
+; File ending: hu
+; Codepage: 852
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.HU -- "Magyar" XCDROM inicializálási üzenetek.
+; Írta: Jack R. Ellis, 2006. február 8.
+;
+; Azoknak a felhasználóknak, akik "nemzetköziesíteni" szeretnék az XCDROM-ot,
+; csak EZT a fájlt kell módosítaniuk! Az új fájl tetszőlegesen nevezhető el,
+; például XCDMSGS.FR (francia), XCDMSGS.HU (magyar) stb. A kívánt fájlt az
+; XCDMSGS.TXT névre kell másolni, és a kívánt illesztőprogram ezután bármely
+; NASM assemblerrel (elérhető a SourceForge-on) újra-összeállítható a
+; következő parancssorral:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Vegye figyelembe, hogy a -d language feltétel arra készteti az assemblert,
+; hogy az XCDMSGS.TXT fájlt olvassa be az alapértelmezett XCDMSGS.ENG helyett.
+;
+; Az alább látható üzenetek módosítására a következő SZABÁLYOK vonatkoznak:
+;
+;  A) Minden üzenet CÍMKÉNEK ("XCMsg" stb.) a bemutatott módon kell szerepelnie.
+;
+;  B) Minden CR, LF és lezáró $ bájtnak a bemutatott módon kell szerepelnie.
+;     Csak az üzenet SZÖVEG bájtjai (betűk, számok és írásjelek) módosíthatók.
+;
+;  C) Legalább 42 karakternek kell lennie az "XCMsg" kezdetétől a "Suffix"
+;     kezdetéig, mivel az illesztőprogram 40 bájtnyi adatot olvas be erre a
+;     területre (az egyes drive-ok nevét), és egy lezáró $ jelet fűz hozzá,
+;     mielőtt megjelenítené a végleges CD-ROM drive nevet.
+;
+;  D) Az illesztőprogram inicializálása által MÓDOSÍTOTT egyéb üzenetek:
+;
+;	1) A 8 illesztőprogram-név bájt a "DvrMsg1" címnél.
+;	2) A 4 vezérlőcím bájt a "CtlrAdr" címnél.
+;	3) A 8 vezérlő-I.D. bájt a "CtlrID" címnél.
+;	4) A drive egységszám bájtja az "UMsgNo" címnél.
+;	5) A 4 UltraDMA mód bájt az "UDMode" címnél.
+;
+; A "nemzetköziesítésre" példaként hasonlítsa össze az XDMAMSGS.ENG fájlt az
+; XDMAMSGS.NL fájllal, amelyek mindketten megtalálhatók a jelenlegi XDMA
+; illesztőprogram-csomagban. Az XDMAMSGS.NL az összes XDMA inicializálási
+; üzenetet holland nyelvre fordítja. Ezt a fájlt Bernd Blaauw írta, aki
+; javasolta az XDMA, és most az XCDROM "nemzetközivé" tételét.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;Az XCDROM.ASM biztosítja a verziót és a dátumot!
+	db	CR,LF,'$'
+DvrMsg	db	'Az illesztőprogram neve: "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE vezérlő az I-O címen: '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS inicializálási hiba$'
+LEMsg	db	'.',CR,LF,'/L érvénytelen$'
+SyEMsg	db	'.',CR,LF,'HIBA '
+SyMsg	db	'I-O szinkronizálása az XDMA illesztővel$'
+PRMsg	db	'Nincs 80386+ CPU'
+Suffix	db	'; GCDROM nincs betöltve!',CR,LF,'$'
+UnitMsg	db	'Egység '
+UMsgNo	db	'0:  $'
+TOMsg	db	' eszközválasztási időtúllépés$'
+IDMsg	db	' Identify Device hiba$'
+NCMsg	db	' nem ATAPI CD-ROM$'
+NDMsg	db	'Nincs használható CD-ROM drive$'
+PriMsg	db	'Elsődleges-$'
+SecMsg	db	'Másodlagos-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO mód$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+
+; Language: Ukrainian (uk)
+; File ending: uk
+; Codepage: 1125
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+; УВАГА: Використання кирилиці в повідомленнях драйвера допустиме тільки
+; при завантаженому відповідному екранному шрифті.
+
+;
+; XCDMSGS.UK -- "Українські" повідомлення ініціалізації XCDROM.
+; Написано Джеком Р. Еллісом, 8 лютого 2006 р.
+;
+; Користувачам, які бажають «інтернаціоналізувати» XCDROM, потрібно змінити
+; тільки ЦЕЙ файл! Новому файлу можна дати будь-яке ім'я, наприклад,
+; XCDMSGS.FR (французька), XCDMSGS.UK (українська) тощо. Потрібний файл
+; має бути скопійований як XCDMSGS.TXT, і потрібний драйвер може бути
+; перезібраний за допомогою будь-якого асемблера NASM (доступно на
+; SourceForge) з використанням наступного командного рядка:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Зверніть увагу, що умова -d language змушує асемблер читати XCDMSGS.TXT
+; замість файлу XCDMSGS.ENG за замовчуванням.
+;
+; До зміни повідомлень, наведених нижче, застосовуються такі ПРАВИЛА:
+;
+;  A) Усі МІТКИ повідомлень ("XCMsg" тощо) повинні відображатися, як показано.
+;
+;  B) Усі байти CR, LF та завершальний байт $ повинні відображатися, як показано.
+;     Зміні підлягають лише ТЕКСТОВІ байти повідомлення (букви, цифри та
+;     знаки пунктуації).
+;
+;  C) Від початку "XCMsg" до початку "Suffix" має бути не менше 42 символів,
+;     оскільки драйвер зчитує 40 байт даних у цю область (ім'я кожного
+;     накопичувача) і додає завершальний символ $ перед відображенням
+;     остаточного імені накопичувача CD-ROM.
+;
+;  D) Інші повідомлення, що ЗМІНЮЮТЬСЯ під час ініціалізації драйвера:
+;
+;	1) 8 байт імені драйвера у "DvrMsg1".
+;	2) 4 байти адреси контролера у "CtlrAdr".
+;	3) 8 байт I.D. чіпа у "CtlrID".
+;	4) Байт номера пристрою у "UMsgNo".
+;	5) 4 байти режиму UltraDMA у "UDMode".
+;
+; Як приклад «інтернаціоналізації» порівняйте файл XDMAMSGS.ENG з файлом
+; XDMAMSGS.NL, обидва з яких включені в поточний пакет драйверів XDMA.
+; XDMAMSGS.NL перекладає всі повідомлення ініціалізації XDMA голландською
+; мовою. Цей файл був написаний Берндом Блааувом, який запропонував зробити
+; XDMA, а тепер і XCDROM, «міжнародними» драйверами.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM надає версію та дату!
+	db	CR,LF,'$'
+DvrMsg	db	'Назва драйвера: "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE контролер за I-O адресою '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'Помилка ініц. VDS$'
+LEMsg	db	'.',CR,LF,'Невірний /L$'
+SyEMsg	db	'.',CR,LF,'ПОМИЛКА '
+SyMsg	db	'Синхронізація I-O з драйвером XDMA$'
+PRMsg	db	'Немає процесора 80386+'
+Suffix	db	'; GCDROM не завантажено!',CR,LF,'$'
+UnitMsg	db	'Пристрій '
+UMsgNo	db	'0:  $'
+TOMsg	db	' таймаут вибору пристрою$'
+IDMsg	db	' помилка Identify Device$'
+NCMsg	db	' не є ATAPI CD-ROM$'
+NDMsg	db	'Немає доступних CD-ROM drive-ів$'
+PriMsg	db	'Primary-$'
+SecMsg	db	'Secondary-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO режим$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+
+; Language: Danish (dk)
+; File ending: dk
+; Codepage: 865
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.DK -- "Danske" XCDROM initialiseringsmeddelelser.
+; Skrevet af Jack R. Ellis, 8. feb. 2006.
+;
+; Brugere, der ønsker at "internationalisere" XCDROM, behøver kun at ændre
+; DENNE fil! Den nye fil kan navngives efter ønske, for eksempel XCDMSGS.FR
+; (fransk), XCDMSGS.DK (dansk) osv. Den ønskede fil skal kopieres til
+; XCDMSGS.TXT, og den ønskede driver kan derefter gen-assembles med enhver
+; NASM-assembler (tilgængelig fra SourceForge) ved hjælp af følgende
+; kommandolinje:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Bemærk, at den betingede -d language får assembleren til at læse
+; XCDMSGS.TXT i stedet for standardfilen XCDMSGS.ENG.
+;
+; Følgende REGLER gælder for ændring af meddelelserne vist nedenfor:
+;
+;  A) Alle meddelelses-LABELS ("XCMsg" osv.) skal vises som vist.
+;
+;  B) Alle CR, LF og afsluttende $ bytes skal vises som vist. Kun
+;     meddelelsestekstens bytes (bogstaver, tal og tegnsætning) er åbne
+;     for ændring.
+;
+;  C) Der skal være mindst 42 tegn fra starten af "XCMsg" til starten af
+;     "Suffix", da driveren læser 40 bytes data ind i dette område (navnet
+;     på hver drive) og tilføjer et afsluttende $ før visning af det
+;     endelige CD-ROM drive-navn.
+;
+;  D) Andre meddelelser MODIFICERET ved driver-initialisering er:
+;
+;	1) De 8 drivernavn-bytes ved "DvrMsg1".
+;	2) De 4 controller-adresse-bytes ved "CtlrAdr".
+;	3) De 8 controller-I.D.-bytes ved "CtlrID".
+;	4) Drive-enhedsnummer-byten ved "UMsgNo".
+;	5) De 4 UltraDMA-tilstands-bytes ved "UDMode".
+;
+; For et eksempel på "internationalisering", sammenlign filen XDMAMSGS.ENG
+; med filen XDMAMSGS.NL, som begge er inkluderet i den nuværende XDMA-
+; driverpakke. XDMAMSGS.NL oversætter alle XDMA-initialiseringsmeddelelser
+; til det hollandske sprog. Denne fil blev skrevet af Bernd Blaauw, som
+; foreslog at gøre XDMA, og nu XCDROM, til "internationale" drivere.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM leverer version og dato!
+	db	CR,LF,'$'
+DvrMsg	db	'Drivernavnet er "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE controller på I-O adresse '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS init fejl$'
+LEMsg	db	'.',CR,LF,'/L Ugyldig$'
+SyEMsg	db	'.',CR,LF,'FEJL '
+SyMsg	db	'Synkroniserer I-O med XDMA driver$'
+PRMsg	db	'Ingen 80386+ CPU'
+Suffix	db	'; GCDROM ikke indlæst!',CR,LF,'$'
+UnitMsg	db	'Enhed '
+UMsgNo	db	'0:  $'
+TOMsg	db	' enhedsvalg timeout$'
+IDMsg	db	' Identify Device fejl$'
+NCMsg	db	' er ikke en ATAPI CD-ROM$'
+NDMsg	db	'Ingen CD-ROM drive til brug$'
+PriMsg	db	'Primær-$'
+SecMsg	db	'Sekundær-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO-tilstand$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+; Language: Brazil Port. (pb)
+; File ending: pb
+; Codepage: 858
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.PB -- Mensagens de inicialização do XCDROM em "Português do Brasil".
+; Escrito por Jack R. Ellis, 8-Fev-2006.
+;
+; Usuários que desejam "Internacionalizar" o XCDROM precisam alterar apenas
+; ESTE arquivo! O novo arquivo pode ser nomeado como desejado, por exemplo
+; XCDMSGS.FR (Francês), XCDMSGS.PB (Português do Brasil) etc. O arquivo desejado
+; deve ser copiado para XCDMSGS.TXT, e o driver desejado pode então ser
+; remontado com qualquer montador NASM (disponível no SourceForge), usando
+; a seguinte linha de comando:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Observe que o condicional -d language faz com que o montador leia o arquivo
+; XCDMSGS.TXT, em vez do arquivo padrão XCDMSGS.ENG.
+;
+; As seguintes REGRAS se aplicam à modificação das mensagens mostradas abaixo:
+;
+;  A) Todos os RÓTULOS de mensagem ("XCMsg" etc.) devem aparecer como mostrado.
+;
+;  B) Todos os bytes CR, LF e o byte final $ devem aparecer como mostrado.
+;     Apenas os bytes de TEXTO da mensagem (letras, números e pontuação)
+;     estão abertos a alterações.
+;
+;  C) Deve haver pelo menos 42 caracteres do início de "XCMsg" até o início de
+;     "Suffix", pois o driver lê 40 bytes de dados para esta área (o nome
+;     de cada drive) e acrescenta um $ final antes de exibir o nome final
+;     do drive de CD-ROM.
+;
+;  D) Outras mensagens MODIFICADAS pela inicialização do driver são:
+;
+;	1) Os 8 bytes do nome do driver em "DvrMsg1".
+;	2) Os 4 bytes do endereço do controlador em "CtlrAdr".
+;	3) Os 8 bytes do I.D. do controlador em "CtlrID".
+;	4) O byte do número da unidade do drive em "UMsgNo".
+;	5) Os 4 bytes do modo UltraDMA em "UDMode".
+;
+; Para um exemplo de "Internacionalização", compare o arquivo XDMAMSGS.ENG
+; com o arquivo XDMAMSGS.NL, ambos incluídos no pacote atual do driver XDMA.
+; O XDMAMSGS.NL traduz todas as mensagens de inicialização do XDMA para o
+; idioma holandês. Este arquivo foi escrito por Bernd Blaauw, que sugeriu
+; tornar o XDMA, e agora o XCDROM, em drivers "Internacionais".
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;O XCDROM.ASM fornece a versão e a data!
+	db	CR,LF,'$'
+DvrMsg	db	'O nome do driver é "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'Controlador SATA Native IDE no endereço I-O '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'Erro de inicialização VDS$'
+LEMsg	db	'.',CR,LF,'/L Inválido$'
+SyEMsg	db	'.',CR,LF,'ERRO '
+SyMsg	db	'Sincronizando I-O com o driver XDMA$'
+PRMsg	db	'Nenhum CPU 80386+$'
+Suffix	db	'; GCDROM não carregado!',CR,LF,'$'
+UnitMsg	db	'Unidade '
+UMsgNo	db	'0:  $'
+TOMsg	db	' tempo esgotado na seleção do dispositivo$'
+IDMsg	db	' erro de Identify Device$'
+NCMsg	db	' não é um CD-ROM ATAPI$'
+NDMsg	db	'Nenhum drive CD-ROM para usar$'
+PriMsg	db	'Primário-$'
+SecMsg	db	'Secundário-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', modo PIO$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+
+; Language: Estonian (et)
+; File ending: et
+; Codepage: 775
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.ET -- "Eesti" XCDROM-i algatusteaded.
+; Kirjutanud Jack R. Ellis, 8. veebruar 2006.
+;
+; Kasutajad, kes soovivad XCDROM-i "rahvusvaheliseks muuta", peavad muutma
+; ainult SEDA faili! Uue faili võib nimetada soovikohaselt, näiteks
+; XCDMSGS.FR (prantsuse), XCDMSGS.ET (eesti) jne. Soovitud fail tuleb
+; kopeerida nimega XCDMSGS.TXT ja seejärel saab draiveri uuesti koondada
+; mis tahes NASM-assembleriga (saadaval SourceForge'is), kasutades järgmist
+; käsurida:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Pange tähele, et tingimus -d language paneb assembleri lugema faili
+; XCDMSGS.TXT, mitte vaikimisi XCDMSGS.ENG faili.
+;
+; Allpool näidatud teadete muutmisel kehtivad järgmised REEGLID:
+;
+;  A) Kõik teadete MÄRGID ("XCMsg" jne) peavad säilima näidatud kujul.
+;
+;  B) Kõik CR, LF ja lõpetavad $ baidid peavad säilima näidatud kujul.
+;     Ainult teate TEKSTI baidid (tähed, numbrid ja kirjavahemärgid)
+;     on muutmiseks avatud.
+;
+;  C) "XCMsg" algusest kuni "Suffix" alguseni peab olema vähemalt 42 märki,
+;     kuna draiver loeb sellesse kohta 40 baiti andmeid (iga seadme nime)
+;     ja lisab lõppu sümboli $, enne kui kuvatakse lõplik CD-ROM-i
+;     seadme nimi.
+;
+;  D) Muud teated, mida draiveri algatamine MUUDAB:
+;
+;	1) 8 draiveri nime baiti kohas "DvrMsg1".
+;	2) 4 kontrolleri aadressi baiti kohas "CtlrAdr".
+;	3) 8 kontrolleri I.D. baiti kohas "CtlrID".
+;	4) Seadme üksuse numbri bait kohas "UMsgNo".
+;	5) 4 UltraDMA režiimi baiti kohas "UDMode".
+;
+; "Rahvusvaheliseks muutmise" näitena võrrelge faili XDMAMSGS.ENG failiga
+; XDMAMSGS.NL, mis mõlemad on lisatud praegusesse XDMA draiveripaketti.
+; XDMAMSGS.NL tõlgib kõik XDMA algatusteaded hollandi keelde. Selle faili
+; kirjutas Bernd Blaauw, kes tegi ettepaneku muuta XDMA ja nüüd ka
+; XCDROM "rahvusvahelisteks" draiveriteks.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM väljastab versiooni ja kuupäeva!
+	db	CR,LF,'$'
+DvrMsg	db	'Draiveri nimi on "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE kontroller I-O aadressil '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, kiibi I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS algatamistõrge$'
+LEMsg	db	'.',CR,LF,'/L vigane$'
+SyEMsg	db	'.',CR,LF,'VIGA '
+SyMsg	db	'I-O sünkroonimine XDMA draiveriga$'
+PRMsg	db	'Puudub 80386+ CPU'
+Suffix	db	'; GCDROM-i ei laaditud!',CR,LF,'$'
+UnitMsg	db	'Üksus '
+UMsgNo	db	'0:  $'
+TOMsg	db	' seadme valimise ajalõpp$'
+IDMsg	db	' Identify Device tõrge$'
+NCMsg	db	' ei ole ATAPI CD-ROM$'
+NDMsg	db	'Kasutatavat CD-ROM drive-i ei leitud$'
+PriMsg	db	'Esimene-$'
+SecMsg	db	'Teine-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO režiim$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+
+; Language: Serbian (sr)
+; File ending: sr
+; Codepage: 855
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+; ПАЖЊА: Коришћење ћирилице у порукама драјвера дозвољено је само
+; ако је учитан одговарајући екрански фонт.
+
+;
+; XCDMSGS.SR -- "Српске" поруке иницијализације XCDROM-а.
+; Написао Џек Р. Елис, 8-феб-2006.
+;
+; Корисници који желе да "интернационализују" XCDROM треба да измене само
+; ОВУ датотеку! Новој датотеци се може дати име по жељи, на пример
+; XCDMSGS.FR (француски), XCDMSGS.SR (српски) итд. Жељена датотека се мора
+; копирати у XCDMSGS.TXT, а затим се жељени драјвер може поново асемблирати
+; помоћу било ког NASM асемблера (доступног на SourceForge), користећи
+; следећу командну линију:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Имајте на уму да услов -d language доводи до тога да асемблер чита
+; XCDMSGS.TXT уместо подразумеване XCDMSGS.ENG датотеke.
+;
+; Следећа ПРАВИЛА се примењују на модификацију порука приказаних испод:
+;
+;  A) Све ОЗНАКЕ порука ("XCMsg" итд.) морају се појавити као што је приказано.
+;
+;  B) Сви CR, LF и завршни $ бајтови морају се појавити као што је приказано.
+;     Само ТЕКСТУАЛНИ бајтови поруке (слова, бројеви и знаци интерпункције)
+;     су отворени за промену.
+;
+;  C) Мора бити најмање 42 знака од почетка "XCMsg" до почетка "Suffix",
+;     јер драјвер чита 40 бајтова података у ову област (име сваког уређаја)
+;     и додаје завршни $ пре приказивања коначног имена CD-ROM уређаја.
+;
+;  D) Друге поруке које су МОДИФИКОВАНЕ иницијализацијом драјвера су:
+;
+;	1) 8 бајтова имена драјвера код "DvrMsg1".
+;	2) 4 бајта адресе контролера код "CtlrAdr".
+;	3) 8 бајтова I.D. контролера код "CtlrID".
+;	4) Бајт броја јединице уређаја код "UMsgNo".
+;	5) 4 бајта UltraDMA режима код "UDMode".
+;
+; За пример "интернационализације", упоредите датотеку XDMAMSGS.ENG са
+; датотеком XDMAMSGS.NL, које су обе укључене у тренутни пакет XDMA драјвера.
+; XDMAMSGS.NL преводи све XDMA поруке иницијализације на холандски језик.
+; Ову датотеку је написао Бернд Блау, који је предложио да XDMA, а сада и
+; XCDROM, постану "интернационални" драјвери.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM обезбеђује верзију и датум!
+	db	CR,LF,'$'
+DvrMsg	db	'Назив драјвера је "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE контролер на I-O адреси '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'Грешка иницијализације VDS-а$'
+LEMsg	db	'.',CR,LF,'/L неважеће$'
+SyEMsg	db	'.',CR,LF,'ГРЕШКА '
+SyMsg	db	'Синхронизација I-O са XDMA драјвером$'
+PRMsg	db	'Нема 80386+ CPU-а'
+Suffix	db	'; GCDROM није учитан!',CR,LF,'$'
+UnitMsg	db	'Јединица '
+UMsgNo	db	'0:  $'
+TOMsg	db	' истекло време за избор уређаја$'
+IDMsg	db	' Identify Device грешка$'
+NCMsg	db	' није ATAPI CD-ROM$'
+NDMsg	db	'Нема CD-ROM drive-а за коришћење$'
+PriMsg	db	'Примарни-$'
+SecMsg	db	'Секундарни-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO режим$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+; Language: Lithuanian (lt)
+; File ending: lt
+; Codepage: 775
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.LT -- "Lietuviški" XCDROM inicijavimo pranešimai.
+; Parašė Jack R. Ellis, 2006 m. vasario 8 d.
+;
+; Vartotojai, norintys „internacionalizuoti“ XCDROM, turi pakeisti tik ŠĮ
+; failą! Naujam failui galima suteikti bet kokį pavadinimą, pavyzdžiui,
+; XCDMSGS.FR (prancūzų), XCDMSGS.LT (lietuvių) ir t. t. Reikiamas failas
+; turi būti nukopijuotas į XCDMSGS.TXT, o norimą tvarkyklę galima surinkti
+; iš naujo naudojant bet kurį NASM asamblerį (prieinamą iš SourceForge),
+; naudojant šią komandinę eilutę:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Atkreipkite dėmesį, kad sąlyga -d language priverčia asamblerį skaityti
+; XCDMSGS.TXT failą, o ne numatytąjį XCDMSGS.ENG failą.
+;
+; Toliau nurodytų pranešimų keitimui taikomos šios TAISYKLĖS:
+;
+;  A) Visos pranešimų ETIKETĖS ("XCMsg" ir t. t.) turi likti tokios, kaip parodyta.
+;
+;  B) Visi CR, LF ir pabaigos $ baitai turi likti tokie, kaip parodyta. Tik
+;     pranešimo TEKSTO baitai (raidės, skaičiai ir skyrybos ženklai) gali
+;     būti keičiami.
+;
+;  C) Nuo „XCMsg“ pradžios iki „Suffix“ pradžios turi būti bent 42 simboliai,
+;     nes tvarkyklė į šią sritį nuskaito 40 baitų duomenų (kiekvieno įrenginio
+;     pavadinimą) ir prideda pabaigos simbolį $ prieš rodydama galutinį
+;     CD-ROM įrenginio pavadinimą.
+;
+;  D) Kiti pranešimai, kuriuos PAKEIČIA tvarkyklės inicijavimas:
+;
+;	1) 8 tvarkyklės pavadinimo baitai ties „DvrMsg1“.
+;	2) 4 valdiklio adreso baitai ties „CtlrAdr“.
+;	3) 8 valdiklio I.D. baitai ties „CtlrID“.
+;	4) Įrenginio numerio baitas ties „UMsgNo“.
+;	5) 4 UltraDMA režimo baitai ties „UDMode“.
+;
+; „Internacionalizavimo“ pavyzdį rasite palyginę failą XDMAMSGS.ENG su failu
+; XDMAMSGS.NL, kurie abu yra įtraukti į dabartinį XDMA tvarkyklės paketą.
+; XDMAMSGS.NL išverčia visus XDMA inicijavimo pranešimus į olandų kalbą.
+; Šį failą parašė Bernd Blaauw, kuris pasiūlė XDMA, o dabar ir XCDROM,
+; paversti „tarptautinėmis“ tvarkyklėmis.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM pateikia versiją ir datą!
+	db	CR,LF,'$'
+DvrMsg	db	'Draiverio pavadinimas yra "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE valdiklis I-O adresu '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, lusto I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS inicijavimo klaida$'
+LEMsg	db	'.',CR,LF,'/L neteisingas$'
+SyEMsg	db	'.',CR,LF,'KLAIDA '
+SyMsg	db	'I-O sinchronizavimas su XDMA draiveriu$'
+PRMsg	db	'Nėra 80386+ CPU'
+Suffix	db	'; GCDROM neįkeltas!',CR,LF,'$'
+UnitMsg	db	'Įrenginys '
+UMsgNo	db	'0:  $'
+TOMsg	db	' įrenginio parinkimo laikas baigėsi$'
+IDMsg	db	' Identify Device klaida$'
+NCMsg	db	' nėra ATAPI CD-ROM$'
+NDMsg	db	'Nėra naudojamo CD-ROM drive$'
+PriMsg	db	'Pirminis-$'
+SecMsg	db	'Antrinis-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO režimas$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+
+; Language: Polish (pl)
+; File ending: pl
+; Codepage: 852
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.PL -- "Polskie" komunikaty inicjalizacji XCDROM.
+; Napisane przez Jacka R. Ellisa, 8 lutego 2006 r.
+;
+; Użytkownicy, którzy chcą dokonać "internacjonalizacji" XCDROM, muszą zmienić
+; tylko TEN plik! Nowy plik można nazwać dowolnie, na przykład XCDMSGS.FR
+; (francuski), XCDMSGS.PL (polski) itd. Wybrany plik należy skopiować do
+; XCDMSGS.TXT, a następnie wybrany sterownik można ponownie skompilować za
+; pomocą dowolnego asemblera NASM (dostępnego w SourceForge), używając
+; następującej linii poleceń:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Należy zauważyć, że warunek -d language powoduje, że asembler odczytuje
+; plik XCDMSGS.TXT zamiast domyślnego pliku XCDMSGS.ENG.
+;
+; Poniższe ZASADY mają zastosowanie do modyfikacji komunikatów pokazanych poniżej:
+;
+;  A) Wszystkie ETYKIETY komunikatów ("XCMsg" itp.) muszą pozostać bez zmian.
+;
+;  B) Wszystkie bajty CR, LF i końcowy bajt $ muszą pozostać bez zmian. Tylko
+;     bajty TEKSTU komunikatu (litery, cyfry i znaki interpunkcyjne) podlegają
+;     zmianom.
+;
+;  C) Muszą istnieć co najmniej 42 znaki od początku "XCMsg" do początku
+;     "Suffix", ponieważ sterownik odczytuje 40 bajtów danych do tego obszaru
+;     (nazwę każdego napędu) i dodaje końcowy znak $, przed wyświetleniem
+;     ostatecznej nazwy napędu CD-ROM.
+;
+;  D) Inne komunikaty MODYFIKOWANE podczas inicjalizacji sterownika to:
+;
+;	1) 8 bajtów nazwy sterownika w "DvrMsg1".
+;	2) 4 bajty adresu kontrolera w "CtlrAdr".
+;	3) 8 bajtów I.D. kontrolera w "CtlrID".
+;	4) Bajt numeru jednostki napędu w "UMsgNo".
+;	5) 4 bajty trybu UltraDMA w "UDMode".
+;
+; Jako przykład "internacjonalizacji" porównaj plik XDMAMSGS.ENG z plikiem
+; XDMAMSGS.NL, z których oba są dołączone do bieżącego pakietu sterowników XDMA.
+; XDMAMSGS.NL tłumaczy wszystkie komunikaty inicjalizacji XDMA na język holenderski.
+; Ten plik został napisany przez Bernda Blaauwa, który zasugerował uczynienie
+; XDMA, a teraz XCDROM, sterownikami "międzynarodowymi".
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM dostarcza wersję i datę!
+	db	CR,LF,'$'
+DvrMsg	db	'Nazwa sterownika to "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'Kontroler SATA Native IDE pod adresem I-O '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'Błąd inicjalizacji VDS$'
+LEMsg	db	'.',CR,LF,'/L Nieprawidłowy$'
+SyEMsg	db	'.',CR,LF,'BŁĄD '
+SyMsg	db	'Synchronizacja I-O ze sterownikiem XDMA$'
+PRMsg	db	'Brak procesora 80386+'
+Suffix	db	'; GCDROM nie został załadowany!',CR,LF,'$'
+UnitMsg	db	'Jednostka '
+UMsgNo	db	'0:  $'
+TOMsg	db	' limit czasu wyboru urządzenia$'
+IDMsg	db	' Błąd Identify Device$'
+NCMsg	db	' nie jest ATAPI CD-ROM$'
+NDMsg	db	'Brak napędu CD-ROM drive do użycia$'
+PriMsg	db	'Podstawowy-$'
+SecMsg	db	'Pomocniczy-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', tryb PIO$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+
+; Language: Icelandic (is)
+; File ending: is
+; Codepage: 861
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.IS -- "Íslenskar" upphafstilkynningar XCDROM.
+; Skrifað af Jack R. Ellis, 8. febrúar 2006.
+;
+; Notendur sem vilja "alþjóðavæða" XCDROM þurfa aðeins að breyta ÞESSARI
+; skrá! Nýja skráin má heita hvað sem er, til dæmis XCDMSGS.FR (franska),
+; XCDMSGS.IS (íslenska) o.s.frv. Afrita verður umbeðna skrá í XCDMSGS.TXT
+; og síðan er hægt að endurþýða rekilinn með hvaða NASM-samsetningarkóða
+; sem er (fáanlegur hjá SourceForge) með eftirfarandi skipanalínu:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Athugið að skilyrðið -d language fær samsetningarkóðann til að lesa
+; XCDMSGS.TXT í stað sjálfgefnu XCDMSGS.ENG skrárinnar.
+;
+; Eftirfarandi REGLUR gilda um breytingar á skilaboðunum hér að neðan:
+;
+;  A) Öll skilaboða-LABELS ("XCMsg" o.s.frv.) verða að birtast eins og sýnt er.
+;
+;  B) Öll CR, LF og lokunarbæti $ verða að birtast eins og sýnt er. Aðeins
+;     TEXTA-bætum skilaboðanna (stafir, tölustafir og greinarmerki) má breyta.
+;
+;  C) Það verða að vera að minnstal kosti 42 stafir frá upphafi "XCMsg"
+;     til upphafs "Suffix", þar sem rekillinn les 40 bæti af gögnum á
+;     þetta svæði (nafn hvers drifs) og bætir við $ í lokin áður en
+;     endanlegt CD-ROM drive nafn er birt.
+;
+;  D) Önnur skilaboð sem BREYTAST við ræsingu rekilsins eru:
+;
+;	1) Þessi 8 bæti fyrir nafn rekils hjá "DvrMsg1".
+;	2) Þessi 4 bæti fyrir vistfang stýringar hjá "CtlrAdr".
+;	3) Þessi 8 bæti fyrir I.D. stýringar hjá "CtlrID".
+;	4) Bætið fyrir einingarnúmer drifs hjá "UMsgNo".
+;	5) Þessi 4 bæti fyrir UltraDMA ham hjá "UDMode".
+;
+; Sem dæmi um "alþjóðavæðingu" má bera saman skrána XDMAMSGS.ENG við
+; skrána XDMAMSGS.NL, sem báðar fylgja með núverandi XDMA rekilpakka.
+; XDMAMSGS.NL þýðir öll XDMA upphafsskilaboð á hollensku. Þessi skrá
+; var skrifuð af Bernd Blaauw sem lagði til að gera XDMA, og nú
+; XCDROM, að "alþjóðlegum" reklum.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM gefur upp útgáfu og dagsetningu!
+	db	CR,LF,'$'
+DvrMsg	db	'Nafn rekils er "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE stýring á I-O vistfangi '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS ræsingarvilla$'
+LEMsg	db	'.',CR,LF,'/L ógilt$'
+SyEMsg	db	'.',CR,LF,'VILLA '
+SyMsg	db	'Samstilling I-O við XDMA rekil$'
+PRMsg	db	'Enginn 80386+ CPU'
+Suffix	db	'; GCDROM ekki hlaðið!',CR,LF,'$'
+UnitMsg	db	'Eining '
+UMsgNo	db	'0:  $'
+TOMsg	db	' tímamörk tækjavals rann út$'
+IDMsg	db	' Identify Device villa$'
+NCMsg	db	' er ekki ATAPI CD-ROM$'
+NDMsg	db	'Ekkert CD-ROM drive til nota$'
+PriMsg	db	'Aðal-$'
+SecMsg	db	'Auka-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO hamur$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+; Language: Czech (cz)
+; File ending: cz
+; Codepage: 852
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.CZ -- "České" inicializační zprávy XCDROM.
+; Napsal Jack R. Ellis, 8. února 2006.
+;
+; Uživatelé, kteří si přejí "internacionalizovat" XCDROM, musí změnit pouze TENTO
+; soubor! Nový soubor lze pojmenovat libovolně, například XCDMSGS.FR
+; (francouzština), XCDMSGS.CZ (čeština) atd. Požadovaný soubor musí být zkopírován
+; do XCDMSGS.TXT a požadovaný ovladač pak může být znovu sestaven pomocí
+; jakéhokoli assembleru NASM (dostupného ze SourceForge) pomocí následujícího
+; příkazového řádku:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Všimněte si, že podmíněné -d language způsobí, že assembler čte
+; XCDMSGS.TXT namísto výchozího souboru XCDMSGS.ENG.
+;
+; Pro úpravu níže uvedených zpráv platí následující PRAVIDLA:
+;
+;  A) Všechna NÁVĚSTÍ zpráv ("XCMsg" atd.) se musí objevit tak, jak je zobrazeno.
+;
+;  B) Všechny bajty CR, LF a ukončovací $ se musí objevit tak, jak je zobrazeno.
+;     Ke změně jsou otevřeny pouze TEXTOVÉ bajty zprávy (písmena, čísla a
+;     interpunkce).
+;
+;  C) Od začátku "XCMsg" do začátku "Suffix" musí být alespoň 42 znaků,
+;     protože ovladač načítá 40 bajtů dat do této oblasti (název každého drive)
+;     a před zobrazením konečného názvu CD-ROM drive přidá koncový znak $.
+;
+;  D) Další zprávy MODIFIKOVANÉ inicializací ovladače jsou:
+;
+;	1) 8 bajtů názvu ovladače u "DvrMsg1".
+;	2) 4 bajty adresy řadiče u "CtlrAdr".
+;	3) 8 bajtů I.D. čipu u "CtlrID".
+;	4) Bajt čísla jednotky drive u "UMsgNo".
+;	5) 4 bajty režimu UltraDMA u "UDMode".
+;
+; Jako příklad "internacionalizace" porovnejte soubor XDMAMSGS.ENG se souborem
+; XDMAMSGS.NL, oba jsou součástí aktuálního balíčku ovladače XDMA.
+; XDMAMSGS.NL překládá všechny inicializační zprávy XDMA do nizozemštiny.
+; Tento soubor napsal Bernd Blaauw, který navrhl vytvořit z XDMA a nyní i
+; z XCDROM "mezinárodní" ovladače.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM poskytuje verzi a datum!
+	db	CR,LF,'$'
+DvrMsg	db	'Název ovladače je "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE řadič na I-O adrese '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS chyba inicializace$'
+LEMsg	db	'.',CR,LF,'/L neplatný$'
+SyEMsg	db	'.',CR,LF,'CHYBA '
+SyMsg	db	'Synchronizace I-O s ovladačem XDMA$'
+PRMsg	db	'Chybí 80386+ CPU'
+Suffix	db	'; GCDROM nezaveden!',CR,LF,'$'
+UnitMsg	db	'Jednotka '
+UMsgNo	db	'0:  $'
+TOMsg	db	' časový limit výběru zařízení vypršel$'
+IDMsg	db	' Chyba Identify Device$'
+NCMsg	db	' není ATAPI CD-ROM$'
+NDMsg	db	'Žádný CD-ROM drive k použití$'
+PriMsg	db	'Primární-$'
+SecMsg	db	'Sekundární-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO mód$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+
+; Language: Latvian (lv)
+; File ending: lv
+; Codepage: 775
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.LV -- "Latviešu" XCDROM inicializācijas ziņojumi.
+; Rakstījis Jack R. Ellis, 2006. gada 8. februārī.
+;
+; Lietotājiem, kuri vēlas "internacionalizēt" XCDROM, ir jāmaina tikai ŠIS
+; fails! Jaunajam failam var piešķirt jebkādu nosaukumu, piemēram, XCDMSGS.FR
+; (franču), XCDMSGS.LV (latviešu) utt. Vēlamais fails ir jānokopē uz
+; XCDMSGS.TXT, un pēc tam vēlamo draiveri var atkārtoti samontēt ar jebkuru
+; NASM asambleru (pieejams no SourceForge), izmantojot šādu komandrindu:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Ievērojiet, ka nosacījums -d language liek asambleram lasīt
+; XCDMSGS.TXT, nevis noklusējuma XCDMSGS.ENG failu.
+;
+; Uz tālāk norādīto ziņojumu modificēšanu attiecas šādi NOTEIKUMI:
+;
+;  A) Visiem ziņojumu LABELS ("XCMsg" utt.) ir jāparādās tā, kā parādīts.
+;
+;  B) Visiem CR, LF un beigu $ baitiem ir jāparādās tā, kā parādīts. Tikai
+;     ziņojuma TEXT baiti (burti, cipari un pieturzīmes) ir maināmi.
+;
+;  C) No "XCMsg" sākuma līdz "Suffix" sākumam jābūt vismaz 42 rakstzīmēm,
+;     jo draiveris šajā apgabalā nolasa 40 datu baitus (katra drive nosaukumu)
+;     un pievieno beigu $, pirms tiek parādīts galīgais CD-ROM drive nosaukums.
+;
+;  D) Citi ziņojumi, kurus MODIFICĒ draivera inicializācija:
+;
+;	1) 8 draivera nosaukuma baiti pie "DvrMsg1".
+;	2) 4 kontrollera adreses baiti pie "CtlrAdr".
+;	3) 8 kontrollera I.D. baiti pie "CtlrID".
+;	4) Drive vienības numura baits pie "UMsgNo".
+;	5) 4 UltraDMA režīma baiti pie "UDMode".
+;
+; "Internacionalizācijas" piemēru skatiet, salīdzinot failu XDMAMSGS.ENG ar
+; failu XDMAMSGS.NL, abi ir iekļauti pašreizējā XDMA draiveru pakotnē.
+; XDMAMSGS.NL tulko visus XDMA inicializācijas ziņojumus holandiešu valodā.
+; Šo failu sarakstīja Bernd Blaauw, kurš ierosināja padarīt XDMA un tagad arī
+; XCDROM par "starptautiskiem" draiveriem.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM nodrošina versiju un datumu!
+	db	CR,LF,'$'
+DvrMsg	db	'Draivera nosaukums ir "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE kontrolleris I-O adresē '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, mikroshēmas I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS inicializācijas kļūda$'
+LEMsg	db	'.',CR,LF,'/L nederīgs$'
+SyEMsg	db	'.',CR,LF,'KĻŪDA '
+SyMsg	db	'I-O sinhronizācija ar XDMA draiveri$'
+PRMsg	db	'Nav 80386+ CPU'
+Suffix	db	'; GCDROM nav ielādēts!',CR,LF,'$'
+UnitMsg	db	'Iekārta '
+UMsgNo	db	'0:  $'
+TOMsg	db	' ierīces izvēles noilgums$'
+IDMsg	db	' Identify Device kļūda$'
+NCMsg	db	' nav ATAPI CD-ROM$'
+NDMsg	db	'Nav izmantojama CD-ROM drive$'
+PriMsg	db	'Primārais-$'
+SecMsg	db	'Sekundārais-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO režīms$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+
+; Language: Slovak (sk)
+; File ending: sk
+; Codepage: 852
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.SK -- "Slovenské" inicializačné správy XCDROM.
+; Napísal Jack R. Ellis, 8. februára 2006.
+;
+; Používatelia, ktorí si želajú "internacionalizovať" XCDROM, musia zmeniť iba TENTO
+; súbor! Nový súbor môže byť pomenovaný ľubovoľne, napríklad XCDMSGS.FR
+; (francúzština), XCDMSGS.SK (slovenčina) atď. Požadovaný súbor musí byť skopírovaný
+; do XCDMSGS.TXT a požadovaný ovládač potom môže byť znovu zostavený pomocou
+; akéhokoľvek assemblera NASM (dostupného zo SourceForge) pomocou nasledujúceho
+; príkazového riadku:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Všimnite si, že podmienené -d language spôsobí, že assembler číta
+; XCDMSGS.TXT namiesto predvoleného súboru XCDMSGS.ENG.
+;
+; Pre úpravu nižšie uvedených správ platia nasledujúce PRAVIDLÁ:
+;
+;  A) Všetky NÁVESTIA správ ("XCMsg" atď.) sa musia objaviť tak, ako je zobrazené.
+;
+;  B) Všetky bajty CR, LF a ukončovacie $ sa musia objaviť tak, ako je zobrazené.
+;     Na zmenu sú otvorené iba TEXTOVÉ bajty správy (písmená, čísla a
+;     interpunkcia).
+;
+;  C) Od začiatku "XCMsg" do začiatku "Suffix" musí byť aspoň 42 znakov,
+;     pretože ovládač načítava 40 bajtov údajov do tejto oblasti (názov každého drive)
+;     a pred zobrazením konečného názvu CD-ROM drive pridá koncový znak $.
+;
+;  D) Ďalšie správy MODIFIKOVANÉ inicializáciou ovládača sú:
+;
+;	1) 8 bajtov názvu ovládača pri "DvrMsg1".
+;	2) 4 bajty adresy radiča pri "CtlrAdr".
+;	3) 8 bajtov I.D. čipu pri "CtlrID".
+;	4) Bajt čísla jednotky drive pri "UMsgNo".
+;	5) 4 bajty režimu UltraDMA pri "UDMode".
+;
+; Ako príklad "internacionalizácie" porovnajte súbor XDMAMSGS.ENG so súborom
+; XDMAMSGS.NL, oba sú súčasťou aktuálneho balíka ovládača XDMA.
+; XDMAMSGS.NL prekladá všetky inicializačné správy XDMA do holandčiny.
+; Tento súbor napísal Bernd Blaauw, ktorý navrhol vytvoriť z XDMA a teraz aj
+; z XCDROM "medzinárodné" ovládače.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM poskytuje verziu a dátum!
+	db	CR,LF,'$'
+DvrMsg	db	'Názov ovládača je "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE radič na I-O adrese '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS chyba inicializácie$'
+LEMsg	db	'.',CR,LF,'/L neplatný$'
+SyEMsg	db	'.',CR,LF,'CHYBA '
+SyMsg	db	'Synchronizácia I-O s ovládačom XDMA$'
+PRMsg	db	'Chýba 80386+ CPU'
+Suffix	db	'; GCDROM nezavedený!',CR,LF,'$'
+UnitMsg	db	'Jednotka '
+UMsgNo	db	'0:  $'
+TOMsg	db	' časový limit výberu zariadenia vypršal$'
+IDMsg	db	' Chyba Identify Device$'
+NCMsg	db	' nie je ATAPI CD-ROM$'
+NDMsg	db	'Žiaden CD-ROM drive na použitie$'
+PriMsg	db	'Primárny-$'
+SecMsg	db	'Sekundárny-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO mód$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+
+; Language: Slovenian (sl)
+; File ending: sl
+; Codepage: 852
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.SL -- "Slovenska" sporočila o inicializaciji XCDROM.
+; Napisal Jack R. Ellis, 8. februar 2006.
+;
+; Uporabniki, ki želijo "internacionalizirati" XCDROM, morajo spremeniti samo TO
+; datoteko! Novo datoteko lahko poimenujete po želji, na primer XCDMSGS.FR
+; (francoščina), XCDMSGS.SL (slovenščina) itd. Želeno datoteko je treba kopirati
+; v XCDMSGS.TXT, želeni gonilnik pa lahko nato znova asimilirate s katerim koli
+; asimblerjem NASM (na voljo na SourceForge) z naslednjo ukazno vrstico:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Upoštevajte, da pogojni -d language povzroči, da asimbler bere
+; XCDMSGS.TXT namesto privzete datoteke XCDMSGS.ENG.
+;
+; Za spreminjanje spodaj prikazanih sporočil veljajo naslednja PRAVILA:
+;
+;  A) Vse OZNAKE sporočil ("XCMsg" itd.) se morajo pojaviti, kot je prikazano.
+;
+;  B) Vsi bajti CR, LF in zaključni $ se morajo pojaviti, kot je prikazano. Za
+;     spremembo so odprti samo TEKSTOVNI bajti sporočila (črke, številke in
+;     ločila).
+;
+;  C) Od začetka "XCMsg" do začetka "Suffix" mora biti vsaj 42 znakov, saj
+;     gonilnik v to območje prebere 40 bajtov podatkov (ime vsakega drive-a)
+;     in doda zaključni $, preden prikaže končno ime CD-ROM drive-a.
+;
+;  D) Druga sporočila, ki jih SPREMENI inicializacija gonilnika, so:
+;
+;	1) 8 bajtov imena gonilnika pri "DvrMsg1".
+;	2) 4 bajti naslova krmilnika pri "CtlrAdr".
+;	3) 8 bajtov I.D. krmilnika pri "CtlrID".
+;	4) Bajt številke enote drive-a pri "UMsgNo".
+;	5) 4 bajti načina UltraDMA pri "UDMode".
+;
+; Za primer "internacionalizacije" primerjajte datoteko XDMAMSGS.ENG z datoteko
+; XDMAMSGS.NL, ki sta obe vključeni v trenutni paket gonilnikov XDMA.
+; XDMAMSGS.NL prevede vsa inicializacijska sporočila XDMA v nizozemščino.
+; To datoteko je napisal Bernd Blaauw, ki je predlagal, da se XDMA in zdaj
+; tudi XCDROM spremenita v "mednarodne" gonilnike.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM zagotavlja različico in datum!
+	db	CR,LF,'$'
+DvrMsg	db	'Ime gonilnika je "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE krmilnik na I-O naslovu '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS inicializacijska napaka$'
+LEMsg	db	'.',CR,LF,'/L neveljaven$'
+SyEMsg	db	'.',CR,LF,'NAPAKA '
+SyMsg	db	'Sinhronizacija I-O z gonilnikom XDMA$'
+PRMsg	db	'Ni 80386+ CPU-ja'
+Suffix	db	'; GCDROM ni naložen!',CR,LF,'$'
+UnitMsg	db	'Enota '
+UMsgNo	db	'0:  $'
+TOMsg	db	' časovna omejitev izbire naprave$'
+IDMsg	db	' Identify Device napaka$'
+NCMsg	db	' ni ATAPI CD-ROM$'
+NDMsg	db	'Ni CD-ROM drive-a za uporabo$'
+PriMsg	db	'Primarni-$'
+SecMsg	db	'Sekundarni-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', način PIO$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+; Language: Esperanto (eo)
+; File ending: eo
+; Codepage: 853
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.EO -- "Esperantaj" XCDROM-pravalorizaj mesaĝoj.
+; Verkita de Jack R. Ellis, 8-Feb-2006.
+;
+; Uzantoj kiuj deziras "Internaciigi" XCDROM devas ŝanĝi nur TIUN ĉi
+; dosieron! La nova dosiero povas esti nomita laŭdezire, ekzemple XCDMSGS.FR
+; (franca), XCDMSGS.EO (esperanta) ktp. La dezirata dosiero devas esti kopiita
+; al XCDMSGS.TXT, kaj la dezirata pelilo tiam povas esti re-asemblita per
+; iu ajn NASM-asemblilo (havebla ĉe SourceForge), uzante la jenan
+; komandlinion:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Rimarku, ke la kondiĉo -d language igas la asemblilon legi XCDMSGS.TXT,
+; anstataŭ la defaŭltan dosieron XCDMSGS.ENG.
+;
+; La jenaj REGULOJ validas por modifi la mesaĝojn montritajn sube:
+;
+;  A) Ĉiuj mesaĝ-ETIKEDOJ ("XCMsg" ktp.) devas aperi kiel montrite.
+;
+;  B) Ĉiuj CR, LF, kaj fermaj $ bajtoj devas aperi kiel montrite. Nur la
+;     mesaĝaj TEKSTO-bajtoj (literoj, ciferoj kaj interpunkcio) estas
+;     ŝanĝeblaj.
+;
+;  C) Devas esti almenaŭ 42 signoj de la komenco de "XCMsg" ĝis la komenco de
+;     "Suffix", ĉar la pelilo legas 40 bajtojn da datumoj en ĉi tiun areon
+;     (la nomon de ĉiu aparato) kaj sufiksas ferman $ antaŭ ol montri la
+;     finan KD-ROM-aparatan nomon.
+;
+;  D) Aliaj mesaĝoj MODIFITAJ per pelila pravalorizo estas:
+;
+;	1) La 8 pelilo-nomaj bajtoj ĉe "DvrMsg1".
+;	2) La 4 regilo-adresaj bajtoj ĉe "CtlrAdr".
+;	3) La 8 regilo-I.D. bajtoj ĉe "CtlrID".
+;	4) La aparata unuo-nombra bajto ĉe "UMsgNo".
+;	5) La 4 UltraDMA-reĝimaj bajtoj ĉe "UDMode".
+;
+; Por ekzemplo de "Internaciigo", komparu la dosieron XDMAMSGS.ENG kun la
+; dosiero XDMAMSGS.NL, ambaŭ el kiuj estas inkluzivitaj en la nuna pakaĵo
+; de la pelilo XDMA. XDMAMSGS.NL tradukas ĉiujn XDMA-pravalorizajn mesaĝojn
+; en la nederlandan lingvon. Tiu ĉi dosiero estis verkita de Bernd Blaauw,
+; kiu sugestis fari XDMA, kaj nun XCDROM, en "Internaciajn" pelilojn.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM disponigas version kaj daton!
+	db	CR,LF,'$'
+DvrMsg	db	'Pelilo-nomo estas "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA-indiĝena IDE-regilo ĉe I-O-adreso '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, ico I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS-pravalorigeraro$'
+LEMsg	db	'.',CR,LF,'/L nevalida$'
+SyEMsg	db	'.',CR,LF,'ERARO '
+SyMsg	db	'Sinkronigado de I-O kun XDMA-pelilo$'
+PRMsg	db	'Neniu 80386+ CPU'
+Suffix	db	'; GCDROM ne ŝargita!',CR,LF,'$'
+UnitMsg	db	'Unuo '
+UMsgNo	db	'0:  $'
+TOMsg	db	' eltempiĝo de aparat-elekto$'
+IDMsg	db	' eraro de Identify Device$'
+NCMsg	db	' ne estas ATAPI-KD-ROM$'
+NDMsg	db	'Neniu KD-ROM drive por uzi$'
+PriMsg	db	'Primara-$'
+SecMsg	db	'Sekundara-$'
+MstMsg	db	'mastro$'
+SlvMsg	db	'sklavo$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO-reĝimo$'
+CRMsg	db	'.',CR,LF,'$'
+
+
+
+
+
+
+; Language: Norwegian (no)
+; File ending: no
+; Codepage: 865
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.NO -- "Norske" XCDROM-initialiseringsmeldinger.
+; Skrevet av Jack R. Ellis, 8. feb. 2006.
+;
+; Brukere som ønsker å "internasjonalisere" XCDROM trenger bare å endre
+; denne filen! Den nye filen kan navngis etter ønske, for eksempel
+; XCDMSGS.FR (fransk), XCDMSGS.NO (norsk) osv. Den ønskede filen må
+; kopieres til XCDMSGS.TXT, og den ønskede driveren kan deretter
+; re-assembleres med en hvilken som helst NASM-assembler (tilgjengelig
+; fra SourceForge), ved hjelp av følgende kommandolinje:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; Merk at valget -d language får assembleren til å lese XCDMSGS.TXT,
+; i stedet for standardfilen XCDMSGS.ENG.
+;
+; Følgende REGLER gjelder for endring av meldingene vist nedenfor:
+;
+;  A) Alle meldings-LABELS ("XCMsg" osv.) må vises som vist.
+;
+;  B) Alle CR, LF og avsluttende $ bytes må vises som vist. Kun
+;     meldingens TEKST-bytes (bokstaver, tall og tegnsetting) er åpne
+;     for endring.
+;
+;  C) Det må være minst 42 tegn fra starten av "XCMsg" til starten av
+;     "Suffix", ettersom driveren leser 40 bytes med data inn i dette
+;     området (navnet på hver enhet) og legger til en avsluttende $ før
+;     visning av det endelige CD-ROM drive-navnet.
+;
+;  D) Andre meldinger som ENDRES av driver-initialiseringen er:
+;
+;	1) De 8 drivernavn-bytene ved "DvrMsg1".
+;	2) De 4 kontrolleradresse-bytene ved "CtlrAdr".
+;	3) De 8 kontroller-I.D.-bytene ved "CtlrID".
+;	4) Enhetsnummer-byten ved "UMsgNo".
+;	5) De 4 UltraDMA-modusbytene ved "UDMode".
+;
+; For et eksempel på "internasjonalisering", sammenlign filen XDMAMSGS.ENG
+; med filen XDMAMSGS.NL, som begge er inkludert i den nåværende XDMA-
+; driverpakken. XDMAMSGS.NL oversetter alle XDMA-initialiseringsmeldinger
+; til det nederlandske språket. Denne filen ble skrevet av Bernd Blaauw,
+; som foreslo å gjøre XDMA, og nå XCDROM, til "internasjonale" drivere.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM leverer versjon og dato!
+	db	CR,LF,'$'
+DvrMsg	db	'Drivernavnet er "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE-kontroller på I-O-adresse '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS-initialiseringsfeil$'
+LEMsg	db	'.',CR,LF,'/L ugyldig$'
+SyEMsg	db	'.',CR,LF,'FEIL '
+SyMsg	db	'Synkroniserer I-O med XDMA-driver$'
+PRMsg	db	'Ingen 80386+ CPU'
+Suffix	db	'; GCDROM ikke lastet!',CR,LF,'$'
+UnitMsg	db	'Enhet '
+UMsgNo	db	'0:  $'
+TOMsg	db	' tidsavbrudd for enhetsvalg$'
+IDMsg	db	' Identify Device-feil$'
+NCMsg	db	' er ikke en ATAPI CD-ROM$'
+NDMsg	db	'Ingen CD-ROM drive til bruk$'
+PriMsg	db	'Primær-$'
+SecMsg	db	'Sekundær-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO-modus$'
+CRMsg	db	'.',CR,LF,'$'
+

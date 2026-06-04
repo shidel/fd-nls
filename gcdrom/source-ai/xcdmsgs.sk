@@ -1,0 +1,79 @@
+; Language: Slovak (sk)
+; File ending: sk
+; Codepage: 852
+; This translation was created by Google AI.
+; Please help the FreeDOS group to improve it.
+
+;
+; XCDMSGS.SK -- "SlovenskÇ" inicializaünÇ spr†vy XCDROM.
+; Nap°sal Jack R. Ellis, 8. febru†ra 2006.
+;
+; Pouß°vatelia, ktor° si ßelaj£ "internacionalizovaú" XCDROM, musia zmeniú iba TENTO
+; s£bor! NovÏ s£bor mìße byú pomenovanÏ ñubovoñne, napr°klad XCDMSGS.FR
+; (franc£zÁtina), XCDMSGS.SK (slovenüina) at‘. PoßadovanÏ s£bor mus° byú skop°rovanÏ
+; do XCDMSGS.TXT a poßadovanÏ ovl†daü potom mìße byú znovu zostavenÏ pomocou
+; akÇhokoñvek assemblera NASM (dostupnÇho zo SourceForge) pomocou nasleduj£ceho
+; pr°kazovÇho riadku:
+;
+;     NASM -o XCDROM.SYS -l XCDROM.LST -d language XCDROM.ASM
+;
+; VÁimnite si, ße podmienenÇ -d language spìsob°, ße assembler ü°ta
+; XCDMSGS.TXT namiesto predvolenÇho s£boru XCDMSGS.ENG.
+;
+; Pre £pravu nißÁie uvedenÏch spr†v platia nasleduj£ce PRAVIDLµ:
+;
+;  A) VÁetky NµVESTIA spr†v ("XCMsg" at‘.) sa musia objaviú tak, ako je zobrazenÇ.
+;
+;  B) VÁetky bajty CR, LF a ukonüovacie $ sa musia objaviú tak, ako je zobrazenÇ.
+;     Na zmenu s£ otvorenÇ iba TEXTOVê bajty spr†vy (p°smen†, ü°sla a
+;     interpunkcia).
+;
+;  C) Od zaüiatku "XCMsg" do zaüiatku "Suffix" mus° byú aspoÂ 42 znakov,
+;     pretoße ovl†daü naü°tava 40 bajtov £dajov do tejto oblasti (n†zov kaßdÇho drive)
+;     a pred zobrazen°m koneünÇho n†zvu CD-ROM drive prid† koncovÏ znak $.
+;
+;  D) “alÁie spr†vy MODIFIKOVANê inicializ†ciou ovl†daüa s£:
+;
+;	1) 8 bajtov n†zvu ovl†daüa pri "DvrMsg1".
+;	2) 4 bajty adresy radiüa pri "CtlrAdr".
+;	3) 8 bajtov I.D. üipu pri "CtlrID".
+;	4) Bajt ü°sla jednotky drive pri "UMsgNo".
+;	5) 4 bajty reßimu UltraDMA pri "UDMode".
+;
+; Ako pr°klad "internacionaliz†cie" porovnajte s£bor XDMAMSGS.ENG so s£borom
+; XDMAMSGS.NL, oba s£ s£üasúou aktu†lneho bal°ka ovl†daüa XDMA.
+; XDMAMSGS.NL preklad† vÁetky inicializaünÇ spr†vy XDMA do holandüiny.
+; Tento s£bor nap°sal Bernd Blaauw, ktorÏ navrhol vytvoriú z XDMA a teraz aj
+; z XCDROM "medzin†rodnÇ" ovl†daüe.
+;
+;
+XCMsg	db	CR,LF,'GCDROM '
+	db	VER		;XCDROM.ASM poskytuje verziu a d†tum!
+	db	CR,LF,'$'
+DvrMsg	db	'N†zov ovl†daüa je "'
+DvrMsg1	db	'        "$'
+CtlrMsg	db	'SATA Native IDE radiü na I-O adrese '
+CtlrAdr0 db	'xxxxh/'
+CtlrAdr	db	'xxxxh, Chip I.D. '
+CtlrID	db	'xxxxxxxxh.',CR,LF,'$'
+VEMsg	db	'.',CR,LF,'VDS chyba inicializ†cie$'
+LEMsg	db	'.',CR,LF,'/L neplatnÏ$'
+SyEMsg	db	'.',CR,LF,'CHYBA '
+SyMsg	db	'Synchroniz†cia I-O s ovl†daüom XDMA$'
+PRMsg	db	'ChÏba 80386+ CPU'
+Suffix	db	'; GCDROM nezavedenÏ!',CR,LF,'$'
+UnitMsg	db	'Jednotka '
+UMsgNo	db	'0:  $'
+TOMsg	db	' üasovÏ limit vÏberu zariadenia vyprÁal$'
+IDMsg	db	' Chyba Identify Device$'
+NCMsg	db	' nie je ATAPI CD-ROM$'
+NDMsg	db	'¶iaden CD-ROM drive na poußitie$'
+PriMsg	db	'Prim†rny-$'
+SecMsg	db	'Sekund†rny-$'
+MstMsg	db	'master$'
+SlvMsg	db	'slave$'
+ComMsg	db	', $'
+UDMsg	db	', ATA-'
+UDMode	db	'   $'
+PIOMsg	db	', PIO m¢d$'
+CRMsg	db	'.',CR,LF,'$'
