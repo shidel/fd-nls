@@ -1,0 +1,87 @@
+# Language: Slovenian (sl)
+# File ending: sl
+# Codepage: 852
+# This translation was created by Google AI
+# Please help the FreeDOS group to improve it.
+
+STR1_1 = 'Mednarodna razÁiritev BIOS-a tipkovnice za projekt FreeDOS';
+STR1_2 = 'Zadnji modul je: ';
+STR1_3 = 'Razpored tipkovnice: ';
+STR1_4 = 'Rezidentni del Keyb-a je bil odstranjen.';
+STR1_5 = 'Tip tipkovnice     : razÁirjena AT';
+STR1_6 = 'Tip tipkovnice     : standardni PC';
+STR1_7 = 'Avtor kompilacije  : ';
+STR1_8 = 'Info o kompilaciji : ';
+STR1_9 = 'Japonske razÁiritve so aktivne';
+
+STR2_1 = 'NameÁüena je druga razliüica Keyb-a.';
+STR2_2 = 'NameÁüen je nezdrußljiv gonilnik tipkovnice.';
+STR2_3 = 'Manjka identifikator tipkovnice';
+STR2_4 = 'Navedene datoteke ni bilo mogoüe odpreti.';
+STR2_5 = 'Rezidentnega dela Keyb-a ni bilo mogoüe odstraniti.';
+STR2_6 = 'Interna napaka: Premalo globalnega pomnilnika (kontaktirajte avtorja).';
+STR2_7 = 'Keyb (Áe vedno) zahteva AT/286 ali boljÁi procesor';
+STR2_8 = 'KEYB ni bil nameÁüen';
+STR2_9 = 'Preobremenitev (Áe) ni podprta';
+STR2_10 = 'Tabele tipkovnice ni bilo mogoüe ustvariti';
+STR2_11 = 'Neveljaven parameter -  ';
+STR2_12 = 'Codepage ni bil najden v datoteki definicij tipkovnice - ';
+STR2_13 = 'Neveljavna ali poÁkodovana datoteka';
+STR2_14 = 'Datoteka ne vsebuje informacij za ta razpored/id';
+STR2_15 = 'KL datoteka prevelika (najveü (Áe vedno) 3KB)';
+{ STR2_16 = 'Napaka pri komunikaciji z napravo CON';
+STR2_17 = 'Codepage ni bil pripravljen';  }
+STR2_18 = 'Najdena je bila nezdrußljiva razliüica DR-DOS KEYB';
+STR2_19 = 'Nezdrußljiva razliüica deskriptorjev tipkovnice';
+STR2_20 = 'Neveljavna kontrolna vsota za podatkovni blok';
+STR2_21 = 'Zahtevano podmapiranje se ne ujema s trenutnim codepage-om';
+STR2_22 = 'Zahtevana knjißniüna datoteka ni zaprta za urejanje';
+STR2_50 = 'Opozorilo: ni bilo mogoüe sprostiti MCB. Napaka DOS: ';
+STR2_51 = 'Kritiüna napaka: ni mogoüe dodeliti pomnilnika. Napaka DOS: ';
+
+STR3_1  = '("Taurus") Druga generacija gonilnika tipkovnice za FreeDOS';
+STR3_2  = 'Licenca: GNU GPL 2.0 ali novejÁa';
+STR3_3  = '(/? pomoü, /V podrobno)';
+STR3_4  = 'KEYB ime[,[CP][,datoteka] [/ID:nnn] [/E] [/9] [/I] [/Dx] [/V] [/L=m]';
+STR3_5  = 'ime         Fiziüni identifikator razporeda, npr. GR ali SL';
+STR3_6  = 'CP           Zaüetni codepage za razpored';
+STR3_7  = 'datoteka     Datoteka z informacijami o razporedu';
+STR3_8 = '/ID:nnn      Numeriüni identifikator razliüice tipkovnice';
+STR3_9  = '/?           Prikaße to pomoü';
+STR3_10 = '/9           Namesti rokovalec int9h (nezdrußljivo z /E)';
+STR3_11 = '/B           Brez piska: onemogoüi zvoüne uüinke KEYB (zvoünik)';
+STR3_12 = '/CAPSLOCK=ON|OFF    Omogoüi ali onemogoüi Caps Lock';
+STR3_13 = '/Dx          Decimalno loüilo: x je znak, ki se uporabi';
+STR3_14 = '/E           Navede, da je tipkovnica razÁirjena (Enhanced)';
+STR3_15 = '             (nezdrußljivo z /9)';
+STR3_16 = '/I           (force Install) Brezpogojna namestitev';
+STR3_17 = '/L=m         (force subLayout) Prisili uporabo podrazporeda m';
+STR3_18 = '/NOHI        Prepreüi KEYB-u nalaganje podatkov v visoki pomnilnik';
+STR3_19 = '/NOUMB       Prepreüi KEYB-u nalaganje podatkov v zgornji pomnilnik';
+STR3_20 = '/NUMLOCK=ON|OFF    Omogoüi ali onemogoüi Num Lock';
+STR3_21 = '/S           (Safemode) prepove nize... (glej dokumentacijo)';
+STR3_22 = '/SCROLLLOCK=ON|OFF    Omogoüi ali onemogoüi Scroll Lock';
+STR3_23 = '/U           (Uninstall) odstrani gonilnik iz pomnilnika';
+STR3_24 = '/V           (Verbose) prikaße podrobne informacije o namestitvi';
+STR3_25 = 'Veü informacij: README.TXT';
+
+STR4_1  = 'Zastavica aktivnega gonilnika: ';
+STR4_2  = 'Ime trenutnega razporeda     : ';
+STR4_3  = 'PODROBNOSTI TRENUTNEGA RAZPOREDA:';
+STR4_4  = 'Trenutni codepage            : ';
+STR4_4b = 'Trenutno podmapiranje        : ';
+STR4_5  = 'Êtevilo podmapiranj          : ';
+STR4_6  = 'Dovoljeni codepage-i         : ';
+
+STR5_1 = 'NAPAKA: vektor int15h je bil prepisan';
+STR5_2 = 'NAPAKA: vektor int2Fh je prepisan';
+STR5_3 = 'NAPAKA: vektor int16h je prepisan';
+STR5_4 = 'NAPAKA: vektor int9h je prepisan';
+
+STR6_1 = 'Caps lock VKLOPLJEN';
+STR6_2 = 'Caps lock IZKLOPLJEN';
+STR6_3 = 'Scroll lock VKLOPLJEN';
+STR6_4 = 'Scroll lock IZKLOPLJEN';
+STR6_5 = 'Num lock VKLOPLJEN';
+STR6_6 = 'Num lock IZKLOPLJEN';
+
