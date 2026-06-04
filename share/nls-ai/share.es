@@ -1,0 +1,54 @@
+# Language: Spanish (es)
+# File ending: es
+# Codepage: 858
+# This translation was created by Google AI.
+# Please help the FreeDOS group to improve it.
+
+#
+# Plantilla maestra de traducci¢n al espa¤ol
+#
+0.0:Instala funciones de intercambio y bloqueo de archivos en su disco duro.\n
+0.1:  /F:space   Reservar espacio (en bytes) para info de intercambio.\n
+0.2:  /L:locks   Establece el n£mero de archivos bloqueables a la vez.\n
+0.3:%s [/F:space] [/L:locks]\n
+0.4:%s [/F:space] [/L:locks] [/U] [/S] [/O] [/D] [/E]\n
+0.5:  /U         Desinstalar una instancia residente.\n
+0.6:  /S         Mostrar estado del parche y tama¤os de tablas.\n
+0.7:  /O         Solo operar si ya es residente, no instalar.\n
+0.8:  /D         Desactivar una instancia residente.\n
+0.9:  /E         Activar una instancia residente. (Predeterminado.)\n
+
+1.0:%s: ­par metro fuera de rango!\n
+1.1:%s: ­ya est  instalado!\n
+1.2:%s: ­memoria insuficiente!\n
+1.3:%s: ­manejador de interrupci¢n 2Fh no v lido!\n
+1.4:%s: instalado.\n
+
+1.5:%s: ­ya instalado, pero no encontrado en la interrupci¢n AMIS!\n
+1.6:%s: activado.\n
+1.7:%s: desactivado.\n
+1.8:%s: no se puede activar, verifique la versi¢n del TSR.\n
+1.9:%s: no se puede desactivar, verifique la versi¢n del TSR.\n
+1.10:%s: est  instalado como residente.\n
+1.11:%s: est  instalado como residente, pero desactivado actualmente.\n
+1.12:%s: ­no hay n£meros de multiplexi¢n AMIS libres!\n
+1.13:%s: ­manejador de interrupci¢n 2Dh no v lido!\n
+1.14:%s: eliminado.\n
+1.15:%s: no se puede eliminar, a£n no est  instalado.\n
+1.16:%s: no se puede eliminar, fallo general.\n
+1.17:%s: no se puede eliminar, manejadores enganchados incompatibles con AMIS.\n
+1.18:%s: no se puede eliminar, error interno al desenganchar.\n
+1.19:%s: no se puede eliminar, error desconocido.\n
+1.20:%s: ­el programa no es residente!\n
+
+2.0:­El programa no es residente!\n
+2.1:Estado del parche: no soportado por el TSR.\n
+2.2:Estado del parche: indeterminado.\n
+2.3:Estado del parche: necesario, indicador en %04Xh:%04Xh.\n
+2.4:Estado del parche: no necesario.\n
+2.5:Estado del parche: desconocido.\n
+2.6:Byte share_installed del kernel antiguo de FreeDOS puesto a cero.\n
+2.7:Residente puso a cero el byte share_installed del kernel antiguo de FreeDOS.\n
+2.8:Tabla arch.: %u libre / %u total, tabla bloq.: %u libre / %u total\n
+2.9:Tabla de archivos: %u total, tabla de bloqueos: %u total\n
+
