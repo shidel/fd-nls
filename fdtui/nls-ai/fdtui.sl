@@ -1,0 +1,62 @@
+# Language: Slovenian (sl)
+# File ending: sl
+# Codepage: 852
+# This translation was created by Google AI.
+# Please help the FreeDOS group to improve it.
+
+# Angleçke nize napisal Ercan Ersoy.
+0.0:  FDTUI je lupina TUI za FreeDOS.
+0.1:  Copyright (C) 2017-2022 Ercan Ersoy
+0.2:  FDTUI licenciran pod GNU GPL razliŸico 2 in GNU GPL razliŸico 3.
+
+1.0:Ni mogoŸe inicializirati podsistema FDOSTUI.
+1.1:\r\nPritisnite poljubno tipko za vrnitev v DOSSHELL.
+
+2.0:Notranje aplikacije
+2.1:Upravitelj datotek
+2.2:Za§eni
+
+3.0:Izhod
+3.1:KonŸaj
+
+4.0:Upravitelj datotek
+
+5.0:Datoteka
+5.1:Odpri
+5.2:Nova mapa
+5.3:Izhod
+
+6.0:Uredi
+6.1:Izre§i
+6.2:Kopiraj
+6.3:Prilepi
+6.4:Preimenuj
+6.5:Spremeni atribute
+6.6:Arhiviraj
+6.7:Skrito
+6.8:Samo za branje
+6.9:Sistemsko
+6.10:Izbriçi
+
+7.0:Pogled
+7.1:Osve§i
+7.2:Poka§i arhivske elemente
+7.3:Poka§i skrite elemente
+7.4:Poka§i elemente samo za branje
+7.5:Poka§i sistemske elemente
+
+8.0:Pojdi
+8.1:Nazaj
+8.2:Naprej
+8.3:Gor
+
+9.0:Nova mapa
+9.1:Ime mape:
+
+10.0:Preimenuj
+10.1:Novo ime:
+
+11.0:Atributi elementa:
+
+12.0:Za§eni
+12.1:Ukaz za zagon:
