@@ -2,40 +2,39 @@
 ##
 
 #_OK
-'  <BARVA=!;KLAVESY=j#1;VYZNAM=!1>O<SB>K  '
+'  <BARVA=*;KLAVESY=j$;VYZNAM=-1>O<SB>K  '
 #_OK2
-' <BARVA=!;KLAVESY=j#1#2;VYZNAM=!1>O<SB>K '
+' <BARVA=*;KLAVESY=j$;VYZNAM=-1>O<SB>K '
 #_ANO
-' <BARVA=!;KLAVESY=l#1;VYZNAM=!1>Д<SB>а '
+' <BARVA=*;KLAVESY=l$;VYZNAM=-1>Д<SB>а '
 #_NE
-' <BARVA=!;KLAVESY=y#2;VYZNAM=!2>Н<SB>ет '
+' <BARVA=*;KLAVESY=y#;VYZNAM=-2>Н<SB>ет '
 #_CANCEL
-О<BARVA=!;KLAVESY=n#2;VYZNAM=!3>т<SB>мена
+О<BARVA=*;KLAVESY=n#;VYZNAM=-3>т<SB>мена
 #_CANCEL2
-О<BARVA=!;KLAVESY=n#2;VYZNAM=!3>т<SB>мена
+О<BARVA=*;KLAVESY=n#;VYZNAM=-3>т<SB>мена
 #_POMOC
-<BARVA=!;KLAVESY=c;VYZNAM=!4<SB>правка
+<BARVA=*;KLAVESY=c;VYZNAM=-4<SB>правка
 #_PALETA
-<BARVA=!;KLAVESY=g;VYZNAM=!6>П<SB>алитра
+<BARVA=*;KLAVESY=g;VYZNAM=-6>П<SB>алитра
 #_MIXBAREV
-<BARVA=!;KLAVESY=c;VYZNAM=!7>С<SB>мешивание
+<BARVA=*;KLAVESY=c;VYZNAM=-7>С<SB>мешивание
 #_FS_INFO
-<BARVA=!;KLAVESY=b;VYZNAM=!8>И<SB>нфо
+<BARVA=*;KLAVESY=b;VYZNAM=-8>И<SB>нфо
 #_FS_DISK
-<BARVA=!;KLAVESY=l;VYZNAM=!9>Д<SB>иск
+<BARVA=*;KLAVESY=l;VYZNAM=-9>Д<SB>иск
 #_ZADAT
-<BARVA=!;KLAVESY=d;VYZNAM=!14>В<SB>ставить
+<BARVA=*;KLAVESY=d;VYZNAM=-14>В<SB>ставить
 #_PRIDEJPOL
-<VYZNAM=!17><<---
+<VYZNAM=-17><<---
 #_UBERPOL
-<VYZNAM=!18>--->>
+<VYZNAM=-18>--->>
 #_FS_NOVYADRESAR
-Создать
-<BARVA=!;KLAVESY=r;VYZNAM=!19>к<SB>аталог
+Соз. <BARVA=*;KLAVESY=r;VYZNAM=-19>к<SB>атал.
 #_ZPET
-<BARVA=!;KLAVESY=y;VYZNAM=!20>Н<SB>азад
+<BARVA=*;KLAVESY=y;VYZNAM=-20>Н<SB>азад
 #_VPRED
-<BARVA=!;KLAVESY=d;VYZNAM=!21>В<SB>перед
+<BARVA=*;KLAVESY=d;VYZNAM=-21>В<SB>перед
 #_INFO
 'Инфо:            '
 #_DOTAZ
@@ -127,7 +126,4 @@
 В памяти отсуствует драйвер мыши. Загрузите CTMouse или подобный.
 #_LFB_NOT_AVAILABLE
 Ваша графическая карта не поддерживает LFB режмм.
-
-
-
 

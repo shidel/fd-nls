@@ -1,0 +1,165 @@
+Welcome! If you are reading this text it means that you are (maybe) interrested
+in making traslations of program Blocek.
+Virtually, all messages in this program are stored in external files.
+For each language, two files are defined.
+For example, they're BLOCEK1.EN and BLOCEK2.EN in English
+Analogically, they're BLOCEK1.RU and BLOCEK2.RU in Russian
+The messages in BLOCEK1.* files are displayed not for main program but from
+the GUI library Wokna32 which is Blocek built on. It is used in e.g. file
+selector, various YES-NO-CANCEL dialogs and so on.
+The BLOCEK2.* files are messages specific to Blocek.
+In both variants they have the same structure.
+The lines beginning with "#" are LABELS
+Other lines are displayed texts. They can be on one line, but they can take 
+more lines.
+
+
+1) Labels:
+All labels begin with character "#". Example:
+-----------------------------------------------------------------------------
+#_VYBINFO
+-----------------------------------------------------------------------------
+
+So far, the labels in the BLOCEK1.* files are prefixed by an underline and
+labels in BLOCEK2.* files have no prefix, but it may change in the future.
+You must NOT change these labels; otherwise the program won't be able to find
+the correct message. You can change the order of the labels+texts but I don't
+recommend it because of the worse maintainability in such case.
+The names of these labels are usualy based on the Czech language, so it can be
+a complication for you but I believe, not severe complication.
+The special kind of line are these beginning with two # (with ##). Such lines
+are comments. Example:
+-----------------------------------------------------------------------------
+## This message appears before saving the edited text.
+-----------------------------------------------------------------------------
+
+2) Texts:
+Every line beggining with character other than "#" is considered as a message
+belonging to last label.
+The only exception is the space before the very first label.
+All such lines are processed as comments until the first label line is reached.
+You can change these texts as you wish. Generaly, the one line messages should
+be kept as the one line messages otherwise an unpredicted effects can happen.
+In all lines, leading and trailing spaces are removed. If you want them, 
+you have to close the desired text inside apostrophes.
+Example:
+-----------------------------------------------------------------------------
+#_DOTAZ
+'Question:     '
+-----------------------------------------------------------------------------
+
+Other special case are multi-message labels.
+To reduce the number of labels, the following trick was introduced.
+Some messages contain the asterisk sign "*". 
+Example:
+-----------------------------------------------------------------------------
+#exif_GPS_info
+GPS information*latitude:*longitude:*altitude:*azimuth*N*S*W*E*m*ø*ï*ñ
+-----------------------------------------------------------------------------
+
+The "*" signs splits the message to substrings which will be referred in the
+program as #exif_GPS_info:1, #exif_GPS_info:2, etc.
+Usually, it is possible to replace the asterisk with line ending <CR><LF>
+Splitting to substrings must be kept in all translations.
+
+The empty lines:      If the empty lines are between "normal lines", they'll be
+printed in the message as empty lines. If such lines are not between normal 
+lines, but at the end of the messages, they'll be removed from the message. So
+you can use them as a separator between the last text line and the next label.
+
+
+3) Tags:
+Some general and specific tags are used in texts. They are
+marked into <> brackets like in the most web marking languages.
+The general tags are:
+<FONT=somefont.ch> changes font
+<SF> returns previous font (like </FONT> in HTML)
+<BARVA=xxxx> changes text color to numeric value [xxxx]
+<BARVA=!>    changes text to internal predefined color number two
+<SB> back to previous text color
+<POZADI=xxxx> changes text background to numeric value [xxxx]
+<SP> back to original background
+<PODTRH=+> text will be underlined
+<PODTRH=-> text won't be underlined
+
+You can place and remove these tags as you want - they only have a cosmetic 
+effect.	And it is allowed (and recomended) to change more text attributes in one
+tag. In such situation are the attributes separated by the ";" character. 
+Example:
+-----------------------------------------------------------------------------
+<FONT=latin216,ch;BARVA=64000;PODTRH=+>Error<SF;SB;PODTRH=-> - press some key
+-----------------------------------------------------------------------------
+Besides these, specific tags are used in several places. They define the 
+appearance and behavior only in some special situations.
+The most important are:
+<VYZNAM=x>  Meaning of the text. It is widely used in the GUI windowing system
+            You should always keep this value as is. In the BLOCEK1.* files,
+            they are usually negative numbers, in BLOCEK2.* they are positive                 
+
+<KLAVESY=x> This tag is used to display text on buttons. The word "klavesy"
+            means "keys" and defines keyboard shortcuts without mouse clicks 
+            on the text.
+
+Example:
+-----------------------------------------------------------------------------
+#_ANO
+' <BARVA=!;KLAVESY=y#1;VYZNAM=-1>Y<SB>es '
+-----------------------------------------------------------------------------
+- Label "_ANO" (means "_yes")
+- Changes text color to predefined system color used to highlight keyboard
+  shortcuts
+- Besides clicking the button, the button can be activated by pressing [ALT-y]
+  or [enter]. "#1" means [enter]
+  The #<number> definitions:
+    #1 - enter
+    #2 - escape
+    #3 - left arrow
+    #4 - right arrow
+    #5 - up arrow
+    #6 - down arrow
+  In some dialogs is allowed to press only [y] (without pressing ALT).
+- The meaning of this text is represented as "-1" which means "confirmed" or 
+  "yes".
+- The "Y" is printed in white and "ES" in black
+
+
+If you're curious how to write characters "<" and ">", you have the answer now:
+besides "<" and ">" write "<<" and ">>"
+
+
+4) Fonts and coding.
+In the Blocek2.* files, the labels #sys_font and #sys_font_maly are 
+at the very beginning with lines like:
+   #sys_font
+   latin216.ch
+   #sys_font_maly
+   latin214.ch
+   #sys_font_kodovani
+   852
+These lines have a special meaning for the entire program and defines which 
+fonts are used as the default GUI ones.
+They are in the fact the configuration parameters.
+The label/parameter "#sys_font_kodovani" specifies which encoding the texts 
+are encoded.
+It is important when copying text from GUI to clipboard.
+The number (in this case 852) specifies the codepage.
+You can also use Unicode fonts in the GUI. In such case, place the value 
+0 or 65535 or write "unicode" (without quotes)
+The labels/parameters "#sys_font" and "sys_font_maly" specifies which font 
+is used to write the GUI messages. 
+It should be correspondent with the "sys_font_kodovani" setting.
+Note that you can only temporarily override the GUI font everytime using the 
+<FONT> and <SF> tags. Also, there's currently no way on how to temporarily 
+override the encoding setting.
+
+
+The last special parameter is the label "#identifikuj_se" in the BLOCEK2 files. 
+The text in this label is the language identifier which must be in UTF-8 because 
+it is always displayed in the Unicode font.
+
+END OF TEXT
+VERSION 1.24
+DATE: 13/1/2024
+
+
+
