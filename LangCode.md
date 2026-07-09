@@ -16,6 +16,7 @@ legacy reasons from the original _**ISO 639-1 Specification**_.
 | de       | de        | ger, deu  | 858, 850            | German                |
 | _**dk**_ | da        | dan       | 865                 | Danish                |
 | eo       | eo        | epo       | 853                 | Esperanto             |
+| el       | el        | gre, ell  | 737, _869_          | Greek                 |
 | es       | es        | spa       | 858                 | Spanish               |
 | et       | et        | est       | 775                 | Estonian              |
 | eu       | eu        | baq       | 858, _437_          | Basque                |
