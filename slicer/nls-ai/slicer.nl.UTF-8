@@ -1,0 +1,197 @@
+; Language: Dutch
+; File ending: nl
+; Codepage: 858
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=nl
+TITLE=%, Versie %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (vervolg)
+INC_DIR=%2
+INC_TEXT=tekst insluiten: %2 %8
+INC_HEAD=tekst: %2 %8
+USE_COMP=%0 pass-through compressie ingeschakeld
+
+VERB_PRE_SCAN=% items gescand om aan archief toe te voegen
+VERB_INC_FILE=invoegen: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=doorgaan: %2 [%3] (vervolg vanaf offset %6)
+VERB_INC_DIR=submap: %2 (%3)
+VERB_INC_HEAD=koptekst insluiten: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=uitsluiten: %0 (komt overeen met "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE="%1" toevoegen aan %0 lijst
+LIST_INC=invoegen
+LIST_EXC=uitsluiten
+
+; Same params as reporting
+EXT_DIR=map: %2
+EXT_FILE=bestand: %9%2, %8
+EXT_PART=gedeeltelijk: %9%2, %7 van %8
+VERB_EXT_RPCL=bestand %9%2 bestaat, vervangen
+VERB_EXT_SKIP=bestand %9%2 bestaat, overgeslagen
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=categorie: %2
+REP_DIR=map: %2
+REP_FILE=bestand: %9%2, %8
+REP_PART=gedeeltelijk: %9%2, %7 van %8
+REP_TEXT=tekst: %2, %8
+REP_MORE=vervolg: %2, %8
+REP_CONF=accepteren: %2, %8
+
+VERB_REP_CAT=categorie instellen: %2, %1
+VERB_REP_DIR=map: %2 (%3), %1 %4 %5
+VERB_REP_FILE=compleet bestand: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 bestandsgrootte %8
+VERB_REP_PART=gedeeltelijk bestand: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 van %8 (offset %6)
+VERB_REP_TEXT=tekst: %2 %4 {%3}, %8
+VERB_REP_MORE=vervolg: %2 %4 {%3}, %8
+VERB_REP_CONF=accepteren: %2 %4 {%3}, %8
+VERB_REP_SIG=handtekening: %2 [%3], %1
+VERB_REP_NULL=nul-blok, %1
+VERB_REP_OTHER=onbekend blok %0, %1
+VERB_REP_SLICE=selecteer archiefdeel %
+
+SAF_CREATE=Maak nieuw slicer-archief %
+SAF_OPEN=Open bestaand slicer-archief %
+SAF_APPEND=Toevoegen aan bestaand slicer-archief %
+SAF_DATE=Gemaakt op %2-%1-%0 om %3:%4:%5
+SAF_SLICE=Maak nieuw archiefdeel %
+SAF_CAT=Archiefcategorie instellen %
+SAF_SLICING=Archief opsplitsen bij %
+VERB_SAF_IUP=Statistische informatie voor archief % bijwerken
+
+MEDIA=Plaats diskette met bestand %0 in station %1.
+PAUSE=Druk op een toets om door te gaan.
+
+PROMPT_YES=Ja
+PROMPT_NO=Nee
+PROMPT_Y=J
+PROMPT_N=N
+PROMPT_OVER=%2%1 overschrijven, %0?
+PROMPT_ACCEPT=% accepteren?
+PROMPT_STOP=Bestand %1 is beschadigd. Uitpakken afbreken %0?
+
+SUMMARY=%0 deel/delen, %1 map(pen), %2 bestand(en), %3
+
+USAGE=gebruik: % [opties]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER optie-informatie:
+HELP_1=
+HELP_2=  %0q        schakel alle statusmeldingen uit
+HELP_3=  %0v        schakel gedetailleerde statusmeldingen in
+HELP_4=  %0t        testmodus
+HELP_5=  %0h        toon hulpinformatie
+HELP_6=
+HELP_7=  %0i ?      sluit items in die overeenkomen met bestandsspecificatie
+HELP_8=  %0I ?      sluit items in vanuit bestandslijst
+HELP_9=  %0e ?      sluit items uit die overeenkomen met bestandsspecificatie
+HELP_10=  %0E ?      sluit items uit vanuit bestandslijst
+HELP_11=
+HELP_12=  %0d        sluit lege mappen uit
+HELP_13=  %0D        doorzoek submappen niet recursief
+HELP_14=  %0a        sluit alle verborgen en systeemitems in
+HELP_15=  %0o        overschrijf bestaande bestanden
+HELP_16=  %0k        negeer hoofdlettergevoeligheid in bestandsnamen niet
+HELP_17=
+HELP_18=  %0g ?      geef groepscategorie op
+HELP_19=  %0s ?      grootte om archief te splitsen, K, M of bytes. (alleen
+HELP_20=             geldig bij nieuw archief of opnieuw splitsen archief)
+HELP_21=
+HELP_22=  %0y        accepteer automatisch alle prompts (behalve het
+HELP_23=             overschrijven van bestanden).
+HELP_24=Bewerkingen met betrekking tot het hele archief:
+HELP_25=
+HELP_26=  %0f ?      geef archiefbestandsnaam op
+HELP_27=  %0c        maak een nieuw archief
+HELP_28=  %0r        toevoegen aan een bestaand archief
+HELP_29=  %0x        uitpakken uit een bestaand archief
+HELP_30=  %0R        genereer archiefrapport
+HELP_31=  %0O ?      stel doelpad voor uitpakken in
+HELP_32=
+HELP_33=Ingesloten tekst, mededelingen en berichten:
+HELP_34=
+HELP_35=  %0L ?      overschrijf standaard systeemtaal
+HELP_36=  %0m ?      sluit berichttekst in vanuit bestand
+HELP_37=  %0M ?      sluit berichttekst in vanuit bestand dat akkoord vereist
+HELP_38=
+HELP_39=Pass-through compressie:
+HELP_40=
+HELP_41=  %0p ?      schakel pass-through compressie in (GZ, misschien andere)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Land der verwarring. Gebruik de "%0h" optie voor hulp.
+
+FATAL=FATALE FOUT:%_
+ERROR=FOUT:%_
+BAD_OPT=Ongeldige opdrachtregelparameter "%0%1"
+BAD_CMB=Kan parameters "%0%1" niet combineren met "%0%2"
+BAD_MCO=Ontbrekende opdrachtregelgegevens voor "%0%1"
+BAD_INT=Ongeldige numerieke waarde "%2" voor "%0%1"
+BAD_VAL=Numerieke waarde "%2" valt buiten het bereik "%3 - %4" voor "%0%1"
+BAD_MAX=Maximum aantal archiefdelen overschreden voor "%1"
+BAD_VER=Archief "%1" bevat mogelijk niet-ondersteunde gegevensstructuren.
+BAD_EMB=Kan slechts één berichttekstbestand tegelijk opgeven.
+BAD_MSG=Berichtnotitie "%1" te groot. Afgekapt tot %2.
+BAD_CMP=Niet-ondersteunde pass-through compressie "%2"
+BAD_TMP=TEMP-map vereist.
+ER_UNK=foutcode #%0, ongespecificeerde fout met "%1" %2
+ER_2=Bestand "%1" is niet gevonden.
+ER_3=Pad van bestand "%1" is niet gevonden.
+ER_8=Oeps, het geheugen is vol.
+ER_11=Bestand "%1" heeft een onbekende indeling.
+ER_13=Bestand "%1" bevat beschadigde gegevens.
+ER_14=Door gebruiker beëindigd.
+ER_23=Handtekening komt niet overeen. Bestand "%1" bevat beschadigde gegevens.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2-%1-%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 om %1
+
+BYTES=% byte(s)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% diskette

@@ -1,0 +1,4146 @@
+; Language: Czech
+; File ending: cz
+; Codepage: 852
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=cz
+TITLE=%, Verze %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (pokračování)
+INC_DIR=%2
+INC_TEXT=vložit text: %2 %8
+INC_HEAD=text: %2 %8
+USE_COMP=povoleno %0 pass-through komprese
+
+VERB_PRE_SCAN=naskenováno % položek pro přidání do archivu
+VERB_INC_FILE=zahrnout: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=pokračovat: %2 [%3] (pokračování od offsetu %6)
+VERB_INC_DIR=podadresář: %2 (%3)
+VERB_INC_HEAD=vložit text hlavičky: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=vyloučit: %0 (odpovídá "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=přidat "%1" do seznamu %0
+LIST_INC=zahrnout
+LIST_EXC=vyloučit
+
+; Same params as reporting
+EXT_DIR=adresář: %2
+EXT_FILE=soubor: %9%2, %8
+EXT_PART=částečný: %9%2, %7 z %8
+VERB_EXT_RPCL=soubor %9%2 existuje, nahrazen
+VERB_EXT_SKIP=soubor %9%2 existuje, přeskočen
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=kategorie: %2
+REP_DIR=adresář: %2
+REP_FILE=soubor: %9%2, %8
+REP_PART=částečný: %9%2, %7 z %8
+REP_TEXT=text: %2, %8
+REP_MORE=pokračování: %2, %8
+REP_CONF=přijmout: %2, %8
+
+VERB_REP_CAT=nastavit kategorii: %2, %1
+VERB_REP_DIR=adresář: %2 (%3), %1 %4 %5
+VERB_REP_FILE=kompletní soubor: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 velikost souboru %8
+VERB_REP_PART=částečný soubor: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 z %8 (offset %6)
+VERB_REP_TEXT=text: %2 %4 {%3}, %8
+VERB_REP_MORE=pokračování: %2 %4 {%3}, %8
+VERB_REP_CONF=přijmout: %2 %4 {%3}, %8
+VERB_REP_SIG=signatura: %2 [%3], %1
+VERB_REP_NULL=nulový blok, %1
+VERB_REP_OTHER=neznámý blok %0, %1
+VERB_REP_SLICE=vybrat část %
+
+SAF_CREATE=Vytvořit nový slicer archiv %
+SAF_OPEN=Otevřít existující slicer archiv %
+SAF_APPEND=Připojit k existujícímu slicer archivu %
+SAF_DATE=Vytvořeno %2.%1.%0 v %3:%4:%5
+SAF_SLICE=Vytvořit novou část archivu %
+SAF_CAT=Nastavit kategorii archivu %
+SAF_SLICING=Rozdělování archivu na %
+VERB_SAF_IUP=Aktualizovat statistické informace pro archiv %
+
+MEDIA=Vložte disketu obsahující soubor %0 do jednotky %1.
+PAUSE=Pokračujte stisknutím libovolné klávesy.
+
+PROMPT_YES=Ano
+PROMPT_NO=Ne
+PROMPT_Y=A
+PROMPT_N=N
+PROMPT_OVER=Přepsat %2%1, %0?
+PROMPT_ACCEPT=Přijmout %?
+PROMPT_STOP=Soubor %1 je poškozen. Zrušit extrakci %0?
+
+SUMMARY=%0 část(í), %1 adresář(ů), %2 soubor(ů), %3
+
+USAGE=použití: % [volby]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=Informace o volbách programu SLICER:
+HELP_1=
+HELP_2=  %0q        zakázat všechny stavové zprávy
+HELP_3=  %0v        povolit podrobné stavové zprávy
+HELP_4=  %0t        testovací režim
+HELP_5=  %0h        zobrazit informace o nápovědě
+HELP_6=
+HELP_7=  %0i ?      zahrnout položky odpovídající specifikaci souboru
+HELP_8=  %0I ?      zahrnout položky ze seznamu souborů
+HELP_9=  %0e ?      vyloučit položky odpovídající specifikaci souboru
+HELP_10=  %0E ?      vyloučit položky ze seznamu souborů
+HELP_11=
+HELP_12=  %0d        vyloučit prázdné adresáře
+HELP_13=  %0D        neprocházet podadresáře
+HELP_14=  %0a        zahrnout všechny skryté a systémové položky
+HELP_15=  %0o        přepsat existující soubory
+HELP_16=  %0k        neignorovat velikost písmen v názvech souborů
+HELP_17=
+HELP_18=  %0g ?      určit kategorii skupiny
+HELP_19=  %0s ?      velikost části archivu (K, M nebo bajty). (platné pouze při
+HELP_20=             vytváření nového nebo rozdělování existujícího archivu)
+HELP_21=
+HELP_22=  %0y        automaticky přijmout všechny výzvy (kromě přepsání souboru).
+HELP_23=
+HELP_24=Operace týkající se celého archivu:
+HELP_25=
+HELP_26=  %0f ?      zadat název souboru archivu
+HELP_27=  %0c        vytvořit nový archiv
+HELP_28=  %0r        připojit k existujícímu archivu
+HELP_29=  %0x        extrahovat z existujícího archivu
+HELP_30=  %0R        vygenerovat zprávu o archivu
+HELP_31=  %0O ?      nastavit cílovou cestu pro extrakci
+HELP_32=
+HELP_33=Vložený text, upozornění a zprávy:
+HELP_34=
+HELP_35=  %0L ?      přepsat výchozí jazyk systému
+HELP_36=  %0m ?      vložit text zprávy ze souboru
+HELP_37=  %0M ?      vložit text zprávy ze souboru vyžadující souhlas uživatele
+HELP_38=
+HELP_39=Pass-through komprese:
+HELP_40=
+HELP_41=  %0p ?      povolit pass-through kompresi (GZ, později možno i další)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Země zmatku. Pro nápovědu použijte volbu "%0h".
+
+FATAL=KRITICKÁ CHYBA:%_
+ERROR=CHYBA:%_
+BAD_OPT=Neplatný parametr příkazového řádku "%0%1"
+BAD_CMB=Nelze kombinovat parametry "%0%1" a "%0%2"
+BAD_MCO=Chybějící data příkazového řádku pro "%0%1"
+BAD_INT=Neplatná číselná hodnota "%2" pro "%0%1"
+BAD_VAL=Číselná hodnota "%2" je mimo rozsah "%3 - %4" pro "%0%1"
+BAD_MAX=Překročen maximální počet částí archivu pro "%1"
+BAD_VER=Archiv "%1" může obsahovat nepodporované datové struktury.
+BAD_EMB=Současně lze zadat pouze jeden soubor s textem zprávy.
+BAD_MSG=Upozornění "%1" je příliš velké. Zkráceno na %2.
+BAD_CMP=Nepodporovaná pass-through komprese "%2"
+BAD_TMP=Je vyžadován adresář TEMP.
+ER_UNK=kód chyby #%0, blíže neurčená chyba s "%1" %2
+ER_2=Soubor "%1" nebyl nalezen.
+ER_3=Cesta k souboru "%1" nebyla nalezena.
+ER_8=Ehm, došla mi paměť.
+ER_11=Soubor "%1" má nerozpoznaný formát.
+ER_13=Soubor "%1" obsahuje poškozená data.
+ER_14=Ukončeno uživatelem.
+ER_23=Neshoda signatur. Soubor "%1" obsahuje poškozená data.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 v %1
+
+BYTES=% bajt(ů)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% disketa
+
+
+
+
+
+
+
+
+
+
+; Language: Danish
+; File ending: dk
+; Codepage: 865
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=dk
+TITLE=%, Version %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (fortsat)
+INC_DIR=%2
+INC_TEXT=indlejr tekst: %2 %8
+INC_HEAD=tekst: %2 %8
+USE_COMP=aktiveret %0 pass-through komprimering
+
+VERB_PRE_SCAN=scannede % elementer til at tilføje til arkiv
+VERB_INC_FILE=inkluder: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=fortsæt: %2 [%3] (fortsat fra forskydning %6)
+VERB_INC_DIR=undermappe: %2 (%3)
+VERB_INC_HEAD=indlejr sidehovedtekst: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=ekskluder: %0 (matcher "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=tilføj "%1" til %0 liste
+LIST_INC=inkluder
+LIST_EXC=ekskluder
+
+; Same params as reporting
+EXT_DIR=mappe: %2
+EXT_FILE=fil: %9%2, %8
+EXT_PART=delvis: %9%2, %7 af %8
+VERB_EXT_RPCL=fil %9%2 findes, overskrevet
+VERB_EXT_SKIP=fil %9%2 findes, sprunget over
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=kategori: %2
+REP_DIR=mappe: %2
+REP_FILE=fil: %9%2, %8
+REP_PART=delvis: %9%2, %7 af %8
+REP_TEXT=tekst: %2, %8
+REP_MORE=fortsat: %2, %8
+REP_CONF=accepter: %2, %8
+
+VERB_REP_CAT=angiv kategori: %2, %1
+VERB_REP_DIR=mappe: %2 (%3), %1 %4 %5
+VERB_REP_FILE=komplet fil: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 filstørrelse %8
+VERB_REP_PART=delvis fil: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 af %8 (forskydning %6)
+VERB_REP_TEXT=tekst: %2 %4 {%3}, %8
+VERB_REP_MORE=fortsat: %2 %4 {%3}, %8
+VERB_REP_CONF=accepter: %2 %4 {%3}, %8
+VERB_REP_SIG=signatur: %2 [%3], %1
+VERB_REP_NULL=nul-blok, %1
+VERB_REP_OTHER=ukendt blok %0, %1
+VERB_REP_SLICE=vælg delarkiv %
+
+SAF_CREATE=Opret nyt slicer-arkiv %
+SAF_OPEN=Åbn eksisterende slicer-arkiv %
+SAF_APPEND=Tilføj til eksisterende slicer-arkiv %
+SAF_DATE=Oprettet den %2.%1.%0 kl. %3:%4:%5
+SAF_SLICE=Opret nyt delarkiv %
+SAF_CAT=Angiv arkivkategori %
+SAF_SLICING=Opdeler arkiv ved %
+VERB_SAF_IUP=Opdaterer statistik for arkiv %
+
+MEDIA=Indsæt diskette med filen %0 i drev %1.
+PAUSE=Tryk på en vilkårlig tast for at fortsætte.
+
+PROMPT_YES=Ja
+PROMPT_NO=Nej
+PROMPT_Y=J
+PROMPT_N=N
+PROMPT_OVER=Overskriv %2%1, %0?
+PROMPT_ACCEPT=Accepter %?
+PROMPT_STOP=Fil %1 er beskadiget. Afbryd udpakning %0?
+
+SUMMARY=%0 del(e), %1 mappe(r), %2 fil(er), %3
+
+USAGE=brug: % [indstillinger]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER indstillinger:
+HELP_1=
+HELP_2=  %0q        deaktiver alle statusmeddelelser
+HELP_3=  %0v        aktiver detaljerede statusmeddelelser
+HELP_4=  %0t        testtilstand
+HELP_5=  %0h        vis hjælpeoplysninger
+HELP_6=
+HELP_7=  %0i ?      inkluder elementer der matcher filspecifikation
+HELP_8=  %0I ?      inkluder elementer fra filliste
+HELP_9=  %0e ?      ekskluder elementer der matcher filspecifikation
+HELP_10=  %0E ?      ekskluder elementer fra filliste
+HELP_11=
+HELP_12=  %0d        ekskluder tomme mapper
+HELP_13=  %0D        medtag ikke undermapper
+HELP_14=  %0a        inkluder alle skjulte filer og systemfiler
+HELP_15=  %0o        overskriv eksisterende filer
+HELP_16=  %0k        ignorer ikke store/små bogstaver i filnavne
+HELP_17=
+HELP_18=  %0g ?      angiv gruppekategori
+HELP_19=  %0s ?      størrelse for delarkiv, K, M eller bytes. (kun gyldigt ved
+HELP_20=             oprettelse af et nyt eller opdeling af et eksisterende arkiv)
+HELP_21=
+HELP_22=  %0y        accepter automatisk alle prompter (undtagen overskriv fil).
+HELP_23=
+HELP_24=Handlinger relateret til hele arkivet:
+HELP_25=
+HELP_26=  %0f ?      angiv arkivets filnavn
+HELP_27=  %0c        opret et nyt arkiv
+HELP_28=  %0r        tilføj til et eksisterende arkiv
+HELP_29=  %0x        udpak fra et eksisterende arkiv
+HELP_30=  %0R        generer arkivrapport
+HELP_31=  %0O ?      angiv destinationssti for udpakning
+HELP_32=
+HELP_33=Indlejret tekst, meddelelser og beskeder:
+HELP_34=
+HELP_35=  %0L ?      tilsidesæt systemets standardsprog
+HELP_36=  %0m ?      indlejr beskedtekst fra fil
+HELP_37=  %0M ?      indlejr beskedtekst fra fil, der kræver at brugeren accepterer
+HELP_38=
+HELP_39=Pass-through komprimering:
+HELP_40=
+HELP_41=  %0p ?      aktiver pass-through komprimering (GZ, måske flere senere)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Forvirret? Brug indstillingen "%0h" for hjælp.
+
+FATAL=FATAL FEJL:%_
+ERROR=FEJL:%_
+BAD_OPT=Ugyldig kommandolinjeparameter "%0%1"
+BAD_CMB=Kan ikke kombinere parametrene "%0%1" og "%0%2"
+BAD_MCO=Manglende kommandolinjedata for "%0%1"
+BAD_INT=Ugyldig numerisk værdi "%2" for "%0%1"
+BAD_VAL=Numerisk værdi "%2" er uden for området "%3 - %4" for "%0%1"
+BAD_MAX=Maksimalt antal arkivdele overskredet for "%1"
+BAD_VER=Arkiv "%1" kan indeholde datastrukturer, der ikke understøttes.
+BAD_EMB=Kan kun angive én tekstfil ad gangen.
+BAD_MSG=Besked "%1" er for stor. Afkortet til %2.
+BAD_CMP=Pass-through komprimering "%2" understøttes ikke
+BAD_TMP=TEMP-mappe påkrævet.
+ER_UNK=fejlkode #%0, uspecificeret fejl med "%1" %2
+ER_2=Filen "%1" blev ikke fundet.
+ER_3=Stien til filen "%1" blev ikke fundet.
+ER_8=Øv, jeg løb tør for hukommelse.
+ER_11=Filen "%1" har et ukendt format.
+ER_13=Filen "%1" indeholder beskadigede data.
+ER_14=Afbrudt af brugeren.
+ER_23=Signatur stemmer ikke overens. Filen "%1" har beskadigede data.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 kl. %1
+
+BYTES=% byte(s)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% diskette
+
+
+
+
+
+
+
+
+
+
+
+
+
+; Language: Esperanto
+; File ending: eo
+; Codepage: 853
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=eo
+TITLE=%, Versio %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (daŭrigita)
+INC_DIR=%2
+INC_TEXT=enkorpigi tekston: %2 %8
+INC_HEAD=teksto: %2 %8
+USE_COMP=ebligis %0 trapasan kunpremon
+
+VERB_PRE_SCAN=skanis % erojn por aldoni al arkivo
+VERB_INC_FILE=inkluzivi: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=daŭrigi: %2 [%3] (daŭrigita de deŝovo %6)
+VERB_INC_DIR=subdosierujo: %2 (%3)
+VERB_INC_HEAD=enkorpigi kapan tekston: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=ekskludi: %0 (kongruas "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=aldoni "%1" al %0 listo
+LIST_INC=inkluzivi
+LIST_EXC=ekskludi
+
+; Same params as reporting
+EXT_DIR=dosierujo: %2
+EXT_FILE=dosiero: %9%2, %8
+EXT_PART=parta: %9%2, %7 de %8
+VERB_EXT_RPCL=dosiero %9%2 ekzistas, anstataŭigita
+VERB_EXT_SKIP=dosiero %9%2 ekzistas, preterlasita
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=kategorio: %2
+REP_DIR=dosierujo: %2
+REP_FILE=dosiero: %9%2, %8
+REP_PART=parta: %9%2, %7 de %8
+REP_TEXT=teksto: %2, %8
+REP_MORE=daŭrigita: %2, %8
+REP_CONF=akcepti: %2, %8
+
+VERB_REP_CAT=agordi kategorion: %2, %1
+VERB_REP_DIR=dosierujo: %2 (%3), %1 %4 %5
+VERB_REP_FILE=kompleta dosiero: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 dosiergrando %8
+VERB_REP_PART=parta dosiero: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 de %8 (deŝovo %6)
+VERB_REP_TEXT=teksto: %2 %4 {%3}, %8
+VERB_REP_MORE=daŭrigita: %2 %4 {%3}, %8
+VERB_REP_CONF=akcepti: %2 %4 {%3}, %8
+VERB_REP_SIG=subskribo: %2 [%3], %1
+VERB_REP_NULL=nula bloko, %1
+VERB_REP_OTHER=nekonata bloko %0, %1
+VERB_REP_SLICE=elekti arkivparton %
+
+SAF_CREATE=Krei novan slicer-arkivon %
+SAF_OPEN=Malfermi ekzistantan slicer-arkivon %
+SAF_APPEND=Aldoni al ekzistanta slicer-arkivo %
+SAF_DATE=Kreita je %0-%1-%2 je %3:%4:%5
+SAF_SLICE=Krei novan arkivparton %
+SAF_CAT=Agordi arkivkategorion %
+SAF_SLICING=Dividas arkivon ĉe %
+VERB_SAF_IUP=Ĝisdatigi statistikajn informojn por arkivo %
+
+MEDIA=Enmetu disketon kun dosiero %0 en diskingon %1.
+PAUSE=Premu iun ajn klavon por daŭrigi.
+
+PROMPT_YES=Jes
+PROMPT_NO=Ne
+PROMPT_Y=J
+PROMPT_N=N
+PROMPT_OVER=Ĉu superskribi %2%1, %0?
+PROMPT_ACCEPT=Ĉu akcepti %?
+PROMPT_STOP=Dosiero %1 estas difektita. Ĉu nuligi eltiron %0?
+
+SUMMARY=%0 parto(j), %1 dosierujo(j), %2 dosiero(j), %3
+
+USAGE=uzado: % [opcioj]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER opciaj informoj:
+HELP_1=
+HELP_2=  %0q        malŝalti ĉiujn statusmesaĝojn
+HELP_3=  %0v        ŝalti detalajn statusmesaĝojn
+HELP_4=  %0t        testa reĝimo
+HELP_5=  %0h        montri helpinformojn
+HELP_6=
+HELP_7=  %0i ?      inkluzivi erojn kongruantajn kun dosierspecifo
+HELP_8=  %0I ?      inkluzivi erojn el dosierlisto
+HELP_9=  %0e ?      ekskludi erojn kongruantajn kun dosierspecifo
+HELP_10=  %0E ?      ekskludi erojn el dosierlisto
+HELP_11=
+HELP_12=  %0d        ekskludi malplenajn dosierujojn
+HELP_13=  %0D        ne trarigardi subdosierujojn
+HELP_14=  %0a        inkluzivi ĉiujn kaŝitajn kaj sistemajn erojn
+HELP_15=  %0o        superscribi ekzistantajn dosierojn
+HELP_16=  %0k        ne ignori usklecon de dosieroj
+HELP_17=
+HELP_18=  %0g ?      specifi grupan kategorion
+HELP_19=  %0s ?      grando por dividi arkivon, K, M aŭ bajtoj. (valida nur
+HELP_20=             kiam oni kreas novan aŭ redividas ekzistantan arkivon)
+HELP_21=
+HELP_22=  %0y        aŭtomate akcepti ĉiujn demandojn (krom superskribo).
+HELP_23=
+HELP_24=Operacioj rilataj al la tuta arkivo:
+HELP_25=
+HELP_26=  %0f ?      specifi arkivan dosiernomon
+HELP_27=  %0c        krei novan arkivon
+HELP_28=  %0r        aldoni al ekzistanta arkivo
+HELP_29=  %0x        eltiri el ekzistanta arkivo
+HELP_30=  %0R        generi arkivraporton
+HELP_31=  %0O ?      agordi celan eltiran vojon
+HELP_32=
+HELP_33=Enkorpigita teksto, sciigoj kaj mesaĝoj:
+HELP_34=
+HELP_35=  %0L ?      anstataŭigi sisteman defaŭltan lingvon
+HELP_36=  %0m ?      enkorpigi mesaĝtekston el dosiero
+HELP_37=  %0M ?      enkorpigi mesaĝtekston el dosiero postulanta interkonsenton
+HELP_38=
+HELP_39=Trapasa kunpremo:
+HELP_40=
+HELP_41=  %0p ?      ŝalti trapasan kunpremon (GZ, eble aliaj poste)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Lando de konfuzo. Por helpo uzu la opcion "%0h".
+
+FATAL=GRAVEGA ERARO:%_
+ERROR=ERARO:%_
+BAD_OPT=Nevalida komandlinia parametro "%0%1"
+BAD_CMB=Ne eblas kombini parametrojn "%0%1" kaj "%0%2"
+BAD_MCO=Mankas komandlinia datumo por "%0%1"
+BAD_INT=Nevalida nombra valoro "%2" por "%0%1"
+BAD_VAL=Nombra valoro "%2" estas ekster la intervalo "%3 - %4" por "%0%1"
+BAD_MAX=Maksimuma nombro de arkivpartoj superita por "%1"
+BAD_VER=Arkivo "%1" eble enhavas nesubtenatajn datumstrukturojn.
+BAD_EMB=Eblas specifi nur unu mesaĝtekstan dosieron samtempe.
+BAD_MSG=Mesaĝa noto "%1" estas tro granda. Tranĉita al %2.
+BAD_CMP=Nesubtenata trapasa kunpremo "%2"
+BAD_TMP=TEMP dosierujo estas bezonata.
+ER_UNK=erarkodo #%0, nekonata eraro kun "%1" %2
+ER_2=Dosiero "%1" ne estis trovita.
+ER_3=Vojo de dosiero "%1" ne estis trovita.
+ER_8=Hm, la memoro elĉerpiĝis.
+ER_11=Dosiero "%1" havas nekonatan formaton.
+ER_13=Dosiero "%1" havas difektitajn datumojn.
+ER_14=Uzanto ĉesigis.
+ER_23=Subskribo ne kongruas. Dosiero "%1" havas difektitajn datumojn.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%0-%1-%2
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 je %1
+
+BYTES=% bajto(j)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% disketo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+; Language: Brazilian Portuguese
+; File ending: pb
+; Codepage: 850
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=pb
+TITLE=%, Versão %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (continuação)
+INC_DIR=%2
+INC_TEXT=embutir texto: %2 %8
+INC_HEAD=texto: %2 %8
+USE_COMP=compressão pass-through ativada para %0
+
+VERB_PRE_SCAN=escaneados % itens para adicionar ao arquivo
+VERB_INC_FILE=incluir: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=continuar: %2 [%3] (continuação do offset %6)
+VERB_INC_DIR=subdiretório: %2 (%3)
+VERB_INC_HEAD=embutir texto de cabeçalho: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=excluir: %0 (corresponde a "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=adicionar "%1" à lista %0
+LIST_INC=incluir
+LIST_EXC=excluir
+
+; Same params as reporting
+EXT_DIR=diretório: %2
+EXT_FILE=arquivo: %9%2, %8
+EXT_PART=parcial: %9%2, %7 de %8
+VERB_EXT_RPCL=arquivo %9%2 existe, substituído
+VERB_EXT_SKIP=arquivo %9%2 existe, ignorado
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=categoria: %2
+REP_DIR=diretório: %2
+REP_FILE=arquivo: %9%2, %8
+REP_PART=parcial: %9%2, %7 de %8
+REP_TEXT=texto: %2, %8
+REP_MORE=continuação: %2, %8
+REP_CONF=aceitar: %2, %8
+
+VERB_REP_CAT=definir categoria: %2, %1
+VERB_REP_DIR=diretório: %2 (%3), %1 %4 %5
+VERB_REP_FILE=arquivo completo: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 tamanho do arquivo %8
+VERB_REP_PART=arquivo parcial: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 de %8 (offset %6)
+VERB_REP_TEXT=texto: %2 %4 {%3}, %8
+VERB_REP_MORE=continuação: %2 %4 {%3}, %8
+VERB_REP_CONF=aceitar: %2 %4 {%3}, %8
+VERB_REP_SIG=assinatura: %2 [%3], %1
+VERB_REP_NULL=bloco nulo, %1
+VERB_REP_OTHER=bloco desconhecido %0, %1
+VERB_REP_SLICE=selecionar parte %
+
+SAF_CREATE=Criar novo arquivo slicer %
+SAF_OPEN=Abrir arquivo slicer existente %
+SAF_APPEND=Anexar ao arquivo slicer existente %
+SAF_DATE=Criado em %2/%1/%0 às %3:%4:%5
+SAF_SLICE=Criar nova parte de arquivo %
+SAF_CAT=Definir categoria de arquivo %
+SAF_SLICING=Dividindo arquivo em %
+VERB_SAF_IUP=Atualizar informações estatísticas do arquivo %
+
+MEDIA=Insira o disquete contendo o arquivo %0 na unidade %1.
+PAUSE=Pressione qualquer tecla para continuar.
+
+PROMPT_YES=Sim
+PROMPT_NO=Não
+PROMPT_Y=S
+PROMPT_N=N
+PROMPT_OVER=Sobrescrever %2%1, %0?
+PROMPT_ACCEPT=Aceitar %?
+PROMPT_STOP=O arquivo %1 está corrompido. Abortar extração %0?
+
+SUMMARY=%0 parte(s), %1 dir(s), %2 arquivo(s), %3
+
+USAGE=uso: % [opções]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=Informações das opções do SLICER:
+HELP_1=
+HELP_2=  %0q        desativar todas as mensagens de status
+HELP_3=  %0v        ativar mensagens de status detalhadas
+HELP_4=  %0t        modo de teste
+HELP_5=  %0h        exibir informações de ajuda
+HELP_6=
+HELP_7=  %0i ?      incluir itens correspondentes à especificação
+HELP_8=  %0I ?      incluir itens da lista de arquivos
+HELP_9=  %0e ?      excluir itens correspondentes à especificação
+HELP_10=  %0E ?      excluir itens da lista de arquivos
+HELP_11=
+HELP_12=  %0d        excluir diretórios vazios
+HELP_13=  %0D        não incluir subdiretórios recursivamente
+HELP_14=  %0a        incluir todos os itens ocultos e de sistema
+HELP_15=  %0o        sobrescrever arquivos existentes
+HELP_16=  %0k        não ignorar maiúsculas/minúsculas nos nomes de arquivos
+HELP_17=
+HELP_18=  %0g ?      especificar categoria de grupo
+HELP_19=  %0s ?      tamanho para dividir arquivo, K, M ou bytes. (só válido
+HELP_20=             ao criar um novo arquivo ou re-dividir um existente)
+HELP_21=
+HELP_22=  %0y        aceitar automaticamente qualquer prompt (exceto
+HELP_23=             ao sobrescrever arquivos).
+HELP_24=Operações relacionadas a todo o arquivo:
+HELP_25=
+HELP_26=  %0f ?      especificar nome do arquivo a ser criado ou aberto
+HELP_27=  %0c        criar um novo arquivo
+HELP_28=  %0r        anexar a um arquivo existente
+HELP_29=  %0x        extrair de um arquivo existente
+HELP_30=  %0R        gerar relatório do arquivo
+HELP_31=  %0O ?      definir caminho de extração de destino
+HELP_32=
+HELP_33=Texto embutido, avisos e mensagens:
+HELP_34=
+HELP_35=  %0L ?      sobrescrever o idioma padrão do sistema
+HELP_36=  %0m ?      embutir texto de mensagem de um arquivo
+HELP_37=  %0M ?      embutir texto de mensagem que exige acordo do usuário
+HELP_38=
+HELP_39=Compressão pass-through:
+HELP_40=
+HELP_41=  %0p ?      ativar compressão pass-through (GZ, talvez outros depois)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Terra da confusão. Para ajuda, use a opção "%0h".
+
+FATAL=ERRO FATAL:%_
+ERROR=ERRO:%_
+BAD_OPT=Parâmetro de linha de comando inválido "%0%1"
+BAD_CMB=Não é possível combinar parâmetros "%0%1" com "%0%2"
+BAD_MCO=Faltando dados de linha de comando para "%0%1"
+BAD_INT=Valor numérico inválido "%2" para "%0%1"
+BAD_VAL=Valor numérico "%2" fora do intervalo "%3 - %4" para "%0%1"
+BAD_MAX=Número máximo de partes de arquivo excedido para "%1"
+BAD_VER=O arquivo "%1" pode conter estruturas de dados não suportadas.
+BAD_EMB=Só é possível especificar um arquivo de texto de mensagem por vez.
+BAD_MSG=Aviso de mensagem "%1" muito grande. Truncado para %2.
+BAD_CMP=Compressão pass-through não suportada "%2"
+BAD_TMP=Diretório TEMP necessário.
+ER_UNK=código de erro #%0, erro não especificado com "%1" %2
+ER_2=O arquivo "%1" não foi encontrado.
+ER_3=O caminho do arquivo "%1" não foi encontrado.
+ER_8=Uhm, fiquei sem memória.
+ER_11=O arquivo "%1" possui um formato não reconhecido.
+ER_13=O arquivo "%1" possui dados corrompidos.
+ER_14=Encerrado pelo usuário.
+ER_23=Incompatibilidade de assinatura. O arquivo "%1" possui dados corrompidos.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2/%1/%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 às %1
+
+BYTES=% byte(s)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% disquete
+
+
+
+
+
+
+
+; Language: Estonian
+; File ending: et
+; Codepage: 775
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=et
+TITLE=%, Versioon %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (jätkub)
+INC_DIR=%2
+INC_TEXT=manusta tekst: %2 %8
+INC_HEAD=tekst: %2 %8
+USE_COMP=lubatud %0 pass-through tihendamine
+
+VERB_PRE_SCAN=skannitud % üksust arhiivi lisamiseks
+VERB_INC_FILE=kaasa arvatud: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=jätka: %2 [%3] (jätkub nihkest %6)
+VERB_INC_DIR=alamkataloog: %2 (%3)
+VERB_INC_HEAD=manusta päisetekst: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=välista: %0 (vastab "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=lisa "%1" nimekirja %0
+LIST_INC=kaasa
+LIST_EXC=välista
+
+; Same params as reporting
+EXT_DIR=kataloog: %2
+EXT_FILE=fail: %9%2, %8
+EXT_PART=osaline: %9%2, %7 / %8
+VERB_EXT_RPCL=fail %9%2 on olemas, asendatud
+VERB_EXT_SKIP=fail %9%2 on olemas, vahele jäetud
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=kategooria: %2
+REP_DIR=kataloog: %2
+REP_FILE=fail: %9%2, %8
+REP_PART=osaline: %9%2, %7 / %8
+REP_TEXT=tekst: %2, %8
+REP_MORE=jätkub: %2, %8
+REP_CONF=nõustu: %2, %8
+
+VERB_REP_CAT=määra kategooria: %2, %1
+VERB_REP_DIR=kataloog: %2 (%3), %1 %4 %5
+VERB_REP_FILE=terviklik fail: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 faili suurus %8
+VERB_REP_PART=osaline fail: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 / %8 (nihe %6)
+VERB_REP_TEXT=tekst: %2 %4 {%3}, %8
+VERB_REP_MORE=jätkub: %2 %4 {%3}, %8
+VERB_REP_CONF=nõustu: %2 %4 {%3}, %8
+VERB_REP_SIG=allkiri: %2 [%3], %1
+VERB_REP_NULL=nullplokk, %1
+VERB_REP_OTHER=tundmatu plokk %0, %1
+VERB_REP_SLICE=vali arhiiviosa %
+
+SAF_CREATE=Loo uus slicer arhiiv %
+SAF_OPEN=Ava olemasolev slicer arhiiv %
+SAF_APPEND=Lisa olemasolevale slicer arhiivile %
+SAF_DATE=Loodud %2.%1.%0 kell %3:%4:%5
+SAF_SLICE=Loo uus arhiiviosa %
+SAF_CAT=Määra arhiivi kategooria %
+SAF_SLICING=Arhiivi tükeldamine kohas %
+VERB_SAF_IUP=Värskenda arhiivi % statistilist teavet
+
+MEDIA=Sisestage faili %0 sisaldav diskett seadmesse %1.
+PAUSE=Jätkamiseks vajutage mis tahes klahvi.
+
+PROMPT_YES=Jah
+PROMPT_NO=Ei
+PROMPT_Y=J
+PROMPT_N=E
+PROMPT_OVER=Kas kirjutada %2%1 üle, %0?
+PROMPT_ACCEPT=Kas nõustute %?
+PROMPT_STOP=Fail %1 on rikutud. Kas katkestada lahtipakkimine %0?
+
+SUMMARY=%0 osa(d), %1 kataloog(id), %2 fail(id), %3
+
+USAGE=kasutamine: % [valikud]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER valikute teave:
+HELP_1=
+HELP_2=  %0q        keela kõik olekuteated
+HELP_3=  %0v        luba üksikasjalikud olekuteated
+HELP_4=  %0t        testrežiim
+HELP_5=  %0h        kuva abiteave
+HELP_6=
+HELP_7=  %0i ?      kaasa failispetsifikatsioonile vastavad üksused
+HELP_8=  %0I ?      kaasa üksused faililoendist
+HELP_9=  %0e ?      välista failispetsifikatsioonile vastavad üksused
+HELP_10=  %0E ?      välista üksused faililoendist
+HELP_11=
+HELP_12=  %0d        välista tühjad kataloogid
+HELP_13=  %0D        ära otsi alamkataloogidest
+HELP_14=  %0a        kaasa kõik peidetud ja süsteemiüksused
+HELP_15=  %0o        kirjuta olemasolevad failid üle
+HELP_16=  %0k        ära ignoreeri suur- ja väiketähti failinimedes
+HELP_17=
+HELP_18=  %0g ?      määra grupi kategooria
+HELP_19=  %0s ?      arhiivi tükeldamise suurus (K, M või baidid). (kehtib
+HELP_20=             ainult uue loomisel või olemasoleva tükeldamisel)
+HELP_21=
+HELP_22=  %0y        nõustu automaatselt kõigi viipadega (välja arvatud
+HELP_23=             failide ülekirjutamisel).
+HELP_24=Kogu arhiiviga seotud toimingud:
+HELP_25=
+HELP_26=  %0f ?      määra arhiivi failinimi
+HELP_27=  %0c        loo uus arhiiv
+HELP_28=  %0r        lisa olemasolevale arhiivile
+HELP_29=  %0x        paki lahti olemasolevast arhiivist
+HELP_30=  %0R        loo arhiiviaruanne
+HELP_31=  %0O ?      määra lahtipakkimise sihtkoha tee
+HELP_32=
+HELP_33=Manustatud tekst, teated ja sõnumid:
+HELP_34=
+HELP_35=  %0L ?      alista süsteemi vaikekeel
+HELP_36=  %0m ?      manusta failist sõnumi tekst
+HELP_37=  %0M ?      manusta failist tekst, mis nõuab kasutaja nõusolekut
+HELP_38=
+HELP_39=Pass-through tihendamine:
+HELP_40=
+HELP_41=  %0p ?      luba pass-through tihendamine (GZ, hiljem ehk ka teised)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Segaduste maa. Abi saamiseks kasutage valikut "%0h".
+
+FATAL=TÕSINE VIGA:%_
+ERROR=VIGA:%_
+BAD_OPT=Vigane käsurea parameeter "%0%1"
+BAD_CMB=Parameetreid "%0%1" ja "%0%2" ei saa kombineerida
+BAD_MCO=Puuduvad käsurea andmed parameetrile "%0%1"
+BAD_INT=Vigane arvväärtus "%2" parameetrile "%0%1"
+BAD_VAL=Arvväärtus "%2" on väljaspool vahemikku "%3 - %4" parameetril "%0%1"
+BAD_MAX=Maksimaalne arhiiviosade arv parameetrile "%1" on ületatud
+BAD_VER=Arhiiv "%1" võib sisaldada toetamata andmestruktuure.
+BAD_EMB=Korraga saab määrata ainult ühe sõnumi tekstifaili.
+BAD_MSG=Sõnumi teade "%1" on liiga suur. Lõigatud %2-ni.
+BAD_CMP=Toetamata pass-through tihendamine "%2"
+BAD_TMP=TEMP kataloog on nõutud.
+ER_UNK=veakood #%0, määramata viga "%1" %2
+ER_2=Faili "%1" ei leitud.
+ER_3=Faili "%1" teed ei leitud.
+ER_8=Oih, mul sai mälu otsa.
+ER_11=Fail "%1" on tundmatus vormingus.
+ER_13=Fail "%1" sisaldab rikutud andmeid.
+ER_14=Kasutaja poolt katkestatud.
+ER_23=Allkirja lahknevus. Fail "%1" sisaldab rikutud andmeid.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 kell %1
+
+BYTES=% bait(i)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% diskett
+
+
+
+
+
+
+
+; Language: Finnish
+; File ending: fi
+; Codepage: 865
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=fi
+TITLE=%, Versio %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (jatkuu)
+INC_DIR=%2
+INC_TEXT=upota teksti: %2 %8
+INC_HEAD=teksti: %2 %8
+USE_COMP=sallittu %0 pass-through -pakkaus
+
+VERB_PRE_SCAN=skannattu % kohdetta arkistoon lisättäväksi
+VERB_INC_FILE=sisällytä: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=jatka: %2 [%3] (jatkuu siirtymästä %6)
+VERB_INC_DIR=alihakemisto: %2 (%3)
+VERB_INC_HEAD=upota otsikkoteksti: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=ohita: %0 (vastaa "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=lisää "%1" luetteloon %0
+LIST_INC=sisällytä
+LIST_EXC=poissulje
+
+; Same params as reporting
+EXT_DIR=hakemisto: %2
+EXT_FILE=tiedosto: %9%2, %8
+EXT_PART=osittainen: %9%2, %7 / %8
+VERB_EXT_RPCL=tiedosto %9%2 on olemassa, korvattu
+VERB_EXT_SKIP=tiedosto %9%2 on olemassa, ohitettu
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=luokka: %2
+REP_DIR=hakemisto: %2
+REP_FILE=tiedosto: %9%2, %8
+REP_PART=osittainen: %9%2, %7 / %8
+REP_TEXT=teksti: %2, %8
+REP_MORE=jatkuu: %2, %8
+REP_CONF=hyväksy: %2, %8
+
+VERB_REP_CAT=aseta luokka: %2, %1
+VERB_REP_DIR=hakemisto: %2 (%3), %1 %4 %5
+VERB_REP_FILE=koko tiedosto: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 tiedostokoko %8
+VERB_REP_PART=osittainen tiedosto: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 / %8 (siirtymä %6)
+VERB_REP_TEXT=teksti: %2 %4 {%3}, %8
+VERB_REP_MORE=jatkuu: %2 %4 {%3}, %8
+VERB_REP_CONF=hyväksy: %2 %4 {%3}, %8
+VERB_REP_SIG=allekirjoitus: %2 [%3], %1
+VERB_REP_NULL=nollalohko, %1
+VERB_REP_OTHER=tuntematon lohko %0, %1
+VERB_REP_SLICE=valitse osa %
+
+SAF_CREATE=Luo uusi slicer-arkisto %
+SAF_OPEN=Avaa olemassa oleva slicer-arkisto %
+SAF_APPEND=Lisää olemassa olevaan slicer-arkistoon %
+SAF_DATE=Luotu %2.%1.%0 klo %3:%4:%5
+SAF_SLICE=Luo uusi arkisto-osa %
+SAF_CAT=Aseta arkistoluokka %
+SAF_SLICING=Jaetaan arkistoa kohdassa %
+VERB_SAF_IUP=Päivitä arkiston % tilastotiedot
+
+MEDIA=Aseta tiedoston %0 sisältävä levyke asemaan %1.
+PAUSE=Paina mitä tahansa näppäintä jatkaaksesi.
+
+PROMPT_YES=Kyllä
+PROMPT_NO=Ei
+PROMPT_Y=K
+PROMPT_N=E
+PROMPT_OVER=Korvataanko %2%1, %0?
+PROMPT_ACCEPT=Hyväksytäänkö %?
+PROMPT_STOP=Tiedosto %1 on vioittunut. Keskeytetäänkö purkaminen %0?
+
+SUMMARY=%0 osa(a), %1 hakemisto(a), %2 tiedosto(a), %3
+
+USAGE=käyttö: % [valinnat]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER-valintojen tiedot:
+HELP_1=
+HELP_2=  %0q        poista kaikki tilaviestit käytöstä
+HELP_3=  %0v        ota käyttöön yksityiskohtaiset tilaviestit
+HELP_4=  %0t        testitila
+HELP_5=  %0h        näytä ohjetiedot
+HELP_6=
+HELP_7=  %0i ?      sisällytä tiedostomääritystä vastaavat kohteet
+HELP_8=  %0I ?      sisällytä kohteet tiedostoluettelosta
+HELP_9=  %0e ?      poissulje tiedostomääritystä vastaavat kohteet
+HELP_10=  %0E ?      poissulje kohteet tiedostoluettelosta
+HELP_11=
+HELP_12=  %0d        poissulje tyhjät hakemistot
+HELP_13=  %0D        älä käy alihakemistoja läpi
+HELP_14=  %0a        sisällytä kaikki piilotetut ja järjestelmäkohteet
+HELP_15=  %0o        korvaa olemassa olevat tiedostot
+HELP_16=  %0k        älä ohita kirjainkokoa tiedostojen nimissä
+HELP_17=
+HELP_18=  %0g ?      määritä ryhmäluokka
+HELP_19=  %0s ?      arkiston osan koko, K, M tai tavua. (vain uutta
+HELP_20=             luotaessa tai olemassa olevaa uudelleen jaettaessa)
+HELP_21=
+HELP_22=  %0y        hyväksy kaikki kehotteet automaattisesti (ei koske
+HELP_23=             tiedostojen korvaamista).
+HELP_24=Koko arkistoon liittyvät toiminnot:
+HELP_25=
+HELP_26=  %0f ?      määritä arkiston tiedostonimi
+HELP_27=  %0c        luo uusi arkisto
+HELP_28=  %0r        lisää olemassa olevaan arkistoon
+HELP_29=  %0x        pura olemassa olevasta arkistosta
+HELP_30=  %0R        luo arkistoraportti
+HELP_31=  %0O ?      aseta purkamisen kohdepolku
+HELP_32=
+HELP_33=Upotettu teksti, huomautukset ja viestit:
+HELP_34=
+HELP_35=  %0L ?      ohita järjestelmän oletuskieli
+HELP_36=  %0m ?      upota viestiteksti tiedostosta
+HELP_37=  %0M ?      upota viestiteksti tiedostosta, joka vaatii hyväksynnän
+HELP_38=
+HELP_39=Pass-through -pakkaus:
+HELP_40=
+HELP_41=  %0p ?      ota käyttöön pass-through -pakkaus (GZ, myöhemmin muita)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Hämmennyksen maa. Saat apua käyttämällä valintaa "%0h".
+
+FATAL=VAKAVA VIRHE:%_
+ERROR=VIRHE:%_
+BAD_OPT=Virheellinen komentoriviparametri "%0%1"
+BAD_CMB=Parametreja "%0%1" ja "%0%2" ei voi yhdistää
+BAD_MCO=Puuttuvat komentorivitiedot parametrille "%0%1"
+BAD_INT=Virheellinen numeroarvo "%2" parametrille "%0%1"
+BAD_VAL=Numeroarvo "%2" on alueen "%3 - %4" ulkopuolella parametrille "%0%1"
+BAD_MAX=Arkiston osien enimmäismäärä ylitetty kohteelle "%1"
+BAD_VER=Arkisto "%1" voi sisältää tukemattomia tietorakenteita.
+BAD_EMB=Voit määrittää vain yhden viestitekstitiedoston kerrallaan.
+BAD_MSG=Viestihuomautus "%1" on liian suuri. Typistetty %2:een.
+BAD_CMP=Tukematon pass-through -pakkaus "%2"
+BAD_TMP=TEMP-hakemisto vaaditaan.
+ER_UNK=virhekoodi #%0, määrittämätön virhe: "%1" %2
+ER_2=Tiedostoa "%1" ei löytynyt.
+ER_3=Tiedoston "%1" polkua ei löytynyt.
+ER_8=Öh, muisti loppui.
+ER_11=Tiedosto "%1" on tuntemattomassa muodossa.
+ER_13=Tiedosto "%1" sisältää vioittunutta tietoa.
+ER_14=Käyttäjä keskeytti.
+ER_23=Allekirjoituksen ristiriita. Tiedosto "%1" sisältää vioittunutta tietoa.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 klo %1
+
+BYTES=% tavua
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% levyke
+
+
+
+
+
+
+
+
+
+
+
+
+
+; Language: Hungarian
+; File ending: hu
+; Codepage: 852
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=hu
+TITLE=%, % verzió
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (folytatás)
+INC_DIR=%2
+INC_TEXT=szöveg beágyazása: %2 %8
+INC_HEAD=szöveg: %2 %8
+USE_COMP=engedélyezve a(z) %0 pass-through tömörítés
+
+VERB_PRE_SCAN=beszkennelve % elem az archívumhoz adáshoz
+VERB_INC_FILE=belefoglal: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=folytatás: %2 [%3] (folytatva a(z) %6 eltolástól)
+VERB_INC_DIR=alkönyvtár: %2 (%3)
+VERB_INC_HEAD=fejléc szöveg beágyazása: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=kizár: %0 (egyezik ezzel: "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE="%1" hozzáadása a(z) %0 listához
+LIST_INC=belefoglal
+LIST_EXC=kizár
+
+; Same params as reporting
+EXT_DIR=könyvtár: %2
+EXT_FILE=fájl: %9%2, %8
+EXT_PART=részleges: %9%2, %7 / %8
+VERB_EXT_RPCL=%9%2 fájl létezik, lecserélve
+VERB_EXT_SKIP=%9%2 fájl létezik, kihagyva
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=kategória: %2
+REP_DIR=könyvtár: %2
+REP_FILE=fájl: %9%2, %8
+REP_PART=részleges: %9%2, %7 / %8
+REP_TEXT=szöveg: %2, %8
+REP_MORE=folytatás: %2, %8
+REP_CONF=elfogad: %2, %8
+
+VERB_REP_CAT=kategória beállítása: %2, %1
+VERB_REP_DIR=könyvtár: %2 (%3), %1 %4 %5
+VERB_REP_FILE=teljes fájl: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 fájlméret %8
+VERB_REP_PART=részleges fájl: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 / %8 (eltolás %6)
+VERB_REP_TEXT=szöveg: %2 %4 {%3}, %8
+VERB_REP_MORE=folytatás: %2 %4 {%3}, %8
+VERB_REP_CONF=elfogad: %2 %4 {%3}, %8
+VERB_REP_SIG=aláírás: %2 [%3], %1
+VERB_REP_NULL=null blokk, %1
+VERB_REP_OTHER=ismeretlen blokk %0, %1
+VERB_REP_SLICE=rész kiválasztása %
+
+SAF_CREATE=Új slicer archívum létrehozása %
+SAF_OPEN=Meglévő slicer archívum megnyitása %
+SAF_APPEND=Hozzáadás meglévő slicer archívumhoz %
+SAF_DATE=Létrehozva %0.%1.%2. %3:%4:%5-kor
+SAF_SLICE=Új archívum rész létrehozása %
+SAF_CAT=Archívum kategória beállítása %
+SAF_SLICING=Archívum darabolása itt: %
+VERB_SAF_IUP=A(z) % archívum statisztikai adatainak frissítése
+
+MEDIA=Helyezze be a(z) %0 fájlt tartalmazó lemezt a(z) %1 meghajtóba.
+PAUSE=A folytatáshoz nyomjon meg egy gombot.
+
+PROMPT_YES=Igen
+PROMPT_NO=Nem
+PROMPT_Y=I
+PROMPT_N=N
+PROMPT_OVER=Felülírja: %2%1, %0?
+PROMPT_ACCEPT=Elfogadja: %?
+PROMPT_STOP=A(z) %1 fájl sérült. Megszakítja a kibontást %0?
+
+SUMMARY=%0 rész, %1 könyvtár, %2 fájl, %3
+
+USAGE=használat: % [opciók]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER opciók információi:
+HELP_1=
+HELP_2=  %0q        minden állapotüzenet letiltása
+HELP_3=  %0v        részletes állapotüzenetek engedélyezése
+HELP_4=  %0t        teszt mód
+HELP_5=  %0h        súgóinformációk megjelenítése
+HELP_6=
+HELP_7=  %0i ?      fájl specifikációnak megfelelő elemek belefoglalása
+HELP_8=  %0I ?      elemek belefoglalása a fájllistából
+HELP_9=  %0e ?      fájl specifikációnak megfelelő elemek kizárása
+HELP_10=  %0E ?      elemek kizárása a fájllistából
+HELP_11=
+HELP_12=  %0d        üres könyvtárak kizárása
+HELP_13=  %0D        ne keressen az alkönyvtárakban
+HELP_14=  %0a        minden rejtett és rendszer elem belefoglalása
+HELP_15=  %0o        meglévő fájlok felülírása
+HELP_16=  %0k        ne hagyja figyelmen kívül a kis/nagybetűket a nevekben
+HELP_17=
+HELP_18=  %0g ?      csoport kategória megadása
+HELP_19=  %0s ?      archívum darabmérete (K, M vagy bájt). (csak új archívum
+HELP_20=             létrehozásakor vagy meglévő újradarabolásakor érvényes)
+HELP_21=
+HELP_22=  %0y        automatikusan elfogad minden kérdést (kivéve a fájlok
+HELP_23=             felülírását).
+HELP_24=A teljes archívumra vonatkozó műveletek:
+HELP_25=
+HELP_26=  %0f ?      archívum fájlnevének megadása
+HELP_27=  %0c        új archívum létrehozása
+HELP_28=  %0r        hozzáadás meglévő archívumhoz
+HELP_29=  %0x        kibontás meglévő archívumból
+HELP_30=  %0R        archívum jelentés generálása
+HELP_31=  %0O ?      kibontás célútvonalának beállítása
+HELP_32=
+HELP_33=Beágyazott szöveg, értesítések és üzenetek:
+HELP_34=
+HELP_35=  %0L ?      rendszer alapértelmezett nyelvének felülbírálása
+HELP_36=  %0m ?      üzenet szövegének beágyazása fájlból
+HELP_37=  %0M ?      felhasználói jóváhagyást igénylő üzenet beágyazása fájlból
+HELP_38=
+HELP_39=Pass-through tömörítés:
+HELP_40=
+HELP_41=  %0p ?      pass-through tömörítés engedélyezése (GZ, később talán más)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=A zűrzavar földje. Segítséghez használja a(z) "%0h" opciót.
+
+FATAL=VÉGZETES HIBA:%_
+ERROR=HIBA:%_
+BAD_OPT=Érvénytelen parancssori paraméter: "%0%1"
+BAD_CMB=A(z) "%0%1" és "%0%2" paraméterek nem kombinálhatók
+BAD_MCO=Hiányzó parancssori adat a következőhöz: "%0%1"
+BAD_INT=Érvénytelen numerikus érték ("%2") a következőhöz: "%0%1"
+BAD_VAL=A(z) "%2" számérték a(z) "%3 - %4" tartományon kívül van: "%0%1"
+BAD_MAX=A maximális archívum részszám túllépve a következőnél: "%1"
+BAD_VER=A(z) "%1" archívum nem támogatott adatstruktúrákat tartalmazhat.
+BAD_EMB=Egyszerre csak egy üzenetszöveg-fájl adható meg.
+BAD_MSG=A(z) "%1" üzenet túl nagy. Csonkítva %2 méretre.
+BAD_CMP=Nem támogatott pass-through tömörítés: "%2"
+BAD_TMP=TEMP könyvtár szükséges.
+ER_UNK=hibakód #%0, meghatározatlan hiba ezzel: "%1" %2
+ER_2=A(z) "%1" fájl nem található.
+ER_3=A(z) "%1" fájl útvonala nem található.
+ER_8=Ööö, elfogyott a memória.
+ER_11=A(z) "%1" fájl formátuma ismeretlen.
+ER_13=A(z) "%1" fájl adatai sérültek.
+ER_14=Felhasználó által megszakítva.
+ER_23=Aláírás eltérés. A(z) "%1" fájl adatai sérültek.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%0.%1.%2.
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 %1
+
+BYTES=% bájt
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% floppy lemez
+
+
+
+
+
+
+
+
+
+
+; Language: Icelandic
+; File ending: is
+; Codepage: 861
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=is
+TITLE=%, Útgáfa %
+COPYRIGHT=Höfundarréttur (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (framhald)
+INC_DIR=%2
+INC_TEXT=fella inn texta: %2 %8
+INC_HEAD=texti: %2 %8
+USE_COMP=virkjaði %0 pass-through þjöppun
+
+VERB_PRE_SCAN=skannaði % atriði til að bæta við í safn
+VERB_INC_FILE=hafa með: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=halda áfram: %2 [%3] (framhald frá hliðrun %6)
+VERB_INC_DIR=undirmappa: %2 (%3)
+VERB_INC_HEAD=fella inn haustexta: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=útiloka: %0 (samsvarar "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=bæta "%1" við %0 lista
+LIST_INC=hafa með
+LIST_EXC=útiloka
+
+; Same params as reporting
+EXT_DIR=mappa: %2
+EXT_FILE=skrá: %9%2, %8
+EXT_PART=að hluta: %9%2, %7 af %8
+VERB_EXT_RPCL=skrá %9%2 er til, skipt út
+VERB_EXT_SKIP=skrá %9%2 er til, sleppt
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=flokkur: %2
+REP_DIR=mappa: %2
+REP_FILE=skrá: %9%2, %8
+REP_PART=að hluta: %9%2, %7 af %8
+REP_TEXT=texti: %2, %8
+REP_MORE=framhald: %2, %8
+REP_CONF=samþykkja: %2, %8
+
+VERB_REP_CAT=stilla flokk: %2, %1
+VERB_REP_DIR=mappa: %2 (%3), %1 %4 %5
+VERB_REP_FILE=heil skrá: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 skráarstærð %8
+VERB_REP_PART=hlutaskrá: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 af %8 (hliðrun %6)
+VERB_REP_TEXT=texti: %2 %4 {%3}, %8
+VERB_REP_MORE=framhald: %2 %4 {%3}, %8
+VERB_REP_CONF=samþykkja: %2 %4 {%3}, %8
+VERB_REP_SIG=undirskrift: %2 [%3], %1
+VERB_REP_NULL=núll-blokk, %1
+VERB_REP_OTHER=óþekkt blokk %0, %1
+VERB_REP_SLICE=velja hluta %
+
+SAF_CREATE=Búa til nýtt slicer safn %
+SAF_OPEN=Opna núverandi slicer safn %
+SAF_APPEND=Bæta við núverandi slicer safn %
+SAF_DATE=Búið til %2.%1.%0 kl. %3:%4:%5
+SAF_SLICE=Búa til nýjan safnhluta %
+SAF_CAT=Stilla safnflokk %
+SAF_SLICING=Hlutar niður safn við %
+VERB_SAF_IUP=Uppfæra tölfræðilegar upplýsingar fyrir safn %
+
+MEDIA=Settu diskling með skránni %0 í drif %1.
+PAUSE=Ýttu á ýmsan lykil til að halda áfram.
+
+PROMPT_YES=Já
+PROMPT_NO=Nei
+PROMPT_Y=J
+PROMPT_N=N
+PROMPT_OVER=Skrifa yfir %2%1, %0?
+PROMPT_ACCEPT=Samþykkja %?
+PROMPT_STOP=Skrá %1 er skemmd. Hætta við afþjöppun %0?
+
+SUMMARY=%0 hluti/hlutar, %1 mappa/möppur, %2 skrá/skrár, %3
+
+USAGE=notkun: % [valkostir]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER valkosta upplýsingar:
+HELP_1=
+HELP_2=  %0q        slökkva á öllum stöðuskilaboðum
+HELP_3=  %0v        kvekja á ítarlegum stöðuskilaboðum
+HELP_4=  %0t        prófunarhamur
+HELP_5=  %0h        sýna hjálparupplýsingar
+HELP_6=
+HELP_7=  %0i ?      hafa með atriði sem passa við skráarforskrift
+HELP_8=  %0I ?      hafa með atriði frá skráarlista
+HELP_9=  %0e ?      útiloka atriði sem passa við skráarforskrift
+HELP_10=  %0E ?      útiloka atriði frá skráarlista
+HELP_11=
+HELP_12=  %0d        útiloka tómar möppur
+HELP_13=  %0D        ekki leita í undirmöppum
+HELP_14=  %0a        hafa með allar faldar skrár og kerfisskrár
+HELP_15=  %0o        skrifa yfir núverandi skrár
+HELP_16=  %0k        ekki hunsa hástafi/lágstafi í skráarnöfnum
+HELP_17=
+HELP_18=  %0g ?      tilgreina hópaflokk
+HELP_19=  %0s ?      stærð til að hluta safn, K, M eða bæti. (aðeins gilt
+HELP_20=             við gerð nýs eða endurhlutun á núverandi safni)
+HELP_21=
+HELP_22=  %0y        samþykkja sjálfkrafa allar beiðnir (nema yfirskrift
+HELP_23=             á skrám).
+HELP_24=Aðgerðir sem tengjast öllu safninu:
+HELP_25=
+HELP_26=  %0f ?      tilgreina skráarnafn safns
+HELP_27=  %0c        búa til nýtt safn
+HELP_28=  %0r        bæta við núverandi safn
+HELP_29=  %0x        afþjappa úr núverandi safni
+HELP_30=  %0R        búa til skýrslu um safn
+HELP_31=  %0O ?      stilla áfangastað fyrir afþjöppun
+HELP_32=
+HELP_33=Innfelldur texti, tilkynningar og skilaboð:
+HELP_34=
+HELP_35=  %0L ?      hunsa sjálfgefið kerfismál
+HELP_36=  %0m ?      fella inn skilaboðatexta úr skrá
+HELP_37=  %0M ?      fella inn texta úr skrá sem krefst samþykkis notanda
+HELP_38=
+HELP_39=Pass-through þjöppun:
+HELP_40=
+HELP_41=  %0p ?      virkja pass-through þjöppun (GZ, kannski önnur síðar)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Ruglandi? Fyrir hjálp notaðu "%0h" valkostinn.
+
+FATAL=BANVÆN VILLA:%_
+ERROR=VILLA:%_
+BAD_OPT=Ógild stika á skipanalínu "%0%1"
+BAD_CMB=Ekki er hægt að sameina stikur "%0%1" og "%0%2"
+BAD_MCO=Vantar gögn á skipanalínu fyrir "%0%1"
+BAD_INT=Ógilt tölugildi "%2" fyrir "%0%1"
+BAD_VAL=Tölugildi "%2" er utan marksins "%3 - %4" fyrir "%0%1"
+BAD_MAX=Hámarksfjölda safnhluta farið yfir fyrir "%1"
+BAD_VER=Safn "%1" gæti innihaldið óstudd gagnamannvirki.
+BAD_EMB=Aðeins er hægt að tilgreina eina skilaboðaskrá í einu.
+BAD_MSG=Skilaboð "%1" of stór. Stytt í %2.
+BAD_CMP=Óstudd pass-through þjöppun "%2"
+BAD_TMP=TEMP mappa er nauðsynleg.
+ER_UNK=villukóði #%0, ótilgreind villa með "%1" %2
+ER_2=Skrá "%1" fannst ekki.
+ER_3=Slóð skráar "%1" fannst ekki.
+ER_8=Úmm, minnið er búið.
+ER_11=Skrá "%1" er á óþekktu sniði.
+ER_13=Skrá "%1" inniheldur skemmd gögn.
+ER_14=Hætt af notanda.
+ER_23=Undirskrift passar ekki. Skrá "%1" inniheldur skemmd gögn.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 kl. %1
+
+BYTES=% bæti
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% disklingur
+
+
+
+
+
+
+
+
+
+
+
+; Language: Italian
+; File ending: it
+; Codepage: 858
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=it
+TITLE=%, Versione %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (continua)
+INC_DIR=%2
+INC_TEXT=incorpora testo: %2 %8
+INC_HEAD=testo: %2 %8
+USE_COMP=pass-through di compressione per %0 abilitato
+
+VERB_PRE_SCAN=scansionati % elementi da aggiungere all'archivio
+VERB_INC_FILE=includi: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=continua: %2 [%3] (continua dall'offset %6)
+VERB_INC_DIR=sottodirectory: %2 (%3)
+VERB_INC_HEAD=incorpora testo intestazione: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=escludi: %0 (corrisponde a "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=aggiungi "%1" all'elenco %0
+LIST_INC=includi
+LIST_EXC=escludi
+
+; Same params as reporting
+EXT_DIR=directory: %2
+EXT_FILE=file: %9%2, %8
+EXT_PART=parziale: %9%2, %7 di %8
+VERB_EXT_RPCL=il file %9%2 esiste, sostituito
+VERB_EXT_SKIP=il file %9%2 esiste, ignorato
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=categoria: %2
+REP_DIR=directory: %2
+REP_FILE=file: %9%2, %8
+REP_PART=parziale: %9%2, %7 di %8
+REP_TEXT=testo: %2, %8
+REP_MORE=continua: %2, %8
+REP_CONF=accetta: %2, %8
+
+VERB_REP_CAT=imposta categoria: %2, %1
+VERB_REP_DIR=directory: %2 (%3), %1 %4 %5
+VERB_REP_FILE=file completo: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 dimensione file %8
+VERB_REP_PART=file parziale: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 di %8 (offset %6)
+VERB_REP_TEXT=testo: %2 %4 {%3}, %8
+VERB_REP_MORE=continua: %2 %4 {%3}, %8
+VERB_REP_CONF=accetta: %2 %4 {%3}, %8
+VERB_REP_SIG=firma: %2 [%3], %1
+VERB_REP_NULL=blocco nullo, %1
+VERB_REP_OTHER=blocco sconosciuto %0, %1
+VERB_REP_SLICE=seleziona parte %
+
+SAF_CREATE=Crea nuovo archivio slicer %
+SAF_OPEN=Apri archivio slicer esistente %
+SAF_APPEND=Aggiungi ad archivio slicer esistente %
+SAF_DATE=Creato il %2/%1/%0 alle %3:%4:%5
+SAF_SLICE=Crea nuova parte archivio %
+SAF_CAT=Imposta categoria archivio %
+SAF_SLICING=Divisione archivio in %
+VERB_SAF_IUP=Aggiorna informazioni statistiche per l'archivio %
+
+MEDIA=Inserire il dischetto contenente il file %0 nell'unità %1.
+PAUSE=Premere un tasto per continuare.
+
+PROMPT_YES=Sì
+PROMPT_NO=No
+PROMPT_Y=S
+PROMPT_N=N
+PROMPT_OVER=Sovrascrivere %2%1, %0?
+PROMPT_ACCEPT=Accettare %?
+PROMPT_STOP=Il file %1 è danneggiato. Interrompere l'estrazione %0?
+
+SUMMARY=%0 parte/i, %1 dir, %2 file, %3
+
+USAGE=uso: % [opzioni]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=Informazioni sulle opzioni di SLICER:
+HELP_1=
+HELP_2=  %0q        disabilita tutti i messaggi di stato
+HELP_3=  %0v        abilita messaggi di stato dettagliati
+HELP_4=  %0t        modalità di test
+HELP_5=  %0h        mostra informazioni di aiuto
+HELP_6=
+HELP_7=  %0i ?      includi elementi corrispondenti alla specifica
+HELP_8=  %0I ?      includi elementi dall'elenco di file
+HELP_9=  %0e ?      escludi elementi corrispondenti alla specifica
+HELP_10=  %0E ?      escludi elementi dall'elenco di file
+HELP_11=
+HELP_12=  %0d        escludi directory vuote
+HELP_13=  %0D        non includere sottodirectory ricorsivamente
+HELP_14=  %0a        includi tutti gli elementi nascosti e di sistema
+HELP_15=  %0o        sovrascrivi i file esistenti
+HELP_16=  %0k        non ignorare maiuscole/minuscole nei nomi file
+HELP_17=
+HELP_18=  %0g ?      specifica la categoria del gruppo
+HELP_19=  %0s ?      dimensione parte archivio (K, M o byte). (valido solo
+HELP_20=             creando un nuovo archivio o dividendone uno esistente)
+HELP_21=
+HELP_22=  %0y        accetta automaticamente tutte le richieste (tranne
+HELP_23=             la sovrascrittura di file).
+HELP_24=Operazioni relative all'intero archivio:
+HELP_25=
+HELP_26=  %0f ?      specifica il nome file dell'archivio
+HELP_27=  %0c        crea un nuovo archivio
+HELP_28=  %0r        aggiungi a un archivio esistente
+HELP_29=  %0x        estrai da un archivio esistente
+HELP_30=  %0R        genera rapporto archivio
+HELP_31=  %0O ?      imposta percorso di destinazione per l'estrazione
+HELP_32=
+HELP_33=Testo incorporato, avvisi e messaggi:
+HELP_34=
+HELP_35=  %0L ?      sostituisci lingua predefinita di sistema
+HELP_36=  %0m ?      incorpora testo messaggio da file
+HELP_37=  %0M ?      incorpora messaggio da file che richiede consenso
+HELP_38=
+HELP_39=Compressione pass-through:
+HELP_40=
+HELP_41=  %0p ?      abilita compressione pass-through (GZ, forse altri)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Terra di confusione. Per aiuto usa l'opzione "%0h".
+
+FATAL=ERRORE FATALE:%_
+ERROR=ERRORE:%_
+BAD_OPT=Parametro riga di comando non valido "%0%1"
+BAD_CMB=Impossibile combinare i parametri "%0%1" e "%0%2"
+BAD_MCO=Dati riga di comando mancanti per "%0%1"
+BAD_INT=Valore numerico "%2" non valido per "%0%1"
+BAD_VAL=Valore numerico "%2" fuori dall'intervallo "%3 - %4" per "%0%1"
+BAD_MAX=Superato il numero massimo di parti per "%1"
+BAD_VER=L'archivio "%1" può contenere strutture dati non supportate.
+BAD_EMB=Puoi specificare un solo file di testo messaggio alla volta.
+BAD_MSG=Nota del messaggio "%1" troppo grande. Troncata a %2.
+BAD_CMP=Compressione pass-through non supportata "%2"
+BAD_TMP=È necessaria una directory TEMP.
+ER_UNK=codice errore #%0, errore non specificato con "%1" %2
+ER_2=Il file "%1" non è stato trovato.
+ER_3=Il percorso del file "%1" non è stato trovato.
+ER_8=Uhm, memoria esaurita.
+ER_11=Il file "%1" ha un formato non riconosciuto.
+ER_13=Il file "%1" contiene dati danneggiati.
+ER_14=Interrotto dall'utente.
+ER_23=Firma non corrispondente. Il file "%1" ha dati danneggiati.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2/%1/%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 alle %1
+
+BYTES=% byte
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% dischetto
+
+
+
+
+
+
+
+
+
+; Language: Lithuanian
+; File ending: lt
+; Codepage: 775
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=lt
+TITLE=%, % Versija
+COPYRIGHT=Autorių teisės (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (tęsinys)
+INC_DIR=%2
+INC_TEXT=įterpti tekstą: %2 %8
+INC_HEAD=tekstas: %2 %8
+USE_COMP=įjungtas %0 pass-through glaudinimas
+
+VERB_PRE_SCAN=nuskenuota % elementų pridėjimui į archyvą
+VERB_INC_FILE=įtraukti: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=tęsti: %2 [%3] (tęsiama nuo poslinkio %6)
+VERB_INC_DIR=pakatalogis: %2 (%3)
+VERB_INC_HEAD=įterpti antraštės tekstą: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=išskirti: %0 (atitinka "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=pridėti "%1" į %0 sąrašą
+LIST_INC=įtraukti
+LIST_EXC=išskirti
+
+; Same params as reporting
+EXT_DIR=katalogas: %2
+EXT_FILE=failas: %9%2, %8
+EXT_PART=dalinis: %9%2, %7 iš %8
+VERB_EXT_RPCL=failas %9%2 egzistuoja, pakeistas
+VERB_EXT_SKIP=failas %9%2 egzistuoja, praleistas
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=kategorija: %2
+REP_DIR=katalogas: %2
+REP_FILE=failas: %9%2, %8
+REP_PART=dalinis: %9%2, %7 iš %8
+REP_TEXT=tekstas: %2, %8
+REP_MORE=tęsinys: %2, %8
+REP_CONF=priimti: %2, %8
+
+VERB_REP_CAT=nustatyti kategoriją: %2, %1
+VERB_REP_DIR=katalogas: %2 (%3), %1 %4 %5
+VERB_REP_FILE=visas failas: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 failo dydis %8
+VERB_REP_PART=dalinis failas: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 iš %8 (poslinkis %6)
+VERB_REP_TEXT=tekstas: %2 %4 {%3}, %8
+VERB_REP_MORE=tęsinys: %2 %4 {%3}, %8
+VERB_REP_CONF=priimti: %2 %4 {%3}, %8
+VERB_REP_SIG=parašas: %2 [%3], %1
+VERB_REP_NULL=nulinis blokas, %1
+VERB_REP_OTHER=nežinomas blokas %0, %1
+VERB_REP_SLICE=pasirinkti dalį %
+
+SAF_CREATE=Sukurti naują slicer archyvą %
+SAF_OPEN=Atidaryti esamą slicer archyvą %
+SAF_APPEND=Pridėti prie esamo slicer archyvo %
+SAF_DATE=Sukurta %0-%1-%2, %3:%4:%5
+SAF_SLICE=Sukurti naują archyvo dalį %
+SAF_CAT=Nustatyti archyvo kategoriją %
+SAF_SLICING=Archyvo skaidymas ties %
+VERB_SAF_IUP=Atnaujinti statistinę informaciją archyvui %
+
+MEDIA=Įdėkite diskelį su failu %0 į įrenginį %1.
+PAUSE=Paspauskite bet kurį klavišą, kad tęstumėte.
+
+PROMPT_YES=Taip
+PROMPT_NO=Ne
+PROMPT_Y=T
+PROMPT_N=N
+PROMPT_OVER=Perrašyti %2%1, %0?
+PROMPT_ACCEPT=Priimti %?
+PROMPT_STOP=Failas %1 sugadintas. Nutraukti išskleidimą %0?
+
+SUMMARY=%0 dalis(-ys), %1 kat., %2 failas(-ai), %3
+
+USAGE=naudojimas: % [parinktys]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER parinkčių informacija:
+HELP_1=
+HELP_2=  %0q        išjungti visus būsenos pranešimus
+HELP_3=  %0v        įjungti išsamius būsenos pranešimus
+HELP_4=  %0t        testavimo režimas
+HELP_5=  %0h        rodyti pagalbos informaciją
+HELP_6=
+HELP_7=  %0i ?      įtraukti elementus, atitinkančius failo specifikaciją
+HELP_8=  %0I ?      įtraukti elementus iš failų sąrašo
+HELP_9=  %0e ?      išskirti elementus, atitinkančius failo specifikaciją
+HELP_10=  %0E ?      išskirti elementus iš failų sąrašo
+HELP_11=
+HELP_12=  %0d        išskirti tuščius katalogus
+HELP_13=  %0D        neieškoti pakatalogiuose
+HELP_14=  %0a        įtraukti visus paslėptus ir sistemos elementus
+HELP_15=  %0o        perrašyti esamus failus
+HELP_16=  %0k        neignoruoti didžiųjų/mažųjų raidžių failų pavadinimuose
+HELP_17=
+HELP_18=  %0g ?      nurodyti grupės kategoriją
+HELP_19=  %0s ?      dydis archyvo skaidymui (K, M arba baitai). (galioja
+HELP_20=             tik kuriant naują arba iš naujo skaidant esamą archyvą)
+HELP_21=
+HELP_22=  %0y        automatiškai priimti visus raginimus (išskyrus failų
+HELP_23=             perrašymą).
+HELP_24=Operacijos susijusios su visu archyvu:
+HELP_25=
+HELP_26=  %0f ?      nurodyti archyvo failo pavadinimą
+HELP_27=  %0c        sukurti naują archyvą
+HELP_28=  %0r        pridėti prie esamo archyvo
+HELP_29=  %0x        išskleisti iš esamo archyvo
+HELP_30=  %0R        generuoti archyvo ataskaitą
+HELP_31=  %0O ?      nustatyti išskleidimo paskirties kelią
+HELP_32=
+HELP_33=Įterptas tekstas, pranešimai ir pastabos:
+HELP_34=
+HELP_35=  %0L ?      nepaisyti numatytosios sistemos kalbos
+HELP_36=  %0m ?      įterpti pranešimo tekstą iš failo
+HELP_37=  %0M ?      įterpti pranešimą, reikalaujantį naudotojo sutikimo
+HELP_38=
+HELP_39=Pass-through glaudinimas:
+HELP_40=
+HELP_41=  %0p ?      įjungti pass-through glaudinimą (GZ, galbūt ir kitus)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Sumišimo šalis. Pagalbai naudokite parinktį "%0h".
+
+FATAL=KRITINĖ KLAIDA:%_
+ERROR=KLAIDA:%_
+BAD_OPT=Neteisingas komandų eilutės parametras "%0%1"
+BAD_CMB=Negalima derinti parametrų "%0%1" su "%0%2"
+BAD_MCO=Trūksta komandų eilutės duomenų parametrui "%0%1"
+BAD_INT=Neteisinga skaitinė reikšmė "%2" parametrui "%0%1"
+BAD_VAL=Skaitinė reikšmė "%2" yra už diapazono "%3 - %4" ribų "%0%1"
+BAD_MAX=Viršytas maksimalus archyvo dalių skaičius "%1"
+BAD_VER=Archyve "%1" gali būti nepalaikomų duomenų struktūrų.
+BAD_EMB=Vienu metu galima nurodyti tik vieną pranešimo teksto failą.
+BAD_MSG=Pranešimo pastaba "%1" per didelė. Sutrumpinta iki %2.
+BAD_CMP=Nepalaikomas pass-through glaudinimas "%2"
+BAD_TMP=Būtinas TEMP katalogas.
+ER_UNK=klaidos kodas #%0, nenurodyta klaida su "%1" %2
+ER_2=Failas "%1" nerastas.
+ER_3=Failo "%1" kelias nerastas.
+ER_8=Amm, man pritrūko atminties.
+ER_11=Failas "%1" yra neatpažinto formato.
+ER_13=Faile "%1" yra sugadintų duomenų.
+ER_14=Nutraukė naudotojas.
+ER_23=Parašų neatitikimas. Faile "%1" yra sugadintų duomenų.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%0-%1-%2
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0, %1
+
+BYTES=% baitas(-ai)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% diskelis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+; Language: Latvian
+; File ending: lv
+; Codepage: 775
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=lv
+TITLE=%, Versija %
+COPYRIGHT=Autortiesības (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (turpinājums)
+INC_DIR=%2
+INC_TEXT=iegult tekstu: %2 %8
+INC_HEAD=teksts: %2 %8
+USE_COMP=iespējota %0 pass-through saspiešana
+
+VERB_PRE_SCAN=noskenēti % vienumi pievienošanai arhīvam
+VERB_INC_FILE=iekļaut: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=turpināt: %2 [%3] (turpinājums no nobīdes %6)
+VERB_INC_DIR=apakšdirektorijs: %2 (%3)
+VERB_INC_HEAD=iegult galvenes tekstu: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=izslēgt: %0 (atbilst "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=pievienot "%1" %0 sarakstam
+LIST_INC=iekļaut
+LIST_EXC=izslēgt
+
+; Same params as reporting
+EXT_DIR=direktorijs: %2
+EXT_FILE=fails: %9%2, %8
+EXT_PART=daļējs: %9%2, %7 no %8
+VERB_EXT_RPCL=fails %9%2 eksistē, aizstāts
+VERB_EXT_SKIP=fails %9%2 eksistē, izlaists
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=kategorija: %2
+REP_DIR=direktorijs: %2
+REP_FILE=fails: %9%2, %8
+REP_PART=daļējs: %9%2, %7 no %8
+REP_TEXT=teksts: %2, %8
+REP_MORE=turpinājums: %2, %8
+REP_CONF=pieņemt: %2, %8
+
+VERB_REP_CAT=iestatīt kategoriju: %2, %1
+VERB_REP_DIR=direktorijs: %2 (%3), %1 %4 %5
+VERB_REP_FILE=viss fails: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 faila lielums %8
+VERB_REP_PART=daļējs fails: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 no %8 (nobīde %6)
+VERB_REP_TEXT=teksts: %2 %4 {%3}, %8
+VERB_REP_MORE=turpinājums: %2 %4 {%3}, %8
+VERB_REP_CONF=pieņemt: %2 %4 {%3}, %8
+VERB_REP_SIG=paraksts: %2 [%3], %1
+VERB_REP_NULL=nulles bloks, %1
+VERB_REP_OTHER=nezināms bloks %0, %1
+VERB_REP_SLICE=izvēlēties daļu %
+
+SAF_CREATE=Izveidot jaunu slicer arhīvu %
+SAF_OPEN=Atvērt esošu slicer arhīvu %
+SAF_APPEND=Pievienot esošam slicer arhīvam %
+SAF_DATE=Izveidots %2.%1.%0 plkst. %3:%4:%5
+SAF_SLICE=Izveidot jaunu arhīva daļu %
+SAF_CAT=Iestatīt arhīva kategoriju %
+SAF_SLICING=Sadalīt arhīvu pie %
+VERB_SAF_IUP=Atjaunināt statistikas informāciju arhīvam %
+
+MEDIA=Ievietojiet disketi ar failu %0 dzinī %1.
+PAUSE=Nospiediet jebkuru taustiņu, lai turpinātu.
+
+PROMPT_YES=Jā
+PROMPT_NO=Nē
+PROMPT_Y=J
+PROMPT_N=N
+PROMPT_OVER=Pārrakstīt %2%1, %0?
+PROMPT_ACCEPT=Pieņemt %?
+PROMPT_STOP=Fails %1 ir bojāts. Pārtraukt izgūšanu %0?
+
+SUMMARY=%0 daļa(s), %1 dir., %2 fails(i), %3
+
+USAGE=lietojums: % [opcijas]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER opciju informācija:
+HELP_1=
+HELP_2=  %0q        atspējot visus statusa ziņojumus
+HELP_3=  %0v        iespējot detalizētus statusa ziņojumus
+HELP_4=  %0t        testa režīms
+HELP_5=  %0h        parādīt palīdzības informāciju
+HELP_6=
+HELP_7=  %0i ?      iekļaut vienumus, kas atbilst faila specifikācijai
+HELP_8=  %0I ?      iekļaut vienumus no failu saraksta
+HELP_9=  %0e ?      izslēgt vienumus, kas atbilst faila specifikācijai
+HELP_10=  %0E ?      izslēgt vienumus no failu saraksta
+HELP_11=
+HELP_12=  %0d        izslēgt tukšus direktorijus
+HELP_13=  %0D        neiekļaut apakšdirektorijus
+HELP_14=  %0a        iekļaut visus slēptos un sistēmas vienumus
+HELP_15=  %0o        pārrakstīt esošos failus
+HELP_16=  %0k        neignorēt lielo/mazo burtu reģistru failu nosaukumos
+HELP_17=
+HELP_18=  %0g ?      norādīt grupas kategoriją
+HELP_19=  %0s ?      arhīva daļas lielums (K, M vai baiti). (derīgs tikai
+HELP_20=             veidojot jaunu vai sadalot esošu arhīvu)
+HELP_21=
+HELP_22=  %0y        automātiski pieņemt visas uzvednes (izņemot failu
+HELP_23=             pārrakstīšanu).
+HELP_24=Darbības, kas saistītas ar visu arhīvu:
+HELP_25=
+HELP_26=  %0f ?      norādīt arhīva faila nosaukumu
+HELP_27=  %0c        izveidot jaunu arhīvu
+HELP_28=  %0r        pievienot esošam arhīvam
+HELP_29=  %0x        izgūt no esoša arhīva
+HELP_30=  %0R        ģenerēt arhīva atskaiti
+HELP_31=  %0O ?      iestatīt mērķa ceļu izgūšanai
+HELP_32=
+HELP_33=Iegultais teksts, paziņojumi un ziņojumi:
+HELP_34=
+HELP_35=  %0L ?      ignorēt sistēmas noklusējuma valodu
+HELP_36=  %0m ?      iegult ziņojuma tekstu no faila
+HELP_37=  %0M ?      iegult tekstu no faila, kas prasa lietotāja piekrišanu
+HELP_38=
+HELP_39=Pass-through saspiešana:
+HELP_40=
+HELP_41=  %0p ?      iespējot pass-through saspiešanu (GZ, vēlāk varbūt citi)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Apjukuma zeme. Palīdzībai izmantojiet opciju "%0h".
+
+FATAL=KRITISKA KĻŪDA:%_
+ERROR=KĻŪDA:%_
+BAD_OPT=Nederīgs komandrindas parametrs "%0%1"
+BAD_CMB=Nevar kombinēt parametrus "%0%1" un "%0%2"
+BAD_MCO=Trūkst komandrindas datu "%0%1"
+BAD_INT=Nederīga skaitliskā vērtība "%2" priekš "%0%1"
+BAD_VAL=Skaitliskā vērtība "%2" ir ārpus diapazona "%3 - %4" priekš "%0%1"
+BAD_MAX=Pārsniegts maksimālais arhīva daļu skaits priekš "%1"
+BAD_VER=Arhīvs "%1" var saturēt neatbalstītas datu struktūras.
+BAD_EMB=Vienlaicīgi var norādīt tikai vienu ziņojuma teksta failu.
+BAD_MSG=Ziņojuma piezīme "%1" pārāk liela. Saīsināta līdz %2.
+BAD_CMP=Neatbalstīta pass-through saspiešana "%2"
+BAD_TMP=Nepieciešams TEMP direktorijs.
+ER_UNK=kļūdas kods #%0, nenorādīta kļūda ar "%1" %2
+ER_2=Fails "%1" netika atrasts.
+ER_3=Ceļš failam "%1" netika atrasts.
+ER_8=Hmm, beidzās atmiņa.
+ER_11=Failam "%1" ir neatpazīts formāts.
+ER_13=Fails "%1" satur bojātus datus.
+ER_14=Lietotājs pārtrauca.
+ER_23=Parakstu nesakritība. Fails "%1" satur bojātus datus.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 plkst. %1
+
+BYTES=% baits(i)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% diskete
+
+
+
+
+
+
+
+
+
+; Language: Dutch
+; File ending: nl
+; Codepage: 858
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=nl
+TITLE=%, Versie %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (vervolg)
+INC_DIR=%2
+INC_TEXT=tekst insluiten: %2 %8
+INC_HEAD=tekst: %2 %8
+USE_COMP=%0 pass-through compressie ingeschakeld
+
+VERB_PRE_SCAN=% items gescand om aan archief toe te voegen
+VERB_INC_FILE=invoegen: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=doorgaan: %2 [%3] (vervolg vanaf offset %6)
+VERB_INC_DIR=submap: %2 (%3)
+VERB_INC_HEAD=koptekst insluiten: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=uitsluiten: %0 (komt overeen met "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE="%1" toevoegen aan %0 lijst
+LIST_INC=invoegen
+LIST_EXC=uitsluiten
+
+; Same params as reporting
+EXT_DIR=map: %2
+EXT_FILE=bestand: %9%2, %8
+EXT_PART=gedeeltelijk: %9%2, %7 van %8
+VERB_EXT_RPCL=bestand %9%2 bestaat, vervangen
+VERB_EXT_SKIP=bestand %9%2 bestaat, overgeslagen
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=categorie: %2
+REP_DIR=map: %2
+REP_FILE=bestand: %9%2, %8
+REP_PART=gedeeltelijk: %9%2, %7 van %8
+REP_TEXT=tekst: %2, %8
+REP_MORE=vervolg: %2, %8
+REP_CONF=accepteren: %2, %8
+
+VERB_REP_CAT=categorie instellen: %2, %1
+VERB_REP_DIR=map: %2 (%3), %1 %4 %5
+VERB_REP_FILE=compleet bestand: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 bestandsgrootte %8
+VERB_REP_PART=gedeeltelijk bestand: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 van %8 (offset %6)
+VERB_REP_TEXT=tekst: %2 %4 {%3}, %8
+VERB_REP_MORE=vervolg: %2 %4 {%3}, %8
+VERB_REP_CONF=accepteren: %2 %4 {%3}, %8
+VERB_REP_SIG=handtekening: %2 [%3], %1
+VERB_REP_NULL=nul-blok, %1
+VERB_REP_OTHER=onbekend blok %0, %1
+VERB_REP_SLICE=selecteer archiefdeel %
+
+SAF_CREATE=Maak nieuw slicer-archief %
+SAF_OPEN=Open bestaand slicer-archief %
+SAF_APPEND=Toevoegen aan bestaand slicer-archief %
+SAF_DATE=Gemaakt op %2-%1-%0 om %3:%4:%5
+SAF_SLICE=Maak nieuw archiefdeel %
+SAF_CAT=Archiefcategorie instellen %
+SAF_SLICING=Archief opsplitsen bij %
+VERB_SAF_IUP=Statistische informatie voor archief % bijwerken
+
+MEDIA=Plaats diskette met bestand %0 in station %1.
+PAUSE=Druk op een toets om door te gaan.
+
+PROMPT_YES=Ja
+PROMPT_NO=Nee
+PROMPT_Y=J
+PROMPT_N=N
+PROMPT_OVER=%2%1 overschrijven, %0?
+PROMPT_ACCEPT=% accepteren?
+PROMPT_STOP=Bestand %1 is beschadigd. Uitpakken afbreken %0?
+
+SUMMARY=%0 deel/delen, %1 map(pen), %2 bestand(en), %3
+
+USAGE=gebruik: % [opties]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER optie-informatie:
+HELP_1=
+HELP_2=  %0q        schakel alle statusmeldingen uit
+HELP_3=  %0v        schakel gedetailleerde statusmeldingen in
+HELP_4=  %0t        testmodus
+HELP_5=  %0h        toon hulpinformatie
+HELP_6=
+HELP_7=  %0i ?      sluit items in die overeenkomen met bestandsspecificatie
+HELP_8=  %0I ?      sluit items in vanuit bestandslijst
+HELP_9=  %0e ?      sluit items uit die overeenkomen met bestandsspecificatie
+HELP_10=  %0E ?      sluit items uit vanuit bestandslijst
+HELP_11=
+HELP_12=  %0d        sluit lege mappen uit
+HELP_13=  %0D        doorzoek submappen niet recursief
+HELP_14=  %0a        sluit alle verborgen en systeemitems in
+HELP_15=  %0o        overschrijf bestaande bestanden
+HELP_16=  %0k        negeer hoofdlettergevoeligheid in bestandsnamen niet
+HELP_17=
+HELP_18=  %0g ?      geef groepscategorie op
+HELP_19=  %0s ?      grootte om archief te splitsen, K, M of bytes. (alleen
+HELP_20=             geldig bij nieuw archief of opnieuw splitsen archief)
+HELP_21=
+HELP_22=  %0y        accepteer automatisch alle prompts (behalve het
+HELP_23=             overschrijven van bestanden).
+HELP_24=Bewerkingen met betrekking tot het hele archief:
+HELP_25=
+HELP_26=  %0f ?      geef archiefbestandsnaam op
+HELP_27=  %0c        maak een nieuw archief
+HELP_28=  %0r        toevoegen aan een bestaand archief
+HELP_29=  %0x        uitpakken uit een bestaand archief
+HELP_30=  %0R        genereer archiefrapport
+HELP_31=  %0O ?      stel doelpad voor uitpakken in
+HELP_32=
+HELP_33=Ingesloten tekst, mededelingen en berichten:
+HELP_34=
+HELP_35=  %0L ?      overschrijf standaard systeemtaal
+HELP_36=  %0m ?      sluit berichttekst in vanuit bestand
+HELP_37=  %0M ?      sluit berichttekst in vanuit bestand dat akkoord vereist
+HELP_38=
+HELP_39=Pass-through compressie:
+HELP_40=
+HELP_41=  %0p ?      schakel pass-through compressie in (GZ, misschien andere)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Land der verwarring. Gebruik de "%0h" optie voor hulp.
+
+FATAL=FATALE FOUT:%_
+ERROR=FOUT:%_
+BAD_OPT=Ongeldige opdrachtregelparameter "%0%1"
+BAD_CMB=Kan parameters "%0%1" niet combineren met "%0%2"
+BAD_MCO=Ontbrekende opdrachtregelgegevens voor "%0%1"
+BAD_INT=Ongeldige numerieke waarde "%2" voor "%0%1"
+BAD_VAL=Numerieke waarde "%2" valt buiten het bereik "%3 - %4" voor "%0%1"
+BAD_MAX=Maximum aantal archiefdelen overschreden voor "%1"
+BAD_VER=Archief "%1" bevat mogelijk niet-ondersteunde gegevensstructuren.
+BAD_EMB=Kan slechts één berichttekstbestand tegelijk opgeven.
+BAD_MSG=Berichtnotitie "%1" te groot. Afgekapt tot %2.
+BAD_CMP=Niet-ondersteunde pass-through compressie "%2"
+BAD_TMP=TEMP-map vereist.
+ER_UNK=foutcode #%0, ongespecificeerde fout met "%1" %2
+ER_2=Bestand "%1" is niet gevonden.
+ER_3=Pad van bestand "%1" is niet gevonden.
+ER_8=Oeps, het geheugen is vol.
+ER_11=Bestand "%1" heeft een onbekende indeling.
+ER_13=Bestand "%1" bevat beschadigde gegevens.
+ER_14=Door gebruiker beëindigd.
+ER_23=Handtekening komt niet overeen. Bestand "%1" bevat beschadigde gegevens.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2-%1-%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 om %1
+
+BYTES=% byte(s)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% diskette
+
+
+
+
+
+
+
+
+
+
+
+; Language: Norwegian
+; File ending: no
+; Codepage: 865
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=no
+TITLE=%, Versjon %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (fortsetter)
+INC_DIR=%2
+INC_TEXT=bygg inn tekst: %2 %8
+INC_HEAD=tekst: %2 %8
+USE_COMP=aktivert %0 pass-through komprimering
+
+VERB_PRE_SCAN=skannet % elementer for å legge til i arkiv
+VERB_INC_FILE=inkluder: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=fortsett: %2 [%3] (fortsetter fra forskyvning %6)
+VERB_INC_DIR=underkatalog: %2 (%3)
+VERB_INC_HEAD=bygg inn topptekst: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=ekskluder: %0 (samsvarer med "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=legg til "%1" i %0-liste
+LIST_INC=inkluder
+LIST_EXC=ekskluder
+
+; Same params as reporting
+EXT_DIR=katalog: %2
+EXT_FILE=fil: %9%2, %8
+EXT_PART=delvis: %9%2, %7 av %8
+VERB_EXT_RPCL=fil %9%2 eksisterer, erstattet
+VERB_EXT_SKIP=fil %9%2 eksisterer, hoppet over
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=kategori: %2
+REP_DIR=katalog: %2
+REP_FILE=fil: %9%2, %8
+REP_PART=delvis: %9%2, %7 av %8
+REP_TEXT=tekst: %2, %8
+REP_MORE=fortsetter: %2, %8
+REP_CONF=aksepter: %2, %8
+
+VERB_REP_CAT=angi kategori: %2, %1
+VERB_REP_DIR=katalog: %2 (%3), %1 %4 %5
+VERB_REP_FILE=fullstendig fil: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 filstørrelse %8
+VERB_REP_PART=delvis fil: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 av %8 (forskyvning %6)
+VERB_REP_TEXT=tekst: %2 %4 {%3}, %8
+VERB_REP_MORE=fortsetter: %2 %4 {%3}, %8
+VERB_REP_CONF=aksepter: %2 %4 {%3}, %8
+VERB_REP_SIG=signatur: %2 [%3], %1
+VERB_REP_NULL=nullblokk, %1
+VERB_REP_OTHER=ukjent blokk %0, %1
+VERB_REP_SLICE=velg del %
+
+SAF_CREATE=Opprett nytt slicer-arkiv %
+SAF_OPEN=Åpne eksisterende slicer-arkiv %
+SAF_APPEND=Legg til eksisterende slicer-arkiv %
+SAF_DATE=Opprettet %2.%1.%0 kl. %3:%4:%5
+SAF_SLICE=Opprett ny arkivdel %
+SAF_CAT=Angi arkivkategori %
+SAF_SLICING=Deler opp arkiv ved %
+VERB_SAF_IUP=Oppdater statistisk informasjon for arkiv %
+
+MEDIA=Sett inn diskett med filen %0 i stasjon %1.
+PAUSE=Trykk en tast for å fortsette.
+
+PROMPT_YES=Ja
+PROMPT_NO=Nei
+PROMPT_Y=J
+PROMPT_N=N
+PROMPT_OVER=Overskriv %2%1, %0?
+PROMPT_ACCEPT=Aksepter %?
+PROMPT_STOP=Filen %1 er korrupt. Avbryt utpakking %0?
+
+SUMMARY=%0 del(er), %1 kat., %2 fil(er), %3
+
+USAGE=bruk: % [alternativer]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER alternativinformasjon:
+HELP_1=
+HELP_2=  %0q        deaktiver alle statusmeldinger
+HELP_3=  %0v        aktiver detaljerte statusmeldinger
+HELP_4=  %0t        testmodus
+HELP_5=  %0h        vis hjelpeinformasjon
+HELP_6=
+HELP_7=  %0i ?      inkluder elementer som samsvarer med filspesifikasjon
+HELP_8=  %0I ?      inkluder elementer fra filliste
+HELP_9=  %0e ?      ekskluder elementer som samsvarer med filspesifikasjon
+HELP_10=  %0E ?      ekskluder elementer fra filliste
+HELP_11=
+HELP_12=  %0d        ekskluder tomme kataloger
+HELP_13=  %0D        ikke søk rekursivt i underkataloger
+HELP_14=  %0a        inkluder alle skjulte filer og systemfiler
+HELP_15=  %0o        overskriv eksisterende filer
+HELP_16=  %0k        ikke ignorer store/små bokstaver i filnavn
+HELP_17=
+HELP_18=  %0g ?      angi gruppekategori
+HELP_19=  %0s ?      størrelse for å dele opp arkiv, K, M eller bytes. (kun
+HELP_20=             gyldig ved oppretting eller nyoppdeling av arkiv)
+HELP_21=
+HELP_22=  %0y        aksepter automatisk alle forespørsler (bortsett fra
+HELP_23=             overskriving av filer).
+HELP_24=Operasjoner relatert til hele arkivet:
+HELP_25=
+HELP_26=  %0f ?      angi arkivfilnavn
+HELP_27=  %0c        opprett et nytt arkiv
+HELP_28=  %0r        legg til i et eksisterende arkiv
+HELP_29=  %0x        pakk ut fra et eksisterende arkiv
+HELP_30=  %0R        generer arkivrapport
+HELP_31=  %0O ?      angi målbanen for utpakking
+HELP_32=
+HELP_33=Innebygd tekst, merknader og meldinger:
+HELP_34=
+HELP_35=  %0L ?      overstyr systemets standardspråk
+HELP_36=  %0m ?      bygg inn meldingstekst fra fil
+HELP_37=  %0M ?      bygg inn tekst fra fil som krever brukerens samtykke
+HELP_38=
+HELP_39=Pass-through komprimering:
+HELP_40=
+HELP_41=  %0p ?      aktiver pass-through komprimering (GZ, kanskje andre)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Forvirret? Bruk alternativet "%0h" for hjelp.
+
+FATAL=FATAL FEIL:%_
+ERROR=FEIL:%_
+BAD_OPT=Ugyldig kommandolinjeparameter "%0%1"
+BAD_CMB=Kan ikke kombinere parameter "%0%1" med "%0%2"
+BAD_MCO=Mangler kommandolinjedata for "%0%1"
+BAD_INT=Ugyldig numerisk verdi "%2" for "%0%1"
+BAD_VAL=Numerisk verdi "%2" er utenfor området "%3 - %4" for "%0%1"
+BAD_MAX=Maksimalt antall arkivdeler overskredet for "%1"
+BAD_VER=Arkiv "%1" kan inneholde ustøttede datastrukturer.
+BAD_EMB=Du kan kun spesifisere én meldingstekstfil om gangen.
+BAD_MSG=Melding "%1" er for stor. Avkortet til %2.
+BAD_CMP=Ustøttet pass-through komprimering "%2"
+BAD_TMP=TEMP-katalog er påkrevd.
+ER_UNK=feilkode #%0, uspesifisert feil med "%1" %2
+ER_2=Filen "%1" ble ikke funnet.
+ER_3=Banen til filen "%1" ble ikke funnet.
+ER_8=Kremt, jeg gikk tom for minne.
+ER_11=Filen "%1" har ukjent format.
+ER_13=Filen "%1" inneholder korrupte data.
+ER_14=Avbrutt av bruker.
+ER_23=Signatur stemmer ikke overens. Fil "%1" har korrupte data.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 kl. %1
+
+BYTES=% byte(s)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% diskett
+
+
+
+
+
+
+
+; Language: Polish
+; File ending: pl
+; Codepage: 852
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=pl
+TITLE=%, Wersja %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (kontynuacja)
+INC_DIR=%2
+INC_TEXT=osadź tekst: %2 %8
+INC_HEAD=tekst: %2 %8
+USE_COMP=włączono kompresję pass-through dla %0
+
+VERB_PRE_SCAN=przeskanowano % elementów do dodania do archiwum
+VERB_INC_FILE=dołącz: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=kontynuuj: %2 [%3] (kontynuacja od przesunięcia %6)
+VERB_INC_DIR=podkatalog: %2 (%3)
+VERB_INC_HEAD=osadź tekst nagłówka: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=wyklucz: %0 (pasuje do "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=dodaj "%1" do listy %0
+LIST_INC=dołącz
+LIST_EXC=wyklucz
+
+; Same params as reporting
+EXT_DIR=katalog: %2
+EXT_FILE=plik: %9%2, %8
+EXT_PART=częściowy: %9%2, %7 z %8
+VERB_EXT_RPCL=plik %9%2 istnieje, zastąpiony
+VERB_EXT_SKIP=plik %9%2 istnieje, pominięty
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=kategoria: %2
+REP_DIR=katalog: %2
+REP_FILE=plik: %9%2, %8
+REP_PART=częściowy: %9%2, %7 z %8
+REP_TEXT=tekst: %2, %8
+REP_MORE=kontynuacja: %2, %8
+REP_CONF=akceptuj: %2, %8
+
+VERB_REP_CAT=ustaw kategorię: %2, %1
+VERB_REP_DIR=katalog: %2 (%3), %1 %4 %5
+VERB_REP_FILE=kompletny plik: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 rozmiar pliku %8
+VERB_REP_PART=plik częściowy: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 z %8 (przesunięcie %6)
+VERB_REP_TEXT=tekst: %2 %4 {%3}, %8
+VERB_REP_MORE=kontynuacja: %2 %4 {%3}, %8
+VERB_REP_CONF=akceptuj: %2 %4 {%3}, %8
+VERB_REP_SIG=sygnatura: %2 [%3], %1
+VERB_REP_NULL=pusty blok, %1
+VERB_REP_OTHER=nieznany blok %0, %1
+VERB_REP_SLICE=wybierz część %
+
+SAF_CREATE=Utwórz nowe archiwum slicer %
+SAF_OPEN=Otwórz istniejące archiwum slicer %
+SAF_APPEND=Dołącz do istniejącego archiwum slicer %
+SAF_DATE=Utworzono %2.%1.%0 o %3:%4:%5
+SAF_SLICE=Utwórz nową część archiwum %
+SAF_CAT=Ustaw kategorię archiwum %
+SAF_SLICING=Dzielenie archiwum w %
+VERB_SAF_IUP=Aktualizacja informacji statystycznych archiwum %
+
+MEDIA=Włóż dyskietkę z plikiem %0 do napędu %1.
+PAUSE=Naciśnij dowolny klawisz, aby kontynuować.
+
+PROMPT_YES=Tak
+PROMPT_NO=Nie
+PROMPT_Y=T
+PROMPT_N=N
+PROMPT_OVER=Zastąpić %2%1, %0?
+PROMPT_ACCEPT=Akceptować %?
+PROMPT_STOP=Plik %1 jest uszkodzony. Przerwać rozpakowywanie %0?
+
+SUMMARY=%0 część/części, %1 kat., %2 plik/pliki, %3
+
+USAGE=użycie: % [opcje]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER informacje o opcjach:
+HELP_1=
+HELP_2=  %0q        wyłącz wszystkie komunikaty o stanie
+HELP_3=  %0v        włącz szczegółowe komunikaty o stanie
+HELP_4=  %0t        tryb testowy
+HELP_5=  %0h        wyświetl informacje pomocy
+HELP_6=
+HELP_7=  %0i ?      dołącz elementy pasujące do specyfikacji pliku
+HELP_8=  %0I ?      dołącz elementy z listy plików
+HELP_9=  %0e ?      wyklucz elementy pasujące do specyfikacji pliku
+HELP_10=  %0E ?      wyklucz elementy z listy plików
+HELP_11=
+HELP_12=  %0d        wyklucz puste katalogi
+HELP_13=  %0D        nie przeszukuj podkatalogów rekursywnie
+HELP_14=  %0a        dołącz wszystkie pliki ukryte i systemowe
+HELP_15=  %0o        zastąp istniejące pliki
+HELP_16=  %0k        nie ignoruj wielkości liter w nazwach plików
+HELP_17=
+HELP_18=  %0g ?      określ kategorię grupy
+HELP_19=  %0s ?      rozmiar podziału archiwum (K, M lub bajty). (tylko dla
+HELP_20=             nowego archiwum lub ponownego podziału istniejącego)
+HELP_21=
+HELP_22=  %0y        automatycznie akceptuj wszystkie monity (oprócz
+HELP_23=             zastępowania plików).
+HELP_24=Operacje dotyczące całego archiwum:
+HELP_25=
+HELP_26=  %0f ?      określ nazwę pliku archiwum
+HELP_27=  %0c        utwórz nowe archiwum
+HELP_28=  %0r        dołącz do istniejącego archiwum
+HELP_29=  %0x        rozpakuj z istniejącego archiwum
+HELP_30=  %0R        wygeneruj raport archiwum
+HELP_31=  %0O ?      ustaw ścieżkę docelową rozpakowywania
+HELP_32=
+HELP_33=Osadzony tekst, powiadomienia i komunikaty:
+HELP_34=
+HELP_35=  %0L ?      nadpisz domyślny język systemu
+HELP_36=  %0m ?      osadź tekst komunikatu z pliku
+HELP_37=  %0M ?      osadź tekst z pliku wymagający zgody użytkownika
+HELP_38=
+HELP_39=Kompresja pass-through:
+HELP_40=
+HELP_41=  %0p ?      włącz kompresję pass-through (GZ, może inne później)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Kraina zamętu. Aby uzyskać pomoc, użyj opcji "%0h".
+
+FATAL=BŁĄD KRYTYCZNY:%_
+ERROR=BŁĄD:%_
+BAD_OPT=Nieprawidłowy parametr wiersza poleceń "%0%1"
+BAD_CMB=Nie można połączyć parametrów "%0%1" z "%0%2"
+BAD_MCO=Brak danych wiersza poleceń dla "%0%1"
+BAD_INT=Nieprawidłowa wartość liczbowa "%2" dla "%0%1"
+BAD_VAL=Wartość liczbowa "%2" poza zakresem "%3 - %4" dla "%0%1"
+BAD_MAX=Przekroczono maksymalną liczbę części archiwum dla "%1"
+BAD_VER=Archiwum "%1" może zawierać nieobsługiwane struktury danych.
+BAD_EMB=Jednocześnie można podać tylko jeden plik tekstowy komunikatu.
+BAD_MSG=Notatka komunikatu "%1" zbyt duża. Skrócono do %2.
+BAD_CMP=Nieobsługiwana kompresja pass-through "%2"
+BAD_TMP=Wymagany jest katalog TEMP.
+ER_UNK=kod błędu #%0, nieokreślony błąd z "%1" %2
+ER_2=Plik "%1" nie został znaleziony.
+ER_3=Ścieżka pliku "%1" nie została znaleziona.
+ER_8=Hmm, zabrakło pamięci.
+ER_11=Plik "%1" ma nierozpoznany format.
+ER_13=Plik "%1" zawiera uszkodzone dane.
+ER_14=Przerwano przez użytkownika.
+ER_23=Niezgodność sygnatur. Plik "%1" zawiera uszkodzone dane.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 o %1
+
+BYTES=% bajt(ów)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% dyskietka
+
+
+
+
+
+
+
+
+
+
+
+
+
+; Language: Portuguese
+; File ending: pt
+; Codepage: 860
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=pt
+TITLE=%, Versão %
+COPYRIGHT=Direitos de autor (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (continuação)
+INC_DIR=%2
+INC_TEXT=incorporar texto: %2 %8
+INC_HEAD=texto: %2 %8
+USE_COMP=compressão pass-through activada para %0
+
+VERB_PRE_SCAN=verificados % itens para adicionar ao arquivo
+VERB_INC_FILE=incluir: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=continuar: %2 [%3] (continuação do offset %6)
+VERB_INC_DIR=subdirectório: %2 (%3)
+VERB_INC_HEAD=incorporar texto de cabeçalho: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=excluir: %0 (corresponde a "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=adicionar "%1" à lista %0
+LIST_INC=incluir
+LIST_EXC=excluir
+
+; Same params as reporting
+EXT_DIR=directório: %2
+EXT_FILE=ficheiro: %9%2, %8
+EXT_PART=parcial: %9%2, %7 de %8
+VERB_EXT_RPCL=ficheiro %9%2 existe, substituído
+VERB_EXT_SKIP=ficheiro %9%2 existe, ignorado
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=categoria: %2
+REP_DIR=directório: %2
+REP_FILE=ficheiro: %9%2, %8
+REP_PART=parcial: %9%2, %7 de %8
+REP_TEXT=texto: %2, %8
+REP_MORE=continuação: %2, %8
+REP_CONF=aceitar: %2, %8
+
+VERB_REP_CAT=definir categoria: %2, %1
+VERB_REP_DIR=directório: %2 (%3), %1 %4 %5
+VERB_REP_FILE=ficheiro completo: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 tamanho do ficheiro %8
+VERB_REP_PART=ficheiro parcial: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 de %8 (offset %6)
+VERB_REP_TEXT=texto: %2 %4 {%3}, %8
+VERB_REP_MORE=continuação: %2 %4 {%3}, %8
+VERB_REP_CONF=aceitar: %2 %4 {%3}, %8
+VERB_REP_SIG=assinatura: %2 [%3], %1
+VERB_REP_NULL=bloco nulo, %1
+VERB_REP_OTHER=bloco desconhecido %0, %1
+VERB_REP_SLICE=seleccionar parte %
+
+SAF_CREATE=Criar novo arquivo slicer %
+SAF_OPEN=Abrir arquivo slicer existente %
+SAF_APPEND=Anexar a arquivo slicer existente %
+SAF_DATE=Criado a %2/%1/%0 às %3:%4:%5
+SAF_SLICE=Criar nova parte de arquivo %
+SAF_CAT=Definir categoria de arquivo %
+SAF_SLICING=A dividir arquivo em %
+VERB_SAF_IUP=Actualizar informação estatística para o arquivo %
+
+MEDIA=Insira a disquete com o ficheiro %0 na unidade %1.
+PAUSE=Prima qualquer tecla para continuar.
+
+PROMPT_YES=Sim
+PROMPT_NO=Não
+PROMPT_Y=S
+PROMPT_N=N
+PROMPT_OVER=Sobrescrever %2%1, %0?
+PROMPT_ACCEPT=Aceitar %?
+PROMPT_STOP=O ficheiro %1 está corrompido. Abortar extracção %0?
+
+SUMMARY=%0 parte(s), %1 dir(s), %2 ficheiro(s), %3
+
+USAGE=uso: % [opções]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=Informação das opções do SLICER:
+HELP_1=
+HELP_2=  %0q        desactivar todas as mensagens de estado
+HELP_3=  %0v        activar mensagens de estado detalhadas
+HELP_4=  %0t        modo de teste
+HELP_5=  %0h        mostrar informação de ajuda
+HELP_6=
+HELP_7=  %0i ?      incluir itens que correspondam à especificação
+HELP_8=  %0I ?      incluir itens da lista de ficheiros
+HELP_9=  %0e ?      excluir itens que correspondam à especificação
+HELP_10=  %0E ?      excluir itens da lista de ficheiros
+HELP_11=
+HELP_12=  %0d        excluir directórios vazios
+HELP_13=  %0D        não pesquisar subdirectórios recursivamente
+HELP_14=  %0a        incluir todos os itens ocultos e de sistema
+HELP_15=  %0o        sobrescrever ficheiros existentes
+HELP_16=  %0k        não ignorar maiúsculas/minúsculas nos nomes de ficheiros
+HELP_17=
+HELP_18=  %0g ?      especificar categoria de grupo
+HELP_19=  %0s ?      tamanho para dividir arquivo, K, M ou bytes. (apenas
+HELP_20=             válido ao criar um novo ou re-dividir arquivo existente)
+HELP_21=
+HELP_22=  %0y        aceitar automaticamente todos os pedidos (excepto
+HELP_23=             a sobrescrita de ficheiros).
+HELP_24=Operações relacionadas a todo o arquivo:
+HELP_25=
+HELP_26=  %0f ?      especificar o nome de ficheiro do arquivo
+HELP_27=  %0c        criar um novo arquivo
+HELP_28=  %0r        anexar a um arquivo existente
+HELP_29=  %0x        extrair de um arquivo existente
+HELP_30=  %0R        gerar relatório do arquivo
+HELP_31=  %0O ?      definir caminho de destino para extracção
+HELP_32=
+HELP_33=Texto incorporado, notificações e mensagens:
+HELP_34=
+HELP_35=  %0L ?      sobrescrever o idioma predefinido do sistema
+HELP_36=  %0m ?      incorporar texto de mensagem de um ficheiro
+HELP_37=  %0M ?      incorporar texto de um ficheiro que requer consentimento
+HELP_38=
+HELP_39=Compressão pass-through:
+HELP_40=
+HELP_41=  %0p ?      activar compressão pass-through (GZ, talvez outros depois)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Terra da confusão. Para ajuda, use a opção "%0h".
+
+FATAL=ERRO FATAL:%_
+ERROR=ERRO:%_
+BAD_OPT=Parâmetro de linha de comandos inválido "%0%1"
+BAD_CMB=Não é possível combinar parâmetros "%0%1" com "%0%2"
+BAD_MCO=Faltam dados de linha de comandos para "%0%1"
+BAD_INT=Valor numérico inválido "%2" para "%0%1"
+BAD_VAL=Valor numérico "%2" fora do intervalo "%3 - %4" para "%0%1"
+BAD_MAX=Número máximo de partes de arquivo excedido para "%1"
+BAD_VER=O arquivo "%1" pode conter estruturas de dados não suportadas.
+BAD_EMB=Apenas é possível especificar um ficheiro de texto de mensagem de cada vez.
+BAD_MSG=Nota de mensagem "%1" muito grande. Truncado para %2.
+BAD_CMP=Compressão pass-through não suportada "%2"
+BAD_TMP=Directório TEMP é necessário.
+ER_UNK=código de erro #%0, erro não especificado com "%1" %2
+ER_2=O ficheiro "%1" não foi encontrado.
+ER_3=O caminho do ficheiro "%1" não foi encontrado.
+ER_8=Uhm, fiquei sem memória.
+ER_11=O ficheiro "%1" tem um formato não reconhecido.
+ER_13=O ficheiro "%1" tem dados corrompidos.
+ER_14=Terminado pelo utilizador.
+ER_23=Incompatibilidade de assinatura. O ficheiro "%1" tem dados corrompidos.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2/%1/%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 às %1
+
+BYTES=% byte(s)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% disquete
+
+
+
+
+
+
+
+
+
+
+; Language: Russian
+; File ending: ru
+; Codepage: 866
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=ru
+TITLE=%, Версия %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (продолжение)
+INC_DIR=%2
+INC_TEXT=встроить текст: %2 %8
+INC_HEAD=текст: %2 %8
+USE_COMP=включено pass-through сжатие для %0
+
+VERB_PRE_SCAN=просканировано % элементов для добавления в архив
+VERB_INC_FILE=включить: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=продолжить: %2 [%3] (продолжение со смещения %6)
+VERB_INC_DIR=подкаталог: %2 (%3)
+VERB_INC_HEAD=встроить текст заголовка: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=исключить: %0 (совпадает с "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=добавить "%1" в список %0
+LIST_INC=включить
+LIST_EXC=исключить
+
+; Same params as reporting
+EXT_DIR=каталог: %2
+EXT_FILE=файл: %9%2, %8
+EXT_PART=частичный: %9%2, %7 из %8
+VERB_EXT_RPCL=файл %9%2 существует, заменен
+VERB_EXT_SKIP=файл %9%2 существует, пропущен
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=категория: %2
+REP_DIR=каталог: %2
+REP_FILE=файл: %9%2, %8
+REP_PART=частичный: %9%2, %7 из %8
+REP_TEXT=текст: %2, %8
+REP_MORE=продолжение: %2, %8
+REP_CONF=принять: %2, %8
+
+VERB_REP_CAT=установить категорию: %2, %1
+VERB_REP_DIR=каталог: %2 (%3), %1 %4 %5
+VERB_REP_FILE=полный файл: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 размер файла %8
+VERB_REP_PART=частичный файл: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 из %8 (смещение %6)
+VERB_REP_TEXT=текст: %2 %4 {%3}, %8
+VERB_REP_MORE=продолжение: %2 %4 {%3}, %8
+VERB_REP_CONF=принять: %2 %4 {%3}, %8
+VERB_REP_SIG=сигнатура: %2 [%3], %1
+VERB_REP_NULL=нулевой блок, %1
+VERB_REP_OTHER=неизвестный блок %0, %1
+VERB_REP_SLICE=выбрать часть %
+
+SAF_CREATE=Создать новый архив slicer %
+SAF_OPEN=Открыть существующий архив slicer %
+SAF_APPEND=Добавить в существующий архив slicer %
+SAF_DATE=Создано %2.%1.%0 в %3:%4:%5
+SAF_SLICE=Создать новую часть архива %
+SAF_CAT=Установить категорию архива %
+SAF_SLICING=Разбиение архива на %
+VERB_SAF_IUP=Обновить статистическую информацию для архива %
+
+MEDIA=Вставьте дискету с файлом %0 в дисковод %1.
+PAUSE=Нажмите любую клавишу для продолжения.
+
+PROMPT_YES=Да
+PROMPT_NO=Нет
+PROMPT_Y=Д
+PROMPT_N=Н
+PROMPT_OVER=Перезаписать %2%1, %0?
+PROMPT_ACCEPT=Принять %?
+PROMPT_STOP=Файл %1 поврежден. Прервать извлечение %0?
+
+SUMMARY=%0 ч., %1 кат., %2 файл(ов), %3
+
+USAGE=использование: % [параметры]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=Информация о параметрах SLICER:
+HELP_1=
+HELP_2=  %0q        отключить все сообщения о состоянии
+HELP_3=  %0v        включить подробные сообщения о состоянии
+HELP_4=  %0t        тестовый режим
+HELP_5=  %0h        показать справочную информацию
+HELP_6=
+HELP_7=  %0i ?      включить элементы, соответствующие спецификации
+HELP_8=  %0I ?      включить элементы из списка файлов
+HELP_9=  %0e ?      исключить элементы, соответствующие спецификации
+HELP_10=  %0E ?      исключить элементы из списка файлов
+HELP_11=
+HELP_12=  %0d        исключить пустые каталоги
+HELP_13=  %0D        не выполнять рекурсивный поиск в подкаталогах
+HELP_14=  %0a        включить все скрытые и системные элементы
+HELP_15=  %0o        перезаписывать существующие файлы
+HELP_16=  %0k        не игнорировать регистр в именах файлов
+HELP_17=
+HELP_18=  %0g ?      указать категорию группы
+HELP_19=  %0s ?      размер для разбиения архива (K, M или байты). (только
+HELP_20=             при создании нового или переразбивке существующего)
+HELP_21=
+HELP_22=  %0y        автоматически принимать все запросы (кроме
+HELP_23=             перезаписи файлов).
+HELP_24=Операции, относящиеся ко всему архиву:
+HELP_25=
+HELP_26=  %0f ?      указать имя файла архива
+HELP_27=  %0c        создать новый архив
+HELP_28=  %0r        добавить в существующий архив
+HELP_29=  %0x        извлечь из существующего архива
+HELP_30=  %0R        сгенерировать отчет об архиве
+HELP_31=  %0O ?      задать целевой путь для извлечения
+HELP_32=
+HELP_33=Встроенный текст, уведомления и сообщения:
+HELP_34=
+HELP_35=  %0L ?      переопределить системный язык по умолчанию
+HELP_36=  %0m ?      встроить текст сообщения из файла
+HELP_37=  %0M ?      встроить текст из файла, требующий согласия пользователя
+HELP_38=
+HELP_39=Сжатие pass-through:
+HELP_40=
+HELP_41=  %0p ?      включить pass-through сжатие (GZ, возможно другие)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Непонятно? Для получения помощи используйте параметр "%0h".
+
+FATAL=КРИТИЧЕСКАЯ ОШИБКА:%_
+ERROR=ОШИБКА:%_
+BAD_OPT=Недопустимый параметр командной строки "%0%1"
+BAD_CMB=Невозможно объединить параметры "%0%1" и "%0%2"
+BAD_MCO=Отсутствуют данные командной строки для "%0%1"
+BAD_INT=Недопустимое числовое значение "%2" для "%0%1"
+BAD_VAL=Числовое значение "%2" вне диапазона "%3 - %4" для "%0%1"
+BAD_MAX=Превышено максимальное количество частей архива для "%1"
+BAD_VER=Архив "%1" может содержать неподдерживаемые структуры данных.
+BAD_EMB=Одновременно можно указать только один текстовый файл сообщения.
+BAD_MSG=Текст сообщения "%1" слишком велик. Усечено до %2.
+BAD_CMP=Неподдерживаемое pass-through сжатие "%2"
+BAD_TMP=Требуется каталог TEMP.
+ER_UNK=код ошибки #%0, неуточненная ошибка с "%1" %2
+ER_2=Файл "%1" не найден.
+ER_3=Путь к файлу "%1" не найден.
+ER_8=Упс, не хватает памяти.
+ER_11=Файл "%1" имеет нераспознанный формат.
+ER_13=Файл "%1" содержит поврежденные данные.
+ER_14=Прервано пользователем.
+ER_23=Несоответствие сигнатуры. Файл "%1" содержит поврежденные данные.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 в %1
+
+BYTES=% байт
+KBYTES=% КиБ
+MBYTES=% МиБ
+FLOPPY=% дискета
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+; Language: Serbian
+; File ending: sr
+; Codepage: 855
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=sr
+TITLE=%, Верзија %
+COPYRIGHT=Ауторска права (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (наставак)
+INC_DIR=%2
+INC_TEXT=угради текст: %2 %8
+INC_HEAD=текст: %2 %8
+USE_COMP=омогућена %0 pass-through компресија
+
+VERB_PRE_SCAN=скенирано % ставки за додавање у архиву
+VERB_INC_FILE=укључи: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=настави: %2 [%3] (наставак од помака %6)
+VERB_INC_DIR=поддиректоријум: %2 (%3)
+VERB_INC_HEAD=угради текст заглавља: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=искључи: %0 (одговара "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=додај "%1" на %0 листу
+LIST_INC=укључи
+LIST_EXC=искључи
+
+; Same params as reporting
+EXT_DIR=директоријум: %2
+EXT_FILE=датотека: %9%2, %8
+EXT_PART=делимично: %9%2, %7 од %8
+VERB_EXT_RPCL=датотека %9%2 постоји, замењена
+VERB_EXT_SKIP=датотека %9%2 постоји, прескочена
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=категорија: %2
+REP_DIR=директоријум: %2
+REP_FILE=датотека: %9%2, %8
+REP_PART=делимично: %9%2, %7 од %8
+REP_TEXT=текст: %2, %8
+REP_MORE=наставак: %2, %8
+REP_CONF=прихвати: %2, %8
+
+VERB_REP_CAT=постави категорију: %2, %1
+VERB_REP_DIR=директоријум: %2 (%3), %1 %4 %5
+VERB_REP_FILE=цела датотека: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 величина датотеке %8
+VERB_REP_PART=делимична датотека: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 од %8 (помак %6)
+VERB_REP_TEXT=текст: %2 %4 {%3}, %8
+VERB_REP_MORE=наставак: %2 %4 {%3}, %8
+VERB_REP_CONF=прихвати: %2 %4 {%3}, %8
+VERB_REP_SIG=потпис: %2 [%3], %1
+VERB_REP_NULL=нулти блок, %1
+VERB_REP_OTHER=непознат блок %0, %1
+VERB_REP_SLICE=изабери део %
+
+SAF_CREATE=Направи нову slicer архиву %
+SAF_OPEN=Отвори постојећу slicer архиву %
+SAF_APPEND=Додај у постојећу slicer архиву %
+SAF_DATE=Направљено %2.%1.%0. у %3:%4:%5
+SAF_SLICE=Направи нови део архиве %
+SAF_CAT=Постави категорију архиве %
+SAF_SLICING=Дељење архиве на %
+VERB_SAF_IUP=Ажурирај статистичке податке за архиву %
+
+MEDIA=Уметните дискету са датотеком %0 у јединицу %1.
+PAUSE=Притисните било који тастер за наставак.
+
+PROMPT_YES=Да
+PROMPT_NO=Не
+PROMPT_Y=Д
+PROMPT_N=Н
+PROMPT_OVER=Преписати %2%1, %0?
+PROMPT_ACCEPT=Прихватити %?
+PROMPT_STOP=Датотека %1 је оштећена. Прекинути издвајање %0?
+
+SUMMARY=%0 део(делова), %1 дир., %2 датотека, %3
+
+USAGE=употреба: % [опције]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=SLICER информације о опцијама:
+HELP_1=
+HELP_2=  %0q        онемогући све статусне поруке
+HELP_3=  %0v        омогући детаљне статусне поруке
+HELP_4=  %0t        пробни режим
+HELP_5=  %0h        прикажи информације о помоћи
+HELP_6=
+HELP_7=  %0i ?      укључи ставке које одговарају спецификацији датотеке
+HELP_8=  %0I ?      укључи ставке са листе датотека
+HELP_9=  %0e ?      искључи ставке које одговарају спецификацији датотеке
+HELP_10=  %0E ?      искључи ставке са листе датотека
+HELP_11=
+HELP_12=  %0d        искључи празне директоријуме
+HELP_13=  %0D        не претражуј поддиректоријуме
+HELP_14=  %0a        укључи све скривене и системске ставке
+HELP_15=  %0o        препиши постојеће датотеке
+HELP_16=  %0k        не занемаруј велика/мала слова у називима
+HELP_17=
+HELP_18=  %0g ?      одреди категорију групе
+HELP_19=  %0s ?      величина за део архиве (K, M или бајтови). (важи само
+HELP_20=             при прављењу нове или дељењу постојеће архиве)
+HELP_21=
+HELP_22=  %0y        аутоматски прихвати све упите (осим
+HELP_23=             преписивања датотека).
+HELP_24=Операције везане за целу архиву:
+HELP_25=
+HELP_26=  %0f ?      одреди назив датотеке архиве
+HELP_27=  %0c        направи нову архиву
+HELP_28=  %0r        додај у постојећу архиву
+HELP_29=  %0x        издвоји из постојеће архиве
+HELP_30=  %0R        генериши извештај о архиви
+HELP_31=  %0O ?      постави одредишну путању за издвајање
+HELP_32=
+HELP_33=Уграђени текст, обавештења и поруке:
+HELP_34=
+HELP_35=  %0L ?      надјачај задати језик система
+HELP_36=  %0m ?      угради текст поруке из датотеке
+HELP_37=  %0M ?      угради текст поруке који захтева пристанак корисника
+HELP_38=
+HELP_39=Pass-through компресија:
+HELP_40=
+HELP_41=  %0p ?      омогући pass-through компресију (GZ, можда и друге)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Земља збуњености. За помоћ користите опцију "%0h".
+
+FATAL=КОБНА ГРЕШКА:%_
+ERROR=ГРЕШКА:%_
+BAD_OPT=Неважећи параметар командне линије "%0%1"
+BAD_CMB=Није могуће комбиновати параметре "%0%1" са "%0%2"
+BAD_MCO=Недостају подаци командне линије за "%0%1"
+BAD_INT=Неважећа нумеричка вредност "%2" за "%0%1"
+BAD_VAL=Нумеричка вредност "%2" је ван опсега "%3 - %4" за "%0%1"
+BAD_MAX=Премашен максималан број делова архиве за "%1"
+BAD_VER=Архива "%1" можда садржи неподржане структуре података.
+BAD_EMB=Могуће је одредити само једну текстуалну датотеку поруке одједном.
+BAD_MSG=Обавештење о поруци "%1" превелико. Скраћено на %2.
+BAD_CMP=Неподржана pass-through компресија "%2"
+BAD_TMP=Потребан је TEMP директоријум.
+ER_UNK=код грешке #%0, неодређена грешка са "%1" %2
+ER_2=Датотека "%1" није пронађена.
+ER_3=Путања датотеке "%1" није пронађена.
+ER_8=Хмм, понестало ми је меморије.
+ER_11=Датотека "%1" има непрепознат формат.
+ER_13=Датотека "%1" садржи оштећене податке.
+ER_14=Корисник прекинуо.
+ER_23=Неподударност потписа. Датотека "%1" садржи оштећене податке.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0.
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 у %1
+
+BYTES=% бајт(ова)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% дискета
+
+
+
+
+
+
+
+
+; Language: Ukrainian
+; File ending: uk
+; Codepage: 1125
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=uk
+TITLE=%, Версія %
+COPYRIGHT=Авторські права (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (продовження)
+INC_DIR=%2
+INC_TEXT=вбудувати текст: %2 %8
+INC_HEAD=текст: %2 %8
+USE_COMP=увімкнено %0 pass-through стиснення
+
+VERB_PRE_SCAN=проскановано % елементів для додавання до архіву
+VERB_INC_FILE=включити: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=продовжити: %2 [%3] (продовження зі зміщення %6)
+VERB_INC_DIR=підкаталог: %2 (%3)
+VERB_INC_HEAD=вбудувати текст заголовка: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=виключити: %0 (збігається з "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=додати "%1" до списку %0
+LIST_INC=включити
+LIST_EXC=виключити
+
+; Same params as reporting
+EXT_DIR=каталог: %2
+EXT_FILE=файл: %9%2, %8
+EXT_PART=частковий: %9%2, %7 з %8
+VERB_EXT_RPCL=файл %9%2 існує, замінено
+VERB_EXT_SKIP=файл %9%2 існує, пропущено
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=категорія: %2
+REP_DIR=каталог: %2
+REP_FILE=файл: %9%2, %8
+REP_PART=частковий: %9%2, %7 з %8
+REP_TEXT=текст: %2, %8
+REP_MORE=продовження: %2, %8
+REP_CONF=прийняти: %2, %8
+
+VERB_REP_CAT=встановити категорію: %2, %1
+VERB_REP_DIR=каталог: %2 (%3), %1 %4 %5
+VERB_REP_FILE=повний файл: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 розмір файлу %8
+VERB_REP_PART=частковий файл: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 з %8 (зміщення %6)
+VERB_REP_TEXT=текст: %2 %4 {%3}, %8
+VERB_REP_MORE=продовження: %2 %4 {%3}, %8
+VERB_REP_CONF=прийняти: %2 %4 {%3}, %8
+VERB_REP_SIG=підпис: %2 [%3], %1
+VERB_REP_NULL=нульовий блок, %1
+VERB_REP_OTHER=невідомий блок %0, %1
+VERB_REP_SLICE=вибрати частину %
+
+SAF_CREATE=Створити новий архів slicer %
+SAF_OPEN=Відкрити існуючий архів slicer %
+SAF_APPEND=Додати до існуючого архіву slicer %
+SAF_DATE=Створено %2.%1.%0 о %3:%4:%5
+SAF_SLICE=Створити нову частину архіву %
+SAF_CAT=Встановити категорію архіву %
+SAF_SLICING=Розбиття архіву на %
+VERB_SAF_IUP=Оновити статистичну інформацію для архіву %
+
+MEDIA=Вставте дискету з файлом %0 у дисковод %1.
+PAUSE=Натисніть будь-яку клавішу для продовження.
+
+PROMPT_YES=Так
+PROMPT_NO=Ні
+PROMPT_Y=Т
+PROMPT_N=Н
+PROMPT_OVER=Перезаписати %2%1, %0?
+PROMPT_ACCEPT=Прийняти %?
+PROMPT_STOP=Файл %1 пошкоджено. Перервати вилучення %0?
+
+SUMMARY=%0 част., %1 кат., %2 файл(ів), %3
+
+USAGE=використання: % [параметри]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=Інформація про параметри SLICER:
+HELP_1=
+HELP_2=  %0q        вимкнути всі повідомлення про стан
+HELP_3=  %0v        увімкнути детальні повідомлення про стан
+HELP_4=  %0t        тестовий режим
+HELP_5=  %0h        показати довідкову інформацію
+HELP_6=
+HELP_7=  %0i ?      включити елементи, що відповідають специфікації
+HELP_8=  %0I ?      включити елементи зі списку файлів
+HELP_9=  %0e ?      виключити елементи, що відповідають специфікації
+HELP_10=  %0E ?      виключити елементи зі списку файлів
+HELP_11=
+HELP_12=  %0d        виключити порожні каталоги
+HELP_13=  %0D        не виконувати рекурсивний пошук у підкаталогах
+HELP_14=  %0a        включити всі приховані та системні елементи
+HELP_15=  %0o        перезаписувати існуючі файли
+HELP_16=  %0k        не ігнорувати регістр в іменах файлів
+HELP_17=
+HELP_18=  %0g ?      вказати категорію групи
+HELP_19=  %0s ?      розмір для розбиття архіву (K, M або байти). (тільки
+HELP_20=             при створенні нового або перерозбитті існуючого)
+HELP_21=
+HELP_22=  %0y        автоматично приймати всі запити (крім
+HELP_23=             перезапису файлів).
+HELP_24=Операції, що стосуються всього архіву:
+HELP_25=
+HELP_26=  %0f ?      вказати ім'я файлу архіву
+HELP_27=  %0c        створити новий архів
+HELP_28=  %0r        додати до існуючого архіву
+HELP_29=  %0x        вилучити з існуючого архіву
+HELP_30=  %0R        згенерувати звіт про архів
+HELP_31=  %0O ?      задати цільовий шлях для вилучення
+HELP_32=
+HELP_33=Вбудований текст, сповіщення та повідомлення:
+HELP_34=
+HELP_35=  %0L ?      перевизначити системну мову за замовчуванням
+HELP_36=  %0m ?      вбудувати текст повідомлення з файлу
+HELP_37=  %0M ?      вбудувати текст з файлу, що вимагає згоди користувача
+HELP_38=
+HELP_39=Стиснення pass-through:
+HELP_40=
+HELP_41=  %0p ?      увімкнути pass-through стиснення (GZ, можливо інші)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Країна плутанини. Для отримання допомоги використовуйте параметр "%0h".
+
+FATAL=КРИТИЧНА ПОМИЛКА:%_
+ERROR=ПОМИЛКА:%_
+BAD_OPT=Неприпустимий параметр командного рядка "%0%1"
+BAD_CMB=Неможливо об'єднати параметри "%0%1" та "%0%2"
+BAD_MCO=Відсутні дані командного рядка для "%0%1"
+BAD_INT=Неприпустиме числове значення "%2" для "%0%1"
+BAD_VAL=Числове значення "%2" поза діапазоном "%3 - %4" для "%0%1"
+BAD_MAX=Перевищено максимальну кількість частин архіву для "%1"
+BAD_VER=Архів "%1" може містити непідтримувані структури даних.
+BAD_EMB=Одночасно можна вказати лише один текстовий файл повідомлення.
+BAD_MSG=Текст повідомлення "%1" завеликий. Усічено до %2.
+BAD_CMP=Непідтримуване pass-through стиснення "%2"
+BAD_TMP=Потрібен каталог TEMP.
+ER_UNK=код помилки #%0, неуточнена помилка з "%1" %2
+ER_2=Файл "%1" не знайдено.
+ER_3=Шлях до файлу "%1" не знайдено.
+ER_8=Ой, не вистачає пам'яті.
+ER_11=Файл "%1" має нерозпізнаний формат.
+ER_13=Файл "%1" містить пошкоджені дані.
+ER_14=Перервано користувачем.
+ER_23=Невідповідність підпису. Файл "%1" містить пошкоджені дані.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 о %1
+
+BYTES=% байт
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% дискета
+
+
+
+
+
+
+; Language: Slovak
+; File ending: sk
+; Codepage: 852
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=sk
+TITLE=%, Verzia %
+COPYRIGHT=Autorské práva (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (pokračovanie)
+INC_DIR=%2
+INC_TEXT=vložiť text: %2 %8
+INC_HEAD=text: %2 %8
+USE_COMP=povolená %0 pass-through kompresia
+
+VERB_PRE_SCAN=naskenovaných % položiek na pridanie do archívu
+VERB_INC_FILE=zahrnúť: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=pokračovať: %2 [%3] (pokračuje od posunu %6)
+VERB_INC_DIR=podadresár: %2 (%3)
+VERB_INC_HEAD=vložiť text hlavičky: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=vylúčiť: %0 (zhoduje sa s "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=pridať "%1" do %0 zoznamu
+LIST_INC=zahrnúť
+LIST_EXC=vylúčiť
+
+; Same params as reporting
+EXT_DIR=adresár: %2
+EXT_FILE=súbor: %9%2, %8
+EXT_PART=čiastočný: %9%2, %7 z %8
+VERB_EXT_RPCL=súbor %9%2 existuje, nahradený
+VERB_EXT_SKIP=súbor %9%2 existuje, preskočený
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=kategória: %2
+REP_DIR=adresár: %2
+REP_FILE=súbor: %9%2, %8
+REP_PART=čiastočný: %9%2, %7 z %8
+REP_TEXT=text: %2, %8
+REP_MORE=pokračovanie: %2, %8
+REP_CONF=prijať: %2, %8
+
+VERB_REP_CAT=nastaviť kategóriu: %2, %1
+VERB_REP_DIR=adresár: %2 (%3), %1 %4 %5
+VERB_REP_FILE=celý súbor: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 veľkosť súboru %8
+VERB_REP_PART=čiastočný súbor: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 z %8 (posun %6)
+VERB_REP_TEXT=text: %2 %4 {%3}, %8
+VERB_REP_MORE=pokračovanie: %2 %4 {%3}, %8
+VERB_REP_CONF=prijať: %2 %4 {%3}, %8
+VERB_REP_SIG=podpis: %2 [%3], %1
+VERB_REP_NULL=nulový blok, %1
+VERB_REP_OTHER=neznámy blok %0, %1
+VERB_REP_SLICE=vybrať časť %
+
+SAF_CREATE=Vytvoriť nový slicer archív %
+SAF_OPEN=Otvoriť existujúci slicer archív %
+SAF_APPEND=Pridať do existujúceho slicer archívu %
+SAF_DATE=Vytvorené %2.%1.%0 o %3:%4:%5
+SAF_SLICE=Vytvoriť novú časť archívu %
+SAF_CAT=Nastaviť kategóriu archívu %
+SAF_SLICING=Rozdelenie archívu na %
+VERB_SAF_IUP=Aktualizovať štatistické informácie pre archív %
+
+MEDIA=Vložte disketu so súborom %0 do jednotky %1.
+PAUSE=Pokračujte stlačením ľubovoľného klávesu.
+
+PROMPT_YES=Áno
+PROMPT_NO=Nie
+PROMPT_Y=A
+PROMPT_N=N
+PROMPT_OVER=Prepísať %2%1, %0?
+PROMPT_ACCEPT=Prijať %?
+PROMPT_STOP=Súbor %1 je poškodený. Prerušiť rozbaľovanie %0?
+
+SUMMARY=%0 časť(í), %1 adr., %2 súbor(ov), %3
+
+USAGE=použitie: % [možnosti]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=Informácie o možnostiach SLICER:
+HELP_1=
+HELP_2=  %0q        zakázať všetky stavové správy
+HELP_3=  %0v        povoliť podrobné stavové správy
+HELP_4=  %0t        testovací režim
+HELP_5=  %0h        zobraziť informácie o pomocníkovi
+HELP_6=
+HELP_7=  %0i ?      zahrnúť položky zodpovedajúce špecifikácii súboru
+HELP_8=  %0I ?      zahrnúť položky zo zoznamu súborov
+HELP_9=  %0e ?      vylúčiť položky zodpovedajúce špecifikácii súboru
+HELP_10=  %0E ?      vylúčiť položky zo zoznamu súborov
+HELP_11=
+HELP_12=  %0d        vylúčiť prázdne adresáre
+HELP_13=  %0D        nehľadať v podadresároch
+HELP_14=  %0a        zahrnúť všetky skryté a systémové položky
+HELP_15=  %0o        prepísať existujúce súbory
+HELP_16=  %0k        neignorovať veľké/malé písmená v názvoch súborov
+HELP_17=
+HELP_18=  %0g ?      zadať kategóriu skupiny
+HELP_19=  %0s ?      veľkosť pre rozdelenie archívu (K, M, bajty). (platí
+HELP_20=             len pri vytváraní nového alebo novom rozdelení)
+HELP_21=
+HELP_22=  %0y        automaticky prijať všetky výzvy (okrem prepisovania
+HELP_23=             súborov).
+HELP_24=Operácie týkajúce sa celého archívu:
+HELP_25=
+HELP_26=  %0f ?      zadať názov súboru archívu
+HELP_27=  %0c        vytvoriť nový archív
+HELP_28=  %0r        pridať do existujúceho archívu
+HELP_29=  %0x        rozbaliť z existujúceho archívu
+HELP_30=  %0R        vygenerovať správu o archíve
+HELP_31=  %0O ?      nastaviť cieľovú cestu pre rozbalenie
+HELP_32=
+HELP_33=Vložený text, upozornenia a správy:
+HELP_34=
+HELP_35=  %0L ?      prepísať predvolený jazyk systému
+HELP_36=  %0m ?      vložiť text správy zo súboru
+HELP_37=  %0M ?      vložiť text zo súboru, ktorý vyžaduje súhlas používateľa
+HELP_38=
+HELP_39=Pass-through kompresia:
+HELP_40=
+HELP_41=  %0p ?      povoliť pass-through kompresiu (GZ, neskôr možno iné)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Krajina zmätku. Pre pomoc použite voľbu "%0h".
+
+FATAL=KRITICKÁ CHYBA:%_
+ERROR=CHYBA:%_
+BAD_OPT=Neplatný parameter príkazového riadka "%0%1"
+BAD_CMB=Nemožno kombinovať parametre "%0%1" a "%0%2"
+BAD_MCO=Chýbajúce údaje príkazového riadka pre "%0%1"
+BAD_INT=Neplatná číselna hodnota "%2" pre "%0%1"
+BAD_VAL=Číselna hodnota "%2" je mimo rozsah "%3 - %4" pre "%0%1"
+BAD_MAX=Prekročený maximálny počet častí archívu pre "%1"
+BAD_VER=Archív "%1" môže obsahovať nepodporované dátové štruktúry.
+BAD_EMB=Súčasne je možné zadať iba jeden textový súbor správy.
+BAD_MSG=Poznámka správy "%1" je príliš veľká. Skrátené na %2.
+BAD_CMP=Nepodporovaná pass-through kompresia "%2"
+BAD_TMP=Vyžaduje sa adresár TEMP.
+ER_UNK=kód chyby #%0, nešpecifikovaná chyba s "%1" %2
+ER_2=Súbor "%1" nebol nájdený.
+ER_3=Cesta k súboru "%1" nebola nájdená.
+ER_8=Hmm, nedostatok pamäte.
+ER_11=Súbor "%1" má nerozpoznaný formát.
+ER_13=Súbor "%1" obsahuje poškodené údaje.
+ER_14=Prerušené používateľom.
+ER_23=Nezhoda podpisu. Súbor "%1" obsahuje poškodené údaje.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 o %1
+
+BYTES=% bajt(ov)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% disketa
+
+
+
+
+
+
+
+; Language: Slovenian
+; File ending: sl
+; Codepage: 852
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=sl
+TITLE=%, Različica %
+COPYRIGHT=Avtorske pravice (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (nadaljevanje)
+INC_DIR=%2
+INC_TEXT=vdelaj besedilo: %2 %8
+INC_HEAD=besedilo: %2 %8
+USE_COMP=omogočeno %0 pass-through stiskanje
+
+VERB_PRE_SCAN=pregledanih % elementov za dodajanje v arhiv
+VERB_INC_FILE=vključi: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=nadaljuj: %2 [%3] (nadaljevanje od odmika %6)
+VERB_INC_DIR=podimenik: %2 (%3)
+VERB_INC_HEAD=vdelaj besedilo glave: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=izključi: %0 (se ujema z "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=dodaj "%1" na seznam %0
+LIST_INC=vključi
+LIST_EXC=izključi
+
+; Same params as reporting
+EXT_DIR=imenik: %2
+EXT_FILE=datoteka: %9%2, %8
+EXT_PART=delno: %9%2, %7 od %8
+VERB_EXT_RPCL=datoteka %9%2 obstaja, zamenjana
+VERB_EXT_SKIP=datoteka %9%2 obstaja, preskočena
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=kategorija: %2
+REP_DIR=imenik: %2
+REP_FILE=datoteka: %9%2, %8
+REP_PART=delno: %9%2, %7 od %8
+REP_TEXT=besedilo: %2, %8
+REP_MORE=nadaljevanje: %2, %8
+REP_CONF=sprejmi: %2, %8
+
+VERB_REP_CAT=nastavi kategorijo: %2, %1
+VERB_REP_DIR=imenik: %2 (%3), %1 %4 %5
+VERB_REP_FILE=celotna datoteka: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 velikost datoteke %8
+VERB_REP_PART=delna datoteka: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 od %8 (odmik %6)
+VERB_REP_TEXT=besedilo: %2 %4 {%3}, %8
+VERB_REP_MORE=nadaljevanje: %2 %4 {%3}, %8
+VERB_REP_CONF=sprejmi: %2 %4 {%3}, %8
+VERB_REP_SIG=podpis: %2 [%3], %1
+VERB_REP_NULL=ničelni blok, %1
+VERB_REP_OTHER=neznan blok %0, %1
+VERB_REP_SLICE=izberi del %
+
+SAF_CREATE=Ustvari nov slicer arhiv %
+SAF_OPEN=Odpri obstoječ slicer arhiv %
+SAF_APPEND=Dodaj v obstoječ slicer arhiv %
+SAF_DATE=Ustvarjeno %2. %1. %0 ob %3:%4:%5
+SAF_SLICE=Ustvari nov del arhiva %
+SAF_CAT=Nastavi kategorijo arhiva %
+SAF_SLICING=Deljenje arhiva na %
+VERB_SAF_IUP=Posodobi statistične podatke za arhiv %
+
+MEDIA=Vstavite disketo z datoteko %0 v pogon %1.
+PAUSE=Za nadaljevanje pritisnite katerokoli tipko.
+
+PROMPT_YES=Da
+PROMPT_NO=Ne
+PROMPT_Y=D
+PROMPT_N=N
+PROMPT_OVER=Prepiši %2%1, %0?
+PROMPT_ACCEPT=Sprejmi %?
+PROMPT_STOP=Datoteka %1 je poškodovana. Prekini razširjanje %0?
+
+SUMMARY=%0 del(ov), %1 imenik(ov), %2 datotek(a/e), %3
+
+USAGE=uporaba: % [možnosti]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=Informacije o možnostih SLICER:
+HELP_1=
+HELP_2=  %0q        onemogoči vsa sporočila o stanju
+HELP_3=  %0v        omogoči podrobna sporočila o stanju
+HELP_4=  %0t        preizkusni način
+HELP_5=  %0h        prikaži informacije o pomoči
+HELP_6=
+HELP_7=  %0i ?      vključi elemente, ki ustrezajo specifikaciji datoteke
+HELP_8=  %0I ?      vključi elemente s seznama datotek
+HELP_9=  %0e ?      izključi elemente, ki ustrezajo specifikaciji datoteke
+HELP_10=  %0E ?      izključi elemente s seznama datotek
+HELP_11=
+HELP_12=  %0d        izključi prazne imenike
+HELP_13=  %0D        ne išči po podimenikih
+HELP_14=  %0a        vključi vse skrite in sistemske elemente
+HELP_15=  %0o        prepiši obstoječe datoteke
+HELP_16=  %0k        ne prezri velikosti črk v imenih datotek
+HELP_17=
+HELP_18=  %0g ?      podaj kategorijo skupine
+HELP_19=  %0s ?      velikost za delitev arhiva (K, M ali bajti). (velja
+HELP_20=             samo ob ustvarjanju ali ponovni delitvi arhiva)
+HELP_21=
+HELP_22=  %0y        samodejno sprejmi vse pozive (razen
+HELP_23=             prepisovanja datotek).
+HELP_24=Operacije, povezane s celotnim arhivom:
+HELP_25=
+HELP_26=  %0f ?      podaj ime datoteke arhiva
+HELP_27=  %0c        ustvari nov arhiv
+HELP_28=  %0r        dodaj v obstoječ arhiv
+HELP_29=  %0x        razširi iz obstoječega arhiva
+HELP_30=  %0R        ustvari poročilo o arhivu
+HELP_31=  %0O ?      nastavi ciljno pot za razširjanje
+HELP_32=
+HELP_33=Vdelano besedilo, obvestila in sporočila:
+HELP_34=
+HELP_35=  %0L ?      preglasi privzeti sistemski jezik
+HELP_36=  %0m ?      vdelaj besedilo sporočila iz datoteke
+HELP_37=  %0M ?      vdelaj besedilo iz datoteke, ki zahteva privolitev
+HELP_38=
+HELP_39=Pass-through stiskanje:
+HELP_40=
+HELP_41=  %0p ?      omogoči pass-through stiskanje (GZ, morda tudi druge)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Dežela zmede. Za pomoč uporabite možnost "%0h".
+
+FATAL=USODNA NAPAKA:%_
+ERROR=NAPAKA:%_
+BAD_OPT=Neveljaven parameter ukazne vrstice "%0%1"
+BAD_CMB=Ni mogoče kombinirati parametrov "%0%1" in "%0%2"
+BAD_MCO=Manjkajo podatki ukazne vrstice za "%0%1"
+BAD_INT=Neveljavna številska vrednost "%2" za "%0%1"
+BAD_VAL=Številska vrednost "%2" je izven obsega "%3 - %4" za "%0%1"
+BAD_MAX=Preseženo največje število delov arhiva za "%1"
+BAD_VER=Arhiv "%1" morda vsebuje nepodprte podatkovne strukture.
+BAD_EMB=Hkrati je mogoče podati samo eno besedilno datoteko s sporočilom.
+BAD_MSG=Obvestilo sporočila "%1" preveliko. Odrezano na %2.
+BAD_CMP=Nepodprto pass-through stiskanje "%2"
+BAD_TMP=Potreben je imenik TEMP.
+ER_UNK=koda napake #%0, nedoločena napaka z "%1" %2
+ER_2=Datoteke "%1" ni mogoče najti.
+ER_3=Poti do datoteke "%1" ni mogoče najti.
+ER_8=Hm, zmanjkalo mi je pomnilnika.
+ER_11=Datoteka "%1" ima neprepoznan format.
+ER_13=Datoteka "%1" vsebuje poškodovane podatke.
+ER_14=Prekinil uporabnik.
+ER_23=Neujemanje podpisa. Datoteka "%1" vsebuje poškodovane podatke.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2. %1. %0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 ob %1
+
+BYTES=% bajt(ov)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% disketa
+
+
+
+
+
+

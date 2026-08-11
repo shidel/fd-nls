@@ -1,0 +1,197 @@
+; Language: Slovenian
+; File ending: sl
+; Codepage: 852
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=sl
+TITLE=%, Razliüica %
+COPYRIGHT=Avtorske pravice (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (nadaljevanje)
+INC_DIR=%2
+INC_TEXT=vdelaj besedilo: %2 %8
+INC_HEAD=besedilo: %2 %8
+USE_COMP=omogoüeno %0 pass-through stiskanje
+
+VERB_PRE_SCAN=pregledanih % elementov za dodajanje v arhiv
+VERB_INC_FILE=vkljuüi: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=nadaljuj: %2 [%3] (nadaljevanje od odmika %6)
+VERB_INC_DIR=podimenik: %2 (%3)
+VERB_INC_HEAD=vdelaj besedilo glave: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=izkljuüi: %0 (se ujema z "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=dodaj "%1" na seznam %0
+LIST_INC=vkljuüi
+LIST_EXC=izkljuüi
+
+; Same params as reporting
+EXT_DIR=imenik: %2
+EXT_FILE=datoteka: %9%2, %8
+EXT_PART=delno: %9%2, %7 od %8
+VERB_EXT_RPCL=datoteka %9%2 obstaja, zamenjana
+VERB_EXT_SKIP=datoteka %9%2 obstaja, preskoüena
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=kategorija: %2
+REP_DIR=imenik: %2
+REP_FILE=datoteka: %9%2, %8
+REP_PART=delno: %9%2, %7 od %8
+REP_TEXT=besedilo: %2, %8
+REP_MORE=nadaljevanje: %2, %8
+REP_CONF=sprejmi: %2, %8
+
+VERB_REP_CAT=nastavi kategorijo: %2, %1
+VERB_REP_DIR=imenik: %2 (%3), %1 %4 %5
+VERB_REP_FILE=celotna datoteka: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 velikost datoteke %8
+VERB_REP_PART=delna datoteka: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 od %8 (odmik %6)
+VERB_REP_TEXT=besedilo: %2 %4 {%3}, %8
+VERB_REP_MORE=nadaljevanje: %2 %4 {%3}, %8
+VERB_REP_CONF=sprejmi: %2 %4 {%3}, %8
+VERB_REP_SIG=podpis: %2 [%3], %1
+VERB_REP_NULL=niüelni blok, %1
+VERB_REP_OTHER=neznan blok %0, %1
+VERB_REP_SLICE=izberi del %
+
+SAF_CREATE=Ustvari nov slicer arhiv %
+SAF_OPEN=Odpri obstojeü slicer arhiv %
+SAF_APPEND=Dodaj v obstojeü slicer arhiv %
+SAF_DATE=Ustvarjeno %2. %1. %0 ob %3:%4:%5
+SAF_SLICE=Ustvari nov del arhiva %
+SAF_CAT=Nastavi kategorijo arhiva %
+SAF_SLICING=Deljenje arhiva na %
+VERB_SAF_IUP=Posodobi statistiüne podatke za arhiv %
+
+MEDIA=Vstavite disketo z datoteko %0 v pogon %1.
+PAUSE=Za nadaljevanje pritisnite katerokoli tipko.
+
+PROMPT_YES=Da
+PROMPT_NO=Ne
+PROMPT_Y=D
+PROMPT_N=N
+PROMPT_OVER=PrepiÁi %2%1, %0?
+PROMPT_ACCEPT=Sprejmi %?
+PROMPT_STOP=Datoteka %1 je poÁkodovana. Prekini razÁirjanje %0?
+
+SUMMARY=%0 del(ov), %1 imenik(ov), %2 datotek(a/e), %3
+
+USAGE=uporaba: % [moßnosti]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=Informacije o moßnostih SLICER:
+HELP_1=
+HELP_2=  %0q        onemogoüi vsa sporoüila o stanju
+HELP_3=  %0v        omogoüi podrobna sporoüila o stanju
+HELP_4=  %0t        preizkusni naüin
+HELP_5=  %0h        prikaßi informacije o pomoüi
+HELP_6=
+HELP_7=  %0i ?      vkljuüi elemente, ki ustrezajo specifikaciji datoteke
+HELP_8=  %0I ?      vkljuüi elemente s seznama datotek
+HELP_9=  %0e ?      izkljuüi elemente, ki ustrezajo specifikaciji datoteke
+HELP_10=  %0E ?      izkljuüi elemente s seznama datotek
+HELP_11=
+HELP_12=  %0d        izkljuüi prazne imenike
+HELP_13=  %0D        ne iÁüi po podimenikih
+HELP_14=  %0a        vkljuüi vse skrite in sistemske elemente
+HELP_15=  %0o        prepiÁi obstojeüe datoteke
+HELP_16=  %0k        ne prezri velikosti ürk v imenih datotek
+HELP_17=
+HELP_18=  %0g ?      podaj kategorijo skupine
+HELP_19=  %0s ?      velikost za delitev arhiva (K, M ali bajti). (velja
+HELP_20=             samo ob ustvarjanju ali ponovni delitvi arhiva)
+HELP_21=
+HELP_22=  %0y        samodejno sprejmi vse pozive (razen
+HELP_23=             prepisovanja datotek).
+HELP_24=Operacije, povezane s celotnim arhivom:
+HELP_25=
+HELP_26=  %0f ?      podaj ime datoteke arhiva
+HELP_27=  %0c        ustvari nov arhiv
+HELP_28=  %0r        dodaj v obstojeü arhiv
+HELP_29=  %0x        razÁiri iz obstojeüega arhiva
+HELP_30=  %0R        ustvari poroüilo o arhivu
+HELP_31=  %0O ?      nastavi ciljno pot za razÁirjanje
+HELP_32=
+HELP_33=Vdelano besedilo, obvestila in sporoüila:
+HELP_34=
+HELP_35=  %0L ?      preglasi privzeti sistemski jezik
+HELP_36=  %0m ?      vdelaj besedilo sporoüila iz datoteke
+HELP_37=  %0M ?      vdelaj besedilo iz datoteke, ki zahteva privolitev
+HELP_38=
+HELP_39=Pass-through stiskanje:
+HELP_40=
+HELP_41=  %0p ?      omogoüi pass-through stiskanje (GZ, morda tudi druge)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Deßela zmede. Za pomoü uporabite moßnost "%0h".
+
+FATAL=USODNA NAPAKA:%_
+ERROR=NAPAKA:%_
+BAD_OPT=Neveljaven parameter ukazne vrstice "%0%1"
+BAD_CMB=Ni mogoüe kombinirati parametrov "%0%1" in "%0%2"
+BAD_MCO=Manjkajo podatki ukazne vrstice za "%0%1"
+BAD_INT=Neveljavna Átevilska vrednost "%2" za "%0%1"
+BAD_VAL=Êtevilska vrednost "%2" je izven obsega "%3 - %4" za "%0%1"
+BAD_MAX=Preseßeno najveüje Átevilo delov arhiva za "%1"
+BAD_VER=Arhiv "%1" morda vsebuje nepodprte podatkovne strukture.
+BAD_EMB=Hkrati je mogoüe podati samo eno besedilno datoteko s sporoüilom.
+BAD_MSG=Obvestilo sporoüila "%1" preveliko. Odrezano na %2.
+BAD_CMP=Nepodprto pass-through stiskanje "%2"
+BAD_TMP=Potreben je imenik TEMP.
+ER_UNK=koda napake #%0, nedoloüena napaka z "%1" %2
+ER_2=Datoteke "%1" ni mogoüe najti.
+ER_3=Poti do datoteke "%1" ni mogoüe najti.
+ER_8=Hm, zmanjkalo mi je pomnilnika.
+ER_11=Datoteka "%1" ima neprepoznan format.
+ER_13=Datoteka "%1" vsebuje poÁkodovane podatke.
+ER_14=Prekinil uporabnik.
+ER_23=Neujemanje podpisa. Datoteka "%1" vsebuje poÁkodovane podatke.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2. %1. %0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 ob %1
+
+BYTES=% bajt(ov)
+KBYTES=% KiB
+MBYTES=% MiB
+FLOPPY=% disketa

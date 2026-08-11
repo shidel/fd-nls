@@ -1,0 +1,197 @@
+; Language: Russian
+; File ending: ru
+; Codepage: 866
+; This translation was made by Google Gemini.
+; Please help the FreeDOS group to improve it.
+
+; English Langauge Resource and Translation File
+; changes by W. Spiegl: added %0 and %1 in line 84
+; note %_ is a space, %% is percent, %r is CRLF,
+; %0-F (1 char hex) are params, % alone is next param.
+; Items that start VERB_ are Verbose mode versions.
+
+LANGUAGE=ru
+TITLE=%, Версия %
+COPYRIGHT=Copyright (c) 2019-%, Jerome Shidel
+
+; Same params as reporting
+INC_FILE=%9%2 %8
+INC_CONT=%2 (продолжение)
+INC_DIR=%2
+INC_TEXT=встроить текст: %2 %8
+INC_HEAD=текст: %2 %8
+USE_COMP=включено pass-through сжатие для %0
+
+VERB_PRE_SCAN=просканировано % элементов для добавления в архив
+VERB_INC_FILE=включить: %9%2 (%A)\[%3] %8
+VERB_INC_CONT=продолжить: %2 [%3] (продолжение со смещения %6)
+VERB_INC_DIR=подкаталог: %2 (%3)
+VERB_INC_HEAD=встроить текст заголовка: %2 %8
+
+; Excluded file or dir
+VERB_EXCLUDE=исключить: %0 (совпадает с "%1")
+
+; Lists %0 is list, %1 is file
+LIST_ITEM=%
+LIST_FILE=добавить "%1" в список %0
+LIST_INC=включить
+LIST_EXC=исключить
+
+; Same params as reporting
+EXT_DIR=каталог: %2
+EXT_FILE=файл: %9%2, %8
+EXT_PART=частичный: %9%2, %7 из %8
+VERB_EXT_RPCL=файл %9%2 существует, заменен
+VERB_EXT_SKIP=файл %9%2 существует, пропущен
+
+; Report & Extraction parameters
+; %0 block ID    (all)
+; %1 block size  (all)
+; %2 name       (dir & file name, or text language)
+; %3 unique ID (all)
+; %4 attributes (dir & file attribs, or text verbose level)
+; %5 time stamp (dir & file only)
+; %6 file offest (file only)
+; %7 file bytes (file only)
+; %8 total file size (file and text only)
+; %9 path (file only)
+; %A path ID (file only)
+REP_CAT=категория: %2
+REP_DIR=каталог: %2
+REP_FILE=файл: %9%2, %8
+REP_PART=частичный: %9%2, %7 из %8
+REP_TEXT=текст: %2, %8
+REP_MORE=продолжение: %2, %8
+REP_CONF=принять: %2, %8
+
+VERB_REP_CAT=установить категорию: %2, %1
+VERB_REP_DIR=каталог: %2 (%3), %1 %4 %5
+VERB_REP_FILE=полный файл: %9%2 (%A)\[%3], %1
+VERB_REP_FILE2=%4 %5 размер файла %8
+VERB_REP_PART=частичный файл: %9%2 (%A)\[%3], %1
+VERB_REP_PART2=%4 %5 %7 из %8 (смещение %6)
+VERB_REP_TEXT=текст: %2 %4 {%3}, %8
+VERB_REP_MORE=продолжение: %2 %4 {%3}, %8
+VERB_REP_CONF=принять: %2 %4 {%3}, %8
+VERB_REP_SIG=сигнатура: %2 [%3], %1
+VERB_REP_NULL=нулевой блок, %1
+VERB_REP_OTHER=неизвестный блок %0, %1
+VERB_REP_SLICE=выбрать часть %
+
+SAF_CREATE=Создать новый архив slicer %
+SAF_OPEN=Открыть существующий архив slicer %
+SAF_APPEND=Добавить в существующий архив slicer %
+SAF_DATE=Создано %2.%1.%0 в %3:%4:%5
+SAF_SLICE=Создать новую часть архива %
+SAF_CAT=Установить категорию архива %
+SAF_SLICING=Разбиение архива на %
+VERB_SAF_IUP=Обновить статистическую информацию для архива %
+
+MEDIA=Вставьте дискету с файлом %0 в дисковод %1.
+PAUSE=Нажмите любую клавишу для продолжения.
+
+PROMPT_YES=Да
+PROMPT_NO=Нет
+PROMPT_Y=Д
+PROMPT_N=Н
+PROMPT_OVER=Перезаписать %2%1, %0?
+PROMPT_ACCEPT=Принять %?
+PROMPT_STOP=Файл %1 поврежден. Прервать извлечение %0?
+
+SUMMARY=%0 ч., %1 кат., %2 файл(ов), %3
+
+USAGE=использование: % [параметры]
+
+; All help lines are displayed in order until the first missing number is
+; encountered. You can add lines. But, keep the numbers in order by renumbering
+; all lines after your additional help message. %0 is the Switch Character / or -
+HELP_0=Информация о параметрах SLICER:
+HELP_1=
+HELP_2=  %0q        отключить все сообщения о состоянии
+HELP_3=  %0v        включить подробные сообщения о состоянии
+HELP_4=  %0t        тестовый режим
+HELP_5=  %0h        показать справочную информацию
+HELP_6=
+HELP_7=  %0i ?      включить элементы, соответствующие спецификации
+HELP_8=  %0I ?      включить элементы из списка файлов
+HELP_9=  %0e ?      исключить элементы, соответствующие спецификации
+HELP_10=  %0E ?      исключить элементы из списка файлов
+HELP_11=
+HELP_12=  %0d        исключить пустые каталоги
+HELP_13=  %0D        не выполнять рекурсивный поиск в подкаталогах
+HELP_14=  %0a        включить все скрытые и системные элементы
+HELP_15=  %0o        перезаписывать существующие файлы
+HELP_16=  %0k        не игнорировать регистр в именах файлов
+HELP_17=
+HELP_18=  %0g ?      указать категорию группы
+HELP_19=  %0s ?      размер для разбиения архива (K, M или байты). (только
+HELP_20=             при создании нового или переразбивке существующего)
+HELP_21=
+HELP_22=  %0y        автоматически принимать все запросы (кроме
+HELP_23=             перезаписи файлов).
+HELP_24=Операции, относящиеся ко всему архиву:
+HELP_25=
+HELP_26=  %0f ?      указать имя файла архива
+HELP_27=  %0c        создать новый архив
+HELP_28=  %0r        добавить в существующий архив
+HELP_29=  %0x        извлечь из существующего архива
+HELP_30=  %0R        сгенерировать отчет об архиве
+HELP_31=  %0O ?      задать целевой путь для извлечения
+HELP_32=
+HELP_33=Встроенный текст, уведомления и сообщения:
+HELP_34=
+HELP_35=  %0L ?      переопределить системный язык по умолчанию
+HELP_36=  %0m ?      встроить текст сообщения из файла
+HELP_37=  %0M ?      встроить текст из файла, требующий согласия пользователя
+HELP_38=
+HELP_39=Сжатие pass-through:
+HELP_40=
+HELP_41=  %0p ?      включить pass-through сжатие (GZ, возможно другие)
+HELP_42=
+
+; Reserved for future use
+; HELP_00=  %0u        update existing archive
+; HELP_00=  %0S        re-slice archive
+; HELP_00=  %0w        write verification
+; HELP_00=  %0z        use compression
+
+NEEDHELP=Непонятно? Для получения помощи используйте параметр "%0h".
+
+FATAL=КРИТИЧЕСКАЯ ОШИБКА:%_
+ERROR=ОШИБКА:%_
+BAD_OPT=Недопустимый параметр командной строки "%0%1"
+BAD_CMB=Невозможно объединить параметры "%0%1" и "%0%2"
+BAD_MCO=Отсутствуют данные командной строки для "%0%1"
+BAD_INT=Недопустимое числовое значение "%2" для "%0%1"
+BAD_VAL=Числовое значение "%2" вне диапазона "%3 - %4" для "%0%1"
+BAD_MAX=Превышено максимальное количество частей архива для "%1"
+BAD_VER=Архив "%1" может содержать неподдерживаемые структуры данных.
+BAD_EMB=Одновременно можно указать только один текстовый файл сообщения.
+BAD_MSG=Текст сообщения "%1" слишком велик. Усечено до %2.
+BAD_CMP=Неподдерживаемое pass-through сжатие "%2"
+BAD_TMP=Требуется каталог TEMP.
+ER_UNK=код ошибки #%0, неуточненная ошибка с "%1" %2
+ER_2=Файл "%1" не найден.
+ER_3=Путь к файлу "%1" не найден.
+ER_8=Упс, не хватает памяти.
+ER_11=Файл "%1" имеет нераспознанный формат.
+ER_13=Файл "%1" содержит поврежденные данные.
+ER_14=Прервано пользователем.
+ER_23=Несоответствие сигнатуры. Файл "%1" содержит поврежденные данные.
+
+; Used for date time stamps
+; DATE = %0 4 digit Year, %1 2 digit Month, %2 2 digit Day,
+;        %3 2 digit year, %4 1-2 digit Month, %5 1-2 digit day
+DATE=%2.%1.%0
+; TIME = %0 Hour (24 hour), %1 Minute, %2 Second
+;        %3 12 hour clock, %4 AM/PM
+TIME=%0:%1:%2
+AM=a
+PM=p
+; STAMP = %0 date, %1 time
+STAMP=%0 в %1
+
+BYTES=% байт
+KBYTES=% КиБ
+MBYTES=% МиБ
+FLOPPY=% дискета
