@@ -1,0 +1,98 @@
+# Language: Norwegian
+# File ending: no
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [alternativer]
+
+En tilstandstester. Den kan utfõre forskjellige kontroller som kan
+kokes ned til enten TRUE eller FALSE. Resultatet sendes som en
+errorlevel. NÜr svaret er TRUE, returneres en null. Hvis svaret er
+FALSE, returneres en 1. Bruk av feil syntaks og andre lignende feil
+vil returnere avslutningskode 100.
+
+Tester:
+
+    val1 /eq val2    verdier er like
+    val1 /ne val2    verdier er ikke like
+    val1 /ge val2    val1 er stõrre enn eller lik val2
+    val1 /le val2    val1 er mindre enn eller lik val2
+    val1 /gt val2    val1 er stõrre enn val2
+    val1 /lt val2    val1 er mindre enn val2
+    string           streng er ikke null
+    /n string        streng er ikke null
+    /z string        streng er null
+    /v number        nummer er gyldig
+    /f file          fil eksisterer
+    /d dir           sti eksisterer
+    /e file / dir    hvilken som helst type katalogpost
+
+Uttrykksoperatorer:
+
+    /c expression    Tving en verdi til Ü bli behandlet som en streng,
+                     og utfõr en versalfõlsom sammenligning.
+    /i expression    Tving en verdi til Ü bli behandlet som en streng,
+                     og utfõr en versaluavhengig sammenligning.
+    exp1 /and exp2   Begge uttrykk mÜ vëre TRUE.
+    exp1 /or /exp2   Hvilket som helst uttrykk kan vëre TRUE.
+    /not expression  Inverter resultatet av et uttrykk.
+
+Andre alternativer:
+
+    /tf              Vis TRUE eller FALSE nÜr den er ferdig.
+
+Som standard er sammenligning av verdier basert pÜ typen. Hvis
+begge verdier er et tall (representert i desimal eller heksadesimal),
+vil sammenligningen bli gjort matematisk. Ellers utfõres en
+versaluavhengig alfabetisk sammenligning. Bruk av enten /c eller /i
+alternativene vil tvinge frem en tekstbasert sammenligning uavhengig av
+verdiens datatype. En tom verdi har ingen numerisk verdi og vil tvinge
+de to elementene til Ü bli sammenlignet som strenger.
+
+Grunnleggende eksempler:
+
+En fil med navnet TEST.TXT eksisterer:       vtest /f TEST.TXT
+En fil med navnet TEST.TXT eksisterer ikke:  vtest /not /f TEST.TXT
+Enten fil A.TXT eller B.TXT eksisterer:      vtest /f A.TXT /or /f B.TXT
+Verken fil A.TXT eller B.TXT eksisterer:     vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 er et tall:                               vtest /v %1
+%1 er et tall fra 1 til 10:                  vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Mens alternativene /f, /d og /e tester for fil- eller katalogposter,
+kan de bruke uttrykksmodifikatorer som /not, /c og /i, og de stõtter
+ogsÜ jokertegn. NÜr filsystemet er sjekket for eksistensen av en
+matchende post, blir de verdien til det fõrste matchende filsystemelementet
+og kan behandles som verdier. Hvis ingen matchende post blir funnet,
+blir verdien null og vil mest sannsynlig fõre til at et uttrykk evalueres
+som FALSE.
+
+NÜr du utfõrer en sammenligning av to verdier, hvis hver verdi inneholder
+et gyldig tall (desimalt eller heksadesimalt), vil sammenligningen bli
+utfõrt numerisk. Hvis en av verdiene ikke er et tall, vil den bli
+sammenlignet alfabetisk. Selv om det er mulig Ü blande datatyper i en
+rekke sammenligninger, kan resultatet vëre vanskelig Ü forutsi, og det
+anbefales generelt ikke.
+
+Anfõrselstegn brukes IKKE for strenger med mellomrom. Anfõrselstegn
+behandles alltid som normale teksttegn. Kommandolinjeparseren vil bare
+skille strenger nÜr et SWITCH_CHAR (vanligvis /) oppdages. Dette er et
+akseptabelt eksempel:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+è bruke anfõrselstegn for Ü bare pakke inn strenger vil gi feilaktige
+resultater. Fõlgende eksempel vil ALLTID resultere i TRUE uansett verdien
+av %1:
+
+vtest /n "%1"
+
+Videre, hvis en streng inneholder et SWITCH_CHAR, vil delen som fõlger
+SWITCH_CHAR bli tolket som et programalternativ med mindre den er unnslippet
+ved Ü sette inn et ekstra SWITCH_CHAR. For eksempel vil "Y/N" bli tolket
+som strengen "Y" og deretter alternativet "/N". For Ü tolke begge som en
+streng ville det vëre "Y//N". For eksempel:
+
+vtest /n y//n

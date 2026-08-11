@@ -1,0 +1,135 @@
+# Language: Polish
+# File ending: pl
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Wydane na licencji GPL v2.0 License.
+****************************************************************************
+
+Umieszczenie mocy 8-cylindrowego silnika pod maską plików wsadowych DOS.
+
+============================================================================
+
+Projekt V8Power Tools jest projektowany we współpracy z
+Jim Hall dla systemu operacyjnego FreeDOS(TM) (http://www.freedos.org).
+Ma na celu rozszerzenie funkcjonalności skryptów pisanych przy użyciu
+plików wsadowych i zapewnienie im lepiej wyglądającego interfejsu
+użytkownika ze zwiększoną funkcjonalnością.
+
+============================================================================
+
+Kompilacja V8Power Tools
+
+    Wymagania wstępne:
+
+        Procesor 8086 lub lepszy.
+        Karta graficzna EGA lub lepsza.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) lub nowszy
+        NASM dla DOS w wersji 2.16.01 (http://wwww.nasm.us) lub nowszy
+
+    Kompilacja:
+
+        Upewnij się, że katalog NASM znajduje się w Twojej ścieżce.
+        Pobierz najnowsze źródła z http://github.com/LoopZ/V8Power
+        Uruchom skrypt mkV8.bat.
+        Wszystkie pliki wykonywalne zostaną umieszczone w nowo utworzonym
+        katalogu BIN.
+
+    Dla leniwych, takich jak ja:
+
+        Skompilowane wersje są dostępne na
+        http://up.lod.bz/V8Power.
+
+============================================================================
+
+Przetestowana kompatybilność V8Power Tools
+
+    FreeDOS 1.1+
+
+Ograniczona kompatybilność zaawansowanych funkcji (brak obsługi "set /p"
+w plikach wsadowych):
+
+    MS-DOS 6.2 i 6.22
+    PC-DOS 7.0, 7.01 i 2000
+    DR-DOS 7.03
+    DOSBox (przekierowanie we/wy lub zapytania z użyciem stdout NIE
+        będą działać przy użyciu wbudowanej powłoki DOSBox. Jednak
+        działają dobrze w DOSBox, gdy używana jest kompatybilna powłoka,
+        taka jak FreeCOM)
+    Windows 3.11 Shell
+    Windows 98 Shell i Command Line
+    Windows XP SP3 Shell (z wyjątkiem vcursor)
+
+============================================================================
+
+Korzystanie z V8Power Tools
+
+Oto kilka podstawowych informacji na temat wszystkich narzędzi i ich
+działania.
+
+    Opcje, wartości i liczby szesnastkowe nie rozróżniają wielkości liter
+    /f white to to samo co /F wHIte.
+
+    Liczby szesnastkowe mogą być poprzedzone prefiksem 0x, aby zapobiec
+    traktowaniu ich jako dziesiętnych. (Przykład: 10 i 0x10)
+
+    Spacje są w większości opcjonalne. /B7/f0 to to samo co /B 7 /F 0.
+    Ale nie / B7 / F0.
+
+    Aby użyć / lub spacji w wartości, umieść ją w cudzysłowie. Jak
+    "Jack and/or Jill".
+
+    Użyj wielu cudzysłowów, aby użyć cudzysłowów. Jak "Jack's house"
+    lub 'Say "What?"'.
+
+    O ile nie zostaną nadpisane, większość narzędzi używa atrybutu
+    tekstu w bieżącej lokalizacji kursora.
+
+============================================================================
+
+Oto tabela kolorów używana dla wszystkich przełączników /A, /F i /B:
+
+    Dziesiętny  Hex         Etykieta (Nie rozróżnia wielk. liter)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Tylko pierwszy plan /f i /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+Większość poszczególnych narzędzi obsługujących zmianę koloru
+obsługuje również zmianę ustawienia Blink/Intensity. Jednak większość
+narzędzi o tym nie wspomina.
+
+    /BlinkOn    Włącz bit Blink/Intensity. (Rozpocznij miganie)
+    /BlinkOff   Wyłącz bit Blink/Intensity. (Zatrzymaj miganie)
+
+============================================================================
+
+Wiersz poleceń DOS (i pliki wsadowe) jest ograniczony do około 128
+znaków. Może to utrudnić narzędziom takim jak vecho drukowanie wielu
+linii na raz. Jednak wiele narzędzi, takich jak vecho, vstr itp.
+obsługuje ładowanie zasobów tekstowych z pliku za pomocą przełącznika /T.
+Ogólnie przełącznik /T służy do dostarczania tekstu "Tłumaczenia"
+dla zadania wsadowego. Po załadowaniu z pliku narzędzie V8Power Tools
+jest ograniczone do 10 kilobajtów na linię. Poza tym narzędzie zignoruje
+wszelki pozostały tekst w tej linii. 10 kb to odpowiednik 5 ekranów lub
+więcej tekstu i jest przesadą.

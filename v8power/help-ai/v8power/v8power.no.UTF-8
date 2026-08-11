@@ -1,0 +1,131 @@
+# Language: Norwegian
+# File ending: no
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Utgitt under GPL v2.0 lisens.
+****************************************************************************
+
+Legger kraften fra en 8-sylindret motor under panseret på DOS batchfiler.
+
+============================================================================
+
+V8Power Tools-prosjektet utformes i samarbeid med
+Jim Hall for FreeDOS(TM) (http://www.freedos.org) operativsystemet. Det er
+ment å utvide funksjonaliteten til skript skrevet ved hjelp av batchfiler
+og gi dem et penere brukergrensesnitt med økt funksjonalitet.
+
+============================================================================
+
+Kompilering av V8Power Tools
+
+    Forutsetninger:
+
+        8086 eller bedre cpu.
+        EGA eller bedre videoadapter.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) eller nyere
+        NASM for DOS versjon 2.16.01 (http://wwww.nasm.us) eller nyere
+
+    Kompilering:
+
+        Sørg for at NASM-katalogen er i din banespesifikasjon.
+        Last ned de nyeste kildene fra http://github.com/LoopZ/V8Power
+        Kjør mkV8.bat-skriptet.
+        Alle kjørbare filer vil bli plassert i nyopprettet BIN-katalog.
+
+    For late mennesker, som meg:
+
+        Ferdigkompilerte versjoner er tilgjengelige på
+        http://up.lod.bz/V8Power.
+
+============================================================================
+
+V8Power Tools Testet Kompatibilitet
+
+    FreeDOS 1.1+
+
+Begrenset kompatibilitet av avanserte funksjoner (ingen "set /p" batch
+støtte):
+
+    MS-DOS 6.2 og 6.22
+    PC-DOS 7.0, 7.01 og 2000
+    DR-DOS 7.03
+    DOSBox (i/o-omdirigering eller spørringer ved hjelp av stdout vil IKKE
+        fungere med det innebygde DOSBox-skallet. Imidlertid fungerer de
+        fint i DOSBox når et kompatibelt skall som FreeCOM brukes)
+    Windows 3.11 Shell
+    Windows 98 Shell og Command Line
+    Windows XP SP3 Shell (unntatt vcursor)
+
+============================================================================
+
+V8Power Tools Bruk
+
+Her er litt grunnleggende informasjon om alle verktøy og hvordan de
+fungerer.
+
+    Alternativer, verdier og heksadesimale tall skiller ikke mellom store og
+    små bokstaver /f white er det samme som /F wHIte.
+
+    Heksadesimale tall kan forhåndfestes med 0x for å forhindre at de
+    behandles som base ti. (Eksempel: 10 og 0x10)
+
+    Mellomrom er for det meste valgfrie. /B7/f0 er det samme som
+    /B 7 /F 0. Men ikke / B7 / F0.
+
+    For å bruke en / eller mellomrom i en verdi, legg den i anførselstegn.
+    Som "Jack and/or Jill".
+
+    Bruk flere anførselstegn for å bruke anførselstegn. Som "Jack's house"
+    eller 'Say "What?"'.
+
+    Med mindre det overstyres, bruker de fleste verktøy tekstattributten
+    på gjeldende markørplassering.
+
+============================================================================
+
+Her er fargetabellen brukt for alle /A, /F og /B brytere:
+
+    Desimal     Hex         Etikett (Skiller ikke mellom store/små)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Bare forgrunn /f og /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+De fleste av de individuelle verktøyene som støtter fargeendring støtter
+også endring av Blink/Intensity-innstillingen. De fleste verktøy nevner
+det imidlertid ikke.
+
+    /BlinkOn    Aktiver Blink/Intensity bit. (Begynn å blinke)
+    /BlinkOff   Deaktiver Blink/Intensity bit. (Slutt å blinke)
+
+============================================================================
+
+DOS-kommandolinjen (og batchfiler) er begrenset til omtrent 128 tegn.
+Dette kan gjøre det vanskelig for verktøy som vecho å skrive ut flere
+linjer samtidig. Imidlertid støtter mange verktøy som vecho, vstr osv.
+innlasting av tekstressurser fra en fil ved hjelp av /T-bryteren.
+Generelt brukes /T-bryteren for å gi "Oversettelse" tekst for en batch.
+Når lastet fra fil, er V8Power Tools-verktøyet begrenset til 10 kilobyte
+per linje. Utover det vil verktøyet ignorere all gjenværende tekst på den
+linjen. 10kb er lik 5 skjermer eller mer med tekst og er i overkant.

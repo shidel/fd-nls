@@ -1,0 +1,97 @@
+# Language: Lithuanian
+# File ending: lt
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [parinktys]
+
+B×senos tikrintojas. Jis gali atlikti Ôvairius patikrinimus, kurie gali
+b×ti suvesti Ô TRUE arba FALSE. Rezultatas perduodamas kaip errorlevel.
+Kai atsakymas yra TRUE, grĞØinamas nulis. Jei atsakymas yra FALSE,
+grĞØinamas 1. Neteisingos sintaksÓs naudojimas ir kitos panaÕios
+klaidos grĞØins iÕÓjimo kodĞ 100.
+
+Testai:
+
+    val1 /eq val2    reikÕmÓs yra lygios
+    val1 /ne val2    reikÕmÓs nelygios
+    val1 /ge val2    val1 yra didesnÓ arba lygi val2
+    val1 /le val2    val1 yra maØesnÓ arba lygi val2
+    val1 /gt val2    val1 yra didesnÓ nei val2
+    val1 /lt val2    val1 yra maØesnÓ nei val2
+    string           eilutÓ nÓra null
+    /n string        eilutÓ nÓra null
+    /z string        eilutÓ yra null
+    /v number        skaiÑius yra galiojantis
+    /f file          failas egzistuoja
+    /d dir           kelias egzistuoja
+    /e file ar dir   bet kokio tipo katalogo ÔraÕas
+
+IÕraiÕkos operatoriai:
+
+    /c expression    PriverÑia vertinti reikÕmÒ kaip eilutÒ ir
+                     atlieka didØiosioms raidÓms jautrÖ palyginimĞ.
+    /i expression    PriverÑia vertinti reikÕmÒ kaip eilutÒ ir
+                     atlieka didØiosioms raidÓms nejautrÖ palyginimĞ.
+    exp1 /and exp2   Abi iÕraiÕkos turi b×ti TRUE.
+    exp1 /or /exp2   Bet kuri iÕraiÕka gali b×ti TRUE.
+    /not expression  Apversti iÕraiÕkos rezultatĞ.
+
+Kitos parinktys:
+
+    /tf              Baigus rodyti TRUE arba FALSE.
+
+Pagal numatytuosius nustatymus reikÕmiÖ palyginimas grindØiamas jÖ
+tipu. Jei abi reikÕmÓs yra skaiÑius (pateiktas deÕimtainiu arba
+ÕeÕioliktainiu formatu), palyginimas bus atliekamas matematiÕkai. PrieÕingu
+atveju bus atliktas didØiosioms raidÓms nejautrus abÓcÓlinis palyginimas.
+Naudojant parinktis /c arba /i, bus priverstinai atliekamas teksto
+palyginimas, neatsiØvelgiant Ô reikÕmÓs duomenÖ tipĞ. TuÕÑia reikÕmÓ neturi
+skaitinÓs reikÕmÓs ir privers abu elementus lyginti kaip eilutes.
+
+Pagrindiniai pavyzdØiai:
+
+Failas pavadinimu TEST.TXT egzistuoja:       vtest /f TEST.TXT
+Failo pavadinimu TEST.TXT nÓra:              vtest /not /f TEST.TXT
+Egzistuoja failas A.TXT arba B.TXT:          vtest /f A.TXT /or /f B.TXT
+Neegzistuoja nei failas A.TXT, nei B.TXT:    vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 yra skaiÑius:                             vtest /v %1
+%1 yra skaiÑius nuo 1 iki 10:                vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Nors /f, /d ir /e parinktys testuoja failÖ ar katalogÖ ÔraÕus, jos
+gali naudoti iÕraiÕkÖ modifikatorius, pvz., /not, /c ir /i, taip pat
+palaiko pakaitos simbolius. Kai failÖ sistemoje patikrinama, ar yra
+atitinkamas ÔraÕas, jie tampa pirmojo atitinkanÑio failÖ sistemos
+elemento reikÕme ir gali b×ti traktuojami kaip reikÕmÓs. Jei atitinkanÑio
+ÔraÕo nerandama, reikÕmÓ tampa null ir greiÑiausiai lems tai, kad iÕraiÕka
+bus Ôvertinta kaip FALSE.
+
+Atliekant dviejÖ reikÕmiÖ palyginimĞ, jei kiekvienoje reikÕmÓje yra
+galiojantis skaiÑius (deÕimtainis arba ÕeÕioliktainis), palyginimas
+bus atliekamas skaitmeniÕkai. Jei kuri nors reikÕmÓ nÓra skaiÑius, ji
+bus lyginama abÓcÓlÓs tvarka. Nors palyginimÖ serijoje galima maiÕyti
+duomenÖ tipus, rezultatĞ gali b×ti sunku nuspÓti ir tai paprastai
+nerekomenduojama.
+
+KabutÓs N¸RA naudojamos eilutÓms su tarpais. KabuÑiÖ simboliai visada
+traktuojami kaip paprasti teksto simboliai. KomandÖ eilutÓs analizatorius
+atskirs eilutes tik tada, kai bus aptiktas SWITCH_CHAR (paprastai /).
+Tai priimtinas pavyzdys:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Naudojant kabutes norint tiesiog apgaubti eilutes, bus gauti klaidingi
+rezultatai. ¾is pavyzdys VISADA duos TRUE rezultatĞ, nepaisant %1 reikÕmÓs:
+
+vtest /n "%1"
+
+Be to, jei eilutÓje yra SWITCH_CHAR, dalis po SWITCH_CHAR bus
+interpretuojama kaip programos parinktis, nebent ji b×tÖ iÕvengta
+Ôterpiant papildomĞ SWITCH_CHAR. PavyzdØiui, ÷Y/Nò b×tÖ interpretuojama
+kaip eilutÓ ÷Yò, o po to parinktis ÷/Nò. Norint abu interpretuoti kaip
+eilutÒ, tai b×tÖ ÷Y//Nò. PavyzdØiui:
+
+vtest /n y//n

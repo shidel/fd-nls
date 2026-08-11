@@ -1,0 +1,99 @@
+# Language: Danish
+# File ending: dk
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [muligheder]
+
+En tilstandstester. Den kan udf›re forskellige kontroller, der kan
+koges ned til enten TRUE eller FALSE. Resultatet sendes som en
+errorlevel. N†r svaret er TRUE, returneres et nul. Hvis svaret er
+FALSE, returneres et 1. Brug af forkert syntaks og andre lignende
+fejl vil returnere afslutningskode 100.
+
+Tests:
+
+    val1 /eq val2    v‘rdier er ens
+    val1 /ne val2    v‘rdier er ikke ens
+    val1 /ge val2    val1 er st›rre end eller lig med val2
+    val1 /le val2    val1 er mindre end eller lig med val2
+    val1 /gt val2    val1 er st›rre end val2
+    val1 /lt val2    val1 er mindre end val2
+    string           streng er ikke null
+    /n string        streng er ikke null
+    /z string        streng er null
+    /v number        nummer er gyldigt
+    /f file          fil eksisterer
+    /d dir           sti eksisterer
+    /e file / dir    enhver form for bibliotekspost
+
+Udtryksoperatorer:
+
+    /c expression    Gennemtving at en v‘rdi behandles som en streng,
+                     og udf›r en versalf›lsom sammenligning.
+    /i expression    Gennemtving at en v‘rdi behandles som en streng,
+                     og udf›r en versaluafh‘ngig sammenligning.
+    exp1 /and exp2   Begge udtryk skal v‘re TRUE.
+    exp1 /or /exp2   Ethvert af udtrykkene kan v‘re TRUE.
+    /not expression  Inverter resultatet af et udtryk.
+
+Andre muligheder:
+
+    /tf              Vis TRUE eller FALSE, n†r den er f‘rdig.
+
+Som standard er sammenligning af v‘rdier baseret p† deres type. Hvis
+begge v‘rdier er et tal (repr‘senteret i decimal eller hexadecimal),
+vil sammenligningen blive foretaget matematisk. Ellers udf›res en
+versaluafh‘ngig alfabetisk sammenligning. Brug af enten /c eller /i
+mulighederne vil gennemtvinge en tekstbaseret sammenligning,
+uanset v‘rdiens datatype. En tom v‘rdi har ingen numerisk v‘rdi og vil
+tvinge de to elementer til at blive sammenlignet som strenge.
+
+Grundl‘ggende eksempler:
+
+En fil med navnet TEST.TXT eksisterer:       vtest /f TEST.TXT
+En fil med navnet TEST.TXT eksisterer ikke:  vtest /not /f TEST.TXT
+Enten fil A.TXT eller B.TXT eksisterer:      vtest /f A.TXT /or /f B.TXT
+Hverken fil A.TXT eller B.TXT eksisterer:    vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 er et tal:                                vtest /v %1
+%1 er et tal fra 1 til 10:                   vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Mens mulighederne /f, /d og /e tester for fil- eller biblioteksposter,
+kan de bruge udtryksmodifikatorer som /not, /c og /i, og de underst›tter
+ogs† jokervildegn. N†r filsystemet er blevet kontrolleret for eksistensen
+af en matchende post, bliver de v‘rdien af det f›rste matchende
+filsystemelement og kan behandles som v‘rdier. Hvis der ikke findes nogen
+matchende post, bliver v‘rdien null og vil h›jst sandsynligt f† et udtryk
+til at blive evalueret som FALSE.
+
+N†r man udf›rer en sammenligning af to v‘rdier, hvis hver v‘rdi indeholder
+et gyldigt tal (decimalt eller hexadecimalt), vil sammenligningen blive
+udf›rt numerisk. Hvis en af v‘rdierne ikke er et tal, vil den blive
+sammenlignet alfabetisk. Selvom det er muligt at blande datatyper i en
+r‘kke sammenligninger, kan resultatet v‘re sv‘rt at forudsige, og det
+anbefales generelt ikke.
+
+Anf›rselstegn bruges IKKE til strenge med mellemrum. Anf›rselstegn
+behandles altid som normale teksttegn. Kommandolinjeparseren vil kun
+adskille strenge, n†r et SWITCH_CHAR (normalt /) opdages. Dette er et
+acceptabelt eksempel:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Brug af anf›rselstegn til simpelthen at indpakke strenge vil give
+fejlagtige resultater. F›lgende eksempel vil ALTID resultere i TRUE,
+uanset v‘rdien af %1:
+
+vtest /n "%1"
+
+Desuden, hvis en streng indeholder et SWITCH_CHAR, vil den del, der
+f›lger efter SWITCH_CHAR, blive fortolket som en programindstilling,
+medmindre den undviges ved at inds‘tte et ekstra SWITCH_CHAR. For
+eksempel vil "Y/N" blive fortolket som strengen "Y" efterfulgt af
+indstillingen "/N". For at fortolke begge som en streng ville det v‘re
+"Y//N". For eksempel:
+
+vtest /n y//n

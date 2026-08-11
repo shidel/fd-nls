@@ -1,0 +1,71 @@
+# Language: Danish
+# File ending: dk
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vinfo [options]
+Generelt systeminformationsv‘rkt›j.
+    [none]      G›r intet.
+    /V          Detaljeret tilstand.
+    /D a        Test drevstatus.
+                Returnerer disse errorlevel:
+                   15 - Ikke til stede
+                    5 - Ikke formateret (til DOS)
+                    4 - Netv‘rksdrev (ikke testet)
+                    3 - CD/DVD-ROM (kun MSCDEX, de fleste giver 15)
+                    2 - Flytbart medie (som diskette)
+                    1 - (Reserveret)
+                    0 - Ingen s‘rlige betingelser
+    /M          Returnerer maskintype (kan fejle i fremtiden)
+                Returnerer disse errorlevel:
+                    0 - Ukendt, normal eller indbygget 8086-hardware.
+                    1 - 80186
+                    2 - 80286
+                    3 - 80386
+                    4 - 80486
+                    5 - 80586
+                    6 - 80686 eller bedre
+                  101 - DOSBox.
+                  102 - QEMU.
+                  103 - VirtualBox.
+                  104 - VMware.
+                  105 - Bochs.
+    /P          Samme som /M-kontakt, men udelukker test for
+                virtuelle maskiner.
+    /T          Samme som /M-kontakt, men inkluderer generel
+                emulatortest.
+                  200 - Generelt, anden emulator opdaget.
+    /E n        Test fysisk harddisk #n (1, 2, osv.) for MBR-status
+                    0 - MBR er helt tom
+                    5 - MBR indeholder kun partitionsinformation
+                   10 - MBR indeholder en bootkode
+                  101 - Der opstod en fejl
+    /G          Grafik
+                    0 - Ukendt
+                    1 - MDA
+                    2 - HGC
+                    3 - HGCPlus
+                    4 - InColor
+                    5 - CGA
+                    6 - EGA
+                    7 - MCGA
+                    8 - VGA
+                    9 - VESA/SuperVGA
+
+Flere indstillinger, der mest er nyttige for programm›rer og FoU. De
+har v‘ret tilg‘ngelige et stykke tid, men er ikke officielt (af mig)
+en del af V8Power Tools API'et og kan ‘ndres/fjernes n†r som helst.
+Men da jeg bruger nogle af dem, f†r de m†ske deres egne v‘rkt›jer.
+    ASCII       Vis hele ASCII-tabellen
+    RAM         Dump hele den konventionelle hukommelse til StdOut.
+    /C * Udskriv ASCII-v‘rdier for resten af kommandolinjen
+    /R string   S›g i hele den konventionelle hukommelse efter string
+    /U string   S›g i hukommelse (fra a000:0000) efter string uden
+                forskel p† store og sm† bogstaver
+    /J pos * Returner ASCII-v‘rdi for tegnet p† pos i resten
+                af kommandolinjen som errorlevel. 0 returneres,
+                hvis positionen ikke blev fundet.
+    /K pos * Samme som /J, men f›rst konverteret til store
+                bogstaver.
+    tba         (Stadig under udvikling, mere vil blive annonceret)

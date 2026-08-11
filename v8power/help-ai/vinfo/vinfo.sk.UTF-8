@@ -1,0 +1,68 @@
+# Language: Slovak
+# File ending: sk
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vinfo [options]
+Všeobecný nástroj pre systémové informácie.
+    [none]      Nerobí nič.
+    /V          Podrobný režim.
+    /D a        Testuje stav jednotky.
+                Vracia tieto errorlevel:
+                   15 - Nie je k dispozícii
+                    5 - Nenaformátované (pre DOS)
+                    4 - Sieťová jednotka (netestované)
+                    3 - CD/DVD-ROM (Iba MSCDEX, väčšina vracia 15)
+                    2 - Vymeniteľné médium (napr. disketa)
+                    1 - (Vyhradené)
+                    0 - Žiadne špeciálne podmienky
+    /M          Vráti typ počítača (môže zlyhať na budúcich platformách)
+                Vracia tieto errorlevel:
+                    0 - Neznámy, normálny alebo natívny 8086 hardvér.
+                    1 - 80186
+                    2 - 80286
+                    3 - 80386
+                    4 - 80486
+                    5 - 80586
+                    6 - 80686 alebo lepší
+                  101 - DOSBox.
+                  102 - QEMU.
+                  103 - VirtualBox.
+                  104 - VMware.
+                  105 - Bochs.
+    /P          Rovnaké ako /M, ale vynechá test pre virtuálne stroje.
+    /T          Rovnaké ako /M, ale zahŕňa všeobecný test emulátora.
+                  200 - Všeobecný, detegovaný iný emulátor.
+    /E n        Testuje fyzický pevný disk #n (1, 2 atď.) na stav MBR
+                    0 - MBR je úplne prázdny
+                    5 - MBR obsahuje iba informácie o oddieloch
+                   10 - MBR obsahuje zavádzací kód
+                  101 - Vyskytla sa chyba
+    /G          Grafika
+                    0 - Neznáma
+                    1 - MDA
+                    2 - HGC
+                    3 - HGCPlus
+                    4 - InColor
+                    5 - CGA
+                    6 - EGA
+                    7 - MCGA
+                    8 - VGA
+                    9 - VESA/SuperVGA
+
+Ďalšie voľby užitočné hlavne pre programátorov a výskum. Sú k dispozícii
+už dlho, ale oficiálne (odo mňa) nie sú súčasťou API V8Power Tools a môžu
+byť kedykoľvek zmenené alebo odstránené. Keďže ale niektoré používam, možno
+z nich vzniknú samostatné nástroje.
+    ASCII       Zobrazí celú tabuľku ASCII
+    RAM         Vypíše celú konvenčnú pamäť na StdOut.
+    /C * Vypíše hodnoty ASCII pre zvyšok príkazového riadka
+    /R string   Hľadá string v celej konvenčnej pamäti
+    /U string   Hľadá string v pamäti (od a000:0000) bez ohľadu na veľké a
+                malé písmená
+    /J pos * Vráti hodnotu ASCII znaku na pozícii pos vo zvyšku
+                príkazového riadka ako errorlevel. Vráti 0, ak
+                pozícia nebola nájdená.
+    /K pos * Rovnaké ako /J, ale najprv prevedené na veľké písmená.
+    tba         (Stále vo vývoji, ďalšie budú oznámené)

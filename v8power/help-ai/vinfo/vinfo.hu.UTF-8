@@ -1,0 +1,68 @@
+# Language: Hungarian
+# File ending: hu
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vinfo [options]
+Általános rendszerinformációs segédprogram.
+    [none]      Nem csinál semmit.
+    /V          Részletes mód.
+    /D a        Meghajtó állapotának tesztelése.
+                A következő errorlevel értékeket adja:
+                   15 - Nincs jelen
+                    5 - Nincs formázva (DOS-hoz)
+                    4 - Hálózati meghajtó (nem tesztelt)
+                    3 - CD/DVD-ROM (Csak MSCDEX, a legtöbb 15-öt ad)
+                    2 - Cserélhető adathordozó (pl. hajlékonylemez)
+                    1 - (Fenntartva)
+                    0 - Nincsenek különleges feltételek
+    /M          Gép típusának visszaadása (később hibázhat)
+                A következő errorlevel értékeket adja:
+                    0 - Ismeretlen, normál vagy natív 8086 hardver.
+                    1 - 80186
+                    2 - 80286
+                    3 - 80386
+                    4 - 80486
+                    5 - 80586
+                    6 - 80686 vagy jobb
+                  101 - DOSBox.
+                  102 - QEMU.
+                  103 - VirtualBox.
+                  104 - VMware.
+                  105 - Bochs.
+    /P          Mint az /M, de kihagyja a virtuális gépek tesztjét.
+    /T          Mint az /M, de tartalmaz általános emulátortesztet.
+                  200 - Általános, más emulátor észlelve.
+    /E n        #n (1, 2, stb.) fizikai merevlemez MBR állapota
+                    0 - Az MBR teljesen üres
+                    5 - Az MBR csak partícióinformációkat tartalmaz
+                   10 - Az MBR rendszerindító kódot tartalmaz
+                  101 - Hiba történt
+    /G          Grafika
+                    0 - Ismeretlen
+                    1 - MDA
+                    2 - HGC
+                    3 - HGCPlus
+                    4 - InColor
+                    5 - CGA
+                    6 - EGA
+                    7 - MCGA
+                    8 - VGA
+                    9 - VESA/SuperVGA
+
+További opciók, amelyek leginkább programozóknak és K+F-hez hasznosak.
+Már egy ideje elérhetők, de hivatalosan (általam) nem részei a
+V8Power Tools API-nak, és bármikor megváltozhatnak vagy eltávolíthatók.
+De mivel használok néhányat, talán saját segédprogramot kapnak.
+    ASCII       A teljes ASCII tábla megjelenítése
+    RAM         A teljes hagyományos memória kiíratása a StdOut-ra.
+    /C * ASCII értékek kiírása a parancssor hátralévő részéhez
+    /R string   A string keresése a teljes hagyományos memóriában
+    /U string   A string keresése a memóriában (a000:0000-tól) kis-
+                és nagybetűk megkülönböztetése nélkül
+    /J pos * A karakter ASCII értékének visszaadása a pos helyen a
+                parancssor hátralévő részéből mint errorlevel. 0 a
+                visszatérési érték, ha a pozíció nem található.
+    /K pos * Mint a /J, de először nagybetűssé alakítva.
+    tba         (Még fejlesztés alatt, továbbiak később)

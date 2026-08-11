@@ -1,0 +1,72 @@
+# Language: Norwegian
+# File ending: no
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vinfo [options]
+Generelt verktøy for systeminformasjon.
+    [none]      Gjør ingenting.
+    /V          Detaljert modus.
+    /D a        Test stasjonsstatus.
+                Returnerer disse errorlevel:
+                   15 - Ikke til stede
+                    5 - Ikke formatert (for DOS)
+                    4 - Nettverksstasjon (ikke testet)
+                    3 - CD/DVD-ROM (kun MSCDEX, de fleste gir 15)
+                    2 - Flyttbart medium (som diskett)
+                    1 - (Reservert)
+                    0 - Ingen spesielle betingelser
+    /M          Returnerer maskintype (kan feile i fremtiden)
+                Returnerer disse errorlevel:
+                    0 - Ukjent, normal eller innebygd 8086-maskinvare.
+                    1 - 80186
+                    2 - 80286
+                    3 - 80386
+                    4 - 80486
+                    5 - 80586
+                    6 - 80686 eller bedre
+                  101 - DOSBox.
+                  102 - QEMU.
+                  103 - VirtualBox.
+                  104 - VMware.
+                  105 - Bochs.
+    /P          Samme som /M-bryter, men ekskluderer test for
+                virtuelle maskiner.
+    /T          Samme som /M-bryter, men inkluderer generell
+                emulatortest.
+                  200 - Generell, annen emulator oppdaget.
+    /E n        Test fysisk harddisk #n (1, 2, osv) for MBR-status
+                    0 - MBR er helt tom
+                    5 - MBR inneholder kun partisjonsinformasjon
+                   10 - MBR inneholder en oppstartskode
+                  101 - Det oppstod en feil
+    /G          Grafikk
+                    0 - Ukjent
+                    1 - MDA
+                    2 - HGC
+                    3 - HGCPlus
+                    4 - InColor
+                    5 - CGA
+                    6 - EGA
+                    7 - MCGA
+                    8 - VGA
+                    9 - VESA/SuperVGA
+
+Flere alternativer som stort sett kun er nyttige for programmerere
+og FoU. De har vært tilgjengelige en stund, men er ikke offisielt
+(av meg) en del av V8Power Tools API og kan endres/fjernes når som
+helst. Men siden jeg bruker noen av dem, får de kanskje sine egne
+verktøy senere.
+    ASCII       Vis hele ASCII-tabellen
+    RAM         Dump hele det konvensjonelle minnet til StdOut.
+    /C * Skriv ASCII-verdier for resten av kommandolinjen
+    /R string   Søk i hele det konvensjonelle minnet etter string
+    /U string   Søk i minnet (fra a000:0000) etter string uavhengig
+                av store/små bokstaver
+    /J pos * Returner ASCII-verdi for tegnet på pos i resten av
+                kommandolinjen som errorlevel. 0 returneres hvis
+                posisjonen ikke ble funnet.
+    /K pos * Samme som /J, men først konvertert til store
+                bokstaver.
+    tba         (Fortsatt under utvikling, mer vil bli kunngjort)

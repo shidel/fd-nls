@@ -1,0 +1,70 @@
+# Language: Polish
+# File ending: pl
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vinfo [options]
+Ogólne narzędzie informacji o systemie.
+    [none]      Nic nie robi.
+    /V          Tryb szczegółowy.
+    /D a        Testuje stan dysku.
+                Zwraca następujące errorlevel:
+                   15 - Brak
+                    5 - Nie sformatowany (dla DOS)
+                    4 - Dysk sieciowy (nietestowany)
+                    3 - CD/DVD-ROM (tylko MSCDEX, większość zwraca 15)
+                    2 - Nośnik wymienny (jak dyskietka)
+                    1 - (Zarezerwowany)
+                    0 - Brak specjalnych warunków
+    /M          Zwraca typ maszyny (może nie działać w przyszłości)
+                Zwraca następujące errorlevel:
+                    0 - Nieznany, normalny lub natywny sprzęt 8086.
+                    1 - 80186
+                    2 - 80286
+                    3 - 80386
+                    4 - 80486
+                    5 - 80586
+                    6 - 80686 lub lepszy
+                  101 - DOSBox.
+                  102 - QEMU.
+                  103 - VirtualBox.
+                  104 - VMware.
+                  105 - Bochs.
+    /P          Tak samo jak przełącznik /M, ale pomija test maszyn
+                wirtualnych.
+    /T          Tak samo jak przełącznik /M, ale obejmuje ogólny test
+                emulatora.
+                  200 - Ogólny, wykryto inny emulator.
+    /E n        Testuj fizyczny dysk twardy #n (1, 2, itp.) pod kątem MBR
+                    0 - MBR jest całkowicie pusty
+                    5 - MBR zawiera tylko informacje o partycjach
+                   10 - MBR zawiera kod rozruchowy
+                  101 - Wystąpił błąd
+    /G          Grafika
+                    0 - Nieznana
+                    1 - MDA
+                    2 - HGC
+                    3 - HGCPlus
+                    4 - InColor
+                    5 - CGA
+                    6 - EGA
+                    7 - MCGA
+                    8 - VGA
+                    9 - VESA/SuperVGA
+
+Więcej opcji, które są przydatne głównie dla programistów i R&D. Są
+dostępne od jakiegoś czasu, ale oficjalnie (przeze mnie) nie są częścią
+API V8Power Tools i mogą ulec zmianie lub usunięciu w dowolnym momencie.
+Ale ponieważ używam niektórych z nich, mogą stać się osobnymi programami.
+    ASCII       Wyświetla całą tabelę ASCII
+    RAM         Zrzuca całą pamięć konwencjonalną do StdOut.
+    /C * Wyprowadza wartości ASCII dla reszty wiersza poleceń
+    /R string   Szuka string w całej pamięci konwencjonalnej
+    /U string   Szuka string w pamięci (od a000:0000) bez uwzględniania
+                wielkości liter
+    /J pos * Zwraca wartość ASCII znaku na pos w reszcie wiersza
+                poleceń jako errorlevel. 0 jest zwracane, jeśli pozycji
+                nie znaleziono.
+    /K pos * Podobnie jak /J, ale najpierw zamienione na wielkie litery.
+    tba         (Wciąż w fazie rozwoju, więcej zostanie ogłoszone)

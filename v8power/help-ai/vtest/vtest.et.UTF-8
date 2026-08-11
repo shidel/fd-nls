@@ -1,0 +1,95 @@
+# Language: Estonian
+# File ending: et
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [valikud]
+
+Olekutestija. See võib teha erinevaid kontrolle, mida saab taandada kas
+TRUE või FALSE olekule. Tulemus edastatakse kui errorlevel. Kui vastus
+on TRUE, tagastatakse null. Kui vastus on FALSE, tagastatakse 1. Vale
+süntaksi ja muude sarnaste vigade kasutamine tagastab väljumiskoodi 100.
+
+Testid:
+
+    val1 /eq val2    väärtused on võrdsed
+    val1 /ne val2    väärtused ei ole võrdsed
+    val1 /ge val2    val1 on suurem või võrdne val2-ga
+    val1 /le val2    val1 on väiksem või võrdne val2-ga
+    val1 /gt val2    val1 on suurem kui val2
+    val1 /lt val2    val1 on väiksem kui val2
+    string           string ei ole null
+    /n string        string ei ole null
+    /z string        string on null
+    /v number        number on kehtiv
+    /f file          fail on olemas
+    /d dir           kataloog on olemas
+    /e file või dir  mis tahes tüüpi kataloogikirje
+
+Avaldise operaatorid:
+
+    /c expression    Sunnib väärtust käsitlema stringina ja sooritab
+                     tõstutundliku võrdluse.
+    /i expression    Sunnib väärtust käsitlema stringina ja sooritab
+                     tõstutundetu võrdluse.
+    exp1 /and exp2   Mõlemad avaldised peavad olema TRUE.
+    exp1 /or /exp2   Kumbki avaldis võib olla TRUE.
+    /not expression  Pöörab avaldise tulemuse ümber.
+
+Muud valikud:
+
+    /tf              Kuvab lõpetamisel TRUE või FALSE.
+
+Vaikimisi põhineb väärtuste võrdlemine nende tüübil. Kui mõlemad
+väärtused on numbrid (esitatud kümnend- või kuueteistkümnendsüsteemis),
+tehakse võrdlus matemaatiliselt. Muul juhul tehakse tõstutundetu
+tähestikuline võrdlus. Valiku /c või /i kasutamine sunnib
+tekstipõhisele võrdlusele olenemata väärtuse andmetüübist. Tühjal
+väärtusel pole arvväärtust ja see sunnib kahte elementi võrdlema
+stringidena.
+
+Põhinäited:
+
+Fail nimega TEST.TXT on olemas:              vtest /f TEST.TXT
+Faili nimega TEST.TXT ei ole olemas:         vtest /not /f TEST.TXT
+Eksisteerib fail A.TXT või B.TXT:            vtest /f A.TXT /or /f B.TXT
+Ei eksisteeri faili A.TXT ega B.TXT:         vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 on arv:                                   vtest /v %1
+%1 on arv vahemikus 1 kuni 10:               vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Kuigi valikud /f, /d ja /e testivad faili- või kataloogikirjeid,
+saavad nad kasutada avaldise muutjaid nagu /not, /c ja /i ning
+toetavad ka metamärke. Kui failisüsteemi on kontrollitud vastava kirje
+olemasolu suhtes, saavad neist esimese vastava failisüsteemi elemendi
+väärtus ja neid saab käsitleda väärtustena. Kui vastavat kirjet ei
+leita, muutub väärtus nulliks ja põhjustab suure tõenäosusega avaldise
+hindamise olekuks FALSE.
+
+Kahe väärtuse võrdlemisel, kui kumbki väärtus sisaldab kehtivat arvu
+(kümnend- või kuueteistkümnendsüsteem), tehakse võrdlus numbriliselt.
+Kui kumbki väärtus pole arv, võrreldakse neid tähestiku järgi. Ehkki
+andmetüüpe on võimalik võrdluste seerias segada, võib tulemust olla
+raske ennustada ja seda üldiselt ei soovitata.
+
+Jutumärke EI kasutata tühikutega stringide puhul. Jutumärke
+käsitletakse alati tavaliste tekstikomponentidena. Käsurea parser
+eraldab stringid ainult siis, kui tuvastatakse SWITCH_CHAR (tavaliselt
+/). See on vastuvõetav näide:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Jutumärkide kasutamine stringide lihtsalt mähkimiseks annab vigaseid
+tulemusi. Järgmine näide toob ALATI kaasa TRUE sõltumata %1 väärtusest:
+
+vtest /n "%1"
+
+Lisaks, kui string sisaldab SWITCH_CHAR-i, tõlgendatakse SWITCH_CHAR-ile
+järgnevat osa programmi valikuna, välja arvatud juhul, kui see
+kõrvaldatakse täiendava SWITCH_CHAR-i lisamisega. Näiteks "Y/N"
+tõlgendataks stringina "Y" ja seejärel valikuna "/N". Et mõlemat
+stringina tõlgendada, oleks see "Y//N". Näiteks:
+
+vtest /n y//n

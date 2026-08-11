@@ -1,0 +1,101 @@
+# Language: Hungarian
+# File ending: hu
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [kapcsolók]
+
+Egy állapottesztelő. Különféle ellenőrzéseket végezhet, amelyek TRUE vagy
+FALSE értékre redukálhatók. Az eredmény errorlevel-ként kerül átadásra.
+Amikor a válasz TRUE, nulla adódik vissza. Ha a válasz FALSE, 1 adódik
+vissza. Helytelen szintaxis és más hasonló hibák használata 100-as
+kilépési kódot ad vissza.
+
+Tesztek:
+
+    val1 /eq val2    az értékek egyenlőek
+    val1 /ne val2    az értékek nem egyenlőek
+    val1 /ge val2    val1 nagyobb vagy egyenlő, mint val2
+    val1 /le val2    val1 kisebb vagy egyenlő, mint val2
+    val1 /gt val2    val1 nagyobb, mint val2
+    val1 /lt val2    val1 kisebb, mint val2
+    string           a karakterlánc nem null
+    /n string        a karakterlánc nem null
+    /z string        a karakterlánc null
+    /v number        a szám érvényes
+    /f file          a fájl létezik
+    /d dir           az elérési út létezik
+    /e file vagy dir bármilyen típusú könyvtárbejegyzés
+
+Kifejezés operátorok:
+
+    /c expression    Kényszeríti, hogy az érték karakterláncként legyen
+                     kezelve, és kis- és nagybetűkre érzékeny
+                     összehasonlítást végez.
+    /i expression    Kényszeríti, hogy az érték karakterláncként legyen
+                     kezelve, és kis- és nagybetűket nem megkülönböztető
+                     összehasonlítást végez.
+    exp1 /and exp2   Mindkét kifejezésnek TRUE-nak kell lennie.
+    exp1 /or /exp2   Bármelyik kifejezés lehet TRUE.
+    /not expression  Megfordítja a kifejezés eredményét.
+
+Egyéb opciók:
+
+    /tf              TRUE vagy FALSE megjelenítése befejezéskor.
+
+Alapértelmezés szerint az értékek összehasonlítása a típusukon alapul.
+Ha mindkét érték szám (decimális vagy hexadecimális formában megadva),
+az összehasonlítás matematikailag történik. Ellenkező esetben kis- és
+nagybetűket nem megkülönböztető alfabetikus összehasonlításra kerül sor.
+A /c vagy /i opciók használata szövegalapú összehasonlítást kényszerít
+ki az érték adattípusától függetlenül. Az üres értéknek nincs numerikus
+értéke, és kényszeríti a két elem karakterláncként történő
+összehasonlítását.
+
+Alapvető példák:
+
+Létezik TEST.TXT nevű fájl:                  vtest /f TEST.TXT
+Nem létezik TEST.TXT nevű fájl:              vtest /not /f TEST.TXT
+Létezik A.TXT vagy B.TXT fájl:               vtest /f A.TXT /or /f B.TXT
+Sem az A.TXT, sem a B.TXT fájl nem létezik:  vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+A %1 egy szám:                               vtest /v %1
+A %1 egy szám 1-től 10-ig:                   vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Bár az /f, /d és /e kapcsolók fájl- vagy könyvtárbejegyzéseket
+tesztelnek, használhatnak kifejezésmódosítókat, például /not, /c és /i,
+valamint támogatják a helyettesítő karaktereket is. Miután ellenőrizték
+a fájlrendszerben egyező bejegyzés meglétét, az első egyező fájlrendszer-
+elem értékévé válnak, és értékként kezelhetők. Ha nem található egyező
+bejegyzés, az érték null lesz, és valószínűleg a kifejezés FALSE-ként
+értékelődik ki.
+
+Két érték összehasonlításakor, ha mindkét érték érvényes számot
+(decimális vagy hexadecimális) tartalmaz, az összehasonlítás
+numerikusan történik. Ha valamelyik érték nem szám, akkor alfabetikusan
+lesz összehasonlítva. Bár lehetséges adattípusokat keverni
+összehasonlítások sorozatában, az eredményt nehéz megjósolni, és
+általában nem ajánlott.
+
+Idézőjeleket NEM használnak szóközöket tartalmazó karakterláncokhoz.
+Az idézőjel karaktereket mindig normál szövegkarakterként kezelik. A
+parancssor-értelmező csak akkor választja el a karakterláncokat, ha
+SWITCH_CHAR (általában /) karaktert észlel. Ez egy elfogadható példa:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Ha idézőjeleket használ a karakterláncok egyszerű becsomagolására,
+hibás eredményeket kap. A következő példa MINDIG TRUE eredményt
+ad a %1 értékétől függetlenül:
+
+vtest /n "%1"
+
+Ezenkívül, ha egy karakterlánc tartalmazza a SWITCH_CHAR-t, a
+SWITCH_CHAR-t követő rész programopcióként lesz értelmezve, kivéve,
+ha egy további SWITCH_CHAR beszúrásával escape-elik. Például az "Y/N"
+"Y" karakterláncként, majd "/N" opcióként lenne értelmezve. Ahhoz,
+hogy mindkettőt karakterláncként értelmezzük, az "Y//N" lenne. Például:
+
+vtest /n y//n

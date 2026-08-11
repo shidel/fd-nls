@@ -1,0 +1,133 @@
+# Language: Estonian
+# File ending: et
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Julgustatud GPL v2.0 litsentsi alusel.
+****************************************************************************
+
+Toob 8-silindrilise mootori väimsuse DOS-i pakifailide kapoti alla.
+
+============================================================================
+
+V8Power Tools projekt on loodud koost””s Jim Halliga FreeDOS(TM)
+(http://www.freedos.org) operatsioonissteemi jaoks. See on mäeldud
+pakifailide abil kirjutatud skriptide funktsionaalsuse laiendamiseks
+ja neile parema v„limusega ning suurema funktsionaalsusega
+kasutajaliidese pakkumiseks.
+
+============================================================================
+
+V8Power Tools compileren
+
+    Eeldused:
+
+        8086 väi parem protsessor.
+        EGA väi parem videoadapter.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) väi kärgem
+        NASM DOS-i jaoks versioon 2.16.01 (http://wwww.nasm.us) väi uuem
+
+    Kompileerimine:
+
+        Veenduge, et NASM-i kataloog on teie otsingutees (path).
+        Laadige uusimad l„htekoodid alla aadressilt
+        http://github.com/LoopZ/V8Power
+        K„ivitage skript mkV8.bat.
+        Käik k„ivitatavad failid paigutatakse vastloodud BIN-kataloogi.
+
+    Laiskadele inimestele, nagu mina:
+
+        Eelkompileeritud versioonid on saadaval aadressil
+        http://up.lod.bz/V8Power.
+
+============================================================================
+
+V8Power Tools Testitud šhilduvus
+
+    FreeDOS 1.1+
+
+Laiendatud funktsioonide piiratud hilduvus (pakifailide "set /p"
+tugi puudub):
+
+    MS-DOS 6.2 ja 6.22
+    PC-DOS 7.0, 7.01 ja 2000
+    DR-DOS 7.03
+    DOSBox (sisend/v„ljund redirection väi p„ringud stdout kaudu EI
+        t””ta sisseehitatud DOSBoxi kesta abil. Kuid need t””tavad
+        DOSBoxis h„sti, kui kasutatakse hilduvat kesta nagu FreeCOM)
+    Windows 3.11 Shell
+    Windows 98 Shell ja Command Line
+    Windows XP SP3 Shell (v„lja arvatud vcursor)
+
+============================================================================
+
+V8Power Tools Kasutamine
+
+Siin on mäned ldised andmed käigi utiliitide ja nende toimimise kohta.
+
+    Valikud, v„„rtused ja kuueteistkmnendssteemi arvud ei ole
+    tästutundlikud /f white on sama mis /F wHIte.
+
+    Kuueteistkmnendssteemi arvude ees väib olla 0x, et v„ltida nende
+    k„sitlemist kmnendssteemis. (N„ide: 10 ja 0x10)
+
+    Thikud on enamasti valikulised. /B7/f0 on sama mis /B 7 /F 0.
+    Aga mitte / B7 / F0.
+
+    Kui soovite v„„rtuses kasutada m„rke / väi thikuid, pange see
+    jutum„rkidesse. Nagu "Jack and/or Jill".
+
+    Jutum„rkide kasutamiseks kasutage mitut jutum„rki. Nagu
+    "Jack's house" väi 'Say "What?"'.
+
+    Kui seda ei alistata, kasutavad enamik t””riistu teksti
+    atribuuti praeguses kursori asukohas.
+
+============================================================================
+
+Siin on v„rvitabel, mida kasutatakse käigi /A, /F ja /B llitite jaoks:
+
+    Kmnend     Hex         Silt (Ei ole tästutundlik)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Ainult esiplaani /f ja /a jaoks)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+Enamik individuaalseid t””riistu, mis toetavad v„rvimuutust, toetavad
+ka Blink/Intensity seadistuse muutmist. Kuid enamik t””riistu seda
+ei maini.
+
+    /BlinkOn    Luba Blink/Intensity bitt. (Alusta vilkumist)
+    /BlinkOff   Keela Blink/Intensity bitt. (Läpeta vilkumist)
+
+============================================================================
+
+DOS-i k„surida (and pakifailid) on piiratud umbes 128 m„rgiga.
+See väib muuta selliste t””riistade nagu vecho jaoks mitme rea
+korraga printimise keeruliseks. Kuid paljud t””riistad, nagu
+vecho, vstr jne, toetavad tekstiresursside laadimist failist
+lliti /T abil. šldiselt kasutatakse llitit /T pakifaili jaoks
+"Tälke" teksti pakkumiseks. Failist laadimisel on V8Power Toolsi
+t””riist piiratud 10 kilobaidiga rea kohta. Sellest edasi ignoreerib
+t””riist selle rea lej„„nud teksti. 10 kB värdub 5 ekraani väi
+rohkema tekstiga ja on liialdus.

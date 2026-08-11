@@ -1,0 +1,96 @@
+# Language: Czech
+# File ending: cz
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [volby]
+
+Tester stavu. M…§e prov dØt r…zn‚ kontroly, kter‚ lze zredukovat na
+TRUE nebo FALSE. Vìsledek je pýed n jako errorlevel. Kdy§ je odpovØÔ
+TRUE, vr t¡ se nula. Pokud je odpovØÔ FALSE, vr t¡ se 1. Pou§it¡
+nespr vn‚ syntaxe a dalç¡ podobn‚ chyby vr t¡ k¢d ukonŸen¡ 100.
+
+Testy:
+
+    val1 /eq val2    hodnoty se rovnaj¡
+    val1 /ne val2    hodnoty se nerovnaj¡
+    val1 /ge val2    val1 je vØtç¡ nebo rovno val2
+    val1 /le val2    val1 je menç¡ nebo rovno val2
+    val1 /gt val2    val1 je vØtç¡ ne§ val2
+    val1 /lt val2    val1 je menç¡ ne§ val2
+    string           ýetØzec nen¡ null
+    /n string        ýetØzec nen¡ null
+    /z string        ýetØzec je null
+    /v number        Ÿ¡slo je platn‚
+    /f file          soubor existuje
+    /d dir           cesta existuje
+    /e file nebo dir jakìkoli typ polo§ky adres ýe
+
+Oper tory vìrazu:
+
+    /c expression    Vynutit zach zen¡ s hodnotou jako s ýetØzcem a
+                     prov‚st porovn n¡ rozliçuj¡c¡ velk  a mal  p¡smena.
+    /i expression    Vynutit zach zen¡ s hodnotou jako s ýetØzcem a
+                     prov‚st porovn n¡ nerozliçuj¡c¡ velk /mal  p¡smena.
+    exp1 /and exp2   Oba vìrazy mus¡ bìt TRUE.
+    exp1 /or /exp2   Kterìkoli vìraz m…§e bìt TRUE.
+    /not expression  Obr tit vìsledek vìrazu.
+
+Dalç¡ volby:
+
+    /tf              Po dokonŸen¡ zobrazit TRUE nebo FALSE.
+
+Ve vìchoz¡m nastaven¡ je porovn n¡ hodnot zalo§eno na jejich typu. Pokud
+jsou obØ hodnoty Ÿ¡sla (reprezentovan  v des¡tkov‚ nebo çestn ctkov‚
+soustavØ), bude porovn n¡ provedeno matematicky. V opaŸn‚m pý¡padØ bude
+provedeno abecedn¡ porovn n¡ nerozliçuj¡c¡ velk  a mal  p¡smena.
+Pou§it¡ volby /c nebo /i vynut¡ textov‚ porovn n¡ bez ohledu na
+datovì typ hodnoty. Pr zdn  hodnota nem  Ÿ¡selnou hodnotu a vynut¡,
+aby byly obØ polo§ky porovn ny jako ýetØzce.
+
+Z kladn¡ pý¡klady:
+
+Soubor s n zvem TEST.TXT existuje:           vtest /f TEST.TXT
+Soubor s n zvem TEST.TXT neexistuje:         vtest /not /f TEST.TXT
+Existuje soubor A.TXT nebo B.TXT:            vtest /f A.TXT /or /f B.TXT
+Soubor A.TXT ani B.TXT neexistuje:           vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 je Ÿ¡slo:                                 vtest /v %1
+%1 je Ÿ¡slo od 1 do 10:                      vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Zat¡mco volby /f, /d a /e testuj¡ polo§ky souboru nebo adres ýe, mohou
+pou§¡vat modifik tory vìraz… jako /not, /c a /i a tak‚ podporuj¡
+z stupn‚ znaky. Jakmile byl syst‚m soubor… zkontrolov n na existenci
+odpov¡daj¡c¡ polo§ky, stanou se hodnotou prvn¡ odpov¡daj¡c¡ polo§ky
+syst‚mu soubor… a lze s nimi zach zet jako s hodnotami. Pokud nen¡
+nalezena § dn  odpov¡daj¡c¡ polo§ka, hodnota se stane null a s
+nejvØtç¡ pravdØpodobnost¡ zp…sob¡, §e se vìraz vyhodnot¡ jako FALSE.
+
+Pýi porovn v n¡ dvou hodnot, pokud ka§d  hodnota obsahuje platn‚ Ÿ¡slo
+(des¡tkov‚ nebo çestn ctkov‚), bude porovn n¡ provedeno Ÿ¡selnØ.
+Pokud § dn  z hodnot nen¡ Ÿ¡slo, bude se porovn vat abecednØ. AŸkoli
+je mo§n‚ v ýadØ porovn n¡ kombinovat datov‚ typy, vìsledek m…§e bìt
+obt¡§n‚ pýedv¡dat a obecnØ se to nedoporuŸuje.
+
+Uvozovky se NEPOU¦ÖVAJÖ pro ýetØzce s mezerami. Znaky uvozovek jsou v§dy
+pova§ov ny za norm ln¡ textov‚ znaky. Analyz tor pý¡kazov‚ho ý dku oddØl¡
+ýetØzce pouze v pý¡padØ, §e je detekov n SWITCH_CHAR (obvykle /).
+Toto je pýijatelnì pý¡klad:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Pou§it¡ uvozovek k pouh‚mu zabalen¡ ýetØzc… povede k chybnìm
+vìsledk…m. N sleduj¡c¡ pý¡klad povede V¦DY k hodnotØ TRUE bez ohledu na
+hodnotu %1:
+
+vtest /n "%1"
+
+Nav¡c, pokud ýetØzec obsahuje SWITCH_CHAR, Ÿ st n sleduj¡c¡ po
+SWITCH_CHAR bude interpretov na jako volba programu, pokud k n¡ nebude
+pýipojen dalç¡ SWITCH_CHAR. Napý¡klad ?Y/N? by bylo interpretov no jako
+ýetØzec ?Y? a pot‚ volba ?/N?. Aby se obØ interpretovaly jako ýetØzec,
+bylo by to ?Y//N?. Napý¡klad:
+
+vtest /n y//n

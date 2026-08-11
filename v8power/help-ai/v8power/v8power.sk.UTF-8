@@ -1,0 +1,133 @@
+# Language: Slovak
+# File ending: sk
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Vydané pod licenciou GPL v2.0.
+****************************************************************************
+
+Prináša výkon osemvalcového motora pod kapotu dávkových súborov DOS.
+
+============================================================================
+
+Projekt V8Power Tools je navrhovaný v spolupráci s Jimom Hallom pre
+operačný systém FreeDOS(TM) (http://www.freedos.org). Jeho cieľom je
+rozšíriť funkčnosť skriptov písaných pomocou dávkových súborov a
+poskytnúť im lepšie vyzerajúce používateľské rozhranie so zvýšenou
+funkčnosťou.
+
+============================================================================
+
+Kompilácia V8Power Tools
+
+    Predpoklady:
+
+        CPU 8086 alebo lepší.
+        Video adaptér EGA alebo lepší.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) alebo novší
+        NASM pre DOS verzie 2.16.01 (http://wwww.nasm.us) alebo novší
+
+    Kompilácia:
+
+        Uistite sa, že adresár NASM je vo vašej špecifikácii cesty.
+        Stiahnite si najnovšie zdrojové kódy z
+        http://github.com/LoopZ/V8Power
+        Spustite skript mkV8.bat.
+        Všetky spustiteľné súbory budú umiestnené do novovytvoreného
+        adresára BIN.
+
+    Pre lenivých ľudí, ako som ja:
+
+        Predkompilované verzie sú k dispozícii na
+        http://up.lod.bz/V8Power.
+
+============================================================================
+
+Testovaná kompatibilita V8Power Tools
+
+    FreeDOS 1.1+
+
+Obmedzená kompatibilita pokročilých funkcií (žiadna podpora dávkového
+"set /p"):
+
+    MS-DOS 6.2 a 6.22
+    PC-DOS 7.0, 7.01 a 2000
+    DR-DOS 7.03
+    DOSBox (presmerovanie v/v alebo dopyty pomocou stdout NEBUDÚ fungovať
+        pri použití vstavaného shellu DOSBox. Fungujú však dobre
+        v DOSBoxe, keď sa použije kompatibilný shell ako FreeCOM)
+    Windows 3.11 Shell
+    Windows 98 Shell a Command Line
+    Windows XP SP3 Shell (okrem vcursor)
+
+============================================================================
+
+Použitie V8Power Tools
+
+Tu sú niektoré základné informácie o všetkých nástrojoch a ako fungujú.
+
+    Voľby, hodnoty a hexadecimálne čísla nerozlišujú veľké a malé
+    písmená /f white je rovnaké ako /F wHIte.
+
+    Hexadecimálne čísla môžu mať predponu 0x, aby sa zabránilo ich
+    spracovaniu ako základu desať. (Príklad: 10 a 0x10)
+
+    Medzery sú väčšinou voliteľné. /B7/f0 je rovnaké ako /B 7 /F 0.
+    Ale nie / B7 / F0.
+
+    Ak chcete v hodnote použiť / alebo medzery, dajte ju do úvodzoviek.
+    Ako "Jack and/or Jill".
+
+    Použite viac úvodzoviek na použitie úvodzoviek. Ako "Jack's house"
+    alebo 'Say "What?"'.
+
+    Pokiaľ to nie je prepísané, väčšina nástrojov používa atribút textu
+    v aktuálnom umiestnení kurzora.
+
+============================================================================
+
+Tu je tabuľka farieb použitá pre všetky prepínače /A, /F a /B:
+
+    Desiatkovo  Hex         Štítok (Nerozlišuje veľké/malé písmená)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Iba popredie /f a /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+Väčšina jednotlivých nástrojov, ktoré podporujú zmenu farby, tiež
+podporuje zmenu nastavenia Blink/Intensity. Väčšina nástrojov to však
+nespomína.
+
+    /BlinkOn    Povoliť bit Blink/Intensity. (Začať blikať)
+    /BlinkOff   Zakázať bit Blink/Intensity. (Prestať blikať)
+
+============================================================================
+
+Príkazový riadok DOS (a dávkové súbory) je obmedzený na približne 128
+znakov. To by mohlo sťažiť nástrojom ako vecho tlač viacerých riadkov
+naraz. Mnoho nástrojov ako vecho, vstr atď. však podporuje načítanie
+textových zdrojov zo súboru pomocou prepínača /T. Všeobecne sa prepínač
+/T používa na poskytnutie textu "Prekladu" pre dávku. Pri načítaní zo
+súboru je nástroj V8Power Tools obmedzený na 10 kilobajtov na riadok.
+Nad to nástroj bude ignorovať akýkoľvek zostávajúci text na danom riadku.
+10kb sa rovná 5 obrazovkám alebo viac textu a je to zbytočne veľa.

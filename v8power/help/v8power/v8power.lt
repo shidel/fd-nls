@@ -1,0 +1,137 @@
+# Language: Lithuanian
+# File ending: lt
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+I’leista pagal GPL v2.0 licencij–.
+****************************************************************************
+
+Suteikia 8 cilindr÷ variklio gali– DOS paketiniams (batch) failams.
+
+============================================================================
+
+Projektas V8Power Tools kuriamas bendradarbiaujant su Jim Hall, skirtas
+FreeDOS(TM) (http://www.freedos.org) operacinei sistemai. Juo siekiama
+i’pl”sti scenarij÷, para’yt÷ naudojant paketinius failus, funkcionalum–
+ir suteikti jiems geriau atrodan—i– vartotojo s–saj– bei didesn‘
+funkcionalum–.
+
+============================================================================
+
+V8Power Tools kompiliavimas
+
+    I’ankstin”s s–lygos:
+
+        8086 arba geresnis procesorius.
+        EGA arba geresnis vaizdo adapteris.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) arba naujesn”
+        NASM, skirta DOS, versija 2.16.01 (http://wwww.nasm.us) arba
+        naujesn”
+
+    Kompiliavimas:
+
+        Ωsitikinkite, kad NASM katalogas yra nurodytas j◊s÷ kelio (path)
+        specifikacijoje.
+        Atsisi÷skite naujausius ’altinius i’
+        http://github.com/LoopZ/V8Power
+        Paleiskite mkV8.bat scenarij÷.
+        Visi vykdomieji failai bus patalpinti naujai sukurtame BIN
+        kataloge.
+
+    Tingiems ÿmon”ms, tokiems kaip a’:
+
+        I’ anksto sukompiliuotas versijas galima rasti adresu
+        http://up.lod.bz/V8Power.
+
+============================================================================
+
+V8Power Tools Patikrintas Suderinamumas
+
+    FreeDOS 1.1+
+
+Ribotas paÿangi÷ funkcij÷ suderinamumas (n”ra ˜set /pÚ paketini÷ fail÷
+palaikymo):
+
+    MS-DOS 6.2 ir 6.22
+    PC-DOS 7.0, 7.01 ir 2000
+    DR-DOS 7.03
+    DOSBox (‘vesties/i’vesties peradresavimas arba uÿklausos naudojant
+        stdout NEVEIKS naudojant integruot– DOSBox aplink–. Ta—iau jie
+        puikiai veikia DOSBox, kai naudojama suderinama aplinka,
+        pavyzdÿiui, FreeCOM)
+    Windows 3.11 Shell
+    Windows 98 Shell ir komand÷ eilut”
+    Windows XP SP3 Shell (i’skyrus vcursor)
+
+============================================================================
+
+V8Power Tools Naudojimas
+
+∂ia pateikiama pagrindin” informacija apie visas komandas ir j÷ veikim–.
+
+    Parinktys, reik’m”s ir ’e’ioliktainiai skai—iai neregistruoja raidÿi÷
+    dydÿio /f white yra tas pats, kas /F wHIte.
+
+    æe’ioliktainiai skai—iai gali b◊ti su prie’d”liu 0x, kad jie neb◊t÷
+    laikomi de’imtainiais. (Pavyzdys: 10 ir 0x10)
+
+    Tarpai daÿniausiai yra neprivalomi. /B7/f0 yra tas pats, kas
+    /B 7 /F 0. Bet ne / B7 / F0.
+
+    Nor”dami reik’m”je naudoti / arba tarpus, ‘ra’ykite j– ‘ kabutes.
+    Pavyzdÿiui, "Jack and/or Jill".
+
+    Nor”dami naudoti kabutes, naudokite kelias kabutes. Pavyzdÿiui,
+    "Jack's house" arba 'Say "What?"'.
+
+    Jei nepakeista, dauguma ‘ranki÷ naudoja teksto atribut– esamoje
+    ÿymeklio vietoje.
+
+============================================================================
+
+∂ia yra spalv÷ lentel”, naudojama visiems /A, /F ir /B jungikliams:
+
+    De’imtainis  Hex         Etiket” (Raidÿi÷ dydis nesvarbus)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Tik priekiniam planui /f ir /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+Dauguma atskir÷ ‘ranki÷, palaikan—i÷ spalv÷ keitim–, taip pat palaiko
+Blink/Intensity nustatymo keitim–. Ta—iau dauguma ‘ranki÷ apie tai
+neuÿsimena.
+
+    /BlinkOn    Ωjungti Blink/Intensity bit–. (Prad”ti mirks”jim–)
+    /BlinkOff   I’jungti Blink/Intensity bit–. (Sustabdyti mirks”jim–)
+
+============================================================================
+
+DOS komand÷ eilut” (ir paketiniai failai) ribojama maÿdaug 128
+simboliais. D”l to tokiems ‘rankiams kaip vecho gali b◊ti sunku
+spausdinti kelias eilutes vienu metu. Ta—iau daugelis ‘ranki÷, toki÷ kaip
+vecho, vstr ir kt., palaiko teksto i’tekli÷ ‘k”lim– i’ failo naudojant
+jungikl‘ /T. Paprastai jungiklis /T naudojamas paketiniam procesui
+˜VertimoÚ tekstui pateikti. Ωkeliant i’ failo, V8Power Tools ‘rankis
+ribojamas iki 10 kilobait÷ vienai eilutei. Vir’ijus tai, ‘rankis ignoruos
+vis– likus‘ tekst– toje eilut”je. 10kb yra lygus 5 ekranams ar daugiau
+teksto ir yra perteklius.

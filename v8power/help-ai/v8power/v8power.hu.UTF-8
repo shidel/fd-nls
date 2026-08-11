@@ -1,0 +1,137 @@
+# Language: Hungarian
+# File ending: hu
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Kiadva a GPL v2.0 licenc alatt.
+****************************************************************************
+
+Egy 8 hengeres motor erejét teszi a DOS kötegfájlok motorházteteje alá.
+
+============================================================================
+
+A V8Power Tools projektet Jim Hall-lal együttműködve tervezik a
+FreeDOS(TM) (http://www.freedos.org) operációs rendszerhez. Célja, hogy
+kibővítse a kötegfájlokkal írt szkriptek funkcionalitását, és szebb
+felhasználói felületet biztosítson számukra megnövelt funkcionalitással.
+
+============================================================================
+
+A V8Power Tools fordítása
+
+    Előfeltételek:
+
+        8086 vagy jobb processzor.
+        EGA vagy jobb videóadapter.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) vagy újabb
+        NASM DOS-hoz 2.16.01 verzió (http://wwww.nasm.us) vagy újabb
+
+    Fordítás:
+
+        Győződjön meg róla, hogy a NASM könyvtár benne van az elérési
+        útban.
+        Töltse le a legújabb forráskódokat a
+        http://github.com/LoopZ/V8Power oldalról
+        Futtassa az mkV8.bat szkriptet.
+        Minden végrehajtható fájl az újonnan létrehozott BIN könyvtárba
+        kerül.
+
+    Lusta embereknek, mint én:
+
+        Előre lefordított verziók állnak rendelkezésre a
+        http://up.lod.bz/V8Power oldalon.
+
+============================================================================
+
+V8Power Tools tesztelt kompatibilitás
+
+    FreeDOS 1.1+
+
+A speciális funkciók korlátozott kompatibilitása (nincs "set /p" kötegelt
+támogatás):
+
+    MS-DOS 6.2 és 6.22
+    PC-DOS 7.0, 7.01 és 2000
+    DR-DOS 7.03
+    DOSBox (az I/O átirányítás vagy a stdout használatával történő
+        lekérdezések NEM működnek a beépített DOSBox parancsértelmező
+        használatával. Azonban jól működnek a DOSBoxban, ha kompatibilis
+        parancsértelmezőt, például FreeCOM-ot használnak)
+    Windows 3.11 Shell
+    Windows 98 Shell és Command Line
+    Windows XP SP3 Shell (kivéve a vcursor-t)
+
+============================================================================
+
+A V8Power Tools használata
+
+Itt van néhány alapvető információ az összes segédprogramról és azok
+működéséről.
+
+    A kapcsolók, értékek és hexadecimális számok nem kis- és
+    nagybetűérzékenyek /f white ugyanaz, mint az /F wHIte.
+
+    A hexadecimális számok elé 0x előtag írható, hogy elkerüljük a
+    tízes számrendszerbeli kezelésüket. (Példa: 10 és 0x10)
+
+    A szóközök többnyire opcionálisak. /B7/f0 ugyanaz, mint a /B 7 /F 0.
+    De nem a / B7 / F0.
+
+    Ha / vagy szóközöket szeretne használni egy értékben, tegye
+    idézőjelek közé. Mint a "Jack and/or Jill".
+
+    Használjon több idézőjelet az idézőjelek használatához. Mint a
+    "Jack's house" vagy 'Say "What?"'.
+
+    Hacsak nincs felülbírálva, a legtöbb segédprogram a szöveg
+    attribútumát használja az aktuális kurzorpozícióban.
+
+============================================================================
+
+Itt van a színtáblázat az összes /A, /F és /B kapcsolóhoz:
+
+    Decimális   Hex         Címke (Nem kis-/nagybetűérzékeny)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Csak előtér /f és /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+A színváltoztatást támogató egyedi eszközök többsége támogatja a
+Blink/Intensity beállítás megváltoztatását is. A legtöbb eszköz
+azonban nem említi ezt.
+
+    /BlinkOn    A Blink/Intensity bit engedélyezése. (Villogás kezdete)
+    /BlinkOff   A Blink/Intensity bit letiltása. (Villogás leállítása)
+
+============================================================================
+
+A DOS parancssor (és a kötegfájlok) körülbelül 128 karakterre van
+korlátozva. Ez megnehezítheti az olyan eszközök számára, mint a vecho,
+hogy egyszerre több sort nyomtassanak. Számos eszköz, mint például a
+vecho, vstr stb., támogatja a szöveges erőforrások fájlból történő
+betöltését a /T kapcsoló segítségével. Általában a /T kapcsolót arra
+használják, hogy "Fordítás" szöveget biztosítsanak egy köteghez. Fájlból
+történő betöltéskor a V8Power Tools segédprogram soronként 10 kilobájtra
+van korlátozva. Ezen túlmenően a segédprogram figyelmen kívül hagy
+minden hátralévő szöveget az adott sorban. A 10 kb 5 képernyőnyi vagy
+több szövegnek felel meg, és ez túlzás.

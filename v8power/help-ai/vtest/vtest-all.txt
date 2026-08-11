@@ -1,0 +1,2329 @@
+
+
+# Language: Dutch
+# File ending: nl
+# Codepage: 850
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opties]
+
+Een statustester. Het kan verschillende controles uitvoeren die kunnen
+worden gereduceerd tot TRUE of FALSE. Het resultaat wordt doorgegeven als
+een errorlevel. Wanneer het antwoord TRUE is, wordt een nul geretourneerd.
+Als het antwoord FALSE is, wordt een 1 geretourneerd. Het gebruik van een
+onjuiste syntaxis en andere dergelijke fouten retourneren afsluitcode 100.
+
+Tests:
+
+    val1 /eq val2    waarden zijn gelijk
+    val1 /ne val2    waarden zijn niet gelijk
+    val1 /ge val2    val1 is groter dan of gelijk aan val2
+    val1 /le val2    val1 is kleiner dan of gelijk aan val2
+    val1 /gt val2    val1 is groter dan val2
+    val1 /lt val2    val1 is kleiner dan val2
+    string           string is niet null
+    /n string        string is niet null
+    /z string        string is null
+    /v number        nummer is geldig
+    /f file          bestand bestaat
+    /d dir           pad bestaat
+    /e file of dir   elk type mapvermelding
+
+Expressie-operators:
+
+    /c expression    Forceer dat een waarde als string wordt behandeld en
+                     voer een hoofdlettergevoelige vergelijking uit.
+    /i expression    Forceer dat een waarde als string wordt behandeld en
+                     voer een hoofdletterongevoelige vergelijking uit.
+    exp1 /and exp2   Beide expressies moeten TRUE zijn.
+    exp1 /or /exp2   Elke expressie kan TRUE zijn.
+    /not expression  Keer het resultaat van een expressie om.
+
+Andere opties:
+
+    /tf              Toon TRUE of FALSE wanneer voltooid.
+
+Standaard is de vergelijking van waarden gebaseerd op hun type. Als beide
+waarden een getal zijn (weergegeven in decimaal of hexadecimaal), wordt de
+vergelijking wiskundig uitgevoerd. Anders wordt een niet-hoofdlettergevoelige
+alfabetische vergelijking uitgevoerd. Het gebruik van de /c of /i opties
+forceert een op tekst gebaseerde vergelijking ongeacht het gegevenstype van
+de waarde. Een lege waarde heeft geen numerieke waarde en dwingt de twee
+items om als strings te worden vergeleken.
+
+Basisvoorbeelden:
+
+Een bestand genaamd TEST.TXT bestaat:        vtest /f TEST.TXT
+Bestand genaamd TEST.TXT bestaat niet:       vtest /not /f TEST.TXT
+Bestand A.TXT of B.TXT bestaat:              vtest /f A.TXT /or /f B.TXT
+Noch bestand A.TXT noch B.TXT bestaat:       vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 is een getal:                             vtest /v %1
+%1 is een getal van 1 tot 10:                vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Hoewel de opties /f, /d en /e testen op bestands- of mapvermeldingen,
+kunnen ze expressiemodifiers zoals /not, /c en /i gebruiken en ondersteunen
+ze ook jokertekens. Zodra het bestandssysteem is gecontroleerd op het
+bestaan van een overeenkomende vermelding, worden ze de waarde van het
+eerste overeenkomende bestandssysteemitem en kunnen ze als waarden worden
+behandeld. Als er geen overeenkomende vermelding wordt gevonden, wordt de
+waarde null en zal een expressie hoogstwaarschijnlijk als FALSE worden
+geëvalueerd.
+
+Wanneer een vergelijking van twee waarden wordt uitgevoerd, als elke waarde
+een geldig getal bevat (decimaal of hexadecimaal), wordt de vergelijking
+numeriek uitgevoerd. Als een van de waarden geen getal is, wordt deze
+alfabetisch vergeleken. Hoewel het mogelijk is om gegevenstypen te mengen
+in een reeks vergelijkingen, kan de uitkomst moeilijk te voorspellen zijn
+en wordt dit over het algemeen niet aanbevolen.
+
+Aanhalingstekens worden NIET gebruikt voor strings met spaties.
+Aanhalingstekens worden altijd behandeld als normale teksttekens. De
+opdrachtregelparser zal strings alleen scheiden wanneer een SWITCH_CHAR
+(normaal /) wordt gedetecteerd. Dit is een acceptabel voorbeeld:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Het gebruik van een aanhalingsteken om simpelweg strings in te pakken,
+zal foutieve resultaten opleveren. Het volgende voorbeeld zal ALTIJD
+resulteren in TRUE, ongeacht de waarde van %1:
+
+vtest /n "%1"
+
+Bovendien, als een string de SWITCH_CHAR bevat, zal het gedeelte na de
+SWITCH_CHAR worden geïnterpreteerd als een programmaoptie, tenzij het
+wordt ontsnapt door een extra SWITCH_CHAR in te voegen. Bijvoorbeeld,
+"Y/N" zou worden geïnterpreteerd als string "Y" en vervolgens optie
+"/N". Om beide als string te interpreteren zou het "Y//N" zijn.
+Bijvoorbeeld:
+
+vtest /n y//n
+
+
+
+
+
+# Language: Portuguese
+# File ending: pt
+# Codepage: 860
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opções]
+
+Um testador de estado. Pode efetuar várias verificações que se podem
+resumir a TRUE ou FALSE. O resultado é passado como um errorlevel. Quando
+a resposta é TRUE, é devolvido um zero. Se a resposta for FALSE, é devolvido
+um 1. A utilização de sintaxe imprópria e outros erros semelhantes
+devolverão o código de saída 100.
+
+Testes:
+
+    val1 /eq val2    valores são iguais
+    val1 /ne val2    valores não são iguais
+    val1 /ge val2    val1 é maior ou igual a val2
+    val1 /le val2    val1 é menor ou igual a val2
+    val1 /gt val2    val1 é maior do que val2
+    val1 /lt val2    val1 é menor do que val2
+    string           string não é nula
+    /n string        string não é nula
+    /z string        string é nula
+    /v number        número é válido
+    /f file          ficheiro existe
+    /d dir           caminho existe
+    /e file ou dir   qualquer tipo de entrada de diretório
+
+Operadores de expressão:
+
+    /c expression    Forçar que um valor seja tratado como string e
+                     efetuar uma comparação sensível a maiúsculas.
+    /i expression    Forçar que um valor seja tratado como string e
+                     efetuar uma comparação insensível a maiúsculas.
+    exp1 /and exp2   Ambas as expressões devem ser TRUE.
+    exp1 /or /exp2   Qualquer expressão pode ser TRUE.
+    /not expression  Inverter o resultado de uma expressão.
+
+Outras opções:
+
+    /tf              Mostrar TRUE ou FALSE ao terminar.
+
+Por predefinição, a comparação de valores baseia-se no seu tipo. Se ambos
+os valores forem um número (representado em decimal ou hexadecimal), a
+comparação será feita matematicamente. Caso contrário, será efetuada uma
+comparação alfabética insensível a maiúsculas. Utilizar as opções /c ou /i
+forçará uma comparação baseada em texto, independentemente do tipo de dados
+do valor. Um valor vazio não tem um valor numérico e forçará os dois itens
+a serem comparados como strings.
+
+Exemplos básicos:
+
+Ficheiro chamado TEST.TXT existe:            vtest /f TEST.TXT
+Ficheiro chamado TEST.TXT não existe:        vtest /not /f TEST.TXT
+Ficheiro A.TXT ou B.TXT existe:              vtest /f A.TXT /or /f B.TXT
+Nem o ficheiro A.TXT nem B.TXT existem:      vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 é um número:                              vtest /v %1
+%1 é um número de 1 a 10:                    vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Enquanto as opções /f, /d e /e testam entradas de ficheiros ou diretórios,
+podem utilizar modificadores de expressão como /not, /c e /i, suportando
+também caracteres universais. Assim que o sistema de ficheiros for verifi-
+cado quanto à existência de uma entrada correspondente, tornam-se no valor
+do primeiro item correspondente e podem ser tratados como valores. Se
+nenhuma entrada correspondente for encontrada, o valor torna-se nulo e
+muito provavelmente fará com que uma expressão seja avaliada como FALSE.
+
+Ao efetuar uma comparação de dois valores, se cada valor contiver um número
+válido (decimal ou hexadecimal), a comparação será efetuada numericamente.
+Se qualquer um dos valores não for um número, será comparado alfabeticamente.
+Embora seja possível misturar tipos de dados numa série de comparações, o
+resultado pode ser difícil de prever e não é geralmente recomendado.
+
+As aspas NÃO são utilizadas para strings com espaços. Os caracteres de aspas
+são sempre tratados como caracteres de texto normais. O analisador da linha
+de comandos apenas separará as strings quando um SWITCH_CHAR (normalmente /)
+for detetado. Este é um exemplo aceitável:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+A utilização de aspas para simplesmente envolver strings produzirá
+resultados errados. O exemplo seguinte resultará SEMPRE em TRUE,
+independentemente do valor de %1:
+
+vtest /n "%1"
+
+Além disso, se uma string contiver o SWITCH_CHAR, a parte que se segue ao
+SWITCH_CHAR será interpretada como uma opção de programa, a menos que seja
+escapada inserindo um SWITCH_CHAR adicional. Por exemplo, "Y/N" seria
+interpretado como string "Y" seguido da opção "/N". Para interpretar ambos
+como uma string seria "Y//N". Por exemplo:
+
+vtest /n y//n
+
+
+
+
+
+
+
+
+# Language: Portuguese (Brazil)
+# File ending: pb
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opções]
+
+Um testador de estado. Pode realizar várias verificações que podem se
+resumir a TRUE ou FALSE. O resultado é passado como um errorlevel. Quando
+a resposta é TRUE, é retornado um zero. Se a resposta for FALSE, um 1 é
+retornado. O uso de sintaxe incorreta e outros erros semelhantes
+retornarão o código de saída 100.
+
+Testes:
+
+    val1 /eq val2    valores são iguais
+    val1 /ne val2    valores não são iguais
+    val1 /ge val2    val1 é maior ou igual a val2
+    val1 /le val2    val1 é menor ou igual a val2
+    val1 /gt val2    val1 é maior que val2
+    val1 /lt val2    val1 é menor que val2
+    string           string não é nula
+    /n string        string não é nula
+    /z string        string é nula
+    /v number        número é válido
+    /f file          arquivo existe
+    /d dir           caminho existe
+    /e file ou dir   qualquer tipo de entrada de diretório
+
+Operadores de expressão:
+
+    /c expression    Forçar que um valor seja tratado como string e
+                     realizar uma comparação sensível a maiúsculas.
+    /i expression    Forçar que um valor seja tratado como string e
+                     realizar uma comparação insensível a maiúsculas.
+    exp1 /and exp2   Ambas as expressões devem ser TRUE.
+    exp1 /or /exp2   Qualquer expressão pode ser TRUE.
+    /not expression  Inverter o resultado de uma expressão.
+
+Outras opções:
+
+    /tf              Exibir TRUE ou FALSE ao terminar.
+
+Por padrão, a comparação de valores baseia-se no seu tipo. Se ambos os
+valores forem um número (representado em decimal ou hexadecimal), a
+comparação será feita matematicamente. Caso contrário, será realizada
+uma comparação alfabética que não diferencia maiúsculas de minúsculas. O
+uso das opções /c ou /i forçará uma comparação baseada em texto,
+independentemente do tipo de dados do valor. Um valor vazio não possui
+um valor numérico e forçará os dois itens a serem comparados como strings.
+
+Exemplos básicos:
+
+O arquivo chamado TEST.TXT existe:           vtest /f TEST.TXT
+O arquivo chamado TEST.TXT não existe:       vtest /not /f TEST.TXT
+O arquivo A.TXT ou B.TXT existe:             vtest /f A.TXT /or /f B.TXT
+Nem o arquivo A.TXT nem o B.TXT existem:     vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 é um número:                              vtest /v %1
+%1 é um número de 1 a 10:                    vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Embora as opções /f, /d e /e testem entradas de arquivos ou diretórios,
+elas podem usar modificadores de expressão como /not, /c e /i e também
+oferecem suporte a curingas. Depois que o sistema de arquivos for
+verificado quanto à existência de uma entrada correspondente, elas se
+tornam o valor do primeiro item correspondente e podem ser tratadas como
+valores. Se nenhuma entrada correspondente for encontrada, o valor se
+torna nulo e muito provavelmente fará com que uma expressão seja
+avaliada como FALSE.
+
+Ao realizar uma comparação de dois valores, se cada valor contiver um
+número válido (decimal ou hexadecimal), a comparação será realizada
+numericamente. Se qualquer um dos valores não for um número, será
+comparado alfabeticamente. Embora seja possível misturar tipos de dados
+em uma série de comparações, o resultado pode ser difícil de prever e
+geralmente não é recomendado.
+
+Aspas NÃO são usadas para strings com espaços. Os caracteres de aspas são
+sempre tratados como caracteres de texto normais. O analisador de linha
+de comando separará as strings apenas quando um SWITCH_CHAR (normalmente /)
+for detectado. Este é um exemplo aceitável:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+O uso de aspas para simplesmente envolver strings produzirá resultados
+errôneos. O exemplo a seguir SEMPRE resultará em TRUE, independentemente
+do valor de %1:
+
+vtest /n "%1"
+
+Além disso, se uma string contiver o SWITCH_CHAR, a parte após o
+SWITCH_CHAR será interpretada como uma opção de programa, a menos que
+seja escapada inserindo um SWITCH_CHAR adicional. Por exemplo, "Y/N"
+seria interpretado como a string "Y" e a opção "/N". Para interpretar
+ambos como uma string seria "Y//N". Por exemplo:
+
+vtest /n y//n
+
+
+
+
+
+
+
+
+
+
+# Language: Spanish
+# File ending: es
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opciones]
+
+Un probador de estado. Puede realizar varias comprobaciones que se pueden
+reducir a TRUE o FALSE. El resultado se pasa como un errorlevel. Cuando
+la respuesta es TRUE, se devuelve un cero. Si la respuesta es FALSE, se
+devuelve un 1. El uso de una sintaxis incorrecta y otros errores similares
+devolverán el código de salida 100.
+
+Pruebas:
+
+    val1 /eq val2    valores son iguales
+    val1 /ne val2    valores no son iguales
+    val1 /ge val2    val1 es mayor o igual a val2
+    val1 /le val2    val1 es menor o igual a val2
+    val1 /gt val2    val1 es mayor que val2
+    val1 /lt val2    val1 es menor que val2
+    string           string no es nulo
+    /n string        string no es nulo
+    /z string        string es nulo
+    /v number        número es válido
+    /f file          archivo existe
+    /d dir           ruta existe
+    /e file o dir    cualquier tipo de entrada de directorio
+
+Operadores de expresión:
+
+    /c expression    Fuerza que un valor se trate como cadena y realiza
+                     una comparación que distingue mayúsculas.
+    /i expression    Fuerza que un valor se trate como cadena y realiza
+                     una comparación que no distingue mayúsculas.
+    exp1 /and exp2   Ambas expresiones deben ser TRUE.
+    exp1 /or /exp2   Cualquier expresión puede ser TRUE.
+    /not expression  Invierte el resultado de una expresión.
+
+Otras opciones:
+
+    /tf              Mostrar TRUE o FALSE al terminar.
+
+Por defecto, la comparación de valores se basa en su tipo. Si ambos
+valores son un número (representado en decimal o hexadecimal), la
+comparación se hará matemáticamente. De lo contrario, se realizará una
+comparación alfabética que no distingue mayúsculas de minúsculas. El uso
+de las opciones /c o /i forzará una comparación basada en texto,
+independientemente del tipo de datos del valor. Un valor vacío no tiene
+un valor numérico y forzará que los dos elementos se comparen como cadenas.
+
+Ejemplos básicos:
+
+Un archivo llamado TEST.TXT existe:          vtest /f TEST.TXT
+Un archivo llamado TEST.TXT no existe:       vtest /not /f TEST.TXT
+El archivo A.TXT o B.TXT existe:             vtest /f A.TXT /or /f B.TXT
+Ni el archivo A.TXT ni B.TXT existen:        vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 es un número:                             vtest /v %1
+%1 es un número del 1 al 10:                 vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Si bien las opciones /f, /d y /e prueban entradas de archivos o
+directorios, pueden usar modificadores de expresión como /not, /c e /i
+y también admiten comodines. Una vez que se ha comprobado la existencia
+de una entrada coincidente en el sistema de archivos, se convierten en
+el valor del primer elemento coincidente y pueden tratarse como valores.
+Si no se encuentra ninguna coincidencia, el valor se vuelve nulo y muy
+probablemente hará que una expresión se evalúe como FALSE.
+
+Al realizar una comparación de dos valores, si cada valor contiene un
+número válido (decimal o hexadecimal), la comparación se realizará
+numéricamente. Si alguno de los valores no es un número, se comparará
+alfabéticamente. Aunque es posible mezclar tipos de datos en una serie de
+comparaciones, el resultado puede ser difícil de predecir y generalmente
+no se recomienda.
+
+Las comillas NO se utilizan para cadenas con espacios. Los caracteres de
+comillas siempre se tratan como caracteres de texto normales. El
+analizador de la línea de comandos solo separará las cadenas cuando se
+detecte un SWITCH_CHAR (normalmente /). Este es un ejemplo aceptable:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+El uso de comillas para simplemente envolver cadenas producirá resultados
+erróneos. El siguiente ejemplo SIEMPRE resultará en TRUE
+independientemente del valor de %1:
+
+vtest /n "%1"
+
+Además, si una cadena contiene el SWITCH_CHAR, la porción que sigue al
+SWITCH_CHAR se interpretará como una opción de programa a menos que se
+escape insertando un SWITCH_CHAR adicional. Por ejemplo, "Y/N" se
+interpretaría como la cadena "Y" y luego la opción "/N". Para interpretar
+ambos como una cadena sería "Y//N". Por ejemplo:
+
+vtest /n y//n
+
+
+
+
+
+# Language: Swedish
+# File ending: sv
+# Codepage: 850
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [alternativ]
+
+En testare av tillstånd. Den kan utföra olika kontroller som kan kokas ner
+till antingen TRUE eller FALSE. Resultatet skickas som en errorlevel. När
+svaret är TRUE returneras en nolla. Om svaret är FALSE returneras en 1. Att
+använda en felaktig syntax och andra sådana fel returnerar avslutningskod
+100.
+
+Tester:
+
+    val1 /eq val2    värden är lika
+    val1 /ne val2    värden är inte lika
+    val1 /ge val2    val1 är större än eller lika med val2
+    val1 /le val2    val1 är mindre än eller lika med val2
+    val1 /gt val2    val1 är större än val2
+    val1 /lt val2    val1 är mindre än val2
+    string           strängen är inte null
+    /n string        strängen är inte null
+    /z string        strängen är null
+    /v number        numret är giltigt
+    /f file          filen existerar
+    /d dir           sökvägen existerar
+    /e file / dir    valfri typ av katalogpost
+
+Uttrycksoperatorer:
+
+    /c expression    Tvinga att ett värde behandlas som en sträng och
+                     utför en skiftlägeskänslig jämförelse.
+    /i expression    Tvinga att ett värde behandlas som en sträng och
+                     utför en skiftlägesokänslig jämförelse.
+    exp1 /and exp2   Båda uttrycken måste vara TRUE.
+    exp1 /or /exp2   Valfritt uttryck kan vara TRUE.
+    /not expression  Invertera resultatet av ett uttryck.
+
+Andra alternativ:
+
+    /tf              Visa TRUE eller FALSE när du är klar.
+
+Som standard baseras jämförelsen av värden på deras typ. Om båda värdena
+är ett nummer (representerat i decimal eller hexadecimal), kommer
+jämförelsen att göras matematiskt. Annars kommer en skiftlägesokänslig
+alfabetisk jämförelse att utföras. Användning av antingen /c eller /i
+tvingar fram en textbaserad jämförelse oavsett värdets datatyp. Ett tomt
+värde har inget numeriskt värde och tvingar de två objekten att jämföras
+som strängar.
+
+Grundläggande exempel:
+
+En fil som heter TEST.TXT existerar:         vtest /f TEST.TXT
+En fil som heter TEST.TXT existerar inte:    vtest /not /f TEST.TXT
+Antingen existerar fil A.TXT eller B.TXT:    vtest /f A.TXT /or /f B.TXT
+Varken fil A.TXT eller B.TXT existerar:      vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 är ett nummer:                            vtest /v %1
+%1 är ett nummer från 1 till 10:             vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Medan alternativen /f, /d och /e testar för fil- eller katalogposter kan de
+använda uttrycksmodifierare som /not, /c och /i och de stöder även
+jokertecken. När filsystemet har kontrollerats för förekomsten av en
+matchande post, blir de värdet på det första matchande filsystemobjektet
+och kan behandlas som värden. Om ingen matchande post hittas blir värdet
+null och kommer med största sannolikhet att få ett uttryck att utvärderas
+som FALSE.
+
+Vid jämförelse av två värden, om varje värde innehåller ett giltigt nummer
+(decimalt eller hexadecimalt) kommer jämförelsen att utföras numeriskt.
+Om något av värdena inte är ett nummer, kommer det att jämföras alfabetiskt.
+Även om det är möjligt att blanda datatyper i en serie jämförelser kan
+resultatet vara svårt att förutse och det rekommenderas i allmänhet inte.
+
+Citattecken används INTE för strängar med mellanslag. Citattecken
+behandlas alltid som vanliga texttecken. Kommandoradstolkaren kommer bara
+att separera strängar när en SWITCH_CHAR (normalt /) upptäcks. Detta är
+ett acceptabelt exempel:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Att använda ett citattecken för att helt enkelt omsluta strängar ger
+felaktiga resultat. Följande exempel resulterar ALLTID i TRUE oavsett
+värdet på %1:
+
+vtest /n "%1"
+
+Dessutom, om en sträng innehåller en SWITCH_CHAR kommer delen efter
+SWITCH_CHAR att tolkas som ett programalternativ såvida den inte escapas
+genom att infoga en extra SWITCH_CHAR. Till exempel skulle "Y/N" tolkas
+som strängen "Y" sedan alternativet "/N". För att tolka båda som en sträng
+skulle det vara "Y//N". Till exempel:
+
+vtest /n y//n
+
+
+
+
+
+
+# Language: Italian
+# File ending: it
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opzioni]
+
+Un tester di stato. Può eseguire vari controlli che possono essere
+riassunti in TRUE o FALSE. Il risultato viene passato come un
+errorlevel. Quando la risposta è TRUE viene restituito uno zero. Se la
+risposta è FALSE, viene restituito un 1. L'utilizzo di una sintassi
+errata e altri errori simili restituiranno il codice di uscita 100.
+
+Test:
+
+    val1 /eq val2    i valori sono uguali
+    val1 /ne val2    i valori non sono uguali
+    val1 /ge val2    val1 è maggiore o uguale a val2
+    val1 /le val2    val1 è minore o uguale a val2
+    val1 /gt val2    val1 è maggiore di val2
+    val1 /lt val2    val1 è minore di val2
+    string           la stringa non è nulla
+    /n string        la stringa non è nulla
+    /z string        la stringa è nulla
+    /v number        il numero è valido
+    /f file          il file esiste
+    /d dir           il percorso esiste
+    /e file o dir    qualsiasi tipo di voce di directory
+
+Operatori di espressione:
+
+    /c expression    Forza un valore ad essere trattato come stringa ed
+                     esegue un confronto sensibile alle maiuscole.
+    /i expression    Forza un valore ad essere trattato come stringa ed
+                     esegue un confronto senza distinzione tra maiuscole.
+    exp1 /and exp2   Entrambe le espressioni devono essere TRUE.
+    exp1 /or /exp2   Qualsiasi espressione può essere TRUE.
+    /not expression  Inverte il risultato di un'espressione.
+
+Altre opzioni:
+
+    /tf              Mostra TRUE o FALSE al termine.
+
+Di default, il confronto dei valori si basa sul loro tipo. Se entrambi
+i valori sono un numero (rappresentato in decimale o esadecimale), il
+confronto verrà effettuato matematicamente. Altrimenti, verrà eseguito
+un confronto alfabetico senza distinzione tra maiuscole e minuscole.
+L'utilizzo delle opzioni /c o /i forzerà un confronto basato sul testo
+indipendentemente dal tipo di dati del valore. Un valore vuoto non ha
+un valore numerico e costringerà i due elementi ad essere confrontati
+come stringhe.
+
+Esempi di base:
+
+Un file chiamato TEST.TXT esiste:            vtest /f TEST.TXT
+Un file chiamato TEST.TXT non esiste:        vtest /not /f TEST.TXT
+Il file A.TXT o B.TXT esiste:                vtest /f A.TXT /or /f B.TXT
+Né il file A.TXT né B.TXT esistono:          vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 è un numero:                              vtest /v %1
+%1 è un numero da 1 a 10:                    vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Mentre le opzioni /f, /d ed /e testano le voci di file o directory,
+possono usare modificatori di espressione come /not, /c e /i e
+supportano anche i caratteri jolly. Una volta che il file system è
+stato controllato per l'esistenza di una voce corrispondente, diventano
+il valore del primo elemento corrispondente e possono essere trattati
+come valori. Se non viene trovata alcuna corrispondenza, il valore
+diventa nullo e molto probabilmente farà sì che un'espressione venga
+valutata come FALSE.
+
+Quando si esegue un confronto tra due valori, se ogni valore contiene
+un numero valido (decimale o esadecimale) il confronto verrà eseguito
+numericamente. Se uno dei due valori non è un numero, verrà confrontato
+alfabeticamente. Sebbene sia possibile mescolare i tipi di dati in una
+serie di confronti, il risultato può essere difficile da prevedere e in
+genere non è raccomandato.
+
+Le virgolette NON vengono utilizzate per le stringhe con spazi. I
+caratteri delle virgolette vengono sempre trattati come normali caratteri
+di testo. Il parser della riga di comando separerà le stringhe solo
+quando viene rilevato uno SWITCH_CHAR (normalmente /). Questo è un
+esempio accettabile:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+L'uso delle virgolette per racchiudere semplicemente le stringhe produrrà
+risultati errati. Il seguente esempio risulterà SEMPRE in TRUE
+indipendentemente dal valore di %1:
+
+vtest /n "%1"
+
+Inoltre, se una stringa contiene lo SWITCH_CHAR, la parte che segue lo
+SWITCH_CHAR verrà interpretata come un'opzione di programma a meno che
+non venga sfuggita inserendo un ulteriore SWITCH_CHAR. Ad esempio, "Y/N"
+verrebbe interpretato come la stringa "Y" e poi l'opzione "/N". Per
+interpretarli entrambi come una stringa sarebbe "Y//N". Ad esempio:
+
+vtest /n y//n
+
+
+
+
+
+
+
+
+
+# Language: Esperanto
+# File ending: eo
+# Codepage: 853
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opcioj]
+
+Stata testilo. Ĝi povas plenumi diversajn kontrolojn kiuj povas esti
+resumitaj al TRUE (VERA) aŭ FALSE (MALVERA). La rezulto estas pasigita
+kiel errorlevel. Kiam la respondo estas TRUE, nulo estas redonita. Se la
+respondo estas FALSE, 1 estas redonita. Uzi neĝustan sintakson kaj aliajn
+similajn erarojn redonos eliran kodon 100.
+
+Testoj:
+
+    val1 /eq val2    valoroj estas egalaj
+    val1 /ne val2    valoroj ne estas egalaj
+    val1 /ge val2    val1 estas pli granda aŭ egala al val2
+    val1 /le val2    val1 estas malpli granda aŭ egala al val2
+    val1 /gt val2    val1 estas pli granda ol val2
+    val1 /lt val2    val1 estas malpli granda ol val2
+    string           ĉeno ne estas nula
+    /n string        ĉeno ne estas nula
+    /z string        ĉeno estas nula
+    /v number        nombro estas valida
+    /f file          dosiero ekzistas
+    /d dir           vojo ekzistas
+    /e file aŭ dir   ia ajn dosieruja enigo
+
+Esprimaj operaciantoj:
+
+    /c expression    Devigi ke valoro estu traktata kiel ĉeno kaj
+                     plenumi usklecodistingan komparon.
+    /i expression    Devigi ke valoro estu traktata kiel ĉeno kaj
+                     plenumi uskleconedistingan komparon.
+    exp1 /and exp2   Ambaŭ esprimoj devas esti TRUE.
+    exp1 /or /exp2   Iu ajn el la esprimoj povas esti TRUE.
+    /not expression  Inversigi la rezulton de esprimo.
+
+Aliaj opcioj:
+
+    /tf              Montri TRUE aŭ FALSE kiam preta.
+
+Defaŭlte, la komparo de valoroj baziĝas sur ilia tipo. Se ambaŭ valoroj
+estas nombro (reprezentita dekume aŭ deksesume), la komparo estos farita
+matematike. Alie, alfabeta komparo sen konsidero de uskleco estos
+plenumita. Uzi la opciojn /c aŭ /i devigos tekstbazitan komparon
+sendepende de la datuma tipo de la valoro. Malplena valoro ne havas
+nombran valoron kaj devigos la du elementojn esti komparataj kiel ĉenoj.
+
+Bazaj ekzemploj:
+
+Dosiero nomita TEST.TXT ekzistas:            vtest /f TEST.TXT
+Dosiero nomita TEST.TXT ne ekzistas:         vtest /not /f TEST.TXT
+Aŭ dosiero A.TXT aŭ B.TXT ekzistas:          vtest /f A.TXT /or /f B.TXT
+Nek dosiero A.TXT nek B.TXT ekzistas:        vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 estas nombro:                             vtest /v %1
+%1 estas nombro de 1 ĝis 10:                 vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Dum la opcioj /f, /d kaj /e testas dosierajn aŭ dosierujajn enigojn,
+ili povas uzi esprimajn modifilojn kiel /not, /c kaj /i kaj ankaŭ
+subtenas ĵokerojn. Post kiam la dosiersistemo estis kontrolita pri la
+ekzisto de kongrua enigo, ili fariĝas la valoro de la unua kongrua
+dosiersistema ero kaj povas esti traktataj kiel valoroj. Se neniu
+kongrua enigo estas trovita, la valoro fariĝas nula kaj tre eble
+kaŭzos ke esprimo estu taksita kiel FALSE.
+
+Kiam oni faras komparon inter du valoroj, se ĉiu valoro enhavas validan
+nombron (dekuman aŭ deksesuman), la komparo estos farita nombre. Se iu
+el la valoroj ne estas nombro, ĝi estos komparita alfabete. Kvankam
+estas eble miksi datumajn tipojn en serio de komparoj, la rezulto povas
+esti malfacile antaŭvidebla kaj ne estas ĝenerale rekomendinda.
+
+Citiloj NE estas uzataj por ĉenoj kun spacoj. Citiloj ĉiam estas
+traktataj kiel normalaj tekstaj signoj. La komandlinia sintaksilo
+disigos ĉenojn nur kiam SWITCH_CHAR (kutime /) estas detektita. Ĉi tio
+estas akceptebla ekzemplo:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Uzi citilojn por simple ĉirkaŭi ĉenojn produktos erarajn rezultojn. La
+sekva ekzemplo ĈIAM rezultos en TRUE sendepende de la valoro de %1:
+
+vtest /n "%1"
+
+Krome, se ĉeno enhavas SWITCH_CHAR, la parto sekvanta la SWITCH_CHAR
+estos interpretita kiel programa opcio krom se ĝi estas eskapita
+enigante kroman SWITCH_CHAR. Ekzemple, "Y/N" estus interpretita kiel la
+ĉeno "Y" sekvata de la opcio "/N". Por interpreti ambaŭ kiel ĉenon ĝi
+estus "Y//N". Ekzemple:
+
+vtest /n y//n
+
+
+
+
+
+
+# Language: Danish
+# File ending: dk
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [muligheder]
+
+En tilstandstester. Den kan udføre forskellige kontroller, der kan
+koges ned til enten TRUE eller FALSE. Resultatet sendes som en
+errorlevel. Når svaret er TRUE, returneres et nul. Hvis svaret er
+FALSE, returneres et 1. Brug af forkert syntaks og andre lignende
+fejl vil returnere afslutningskode 100.
+
+Tests:
+
+    val1 /eq val2    værdier er ens
+    val1 /ne val2    værdier er ikke ens
+    val1 /ge val2    val1 er større end eller lig med val2
+    val1 /le val2    val1 er mindre end eller lig med val2
+    val1 /gt val2    val1 er større end val2
+    val1 /lt val2    val1 er mindre end val2
+    string           streng er ikke null
+    /n string        streng er ikke null
+    /z string        streng er null
+    /v number        nummer er gyldigt
+    /f file          fil eksisterer
+    /d dir           sti eksisterer
+    /e file / dir    enhver form for bibliotekspost
+
+Udtryksoperatorer:
+
+    /c expression    Gennemtving at en værdi behandles som en streng,
+                     og udfør en versalfølsom sammenligning.
+    /i expression    Gennemtving at en værdi behandles som en streng,
+                     og udfør en versaluafhængig sammenligning.
+    exp1 /and exp2   Begge udtryk skal være TRUE.
+    exp1 /or /exp2   Ethvert af udtrykkene kan være TRUE.
+    /not expression  Inverter resultatet af et udtryk.
+
+Andre muligheder:
+
+    /tf              Vis TRUE eller FALSE, når den er færdig.
+
+Som standard er sammenligning af værdier baseret på deres type. Hvis
+begge værdier er et tal (repræsenteret i decimal eller hexadecimal),
+vil sammenligningen blive foretaget matematisk. Ellers udføres en
+versaluafhængig alfabetisk sammenligning. Brug af enten /c eller /i
+mulighederne vil gennemtvinge en tekstbaseret sammenligning,
+uanset værdiens datatype. En tom værdi har ingen numerisk værdi og vil
+tvinge de to elementer til at blive sammenlignet som strenge.
+
+Grundlæggende eksempler:
+
+En fil med navnet TEST.TXT eksisterer:       vtest /f TEST.TXT
+En fil med navnet TEST.TXT eksisterer ikke:  vtest /not /f TEST.TXT
+Enten fil A.TXT eller B.TXT eksisterer:      vtest /f A.TXT /or /f B.TXT
+Hverken fil A.TXT eller B.TXT eksisterer:    vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 er et tal:                                vtest /v %1
+%1 er et tal fra 1 til 10:                   vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Mens mulighederne /f, /d og /e tester for fil- eller biblioteksposter,
+kan de bruge udtryksmodifikatorer som /not, /c og /i, og de understøtter
+også jokervildegn. Når filsystemet er blevet kontrolleret for eksistensen
+af en matchende post, bliver de værdien af det første matchende
+filsystemelement og kan behandles som værdier. Hvis der ikke findes nogen
+matchende post, bliver værdien null og vil højst sandsynligt få et udtryk
+til at blive evalueret som FALSE.
+
+Når man udfører en sammenligning af to værdier, hvis hver værdi indeholder
+et gyldigt tal (decimalt eller hexadecimalt), vil sammenligningen blive
+udført numerisk. Hvis en af værdierne ikke er et tal, vil den blive
+sammenlignet alfabetisk. Selvom det er muligt at blande datatyper i en
+række sammenligninger, kan resultatet være svært at forudsige, og det
+anbefales generelt ikke.
+
+Anførselstegn bruges IKKE til strenge med mellemrum. Anførselstegn
+behandles altid som normale teksttegn. Kommandolinjeparseren vil kun
+adskille strenge, når et SWITCH_CHAR (normalt /) opdages. Dette er et
+acceptabelt eksempel:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Brug af anførselstegn til simpelthen at indpakke strenge vil give
+fejlagtige resultater. Følgende eksempel vil ALTID resultere i TRUE,
+uanset værdien af %1:
+
+vtest /n "%1"
+
+Desuden, hvis en streng indeholder et SWITCH_CHAR, vil den del, der
+følger efter SWITCH_CHAR, blive fortolket som en programindstilling,
+medmindre den undviges ved at indsætte et ekstra SWITCH_CHAR. For
+eksempel vil "Y/N" blive fortolket som strengen "Y" efterfulgt af
+indstillingen "/N". For at fortolke begge som en streng ville det være
+"Y//N". For eksempel:
+
+vtest /n y//n
+
+
+
+
+
+
+# Language: Norwegian
+# File ending: no
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [alternativer]
+
+En tilstandstester. Den kan utføre forskjellige kontroller som kan
+kokes ned til enten TRUE eller FALSE. Resultatet sendes som en
+errorlevel. Når svaret er TRUE, returneres en null. Hvis svaret er
+FALSE, returneres en 1. Bruk av feil syntaks og andre lignende feil
+vil returnere avslutningskode 100.
+
+Tester:
+
+    val1 /eq val2    verdier er like
+    val1 /ne val2    verdier er ikke like
+    val1 /ge val2    val1 er større enn eller lik val2
+    val1 /le val2    val1 er mindre enn eller lik val2
+    val1 /gt val2    val1 er større enn val2
+    val1 /lt val2    val1 er mindre enn val2
+    string           streng er ikke null
+    /n string        streng er ikke null
+    /z string        streng er null
+    /v number        nummer er gyldig
+    /f file          fil eksisterer
+    /d dir           sti eksisterer
+    /e file / dir    hvilken som helst type katalogpost
+
+Uttrykksoperatorer:
+
+    /c expression    Tving en verdi til å bli behandlet som en streng,
+                     og utfør en versalfølsom sammenligning.
+    /i expression    Tving en verdi til å bli behandlet som en streng,
+                     og utfør en versaluavhengig sammenligning.
+    exp1 /and exp2   Begge uttrykk må være TRUE.
+    exp1 /or /exp2   Hvilket som helst uttrykk kan være TRUE.
+    /not expression  Inverter resultatet av et uttrykk.
+
+Andre alternativer:
+
+    /tf              Vis TRUE eller FALSE når den er ferdig.
+
+Som standard er sammenligning av verdier basert på typen. Hvis
+begge verdier er et tall (representert i desimal eller heksadesimal),
+vil sammenligningen bli gjort matematisk. Ellers utføres en
+versaluavhengig alfabetisk sammenligning. Bruk av enten /c eller /i
+alternativene vil tvinge frem en tekstbasert sammenligning uavhengig av
+verdiens datatype. En tom verdi har ingen numerisk verdi og vil tvinge
+de to elementene til å bli sammenlignet som strenger.
+
+Grunnleggende eksempler:
+
+En fil med navnet TEST.TXT eksisterer:       vtest /f TEST.TXT
+En fil med navnet TEST.TXT eksisterer ikke:  vtest /not /f TEST.TXT
+Enten fil A.TXT eller B.TXT eksisterer:      vtest /f A.TXT /or /f B.TXT
+Verken fil A.TXT eller B.TXT eksisterer:     vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 er et tall:                               vtest /v %1
+%1 er et tall fra 1 til 10:                  vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Mens alternativene /f, /d og /e tester for fil- eller katalogposter,
+kan de bruke uttrykksmodifikatorer som /not, /c og /i, og de støtter
+også jokertegn. Når filsystemet er sjekket for eksistensen av en
+matchende post, blir de verdien til det første matchende filsystemelementet
+og kan behandles som verdier. Hvis ingen matchende post blir funnet,
+blir verdien null og vil mest sannsynlig føre til at et uttrykk evalueres
+som FALSE.
+
+Når du utfører en sammenligning av to verdier, hvis hver verdi inneholder
+et gyldig tall (desimalt eller heksadesimalt), vil sammenligningen bli
+utført numerisk. Hvis en av verdiene ikke er et tall, vil den bli
+sammenlignet alfabetisk. Selv om det er mulig å blande datatyper i en
+rekke sammenligninger, kan resultatet være vanskelig å forutsi, og det
+anbefales generelt ikke.
+
+Anførselstegn brukes IKKE for strenger med mellomrom. Anførselstegn
+behandles alltid som normale teksttegn. Kommandolinjeparseren vil bare
+skille strenger når et SWITCH_CHAR (vanligvis /) oppdages. Dette er et
+akseptabelt eksempel:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Å bruke anførselstegn for å bare pakke inn strenger vil gi feilaktige
+resultater. Følgende eksempel vil ALLTID resultere i TRUE uansett verdien
+av %1:
+
+vtest /n "%1"
+
+Videre, hvis en streng inneholder et SWITCH_CHAR, vil delen som følger
+SWITCH_CHAR bli tolket som et programalternativ med mindre den er unnslippet
+ved å sette inn et ekstra SWITCH_CHAR. For eksempel vil "Y/N" bli tolket
+som strengen "Y" og deretter alternativet "/N". For å tolke begge som en
+streng ville det være "Y//N". For eksempel:
+
+vtest /n y//n
+
+
+
+
+
+
+
+
+
+# Language: Finnish
+# File ending: fi
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [valinnat]
+
+Tilan testaaja. Se voi suorittaa erilaisia tarkistuksia, jotka
+voidaan tiivistää joko arvoon TRUE tai FALSE. Tulos välitetään
+errorlevelinä. Kun vastaus on TRUE, palautetaan nolla. Jos vastaus on
+FALSE, palautetaan 1. Väärän syntaksin ja muiden vastaavien virheiden
+käyttö palauttaa poistumiskoodin 100.
+
+Testit:
+
+    val1 /eq val2    arvot ovat samat
+    val1 /ne val2    arvot eivät ole samat
+    val1 /ge val2    val1 on suurempi tai yhtä suuri kuin val2
+    val1 /le val2    val1 on pienempi tai yhtä suuri kuin val2
+    val1 /gt val2    val1 on suurempi kuin val2
+    val1 /lt val2    val1 on pienempi kuin val2
+    string           merkkijono ei ole null
+    /n string        merkkijono ei ole null
+    /z string        merkkijono on null
+    /v number        numero on kelvollinen
+    /f file          tiedosto on olemassa
+    /d dir           polku on olemassa
+    /e file / dir    mikä tahansa hakemistomerkintä
+
+Lausekeoperaattorit:
+
+    /c expression    Pakota arvo käsiteltäväksi merkkijonona ja
+                     suorita kirjainkoolla on merkitystä -vertailu.
+    /i expression    Pakota arvo käsiteltäväksi merkkijonona ja
+                     suorita kirjainkoosta riippumaton vertailu.
+    exp1 /and exp2   Molemmat lausekkeet on oltava TRUE.
+    exp1 /or /exp2   Kumpi tahansa lauseke voi olla TRUE.
+    /not expression  Käännä lausekkeen tulos päinvastaiseksi.
+
+Muut valinnat:
+
+    /tf              Näytä TRUE tai FALSE, kun se on valmis.
+
+Oletuksena arvojen vertailu perustuu niiden tyyppiin. Jos molemmat
+arvot ovat lukuja (esitettynä desimaali- tai heksadesimaalimuodossa),
+vertailu tehdään matemaattisesti. Muussa tapauksessa suoritetaan
+kirjainkoosta riippumaton aakkosellinen vertailu. Valintojen /c tai /i
+käyttö pakottaa tekstipohjaisen vertailun arvon tietotyypistä
+riippumatta. Tyhjällä arvolla ei ole numeerista arvoa, ja se pakottaa
+nämä kaksi kohdetta vertailtavaksi merkkijonoina.
+
+Perusesimerkit:
+
+Tiedosto nimeltä TEST.TXT on olemassa:       vtest /f TEST.TXT
+Tiedostoa nimeltä TEST.TXT ei ole:           vtest /not /f TEST.TXT
+Joko tiedosto A.TXT tai B.TXT on olemassa:   vtest /f A.TXT /or /f B.TXT
+Kumpaakaan tiedostoa A.TXT tai B.TXT ei ole: vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 on numero:                                vtest /v %1
+%1 on numero välillä 1 - 10:                 vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Vaikka valinnat /f, /d ja /e testaavat tiedosto- tai hakemistomerkintöjä,
+ne voivat käyttää lausekkeen muokkaajia, kuten /not, /c ja /i, ja ne
+tukevat myös jokerimerkkejä. Kun tiedostojärjestelmästä on tarkistettu
+vastaavan merkinnän olemassaolo, niistä tulee ensimmäisen vastaavan
+tiedostojärjestelmäkohteen arvo ja niitä voidaan käsitellä arvoina.
+Jos vastaavaa merkintää ei löydy, arvosta tulee null, ja se saa
+todennäköisimmin lausekkeen arvioitumaan arvoon FALSE.
+
+Kahta arvoa vertailtaessa, jos kumpikin arvo sisältää kelvollisen
+numeron (desimaali tai heksadesimaali), vertailu suoritetaan
+numeerisesti. Jos jompikumpi arvo ei ole luku, se vertaillaan
+aakkosjärjestyksessä. Vaikka tietotyyppejä on mahdollista sekoittaa
+vertailusarjassa, tulosta voi olla vaikea ennustaa, eikä sitä
+yleensä suositella.
+
+Lainausmerkkejä EI käytetä välilyöntejä sisältävissä merkkijonoissa.
+Lainausmerkkihahmoja käsitellään aina normaaleina tekstimerkkeinä.
+Komentorivin jäsennin erottaa merkkijonot vain, kun SWITCH_CHAR
+(yleensä /) havaitaan. Tämä on hyväksyttävä esimerkki:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Lainausmerkkien käyttäminen merkkijonojen käärimiseen tuottaa
+virheellisiä tuloksia. Seuraava esimerkki johtaa AINA arvoon TRUE
+riippumatta %1:n arvosta:
+
+vtest /n "%1"
+
+Lisäksi, jos merkkijono sisältää SWITCH_CHAR-merkin, SWITCH_CHAR-
+merkkiä seuraava osa tulkitaan ohjelmavaihtoehdoksi, ellei sitä
+ohiteta lisäämällä ylimääräinen SWITCH_CHAR. Esimerkiksi "Y/N"
+tulkittaisiin merkkijonona "Y" ja sen jälkeen vaihtoehtona "/N".
+Jotta molemmat tulkittaisiin merkkijonona, se olisi "Y//N".
+Esimerkiksi:
+
+vtest /n y//n
+
+
+
+
+
+
+
+
+
+
+# Language: Icelandic
+# File ending: is
+# Codepage: 861
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [valkostir]
+
+Ástandsprófari. Það getur framkvæmt ýmsar athuganir sem hægt er að
+sjóða niður í annaðhvort TRUE eða FALSE. Niðurstaðan er send sem
+errorlevel. Þegar svarið er TRUE er núlli skilað. Ef svarið er FALSE,
+er 1 skilað. Notkun á rangri setningafræði og önnur slík mistök munu
+skila útgöngukóða 100.
+
+Próf:
+
+    val1 /eq val2    gildi eru jöfn
+    val1 /ne val2    gildi eru ekki jöfn
+    val1 /ge val2    val1 er stærra en eða jafnt og val2
+    val1 /le val2    val1 er minna en eða jafnt og val2
+    val1 /gt val2    val1 er stærra en val2
+    val1 /lt val2    val1 er minna en val2
+    string           strengur er ekki null
+    /n string        strengur er ekki null
+    /z string        strengur er null
+    /v number        númer er gilt
+    /f file          skrá er til
+    /d dir           slóð er til
+    /e file eða dir  hvers konar möppufærsla
+
+Segðavirkjar:
+
+    /c expression    Þvinga gildi til að vera meðhöndlað sem strengur og
+                     framkvæma há-/lágstafaháðan samanburð.
+    /i expression    Þvinga gildi til að vera meðhöndlað sem strengur og
+                     framkvæma há-/lágstafaóháðan samanburð.
+    exp1 /and exp2   Báðar segðir verða að vera TRUE.
+    exp1 /or /exp2   Hvor segðin sem er getur verið TRUE.
+    /not expression  Umsnúa niðurstöðu segðar.
+
+Aðrir valkostir:
+
+    /tf              Sýna TRUE eða FALSE þegar lokið.
+
+Sjálfgefið er að samanburður gilda byggist á gerð þeirra. Ef bæði gildi
+eru tölur (settar fram í tugakerfi eða sextándakerfi) verður
+samanburðurinn gerður stærðfræðilega. Annars verður framkvæmdur
+há-/lágstafaóháður stafrófslegur samanburður. Notkun annaðhvort /c
+eða /i valkosta mun þvinga fram textabyggðan samanburð óháð
+gagnagerð gildisins. Tómt gildi hefur ekkert tölugildi og mun þvinga
+atriðin tvö til að vera borin saman sem strengi.
+
+Grunndæmi:
+
+Skrá sem heitir TEST.TXT er til:             vtest /f TEST.TXT
+Skrá sem heitir TEST.TXT er ekki til:        vtest /not /f TEST.TXT
+Annaðhvort skrá A.TXT eða B.TXT er til:      vtest /f A.TXT /or /f B.TXT
+Hvorki skrá A.TXT né B.TXT er til:           vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 er tala:                                  vtest /v %1
+%1 er tala frá 1 til 10:                     vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Þó valkostirnir /f, /d og /e prófi fyrir skráa- eða möppufærslur, geta
+þeir notað segðabreytur eins og /not, /c og /i og þeir styðja einnig
+algildistákn. Þegar skráakerfið hefur verið athugað fyrir tilvist
+samsvarandi færslu verða þær gildi fyrsta samsvarandi
+skráakerfisatriðisins og hægt er að meðhöndla þær sem gildi. Ef engin
+samsvarandi færsla finnst verður gildið null og mun líklegast valda
+því að segð metist sem FALSE.
+
+Þegar samanburður á tveimur gildum er framkvæmdur, ef hvort gildi
+inniheldur gilda tölu (tugakerfi eða sextándakerfi), verður
+samanburðurinn framkvæmdur tölulega. Ef annað gildið er ekki tala verður
+það borið saman í stafrófsröð. Þó það sé mögulegt að blanda saman
+gagnagerðum í röð samanburða getur niðurstaðan verið erfið að spá fyrir
+um og það er almennt ekki mælt með því.
+
+Gæsalappir eru EKKI notaðar fyrir strengi með bilum. Gæsalappir eru
+alltaf meðhöndlaðar sem venjulegir textastafir. Skipanalínuþáttarinn
+mun aðeins aðskilja strengi þegar SWITCH_CHAR (venjulega /) greinist.
+Þetta er ásættanlegt dæmi:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Notkun gæsalappa til að einfaldlega vefja strengi mun skila röngum
+niðurstöðum. Eftirfarandi dæmi mun ALLTAF skila TRUE óháð gildi %1:
+
+vtest /n "%1"
+
+Þar að auki, ef strengur inniheldur SWITCH_CHAR, mun hlutinn sem
+fylgir SWITCH_CHAR verða túlkaður sem forritsvalkostur nema farið sé
+framhjá honum með því að setja inn viðbótar SWITCH_CHAR. Til dæmis yrði
+"Y/N" túlkað sem strengurinn "Y" og síðan valkosturinn "/N". Til að
+túlka bæði sem streng væri það "Y//N". Til dæmis:
+
+vtest /n y//n
+
+
+
+
+
+
+
+
+
+
+
+# Language: Polish
+# File ending: pl
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opcje]
+
+Tester stanu. Może wykonywać różne kontrole, które można sprowadzić
+do TRUE lub FALSE. Wynik jest przekazywany jako errorlevel. Gdy
+odpowiedź to TRUE, zwracane jest zero. Jeśli odpowiedź to FALSE,
+zwracane jest 1. Użycie niewłaściwej składni i inne podobne błędy
+zwrócą kod wyjścia 100.
+
+Testy:
+
+    val1 /eq val2    wartości są równe
+    val1 /ne val2    wartości nie są równe
+    val1 /ge val2    val1 jest większe lub równe val2
+    val1 /le val2    val1 jest mniejsze lub równe val2
+    val1 /gt val2    val1 jest większe niż val2
+    val1 /lt val2    val1 jest mniejsze niż val2
+    string           ciąg znaków nie jest null
+    /n string        ciąg znaków nie jest null
+    /z string        ciąg znaków jest null
+    /v number        liczba jest prawidłowa
+    /f file          plik istnieje
+    /d dir           ścieżka istnieje
+    /e file lub dir  dowolny typ wpisu katalogu
+
+Operatory wyrażeń:
+
+    /c expression    Wymuś traktowanie wartości jako ciągu znaków i
+                     wykonaj porównanie uwzględniające wielkość liter.
+    /i expression    Wymuś traktowanie wartości jako ciągu znaków i
+                     wykonaj porównanie ignorujące wielkość liter.
+    exp1 /and exp2   Oba wyrażenia muszą być TRUE.
+    exp1 /or /exp2   Dowolne wyrażenie może być TRUE.
+    /not expression  Odwróć wynik wyrażenia.
+
+Inne opcje:
+
+    /tf              Wyświetl TRUE lub FALSE po zakończeniu.
+
+Domyślnie porównywanie wartości opiera się na ich typie. Jeśli obie
+wartości są liczbą (reprezentowaną w systemie dziesiętnym lub
+szesnastkowym), porównanie zostanie wykonane matematycznie. W
+przeciwnym razie zostanie wykonane porównanie alfabetyczne ignorujące
+wielkość liter. Użycie opcji /c lub /i wymusi porównanie tekstowe
+niezależnie od typu danych wartości. Pusta wartość nie ma wartości
+liczbowej i wymusi porównywanie dwóch elementów jako ciągów znaków.
+
+Podstawowe przykłady:
+
+Plik o nazwie TEST.TXT istnieje:             vtest /f TEST.TXT
+Plik o nazwie TEST.TXT nie istnieje:         vtest /not /f TEST.TXT
+Istnieje plik A.TXT lub B.TXT:               vtest /f A.TXT /or /f B.TXT
+Nie istnieje żaden plik A.TXT ani B.TXT:     vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 to liczba:                                vtest /v %1
+%1 to liczba od 1 do 10:                     vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Chociaż opcje /f, /d i /e sprawdzają wpisy plików lub katalogów, mogą
+używać modyfikatorów wyrażeń, takich jak /not, /c i /i, a także
+obsługują symbole wieloznaczne. Po sprawdzeniu systemu plików pod
+kątem istnienia pasującego wpisu stają się one wartością pierwszego
+pasującego elementu systemu plików i mogą być traktowane jako
+wartości. Jeśli nie zostanie znaleziony żaden pasujący wpis, wartość
+staje się pusta (null) i najprawdopodobniej spowoduje, że wyrażenie
+zostanie ocenione jako FALSE.
+
+Podczas wykonywania porównania dwóch wartości, jeśli każda z nich
+zawiera prawidłową liczbę (dziesiętną lub szesnastkową), porównanie
+zostanie wykonane numerycznie. Jeśli którakolwiek wartość nie jest
+liczbą, zostanie porównana alfabetycznie. Chociaż w serii porównań
+można mieszać typy danych, wynik może być trudny do przewidzenia i
+ogólnie nie jest to zalecane.
+
+Cudzysłowy NIE są używane w przypadku ciągów ze spacjami. Znaki
+cudzysłowu są zawsze traktowane jako normalne znaki tekstowe. Parser
+wiersza poleceń rozdzieli ciągi znaków tylko po wykryciu SWITCH_CHAR
+(zwykle /). To jest dopuszczalny przykład:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Użycie cudzysłowu do prostego zawijania ciągów da błędne wyniki.
+Poniższy przykład ZAWSZE zwróci wartość TRUE niezależnie od wartości %1:
+
+vtest /n "%1"
+
+Co więcej, jeśli ciąg znaków zawiera SWITCH_CHAR, część po SWITCH_CHAR
+zostanie zinterpretowana jako opcja programu, chyba że zostanie użyta
+sekwencja ucieczki poprzez wstawienie dodatkowego SWITCH_CHAR. Na
+przykład "Y/N" zostałoby zinterpretowane jako ciąg "Y", a następnie opcja
+"/N". Aby zinterpretować oba jako ciąg, należałoby wpisać "Y//N". Na
+przykład:
+
+vtest /n y//n
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Language: Czech
+# File ending: cz
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [volby]
+
+Tester stavu. Může provádět různé kontroly, které lze zredukovat na
+TRUE nebo FALSE. Výsledek je předán jako errorlevel. Když je odpověď
+TRUE, vrátí se nula. Pokud je odpověď FALSE, vrátí se 1. Použití
+nesprávné syntaxe a další podobné chyby vrátí kód ukončení 100.
+
+Testy:
+
+    val1 /eq val2    hodnoty se rovnají
+    val1 /ne val2    hodnoty se nerovnají
+    val1 /ge val2    val1 je větší nebo rovno val2
+    val1 /le val2    val1 je menší nebo rovno val2
+    val1 /gt val2    val1 je větší než val2
+    val1 /lt val2    val1 je menší než val2
+    string           řetězec není null
+    /n string        řetězec není null
+    /z string        řetězec je null
+    /v number        číslo je platné
+    /f file          soubor existuje
+    /d dir           cesta existuje
+    /e file nebo dir jakýkoli typ položky adresáře
+
+Operátory výrazu:
+
+    /c expression    Vynutit zacházení s hodnotou jako s řetězcem a
+                     provést porovnání rozlišující velká a malá písmena.
+    /i expression    Vynutit zacházení s hodnotou jako s řetězcem a
+                     provést porovnání nerozlišující velká/malá písmena.
+    exp1 /and exp2   Oba výrazy musí být TRUE.
+    exp1 /or /exp2   Kterýkoli výraz může být TRUE.
+    /not expression  Obrátit výsledek výrazu.
+
+Další volby:
+
+    /tf              Po dokončení zobrazit TRUE nebo FALSE.
+
+Ve výchozím nastavení je porovnání hodnot založeno na jejich typu. Pokud
+jsou obě hodnoty čísla (reprezentovaná v desítkové nebo šestnáctkové
+soustavě), bude porovnání provedeno matematicky. V opačném případě bude
+provedeno abecední porovnání nerozlišující velká a malá písmena.
+Použití volby /c nebo /i vynutí textové porovnání bez ohledu na
+datový typ hodnoty. Prázdná hodnota nemá číselnou hodnotu a vynutí,
+aby byly obě položky porovnány jako řetězce.
+
+Základní příklady:
+
+Soubor s názvem TEST.TXT existuje:           vtest /f TEST.TXT
+Soubor s názvem TEST.TXT neexistuje:         vtest /not /f TEST.TXT
+Existuje soubor A.TXT nebo B.TXT:            vtest /f A.TXT /or /f B.TXT
+Soubor A.TXT ani B.TXT neexistuje:           vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 je číslo:                                 vtest /v %1
+%1 je číslo od 1 do 10:                      vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Zatímco volby /f, /d a /e testují položky souboru nebo adresáře, mohou
+používat modifikátory výrazů jako /not, /c a /i a také podporují
+zástupné znaky. Jakmile byl systém souborů zkontrolován na existenci
+odpovídající položky, stanou se hodnotou první odpovídající položky
+systému souborů a lze s nimi zacházet jako s hodnotami. Pokud není
+nalezena žádná odpovídající položka, hodnota se stane null a s
+největší pravděpodobností způsobí, že se výraz vyhodnotí jako FALSE.
+
+Při porovnávání dvou hodnot, pokud každá hodnota obsahuje platné číslo
+(desítkové nebo šestnáctkové), bude porovnání provedeno číselně.
+Pokud žádná z hodnot není číslo, bude se porovnávat abecedně. Ačkoli
+je možné v řadě porovnání kombinovat datové typy, výsledek může být
+obtížné předvídat a obecně se to nedoporučuje.
+
+Uvozovky se NEPOUŽÍVAJÍ pro řetězce s mezerami. Znaky uvozovek jsou vždy
+považovány za normální textové znaky. Analyzátor příkazového řádku oddělí
+řetězce pouze v případě, že je detekován SWITCH_CHAR (obvykle /).
+Toto je přijatelný příklad:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Použití uvozovek k pouhému zabalení řetězců povede k chybným
+výsledkům. Následující příklad povede VŽDY k hodnotě TRUE bez ohledu na
+hodnotu %1:
+
+vtest /n "%1"
+
+Navíc, pokud řetězec obsahuje SWITCH_CHAR, část následující po
+SWITCH_CHAR bude interpretována jako volba programu, pokud k ní nebude
+připojen další SWITCH_CHAR. Například „Y/N“ by bylo interpretováno jako
+řetězec „Y“ a poté volba „/N“. Aby se obě interpretovaly jako řetězec,
+bylo by to „Y//N“. Například:
+
+vtest /n y//n
+
+
+
+
+
+
+
+
+
+
+
+# Language: Slovak
+# File ending: sk
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [voľby]
+
+Tester stavu. Môže vykonávať rôzne kontroly, ktoré možno zredukovať
+na TRUE alebo FALSE. Výsledok je odovzdaný ako errorlevel. Keď je
+odpoveď TRUE, vráti sa nula. Ak je odpoveď FALSE, vráti sa 1. Použitie
+nesprávnej syntaxe a ďalšie podobné chyby vrátia kód ukončenia 100.
+
+Testy:
+
+    val1 /eq val2    hodnoty sa rovnajú
+    val1 /ne val2    hodnoty sa nerovnajú
+    val1 /ge val2    val1 je väčšie alebo rovné val2
+    val1 /le val2    val1 je menšie alebo rovné val2
+    val1 /gt val2    val1 je väčšie ako val2
+    val1 /lt val2    val1 je menšie ako val2
+    string           reťazec nie je null
+    /n string        reťazec nie je null
+    /z string        reťazec je null
+    /v number        číslo je platné
+    /f file          súbor existuje
+    /d dir           cesta existuje
+    /e file alebo dir akýkoľvek typ položky adresára
+
+Operátory výrazu:
+
+    /c expression    Vynútiť zaobchádzanie s hodnotou ako s reťazcom a
+                     vykonať porovnanie rozlišujúce veľké a malé písmená.
+    /i expression    Vynútiť zaobchádzanie s hodnotou ako s reťazcom a
+                     vykonať porovnanie nerozlišujúce veľké/malé písmená.
+    exp1 /and exp2   Oba výrazy musia byť TRUE.
+    exp1 /or /exp2   Ktorýkoľvek výraz môže byť TRUE.
+    /not expression  Obrátiť výsledok výrazu.
+
+Ďalšie voľby:
+
+    /tf              Po dokončení zobraziť TRUE alebo FALSE.
+
+V predvolenom nastavení je porovnanie hodnôt založené na ich type.
+Ak sú obe hodnoty čísla (reprezentované v desiatkovej alebo
+šestnástkovej sústave), porovnanie sa vykoná matematicky. V opačnom
+prípade sa vykoná abecedné porovnanie nerozlišujúce veľké a malé
+písmená. Použitie voľby /c alebo /i vynúti textové porovnanie bez
+ohľadu na dátový typ hodnoty. Prázdna hodnota nemá číselnú hodnotu
+a vynúti, aby sa obe položky porovnávali ako reťazce.
+
+Základné príklady:
+
+Súbor s názvom TEST.TXT existuje:            vtest /f TEST.TXT
+Súbor s názvom TEST.TXT neexistuje:          vtest /not /f TEST.TXT
+Existuje súbor A.TXT alebo B.TXT:            vtest /f A.TXT /or /f B.TXT
+Súbor A.TXT ani B.TXT neexistuje:            vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 je číslo:                                 vtest /v %1
+%1 je číslo od 1 do 10:                      vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Zatiaľ čo voľby /f, /d a /e testujú položky súboru alebo adresára,
+môžu používať modifikátory výrazov ako /not, /c a /i a tiež podporujú
+zástupné znaky. Akonáhle bol systém súborov skontrolovaný na
+existenciu zodpovedajúcej položky, stanú sa hodnotou prvej
+zodpovedajúcej položky systému súborov a dá sa s nimi zaobchádzať
+ako s hodnotami. Ak sa nenájde žiadna zodpovedajúca položka, hodnota
+sa stane null a s najväčšou pravdepodobnosťou spôsobí, že sa výraz
+vyhodnotí ako FALSE.
+
+Pri porovnávaní dvoch hodnôt, ak každá hodnota obsahuje platné číslo
+(desiatkové alebo šestnástkové), porovnanie sa vykoná číselne.
+Ak žiadna z hodnôt nie je číslo, bude sa porovnávať abecedne.
+Hoci je možné v rade porovnaní kombinovať dátové typy, výsledok
+môže byť ťažké predvídať a všeobecne sa to neodporúča.
+
+Úvodzovky sa NEPOUŽÍVAJÚ pre reťazce s medzerami. Znaky úvodzoviek
+sú vždy považované za normálne textové znaky. Analyzátor príkazového
+riadka oddelí reťazce iba v prípade, že je detegovaný SWITCH_CHAR
+(zvyčajne /). Toto je prijateľný príklad:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Použitie úvodzoviek na jednoduché zabalenie reťazcov povedie k
+chybným výsledkom. Nasledujúci príklad povedie VŽDY k hodnote TRUE bez
+ohľadu na hodnotu %1:
+
+vtest /n "%1"
+
+Navyše, ak reťazec obsahuje SWITCH_CHAR, časť nasledujúca po
+SWITCH_CHAR bude interpretovaná ako voľba programu, pokiaľ k nej nebude
+pripojený ďalší SWITCH_CHAR. Napríklad „Y/N“ by bolo interpretované
+ako reťazec „Y“ a potom voľba „/N“. Aby sa obe interpretovali ako
+reťazec, bolo by to „Y//N“. Napríklad:
+
+vtest /n y//n
+
+
+
+
+
+
+
+
+
+
+
+# Language: Slovenian
+# File ending: sl
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opcije]
+
+Preizkuševalec stanja. Lahko izvede različne preglede, ki se lahko
+zreducirajo na TRUE ali FALSE. Rezultat se prenese kot errorlevel.
+Ko je odgovor TRUE, se vrne ničla. Če je odgovor FALSE, se vrne 1.
+Uporaba nepravilne sintakse in druge podobne napake bodo vrnile
+izhodno kodo 100.
+
+Testi:
+
+    val1 /eq val2    vrednosti so enake
+    val1 /ne val2    vrednosti niso enake
+    val1 /ge val2    val1 je večji ali enak val2
+    val1 /le val2    val1 je manjši ali enak val2
+    val1 /gt val2    val1 je večji od val2
+    val1 /lt val2    val1 je manjši od val2
+    string           niz ni null
+    /n string        niz ni null
+    /z string        niz je null
+    /v number        številka je veljavna
+    /f file          datoteka obstaja
+    /d dir           pot obstaja
+    /e file ali dir  katera koli vrsta vnosa v imenik
+
+Operatorji izrazov:
+
+    /c expression    Vsili obravnavo vrednosti kot niza in izvede
+                     primerjavo, občutljivo na velike/male črke.
+    /i expression    Vsili obravnavo vrednosti kot niza in izvede
+                     primerjavo, neobčutljivo na velike/male črke.
+    exp1 /and exp2   Oba izraza morata biti TRUE.
+    exp1 /or /exp2   Kateri koli izraz je lahko TRUE.
+    /not expression  Obrni rezultat izraza.
+
+Druge opcije:
+
+    /tf              Prikaži TRUE ali FALSE, ko konča.
+
+Privzeto primerjava vrednosti temelji na njihovi vrsti. Če sta obe
+vrednosti številki (predstavljeni v desetiškem ali šestnajstiškem
+sistemu), se primerjava izvede matematično. V nasprotnem primeru
+se izvede abecedna primerjava, neobčutljiva na velike/male črke.
+Uporaba opcije /c ali /i vsili besedilno primerjavo ne glede na
+podatkovni tip vrednosti. Prazna vrednost nima numerične vrednosti in
+vsili primerjavo obeh elementov kot nizov.
+
+Osnovni primeri:
+
+Datoteka z imenom TEST.TXT obstaja:          vtest /f TEST.TXT
+Datoteka z imenom TEST.TXT ne obstaja:       vtest /not /f TEST.TXT
+Obstaja datoteka A.TXT ali B.TXT:            vtest /f A.TXT /or /f B.TXT
+Ne obstaja niti datoteka A.TXT niti B.TXT:   vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 je številka:                              vtest /v %1
+%1 je številka od 1 do 10:                   vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Čeprav opcije /f, /d in /e testirajo vnose datotek ali imenikov,
+lahko uporabljajo modifikatorje izrazov, kot so /not, /c in /i, in
+podpirajo tudi nadomestne znake. Ko je datotečni sistem preverjen
+glede obstoja ujemajočega se vnosa, postanejo vrednost prvega
+ujemajočega se elementa datotečnega sistema in jih je mogoče
+obravnavati kot vrednosti. Če ni najdenega nobenega ujemajočega
+se vnosa, vrednost postane null in bo najverjetneje povzročila, da
+se izraz oceni kot FALSE.
+
+Pri primerjavi dveh vrednosti, če vsaka vrednost vsebuje veljavno
+številko (desetiško ali šestnajstiško), se bo primerjava izvedla
+številčno. Če ena od vrednosti ni številka, se bo primerjala abecedno.
+Čeprav je mogoče mešati podatkovne tipe v nizu primerjav, je rezultat
+lahko težko predvideti in se na splošno ne priporoča.
+
+Narekovaji se NE uporabljajo za nize s presledki. Znaki za narekovaje
+se vedno obravnavajo kot običajni znaki besedila. Razčlenjevalnik
+ukazne vrstice bo ločil nize samo, ko zazna SWITCH_CHAR (običajno /).
+To je sprejemljiv primer:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Uporaba narekovajev za preprosto ovijanje nizov bo povzročila napačne
+rezultate. Naslednji primer bo VEDNO povzročil TRUE ne glede na
+vrednost %1:
+
+vtest /n "%1"
+
+Poleg tega, če niz vsebuje SWITCH_CHAR, se bo del, ki sledi SWITCH_CHAR,
+razlagal kot opcija programa, razen če je ubežan z vstavitvijo dodatnega
+SWITCH_CHAR. Na primer, "Y/N" bi se razlagalo kot niz "Y" in nato opcija
+"/N". Za razlago obojega kot niza bi bilo "Y//N". Na primer:
+
+vtest /n y//n
+
+
+
+
+
+
+# Language: Hungarian
+# File ending: hu
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [kapcsolók]
+
+Egy állapottesztelő. Különféle ellenőrzéseket végezhet, amelyek TRUE vagy
+FALSE értékre redukálhatók. Az eredmény errorlevel-ként kerül átadásra.
+Amikor a válasz TRUE, nulla adódik vissza. Ha a válasz FALSE, 1 adódik
+vissza. Helytelen szintaxis és más hasonló hibák használata 100-as
+kilépési kódot ad vissza.
+
+Tesztek:
+
+    val1 /eq val2    az értékek egyenlőek
+    val1 /ne val2    az értékek nem egyenlőek
+    val1 /ge val2    val1 nagyobb vagy egyenlő, mint val2
+    val1 /le val2    val1 kisebb vagy egyenlő, mint val2
+    val1 /gt val2    val1 nagyobb, mint val2
+    val1 /lt val2    val1 kisebb, mint val2
+    string           a karakterlánc nem null
+    /n string        a karakterlánc nem null
+    /z string        a karakterlánc null
+    /v number        a szám érvényes
+    /f file          a fájl létezik
+    /d dir           az elérési út létezik
+    /e file vagy dir bármilyen típusú könyvtárbejegyzés
+
+Kifejezés operátorok:
+
+    /c expression    Kényszeríti, hogy az érték karakterláncként legyen
+                     kezelve, és kis- és nagybetűkre érzékeny
+                     összehasonlítást végez.
+    /i expression    Kényszeríti, hogy az érték karakterláncként legyen
+                     kezelve, és kis- és nagybetűket nem megkülönböztető
+                     összehasonlítást végez.
+    exp1 /and exp2   Mindkét kifejezésnek TRUE-nak kell lennie.
+    exp1 /or /exp2   Bármelyik kifejezés lehet TRUE.
+    /not expression  Megfordítja a kifejezés eredményét.
+
+Egyéb opciók:
+
+    /tf              TRUE vagy FALSE megjelenítése befejezéskor.
+
+Alapértelmezés szerint az értékek összehasonlítása a típusukon alapul.
+Ha mindkét érték szám (decimális vagy hexadecimális formában megadva),
+az összehasonlítás matematikailag történik. Ellenkező esetben kis- és
+nagybetűket nem megkülönböztető alfabetikus összehasonlításra kerül sor.
+A /c vagy /i opciók használata szövegalapú összehasonlítást kényszerít
+ki az érték adattípusától függetlenül. Az üres értéknek nincs numerikus
+értéke, és kényszeríti a két elem karakterláncként történő
+összehasonlítását.
+
+Alapvető példák:
+
+Létezik TEST.TXT nevű fájl:                  vtest /f TEST.TXT
+Nem létezik TEST.TXT nevű fájl:              vtest /not /f TEST.TXT
+Létezik A.TXT vagy B.TXT fájl:               vtest /f A.TXT /or /f B.TXT
+Sem az A.TXT, sem a B.TXT fájl nem létezik:  vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+A %1 egy szám:                               vtest /v %1
+A %1 egy szám 1-től 10-ig:                   vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Bár az /f, /d és /e kapcsolók fájl- vagy könyvtárbejegyzéseket
+tesztelnek, használhatnak kifejezésmódosítókat, például /not, /c és /i,
+valamint támogatják a helyettesítő karaktereket is. Miután ellenőrizték
+a fájlrendszerben egyező bejegyzés meglétét, az első egyező fájlrendszer-
+elem értékévé válnak, és értékként kezelhetők. Ha nem található egyező
+bejegyzés, az érték null lesz, és valószínűleg a kifejezés FALSE-ként
+értékelődik ki.
+
+Két érték összehasonlításakor, ha mindkét érték érvényes számot
+(decimális vagy hexadecimális) tartalmaz, az összehasonlítás
+numerikusan történik. Ha valamelyik érték nem szám, akkor alfabetikusan
+lesz összehasonlítva. Bár lehetséges adattípusokat keverni
+összehasonlítások sorozatában, az eredményt nehéz megjósolni, és
+általában nem ajánlott.
+
+Idézőjeleket NEM használnak szóközöket tartalmazó karakterláncokhoz.
+Az idézőjel karaktereket mindig normál szövegkarakterként kezelik. A
+parancssor-értelmező csak akkor választja el a karakterláncokat, ha
+SWITCH_CHAR (általában /) karaktert észlel. Ez egy elfogadható példa:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Ha idézőjeleket használ a karakterláncok egyszerű becsomagolására,
+hibás eredményeket kap. A következő példa MINDIG TRUE eredményt
+ad a %1 értékétől függetlenül:
+
+vtest /n "%1"
+
+Ezenkívül, ha egy karakterlánc tartalmazza a SWITCH_CHAR-t, a
+SWITCH_CHAR-t követő rész programopcióként lesz értelmezve, kivéve,
+ha egy további SWITCH_CHAR beszúrásával escape-elik. Például az "Y/N"
+"Y" karakterláncként, majd "/N" opcióként lenne értelmezve. Ahhoz,
+hogy mindkettőt karakterláncként értelmezzük, az "Y//N" lenne. Például:
+
+vtest /n y//n
+
+
+
+
+
+
+
+
+# Language: Serbian
+# File ending: sr
+# Codepage: 855
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [опције]
+
+Тестер стања. Може да изврши разне провере које се могу свести на TRUE
+или FALSE. Резултат се прослеђује као errorlevel. Када је одговор TRUE,
+враћа се нула. Ако је одговор FALSE, враћа се 1. Употреба неправилне
+синтаксе и друге сличне грешке ће вратити излазни код 100.
+
+Тестови:
+
+    val1 /eq val2    вредности су једнаке
+    val1 /ne val2    вредности нису једнаке
+    val1 /ge val2    val1 је веће или једнако val2
+    val1 /le val2    val1 је мање или једнако val2
+    val1 /gt val2    val1 је веће од val2
+    val1 /lt val2    val1 је мање од val2
+    string           стринг није null
+    /n string        стринг није null
+    /z string        стринг је null
+    /v number        број је важећи
+    /f file          фајл постоји
+    /d dir           путања постоји
+    /e file или dir  било која врста уноса у директоријум
+
+Оператори израза:
+
+    /c expression    Присили да се вредност третира као стринг и
+                     изврши поређење осетљиво на велика/мала слова.
+    /i expression    Присили да се вредност третира као стринг и
+                     изврши поређење неосетљиво на велика/мала слова.
+    exp1 /and exp2   Оба израза морају бити TRUE.
+    exp1 /or /exp2   Било који израз може бити TRUE.
+    /not expression  Инвертуј резултат израза.
+
+Остале опције:
+
+    /tf              Прикажи TRUE или FALSE када се заврши.
+
+Подразумевано, поређење вредности се заснива на њиховом типу. Ако су обе
+вредности број (представљен у децималном или хексадецималном систему),
+поређење ће се извршити математички. Иначе, извршиће се абецедно
+поређење неосетљиво на велика/мала слова. Употреба опција /c или /i ће
+присилити поређење засновано на тексту без обзира на тип података
+вредности. Празна вредност нема нумеричку вредност и присилиће да се
+две ставке пореде као стрингови.
+
+Основни примери:
+
+Фајл са именом TEST.TXT постоји:             vtest /f TEST.TXT
+Фајл са именом TEST.TXT не постоји:          vtest /not /f TEST.TXT
+Или фајл A.TXT или B.TXT постоји:            vtest /f A.TXT /or /f B.TXT
+Ни фајл A.TXT ни B.TXT не постоје:           vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 је број:                                  vtest /v %1
+%1 је број од 1 до 10:                       vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Иако опције /f, /d и /e тестирају уносе фајлова или директоријума,
+могу да користе модификаторе израза као што су /not, /c и /i и такође
+подржавају џокер знакове. Када се систем фајлова провери за постојање
+одговарајућег уноса, они постају вредност прве одговарајуће ставке
+система фајлова и могу се третирати као вредности. Ако се не пронађе
+одговарајући унос, вредност постаје null и највероватније ће
+узроковати да се израз оцени као FALSE.
+
+Приликом поређења две вредности, ако свака вредност садржи важећи
+број (децимални или хексадецимални), поређење ће се извршити
+нумерички. Ако нека од вредности није број, поредиће се абецедно.
+Иако је могуће мешати типове података у низу поређења, резултат може
+бити тешко предвидети и генерално се не препоручује.
+
+Наводници се НЕ користе за стрингове са размацима. Знакови наводника
+се увек третирају као нормални знакови текста. Парсер командне линије
+ће одвојити стрингове само када се детектује SWITCH_CHAR (обично /).
+Ово је прихватљив пример:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Употреба наводника за једноставно умотавање стрингова ће дати
+погрешне резултате. Следећи пример ће УВЕК резултирати са TRUE
+без обзира на вредност %1:
+
+vtest /n "%1"
+
+Штавише, ако стринг садржи SWITCH_CHAR, део који следи иза SWITCH_CHAR
+ће се интерпретирати као опција програма осим ако се не избегне
+уметањем додатног SWITCH_CHAR. На пример, "Y/N" би се интерпретирало
+као стринг "Y", а затим опција "/N". Да би се оба интерпретирала као
+стринг, било би "Y//N". На пример:
+
+vtest /n y//n
+
+
+
+
+
+# Language: Ukrainian
+# File ending: uk
+# Codepage: 1125
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [опції]
+
+Тестер стану. Він може виконувати різні перевірки, які можуть бути
+зведені до TRUE або FALSE. Результат передається як errorlevel. Коли
+відповідь TRUE, повертається нуль. Якщо відповідь FALSE, повертається 1.
+Використання неправильного синтаксису та інші подібні помилки повернуть
+код виходу 100.
+
+Тести:
+
+    val1 /eq val2    значення рівні
+    val1 /ne val2    значення не рівні
+    val1 /ge val2    val1 більше або дорівнює val2
+    val1 /le val2    val1 менше або дорівнює val2
+    val1 /gt val2    val1 більше ніж val2
+    val1 /lt val2    val1 менше ніж val2
+    string           рядок не є null
+    /n string        рядок не є null
+    /z string        рядок є null
+    /v number        число є дійсним
+    /f file          файл існує
+    /d dir           шлях існує
+    /e file або dir  будь-який тип запису каталогу
+
+Оператори виразів:
+
+    /c expression    Примусово розглядати значення як рядок і виконувати
+                     порівняння з урахуванням регістру.
+    /i expression    Примусово розглядати значення як рядок і виконувати
+                     порівняння без урахування регістру.
+    exp1 /and exp2   Обидва вирази мають бути TRUE.
+    exp1 /or /exp2   Будь-який вираз може бути TRUE.
+    /not expression  Інвертувати результат виразу.
+
+Інші опції:
+
+    /tf              Показувати TRUE або FALSE по завершенні.
+
+За замовчуванням порівняння значень базується на їх типі. Якщо обидва
+значення є числом (поданим у десятковому або шістнадцятковому форматі),
+порівняння буде здійснено математично. Інакше буде виконано алфавітне
+порівняння без урахування регістру. Використання опцій /c або /i
+призведе до порівняння на основі тексту незалежно від типу даних
+значення. Порожнє значення не має числового значення і змусить
+порівнювати два елементи як рядки.
+
+Основні приклади:
+
+Файл з назвою TEST.TXT існує:                vtest /f TEST.TXT
+Файл з назвою TEST.TXT не існує:             vtest /not /f TEST.TXT
+Існує файл A.TXT або B.TXT:                  vtest /f A.TXT /or /f B.TXT
+Немає ні файлу A.TXT, ні B.TXT:              vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 є числом:                                 vtest /v %1
+%1 є числом від 1 до 10:                     vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Хоча опції /f, /d та /e тестують записи файлів або каталогів, вони
+можуть використовувати модифікатори виразів, такі як /not, /c та /i,
+а також підтримують символи підстановки. Після того, як файлова
+система буде перевірена на наявність відповідного запису, вони стають
+значенням першого відповідного елемента файлової системи і можуть
+розглядатися як значення. Якщо відповідного запису не знайдено,
+значення стає null і, швидше за все, призведе до того, що вираз буде
+оцінено як FALSE.
+
+Під час порівняння двох значень, якщо кожне значення містить дійсне
+число (десяткове або шістнадцяткове), порівняння буде виконано
+числово. Якщо якесь значення не є числом, воно буде порівнюватися
+за алфавітом. Хоча можна змішувати типи даних у серії порівнянь,
+результат може бути важко передбачити, і це взагалі не
+рекомендується.
+
+Лапки НЕ використовуються для рядків з пробілами. Символи лапок
+завжди розглядаються як звичайні текстові символи. Парсер командного
+рядка розділятиме рядки лише тоді, коли виявлено SWITCH_CHAR (зазвичай
+/). Це прийнятний приклад:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Використання лапок для простого обгортання рядків призведе до
+помилкових результатів. Наступний приклад ЗАВЖДИ призведе до TRUE
+незалежно від значення %1:
+
+vtest /n "%1"
+
+Крім того, якщо рядок містить SWITCH_CHAR, частина, що слідує за
+SWITCH_CHAR, буде інтерпретуватися як опція програми, якщо її не буде
+екрановано шляхом вставлення додаткового SWITCH_CHAR. Наприклад, "Y/N"
+буде інтерпретуватися як рядок "Y", а потім опція "/N". Щоб
+інтерпретувати обидва як рядок, це буде "Y//N". Наприклад:
+
+vtest /n y//n
+
+
+
+
+
+
+# Language: Russian
+# File ending: ru
+# Codepage: 866
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [опции]
+
+Тестер состояния. Он может выполнять различные проверки, которые могут
+быть сведены к TRUE или FALSE. Результат передается как errorlevel.
+Когда ответ TRUE, возвращается ноль. Если ответ FALSE, возвращается 1.
+Использование неправильного синтаксиса и другие подобные ошибки
+вернут код выхода 100.
+
+Тесты:
+
+    val1 /eq val2    значения равны
+    val1 /ne val2    значения не равны
+    val1 /ge val2    val1 больше или равно val2
+    val1 /le val2    val1 меньше или равно val2
+    val1 /gt val2    val1 больше чем val2
+    val1 /lt val2    val1 меньше чем val2
+    string           строка не null
+    /n string        строка не null
+    /z string        строка null
+    /v number        число действительно
+    /f file          файл существует
+    /d dir           путь существует
+    /e file или dir  любой тип записи каталога
+
+Операторы выражений:
+
+    /c expression    Принудительно рассматривать значение как строку и
+                     выполнять сравнение с учетом регистра.
+    /i expression    Принудительно рассматривать значение как строку и
+                     выполнять сравнение без учета регистра.
+    exp1 /and exp2   Оба выражения должны быть TRUE.
+    exp1 /or /exp2   Любое выражение может быть TRUE.
+    /not expression  Инвертировать результат выражения.
+
+Другие опции:
+
+    /tf              Показывать TRUE или FALSE по завершении.
+
+По умолчанию сравнение значений основано на их типе. Если оба значения
+являются числом (представленным в десятичном или шестнадцатеричном
+формате), сравнение будет выполнено математически. В противном случае
+будет выполнено алфавитное сравнение без учета регистра. Использование
+опций /c или /i приведет к текстовому сравнению независимо от типа
+данных значения. Пустое значение не имеет числового значения и
+заставит сравнивать два элемента как строки.
+
+Основные примеры:
+
+Файл с именем TEST.TXT существует:           vtest /f TEST.TXT
+Файл с именем TEST.TXT не существует:        vtest /not /f TEST.TXT
+Существует файл A.TXT или B.TXT:             vtest /f A.TXT /or /f B.TXT
+Нет ни файла A.TXT, ни B.TXT:                vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 это число:                                vtest /v %1
+%1 это число от 1 до 10:                     vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Хотя параметры /f, /d и /e проверяют записи файлов или каталогов, они
+могут использовать модификаторы выражений, такие как /not, /c и /i, а
+также поддерживают подстановочные знаки. После проверки файловой
+системы на наличие соответствующей записи они становятся значением
+первого соответствующего элемента файловой системы и могут
+рассматриваться как значения. Если соответствующая запись не найдена,
+значение становится null и, скорее всего, приведет к тому, что
+выражение будет оценено как FALSE.
+
+При выполнении сравнения двух значений, если каждое значение содержит
+допустимое число (десятичное или шестнадцатеричное), сравнение будет
+выполнено численно. Если какое-либо значение не является числом, оно
+будет сравниваться по алфавиту. Хотя можно смешивать типы данных в
+серии сравнений, результат может быть трудно предсказать, и это
+обычно не рекомендуется.
+
+Кавычки НЕ используются для строк с пробелами. Символы кавычек всегда
+рассматриваются как обычные текстовые символы. Парсер командной
+строки будет разделять строки только при обнаружении SWITCH_CHAR
+(обычно /). Это приемлемый пример:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Использование кавычек для простого обертывания строк приведет к
+ошибочным результатам. Следующий пример ВСЕГДА будет приводить к
+TRUE независимо от значения %1:
+
+vtest /n "%1"
+
+Кроме того, если строка содержит SWITCH_CHAR, часть, следующая за
+SWITCH_CHAR, будет интерпретироваться как опция программы, если она
+не экранирована путем вставки дополнительного SWITCH_CHAR. Например,
+"Y/N" будет интерпретироваться как строка "Y", а затем опция "/N".
+Чтобы интерпретировать оба как строку, это будет "Y//N". Например:
+
+vtest /n y//n
+
+
+
+
+
+
+
+# Language: Estonian
+# File ending: et
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [valikud]
+
+Olekutestija. See võib teha erinevaid kontrolle, mida saab taandada kas
+TRUE või FALSE olekule. Tulemus edastatakse kui errorlevel. Kui vastus
+on TRUE, tagastatakse null. Kui vastus on FALSE, tagastatakse 1. Vale
+süntaksi ja muude sarnaste vigade kasutamine tagastab väljumiskoodi 100.
+
+Testid:
+
+    val1 /eq val2    väärtused on võrdsed
+    val1 /ne val2    väärtused ei ole võrdsed
+    val1 /ge val2    val1 on suurem või võrdne val2-ga
+    val1 /le val2    val1 on väiksem või võrdne val2-ga
+    val1 /gt val2    val1 on suurem kui val2
+    val1 /lt val2    val1 on väiksem kui val2
+    string           string ei ole null
+    /n string        string ei ole null
+    /z string        string on null
+    /v number        number on kehtiv
+    /f file          fail on olemas
+    /d dir           kataloog on olemas
+    /e file või dir  mis tahes tüüpi kataloogikirje
+
+Avaldise operaatorid:
+
+    /c expression    Sunnib väärtust käsitlema stringina ja sooritab
+                     tõstutundliku võrdluse.
+    /i expression    Sunnib väärtust käsitlema stringina ja sooritab
+                     tõstutundetu võrdluse.
+    exp1 /and exp2   Mõlemad avaldised peavad olema TRUE.
+    exp1 /or /exp2   Kumbki avaldis võib olla TRUE.
+    /not expression  Pöörab avaldise tulemuse ümber.
+
+Muud valikud:
+
+    /tf              Kuvab lõpetamisel TRUE või FALSE.
+
+Vaikimisi põhineb väärtuste võrdlemine nende tüübil. Kui mõlemad
+väärtused on numbrid (esitatud kümnend- või kuueteistkümnendsüsteemis),
+tehakse võrdlus matemaatiliselt. Muul juhul tehakse tõstutundetu
+tähestikuline võrdlus. Valiku /c või /i kasutamine sunnib
+tekstipõhisele võrdlusele olenemata väärtuse andmetüübist. Tühjal
+väärtusel pole arvväärtust ja see sunnib kahte elementi võrdlema
+stringidena.
+
+Põhinäited:
+
+Fail nimega TEST.TXT on olemas:              vtest /f TEST.TXT
+Faili nimega TEST.TXT ei ole olemas:         vtest /not /f TEST.TXT
+Eksisteerib fail A.TXT või B.TXT:            vtest /f A.TXT /or /f B.TXT
+Ei eksisteeri faili A.TXT ega B.TXT:         vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 on arv:                                   vtest /v %1
+%1 on arv vahemikus 1 kuni 10:               vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Kuigi valikud /f, /d ja /e testivad faili- või kataloogikirjeid,
+saavad nad kasutada avaldise muutjaid nagu /not, /c ja /i ning
+toetavad ka metamärke. Kui failisüsteemi on kontrollitud vastava kirje
+olemasolu suhtes, saavad neist esimese vastava failisüsteemi elemendi
+väärtus ja neid saab käsitleda väärtustena. Kui vastavat kirjet ei
+leita, muutub väärtus nulliks ja põhjustab suure tõenäosusega avaldise
+hindamise olekuks FALSE.
+
+Kahe väärtuse võrdlemisel, kui kumbki väärtus sisaldab kehtivat arvu
+(kümnend- või kuueteistkümnendsüsteem), tehakse võrdlus numbriliselt.
+Kui kumbki väärtus pole arv, võrreldakse neid tähestiku järgi. Ehkki
+andmetüüpe on võimalik võrdluste seerias segada, võib tulemust olla
+raske ennustada ja seda üldiselt ei soovitata.
+
+Jutumärke EI kasutata tühikutega stringide puhul. Jutumärke
+käsitletakse alati tavaliste tekstikomponentidena. Käsurea parser
+eraldab stringid ainult siis, kui tuvastatakse SWITCH_CHAR (tavaliselt
+/). See on vastuvõetav näide:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Jutumärkide kasutamine stringide lihtsalt mähkimiseks annab vigaseid
+tulemusi. Järgmine näide toob ALATI kaasa TRUE sõltumata %1 väärtusest:
+
+vtest /n "%1"
+
+Lisaks, kui string sisaldab SWITCH_CHAR-i, tõlgendatakse SWITCH_CHAR-ile
+järgnevat osa programmi valikuna, välja arvatud juhul, kui see
+kõrvaldatakse täiendava SWITCH_CHAR-i lisamisega. Näiteks "Y/N"
+tõlgendataks stringina "Y" ja seejärel valikuna "/N". Et mõlemat
+stringina tõlgendada, oleks see "Y//N". Näiteks:
+
+vtest /n y//n
+
+
+
+
+# Language: Lithuanian
+# File ending: lt
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [parinktys]
+
+Būsenos tikrintojas. Jis gali atlikti įvairius patikrinimus, kurie gali
+būti suvesti į TRUE arba FALSE. Rezultatas perduodamas kaip errorlevel.
+Kai atsakymas yra TRUE, grąžinamas nulis. Jei atsakymas yra FALSE,
+grąžinamas 1. Neteisingos sintaksės naudojimas ir kitos panašios
+klaidos grąžins išėjimo kodą 100.
+
+Testai:
+
+    val1 /eq val2    reikšmės yra lygios
+    val1 /ne val2    reikšmės nelygios
+    val1 /ge val2    val1 yra didesnė arba lygi val2
+    val1 /le val2    val1 yra mažesnė arba lygi val2
+    val1 /gt val2    val1 yra didesnė nei val2
+    val1 /lt val2    val1 yra mažesnė nei val2
+    string           eilutė nėra null
+    /n string        eilutė nėra null
+    /z string        eilutė yra null
+    /v number        skaičius yra galiojantis
+    /f file          failas egzistuoja
+    /d dir           kelias egzistuoja
+    /e file ar dir   bet kokio tipo katalogo įrašas
+
+Išraiškos operatoriai:
+
+    /c expression    Priverčia vertinti reikšmę kaip eilutę ir
+                     atlieka didžiosioms raidėms jautrų palyginimą.
+    /i expression    Priverčia vertinti reikšmę kaip eilutę ir
+                     atlieka didžiosioms raidėms nejautrų palyginimą.
+    exp1 /and exp2   Abi išraiškos turi būti TRUE.
+    exp1 /or /exp2   Bet kuri išraiška gali būti TRUE.
+    /not expression  Apversti išraiškos rezultatą.
+
+Kitos parinktys:
+
+    /tf              Baigus rodyti TRUE arba FALSE.
+
+Pagal numatytuosius nustatymus reikšmių palyginimas grindžiamas jų
+tipu. Jei abi reikšmės yra skaičius (pateiktas dešimtainiu arba
+šešioliktainiu formatu), palyginimas bus atliekamas matematiškai. Priešingu
+atveju bus atliktas didžiosioms raidėms nejautrus abėcėlinis palyginimas.
+Naudojant parinktis /c arba /i, bus priverstinai atliekamas teksto
+palyginimas, neatsižvelgiant į reikšmės duomenų tipą. Tuščia reikšmė neturi
+skaitinės reikšmės ir privers abu elementus lyginti kaip eilutes.
+
+Pagrindiniai pavyzdžiai:
+
+Failas pavadinimu TEST.TXT egzistuoja:       vtest /f TEST.TXT
+Failo pavadinimu TEST.TXT nėra:              vtest /not /f TEST.TXT
+Egzistuoja failas A.TXT arba B.TXT:          vtest /f A.TXT /or /f B.TXT
+Neegzistuoja nei failas A.TXT, nei B.TXT:    vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 yra skaičius:                             vtest /v %1
+%1 yra skaičius nuo 1 iki 10:                vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Nors /f, /d ir /e parinktys testuoja failų ar katalogų įrašus, jos
+gali naudoti išraiškų modifikatorius, pvz., /not, /c ir /i, taip pat
+palaiko pakaitos simbolius. Kai failų sistemoje patikrinama, ar yra
+atitinkamas įrašas, jie tampa pirmojo atitinkančio failų sistemos
+elemento reikšme ir gali būti traktuojami kaip reikšmės. Jei atitinkančio
+įrašo nerandama, reikšmė tampa null ir greičiausiai lems tai, kad išraiška
+bus įvertinta kaip FALSE.
+
+Atliekant dviejų reikšmių palyginimą, jei kiekvienoje reikšmėje yra
+galiojantis skaičius (dešimtainis arba šešioliktainis), palyginimas
+bus atliekamas skaitmeniškai. Jei kuri nors reikšmė nėra skaičius, ji
+bus lyginama abėcėlės tvarka. Nors palyginimų serijoje galima maišyti
+duomenų tipus, rezultatą gali būti sunku nuspėti ir tai paprastai
+nerekomenduojama.
+
+Kabutės NĖRA naudojamos eilutėms su tarpais. Kabučių simboliai visada
+traktuojami kaip paprasti teksto simboliai. Komandų eilutės analizatorius
+atskirs eilutes tik tada, kai bus aptiktas SWITCH_CHAR (paprastai /).
+Tai priimtinas pavyzdys:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Naudojant kabutes norint tiesiog apgaubti eilutes, bus gauti klaidingi
+rezultatai. Šis pavyzdys VISADA duos TRUE rezultatą, nepaisant %1 reikšmės:
+
+vtest /n "%1"
+
+Be to, jei eilutėje yra SWITCH_CHAR, dalis po SWITCH_CHAR bus
+interpretuojama kaip programos parinktis, nebent ji būtų išvengta
+įterpiant papildomą SWITCH_CHAR. Pavyzdžiui, „Y/N“ būtų interpretuojama
+kaip eilutė „Y“, o po to parinktis „/N“. Norint abu interpretuoti kaip
+eilutę, tai būtų „Y//N“. Pavyzdžiui:
+
+vtest /n y//n
+
+
+
+
+
+# Language: Latvian
+# File ending: lv
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opcijas]
+
+Stāvokļa testētājs. Tas var veikt dažādas pārbaudes, kuras var reducēt
+uz TRUE vai FALSE. Rezultāts tiek nodots kā errorlevel. Kad atbilde ir
+TRUE, tiek atgriezta nulle. Ja atbilde ir FALSE, tiek atgriezts 1.
+Nepareizas sintakses un citu līdzīgu kļūdu izmantošana atgriezīs
+izejas kodu 100.
+
+Testi:
+
+    val1 /eq val2    vērtības ir vienādas
+    val1 /ne val2    vērtības nav vienādas
+    val1 /ge val2    val1 ir lielāka vai vienāda ar val2
+    val1 /le val2    val1 ir mazāka vai vienāda ar val2
+    val1 /gt val2    val1 ir lielāka nekā val2
+    val1 /lt val2    val1 ir mazāka nekā val2
+    string           virkne nav null
+    /n string        virkne nav null
+    /z string        virkne ir null
+    /v number        skaitlis ir derīgs
+    /f file          fails pastāv
+    /d dir           ceļš pastāv
+    /e file vai dir  jebkāda veida direktorija ieraksts
+
+Izteiksmes operatori:
+
+    /c expression    Piespiest vērtību uztvert kā virkni un veikt
+                     reģistrjutīgu salīdzināšanu.
+    /i expression    Piespiest vērtību uztvert kā virkni un veikt
+                     reģistrnejutīgu salīdzināšanu.
+    exp1 /and exp2   Abām izteiksmēm jābūt TRUE.
+    exp1 /or /exp2   Jebkura izteiksme var būt TRUE.
+    /not expression  Apgriezt izteiksmes rezultātu.
+
+Citas opcijas:
+
+    /tf              Pēc pabeigšanas parādīt TRUE vai FALSE.
+
+Pēc noklusējuma vērtību salīdzināšana pamatojas uz to tipu. Ja abas
+vērtības ir skaitļi (decimālā vai sešpadsmitnieku formātā), salīdzināšana
+tiks veikta matemātiski. Pretējā gadījumā tiks veikta reģistrnejutīga
+alfabētiska salīdzināšana. Opciju /c vai /i izmantošana piespiedīs
+veikt uz tekstu balstītu salīdzināšanu neatkarīgi no vērtības datu tipa.
+Tukšai vērtībai nav skaitliskas vērtības, un tā piespiedīs abus vienumus
+salīdzināt kā virknes.
+
+Pamata piemēri:
+
+Fails ar nosaukumu TEST.TXT pastāv:          vtest /f TEST.TXT
+Fails ar nosaukumu TEST.TXT nepastāv:        vtest /not /f TEST.TXT
+Pastāv fails A.TXT vai B.TXT:                vtest /f A.TXT /or /f B.TXT
+Nepastāv ne fails A.TXT, ne B.TXT:           vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 ir skaitlis:                              vtest /v %1
+%1 ir skaitlis no 1 līdz 10:                 vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Lai gan opcijas /f, /d un /e pārbauda failu vai direktoriju ierakstus,
+tās var izmantot izteiksmju modifikatorus, piemēram, /not, /c un /i,
+un atbalsta arī aizstājējzīmes. Kad failu sistēma ir pārbaudīta, vai
+tajā nav atbilstoša ieraksta, tie kļūst par pirmā atbilstošā failu
+sistēmas vienuma vērtību un tos var uztvert kā vērtības. Ja atbilstošs
+ieraksts netiek atrasts, vērtība kļūst par null, un, visticamāk,
+izraisīs izteiksmes novērtēšanu kā FALSE.
+
+Veicot divu vērtību salīdzināšanu, ja katrā vērtībā ir derīgs skaitlis
+(decimāls vai sešpadsmitnieku), salīdzināšana tiks veikta skaitliski.
+Ja kāda no vērtībām nav skaitlis, tā tiks salīdzināta alfabētiski.
+Lai gan salīdzinājumu sērijā ir iespējams sajaukt datu tipus, rezultātu
+var būt grūti paredzēt, un tas parasti netiek ieteikts.
+
+Pēdiņas NETIEK izmantotas virknēm ar atstarpēm. Pēdiņu rakstzīmes
+vienmēr tiek uztvertas kā parastas teksta rakstzīmes. Komandrindas
+analizators atdalīs virknes tikai tad, ja tiks atklāts SWITCH_CHAR
+(parasti /). Šis ir pieņemams piemērs:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Pēdiņu izmantošana, lai vienkārši iesaiņotu virknes, dos kļūdainus
+rezultātus. Šāds piemērs VIENMĒR radīs TRUE neatkarīgi no %1 vērtības:
+
+vtest /n "%1"
+
+Turklāt, ja virkne satur SWITCH_CHAR, daļa, kas seko SWITCH_CHAR,
+tiks interpretēta kā programmas opcija, ja vien no tās neizvairās,
+ievietojot papildu SWITCH_CHAR. Piemēram, "Y/N" tiktu interpretēts kā
+virkne "Y" un pēc tam opcija "/N". Lai abus interpretētu kā virkni, tas
+būtu "Y//N". Piemēram:
+
+vtest /n y//n
+
+
+
+
+
+
+
+
+
+
+
+
+
+

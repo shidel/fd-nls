@@ -1,0 +1,95 @@
+# Language: Esperanto
+# File ending: eo
+# Codepage: 853
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opcioj]
+
+Stata testilo. ùi povas plenumi diversajn kontrolojn kiuj povas esti
+resumitaj al TRUE (VERA) aÌ FALSE (MALVERA). La rezulto estas pasigita
+kiel errorlevel. Kiam la respondo estas TRUE, nulo estas redonita. Se la
+respondo estas FALSE, 1 estas redonita. Uzi neõustan sintakson kaj aliajn
+similajn erarojn redonos eliran kodon 100.
+
+Testoj:
+
+    val1 /eq val2    valoroj estas egalaj
+    val1 /ne val2    valoroj ne estas egalaj
+    val1 /ge val2    val1 estas pli granda aÌ egala al val2
+    val1 /le val2    val1 estas malpli granda aÌ egala al val2
+    val1 /gt val2    val1 estas pli granda ol val2
+    val1 /lt val2    val1 estas malpli granda ol val2
+    string           Üeno ne estas nula
+    /n string        Üeno ne estas nula
+    /z string        Üeno estas nula
+    /v number        nombro estas valida
+    /f file          dosiero ekzistas
+    /d dir           vojo ekzistas
+    /e file aÌ dir   ia ajn dosieruja enigo
+
+Esprimaj operaciantoj:
+
+    /c expression    Devigi ke valoro estu traktata kiel Üeno kaj
+                     plenumi usklecodistingan komparon.
+    /i expression    Devigi ke valoro estu traktata kiel Üeno kaj
+                     plenumi uskleconedistingan komparon.
+    exp1 /and exp2   AmbaÌ esprimoj devas esti TRUE.
+    exp1 /or /exp2   Iu ajn el la esprimoj povas esti TRUE.
+    /not expression  Inversigi la rezulton de esprimo.
+
+Aliaj opcioj:
+
+    /tf              Montri TRUE aÌ FALSE kiam preta.
+
+DefaÌlte, la komparo de valoroj baziõas sur ilia tipo. Se ambaÌ valoroj
+estas nombro (reprezentita dekume aÌ deksesume), la komparo estos farita
+matematike. Alie, alfabeta komparo sen konsidero de uskleco estos
+plenumita. Uzi la opciojn /c aÌ /i devigos tekstbazitan komparon
+sendepende de la datuma tipo de la valoro. Malplena valoro ne havas
+nombran valoron kaj devigos la du elementojn esti komparataj kiel Üenoj.
+
+Bazaj ekzemploj:
+
+Dosiero nomita TEST.TXT ekzistas:            vtest /f TEST.TXT
+Dosiero nomita TEST.TXT ne ekzistas:         vtest /not /f TEST.TXT
+AÌ dosiero A.TXT aÌ B.TXT ekzistas:          vtest /f A.TXT /or /f B.TXT
+Nek dosiero A.TXT nek B.TXT ekzistas:        vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 estas nombro:                             vtest /v %1
+%1 estas nombro de 1 õis 10:                 vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Dum la opcioj /f, /d kaj /e testas dosierajn aÌ dosierujajn enigojn,
+ili povas uzi esprimajn modifilojn kiel /not, /c kaj /i kaj ankaÌ
+subtenas üokerojn. Post kiam la dosiersistemo estis kontrolita pri la
+ekzisto de kongrua enigo, ili fariõas la valoro de la unua kongrua
+dosiersistema ero kaj povas esti traktataj kiel valoroj. Se neniu
+kongrua enigo estas trovita, la valoro fariõas nula kaj tre eble
+kaÌzos ke esprimo estu taksita kiel FALSE.
+
+Kiam oni faras komparon inter du valoroj, se Üiu valoro enhavas validan
+nombron (dekuman aÌ deksesuman), la komparo estos farita nombre. Se iu
+el la valoroj ne estas nombro, õi estos komparita alfabete. Kvankam
+estas eble miksi datumajn tipojn en serio de komparoj, la rezulto povas
+esti malfacile antaÌvidebla kaj ne estas õenerale rekomendinda.
+
+Citiloj NE estas uzataj por Üenoj kun spacoj. Citiloj Üiam estas
+traktataj kiel normalaj tekstaj signoj. La komandlinia sintaksilo
+disigos Üenojn nur kiam SWITCH_CHAR (kutime /) estas detektita. èi tio
+estas akceptebla ekzemplo:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Uzi citilojn por simple ÜirkaÌi Üenojn produktos erarajn rezultojn. La
+sekva ekzemplo èIAM rezultos en TRUE sendepende de la valoro de %1:
+
+vtest /n "%1"
+
+Krome, se Üeno enhavas SWITCH_CHAR, la parto sekvanta la SWITCH_CHAR
+estos interpretita kiel programa opcio krom se õi estas eskapita
+enigante kroman SWITCH_CHAR. Ekzemple, "Y/N" estus interpretita kiel la
+Üeno "Y" sekvata de la opcio "/N". Por interpreti ambaÌ kiel Üenon õi
+estus "Y//N". Ekzemple:
+
+vtest /n y//n

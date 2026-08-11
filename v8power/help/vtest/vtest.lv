@@ -1,0 +1,96 @@
+# Language: Latvian
+# File ending: lv
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opcijas]
+
+Stƒvokëa test‰tƒjs. Tas var veikt daØƒdas pƒrbaudes, kuras var reduc‰t
+uz TRUE vai FALSE. Rezultƒts tiek nodots kƒ errorlevel. Kad atbilde ir
+TRUE, tiek atgriezta nulle. Ja atbilde ir FALSE, tiek atgriezts 1.
+Nepareizas sintakses un citu lŒdzŒgu kë×du izmantoÕana atgriezŒs
+izejas kodu 100.
+
+Testi:
+
+    val1 /eq val2    v‰rtŒbas ir vienƒdas
+    val1 /ne val2    v‰rtŒbas nav vienƒdas
+    val1 /ge val2    val1 ir lielƒka vai vienƒda ar val2
+    val1 /le val2    val1 ir mazƒka vai vienƒda ar val2
+    val1 /gt val2    val1 ir lielƒka nekƒ val2
+    val1 /lt val2    val1 ir mazƒka nekƒ val2
+    string           virkne nav null
+    /n string        virkne nav null
+    /z string        virkne ir null
+    /v number        skaitlis ir derŒgs
+    /f file          fails pastƒv
+    /d dir           ceëÕ pastƒv
+    /e file vai dir  jebkƒda veida direktorija ieraksts
+
+Izteiksmes operatori:
+
+    /c expression    Piespiest v‰rtŒbu uztvert kƒ virkni un veikt
+                     re…istrjutŒgu salŒdzinƒÕanu.
+    /i expression    Piespiest v‰rtŒbu uztvert kƒ virkni un veikt
+                     re…istrnejutŒgu salŒdzinƒÕanu.
+    exp1 /and exp2   Abƒm izteiksm‰m jƒb×t TRUE.
+    exp1 /or /exp2   Jebkura izteiksme var b×t TRUE.
+    /not expression  Apgriezt izteiksmes rezultƒtu.
+
+Citas opcijas:
+
+    /tf              P‰c pabeigÕanas parƒdŒt TRUE vai FALSE.
+
+P‰c noklus‰juma v‰rtŒbu salŒdzinƒÕana pamatojas uz to tipu. Ja abas
+v‰rtŒbas ir skaitëi (decimƒlƒ vai seÕpadsmitnieku formƒtƒ), salŒdzinƒÕana
+tiks veikta matemƒtiski. Pret‰jƒ gadŒjumƒ tiks veikta re…istrnejutŒga
+alfab‰tiska salŒdzinƒÕana. Opciju /c vai /i izmantoÕana piespiedŒs
+veikt uz tekstu balstŒtu salŒdzinƒÕanu neatkarŒgi no v‰rtŒbas datu tipa.
+TukÕai v‰rtŒbai nav skaitliskas v‰rtŒbas, un tƒ piespiedŒs abus vienumus
+salŒdzinƒt kƒ virknes.
+
+Pamata piem‰ri:
+
+Fails ar nosaukumu TEST.TXT pastƒv:          vtest /f TEST.TXT
+Fails ar nosaukumu TEST.TXT nepastƒv:        vtest /not /f TEST.TXT
+Pastƒv fails A.TXT vai B.TXT:                vtest /f A.TXT /or /f B.TXT
+Nepastƒv ne fails A.TXT, ne B.TXT:           vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 ir skaitlis:                              vtest /v %1
+%1 ir skaitlis no 1 lŒdz 10:                 vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Lai gan opcijas /f, /d un /e pƒrbauda failu vai direktoriju ierakstus,
+tƒs var izmantot izteiksmju modifikatorus, piem‰ram, /not, /c un /i,
+un atbalsta arŒ aizstƒj‰jzŒmes. Kad failu sist‰ma ir pƒrbaudŒta, vai
+tajƒ nav atbilstoÕa ieraksta, tie kë×st par pirmƒ atbilstoÕƒ failu
+sist‰mas vienuma v‰rtŒbu un tos var uztvert kƒ v‰rtŒbas. Ja atbilstoÕs
+ieraksts netiek atrasts, v‰rtŒba kë×st par null, un, visticamƒk,
+izraisŒs izteiksmes nov‰rt‰Õanu kƒ FALSE.
+
+Veicot divu v‰rtŒbu salŒdzinƒÕanu, ja katrƒ v‰rtŒbƒ ir derŒgs skaitlis
+(decimƒls vai seÕpadsmitnieku), salŒdzinƒÕana tiks veikta skaitliski.
+Ja kƒda no v‰rtŒbƒm nav skaitlis, tƒ tiks salŒdzinƒta alfab‰tiski.
+Lai gan salŒdzinƒjumu s‰rijƒ ir iesp‰jams sajaukt datu tipus, rezultƒtu
+var b×t gr×ti paredz‰t, un tas parasti netiek ieteikts.
+
+P‰diìas NETIEK izmantotas virkn‰m ar atstarp‰m. P‰diìu rakstzŒmes
+vienm‰r tiek uztvertas kƒ parastas teksta rakstzŒmes. Komandrindas
+analizators atdalŒs virknes tikai tad, ja tiks atklƒts SWITCH_CHAR
+(parasti /). ¾is ir pieìemams piem‰rs:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+P‰diìu izmantoÕana, lai vienkƒrÕi iesaiìotu virknes, dos kë×dainus
+rezultƒtus. ¾ƒds piem‰rs VIENMíR radŒs TRUE neatkarŒgi no %1 v‰rtŒbas:
+
+vtest /n "%1"
+
+Turklƒt, ja virkne satur SWITCH_CHAR, daëa, kas seko SWITCH_CHAR,
+tiks interpret‰ta kƒ programmas opcija, ja vien no tƒs neizvairƒs,
+ievietojot papildu SWITCH_CHAR. Piem‰ram, "Y/N" tiktu interpret‰ts kƒ
+virkne "Y" un p‰c tam opcija "/N". Lai abus interpret‰tu kƒ virkni, tas
+b×tu "Y//N". Piem‰ram:
+
+vtest /n y//n

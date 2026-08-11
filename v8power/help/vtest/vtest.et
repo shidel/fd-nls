@@ -1,0 +1,95 @@
+# Language: Estonian
+# File ending: et
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [valikud]
+
+Olekutestija. See väib teha erinevaid kontrolle, mida saab taandada kas
+TRUE väi FALSE olekule. Tulemus edastatakse kui errorlevel. Kui vastus
+on TRUE, tagastatakse null. Kui vastus on FALSE, tagastatakse 1. Vale
+sntaksi ja muude sarnaste vigade kasutamine tagastab v„ljumiskoodi 100.
+
+Testid:
+
+    val1 /eq val2    v„„rtused on värdsed
+    val1 /ne val2    v„„rtused ei ole värdsed
+    val1 /ge val2    val1 on suurem väi värdne val2-ga
+    val1 /le val2    val1 on v„iksem väi värdne val2-ga
+    val1 /gt val2    val1 on suurem kui val2
+    val1 /lt val2    val1 on v„iksem kui val2
+    string           string ei ole null
+    /n string        string ei ole null
+    /z string        string on null
+    /v number        number on kehtiv
+    /f file          fail on olemas
+    /d dir           kataloog on olemas
+    /e file väi dir  mis tahes tpi kataloogikirje
+
+Avaldise operaatorid:
+
+    /c expression    Sunnib v„„rtust k„sitlema stringina ja sooritab
+                     tästutundliku värdluse.
+    /i expression    Sunnib v„„rtust k„sitlema stringina ja sooritab
+                     tästutundetu värdluse.
+    exp1 /and exp2   Mälemad avaldised peavad olema TRUE.
+    exp1 /or /exp2   Kumbki avaldis väib olla TRUE.
+    /not expression  P””rab avaldise tulemuse mber.
+
+Muud valikud:
+
+    /tf              Kuvab läpetamisel TRUE väi FALSE.
+
+Vaikimisi pähineb v„„rtuste värdlemine nende tbil. Kui mälemad
+v„„rtused on numbrid (esitatud kmnend- väi kuueteistkmnendssteemis),
+tehakse värdlus matemaatiliselt. Muul juhul tehakse tästutundetu
+t„hestikuline värdlus. Valiku /c väi /i kasutamine sunnib
+tekstipähisele värdlusele olenemata v„„rtuse andmetbist. Thjal
+v„„rtusel pole arvv„„rtust ja see sunnib kahte elementi värdlema
+stringidena.
+
+Pähin„ited:
+
+Fail nimega TEST.TXT on olemas:              vtest /f TEST.TXT
+Faili nimega TEST.TXT ei ole olemas:         vtest /not /f TEST.TXT
+Eksisteerib fail A.TXT väi B.TXT:            vtest /f A.TXT /or /f B.TXT
+Ei eksisteeri faili A.TXT ega B.TXT:         vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 on arv:                                   vtest /v %1
+%1 on arv vahemikus 1 kuni 10:               vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Kuigi valikud /f, /d ja /e testivad faili- väi kataloogikirjeid,
+saavad nad kasutada avaldise muutjaid nagu /not, /c ja /i ning
+toetavad ka metam„rke. Kui failissteemi on kontrollitud vastava kirje
+olemasolu suhtes, saavad neist esimese vastava failissteemi elemendi
+v„„rtus ja neid saab k„sitleda v„„rtustena. Kui vastavat kirjet ei
+leita, muutub v„„rtus nulliks ja pähjustab suure täen„osusega avaldise
+hindamise olekuks FALSE.
+
+Kahe v„„rtuse värdlemisel, kui kumbki v„„rtus sisaldab kehtivat arvu
+(kmnend- väi kuueteistkmnendssteem), tehakse värdlus numbriliselt.
+Kui kumbki v„„rtus pole arv, värreldakse neid t„hestiku j„rgi. Ehkki
+andmetpe on väimalik värdluste seerias segada, väib tulemust olla
+raske ennustada ja seda ldiselt ei soovitata.
+
+Jutum„rke EI kasutata thikutega stringide puhul. Jutum„rke
+k„sitletakse alati tavaliste tekstikomponentidena. K„surea parser
+eraldab stringid ainult siis, kui tuvastatakse SWITCH_CHAR (tavaliselt
+/). See on vastuväetav n„ide:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Jutum„rkide kasutamine stringide lihtsalt m„hkimiseks annab vigaseid
+tulemusi. J„rgmine n„ide toob ALATI kaasa TRUE sältumata %1 v„„rtusest:
+
+vtest /n "%1"
+
+Lisaks, kui string sisaldab SWITCH_CHAR-i, tälgendatakse SWITCH_CHAR-ile
+j„rgnevat osa programmi valikuna, v„lja arvatud juhul, kui see
+kärvaldatakse t„iendava SWITCH_CHAR-i lisamisega. N„iteks "Y/N"
+tälgendataks stringina "Y" ja seej„rel valikuna "/N". Et mälemat
+stringina tälgendada, oleks see "Y//N". N„iteks:
+
+vtest /n y//n

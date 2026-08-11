@@ -1,0 +1,128 @@
+# Language: Icelandic
+# File ending: is
+# Codepage: 861
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Gefið út undir GPL v2.0 leyfi.
+****************************************************************************
+
+Setur kraft 8 strokka vélar undir húddið á DOS runuskrám.
+
+============================================================================
+
+V8Power Tools verkefnið er hannað í samvinnu við
+Jim Hall fyrir FreeDOS(TM) (http://www.freedos.org) stýrikerfið. Það er
+ætlað til að auka virkni skrifta sem skrifaðar eru með runuskrám og
+veita þeim betra notendaviðmót með aukinni virkni.
+
+============================================================================
+
+Kompílering V8Power Tools
+
+    Forsendur:
+
+        8086 eða betri örgjörvi.
+        EGA eða betri skjákort.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) eða nýrra
+        NASM fyrir DOS útgáfa 2.16.01 (http://wwww.nasm.us) eða nýrra
+
+    Kompílering:
+
+        Tryggðu að NASM mappan sé í stígnum þínum.
+        Sæktu nýjustu frumkóða frá http://github.com/LoopZ/V8Power
+        Keyrðu mkV8.bat skriftuna.
+        Allar keyrsluskrár verða settar í nýstofnaða BIN möppu.
+
+    Fyrir lata fólkið, eins og mig:
+
+        Fyrirfram kompíleraðar útgáfur eru fáanlegar á
+        http://up.lod.bz/V8Power.
+
+============================================================================
+
+V8Power Tools Prófaður Samhæfanleiki
+
+    FreeDOS 1.1+
+
+Takmörkuð samhæfni háþróaðra eiginleika (enginn "set /p" runu stuðningur):
+
+    MS-DOS 6.2 og 6.22
+    PC-DOS 7.0, 7.01 og 2000
+    DR-DOS 7.03
+    DOSBox (i/o endurbeining eða fyrirspurnir með stdout munu EKKI
+        virka með innbyggðu DOSBox skelinni. Þó virka þau vel í DOSBox
+        þegar samhæfð skel eins og FreeCOM er notuð)
+    Windows 3.11 Shell
+    Windows 98 Shell og Command Line
+    Windows XP SP3 Shell (nema vcursor)
+
+============================================================================
+
+V8Power Tools Notkun
+
+Hér eru smá grunnupplýsingar um öll tól og hvernig þau virka.
+
+    Valkostir, gildi og hexadesimal tölur gera ekki greinarmun á stórum
+    og litlum stöfum /f white er það sama og /F wHIte.
+
+    Hexadesimal tölur geta haft 0x á undan til að koma í veg fyrir að
+    þær séu meðhöndlaðar sem tugakerfi. (Dæmi: 10 og 0x10)
+
+    Bil eru að mestu leyti valfrjáls. /B7/f0 er það sama og
+    /B 7 /F 0. En ekki / B7 / F0.
+
+    Til að nota / eða bil í gildi skaltu setja það í gæsalappir. Eins
+    og "Jack and/or Jill".
+
+    Notaðu margar gæsalappir til að nota gæsalappir. Eins og "Jack's house"
+    eða 'Say "What?"'.
+
+    Nema því sé hnekkt, nota flest tól textaeigindina á núverandi
+    staðsetningu bendils.
+
+============================================================================
+
+Hér er litataflan notuð fyrir alla /A, /F og /B rofa:
+
+    Tugakerfi   Hex         Merki (Gerir ekki greinarmun á letri)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Aðeins forgrunnur /f og /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+Flest einstök tól sem styðja litabreytingar styðja einnig að breyta
+Blink/Intensity stillingunni. Flest tól minnast þó ekki á það.
+
+    /BlinkOn    Virkja Blink/Intensity bita. (Byrja að blikka)
+    /BlinkOff   Slökkva á Blink/Intensity bita. (Hætta að blikka)
+
+============================================================================
+
+DOS skipanalínan (og runuskrár) takmarkast við um það bil 128
+stafi. Þetta gæti gert það erfitt fyrir tól eins og vecho að prenta margar
+línur í einu. Þó styðja mörg tól eins og vecho, vstr osfrv. innlestur á
+textaauðlindum úr skrá með /T rofanum. Almennt er /T rofinn notaður
+til að útvega "Þýðing" texta fyrir runu. Þegar lesið er úr skrá, er
+V8Power Tools tólið takmarkað við 10 kílóbæt á línur. Fyrir utan það, mun
+tólið hunsa allan texta sem eftir er á þeirri línu. 10kb jafngildir 5
+skjám eða meira af texta og er of mikið.

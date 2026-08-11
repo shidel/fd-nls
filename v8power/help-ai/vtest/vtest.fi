@@ -1,0 +1,99 @@
+# Language: Finnish
+# File ending: fi
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [valinnat]
+
+Tilan testaaja. Se voi suorittaa erilaisia tarkistuksia, jotka
+voidaan tiivist„„ joko arvoon TRUE tai FALSE. Tulos v„litet„„n
+errorlevelin„. Kun vastaus on TRUE, palautetaan nolla. Jos vastaus on
+FALSE, palautetaan 1. V„„r„n syntaksin ja muiden vastaavien virheiden
+k„ytt” palauttaa poistumiskoodin 100.
+
+Testit:
+
+    val1 /eq val2    arvot ovat samat
+    val1 /ne val2    arvot eiv„t ole samat
+    val1 /ge val2    val1 on suurempi tai yht„ suuri kuin val2
+    val1 /le val2    val1 on pienempi tai yht„ suuri kuin val2
+    val1 /gt val2    val1 on suurempi kuin val2
+    val1 /lt val2    val1 on pienempi kuin val2
+    string           merkkijono ei ole null
+    /n string        merkkijono ei ole null
+    /z string        merkkijono on null
+    /v number        numero on kelvollinen
+    /f file          tiedosto on olemassa
+    /d dir           polku on olemassa
+    /e file / dir    mik„ tahansa hakemistomerkint„
+
+Lausekeoperaattorit:
+
+    /c expression    Pakota arvo k„sitelt„v„ksi merkkijonona ja
+                     suorita kirjainkoolla on merkityst„ -vertailu.
+    /i expression    Pakota arvo k„sitelt„v„ksi merkkijonona ja
+                     suorita kirjainkoosta riippumaton vertailu.
+    exp1 /and exp2   Molemmat lausekkeet on oltava TRUE.
+    exp1 /or /exp2   Kumpi tahansa lauseke voi olla TRUE.
+    /not expression  K„„nn„ lausekkeen tulos p„invastaiseksi.
+
+Muut valinnat:
+
+    /tf              N„yt„ TRUE tai FALSE, kun se on valmis.
+
+Oletuksena arvojen vertailu perustuu niiden tyyppiin. Jos molemmat
+arvot ovat lukuja (esitettyn„ desimaali- tai heksadesimaalimuodossa),
+vertailu tehd„„n matemaattisesti. Muussa tapauksessa suoritetaan
+kirjainkoosta riippumaton aakkosellinen vertailu. Valintojen /c tai /i
+k„ytt” pakottaa tekstipohjaisen vertailun arvon tietotyypist„
+riippumatta. Tyhj„ll„ arvolla ei ole numeerista arvoa, ja se pakottaa
+n„m„ kaksi kohdetta vertailtavaksi merkkijonoina.
+
+Perusesimerkit:
+
+Tiedosto nimelt„ TEST.TXT on olemassa:       vtest /f TEST.TXT
+Tiedostoa nimelt„ TEST.TXT ei ole:           vtest /not /f TEST.TXT
+Joko tiedosto A.TXT tai B.TXT on olemassa:   vtest /f A.TXT /or /f B.TXT
+Kumpaakaan tiedostoa A.TXT tai B.TXT ei ole: vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 on numero:                                vtest /v %1
+%1 on numero v„lill„ 1 - 10:                 vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Vaikka valinnat /f, /d ja /e testaavat tiedosto- tai hakemistomerkint”j„,
+ne voivat k„ytt„„ lausekkeen muokkaajia, kuten /not, /c ja /i, ja ne
+tukevat my”s jokerimerkkej„. Kun tiedostoj„rjestelm„st„ on tarkistettu
+vastaavan merkinn„n olemassaolo, niist„ tulee ensimm„isen vastaavan
+tiedostoj„rjestelm„kohteen arvo ja niit„ voidaan k„sitell„ arvoina.
+Jos vastaavaa merkint„„ ei l”ydy, arvosta tulee null, ja se saa
+todenn„k”isimmin lausekkeen arvioitumaan arvoon FALSE.
+
+Kahta arvoa vertailtaessa, jos kumpikin arvo sis„lt„„ kelvollisen
+numeron (desimaali tai heksadesimaali), vertailu suoritetaan
+numeerisesti. Jos jompikumpi arvo ei ole luku, se vertaillaan
+aakkosj„rjestyksess„. Vaikka tietotyyppej„ on mahdollista sekoittaa
+vertailusarjassa, tulosta voi olla vaikea ennustaa, eik„ sit„
+yleens„ suositella.
+
+Lainausmerkkej„ EI k„ytet„ v„lily”ntej„ sis„lt„viss„ merkkijonoissa.
+Lainausmerkkihahmoja k„sitell„„n aina normaaleina tekstimerkkein„.
+Komentorivin j„sennin erottaa merkkijonot vain, kun SWITCH_CHAR
+(yleens„ /) havaitaan. T„m„ on hyv„ksytt„v„ esimerkki:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Lainausmerkkien k„ytt„minen merkkijonojen k„„rimiseen tuottaa
+virheellisi„ tuloksia. Seuraava esimerkki johtaa AINA arvoon TRUE
+riippumatta %1:n arvosta:
+
+vtest /n "%1"
+
+Lis„ksi, jos merkkijono sis„lt„„ SWITCH_CHAR-merkin, SWITCH_CHAR-
+merkki„ seuraava osa tulkitaan ohjelmavaihtoehdoksi, ellei sit„
+ohiteta lis„„m„ll„ ylim„„r„inen SWITCH_CHAR. Esimerkiksi "Y/N"
+tulkittaisiin merkkijonona "Y" ja sen j„lkeen vaihtoehtona "/N".
+Jotta molemmat tulkittaisiin merkkijonona, se olisi "Y//N".
+Esimerkiksi:
+
+vtest /n y//n

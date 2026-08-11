@@ -1,0 +1,97 @@
+# Language: Swedish
+# File ending: sv
+# Codepage: 850
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [alternativ]
+
+En testare av tillstånd. Den kan utföra olika kontroller som kan kokas ner
+till antingen TRUE eller FALSE. Resultatet skickas som en errorlevel. När
+svaret är TRUE returneras en nolla. Om svaret är FALSE returneras en 1. Att
+använda en felaktig syntax och andra sådana fel returnerar avslutningskod
+100.
+
+Tester:
+
+    val1 /eq val2    värden är lika
+    val1 /ne val2    värden är inte lika
+    val1 /ge val2    val1 är större än eller lika med val2
+    val1 /le val2    val1 är mindre än eller lika med val2
+    val1 /gt val2    val1 är större än val2
+    val1 /lt val2    val1 är mindre än val2
+    string           strängen är inte null
+    /n string        strängen är inte null
+    /z string        strängen är null
+    /v number        numret är giltigt
+    /f file          filen existerar
+    /d dir           sökvägen existerar
+    /e file / dir    valfri typ av katalogpost
+
+Uttrycksoperatorer:
+
+    /c expression    Tvinga att ett värde behandlas som en sträng och
+                     utför en skiftlägeskänslig jämförelse.
+    /i expression    Tvinga att ett värde behandlas som en sträng och
+                     utför en skiftlägesokänslig jämförelse.
+    exp1 /and exp2   Båda uttrycken måste vara TRUE.
+    exp1 /or /exp2   Valfritt uttryck kan vara TRUE.
+    /not expression  Invertera resultatet av ett uttryck.
+
+Andra alternativ:
+
+    /tf              Visa TRUE eller FALSE när du är klar.
+
+Som standard baseras jämförelsen av värden på deras typ. Om båda värdena
+är ett nummer (representerat i decimal eller hexadecimal), kommer
+jämförelsen att göras matematiskt. Annars kommer en skiftlägesokänslig
+alfabetisk jämförelse att utföras. Användning av antingen /c eller /i
+tvingar fram en textbaserad jämförelse oavsett värdets datatyp. Ett tomt
+värde har inget numeriskt värde och tvingar de två objekten att jämföras
+som strängar.
+
+Grundläggande exempel:
+
+En fil som heter TEST.TXT existerar:         vtest /f TEST.TXT
+En fil som heter TEST.TXT existerar inte:    vtest /not /f TEST.TXT
+Antingen existerar fil A.TXT eller B.TXT:    vtest /f A.TXT /or /f B.TXT
+Varken fil A.TXT eller B.TXT existerar:      vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 är ett nummer:                            vtest /v %1
+%1 är ett nummer från 1 till 10:             vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Medan alternativen /f, /d och /e testar för fil- eller katalogposter kan de
+använda uttrycksmodifierare som /not, /c och /i och de stöder även
+jokertecken. När filsystemet har kontrollerats för förekomsten av en
+matchande post, blir de värdet på det första matchande filsystemobjektet
+och kan behandlas som värden. Om ingen matchande post hittas blir värdet
+null och kommer med största sannolikhet att få ett uttryck att utvärderas
+som FALSE.
+
+Vid jämförelse av två värden, om varje värde innehåller ett giltigt nummer
+(decimalt eller hexadecimalt) kommer jämförelsen att utföras numeriskt.
+Om något av värdena inte är ett nummer, kommer det att jämföras alfabetiskt.
+Även om det är möjligt att blanda datatyper i en serie jämförelser kan
+resultatet vara svårt att förutse och det rekommenderas i allmänhet inte.
+
+Citattecken används INTE för strängar med mellanslag. Citattecken
+behandlas alltid som vanliga texttecken. Kommandoradstolkaren kommer bara
+att separera strängar när en SWITCH_CHAR (normalt /) upptäcks. Detta är
+ett acceptabelt exempel:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Att använda ett citattecken för att helt enkelt omsluta strängar ger
+felaktiga resultat. Följande exempel resulterar ALLTID i TRUE oavsett
+värdet på %1:
+
+vtest /n "%1"
+
+Dessutom, om en sträng innehåller en SWITCH_CHAR kommer delen efter
+SWITCH_CHAR att tolkas som ett programalternativ såvida den inte escapas
+genom att infoga en extra SWITCH_CHAR. Till exempel skulle "Y/N" tolkas
+som strängen "Y" sedan alternativet "/N". För att tolka båda som en sträng
+skulle det vara "Y//N". Till exempel:
+
+vtest /n y//n

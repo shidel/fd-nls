@@ -1,0 +1,99 @@
+# Language: Polish
+# File ending: pl
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opcje]
+
+Tester stanu. Może wykonywać różne kontrole, które można sprowadzić
+do TRUE lub FALSE. Wynik jest przekazywany jako errorlevel. Gdy
+odpowiedź to TRUE, zwracane jest zero. Jeśli odpowiedź to FALSE,
+zwracane jest 1. Użycie niewłaściwej składni i inne podobne błędy
+zwrócą kod wyjścia 100.
+
+Testy:
+
+    val1 /eq val2    wartości są równe
+    val1 /ne val2    wartości nie są równe
+    val1 /ge val2    val1 jest większe lub równe val2
+    val1 /le val2    val1 jest mniejsze lub równe val2
+    val1 /gt val2    val1 jest większe niż val2
+    val1 /lt val2    val1 jest mniejsze niż val2
+    string           ciąg znaków nie jest null
+    /n string        ciąg znaków nie jest null
+    /z string        ciąg znaków jest null
+    /v number        liczba jest prawidłowa
+    /f file          plik istnieje
+    /d dir           ścieżka istnieje
+    /e file lub dir  dowolny typ wpisu katalogu
+
+Operatory wyrażeń:
+
+    /c expression    Wymuś traktowanie wartości jako ciągu znaków i
+                     wykonaj porównanie uwzględniające wielkość liter.
+    /i expression    Wymuś traktowanie wartości jako ciągu znaków i
+                     wykonaj porównanie ignorujące wielkość liter.
+    exp1 /and exp2   Oba wyrażenia muszą być TRUE.
+    exp1 /or /exp2   Dowolne wyrażenie może być TRUE.
+    /not expression  Odwróć wynik wyrażenia.
+
+Inne opcje:
+
+    /tf              Wyświetl TRUE lub FALSE po zakończeniu.
+
+Domyślnie porównywanie wartości opiera się na ich typie. Jeśli obie
+wartości są liczbą (reprezentowaną w systemie dziesiętnym lub
+szesnastkowym), porównanie zostanie wykonane matematycznie. W
+przeciwnym razie zostanie wykonane porównanie alfabetyczne ignorujące
+wielkość liter. Użycie opcji /c lub /i wymusi porównanie tekstowe
+niezależnie od typu danych wartości. Pusta wartość nie ma wartości
+liczbowej i wymusi porównywanie dwóch elementów jako ciągów znaków.
+
+Podstawowe przykłady:
+
+Plik o nazwie TEST.TXT istnieje:             vtest /f TEST.TXT
+Plik o nazwie TEST.TXT nie istnieje:         vtest /not /f TEST.TXT
+Istnieje plik A.TXT lub B.TXT:               vtest /f A.TXT /or /f B.TXT
+Nie istnieje żaden plik A.TXT ani B.TXT:     vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 to liczba:                                vtest /v %1
+%1 to liczba od 1 do 10:                     vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Chociaż opcje /f, /d i /e sprawdzają wpisy plików lub katalogów, mogą
+używać modyfikatorów wyrażeń, takich jak /not, /c i /i, a także
+obsługują symbole wieloznaczne. Po sprawdzeniu systemu plików pod
+kątem istnienia pasującego wpisu stają się one wartością pierwszego
+pasującego elementu systemu plików i mogą być traktowane jako
+wartości. Jeśli nie zostanie znaleziony żaden pasujący wpis, wartość
+staje się pusta (null) i najprawdopodobniej spowoduje, że wyrażenie
+zostanie ocenione jako FALSE.
+
+Podczas wykonywania porównania dwóch wartości, jeśli każda z nich
+zawiera prawidłową liczbę (dziesiętną lub szesnastkową), porównanie
+zostanie wykonane numerycznie. Jeśli którakolwiek wartość nie jest
+liczbą, zostanie porównana alfabetycznie. Chociaż w serii porównań
+można mieszać typy danych, wynik może być trudny do przewidzenia i
+ogólnie nie jest to zalecane.
+
+Cudzysłowy NIE są używane w przypadku ciągów ze spacjami. Znaki
+cudzysłowu są zawsze traktowane jako normalne znaki tekstowe. Parser
+wiersza poleceń rozdzieli ciągi znaków tylko po wykryciu SWITCH_CHAR
+(zwykle /). To jest dopuszczalny przykład:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Użycie cudzysłowu do prostego zawijania ciągów da błędne wyniki.
+Poniższy przykład ZAWSZE zwróci wartość TRUE niezależnie od wartości %1:
+
+vtest /n "%1"
+
+Co więcej, jeśli ciąg znaków zawiera SWITCH_CHAR, część po SWITCH_CHAR
+zostanie zinterpretowana jako opcja programu, chyba że zostanie użyta
+sekwencja ucieczki poprzez wstawienie dodatkowego SWITCH_CHAR. Na
+przykład "Y/N" zostałoby zinterpretowane jako ciąg "Y", a następnie opcja
+"/N". Aby zinterpretować oba jako ciąg, należałoby wpisać "Y//N". Na
+przykład:
+
+vtest /n y//n

@@ -1,0 +1,133 @@
+# Language: Latvian
+# File ending: lv
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Izlaists saskaņā ar GPL v2.0 licenci.
+****************************************************************************
+
+Ievieto 8 cilindru dzinēja jaudu zem DOS pakešfailu (batch) pārsega.
+
+============================================================================
+
+Projekts V8Power Tools tiek izstrādāts sadarbībā ar Jim Hall operētājsistēmai
+FreeDOS(TM) (http://www.freedos.org). Tas ir paredzēts, lai paplašinātu
+skriptu funkcionalitāti, kas rakstīti, izmantojant pakešfailus, un
+nodrošinātu tiem labāka izskata lietotāja saskarni ar palielinātu
+funkcionalitāti.
+
+============================================================================
+
+V8Power Tools kompilēšana
+
+    Priekšnoteikumi:
+
+        8086 vai labāks procesors.
+        EGA vai labāks video adapteris.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) vai jaunāka
+        NASM priekš DOS versija 2.16.01 (http://wwww.nasm.us) vai jaunāka
+
+    Kompilēšana:
+
+        Pārliecinieties, vai NASM direktorijs ir norādīts jūsu ceļa
+        (path) specifikācijā.
+        Lejupielādējiet jaunākos pirmkodus no
+        http://github.com/LoopZ/V8Power
+        Palaidiet mkV8.bat skriptu.
+        Visi izpildāmie faili tiks ievietoti jaunizveidotajā BIN
+        direktorijā.
+
+    Slinkiem cilvēkiem, kā es:
+
+        Iepriekš kompilētas versijas ir pieejamas vietnē
+        http://up.lod.bz/V8Power.
+
+============================================================================
+
+V8Power Tools Pārbaudīta Saderība
+
+    FreeDOS 1.1+
+
+Ierobežota papildfunkciju saderība (nav pakešfailu "set /p" atbalsta):
+
+    MS-DOS 6.2 un 6.22
+    PC-DOS 7.0, 7.01 un 2000
+    DR-DOS 7.03
+    DOSBox (ievades/izvades pāradresācija vai vaicājumi, izmantojot
+        stdout, NEDARBOSIES, izmantojot iebūvēto DOSBox čaulu. Tomēr tie
+        lieliski darbojas DOSBox, ja tiek izmantota saderīga čaula,
+        piemēram, FreeCOM)
+    Windows 3.11 Shell
+    Windows 98 Shell un komandrinda
+    Windows XP SP3 Shell (izņemot vcursor)
+
+============================================================================
+
+V8Power Tools Lietošana
+
+Šeit ir sniegta pamatinformācija par visām utilītām un to darbību.
+
+    Opcijas, vērtības un sešpadsmitnieku skaitļi nav reģistrjutīgi
+    /f white ir tas pats, kas /F wHIte.
+
+    Sešpadsmitnieku skaitļiem var būt prefikss 0x, lai novērstu to
+    apstrādi kā decimālskaitļus. (Piemērs: 10 un 0x10)
+
+    Atstarpes lielākoties nav obligātas. /B7/f0 ir tas pats, kas
+    /B 7 /F 0. Bet ne / B7 / F0.
+
+    Lai vērtībā izmantotu / vai atstarpes, ielieciet to pēdiņās.
+    Piemēram, "Jack and/or Jill".
+
+    Izmantojiet vairākas pēdiņas, lai izmantotu pēdiņas. Piemēram,
+    "Jack's house" vai 'Say "What?"'.
+
+    Ja vien tas nav pārrakstīts, lielākā daļa rīku izmanto teksta
+    atribūtu pašreizējā kursora atrašanās vietā.
+
+============================================================================
+
+Šeit ir krāsu tabula, ko izmanto visiem /A, /F un /B slēdžiem:
+
+    Decimālais   Hex         Etiķete (Nav reģistrjutīga)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Tikai priekšplānam /f un /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+Lielākā daļa atsevišķu rīku, kas atbalsta krāsu maiņu, atbalsta arī
+Blink/Intensity iestatījuma maiņu. Tomēr lielākā daļa rīku to nepiemin.
+
+    /BlinkOn    Iespējot Blink/Intensity bitu. (Sākt mirgošanu)
+    /BlinkOff   Atspējot Blink/Intensity bitu. (Apturēt mirgošanu)
+
+============================================================================
+
+DOS komandrinda (un pakešfaili) ir ierobežota līdz aptuveni 128
+rakstzīmēm. Tas var apgrūtināt tādu rīku kā vecho drukāšanu vairākas
+rindas uzreiz. Tomēr daudzi rīki, piemēram, vecho, vstr utt., atbalsta
+teksta resursu ielādi no faila, izmantojot slēdzi /T. Parasti slēdzi /T
+izmanto, lai nodrošinātu pakeša "Tulkošanas" tekstu. Ielādējot no faila,
+V8Power Tools rīks ir ierobežots līdz 10 kilobaitiem vienā rindā. Pēc tam
+rīks ignorēs jebkuru atlikušo tekstu šajā rindā. 10kb ir vienāds ar 5
+ekrāniem vai vairāk teksta un ir pārspīlējums.

@@ -1,0 +1,101 @@
+# Language: Hungarian
+# File ending: hu
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [kapcsol¢k]
+
+Egy  llapottesztel‹. Kl”nf‚le ellen‹rz‚seket v‚gezhet, amelyek TRUE vagy
+FALSE ‚rt‚kre reduk lhat¢k. Az eredm‚ny errorlevel-k‚nt kerl  tad sra.
+Amikor a v lasz TRUE, nulla ad¢dik vissza. Ha a v lasz FALSE, 1 ad¢dik
+vissza. Helytelen szintaxis ‚s m s hasonl¢ hib k haszn lata 100-as
+kil‚p‚si k¢dot ad vissza.
+
+Tesztek:
+
+    val1 /eq val2    az ‚rt‚kek egyenl‹ek
+    val1 /ne val2    az ‚rt‚kek nem egyenl‹ek
+    val1 /ge val2    val1 nagyobb vagy egyenl‹, mint val2
+    val1 /le val2    val1 kisebb vagy egyenl‹, mint val2
+    val1 /gt val2    val1 nagyobb, mint val2
+    val1 /lt val2    val1 kisebb, mint val2
+    string           a karakterl nc nem null
+    /n string        a karakterl nc nem null
+    /z string        a karakterl nc null
+    /v number        a sz m ‚rv‚nyes
+    /f file          a f jl l‚tezik
+    /d dir           az el‚r‚si £t l‚tezik
+    /e file vagy dir b rmilyen t¡pus£ k”nyvt rbejegyz‚s
+
+Kifejez‚s oper torok:
+
+    /c expression    K‚nyszer¡ti, hogy az ‚rt‚k karakterl nck‚nt legyen
+                     kezelve, ‚s kis- ‚s nagybetûkre ‚rz‚keny
+                     ”sszehasonl¡t st v‚gez.
+    /i expression    K‚nyszer¡ti, hogy az ‚rt‚k karakterl nck‚nt legyen
+                     kezelve, ‚s kis- ‚s nagybetûket nem megkl”nb”ztet‹
+                     ”sszehasonl¡t st v‚gez.
+    exp1 /and exp2   Mindk‚t kifejez‚snek TRUE-nak kell lennie.
+    exp1 /or /exp2   B rmelyik kifejez‚s lehet TRUE.
+    /not expression  Megford¡tja a kifejez‚s eredm‚ny‚t.
+
+Egy‚b opci¢k:
+
+    /tf              TRUE vagy FALSE megjelen¡t‚se befejez‚skor.
+
+Alap‚rtelmez‚s szerint az ‚rt‚kek ”sszehasonl¡t sa a t¡pusukon alapul.
+Ha mindk‚t ‚rt‚k sz m (decim lis vagy hexadecim lis form ban megadva),
+az ”sszehasonl¡t s matematikailag t”rt‚nik. Ellenkez‹ esetben kis- ‚s
+nagybetûket nem megkl”nb”ztet‹ alfabetikus ”sszehasonl¡t sra kerl sor.
+A /c vagy /i opci¢k haszn lata sz”vegalap£ ”sszehasonl¡t st k‚nyszer¡t
+ki az ‚rt‚k adatt¡pus t¢l fggetlenl. Az res ‚rt‚knek nincs numerikus
+‚rt‚ke, ‚s k‚nyszer¡ti a k‚t elem karakterl nck‚nt t”rt‚n‹
+”sszehasonl¡t s t.
+
+Alapvet‹ p‚ld k:
+
+L‚tezik TEST.TXT nevû f jl:                  vtest /f TEST.TXT
+Nem l‚tezik TEST.TXT nevû f jl:              vtest /not /f TEST.TXT
+L‚tezik A.TXT vagy B.TXT f jl:               vtest /f A.TXT /or /f B.TXT
+Sem az A.TXT, sem a B.TXT f jl nem l‚tezik:  vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+A %1 egy sz m:                               vtest /v %1
+A %1 egy sz m 1-t‹l 10-ig:                   vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+B r az /f, /d ‚s /e kapcsol¢k f jl- vagy k”nyvt rbejegyz‚seket
+tesztelnek, haszn lhatnak kifejez‚sm¢dos¡t¢kat, p‚ld ul /not, /c ‚s /i,
+valamint t mogatj k a helyettes¡t‹ karaktereket is. Miut n ellen‹rizt‚k
+a f jlrendszerben egyez‹ bejegyz‚s megl‚t‚t, az els‹ egyez‹ f jlrendszer-
+elem ‚rt‚k‚v‚ v lnak, ‚s ‚rt‚kk‚nt kezelhet‹k. Ha nem tal lhat¢ egyez‹
+bejegyz‚s, az ‚rt‚k null lesz, ‚s val¢sz¡nûleg a kifejez‚s FALSE-k‚nt
+‚rt‚kel‹dik ki.
+
+K‚t ‚rt‚k ”sszehasonl¡t sakor, ha mindk‚t ‚rt‚k ‚rv‚nyes sz mot
+(decim lis vagy hexadecim lis) tartalmaz, az ”sszehasonl¡t s
+numerikusan t”rt‚nik. Ha valamelyik ‚rt‚k nem sz m, akkor alfabetikusan
+lesz ”sszehasonl¡tva. B r lehets‚ges adatt¡pusokat keverni
+”sszehasonl¡t sok sorozat ban, az eredm‚nyt neh‚z megj¢solni, ‚s
+ ltal ban nem aj nlott.
+
+Id‚z‹jeleket NEM haszn lnak sz¢k”z”ket tartalmaz¢ karakterl ncokhoz.
+Az id‚z‹jel karaktereket mindig norm l sz”vegkarakterk‚nt kezelik. A
+parancssor-‚rtelmez‹ csak akkor v lasztja el a karakterl ncokat, ha
+SWITCH_CHAR ( ltal ban /) karaktert ‚szlel. Ez egy elfogadhat¢ p‚lda:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Ha id‚z‹jeleket haszn l a karakterl ncok egyszerû becsomagol s ra,
+hib s eredm‚nyeket kap. A k”vetkez‹ p‚lda MINDIG TRUE eredm‚nyt
+ad a %1 ‚rt‚k‚t‹l fggetlenl:
+
+vtest /n "%1"
+
+Ezenk¡vl, ha egy karakterl nc tartalmazza a SWITCH_CHAR-t, a
+SWITCH_CHAR-t k”vet‹ r‚sz programopci¢k‚nt lesz ‚rtelmezve, kiv‚ve,
+ha egy tov bbi SWITCH_CHAR besz£r s val escape-elik. P‚ld ul az "Y/N"
+"Y" karakterl nck‚nt, majd "/N" opci¢k‚nt lenne ‚rtelmezve. Ahhoz,
+hogy mindkett‹t karakterl nck‚nt ‚rtelmezzk, az "Y//N" lenne. P‚ld ul:
+
+vtest /n y//n

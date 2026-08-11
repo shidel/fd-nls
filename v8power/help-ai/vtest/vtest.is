@@ -1,0 +1,97 @@
+# Language: Icelandic
+# File ending: is
+# Codepage: 861
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [valkostir]
+
+§standspr¢fari. çaå getur framkvëmt òmsar athuganir sem hëgt er aå
+sj¢åa niåur ° annaåhvort TRUE eåa FALSE. Niåurstaåan er send sem
+errorlevel. çegar svariå er TRUE er n£lli skilaå. Ef svariå er FALSE,
+er 1 skilaå. Notkun † rangri setningafrëåi og înnur sl°k mistîk munu
+skila £tgînguk¢åa 100.
+
+Pr¢f:
+
+    val1 /eq val2    gildi eru jîfn
+    val1 /ne val2    gildi eru ekki jîfn
+    val1 /ge val2    val1 er stërra en eåa jafnt og val2
+    val1 /le val2    val1 er minna en eåa jafnt og val2
+    val1 /gt val2    val1 er stërra en val2
+    val1 /lt val2    val1 er minna en val2
+    string           strengur er ekki null
+    /n string        strengur er ekki null
+    /z string        strengur er null
+    /v number        n£mer er gilt
+    /f file          skr† er til
+    /d dir           sl¢å er til
+    /e file eåa dir  hvers konar mîppufërsla
+
+Segåavirkjar:
+
+    /c expression    çvinga gildi til aå vera meåhîndlaå sem strengur og
+                     framkvëma h†-/l†gstafah†åan samanburå.
+    /i expression    çvinga gildi til aå vera meåhîndlaå sem strengur og
+                     framkvëma h†-/l†gstafa¢h†åan samanburå.
+    exp1 /and exp2   B†åar segåir veråa aå vera TRUE.
+    exp1 /or /exp2   Hvor segåin sem er getur veriå TRUE.
+    /not expression  Umsn£a niåurstîåu segåar.
+
+Aårir valkostir:
+
+    /tf              Sòna TRUE eåa FALSE ïegar lokiå.
+
+Sj†lfgefiå er aå samanburåur gilda byggist † gerå ïeirra. Ef bëåi gildi
+eru tîlur (settar fram ° tugakerfi eåa sext†ndakerfi) veråur
+samanburåurinn geråur stëråfrëåilega. Annars veråur framkvëmdur
+h†-/l†gstafa¢h†åur stafr¢fslegur samanburåur. Notkun annaåhvort /c
+eåa /i valkosta mun ïvinga fram textabyggåan samanburå ¢h†å
+gagnagerå gildisins. T¢mt gildi hefur ekkert tîlugildi og mun ïvinga
+atriåin tvî til aå vera borin saman sem strengi.
+
+Grunndëmi:
+
+Skr† sem heitir TEST.TXT er til:             vtest /f TEST.TXT
+Skr† sem heitir TEST.TXT er ekki til:        vtest /not /f TEST.TXT
+Annaåhvort skr† A.TXT eåa B.TXT er til:      vtest /f A.TXT /or /f B.TXT
+Hvorki skr† A.TXT nÇ B.TXT er til:           vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 er tala:                                  vtest /v %1
+%1 er tala fr† 1 til 10:                     vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+ç¢ valkostirnir /f, /d og /e pr¢fi fyrir skr†a- eåa mîppufërslur, geta
+ïeir notaå segåabreytur eins og /not, /c og /i og ïeir styåja einnig
+algildist†kn. çegar skr†akerfiå hefur veriå athugaå fyrir tilvist
+samsvarandi fërslu veråa ïër gildi fyrsta samsvarandi
+skr†akerfisatriåisins og hëgt er aå meåhîndla ïër sem gildi. Ef engin
+samsvarandi fërsla finnst veråur gildiå null og mun l°klegast valda
+ïv° aå segå metist sem FALSE.
+
+çegar samanburåur † tveimur gildum er framkvëmdur, ef hvort gildi
+inniheldur gilda tîlu (tugakerfi eåa sext†ndakerfi), veråur
+samanburåurinn framkvëmdur tîlulega. Ef annaå gildiå er ekki tala veråur
+ïaå boriå saman ° stafr¢fsrîå. ç¢ ïaå sÇ mîgulegt aå blanda saman
+gagnageråum ° rîå samanburåa getur niåurstaåan veriå erfiå aå sp† fyrir
+um og ïaå er almennt ekki mëlt meå ïv°.
+
+Gësalappir eru EKKI notaåar fyrir strengi meå bilum. Gësalappir eru
+alltaf meåhîndlaåar sem venjulegir textastafir. Skipanal°nuï†ttarinn
+mun aåeins aåskilja strengi ïegar SWITCH_CHAR (venjulega /) greinist.
+çetta er †sëttanlegt dëmi:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Notkun gësalappa til aå einfaldlega vefja strengi mun skila rîngum
+niåurstîåum. Eftirfarandi dëmi mun ALLTAF skila TRUE ¢h†å gildi %1:
+
+vtest /n "%1"
+
+çar aå auki, ef strengur inniheldur SWITCH_CHAR, mun hlutinn sem
+fylgir SWITCH_CHAR veråa t£lkaåur sem forritsvalkostur nema fariå sÇ
+framhj† honum meå ïv° aå setja inn viåb¢tar SWITCH_CHAR. Til dëmis yråi
+"Y/N" t£lkaå sem strengurinn "Y" og s°åan valkosturinn "/N". Til aå
+t£lka bëåi sem streng vëri ïaå "Y//N". Til dëmis:
+
+vtest /n y//n

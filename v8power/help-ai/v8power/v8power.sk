@@ -1,0 +1,133 @@
+# Language: Slovak
+# File ending: sk
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Vydan‚ pod licenciou GPL v2.0.
+****************************************************************************
+
+Prin ça vìkon osemvalcov‚ho motora pod kapotu d vkovìch s£borov DOS.
+
+============================================================================
+
+Projekt V8Power Tools je navrhovanì v spolupr ci s Jimom Hallom pre
+operaŸnì syst‚m FreeDOS(TM) (http://www.freedos.org). Jeho cie–om je
+rozç¡riœ funkŸnosœ skriptov p¡sanìch pomocou d vkovìch s£borov a
+poskytn£œ im lepçie vyzeraj£ce pou§¡vate–sk‚ rozhranie so zvìçenou
+funkŸnosœou.
+
+============================================================================
+
+Kompil cia V8Power Tools
+
+    Predpoklady:
+
+        CPU 8086 alebo lepç¡.
+        Video adapt‚r EGA alebo lepç¡.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) alebo novç¡
+        NASM pre DOS verzie 2.16.01 (http://wwww.nasm.us) alebo novç¡
+
+    Kompil cia:
+
+        Uistite sa, §e adres r NASM je vo vaçej çpecifik cii cesty.
+        Stiahnite si najnovçie zdrojov‚ k¢dy z
+        http://github.com/LoopZ/V8Power
+        Spustite skript mkV8.bat.
+        Vçetky spustite–n‚ s£bory bud£ umiestnen‚ do novovytvoren‚ho
+        adres ra BIN.
+
+    Pre lenivìch –ud¡, ako som ja:
+
+        Predkompilovan‚ verzie s£ k dispoz¡cii na
+        http://up.lod.bz/V8Power.
+
+============================================================================
+
+Testovan  kompatibilita V8Power Tools
+
+    FreeDOS 1.1+
+
+Obmedzen  kompatibilita pokroŸilìch funkci¡ (§iadna podpora d vkov‚ho
+"set /p"):
+
+    MS-DOS 6.2 a 6.22
+    PC-DOS 7.0, 7.01 a 2000
+    DR-DOS 7.03
+    DOSBox (presmerovanie v/v alebo dopyty pomocou stdout NEBUDé fungovaœ
+        pri pou§it¡ vstavan‚ho shellu DOSBox. Funguj£ vçak dobre
+        v DOSBoxe, keÔ sa pou§ije kompatibilnì shell ako FreeCOM)
+    Windows 3.11 Shell
+    Windows 98 Shell a Command Line
+    Windows XP SP3 Shell (okrem vcursor)
+
+============================================================================
+
+Pou§itie V8Power Tools
+
+Tu s£ niektor‚ z kladn‚ inform cie o vçetkìch n strojoch a ako funguj£.
+
+    Vo–by, hodnoty a hexadecim lne Ÿ¡sla nerozliçuj£ ve–k‚ a mal‚
+    p¡smen  /f white je rovnak‚ ako /F wHIte.
+
+    Hexadecim lne Ÿ¡sla m“§u maœ predponu 0x, aby sa zabr nilo ich
+    spracovaniu ako z kladu desaœ. (Pr¡klad: 10 a 0x10)
+
+    Medzery s£ v„Ÿçinou volite–n‚. /B7/f0 je rovnak‚ ako /B 7 /F 0.
+    Ale nie / B7 / F0.
+
+    Ak chcete v hodnote pou§iœ / alebo medzery, dajte ju do £vodzoviek.
+    Ako "Jack and/or Jill".
+
+    Pou§ite viac £vodzoviek na pou§itie £vodzoviek. Ako "Jack's house"
+    alebo 'Say "What?"'.
+
+    Pokia– to nie je prep¡san‚, v„Ÿçina n strojov pou§¡va atrib£t textu
+    v aktu lnom umiestnen¡ kurzora.
+
+============================================================================
+
+Tu je tabu–ka farieb pou§it  pre vçetky prep¡naŸe /A, /F a /B:
+
+    Desiatkovo  Hex         æt¡tok (Nerozliçuje ve–k‚/mal‚ p¡smen )
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Iba popredie /f a /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+V„Ÿçina jednotlivìch n strojov, ktor‚ podporuj£ zmenu farby, tie§
+podporuje zmenu nastavenia Blink/Intensity. V„Ÿçina n strojov to vçak
+nespom¡na.
+
+    /BlinkOn    Povoliœ bit Blink/Intensity. (ZaŸaœ blikaœ)
+    /BlinkOff   Zak zaœ bit Blink/Intensity. (Prestaœ blikaœ)
+
+============================================================================
+
+Pr¡kazovì riadok DOS (a d vkov‚ s£bory) je obmedzenì na pribli§ne 128
+znakov. To by mohlo sœa§iœ n strojom ako vecho tlaŸ viacerìch riadkov
+naraz. Mnoho n strojov ako vecho, vstr atÔ. vçak podporuje naŸ¡tanie
+textovìch zdrojov zo s£boru pomocou prep¡naŸa /T. Vçeobecne sa prep¡naŸ
+/T pou§¡va na poskytnutie textu "Prekladu" pre d vku. Pri naŸ¡tan¡ zo
+s£boru je n stroj V8Power Tools obmedzenì na 10 kilobajtov na riadok.
+Nad to n stroj bude ignorovaœ akìko–vek zost vaj£ci text na danom riadku.
+10kb sa rovn  5 obrazovk m alebo viac textu a je to zbytoŸne ve–a.

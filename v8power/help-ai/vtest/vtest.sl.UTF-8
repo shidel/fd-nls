@@ -1,0 +1,97 @@
+# Language: Slovenian
+# File ending: sl
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opcije]
+
+Preizkuševalec stanja. Lahko izvede različne preglede, ki se lahko
+zreducirajo na TRUE ali FALSE. Rezultat se prenese kot errorlevel.
+Ko je odgovor TRUE, se vrne ničla. Če je odgovor FALSE, se vrne 1.
+Uporaba nepravilne sintakse in druge podobne napake bodo vrnile
+izhodno kodo 100.
+
+Testi:
+
+    val1 /eq val2    vrednosti so enake
+    val1 /ne val2    vrednosti niso enake
+    val1 /ge val2    val1 je večji ali enak val2
+    val1 /le val2    val1 je manjši ali enak val2
+    val1 /gt val2    val1 je večji od val2
+    val1 /lt val2    val1 je manjši od val2
+    string           niz ni null
+    /n string        niz ni null
+    /z string        niz je null
+    /v number        številka je veljavna
+    /f file          datoteka obstaja
+    /d dir           pot obstaja
+    /e file ali dir  katera koli vrsta vnosa v imenik
+
+Operatorji izrazov:
+
+    /c expression    Vsili obravnavo vrednosti kot niza in izvede
+                     primerjavo, občutljivo na velike/male črke.
+    /i expression    Vsili obravnavo vrednosti kot niza in izvede
+                     primerjavo, neobčutljivo na velike/male črke.
+    exp1 /and exp2   Oba izraza morata biti TRUE.
+    exp1 /or /exp2   Kateri koli izraz je lahko TRUE.
+    /not expression  Obrni rezultat izraza.
+
+Druge opcije:
+
+    /tf              Prikaži TRUE ali FALSE, ko konča.
+
+Privzeto primerjava vrednosti temelji na njihovi vrsti. Če sta obe
+vrednosti številki (predstavljeni v desetiškem ali šestnajstiškem
+sistemu), se primerjava izvede matematično. V nasprotnem primeru
+se izvede abecedna primerjava, neobčutljiva na velike/male črke.
+Uporaba opcije /c ali /i vsili besedilno primerjavo ne glede na
+podatkovni tip vrednosti. Prazna vrednost nima numerične vrednosti in
+vsili primerjavo obeh elementov kot nizov.
+
+Osnovni primeri:
+
+Datoteka z imenom TEST.TXT obstaja:          vtest /f TEST.TXT
+Datoteka z imenom TEST.TXT ne obstaja:       vtest /not /f TEST.TXT
+Obstaja datoteka A.TXT ali B.TXT:            vtest /f A.TXT /or /f B.TXT
+Ne obstaja niti datoteka A.TXT niti B.TXT:   vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 je številka:                              vtest /v %1
+%1 je številka od 1 do 10:                   vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Čeprav opcije /f, /d in /e testirajo vnose datotek ali imenikov,
+lahko uporabljajo modifikatorje izrazov, kot so /not, /c in /i, in
+podpirajo tudi nadomestne znake. Ko je datotečni sistem preverjen
+glede obstoja ujemajočega se vnosa, postanejo vrednost prvega
+ujemajočega se elementa datotečnega sistema in jih je mogoče
+obravnavati kot vrednosti. Če ni najdenega nobenega ujemajočega
+se vnosa, vrednost postane null in bo najverjetneje povzročila, da
+se izraz oceni kot FALSE.
+
+Pri primerjavi dveh vrednosti, če vsaka vrednost vsebuje veljavno
+številko (desetiško ali šestnajstiško), se bo primerjava izvedla
+številčno. Če ena od vrednosti ni številka, se bo primerjala abecedno.
+Čeprav je mogoče mešati podatkovne tipe v nizu primerjav, je rezultat
+lahko težko predvideti in se na splošno ne priporoča.
+
+Narekovaji se NE uporabljajo za nize s presledki. Znaki za narekovaje
+se vedno obravnavajo kot običajni znaki besedila. Razčlenjevalnik
+ukazne vrstice bo ločil nize samo, ko zazna SWITCH_CHAR (običajno /).
+To je sprejemljiv primer:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Uporaba narekovajev za preprosto ovijanje nizov bo povzročila napačne
+rezultate. Naslednji primer bo VEDNO povzročil TRUE ne glede na
+vrednost %1:
+
+vtest /n "%1"
+
+Poleg tega, če niz vsebuje SWITCH_CHAR, se bo del, ki sledi SWITCH_CHAR,
+razlagal kot opcija programa, razen če je ubežan z vstavitvijo dodatnega
+SWITCH_CHAR. Na primer, "Y/N" bi se razlagalo kot niz "Y" in nato opcija
+"/N". Za razlago obojega kot niza bi bilo "Y//N". Na primer:
+
+vtest /n y//n

@@ -1,0 +1,132 @@
+# Language: Finnish
+# File ending: fi
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Julkaistu GPL v2.0 -lisenssin alaisena.
+****************************************************************************
+
+Tuo 8-sylinterisen moottorin tehon DOS-erätiedostojen konepellin alle.
+
+============================================================================
+
+V8Power Tools -projekti on suunniteltu yhteistyössä Jim Hallin kanssa
+FreeDOS(TM) (http://www.freedos.org) -käyttöjärjestelmälle. Sen
+tarkoituksena on laajentaa erätiedostoilla kirjoitettujen komentosarjojen
+toimivuutta ja tarjota niille paremman näköinen käyttöliittymä, jossa on
+lisää ominaisuuksia.
+
+============================================================================
+
+V8Power Toolsin kääntäminen
+
+    Edellytykset:
+
+        8086 tai parempi prosessori.
+        EGA tai parempi videosovitin.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) tai uudempi
+        NASM DOSille versio 2.16.01 (http://wwww.nasm.us) tai uudempi
+
+    Kääntäminen:
+
+        Varmista, että NASM-hakemisto on polkumäärityksessäsi.
+        Lataa uusimmat lähteet osoitteesta http://github.com/LoopZ/V8Power
+        Suorita mkV8.bat-komentosarja.
+        Kaikki suoritettavat tiedostot sijoitetaan uuteen BIN-hakemistoon.
+
+    Laiskoille ihmisille, kuten minulle:
+
+        Valmiiksi käännetyt versiot ovat saatavilla osoitteessa
+        http://up.lod.bz/V8Power.
+
+============================================================================
+
+V8Power Tools testattu yhteensopivuus
+
+    FreeDOS 1.1+
+
+Kehittyneiden ominaisuuksien rajoitettu yhteensopivuus (ei "set /p"
+erätukea):
+
+    MS-DOS 6.2 ja 6.22
+    PC-DOS 7.0, 7.01 ja 2000
+    DR-DOS 7.03
+    DOSBox (i/o-uudelleenohjaus tai kyselyt stdoutin kautta EIVÄT toimi
+        käytettäessä sisäänrakennettua DOSBox-kuorta. Ne toimivat
+        kuitenkin hyvin DOSBoxissa, kun käytetään yhteensopivaa kuorta,
+        kuten FreeCOM)
+    Windows 3.11 Shell
+    Windows 98 Shell ja Command Line
+    Windows XP SP3 Shell (paitsi vcursor)
+
+============================================================================
+
+V8Power Tools käyttö
+
+Tässä on joitain perustietoja kaikista apuohjelmista ja niiden toiminnasta.
+
+    Asetukset, arvot ja heksadesimaaliluvut eivät erottele isoja ja
+    pieniä kirjaimia /f white on sama kuin /F wHIte.
+
+    Heksadesimaaliluvut voidaan varustaa etuliitteellä 0x, jotta niitä ei
+    käsitellä 10-kantaisina. (Esimerkki: 10 ja 0x10)
+
+    Välilyönnit ovat enimmäkseen valinnaisia. /B7/f0 on sama kuin
+    /B 7 /F 0. Mutta ei / B7 / F0.
+
+    Jos haluat käyttää / tai välilyöntejä arvossa, laita se
+    lainausmerkkeihin. Kuten "Jack and/or Jill".
+
+    Käytä useita lainausmerkkejä käyttääksesi lainausmerkkejä. Kuten
+    "Jack's house" tai 'Say "What?"'.
+
+    Ellei sitä ohiteta, useimmat apuohjelmat käyttävät tekstiattribuuttia
+    nykyisessä kursorin sijainnissa.
+
+============================================================================
+
+Tässä on väritaulukko kaikille /A, /F ja /B kytkimille:
+
+    Desimaali   Hex         Tunniste (Ei kirjainkoon tunnistusta)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Vain edusta /f ja /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+Useimmat yksittäiset työkalut, jotka tukevat värin vaihtoa, tukevat myös
+Blink/Intensity-asetuksen muuttamista. Useimmat työkalut eivät kuitenkaan
+mainitse sitä.
+
+    /BlinkOn    Ota Blink/Intensity-bitti käyttöön. (Aloita vilkkuminen)
+    /BlinkOff   Poista Blink/Intensity-bitti käytöstä. (Lopeta vilkkuminen)
+
+============================================================================
+
+DOS-komentorivi (ja erätiedostot) on rajoitettu noin 128 merkkiin. Tämä voi
+vaikeuttaa vechon kaltaisten työkalujen useiden rivien tulostamista
+kerralla. Monet työkalut, kuten vecho, vstr jne. tukevat kuitenkin
+tekstiresurssien lataamista tiedostosta /T-kytkimen avulla. Yleensä
+/T-kytkintä käytetään "Käännös" -tekstin tarjoamiseen erälle. Tiedostosta
+ladattuna V8Power Tools -apuohjelma on rajoitettu 10 kilotavuun riviä kohden.
+Sen yli apuohjelma jättää huomioimatta kaiken jäljellä olevan tekstin tällä
+rivillä. 10 kt vastaa 5 näyttöä tai enemmän tekstiä ja on liioittelua.

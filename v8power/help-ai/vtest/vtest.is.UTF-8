@@ -1,0 +1,97 @@
+# Language: Icelandic
+# File ending: is
+# Codepage: 861
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [valkostir]
+
+Ástandsprófari. Það getur framkvæmt ýmsar athuganir sem hægt er að
+sjóða niður í annaðhvort TRUE eða FALSE. Niðurstaðan er send sem
+errorlevel. Þegar svarið er TRUE er núlli skilað. Ef svarið er FALSE,
+er 1 skilað. Notkun á rangri setningafræði og önnur slík mistök munu
+skila útgöngukóða 100.
+
+Próf:
+
+    val1 /eq val2    gildi eru jöfn
+    val1 /ne val2    gildi eru ekki jöfn
+    val1 /ge val2    val1 er stærra en eða jafnt og val2
+    val1 /le val2    val1 er minna en eða jafnt og val2
+    val1 /gt val2    val1 er stærra en val2
+    val1 /lt val2    val1 er minna en val2
+    string           strengur er ekki null
+    /n string        strengur er ekki null
+    /z string        strengur er null
+    /v number        númer er gilt
+    /f file          skrá er til
+    /d dir           slóð er til
+    /e file eða dir  hvers konar möppufærsla
+
+Segðavirkjar:
+
+    /c expression    Þvinga gildi til að vera meðhöndlað sem strengur og
+                     framkvæma há-/lágstafaháðan samanburð.
+    /i expression    Þvinga gildi til að vera meðhöndlað sem strengur og
+                     framkvæma há-/lágstafaóháðan samanburð.
+    exp1 /and exp2   Báðar segðir verða að vera TRUE.
+    exp1 /or /exp2   Hvor segðin sem er getur verið TRUE.
+    /not expression  Umsnúa niðurstöðu segðar.
+
+Aðrir valkostir:
+
+    /tf              Sýna TRUE eða FALSE þegar lokið.
+
+Sjálfgefið er að samanburður gilda byggist á gerð þeirra. Ef bæði gildi
+eru tölur (settar fram í tugakerfi eða sextándakerfi) verður
+samanburðurinn gerður stærðfræðilega. Annars verður framkvæmdur
+há-/lágstafaóháður stafrófslegur samanburður. Notkun annaðhvort /c
+eða /i valkosta mun þvinga fram textabyggðan samanburð óháð
+gagnagerð gildisins. Tómt gildi hefur ekkert tölugildi og mun þvinga
+atriðin tvö til að vera borin saman sem strengi.
+
+Grunndæmi:
+
+Skrá sem heitir TEST.TXT er til:             vtest /f TEST.TXT
+Skrá sem heitir TEST.TXT er ekki til:        vtest /not /f TEST.TXT
+Annaðhvort skrá A.TXT eða B.TXT er til:      vtest /f A.TXT /or /f B.TXT
+Hvorki skrá A.TXT né B.TXT er til:           vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 er tala:                                  vtest /v %1
+%1 er tala frá 1 til 10:                     vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Þó valkostirnir /f, /d og /e prófi fyrir skráa- eða möppufærslur, geta
+þeir notað segðabreytur eins og /not, /c og /i og þeir styðja einnig
+algildistákn. Þegar skráakerfið hefur verið athugað fyrir tilvist
+samsvarandi færslu verða þær gildi fyrsta samsvarandi
+skráakerfisatriðisins og hægt er að meðhöndla þær sem gildi. Ef engin
+samsvarandi færsla finnst verður gildið null og mun líklegast valda
+því að segð metist sem FALSE.
+
+Þegar samanburður á tveimur gildum er framkvæmdur, ef hvort gildi
+inniheldur gilda tölu (tugakerfi eða sextándakerfi), verður
+samanburðurinn framkvæmdur tölulega. Ef annað gildið er ekki tala verður
+það borið saman í stafrófsröð. Þó það sé mögulegt að blanda saman
+gagnagerðum í röð samanburða getur niðurstaðan verið erfið að spá fyrir
+um og það er almennt ekki mælt með því.
+
+Gæsalappir eru EKKI notaðar fyrir strengi með bilum. Gæsalappir eru
+alltaf meðhöndlaðar sem venjulegir textastafir. Skipanalínuþáttarinn
+mun aðeins aðskilja strengi þegar SWITCH_CHAR (venjulega /) greinist.
+Þetta er ásættanlegt dæmi:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Notkun gæsalappa til að einfaldlega vefja strengi mun skila röngum
+niðurstöðum. Eftirfarandi dæmi mun ALLTAF skila TRUE óháð gildi %1:
+
+vtest /n "%1"
+
+Þar að auki, ef strengur inniheldur SWITCH_CHAR, mun hlutinn sem
+fylgir SWITCH_CHAR verða túlkaður sem forritsvalkostur nema farið sé
+framhjá honum með því að setja inn viðbótar SWITCH_CHAR. Til dæmis yrði
+"Y/N" túlkað sem strengurinn "Y" og síðan valkosturinn "/N". Til að
+túlka bæði sem streng væri það "Y//N". Til dæmis:
+
+vtest /n y//n

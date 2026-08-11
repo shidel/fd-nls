@@ -1,0 +1,21 @@
+# Language: Brazilian Portuguese
+# File ending: pb
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vcursor [options]
+
+Altera ou consulta o tamanho e a forma do cursor.
+
+    [none]      Envia a forma atual do cursor para STDOUT.
+    n           Define a forma atual do cursor como n.
+    HIDE        Oculta o cursor.
+    SMALL       Define um cursor pequeno.
+    HALF        Define o cursor para 1/2 da altura do texto.
+    FULL        Define o cursor para a altura total do texto.
+
+Nota: Embora este utilit†rio seja totalmente compat°vel com o DOSBox, n∆o
+h† como armazenar a forma atual do cursor. Veja os exemplos de como
+contornar esse problema. AlÇm disso, este utilit†rio n∆o ter† nenhum
+efeito em um terminal do Windows.

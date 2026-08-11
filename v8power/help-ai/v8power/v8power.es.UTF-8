@@ -1,0 +1,135 @@
+# Language: Spanish
+# File ending: es
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Lanzado bajo la GPL v2.0 License.
+****************************************************************************
+
+Poniendo la potencia de un motor de 8 cilindros bajo el capó de los
+archivos por lotes de DOS.
+
+============================================================================
+
+El proyecto V8Power Tools está siendo diseñado en cooperación con
+Jim Hall para el sistema operativo FreeDOS(TM) (http://www.freedos.org).
+Su objetivo es expandir la funcionalidad de los scripts escritos usando
+archivos por lotes y proporcionarles una interfaz de usuario con mejor
+aspecto y mayor funcionalidad.
+
+============================================================================
+
+Compilando V8Power Tools
+
+    Requisitos previos:
+
+        Cpu 8086 o superior.
+        Adaptador de video EGA o superior.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) o superior
+        NASM para DOS versión 2.16.01 (http://wwww.nasm.us) o más reciente
+
+    Compilación:
+
+        Asegúrese de que el directorio NASM esté en su ruta especificada.
+        Descargue las últimas fuentes de http://github.com/LoopZ/V8Power
+        Ejecute el script mkV8.bat.
+        Todos los ejecutables se colocarán en el directorio BIN recién
+        creado.
+
+    Para gente perezosa, como yo:
+
+        Versiones precompiladas están disponibles en
+        http://up.lod.bz/V8Power.
+
+============================================================================
+
+Compatibilidad Probada de V8Power Tools
+
+    FreeDOS 1.1+
+
+Compatibilidad limitada de funciones avanzadas (sin soporte de lotes
+"set /p"):
+
+    MS-DOS 6.2 y 6.22
+    PC-DOS 7.0, 7.01 y 2000
+    DR-DOS 7.03
+    DOSBox (la redirección de e/s o las consultas mediante stdout NO
+        funcionarán usando el shell integrado de DOSBox. Sin embargo,
+        funcionan bien en DOSBox cuando se usa un shell compatible
+        como FreeCOM)
+    Windows 3.11 Shell
+    Windows 98 Shell y Command Line
+    Windows XP SP3 Shell (excepto vcursor)
+
+============================================================================
+
+Uso de V8Power Tools
+
+Aquí hay información básica sobre todas las utilidades y cómo funcionan.
+
+    Las opciones, valores y números hexadecimales no distinguen
+    mayúsculas de minúsculas /f white es lo mismo que /F wHIte.
+
+    Los números hexadecimales pueden tener el prefijo 0x para evitar que
+    sean tratados como base diez. (Ejemplo: 10 y 0x10)
+
+    Los espacios son mayormente opcionales. /B7/f0 es lo mismo que
+    /B 7 /F 0. Pero no / B7 / F0.
+
+    Para usar una / o espacios en un valor, póngalo entre comillas.
+    Como "Jack and/or Jill".
+
+    Use comillas múltiples para usar comillas. Como "Jack's house" o
+    'Say "What?"'.
+
+    A menos que se anule, la mayoría de las utilidades usan el atributo
+    de texto en la ubicación actual del cursor.
+
+============================================================================
+
+Aquí está la tabla de colores utilizada para los interruptores /A, /F y /B:
+
+    Decimal     Hex         Etiqueta (No distingue mayús./minús.)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Solo primer plano /f y /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+La mayoría de las herramientas individuales que soportan el cambio de color
+también soportan cambiar la configuración de Blink/Intensity. Sin embargo,
+la mayoría de las herramientas no lo mencionan.
+
+    /BlinkOn    Habilitar el bit Blink/Intensity. (Comenzar parpadeo)
+    /BlinkOff   Deshabilitar el bit Blink/Intensity. (Detener parpadeo)
+
+============================================================================
+
+La línea de comandos de DOS (y archivos por lotes) está limitada a unos
+128 caracteres. Esto podría dificultar que herramientas como vecho
+impriman varias líneas a la vez. Sin embargo, muchas herramientas como
+vecho, vstr, etc., admiten cargar recursos de texto desde un archivo con
+el interruptor /T. Generalmente, el interruptor /T se usa para
+proporcionar texto de "Traducción" para un lote. Cuando se carga desde un
+archivo, la utilidad V8Power Tools está limitada a 10 kilobytes por línea.
+Más allá de eso, la utilidad ignorará el texto restante en esa línea.
+10kb equivalen a 5 pantallas o más de texto y es una exageración.

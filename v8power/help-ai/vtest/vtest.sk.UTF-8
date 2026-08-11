@@ -1,0 +1,97 @@
+# Language: Slovak
+# File ending: sk
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [voľby]
+
+Tester stavu. Môže vykonávať rôzne kontroly, ktoré možno zredukovať
+na TRUE alebo FALSE. Výsledok je odovzdaný ako errorlevel. Keď je
+odpoveď TRUE, vráti sa nula. Ak je odpoveď FALSE, vráti sa 1. Použitie
+nesprávnej syntaxe a ďalšie podobné chyby vrátia kód ukončenia 100.
+
+Testy:
+
+    val1 /eq val2    hodnoty sa rovnajú
+    val1 /ne val2    hodnoty sa nerovnajú
+    val1 /ge val2    val1 je väčšie alebo rovné val2
+    val1 /le val2    val1 je menšie alebo rovné val2
+    val1 /gt val2    val1 je väčšie ako val2
+    val1 /lt val2    val1 je menšie ako val2
+    string           reťazec nie je null
+    /n string        reťazec nie je null
+    /z string        reťazec je null
+    /v number        číslo je platné
+    /f file          súbor existuje
+    /d dir           cesta existuje
+    /e file alebo dir akýkoľvek typ položky adresára
+
+Operátory výrazu:
+
+    /c expression    Vynútiť zaobchádzanie s hodnotou ako s reťazcom a
+                     vykonať porovnanie rozlišujúce veľké a malé písmená.
+    /i expression    Vynútiť zaobchádzanie s hodnotou ako s reťazcom a
+                     vykonať porovnanie nerozlišujúce veľké/malé písmená.
+    exp1 /and exp2   Oba výrazy musia byť TRUE.
+    exp1 /or /exp2   Ktorýkoľvek výraz môže byť TRUE.
+    /not expression  Obrátiť výsledok výrazu.
+
+Ďalšie voľby:
+
+    /tf              Po dokončení zobraziť TRUE alebo FALSE.
+
+V predvolenom nastavení je porovnanie hodnôt založené na ich type.
+Ak sú obe hodnoty čísla (reprezentované v desiatkovej alebo
+šestnástkovej sústave), porovnanie sa vykoná matematicky. V opačnom
+prípade sa vykoná abecedné porovnanie nerozlišujúce veľké a malé
+písmená. Použitie voľby /c alebo /i vynúti textové porovnanie bez
+ohľadu na dátový typ hodnoty. Prázdna hodnota nemá číselnú hodnotu
+a vynúti, aby sa obe položky porovnávali ako reťazce.
+
+Základné príklady:
+
+Súbor s názvom TEST.TXT existuje:            vtest /f TEST.TXT
+Súbor s názvom TEST.TXT neexistuje:          vtest /not /f TEST.TXT
+Existuje súbor A.TXT alebo B.TXT:            vtest /f A.TXT /or /f B.TXT
+Súbor A.TXT ani B.TXT neexistuje:            vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 je číslo:                                 vtest /v %1
+%1 je číslo od 1 do 10:                      vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Zatiaľ čo voľby /f, /d a /e testujú položky súboru alebo adresára,
+môžu používať modifikátory výrazov ako /not, /c a /i a tiež podporujú
+zástupné znaky. Akonáhle bol systém súborov skontrolovaný na
+existenciu zodpovedajúcej položky, stanú sa hodnotou prvej
+zodpovedajúcej položky systému súborov a dá sa s nimi zaobchádzať
+ako s hodnotami. Ak sa nenájde žiadna zodpovedajúca položka, hodnota
+sa stane null a s najväčšou pravdepodobnosťou spôsobí, že sa výraz
+vyhodnotí ako FALSE.
+
+Pri porovnávaní dvoch hodnôt, ak každá hodnota obsahuje platné číslo
+(desiatkové alebo šestnástkové), porovnanie sa vykoná číselne.
+Ak žiadna z hodnôt nie je číslo, bude sa porovnávať abecedne.
+Hoci je možné v rade porovnaní kombinovať dátové typy, výsledok
+môže byť ťažké predvídať a všeobecne sa to neodporúča.
+
+Úvodzovky sa NEPOUŽÍVAJÚ pre reťazce s medzerami. Znaky úvodzoviek
+sú vždy považované za normálne textové znaky. Analyzátor príkazového
+riadka oddelí reťazce iba v prípade, že je detegovaný SWITCH_CHAR
+(zvyčajne /). Toto je prijateľný príklad:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Použitie úvodzoviek na jednoduché zabalenie reťazcov povedie k
+chybným výsledkom. Nasledujúci príklad povedie VŽDY k hodnote TRUE bez
+ohľadu na hodnotu %1:
+
+vtest /n "%1"
+
+Navyše, ak reťazec obsahuje SWITCH_CHAR, časť nasledujúca po
+SWITCH_CHAR bude interpretovaná ako voľba programu, pokiaľ k nej nebude
+pripojený ďalší SWITCH_CHAR. Napríklad „Y/N“ by bolo interpretované
+ako reťazec „Y“ a potom voľba „/N“. Aby sa obe interpretovali ako
+reťazec, bolo by to „Y//N“. Napríklad:
+
+vtest /n y//n

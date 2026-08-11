@@ -1,0 +1,31 @@
+# Language: Slovenian
+# File ending: sl
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vask [opcije]
+
+Poziv za vnos besedila.
+
+    [brez]      Uporabi zaznane nastavitve za vnos.
+    [besedilo]  Prednastavljeno urejeno besedilo.
+    /S          Zagotavlja preprosto izbiro znakov. Kot standardni choice.
+                Ko se uporabi, vask vrne le errorlevel izbire.
+    /A n        Nastavi atribut besedila na n.
+    /B barva    Nastavi atribut besedila ozadja na barvo (ali vrednost).
+    /F barva    Nastavi atribut besedila ospredja na barvo (ali vrednost).
+    /G          Vnesi besedilo globalno in prezri vse okvirje.
+    /L          Vnesi besedilo lokalno glede na okvirje. (PRIVZETO)
+    /K n        Uporabi n namesto znaka okvirja za zaznavanje meja.
+    /C          Ko je doloüeno in je pritisnjen Control-C, zapusti z
+                errorlevel 200 in vrne privzeto vrednost.
+    /W Áirina   PrepiÁi privzeto Áirino vrstice.
+                (privzeto je od kazalca do konca vrstice)
+    /T dato. ID PoiÁüi ID v datoteki in obdelaj kot opcije ukazne vrstice.
+                Vse dodatne opcije, ki sledijo temu stikalu, zapolnijo
+                spremenljivke %1-%9 v besedilnem nizu.
+    /D sekunde  Zakasnitev v sekundah, preden poziv poteüe in
+                vrne zaüetno privzeto vrednost. (vrne errorlevel 1)
+
+    tba         (Êe v razvoju, veü bo objavljeno)

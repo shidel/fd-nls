@@ -1,0 +1,69 @@
+# Language: Italian
+# File ending: it
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vinfo [options]
+Utilità generale per le informazioni di sistema.
+    [none]      Non fa nulla.
+    /V          Modalità dettagliata.
+    /D a        Testa lo stato dell'unità.
+                Restituisce questi errorlevel:
+                   15 - Non presente
+                    5 - Non formattato (per DOS)
+                    4 - Unità di rete (non testata)
+                    3 - CD/DVD-ROM (solo MSCDEX, quasi tutti danno 15)
+                    2 - Supporto rimovibile (come dischetto)
+                    1 - (Riservato)
+                    0 - Nessuna condizione speciale
+    /M          Restituisce il tipo di macchina (potrebbe fallire in futuro)
+                Restituisce questi errorlevel:
+                    0 - Sconosciuto, normale o hardware 8086 nativo.
+                    1 - 80186
+                    2 - 80286
+                    3 - 80386
+                    4 - 80486
+                    5 - 80586
+                    6 - 80686 o superiore
+                  101 - DOSBox.
+                  102 - QEMU.
+                  103 - VirtualBox.
+                  104 - VMware.
+                  105 - Bochs.
+    /P          Come /M, ma esclude il test per la macchina
+                virtuale.
+    /T          Come /M, ma include il test generale dell'emulatore.
+                  200 - Generale, rilevato un altro emulatore.
+    /E n        Testa il disco rigido fisico #n (1, 2, ecc) per MBR
+                    0 - Il MBR è completamente vuoto
+                    5 - Il MBR contiene solo informazioni partizione
+                   10 - Il MBR contiene un codice di avvio
+                  101 - Si è verificato un errore
+    /G          Grafica
+                    0 - Sconosciuto
+                    1 - MDA
+                    2 - HGC
+                    3 - HGCPlus
+                    4 - InColor
+                    5 - CGA
+                    6 - EGA
+                    7 - MCGA
+                    8 - VGA
+                    9 - VESA/SuperVGA
+
+Altre opzioni per lo più utili per programmatori e R&S. Sono
+disponibili da un po', ma non fanno ufficialmente parte delle API
+V8Power Tools e possono cambiare/essere rimosse in qualsiasi momento.
+Ma poiché ne uso alcune, potrebbero diventare utilità a sé stanti.
+    ASCII       Mostra l'intera tabella ASCII
+    RAM         Riversa tutta la memoria convenzionale su StdOut.
+    /C *        Mostra i valori ASCII per il resto della riga di comando
+    /R string   Cerca string in tutta la memoria convenzionale
+    /U string   Cerca string in memoria (da a000:0000 in su) senza
+                distinguere tra maiuscole e minuscole
+    /J pos *    Restituisce il valore ASCII del carattere in pos nel
+                resto della riga di comando come errorlevel. 0 viene
+                restituito se la posizione non è stata trovata.
+    /K pos *    Come /J, ma prima convertito in maiuscolo.
+    tba         (Ancora in sviluppo, altro verrà annunciato)

@@ -1,0 +1,97 @@
+# Language: Slovak
+# File ending: sk
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [vo–by]
+
+Tester stavu. M“§e vykon vaœ r“zne kontroly, ktor‚ mo§no zredukovaœ
+na TRUE alebo FALSE. Vìsledok je odovzdanì ako errorlevel. KeÔ je
+odpoveÔ TRUE, vr ti sa nula. Ak je odpoveÔ FALSE, vr ti sa 1. Pou§itie
+nespr vnej syntaxe a Ôalçie podobn‚ chyby vr tia k¢d ukonŸenia 100.
+
+Testy:
+
+    val1 /eq val2    hodnoty sa rovnaj£
+    val1 /ne val2    hodnoty sa nerovnaj£
+    val1 /ge val2    val1 je v„Ÿçie alebo rovn‚ val2
+    val1 /le val2    val1 je mençie alebo rovn‚ val2
+    val1 /gt val2    val1 je v„Ÿçie ako val2
+    val1 /lt val2    val1 je mençie ako val2
+    string           reœazec nie je null
+    /n string        reœazec nie je null
+    /z string        reœazec je null
+    /v number        Ÿ¡slo je platn‚
+    /f file          s£bor existuje
+    /d dir           cesta existuje
+    /e file alebo dir akìko–vek typ polo§ky adres ra
+
+Oper tory vìrazu:
+
+    /c expression    Vyn£tiœ zaobch dzanie s hodnotou ako s reœazcom a
+                     vykonaœ porovnanie rozliçuj£ce ve–k‚ a mal‚ p¡smen .
+    /i expression    Vyn£tiœ zaobch dzanie s hodnotou ako s reœazcom a
+                     vykonaœ porovnanie nerozliçuj£ce ve–k‚/mal‚ p¡smen .
+    exp1 /and exp2   Oba vìrazy musia byœ TRUE.
+    exp1 /or /exp2   Ktorìko–vek vìraz m“§e byœ TRUE.
+    /not expression  Obr tiœ vìsledok vìrazu.
+
+Òalçie vo–by:
+
+    /tf              Po dokonŸen¡ zobraziœ TRUE alebo FALSE.
+
+V predvolenom nastaven¡ je porovnanie hodn“t zalo§en‚ na ich type.
+Ak s£ obe hodnoty Ÿ¡sla (reprezentovan‚ v desiatkovej alebo
+çestn stkovej s£stave), porovnanie sa vykon  matematicky. V opaŸnom
+pr¡pade sa vykon  abecedn‚ porovnanie nerozliçuj£ce ve–k‚ a mal‚
+p¡smen . Pou§itie vo–by /c alebo /i vyn£ti textov‚ porovnanie bez
+oh–adu na d tovì typ hodnoty. Pr zdna hodnota nem  Ÿ¡seln£ hodnotu
+a vyn£ti, aby sa obe polo§ky porovn vali ako reœazce.
+
+Z kladn‚ pr¡klady:
+
+S£bor s n zvom TEST.TXT existuje:            vtest /f TEST.TXT
+S£bor s n zvom TEST.TXT neexistuje:          vtest /not /f TEST.TXT
+Existuje s£bor A.TXT alebo B.TXT:            vtest /f A.TXT /or /f B.TXT
+S£bor A.TXT ani B.TXT neexistuje:            vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 je Ÿ¡slo:                                 vtest /v %1
+%1 je Ÿ¡slo od 1 do 10:                      vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Zatia– Ÿo vo–by /f, /d a /e testuj£ polo§ky s£boru alebo adres ra,
+m“§u pou§¡vaœ modifik tory vìrazov ako /not, /c a /i a tie§ podporuj£
+z stupn‚ znaky. Akon hle bol syst‚m s£borov skontrolovanì na
+existenciu zodpovedaj£cej polo§ky, stan£ sa hodnotou prvej
+zodpovedaj£cej polo§ky syst‚mu s£borov a d  sa s nimi zaobch dzaœ
+ako s hodnotami. Ak sa nen jde §iadna zodpovedaj£ca polo§ka, hodnota
+sa stane null a s najv„Ÿçou pravdepodobnosœou sp“sob¡, §e sa vìraz
+vyhodnot¡ ako FALSE.
+
+Pri porovn van¡ dvoch hodn“t, ak ka§d  hodnota obsahuje platn‚ Ÿ¡slo
+(desiatkov‚ alebo çestn stkov‚), porovnanie sa vykon  Ÿ¡selne.
+Ak §iadna z hodn“t nie je Ÿ¡slo, bude sa porovn vaœ abecedne.
+Hoci je mo§n‚ v rade porovnan¡ kombinovaœ d tov‚ typy, vìsledok
+m“§e byœ œa§k‚ predv¡daœ a vçeobecne sa to neodpor£Ÿa.
+
+évodzovky sa NEPOU¦ÖVAJé pre reœazce s medzerami. Znaky £vodzoviek
+s£ v§dy pova§ovan‚ za norm lne textov‚ znaky. Analyz tor pr¡kazov‚ho
+riadka oddel¡ reœazce iba v pr¡pade, §e je detegovanì SWITCH_CHAR
+(zvyŸajne /). Toto je prijate–nì pr¡klad:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Pou§itie £vodzoviek na jednoduch‚ zabalenie reœazcov povedie k
+chybnìm vìsledkom. Nasleduj£ci pr¡klad povedie V¦DY k hodnote TRUE bez
+oh–adu na hodnotu %1:
+
+vtest /n "%1"
+
+Navyçe, ak reœazec obsahuje SWITCH_CHAR, Ÿasœ nasleduj£ca po
+SWITCH_CHAR bude interpretovan  ako vo–ba programu, pokia– k nej nebude
+pripojenì Ôalç¡ SWITCH_CHAR. Napr¡klad ?Y/N? by bolo interpretovan‚
+ako reœazec ?Y? a potom vo–ba ?/N?. Aby sa obe interpretovali ako
+reœazec, bolo by to ?Y//N?. Napr¡klad:
+
+vtest /n y//n

@@ -1,0 +1,33 @@
+# Language: Brazilian Portuguese
+# File ending: pb
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vmath [options]
+
+Utilit†rio matem†tico simples. N«O Ç uma calculadora e a precedància Ç
+estritamente da esquerda para a direita (posso mudar isso). Suporta
+matem†tica de inteiros de 64 bits em um 8086 e sem a necessidade de um
+coprocessador. Principalmente, Ç bom para loops, determinar offsets
+de tela, etc.
+
++, ADD          Adiciona o pr¢ximo n£mero Ö soma.
+-, SUB          Subtrai o pr¢ximo n£mero da soma.
+*, MUL          Multiplica a soma pelo pr¢ximo n£mero.
+/, DIV          Divide a soma pelo pr¢ximo n£mero.
+\, MOD          Divide a soma pelo pr¢ximo n£mero e define a soma
+                como o resto.
+
+AND             AND l¢gico.
+OR              OR l¢gico.
+XOR             XOR l¢gico.
+SHR             Deslocamento de bit para a direita.
+SHL             Deslocamento de bit para a esquerda.
+
+/H ou /B        Define sa°da para hexadecimal ou bin†rio. Embora os
+                c†lculos sejam feitos usando matem†tica de 64 bits,
+                ao gerar sa°da nestes formatos os resultados s∆o
+                encurtados para o menor tamanho de bit para seu valor.
+                Por exemplo, n£meros de 64, 32, 16 ou 8 bits conforme
+                necess†rio.

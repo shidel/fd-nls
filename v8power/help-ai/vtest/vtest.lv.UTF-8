@@ -1,0 +1,96 @@
+# Language: Latvian
+# File ending: lv
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opcijas]
+
+Stāvokļa testētājs. Tas var veikt dažādas pārbaudes, kuras var reducēt
+uz TRUE vai FALSE. Rezultāts tiek nodots kā errorlevel. Kad atbilde ir
+TRUE, tiek atgriezta nulle. Ja atbilde ir FALSE, tiek atgriezts 1.
+Nepareizas sintakses un citu līdzīgu kļūdu izmantošana atgriezīs
+izejas kodu 100.
+
+Testi:
+
+    val1 /eq val2    vērtības ir vienādas
+    val1 /ne val2    vērtības nav vienādas
+    val1 /ge val2    val1 ir lielāka vai vienāda ar val2
+    val1 /le val2    val1 ir mazāka vai vienāda ar val2
+    val1 /gt val2    val1 ir lielāka nekā val2
+    val1 /lt val2    val1 ir mazāka nekā val2
+    string           virkne nav null
+    /n string        virkne nav null
+    /z string        virkne ir null
+    /v number        skaitlis ir derīgs
+    /f file          fails pastāv
+    /d dir           ceļš pastāv
+    /e file vai dir  jebkāda veida direktorija ieraksts
+
+Izteiksmes operatori:
+
+    /c expression    Piespiest vērtību uztvert kā virkni un veikt
+                     reģistrjutīgu salīdzināšanu.
+    /i expression    Piespiest vērtību uztvert kā virkni un veikt
+                     reģistrnejutīgu salīdzināšanu.
+    exp1 /and exp2   Abām izteiksmēm jābūt TRUE.
+    exp1 /or /exp2   Jebkura izteiksme var būt TRUE.
+    /not expression  Apgriezt izteiksmes rezultātu.
+
+Citas opcijas:
+
+    /tf              Pēc pabeigšanas parādīt TRUE vai FALSE.
+
+Pēc noklusējuma vērtību salīdzināšana pamatojas uz to tipu. Ja abas
+vērtības ir skaitļi (decimālā vai sešpadsmitnieku formātā), salīdzināšana
+tiks veikta matemātiski. Pretējā gadījumā tiks veikta reģistrnejutīga
+alfabētiska salīdzināšana. Opciju /c vai /i izmantošana piespiedīs
+veikt uz tekstu balstītu salīdzināšanu neatkarīgi no vērtības datu tipa.
+Tukšai vērtībai nav skaitliskas vērtības, un tā piespiedīs abus vienumus
+salīdzināt kā virknes.
+
+Pamata piemēri:
+
+Fails ar nosaukumu TEST.TXT pastāv:          vtest /f TEST.TXT
+Fails ar nosaukumu TEST.TXT nepastāv:        vtest /not /f TEST.TXT
+Pastāv fails A.TXT vai B.TXT:                vtest /f A.TXT /or /f B.TXT
+Nepastāv ne fails A.TXT, ne B.TXT:           vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 ir skaitlis:                              vtest /v %1
+%1 ir skaitlis no 1 līdz 10:                 vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Lai gan opcijas /f, /d un /e pārbauda failu vai direktoriju ierakstus,
+tās var izmantot izteiksmju modifikatorus, piemēram, /not, /c un /i,
+un atbalsta arī aizstājējzīmes. Kad failu sistēma ir pārbaudīta, vai
+tajā nav atbilstoša ieraksta, tie kļūst par pirmā atbilstošā failu
+sistēmas vienuma vērtību un tos var uztvert kā vērtības. Ja atbilstošs
+ieraksts netiek atrasts, vērtība kļūst par null, un, visticamāk,
+izraisīs izteiksmes novērtēšanu kā FALSE.
+
+Veicot divu vērtību salīdzināšanu, ja katrā vērtībā ir derīgs skaitlis
+(decimāls vai sešpadsmitnieku), salīdzināšana tiks veikta skaitliski.
+Ja kāda no vērtībām nav skaitlis, tā tiks salīdzināta alfabētiski.
+Lai gan salīdzinājumu sērijā ir iespējams sajaukt datu tipus, rezultātu
+var būt grūti paredzēt, un tas parasti netiek ieteikts.
+
+Pēdiņas NETIEK izmantotas virknēm ar atstarpēm. Pēdiņu rakstzīmes
+vienmēr tiek uztvertas kā parastas teksta rakstzīmes. Komandrindas
+analizators atdalīs virknes tikai tad, ja tiks atklāts SWITCH_CHAR
+(parasti /). Šis ir pieņemams piemērs:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Pēdiņu izmantošana, lai vienkārši iesaiņotu virknes, dos kļūdainus
+rezultātus. Šāds piemērs VIENMĒR radīs TRUE neatkarīgi no %1 vērtības:
+
+vtest /n "%1"
+
+Turklāt, ja virkne satur SWITCH_CHAR, daļa, kas seko SWITCH_CHAR,
+tiks interpretēta kā programmas opcija, ja vien no tās neizvairās,
+ievietojot papildu SWITCH_CHAR. Piemēram, "Y/N" tiktu interpretēts kā
+virkne "Y" un pēc tam opcija "/N". Lai abus interpretētu kā virkni, tas
+būtu "Y//N". Piemēram:
+
+vtest /n y//n

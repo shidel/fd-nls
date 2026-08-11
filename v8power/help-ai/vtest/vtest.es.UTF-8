@@ -1,0 +1,98 @@
+# Language: Spanish
+# File ending: es
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opciones]
+
+Un probador de estado. Puede realizar varias comprobaciones que se pueden
+reducir a TRUE o FALSE. El resultado se pasa como un errorlevel. Cuando
+la respuesta es TRUE, se devuelve un cero. Si la respuesta es FALSE, se
+devuelve un 1. El uso de una sintaxis incorrecta y otros errores similares
+devolverán el código de salida 100.
+
+Pruebas:
+
+    val1 /eq val2    valores son iguales
+    val1 /ne val2    valores no son iguales
+    val1 /ge val2    val1 es mayor o igual a val2
+    val1 /le val2    val1 es menor o igual a val2
+    val1 /gt val2    val1 es mayor que val2
+    val1 /lt val2    val1 es menor que val2
+    string           string no es nulo
+    /n string        string no es nulo
+    /z string        string es nulo
+    /v number        número es válido
+    /f file          archivo existe
+    /d dir           ruta existe
+    /e file o dir    cualquier tipo de entrada de directorio
+
+Operadores de expresión:
+
+    /c expression    Fuerza que un valor se trate como cadena y realiza
+                     una comparación que distingue mayúsculas.
+    /i expression    Fuerza que un valor se trate como cadena y realiza
+                     una comparación que no distingue mayúsculas.
+    exp1 /and exp2   Ambas expresiones deben ser TRUE.
+    exp1 /or /exp2   Cualquier expresión puede ser TRUE.
+    /not expression  Invierte el resultado de una expresión.
+
+Otras opciones:
+
+    /tf              Mostrar TRUE o FALSE al terminar.
+
+Por defecto, la comparación de valores se basa en su tipo. Si ambos
+valores son un número (representado en decimal o hexadecimal), la
+comparación se hará matemáticamente. De lo contrario, se realizará una
+comparación alfabética que no distingue mayúsculas de minúsculas. El uso
+de las opciones /c o /i forzará una comparación basada en texto,
+independientemente del tipo de datos del valor. Un valor vacío no tiene
+un valor numérico y forzará que los dos elementos se comparen como cadenas.
+
+Ejemplos básicos:
+
+Un archivo llamado TEST.TXT existe:          vtest /f TEST.TXT
+Un archivo llamado TEST.TXT no existe:       vtest /not /f TEST.TXT
+El archivo A.TXT o B.TXT existe:             vtest /f A.TXT /or /f B.TXT
+Ni el archivo A.TXT ni B.TXT existen:        vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 es un número:                             vtest /v %1
+%1 es un número del 1 al 10:                 vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Si bien las opciones /f, /d y /e prueban entradas de archivos o
+directorios, pueden usar modificadores de expresión como /not, /c e /i
+y también admiten comodines. Una vez que se ha comprobado la existencia
+de una entrada coincidente en el sistema de archivos, se convierten en
+el valor del primer elemento coincidente y pueden tratarse como valores.
+Si no se encuentra ninguna coincidencia, el valor se vuelve nulo y muy
+probablemente hará que una expresión se evalúe como FALSE.
+
+Al realizar una comparación de dos valores, si cada valor contiene un
+número válido (decimal o hexadecimal), la comparación se realizará
+numéricamente. Si alguno de los valores no es un número, se comparará
+alfabéticamente. Aunque es posible mezclar tipos de datos en una serie de
+comparaciones, el resultado puede ser difícil de predecir y generalmente
+no se recomienda.
+
+Las comillas NO se utilizan para cadenas con espacios. Los caracteres de
+comillas siempre se tratan como caracteres de texto normales. El
+analizador de la línea de comandos solo separará las cadenas cuando se
+detecte un SWITCH_CHAR (normalmente /). Este es un ejemplo aceptable:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+El uso de comillas para simplemente envolver cadenas producirá resultados
+erróneos. El siguiente ejemplo SIEMPRE resultará en TRUE
+independientemente del valor de %1:
+
+vtest /n "%1"
+
+Además, si una cadena contiene el SWITCH_CHAR, la porción que sigue al
+SWITCH_CHAR se interpretará como una opción de programa a menos que se
+escape insertando un SWITCH_CHAR adicional. Por ejemplo, "Y/N" se
+interpretaría como la cadena "Y" y luego la opción "/N". Para interpretar
+ambos como una cadena sería "Y//N". Por ejemplo:
+
+vtest /n y//n

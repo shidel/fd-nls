@@ -1,0 +1,137 @@
+# Language: Hungarian
+# File ending: hu
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Kiadva a GPL v2.0 licenc alatt.
+****************************************************************************
+
+Egy 8 hengeres motor erej‚t teszi a DOS k”tegf jlok motorh zteteje al .
+
+============================================================================
+
+A V8Power Tools projektet Jim Hall-lal egyttmûk”dve tervezik a
+FreeDOS(TM) (http://www.freedos.org) oper ci¢s rendszerhez. C‚lja, hogy
+kib‹v¡tse a k”tegf jlokkal ¡rt szkriptek funkcionalit s t, ‚s szebb
+felhaszn l¢i felletet biztos¡tson sz mukra megn”velt funkcionalit ssal.
+
+============================================================================
+
+A V8Power Tools ford¡t sa
+
+    El‹felt‚telek:
+
+        8086 vagy jobb processzor.
+        EGA vagy jobb vide¢adapter.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) vagy £jabb
+        NASM DOS-hoz 2.16.01 verzi¢ (http://wwww.nasm.us) vagy £jabb
+
+    Ford¡t s:
+
+        Gy‹z‹dj”n meg r¢la, hogy a NASM k”nyvt r benne van az el‚r‚si
+        £tban.
+        T”ltse le a leg£jabb forr sk¢dokat a
+        http://github.com/LoopZ/V8Power oldalr¢l
+        Futtassa az mkV8.bat szkriptet.
+        Minden v‚grehajthat¢ f jl az £jonnan l‚trehozott BIN k”nyvt rba
+        kerl.
+
+    Lusta embereknek, mint ‚n:
+
+        El‹re leford¡tott verzi¢k  llnak rendelkez‚sre a
+        http://up.lod.bz/V8Power oldalon.
+
+============================================================================
+
+V8Power Tools tesztelt kompatibilit s
+
+    FreeDOS 1.1+
+
+A speci lis funkci¢k korl tozott kompatibilit sa (nincs "set /p" k”tegelt
+t mogat s):
+
+    MS-DOS 6.2 ‚s 6.22
+    PC-DOS 7.0, 7.01 ‚s 2000
+    DR-DOS 7.03
+    DOSBox (az I/O  tir ny¡t s vagy a stdout haszn lat val t”rt‚n‹
+        lek‚rdez‚sek NEM mûk”dnek a be‚p¡tett DOSBox parancs‚rtelmez‹
+        haszn lat val. Azonban j¢l mûk”dnek a DOSBoxban, ha kompatibilis
+        parancs‚rtelmez‹t, p‚ld ul FreeCOM-ot haszn lnak)
+    Windows 3.11 Shell
+    Windows 98 Shell ‚s Command Line
+    Windows XP SP3 Shell (kiv‚ve a vcursor-t)
+
+============================================================================
+
+A V8Power Tools haszn lata
+
+Itt van n‚h ny alapvet‹ inform ci¢ az ”sszes seg‚dprogramr¢l ‚s azok
+mûk”d‚s‚r‹l.
+
+    A kapcsol¢k, ‚rt‚kek ‚s hexadecim lis sz mok nem kis- ‚s
+    nagybetû‚rz‚kenyek /f white ugyanaz, mint az /F wHIte.
+
+    A hexadecim lis sz mok el‚ 0x el‹tag ¡rhat¢, hogy elkerljk a
+    t¡zes sz mrendszerbeli kezel‚sket. (P‚lda: 10 ‚s 0x10)
+
+    A sz¢k”z”k t”bbnyire opcion lisak. /B7/f0 ugyanaz, mint a /B 7 /F 0.
+    De nem a / B7 / F0.
+
+    Ha / vagy sz¢k”z”ket szeretne haszn lni egy ‚rt‚kben, tegye
+    id‚z‹jelek k”z‚. Mint a "Jack and/or Jill".
+
+    Haszn ljon t”bb id‚z‹jelet az id‚z‹jelek haszn lat hoz. Mint a
+    "Jack's house" vagy 'Say "What?"'.
+
+    Hacsak nincs fellb¡r lva, a legt”bb seg‚dprogram a sz”veg
+    attrib£tum t haszn lja az aktu lis kurzorpoz¡ci¢ban.
+
+============================================================================
+
+Itt van a sz¡nt bl zat az ”sszes /A, /F ‚s /B kapcsol¢hoz:
+
+    Decim lis   Hex         C¡mke (Nem kis-/nagybetû‚rz‚keny)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Csak el‹t‚r /f ‚s /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+A sz¡nv ltoztat st t mogat¢ egyedi eszk”z”k t”bbs‚ge t mogatja a
+Blink/Intensity be ll¡t s megv ltoztat s t is. A legt”bb eszk”z
+azonban nem eml¡ti ezt.
+
+    /BlinkOn    A Blink/Intensity bit enged‚lyez‚se. (Villog s kezdete)
+    /BlinkOff   A Blink/Intensity bit letilt sa. (Villog s le ll¡t sa)
+
+============================================================================
+
+A DOS parancssor (‚s a k”tegf jlok) k”rlbell 128 karakterre van
+korl tozva. Ez megnehez¡theti az olyan eszk”z”k sz m ra, mint a vecho,
+hogy egyszerre t”bb sort nyomtassanak. Sz mos eszk”z, mint p‚ld ul a
+vecho, vstr stb., t mogatja a sz”veges er‹forr sok f jlb¢l t”rt‚n‹
+bet”lt‚s‚t a /T kapcsol¢ seg¡ts‚g‚vel. µltal ban a /T kapcsol¢t arra
+haszn lj k, hogy "Ford¡t s" sz”veget biztos¡tsanak egy k”teghez. F jlb¢l
+t”rt‚n‹ bet”lt‚skor a V8Power Tools seg‚dprogram soronk‚nt 10 kilob jtra
+van korl tozva. Ezen t£lmen‹en a seg‚dprogram figyelmen k¡vl hagy
+minden h tral‚v‹ sz”veget az adott sorban. A 10 kb 5 k‚perny‹nyi vagy
+t”bb sz”vegnek felel meg, ‚s ez t£lz s.

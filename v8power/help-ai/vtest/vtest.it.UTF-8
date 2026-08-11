@@ -1,0 +1,101 @@
+# Language: Italian
+# File ending: it
+# Codepage: 858
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [opzioni]
+
+Un tester di stato. Può eseguire vari controlli che possono essere
+riassunti in TRUE o FALSE. Il risultato viene passato come un
+errorlevel. Quando la risposta è TRUE viene restituito uno zero. Se la
+risposta è FALSE, viene restituito un 1. L'utilizzo di una sintassi
+errata e altri errori simili restituiranno il codice di uscita 100.
+
+Test:
+
+    val1 /eq val2    i valori sono uguali
+    val1 /ne val2    i valori non sono uguali
+    val1 /ge val2    val1 è maggiore o uguale a val2
+    val1 /le val2    val1 è minore o uguale a val2
+    val1 /gt val2    val1 è maggiore di val2
+    val1 /lt val2    val1 è minore di val2
+    string           la stringa non è nulla
+    /n string        la stringa non è nulla
+    /z string        la stringa è nulla
+    /v number        il numero è valido
+    /f file          il file esiste
+    /d dir           il percorso esiste
+    /e file o dir    qualsiasi tipo di voce di directory
+
+Operatori di espressione:
+
+    /c expression    Forza un valore ad essere trattato come stringa ed
+                     esegue un confronto sensibile alle maiuscole.
+    /i expression    Forza un valore ad essere trattato come stringa ed
+                     esegue un confronto senza distinzione tra maiuscole.
+    exp1 /and exp2   Entrambe le espressioni devono essere TRUE.
+    exp1 /or /exp2   Qualsiasi espressione può essere TRUE.
+    /not expression  Inverte il risultato di un'espressione.
+
+Altre opzioni:
+
+    /tf              Mostra TRUE o FALSE al termine.
+
+Di default, il confronto dei valori si basa sul loro tipo. Se entrambi
+i valori sono un numero (rappresentato in decimale o esadecimale), il
+confronto verrà effettuato matematicamente. Altrimenti, verrà eseguito
+un confronto alfabetico senza distinzione tra maiuscole e minuscole.
+L'utilizzo delle opzioni /c o /i forzerà un confronto basato sul testo
+indipendentemente dal tipo di dati del valore. Un valore vuoto non ha
+un valore numerico e costringerà i due elementi ad essere confrontati
+come stringhe.
+
+Esempi di base:
+
+Un file chiamato TEST.TXT esiste:            vtest /f TEST.TXT
+Un file chiamato TEST.TXT non esiste:        vtest /not /f TEST.TXT
+Il file A.TXT o B.TXT esiste:                vtest /f A.TXT /or /f B.TXT
+Né il file A.TXT né B.TXT esistono:          vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 è un numero:                              vtest /v %1
+%1 è un numero da 1 a 10:                    vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Mentre le opzioni /f, /d ed /e testano le voci di file o directory,
+possono usare modificatori di espressione come /not, /c e /i e
+supportano anche i caratteri jolly. Una volta che il file system è
+stato controllato per l'esistenza di una voce corrispondente, diventano
+il valore del primo elemento corrispondente e possono essere trattati
+come valori. Se non viene trovata alcuna corrispondenza, il valore
+diventa nullo e molto probabilmente farà sì che un'espressione venga
+valutata come FALSE.
+
+Quando si esegue un confronto tra due valori, se ogni valore contiene
+un numero valido (decimale o esadecimale) il confronto verrà eseguito
+numericamente. Se uno dei due valori non è un numero, verrà confrontato
+alfabeticamente. Sebbene sia possibile mescolare i tipi di dati in una
+serie di confronti, il risultato può essere difficile da prevedere e in
+genere non è raccomandato.
+
+Le virgolette NON vengono utilizzate per le stringhe con spazi. I
+caratteri delle virgolette vengono sempre trattati come normali caratteri
+di testo. Il parser della riga di comando separerà le stringhe solo
+quando viene rilevato uno SWITCH_CHAR (normalmente /). Questo è un
+esempio accettabile:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+L'uso delle virgolette per racchiudere semplicemente le stringhe produrrà
+risultati errati. Il seguente esempio risulterà SEMPRE in TRUE
+indipendentemente dal valore di %1:
+
+vtest /n "%1"
+
+Inoltre, se una stringa contiene lo SWITCH_CHAR, la parte che segue lo
+SWITCH_CHAR verrà interpretata come un'opzione di programma a meno che
+non venga sfuggita inserendo un ulteriore SWITCH_CHAR. Ad esempio, "Y/N"
+verrebbe interpretato come la stringa "Y" e poi l'opzione "/N". Per
+interpretarli entrambi come una stringa sarebbe "Y//N". Ad esempio:
+
+vtest /n y//n

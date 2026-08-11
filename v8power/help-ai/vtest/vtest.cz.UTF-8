@@ -1,0 +1,96 @@
+# Language: Czech
+# File ending: cz
+# Codepage: 852
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+vtest [volby]
+
+Tester stavu. Může provádět různé kontroly, které lze zredukovat na
+TRUE nebo FALSE. Výsledek je předán jako errorlevel. Když je odpověď
+TRUE, vrátí se nula. Pokud je odpověď FALSE, vrátí se 1. Použití
+nesprávné syntaxe a další podobné chyby vrátí kód ukončení 100.
+
+Testy:
+
+    val1 /eq val2    hodnoty se rovnají
+    val1 /ne val2    hodnoty se nerovnají
+    val1 /ge val2    val1 je větší nebo rovno val2
+    val1 /le val2    val1 je menší nebo rovno val2
+    val1 /gt val2    val1 je větší než val2
+    val1 /lt val2    val1 je menší než val2
+    string           řetězec není null
+    /n string        řetězec není null
+    /z string        řetězec je null
+    /v number        číslo je platné
+    /f file          soubor existuje
+    /d dir           cesta existuje
+    /e file nebo dir jakýkoli typ položky adresáře
+
+Operátory výrazu:
+
+    /c expression    Vynutit zacházení s hodnotou jako s řetězcem a
+                     provést porovnání rozlišující velká a malá písmena.
+    /i expression    Vynutit zacházení s hodnotou jako s řetězcem a
+                     provést porovnání nerozlišující velká/malá písmena.
+    exp1 /and exp2   Oba výrazy musí být TRUE.
+    exp1 /or /exp2   Kterýkoli výraz může být TRUE.
+    /not expression  Obrátit výsledek výrazu.
+
+Další volby:
+
+    /tf              Po dokončení zobrazit TRUE nebo FALSE.
+
+Ve výchozím nastavení je porovnání hodnot založeno na jejich typu. Pokud
+jsou obě hodnoty čísla (reprezentovaná v desítkové nebo šestnáctkové
+soustavě), bude porovnání provedeno matematicky. V opačném případě bude
+provedeno abecední porovnání nerozlišující velká a malá písmena.
+Použití volby /c nebo /i vynutí textové porovnání bez ohledu na
+datový typ hodnoty. Prázdná hodnota nemá číselnou hodnotu a vynutí,
+aby byly obě položky porovnány jako řetězce.
+
+Základní příklady:
+
+Soubor s názvem TEST.TXT existuje:           vtest /f TEST.TXT
+Soubor s názvem TEST.TXT neexistuje:         vtest /not /f TEST.TXT
+Existuje soubor A.TXT nebo B.TXT:            vtest /f A.TXT /or /f B.TXT
+Soubor A.TXT ani B.TXT neexistuje:           vtest /not /f A.TXT /and /not
+                                             /f B.TXT
+%1 je číslo:                                 vtest /v %1
+%1 je číslo od 1 do 10:                      vtest /v %1 /and 1 /le %1
+                                             /le 10
+
+Zatímco volby /f, /d a /e testují položky souboru nebo adresáře, mohou
+používat modifikátory výrazů jako /not, /c a /i a také podporují
+zástupné znaky. Jakmile byl systém souborů zkontrolován na existenci
+odpovídající položky, stanou se hodnotou první odpovídající položky
+systému souborů a lze s nimi zacházet jako s hodnotami. Pokud není
+nalezena žádná odpovídající položka, hodnota se stane null a s
+největší pravděpodobností způsobí, že se výraz vyhodnotí jako FALSE.
+
+Při porovnávání dvou hodnot, pokud každá hodnota obsahuje platné číslo
+(desítkové nebo šestnáctkové), bude porovnání provedeno číselně.
+Pokud žádná z hodnot není číslo, bude se porovnávat abecedně. Ačkoli
+je možné v řadě porovnání kombinovat datové typy, výsledek může být
+obtížné předvídat a obecně se to nedoporučuje.
+
+Uvozovky se NEPOUŽÍVAJÍ pro řetězce s mezerami. Znaky uvozovek jsou vždy
+považovány za normální textové znaky. Analyzátor příkazového řádku oddělí
+řetězce pouze v případě, že je detekován SWITCH_CHAR (obvykle /).
+Toto je přijatelný příklad:
+
+vtest a, b and c /lt d, e and f /and 6 /gt 5 /lt 7
+
+Použití uvozovek k pouhému zabalení řetězců povede k chybným
+výsledkům. Následující příklad povede VŽDY k hodnotě TRUE bez ohledu na
+hodnotu %1:
+
+vtest /n "%1"
+
+Navíc, pokud řetězec obsahuje SWITCH_CHAR, část následující po
+SWITCH_CHAR bude interpretována jako volba programu, pokud k ní nebude
+připojen další SWITCH_CHAR. Například „Y/N“ by bylo interpretováno jako
+řetězec „Y“ a poté volba „/N“. Aby se obě interpretovaly jako řetězec,
+bylo by to „Y//N“. Například:
+
+vtest /n y//n

@@ -1,0 +1,137 @@
+# Language: Lithuanian
+# File ending: lt
+# Codepage: 775
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Išleista pagal GPL v2.0 licenciją.
+****************************************************************************
+
+Suteikia 8 cilindrų variklio galią DOS paketiniams (batch) failams.
+
+============================================================================
+
+Projektas V8Power Tools kuriamas bendradarbiaujant su Jim Hall, skirtas
+FreeDOS(TM) (http://www.freedos.org) operacinei sistemai. Juo siekiama
+išplėsti scenarijų, parašytų naudojant paketinius failus, funkcionalumą
+ir suteikti jiems geriau atrodančią vartotojo sąsają bei didesnį
+funkcionalumą.
+
+============================================================================
+
+V8Power Tools kompiliavimas
+
+    Išankstinės sąlygos:
+
+        8086 arba geresnis procesorius.
+        EGA arba geresnis vaizdo adapteris.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) arba naujesnė
+        NASM, skirta DOS, versija 2.16.01 (http://wwww.nasm.us) arba
+        naujesnė
+
+    Kompiliavimas:
+
+        Įsitikinkite, kad NASM katalogas yra nurodytas jūsų kelio (path)
+        specifikacijoje.
+        Atsisiųskite naujausius šaltinius iš
+        http://github.com/LoopZ/V8Power
+        Paleiskite mkV8.bat scenarijų.
+        Visi vykdomieji failai bus patalpinti naujai sukurtame BIN
+        kataloge.
+
+    Tingiems žmonėms, tokiems kaip aš:
+
+        Iš anksto sukompiliuotas versijas galima rasti adresu
+        http://up.lod.bz/V8Power.
+
+============================================================================
+
+V8Power Tools Patikrintas Suderinamumas
+
+    FreeDOS 1.1+
+
+Ribotas pažangių funkcijų suderinamumas (nėra „set /p“ paketinių failų
+palaikymo):
+
+    MS-DOS 6.2 ir 6.22
+    PC-DOS 7.0, 7.01 ir 2000
+    DR-DOS 7.03
+    DOSBox (įvesties/išvesties peradresavimas arba užklausos naudojant
+        stdout NEVEIKS naudojant integruotą DOSBox aplinką. Tačiau jie
+        puikiai veikia DOSBox, kai naudojama suderinama aplinka,
+        pavyzdžiui, FreeCOM)
+    Windows 3.11 Shell
+    Windows 98 Shell ir komandų eilutė
+    Windows XP SP3 Shell (išskyrus vcursor)
+
+============================================================================
+
+V8Power Tools Naudojimas
+
+Čia pateikiama pagrindinė informacija apie visas komandas ir jų veikimą.
+
+    Parinktys, reikšmės ir šešioliktainiai skaičiai neregistruoja raidžių
+    dydžio /f white yra tas pats, kas /F wHIte.
+
+    Šešioliktainiai skaičiai gali būti su priešdėliu 0x, kad jie nebūtų
+    laikomi dešimtainiais. (Pavyzdys: 10 ir 0x10)
+
+    Tarpai dažniausiai yra neprivalomi. /B7/f0 yra tas pats, kas
+    /B 7 /F 0. Bet ne / B7 / F0.
+
+    Norėdami reikšmėje naudoti / arba tarpus, įrašykite ją į kabutes.
+    Pavyzdžiui, "Jack and/or Jill".
+
+    Norėdami naudoti kabutes, naudokite kelias kabutes. Pavyzdžiui,
+    "Jack's house" arba 'Say "What?"'.
+
+    Jei nepakeista, dauguma įrankių naudoja teksto atributą esamoje
+    žymeklio vietoje.
+
+============================================================================
+
+Čia yra spalvų lentelė, naudojama visiems /A, /F ir /B jungikliams:
+
+    Dešimtainis  Hex         Etiketė (Raidžių dydis nesvarbus)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Tik priekiniam planui /f ir /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+Dauguma atskirų įrankių, palaikančių spalvų keitimą, taip pat palaiko
+Blink/Intensity nustatymo keitimą. Tačiau dauguma įrankių apie tai
+neužsimena.
+
+    /BlinkOn    Įjungti Blink/Intensity bitą. (Pradėti mirksėjimą)
+    /BlinkOff   Išjungti Blink/Intensity bitą. (Sustabdyti mirksėjimą)
+
+============================================================================
+
+DOS komandų eilutė (ir paketiniai failai) ribojama maždaug 128
+simboliais. Dėl to tokiems įrankiams kaip vecho gali būti sunku
+spausdinti kelias eilutes vienu metu. Tačiau daugelis įrankių, tokių kaip
+vecho, vstr ir kt., palaiko teksto išteklių įkėlimą iš failo naudojant
+jungiklį /T. Paprastai jungiklis /T naudojamas paketiniam procesui
+„Vertimo“ tekstui pateikti. Įkeliant iš failo, V8Power Tools įrankis
+ribojamas iki 10 kilobaitų vienai eilutei. Viršijus tai, įrankis ignoruos
+visą likusį tekstą toje eilutėje. 10kb yra lygus 5 ekranams ar daugiau
+teksto ir yra perteklius.

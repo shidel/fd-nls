@@ -1,0 +1,134 @@
+# Language: Danish
+# File ending: dk
+# Codepage: 865
+# This translation was made by Google Gemini.
+# Please help the FreeDOS group to improve it.
+
+****************************************************************************
+V8Power Tools
+Copyright 2015-2024 Jerome Shidel
+Udgivet under GPL v2.0 licens.
+****************************************************************************
+
+L‘gger kraften fra en 8-cylindret motor under hjelmen p† DOS batchfiler.
+
+============================================================================
+
+V8Power Tools-projektet designes i samarbejde med
+Jim Hall til FreeDOS(TM) (http://www.freedos.org) operativsystemet. Det er
+beregnet til at udvide funktionaliteten af scripts skrevet ved hj‘lp af
+batchfiler og give dem en flottere brugergr‘nseflade med ›get
+funktionalitet.
+
+============================================================================
+
+Kompilering af V8Power Tools
+
+    Foruds‘tninger:
+
+        8086 eller bedre cpu.
+        EGA eller bedre videoadapter.
+        FreeDOS(TM) 1.1 (http://www.freedos.org) eller h›jere
+        NASM til DOS version 2.16.01 (http://wwww.nasm.us) eller nyere
+
+    Kompilering:
+
+        S›rg for at NASM-biblioteket er i din stispecifikation.
+        Download de nyeste kilder fra http://github.com/LoopZ/V8Power
+        K›r mkV8.bat scriptet.
+        Alle eksekverbare filer placeres i det nyoprettede BIN-bibliotek.
+
+    For dovne mennesker, ligesom mig:
+
+        Pr‘kompilerede versioner er tilg‘ngelige p†
+        http://up.lod.bz/V8Power.
+
+============================================================================
+
+V8Power Tools Testet Kompatibilitet
+
+    FreeDOS 1.1+
+
+Begr‘nset kompatibilitet af avancerede funktioner (ingen "set /p" batch
+underst›ttelse):
+
+    MS-DOS 6.2 og 6.22
+    PC-DOS 7.0, 7.01 og 2000
+    DR-DOS 7.03
+    DOSBox (i/o-omdirigering eller foresp›rgsler ved hj‘lp af stdout
+        fungerer IKKE ved hj‘lp af den indbyggede DOSBox-skal. Dog
+        fungerer de fint i DOSBox, n†r en kompatibel skal som FreeCOM
+        anvendes)
+    Windows 3.11 Shell
+    Windows 98 Shell og Command Line
+    Windows XP SP3 Shell (undtagen vcursor)
+
+============================================================================
+
+V8Power Tools Brug
+
+Her er nogle grundl‘ggende oplysninger om alle v‘rkt›jer og hvordan de
+fungerer.
+
+    Indstillinger, v‘rdier og hexadecimale tal skelner ikke mellem store og
+    sm† bogstaver /f white er det samme som /F wHIte.
+
+    Hexadecimale tal kan forudsiges med 0x for at forhindre, at de
+    behandles som base ti. (Eksempel: 10 og 0x10)
+
+    Mellemrum er for det meste valgfrie. /B7/f0 er det samme som
+    /B 7 /F 0. Men ikke / B7 / F0.
+
+    For at bruge en / eller mellemrum i en v‘rdi, skal den s‘ttes i
+    anf›rselstegn. Som "Jack and/or Jill".
+
+    Brug flere anf›rselstegn for at bruge anf›rselstegn. Som "Jack's house"
+    eller 'Say "What?"'.
+
+    Medmindre det overskrives, bruger de fleste v‘rkt›jer tekstattributten
+    p† den aktuelle mark›rplacering.
+
+============================================================================
+
+Her er farvetabellen brugt til alle /A, /F og /B skiftere:
+
+    Decimal     Hex         Etiket (Skelner ikke mellem store/sm†)
+
+    0           0x00        Black
+    1           0x01        Blue
+    2           0x02        Green
+    3           0x03        Cyan
+    4           0x04        Red
+    5           0x05        Magenta
+    6           0x06        Brown
+    7           0x07        Gray / Grey
+
+    (Kun forgrund /f og /a)
+
+    8           0x08        DarkGray / DarkGrey
+    9           0x09        LightBlue
+    10          0x0a        LightGreen
+    11          0x0b        LightCyan
+    12          0x0c        LightRed
+    13          0x0d        LightMagenta
+    14          0x0e        Yellow
+    15          0x0f        White
+
+De fleste af de individuelle v‘rkt›jer, der underst›tter farve‘ndring,
+underst›tter ogs† ‘ndring af Blink/Intensity-indstillingen. De fleste
+v‘rkt›jer n‘vner det dog ikke.
+
+    /BlinkOn    Aktiver Blink/Intensity bit. (Begynd at blinke)
+    /BlinkOff   Deaktiver Blink/Intensity bit. (Stop med at blinke)
+
+============================================================================
+
+DOS-kommandolinjen (og batchfiler) er begr‘nset til cirka 128
+tegn. Dette kan g›re det vanskeligt for v‘rkt›jer som vecho at udskrive
+flere linjer p† ‚n gang. Dog underst›tter mange v‘rkt›jer som vecho, vstr
+osv. indl‘sning af tekstressourcer fra en fil ved hj‘lp af /T
+skifteren. Generelt bruges /T skifteren til at give "Overs‘ttelse" tekst
+til en batch. N†r indl‘st fra fil, er V8Power Tools v‘rkt›jet
+begr‘nset til 10 kilobytes pr. linje. Ud over det, vil v‘rkt›jet ignorere
+al resterende tekst p† den linje. 10kb svarer til 5 sk‘rme eller mere
+tekst og er i overkanten.
