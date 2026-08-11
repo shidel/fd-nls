@@ -1,7 +1,7 @@
 #!/bin/bash
 
-EXCEPT=';packages;fdi;htmlhelp;danger;'
-SPECIAL=';pgme;freecom;blocek;v8power;'
+EXCEPT=';packages;fdi;htmlhelp;danger;v8power;'
+SPECIAL=';pgme;freecom;blocek;'
 EXCLUDE=';txt;docinfo;htm;html;inc;asm;'
 
 LANGUAGES=''
