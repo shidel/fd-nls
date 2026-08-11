@@ -1,4 +1,5 @@
 INTRO=
+ERROR.NOBINS=/fLightRed No se pudieron localizar los controladores de red. /fGrey /p
 ERROR.HARDWARE=/fLightRed Por ahora no hay compatibilidad con dispositivos de red f¡sicos. /fGrey /p
 ERROR.DOSBOX=/fLightRed Por ahora no hay compatibilidad con los dispositivos de red de DOSBox. /fGrey /p
 FOUND.QEMU=/fLightGreen Detectada red de QEMU. /fGrey /p
@@ -6,7 +7,10 @@ FOUND.VIRTUALBOX=/fLightGreen Detectada red de VirtualBOX. /fGrey /p
 NOTES.VIRTUALBOX=/p /fLightGreen Puede que tenga que ajustar la configuraci¢n de red de VirtualBOX. /fGrey /p
 FOUND.VMWARE=/fLightGreen Detectada red de VMware. /fGrey /p
 NOTES.VMWARE=/p /fLightGreen Puede que tenga que configurar VMware en /fLightGreen modo /fYellow Puente /fGrey . /p
+FOUND.STAGING=/fLightGreen Se detect¢ la red de DOSBox Staging. /fGrey /p
+NOTES.STAGING=/p /fLightGreen Tenga en cuenta que es posible que deba ajustar los par metros de configuraci¢n de DOSBox. /fGrey /p
 NO.NETWORK=/fLightRed 'No se pudo alcanzar, o no est  disponible, la red.' /fGray
 USER.FDNETPD=/fLightGreen Usando paquetes con configuraciones personalizadas en /fWhite FDNETPD.BAT /fGrey /p
 USER.DRIVER=/fLightGreen Usando controlador de paquetes personalizado /fWhite %1 /fGrey /p
 NO.HELP=No se pudieron encontrar los archivos de ayuda.
+NO.DRIVER=/fLightRed No se pudo localizar el controlador de red requerido %1. /fGrey /p
