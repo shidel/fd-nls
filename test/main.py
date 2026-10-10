@@ -114,7 +114,8 @@ LANGUAGES = {
     "lv": "CP775",
     "nl": "CP850",
     "no": "CP865",
-    "pl": "mazovia", # our local implementation
+    "mz": "mazovia", # Polish Mazovia (CP667), our local implementation
+    "pl": "CP852",
     "pt": "CP850",
     "ptBR": "CP850", # name will be truncated in _output
     "rs": "CP852",

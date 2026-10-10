@@ -29,7 +29,7 @@ legacy reasons from the original _**ISO 639-1 Specification**_.
 | la       | la        | lat       | _437_               | Latin                 |
 | lt       | lt        | lit       | 775                 | Lithuanian            |
 | lv       | lv        | lav       | 775                 | Latvian               |
-| _**mz**_ | _n/a_     | _n/a_     | 852, _(621, 790)_   | Polish-Mazovian       |
+| _**mz**_ | _n/a_     | _n/a_     | 667, _(790, 991)_   | Polish-Mazovian       |
 | nl       | nl        | dut       | 858                 | Dutch                 |
 | no       | no        | nor       | 865                 | Norwegian             |
 | _**pb**_ | _n/a_     | _n/a_     | 858                 | Portuguese-Brazilian  |

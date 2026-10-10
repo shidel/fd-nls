@@ -11,6 +11,10 @@ goto Load
 set _DCP=857
 goto Load
 
+:PL
+set _DCP=852
+goto Load
+
 :NL
 :FR
 :ES
