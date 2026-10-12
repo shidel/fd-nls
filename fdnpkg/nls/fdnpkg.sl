@@ -2,8 +2,9 @@
 #
 # Language..: Slovene
 # Translator: Matej Horvat (http://matejhorvat.si/)
-# Updated...: 2016-12-12
-# Codepage..: 852
+# Updated...: 2016-12-12 / 2026-09-30
+# Codepage..: 852;
+# former english texts: 7.3, 7.4, 7.9, 7.15 and 7.16 now translated by Google AI
 
 #### Help ####
 
@@ -26,6 +27,7 @@
 1.16: LISTLOCAL [niz]       IzpiÁe nameÁüene pakete, ki vsebujejo niz.
 1.17: FDNPKG uporablja sledeüo verzijo Watt-32:
 1.18: LISTFILES paket       IzpiÁe datoteke, ki pripadajo paketu.
+1.19: clearcache            poüisti lokalni predpomnilnik FDNPKG
 
 
 ### General stuff ####
@@ -49,6 +51,7 @@
 2.16:PrenaÁam %s...
 2.17:OPOZORILO: Navideznega pomnilnika je malo. FDNPKG morda ne bo deloval pravilno.
 2.18:NAPAKA: Ni mogoüe pisati v imenik %s. Preverite svojo spremenljivko TEMP.
+2.19:Predpomnilnik poüiÁüen.
 
 
 #### Installing package ####
@@ -80,13 +83,13 @@
 
 
 #### Removing package ####
+
 4.0:Paket %s ni nameÁüen, zato ga ni mogoüe odstraniti.
 4.1:Ni mogoüe odpreti datoteke LST.
 4.2:Doseßena omejitev dolßine seznama imenikov. Imenik %s ne bo odstranjen!
 4.3:Ni dovolj spomina. Ni mogoüe shraniti imenika %s!
 4.4:odstranjujem %s
 4.5:Paket %s odstranjen.
-
 
 #### Searching package ####
 
@@ -101,6 +104,7 @@
 6.2:Napaka: Ni dovolj spomina za bazo paketov!
 6.3:Napaka: Ni mogoüe odpreti datoteke %s.
 6.4:Opozorilo: Ni mogoüe odpreti predpomnilne datoteke %s.
+6.5:Sporoüilo od %s:
 
 
 #### Loading configuration ####
@@ -108,19 +112,20 @@
 7.0:Napaka: Zbirka %s je naÁteta dvakrat!
 7.1:Napaka: Ni mogoüe odpreti nastavitvene datoteke %s.
 7.2:Opozorilo: ukaz brez vrednosti v vrstici %d
-7.3:Warning: Config file token overflow on line #%d
-7.4:Warning: token with empty value on line #%d
+7.3:Opozorilo: prekoraüitev ukaza nastavitvene datoteke v vrstici Át. %d
+7.4:Opozorilo: ukaz s prazno vrednostjo v vrstici Át. %d
 7.5:Opozorilo: nevidni znaki na koncu vrstice Át. %d
 7.6:Vsaj ena zbirka je bila izpuÁüena; preveü jih je naÁtetih (omejitev je %d).
 7.8:Opozorilo: neznan ukaz "%s" v vrstici %d
-7.9:Warning: Config file value overflow on line #%d
+7.9:Opozorilo: prekoraüitev vrednosti nastavitvene datoteke v vrstici Át. %d
 7.10:Opozorilo: Vrednost "%s" v vrstici Át. %d prezrta.
 7.11:Opozorilo: Neveljaven ukaz DIR v vrstici %d.
 7.12:Napaka: Pot DIR v vrstici Át. %d je predolga.
 7.13:Napaka: Okoljska spremenljivka %s, omenjena v vrstici Át. %d, ne obstaja.
 7.14:Napaka: Zbirka %s je naÁteta dvakrat!
-7.15:Error: custom dir '%s' is not a valid absolute path!
-7.16:Error: custom dir '%s' is a reserved name!
+7.15:Napaka: imenik po meri '%s' ni veljavna absolutna pot!
+7.16:Napaka: custom dir '%s' is a reserved name!
+
 
 
 #### Unziping package ####
@@ -147,6 +152,7 @@
 10.5:Najdenih %d posodobitev.
 10.6:Paket %s ni nameÁüen.
 10.7:Iskanje posodobitev...
+
 
 #### Downloading ####
 

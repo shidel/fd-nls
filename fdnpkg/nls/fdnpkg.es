@@ -4,8 +4,8 @@
 # Idioma............: Castellano
 # P gina de c¢digos : 850
 # Traductor.........: Lorenzo del Toro Saravia
-#
-
+# 2.13 and 8.2 had bad typos, 3.18: Es posible, 6.2: insuficiente,
+# 2.15: ha fallado, 10.4 had three parameters instead of two
 
 #### Ayuda ####
 
@@ -46,9 +46,9 @@
 2.10:­Fall¢ la descarga del repositorio!
 2.11:Produjo un error el intento de carga repositorio desde archivo tmp ...
 2.12:Advertencia: ­%TZ% no establecido! Las marcas de tiempo en los                  archivos instalados pueden ser inexactas.
-2.13:Base de datos del paquete cargada desde el cachâ€š local.
+2.13:Base de datos del paquete cargada desde la cach‚ local.
 2.14:­Sin memoria! (%s)
-2.15:Error: ­La instalaci¢n TCP/IP a fallado!
+2.15:Error: ­La instalaci¢n TCP/IP ha fallado!
 2.16:Cargando %s...
 2.17:ADVERTENCIA: Memoria virtual demasiado baja. FDNPKG podr¡a comportarse          de manera poco fiable.
 2.18:ERROR: no se puede escribir en el directorio '%s'. Verifique su                 variable %%TEMP%%.
@@ -75,7 +75,7 @@
 3.15:Error: ­Falta de memoria al calcular el CRC del paquete!
 3.16:Paquete %s instalado (con fuentes, si est  disponible).
 3.17:Paquete %s instalado (sin fuentes).
-3.18:­El paquete %s ya est  instalado! El posible que desee utilizar la              acci¢n 'actualizar'.
+3.18:­El paquete %s ya est  instalado! Es posible que desee utilizar la              acci¢n 'actualizar'.
 3.19:Paquete %s instalado: %d archivos extra¡dos, %d errores.
 3.20:Error: El paquete contiene un archivo cifrado:
 3.21:Error: Error al abrir el archivo de enlace '%s' para acceso de lectura.
@@ -103,7 +103,7 @@
 
 6.0:Error: ­Archivo de ¡ndice inv lido (encabezado incorrecto)! Repositorio         omitido.
 6.1:Error: ­Archivo de ¡ndice inv lido! Repositorio omitido.
-6.2:Error: ­Memoria insugiciente al cargar la base de datos del paquete!
+6.2:Error: ­Memoria insuficiente al cargar la base de datos del paquete!
 6.3:Error: No se pudo abrir el archivo de datos en '%s'.
 6.4:Advertencia: ­No se pudo abrir el archivo db cache en %s!
 6.5:Mensaje de %s
@@ -133,7 +133,7 @@
 
 8.0:­Sin memoria!
 8.1:C¢digo zip desconocido: 0x%08lx
-8.2:Error: El paquete contiene un archivo comprimido con un mâ€štodo no compatible (%d):
+8.2:Error: El paquete contiene un archivo con compresi¢n no soportada (%d):
 8.3:­Error al extraer '%s' a '%s'!
 
 
@@ -149,7 +149,7 @@
 10.1:versi¢n %s en %s
 10.2:No se encontr¢ ninguna actualizaci¢n para el paquete '%s'.
 10.3:Se ha encontrado una actualizaci¢n de '%s'. Actualizaci¢n en progreso...
-10.4:%d paquete(s) verificado, %d paquete(s) actualizado, %d paquete(s) fallido.
+10.4:%d paquete(s) actualizado(s), %d paquete(s) fallido(s).
 10.5:%d actualizaci¢n(es) de paquete encontradas.
 10.6:El paquete %s no est  instalado.
 10.7:Buscando actualizaciones...

@@ -1,0 +1,157 @@
+# fdnpkg, italian, it, cp858
+# This translation was created by Google AI.
+# Please help the FreeDOS group to improve it.
+#
+
+#### Help ####
+
+1.0:Questo è un gestore di pacchetti di rete per FreeDOS.
+1.1:Uso: FDNPKG azione [parametri]
+1.2:Dove l'azione è una delle seguenti:
+1.3: search [stringa]  - cerca nei repository i pacchetti contenenti 'stringa'
+1.4: vsearch [stringa] - come 'search', ma stampa anche i repository di origine
+1.5: install pkg       - installa il pacchetto 'pkg' (o un file zip locale)
+1.6: remove pkg        - rimuove il pacchetto 'pkg'
+1.7: dumpcfg           - stampa la configurazione caricata dal file cfg
+1.8: license           - stampa la licenza di questo programma
+1.9:FDNPKG è collegato alla versione di WatTCP sottostante:
+1.10: install-nosrc pkg - installa il pacchetto 'pkg' (o zip) senza i sorgenti
+1.11: install-wsrc pkg  - installa il pacchetto 'pkg' (o zip) con i sorgenti
+1.12: showinstalled [str] - mostra la lista dei pacchetti installati con 'str'
+1.13: checkupdates      - cerca gli aggiornamenti dei pacchetti e li mostra
+1.14: update pkg        - aggiorna il pacchetto 'pkg' a una versione più recente
+1.15: update [pkg]      - aggiorna 'pkg' (o tutti) all'ultima versione
+1.16: listlocal [str]   - elenca tutti i pacchetti locali contenenti 'str'
+1.17:FDNPKG è collegato alla versione di Watt-32 sottostante:
+1.18: listfiles pkg     - elenca i file appartenenti al pacchetto 'pkg'
+1.19: clearcache        - svuota la cache locale di FDNPKG
+
+
+### General stuff ####
+
+2.0:%TEMP% non impostata! Dovrebbe puntare a una directory scrivibile.
+2.1:Esempio: SET TEMP=C:\\TEMP
+2.2:%DOSDIR% non impostata! Dovrebbe puntare alla directory root di FreeDOS.
+2.3:Esempio: SET DOSDIR=C:\\FDOS
+2.4:Numero non valido di argomenti. Esegui fdnpkg senza parametri per la guida.
+2.5:Nessun repository è configurato. Ne serve almeno uno.
+2.6:Dovresti inserire nel file di configurazione almeno una voce di questo tipo:
+2.7:REPO www.freedos.org/repo
+2.8:Segue la lista dei repository fdnpkg configurati:
+2.9:Aggiornamento di %s...
+2.10:Download del repository fallito!
+2.11:Si è verificato un errore caricando il repository dal file tmp...
+2.12:Avviso: %TZ% non impostata! I timestamp dei file potrebbero essere inesatti.
+2.13:Database dei pacchetti caricato dalla cache locale.
+2.14:Memoria esaurita! (%s)
+2.15:Errore: inizializzazione TCP/IP fallita!
+2.16:Caricamento di %s...
+2.17:AVVISO: Memoria virtuale insufficiente. FDNPKG potrebbe essere inaffidabile.
+2.18:ERRORE: Impossibile scrivere nella directory '%s'. Controlla var. %%TEMP%%.
+2.19:Cache svuotata.
+
+
+#### Installing package ####
+
+3.0:Il pacchetto %s è già installato! Rimuovilo prima di aggiornarlo.
+3.1:Nessun pacchetto '%s' trovato nei repository online.
+3.2:Il pacchetto '%s' non è disponibile nei repository.
+3.3:%s è disponibile in diversi repository. Scegli quale usare:
+3.4:La tua scelta:
+3.5:Scelta non valida!
+3.6:Download del pacchetto %s...
+3.7:Errore durante il download del pacchetto. Operazione annullata.
+3.8:Errore: archivio zip non valido! Pacchetto non installato.
+3.9:Errore: il pacchetto contiene un file che esiste già localmente:
+3.10:Errore: Impossibile creare %s!
+3.11:Pacchetto %s installato.
+3.12:Errore: Il pacchetto non contiene il file %s! Pacchetto FreeDOS non valido.
+3.13:Errore: Il pacchetto scaricato ha un CRC errato. Installazione annullata.
+3.14:Errore: Impossibile aprire il pacchetto scaricato. Installazione annullata.
+3.15:Errore: Memoria esaurita durante il calcolo del CRC del pacchetto!
+3.16:Pacchetto %s installato (con i sorgenti, se disponibili).
+3.17:Pacchetto %s installato (senza sorgenti).
+3.18:Il pacchetto %s è già installato! Potresti usare l'azione 'update'.
+3.19:Pacchetto %s installato: %d file estratti, %d errori.
+3.20:Errore: il pacchetto contiene un file crittografato:
+3.21:Errore: impossibile aprire il file di collegamento '%s' in lettura.
+3.22:Errore: impossibile aprire il file di collegamento '%s' in scrittura.
+3.23:Errore: il pacchetto contiene un nome di file non valido:
+
+
+#### Removing package ####
+
+4.0:Il pacchetto %s non è installato, quindi non è stato rimosso.
+4.1:Errore durante l'apertura del file lst!
+4.2:Limite Dirlist raggiunto. La directory %s non sarà rimossa!
+4.3:Memoria esaurita! Impossibile memorizzare la directory %s!
+4.4:rimozione di %s
+4.5:Il pacchetto %s è stato rimosso.
+
+
+#### Searching package ####
+
+5.0:Nessun pacchetto corrisponde alla ricerca.
+5.1:Memoria esaurita durante l'elaborazione delle descrizioni dei pacchetti!
+
+
+#### Package database handling ####
+
+6.0:Errore: file indice non valido (header errato)! Repository ignorato.
+6.1:Errore: file indice non valido! Repository ignorato.
+6.2:Errore: memoria esaurita durante il caricamento del database dei pacchetti!
+6.3:Errore: impossibile aprire il file di dati in '%s'.
+6.4:Avviso: impossibile aprire il file di cache db in %s!
+6.5:Messaggio da %s:
+
+
+#### Loading configuration ####
+
+7.0:Errore: il repository '%s' è elencato due volte!
+7.1:Errore: impossibile aprire il file di configurazione '%s'!
+7.2:Avviso: token senza valore alla riga #%d
+7.3:Avviso: overflow del token nel file di config alla riga #%d
+7.4:Avviso: token con valore vuoto alla riga #%d
+7.5:Avviso: spazi finali dopo il valore alla riga #%d
+7.6:Repository ignorato: troppi repository configurati (max=%d)
+7.8:Avviso: token sconosciuto '%s' alla riga #%d
+7.9:Avviso: overflow del valore nel file di config alla riga #%d
+7.10:Avviso: ignorato un valore illegale '%s' alla riga #%d
+7.11:Avviso: trovata direttiva 'DIR' non valida alla riga #%d
+7.12:Errore: percorso DIR troppo lungo alla riga #%d
+7.13:Errore: variabile di ambiente inesistente '%s' alla riga #%d
+7.14:Errore: il repository '%s' è elencato due volte!
+7.15:Errore: la dir personalizzata '%s' non è un percorso assoluto valido!
+7.16:Errore: la dir personalizzata '%s' è un nome riservato!
+
+
+#### Unzipping package ####
+
+8.0:Memoria esaurita!
+8.1:firma zip sconosciuta: 0x%08lx
+8.2:Errore: il pacchetto contiene un file con compressione non supportata (%d):
+8.3:Errore durante l'estrazione di '%s' in '%s'!
+
+
+#### Handling the local list of installed packages ####
+
+9.0:Errore: impossibile accedere alla directory %s.
+9.1:Errore: pacchetto locale %s non trovato.
+
+
+#### Package updates ####
+
+10.0:%s (versione locale: %s)
+10.1:versione %s in %s
+10.2:Nessun aggiornamento trovato per il pacchetto '%s'.
+10.3:Trovato un aggiornamento di '%s'. Aggiornamento in corso...
+10.4:%d pacchetto(i) aggiornato(i), %d pacchetto(i) fallito(i).
+10.5:Trovato/i %d aggiornamento/i per i pacchetti.
+10.6:Il pacchetto %s non è installato.
+10.7:Ricerca aggiornamenti in corso...
+
+
+#### Downloading ####
+
+11.0:Download di %s... %ld byte
+

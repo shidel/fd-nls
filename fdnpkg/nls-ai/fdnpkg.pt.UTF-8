@@ -1,0 +1,157 @@
+# fdnpkg, portuguese, pt, cp860
+# This translation was created by Google AI.
+# Please help the FreeDOS group to improve it.
+#
+
+#### Help ####
+
+1.0:Este é um gestor de pacotes de rede para o FreeDOS.
+1.1:Uso: FDNPKG ação [parâmetros]
+1.2:Onde a ação é uma das seguintes:
+1.3: search [texto]    - procura repositórios por pacote contendo 'texto'
+1.4: vsearch [texto]   - igual a 'search', mas imprime repositórios de origem
+1.5: install pkg       - instala o pacote 'pkg' (ou ficheiro zip local)
+1.6: remove pkg        - remove o pacote 'pkg'
+1.7: dumpcfg           - imprime a configuração carregada do ficheiro cfg
+1.8: license           - imprime a licença deste programa
+1.9:FDNPKG está vinculado à versão do WatTCP abaixo:
+1.10: install-nosrc pkg - instala pacote 'pkg' (ou zip local) sem as fontes
+1.11: install-wsrc pkg  - instala pacote 'pkg' (ou zip local) com as fontes
+1.12: showinstalled [str] - mostra a lista de pacotes instalados contendo 'str'
+1.13: checkupdates      - verifica atualizações disponíveis de pacotes e mostra
+1.14: update pkg        - atualiza o pacote 'pkg' para uma versão mais nova
+1.15: update [pkg]      - atualiza 'pkg' (ou todos se sem args) p/ última versão
+1.16: listlocal [str]   - lista todos os pacotes locais contendo 'str'
+1.17:FDNPKG está vinculado à versão do Watt-32 abaixo:
+1.18: listfiles pkg     - lista os ficheiros pertencentes ao pacote 'pkg'
+1.19: clearcache        - limpa a cache local do FDNPKG
+
+
+### General stuff ####
+
+2.0:%TEMP% não definido! Deve apontar para um diretório com acesso de escrita.
+2.1:Exemplo: SET TEMP=C:\\TEMP
+2.2:%DOSDIR% não definido! Deve apontar para o diretório principal do FreeDOS.
+2.3:Exemplo: SET DOSDIR=C:\\FDOS
+2.4:Argumentos inválidos. Execute fdnpkg sem parâmetros para obter ajuda.
+2.5:Nenhum repositório configurado. Precisa de pelo menos um.
+2.6:Coloque no seu ficheiro de configuração pelo menos uma entrada desta forma:
+2.7:REPO www.freedos.org/repo
+2.8:A lista de repositórios do fdnpkg configurados é:
+2.9:A atualizar %s...
+2.10:Falha na transferência do repositório!
+2.11:Ocorreu um erro ao tentar carregar o repositório do ficheiro tmp...
+2.12:Aviso: %TZ% indefinido! As datas dos ficheiros podem estar incorretas.
+2.13:Base de dados do pacote carregada a partir da cache local.
+2.14:Sem memória! (%s)
+2.15:Erro: a inicialização do TCP/IP falhou!
+2.16:A carregar %s...
+2.17:AVISO: Memória virtual muito baixa. FDNPKG pode funcionar de forma instável.
+2.18:ERRO: Impossível escrever no diretório '%s'. Verifique a variável %%TEMP%%.
+2.19:Cache limpa.
+
+
+#### Installing package ####
+
+3.0:O pacote %s já está instalado! Remova-o primeiro se precisar de atualizar.
+3.1:Nenhum pacote '%s' foi encontrado nos repositórios online.
+3.2:O pacote '%s' não está disponível nos repositórios.
+3.3:%s está disponível em vários repositórios. Escolha qual deles usar:
+3.4:A sua escolha:
+3.5:Escolha inválida!
+3.6:A transferir o pacote %s...
+3.7:Erro ao transferir o pacote. Abortado.
+3.8:Erro: Ficheiro zip inválido! O pacote não foi instalado.
+3.9:Erro: O pacote contém um ficheiro que já existe localmente:
+3.10:Erro: Não foi possível criar %s!
+3.11:Pacote %s instalado.
+3.12:Erro: O pacote não contém o ficheiro %s! Não é um pacote FreeDOS válido.
+3.13:Erro: O pacote transferido tem um CRC incorreto. Instalação abortada.
+3.14:Erro: Falha ao abrir o pacote transferido. Instalação abortada.
+3.15:Erro: Sem memória ao calcular o CRC do pacote!
+3.16:Pacote %s instalado (com o código-fonte, se disponível).
+3.17:Pacote %s instalado (sem o código-fonte).
+3.18:Pacote %s já instalado! Talvez queira usar a ação 'update'.
+3.19:Pacote %s instalado: %d ficheiros extraídos, %d erros.
+3.20:Erro: O pacote contém um ficheiro encriptado:
+3.21:Erro: Falha ao abrir o ficheiro de ligação '%s' para leitura.
+3.22:Erro: Falha ao abrir o ficheiro de ligação '%s' para gravação.
+3.23:Erro: O pacote contém um nome de ficheiro inválido:
+
+
+#### Removing package ####
+
+4.0:O pacote %s não está instalado, portanto não foi removido.
+4.1:Erro ao abrir o ficheiro lst!
+4.2:Limite de Dirlist atingido. O diretório %s não será removido!
+4.3:Sem memória! Não foi possível armazenar o diretório %s!
+4.4:a remover %s
+4.5:O pacote %s foi removido.
+
+
+#### Searching package ####
+
+5.0:Nenhum pacote corresponde à pesquisa.
+5.1:Sem memória ao processar as descrições dos pacotes!
+
+
+#### Package database handling ####
+
+6.0:Erro: Ficheiro de índice inválido (cabeçalho mau)! Repositório ignorado.
+6.1:Erro: Ficheiro de índice inválido! Repositório ignorado.
+6.2:Erro: Sem memória ao carregar a base de dados do pacote!
+6.3:Erro: Não foi possível abrir o ficheiro de dados em '%s'.
+6.4:Aviso: Não foi possível abrir o ficheiro de cache db em %s!
+6.5:Mensagem de %s:
+
+
+#### Loading configuration ####
+
+7.0:Erro: o repositório '%s' está listado duas vezes!
+7.1:Erro: Não foi possível abrir o ficheiro de configuração '%s'!
+7.2:Aviso: token sem valor na linha #%d
+7.3:Aviso: Estoiro de token do ficheiro de configuração na linha #%d
+7.4:Aviso: token com valor vazio na linha #%d
+7.5:Aviso: espaço(s) em branco após o valor na linha #%d
+7.6:Repositório descartado: muitos configurados (máx=%d)
+7.8:Aviso: Token '%s' desconhecido na linha #%d
+7.9:Aviso: Estoiro de valor do ficheiro de configuração na linha #%d
+7.10:Aviso: Um valor ilegal '%s' foi ignorado na linha #%d
+7.11:Aviso: Diretiva 'DIR' inválida encontrada na linha #%d
+7.12:Erro: O caminho DIR é muito longo na linha #%d
+7.13:Erro: Variável de ambiente '%s' inexistente encontrada na linha #%d
+7.14:Erro: o repositório '%s' está listado duas vezes!
+7.15:Erro: o diretório personalizado '%s' não é um caminho absoluto válido!
+7.16:Erro: diretório personalizado '%s' é um nome reservado!
+
+
+#### Unzipping package ####
+
+8.0:Sem memória!
+8.1:assinatura zip desconhecida: 0x%08lx
+8.2:Erro: O pacote contém ficheiro com compressão não suportada (%d):
+8.3:Erro ao extrair '%s' para '%s'!
+
+
+#### Handling the local list of installed packages ####
+
+9.0:Erro: Não foi possível aceder ao diretório %s.
+9.1:Erro: Pacote local %s não encontrado.
+
+
+#### Package updates ####
+
+10.0:%s (versão local: %s)
+10.1:versão %s em %s
+10.2:Nenhuma atualização encontrada para o pacote '%s'.
+10.3:Uma atualização de '%s' foi encontrada. Atualização em curso...
+10.4:%d pacote(s) atualizado(s), %d pacote(s) com falha.
+10.5:%d atualização(ões) de pacote encontrada(s).
+10.6:O pacote %s não está instalado.
+10.7:A procurar por atualizações...
+
+
+#### Downloading ####
+
+11.0:A transferir %s... %ld bytes
+

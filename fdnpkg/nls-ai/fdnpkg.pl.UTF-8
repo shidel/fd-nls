@@ -1,0 +1,157 @@
+# fdnpkg, polish, pl, cp852
+# This translation was created by Google AI.
+# Please help the FreeDOS group to improve it.
+#
+
+#### Help ####
+
+1.0:To jest sieciowy menedżer pakietów dla FreeDOS.
+1.1:Użycie: FDNPKG akcja [parametry]
+1.2:Gdzie akcja to jedno z poniższych:
+1.3: search [tekst]    - szukaj w repozytoriach pakietu zawierającego 'tekst'
+1.4: vsearch [tekst]   - jak 'search', ale wypisuje też repozytoria źródłowe
+1.5: install pkg       - zainstaluj pakiet 'pkg' (lub lokalny plik zip)
+1.6: remove pkg        - usuń pakiet 'pkg'
+1.7: dumpcfg           - wypisz konfigurację wczytaną z pliku cfg
+1.8: license           - wypisz licencję tego programu
+1.9:FDNPKG jest skompilowany z poniższą wersją WatTCP:
+1.10: install-nosrc pkg - instaluj pakiet 'pkg' (lub plik zip) bez źródeł
+1.11: install-wsrc pkg  - instaluj pakiet 'pkg' (lub plik zip) ze źródłami
+1.12: showinstalled [str] - pokaż listę zainstalowanych pakietów z 'str'
+1.13: checkupdates      - sprawdź dostępne aktualizacje pakietów i pokaż je
+1.14: update pkg        - zaktualizuj pakiet 'pkg' do nowszej wersji
+1.15: update [pkg]      - zaktualizuj 'pkg' (lub wszystkie) do nowszej wersji
+1.16: listlocal [str]   - wypisz wszystkie lokalne pakiety zawierające 'str'
+1.17:FDNPKG jest skompilowany z poniższą wersją Watt-32:
+1.18: listfiles pkg     - wypisz pliki należące do pakietu 'pkg'
+1.19: clearcache        - wyczyść lokalną pamięć podręczną FDNPKG
+
+
+### General stuff ####
+
+2.0:%TEMP% nieustawiona! Powinna wskazywać na zapisywalny katalog.
+2.1:Przykład: SET TEMP=C:\\TEMP
+2.2:%DOSDIR% nieustawiona! Powinna wskazywać na główny katalog FreeDOS.
+2.3:Przykład: SET DOSDIR=C:\\FDOS
+2.4:Nieprawidłowa liczba argumentów. Uruchom fdnpkg bez parametrów dla pomocy.
+2.5:Nie skonfigurowano żadnego repozytorium. Potrzebujesz co najmniej jednego.
+2.6:Umieść w swoim pliku konfiguracyjnym co najmniej jeden taki wpis:
+2.7:REPO www.freedos.org/repo
+2.8:Oto lista skonfigurowanych repozytoriów fdnpkg:
+2.9:Odświeżanie %s...
+2.10:Pobieranie repozytorium nie powiodło się!
+2.11:Wystąpił błąd podczas próby wczytania repozytorium z pliku tmp...
+2.12:Ostrzeżenie: %TZ% nieustawiona! Znaczniki czasu mogą być niedokładne.
+2.13:Baza danych pakietów wczytana z lokalnej pamięci podręcznej.
+2.14:Brak pamięci! (%s)
+2.15:Błąd: Inicjalizacja TCP/IP nie powiodła się!
+2.16:Wczytywanie %s...
+2.17:OSTRZEŻENIE: Za mało pamięci wirtualnej. FDNPKG może działać niestabilnie.
+2.18:BŁĄD: Nie można pisać w katalogu '%s'. Sprawdź zmienną %%TEMP%%.
+2.19:Pamięć podręczna wyczyszczona.
+
+
+#### Installing package ####
+
+3.0:Pakiet %s jest już zainstalowany! Najpierw go usuń, aby zaktualizować.
+3.1:Nie znaleziono pakietu '%s' w repozytoriach online.
+3.2:Pakiet '%s' nie jest dostępny w repozytoriach.
+3.3:%s jest dostępny w kilku repozytoriach. Wybierz, którego użyć:
+3.4:Twój wybór:
+3.5:Nieprawidłowy wybór!
+3.6:Pobieranie pakietu %s...
+3.7:Błąd pobierania pakietu. Przerwano.
+3.8:Błąd: Nieprawidłowe archiwum zip! Pakiet nie został zainstalowany.
+3.9:Błąd: Pakiet zawiera plik, który już istnieje lokalnie:
+3.10:Błąd: Nie można utworzyć %s!
+3.11:Pakiet %s zainstalowany.
+3.12:Błąd: Pakiet nie zawiera pliku %s! Nie jest to poprawny pakiet FreeDOS.
+3.13:Błąd: Pobrany pakiet ma błędne CRC. Instalacja przerwana.
+3.14:Błąd: Nie udało się otworzyć pobranego pakietu. Instalacja przerwana.
+3.15:Błąd: Brak pamięci podczas obliczania CRC pakietu!
+3.16:Pakiet %s zainstalowany (ze źródłami, jeśli są dostępne).
+3.17:Pakiet %s zainstalowany (bez źródeł).
+3.18:Pakiet %s jest już zainstalowany! Możesz chcieć użyć akcji 'update'.
+3.19:Pakiet %s zainstalowany: rozpakowano %d plików, %d błędów.
+3.20:Błąd: Pakiet zawiera zaszyfrowany plik:
+3.21:Błąd: Nie udało się otworzyć pliku linku '%s' do odczytu.
+3.22:Błąd: Nie udało się otworzyć pliku linku '%s' do zapisu.
+3.23:Błąd: Pakiet zawiera nieprawidłową nazwę pliku:
+
+
+#### Removing package ####
+
+4.0:Pakiet %s nie jest zainstalowany, więc nie został usunięty.
+4.1:Błąd otwierania pliku lst!
+4.2:Osiągnięto limit Dirlist. Katalog %s nie zostanie usunięty!
+4.3:Brak pamięci! Nie można przechować katalogu %s!
+4.4:usuwanie %s
+4.5:Pakiet %s został usunięty.
+
+
+#### Searching package ####
+
+5.0:Żaden pakiet nie pasuje do wyszukiwania.
+5.1:Brak pamięci podczas przetwarzania opisów pakietów!
+
+
+#### Package database handling ####
+
+6.0:Błąd: Nieprawidłowy plik indeksu (zły nagłówek)! Pominięto repozytorium.
+6.1:Błąd: Nieprawidłowy plik indeksu! Pominięto repozytorium.
+6.2:Błąd: Brak pamięci podczas wczytywania bazy danych pakietów!
+6.3:Błąd: Nie można otworzyć pliku danych w '%s'.
+6.4:Ostrzeżenie: Nie można otworzyć pliku pamięci podręcznej db w %s!
+6.5:Wiadomość od %s:
+
+
+#### Loading configuration ####
+
+7.0:Błąd: repozytorium '%s' występuje dwa razy!
+7.1:Błąd: Nie można otworzyć pliku konfiguracyjnego '%s'!
+7.2:Ostrzeżenie: token bez wartości w linii #%d
+7.3:Ostrzeżenie: Przepełnienie tokenu w pliku konfiguracyjnym w linii #%d
+7.4:Ostrzeżenie: token z pustą wartością w linii #%d
+7.5:Ostrzeżenie: końcowe spacje po wartości w linii #%d
+7.6:Odrzucono repozytorium: za dużo skonfigurowanych (maks=%d)
+7.8:Ostrzeżenie: Nieznany token '%s' w linii #%d
+7.9:Ostrzeżenie: Przepełnienie wartości w pliku konfiguracyjnym w linii #%d
+7.10:Ostrzeżenie: Zignorowano niedozwoloną wartość '%s' w linii #%d
+7.11:Ostrzeżenie: Znaleziono nieprawidłową dyrektywę 'DIR' w linii #%d
+7.12:Błąd: Zbyt długa ścieżka DIR w linii #%d
+7.13:Błąd: Znaleziono nieistniejącą zmienną środowiskową '%s' w linii #%d
+7.14:Błąd: repozytorium '%s' występuje dwa razy!
+7.15:Błąd: własny katalog '%s' nie jest prawidłową ścieżką bezwzględną!
+7.16:Błąd: własny katalog '%s' jest nazwą zastrzeżoną!
+
+
+#### Unzipping package ####
+
+8.0:Brak pamięci!
+8.1:nieznana sygnatura zip: 0x%08lx
+8.2:Błąd: Pakiet ma plik skompresowany nieobsługiwaną metodą (%d):
+8.3:Błąd podczas rozpakowywania '%s' do '%s'!
+
+
+#### Handling the local list of installed packages ####
+
+9.0:Błąd: Brak dostępu do katalogu %s.
+9.1:Błąd: Nie znaleziono lokalnego pakietu %s.
+
+
+#### Package updates ####
+
+10.0:%s (wersja lokalna: %s)
+10.1:wersja %s w %s
+10.2:Nie znaleziono aktualizacji dla pakietu '%s'.
+10.3:Znaleziono aktualizację dla '%s'. Trwa aktualizacja...
+10.4:Zaktualizowano pakietów: %d, nie powiodło się: %d.
+10.5:Znaleziono %d aktualizację(i) pakietów.
+10.6:Pakiet %s nie jest zainstalowany.
+10.7:Szukanie aktualizacji...
+
+
+#### Downloading ####
+
+11.0:Pobieranie %s... %ld bajtów
+

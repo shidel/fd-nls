@@ -1,0 +1,157 @@
+# fdnpkg, swedish, sv, cp858
+# This translation was created by Google AI.
+# Please help the FreeDOS group to improve it.
+#
+
+#### Help ####
+
+1.0:Detta är en nätverkspakethanterare för FreeDOS.
+1.1:Användning: FDNPKG åtgärd [parametrar]
+1.2:Där åtgärd är en av följande:
+1.3: search [sträng]   - sök i paketförråd efter paket som innehåller 'sträng'
+1.4: vsearch [sträng]  - som 'search', men skriver även ut källförråd
+1.5: install pkg       - installera paketet 'pkg' (eller lokal zip-fil)
+1.6: remove pkg        - ta bort paketet 'pkg'
+1.7: dumpcfg           - skriv ut konfigurationen som lästs in från cfg-filen
+1.8: license           - skriv ut licensen för detta program
+1.9:FDNPKG är länkad mot WatTCP-versionen nedan:
+1.10: install-nosrc pkg - installera 'pkg' (eller zip) utan källkod
+1.11: install-wsrc pkg  - installera 'pkg' (eller zip) med källkod
+1.12: showinstalled [str] - visa installerade paket som innehåller 'str'
+1.13: checkupdates      - sök efter tillgängliga uppdateringar och visa dem
+1.14: update pkg        - uppdatera paketet 'pkg' till en nyare version
+1.15: update [pkg]      - uppdatera 'pkg' (eller alla) till senaste versionen
+1.16: listlocal [str]   - visa lokala paket som innehåller 'str'
+1.17:FDNPKG är länkad mot Watt-32-versionen nedan:
+1.18: listfiles pkg     - visa filer som tillhör paketet 'pkg'
+1.19: clearcache        - rensa FDNPKG:s lokala cacheminne
+
+
+### General stuff ####
+
+2.0:%TEMP% är inte satt! Den bör peka på en skrivbar katalog.
+2.1:Exempel: SET TEMP=C:\\TEMP
+2.2:%DOSDIR% är inte satt! Den bör peka på FreeDOS-huvudkatalogen.
+2.3:Exempel: SET DOSDIR=C:\\FDOS
+2.4:Ogiltigt antal argument. Kör fdnpkg utan parametrar för hjälp.
+2.5:Inget paketförråd är konfigurerat. Du behöver minst ett.
+2.6:Du bör lägga till minst en rad av följande form i konfigurationsfilen:
+2.7:REPO www.freedos.org/repo
+2.8:Listan över konfigurerade fdnpkg-förråd följer:
+2.9:Uppdaterar %s...
+2.10:Nedladdning av förråd misslyckades!
+2.11:Ett fel uppstod vid inläsning av förråd från tmp-fil...
+2.12:Varning: %TZ% inte satt! Tidsstämplar på filer kan vara felaktiga.
+2.13:Paketdatabasen har lästs in från lokalt cacheminne.
+2.14:Slut på minne! (%s)
+2.15:Fel: TCP/IP-initiering misslyckades!
+2.16:Läser in %s...
+2.17:VARNING: För lite virtuellt minne. FDNPKG kan uppträda opålitligt.
+2.18:FEL: Kan inte skriva till katalogen '%s'. Kontrollera variabeln %%TEMP%%.
+2.19:Cacheminnet har rensats.
+
+
+#### Installing package ####
+
+3.0:Paketet %s är redan installerat! Ta bort det först för att uppgradera.
+3.1:Inget paket '%s' hittades i nätförråden.
+3.2:Paketet '%s' är inte tillgängligt i förråden.
+3.3:%s är tillgängligt från flera förråd. Välj vilket som ska användas:
+3.4:Ditt val:
+3.5:Ogiltigt val!
+3.6:Laddar ner paketet %s...
+3.7:Fel vid nedladdning av paket. Avbröts.
+3.8:Fel: Ogiltigt zip-arkiv! Paketet installerades inte.
+3.9:Fel: Paketet innehåller en fil som redan finns lokalt:
+3.10:Fel: Kunde inte skapa %s!
+3.11:Paketet %s har installerats.
+3.12:Fel: Paketet innehåller inte filen %s! Inte ett giltigt FreeDOS-paket.
+3.13:Fel: Nedladdat paket hade felaktig CRC. Installationen avbröts.
+3.14:Fel: Kunde inte öppna det nedladdade paketet. Installationen avbröts.
+3.15:Fel: Slut på minne vid beräkning av paketets CRC!
+3.16:Paketet %s har installerats (med källkod, om tillgänglig).
+3.17:Paketet %s har installerats (utan källkod).
+3.18:Paketet %s är redan installerat! Du kanske vill använda 'update'.
+3.19:Paket %s installerat: %d filer extraherade, %d fel.
+3.20:Fel: Paketet innehåller en krypterad fil:
+3.21:Fel: Kunde inte öppna länkfilen '%s' för läsning.
+3.22:Fel: Kunde inte öppna länkfilen '%s' för skrivning.
+3.23:Fel: Paketet innehåller ett ogiltigt filnamn:
+
+
+#### Removing package ####
+
+4.0:Paketet %s är inte installerat och togs därför inte bort.
+4.1:Fel vid öppning av lst-fil!
+4.2:Gräns för Dirlist nådd. Katalogen %s kommer inte att tas bort!
+4.3:Slut på minne! Kunde inte spara katalogen %s!
+4.4:tar bort %s
+4.5:Paketet %s har tagits bort.
+
+
+#### Searching package ####
+
+5.0:Inget paket matchade sökningen.
+5.1:Slut på minne vid bearbetning av paketbeskrivningar!
+
+
+#### Package database handling ####
+
+6.0:Fel: Ogiltig indexfil (felaktigt sidhuvud)! Förrådet hoppades över.
+6.1:Fel: Ogiltig indexfil! Förrådet hoppades över.
+6.2:Fel: Slut på minne vid inläsning av paketdatabas!
+6.3:Fel: Kunde inte öppna datafilen vid '%s'.
+6.4:Varning: Kunde inte öppna databasens cachefil vid %s!
+6.5:Meddelande från %s:
+
+
+#### Loading configuration ####
+
+7.0:Fel: förrådet '%s' är listat två gånger!
+7.1:Fel: Kunde inte öppna konfigurationsfilen '%s'!
+7.2:Varning: token utan värde på rad %d
+7.3:Varning: Token-spill i konfigurationsfilen på rad %d
+7.4:Varning: token med tomt värde på rad %d
+7.5:Varning: efterföljande blanksteg efter värde på rad %d
+7.6:Ett förråd uteslöts: för många konfigurerade (max=%d)
+7.8:Varning: Okänt token '%s' på rad %d
+7.9:Varning: Värdespill i konfigurationsfilen på rad %d
+7.10:Varning: Ignorerade ett ogiltigt '%s'-värde på rad %d
+7.11:Varning: Ogiltigt 'DIR'-direktiv hittades på rad %d
+7.12:Fel: DIR-sökvägen är för lång på rad %d
+7.13:Fel: Hittade icke-existerande miljövariabel '%s' på rad %d
+7.14:Fel: förrådet '%s' är listat två gånger!
+7.15:Fel: anpassad katalog '%s' är inte en giltig absolut sökväg!
+7.16:Fel: anpassad katalog '%s' är ett reserverat namn!
+
+
+#### Unzipping package ####
+
+8.0:Slut på minne!
+8.1:okänd zip-signatur: 0x%08lx
+8.2:Fel: Paketet har en fil komprimerad med en metod som inte stöds (%d):
+8.3:Fel vid extrahering av '%s' till '%s'!
+
+
+#### Handling the local list of installed packages ####
+
+9.0:Fel: Kunde inte komma åt katalogen %s.
+9.1:Fel: Det lokala paketet %s hittades inte.
+
+
+#### Package updates ####
+
+10.0:%s (lokal version: %s)
+10.1:version %s på %s
+10.2:Ingen uppdatering hittades för paketet '%s'.
+10.3:En uppdatering för '%s' har hittats. Uppdatering pågår...
+10.4:%d paket uppdaterade, %d paket misslyckades.
+10.5:%d paketuppdatering(ar) hittades.
+10.6:Paketet %s är inte installerat.
+10.7:Söker efter uppdateringar...
+
+
+#### Downloading ####
+
+11.0:Laddar ner %s... %ld byte
+
