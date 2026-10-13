@@ -7,21 +7,21 @@
 0.0:FDPKG v0.2 - GPL por Blair Campbell 2005\n
 0.1:Instala paquetes FreeDOS tanto en formato especializado como uno regular.\n
 0.2:Sintaxis: FDPKG [/INSTALL] [/REMOVE] [/CHECK] [/CONFIGURE] [/E] PKGX.ZIP ...\n
-0.3:   /INSTALL       Modo de instalaci¢n; paquete de intalaci¢n (predeterminado)\n
-0.4:   /REMOVE        Modo de eliminaci¢n; eliminar paquete\n
-0.5:   /CHECK         Modo de comprobaci¢n; verificar dependencias del paquete\n
-0.6:   /CONFIGURE     Modo de configuraci¢n; configurar paquete\n
-0.7:   /DESC[:CAMPO]  Ver la descrici¢n de un LSM. CAMPO (opcional) ser¡a el campo\n
-0.8:                  del LSM para imprimir. Los LSM se buscan primero en el\n
-0.9:                  directorio actual, de lo contrario en %%DOSDIR%%\\APPINFO\n
-0.10:   /DISPLAY       Lista todos los paquetes instalados que coincidan con el\n                  argumento\n
-0.11:   /E             Extraer solamente, no verifique las dependencias (a menos\n
-0.12:                  que ya estâ€š instalado), no configurar\n
-0.13:   /B             Sea compatible con versiones anteriores de fdpkg.bat\n
-0.14:   /S[:|=]ARG     Cambia las barras diagonales inversas de ARG a barras\n                  diagonales\n
-0.15:   /[-]F/[-]Y     Fuerza; No hace preguntas (POSIBLEMENTE PELIGROSO)\n
-0.16:   /?[E]|/H[E]    Esta ayuda; /?E o /HE imprime ayuda extendida\n
-0.17:   PKGX.ZIP       El paquete para instalar; m£ltiples nombres / comodines\n                  aceptados\n
+0.3:  /INSTALL       Modo de instalaci¢n; paquete de intalaci¢n (predeterminado)\n
+0.4:  /REMOVE        Modo de eliminaci¢n; eliminar paquete\n
+0.5:  /CHECK         Modo de comprobaci¢n; verificar dependencias del paquete\n
+0.6:  /CONFIGURE     Modo de configuraci¢n; configurar paquete\n
+0.7:  /DESC[:CAMPO]  Ver la descrici¢n de un LSM. CAMPO (opcional) ser¡a el campo\n
+0.8:                 del LSM para imprimir. Los LSM se buscan primero en el\n
+0.9:                 directorio actual, de lo contrario en %%DOSDIR%%\\APPINFO\n
+0.10:  /DISPLAY       Lista todos los paquetes instalados que coincidan con el\n                  argumento\n
+0.11:  /E             Extraer solamente, no verifique las dependencias (a menos\n
+0.12:                 que ya estâ€š instalado), no configurar\n
+0.13:  /B             Sea compatible con versiones anteriores de fdpkg.bat\n
+0.14:  /S[:|=]ARG     Cambia las barras diagonales inversas de ARG a barras\n                  diagonales\n
+0.15:  /[-]F/[-]Y     Fuerza; No hace preguntas (POSIBLEMENTE PELIGROSO)\n
+0.16:  /?[E]|/H[E]    Esta ayuda; /?E o /HE imprime ayuda extendida\n
+0.17:  PKGX.ZIP       El paquete para instalar; m£ltiples nombres / comodines\n                  aceptados\n
 0.18:C¢digos de salida:\n
 0.19:   255            Ruta inv lida\n
 0.20:   0              Sin problemas\n
