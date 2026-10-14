@@ -5,7 +5,7 @@
 WELCOME_DEF="Witamy w programie instalacyjnym systemu" /fLightGreen %1 /fCyan %2 /fGray /s- .
 WELCOME_ADV="Witamy w" /fLightRed "zaawansowanym" /fGray "instalatorze systemu" /fLightGreen %1 /fCyan %2 /fGray /s- .
 WELCOME_0=/p
-WELCOME_1=/fLightGreen "%1" /fGray "to kompletny system operacyjny. Je˜li go zainstalujesz" /p "na tym komputerze, mo¾esz" /fLightRed /BlinkOn "nadpisa†" /BlinkOff /fGray "obecny system operacyjny" /p "(na przykˆad Windows)." /fGray
+WELCOME_1=/fLightGreen "%1" /fGray "to kompletny system operacyjny. Je˜li go zainstalujesz" /p "na tym komputerze, mo¾esz " /s- /fLightRed /BlinkOn "nadpisa†" /BlinkOff /s+ /fGray "obecny system operacyjny" /p "(na przykˆad Windows)." /fGray
 WELCOME_2=/fGray /c32 "Je˜li nie tego chcesz," /fLightRed "przerwij TERAZ!" /fGray
 WELCOME_3=
 WELCOME_4=
@@ -44,6 +44,7 @@ TARGET_PROMPT=/fWhite /bBlue %1
 TARGET_BAD=/fLightRed "Nieprawidˆowy dysk. Nie mo¾na instalowa† na dyskietce."
 
 CHANGE_PATH="—cie¾ka" /fWhite %1 /fGray "ju¾ istnieje." /p "Czy chcesz zmieni† katalog instalacji" /c32
+BACKUP_OLD="Na dysku" /fWhite %1 /fGray "wykryto poprzedni system operacyjny." /p "Czy przed instalacj¥ utworzy† kopi© zapasow¥ starych plik¢w" /c32
 
 BACKUP_ASK="Gdzie umie˜ci† pliki kopii zapasowej?" /c32
 BACKUP_PROMPT=/fWhite /bBlue %1
@@ -135,3 +136,4 @@ ERROR_Activate="Nie mo¾na ustawi† na dysku" /fWhite %1 /fGray "partycji rozrucho
 ERROR_CfgFiles="Nie mo¾na zainstalowa† nowych plik¢w konfiguracyjnych na dysku" /fWhite %1 /fGray /s- .
 ERROR_XfrFiles="Nie mo¾na skopiowa† potrzebnego pliku instalatora do" /fWhite %1 /fGray /s- .
 ERROR_SAF="Bˆ¥d podczas rozpakowywania archiwum" /fWhite %1 /s- /fGray .
+ERROR_WTF="Nieznany i maˆo prawdopodobny bˆ¥d podczas prostej operacji."
