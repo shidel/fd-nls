@@ -265,7 +265,7 @@
 # Create_File_System()
 15,0:Flagi FAT32 0x%04x zmienione na 0.\n
 15,1:Wersja FAT32 0x%04x wymuszona na 0.\n
-15,2:Zapasowy sektor rozruchowy / FS Info 
+15,2:Zapasowy sektor rozruchowy / FS Info\x20 
 15,3:wymuszony.\n
 15,4:- domy˜lne poˆo¾enie nieprawidˆowe.\n
 15,5: U¾ywane b©d¥ sektory 6 i 1.\n
@@ -342,8 +342,8 @@
 21,27: Prawie sformatowano dysk FAT1x jako FAT32, uff...\n
 # 21.28 or 21.29 followed by "FAT12.\n" or "FAT16.\n"
 # with %lu %s size, e.g. 999 kbytes  -- see 13.1 and similar
-21,28: Rozmiar dysku: %lu %s, 
-21,29: Uwaga: niestandardowy rozmiar sektora, 
+21,28: Rozmiar dysku: %lu %s,\x20 
+21,29: Uwaga: niestandardowy rozmiar sektora,\x20 
 
 # floppy.c
 22,0:Format_Floppy_Cylinder( head=%d cylinder=%d ) sectors=%d [int 13.5]\n
@@ -369,7 +369,7 @@
 22,20:Kontynuuj© mimo to.\n
 22,21:Brak dyskietki w stacji (przekroczony czas)!\n
 22,22:No˜nik %ldk  (%d x %ld x %2d)  nieobsˆugiwany przez t© stacj©!?\n
-22,23:Bˆ¥d ustawiania geometrii (int 13.18): %02x. 
+22,23:Bˆ¥d ustawiania geometrii (int 13.18): %02x.\x20 
 22,24:Rezygnuj©.\n
 22,25:Zignorowano.\n
 22,26:DDPT jest w ROM - mo¾liwe tylko standardowe rozmiary.\n
@@ -380,8 +380,8 @@
 22,31:TWEAK: %d sektor¢w na cylinder, dˆugo˜† przerwy formatu %d!\n
 22,32:Reset kontrolera stacji dyskietek nie powi¢dˆ si© (kod %x) - DDPT odrzucona?\n
 22,33:-- naci˜nij ENTER, aby sformatowa† dysk (ESC, aby przerwa†) --\n
-22,34:[podw¢jny krok] 
-22,35:[skonfigurowany typ %hu] 
+22,34:[podw¢jny krok]\x20 
+22,35:[skonfigurowany typ %hu]\x20 
 22,36: 500 kbps (HD 1xx0k)\n
 22,37: 300 kbps (DD  360k)\n
 22,38: 250 kbps (DD  720k)\n
@@ -414,7 +414,7 @@
 23,22:Pomijam zapis kopii danych UNFORMAT / mirror.\n
 23,23:Bˆ¥d odczytu w sektorze %lu - dane UNFORMAT uszkodzone\n
 23,24:Bˆ¥d zapisu w sektorze %lu - dane UNFORMAT uszkodzone\n
-23,25: Mapa mirror ma %lu bajt¢w, 
+23,25: Mapa mirror ma %lu bajt¢w,\x20 
 23,26: %lu sektor¢w skopiowanych.\n
 23,27:Brak danych MIRROR / UNDELETE: nieprawidˆowa sygnatura.\n
 23,28:\n Koniec mapy mirror. UNFORMAT zakoäczony.\n
