@@ -12,24 +12,24 @@
 1.0:Este es un administrador de paquete de red para FreeDOS.
 1.1:Uso: FDNPKG%s acci¢n [par metros]
 1.2:Donde la acci¢n es una de las siguientes:
-1.3:- Busca en red repositorios de paquetes con "str"
-1.4:- Igual que 'search', pero imprime repositorios de origen
-1.5:- Instala el paquete 'pkg' (o archivo zip local)
-1.6:- Eliminar el paquete 'pkg'
-1.7:- Imprime la configuraci¢n cargada desde el archivo cfg
-1.8:- Imprime la licencia de este programa
+1.3:Busca en red repositorios de paquetes con "str"
+1.4:Igual que 'search', pero imprime repositorios de origen
+1.5:Instala el paquete 'pkg' (o archivo zip local)
+1.6:Eliminar el paquete 'pkg'
+1.7:Imprime la configuraci¢n cargada desde el archivo cfg
+1.8:Imprime la licencia de este programa
 1.9:FDNPKG%s se vincula con la versi¢n de WatTCP a continuaci¢n:
-1.10:- Instala el paquete 'pkg'(o archivo zip local) sin fuentes
-1.11:- Instala el paquete 'pkg'(o archivo zip local) con fuentes
-1.12:- Muestra la lista de todos los paquetes instalados que         [cadena]          contienen 'cadena'
-1.13:- Verifique las actualizaciones disponibles de los paquetes                       y visual¡celos
-1.14:- actualizar el paquete 'pkg' a una versi¢n m s nueva
-1.15:- actualiza 'pkg' a la £ltima versi¢n (o todos los paquetes                       si no hay argumento)
-1.16:- Lista todos los paquetes locales (instalados) que             [cadena]          contienen 'cadena'
+1.10:Instala el paquete 'pkg'(o archivo zip local) sin fuentes
+1.11:Instala el paquete 'pkg'(o archivo zip local) con fuentes
+1.12:Muestra la lista de todos los paquetes instalados que         [cadena]          contienen 'cadena'
+1.13:Verifique las actualizaciones disponibles de los paquetes                       y visual¡celos
+1.14:actualizar el paquete 'pkg' a una versi¢n m s nueva
+1.15:actualiza 'pkg' a la £ltima versi¢n (o todos los paquetes                       si no hay argumento)
+1.16:Lista todos los paquetes locales (instalados) que             [cadena]          contienen 'cadena'
 1.17:FDNPKG%s se vincula con la versi¢n de Watt-32 a continuaci¢n:
-1.18:- Lista de archivos propiedad del paquete 'pkg'
-1.19:- Limpiar la cach‚ local de FDNPKG%s
-1.20:- reinstall the package 'pkgname' (or local zip file)(TRANSME)
+1.18:Lista de archivos propiedad del paquete 'pkg'
+1.19:Limpiar la cach‚ local de FDNPKG%s
+1.20:reinstall the package 'pkgname' (or local zip file)(TRANSME)
 1.21:FDNPKG%s is using mTCP(TRANSME)
 
 
@@ -79,7 +79,7 @@
 3.16:Paquete %s instalado (con fuentes, si est  disponible).
 3.17:Paquete %s instalado (sin fuentes).
 3.18:­El paquete %s ya est  instalado! El posible que desee utilizar la              acci¢n 'actualizar'.
-3.19:Paquete %s instalado: %d archivos extra¡dos, %d errores.
+3.19:Paquete %s instalado: %ld archivos extra¡dos, %ld errores.
 3.20:Error: El paquete contiene un archivo cifrado:
 3.21:Error: Error al abrir el archivo de enlace '%s' para acceso de lectura.
 3.22:Error: Error al abrir el archivo de enlace '%s' para acceso de escritura.

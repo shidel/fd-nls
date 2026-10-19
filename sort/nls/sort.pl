@@ -1,16 +1,18 @@
-# Language: Polish (MAZOVIA) (Codepage???)
-# Translated by Mateusz Viste
-# Polish letters encoded in the MAZOVIA standard
+# Language: Polish
+# Codepage: 852
+# Original translation (2004): Mateusz Viste
+# Updated to the current English file and reviewed by Piotr Okrutny, 2026
+# (draft prepared with AI assistance).
 
-2.0:Niepoprawny parametr\r\n
-0.0:    SORT [/R] [/+num] [/?]\r\n
-0.1:    /R    Odwraca kolejno˜†\r\n
-0.2:    /N    Wˆ¥cza obsˆug© NLS\r\n
-0.3:    /+num Uruchamia sortowanie kolumn num, bazowane na 1\r\n
-0.4:    /?    Pomoc\r\n
-2.1:Bˆ¥d w odczycie tablicy NLS\r\n
-2.2:NLS wymaga DOS w wersji 3.3 lub nowszej!\r\n
+2.0:Nieprawidˆowy parametr\r\n
+0.0:    SORT [/R] [/+num] [/A] [/?] [plik]\r\n
+0.1:    /R    Odwraca kolejno˜† sortowania\r\n
+0.2:    /A    Sortuje wg kod¢w ASCII zamiast porz¥dku z COUNTRY\r\n
+0.3:    /+num Sortuje od kolumny num (kolumny liczone od 1)\r\n
+0.4:    /?    Wy˜wietla pomoc\r\n
+2.1:Bˆ¥d odczytu tablicy sortowania NLS\r\n
+2.2:Sortowanie wg kod¢w ASCII (stara wersja DOS-a).\r\n
 2.3:SORT: Nie mo¾na otworzy† pliku 
-2.4: do odczytu\n
-2.5:SORT: Zbyt maˆo pami©ci\r\n
-2.6:SORT: Liczba rekord¢w przekroczyˆa obsˆugiwane maksimum\r\n
+2.4: do odczytu\r\n
+2.5:SORT: Za maˆo pami©ci\r\n
+2.6:SORT: Liczba wierszy przekracza maksimum\r\n
