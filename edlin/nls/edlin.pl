@@ -1,43 +1,43 @@
 # Language: Polish
-# File ending: PL
 # Codepage: 852
-# This translation was made by Google Gemini.
-# Please help the FreeDOS group to improve it.
+# Translation: reviewed by Piotr Okrutny in Weblate, 2026-10 (human review, AI-assisted draft)
+# Based on: translation by Mateusz Viste (2009), see ../nls-old-mazovia/
+# Source: edlin.pl.UTF-8; edlin.pl (CP852) and edlin.mz (Mazovia) are generated from it - edit only the UTF-8 file.
 
-1.0:Tn
+1.0:Tt
 1.1:\040:\040
 1.2:O.K.?\040
 1.3:Bˆ¥d wprowadzania
 1.4:%s: wczytano %lu lini©\n
-1.5:%s: wczytano %lu linii\n
+1.5:%s: wczytane linie: %lu\n
 1.6:%s: zapisano %lu lini©\n
-1.7:%s: zapisano %lu linii\n
+1.7:%s: zapisane linie: %lu\n
 1.8:%lu:%c%s\n
 1.9:Naci˜nij <Enter>, aby kontynuowa†
 1.10:%lu:\040
 1.11:Nie znaleziono
 1.12:%lu: %s\n
-1.13:\nedlin ma nast©puj¥ce podpolecenia:\n
-1.14:#                 edytuj pojedyncz¥ lini© [#],[#],#m        przenie˜
-1.15:a                 dopisz                  [#][,#]p          strona
-1.16:[#],[#],#,[#]c    kopiuj                  q                 wyjd«
-1.17:[#][,#]d          usuä                    [#][,#][?]r$,$    zamieä
-1.18:e<>               koniec (zapisz i wyjd«) [#][,#][?]s$      szukaj
-1.19:[#]i              wstaw                   [#]t<>            transfer
-1.20:[#][,#]l          lista                   [#]w<>            zapisz\n
-1.21:gdzie $ powy¾ej to ci¥g znak¢w, <> to nazwa pliku,
-1.22:# to liczba (mo¾e to by† . = bie¾¥ca linia, $ = ostatnia linia,
-1.23:lub dowolna liczba + lub - inna liczba).\n
+1.13:\nPodpolecenia programu edlin:\n
+1.14:#                 edytuj jedn¥ lini©    [#],[#],#m        przenie˜
+1.15:a                 dopisz                [#][,#]p          strona
+1.16:[#],[#],#,[#]c    kopiuj                q                 zakoäcz
+1.17:[#][,#]d          usuä                  [#][,#][?]r$,$    zamieä
+1.18:e<>               zapisz i zakoäcz      [#][,#][?]s$      szukaj
+1.19:[#]i              wstaw                 [#]t<>            wstaw plik
+1.20:[#][,#]l          wy˜wietl              [#]w<>            zapisz\n
+1.21:gdzie $ to ci¥g znak¢w, <> to nazwa pliku,
+1.22:# to liczba (mo¾e by† te¾ . = bie¾¥ca linia, $ = ostatnia linia
+1.23:albo liczba + lub - inna liczba).\n
 1.24:, copyright (c) 2003 Gregory Pietsch
-1.25:This program comes with ABSOLUTELY NO WARRANTY.
-1.26:It is free software, and you are welcome to redistribute it
-1.27:under the terms of the GNU General Public License -- either
-1.28:version 2 of the license, or, at your option, any later
-1.29:version.\n
-1.30:Brak pami©ci
+1.25:Ten program jest dostarczany BEZ JAKIEJKOLWIEK GWARANCJI.
+1.26:To wolne oprogramowanie; mo¾esz je rozpowszechnia†
+1.27:na warunkach licencji GNU General Public License w wersji 2
+1.28:albo (wedˆug wˆasnego wyboru) dowolnej p¢«niejszej
+1.29:wersji.\n
+1.30:Za maˆo pami©ci
 1.31:Bˆ¥d dˆugo˜ci ci¥gu znak¢w
 1.32:Bˆ¥d pozycji ci¥gu znak¢w
-1.33:Nieprawidˆowe dane wej˜ciowe, u¾yj ? dla pomocy.
+1.33:Nieprawidˆowe polecenie, pomoc: ?
 1.34:Brak nazwy pliku
 1.35:Bufor zbyt du¾y
 1.36:Nieprawidˆowa pozycja bufora

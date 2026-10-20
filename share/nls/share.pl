@@ -1,54 +1,53 @@
-# Language: Polish (pl)
-# File ending: pl
+# Language: Polish
 # Codepage: 852
-# This translation was created by Google AI.
-# Please help the FreeDOS group to improve it.
+# Translation: reviewed by Piotr Okrutny in Weblate, 2026-10 (human review, AI-assisted draft)
+# Source: share.pl.UTF-8; share.pl (CP852) and share.mz (Mazovia) are generated from it - edit only the UTF-8 file.
 
 #
 # Polski wzorcowy szablon tˆumaczenia
 #
-0.0:Instaluje funkcje wsp¢ˆdzielenia i blokowania plik¢w na dysku twardym.\n
-0.1:  /F:space   Rezerwuje miejsce (w bajtach) na info o wsp¢ˆdzieleniu.\n
-0.2:  /L:locks   Ustawia liczb© plik¢w, kt¢re mo¾na naraz zablokowa†.\n
-0.3:%s [/F:space] [/L:locks]\n
-0.4:%s [/F:space] [/L:locks] [/U] [/S] [/O] [/D] [/E]\n
-0.5:  /U         Odinstaluj instancj© rezydentn¥.\n
-0.6:  /S         Poka¾ status ˆatek i rozmiary tabel.\n
-0.7:  /O         Dziaˆaj tylko, gdy ju¾ rezydentny, nie instaluj.\n
-0.8:  /D         Wyˆ¥cz instancj© rezydentn¥.\n
-0.9:  /E         Wˆ¥cz instancj© rezydentn¥. (Domy˜lne.)\n
+0.0:Instaluje obsˆug© wsp¢ˆdzielenia i blokowania plik¢w na dysku twardym.\n
+0.1:  /F:miejsce Rezerwuje miejsce (w bajtach) na informacje o wsp¢ˆdzieleniu.\n
+0.2:  /L:blokady Ustala liczb© plik¢w, kt¢re mog¥ by† naraz zablokowane.\n
+0.3:%s [/F:miejsce] [/L:blokady]\n
+0.4:%s [/F:miejsce] [/L:blokady] [/U] [/S] [/O] [/D] [/E]\n
+0.5:  /U         Usuwa program rezydentny z pami©ci.\n
+0.6:  /S         Pokazuje stan poprawki i rozmiary tablic.\n
+0.7:  /O         Dziaˆa tylko, gdy program jest ju¾ rezydentny; nie instaluje.\n
+0.8:  /D         Wyˆ¥cza program rezydentny.\n
+0.9:  /E         Wˆ¥cza program rezydentny (domy˜lnie).\n
 
 1.0:%s: parametr poza zakresem!\n
 1.1:%s: jest ju¾ zainstalowany!\n
-1.2:%s: brak pami©ci!\n
+1.2:%s: za maˆo pami©ci!\n
 1.3:%s: nieprawidˆowy program obsˆugi przerwania 2Fh!\n
 1.4:%s: zainstalowano.\n
 
-1.5:%s: ju¾ zainstalowany, ale nie znaleziony w przerwaniu AMIS!\n
+1.5:%s: jest ju¾ zainstalowany, ale nie ma go w przerwaniu AMIS!\n
 1.6:%s: wˆ¥czony.\n
 1.7:%s: wyˆ¥czony.\n
 1.8:%s: nie mo¾na wˆ¥czy†, sprawd« wersj© TSR.\n
 1.9:%s: nie mo¾na wyˆ¥czy†, sprawd« wersj© TSR.\n
-1.10:%s: jest zainstalowany rezydentnie.\n
-1.11:%s: jest zainstalowany rezydentnie, ale obecnie wyˆ¥czony.\n
+1.10:%s: jest zainstalowany jako program rezydentny.\n
+1.11:%s: jest zainstalowany jako program rezydentny, ale wyˆ¥czony.\n
 1.12:%s: brak wolnego numeru multipleksowego AMIS!\n
 1.13:%s: nieprawidˆowy program obsˆugi przerwania 2Dh!\n
-1.14:%s: usuni©to.\n
-1.15:%s: nie mo¾na usun¥†, jeszcze nie zainstalowano.\n
-1.16:%s: nie mo¾na usun¥†, wyst¥piˆ bˆ¥d.\n
-1.17:%s: nie mo¾na usun¥†, programy obsˆugi zahaczone niezgodnie z AMIS.\n
-1.18:%s: nie mo¾na usun¥†, wewn©trzny bˆ¥d odhaczania.\n
-1.19:%s: nie mo¾na usun¥†, nieznany bˆ¥d.\n
+1.14:%s: usuni©to z pami©ci.\n
+1.15:%s: nie mo¾na usun¥† - nie jest zainstalowany.\n
+1.16:%s: nie mo¾na usun¥† - wyst¥piˆ bˆ¥d.\n
+1.17:%s: nie mo¾na usun¥† - przerwania przej©te niezgodnie z AMIS.\n
+1.18:%s: nie mo¾na usun¥† - wewn©trzny bˆ¥d zwalniania przerwaä.\n
+1.19:%s: nie mo¾na usun¥† - nieznany bˆ¥d.\n
 1.20:%s: program nie jest rezydentny!\n
 
 2.0:Program nie jest rezydentny!\n
-2.1:Status ˆatki: nieobsˆugiwany przez TSR.\n
-2.2:Status ˆatki: nieokre˜lony.\n
-2.3:Status ˆatki: wymagany, flaga pod adresem %04Xh:%04Xh.\n
-2.4:Status ˆatki: niewymagany.\n
-2.5:Status ˆatki: nieznany.\n
-2.6:Bajt share_installed starego j¥dra FreeDOS ustawiony na zero.\n
-2.7:Program rezydentny ustawiˆ bajt share_installed starego j¥dra na zero.\n
-2.8:Tabela plik¢w: %u wolnych / %u suma, tabela blokad: %u wolnych / %u suma\n
-2.9:Tabela plik¢w: %u suma, tabela blokad: %u suma\n
+2.1:Stan poprawki: TSR tego nie obsˆuguje.\n
+2.2:Stan poprawki: nieokre˜lony.\n
+2.3:Stan poprawki: potrzebna, flaga pod %04Xh:%04Xh.\n
+2.4:Stan poprawki: niepotrzebna.\n
+2.5:Stan poprawki: nieznany.\n
+2.6:Wyzerowano bajt share_installed starego j¥dra FreeDOS.\n
+2.7:Program rezydentny wyzerowaˆ bajt share_installed starego j¥dra FreeDOS.\n
+2.8:Tablica plik¢w: %u wolnych / %u razem, tablica blokad: %u wolnych / %u razem\n
+2.9:Tablica plik¢w: %u razem, tablica blokad: %u razem\n
 
