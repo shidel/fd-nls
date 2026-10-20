@@ -1,9 +1,7 @@
-# Language: Polish (MAZOVIA)
+# Language: Polish
+# Codepage: 852
 # Translated by Mateusz Viste
-# Polish letters encoded in the MAZOVIA standard
-#### Poland, Country=048, Codepage 790/991, EGA10.CPX
-#### Country=048 gives an error message in combination
-#### with Codepage 790/991 (!)
+# 2026-10: header corrected - the text is in CP852, not MAZOVIA (Piotr Okrutny).
 #### This file is part of the FreeDOS HTML Help Viewer
 #### and is licensed under its terms.
 #

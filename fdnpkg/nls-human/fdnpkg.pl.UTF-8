@@ -2,8 +2,9 @@
 # FDNPKG language file
 #
 # Language..: Polish
-# Codepage..: MAZOVIA
+# Codepage..: 852
 # Translator: Mateusz Viste
+# 2026-10: header corrected - the text is in CP852, not MAZOVIA (Piotr Okrutny).
 #
 
 
