@@ -12,24 +12,24 @@
 1.0:To je internetni upravitelj paketov za FreeDOS.
 1.1:Uporaba: FDNPKG%s dejavnost [parametri]
 1.2:kjer je dejavnost ena od sledeŸih:
-1.3:- PoiçŸe paket, ki vsebuje 'str' v internetnih zbirkah.
-1.4:- Enako kot SEARCH, a izpiçe çe pakete z izvorno kodo.
-1.5:- Namesti §eleni paket oz. lokalno ZIP datoteko.
-1.6:- Odstrani paket.
-1.7:- Izpiçe nastavitve.
-1.8:- Izpiçe licenco tega programa.
+1.3:PoiçŸe paket, ki vsebuje 'str' v internetnih zbirkah.
+1.4:Enako kot SEARCH, a izpiçe çe pakete z izvorno kodo.
+1.5:Namesti §eleni paket oz. lokalno ZIP datoteko.
+1.6:Odstrani paket.
+1.7:Izpiçe nastavitve.
+1.8:Izpiçe licenco tega programa.
 1.9:FDNPKG%s uporablja sledeŸo verzijo WatTCP:
-1.10:- Enako kot INSTALL, toda ne namesti izvorne kode.
-1.11:- Enako kot INSTALL, toda namesti izvorno kodo.
-1.12:- Izpiçe nameçŸene pakete, ki vsebujejo niz.
-1.13:- Preveri, ali obstajajo posodobitve, in jih izpiçe.
-1.14:- Posodobi vse pakete na najnovejço verzijo.
-1.15:- Posodobi doloŸen paket na najnovejço verzijo.
-1.16:- Izpiçe nameçŸene pakete, ki vsebujejo niz.
+1.10:Enako kot INSTALL, toda ne namesti izvorne kode.
+1.11:Enako kot INSTALL, toda namesti izvorno kodo.
+1.12:Izpiçe nameçŸene pakete, ki vsebujejo niz.
+1.13:Preveri, ali obstajajo posodobitve, in jih izpiçe.
+1.14:Posodobi vse pakete na najnovejço verzijo.
+1.15:Posodobi doloŸen paket na najnovejço verzijo.
+1.16:Izpiçe nameçŸene pakete, ki vsebujejo niz.
 1.17: FDNPKG%s uporablja sledeŸo verzijo Watt-32:
-1.18:- Izpiçe datoteke, ki pripadajo paketu.
-1.19:- Izbriçi lokalni predpomnilnik
-1.20:- Ponovno namesti §eleni paket oz. lokalno ZIP datoteko
+1.18:Izpiçe datoteke, ki pripadajo paketu.
+1.19:Izbriçi lokalni predpomnilnik
+1.20:Ponovno namesti §eleni paket oz. lokalno ZIP datoteko
 1.21:FDNPKG%s uporablja mTCP
 
 
@@ -79,7 +79,7 @@
 3.16:Paket %s nameçŸen (z izvorno kodo, Ÿe je ta prilo§ena).
 3.17:Paket %s nameçŸen (brez izvorne kode).
 3.18:Paket %s je §e nameçŸen! Morda §elite uporabiti dejavnost UPDATE.
-3.19:Paket %s nameçŸen: %d datotek razçirjenih, %d napak.
+3.19:Paket %s nameçŸen: %ld datotek razçirjenih, %ld napak.
 3.20:Napaka: paket vsebuje çifrirano datoteko:
 3.21:Napaka: ni mogoŸe odpreti povezovalne datoteke %s za branje.
 3.22:Napaka: ni mogoŸe odpreti povezovalne datoteke %s za pisanje.

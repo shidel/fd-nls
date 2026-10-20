@@ -2,8 +2,9 @@
 # FDNPKG language file
 #
 # Language..: Polish
-# Codepage..: MAZOVIA
+# Codepage..: 852
 # Translator: Mateusz Viste
+# 2026-10: header corrected - the text is in CP852, not MAZOVIA (Piotr Okrutny).
 #
 
 
@@ -51,6 +52,7 @@
 2.16:ùadowanie %s...
 2.17:UWAGA: Niski poziom pami©ci wirtualnej. FDNPKG moæe zachowywaÜ si© bà©dnie.
 2.18:Bù§D: Nie moæna pisaÜ w katalogu '%s'. Sprawd´ ustawienie zmiennej %%TEMP%%.
+2.19:Pami©Ü podr©czna wyczyszczona.
 
 
 #### Installing package ####
@@ -74,7 +76,7 @@
 3.16:Pakiet %s zostaà zainstalowany (wraz ze ´r¢dàami, jeòli dost©pne).
 3.17:Pakiet %s zostaà zainstalowany (bez ´r¢deà).
 3.18:Pakiet %s jest juæ zainstalowany! Zobacz akcj© 'update'.
-3.19:Pakiet %s zostaà zainstalowany: rozpakowano %d plik¢w, %d bà©d¢w.
+3.19:Pakiet %s zainstalowany: rozpakowano plik¢w: %ld, bà©d¢w: %ld.
 3.20:Bà•d: Pakiet zawiera zaszyfrowany plik:
 3.21:Bà•d: Nie udaào si© otworzyÜ pliku link '%s' dla odczytu.
 3.22:Bà•d: Nie udaào si© otworzyÜ pliku link '%s' dla zapisu.
@@ -104,6 +106,7 @@
 6.2:Bà•d: Brak pami©ci podczas àadowania bazy danych!
 6.3:Bà•d: Nie zdoàano otworzyÜ pliku danych '%s'.
 6.4:Uwaga: Nie zdoàano otworzyÜ pliku pami©ci podr©cznej %s!
+6.5:Komunikat od %s:
 
 
 #### Loading configuration ####

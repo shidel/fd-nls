@@ -1,6 +1,7 @@
-# Language: Polish (MAZOVIA)
+# Language: Polish
+# Codepage: 852
 # Translated by Mateusz Viste
-# Polish letters encoded in the MAZOVIA standard
+# 2026-10: header corrected - the text is in CP852, not MAZOVIA (Piotr Okrutny).
 
 
 # Help Message
