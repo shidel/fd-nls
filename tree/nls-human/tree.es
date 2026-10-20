@@ -1,5 +1,4 @@
 # es, cp850/858, some typos fixed by Google AI (W. Spiegl)
-
 # La traducci¢n de ingl‚s al espa¤ol ha sido efectuada por:
 # Aitor Santamar¡a (aitor.sm@terra.es)
 # Mensajes usados por pdTree v1 y FreeDOS tree v3.6
@@ -62,4 +61,3 @@
 8.8:v
 8.9:S
 8.10:s
-
