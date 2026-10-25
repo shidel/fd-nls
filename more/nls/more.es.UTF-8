@@ -1,3 +1,5 @@
+# spanish, es, cp850/858
+
 0.0:Mostrar el contenido de un archivo de texto por pantallas
 0.1:Uso
 0.2:orden
