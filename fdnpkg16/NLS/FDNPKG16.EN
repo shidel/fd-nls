@@ -12,25 +12,32 @@
 1.0:This is a network package manager for FreeDOS.
 1.1:Usage: FDNPKG%s action [parameters]
 1.2:Where action is one of the following:
-1.3:- search net repositories for package containing 'str'
-1.4:- same as 'search', but prints also source repositories
-1.5:- install the package 'pkgname' (or local zip file)
-1.6:- remove the package 'pkgname'
-1.7:- print out the configuration loaded from the cfg file
-1.8:- print out the license of this program
-1.9:FDNPKG%s is linked against WatTCP version below:
-1.10:- install the package 'pkg' (or local zip file) w/o sources
-1.11:- install the package 'pkg' (or local zip file) with sources
-1.12:- show the list of all installed packages containing 'str'
-1.13:- check for available updates of packages and display them
-1.14:- update the 'pkg' package to a newer version
-1.15:- update 'pkg' to last version (or all packages if no arg)
-1.16:- list all local (installed) packages containing 'str'
+1.3:search net repositories for package containing 'str'
+1.4:same as 'search', but prints also source repositories
+1.5:install the package 'pkg' (or local zip file)
+1.6:remove the package 'pkg'
+1.7:print out the configuration loaded from the cfg file
+1.8:print out the license of this program
+1.9:FDNPKG%s is linked against the Watt-32 version below:
+1.10:install the package 'pkg' (or local zip file) w/o sources
+1.11:install the package 'pkg' (or local zip file) with sources
+1.12:show the list of all installed packages containing 'str'
+1.13:check for available updates of packages and display them
+1.14:update the 'pkg' package to a newer version
+1.15:update 'pkg' to last version (or all packages if no arg)
+1.16:list all local (installed) packages containing 'str'
 1.17:FDNPKG%s is linked against the Watt-32 version below:
-1.18:- list files owned by the package 'pkg'
-1.19:- clear FDNPKG%s's local cache
-1.20:- reinstall the package 'pkg' (or local zip file)
+1.18:list files owned by the package 'pkg'
+1.19:clear FDNPKG%s's local cache
+1.20:reinstall the package 'pkg' (or local zip file)
 1.21:FDNPKG%s is using mTCP
+1.22:list held all packages or packages containing 'str'
+1.23:hold 'pkg' at current version
+1.24:unhold 'pkg' for updates
+1.25:show available packages from repositories
+1.26:same as 'notinstalled', but prints also source repository
+1.27:just download the package, do not install it
+1.28:download updates, do not install them
 
 
 ### General stuff ####
@@ -56,6 +63,9 @@
 2.18:ERROR: Unable to write in the '%s' directory. Check your %%TEMP%% variable.
 2.19:Cache cleared.
 2.20:Package database is being created. Please wait warmly.
+2.21:Press any key but Q to continue...
+2.22:File %s found locally at %s.
+2.23:Overwrite? (1 = NO)(2 = YES)
 
 
 #### Installing package ####
@@ -78,13 +88,13 @@
 3.15:Error: Out of memory while computing the CRC of the package!
 3.16:Package %s installed (with sources, if available).
 3.17:Package %s installed (without sources).
-3.18:Package %s is already installed! You might want to use the 'update' action.
-3.19:Package %s installed: %d files extracted, %d errors.
+3.18:Package %s is already installed! You might want to use the 'reinstall' action.
+3.19:Package %s installed: %ld files extracted, %ld errors.
 3.20:Error: Package contains an encrypted file:
 3.21:Error: Failed to open link file '%s' for read access.
 3.22:Error: Failed to open link file '%s' for write access.
 3.23:Error: Package contains an invalid filename:
-3.24:Force install package? (1 = NO)(2 = YES)
+3.24:Force install package? (1 = NO)(2 = YES)(3 = ABORT)
 
 
 #### Removing package ####
@@ -115,7 +125,7 @@
 
 #### Loading configuration ####
 
-7.0:Error: repository '%s' is listed twice!
+7.0:Error: custom dir '%s' is listed twice!
 7.1:Error: Could not open config file '%s'!
 7.2:Warning: token without value on line #%d
 7.3:Warning: Config file token overflow on line #%d
@@ -163,3 +173,6 @@
 
 11.0:Downloading %s... %ld bytes
 
+#### Errors ####
+
+12.0:Error: Renaming the file %s has returned an error.
