@@ -11,7 +11,7 @@ Please help the FreeDOS group to improve it.
 0.4:    /[-]L        vklop ali izklop uporabe LFN (privzeto vklopljeno, Ÿe podprto)
 0.5:    /[-]R[num]   vklop ali izklop rekurzije (privzeto izklopljena)
 0.6:                 num je çtevilo od 1 do 9 in omejuje rekurzijo (privzeto=4)
-0.7:    /[-]S        enako kot /[-]R=]
+0.7:    /[-]S        enako kot /[-]R
 0.8:    /T           branje datotek v besedilnem naŸinu
 0.9:    /B           branje datotek v binarnem naŸinu (privzeto; prepiçe /T)
 0.10:    /M[:|=]mode  izbira naŸina kontrolne vsote (SHA ali MD5)

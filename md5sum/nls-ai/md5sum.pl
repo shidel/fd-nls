@@ -11,7 +11,7 @@
 0.4:    /[-]L        wˆ¥cza lub wyˆ¥cza u¾ycie LFN (domy˜lnie wˆ¥czone, je˜li obsˆugiwane)
 0.5:    /[-]R[num]   wˆ¥cza lub wyˆ¥cza rekursj© (domy˜lnie wyˆ¥czona)
 0.6:                 num to liczba od 1 do 9 i ogranicza rekursj© (domy˜lnie=4)
-0.7:    /[-]S        to samo co /[-]R=]
+0.7:    /[-]S        to samo co /[-]R
 0.8:    /T           czyta pliki w trybie tekstowym
 0.9:    /B           czyta pliki w trybie binarnym (domy˜lnie; nadpisuje /T)
 0.10:    /M[:|=]mode  wybiera tryb sumy kontrolnej (SHA lub MD5)
