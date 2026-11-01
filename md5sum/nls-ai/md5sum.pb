@@ -11,7 +11,7 @@
 0.4:    /[-]L        ativar ou desativar uso de LFN (padr∆o Ç ligado se suportado)
 0.5:    /[-]R[num]   ativar ou desativar recurs∆o (padr∆o Ç desligado)
 0.6:                 num Ç um n£mero de 1 a 9 e limita a recurs∆o (padr∆o=4)
-0.7:    /[-]S        igual a /[-]R=]
+0.7:    /[-]S        igual a /[-]R
 0.8:    /T           ler arquivos em modo texto
 0.9:    /B           ler arquivos em modo bin†rio (padr∆o; substitui /T)
 0.10:    /M[:|=]mode  selecionar o modo de soma (SHA ou MD5)

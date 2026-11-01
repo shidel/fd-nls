@@ -7,7 +7,7 @@
 0.4:    /[-]L        (in-)aktivera LFN-anv„ndning (standard „r aktivt)
 0.5:    /[-]R[num]   (in-)aktivera rekursion (standard „r av), num „r
 0.6:                 ett tal mellan 1-9 som begr„nsar rekursionen (standard=4)
-0.7:    /[-]S        samma som /[-]R=]
+0.7:    /[-]S        samma som /[-]R
 0.8:    /T           l„ser filer i textl„ge
 0.9:    /B           l„ser filer i bin„rt l„ge (standard; †sidos„tts av /T)
 0.10:    /M[:|=]l„ge  v„ljer l„ge f”r kontrollsumma (SHA eller MD5)
