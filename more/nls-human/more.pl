@@ -16,9 +16,9 @@
 0.9:Spacja
 0.10:Nast©pna strona
 1.0:Nieznany przeˆ¥cznik
-1.1:Nie ma takiego pliku
+1.1:Nie mo¾na odnale«† pliku
 1.2:Nie mo¾na otworzy† pliku
 2.0:Wi©cej
 2.1:<STDIN>
 
-1.3:przeˆ¥cznik /T musi mie† warto˜† /T1..9 (domy˜lnie 4)
+1.3:przeˆ¥cznik /T musi mie† warto˜† od /T1 do /T9 (domy˜lnie 4)

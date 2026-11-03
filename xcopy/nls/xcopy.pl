@@ -1,8 +1,8 @@
 # Language: Polish
-# File ending: PL
 # Codepage: 852
-# Translation reviewed by Piotr Okrutny, 2026 (draft prepared with AI assistance).
-# Earlier Polish translation (Mazovia, 2009): Mateusz Viste.
+# Translation: reviewed by Piotr Okrutny in Weblate, 2026-10 (human review, AI-assisted draft)
+# Based on: translation by Mateusz Viste (2009), see ../nls-old-mazovia/
+# Source: xcopy.pl.UTF-8; xcopy.pl (CP852) and xcopy.mz (Mazovia) are generated from it - edit only the UTF-8 file.
 
 # pytania i komunikaty o bˆ©dach
 1.1:Nieprawidˆowa liczba parametr¢w
@@ -32,7 +32,7 @@
 2.5:  /A           Kopiuje tylko pliki z ustawionym atrybutem archiwalnym, nie
 2.6:               zmieniaj¥c tego atrybutu.
 2.7:  /C           Kontynuuje kopiowanie, nawet je˜li wyst¥pi¥ bˆ©dy.
-2.8:  /D[:M/D/R]   Kopiuje tylko pliki zmienione w podanym dniu lub p¢«niej
+2.8:  /D[:data]    Kopiuje tylko pliki zmienione w podanym dniu lub p¢«niej
 2.9:               (np. /D:3/25/2026 = 25 marca 2026). Bez daty kopiuje tylko
 2.10:               pliki nowsze od istniej¥cych plik¢w docelowych.
 2.11:  /E           Kopiuje wszystkie podkatalogi, r¢wnie¾ puste.
