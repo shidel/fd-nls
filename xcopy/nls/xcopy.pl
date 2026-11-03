@@ -33,7 +33,7 @@
 2.6:               zmieniaj¥c tego atrybutu.
 2.7:  /C           Kontynuuje kopiowanie, nawet je˜li wyst¥pi¥ bˆ©dy.
 2.8:  /D[:data]    Kopiuje tylko pliki zmienione w podanym dniu lub p¢«niej
-2.9:               (np. /D:3/25/2026 = 25 marca 2026). Bez daty kopiuje tylko
+2.9:               (w formacie daty jak w poleceniu DATE). Bez daty kopiuje tylko
 2.10:               pliki nowsze od istniej¥cych plik¢w docelowych.
 2.11:  /E           Kopiuje wszystkie podkatalogi, r¢wnie¾ puste.
 2.12:  /F           Wy˜wietla peˆne nazwy plik¢w «r¢dˆowych i docelowych.
