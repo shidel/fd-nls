@@ -16,4 +16,5 @@
 0.9:Nieprawidˆowa skˆadnia limitu czasu. Oczekiwany format: Tc,nn lub T:c,nn
 0.10:Domy˜lny wyb¢r dla limitu czasu nie nale¾y do podanych (lub domy˜lnych) wybor¢w
 3.0:tn
+1.0:U¾ycie:
 polish, pl, cp852

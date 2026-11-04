@@ -42,5 +42,8 @@
 1.35:Bufor zbyt duæy
 1.36:Nieprawidàowa pozycja bufora
 1.37:Bù§D: %s\n
+1.38:Nowy plik.
+1.39:Na pewno zako‰czyÜ (T/N)?\040
+1.40:OSTRZEΩENIE: plik kopii zapasowej jest tylko do odczytu -- kopia nie powstanie.
 
 # END OF FILE
