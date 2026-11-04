@@ -1,38 +1,29 @@
-# Translation made by Google Gemini
-# This translation was made by Google AI, please help the 
-# FreeDOS group to improve it.
-# This is the translation file model for FreeDOS Password v0.50
-#
-#               Language: Polish (polnisch)
-#               Codepage: 852, pl-852
-#
-# Author of the translation: Google Gemini / AI
-#
-# All spaces before text must be preserved and each line must not contain
-# any space character at its end!
-# Polish characters replaced with ASCII equivalents for DOS compatibility if needed
-#
+# Language: Polish
+# Codepage: 852
+# Translation: reviewed by Piotr Okrutny in Weblate, 2026-10 (human review, AI-assisted draft)
+# Based on: translation by Mateusz Viste (2009), see ../nls-old-mazovia/
+# Source: password.pl.UTF-8; password.pl (CP852) and password.mz (Mazovia) are generated from it - edit only the UTF-8 file.
 0.1:U¾ytkownicy
-0.2:Musisz zdefiniowa† przynajmniej jednego u¾ytkownika:
-0.3:Logowanie...:
-0.4:Hasˆo.......:
+0.2:Nale¾y zdefiniowa† co najmniej jednego u¾ytkownika:
+0.3:Login.....:
+0.4:Hasˆo.....:
 0.5:U¾ytkownik
 0.6:zostaˆ dodany
-0.7: OSTRZE½ENIE! Nieznajomy pr¢bowaˆ zalogowa† si© poprzednim razem.
-0.8:             Wi©cej informacji znajduje si© w pliku dziennika.
+0.7: OSTRZE½ENIE! Przy poprzednim logowaniu pr¢bowaˆa si© zalogowa† obca osoba.
+0.8:          Wi©cej informacji w pliku dziennika.
 0.9: Naci˜nij dowolny klawisz...
-0.10:Dost©p zabroniony!
-0.11:Wprowad« login u¾ytkownika, kt¢rego chcesz usun¥†:
+0.10:Odmowa dost©pu!
+0.11:Podaj login u¾ytkownika do usuni©cia:
 0.12: U¾ytkownik usuni©ty.
-0.13:nie znaleziono!
-0.14:Wprowad« u¾ytkownika, kt¢rego chcesz doda†:
-0.15:U¾ytkownik dodany
+0.13:nie zostaˆ znaleziony!
+0.14:Podaj login u¾ytkownika do dodania:
+0.15:Dodano u¾ytkownika.
 0.16: Login
 0.17:jest ju¾ u¾ywany.
 0.18: Opcje:
-0.19: /adduser   Dodaj nowego u¾ytkownika do programu
-0.20: /login     Zaloguj si©
-0.21: /remuser   Usuä u¾ytkownika z programu
-0.22:zalogowaˆ si© pomy˜lnie
-0.23:pr¢bowaˆ si© zalogowa†
+0.19: /adduser   Dodaje nowego u¾ytkownika
+0.20: /login     Loguje u¾ytkownika
+0.21: /remuser   Usuwa u¾ytkownika
+0.22:- zalogowano pomy˜lnie
+0.23:- nieudana pr¢ba logowania
 0.24:zostaˆ usuni©ty

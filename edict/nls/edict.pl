@@ -1,27 +1,22 @@
 # Language: Polish
-# File ending: PL
 # Codepage: 852
-# This translation was made by Google Gemini.
-# Please help the FreeDOS group to improve it.
+# Translation: reviewed by Piotr Okrutny in Weblate, 2026-10 (human review, AI-assisted draft)
+# Source: edict.pl.UTF-8; edict.pl (CP852) and edict.mz (Mazovia) are generated from it - edit only the UTF-8 file.
 
-TITLE=Enhanced Disk Image Creation Tool, Wersja %_ %s
+TITLE=Enhanced Disk Image Creation Tool, wersja %_ %s
 COPYRIGHT=Copyright (c) 2018, Jerome Shidel
 
-HELP_00="Informacje o opcjach EDICT: "
+HELP_00="Opcje programu EDICT: "
 HELP_01=
-HELP_02="  /d <nap©d>     okre˜l liter© nap©du"
-HELP_03="  /f <nazwa_pliku> okre˜l nazw© pliku"
-HELP_04="  /p <limit>     ogranicz maksymaln¥ liczb© dodatkowych przej˜†"
+HELP_02="  /d <dysk>      okre˜la liter© stacji dysk¢w"
+HELP_03="  /f <plik>      okre˜la nazw© pliku"
+HELP_04="  /p <limit>     ogranicza liczb© dodatkowych przebieg¢w odczytu"
 HELP_05=
-HELP_06="  /t <rodzaj>    zignoruj BIOS i wybierz ustawienia dla typu dysku"
+HELP_06="  /t <rodzaj>    wymusza typ stacji zamiast ustawieä BIOS-u"
 HELP_07="                 (0=360Kib, 1=1.2Mib, 2=720Kib, 3=1.44Mib, a=auto)"
 HELP_08=
-HELP_09="  /c <liczba>    zignoruj liczb© cylindr¢w/˜cie¾ek (0-1023)"
-HELP_0a="  /r <liczba>    zignoruj liczb© stron/gˆowic na ˜cie¾k© (0-255)"
-HELP_0b="  /s <liczba>    zignoruj liczb© sektor¢w na stron© (0-63)"
-HELP_0c="  /b <liczba>    zignoruj liczb© bajt¢w na sektor (1-8192)"
+HELP_09="  /c <liczba>    wymusza liczb© cylindr¢w/˜cie¾ek (0-1023)"
 HELP_0d=
-HELP_0e="  /h             wy˜wietl pomoc"
 
 HELP_??="  /T             testuj tylko odczyt"
 HELP_??="  /w             zapisz obraz na dyskietk©"
@@ -38,64 +33,28 @@ INVALID=%r "Nieprawidˆowe polecenie: `" %s "'"
 BAD_INT="Nieprawidˆowa warto˜† liczbowa."
 BAD_VAL="Warto˜† poza zakresem."
 
-DRIVE=Nap©d %_ %c: (ID 0x %b ) %_
+DRIVE=Stacja %_ %c: (ID 0x %b ) %_
 DRIVE_TYPE=%_ (ID 0x %b )
-DRIVE_TYPE_00=nieznany typ nap©du
-DRIVE_TYPE_01=nap©d '5.25"' 360Kib
-DRIVE_TYPE_02=nap©d '5.25"' 1.2Mib
-DRIVE_TYPE_03=nap©d '3.5"' 720Kib
-DRIVE_TYPE_04=nap©d '3.5"' 1.44Mib
-DRIVE_TYPE_05=inny typ nap©du
+DRIVE_TYPE_00=nieznany typ stacji
+DRIVE_TYPE_01=stacja '5.25"' 360Kib
+DRIVE_TYPE_02=stacja '5.25"' 1.2Mib
+DRIVE_TYPE_03=stacja '3.5"' 720Kib
+DRIVE_TYPE_04=stacja '3.5"' 1.44Mib
+DRIVE_TYPE_05=inny typ stacji
 
-DRIVE_SPEC=%i %_ bajt¢w, %_ %I %_ sektor¢w, %_ %I %_ ˜cie¾ek, %_ %I %_ stron(y)
+DRIVE_SPEC=%i %_ bajt¢w na sektor, %_ %I %_ sektor¢w na ˜cie¾k©, %_ %I %_ ˜cie¾ek, stron: %_ %I
 
-PASS_LIMIT=Dozwolone do %_ %i %_ dodatkowych przej˜† odczytu dyskietki
-BUFFERS=%i %_ bajtowy bufor dyskietki, %_ %i %_ bajtowy bufor wyniku ˜cie¾ki
+PASS_LIMIT=Dodatkowe przebiegi odczytu dyskietki: maks. %_ %i %_
+BUFFERS=%i %_ B bufora dyskietki, %_ %i %_ B bufora wynik¢w ˜cie¾ki
 
-PASS=Przej˜cie odczytu dyskietki nr %i. Pozostaˆo %_ %i %_ sektor¢w.
+PASS=Przebieg odczytu dyskietki nr %_ %i. Pozostaˆo sektor¢w: %_ %i.
 
 READ_FAST=ODCZYT —CIE½KI: %_ %i, GOWICA: %_ %i
 READ_SLOW=ODCZYT —CIE½KI: %_ %i, GOWICA: %_ %i, SEKTOR: %_ %i
 
-FAILED=Proces tworzenia obrazu nie powi¢dˆ si©.
-ABORTED=Proces tworzenia obrazu zostaˆ przerwany.
-COMPLETED=Proces tworzenia obrazu zakoäczony.
+FAILED=Tworzenie obrazu nie powiodˆo si©.
+ABORTED=Tworzenie obrazu przerwane.
+COMPLETED=Tworzenie obrazu zakoäczone.
 
-BErr=%r "Kod bˆ©du BIOS: 0x" %b %_ --> %_
-BErr_01=nieprawidˆowe polecenie przekazane do sterownika
-BErr_02=nie znaleziono znacznika adresu lub uszkodzony sektor
-BErr_03=bˆ¥d ochrony dyskietki przed zapisem
-BErr_04=nie znaleziono sektora
-BErr_05=reset dysku twardego nie powi¢dˆ si©
-BErr_06=dyskietka zmieniona lub wyj©ta
-BErr_07=nieprawidˆowa tabela parametr¢w dysku twardego
-BErr_08=przepeˆnienie DMA
-BErr_09=dost©p DMA poza granic© 64k
-BErr_0a=nieprawidˆowa flaga sektora dysku twardego
-BErr_0b=nieprawidˆowy cylinder dysku twardego
-BErr_0c=nieobsˆugiwana ˜cie¾ka
-BErr_0d=nieprawidˆowa liczba sektor¢w w formacie dysku twardego
-BErr_0e=wykryto znacznik adresu danych sterowanych przez dysk twardy
-BErr_0f=poziom arbitra¾u DMA dysku twardego poza zakresem
-BErr_10=bˆ¥d ECC/CRC podczas odczytu dysku
-BErr_11=naprawialny bˆ¥d danych dysku twardego, dane naprawione przez ECC
-BErr_20=bˆ¥d kontrolera
-BErr_40=bˆ¥d pozycjonowania (seek failure)
-BErr_80=nap©d niegotowy
-BErr_aa=dysk twardy niegotowy
-BErr_bb=niezdefiniowany bˆ¥d dysku twardego
-BErr_cc=bˆ¥d zapisu dysku twardego w wybranym nap©dzie
-BErr_e0=bˆ¥d stanu dysku twardego
-BErr_ff=operacja wykrywania (sense) nie powiodˆa si©
 
-DErr=%r "Kod bˆ©du DOS: 0x" %b %_ --> %_
-DErr_01=Nieprawidˆowy numer funkcji
-DErr_02=Nie znaleziono pliku
-DErr_03=Nie znaleziono ˜cie¾ki
-DErr_04=Zbyt wiele otwartych plik¢w
-DErr_05=Odmowa dost©pu
-DErr_06=Nieprawidˆowy uchwyt (handle)
-DErr_08=Niewystarczaj¥ca ilo˜† pami©ci
-DErr_0f=Okre˜lono nieprawidˆowy nap©d
-DErr_15=Nap©d niegotowy
 
