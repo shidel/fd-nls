@@ -91,6 +91,7 @@ NON_PROJECTS = (
     "danger",
     "non-dos",
     "test",
+    "metadata",
     "zzz-notes-and-misc-items",
 )
 
