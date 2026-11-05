@@ -1,0 +1,480 @@
+# program: FreeDOS FORMAT.EXE message set - version 0.92a and later
+# language:Turkish
+# display codepage:CP857
+# catalog codepage:UTF8
+# translators:Berki Yenigün
+
+# version (on help screen)
+0,0:FreeDOS - %6s Sürüm %s\n
+0,1:Brian E. Reifsnyder, Eric Auer ve başkaları tarafından yazılmıştır.\n
+0,2:Telif hakkı 1999 - 2024 GNU GPL, Sürüm 2+ kapsamında.\n\n
+# 0.3 or 0.4 shown depending on if /Z:longhelp option used or not
+0,3:Söz dizimi (daha fazla ayrıntı için belgelendirmeye bakın):\n\n
+0,4:Söz dizimi (belgelendirmeye bakın veya /Z:longhelp kullanın):\n\n
+
+# common
+1,0:\n
+# these two options for Yes and No are only 1 character and must be upper case
+1,1:E
+1,2:H
+# user has to type full word matching this
+1,3:EVET
+1,4:HAYIR
+# other possibly common bits
+1,5:Başarısız oldu!\n
+1,6:Başarısız oldu.\n
+1,7:İptal ediliyor.\n
+
+# short help screen (shown if compiled without LEGACY_HELP)
+# Use as many messages as needed, 1 message per max 79 column line
+# but if possible keep to less than 23 lines
+# message numbers do not need to match up for messages for different languages
+# Each message should end with a newline \n
+# after every 23 messages user will be prompted to press a key to continue
+2,0:FORMAT sürücü: [/V[:etiket]] [/Q] [/U] [/F:boyut] [/S] [/D]\n
+2,1:FORMAT sürücü: [/V[:etiket]] [/Q] [/U] [/T:parça /N:sektör] [/S] [/D]\n
+#  /* the /4 option is a legacy shorthand for size selection: 360k in 1.2M drive */
+#  /* (drive type detection and "double stepping" setting are automatic on ATs.) */
+2,2:FORMAT sürücü: [/V[:etiket]] [/Q] [/U] [/4] [/S] [/D]\n
+2,3:\n
+2,4: /V:etiket  Disk için birim etiketi belirtir, saat ve tarihini kaydeder.\n
+2,5: /S          Diski başlatılabilir yapmak ve sistem dosyalarını eklemek\n
+2,6:               için SYS kullanır.\n
+2,7: /D          Çok ayrıntılı hata ayıklama çıktısı göster. Hata raporları için.\n
+2,8: /Q          Diski hızlı biçimlendirir. /U ile kullanılmazsa, UNFORMAT işe\n
+2,9:             yarar ve bozuk küme işaretlerini muhafaza eder (/Q /U etmez).\n
+2,10: /U         Diski koşulsuz biçimlendirir. Disketse düşük seviye biçimlendirme.\n
+2,11: /F:boyut   Biçimlendirilecek disketin boyutunu belirtir. Normal boyutlar:\n
+2,12:               360, 720, 1200, 1440, veya 2880 (birim: kilobayt). /F:0\n
+2,13:               liste gösterir.\n
+2,14: /4         1,2 MB disket sürücüsünde 360K disket biçimlendirir.\n
+2,15: /T:parça   Bir disketteki parça (yani track) sayısını belirtir.\n
+2,16: /N:sektör  Bir disketteki sektör sayısını belirtir.\n
+
+# short help screen (shown if compiled _with_ LEGACY_HELP)
+# Use as many messages as needed, 1 message per max 79 column line
+# but if possible keep to less than 23 lines
+# message numbers do not need to match up for messages for different languages
+# Each message should end with a newline \n
+# after every 23 messages user will be prompted to press a key to continue
+20,0:FORMAT sürücü: [/V[:etiket]] [/Q] [/U] [/F:boyut] [/B | /S] [/D]\n
+20,1:FORMAT sürücü: [/V[:etiket]] [/Q] [/U] [/T:parça /N:sektör] [/B | /S] [/D]\n
+20,2:FORMAT sürücü: [/V[:etiket]] [/Q] [/U] [/4] [/B | /S] [/D]\n
+20,3:FORMAT sürücü: [/Q] [/U] [/1] [/4] [/8] [/B | /S] [/D]\n
+20,4:\n
+20,5: /V:etiket  Disk için birim etiketi belirtir, saat ve tarihini kaydeder.\n\n
+20,6: /S         Diski başlatılabilir yapmak ve sistem dosyalarını eklemek\n
+20,7:             için SYS kullanır.\n
+20,8: /B         Uyumluluk için muhafaza edildi, eskiden başlatma dosyaları\n
+20,9:             için alan ayırırdı.\n
+20,10: /D        Hata ayıklama çıktısı göster. Hata raporları için.\n
+20,11: /Q        Diski hızlı biçimlendirir. /U ile kullanılmazsa, UNFORMAT işe\n
+20,12:            yarar ve bozuk küme işaretlerini muhafaza eder (/Q /U etmez).\n
+20,13: /U        Diski koşulsuz biçimlendirir. Disketse düşük seviye biçimlendirir.\n
+20,14: /F:boyut  Biçimlendirilecek disketin boyutunu belirtir. Normal boyutlar:\n
+20,15:            360, 720, 1200, 1440, veya 2880 (birim: kilobayt).\n
+20,16:            /F:0 liste gösterir.\n
+20,17: /4         1,2 MB disket sürücüsünde 360K disket biçimlendirir.\n
+20,18: /T:parça   Bir disketteki parça (yani track) sayısını belirtir.\n
+20,19: /N:sektör  Bir disketteki sektör sayısını belirtir.\n
+20,20: /1         Bir disketin tek tarafını biçimlendirir (160k / 180k).\n
+20,21: /8         5.25\" bir diski parça başı 8 sektörle biçimlendirir\n
+20,22:             (160k / 320k).\n
+
+# detailed help screen
+# Use as many messages as needed, 1 message per max 79 column line
+# message numbers do not need to match up for messages for different languages
+# Each message should end with a newline \n
+# after every 23 messages user will be prompted to press a key to continue
+3,0:Bu FORMAT http://www.freedos.org/ projesi için yazılmıştır.\n
+3,1:  GNU GPL lisansına dair bilgi için  http://www.gnu.org/ sitesine bakın.\n
+3,2:1999-2003 senelerinde Brian E. Reifsnyder <reifsnyderb@mindspring.com>\n
+3,3:  tarafından yazılmıştır.\n
+3,4:  0.90 / 0.91 2003-2006 için bakımcı: Eric Auer <eric@coli.uni-sb.de>\n
+3,5:Katkıda bulunanlar: Jan Verhoeven, John Price, James Clark, Tom Ehlert,\n
+3,6:  Bart Oldeman, Jim Hall ve başkaları. Deneyenleri de unutmayalım!\n\n
+3,7:\n
+3,8:Seçenekler ve ilave işlevlerin açıklamaları:\n
+3,9:/D (debug) ve /Y (teyit talebini atla) seçeneklerine daima izin verilir.\n
+3,10:/B (sys için alan ayır) boştur ve /S ile birleştirilemez (sys)\n
+3,11:/V:etiket 160k/320k diskleri için değildir. Etiket biçimlendirme\n
+3,12:   tarih/saatini kaydeder.\n
+3,13:\n
+3,14:Boyut belirtimi sadece disketler için çalışır. Ya /F:boyut (kilobayt\n
+3,15:olarak, 0 boyutu izin verilen boyutların listesini görüntüler), ya\n
+3,16:       /T:parça /N:parça_başı_sektör\n
+3,17:ya da şunların herhangi bir birleşimi /1 (tek taraflı, 160k/180k),\n
+3,18:                      /8 (parça başı 8 sektör, 160k/320k, DOS 1.x)\n
+3,19:                  ve  /4 (160-360k diskleri 1200k sürücüde biçimlendir)\n
+3,20:\n
+3,21:Sabit disk biçimlendirme teyit talebini susturmak için /Z:seriously kullanın\n
+3,22:Biçimlendirmeden sadece unformat (mirror) verilerini kaydetmek için\n
+3,23: /Z:mirror kullanın\n
+3,24:Taze mirror verilerinin bulunduğu bir diski geri almak için /Z:unformat\n
+3,25: kullanın\n
+3,26:DİSKETLER için kipler: hızlı güvenli biçimlendirmeyi dener. Düşük seviye\n
+3,27:  biçimlendirme sadece gerektiğinde kullanılır. Hızlı güvenli biçimlendirme\n
+3,28:  unformat için mirror verilerini kaydeder.\n
+3,29:SABİT DİSKLER için kipler: hızlı güvenli biçimlendirmeyi dener. Hızlı tam\n
+3,30:biçimlendirme sadece gerektiğinde kullanılır. Hızlı tam biçimlendirme sadece\n
+3,31:   dosya sistemini sıfırlar\n
+3,32:Düşük seviye biçimlendirmeyi zorlamak istiyorsanız (disket) veya tüm yüzeyin\n
+3,33:   taranmasını ve tüm içeriğin silinmesini (sabit disk) istiyorsanız,\n
+3,34:   /U kullanın.\n
+3,35:  FORMAT /Q /U hızlı tam biçimlendirmedir (düşük seviye biçimlendirme /\n
+3,36:   tarama / silme yok!)\n
+3,37:  FORMAT /Q hızlı güvenli biçimlendirmedir (mümkünse mirror verilerini kaydet)\n
+3,38:   mirror verileri daima veri alanın sonunu ezecektir!\n
+3,39:  FORMAT otomatik olarak bir kip seçer (yukarıya bakın), ne /Q ne de /U\n
+3,40:  seçmezseniz\n
+3,41:\n
+3,42:Desteklenen FAT türleri: FAT12, FAT16, FAT32, tümü mirror / unformat ile.\n
+3,43:Desteklenen disket boyutları: 160k 180k 320k 360k ve 1200k, 5.25 inç için\n
+3,44:  ve 720k ile 1440k (2880k şimdiye dek hiç denenmedi) 3.5 inç sürücüler için.\n
+#3,?:DD drives are limited to 360k/720k respectively. 2880k is ED drives only.\n
+3,45:Desteklenen aşırı biçimlendirmeler: 400k 800k 1680k (ve 3660k) daha fazla\n
+3,46: sektörle ve 1494k (1200k yerine) ve 1743k (ve 3486k) daha fazla parçayla da.\n
+3,47:  Daha fazla parça tüm sürücülerde çalışmaz, riski siz üstlenerek kullanın.\n
+3,48:  İkaz: eski DOS sürümleri aşırı biçimlendirmeyi sadece bir sürücü\n
+3,49:  programıyla kullanabilir.\n
+3,50:  1440k'da 720k, 720k ortam gerektirir. 360k biçimlendirmek için 360k\n
+3,51:  sürücü kullanın.\n
+3,52:\n
+3,53:FAT32 biçimlendirmede, 4k hizalamayı zorlamak için /A seçeneğini\n
+3,54:  kullanabilirsiniz.\n
+
+# main()
+4,0:Birim etiketinde geçersiz karakter: %c\n
+4,1:İzin verilen karakterler 0-9, A-Z, boşluk, özel / ülkeye-özel karakterler\n
+4,2:128-255 ve şunların tümü:
+# the following is printed for valid label characters from ordinal(' ')+1 through 127
+4,3: %c
+4,4:\nfakat hiçbir kontrol karakterine ve şunlardan hiçbirine izin verilmez
+# and now for enumerating illegal characters from ordinal(' ')+1 through 127
+4,5: %c"
+# /F:size
+4,6:Standart: 160, 180, 320, 360, 720, 1200, 1440, 2880.\n
+4,7:Özel:  400, 800, 1680, 3360,    1494, 1743, 3486.\n
+# /T tracks (cylinders)
+4,8:Tamam: 40, 80. ???: 83.\n
+# /N sectors per track
+4,9:Standart: 8, 9, 15, 18, 36.\n
+4,10:Özel:  10, 21, 42.\n
+# other options
+4,11:Tanınmayan seçenek: /%c\n
+4,12:Sürücü harfi belirtilmeli.\n
+4,13:/T ve /N birleştirilemez.\n
+4,14:Boyut biçimlendirmeyle değişecek - tam biçimlendirme zorlanıyor\n
+4,15:Eski: parça başına %d sektör, %d kafa. Yeni: %d sekt. %d kafa\n
+4,16:Mevcut biçim bulunamadı - tam biçimlendirme zorlanıyor\n
+4,17:Mevcut biçim bulunamadı - UNFORMAT verileri kaydedilmiyor.\n
+4,18:Sistem sektörlerinin bir kopyası sürücü sonuna yazılıyor:\n
+4,19:Başlatma sektörü, bir FAT, kök dizin. UNFORMAT için kullanışlıdır.\n
+4,20:Başlatma sektörü, FAT ve kök dizini şununla eziliyor:\n
+4,21:önceden kaydettiğiniz MIRROR/UNFORMAT verileri.\n
+# message 4,22 should never be reached/shown
+4,22:/Z:Ne???\n
+4, 23: Tam biçimlendirme (tüm verileri siler)\n
+4, 24: Hızlı biçimlendirme (sadece üst veriler temizlenir)\n
+4, 25: İkaz: bozuk küme işaretleri varsa sıfırlanır.\n
+4, 26: Güvenli hızlı biçimlendirme (UnFormat verileri kaydedilmeye çalışılır)\n
+# 4,27 through 4,32 display: <action> complete\n
+4,27:Biçimlendirme
+4,28:Hızlı Biçimlendirme
+4,29:Güvenli Hızlı Biçimlendirme
+4,30:Mirror
+4,31:UnFormat
+4,32: tamamlandı.\n
+# 4,33 thru 4,35 are to ask user to repeat previous action
+4,33:Biçimlendir
+4,34:İşle
+4,35: başka bir disket (e/h)?
+# 4,36 thru 4,38 tell user we are repeating action
+4,36:İşleniyor
+4,37:Biçimlendiriliyor
+4,38:%s sonraki disket...\n
+
+# the following are long option keywords /Z:keyword
+5,0:Geçersiz /Z:kipi - geçerli: MIRROR, UNFORMAT, SERIOUSLY\n"));
+# take a new mirror data snapshot
+5,1:mirror
+# revert to mirrored state, dangerous!
+5,2:unformat
+# User MEANS to format harddisk
+5,3:seriously
+# display LONG (detailed) version of help
+5,4:longhelp
+
+# Check_Remote_Subst()
+6,0:SUBST komutunun kullanıldığı veya uzaktaki sürücüler biçimlendirilemez (kod %04x). İptal ediliyor.\n
+6,1:Geçersiz sürücü! İptal ediliyor.\n
+6,2:ASSIGN, JOIN veya SUBST komutlarının kullanıldığı sürücüler biçimlendirilemez. İptal ediliyor.\n
+
+# Check_For_Format()
+7,0:  Başlatma sektörü okunamaz, disk henüz biçimlendirilmemiş\n
+7,1: Başlatma sektörü içeriği makul değil, disk henüz FAT ile biçimlendirilmemiş\n
+7,2:Geçersiz %sBPB (kod 0x%x). Henüz biçimlendirilmemiş.\n
+
+# Write_System_Files()
+8,0:\nİKAZ: PATH değişkeninde SYS yok - sistem dosyaları kurulamadı!\n
+8,1:\nSYS çalıştırılıyor: %s %s\n
+8,2:\nSYS bir kabukta çalıştırılıyor: %s\n
+8,3:\nSYS %d hata seviyesini geri gönderdi.\n
+8,4:\nİKAZ: SYS çalıştırılması başarısız oldu.\n
+
+# Ask_User_To_Insert_Disk()
+9,0: %c sürücüsü için yeni disket takın:\n
+9,1: Lütfen yeni bir disk takın,\n
+9,2: Doğru disk sürücüde olduğunda ENTER tuşuna basın...
+
+# Confirm_Hard_Drive_Formatting()
+10,0:UNFORMAT kök dizininiz ile FAT'i daha önce kaydedilen bir duruma geri\n
+10,1:getirecektir.  Bu, işleri ciddi şekilde karıştırabilir!\n
+10,2: UYARI: %s\n
+10,3:SABİT DİSK
+10,4:DİSKET
+10,5: SÜRÜCÜ %c: ÜZERİNDEKİ TÜM VERİLER KAYBOLACAKTIR!
+10,6: SÜRÜCÜ %c: ÜZERİNDEKİ TÜM VERİLER KAYBOLABİLİR!
+10,7: LÜTFEN TEYİT EDİN!\n
+# note: will be followed by " (YES/NO)? " from msg 1.3 & 1.4
+10,8: Format komutuyla biçimlendirmeye devam edilsin mi?
+10,9: Unformat ile geri getirmeye devam edilsin mi?
+# %s will be replaced with msg from 1.3
+10,10:Teyit etmek için %s kelimesinin tamamını yazmanız gerekmektedir.
+
+# Ask_Label()
+11,0:Lütfen birim etiketini girin (azami 11 karakter):
+11,1:Etiket yok, diskin oluşturma tarih damgası olmayacak.\n
+
+# Critical_Error_Handler()
+12,0:\n %s disk erişimi esnasında kritik hata\n
+12,1:\n Program sonlandırıldı.\n
+
+# Display_Drive_Statistics()
+13,0:\n Birimin seri numarası şudur: %04X-%04X\n
+13,1:bayt
+13,2:kbayt
+13,3:mbayt
+13,4:Sektör başına 512 bayt değil - istatistikler yanlış olacak.\n
+# %13s%c%s %s becomes <number><decimal separator>[0|5] [kbytes|bytes]
+13,5 :%13s%c%s %s toplam disk alanı (disk boyutu)\n
+13,6 :%13s%c%s %s bozuk sektörlerde\n
+13,7 :%13s%c%s %s bozuk sektör içeren kümelerde\n
+13,8 :%13s%c%s %s disk üzerinde mevcut (boş küme)\n
+13,9 :%13s%c%s %s her atama biriminde.\n
+# second %s replaced with "  " for FAT32 or "" otherwise
+13,10:Disk üzerinde %13s%s atama birimi.\n
+13,11:Atama birimlerinden %13s%s unsur bozuk olarak işaretlendi\n
+# FAT32, 2 spaces, see 13.10 & 13.11
+13,12:
+# FAT12/FAT16, no spaces, see 13.10 & 13.11
+13,13:
+
+# misc messages
+14,0:\n Geçersiz seçenek birleşimi... Lütfen yardımı okuyun. İptal ediliyor.\n
+14,1:-- sonraki sayfayı görmek için Enter'a veya çıkmak için ESC'e basın  --
+14,2:\nKullanıcı isteğine istinaden iptal edildi.\n
+14,3:Parametre değerine izin verilmez - %s%s\n
+14,4:Yüzde %3d tamamlandı.
+14,5:Gerekli parametre değeri eksik - %s:değer\n
+
+# Create_File_System()
+15,0:0x%04x FAT32 bayrakları 0 olarak sabitlendi.\n
+15,1:0x%04x FAT32 sürümü 0 değerine zorlandı.\n
+15,2:Başlatma / DS Bilgi Sektörü
+15,3:zorlandı.\n
+15,4:varsayılan konum geçersiz.\n
+15,5: Sektör 6 ve 1 kullanılıyor.\n
+15,6:devre dışı (yer yok).\n
+
+# Get_FS_Info()
+16,0:Kök dizin boyutu %u unsura yuvarlandı, %u katları.\n
+16,1:Sektör başı 512 bayt değil. İptal ediliyor!\n
+16,2:Geçersiz FAT sayımı. İptal ediliyor!\n
+
+# Write_Boot_Sectors()
+17,0:Başlatma Yedekleme Sektörü Yok.\n
+17,1:Geçersiz Başlatma Yedekleme Sektör konumu %u??\n
+17,2:DS Bilgi Sektörü Yok.\n
+17,3:Geçersiz DS Bilgi Sektör konumu %u??\n
+
+# Write_FAT_Tables()
+18,0:Geçersiz FAT sayımı. İptal ediliyor!\n
+18,1:UYARI: her FAT %lu sektördür, > 16MB-64k, Win9x uyumsuz!\n
+18,2: FAT alanı hazırlanıyor...\n
+18,3: Optimize edilmiş ilk Kök Dizin boyutu: %lu küme.\n
+18,4:Kök Dizini 125 kümeye kırpıldı!\n
+
+# drivio.c
+19,0: [Hata %d]\n
+19,1: Geçersiz sürücü! İptal ediliyor.\n
+19,2: FreeDOS l. kilitleme hatası 0x%x dikkate alınmadı.\n
+19,3: Mantıksal sürücü kilitlenemedi (hata 0x%x)! İptal ediliyor.\n
+19,4: FreeDOS p. kilitleme hatası 0x%x dikkate alınmadı.\n
+19,5: Fizikî disket sürücüsü kilitlenemedi (hata 0x%x)!?\n
+# maybe a better error message? Drive_IO() Invalid request for 0 sectors?
+19,6:Drive_IO(x,y,0)?\n
+# last %s for 19.7 & 19.8 replaced with READ or WRITE from 19.9 or 19.10
+19,7:* bozuk sektör: %ld (kod 0x%x) şu esnada %s *\n
+19,8:Drive_IO(%s %ld, sayı %d ) [%s] [sürücü %c%c]\n
+19,9:YAZMA
+19,10:OKUMA
+19,11:\nErişim bayrakları alınamaz (hata %02x). İptal ediliyor.\n
+19,12:\nErişim bayrakları etkinleştirilemez (hata %02x). İptal ediliyor.\n
+
+# see above for set 20
+
+# hdisk.c
+21,0:Varsayılan BPB *FAT1x* %u sektör/FAT, %u kök boyutu. FAT32 zorlandı.\n
+21,1:Geçersiz Sürücü! İptal ediliyor.\n
+21,2:Erişim Reddedildi! KİLİT sorunu mu? İptal ediliyor.\n
+21,3:GENIOCTL/0860 hatası %02x. FAT32 deneniyor.\n
+21,4:GENIOCTL/4860 hatası %02x. FAT32 çekirdeği yok mu?\n
+21,5:FAT1x FAT boyutu %u sektör mü?\n
+21,6:WinNT/XP/2k DOS istem kutusu. Biçimlendiremez.\n
+21,7:Varsayılan BPB FAT32 kök dizin konumu 2 olarak düzeltildi.\n
+# GDP = Get_Device_Parameters()
+21,8:GDP kendi kendini düzeltme: FAT12 olmalı! FAT1x boyutu: %u\n
+21,9:GDP kendi kendini düzeltme: FAT16 olmalı! FAT1x boyutu: %u\n
+21,10:GDP kendi kendini düzeltme: hakikaten FAT32! FAT boyutu: %u\n
+21,11:GDP kendi kendini düzeltme: FAT32 diskten FAT1x FAT (%u) / kök (%u) kaldırılıyor.\n
+21,12:GDP kendi kendini düzeltme: FAT1x olamaz.\n
+21,13:GDP kendi kendini düzeltme: FAT1x olamaz, FAT1x FAT mevcut değil\n
+21,14:GDP kendi kendini düzeltme: FAT1x olamaz, FAT1x kök mevcut değil.\n
+21,15:GDP varsayılan BPB okuma hatası %02x.\n
+21,16: Tek sayıda FAT32 FAT'ler için hizalama yap.\n
+21,17:Birimin boyutu yok mu!? İptal ediliyor.\n
+21,18:%d bayt / sektör, 512 değil mi!? İptal ediliyor.\n
+21,19:1 veya 2 FAT değil ama %hu!? İptal ediliyor.\n
+21,20:UYARI: kümeler 64k değerinden büyük. Bu son derece uyumsuzdur!\n
+# 21.21 & 21.22 go together
+21,21:UYARI: kümeler 32k değerinden büyük. MS-DOS veya Win9x ile çalışmayacaktır!\n
+21,22:  Ancak WinME, WinNT/2k/XP/2003 ve FreeDOS için sorun çıkmaz.\n
+21,23:ÖNEMLİ HATA: küme boyutu 0,5, 1, 2, 4, 8, 16, 32, 64k veya 128k değil ama %d.%dk!\n
+21,24:  FAT32 sürücüyü neredeyse FAT1x olarak biçimlendiriyorduk, aman...\n
+# 21.25 & 21.26 go together
+21.25:UYARI: FAT32 boyutu şundan daha büyük olacaktır: (16 MB - 64 kB)!\n
+21,26:  Win9x, bu sürücüyü kullanamayacaktır. Diğer İS'ler daha fazla bellek/işlemci kullanacaklar.\n
+21,27: FAT1x sürücüyü neredeyse FAT32 olarak biçimlendiriyorduk, aman...\n
+# 21.28 or 21.29 followed by "FAT12.\n" or "FAT16.\n"
+# with %lu %s size, e.g. 999 kbytes  -- see 13.1 and similar
+21,28: Disk boyutu: %lu %s,
+21,29: Uyarı: Diskin sektör boyutu standart değil,
+
+# floppy.c
+22,0:Format_Floppy_Cylinder( kafa=%d silindir=%d ) sektör=%d [int 13.5]\n
+22,1:Parça başı sadece ilk %d sektör kontrol ediliyor\n
+22,2:\nBiçimlendirme başarısız, ilk 7 sektörde hata!\n
+22,3:Sektör %4ld CHS=[%2d:%d:%2d] bozuk\n
+22,4:Sabit disk sürücü numarası! İptal ediliyor.\n
+22,5:%ldk olarak biçimlendiriliyor (Sil=%ld Kafa=%ld Sek=%2ld)\n
+22,6:%ldk biçimi için bilinen ortam türü yok\n
+22,7:%ldk biçimi (Sil=%ld Kafa=%ld Sek=%2ld) için bilinen ortam türü yok\n
+22,8:0x%x türü int 13.8 sürücü 1440k olarak ele alınıyor.\n
+22,9:Sürücü varsayılanı kullanılıyor: %ldk (Sil=%ld Kafa=%ld Sek=%2ld)\n
+22,10:%ldk boyutu tanımlanmamış mı!??\n
+22,11:%dk sürücüde %ldk değeri mi istiyorsunuz? Çok fazla. İptal ediliyor.\n
+22,12:AŞIRI BİÇİMLENDİRME: %dk sürücüde %ldk. İyi şanslar!\n
+22,13:Bu, 720k bir sürücü: /1, /4 veya /8 mümkün değil.\n
+22,14:Bu sürücü türü için asgari boyut şudur: 720k\n
+22,15:Bu, 3,25 inç bir sürücüdür: /1, /4 veya /8 mümkün değildir.\n
+22,16:Bu sürücü türü için asgari boyut şudur: 720k.\n
+22,17:Bu, 3,25 inç bir sürücüdür: 1200k biçimlendirme yoktur.\n
+22,18:Sürücü kipi (boyut sınıfı %d) ayarlaması başarısız, %02x hex hatası\n
+22,19:Sürücüde disk yok!\n
+22,20:Yine de devam ediliyor.\n
+22,21:Sürücüde disk yok (zaman aşımı)!\n
+22,22:Ortam türü %ldk  (%d x %ld x %2d)  bu sürücü tarafından desteklenmez mi!?\n
+22,23:Geometri set (int 13.18) hatası (%02x).
+22,24:Vazgeçiliyor.\n
+22,25:Dikkate alınmadı.\n
+22,26:DDPT ROM'da - sadece standart boyutlar mümkün.\n
+22,27:PARÇA BAŞI SEKTÖRLER %d değerinde takıldı, %d istenmişti. Yine de devam ediliyor.\n
+22,28:DDPT ayarı imkânsız: DDPT ROM'da\n
+22,29:%d sek/sil. için bilinen boşluk uzunluğu yok. BIOS değeriyle iyi şanslar!\n
+22,30:AYAR: DDPT'de silindir başı sektör şu değere ayarlandı: %d\n
+22,31:AYAR: silindir başı %d sektör, biçim boşluk uzunluğu %d!\n
+22,32:Disket kontrolcüsü sıfırlaması başarısız oldu (kod %x) - DDPT ret mi edildi?\n
+22,33:-- Diski biçimlendirmek için ENTER tuşuna basın (İptal etmek için ESCAPE) --\n
+22,34:[doublestepping]
+22,35:[yapılandırılan tür %hu]
+22,36: 500 kbps (HD 1xx0k)\n
+22,37: 300 kbps (DD  360k)\n
+22,38: 250 kbps (DD  720k)\n
+22,39:1000 kbps (ED 2880k)\n
+
+# savefs.c
+23,0:MIRROR HARİTA sektörü %lu yazılamıyor - UNFORMAT bozuldu!\n
+23,1:512 bayt / sektör değil. UNFORMAT verileri kaydedilemez.\n
+23,2:1 veya 2 FAT kopyası değil. UNFORMAT verileri kaydedilemez.\n
+23,3:UYARI: ayrılmış / başlatma sektör saysı 1 değil %u.\n
+23,4:UYARI: ayrılmış sektör sayısı %u fakat biçimlendirme sonrası %u olacak.\n
+23,5: FAT32 olmalı, %s değil!\n
+23,6: UNFORMAT verileri kaydedilmiyor, bozuk küme listesi muhafaza edilmiyor.\n
+23,7:UYARI: FAT1x tarzı ilave Kök Dizin ile FAT32 mi???\n
+23,8: FAT32 olmalı, FAT1x değil!\n
+23,9: FAT32 Kök Dizini fakat FAT1x FAT!\n
+23,10: %s boyut fakat FAT32 olmalıydı!\n
+23,11: Makul Olmayan Kök Dizini, FAT veya sürücü boyutu! Başlatma sektörü bozuk mu?\n
+23,12: Küçük veriler için büyük FAT mi? Başlatma sektörü bozuk mu?\n
+23,13:Kök Dizin ilk kümede DEĞİL, kaydedilmiyor!\n
+23,14: Sürücü biçimlendirilmemiş görünüyor, UNFORMAT verileri kaydedilmemiş.\n
+23,15:Ayrılmış sektör sayısı farklı: BULUNAN %lu / PLANLANAN %u.\n
+23,16:FAT sayısı farklı: BULUNAN %lu / PLANLANAN %hu\n
+23,17:Küme sayısı farklı: BULUNAN %lu / PLANLANAN %hu (sektör)\n
+#  FOUND # FAT?? / PLANNED # FAT??
+23,18:FAT boyutu farklı: BULUNAN %lu %s / PLANLANAN %lu %s\n
+23,19:MIRROR verileri kullanılan kümeleri ezerdi. İptal ediliyor.
+23,20:Güvenli biçimlendirme: %lu kullanılmış veri sektörü silinmeli!\n
+23,21:Mirror harita işaretçisi yazma hatası - UNFORMAT sizin için başarısız olacak!\n
+23,22:UNFORMAT / mirror verilerinin yedeklenmesi adımı atlanıyor.\n
+23,23:%lu sektöründe okuma hatası - UNFORMAT verisi hasarlı\n
+23,24:%lu sektöründe yazma hatası - UNFORMAT verisi hasarlı\n
+23,25: Mirror haritası %lu bayt boyutunda,
+23,26: %lu sektör yansıtıldı.\n
+23,27:MIRROR / UNDELETE verisi yok: yanlış sihir.\n
+23,28:\n mirror haritasının sonu. UNFORMAT tamamlandı.\n
+23,29: Başlatma sektörü yedeklemeye klonlanıyor.\n
+23,30: Dosya sistemi bilgi sektörü verileri geçersiz kılınıyor.\n
+23,31:*** Yedekleme sektörü %lu sektör %lu unsuruna kopyalanamadı ***\n
+23,32:Başlatma sektörü saçma verilerle ezilecekti, 0 veya > 7 FAT.\n
+23,33:*** %lu sektörü geri getirilemedi ***\n
+23,34:*** FAT sektörü %lu sektör %lu unsuruna klonlanamadı ***\n
+23,35:UYARI: %hu FAT kopyası talep edildi, yerine %hu kullanılıyor.\n
+23,36:UYARI: UNFORMAT FAT1x sürücüyü FAT32 olarak değiştiriyor.\n
+23,37:UYARI: UNFORMAT FAT32 sürücüyü FAT1x olarak değiştiriyor!?\n
+23,38:\n Başlatma sektörü verileri: %hu FAT kopyası (kayma %lu), FAT başına %lu sektör\n
+23,39:UNFORMAT bilgileri kaydediliyor...\n
+
+# savefs.c unable to save filesystem properties error message
+# Use as many messages as needed, 1 message per max 79 column line
+# message numbers do not need to match up for messages for different languages
+# Each message should end with a newline \n
+# after every 23 messages user will be prompted to press a key to continue
+24,0:Dosya sistemi özellikleri değişecek, eski bozuk küme listesi (ki belki\n
+24,1:boş) muhafaza edilemez. Bozuk küme listesini güncellemek istiyorsanız\n
+24,2:bir yüzey tarama aracı veya FORMAT /U kullanın.\n
+
+# recordbc.c
+25,0:Kullanılamaz disk: sistem verilerinde bozuk sektör. Biçimlendirme sonlandırıldı.\n
+25,1:\nBaşlatma sektörü bozuk.\n
+25,2:\nFAT sektörü bozuk.\n
+25,3:\nKök dizin sektörü bozuk.\n
+25,4:\nBaşlatma sektörü bozuk.\n
+25,5:\nFAT sektörü bozuk..\n
+25,6:\nKök dizin sektörü bozuk.\n
+25,7:\nAyrılmış sektör (başlatma, bilgi, her birinin yedeklemesi...) bozuk.\n
+25,8:\nFAT sektörü bozuk.\n
+25,9:*** Bozuk sektör %lu, %lu kümesi FAT içinde bozuk olarak işaretlendi! ***\n
+25,10:UYARI: KULLANILMIŞ %lu kümesinin bozuk olarak işaretlenmesi gerekiyor!\n
+25,11:*** %u bozuk sektör bulundu. %lu küme bozuk olarak işaretlendi. ***\n
+
+# bcread.c (bad clusters)
+26,0:\n *** Çok fazla bozuk küme! BİÇİMLENDİRME sonrası yüzey taraması yapın! ***\n
+26,1:BadClustPreserve iptal edildi: 512 bayt/sektör değil!\n
+26,2: FAT sektörleri %lu unsurundan %lu unsuruna taranıyor...\n
+26,3: Mevcut FAT taranıyor...\n
+26,4:\n Küme istatistikleri: %lu kullanılmış, %lu bozuk, %lu unsur, %lu son.\n
+26,5:\n Küme istatistikleri: %lu kullanılmış, %lu bozuk, %lu unsur, %lu son.\n
+26,6: Mevcut FAT12 işlenemez, çok büyük!\n
+26,7:\n Küme istatistikleri: %lu kullanılmış, %lu bozuk, %lu unsur, %lu son.\n

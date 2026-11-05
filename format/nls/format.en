@@ -1,0 +1,464 @@
+# program: FreeDOS FORMAT.EXE message set - version 0.92a and later
+# language:English
+# display codepage:ASCII
+# catalog codepage:UTF8
+# translators:none
+
+# version (on help screen)
+0,0:FreeDOS %6s - Version %s\n
+0,1:Written by Brian E. Reifsnyder, Eric Auer and others.\n
+0,2:Copyright 1999 - 2024 under the terms of the GNU GPL, Version 2+.\n\n
+# 0.3 or 0.4 shown depending on if /Z:longhelp option used or not
+0,3:Syntax (see documentation for more details background information):\n\n
+0,4:Syntax (see documentation or use /Z:longhelp for more options):\n\n
+
+# common
+1,0:\n
+# these two options for Yes and No are only 1 character and must be upper case
+1,1:Y
+1,2:N
+# user has to type full word matching this
+1,3:YES
+1,4:NO
+# other possibly common bits
+1,5:Failed!\n
+1,6:Failed.\n
+1,7:Aborting.\n
+
+# short help screen (shown if compiled without LEGACY_HELP)
+# Use as many messages as needed, 1 message per max 79 column line
+# but if possible keep to less than 23 lines
+# message numbers do not need to match up for messages for different languages
+# Each message should end with a newline \n
+# after every 23 messages user will be prompted to press a key to continue
+2,0:FORMAT drive: [/V[:label]] [/Q] [/U] [/F:size] [/S] [/D]\n
+2,1:FORMAT drive: [/V[:label]] [/Q] [/U] [/T:tracks /N:sectors] [/S] [/D]\n
+#  /* the /4 option is a legacy shorthand for size selection: 360k in 1.2M drive */
+#  /* (drive type detection and "double stepping" setting are automatic on ATs.) */
+2,2:FORMAT drive: [/V[:label]] [/Q] [/U] [/4] [/S] [/D]\n
+2,3:\n
+2,4: /V:label   Specifies a volume label for the disk, stores date and time of it.\n
+2,5: /S         Calls SYS to make the disk bootable and to add system files.\n
+2,6: /D         Be very verbose and show debugging output. For bug reports.\n
+2,7: /Q         Quick formats the disk. If not combined with /U, can be UNFORMATed\n
+2,8:            and preserves bad cluster marks (/Q /U does not).\n
+2,9: /U         Unconditionally formats the disk. Lowlevel format if floppy disk.\n
+2,10: /F:size    Specifies the size of the floppy disk to format. Normal sizes are:\n
+2,11:            360, 720, 1200, 1440, or 2880 (unit: kiloBytes). /F:0 shows a list.\n
+2,12: /4         Formats a 360k floppy disk in a 1.2 MB floppy drive.\n
+2,13: /T:tracks  Specifies the number of tracks on a floppy disk.\n
+2,14: /N:sectors Specifies the number of sectors on a floppy disk.\n
+
+# short help screen (shown if compiled _with_ LEGACY_HELP)
+# Use as many messages as needed, 1 message per max 79 column line
+# but if possible keep to less than 23 lines
+# message numbers do not need to match up for messages for different languages
+# Each message should end with a newline \n
+# after every 23 messages user will be prompted to press a key to continue
+20,0:FORMAT drive: [/V[:label]] [/Q] [/U] [/F:size] [/B | /S] [/D]\n
+20,1:FORMAT drive: [/V[:label]] [/Q] [/U] [/T:tracks /N:sectors] [/B | /S] [/D]\n
+20,2:FORMAT drive: [/V[:label]] [/Q] [/U] [/4] [/B | /S] [/D]\n
+20,3:FORMAT drive: [/Q] [/U] [/1] [/4] [/8] [/B | /S] [/D]\n
+20,4:\n
+20,5: /V:label   Specifies a volume label for the disk, stores date and time of it.\n
+20,6: /S         Calls SYS to make the disk bootable and to add system files.\n
+20,7: /B         Kept for compatibility, formerly reserved space for the boot files.\n
+20,8: /D         Be very verbose and show debugging output. For bug reports.\n
+20,9: /Q         Quick formats the disk. If not combined with /U, can be UNFORMATed\n
+20,10:            and preserves bad cluster marks (/Q /U does not).\n
+20,11: /U         Unconditionally formats the disk. Lowlevel format if floppy disk.\n
+20,12: /F:size    Specifies the size of the floppy disk to format. Normal sizes are:\n
+20,13:            360, 720, 1200, 1440, or 2880 (unit: kiloBytes). /F:0 shows a list.\n
+20,14: /4         Formats a 360k floppy disk in a 1.2 MB floppy drive.\n
+20,15: /T:tracks  Specifies the number of tracks on a floppy disk.\n
+20,16: /N:sectors Specifies the number of sectors on a floppy disk.\n
+20,17: /1         Formats a single side of a floppy disk (160k / 180k).\n
+20,18: /8         Formats a 5.25\" disk with 8 sectors per track (160k / 320k).\n
+
+# detailed help screen
+# Use as many messages as needed, 1 message per max 79 column line
+# message numbers do not need to match up for messages for different languages
+# Each message should end with a newline \n
+# after every 23 messages user will be prompted to press a key to continue
+3,0:This FORMAT is made for the http://www.freedos.org/ project.\n
+3,1:  See http://www.gnu.org/ for information about GNU GPL license.\n
+3,2:Made in 1999-2003 by Brian E. Reifsnyder <reifsnyderb@mindspring.com>\n
+3,3:  Maintainer for 0.90 / 0.91 2003-2006: Eric Auer <eric@coli.uni-sb.de>\n
+3,4:Contributors: Jan Verhoeven, John Price, James Clark, Tom Ehlert,\n
+3,5:  Bart Oldeman, Jim Hall and others. Not to forget all the testers!\n
+3,6:\n
+3,7:Switches and additional features explained:\n
+3,8:/D (debug) and /Y (skip confirmation request) are always allowed.\n
+3,9:/B (reserve space for sys) is dummy and cannot be combined with /S (sys)\n
+3,10:/V:label is not for 160k/320k disks. The label stores the format date/time.\n
+3,11:\n
+3,12:Size specifications only work for floppy disks. You can use\n
+3,13:either /F:size (in kilobytes, size 0 displays a list of allowed sizes)\n
+3,14:or     /T:tracks /N:sectors_per_track\n
+3,15:or any combination of /1 (one-sided, 160k/180k),\n
+3,16:                      /8 (8 sectors per track, 160k/320k, DOS 1.x)\n
+3,17:                  and /4 (format 160-360k disk in 1200k drive)\n
+3,18:\n
+3,19:To suppress the harddisk format confirmation prompt, use    /Z:seriously\n
+3,20:To save only unformat (mirror) data without formatting, use /Z:mirror\n
+3,21:To UNFORMAT a disk for which fresh mirror data exists, use  /Z:unformat\n
+3,22:\n
+3,23:Modes for FLOPPY are: Tries to use quick safe format. Use lowlevel format\n
+3,24:  only when needed. Quick safe format saves mirror data for unformat.\n
+3,25:Modes for HARDDISK are: Tries to use quick safe format. Use quick full\n
+3,26:  format only when needed. Quick full format only resets the filesystem\n
+3,27:If you want to force lowlevel format (floppy) or want to have the whole\n
+3,28:  disk surface scanned and all contents wiped (harddisk), use /U.\n
+3,29:  FORMAT /Q /U is quick full format (no lowlevel format / scan / wipe!)\n
+3,30:  FORMAT /Q is quick save format (save mirror data if possible)\n
+3,31:    the mirror data will always overwrite the end of the data area!\n
+3,32:  FORMAT autoselects a mode (see above) if you select neither /Q nor /U\n
+3,33:\n
+3,34:Supported FAT types are: FAT12, FAT16, FAT32, all with mirror / unformat.\n
+3,35:Supported floppy sizes are: 160k 180k 320k 360k and 1200k for 5.25inch\n
+3,36:  and 720k and 1440k (2880k never tested so far) for 3.5inch drives.\n
+#3,?:DD drives are limited to 360k/720k respectively. 2880k is ED drives only.\n
+3,37:Supported overformats are: 400k 800k 1680k (and 3660k) with more sectors\n
+3,38:  and 1494k (instead of 1200k) and 1743k (and 3486k) with more tracks, too.\n
+3,39:  More tracks will not work on all drives, use at your own risk.\n
+3,40:  Warning: older DOS versions can only use overformats with a driver.\n
+3,41:  720k in 1440k needs 720k media. Use 360k drive to format 360k.\n
+3,42:\n
+3,43:For FAT32 formatting, you can use the /A switch to force 4k alignment.\n
+
+# main()
+4,0:Illegal character in volume label: %c\n
+4,1:Allowed chars are 0-9, A-Z, space, special / country-specific chars 128-255\n
+4,2:and all of
+# the following is printed for valid label characters from ordinal(' ')+1 through 127
+4,3: %c
+4,4:\nbut no control chars and none of
+# and now for enumerating illegal characters from ordinal(' ')+1 through 127
+4,5: %c"
+# /F:size
+4,6:Standard: 160, 180, 320, 360, 720, 1200, 1440, 2880.\n
+4,7:Special:  400, 800, 1680, 3360,    1494, 1743, 3486.\n
+# /T tracks (cylinders)
+4,8:Ok: 40, 80. ???: 83.\n
+# /N sectors per track
+4,9:Standard: 8, 9, 15, 18, 36.\n
+4,10:Special:  10, 21, 42.\n
+# other options
+4,11:Unrecognized option: /%c\n
+4,12:Must specify drive letter.\n
+4,13:You cannot combine /T and /N.\n
+4,14:Will change size by formatting - forcing full format\n
+4,15:Old: %d sectors per track, %d heads. New: %d sect. %d heads\n
+4,16:Cannot find existing format - forcing full format\n
+4,17:Cannot find existing format - not saving UNFORMAT data.\n
+4,18:Writing a copy of the system sectors to the end of the drive:\n
+4,19:Boot sector, one FAT, root directory. Useful for UNFORMAT.\n
+4,20:Overwriting boot sector, FATs and root directory with\n
+4,21:MIRROR/UNFORMAT data which you have saved earlier.\n
+# message 4,22 should never be reached/shown
+4,22:/Z:what???\n
+4, 23: Full Formatting (wiping all data)\n
+4, 24: QuickFormatting (only flushing metadata)\n
+4, 25: Warning: Resets bad cluster marks if any.\n
+4, 26: Safe QuickFormatting (trying to save UnFormat data)\n
+# 4,27 through 4,32 display: <action> complete\n
+4,27:Format
+4,28:QuickFormat
+4,29:Safe QuickFormat
+4,30:Mirror
+4,31:UnFormat
+4,32: complete.\n
+# 4,33 thru 4,35 are to ask user to repeat previous action
+4,33:Format
+4,34:Process
+4,35: another floppy (y/n)?
+# 4,36 thru 4,38 tell user we are repeating action
+4,36:Processing
+4,37:Formatting
+4,38:%s next floppy...\n
+
+# the following are long option keywords /Z:keyword
+5,0:Invalid /Z:mode - valid: MIRROR, UNFORMAT, SERIOUSLY\n"));
+# take a new mirror data snapshot
+5,1:mirror
+# revert to mirrored state, dangerous!
+5,2:unformat
+# User MEANS to format harddisk
+5,3:seriously
+# display LONG (detailed) version of help
+5,4:longhelp
+
+# Check_Remote_Subst()
+6,0:Cannot format remote or SUBSTed drives (code %04x). Aborting.\n
+6,1:Invalid Drive! Aborting.\n
+6,2:Cannot format ASSIGNed, JOINed or SUBSTed drives. Aborting.\n
+
+# Check_For_Format()
+7,0:  Boot sector unreadable, disk not yet formatted\n
+7,1: Boot sector contents implausible, disk not yet FAT formatted\n
+7,2:Invalid %sBPB (code 0x%x). NOT yet formatted.\n
+
+# Write_System_Files()
+8,0:\nWARNING: No SYS in PATH - could not install system files!\n
+8,1:\nRunning SYS: %s %s\n
+8,2:\nRunning SYS in a shell: %s\n
+8,3:\nSYS returned errorlevel %d.\n
+8,4:\nWARNING: Running SYS failed.\n
+
+# Ask_User_To_Insert_Disk()
+9,0: Insert new diskette for drive %c:\n
+9,1: Insert new disk please,\n
+9,2: Press ENTER when the right disk is in drive...
+
+# Confirm_Hard_Drive_Formatting()
+10,0:UNFORMAT will revert your root directory and FAT to a\n
+10,1:previously recorded state. This can seriously mess up things!\n
+10,2: WARNING: ALL DATA ON %s\n
+10,3:NON-REMOVABLE DISK
+10,4:FLOPPY DISK
+10,5: DRIVE %c: WILL BE LOST!
+10,6: DRIVE %c: MIGHT GET LOST!
+10,7: PLEASE CONFIRM!\n
+# note: will be followed by " (YES/NO)? " from msg 1.3 & 1.4
+10,8: Proceed with Format
+10,9: Proceed with Unformat
+# %s will be replaced with msg from 1.3
+10,10:You have to type the whole word %s to confirm.
+
+# Ask_Label()
+11,0:Please enter volume label (max. 11 chars):
+11,1:No label, disk will have no creation timestamp.\n
+
+# Critical_Error_Handler()
+12,0:\n Critical error during %s disk access\n
+12,1:\n Program terminated.\n
+
+# Display_Drive_Statistics()
+13,0:\n Volume Serial Number is %04X-%04X\n
+13,1:bytes
+13,2:kbytes
+13,3:Mbytes
+13,4:Not 512 bytes/sector - stats will be wrong.\n
+# %13s%c%s %s becomes <number><decimal separator>[0|5] [kbytes|bytes]
+13,5 :%13s%c%s %s total disk space (disk size)\n
+13,6 :%13s%c%s %s in bad sectors\n
+13,7 :%13s%c%s %s in clusters with bad sectors\n
+13,8 :%13s%c%s %s available on disk (free clusters)\n
+13,9 :%13s%c%s %s in each allocation unit.\n
+# second %s replaced with "  " for FAT32 or "" otherwise
+13,10:%13s%s allocation units on disk.\n
+13,11:%13s%s of the allocation units marked as bad\n
+# FAT32, 2 spaces, see 13.10 & 13.11
+13,12:
+# FAT12/FAT16, no spaces, see 13.10 & 13.11
+13,13:
+13,14:Gbytes
+
+# misc messages
+14,0:\n Invalid combination of options... please read help. Aborting.\n
+14,1:-- press enter to see the next page or ESC to abort  --
+14,2:\nAborted at user request.\n
+14,3:Parameter value not allowed - %s%s\n
+14,4:%3d percent completed.
+14,5:Required parameter value is missing - %s:value\n
+
+# Create_File_System()
+15,0:FAT32 flags 0x%04x fixed to 0.\n
+15,1:FAT32 version 0x%04x forced to 0.\n
+15,2:Backup Boot / FS Info Sector 
+15,3:forced on.\n
+15,4:default position invalid.\n
+15,5: Using sector 6 and 1.\n
+15,6:disabled (no space).\n
+
+# Get_FS_Info()
+16,0:Rounded root dir size to %u entries, multiple of %u.\n
+16,1:Not 512 bytes per sector. Aborting!\n
+16,2:Invalid FAT count. Aborting!\n
+
+# Write_Boot_Sectors()
+17,0:No Backup Boot Sector.\n
+17,1:Invalid Backup Boot Sector position %u??\n
+17,2:No FS Info Sector.\n
+17,3:Invalid FS Info Sector position %u??\n
+
+# Write_FAT_Tables()
+18,0:Invalid FAT count. Aborting!\n
+18,1:WARNING: Each FAT is %lu sectors, > 16MB-64k, Win9x incompatible!\n
+18,2: Preparing FAT area...\n
+18,3: Optimized initial Root Directory size: %lu clusters.\n
+18,4:Root Directory clipped to 125 clusters!\n
+
+# drivio.c
+19,0: [Error %d]\n
+19,1: Invalid drive! Aborting.\n
+19,2: FreeDOS l. lock error 0x%x ignored.\n
+19,3: Could not lock logical drive (error 0x%x)! Aborting.\n
+19,4: FreeDOS p. lock error 0x%x ignored.\n
+19,5: Could not lock physical floppy drive (error 0x%x)!?\n
+# maybe a better error message? Drive_IO() Invalid request for 0 sectors?
+19,6:Drive_IO(x,y,0)?\n
+# last %s for 19.7 & 19.8 replaced with READ or WRITE from 19.9 or 19.10
+19,7:* bad sector(s): %ld (code 0x%x) on %s *\n
+19,8:Drive_IO(%s %ld, count %d ) [%s] [drive %c%c]\n
+19,9:WRITE
+19,10:READ
+19,11:\nCannot get access flags (error %02x). Aborting.\n
+19,12:\nCannot enable access flags (error %02x). Aborting.\n
+
+# see above for set 20
+
+# hdisk.c
+21,0:Default BPB *FAT1x* %u sectors/FAT, %u root size. FAT32 forced.\n
+21,1:Invalid Drive! Aborting.\n
+21,2:Access Denied! LOCK problem? Aborting.\n
+21,3:GENIOCTL/0860 error %02x. Trying FAT32.\n
+21,4:GENIOCTL/4860 error %02x. No FAT32 kernel?\n
+21,5:FAT1x FAT size %u sectors?\n
+21,6:WinNT/XP/2k DOS box. Cannot format.\n
+21,7:Corrected default BPB FAT32 root dir position to 2.\n
+# GDP = Get_Device_Parameters()
+21,8:GDP self-correct: Must be FAT12! FAT1x size: %u\n
+21,9:GDP self-correct: Must be FAT16! FAT1x size: %u\n
+21,10:GDP self-correct: Is indeed FAT32! FAT size: %u\n
+21,11:GDP self-correct: Removing FAT1x FAT (%u) / root (%u) from FAT32 disk.\n
+21,12:GDP self-correct: Cannot be FAT1x.\n
+21,13:GDP self-correct: Cannot be FAT1x, no FAT1x FAT\n
+21,14:GDP self-correct: Cannot be FAT1x, no FAT1x root.\n
+21,15:GDP default BPB read error %02x.\n
+21,16: Align for odd number of FAT32 FATs.\n
+21,17:Volume has no size!? Aborting.\n
+21,18:%d bytes / sector, not 512!? Aborting.\n
+21,19:Not 1 or 2 FATs but %hu!? Aborting.\n
+21,20:WARNING: Clusters larger than 64k. This is highly incompatible!\n
+# 21.21 & 21.22 go together
+21,21:WARNING: Clusters larger than 32k. Will not work with Win9x or MS DOS!\n
+21,22:  WinME, WinNT/2k/XP/2003 and FreeDOS will be okay, though.\n
+21,23:FATAL: Cluster size not 0.5, 1, 2, 4, 8, 16, 32, 64k or 128k but %d.%dk!\n
+21,24: Almost formatted FAT32 drive as FAT1x, phew...\n
+# 21.25 & 21.26 go together
+21.25:WARNING: FAT32 size will be more than (16 MB - 64 kB)!\n
+21,26:  Win9x will be unable to use the drive. Other OSes will use more RAM/CPU.\n
+21,27: Almost formatted FAT1x drive as FAT32, phew...\n
+# 21.28 or 21.29 followed by "FAT12.\n" or "FAT16.\n"
+# with %lu %s size, e.g. 999 kbytes  -- see 13.1 and similar
+21,28: Disk size: %lu %s, 
+21,29: Warning: Disk has nonstandard sector size, 
+
+# floppy.c
+22,0:Format_Floppy_Cylinder( head=%d cylinder=%d ) sectors=%d [int 13.5]\n
+22,1:Only checking first %d sectors per track\n
+22,2:\nFormat failed, error in first 7 sectors!\n
+22,3:Sector %4ld CHS=[%2d:%d:%2d] bad\n
+22,4:Harddisk drive number! Aborting.\n
+22,5:Formatting to %ldk (Cyl=%ld Head=%ld Sec=%2ld)\n
+22,6:No media type known for %ldk format\n
+22,7:No media type known for %ldk format (Cyl=%ld Head=%ld Sec=%2ld)\n
+22,8:Treating int 13.8 drive type 0x%x as 1440k.\n
+22,9:Using drive default: %ldk (Cyl=%ld Head=%ld Sec=%2ld)\n
+22,10:Size %ldk undefined!??\n
+22,11:Want %ldk in %dk drive? Too much. Aborting.\n
+22,12:OVERFORMAT: %ldk in %dk drive. Good luck!\n
+22,13:This is a 720k drive: No /1, /4 or /8 possible.\n
+22,14:Minimum size for this drive type is 720k\n
+22,15:This is a 3.25 inch drive: No /1, /4 or /8 possible.\n
+22,16:Minimum size for this drive type is 720k.\n
+22,17:This is a 3.25 inch drive: No 1200k format.\n
+22,18:Drive mode (size class %d) setting failed, error %02x hex\n
+22,19:No disk in drive!\n
+22,20:Continuing anyway.\n
+22,21:No disk in drive (timeout)!\n
+22,22:Media type %ldk  (%d x %ld x %2d)  not supported by this drive!?\n
+22,23:Geometry set (int 13.18) error (%02x). 
+22,24:Giving up.\n
+22,25:Ignored.\n
+22,26:DDPT is in ROM - only standard sizes possible.\n
+22,27:SECTORS PER TRACK stuck to %d, wanted %d. Continuing anyway.\n
+22,28:DDPT tweaking impossible: DDPT in ROM\n
+22,29:No gap length known for %d sec/cyl. Good luck with BIOS value!\n
+22,30:TWEAK: Sectors per cylinder in DDPT set to %d\n
+22,31:TWEAK: %d Sectors per cylinder, Format gap length %d!\n
+22,32:Floppy controller reset failed (code %x) - DDPT rejected?\n
+22,33:-- press ENTER to format disk (ESCAPE to abort) --\n
+22,34:[doublestepping] 
+22,35:[configured type %hu] 
+22,36: 500 kbps (HD 1xx0k)\n
+22,37: 300 kbps (DD  360k)\n
+22,38: 250 kbps (DD  720k)\n
+22,39:1000 kbps (ED 2880k)\n
+
+# savefs.c
+23,0:Cannot write MIRROR MAP sector %lu - UNFORMAT spoiled!\n
+23,1:Not 512 bytes / sector. Cannot save UNFORMAT data.\n
+23,2:Not 1 or 2 FAT copies. Cannot save UNFORMAT data.\n
+23,3:WARNING: Number of reserved / boot sectors is %u, not 1.\n
+23,4:WARNING: Reserved sectors are %u but will be %u after format.\n
+23,5: Must be FAT32, not %s!\n
+23,6: NOT saving unformat info, not preserving bad cluster list.\n
+23,7:WARNING: FAT32 with FAT1x style extra Root Directory???\n
+23,8: Must be FAT32, not FAT1x!\n
+23,9: FAT32 Root Directory but FAT1x FAT!\n
+23,10: %s size but supposed to be FAT32!\n
+23,11: Implausible Root Directory, FAT or drive size! Bad boot sector?\n
+23,12: Big FAT for little data? Bad boot sector?\n
+23,13:Root Directory NOT in 1st cluster, NOT saving it!\n
+23,14: Drive looks unformatted, UNFORMAT information NOT saved.\n
+23,15:Number of reserved sectors differs: FOUND %lu / PLANNED %u.\n
+23,16:Number of FATs differs: FOUND %lu / PLANNED %hu\n
+23,17:Cluster size differs: FOUND %lu / PLANNED %hu (sectors)\n
+#  FOUND # FAT?? / PLANNED # FAT??
+23,18:FAT size differs: FOUND %lu %s / PLANNED %lu %s\n
+23,19:MIRROR data would overwrite used clusters. Aborting.
+23,20:SafeFormat: have to trash %lu used data sectors!\n
+23,21:Mirror map pointer write error - UNFORMAT will fail for you!\n
+23,22:Skipping UNFORMAT / mirror data backup step.\n
+23,23:Read error at sector %lu - UNFORMAT data damaged\n
+23,24:Write error at sector %lu - UNFORMAT data damaged\n
+23,25: Mirror map is %lu bytes long, 
+23,26: %lu sectors mirrored.\n
+23,27:No MIRROR / UNDELETE data: Wrong magic.\n
+23,28:\n End of mirror map. UNFORMAT done.\n
+23,29: Cloning boot sector into backup.\n
+23,30: Invalidating filesystem info sector data.\n
+23,31:*** Could not copy backup sector %lu to sector %lu ***\n
+23,32:Boot sector would be overwritten by nonsense, 0 or > 7 FATs.\n
+23,33:*** Could not restore sector %lu ***\n
+23,34:*** Could not clone FAT sector %lu into sector %lu ***\n
+23,35:WARNING: %hu FAT copies requested, using %hu instead.\n
+23,36:WARNING: UNFORMAT turns FAT1x drive into FAT32.\n
+23,37:WARNING: UNFORMAT turns FAT32 drive into FAT1x!?\n
+23,38:\n Boot sector data: %hu FAT copies (offset %lu), %lu sectors per FAT\n
+23,39: Saving UNFORMAT information...\n
+
+# savefs.c unable to save filesystem properties error message
+# Use as many messages as needed, 1 message per max 79 column line
+# message numbers do not need to match up for messages for different languages
+# Each message should end with a newline \n
+# after every 23 messages user will be prompted to press a key to continue
+24,0:Filesystem properties will change, cannot preserve the\n
+24,1:(possibly empty) old bad cluster list. Use a surface scan\n
+24,2:tool or FORMAT /U if you want to update the bad cluster list.\n
+
+# recordbc.c
+25,0:Unusable disk: Bad sector in system data. Format terminated.\n
+25,1:\nBoot sector broken.\n
+25,2:\nFAT sector broken.\n
+25,3:\nRoot directory sector broken.\n
+25,4:\nBoot sector broken.\n
+25,5:\nFAT sector broken.\n
+25,6:\nRoot directory sector broken.\n
+25,7:\nReserved sector (boot, info, backup of either...) broken.\n
+25,8:\nFAT sector broken.\n
+25,9:*** Bad sector %lu, cluster %lu marked bad in FAT! ***\n
+25,10:WARNING: Have to mark USED cluster %lu as bad!\n
+25,11:*** Found %u bad sectors. Marked %lu clusters as bad. ***\n
+
+# bcread.c (bad clusters)
+26,0:\n *** Too many bad clusters! Do a surface scan after FORMAT! ***\n
+26,1:BadClustPreserve aborted: not 512 bytes/sector!\n
+26,2: Scanning FAT Sectors %lu to %lu...\n
+26,3: Scanning existing FAT...\n
+26,4:\n Cluster stats: %lu used, %lu bad, %lu items, %lu last.\n
+26,5:\n Cluster stats: %lu used, %lu bad, %lu items, %lu last.\n
+26,6: Cannot process existing FAT12, too big!\n
+26,7:\n Cluster stats: %lu used, %lu bad, %lu items, %lu last.\n
